@@ -1,6 +1,8 @@
-# Stellar Download Manager
+# 🌌 Stellar Download Manager
 
 An open source download manager for Windows and Linux, inspired by IDM. Built with Qt 6 and QML
+
+![Screenshot](screenshots/main.png)
 
 ## What it does
 
