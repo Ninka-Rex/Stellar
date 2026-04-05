@@ -1,0 +1,27 @@
+app-id: io.github.stellar.Stellar
+runtime: org.kde.Platform
+runtime-version: '6.6'
+sdk: org.kde.Sdk
+command: Stellar
+
+finish-args:
+  - --share=network
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --filesystem=home
+  - --talk-name=org.freedesktop.FileManager1
+
+modules:
+  - name: Stellar
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: dir
+        path: ../..
+    post-install:
+      - install -Dm644 packaging/flatpak/io.github.stellar.Stellar.desktop
+          /app/share/applications/io.github.stellar.Stellar.desktop
+      - install -Dm644 packaging/flatpak/io.github.stellar.Stellar.metainfo.xml
+          /app/share/metainfo/io.github.stellar.Stellar.metainfo.xml

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg128" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a8d8f0"/>
+      <stop offset="60%" stop-color="#c2e8ff"/>
+      <stop offset="100%" stop-color="#d8f0ff"/>
+    </linearGradient>
+    <linearGradient id="arm128" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3a9fd8" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#6cc4ee" stop-opacity="0.55"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="22" fill="url(#bg128)"/>
+
+  <!-- Outer glow of galaxy arm -->
+  <path d="M8 105 C25 80, 48 58, 75 38 C92 27, 114 22, 120 32 C126 44, 110 60, 88 72 C62 86, 32 92, 20 112 C13 122, 6 116, 8 105Z"
+        fill="#7ec8ea" opacity="0.45"/>
+
+  <!-- Primary galaxy arm -->
+  <path d="M14 100 C32 76, 55 53, 82 34 C98 23, 118 22, 120 32 C122 42, 106 57, 84 68 C60 81, 34 88, 22 108 C16 118, 11 110, 14 100Z"
+        fill="url(#arm128)" opacity="0.85"/>
+
+  <!-- Bright core streak -->
+  <path d="M30 90 C52 68, 76 48, 100 34"
+        fill="none" stroke="#b8e4f8" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Inner highlight -->
+  <path d="M38 84 C58 64, 80 46, 104 34"
+        fill="none" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Gold diamond sparkles -->
+  <polygon points="26,44  28.5,38  31,44  28.5,50" fill="#ffe566"/>
+  <polygon points="86,18  89,12   92,18  89,24"   fill="#ffe566"/>
+  <polygon points="55,62  57,57   59,62  57,67"   fill="#ffe566"/>
+  <polygon points="106,56 108,51  110,56 108,61"  fill="#ffd84a" opacity="0.8"/>
+
+  <!-- White/blue star dots -->
+  <circle cx="14"  cy="48"  r="2.2" fill="white" opacity="0.9"/>
+  <circle cx="44"  cy="22"  r="1.8" fill="white" opacity="0.85"/>
+  <circle cx="72"  cy="16"  r="1.4" fill="white" opacity="0.75"/>
+  <circle cx="108" cy="38"  r="2.0" fill="white" opacity="0.9"/>
+  <circle cx="116" cy="74"  r="1.5" fill="white" opacity="0.7"/>
+  <circle cx="20"  cy="72"  r="1.6" fill="white" opacity="0.7"/>
+  <circle cx="58"  cy="106" r="1.8" fill="white" opacity="0.6"/>
+  <circle cx="100" cy="96"  r="1.4" fill="white" opacity="0.55"/>
+  <circle cx="12"  cy="26"  r="1.2" fill="#c8eeff" opacity="0.9"/>
+  <circle cx="118" cy="18"  r="1.2" fill="#c8eeff" opacity="0.8"/>
+</svg>

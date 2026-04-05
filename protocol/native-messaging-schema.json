@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://stellarproject.io/protocol/native-messaging-schema.json",
+  "title": "Stellar Native Messaging Protocol",
+  "description": "JSON schema for messages exchanged between the browser extension and the Stellar native host. All messages are framed with a 4-byte little-endian length prefix per the Native Messaging specification.",
+  "oneOf": [
+    { "$ref": "#/$defs/ExtensionToHost" },
+    { "$ref": "#/$defs/HostToExtension" }
+  ],
+  "$defs": {
+    "ExtensionToHost": {
+      "oneOf": [
+        { "$ref": "#/$defs/PingMessage" },
+        { "$ref": "#/$defs/DownloadMessage" },
+        { "$ref": "#/$defs/FocusMessage" }
+      ]
+    },
+    "HostToExtension": {
+      "oneOf": [
+        { "$ref": "#/$defs/ReadyMessage" },
+        { "$ref": "#/$defs/AckMessage" },
+        { "$ref": "#/$defs/ErrorMessage" }
+      ]
+    },
+    "PingMessage": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "ping" }
+      },
+      "additionalProperties": false
+    },
+    "FocusMessage": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "focus" }
+      },
+      "additionalProperties": false
+    },
+    "DownloadMessage": {
+      "type": "object",
+      "required": ["type", "url"],
+      "properties": {
+        "type":      { "const": "download" },
+        "url":       { "type": "string", "format": "uri" },
+        "filename":  { "type": "string", "default": "" },
+        "referrer":  { "type": "string", "default": "" },
+        "cookies":   { "type": "string", "default": "" },
+        "headers":   {
+          "type": "object",
+          "additionalProperties": { "type": "string" },
+          "description": "Extra HTTP headers to forward with the download request"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ReadyMessage": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": { "const": "ready" },
+        "version": { "type": "string", "description": "Stellar version string" }
+      },
+      "additionalProperties": false
+    },
+    "AckMessage": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "const": "ack" },
+        "id":   { "type": "string", "description": "UUID of the new DownloadItem" }
+      },
+      "additionalProperties": false
+    },
+    "ErrorMessage": {
+      "type": "object",
+      "required": ["type", "message"],
+      "properties": {
+        "type":    { "const": "error" },
+        "message": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+  Stellar Download Manager — Firefox Extension Popup
+  Copyright (C) 2026 Ninka_
+  GNU GPL v3.0 — https://www.gnu.org/licenses/gpl-3.0.html
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stellar</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      width: 260px;
+      padding: 14px;
+      background: #1c1c1c;
+      color: #d0d0d0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    header img {
+      width: 28px;
+      height: 28px;
+    }
+
+    h2 {
+      font-size: 14px;
+      color: #a8d8f8;
+      font-weight: 600;
+    }
+
+    #status {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      background: #252525;
+      border: 1px solid #333;
+    }
+
+    .status-online  { color: #55bb55; border-color: #335533 !important; }
+    .status-offline { color: #cc5555; border-color: #553333 !important; }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 7px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      transition: background 0.15s;
+    }
+
+    .btn:hover { filter: brightness(1.15); }
+
+    .btn-on  { background: #1e3a1e; color: #88dd88; border: 1px solid #335533; }
+    .btn-off { background: #3a1e1e; color: #dd8888; border: 1px solid #553333; }
+
+    #openApp {
+      background: #1e3a6e;
+      color: #88bbff;
+      border: 1px solid #2a4a8a;
+    }
+
+    footer {
+      margin-top: 10px;
+      font-size: 10px;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icons/icon48.png" alt="Stellar" onerror="this.style.display='none'">
+    <h2>Stellar Download Manager</h2>
+  </header>
+
+  <div id="status">Checking connection…</div>
+
+  <button id="toggleBtn" class="btn btn-on">Interception: ON</button>
+  <button id="openApp"   class="btn">Open Stellar</button>
+
+  <footer>Right-click any link → "Download with Stellar"</footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

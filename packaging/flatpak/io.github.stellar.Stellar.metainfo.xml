@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.stellar.Stellar</id>
+  <name>Stellar Download Manager</name>
+  <summary>Fast, segmented, IDM-compatible download manager</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <description>
+    <p>Stellar is a cross-platform download manager written in Qt6/C++ featuring
+    segmented (multi-connection) transfers, browser integration via native messaging,
+    and a category-based download queue.</p>
+  </description>
+  <url type="homepage">https://stellar.moe/</url>
+  <url type="bugtracker">https://github.com/Ninka-Rex/Stellar/issues</url>
+  <url type="vcs-browser">https://github.com/Ninka-Rex/Stellar</url>
+  <releases>
+    <release version="0.1.0" date="2026-04-03">
+      <description><p>Initial UI shell release.</p></description>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1"/>
+</component>
