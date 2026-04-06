@@ -1,4 +1,5 @@
-build/ 
+build/
+dist/
 backups/
 docs/
 .claude/

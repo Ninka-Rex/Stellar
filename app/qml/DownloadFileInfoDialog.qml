@@ -47,6 +47,10 @@ Window {
     signal rejected(string url)
 
     onVisibleChanged: {
+        if (visible) {
+            raise()
+            requestActivate()
+        }
         if (!visible) {
             if (isIntercepted && !_accepted)
                 rejected(pendingUrl)

@@ -342,10 +342,17 @@ void AppController::openExtensionFolder() const {
 }
 
 QString AppController::nativeHostManifestPath() const {
-    // Store the manifest next to the executable — avoids AppDataLocation path
-    // complexity and guarantees the directory already exists.
+#if defined(STELLAR_LINUX)
+    // On Linux the app dir may be read-only (e.g. Flatpak /app/bin/).
+    // Use a writable user-data directory instead.
+    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    QDir().mkpath(dataDir);
+    return dataDir + QStringLiteral("/com.stellar.downloadmanager.json");
+#else
+    // Windows: store next to the executable (always writable for portable installs).
     return QDir::toNativeSeparators(
         QCoreApplication::applicationDirPath() + QStringLiteral("/com.stellar.downloadmanager.json"));
+#endif
 }
 
 QString AppController::nativeHostDiagnostics() const {
@@ -394,37 +401,85 @@ QString AppController::nativeHostDiagnostics() const {
 }
 
 QString AppController::registerNativeHost() const {
-    // Build the manifest JSON with the absolute path to this executable.
-    const QString exePath = QDir::toNativeSeparators(
-        QCoreApplication::applicationFilePath());
+    const QString manifestPath = nativeHostManifestPath();
+
+#if defined(STELLAR_LINUX)
+    // On Linux the executable path used in the manifest depends on whether
+    // we are running inside a Flatpak sandbox.  Inside Flatpak,
+    // applicationFilePath() returns "/app/bin/Stellar" which is invisible to
+    // the host Firefox process.  We write a tiny wrapper script to a
+    // host-writable location that calls "flatpak run ..." so Firefox can
+    // execute it directly.
+
+    const bool isFlatpak = qEnvironmentVariableIsSet("FLATPAK_ID");
+    const QString flatpakId = QString::fromLocal8Bit(qgetenv("FLATPAK_ID"));
+    QString hostExePath;  // path Firefox will put in the manifest
+
+    if (isFlatpak) {
+        // Write a wrapper script: ~/.local/share/<AppName>/stellar-nm-wrapper.sh
+        const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+        QDir().mkpath(dataDir);
+        const QString wrapperPath = dataDir + QStringLiteral("/stellar-nm-wrapper.sh");
+
+        QFile wrapper(wrapperPath);
+        if (!wrapper.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
+            return QStringLiteral("Could not write wrapper script: ") + wrapperPath
+                   + QStringLiteral("\nError: ") + wrapper.errorString();
+        wrapper.write(QStringLiteral("#!/bin/bash\nexec flatpak run %1 \"$@\"\n")
+                      .arg(flatpakId).toUtf8());
+        wrapper.close();
+        // Make it executable
+        wrapper.setPermissions(
+            QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner |
+            QFileDevice::ReadGroup | QFileDevice::ExeGroup |
+            QFileDevice::ReadOther | QFileDevice::ExeOther);
+        hostExePath = wrapperPath;
+    } else {
+        hostExePath = QCoreApplication::applicationFilePath();
+    }
 
     QJsonObject manifest;
     manifest[QStringLiteral("name")]        = QStringLiteral("com.stellar.downloadmanager");
     manifest[QStringLiteral("description")] = QStringLiteral("Stellar Download Manager native messaging host");
-    manifest[QStringLiteral("path")]        = exePath;
+    manifest[QStringLiteral("path")]        = hostExePath;
     manifest[QStringLiteral("type")]        = QStringLiteral("stdio");
-    // Firefox uses allowed_extensions; Chrome uses allowed_origins.
-    // Firefox uses allowed_extensions. Do NOT include allowed_origins —
-    // Firefox's manifest parser does strict field validation and rejects
-    // manifests containing unknown fields, causing "No such native application".
-    manifest[QStringLiteral("allowed_extensions")] = QJsonArray{
-        QStringLiteral("stellar@stellar.moe")
-    };
+    manifest[QStringLiteral("allowed_extensions")] = QJsonArray{ QStringLiteral("stellar@stellar.moe") };
 
     const QByteArray json = QJsonDocument(manifest).toJson(QJsonDocument::Indented);
 
-    // Write the manifest file next to the executable.
-    const QString manifestPath = nativeHostManifestPath();
+    // Write the manifest source file (used for manual cp instructions).
     {
-        // applicationDirPath() always exists; mkpath is a no-op but safe.
-        QDir().mkpath(QCoreApplication::applicationDirPath());
-
+        QDir().mkpath(QFileInfo(manifestPath).absolutePath());
         QFile f(manifestPath);
         if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
             return QStringLiteral("Could not write manifest file: ") + manifestPath
                    + QStringLiteral("\nError: ") + f.errorString();
         f.write(json);
     }
+
+#else
+    // Non-Linux: exe path is always the running binary.
+    const QString exePath = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
+
+    QJsonObject manifest;
+    manifest[QStringLiteral("name")]        = QStringLiteral("com.stellar.downloadmanager");
+    manifest[QStringLiteral("description")] = QStringLiteral("Stellar Download Manager native messaging host");
+    manifest[QStringLiteral("path")]        = exePath;
+    manifest[QStringLiteral("type")]        = QStringLiteral("stdio");
+    manifest[QStringLiteral("allowed_extensions")] = QJsonArray{ QStringLiteral("stellar@stellar.moe") };
+
+    const QByteArray json = QJsonDocument(manifest).toJson(QJsonDocument::Indented);
+
+    // Write the manifest file next to the executable.
+    {
+        QDir().mkpath(QCoreApplication::applicationDirPath());
+        QFile f(manifestPath);
+        if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate))
+            return QStringLiteral("Could not write manifest file: ") + manifestPath
+                   + QStringLiteral("\nError: ") + f.errorString();
+        f.write(json);
+    }
+#endif
 
 #if defined(STELLAR_WINDOWS)
     // Use Win32 API directly — QSettings default-value behaviour is unreliable.
@@ -452,18 +507,42 @@ QString AppController::registerNativeHost() const {
             return QStringLiteral("Failed to write registry value (error %1).\nPlease register manually.").arg(res);
     }
 #elif defined(STELLAR_LINUX)
-    // Copy manifest to ~/.mozilla/native-messaging-hosts/
-    const QString mozDir = QDir::homePath()
-                           + QStringLiteral("/.mozilla/native-messaging-hosts");
-    if (!QDir().mkpath(mozDir))
-        return QStringLiteral("Could not create directory: ") + mozDir;
+    // Copy manifest to all known Firefox native-messaging-hosts directories.
+    // Standard Firefox: ~/.mozilla/native-messaging-hosts/
+    // Snap Firefox:     ~/snap/firefox/common/.mozilla/native-messaging-hosts/
+    const QStringList mozDirs = {
+        QDir::homePath() + QStringLiteral("/.mozilla/native-messaging-hosts"),
+        QDir::homePath() + QStringLiteral("/snap/firefox/common/.mozilla/native-messaging-hosts"),
+    };
 
-    const QString dest = mozDir + QStringLiteral("/com.stellar.downloadmanager.json");
-    QFile::remove(dest);
-    QFile f(manifestPath);
-    if (!f.copy(dest))
-        return QStringLiteral("Could not copy manifest to: ") + dest
-               + QStringLiteral("\nError: ") + f.errorString();
+    QString lastError;
+    bool anyOk = false;
+    for (const QString &mozDir : mozDirs) {
+        // Only write to snap path if the snap directory exists (avoids creating
+        // snap dirs on systems that don't have snap Firefox).
+        if (mozDir.contains(QStringLiteral("/snap/")) &&
+            !QDir(QDir::homePath() + QStringLiteral("/snap/firefox")).exists())
+            continue;
+
+        if (!QDir().mkpath(mozDir)) {
+            lastError = QStringLiteral("Could not create directory: ") + mozDir;
+            continue;
+        }
+        const QString dest = mozDir + QStringLiteral("/com.stellar.downloadmanager.json");
+        QFile::remove(dest);
+        QFile src(manifestPath);
+        if (!src.copy(dest)) {
+            lastError = QStringLiteral("Could not copy manifest to: ") + dest
+                        + QStringLiteral("\nError: ") + src.errorString();
+        } else {
+            anyOk = true;
+        }
+    }
+
+    if (!anyOk)
+        return lastError.isEmpty()
+               ? QStringLiteral("No Firefox installation directories found.")
+               : lastError;
 #else
     return QStringLiteral("Automatic registration is not supported on this platform.\nPlease register manually using the instructions below.");
 #endif

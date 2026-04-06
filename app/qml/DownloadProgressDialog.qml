@@ -45,6 +45,13 @@ Window {
         }
     }
 
+    onVisibleChanged: {
+        if (visible) {
+            raise()
+            requestActivate()
+        }
+    }
+
     onItemChanged: {
         _updatingSpeedUI = true
         if (item && item.speedLimitKBps > 0) {
