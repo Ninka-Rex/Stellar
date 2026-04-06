@@ -161,7 +161,9 @@ void AppSettings::load() {
     m_showExceptionsDialog = m_settings.value(QStringLiteral("showExceptionsDialog"), true).toBool();
     m_showTips = m_settings.value(QStringLiteral("showTips"), true).toBool();
     m_duplicateAction = m_settings.value(QStringLiteral("duplicateAction"), 0).toInt();
-    m_startImmediately     = m_settings.value(QStringLiteral("startImmediately"), false).toBool();
+    m_startImmediately        = m_settings.value(QStringLiteral("startImmediately"), false).toBool();
+    m_speedLimiterOnStartup   = m_settings.value(QStringLiteral("speedLimiterOnStartup"), false).toBool();
+    m_savedSpeedLimitKBps     = m_settings.value(QStringLiteral("savedSpeedLimitKBps"), 500).toInt();
 
     emit maxConcurrentChanged();
     emit segmentsPerDownloadChanged();
@@ -178,6 +180,8 @@ void AppSettings::load() {
     emit showTipsChanged();
     emit duplicateActionChanged();
     emit startImmediatelyChanged();
+    emit speedLimiterOnStartupChanged();
+    emit savedSpeedLimitKBpsChanged();
 }
 
 void AppSettings::save() {
@@ -196,6 +200,8 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("showTips"),              m_showTips);
     m_settings.setValue(QStringLiteral("duplicateAction"),       m_duplicateAction);
     m_settings.setValue(QStringLiteral("startImmediately"),           m_startImmediately);
+    m_settings.setValue(QStringLiteral("speedLimiterOnStartup"),      m_speedLimiterOnStartup);
+    m_settings.setValue(QStringLiteral("savedSpeedLimitKBps"),        m_savedSpeedLimitKBps);
     m_settings.sync();
 }
 
@@ -213,4 +219,6 @@ void AppSettings::setExcludedAddresses(const QStringList &v)   { if (m_excludedA
 void AppSettings::setShowExceptionsDialog(bool v)              { if (m_showExceptionsDialog != v) { m_showExceptionsDialog = v; emit showExceptionsDialogChanged(); save(); } }
 void AppSettings::setShowTips(bool v)                          { if (m_showTips            != v) { m_showTips            = v; emit showTipsChanged();            save(); } }
 void AppSettings::setDuplicateAction(int v)                    { if (m_duplicateAction     != v) { m_duplicateAction     = v; emit duplicateActionChanged();     save(); } }
-void AppSettings::setStartImmediately(bool v)                       { if (m_startImmediately         != v) { m_startImmediately         = v; emit startImmediatelyChanged();         save(); } }
+void AppSettings::setStartImmediately(bool v)       { if (m_startImmediately       != v) { m_startImmediately       = v; emit startImmediatelyChanged();       save(); } }
+void AppSettings::setSpeedLimiterOnStartup(bool v)  { if (m_speedLimiterOnStartup  != v) { m_speedLimiterOnStartup  = v; emit speedLimiterOnStartupChanged();  save(); } }
+void AppSettings::setSavedSpeedLimitKBps(int v)     { if (m_savedSpeedLimitKBps    != v) { m_savedSpeedLimitKBps    = v; emit savedSpeedLimitKBpsChanged();    save(); } }

@@ -22,7 +22,7 @@ AbstractButton {
     id: root
     property string label: ""
     property string iconSrc: ""
-
+    
     width: 70
     height: 70
 
@@ -31,12 +31,13 @@ AbstractButton {
              : root.hovered ? "#2d2d3d"
              : "transparent"
         radius: 0
+        
     }
 
     contentItem: Column {
         anchors.centerIn: parent
         spacing: 4
-
+        
         Image {
             anchors.horizontalCenter: parent.horizontalCenter
             source: root.iconSrc

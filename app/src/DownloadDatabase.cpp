@@ -62,6 +62,18 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setTotalBytes(obj[QLatin1String("totalBytes")].toVariant().toLongLong());
         item->setDoneBytes(obj[QLatin1String("doneBytes")].toVariant().toLongLong());
         item->setResumeCapable(obj[QLatin1String("resumeCapable")].toBool());
+        item->setReferrer(obj[QLatin1String("referrer")].toString());
+        item->setParentUrl(obj[QLatin1String("parentUrl")].toString());
+        item->setUsername(obj[QLatin1String("username")].toString());
+        item->setPassword(obj[QLatin1String("password")].toString());
+        {
+            const QString ltStr = obj[QLatin1String("lastTryAt")].toString();
+            if (!ltStr.isEmpty()) item->setLastTryAt(QDateTime::fromString(ltStr, Qt::ISODate));
+        }
+        {
+            const QString queueId = obj[QLatin1String("queueId")].toString();
+            if (!queueId.isEmpty()) item->setQueueId(queueId);
+        }
 
         const QString statusStr = obj[QLatin1String("status")].toString();
         DownloadItem::Status s = DownloadItem::Status::Paused;
@@ -93,6 +105,13 @@ void DownloadDatabase::save(DownloadItem *item) {
     m[QStringLiteral("status")]         = item->status();
     m[QStringLiteral("resumeCapable")]  = item->resumeCapable();
     m[QStringLiteral("addedAt")]        = item->addedAt().toString(Qt::ISODate);
+    m[QStringLiteral("referrer")]       = item->referrer();
+    m[QStringLiteral("parentUrl")]      = item->parentUrl();
+    m[QStringLiteral("username")]       = item->username();
+    m[QStringLiteral("password")]       = item->password();
+    m[QStringLiteral("queueId")]        = item->queueId();
+    if (item->lastTryAt().isValid())
+        m[QStringLiteral("lastTryAt")] = item->lastTryAt().toString(Qt::ISODate);
 
     m_entries[item->id()] = m;
     writeToDisk();

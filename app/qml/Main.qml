@@ -35,7 +35,13 @@ ApplicationWindow {
     Material.accent: "#5588cc"
 
     // ── Minimize to tray on close ─────────────────────────────────────────────
-    property bool isQuitting: false
+    property bool isQuitting:    false
+    property bool findBarActive: false
+
+    function closeFindBar() {
+        findBarActive = false
+        downloadTable.clearFilter()
+    }
 
     onClosing: (close) => {
         if (!isQuitting && App.settings.closeToTray) {
@@ -87,7 +93,9 @@ ApplicationWindow {
             TrayMenuItem { label: "GitHub";        onClicked: { trayMenu.visible = false; Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") } }
             TrayMenuItem { label: "About Stellar"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); settingsDialog.initialPage = 7; settingsDialog.show(); settingsDialog.raise() } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: "Speed Limiter"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); settingsDialog.initialPage = 4; settingsDialog.show(); settingsDialog.raise() } }
+            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + "Speed Limiter: Turn On";  onClicked: { trayMenu.visible = false; App.enableSpeedLimiter() } }
+            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "") + "Speed Limiter: Turn Off"; onClicked: { trayMenu.visible = false; App.disableSpeedLimiter() } }
+            TrayMenuItem { label: "Speed Limiter Settings…"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); settingsDialog.initialPage = 4; settingsDialog.show(); settingsDialog.raise() } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: "Exit Stellar";  onClicked: { trayMenu.visible = false; root.quitApp() } }
         }
@@ -168,6 +176,9 @@ ApplicationWindow {
         id: addUrlDialog
         onAccepted: {
             if (url.trim().length === 0) return
+            // Store auth credentials for step 2
+            root._pendingUsername = useAuth ? username : ""
+            root._pendingPassword = useAuth ? password : ""
             var existing = App.findDuplicateUrl(url)
             if (existing) {
                 var action = App.settings.duplicateAction
@@ -220,11 +231,15 @@ ApplicationWindow {
         }
     }
 
+    // Pending auth from AddUrlDialog step 1
+    property string _pendingUsername: ""
+    property string _pendingPassword: ""
+
     // ── Download File Info dialog (step 2) ────────────────────────────────────
     DownloadFileInfoDialog {
         id: fileInfoDialog
-        onDownloadNow:   (url, savePath, category, desc) => App.addUrl(url, savePath, category, desc, true,  App.takePendingCookies(url))
-        onDownloadLater: (url, savePath, category, desc) => App.addUrl(url, savePath, category, desc, false, App.takePendingCookies(url))
+        onDownloadNow:   (url, savePath, category, desc) => App.addUrl(url, savePath, category, desc, true,  App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword)
+        onDownloadLater: (url, savePath, category, desc) => App.addUrl(url, savePath, category, desc, false, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword)
         onRejected:      (url) => App.notifyInterceptRejected(url)
     }
 
@@ -254,6 +269,27 @@ ApplicationWindow {
 
     // ── Add Exception Dialog ──────────────────────────────────────────────────
     AddExceptionDialog { id: addExceptionDialog }
+
+    // ── Delete Done Confirm Dialog ────────────────────────────────────────────
+    DeleteDoneConfirmDialog {
+        id: deleteDoneConfirmDialog
+        onConfirmed: App.deleteAllCompleted(0)
+    }
+
+    // ── File Properties Dialog ────────────────────────────────────────────────
+    FilePropertiesDialog { id: filePropertiesDialog }
+
+// ── Columns Dialog ────────────────────────────────────────────────────────
+    ColumnsDialog {
+        id: columnsDialog
+        onColumnsChanged: (defs) => {
+            if (defs === null) {
+                downloadTable.resetColumns()
+            } else {
+                downloadTable.columnDefs = defs
+            }
+        }
+    }
 
     // ── Tips timer and display ────────────────────────────────────────────────
     property var tipsArray: []
@@ -335,49 +371,79 @@ ApplicationWindow {
         }
         Menu {
             title: qsTr("Downloads")
-            Action { text: qsTr("Resume");    shortcut: "Ctrl+R" }
-            Action { text: qsTr("Pause");     shortcut: "Ctrl+P" }
-            Action { text: qsTr("Stop All") }
-            Action { text: qsTr("Delete");    shortcut: "Delete" }
+            Action { text: qsTr("Pause all");  shortcut: "Ctrl+P"; onTriggered: downloadTable.pauseAll() }
+            Action { text: qsTr("Stop all");   onTriggered: downloadTable.pauseAll() }
             MenuSeparator {}
-
+            Action { text: qsTr("Delete all completed"); onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
+            MenuSeparator {}
+            Action { text: qsTr("Find…");      shortcut: "Ctrl+F"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
+            Action { text: qsTr("Find Next");  shortcut: "F3";     onTriggered: downloadTable.findNextFiltered() }
+            MenuSeparator {}
+            Action { text: qsTr("Scheduler");  onTriggered: schedulerDialog.show() }
             Menu {
                 title: qsTr("Start Queue")
                 Repeater {
                     model: App.queueModel
-                    delegate: Action {
-                        text: queueName || ""
-                        onTriggered: App.startQueue(queueId)
-                    }
+                    delegate: Action { text: queueName || ""; onTriggered: App.startQueue(queueId) }
                 }
             }
-
             Menu {
                 title: qsTr("Stop Queue")
                 Repeater {
                     model: App.queueModel
-                    delegate: Action {
-                        text: queueName || ""
-                        onTriggered: App.stopQueue(queueId)
-                    }
+                    delegate: Action { text: queueName || ""; onTriggered: App.stopQueue(queueId) }
                 }
             }
-
             MenuSeparator {}
-            Action { text: qsTr("Move Up");   shortcut: "Alt+Up" }
-            Action { text: qsTr("Move Down"); shortcut: "Alt+Down" }
+            Menu {
+                title: qsTr("Speed Limiter")
+                Action { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
+                Action { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
+                MenuSeparator {}
+                Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = 4; settingsDialog.show() } }
+            }
+            MenuSeparator {}
+            Action { text: qsTr("Options…"); shortcut: "Ctrl+,"; onTriggered: settingsDialog.show() }
         }
         Menu {
             title: qsTr("View")
-            Action { text: qsTr("Toolbar") }
-            Action { text: qsTr("Status Bar") }
-            Action { text: qsTr("Categories Panel") }
+            Action {
+                text: sidebar.visible ? qsTr("Hide Categories") : qsTr("Show Categories")
+                onTriggered: sidebar.visible = !sidebar.visible
+            }
+            MenuSeparator {}
+            Menu {
+                title: qsTr("Arrange Files")
+                Action { text: qsTr("By Order Of Addition");  onTriggered: App.sortDownloads("added",      true) }
+                Action { text: qsTr("By File Name");          onTriggered: App.sortDownloads("name",       true) }
+                Action { text: qsTr("By Size");               onTriggered: App.sortDownloads("size",       true) }
+                Action { text: qsTr("By Status");             onTriggered: App.sortDownloads("status",     true) }
+                Action { text: qsTr("By Time Left");          onTriggered: App.sortDownloads("timeleft",   true) }
+                Action { text: qsTr("By Transfer Rate");      onTriggered: App.sortDownloads("speed",      false) }
+                Action { text: qsTr("By Last Try Date");      onTriggered: App.sortDownloads("lasttry",    false) }
+                Action { text: qsTr("By Description");        onTriggered: App.sortDownloads("description",true) }
+                Action { text: qsTr("By Save Path");          onTriggered: App.sortDownloads("saveto",     true) }
+                Action { text: qsTr("By Referer");            onTriggered: App.sortDownloads("referrer",   true) }
+                Action { text: qsTr("By Parent Web Page");    onTriggered: App.sortDownloads("parenturl",  true) }
+            }
+            MenuSeparator {}
+            Action { text: qsTr("Columns…"); onTriggered: {
+                columnsDialog.columnDefs = downloadTable.columnDefs.slice()
+                columnsDialog.show()
+                columnsDialog.raise()
+            }}
         }
         Menu {
             title: qsTr("Options")
             Action { text: qsTr("Preferences…"); shortcut: "Ctrl+,"; onTriggered: settingsDialog.show() }
-            Action { text: qsTr("Scheduler"); onTriggered: schedulerDialog.show() }
-            Action { text: qsTr("Speed Limiter"); onTriggered: { settingsDialog.initialPage = 4; settingsDialog.show() } }
+            Action { text: qsTr("Scheduler");    onTriggered: schedulerDialog.show() }
+            Menu {
+                title: qsTr("Speed Limiter")
+                Action { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
+                Action { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
+                MenuSeparator {}
+                Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = 4; settingsDialog.show() } }
+            }
         }
         Menu {
             title: qsTr("Help")
@@ -442,14 +508,183 @@ ApplicationWindow {
             onAddClicked:             { addUrlDialog.show(); addUrlDialog.raise() }
             onResumeClicked:          downloadTable.resumeSelected()
             onStopClicked:            downloadTable.stopSelected()
-            onStopAllClicked:         {}
+            onStopAllClicked:         App.pauseAllDownloads()
             onDeleteClicked:          downloadTable.deleteSelected()
-            onDeleteCompletedClicked: {}
+            onDeleteCompletedClicked: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() }
             onOptionsClicked:         settingsDialog.show()
             onSchedulerClicked:       schedulerDialog.show()
             onStartQueueRequested:    (queueId) => App.startQueue(queueId)
             onStopQueueRequested:     (queueId) => App.stopQueue(queueId)
             onGrabberClicked:         {}
+        }
+
+        // ── Inline Find Bar ───────────────────────────────────────────────────
+        Rectangle {
+            id: findBar
+            Layout.fillWidth: true
+            height: 36
+            visible: root.findBarActive
+            color: "#1e2030"
+            border.color: "#3a3a55"
+            border.width: 0
+
+            // Top separator line
+            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#3a3a55" }
+
+            // Escape to close
+            Keys.onEscapePressed: root.closeFindBar()
+
+            RowLayout {
+                anchors { fill: parent; leftMargin: 8; rightMargin: 6; topMargin: 0; bottomMargin: 0 }
+                spacing: 6
+
+                Text {
+                    text: "Find:"
+                    color: "#9090a0"
+                    font.pixelSize: 12
+                    verticalAlignment: Text.AlignVCenter
+                    Layout.alignment: Qt.AlignVCenter
+                }
+
+                TextField {
+                    id: findBarField
+                    Layout.fillWidth: true
+                    implicitHeight: 24
+                    font.pixelSize: 12
+                    color: "#d0d0d0"
+                    background: Rectangle { color: "#2a2a3a"; border.color: "#4a4a6a"; radius: 3 }
+                    leftPadding: 6
+
+                    Keys.onEscapePressed: root.closeFindBar()
+                    Keys.onReturnPressed: downloadTable.findNextFiltered()
+                    Keys.onEnterPressed:  downloadTable.findNextFiltered()
+
+                    onTextChanged: {
+                        downloadTable.filterText = text
+                        downloadTable._findRow = -1
+                        if (text.length > 0) downloadTable.findFirstFiltered()
+                    }
+                }
+
+                // Result count
+                Text {
+                    id: findCountLabel
+                    readonly property int cnt: downloadTable.filterText.length > 0
+                        ? downloadTable.countMatches(downloadTable.filterText, downloadTable.filterName,
+                                                     downloadTable.filterDesc, downloadTable.filterLinks,
+                                                     downloadTable.filterMatchCase, downloadTable.filterMatchWhole)
+                        : -1
+                    text: cnt < 0 ? "" : (cnt === 0 ? "No results" : cnt + " found")
+                    color: cnt === 0 ? "#cc6666" : "#66bb88"
+                    font.pixelSize: 11
+                    Layout.alignment: Qt.AlignVCenter
+                    visible: downloadTable.filterText.length > 0
+                }
+
+                // Find button
+                Rectangle {
+                    implicitWidth: 46; implicitHeight: 24; radius: 3
+                    color: findBtnMa.containsMouse ? "#2a5faa" : "#1e3a6e"
+                    border.color: "#4488dd"; border.width: 1
+                    Layout.alignment: Qt.AlignVCenter
+                    Text { anchors.centerIn: parent; text: "Find"; color: "#ffffff"; font.pixelSize: 12; font.bold: true }
+                    MouseArea {
+                        id: findBtnMa
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: downloadTable.findNextFiltered()
+                    }
+                }
+
+                // Settings button
+                Rectangle {
+                    id: findSettingsBtn
+                    implicitWidth: 68; implicitHeight: 24; radius: 3
+                    color: findSettingsMa.containsMouse ? "#333345" : "#28283a"
+                    border.color: "#4a4a6a"; border.width: 1
+                    Layout.alignment: Qt.AlignVCenter
+                    Text { anchors.centerIn: parent; text: "Settings ▾"; color: "#b0b0c0"; font.pixelSize: 11 }
+                    MouseArea {
+                        id: findSettingsMa
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: findSettingsPopup.open()
+                    }
+
+                    Popup {
+                        id: findSettingsPopup
+                        y: findSettingsBtn.height + 2
+                        x: findSettingsBtn.width - width
+                        width: 280
+                        padding: 10
+                        background: Rectangle { color: "#252535"; border.color: "#4a4a6a"; border.width: 1; radius: 4 }
+                        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+
+                        ColumnLayout {
+                            width: parent.width
+                            spacing: 2
+
+                            Text { text: "Search in:"; color: "#808090"; font.pixelSize: 11; bottomPadding: 2 }
+
+                            CheckBox {
+                                text: "File name or part of the name"
+                                checked: downloadTable.filterName
+                                topPadding: 0; bottomPadding: 0
+                                onCheckedChanged: { downloadTable.filterName = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                            }
+                            CheckBox {
+                                text: "Description"
+                                checked: downloadTable.filterDesc
+                                topPadding: 0; bottomPadding: 0
+                                onCheckedChanged: { downloadTable.filterDesc = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                            }
+                            CheckBox {
+                                text: "URL / referrer / parent web page"
+                                checked: downloadTable.filterLinks
+                                topPadding: 0; bottomPadding: 0
+                                onCheckedChanged: { downloadTable.filterLinks = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                            }
+
+                            Rectangle { width: parent.width; height: 1; color: "#3a3a4a"; Layout.topMargin: 4; Layout.bottomMargin: 4 }
+
+                            CheckBox {
+                                text: "Match case"
+                                checked: downloadTable.filterMatchCase
+                                topPadding: 0; bottomPadding: 0
+                                onCheckedChanged: { downloadTable.filterMatchCase = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                            }
+                            CheckBox {
+                                text: "Match whole string only"
+                                checked: downloadTable.filterMatchWhole
+                                topPadding: 0; bottomPadding: 0
+                                onCheckedChanged: { downloadTable.filterMatchWhole = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
+                            }
+                        }
+                    }
+                }
+
+                // Close button
+                Rectangle {
+                    implicitWidth: 22; implicitHeight: 22; radius: 3
+                    color: closeFindMa.containsMouse ? "#553333" : "transparent"
+                    Layout.alignment: Qt.AlignVCenter
+                    Text { anchors.centerIn: parent; text: "×"; color: "#a0a0a0"; font.pixelSize: 16 }
+                    MouseArea {
+                        id: closeFindMa
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: root.closeFindBar()
+                    }
+                }
+            }
         }
 
         RowLayout {
@@ -474,6 +709,16 @@ ApplicationWindow {
                     progressDialog.downloadId = item ? item.id : ""
                     progressDialog.show()
                     progressDialog.raise()
+                }
+                onOpenPropertiesRequested: (item) => {
+                    filePropertiesDialog.item = item
+                    filePropertiesDialog.show()
+                    filePropertiesDialog.raise()
+                }
+                onOpenColumnsSettingsRequested: {
+                    columnsDialog.columnDefs = downloadTable.columnDefs.slice()
+                    columnsDialog.show()
+                    columnsDialog.raise()
                 }
             }
         }

@@ -44,7 +44,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
         }
         cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
     } catch { /* cookies permission may not be granted */ }
-    await requestDownload({ url, referrer: info.pageUrl, cookies: cookieHeader });
+    await requestDownload({ url, referrer: info.frameUrl ?? info.pageUrl ?? "", pageUrl: info.pageUrl ?? "", cookies: cookieHeader });
 });
 
 // ── Extension icon badge ──────────────────────────────────────────────────────

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.1.9 LANGUAGES CXX)
+project(Stellar VERSION 0.2.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -90,6 +90,10 @@ qt_add_qml_module(Stellar
         app/qml/AddExceptionDialog.qml
         app/qml/BrowserIntegrationDialog.qml
         app/qml/SchedulerDialog.qml
+        app/qml/FilePropertiesDialog.qml
+        app/qml/FindDialog.qml
+        app/qml/ColumnsDialog.qml
+        app/qml/DeleteDoneConfirmDialog.qml
     RESOURCES
         app/qml/icons/add.svg
         app/qml/icons/resume.svg

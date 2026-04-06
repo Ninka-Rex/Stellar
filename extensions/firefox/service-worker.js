@@ -444,6 +444,7 @@ function sendToStellar(details) {
             url:      details.url,
             filename: details.filename ?? "",
             referrer: details.referrer ?? "",
+            pageUrl:  details.pageUrl  ?? "",
             cookies:  details.cookies  ?? ""
         }, (response) => {
             if (browser.runtime.lastError) {
@@ -491,8 +492,15 @@ async function handleDownloadCreated(downloadItem) {
 
     const cookieHeader = await getCookiesForUrl(url);
 
+    // Capture the active tab URL as the parent web page
+    let pageUrl = "";
     try {
-        await sendToStellar({ url, filename: name, referrer: referrer ?? "", cookies: cookieHeader });
+        const tabs = await browser.tabs.query({ active: true, currentWindow: true });
+        if (tabs.length > 0) pageUrl = tabs[0].url || "";
+    } catch { /* ignore */ }
+
+    try {
+        await sendToStellar({ url, filename: name, referrer: referrer ?? "", pageUrl, cookies: cookieHeader });
     } catch (err) {
         // Native host unreachable — do NOT open a new tab (that re-triggers
         // downloads.onCreated and causes an infinite loop). Just log it.
@@ -538,7 +546,8 @@ browser.contextMenus.onClicked.addListener(async (info) => {
         await sendToStellar({
             url,
             filename: extractFilename(url, null),
-            referrer: info.pageUrl ?? "",
+            referrer: info.frameUrl ?? info.pageUrl ?? "",
+            pageUrl:  info.pageUrl ?? "",
             cookies:  cookieHeader
         });
     } catch (err) {

@@ -39,6 +39,8 @@ class AppSettings : public QObject {
     // 0=Ask, 1=AddNumbered, 2=Overwrite, 3=Resume
     Q_PROPERTY(int  duplicateAction  READ duplicateAction  WRITE setDuplicateAction  NOTIFY duplicateActionChanged)
     Q_PROPERTY(bool startImmediately      READ startImmediately      WRITE setStartImmediately      NOTIFY startImmediatelyChanged)
+    Q_PROPERTY(bool speedLimiterOnStartup READ speedLimiterOnStartup WRITE setSpeedLimiterOnStartup NOTIFY speedLimiterOnStartupChanged)
+    Q_PROPERTY(int  savedSpeedLimitKBps  READ savedSpeedLimitKBps  WRITE setSavedSpeedLimitKBps  NOTIFY savedSpeedLimitKBpsChanged)
 
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -61,7 +63,9 @@ public:
     bool        showExceptionsDialog() const { return m_showExceptionsDialog; }
     bool        showTips()            const { return m_showTips; }
     int  duplicateAction() const { return m_duplicateAction; }
-    bool startImmediately()     const { return m_startImmediately; }
+    bool startImmediately()       const { return m_startImmediately; }
+    bool speedLimiterOnStartup()  const { return m_speedLimiterOnStartup; }
+    int  savedSpeedLimitKBps()    const { return m_savedSpeedLimitKBps; }
 
     void setMaxConcurrent(int v);
     void setSegmentsPerDownload(int v);
@@ -78,6 +82,8 @@ public:
     void setShowTips(bool v);
     void setDuplicateAction(int v);
     void setStartImmediately(bool v);
+    void setSpeedLimiterOnStartup(bool v);
+    void setSavedSpeedLimitKBps(int v);
 
     Q_INVOKABLE void save();
     Q_INVOKABLE void load();
@@ -98,6 +104,8 @@ signals:
     void showTipsChanged();
     void duplicateActionChanged();
     void startImmediatelyChanged();
+    void speedLimiterOnStartupChanged();
+    void savedSpeedLimitKBpsChanged();
 
 private:
     int     m_maxConcurrent{3};
@@ -115,6 +123,8 @@ private:
     bool        m_showTips{true};
     int         m_duplicateAction{0};
     bool        m_startImmediately{false};
+    bool        m_speedLimiterOnStartup{false};
+    int         m_savedSpeedLimitKBps{500};
 
     QSettings m_settings;
 

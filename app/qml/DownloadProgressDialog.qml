@@ -266,7 +266,7 @@ Window {
                             enabled: item !== null
                             background: Rectangle { color: "#5a3a3a"; radius: 3 }
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font: parent.font; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                            onClicked: { if (item) App.deleteDownload(item.id); root.close() }
+                            onClicked: root.close()
                         }
                     }
 

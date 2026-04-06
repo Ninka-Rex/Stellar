@@ -62,7 +62,12 @@ public:
 
     Q_INVOKABLE void addUrl(const QString &url, const QString &savePath = {},
                             const QString &category = {}, const QString &description = {},
-                            bool startNow = true, const QString &cookies = {});
+                            bool startNow = true, const QString &cookies = {},
+                            const QString &referrer = {}, const QString &parentUrl = {},
+                            const QString &username = {}, const QString &password = {});
+    Q_INVOKABLE void deleteAllCompleted(int mode = 0);
+    Q_INVOKABLE void pauseAllDownloads();
+    Q_INVOKABLE void sortDownloads(const QString &column, bool ascending);
     Q_INVOKABLE void pauseDownload(const QString &id);
     Q_INVOKABLE void resumeDownload(const QString &id);
     // mode: 0 = list only, 1 = delete file permanently, 2 = move to trash
@@ -84,11 +89,18 @@ public:
     Q_INVOKABLE void     addExcludedAddress(const QString &pattern);
     Q_INVOKABLE void     notifyInterceptRejected(const QString &url);
     Q_INVOKABLE void     setDownloadSpeedLimit(const QString &downloadId, int kbps);
+    Q_INVOKABLE void     setDownloadUsername(const QString &downloadId, const QString &username);
+    Q_INVOKABLE void     setDownloadPassword(const QString &downloadId, const QString &password);
+    Q_INVOKABLE bool     moveDownloadFile(const QString &downloadId, const QString &newFilePath);
+    Q_INVOKABLE void     enableSpeedLimiter();
+    Q_INVOKABLE void     disableSpeedLimiter();
     // Cookie storage for browser-intercepted downloads.
     // Called by the IPC handler before emitting interceptedDownloadRequested.
     // QML calls takePendingCookies(url) when actually starting the download.
     Q_INVOKABLE void    setPendingCookies(const QString &url, const QString &cookies);
     Q_INVOKABLE QString takePendingCookies(const QString &url);
+    Q_INVOKABLE QString takePendingReferrer(const QString &url);
+    Q_INVOKABLE QString takePendingPageUrl(const QString &url);
     // Returns empty string on success, or an error message on failure.
     Q_INVOKABLE QString  registerNativeHost() const;
     // Returns the absolute path where the manifest was/would be written.
@@ -137,7 +149,9 @@ private:
     QMap<QString, int>      m_cancelCounts;        // URL → number of times cancelled
     QMap<QString, int>      m_interceptRejectCounts; // URL → number of times intercept dialog rejected
     bool                    m_restoring{false};
-    QMap<QString, QString>  m_pendingCookies;  // url → cookies for browser-intercepted downloads
+    QMap<QString, QString>  m_pendingCookies;   // url → cookies for browser-intercepted downloads
+    QMap<QString, QString>  m_pendingReferrers; // url → referrer for browser-intercepted downloads
+    QMap<QString, QString>  m_pendingPageUrls;  // url → parent page URL for browser-intercepted downloads
     QString                 m_selectedCategory{QStringLiteral("all")};
 
     void watchItem(DownloadItem *item);

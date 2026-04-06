@@ -24,9 +24,8 @@ Window {
     id: root
     title: "Add Download"
     width: 420
-    height: 130
+    height: authCheck.checked ? 230 : 160
     minimumWidth: 360
-    maximumHeight: 130
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
@@ -35,7 +34,10 @@ Window {
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
 
-    property alias url: urlField.text
+    property alias url:      urlField.text
+    property alias username: usernameField.text
+    property alias password: passwordField.text
+    property alias useAuth:  authCheck.checked
 
     signal accepted()
 
@@ -56,20 +58,81 @@ Window {
 
     ColumnLayout {
         anchors { fill: parent; margins: 16 }
-        spacing: 12
+        spacing: 10
 
-        Label { text: "URL:"; color: "#c0c0c0"; font.pixelSize: 12 }
-        TextField {
-            id: urlField
+        // URL row
+        RowLayout {
             Layout.fillWidth: true
-            placeholderText: "https://example.com/file.zip"
-            selectByMouse: true
-            font.pixelSize: 12
-            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
-            color: "#d0d0d0"
-            Keys.onReturnPressed: root._submit()
-            Keys.onEnterPressed:  root._submit()
+            spacing: 8
+            Label { text: "URL:"; color: "#c0c0c0"; font.pixelSize: 12; Layout.preferredWidth: 70 }
+            TextField {
+                id: urlField
+                Layout.fillWidth: true
+                placeholderText: "https://example.com/file.zip"
+                selectByMouse: true
+                font.pixelSize: 12
+                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                color: "#d0d0d0"
+                Keys.onReturnPressed: root._submit()
+                Keys.onEnterPressed:  root._submit()
+            }
         }
+
+        // Auth checkbox
+        CheckBox {
+            id: authCheck
+            text: "Use Authorization"
+            topPadding: 0; bottomPadding: 0
+            contentItem: Text {
+                text: parent.text; color: "#d0d0d0"; font.pixelSize: 12
+                leftPadding: parent.indicator.width + 4
+                verticalAlignment: Text.AlignVCenter
+            }
+        }
+
+        // Auth fields (only when auth is checked)
+        ColumnLayout {
+            visible: authCheck.checked
+            Layout.fillWidth: true
+            spacing: 6
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+                Label { text: "Login:"; color: "#c0c0c0"; font.pixelSize: 12; Layout.preferredWidth: 70 }
+                TextField {
+                    id: usernameField
+                    Layout.fillWidth: true
+                    placeholderText: "Username"
+                    selectByMouse: true
+                    font.pixelSize: 12
+                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                    color: "#d0d0d0"
+                    Keys.onReturnPressed: root._submit()
+                    Keys.onEnterPressed:  root._submit()
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+                Label { text: "Password:"; color: "#c0c0c0"; font.pixelSize: 12; Layout.preferredWidth: 70 }
+                TextField {
+                    id: passwordField
+                    Layout.fillWidth: true
+                    placeholderText: "Password"
+                    echoMode: TextInput.Password
+                    selectByMouse: true
+                    font.pixelSize: 12
+                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                    color: "#d0d0d0"
+                    Keys.onReturnPressed: root._submit()
+                    Keys.onEnterPressed:  root._submit()
+                }
+            }
+        }
+
+        Item { Layout.fillHeight: true }
 
         RowLayout {
             Layout.fillWidth: true

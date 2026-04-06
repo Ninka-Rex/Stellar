@@ -1,0 +1,315 @@
+// Stellar Download Manager
+// Copyright (C) 2026 Ninka_
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+import QtQuick
+import QtQuick.Window
+import QtQuick.Controls
+import QtQuick.Controls.Material
+import QtQuick.Layouts
+import QtQuick.Dialogs
+
+Window {
+    id: root
+    title: "File Properties"
+    width: 500
+    height: 560
+    minimumWidth: 400
+    minimumHeight: 460
+    color: "#1e1e1e"
+    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+
+    Material.theme: Material.Dark
+    Material.background: "#1e1e1e"
+    Material.accent: "#4488dd"
+
+    property var item: null
+
+    // File type detection helpers
+    function fileType(name) {
+        if (!name) return "Unknown"
+        const n = name.toLowerCase()
+        if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(n)) return "Video File"
+        if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(n))                   return "Audio File"
+        if (/\.(zip)$/.test(n))         return "WinZip Archive"
+        if (/\.(rar|r\d+)$/.test(n))    return "WinRAR Archive"
+        if (/\.(7z)$/.test(n))          return "7-Zip Archive"
+        if (/\.(tar)$/.test(n))         return "TAR Archive"
+        if (/\.(gz|bz2|xz|zst)$/.test(n)) return "Compressed Archive"
+        if (/\.(exe)$/.test(n))         return "Windows Executable"
+        if (/\.(msi|msu)$/.test(n))     return "Windows Installer"
+        if (/\.(deb)$/.test(n))         return "Debian Package"
+        if (/\.(rpm)$/.test(n))         return "RPM Package"
+        if (/\.(apk)$/.test(n))         return "Android Package"
+        if (/\.(pdf)$/.test(n))         return "PDF Document"
+        if (/\.(doc|docx)$/.test(n))    return "Word Document"
+        if (/\.(xls|xlsx)$/.test(n))    return "Excel Spreadsheet"
+        if (/\.(ppt|pptx)$/.test(n))    return "PowerPoint Presentation"
+        if (/\.(epub|azw3)$/.test(n))   return "eBook"
+        if (/\.(iso|img|bin)$/.test(n)) return "Disk Image"
+        if (/\.(safetensors|gguf)$/.test(n)) return "AI Model"
+        return "File"
+    }
+
+    function fileColor(name) {
+        if (!name) return "#606060"
+        const n = name.toLowerCase()
+        if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(n)) return "#c04040"
+        if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(n))                   return "#40a0c0"
+        if (/\.(zip|rar|7z|tar|gz|bz2|xz|zst|r\d+)$/.test(n))                          return "#c09030"
+        if (/\.(exe|msi|msu|deb|rpm|pkg|apk)$/.test(n))                                 return "#6060c0"
+        if (/\.(pdf|doc|docx|ppt|pptx|xls|xlsx|epub|azw3)$/.test(n))                   return "#c06040"
+        if (/\.(safetensors|gguf)$/.test(n))                                             return "#8040a0"
+        if (/\.(iso|img|bin)$/.test(n))                                                  return "#408040"
+        return "#606060"
+    }
+
+    function fileIcon(name) {
+        if (!name) return "•"
+        const n = name.toLowerCase()
+        if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(n)) return "▶"
+        if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(n))                   return "♪"
+        if (/\.(zip|rar|7z|tar|gz|bz2|xz|zst|r\d+)$/.test(n))                          return "Z"
+        if (/\.(exe|msi|msu|deb|rpm|pkg|apk)$/.test(n))                                 return "⚙"
+        if (/\.(pdf|doc|docx|ppt|pptx)$/.test(n))                                       return "D"
+        if (/\.(safetensors|gguf)$/.test(n))                                             return "AI"
+        return "•"
+    }
+
+    function formatBytes(b) {
+        if (b <= 0) return "--"
+        const kb = (b / 1024).toFixed(2)
+        if (b < 1048576)    return (b / 1024).toFixed(2) + " KB (" + b + " Bytes)"
+        if (b < 1073741824) return (b / 1048576).toFixed(2) + " MB (" + b + " Bytes)"
+        return (b / 1073741824).toFixed(2) + " GB (" + b + " Bytes)"
+    }
+
+    FileDialog {
+        id: moveFileDialog
+        title: "Move File To…"
+        fileMode: FileDialog.SaveFile
+        currentFolder: root.item ? ("file:///" + root.item.savePath.replace(/\\/g, "/")) : ""
+        currentFile: root.item ? ("file:///" + root.item.savePath.replace(/\\/g, "/") + "/" + root.item.filename) : ""
+        onAccepted: {
+            if (root.item) {
+                const newPath = selectedFile.toString()
+                    .replace(/^file:\/\/\//, "")
+                    .replace(/^file:\/\//, "")
+                App.moveDownloadFile(root.item.id, newPath)
+            }
+        }
+    }
+
+    ColumnLayout {
+        anchors { fill: parent; margins: 16 }
+        spacing: 10
+
+        // Header: file icon + name
+        RowLayout {
+            spacing: 12
+            Rectangle {
+                width: 48; height: 48; radius: 4
+                color: root.item ? root.fileColor(root.item.filename) : "#606060"
+                Text {
+                    anchors.centerIn: parent
+                    text: root.item ? root.fileIcon(root.item.filename) : "•"
+                    color: "white"
+                    font.pixelSize: root.item && root.fileIcon(root.item.filename) === "AI" ? 10 : 20
+                    font.bold: true
+                }
+            }
+            Text {
+                text: root.item ? root.item.filename : ""
+                color: "#ffffff"
+                font.pixelSize: 14
+                font.bold: true
+                wrapMode: Text.WordWrap
+                Layout.fillWidth: true
+            }
+        }
+
+        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+        // Properties grid
+        GridLayout {
+            Layout.fillWidth: true
+            columns: 2
+            columnSpacing: 12
+            rowSpacing: 6
+
+            Text { text: "Type:";   color: "#909090"; font.pixelSize: 12 }
+            Text { text: root.item ? root.fileType(root.item.filename) : "--"; color: "#d0d0d0"; font.pixelSize: 12 }
+
+            Text { text: "Status:"; color: "#909090"; font.pixelSize: 12 }
+            Text {
+                text: root.item ? root.item.status : "--"
+                color: {
+                    if (!root.item) return "#d0d0d0"
+                    const s = root.item.status
+                    if (s === "Completed")   return "#60c0e0"
+                    if (s === "Downloading") return "#66cc66"
+                    if (s === "Error")       return "#e06060"
+                    return "#d0d0d0"
+                }
+                font.pixelSize: 12
+            }
+
+            Text { text: "Size:";   color: "#909090"; font.pixelSize: 12 }
+            Text { text: root.item ? root.formatBytes(root.item.totalBytes) : "--"; color: "#d0d0d0"; font.pixelSize: 12 }
+
+            Text { text: "Save to:"; color: "#909090"; font.pixelSize: 12 }
+            RowLayout {
+                spacing: 6
+                TextEdit {
+                    text: root.item ? (root.item.savePath.replace(/\//g, "\\") + "\\" + root.item.filename) : "--"
+                    color: "#d0d0d0"; font.pixelSize: 12
+                    wrapMode: TextEdit.NoWrap
+                    clip: true
+                    readOnly: true
+                    selectByMouse: true
+                    selectionColor: "#4488dd"
+                    selectedTextColor: "#ffffff"
+                    Layout.fillWidth: true
+
+                }
+                Rectangle {
+                    width: 50; height: 22; radius: 3
+                    color: moveMa.containsMouse ? "#1e3a6e" : "#2d2d2d"
+                    border.color: "#555"; border.width: 1
+                    Text { anchors.centerIn: parent; text: "Move"; color: "#d0d0d0"; font.pixelSize: 11 }
+                    MouseArea {
+                        id: moveMa
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: moveFileDialog.open()
+                    }
+                }
+            }
+        }
+
+        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+        // URL
+        ColumnLayout { spacing: 3; Layout.fillWidth: true
+            Text { text: "Address:"; color: "#909090"; font.pixelSize: 12 }
+            TextEdit {
+                text: root.item ? root.item.url.toString() : "--"
+                color: "#4488dd"; font.pixelSize: 12
+                font.underline: true
+                wrapMode: TextEdit.WrapAnywhere
+                Layout.fillWidth: true
+                readOnly: true
+                selectByMouse: true
+                selectionColor: "#4488dd"
+                selectedTextColor: "#ffffff"
+            }
+        }
+
+        // Description
+        ColumnLayout { spacing: 3; Layout.fillWidth: true
+            Text { text: "Description:"; color: "#909090"; font.pixelSize: 12 }
+            TextEdit {
+                text: root.item && root.item.description.length > 0 ? root.item.description : "(none)"
+                color: root.item && root.item.description.length > 0 ? "#d0d0d0" : "#555555"
+                font.pixelSize: 12
+                wrapMode: TextEdit.WordWrap
+                Layout.fillWidth: true
+                readOnly: true
+                selectByMouse: true
+                selectionColor: "#4488dd"
+                selectedTextColor: "#ffffff"
+            }
+        }
+
+        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+        // Parent web page
+        ColumnLayout { spacing: 3; Layout.fillWidth: true
+            Text { text: "The web page from which this file was obtained:"; color: "#909090"; font.pixelSize: 12 }
+            TextEdit {
+                text: root.item && root.item.parentUrl.length > 0 ? root.item.parentUrl : "(unknown)"
+                color: root.item && root.item.parentUrl.length > 0 ? "#4488dd" : "#555555"
+                font.pixelSize: 12; wrapMode: TextEdit.WrapAnywhere
+                font.underline: root.item && root.item.parentUrl.length > 0
+                Layout.fillWidth: true
+                readOnly: true
+                selectByMouse: true
+                selectionColor: "#4488dd"
+                selectedTextColor: "#ffffff"
+            }
+        }
+
+        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+        // Referrer, Login, Password
+        GridLayout {
+            Layout.fillWidth: true
+            columns: 2
+            columnSpacing: 12
+            rowSpacing: 6
+
+            Text { text: "Referer:"; color: "#909090"; font.pixelSize: 12 }
+            TextEdit {
+                text: root.item && root.item.referrer.length > 0 ? root.item.referrer : "(none)"
+                color: root.item && root.item.referrer.length > 0 ? "#d0d0d0" : "#555555"
+                font.pixelSize: 12; wrapMode: TextEdit.WrapAnywhere
+                Layout.fillWidth: true
+                readOnly: true
+                selectByMouse: true
+                selectionColor: "#4488dd"
+                selectedTextColor: "#ffffff"
+            }
+
+            Text { text: "Login:"; color: "#909090"; font.pixelSize: 12 }
+            TextField {
+                Layout.fillWidth: true
+                implicitHeight: 26
+                text: root.item ? root.item.username : ""
+                color: "#d0d0d0"; font.pixelSize: 12
+                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                leftPadding: 6
+                onTextChanged: if (root.item) root.item.username !== text && App.setDownloadUsername(root.item.id, text)
+            }
+
+            Text { text: "Password:"; color: "#909090"; font.pixelSize: 12 }
+            TextField {
+                Layout.fillWidth: true
+                implicitHeight: 26
+                text: root.item ? root.item.password : ""
+                echoMode: TextInput.Password
+                color: "#d0d0d0"; font.pixelSize: 12
+                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                leftPadding: 6
+                onTextChanged: if (root.item) root.item.password !== text && App.setDownloadPassword(root.item.id, text)
+            }
+        }
+
+        Item { Layout.fillHeight: true }
+
+        // Close button
+        RowLayout {
+            Layout.fillWidth: true
+            Item { Layout.fillWidth: true }
+            Button {
+                text: "Close"
+                implicitWidth: 80
+                background: Rectangle { color: "#3a3a3a"; radius: 3; border.color: "#555"; border.width: 1 }
+                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                onClicked: root.close()
+            }
+        }
+    }
+}

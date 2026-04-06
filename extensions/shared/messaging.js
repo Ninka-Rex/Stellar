@@ -247,6 +247,7 @@ export async function requestDownload(details) {
         url:      details.url,
         filename: details.filename  ?? "",
         referrer: details.referrer  ?? "",
+        pageUrl:  details.pageUrl   ?? "",
         cookies:  details.cookies   ?? "",
     });
 }

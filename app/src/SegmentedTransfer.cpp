@@ -65,6 +65,8 @@ void SegmentedTransfer::start() {
     m_paused    = false;
     m_cancelled = false;
 
+    m_item->setLastTryAt(QDateTime::currentDateTime());
+
     qDebug() << "[ST] start() url=" << m_item->url().toString()
              << "isGDrive=" << isGoogleDriveUrl(m_item->url())
              << "hasCookies=" << !m_item->cookies().isEmpty()
@@ -111,6 +113,11 @@ void SegmentedTransfer::applyRequestHeaders(QNetworkRequest &req, const QUrl &ur
                      QNetworkRequest::NoLessSafeRedirectPolicy);
     if (m_item && !m_item->cookies().isEmpty())
         req.setRawHeader("Cookie", m_item->cookies().toUtf8());
+    if (m_item && !m_item->username().isEmpty()) {
+        const QByteArray credentials =
+            (m_item->username() + QLatin1Char(':') + m_item->password()).toUtf8().toBase64();
+        req.setRawHeader("Authorization", QByteArray("Basic ") + credentials);
+    }
 }
 
 void SegmentedTransfer::sendHeadRequest() {

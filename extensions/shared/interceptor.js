@@ -33,6 +33,13 @@ export async function handleDownloadCreated(downloadItem) {
 
     const name = filename || extractFilename(url);
 
+    // Capture active tab URL as parent web page
+    let pageUrl = "";
+    try {
+        const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (tabs.length > 0) pageUrl = tabs[0].url || "";
+    } catch { /* ignore */ }
+
     // Grab cookies for the download URL AND parent Google domains so the
     // manager can authenticate (auth cookies live on .google.com, not just
     // drive.usercontent.google.com).
@@ -62,7 +69,7 @@ export async function handleDownloadCreated(downloadItem) {
     }
 
     try {
-        await requestDownload({ url, filename: name, referrer, cookies: cookieHeader });
+        await requestDownload({ url, filename: name, referrer, pageUrl, cookies: cookieHeader });
     } catch (err) {
         console.error("[Stellar] Failed to send download to native host:", err);
         // Fall back: re-open the URL so the browser handles it

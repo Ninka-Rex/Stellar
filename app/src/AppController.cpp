@@ -139,9 +139,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
 
     connect(m_nativeHost, &NativeMessagingHost::downloadRequested,
             this, [this](const QString &url, const QString &filename,
-                         const QString &/*referrer*/, const QString &cookies) {
+                         const QString &referrer, const QString &cookies) {
                 Q_UNUSED(filename);
-                addUrl(url, {}, {}, {}, true, cookies);
+                addUrl(url, {}, {}, {}, true, cookies, referrer);
             });
 
     // Tray connections
@@ -174,18 +174,24 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             const QJsonObject obj = QJsonDocument::fromJson(data).object();
             const QString type = obj.value(QStringLiteral("type")).toString();
             if (type == QStringLiteral("download")) {
-                const QString url     = obj.value(QStringLiteral("url")).toString();
-                const QString name    = obj.value(QStringLiteral("filename")).toString();
-                const QString cookies = obj.value(QStringLiteral("cookies")).toString();
+                const QString url       = obj.value(QStringLiteral("url")).toString();
+                const QString name      = obj.value(QStringLiteral("filename")).toString();
+                const QString cookies   = obj.value(QStringLiteral("cookies")).toString();
+                const QString referrer  = obj.value(QStringLiteral("referrer")).toString();
+                const QString pageUrl   = obj.value(QStringLiteral("pageUrl")).toString();
                 qDebug() << "[IPC] download received, hasCookies=" << !cookies.isEmpty()
                          << "cookieLen=" << cookies.size();
                 if (m_settings->startImmediately()) {
                     // Skip the file info dialog — start immediately
-                    addUrl(url, {}, {}, {}, true, cookies);
+                    addUrl(url, {}, {}, {}, true, cookies, referrer, pageUrl);
                 } else {
-                    // Store cookies so QML retrieves them from DownloadFileInfoDialog
+                    // Store cookies and metadata so QML retrieves them from DownloadFileInfoDialog
                     if (!cookies.isEmpty())
                         m_pendingCookies[url] = cookies;
+                    if (!referrer.isEmpty())
+                        m_pendingReferrers[url] = referrer;
+                    if (!pageUrl.isEmpty())
+                        m_pendingPageUrls[url] = pageUrl;
                     emit interceptedDownloadRequested(url, name);
                 }
                 emit showWindowRequested();
@@ -220,6 +226,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
 
     // Initial scheduler check
     checkQueueSchedules();
+
+    // If "always turn on speed limiter on startup" is set, restore saved limit
+    if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
+            && m_settings->savedSpeedLimitKBps() > 0) {
+        m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+    }
 }
 
 int AppController::activeDownloads() const {
@@ -236,7 +248,9 @@ void AppController::setSelectedCategory(const QString &v) {
 
 void AppController::addUrl(const QString &url, const QString &savePath,
                            const QString &category, const QString &description,
-                           bool startNow, const QString &cookies) {
+                           bool startNow, const QString &cookies,
+                           const QString &referrer, const QString &parentUrl,
+                           const QString &username, const QString &password) {
     if (url.trimmed().isEmpty()) return;
 
     const QString id   = generateId();
@@ -245,6 +259,14 @@ void AppController::addUrl(const QString &url, const QString &savePath,
 
     if (!cookies.isEmpty())
         item->setCookies(cookies);
+    if (!referrer.isEmpty())
+        item->setReferrer(referrer);
+    if (!parentUrl.isEmpty())
+        item->setParentUrl(parentUrl);
+    if (!username.isEmpty())
+        item->setUsername(username);
+    if (!password.isEmpty())
+        item->setPassword(password);
 
     const QString resolvedCategory = !category.isEmpty()
         ? category
@@ -458,6 +480,38 @@ QString AppController::takePendingCookies(const QString &url) {
     return m_pendingCookies.take(url);
 }
 
+QString AppController::takePendingReferrer(const QString &url) {
+    return m_pendingReferrers.take(url);
+}
+
+QString AppController::takePendingPageUrl(const QString &url) {
+    return m_pendingPageUrls.take(url);
+}
+
+void AppController::deleteAllCompleted(int mode) {
+    // Collect IDs of all completed items first, then delete
+    QStringList toDelete;
+    const auto items = m_downloadModel->allItems();
+    for (auto *item : items) {
+        if (item->status() == QStringLiteral("Completed"))
+            toDelete << item->id();
+    }
+    for (const QString &id : toDelete)
+        deleteDownload(id, mode);
+}
+
+void AppController::pauseAllDownloads() {
+    const auto items = m_downloadModel->allItems();
+    for (auto *item : items) {
+        if (item->status() == QStringLiteral("Downloading") || item->status() == QStringLiteral("Queued"))
+            m_queue->pause(item->id());
+    }
+}
+
+void AppController::sortDownloads(const QString &column, bool ascending) {
+    m_downloadModel->sortBy(column, ascending);
+}
+
 void AppController::setDownloadSpeedLimit(const QString &downloadId, int kbps) {
     // Set on the item itself (for persistence and future starts)
     auto *item = m_downloadModel->itemById(downloadId);
@@ -558,6 +612,45 @@ void AppController::openFolderSelectFile(const QString &id) {
     // On Linux/Mac, open the folder and select the file if possible
     QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
 #endif
+}
+
+void AppController::setDownloadUsername(const QString &id, const QString &username) {
+    auto *item = m_downloadModel->itemById(id);
+    if (item) { item->setUsername(username); scheduleSave(id); }
+}
+
+void AppController::setDownloadPassword(const QString &id, const QString &password) {
+    auto *item = m_downloadModel->itemById(id);
+    if (item) { item->setPassword(password); scheduleSave(id); }
+}
+
+bool AppController::moveDownloadFile(const QString &id, const QString &newFilePath) {
+    auto *item = m_downloadModel->itemById(id);
+    if (!item || item->status() != QStringLiteral("Completed")) return false;
+
+    const QString oldPath = item->savePath() + QStringLiteral("/") + item->filename();
+    const QFileInfo newInfo(newFilePath);
+    const QString newDir = newInfo.absolutePath();
+    const QString newName = newInfo.fileName();
+
+    if (!QFile::rename(oldPath, newFilePath)) return false;
+
+    item->setSavePath(newDir);
+    item->setFilename(newName);
+    scheduleSave(id);
+    return true;
+}
+
+void AppController::enableSpeedLimiter() {
+    int limit = m_settings->savedSpeedLimitKBps();
+    if (limit <= 0) limit = 500;
+    m_settings->setGlobalSpeedLimitKBps(limit);
+}
+
+void AppController::disableSpeedLimiter() {
+    const int current = m_settings->globalSpeedLimitKBps();
+    if (current > 0) m_settings->setSavedSpeedLimitKBps(current);
+    m_settings->setGlobalSpeedLimitKBps(0);
 }
 
 void AppController::copyDownloadFilename(const QString &id) {

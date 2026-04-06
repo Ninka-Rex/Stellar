@@ -41,6 +41,11 @@ class DownloadItem : public QObject {
     Q_PROPERTY(int      speedLimitKBps READ speedLimitKBps WRITE setSpeedLimitKBps NOTIFY speedLimitKBpsChanged)
     Q_PROPERTY(QString  errorString    READ errorString    NOTIFY errorStringChanged)
     Q_PROPERTY(QString  queueId        READ queueId        WRITE setQueueId NOTIFY queueIdChanged)
+    Q_PROPERTY(QString  referrer       READ referrer       NOTIFY referrerChanged)
+    Q_PROPERTY(QString  parentUrl      READ parentUrl      NOTIFY parentUrlChanged)
+    Q_PROPERTY(QString  username       READ username       NOTIFY usernameChanged)
+    Q_PROPERTY(QString  password       READ password       NOTIFY passwordChanged)
+    Q_PROPERTY(QDateTime lastTryAt     READ lastTryAt      NOTIFY lastTryAtChanged)
 
 public:
     enum class Status { Queued, Downloading, Paused, Completed, Error };
@@ -66,6 +71,11 @@ public:
     QString      description()   const { return m_description; }
     int          speedLimitKBps() const { return m_speedLimitKBps; }
     QString      errorString()    const { return m_errorString; }
+    QString      referrer()       const { return m_referrer; }
+    QString      parentUrl()      const { return m_parentUrl; }
+    QString      username()       const { return m_username; }
+    QString      password()       const { return m_password; }
+    QDateTime    lastTryAt()      const { return m_lastTryAt; }
 
     void setFilename(const QString &v);
     void setTotalBytes(qint64 v);
@@ -83,6 +93,11 @@ public:
     void setQueueId(const QString &v) { if (m_queueId != v) { m_queueId = v; emit queueIdChanged(); } }
     void setCookies(const QString &v) { m_cookies = v; }
     QString cookies() const { return m_cookies; }
+    void setReferrer(const QString &v)  { if (m_referrer  != v) { m_referrer  = v; emit referrerChanged();  } }
+    void setParentUrl(const QString &v) { if (m_parentUrl != v) { m_parentUrl = v; emit parentUrlChanged(); } }
+    void setUsername(const QString &v)  { if (m_username  != v) { m_username  = v; emit usernameChanged();  } }
+    void setPassword(const QString &v)  { if (m_password  != v) { m_password  = v; emit passwordChanged();  } }
+    void setLastTryAt(const QDateTime &v) { if (m_lastTryAt != v) { m_lastTryAt = v; emit lastTryAtChanged(); } }
 
 signals:
     void filenameChanged();
@@ -98,6 +113,11 @@ signals:
     void speedLimitKBpsChanged(int newLimit);
     void errorStringChanged();
     void queueIdChanged();
+    void referrerChanged();
+    void parentUrlChanged();
+    void usernameChanged();
+    void passwordChanged();
+    void lastTryAtChanged();
 
 private:
     QString      m_id;
@@ -117,4 +137,9 @@ private:
     QString      m_errorString;
     QString      m_queueId;
     QString      m_cookies;
+    QString      m_referrer;
+    QString      m_parentUrl;
+    QString      m_username;
+    QString      m_password;
+    QDateTime    m_lastTryAt;
 };

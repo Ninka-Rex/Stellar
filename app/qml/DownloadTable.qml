@@ -23,6 +23,8 @@ Rectangle {
     color: "#1c1c1c"
 
     signal openProgressRequested(var item)
+    signal openPropertiesRequested(var item)
+    signal openColumnsSettingsRequested()
 
     // Window-level drag proxy injected from Main.qml
     property var categoryDragProxy: null
@@ -30,6 +32,7 @@ Rectangle {
     // Public API called by Main.qml toolbar signals
     function resumeSelected()  { const id = _selectedId(); if (id) App.resumeDownload(id) }
     function stopSelected()    { const id = _selectedId(); if (id) App.pauseDownload(id)  }
+    function pauseAll()        { App.pauseAllDownloads() }
     function deleteSelected()  {
         const item = _selectedItem()
         if (item) _openDeleteDialog(item)
@@ -58,16 +61,26 @@ Rectangle {
         onConfirmed: (mode) => App.deleteDownload(downloadId, mode)
     }
 
-    // Column definitions – visibility toggled from context menu
-    property var columnDefs: [
-        { title: "File Name",      key: "name",       widthFrac: 0.30, visible: true  },
-        { title: "Size",           key: "size",       widthFrac: 0.09, visible: true  },
-        { title: "Status",         key: "status",     widthFrac: 0.10, visible: true  },
-        { title: "Time left",      key: "timeleft",   widthFrac: 0.10, visible: true  },
-        { title: "Transfer rate",  key: "speed",      widthFrac: 0.11, visible: true  },
-        { title: "Date added",     key: "added",      widthFrac: 0.13, visible: true  },
-        { title: "Save to",        key: "saveto",     widthFrac: 0.17, visible: false },
+    // Default column definitions
+    readonly property var _defaultColumnDefs: [
+        { title: "Q",              key: "queue",      widthPx: 28,  visible: true  },
+        { title: "File Name",      key: "name",       widthPx: 240, visible: true  },
+        { title: "Size",           key: "size",       widthPx: 80,  visible: true  },
+        { title: "Status",         key: "status",     widthPx: 90,  visible: true  },
+        { title: "Time left",      key: "timeleft",   widthPx: 90,  visible: true  },
+        { title: "Transfer rate",  key: "speed",      widthPx: 90,  visible: true  },
+        { title: "Date added",     key: "added",      widthPx: 110, visible: true  },
+        { title: "Last try date",  key: "lasttry",    widthPx: 110, visible: false },
+        { title: "Description",    key: "description",widthPx: 120, visible: false },
+        { title: "Save to",        key: "saveto",     widthPx: 140, visible: false },
+        { title: "Referer",        key: "referrer",   widthPx: 140, visible: false },
+        { title: "Parent web page",key: "parenturl",  widthPx: 140, visible: false },
     ]
+
+    // Column definitions – visibility toggled from context menu / ColumnsDialog
+    property var columnDefs: _defaultColumnDefs.slice()
+
+    function resetColumns() { columnDefs = _defaultColumnDefs.slice() }
 
     // Compute visible columns only
     function makeVisibleCols() {
@@ -76,15 +89,119 @@ Rectangle {
             if (columnDefs[i].visible) r.push(columnDefs[i])
         return r
     }
-    readonly property var visibleCols: makeVisibleCols()
+    property var visibleCols: makeVisibleCols()
+    onColumnDefsChanged: visibleCols = makeVisibleCols()
 
     function colWidth(key) {
-        // Redistribute fractions across visible columns
-        var total = 0
-        for (var i = 0; i < visibleCols.length; i++) total += visibleCols[i].widthFrac
-        for (var j = 0; j < visibleCols.length; j++)
-            if (visibleCols[j].key === key) return root.width * visibleCols[j].widthFrac / total
+        // Scale pixel widths proportionally to fill available width
+        var totalPx = 0
+        for (var i = 0; i < visibleCols.length; i++) totalPx += (visibleCols[i].widthPx || 100)
+        for (var j = 0; j < visibleCols.length; j++) {
+            if (visibleCols[j].key === key) {
+                var frac = (visibleCols[j].widthPx || 100) / Math.max(totalPx, 1)
+                return root.width * frac
+            }
+        }
         return 0
+    }
+
+    // ── Active filter (driven by inline find bar in Main.qml) ─────────────────
+    property string filterText:       ""
+    property bool   filterName:       true
+    property bool   filterDesc:       false
+    property bool   filterLinks:      false
+    property bool   filterMatchCase:  false
+    property bool   filterMatchWhole: false
+
+    function clearFilter() {
+        filterText = ""
+        _findRow   = -1
+    }
+
+    function findFirstFiltered() {
+        _findRow = -1
+        const model = App.downloadModel
+        for (var i = 0; i < model.rowCount(); i++) {
+            const item = model.data(model.index(i, 0), Qt.UserRole + 2)
+            if (_itemMatchesFind(item, filterText, filterName, filterDesc, filterLinks, filterMatchCase, filterMatchWhole)) {
+                _findRow = i
+                tableView.currentRow = i
+                tableView.positionViewAtIndex(i, ListView.Center)
+                return
+            }
+        }
+    }
+
+    function findNextFiltered() {
+        if (filterText.length === 0) return
+        const model = App.downloadModel
+        const start = _findRow < 0 ? 0 : (_findRow + 1) % Math.max(model.rowCount(), 1)
+        for (var i = 0; i < model.rowCount(); i++) {
+            const row = (start + i) % model.rowCount()
+            const item = model.data(model.index(row, 0), Qt.UserRole + 2)
+            if (_itemMatchesFind(item, filterText, filterName, filterDesc, filterLinks, filterMatchCase, filterMatchWhole)) {
+                _findRow = row
+                tableView.currentRow = row
+                tableView.positionViewAtIndex(row, ListView.Center)
+                return
+            }
+        }
+    }
+
+    // Find support
+    property int _findRow: -1
+
+    function _itemMatchesFind(item, text, name, desc, links, mc, mw) {
+        if (!item || text.length === 0) return false
+        const t = mc ? text : text.toLowerCase()
+        function check(s) {
+            const v = mc ? s : s.toLowerCase()
+            return mw ? v === t : v.includes(t)
+        }
+        if (name  && check(item.filename))    return true
+        if (desc  && check(item.description)) return true
+        if (links && (check(item.url.toString()) || check(item.referrer) || check(item.parentUrl))) return true
+        return false
+    }
+
+    function countMatches(text, name, desc, links, mc, mw) {
+        if (text.length === 0) return 0
+        var count = 0
+        const model = App.downloadModel
+        for (var i = 0; i < model.rowCount(); i++) {
+            const item = model.data(model.index(i, 0), Qt.UserRole + 2)
+            if (_itemMatchesFind(item, text, name, desc, links, mc, mw)) count++
+        }
+        return count
+    }
+
+    function findFirst(text, name, desc, links, mc, mw) {
+        _findRow = -1
+        const model = App.downloadModel
+        for (var i = 0; i < model.rowCount(); i++) {
+            const item = model.data(model.index(i, 0), Qt.UserRole + 2)
+            if (_itemMatchesFind(item, text, name, desc, links, mc, mw)) {
+                _findRow = i
+                tableView.currentRow = i
+                tableView.positionViewAtIndex(i, ListView.Center)
+                return
+            }
+        }
+    }
+
+    function findNext(text, name, desc, links, mc, mw) {
+        const model = App.downloadModel
+        const start = (_findRow + 1) % Math.max(model.rowCount(), 1)
+        for (var i = 0; i < model.rowCount(); i++) {
+            const row = (start + i) % model.rowCount()
+            const item = model.data(model.index(row, 0), Qt.UserRole + 2)
+            if (_itemMatchesFind(item, text, name, desc, links, mc, mw)) {
+                _findRow = row
+                tableView.currentRow = row
+                tableView.positionViewAtIndex(row, ListView.Center)
+                return
+            }
+        }
     }
 
     // ── Column visibility context menu ────────────────────────────────────────
@@ -96,12 +213,17 @@ Rectangle {
                 text: root.columnDefs[index].title
                 checkable: true
                 checked: root.columnDefs[index].visible
-                onTriggered: {
-                    var defs = root.columnDefs
-                    defs[index].visible = checked
+                onToggled: {
+                    var defs = root.columnDefs.slice()
+                    defs[index] = Object.assign({}, defs[index], { visible: checked })
                     root.columnDefs = defs
                 }
             }
+        }
+        MenuSeparator {}
+        MenuItem {
+            text: "Columns Settings"
+            onTriggered: root.openColumnsSettingsRequested()
         }
     }
 
@@ -123,17 +245,53 @@ Rectangle {
                     color: "transparent"
 
                     Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
+                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: resizeHandle.left }
                         text: modelData.title
                         color: "#b0b0b0"
                         font.pixelSize: 12
                         font.bold: true
+                        elide: Text.ElideRight
                     }
 
                     Rectangle {
                         anchors.right: parent.right
                         width: 1; height: parent.height
                         color: "#3a3a3a"
+                    }
+
+                    // ── Column resize handle ──────────────────────────────
+                    MouseArea {
+                        id: resizeHandle
+                        width: 6
+                        height: parent.height
+                        anchors.right: parent.right
+                        z: 10
+                        cursorShape: Qt.SizeHorCursor
+
+                        property real _startMouseX:  0
+                        property real _startWidthPx: 0
+
+                        onPressed: function(mouse) {
+                            _startMouseX  = mouse.x
+                            _startWidthPx = modelData.widthPx || 100
+                        }
+
+                        onPositionChanged: function(mouse) {
+                            if (!(pressedButtons & Qt.LeftButton)) return
+                            var delta = mouse.x - _startMouseX
+                            var totalPx = 0
+                            for (var i = 0; i < root.visibleCols.length; i++)
+                                totalPx += (root.visibleCols[i].widthPx || 100)
+                            var newWidthPx = Math.max(24, Math.round(_startWidthPx + delta * totalPx / Math.max(root.width, 1)))
+                            var defs = root.columnDefs.slice()
+                            for (var j = 0; j < defs.length; j++) {
+                                if (defs[j].key === modelData.key) {
+                                    defs[j] = Object.assign({}, defs[j], { widthPx: newWidthPx })
+                                    break
+                                }
+                            }
+                            root.columnDefs = defs
+                        }
                     }
                 }
             }
@@ -161,12 +319,19 @@ Rectangle {
         delegate: Rectangle {
             id: rowRect
             width: tableView.width
-            height: 34
 
             // Grab the DownloadItem* from the model — this binding IS reactive
             // because Qt model delegates re-evaluate when dataChanged fires for this row
             readonly property var item: model.item
 
+            readonly property bool _matchesFilter:
+                root.filterText.length === 0 ||
+                root._itemMatchesFind(item, root.filterText, root.filterName, root.filterDesc,
+                                      root.filterLinks, root.filterMatchCase, root.filterMatchWhole)
+
+            height:  _matchesFilter ? 34 : 0
+            visible: _matchesFilter
+            clip: true
 
             color: tableView.currentRow === index
                    ? "#1e3a6e"
@@ -174,163 +339,278 @@ Rectangle {
                       ? "#2a2a2a"
                       : (index % 2 === 0 ? "#1c1c1c" : "#222222"))
 
+            // Dynamic column rendering
             Row {
                 anchors.fill: parent
 
-                // File Name
-                Item {
-                    visible: root.colWidth("name") > 0
-                    width: root.colWidth("name"); height: parent.height
-                    clip: true
-                    Row {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                        spacing: 6
+                Repeater {
+                    model: root.visibleCols
+                    delegate: Item {
+                        width: root.colWidth(modelData.key)
+                        height: rowRect.height
+                        clip: true
+                        visible: width > 0
 
-                        Rectangle {
-                            width: 18; height: 18; radius: 2
-                            anchors.verticalCenter: parent.verticalCenter
-                            color: {
-                                if (!rowRect.item) return "#606060"
-                                const name = rowRect.item.filename.toLowerCase()
-                                if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(name)) return "#c04040"
-                                if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(name))                   return "#40a0c0"
-                                if (/\.(zip|rar|7z|tar|gz|bz2|xz|zst|ace|sitx|unitypackage|sit|sea|r\d+)$/.test(name))        return "#c09030"
-                                if (/\.(exe|msi|msu|deb|rpm|pkg|apk)$/.test(name))                   return "#6060c0"
-                                if (/\.(pdf|doc|docx|ppt|pptx|xls|xlsx|epub|azw3)$/.test(name))                   return "#c06040"
-                                if (/\.(safetensors|gguf)$/.test(name))                                            return "#8040a0"
-                                if (/\.(iso|img|bin)$/.test(name))                                                 return "#408040"
-                                return "#606060"
-                            }
-                            Text {
-                                anchors.centerIn: parent
-                                text: {
-                                    if (!rowRect.item) return "•"
-                                    const name = rowRect.item.filename.toLowerCase()
-                                    if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(name)) return "▶"
-                                    if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(name))                   return "♪"
-                                    if (/\.(zip|rar|7z|tar|gz|bz2|xz|zst|ace|sitx|unitypackage|sit|sea|r\d+)$/.test(name))        return "Z"
-                                    if (/\.(exe|msi|msu|deb|rpm|pkg|apk)$/.test(name))                   return "⚙"
-                                    if (/\.(pdf|doc|docx|ppt|pptx)$/.test(name))                                      return "D"
-                                    if (/\.(safetensors|gguf)$/.test(name))                                            return "AI"
-                                    return "•"
+                        // ── Q (queue icon) ────────────────────────────────
+                        Loader {
+                            active: modelData.key === "queue"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Item {
+                                    anchors.fill: parent
+                                    Rectangle {
+                                        anchors.centerIn: parent
+                                        width: 14; height: 14; radius: 2
+                                        visible: rowRect.item && rowRect.item.queueId.length > 0
+                                        color: {
+                                            if (!rowRect.item) return "transparent"
+                                            const q = rowRect.item.queueId
+                                            if (q === "main-sync") return "#40a060"
+                                            if (q === "main-download") return "#4060c0"
+                                            if (q === "download-limits") return "#a06020"
+                                            return "#6060a0"
+                                        }
+                                        Text {
+                                            anchors.centerIn: parent
+                                            text: "Q"; color: "white"
+                                            font.pixelSize: 8; font.bold: true
+                                        }
+                                    }
                                 }
-                                color: "white"; font.pixelSize: 9; font.bold: true
                             }
                         }
 
-                        Text {
-                            text: rowRect.item ? rowRect.item.filename : ""
-                            color: tableView.currentRow === index ? "#ffffff" : "#d0d0d0"
-                            font.pixelSize: 12
-                            width: root.colWidth("name") - 42
-                            elide: Text.ElideMiddle
-                            anchors.verticalCenter: parent.verticalCenter
+                        // ── File Name ─────────────────────────────────────
+                        Loader {
+                            active: modelData.key === "name"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Item {
+                                    anchors.fill: parent
+                                    Row {
+                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
+                                        spacing: 6
+                                        Rectangle {
+                                            width: 18; height: 18; radius: 2
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            color: {
+                                                if (!rowRect.item) return "#606060"
+                                                const n = rowRect.item.filename.toLowerCase()
+                                                if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(n)) return "#c04040"
+                                                if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(n))                   return "#40a0c0"
+                                                if (/\.(zip|rar|7z|tar|gz|bz2|xz|zst|ace|sitx|unitypackage|sit|sea|r\d+)$/.test(n)) return "#c09030"
+                                                if (/\.(exe|msi|msu|deb|rpm|pkg|apk)$/.test(n))                                return "#6060c0"
+                                                if (/\.(pdf|doc|docx|ppt|pptx|xls|xlsx|epub|azw3)$/.test(n))                  return "#c06040"
+                                                if (/\.(safetensors|gguf)$/.test(n))                                           return "#8040a0"
+                                                if (/\.(iso|img|bin)$/.test(n))                                                return "#408040"
+                                                return "#606060"
+                                            }
+                                            Text {
+                                                anchors.centerIn: parent
+                                                text: {
+                                                    if (!rowRect.item) return "•"
+                                                    const n = rowRect.item.filename.toLowerCase()
+                                                    if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(n)) return "▶"
+                                                    if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(n))                   return "♪"
+                                                    if (/\.(zip|rar|7z|tar|gz|bz2|xz|zst|ace|sitx|unitypackage|sit|sea|r\d+)$/.test(n)) return "Z"
+                                                    if (/\.(exe|msi|msu|deb|rpm|pkg|apk)$/.test(n))                                return "⚙"
+                                                    if (/\.(pdf|doc|docx|ppt|pptx)$/.test(n))                                       return "D"
+                                                    if (/\.(safetensors|gguf)$/.test(n))                                            return "AI"
+                                                    return "•"
+                                                }
+                                                color: "white"; font.pixelSize: 9; font.bold: true
+                                            }
+                                        }
+                                        Text {
+                                            text: rowRect.item ? rowRect.item.filename : ""
+                                            color: tableView.currentRow === index ? "#ffffff" : "#d0d0d0"
+                                            font.pixelSize: 12
+                                            width: root.colWidth("name") - 42
+                                            elide: Text.ElideMiddle
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
-                }
 
-                // Size
-                Item {
-                    visible: root.colWidth("size") > 0
-                    width: root.colWidth("size"); height: parent.height
-                    Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                        text: {
-                            if (!rowRect.item || rowRect.item.totalBytes <= 0) return "--"
-                            const b = rowRect.item.totalBytes
-                            if (b < 1048576)    return (b / 1024).toFixed(1) + " KB"
-                            if (b < 1073741824) return (b / 1048576).toFixed(1) + " MB"
-                            return (b / 1073741824).toFixed(2) + " GB"
+                        // ── Size ─────────────────────────────────────────
+                        Loader {
+                            active: modelData.key === "size"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: {
+                                        if (!rowRect.item || rowRect.item.totalBytes <= 0) return "--"
+                                        const b = rowRect.item.totalBytes
+                                        if (b < 1048576)    return (b / 1024).toFixed(1) + " KB"
+                                        if (b < 1073741824) return (b / 1048576).toFixed(1) + " MB"
+                                        return (b / 1073741824).toFixed(2) + " GB"
+                                    }
+                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
+                                    font.pixelSize: 12
+                                }
+                            }
                         }
-                        color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
-                    }
-                }
 
-                // Status (with inline progress %)
-                Item {
-                    visible: root.colWidth("status") > 0
-                    width: root.colWidth("status"); height: parent.height
-                    Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                        text: {
-                            if (!rowRect.item) return "--"
-                            const s = rowRect.item.status
-                            if (s === "Downloading") return (rowRect.item.progress * 100).toFixed(1) + "%"
-                            return s
+                        // ── Status ───────────────────────────────────────
+                        Loader {
+                            active: modelData.key === "status"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: {
+                                        if (!rowRect.item) return "--"
+                                        const s = rowRect.item.status
+                                        if (s === "Downloading") return (rowRect.item.progress * 100).toFixed(1) + "%"
+                                        return s
+                                    }
+                                    color: {
+                                        if (tableView.currentRow === index) return "#ffffff"
+                                        if (!rowRect.item) return "#b0b0b0"
+                                        const s = rowRect.item.status
+                                        if (s === "Downloading") return "#66cc66"
+                                        if (s === "Paused")      return "#e0c040"
+                                        if (s === "Error")       return "#e06060"
+                                        if (s === "Completed")   return "#60c0e0"
+                                        return "#b0b0b0"
+                                    }
+                                    font.pixelSize: 12
+                                }
+                            }
                         }
-                        color: {
-                            if (tableView.currentRow === index) return "#ffffff"
-                            if (!rowRect.item) return "#b0b0b0"
-                            const s = rowRect.item.status
-                            if (s === "Downloading") return "#66cc66"
-                            if (s === "Paused")      return "#e0c040"
-                            if (s === "Error")       return "#e06060"
-                            if (s === "Completed")   return "#60c0e0"
-                            return "#b0b0b0"
+
+                        // ── Time left ────────────────────────────────────
+                        Loader {
+                            active: modelData.key === "timeleft"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: rowRect.item ? rowRect.item.timeLeft : "--"
+                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
+                                    font.pixelSize: 12
+                                }
+                            }
                         }
-                        font.pixelSize: 12
-                    }
-                }
 
-                // Time left
-                Item {
-                    visible: root.colWidth("timeleft") > 0
-                    width: root.colWidth("timeleft"); height: parent.height
-                    Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                        text: rowRect.item ? rowRect.item.timeLeft : "--"
-                        color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 12
-                    }
-                }
-
-                // Transfer rate
-                Item {
-                    visible: root.colWidth("speed") > 0
-                    width: root.colWidth("speed"); height: parent.height
-                    Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                        text: {
-                            if (!rowRect.item || rowRect.item.status !== "Downloading") return "--"
-                            const bps = rowRect.item.speed
-                            if (bps <= 0)       return "--"
-                            if (bps < 1048576)  return (bps / 1024).toFixed(1) + " KB/s"
-                            return (bps / 1048576).toFixed(2) + " MB/s"
+                        // ── Transfer rate ────────────────────────────────
+                        Loader {
+                            active: modelData.key === "speed"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: {
+                                        if (!rowRect.item || rowRect.item.status !== "Downloading") return "--"
+                                        const bps = rowRect.item.speed
+                                        if (bps <= 0)      return "--"
+                                        if (bps < 1048576) return (bps / 1024).toFixed(1) + " KB/s"
+                                        return (bps / 1048576).toFixed(2) + " MB/s"
+                                    }
+                                    color: tableView.currentRow === index ? "#ffffff" : "#80c080"
+                                    font.pixelSize: 12
+                                }
+                            }
                         }
-                        color: tableView.currentRow === index ? "#ffffff" : "#80c080"
-                        font.pixelSize: 12
-                    }
-                }
 
-                // Date added
-                Item {
-                    visible: root.colWidth("added") > 0
-                    width: root.colWidth("added"); height: parent.height
-                    Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                        text: {
-                            if (!rowRect.item) return "--"
-                            const d = rowRect.item.addedAt
-                            return Qt.formatDateTime(d, "MM/dd/yy hh:mm")
+                        // ── Date added ───────────────────────────────────
+                        Loader {
+                            active: modelData.key === "added"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: rowRect.item ? Qt.formatDateTime(rowRect.item.addedAt, "MM/dd/yy hh:mm") : "--"
+                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
+                                    font.pixelSize: 11
+                                }
+                            }
                         }
-                        color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 11
-                    }
-                }
 
-                // Save to
-                Item {
-                    visible: root.colWidth("saveto") > 0
-                    width: root.colWidth("saveto"); height: parent.height
-                    clip: true
-                    Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                        text: rowRect.item ? rowRect.item.savePath : "--"
-                        color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                        font.pixelSize: 11
-                        width: parent.width - 8
-                        elide: Text.ElideMiddle
+                        // ── Last try date ────────────────────────────────
+                        Loader {
+                            active: modelData.key === "lasttry"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: rowRect.item && rowRect.item.lastTryAt.getTime() > 0
+                                          ? Qt.formatDateTime(rowRect.item.lastTryAt, "MM/dd/yy hh:mm")
+                                          : "--"
+                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
+                                    font.pixelSize: 11
+                                }
+                            }
+                        }
+
+                        // ── Description ──────────────────────────────────
+                        Loader {
+                            active: modelData.key === "description"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: rowRect.item ? (rowRect.item.description || "--") : "--"
+                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
+                                    font.pixelSize: 11; elide: Text.ElideRight; width: parent.width - 8
+                                }
+                            }
+                        }
+
+                        // ── Save to ──────────────────────────────────────
+                        Loader {
+                            active: modelData.key === "saveto"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: rowRect.item ? rowRect.item.savePath : "--"
+                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
+                                    font.pixelSize: 11; elide: Text.ElideMiddle; width: parent.width - 8
+                                }
+                            }
+                        }
+
+                        // ── Referer ──────────────────────────────────────
+                        Loader {
+                            active: modelData.key === "referrer"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: rowRect.item ? (rowRect.item.referrer || "--") : "--"
+                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
+                                    font.pixelSize: 11; elide: Text.ElideRight; width: parent.width - 8
+                                }
+                            }
+                        }
+
+                        // ── Parent web page ──────────────────────────────
+                        Loader {
+                            active: modelData.key === "parenturl"
+                            anchors.fill: parent
+                            sourceComponent: Component {
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6 }
+                                    verticalAlignment: Text.AlignVCenter
+                                    text: rowRect.item ? (rowRect.item.parentUrl || "--") : "--"
+                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
+                                    font.pixelSize: 11; elide: Text.ElideRight; width: parent.width - 8
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -401,13 +681,25 @@ Rectangle {
                 }
 
                 onDoubleClicked: function(mouse) {
-                    if (rowRect.item) root.openProgressRequested(rowRect.item)
+                    if (!rowRect.item) return
+                    if (rowRect.item.status === "Completed") {
+                        root.openPropertiesRequested(rowRect.item)
+                    } else {
+                        root.openProgressRequested(rowRect.item)
+                    }
                 }
             }
 
             Menu {
                 id: rowCtxMenu
-                Action { text: "Properties"; onTriggered: { if (rowRect.item) root.openProgressRequested(rowRect.item) } }
+                Action {
+                    text: "Properties"
+                    onTriggered: {
+                        if (!rowRect.item) return
+                        if (rowRect.item.status === "Completed") root.openPropertiesRequested(rowRect.item)
+                        else root.openProgressRequested(rowRect.item)
+                    }
+                }
                 Action { text: "Open File";   onTriggered: { if (rowRect.item) App.openFile(rowRect.item.id)   } }
                 Action { text: "Open Folder"; onTriggered: { if (rowRect.item) App.openFolder(rowRect.item.id) } }
                 MenuSeparator {}

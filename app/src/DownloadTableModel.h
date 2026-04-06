@@ -53,6 +53,8 @@ public:
     DownloadItem *itemByUrl(const QUrl &url) const;
 
     void setFilterCategory(const QString &filter);
+    void sortBy(const QString &column, bool ascending);
+    QList<DownloadItem *> allItems() const { return m_items; }
 
 private slots:
     void onItemChanged();

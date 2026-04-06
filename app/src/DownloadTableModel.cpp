@@ -126,6 +126,40 @@ void DownloadTableModel::setFilterCategory(const QString &filter) {
     rebuildVisible();
 }
 
+void DownloadTableModel::sortBy(const QString &column, bool ascending) {
+    auto cmp = [&](DownloadItem *a, DownloadItem *b) -> bool {
+        bool result = false;
+        if (column == QStringLiteral("name"))
+            result = a->filename().toLower() < b->filename().toLower();
+        else if (column == QStringLiteral("size"))
+            result = a->totalBytes() < b->totalBytes();
+        else if (column == QStringLiteral("status"))
+            result = a->status() < b->status();
+        else if (column == QStringLiteral("timeleft"))
+            result = a->timeLeft() < b->timeLeft();
+        else if (column == QStringLiteral("speed"))
+            result = a->speed() < b->speed();
+        else if (column == QStringLiteral("added"))
+            result = a->addedAt() < b->addedAt();
+        else if (column == QStringLiteral("saveto"))
+            result = a->savePath().toLower() < b->savePath().toLower();
+        else if (column == QStringLiteral("description"))
+            result = a->description().toLower() < b->description().toLower();
+        else if (column == QStringLiteral("referrer"))
+            result = a->referrer().toLower() < b->referrer().toLower();
+        else if (column == QStringLiteral("parenturl"))
+            result = a->parentUrl().toLower() < b->parentUrl().toLower();
+        else if (column == QStringLiteral("lasttry"))
+            result = a->lastTryAt() < b->lastTryAt();
+        else
+            result = a->addedAt() < b->addedAt();
+
+        return ascending ? result : !result;
+    };
+    std::sort(m_items.begin(), m_items.end(), cmp);
+    rebuildVisible();
+}
+
 bool DownloadTableModel::matchesFilter(DownloadItem *item) const {
     if (m_filterCategory == QStringLiteral("all")) return true;
     if (m_filterCategory == QStringLiteral("status_active"))

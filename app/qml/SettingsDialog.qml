@@ -49,9 +49,11 @@ Window {
     property int    editMaxRetries:            0
     property int    editConnectionTimeoutSecs: 0
     property int    editDuplicateAction:       0
-    property bool   editStartImmediately:           false
+    property bool   editStartImmediately:      false
+    property bool   editSpeedLimiterOnStartup: false
 
     Component.onCompleted: resetEdits()
+    onVisibleChanged: { if (visible) resetEdits() }
 
     // Track whether anything has been changed
     readonly property bool settingsChanged:
@@ -65,7 +67,8 @@ Window {
         editMaxRetries            !== App.settings.maxRetries           ||
         editConnectionTimeoutSecs !== App.settings.connectionTimeoutSecs ||
         editDuplicateAction       !== App.settings.duplicateAction  ||
-        editStartImmediately           !== App.settings.startImmediately
+        editStartImmediately      !== App.settings.startImmediately ||
+        editSpeedLimiterOnStartup !== App.settings.speedLimiterOnStartup
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
@@ -125,7 +128,8 @@ Window {
         App.settings.maxRetries            = editMaxRetries
         App.settings.connectionTimeoutSecs = editConnectionTimeoutSecs
         App.settings.duplicateAction       = editDuplicateAction
-        App.settings.startImmediately           = editStartImmediately
+        App.settings.startImmediately       = editStartImmediately
+        App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
@@ -142,7 +146,8 @@ Window {
         editMaxRetries            = App.settings.maxRetries
         editConnectionTimeoutSecs = App.settings.connectionTimeoutSecs
         editDuplicateAction       = App.settings.duplicateAction
-        editStartImmediately           = App.settings.startImmediately
+        editStartImmediately      = App.settings.startImmediately
+        editSpeedLimiterOnStartup = App.settings.speedLimiterOnStartup
     }
 
     ColumnLayout {
@@ -277,6 +282,19 @@ Window {
                                         model: App.categoryModel
                                         currentIndex: 1
                                         ScrollBar.vertical: ScrollBar {}
+
+                                        Component.onCompleted: {
+                                            var d = App.categoryModel.categoryData(currentIndex)
+                                            if (!d || !d.id) return
+                                            root.loadingCategory = true
+                                            catEditName.text  = d.label || ""
+                                            catEditExts.text  = (d.extensions || []).join(", ")
+                                            catEditSites.text = (d.sitePatterns || []).join(" ")
+                                            catEditPath.text  = d.savePath || ""
+                                            catPage.catEditBuiltIn = !!d.builtIn
+                                            catPage.catEditId = d.id || ""
+                                            root.loadingCategory = false
+                                        }
 
                                         onCurrentIndexChanged: {
                                             // Always save the previous category before switching
@@ -522,6 +540,7 @@ Window {
 
                         CheckBox {
                             text: "Start downloading immediately (skip file info dialog)"
+                            topPadding: 0; bottomPadding: 0
                             checked: root.editStartImmediately
                             onCheckedChanged: root.editStartImmediately = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
@@ -649,6 +668,7 @@ Window {
                             CheckBox {
                                 id: showExceptDlgChk
                                 text: "Show the dialog to add an address to the list of exceptions for a twice cancelled download"
+                                topPadding: 0; bottomPadding: 0
                                 checked: App.settings.showExceptionsDialog
                                 onCheckedChanged: root.browserDirty = true
                                 contentItem: Text {
@@ -707,6 +727,7 @@ Window {
                         CheckBox {
                             id: globalLimitChk
                             text: "Enable global speed limit"
+                            topPadding: 0; bottomPadding: 0
                             checked: root.editGlobalSpeedLimitKBps > 0
                             onToggled: { if (!checked) root.editGlobalSpeedLimitKBps = 0 }
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
@@ -727,6 +748,14 @@ Window {
                             Text { text: "KB/s"; color: "#a0a0a0"; font.pixelSize: 13 }
                         }
 
+                        CheckBox {
+                            text: "Always turn on speed limiter on Stellar startup"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editSpeedLimiterOnStartup
+                            onCheckedChanged: root.editSpeedLimiterOnStartup = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                        }
+
                         Item { Layout.fillHeight: true }
                     }
                 }
@@ -742,11 +771,13 @@ Window {
 
                         CheckBox {
                             text: "Show notification when download completes"
+                            topPadding: 0; bottomPadding: 0
                             checked: true
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
                             text: "Show notification on download error"
+                            topPadding: 0; bottomPadding: 0
                             checked: true
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
@@ -766,18 +797,21 @@ Window {
 
                         CheckBox {
                             text: "Minimize to system tray"
+                            topPadding: 0; bottomPadding: 0
                             checked: root.editMinimizeToTray
                             onCheckedChanged: root.editMinimizeToTray = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
                             text: "Close to system tray"
+                            topPadding: 0; bottomPadding: 0
                             checked: root.editCloseToTray
                             onCheckedChanged: root.editCloseToTray = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
                             text: "Show tips of the day"
+                            topPadding: 0; bottomPadding: 0
                             checked: root.editShowTips
                             onCheckedChanged: root.editShowTips = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
