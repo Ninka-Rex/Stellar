@@ -20,7 +20,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    height: 90
+    height: 64
     color: "#1f1f1f"
 
     signal addClicked()
@@ -46,7 +46,7 @@ Rectangle {
     }
 
     Row {
-        anchors { fill: parent; topMargin: 10; bottomMargin: 10; leftMargin: 2 }
+        anchors { fill: parent; topMargin: 4; bottomMargin: 4; leftMargin: 2 }
         spacing: 2
 
         ToolbarBtn { label: "Add URL";        iconSrc: "icons/new_file.ico";    onClicked: root.addClicked() }
@@ -55,7 +55,7 @@ Rectangle {
         ToolbarBtn { label: "Stop All";       iconSrc: "icons/pause_orange.png";      onClicked: root.stopAllClicked() }
         ToolbarBtn { label: "Delete";         iconSrc: "icons/remove.png";     onClicked: root.deleteClicked() }
         ToolbarBtn { label: "Delete Done";    iconSrc: "icons/files_x.png";     onClicked: root.deleteCompletedClicked() }
-        ToolbarBtn { label: "Options";        iconSrc: "icons/tools.ico";       onClicked: root.optionsClicked() }
+        ToolbarBtn { label: "Options";        iconSrc: "icons/Tools.ico";       onClicked: root.optionsClicked() }
         ToolbarBtn { label: "Scheduler";      iconSrc: "icons/scheduler.ico"; onClicked: root.schedulerClicked() }
 
         // Start Queue dropdown

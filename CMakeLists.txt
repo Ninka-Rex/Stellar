@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.2.0 LANGUAGES CXX)
+project(Stellar VERSION 0.2.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -106,7 +106,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/pause_purple.png
         app/qml/icons/resume_purple.png
         app/qml/icons/pause_orange.png
-        app/qml/icons/tools.ico
+        app/qml/icons/Tools.ico
         app/qml/icons/x_square.ico
         app/qml/icons/download.ico
         app/qml/icons/resume.ico
@@ -125,7 +125,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/arrow_left.ico
         app/qml/icons/exit.ico
         app/qml/icons/add.ico
-        app/qml/icons/tools.ico
+        app/qml/icons/Tools.ico
         app/qml/icons/wand.ico
         app/qml/icons/cancel.ico
         app/qml/icons/copy.ico
@@ -181,7 +181,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE FALSE
+        WIN32_EXECUTABLE TRUE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)

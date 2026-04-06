@@ -1,58 +1,112 @@
-; Inno Setup script for Stellar Download Manager
-; Build with: iscc installer.iss  (from the packaging/windows/ directory)
+; Stellar Download Manager — Inno Setup installer script
+; Build with: iscc installer.iss  (from packaging/windows/ OR via release.ps1)
 
 #define AppName      "Stellar Download Manager"
-#define AppVersion   "0.1.0"
-#define AppPublisher "Ninka-Rex"
+#define AppVersion   "0.2.0"
+#define AppPublisher "Ninka_"
 #define AppURL       "https://stellar.moe/"
 #define AppExeName   "Stellar.exe"
+; Path relative to this .iss file (packaging/windows/)
 #define BuildDir     "..\..\build\windows-release"
+#define IconFile     "..\..\app\qml\icons\milky-way.ico"
 
 [Setup]
 AppId={{B3F2A1D0-4E7C-4F2A-9B1D-1234567890AB}
 AppName={#AppName}
 AppVersion={#AppVersion}
+AppVerName={#AppName} {#AppVersion}
 AppPublisher={#AppPublisher}
 AppPublisherURL={#AppURL}
 AppSupportURL={#AppURL}
 AppUpdatesURL={#AppURL}
-DefaultDirName={autopf}\Stellar
+; Install to %LOCALAPPDATA%\Stellar — no UAC, no admin required
+DefaultDirName={localappdata}\Stellar
 DefaultGroupName=Stellar
+; Output goes to packaging/windows/output/
+OutputDir=output
 OutputBaseFilename=StellarSetup-{#AppVersion}
-SetupIconFile=stellar.ico
-Compression=lzma2
+SetupIconFile={#IconFile}
+UninstallDisplayIcon={app}\{#AppExeName}
+Compression=lzma2/ultra64
 SolidCompression=yes
-ArchitecturesInstallIn64BitMode=x64
+LZMANumBlockThreads=4
+ArchitecturesInstallIn64BitMode=x64compatible
 WizardStyle=modern
+; No admin required — installs to %LOCALAPPDATA%
+PrivilegesRequired=lowest
+; Restart-free uninstall of previous version
+CloseApplications=yes
+; Version info shown in Add/Remove Programs
+VersionInfoVersion={#AppVersion}
+VersionInfoCompany={#AppPublisher}
+VersionInfoDescription={#AppName} Setup
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional icons:"; Flags: unchecked
-Name: "chromeext";   Description: "Register Chrome Native Messaging host"; GroupDescription: "Browser integration:"
-Name: "firefoxext";  Description: "Register Firefox Native Messaging host"; GroupDescription: "Browser integration:"
+Name: "quicklaunch";  Description: "Pin to &taskbar"; GroupDescription: "Additional icons:"; Flags: unchecked
+Name: "chromeext";    Description: "Register &Chrome native messaging host"; GroupDescription: "Browser integration:"
+Name: "firefoxext";   Description: "Register &Firefox native messaging host"; GroupDescription: "Browser integration:"
 
 [Files]
-Source: "{#BuildDir}\{#AppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#BuildDir}\*.dll";         DestDir: "{app}"; Flags: ignoreversion recursesubdirs
-Source: "{#BuildDir}\plugins\*";     DestDir: "{app}\plugins"; Flags: ignoreversion recursesubdirs
+; Main executable
+Source: "{#BuildDir}\{#AppExeName}";            DestDir: "{app}";          Flags: ignoreversion
+
+; Qt runtime DLLs (windeployqt output)
+Source: "{#BuildDir}\*.dll";                    DestDir: "{app}";          Flags: ignoreversion
+
+; Qt plugins — windeployqt places these as top-level subdirectories
+Source: "{#BuildDir}\generic\*";                DestDir: "{app}\generic";              Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+Source: "{#BuildDir}\iconengines\*";            DestDir: "{app}\iconengines";          Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+Source: "{#BuildDir}\imageformats\*";           DestDir: "{app}\imageformats";         Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+Source: "{#BuildDir}\networkinformation\*";     DestDir: "{app}\networkinformation";   Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+Source: "{#BuildDir}\platforms\*";              DestDir: "{app}\platforms";            Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+Source: "{#BuildDir}\styles\*";                 DestDir: "{app}\styles";               Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+Source: "{#BuildDir}\tls\*";                    DestDir: "{app}\tls";                  Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+Source: "{#BuildDir}\qmltooling\*";             DestDir: "{app}\qmltooling";            Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+
+; QML imports (windeployqt copies these)
+Source: "{#BuildDir}\qml\*";                    DestDir: "{app}\qml";                  Flags: ignoreversion recursesubdirs createallsubdirs
+
+; Qt translations
+Source: "{#BuildDir}\translations\*";           DestDir: "{app}\translations";         Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+
+; Visual C++ Redistributable (windeployqt copies this)
+Source: "{#BuildDir}\vc_redist.x64.exe";        DestDir: "{tmp}";                       Flags: deleteafterinstall skipifsourcedoesntexist
+
+; Native messaging manifest (path placeholder filled by [Registry])
+Source: "native-host-manifest-installed.json";  DestDir: "{app}";          DestName: "native-host-manifest.json"; Flags: ignoreversion
 
 [Icons]
-Name: "{group}\Stellar";             Filename: "{app}\{#AppExeName}"
-Name: "{group}\Uninstall Stellar";   Filename: "{uninstallexe}"
-Name: "{commondesktop}\Stellar";     Filename: "{app}\{#AppExeName}"; Tasks: desktopicon
+Name: "{group}\Stellar Download Manager"; Filename: "{app}\{#AppExeName}"; IconFilename: "{app}\{#AppExeName}"
+Name: "{group}\Uninstall Stellar";        Filename: "{uninstallexe}"
+Name: "{userdesktop}\Stellar";            Filename: "{app}\{#AppExeName}"; Tasks: desktopicon
 
 [Registry]
-; Chrome Native Messaging host registration
+; Chrome native messaging host
 Root: HKCU; Subkey: "Software\Google\Chrome\NativeMessagingHosts\com.stellar.downloadmanager"; \
   ValueType: string; ValueName: ""; ValueData: "{app}\native-host-manifest.json"; \
   Tasks: chromeext; Flags: uninsdeletekey
 
-; Firefox Native Messaging host registration
+; Firefox native messaging host
 Root: HKCU; Subkey: "Software\Mozilla\NativeMessagingHosts\com.stellar.downloadmanager"; \
   ValueType: string; ValueName: ""; ValueData: "{app}\native-host-manifest.json"; \
   Tasks: firefoxext; Flags: uninsdeletekey
 
 [Run]
-Filename: "{app}\{#AppExeName}"; Description: "Launch Stellar"; Flags: nowait postinstall skipifsilent
+; Install VC++ Redistributable silently if present
+Filename: "{tmp}\vc_redist.x64.exe"; Parameters: "/install /quiet /norestart"; \
+  Flags: skipifdoesntexist runhidden waituntilterminated; \
+  StatusMsg: "Installing Visual C++ Redistributable..."
+Filename: "{app}\{#AppExeName}"; Description: "Launch {#AppName}"; Flags: nowait postinstall skipifsilent
+
+[UninstallRun]
+; Kill any running instance before uninstall
+Filename: "taskkill.exe"; Parameters: "/f /im {#AppExeName}"; Flags: runhidden; RunOnceId: "KillStellar"
+
+[UninstallDelete]
+; Clean up user data only if the user explicitly opts in — we don't wipe downloads.json silently.
+; Log/temp files that are safe to remove:
+Type: filesandordirs; Name: "{localappdata}\Stellar\logs"

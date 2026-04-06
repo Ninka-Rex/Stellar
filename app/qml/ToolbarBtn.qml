@@ -24,7 +24,7 @@ AbstractButton {
     property string iconSrc: ""
     
     width: 70
-    height: 70
+    height: 56
 
     background: Rectangle {
         color: root.pressed ? "#3a3a4a"
