@@ -204,6 +204,23 @@ Rectangle {
         }
     }
 
+    // ── Sort state ────────────────────────────────────────────────────────────
+    property string sortKey:       "added"
+    property bool   sortAscending: false
+
+    function applySort(key) {
+        if (sortKey === key) {
+            sortAscending = !sortAscending
+        } else {
+            sortKey = key
+            sortAscending = true
+        }
+        App.downloadModel.sortBy(sortKey, sortAscending)
+    }
+
+    // Sortable column keys (queue and progress columns are not sortable)
+    readonly property var _sortableKeys: ["name","size","status","timeleft","speed","added","lasttry","description","saveto","referrer","parenturl"]
+
     // ── Column visibility context menu ────────────────────────────────────────
     Menu {
         id: colCtxMenu
@@ -240,17 +257,37 @@ Rectangle {
             Repeater {
                 model: root.visibleCols
                 delegate: Rectangle {
+                    id: headerCell
                     width:  root.colWidth(modelData.key)
                     height: parent.height
-                    color: "transparent"
+                    readonly property bool isSortable: root._sortableKeys.indexOf(modelData.key) >= 0
+                    readonly property bool isActive:   root.sortKey === modelData.key
+                    color: (isSortable && headerCellMouse.containsMouse) ? "#383838" : "transparent"
 
                     Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: resizeHandle.left }
+                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: sortIndicator.left; rightMargin: 2 }
                         text: modelData.title
-                        color: "#b0b0b0"
+                        color: headerCell.isActive ? "#88bbff" : "#b0b0b0"
                         font.pixelSize: 12
                         font.bold: true
                         elide: Text.ElideRight
+                    }
+
+                    Text {
+                        id: sortIndicator
+                        anchors { verticalCenter: parent.verticalCenter; right: resizeHandle.left; rightMargin: 4 }
+                        text: root.sortAscending ? "▲" : "▼"
+                        color: "#88bbff"
+                        font.pixelSize: 9
+                        visible: headerCell.isActive
+                    }
+
+                    MouseArea {
+                        id: headerCellMouse
+                        anchors { fill: parent; rightMargin: 6 }
+                        hoverEnabled: true
+                        cursorShape: headerCell.isSortable ? Qt.PointingHandCursor : Qt.ArrowCursor
+                        onClicked: if (headerCell.isSortable) root.applySort(modelData.key)
                     }
 
                     Rectangle {
@@ -329,7 +366,7 @@ Rectangle {
                 root._itemMatchesFind(item, root.filterText, root.filterName, root.filterDesc,
                                       root.filterLinks, root.filterMatchCase, root.filterMatchWhole)
 
-            height:  _matchesFilter ? 34 : 0
+            height:  _matchesFilter ? 26 : 0
             visible: _matchesFilter
             clip: true
 
@@ -390,36 +427,13 @@ Rectangle {
                                     Row {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
                                         spacing: 6
-                                        Rectangle {
-                                            width: 18; height: 18; radius: 2
+                                        Image {
+                                            width: 18; height: 18
                                             anchors.verticalCenter: parent.verticalCenter
-                                            color: {
-                                                if (!rowRect.item) return "#606060"
-                                                const n = rowRect.item.filename.toLowerCase()
-                                                if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(n)) return "#c04040"
-                                                if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(n))                   return "#40a0c0"
-                                                if (/\.(zip|rar|7z|tar|gz|bz2|xz|zst|ace|sitx|unitypackage|sit|sea|r\d+)$/.test(n)) return "#c09030"
-                                                if (/\.(exe|msi|msu|deb|rpm|pkg|apk)$/.test(n))                                return "#6060c0"
-                                                if (/\.(pdf|doc|docx|ppt|pptx|xls|xlsx|epub|azw3)$/.test(n))                  return "#c06040"
-                                                if (/\.(safetensors|gguf)$/.test(n))                                           return "#8040a0"
-                                                if (/\.(iso|img|bin)$/.test(n))                                                return "#408040"
-                                                return "#606060"
-                                            }
-                                            Text {
-                                                anchors.centerIn: parent
-                                                text: {
-                                                    if (!rowRect.item) return "•"
-                                                    const n = rowRect.item.filename.toLowerCase()
-                                                    if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg|ogv|rmvb|rm)$/.test(n)) return "▶"
-                                                    if (/\.(mp3|flac|wav|aac|ogg|m4a|wma|aif|ra|opus)$/.test(n))                   return "♪"
-                                                    if (/\.(zip|rar|7z|tar|gz|bz2|xz|zst|ace|sitx|unitypackage|sit|sea|r\d+)$/.test(n)) return "Z"
-                                                    if (/\.(exe|msi|msu|deb|rpm|pkg|apk)$/.test(n))                                return "⚙"
-                                                    if (/\.(pdf|doc|docx|ppt|pptx)$/.test(n))                                       return "D"
-                                                    if (/\.(safetensors|gguf)$/.test(n))                                            return "AI"
-                                                    return "•"
-                                                }
-                                                color: "white"; font.pixelSize: 9; font.bold: true
-                                            }
+                                            source: rowRect.item ? "image://fileicon/" + (rowRect.item.savePath + "/" + rowRect.item.filename).replace(/\\/g, "/") : ""
+                                            sourceSize: Qt.size(18, 18)
+                                            fillMode: Image.PreserveAspectFit
+                                            smooth: true
                                         }
                                         Text {
                                             text: rowRect.item ? rowRect.item.filename : ""
@@ -492,7 +506,7 @@ Rectangle {
                                 Text {
                                     anchors { fill: parent; leftMargin: 6 }
                                     verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item ? rowRect.item.timeLeft : "--"
+                                    text: rowRect.item ? rowRect.item.timeLeft : ""
                                     color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
                                     font.pixelSize: 12
                                 }
@@ -508,9 +522,9 @@ Rectangle {
                                     anchors { fill: parent; leftMargin: 6 }
                                     verticalAlignment: Text.AlignVCenter
                                     text: {
-                                        if (!rowRect.item || rowRect.item.status !== "Downloading") return "--"
+                                        if (!rowRect.item || rowRect.item.status !== "Downloading") return ""
                                         const bps = rowRect.item.speed
-                                        if (bps <= 0)      return "--"
+                                        if (bps <= 0)      return ""
                                         if (bps < 1048576) return (bps / 1024).toFixed(1) + " KB/s"
                                         return (bps / 1048576).toFixed(2) + " MB/s"
                                     }
@@ -528,7 +542,7 @@ Rectangle {
                                 Text {
                                     anchors { fill: parent; leftMargin: 6 }
                                     verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item ? Qt.formatDateTime(rowRect.item.addedAt, "MM/dd/yy hh:mm") : "--"
+                                    text: rowRect.item ? Qt.formatDateTime(rowRect.item.addedAt, "MMM dd yyyy h:mm:ss AP") : ""
                                     color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
                                     font.pixelSize: 11
                                 }
@@ -701,7 +715,7 @@ Rectangle {
                     }
                 }
                 Action { text: "Open File";   onTriggered: { if (rowRect.item) App.openFile(rowRect.item.id)   } }
-                Action { text: "Open Folder"; onTriggered: { if (rowRect.item) App.openFolder(rowRect.item.id) } }
+                Action { text: "Open Folder"; onTriggered: { if (rowRect.item) App.openFolderSelectFile(rowRect.item.id) } }
                 MenuSeparator {}
                 Action { text: "Copy Filename"; onTriggered: { if (rowRect.item) App.copyDownloadFilename(rowRect.item.id) } }
                 Action { text: "Copy URL"; onTriggered: { if (rowRect.item) App.copyToClipboard(rowRect.item.url.toString()) } }

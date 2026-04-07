@@ -9,12 +9,12 @@
 #
 # Output:
 #   dist\windows\StellarSetup-<Version>.exe
-#   dist\Stellar-<Version>-windows-installer.7z
-#   dist\Stellar-<Version>-source.7z
+#   releases\Stellar-<Version>-windows-installer.7z
+#   releases\Stellar-<Version>-source.7z
 
 param(
-    [string]$Version    = "0.2.0",
-    [string]$QtDir      = "",          # e.g. C:\Qt\6.8.3\msvc2022_64
+    [string]$Version    = "",           # auto-detected from CMakeLists.txt if omitted
+    [string]$QtDir      = "",           # e.g. C:\Qt\6.8.3\msvc2022_64
     [switch]$SkipBuild,
     [switch]$SkipInstaller,
     [switch]$SkipArchive
@@ -27,6 +27,18 @@ $Root       = $PSScriptRoot
 $BuildDir   = "$Root\build\windows-release"
 $DistDir    = "$Root\dist"
 $WinDistDir = "$DistDir\windows"
+$ReleasesDir = "$Root\releases"
+
+# ── Auto-detect version from CMakeLists.txt ──────────────────────────────────
+if ($Version -eq "") {
+    $cmakeFile = Get-Content "$Root\CMakeLists.txt" -Raw
+    if ($cmakeFile -match 'project\s*\(\s*\w+\s+VERSION\s+([\d]+\.[\d]+\.[\d]+(?:\.[\d]+)?)') {
+        $Version = $Matches[1]
+        Write-Host "[release] Detected version: $Version" -ForegroundColor Cyan
+    } else {
+        Write-Error "Could not detect version from CMakeLists.txt. Pass -Version explicitly."
+    }
+}
 
 # ── Resolve Qt ──────────────────────────────────────────────────────────────
 if ($QtDir -eq "") {
@@ -130,28 +142,30 @@ if (-not $SkipInstaller) {
     Write-Host "[release] Skipping installer." -ForegroundColor DarkGray
 }
 
-# ── 7-Zip archives ────────────────────────────────────────────────────────────
+# ── 7-Zip archives (all build steps done — archive everything now) ─────────────
 if (-not $SkipArchive) {
-    New-Item -ItemType Directory -Force -Path $DistDir | Out-Null
-    New-Item -ItemType Directory -Force -Path $WinDistDir | Out-Null
+    New-Item -ItemType Directory -Force -Path $DistDir     | Out-Null
+    New-Item -ItemType Directory -Force -Path $WinDistDir  | Out-Null
+    New-Item -ItemType Directory -Force -Path $ReleasesDir | Out-Null
 
-    # Copy installer into dist/windows/
+    # Archive 1: installer
     if (Test-Path $InstallerExe) {
         Copy-Item $InstallerExe $WinDistDir -Force
+        $InstallerArchive = "$ReleasesDir\Stellar-$Version-windows-installer.7z"
+        Write-Host "`n[release] Archiving installer -> $InstallerArchive" -ForegroundColor Yellow
+        & $7Z a -t7z -mx=9 -mmt=on $InstallerArchive "$WinDistDir\StellarSetup-$Version.exe"
+        if ($LASTEXITCODE -ne 0) { Write-Error "7-Zip archive (installer) failed" }
+    } else {
+        Write-Host "[release] No installer at $InstallerExe - skipping installer archive." -ForegroundColor DarkGray
     }
 
-    # Archive: installer only
-    $InstallerArchive = "$DistDir\Stellar-$Version-windows-installer.7z"
-    Write-Host "`n[release] Archiving installer -> $InstallerArchive" -ForegroundColor Yellow
-    & $7Z a -t7z -mx=9 -mmt=on $InstallerArchive "$WinDistDir\StellarSetup-$Version.exe"
-    if ($LASTEXITCODE -ne 0) { Write-Error "7-Zip archive (installer) failed" }
-
-    # Archive: source code (exclude build/, dist/, .git objects, backups)
-    $SourceArchive = "$DistDir\Stellar-$Version-source.7z"
-    Write-Host "[release] Archiving source   -> $SourceArchive" -ForegroundColor Yellow
+    # Archive 2: source code
+    $SourceArchive = "$ReleasesDir\Stellar-$Version-source.7z"
+    Write-Host "[release] Archiving source -> $SourceArchive" -ForegroundColor Yellow
     & $7Z a -t7z -mx=9 -mmt=on `
         -xr"!build" `
         -xr"!dist" `
+        -xr"!releases" `
         -xr"!backups" `
         -xr"!.git\objects" `
         -xr"!*.stellar-part-*" `
@@ -164,6 +178,6 @@ if (-not $SkipArchive) {
     Write-Host "[release] Skipping archives." -ForegroundColor DarkGray
 }
 
-Write-Host "`n[release] === Windows release complete ===" -ForegroundColor Green
+Write-Host "`n[release] === Windows release $Version complete ===" -ForegroundColor Green
 Write-Host "  Installer : $InstallerExe"
-Write-Host "  dist/     : $DistDir"
+Write-Host "  releases/ : $ReleasesDir"

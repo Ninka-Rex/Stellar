@@ -27,10 +27,10 @@ Window {
     property var    item: null
     property bool   detailsVisible: true
 
-    width: 700
-    height: 580
-    minimumWidth: 420
-    minimumHeight: 260
+    width: 620
+    height: 520
+    minimumWidth: 440
+    minimumHeight: 240
 
     property bool _updatingSpeedUI: false
 
@@ -67,15 +67,16 @@ Window {
     onDetailsVisibleChanged: {
         if (detailsVisible) {
             maximumHeight = 16777215
-            minimumHeight = 480
-            height = 580
+            minimumHeight = 360
+            height = 520
         } else {
-            minimumHeight = 260
-            maximumHeight = 300
-            height = 300
+            minimumHeight = 240
+            maximumHeight = 270
+            height = 270
         }
     }
-    color: "#1e1e1e"
+
+    color: "#1a1a1a"
 
     title: {
         if (!item) return "Download"
@@ -84,7 +85,7 @@ Window {
     }
 
     Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
+    Material.background: "#1a1a1a"
     Material.accent: "#4488dd"
 
     function fmtBytes(b) {
@@ -103,11 +104,11 @@ Window {
     }
 
     function statusColor(s) {
-        if (s === "Downloading") return "#44bb44"
-        if (s === "Paused")      return "#e0c040"
-        if (s === "Completed")   return "#60c0e0"
-        if (s === "Error")       return "#e06060"
-        return "#b0b0b0"
+        if (s === "Downloading") return "#44cc55"
+        if (s === "Paused")      return "#ddbb44"
+        if (s === "Completed")   return "#44aadd"
+        if (s === "Error")       return "#dd5555"
+        return "#909090"
     }
 
     ColumnLayout {
@@ -115,248 +116,388 @@ Window {
         spacing: 0
 
         // ── Tab bar ──────────────────────────────────────────────────────────
-        TabBar {
-            id: tabBar
+        Rectangle {
             Layout.fillWidth: true
-            background: Rectangle { color: "#2d2d2d" }
+            height: 34
+            color: "#252525"
 
-            TabButton {
-                text: "Download status"
-                background: Rectangle {
-                    color: tabBar.currentIndex === 0 ? "#1e1e1e" : "transparent"
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 2; color: tabBar.currentIndex === 0 ? "#4488dd" : "transparent" }
-                }
+            // Bottom separator
+            Rectangle {
+                anchors.bottom: parent.bottom
+                width: parent.width; height: 1
+                color: "#111"
             }
-            TabButton {
-                text: "Speed Limiter"
-                background: Rectangle {
-                    color: tabBar.currentIndex === 1 ? "#1e1e1e" : "transparent"
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 2; color: tabBar.currentIndex === 1 ? "#4488dd" : "transparent" }
-                }
-            }
-            TabButton {
-                text: "Options on completion"
-                background: Rectangle {
-                    color: tabBar.currentIndex === 2 ? "#1e1e1e" : "transparent"
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 2; color: tabBar.currentIndex === 2 ? "#4488dd" : "transparent" }
+
+            Row {
+                anchors.fill: parent
+                spacing: 0
+
+                Repeater {
+                    model: ["Download status", "Speed Limiter", "Options on completion"]
+                    delegate: Rectangle {
+                        width: tabLbl.implicitWidth + 28
+                        height: parent.height
+                        color: tabStack.currentIndex === index
+                               ? "#1a1a1a"
+                               : (tabHover.containsMouse ? "#2e2e2e" : "transparent")
+
+                        Text {
+                            id: tabLbl
+                            anchors.centerIn: parent
+                            text: modelData
+                            color: tabStack.currentIndex === index ? "#ffffff" : "#909090"
+                            font.pixelSize: 12
+                        }
+
+                        // Active underline
+                        Rectangle {
+                            anchors.bottom: parent.bottom
+                            width: parent.width; height: 2
+                            color: tabStack.currentIndex === index ? "#4488dd" : "transparent"
+                        }
+
+                        MouseArea {
+                            id: tabHover
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: tabStack.currentIndex = index
+                        }
+                    }
                 }
             }
         }
 
         // ── Tab pages ─────────────────────────────────────────────────────────
         StackLayout {
+            id: tabStack
             Layout.fillWidth: true
             Layout.fillHeight: true
-            currentIndex: tabBar.currentIndex
 
             // ── Tab 0: Download status ────────────────────────────────────────
             Item {
                 ColumnLayout {
-                    anchors { fill: parent; margins: 8 }
-                    spacing: 6
+                    anchors { fill: parent; margins: 10; bottomMargin: 8 }
+                    spacing: 7
 
-                    // Info box
+                    // ── Info box ─────────────────────────────────────────────
                     Rectangle {
                         Layout.fillWidth: true
-                        implicitHeight: infoCol.implicitHeight + 20
-                        color: "#242424"
-                        border.color: "#3a3a3a"
-                        border.width: 1
+                        implicitHeight: infoCol.implicitHeight + 16
+                        color: "#212121"
+                        border.color: "#303030"
+                        radius: 3
 
                         Column {
                             id: infoCol
                             anchors { fill: parent; margins: 10 }
-                            spacing: 5
+                            spacing: 0
 
+                            // URL row
                             Text {
                                 width: parent.width
                                 text: item ? item.url.toString() : ""
-                                color: "#909090"
-                                font.pixelSize: 11
+                                color: "#6688bb"
+                                font.pixelSize: 13
                                 elide: Text.ElideMiddle
+                                bottomPadding: 7
                             }
 
+                            // Separator
+                            Item { width: 1; height: 5 }
+                            Rectangle { width: parent.width; height: 1; color: "#2e2e2e" }
+                            Item { width: 1; height: 6 }
+
+                            // Status row (with colored dot)
                             Row {
                                 spacing: 0
-                                Text { text: "Status"; color: "#707070"; font.pixelSize: 12; width: 110 }
+                                width: parent.width
+                                height: 22
+
+                                Text {
+                                    text: "Status"
+                                    color: "#666"
+                                    font.pixelSize: 12
+                                    width: 120
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
+
                                 Text {
                                     text: item ? item.status : "--"
                                     color: item ? root.statusColor(item.status) : "#b0b0b0"
-                                    font.pixelSize: 12; font.bold: true
+                                    font.pixelSize: 12
+                                    font.bold: true
+                                    anchors.verticalCenter: parent.verticalCenter
                                 }
                             }
 
                             Item { width: 1; height: 4 }
 
+                            // Data rows — individual bindings so they react to item changes
                             Row {
-                                spacing: 0
-                                Text { text: "File size"; color: "#707070"; font.pixelSize: 12; width: 110 }
-                                Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: "#d0d0d0"; font.pixelSize: 12 }
+                                spacing: 0; width: parent.width; height: 20
+                                Text { text: "File size";  color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
                             }
                             Row {
-                                spacing: 0
-                                Text { text: "Downloaded"; color: "#707070"; font.pixelSize: 12; width: 110 }
+                                spacing: 0; width: parent.width; height: 20
+                                Text { text: "Downloaded"; color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
-                                    text: item ? root.fmtBytes(item.doneBytes) + " ( " + Math.round(item.progress * 100) + "% )" : "--"
-                                    color: "#d0d0d0"; font.pixelSize: 12
+                                    text: item ? root.fmtBytes(item.doneBytes) + "  ( " + Math.round(item.progress * 100) + "% )" : "--"
+                                    color: "#c8c8c8"; font.pixelSize: 12
                                 }
                             }
                             Row {
-                                spacing: 0
-                                Text { text: "Transfer rate"; color: "#707070"; font.pixelSize: 12; width: 110 }
-                                Text { text: item ? root.fmtSpeed(item.speed) : "--"; color: "#80c080"; font.pixelSize: 12 }
+                                spacing: 0; width: parent.width; height: 20
+                                Text { text: "Transfer rate"; color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: item ? root.fmtSpeed(item.speed) : "--"; color: "#55cc66"; font.pixelSize: 12 }
                             }
                             Row {
-                                spacing: 0
-                                Text { text: "Time left"; color: "#707070"; font.pixelSize: 12; width: 110 }
-                                Text { text: item ? item.timeLeft : "--"; color: "#d0d0d0"; font.pixelSize: 12 }
+                                spacing: 0; width: parent.width; height: 20
+                                Text { text: "Time left";  color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: item ? item.timeLeft : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
                             }
                             Row {
-                                spacing: 0
-                                Text { text: "Resume capability"; color: "#707070"; font.pixelSize: 12; width: 110 }
+                                spacing: 0; width: parent.width; height: 20
+                                Text { text: "Resume capability"; color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
                                     text: (item && item.resumeCapable) ? "Yes" : "No"
-                                    color: (item && item.resumeCapable) ? "#44bb44" : "#e06060"
+                                    color: (item && item.resumeCapable) ? "#55cc66" : "#dd5555"
                                     font.pixelSize: 12
                                 }
                             }
                         }
                     }
 
-                    // Progress bar
+                    // ── Progress bar ─────────────────────────────────────────
                     Rectangle {
                         Layout.fillWidth: true
-                        height: 22
-                        color: "#333333"
+                        height: 24
+                        color: "#2a2a2a"
+                        radius: 3
+                        clip: true
 
+                        // Fill
                         Rectangle {
-                            width: item ? item.progress * parent.width : 0
+                            width: item ? Math.max(0, item.progress * parent.width) : 0
                             height: parent.height
-                            color: "#44bb44"
-                            Behavior on width { NumberAnimation { duration: 300 } }
+                            color: "#33bb44"
+                            radius: 3
+                            Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutCubic } }
                         }
 
                         Text {
                             anchors.centerIn: parent
                             text: item ? Math.round(item.progress * 100) + "%" : "0%"
-                            color: "white"; font.pixelSize: 11; font.bold: true
+                            color: "white"
+                            font.pixelSize: 11
+                            font.bold: true
                         }
                     }
 
-                    // Buttons
+                    // ── Buttons row ───────────────────────────────────────────
                     RowLayout {
                         Layout.fillWidth: true
-                        spacing: 6
+                        spacing: 8
 
-                        Button {
-                            text: root.detailsVisible ? "« Hide details" : "» Show details"
-                            flat: true
-                            onClicked: root.detailsVisible = !root.detailsVisible
+                        // Hide/Show details
+                        Rectangle {
+                            height: 26
+                            width: hideDetailsLabel.implicitWidth + 20
+                            color: hideDetailsMa.containsMouse ? "#303030" : "transparent"
+                            border.color: hideDetailsMa.containsMouse ? "#484848" : "#383838"
+                            radius: 3
+
+                            Text {
+                                id: hideDetailsLabel
+                                anchors.centerIn: parent
+                                text: root.detailsVisible ? "« Hide details" : "» Show details"
+                                color: "#aaaaaa"
+                                font.pixelSize: 12
+                            }
+
+                            MouseArea {
+                                id: hideDetailsMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: root.detailsVisible = !root.detailsVisible
+                            }
                         }
 
                         Item { Layout.fillWidth: true }
 
-                        Button {
-                            text: (item && item.status === "Paused") ? "Start" : "Pause"
+                        // Pause / Start
+                        Rectangle {
+                            height: 26
+                            width: 80
+                            radius: 3
                             enabled: item !== null && (item.status === "Downloading" || item.status === "Paused" || item.status === "Queued")
-                            background: Rectangle { color: "#3a5a3a"; radius: 3 }
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font: parent.font; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                            onClicked: {
-                                if (!item) return
-                                if (item.status === "Downloading")  App.pauseDownload(item.id)
-                                else                                App.resumeDownload(item.id)
+                            opacity: enabled ? 1.0 : 0.4
+                            color: pauseMa.pressed ? "#3a3a3a" : (pauseMa.containsMouse ? "#333333" : "#2a2a2a")
+                            border.color: "#484848"
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: (item && item.status === "Paused") ? "Start" : "Pause"
+                                color: "#d0d0d0"
+                                font.pixelSize: 12
+                            }
+
+                            MouseArea {
+                                id: pauseMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: {
+                                    if (!item) return
+                                    if (item.status === "Downloading") App.pauseDownload(item.id)
+                                    else App.resumeDownload(item.id)
+                                }
                             }
                         }
 
-                        Button {
-                            text: "Cancel"
-                            enabled: item !== null
-                            background: Rectangle { color: "#5a3a3a"; radius: 3 }
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font: parent.font; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                            onClicked: root.close()
-                        }
-                    }
+                        // Cancel
+                        Rectangle {
+                            height: 26
+                            width: 80
+                            radius: 3
+                            color: cancelMa.pressed ? "#3a3a3a" : (cancelMa.containsMouse ? "#333333" : "#2a2a2a")
+                            border.color: "#484848"
 
-                    // Segment section label
-                    Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a"; visible: root.detailsVisible }
+                            Text {
+                                anchors.centerIn: parent
+                                text: "Cancel"
+                                color: "#d0d0d0"
+                                font.pixelSize: 12
+                            }
 
-                    Text {
-                        Layout.fillWidth: true
-                        visible: root.detailsVisible
-                        text: "Start positions and download progress by connections"
-                        color: "#707070"; font.pixelSize: 11
-                        horizontalAlignment: Text.AlignHCenter
-                    }
-
-                    // Segment visualizer bar
-                    Rectangle {
-                        Layout.fillWidth: true
-                        visible: root.detailsVisible
-                        height: 18
-                        color: "#333333"
-                        clip: true
-
-                        Repeater {
-                            model: (item && item.segmentData) ? item.segmentData : []
-                            delegate: Item {
-                                readonly property var   seg:      modelData
-                                readonly property real  total:    (item && item.totalBytes > 0) ? item.totalBytes : 1
-                                readonly property real  segW:     (seg.endByte - seg.startByte + 1) / total * parent.width
-                                readonly property real  segX:     seg.startByte / total * parent.width
-                                readonly property real  fillW:    seg.received / Math.max(1, seg.endByte - seg.startByte + 1) * segW
-
-                                x: segX
-                                width: Math.max(1, segW)
-                                height: parent.height
-
-                                Rectangle { width: Math.max(0, fillW); height: parent.height; color: "#4488dd" }
-                                Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#ffffff"; opacity: 0.3 }
+                            MouseArea {
+                                id: cancelMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: root.close()
                             }
                         }
                     }
 
-                    // Segment table
-                    Rectangle {
+                    // ── Details section ───────────────────────────────────────
+                    ColumnLayout {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         visible: root.detailsVisible
-                        color: "#1c1c1c"
-                        border.color: "#3a3a3a"
+                        spacing: 4
 
-                        ColumnLayout {
-                            anchors.fill: parent
-                            spacing: 0
+                        // Label
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: 20
+                            color: "#1e1e1e"
 
-                            // Header
-                            Rectangle {
-                                Layout.fillWidth: true
-                                height: 24
-                                color: "#2d2d2d"
-                                Row {
-                                    anchors { fill: parent; leftMargin: 4 }
-                                    spacing: 0
-                                    Text { width: 36;  text: "N.";          color: "#b0b0b0"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                    Text { width: 120; text: "Downloaded";  color: "#b0b0b0"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                    Text {             text: "Info";        color: "#b0b0b0"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                            Rectangle { width: parent.width; height: 1; color: "#2e2e2e" }
+
+                            Text {
+                                anchors.centerIn: parent
+                                text: "Start positions and download progress by connections"
+                                color: "#606060"
+                                font.pixelSize: 11
+                            }
+                        }
+
+                        // Segment visualizer
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: 20
+                            color: "#252525"
+                            border.color: "#303030"
+                            radius: 2
+                            clip: true
+
+                            Repeater {
+                                model: (item && item.segmentData) ? item.segmentData : []
+                                delegate: Item {
+                                    readonly property var  seg:   modelData
+                                    readonly property real total: (item && item.totalBytes > 0) ? item.totalBytes : 1
+                                    readonly property real segW:  (seg.endByte - seg.startByte + 1) / total * parent.width
+                                    readonly property real segX:  seg.startByte / total * parent.width
+                                    readonly property real fillW: seg.received / Math.max(1, seg.endByte - seg.startByte + 1) * segW
+
+                                    x: segX
+                                    width: Math.max(1, segW)
+                                    height: parent.height
+
+                                    Rectangle {
+                                        width: Math.max(0, fillW); height: parent.height
+                                        gradient: Gradient {
+                                            orientation: Gradient.Vertical
+                                            GradientStop { position: 0.0; color: "#4499dd" }
+                                            GradientStop { position: 1.0; color: "#2266aa" }
+                                        }
+                                    }
+                                    // Segment divider
+                                    Rectangle {
+                                        anchors.right: parent.right
+                                        width: 1; height: parent.height
+                                        color: "#ffffff"; opacity: 0.15
+                                    }
                                 }
                             }
+                        }
 
-                            ListView {
-                                Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                clip: true
-                                model: (item && item.segmentData) ? item.segmentData : []
+                        // Segment table
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            color: "#1c1c1c"
+                            border.color: "#303030"
+                            radius: 2
+                            clip: true
 
-                                delegate: Rectangle {
-                                    width: ListView.view.width
-                                    height: 26
-                                    color: index % 2 === 0 ? "#1c1c1c" : "#222222"
+                            ColumnLayout {
+                                anchors.fill: parent
+                                spacing: 0
+
+                                // Table header
+                                Rectangle {
+                                    Layout.fillWidth: true
+                                    height: 22
+                                    color: "#272727"
+
+                                    Rectangle {
+                                        anchors.bottom: parent.bottom
+                                        width: parent.width; height: 1
+                                        color: "#333"
+                                    }
+
                                     Row {
-                                        anchors { fill: parent; leftMargin: 4 }
+                                        anchors { fill: parent; leftMargin: 8 }
                                         spacing: 0
-                                        Text { width: 36;  text: (index + 1) + ".";            color: "#d0d0d0"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { width: 120; text: root.fmtBytes(modelData.received); color: "#d0d0d0"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
-                                        Text {             text: modelData.info ?? "";          color: "#a0c0a0"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 34;  text: "N.";         color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 110; text: "Downloaded"; color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text {             text: "Info";       color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                    }
+                                }
+
+                                ListView {
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+                                    clip: true
+                                    model: (item && item.segmentData) ? item.segmentData : []
+                                    ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+
+                                    delegate: Rectangle {
+                                        width: ListView.view.width
+                                        height: 24
+                                        color: index % 2 === 0 ? "#1c1c1c" : "#202020"
+
+                                        Row {
+                                            anchors { fill: parent; leftMargin: 8 }
+                                            spacing: 0
+                                            Text { width: 34;  text: (index + 1) + ".";               color: "#999"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 110; text: root.fmtBytes(modelData.received); color: "#cccccc"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                            Text {             text: modelData.info ?? "";              color: "#6aaa6a"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        }
                                     }
                                 }
                             }
@@ -373,7 +514,7 @@ Window {
 
                     Text {
                         text: "Limit transfer rate for this download"
-                        color: "#ffffff"
+                        color: "#cccccc"
                         font.pixelSize: 12
                         font.bold: true
                     }
@@ -400,52 +541,15 @@ Window {
                         Label { text: "KB/s" }
                     }
 
-                    Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                    Rectangle { Layout.fillWidth: true; height: 1; color: "#303030" }
 
                     Text {
                         text: App.settings.globalSpeedLimitKBps > 0
                             ? ("Global limit active: " + App.settings.globalSpeedLimitKBps + " KB/s")
                             : "No global limit set"
-                        color: App.settings.globalSpeedLimitKBps > 0 ? "#ffcc88" : "#888888"
+                        color: App.settings.globalSpeedLimitKBps > 0 ? "#ffcc88" : "#666"
                         font.pixelSize: 11
                         wrapMode: Text.WordWrap
-                    }
-
-                    Text {
-                        visible: App.settings.globalSpeedLimitKBps > 0
-                        text: "Click the link below to adjust the global limit in Settings > General"
-                        color: "#888888"
-                        font.pixelSize: 10
-                        wrapMode: Text.WordWrap
-                    }
-
-                    Rectangle {
-                        visible: App.settings.globalSpeedLimitKBps > 0
-                        width: settingsLink.implicitWidth + 8
-                        height: 24
-                        color: settingsMA.containsMouse ? "#2a4a7a" : "transparent"
-                        radius: 3
-
-                        Text {
-                            id: settingsLink
-                            anchors.centerIn: parent
-                            text: "Open Settings"
-                            color: "#4488dd"
-                            font.pixelSize: 11
-                            font.underline: true
-                        }
-
-                        MouseArea {
-                            id: settingsMA
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                root.close()
-                                // Signal to open settings on General tab
-                                // This will be handled by Main.qml
-                            }
-                        }
                     }
 
                     Item { Layout.fillHeight: true }
@@ -457,7 +561,6 @@ Window {
                 ColumnLayout {
                     anchors { fill: parent; margins: 16 }
                     spacing: 12
-
                     CheckBox { text: "Open file when done" }
                     CheckBox { text: "Open folder when done" }
                     CheckBox { text: "Shutdown computer when queue is done" }

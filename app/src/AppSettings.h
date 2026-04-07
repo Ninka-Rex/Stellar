@@ -41,6 +41,7 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool startImmediately      READ startImmediately      WRITE setStartImmediately      NOTIFY startImmediatelyChanged)
     Q_PROPERTY(bool speedLimiterOnStartup READ speedLimiterOnStartup WRITE setSpeedLimiterOnStartup NOTIFY speedLimiterOnStartupChanged)
     Q_PROPERTY(int  savedSpeedLimitKBps  READ savedSpeedLimitKBps  WRITE setSavedSpeedLimitKBps  NOTIFY savedSpeedLimitKBpsChanged)
+    Q_PROPERTY(bool showDownloadComplete READ showDownloadComplete WRITE setShowDownloadComplete NOTIFY showDownloadCompleteChanged)
 
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -66,6 +67,7 @@ public:
     bool startImmediately()       const { return m_startImmediately; }
     bool speedLimiterOnStartup()  const { return m_speedLimiterOnStartup; }
     int  savedSpeedLimitKBps()    const { return m_savedSpeedLimitKBps; }
+    bool showDownloadComplete()   const { return m_showDownloadComplete; }
 
     void setMaxConcurrent(int v);
     void setSegmentsPerDownload(int v);
@@ -84,6 +86,7 @@ public:
     void setStartImmediately(bool v);
     void setSpeedLimiterOnStartup(bool v);
     void setSavedSpeedLimitKBps(int v);
+    void setShowDownloadComplete(bool v);
 
     Q_INVOKABLE void save();
     Q_INVOKABLE void load();
@@ -106,6 +109,7 @@ signals:
     void startImmediatelyChanged();
     void speedLimiterOnStartupChanged();
     void savedSpeedLimitKBpsChanged();
+    void showDownloadCompleteChanged();
 
 private:
     int     m_maxConcurrent{3};
@@ -125,6 +129,7 @@ private:
     bool        m_startImmediately{false};
     bool        m_speedLimiterOnStartup{false};
     int         m_savedSpeedLimitKBps{500};
+    bool        m_showDownloadComplete{true};
 
     QSettings m_settings;
 

@@ -33,6 +33,7 @@
 #include "CategoryModel.h"
 #include "AppSettings.h"
 #include "FileDragDropHelper.h"
+#include "FileIconImageProvider.h"
 
 #if defined(Q_OS_WIN)
 #  include <windows.h>
@@ -237,6 +238,24 @@ int main(int argc, char *argv[])
         return runNativeMessagingHost(argc, argv);
     }
 
+    // Single-instance guard: try to reach an already-running instance.
+    // We need a minimal QCoreApplication for QLocalSocket, then destroy it.
+    {
+        QCoreApplication probe(argc, argv);
+        QLocalSocket sock;
+        sock.connectToServer(QStringLiteral("StellarDownloadManager"));
+        if (sock.waitForConnected(500)) {
+            // Another instance is running — tell it to raise its window and exit.
+            const QByteArray msg = QJsonDocument(
+                QJsonObject{{QStringLiteral("type"), QStringLiteral("focus")}}
+            ).toJson(QJsonDocument::Compact);
+            sock.write(msg);
+            sock.flush();
+            sock.waitForBytesWritten(1000);
+            return 0;
+        }
+    } // probe destroyed here
+
     QGuiApplication app(argc, argv);
     app.setApplicationName(QStringLiteral("Stellar Download Manager"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));
@@ -254,6 +273,7 @@ int main(int argc, char *argv[])
     AppController controller;
 
     QQmlApplicationEngine engine;
+    engine.addImageProvider(QStringLiteral("fileicon"), new FileIconImageProvider);
     engine.rootContext()->setContextProperty(QStringLiteral("App"), &controller);
     engine.addImportPath(QLibraryInfo::path(QLibraryInfo::QmlImportsPath));
 

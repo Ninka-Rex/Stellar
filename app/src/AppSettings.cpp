@@ -164,6 +164,7 @@ void AppSettings::load() {
     m_startImmediately        = m_settings.value(QStringLiteral("startImmediately"), false).toBool();
     m_speedLimiterOnStartup   = m_settings.value(QStringLiteral("speedLimiterOnStartup"), false).toBool();
     m_savedSpeedLimitKBps     = m_settings.value(QStringLiteral("savedSpeedLimitKBps"), 500).toInt();
+    m_showDownloadComplete    = m_settings.value(QStringLiteral("showDownloadComplete"), true).toBool();
 
     emit maxConcurrentChanged();
     emit segmentsPerDownloadChanged();
@@ -182,6 +183,7 @@ void AppSettings::load() {
     emit startImmediatelyChanged();
     emit speedLimiterOnStartupChanged();
     emit savedSpeedLimitKBpsChanged();
+    emit showDownloadCompleteChanged();
 }
 
 void AppSettings::save() {
@@ -202,6 +204,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("startImmediately"),           m_startImmediately);
     m_settings.setValue(QStringLiteral("speedLimiterOnStartup"),      m_speedLimiterOnStartup);
     m_settings.setValue(QStringLiteral("savedSpeedLimitKBps"),        m_savedSpeedLimitKBps);
+    m_settings.setValue(QStringLiteral("showDownloadComplete"),        m_showDownloadComplete);
     m_settings.sync();
 }
 
@@ -222,3 +225,4 @@ void AppSettings::setDuplicateAction(int v)                    { if (m_duplicate
 void AppSettings::setStartImmediately(bool v)       { if (m_startImmediately       != v) { m_startImmediately       = v; emit startImmediatelyChanged();       save(); } }
 void AppSettings::setSpeedLimiterOnStartup(bool v)  { if (m_speedLimiterOnStartup  != v) { m_speedLimiterOnStartup  = v; emit speedLimiterOnStartupChanged();  save(); } }
 void AppSettings::setSavedSpeedLimitKBps(int v)     { if (m_savedSpeedLimitKBps    != v) { m_savedSpeedLimitKBps    = v; emit savedSpeedLimitKBpsChanged();    save(); } }
+void AppSettings::setShowDownloadComplete(bool v)   { if (m_showDownloadComplete   != v) { m_showDownloadComplete   = v; emit showDownloadCompleteChanged();   save(); } }

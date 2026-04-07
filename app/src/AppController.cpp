@@ -182,10 +182,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 qDebug() << "[IPC] download received, hasCookies=" << !cookies.isEmpty()
                          << "cookieLen=" << cookies.size();
                 if (m_settings->startImmediately()) {
-                    // Skip the file info dialog — start immediately
+                    // Skip the file info dialog — start immediately, bring main window
                     addUrl(url, {}, {}, {}, true, cookies, referrer, pageUrl);
+                    emit showWindowRequested();
                 } else {
-                    // Store cookies and metadata so QML retrieves them from DownloadFileInfoDialog
+                    // Show the file info dialog — do NOT bring the main window,
+                    // the dialog will raise itself via onVisibleChanged.
                     if (!cookies.isEmpty())
                         m_pendingCookies[url] = cookies;
                     if (!referrer.isEmpty())
@@ -194,7 +196,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         m_pendingPageUrls[url] = pageUrl;
                     emit interceptedDownloadRequested(url, name);
                 }
-                emit showWindowRequested();
                 sock->deleteLater();
             } else if (type == QStringLiteral("focus")) {
                 emit showWindowRequested();

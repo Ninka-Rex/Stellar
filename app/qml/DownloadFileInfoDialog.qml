@@ -201,25 +201,13 @@ Window {
                 anchors { fill: parent; leftMargin: 20; rightMargin: 20; topMargin: 12; bottomMargin: 12 }
                 spacing: 16
 
-                // File type badge
-                Rectangle {
-                    width: 48; height: 48; radius: 6
-                    color: root._iconColor()
-
-                    // Subtle gradient overlay
-                    Rectangle {
-                        anchors.fill: parent; radius: parent.radius
-                        gradient: Gradient {
-                            GradientStop { position: 0.0; color: "#22ffffff" }
-                            GradientStop { position: 1.0; color: "#00000000" }
-                        }
-                    }
-
-                    Text {
-                        anchors.centerIn: parent
-                        text: root._iconExt()
-                        color: "white"; font.pixelSize: 11; font.bold: true; font.letterSpacing: 0.5
-                    }
+                // File type icon (system icon)
+                Image {
+                    width: 48; height: 48
+                    source: root.pendingFilename ? "image://fileicon/" + root.pendingFilename : ""
+                    sourceSize: Qt.size(48, 48)
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
                 }
 
                 // Filename + URL

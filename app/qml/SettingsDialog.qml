@@ -51,6 +51,7 @@ Window {
     property int    editDuplicateAction:       0
     property bool   editStartImmediately:      false
     property bool   editSpeedLimiterOnStartup: false
+    property bool   editShowDownloadComplete:  true
 
     Component.onCompleted: resetEdits()
     onVisibleChanged: { if (visible) resetEdits() }
@@ -68,7 +69,8 @@ Window {
         editConnectionTimeoutSecs !== App.settings.connectionTimeoutSecs ||
         editDuplicateAction       !== App.settings.duplicateAction  ||
         editStartImmediately      !== App.settings.startImmediately ||
-        editSpeedLimiterOnStartup !== App.settings.speedLimiterOnStartup
+        editSpeedLimiterOnStartup !== App.settings.speedLimiterOnStartup ||
+        editShowDownloadComplete  !== App.settings.showDownloadComplete
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
@@ -130,6 +132,7 @@ Window {
         App.settings.duplicateAction       = editDuplicateAction
         App.settings.startImmediately       = editStartImmediately
         App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
+        App.settings.showDownloadComplete   = editShowDownloadComplete
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
@@ -148,6 +151,7 @@ Window {
         editDuplicateAction       = App.settings.duplicateAction
         editStartImmediately      = App.settings.startImmediately
         editSpeedLimiterOnStartup = App.settings.speedLimiterOnStartup
+        editShowDownloadComplete  = App.settings.showDownloadComplete
     }
 
     ColumnLayout {
@@ -543,6 +547,14 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editStartImmediately
                             onCheckedChanged: root.editStartImmediately = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        CheckBox {
+                            text: "Show download complete dialog"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editShowDownloadComplete
+                            onCheckedChanged: root.editShowDownloadComplete = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 

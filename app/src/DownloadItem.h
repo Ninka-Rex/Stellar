@@ -34,7 +34,7 @@ class DownloadItem : public QObject {
     Q_PROPERTY(QString  category       READ category       NOTIFY categoryChanged)
     Q_PROPERTY(QString  savePath       READ savePath       NOTIFY savePathChanged)
     Q_PROPERTY(QDateTime addedAt       READ addedAt        CONSTANT)
-    Q_PROPERTY(QString  timeLeft       READ timeLeft       NOTIFY speedChanged)
+    Q_PROPERTY(QString  timeLeft       READ timeLeft       NOTIFY timeLeftChanged)
     Q_PROPERTY(bool     resumeCapable  READ resumeCapable  NOTIFY resumeCapableChanged)
     Q_PROPERTY(QVariantList segmentData READ segmentData   NOTIFY segmentDataChanged)
     Q_PROPERTY(QString  description    READ description    NOTIFY descriptionChanged)
@@ -104,6 +104,7 @@ signals:
     void totalBytesChanged();
     void doneBytesChanged();
     void speedChanged();
+    void timeLeftChanged();
     void statusChanged();
     void categoryChanged();
     void savePathChanged();

@@ -12,32 +12,45 @@
 #
 # Output:
 #   dist/linux/io.github.stellar.Stellar.flatpak
-#   dist/Stellar-<version>-linux-flatpak.7z
-#   dist/Stellar-<version>-source.7z
+#   releases/Stellar-<version>-linux-flatpak.7z
+#   releases/Stellar-<version>-source.7z
 
 set -euo pipefail
 
-VERSION="0.2.0"
+VERSION=""
 SKIP_BUILD=0
 SKIP_FLATPAK=0
 SKIP_ARCHIVE=0
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --version)   VERSION="$2";  shift 2 ;;
-        --skip-build)    SKIP_BUILD=1;    shift ;;
-        --skip-flatpak)  SKIP_FLATPAK=1;  shift ;;
-        --skip-archive)  SKIP_ARCHIVE=1;  shift ;;
+        --version)       VERSION="$2";   shift 2 ;;
+        --skip-build)    SKIP_BUILD=1;   shift ;;
+        --skip-flatpak)  SKIP_FLATPAK=1; shift ;;
+        --skip-archive)  SKIP_ARCHIVE=1; shift ;;
         *) echo "Unknown option: $1"; exit 1 ;;
     esac
 done
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+# ── Auto-detect version from CMakeLists.txt ──────────────────────────────────
+if [[ -z "$VERSION" ]]; then
+    VERSION=$(grep -oP 'project\s*\(\s*\w+\s+VERSION\s+\K[\d]+\.[\d]+\.[\d]+(?:\.[\d]+)?' "$ROOT/CMakeLists.txt" | head -1)
+    if [[ -z "$VERSION" ]]; then
+        echo "ERROR: Could not detect version from CMakeLists.txt. Pass --version explicitly." >&2
+        exit 1
+    fi
+    echo "[release] Detected version: $VERSION"
+fi
+
 FLATPAK_MANIFEST="$ROOT/packaging/flatpak/io.github.stellar.Stellar.yml"
 FLATPAK_BUILD_DIR="$ROOT/build/flatpak"
 FLATPAK_REPO_DIR="$ROOT/build/flatpak-repo"
 DIST_DIR="$ROOT/dist"
 LINUX_DIST_DIR="$DIST_DIR/linux"
+RELEASES_DIR="$ROOT/releases"
+FLATPAK_FILE="$LINUX_DIST_DIR/io.github.stellar.Stellar.flatpak"
 
 log()  { echo -e "\033[0;36m[release]\033[0m $*"; }
 ok()   { echo -e "\033[0;32m[release]\033[0m $*"; }
@@ -50,6 +63,8 @@ if [[ $SKIP_BUILD -eq 0 ]]; then
     log "Building..."
     cmake --build --preset linux-release
     ok "CMake build complete."
+else
+    warn "Skipping CMake build."
 fi
 
 # ── Flatpak build ─────────────────────────────────────────────────────────────
@@ -63,7 +78,6 @@ if [[ $SKIP_FLATPAK -eq 0 ]]; then
         "$FLATPAK_BUILD_DIR" \
         "$FLATPAK_MANIFEST"
 
-    FLATPAK_FILE="$LINUX_DIST_DIR/io.github.stellar.Stellar.flatpak"
     log "Bundling single-file .flatpak..."
     flatpak build-bundle \
         "$FLATPAK_REPO_DIR" \
@@ -71,29 +85,32 @@ if [[ $SKIP_FLATPAK -eq 0 ]]; then
         io.github.stellar.Stellar
 
     ok "Flatpak: $FLATPAK_FILE"
+else
+    warn "Skipping Flatpak build."
 fi
 
-# ── 7-Zip archives ────────────────────────────────────────────────────────────
+# ── 7-Zip archives (all build steps done — archive everything now) ────────────
 if [[ $SKIP_ARCHIVE -eq 0 ]]; then
-    mkdir -p "$DIST_DIR"
+    mkdir -p "$RELEASES_DIR"
 
-    FLATPAK_FILE="$LINUX_DIST_DIR/io.github.stellar.Stellar.flatpak"
-    FLATPAK_ARCHIVE="$DIST_DIR/Stellar-${VERSION}-linux-flatpak.7z"
-    SOURCE_ARCHIVE="$DIST_DIR/Stellar-${VERSION}-source.7z"
+    FLATPAK_ARCHIVE="$RELEASES_DIR/Stellar-${VERSION}-linux-flatpak.7z"
+    SOURCE_ARCHIVE="$RELEASES_DIR/Stellar-${VERSION}-source.7z"
 
+    # Archive 1: flatpak bundle
     if [[ -f "$FLATPAK_FILE" ]]; then
         log "Archiving flatpak -> $FLATPAK_ARCHIVE"
         7z a -t7z -mx=9 -mmt=on "$FLATPAK_ARCHIVE" "$FLATPAK_FILE"
         ok "Flatpak archive done."
     else
-        warn "No .flatpak file found at $FLATPAK_FILE — skipping flatpak archive."
+        warn "No .flatpak file found at $FLATPAK_FILE - skipping flatpak archive."
     fi
 
+    # Archive 2: source code
     log "Archiving source -> $SOURCE_ARCHIVE"
-    # Use a temp file list to avoid archiving the dist/ and build/ dirs
     7z a -t7z -mx=9 -mmt=on \
         -xr\!build \
         -xr\!dist \
+        -xr\!releases \
         -xr\!backups \
         -xr\!'.git/objects' \
         -xr\!'*.stellar-part-*' \
@@ -101,7 +118,9 @@ if [[ $SKIP_ARCHIVE -eq 0 ]]; then
         "$SOURCE_ARCHIVE" \
         "$ROOT"
     ok "Source archive done."
+else
+    warn "Skipping archives."
 fi
 
-ok "=== Linux release complete ==="
-echo "  dist/ : $DIST_DIR"
+ok "=== Linux release $VERSION complete ==="
+echo "  releases/ : $RELEASES_DIR"

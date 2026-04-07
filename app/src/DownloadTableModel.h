@@ -52,8 +52,8 @@ public:
     DownloadItem *itemById(const QString &id) const;
     DownloadItem *itemByUrl(const QUrl &url) const;
 
-    void setFilterCategory(const QString &filter);
-    void sortBy(const QString &column, bool ascending);
+    Q_INVOKABLE void setFilterCategory(const QString &filter);
+    Q_INVOKABLE void sortBy(const QString &column, bool ascending);
     QList<DownloadItem *> allItems() const { return m_items; }
 
 private slots:

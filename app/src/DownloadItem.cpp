@@ -42,17 +42,19 @@ QString DownloadItem::status() const {
 }
 
 QString DownloadItem::timeLeft() const {
-    if (m_speed <= 0 || m_totalBytes <= 0) return QStringLiteral("--");
+    if (m_speed <= 0 || m_totalBytes <= 0) return {};
     qint64 remaining = (m_totalBytes - m_doneBytes) / m_speed;
-    if (remaining < 60)   return QStringLiteral("%1s").arg(remaining);
-    if (remaining < 3600) return QStringLiteral("%1m %2s").arg(remaining/60).arg(remaining%60);
-    return QStringLiteral("%1h %2m").arg(remaining/3600).arg((remaining%3600)/60);
+    if (remaining < 60)   return QStringLiteral("%1 sec").arg(remaining);
+    if (remaining < 3600) return QStringLiteral("%1 min %2 sec").arg(remaining/60).arg(remaining%60);
+    const qint64 h = remaining / 3600, m = (remaining % 3600) / 60;
+    return m > 0 ? QStringLiteral("%1 hour%2 %3 min").arg(h).arg(h > 1 ? "s" : "").arg(m)
+                 : QStringLiteral("%1 hour%2").arg(h).arg(h > 1 ? "s" : "");
 }
 
 void DownloadItem::setFilename(const QString &v)       { if (m_filename      != v) { m_filename      = v; emit filenameChanged();      } }
 void DownloadItem::setTotalBytes(qint64 v)              { if (m_totalBytes    != v) { m_totalBytes    = v; emit totalBytesChanged();     } }
-void DownloadItem::setDoneBytes(qint64 v)               { if (m_doneBytes     != v) { m_doneBytes     = v; emit doneBytesChanged();      } }
-void DownloadItem::setSpeed(qint64 bytesPerSec)         { if (m_speed         != bytesPerSec) { m_speed = bytesPerSec; emit speedChanged(); } }
+void DownloadItem::setDoneBytes(qint64 v)               { if (m_doneBytes     != v) { m_doneBytes     = v; emit doneBytesChanged(); emit timeLeftChanged(); } }
+void DownloadItem::setSpeed(qint64 bytesPerSec)         { if (m_speed         != bytesPerSec) { m_speed = bytesPerSec; emit speedChanged(); emit timeLeftChanged(); } }
 void DownloadItem::setStatus(Status s)                  { if (m_status        != s) { m_status        = s; emit statusChanged();         } }
 void DownloadItem::setCategory(const QString &v)        { if (m_category      != v) { m_category      = v; emit categoryChanged();       } }
 void DownloadItem::setSavePath(const QString &v)        { if (m_savePath      != v) { m_savePath      = v; emit savePathChanged();       } }

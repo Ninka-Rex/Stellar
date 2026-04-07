@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.2.1 LANGUAGES CXX)
+project(Stellar VERSION 0.2.4 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -42,6 +42,7 @@ set(BACKEND_SOURCES
     app/src/QueueDatabase.cpp
     app/src/QueueModel.cpp
     app/src/FileDragDropHelper.cpp
+    app/src/FileIconImageProvider.cpp
 )
 
 set(BACKEND_HEADERS
@@ -59,6 +60,7 @@ set(BACKEND_HEADERS
     app/src/QueueDatabase.h
     app/src/QueueModel.h
     app/src/FileDragDropHelper.h
+    app/src/FileIconImageProvider.h
 )
 
 # ── QML Resources ──────────────────────────────────────────────────────────────

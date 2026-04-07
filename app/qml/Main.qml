@@ -119,8 +119,10 @@ ApplicationWindow {
         function onDownloadCompleted(item) {
             if (progressDialog.visible && progressDialog.item === item)
                 progressDialog.hide()
-            // Don't show complete dialog for queue-assigned downloads
+            // Don't show complete dialog for queue-assigned downloads or if disabled in settings
             if (!item || (item.queueId && item.queueId.length > 0))
+                return
+            if (!App.settings.showDownloadComplete)
                 return
             completeDialog.item = item
             completeDialog.show()
@@ -150,11 +152,16 @@ ApplicationWindow {
         function onInterceptedDownloadRequested(url, filename) {
             var existing = App.findDuplicateUrl(url)
             if (existing) {
-                // Already queued — just show progress or bring window forward
-                if (existing.status !== "Completed" && existing.status !== "Paused") {
-                    progressDialog.item       = existing
-                    progressDialog.downloadId = existing.id
-                    progressDialog.show(); progressDialog.raise()
+                var action = App.settings.duplicateAction
+                if (action === 0) {
+                    // Ask — show duplicate dialog
+                    duplicateDialog.existingItem = existing
+                    duplicateDialog._pendingUrl  = url
+                    duplicateDialog.show()
+                    duplicateDialog.raise()
+                    duplicateDialog.requestActivate()
+                } else {
+                    _handleDuplicateAction(action, false, existing, url)
                 }
                 return
             }
@@ -382,16 +389,26 @@ ApplicationWindow {
             Action { text: qsTr("Scheduler");  onTriggered: schedulerDialog.show() }
             Menu {
                 title: qsTr("Start Queue")
-                Repeater {
+                Instantiator {
                     model: App.queueModel
-                    delegate: Action { text: queueName || ""; onTriggered: App.startQueue(queueId) }
+                    delegate: MenuItem {
+                        text: queueName || ""
+                        onTriggered: App.startQueue(queueId)
+                    }
+                    onObjectAdded:   (index, object) => parent.insertItem(index, object)
+                    onObjectRemoved: (index, object) => parent.removeItem(object)
                 }
             }
             Menu {
                 title: qsTr("Stop Queue")
-                Repeater {
+                Instantiator {
                     model: App.queueModel
-                    delegate: Action { text: queueName || ""; onTriggered: App.stopQueue(queueId) }
+                    delegate: MenuItem {
+                        text: queueName || ""
+                        onTriggered: App.stopQueue(queueId)
+                    }
+                    onObjectAdded:   (index, object) => parent.insertItem(index, object)
+                    onObjectRemoved: (index, object) => parent.removeItem(object)
                 }
             }
             MenuSeparator {}

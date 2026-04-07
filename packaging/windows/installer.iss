@@ -2,7 +2,11 @@
 ; Build with: iscc installer.iss  (from packaging/windows/ OR via release.ps1)
 
 #define AppName      "Stellar Download Manager"
-#define AppVersion   "0.2.0"
+; AppVersion is passed from the command line: iscc /DAppVersion=x.y.z
+; Fall back to a placeholder if built directly without release.ps1
+#ifndef AppVersion
+  #define AppVersion "0.0.0"
+#endif
 #define AppPublisher "Ninka_"
 #define AppURL       "https://stellar.moe/"
 #define AppExeName   "Stellar.exe"

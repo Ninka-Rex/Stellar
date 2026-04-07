@@ -25,9 +25,9 @@ Window {
     id: root
     title: "File Properties"
     width: 500
-    height: 560
+    height: 490
     minimumWidth: 400
-    minimumHeight: 460
+    minimumHeight: 490
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
@@ -119,16 +119,12 @@ Window {
         // Header: file icon + name
         RowLayout {
             spacing: 12
-            Rectangle {
-                width: 48; height: 48; radius: 4
-                color: root.item ? root.fileColor(root.item.filename) : "#606060"
-                Text {
-                    anchors.centerIn: parent
-                    text: root.item ? root.fileIcon(root.item.filename) : "•"
-                    color: "white"
-                    font.pixelSize: root.item && root.fileIcon(root.item.filename) === "AI" ? 10 : 20
-                    font.bold: true
-                }
+            Image {
+                width: 48; height: 48
+                source: root.item ? "image://fileicon/" + (root.item.savePath + "/" + root.item.filename).replace(/\\/g, "/") : ""
+                sourceSize: Qt.size(48, 48)
+                fillMode: Image.PreserveAspectFit
+                smooth: true
             }
             Text {
                 text: root.item ? root.item.filename : ""

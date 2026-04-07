@@ -30,7 +30,7 @@ Rectangle {
     Rectangle {
         id: catHeader
         anchors { top: parent.top; left: parent.left; right: parent.right }
-        height: 24
+        height: 26
         color: "#2d2d2d"
 
         Rectangle { width: 3; height: parent.height; color: "#5588cc" }
@@ -167,10 +167,6 @@ Rectangle {
                 }
             }
 
-            Rectangle {
-                width: parent.width; height: 1; color: "#3a3a3a"
-                visible: root.allDownloadsExpanded
-            }
 
             // ── Queues section ──────────────────────────────────────────────────────
             Rectangle {
