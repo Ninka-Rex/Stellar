@@ -138,9 +138,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // ── 4. Connections ──────────────────────────────────────────────────────────
     m_queue->setNam(m_nam);
     connect(m_queue, &DownloadQueue::itemAdded, this, [this](DownloadItem *item) {
+        m_downloadModel->addItem(item);
         if (!m_restoring) { m_db->save(item); watchItem(item); }
     });
     connect(m_queue, &DownloadQueue::itemRemoved, this, [this](const QString &id) {
+        m_downloadModel->removeItem(id);
         m_dirtyIds.remove(id);
         m_db->remove(id);
     });
