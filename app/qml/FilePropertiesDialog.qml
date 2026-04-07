@@ -26,10 +26,12 @@ Window {
     title: "File Properties"
     width: 500
     height: 490
-    minimumWidth: 400
+    minimumWidth: 500
+    maximumWidth: 500
     minimumHeight: 490
+    maximumHeight: 490
     color: "#1e1e1e"
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
 
     Material.theme: Material.Dark
     Material.background: "#1e1e1e"

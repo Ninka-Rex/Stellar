@@ -40,6 +40,7 @@ class AppController : public QObject {
     Q_PROPERTY(AppSettings        *settings      READ settings      CONSTANT)
     Q_PROPERTY(int     activeDownloads    READ activeDownloads    NOTIFY activeDownloadsChanged)
     Q_PROPERTY(QString selectedCategory  READ selectedCategory   WRITE setSelectedCategory NOTIFY selectedCategoryChanged)
+    Q_PROPERTY(QString selectedQueue     READ selectedQueue      WRITE setSelectedQueue    NOTIFY selectedQueueChanged)
     Q_PROPERTY(QString appVersion   READ appVersion   CONSTANT)
     Q_PROPERTY(QString buildTime    READ buildTime    CONSTANT)
     Q_PROPERTY(QString qtVersion    READ qtVersion    CONSTANT)
@@ -54,7 +55,9 @@ public:
     AppSettings        *settings()      const { return m_settings; }
     int  activeDownloads() const;
     QString selectedCategory() const { return m_selectedCategory; }
+    QString selectedQueue() const    { return m_selectedQueue; }
     void setSelectedCategory(const QString &v);
+    void setSelectedQueue(const QString &v);
     QString appVersion() const;
     QString buildTime() const;
     QString qtVersion() const;
@@ -94,9 +97,6 @@ public:
     Q_INVOKABLE bool     moveDownloadFile(const QString &downloadId, const QString &newFilePath);
     Q_INVOKABLE void     enableSpeedLimiter();
     Q_INVOKABLE void     disableSpeedLimiter();
-    // Cookie storage for browser-intercepted downloads.
-    // Called by the IPC handler before emitting interceptedDownloadRequested.
-    // QML calls takePendingCookies(url) when actually starting the download.
     Q_INVOKABLE void    setPendingCookies(const QString &url, const QString &cookies);
     Q_INVOKABLE QString takePendingCookies(const QString &url);
     Q_INVOKABLE QString takePendingReferrer(const QString &url);
@@ -118,6 +118,7 @@ public:
 signals:
     void activeDownloadsChanged();
     void selectedCategoryChanged();
+    void selectedQueueChanged();
     void errorOccurred(const QString &message);
     void showWindowRequested();
     void downloadAdded(QObject *item);
@@ -153,6 +154,7 @@ private:
     QMap<QString, QString>  m_pendingReferrers; // url → referrer for browser-intercepted downloads
     QMap<QString, QString>  m_pendingPageUrls;  // url → parent page URL for browser-intercepted downloads
     QString                 m_selectedCategory{QStringLiteral("all")};
+    QString                 m_selectedQueue;
 
     void watchItem(DownloadItem *item);
     void scheduleSave(const QString &id);

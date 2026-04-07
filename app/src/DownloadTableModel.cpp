@@ -71,13 +71,7 @@ QHash<int, QByteArray> DownloadTableModel::roleNames() const {
 
 void DownloadTableModel::addItem(DownloadItem *item) {
     m_items.append(item);
-    if (matchesFilter(item)) {
-        int row = m_visible.size();
-        beginInsertRows({}, row, row);
-        m_visible.append(item);
-        endInsertRows();
-    }
-
+    
     // Relay item change signals to model updates
     connect(item, &DownloadItem::filenameChanged,  this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::totalBytesChanged,this, &DownloadTableModel::onItemChanged);
@@ -85,6 +79,8 @@ void DownloadTableModel::addItem(DownloadItem *item) {
     connect(item, &DownloadItem::speedChanged,     this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::statusChanged,     this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::errorStringChanged,this, &DownloadTableModel::onItemChanged);
+
+    sortBy(m_sortColumn, m_sortAscending);
 }
 
 void DownloadTableModel::removeItem(const QString &id) {
@@ -121,12 +117,22 @@ DownloadItem *DownloadTableModel::itemByUrl(const QUrl &url) const {
 }
 
 void DownloadTableModel::setFilterCategory(const QString &filter) {
-    if (m_filterCategory == filter) return;
+    if (m_filterCategory == filter && m_filterQueue.isNull()) return;
     m_filterCategory = filter;
+    m_filterQueue.clear();
+    rebuildVisible();
+}
+
+void DownloadTableModel::setFilterQueue(const QString &filter) {
+    if (m_filterQueue == filter && m_filterCategory.isNull()) return;
+    m_filterQueue = filter;
+    m_filterCategory.clear();
     rebuildVisible();
 }
 
 void DownloadTableModel::sortBy(const QString &column, bool ascending) {
+    m_sortColumn = column;
+    m_sortAscending = ascending;
     auto cmp = [&](DownloadItem *a, DownloadItem *b) -> bool {
         bool result = false;
         if (column == QStringLiteral("name"))
@@ -161,6 +167,13 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
 }
 
 bool DownloadTableModel::matchesFilter(DownloadItem *item) const {
+    if (!m_filterQueue.isNull()) {
+        if (m_filterQueue == QStringLiteral("queue_any")) {
+            return !item->queueId().isEmpty();
+        }
+        return item->queueId() == m_filterQueue;
+    }
+
     if (m_filterCategory == QStringLiteral("all")) return true;
     if (m_filterCategory == QStringLiteral("status_active"))
         return item->status() != QStringLiteral("Completed");

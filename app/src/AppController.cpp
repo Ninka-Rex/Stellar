@@ -26,6 +26,17 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QDesktopServices>
+#include <QNetworkAccessManager>
+#include <QDebug>
+#include "AppSettings.h"
+#include "DownloadQueue.h"
+#include "DownloadTableModel.h"
+#include "CategoryModel.h"
+#include "NativeMessagingHost.h"
+#include "SystemTrayIcon.h"
+#include "DownloadDatabase.h"
+#include "QueueDatabase.h"
+#include "QueueModel.h"
 #if defined(STELLAR_WINDOWS)
 #  include <windows.h>
 #endif
@@ -34,12 +45,14 @@
 #include <QFileInfo>
 #include <QStandardPaths>
 #include <QCoreApplication>
-#include <QFileInfo>
 #include <QGuiApplication>
 #include <QClipboard>
 #include <QProcess>
+#include <QTimer>
+#include <Queue.h>
 
 AppController::AppController(QObject *parent) : QObject(parent) {
+    // ── 1. Components ────────────────────────────────────────────────────────────
     m_nam           = new QNetworkAccessManager(this);
     m_settings      = new AppSettings(this);
     m_queue         = new DownloadQueue(this);
@@ -50,128 +63,24 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_db            = new DownloadDatabase(this);
     m_queueDb       = new QueueDatabase(this);
     m_queueModel    = new QueueModel(this);
-
-    // Load queues from disk
-    if (m_queueDb->open()) {
-        const auto queues = m_queueDb->loadAll(this);
-        for (Queue *q : queues) {
-            m_queueModel->addQueue(q);
-        }
-    }
-
-    // Ensure we have the default queues (in order)
-    if (m_queueModel->queueById("main-download") == nullptr) {
-        Queue *mainQueue = new Queue("main-download", this);
-        mainQueue->setName("Main download queue");
-        mainQueue->setIsDownloadQueue(true);
-        m_queueModel->addQueue(mainQueue);
-        m_queueDb->save(mainQueue);
-    }
-
-    if (m_queueModel->queueById("main-sync") == nullptr) {
-        Queue *syncQueue = new Queue("main-sync", this);
-        syncQueue->setName("Synchronization queue");
-        syncQueue->setIsDownloadQueue(false);  // Synchronization queue
-        m_queueModel->addQueue(syncQueue);
-        m_queueDb->save(syncQueue);
-    }
-
-    // Download limits queue at the bottom
-    if (m_queueModel->queueById("download-limits") == nullptr) {
-        Queue *limitsQueue = new Queue("download-limits", this);
-        limitsQueue->setName("Download limits");
-        limitsQueue->setIsDownloadQueue(true);
-        m_queueModel->addQueue(limitsQueue);
-        m_queueDb->save(limitsQueue);
-    }
-
-    // Debounce DB writes: flush dirty items every 2 seconds
-    m_saveTimer = new QTimer(this);
-    m_saveTimer->setInterval(2000);
+    m_saveTimer     = new QTimer(this);
     m_saveTimer->setSingleShot(true);
+    m_saveTimer->setInterval(500);
     connect(m_saveTimer, &QTimer::timeout, this, &AppController::flushDirty);
 
-    // Scheduler timer: check queue schedules every 10 seconds for better timing accuracy
-    m_schedulerTimer = new QTimer(this);
-    m_schedulerTimer->setInterval(10000);  // 10 seconds
-    connect(m_schedulerTimer, &QTimer::timeout, this, &AppController::checkQueueSchedules);
-    // Also emit minutesUntilNextQueueChanged on each timer tick to update UI countdown
-    connect(m_schedulerTimer, &QTimer::timeout, this, &AppController::minutesUntilNextQueueChanged);
-    m_schedulerTimer->start();
-
-    // Wire up queue with nam and settings
-    m_queue->setNam(m_nam);
-    m_queue->setMaxConcurrent(m_settings->maxConcurrent());
-    m_queue->setSegmentsPerDownload(m_settings->segmentsPerDownload());
-    m_queue->setSpeedLimitKBps(m_settings->globalSpeedLimitKBps());
-
-    connect(m_settings, &AppSettings::maxConcurrentChanged,
-            this, [this]() { m_queue->setMaxConcurrent(m_settings->maxConcurrent()); });
-    connect(m_settings, &AppSettings::segmentsPerDownloadChanged,
-            this, [this]() { m_queue->setSegmentsPerDownload(m_settings->segmentsPerDownload()); });
-    connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged,
-            this, [this]() { m_queue->setSpeedLimitKBps(m_settings->globalSpeedLimitKBps()); });
-
-    connect(m_queue, &DownloadQueue::itemAdded,          m_downloadModel, &DownloadTableModel::addItem);
-    connect(m_queue, &DownloadQueue::itemRemoved,        m_downloadModel, &DownloadTableModel::removeItem);
-    connect(m_queue, &DownloadQueue::activeCountChanged, this, &AppController::activeDownloadsChanged);
-    connect(m_queue, &DownloadQueue::itemCompleted,      this, [this](DownloadItem *item) {
-        emit downloadCompleted(item);
-    });
-
-    // Persist new items immediately; skip during initial restore (handled separately)
-    connect(m_queue, &DownloadQueue::itemAdded, this, [this](DownloadItem *item) {
-        if (!m_restoring) {
-            m_db->save(item);
-            watchItem(item);
-        }
-    });
-    // Remove from DB when cancelled
-    connect(m_queue, &DownloadQueue::itemRemoved, this, [this](const QString &id) {
-        m_dirtyIds.remove(id);
-        m_db->remove(id);
-    });
-    // Flush dirty writes immediately on completion or error (status changes)
-    connect(m_queue, &DownloadQueue::itemCompleted, this, [this](DownloadItem *item) {
-        m_db->save(item);
-        m_dirtyIds.remove(item->id());
-    });
-
-    connect(m_nativeHost, &NativeMessagingHost::downloadRequested,
-            this, [this](const QString &url, const QString &filename,
-                         const QString &referrer, const QString &cookies) {
-                Q_UNUSED(filename);
-                addUrl(url, {}, {}, {}, true, cookies, referrer);
-            });
-
-    // Tray connections
-    connect(m_tray, &SystemTrayIcon::showRequested,        this, &AppController::showWindowRequested);
-    connect(m_tray, &SystemTrayIcon::quitRequested,        &QCoreApplication::quit);
-    connect(m_tray, &SystemTrayIcon::addUrlRequested,      this, [this]() { emit showWindowRequested(); });
-    connect(m_tray, &SystemTrayIcon::githubRequested,       this, &AppController::trayGithubRequested);
-    connect(m_tray, &SystemTrayIcon::aboutRequested,        this, &AppController::trayAboutRequested);
-    connect(m_tray, &SystemTrayIcon::speedLimiterRequested, this, &AppController::traySpeedLimiterRequested);
-    connect(m_tray, &SystemTrayIcon::contextMenuRequested,  this, &AppController::contextMenuRequested);
-
-    // IPC server — receives download requests forwarded by --native-messaging subprocesses.
-    // Register the native messaging host on every startup so the browser
-    // extension works without requiring the user to open the setup dialog.
-    {
-        QString err = registerNativeHost();
-        if (err.isEmpty())
-            qDebug() << "[NativeHost] registered OK, manifest:" << nativeHostManifestPath();
-        else
-            qDebug() << "[NativeHost] registration FAILED:" << err;
+    // ── 2. IPC Server ──────────────────────────────────────────────────────────
+    m_ipcServer = new QLocalServer(this);
+    if (!m_ipcServer->listen(QStringLiteral("StellarDownloadManager"))) {
+        qDebug() << "[IPC] FAILED to listen on StellarDownloadManager";
     }
 
-    m_ipcServer = new QLocalServer(this);
-    QLocalServer::removeServer(QStringLiteral("StellarDownloadManager")); // clean up stale socket
-    m_ipcServer->listen(QStringLiteral("StellarDownloadManager"));
     connect(m_ipcServer, &QLocalServer::newConnection, this, [this]() {
         QLocalSocket *sock = m_ipcServer->nextPendingConnection();
+        if (!sock) return;
         connect(sock, &QLocalSocket::readyRead, this, [this, sock]() {
             const QByteArray data = sock->readAll();
             const QJsonObject obj = QJsonDocument::fromJson(data).object();
+            if (obj.isEmpty()) return;
             const QString type = obj.value(QStringLiteral("type")).toString();
             if (type == QStringLiteral("download")) {
                 const QString url       = obj.value(QStringLiteral("url")).toString();
@@ -179,42 +88,89 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 const QString cookies   = obj.value(QStringLiteral("cookies")).toString();
                 const QString referrer  = obj.value(QStringLiteral("referrer")).toString();
                 const QString pageUrl   = obj.value(QStringLiteral("pageUrl")).toString();
-                qDebug() << "[IPC] download received, hasCookies=" << !cookies.isEmpty()
-                         << "cookieLen=" << cookies.size();
                 if (m_settings->startImmediately()) {
-                    // Skip the file info dialog — start immediately, bring main window
                     addUrl(url, {}, {}, {}, true, cookies, referrer, pageUrl);
                     emit showWindowRequested();
                 } else {
-                    // Show the file info dialog — do NOT bring the main window,
-                    // the dialog will raise itself via onVisibleChanged.
-                    if (!cookies.isEmpty())
-                        m_pendingCookies[url] = cookies;
-                    if (!referrer.isEmpty())
-                        m_pendingReferrers[url] = referrer;
-                    if (!pageUrl.isEmpty())
-                        m_pendingPageUrls[url] = pageUrl;
+                    if (!cookies.isEmpty()) m_pendingCookies[url] = cookies;
+                    if (!referrer.isEmpty()) m_pendingReferrers[url] = referrer;
+                    if (!pageUrl.isEmpty()) m_pendingPageUrls[url] = pageUrl;
+                    emit showWindowRequested();
                     emit interceptedDownloadRequested(url, name);
                 }
                 sock->deleteLater();
             } else if (type == QStringLiteral("focus")) {
                 emit showWindowRequested();
                 sock->deleteLater();
-            } else {
-                sock->deleteLater();
             }
         });
         connect(sock, &QLocalSocket::disconnected, sock, &QLocalSocket::deleteLater);
     });
 
-    m_tray->show();
+    // ── 3. Data & Setup ────────────────────────────────────────────────────────
+    if (m_queueDb->open()) {
+        const auto queues = m_queueDb->loadAll(this);
+        for (Queue *q : queues) m_queueModel->addQueue(q);
+    }
+    
+    if (m_queueModel->queueById("main-download") == nullptr) {
+        Queue *mainQueue = new Queue("main-download", this);
+        mainQueue->setName("Main download queue");
+        mainQueue->setIsDownloadQueue(true);
+        m_queueModel->addQueue(mainQueue);
+        m_queueDb->save(mainQueue);
+    }
+    if (m_queueModel->queueById("main-sync") == nullptr) {
+        Queue *syncQueue = new Queue("main-sync", this);
+        syncQueue->setName("Synchronization queue");
+        syncQueue->setIsDownloadQueue(false);
+        m_queueModel->addQueue(syncQueue);
+        m_queueDb->save(syncQueue);
+    }
+    if (m_queueModel->queueById("download-limits") == nullptr) {
+        Queue *limitsQueue = new Queue("download-limits", this);
+        limitsQueue->setName("Download Limits");
+        limitsQueue->setIsDownloadQueue(false);
+        m_queueModel->addQueue(limitsQueue);
+        m_queueDb->save(limitsQueue);
+    }
 
-    // Flush any pending writes when the app is about to quit
+    // ── 4. Connections ──────────────────────────────────────────────────────────
+    m_queue->setNam(m_nam);
+    connect(m_queue, &DownloadQueue::itemAdded, this, [this](DownloadItem *item) {
+        if (!m_restoring) { m_db->save(item); watchItem(item); }
+    });
+    connect(m_queue, &DownloadQueue::itemRemoved, this, [this](const QString &id) {
+        m_dirtyIds.remove(id);
+        m_db->remove(id);
+    });
+    connect(m_queue, &DownloadQueue::itemCompleted, this, [this](DownloadItem *item) {
+        m_db->save(item);
+        m_dirtyIds.remove(item->id());
+    });
+    connect(m_nativeHost, &NativeMessagingHost::downloadRequested, this, [this](const QString &url, const QString &filename, const QString &referrer, const QString &cookies) {
+        Q_UNUSED(filename);
+        addUrl(url, {}, {}, {}, true, cookies, referrer);
+    });
+    connect(m_tray, &SystemTrayIcon::showRequested,        this, &AppController::showWindowRequested);
+    connect(m_tray, &SystemTrayIcon::quitRequested,        &QCoreApplication::quit);
+    connect(m_tray, &SystemTrayIcon::addUrlRequested,      this, [this]() { emit showWindowRequested(); });
+    connect(m_tray, &SystemTrayIcon::githubRequested,       this, &AppController::trayGithubRequested);
+    connect(m_tray, &SystemTrayIcon::aboutRequested,        this, &AppController::trayAboutRequested);
+    connect(m_tray, &SystemTrayIcon::speedLimiterRequested, this, &AppController::traySpeedLimiterRequested);
+    connect(m_tray, &SystemTrayIcon::contextMenuRequested,  this, &AppController::contextMenuRequested);
+    
     connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this, [this]() {
         flushDirty();
     });
 
-    // Load persisted downloads — guard with m_restoring so itemAdded doesn't re-save them
+    // ── 5. Finalization ──────────────────────────────────────────────────────────
+    QString err = registerNativeHost();
+    if (err.isEmpty()) qDebug() << "[NativeHost] registered OK";
+    else qDebug() << "[NativeHost] registration FAILED:" << err;
+
+    m_tray->show();
+
     if (m_db->open()) {
         m_restoring = true;
         const auto items = m_db->loadAll();
@@ -225,10 +181,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_restoring = false;
     }
 
-    // Initial scheduler check
     checkQueueSchedules();
 
-    // If "always turn on speed limiter on startup" is set, restore saved limit
     if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
             && m_settings->savedSpeedLimitKBps() > 0) {
         m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
@@ -244,6 +198,14 @@ void AppController::setSelectedCategory(const QString &v) {
         m_selectedCategory = v;
         m_downloadModel->setFilterCategory(v);
         emit selectedCategoryChanged();
+    }
+}
+
+void AppController::setSelectedQueue(const QString &v) {
+    if (m_selectedQueue != v) {
+        m_selectedQueue = v;
+        m_downloadModel->setFilterQueue(v);
+        emit selectedQueueChanged();
     }
 }
 

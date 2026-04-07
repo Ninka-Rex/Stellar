@@ -26,8 +26,9 @@ Window {
 
     width: 620
     height: 500
-    minimumWidth: 500
-    minimumHeight: 420
+    minimumWidth: 400
+    minimumHeight: 400
+    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     title: "Stellar Preferences"
     color: "#1e1e1e"
 
@@ -52,6 +53,7 @@ Window {
     property bool   editStartImmediately:      false
     property bool   editSpeedLimiterOnStartup: false
     property bool   editShowDownloadComplete:  true
+    property int    editSavedSpeedLimitKBps:   500
 
     Component.onCompleted: resetEdits()
     onVisibleChanged: { if (visible) resetEdits() }
@@ -70,6 +72,7 @@ Window {
         editDuplicateAction       !== App.settings.duplicateAction  ||
         editStartImmediately      !== App.settings.startImmediately ||
         editSpeedLimiterOnStartup !== App.settings.speedLimiterOnStartup ||
+        editSavedSpeedLimitKBps   !== App.settings.savedSpeedLimitKBps ||
         editShowDownloadComplete  !== App.settings.showDownloadComplete
 
     property bool catDirty:       false
@@ -132,6 +135,7 @@ Window {
         App.settings.duplicateAction       = editDuplicateAction
         App.settings.startImmediately       = editStartImmediately
         App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
+        App.settings.savedSpeedLimitKBps    = editSavedSpeedLimitKBps
         App.settings.showDownloadComplete   = editShowDownloadComplete
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
@@ -151,6 +155,7 @@ Window {
         editDuplicateAction       = App.settings.duplicateAction
         editStartImmediately      = App.settings.startImmediately
         editSpeedLimiterOnStartup = App.settings.speedLimiterOnStartup
+        editSavedSpeedLimitKBps   = App.settings.savedSpeedLimitKBps
         editShowDownloadComplete  = App.settings.showDownloadComplete
     }
 
@@ -217,19 +222,19 @@ Window {
                             columns: 3; columnSpacing: 10; rowSpacing: 10
 
                             Text { text: "Maximum simultaneous downloads:"; color: "#c0c0c0"; font.pixelSize: 13 }
-                            SpinBox { from: 1; to: 16; value: root.editMaxConcurrent; onValueModified: root.editMaxConcurrent = value }
+                            SpinBox { from: 1; to: 16; value: root.editMaxConcurrent; onValueModified: root.editMaxConcurrent = value; padding: 0 }
                             Item {}
 
                             Text { text: "Segments per download:"; color: "#c0c0c0"; font.pixelSize: 13 }
-                            SpinBox { from: 1; to: 16; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value }
+                            SpinBox { from: 1; to: 16; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value; padding: 0 }
                             Item {}
 
                             Text { text: "Connection timeout (seconds):"; color: "#c0c0c0"; font.pixelSize: 13 }
-                            SpinBox { from: 5; to: 120; value: root.editConnectionTimeoutSecs; onValueModified: root.editConnectionTimeoutSecs = value }
+                            SpinBox { from: 5; to: 120; value: root.editConnectionTimeoutSecs; onValueModified: root.editConnectionTimeoutSecs = value; padding: 0 }
                             Item {}
 
                             Text { text: "Retry failed downloads:"; color: "#c0c0c0"; font.pixelSize: 13 }
-                            SpinBox { from: 0; to: 10; value: root.editMaxRetries; onValueModified: root.editMaxRetries = value }
+                            SpinBox { from: 0; to: 10; value: root.editMaxRetries; onValueModified: root.editMaxRetries = value; padding: 0 }
                             Text { text: "times"; color: "#a0a0a0"; font.pixelSize: 13 }
                         }
 
@@ -596,8 +601,8 @@ Window {
                         clip: true
 
                         ColumnLayout {
-                            width: parent.width
-                            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+                            width: browserPage.width - 24
+                            x: 12; y: 12
                             spacing: 10
 
                             Text { text: "Browser Integration"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
@@ -681,6 +686,7 @@ Window {
                                 id: showExceptDlgChk
                                 text: "Show the dialog to add an address to the list of exceptions for a twice cancelled download"
                                 topPadding: 0; bottomPadding: 0
+                                Layout.fillWidth: true
                                 checked: App.settings.showExceptionsDialog
                                 onCheckedChanged: root.browserDirty = true
                                 contentItem: Text {
@@ -688,7 +694,7 @@ Window {
                                     color: "#d0d0d0"; font.pixelSize: 12
                                     leftPadding: parent.indicator.width + 4
                                     wrapMode: Text.WordWrap
-                                    Layout.fillWidth: true
+                                    width: parent.width
                                 }
                             }
 
@@ -736,29 +742,41 @@ Window {
                         Text { text: "Speed Limiter"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
-                        CheckBox {
-                            id: globalLimitChk
-                            text: "Enable global speed limit"
-                            topPadding: 0; bottomPadding: 0
-                            checked: root.editGlobalSpeedLimitKBps > 0
-                            onToggled: { if (!checked) root.editGlobalSpeedLimitKBps = 0 }
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
-                        }
-
-                        RowLayout {
-                            spacing: 8
-                            enabled: globalLimitChk.checked
-                            Text { text: "Maximum speed:"; color: "#a0a0a0"; font.pixelSize: 13 }
-                            TextField {
-                                implicitWidth: 90
-                                text: root.editGlobalSpeedLimitKBps > 0 ? root.editGlobalSpeedLimitKBps.toString() : ""
-                                placeholderText: "0"
-                                onTextChanged: { var v = parseInt(text); if (!isNaN(v)) root.editGlobalSpeedLimitKBps = v }
-                                color: "#d0d0d0"; font.pixelSize: 13
-                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            CheckBox {
+                                id: globalLimitChk
+                                text: "Enable global speed limit"
+                                topPadding: 0; bottomPadding: 0
+                                checked: root.editGlobalSpeedLimitKBps > 0
+                                onToggled: { 
+                                    if (!checked) {
+                                        root.editGlobalSpeedLimitKBps = 0
+                                    } else {
+                                        root.editGlobalSpeedLimitKBps = root.editSavedSpeedLimitKBps
+                                    }
+                                }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                             }
-                            Text { text: "KB/s"; color: "#a0a0a0"; font.pixelSize: 13 }
-                        }
+
+                            RowLayout {
+                                spacing: 8
+                                enabled: globalLimitChk.checked
+                                Text { text: "Maximum speed:"; color: "#a0a0a0"; font.pixelSize: 13 }
+                                TextField {
+                                    implicitWidth: 90
+                                    text: root.editGlobalSpeedLimitKBps > 0 ? root.editGlobalSpeedLimitKBps.toString() : root.editSavedSpeedLimitKBps.toString()
+                                    placeholderText: "0"
+                                    onTextChanged: { 
+                                        var v = parseInt(text); 
+                                        if (!isNaN(v)) {
+                                            root.editGlobalSpeedLimitKBps = v
+                                            root.editSavedSpeedLimitKBps = v
+                                        } 
+                                    }
+                                    color: "#d0d0d0"; font.pixelSize: 13
+                                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                }
+                                Text { text: "KB/s"; color: "#a0a0a0"; font.pixelSize: 13 }
+                            }
 
                         CheckBox {
                             text: "Always turn on speed limiter on Stellar startup"
@@ -822,7 +840,7 @@ Window {
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Show tips of the day"
+                            text: "Show tips in bottom bar"
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowTips
                             onCheckedChanged: root.editShowTips = checked

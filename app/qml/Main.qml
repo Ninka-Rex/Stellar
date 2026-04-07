@@ -316,7 +316,7 @@ ApplicationWindow {
     Component.onCompleted: {
         // Load tips from embedded resource
         var xhr = new XMLHttpRequest()
-        xhr.open("GET", "qrc:/qt/qml/com/stellar/app/tips.txt", true)
+        xhr.open("GET", "qrc:/qt/qml/com/stellar/app/app/tips.txt", true)
         xhr.onreadystatechange = function() {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 var text = xhr.responseText.trim()
@@ -389,26 +389,24 @@ ApplicationWindow {
             Action { text: qsTr("Scheduler");  onTriggered: schedulerDialog.show() }
             Menu {
                 title: qsTr("Start Queue")
-                Instantiator {
+                Repeater {
                     model: App.queueModel
                     delegate: MenuItem {
+                        visible: queueId !== "download-limits"
                         text: queueName || ""
                         onTriggered: App.startQueue(queueId)
                     }
-                    onObjectAdded:   (index, object) => parent.insertItem(index, object)
-                    onObjectRemoved: (index, object) => parent.removeItem(object)
                 }
             }
             Menu {
                 title: qsTr("Stop Queue")
-                Instantiator {
+                Repeater {
                     model: App.queueModel
                     delegate: MenuItem {
+                        visible: queueId !== "download-limits"
                         text: queueName || ""
                         onTriggered: App.stopQueue(queueId)
                     }
-                    onObjectAdded:   (index, object) => parent.insertItem(index, object)
-                    onObjectRemoved: (index, object) => parent.removeItem(object)
                 }
             }
             MenuSeparator {}
@@ -714,6 +712,7 @@ ApplicationWindow {
                 Layout.fillHeight: true
                 Layout.preferredWidth: 188
                 onCategorySelected: (catId) => App.selectedCategory = catId
+                onQueueSelected: (queueId) => App.selectedQueue = queueId
             }
 
             DownloadTable {
@@ -757,7 +756,7 @@ ApplicationWindow {
         Text {
             id: tipText
             anchors { left: parent.left; right: parent.right; top: parent.top; margins: 6 }
-            text: root.tipsArray.length > root.currentTipIndex ? root.tipsArray[root.currentTipIndex] : ""
+            text: root.tipsArray.length > root.currentTipIndex ? "💡Tip: " + root.tipsArray[root.currentTipIndex] : ""
             color: "#666666"
             font.pixelSize: 10
             wrapMode: Text.WordWrap

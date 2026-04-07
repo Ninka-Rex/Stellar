@@ -53,6 +53,7 @@ public:
     DownloadItem *itemByUrl(const QUrl &url) const;
 
     Q_INVOKABLE void setFilterCategory(const QString &filter);
+    Q_INVOKABLE void setFilterQueue(const QString &filter);
     Q_INVOKABLE void sortBy(const QString &column, bool ascending);
     QList<DownloadItem *> allItems() const { return m_items; }
 
@@ -66,6 +67,9 @@ private:
     QList<DownloadItem *> m_items;
     QList<DownloadItem *> m_visible;
     QString               m_filterCategory{QStringLiteral("all")};
+    QString               m_filterQueue;
+    QString               m_sortColumn{QStringLiteral("added")};
+    bool                  m_sortAscending{true};
     static QString formatSize(qint64 bytes);
     static QString formatSpeed(qint64 bps);
 };

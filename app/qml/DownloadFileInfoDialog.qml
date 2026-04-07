@@ -37,6 +37,8 @@ Window {
     minimumHeight: 325
     title: "New Download"
     color: "#1a1a1a"
+    modality: Qt.ApplicationModal
+    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
     Material.theme: Material.Dark
     Material.background: "#1a1a1a"

@@ -23,6 +23,7 @@ Rectangle {
     color: "#1f1f1f"
 
     signal categorySelected(string catId)
+    signal queueSelected(string queueId)
 
     property int selectedIndex: 0
 
@@ -59,7 +60,7 @@ Rectangle {
     // ── Unified list with expandable sections ─────────────────────────────────
     ScrollView {
         id: mainScroll
-        anchors { top: catHeader.bottom; left: parent.left; right: parent.right; bottom: statusCats.top }
+        anchors { top: catHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
         clip: true
 
         Column {
@@ -167,12 +168,62 @@ Rectangle {
                 }
             }
 
+            // ── Static "Unfinished" / "Finished" section ─────────────────────────────
+            Repeater {
+                id: statusRepeater
+                model: [
+                    { label: "Unfinished", catId: "status_active",    iconSrc: "icons/folder.ico" },
+                    { label: "Finished",   catId: "status_completed", iconSrc: "icons/folder.ico" }
+                ]
+
+                delegate: Rectangle {
+                    width: mainScroll.width
+                    height: 26
+                    // selectedIndex uses negative values for status entries: -1 = Unfinished, -2 = Finished
+                    color: root.selectedIndex === -(index + 1)
+                           ? "#1e3a6e"
+                           : (statusMa.containsMouse ? "#2a2a3a" : "transparent")
+                    border.color: root.selectedIndex === -(index + 1) ? "#4488dd" : "transparent"
+                    border.width: 1
+
+                    Row {
+                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
+                        spacing: 5
+                        Image {
+                            source: modelData.iconSrc
+                            width: 16; height: 16
+                            sourceSize.width: 16; sourceSize.height: 16
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true; mipmap: true
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                        Text {
+                            text: modelData.label
+                            color: root.selectedIndex === -(index + 1) ? "#88bbff" : "#cccccc"
+                            font.pixelSize: 12
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+                    }
+
+                    MouseArea {
+                        id: statusMa
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onClicked: {
+                            root.selectedIndex = -(index + 1)
+                            root.categorySelected(modelData.catId)
+                        }
+                    }
+                }
+            }
 
             // ── Queues section ──────────────────────────────────────────────────────
             Rectangle {
                 width: parent.width
                 height: 28
-                color: "transparent"
+                color: root.selectedIndex === -999 ? "#1e3a6e" : (queueMouseAll.containsMouse ? "#2a2a3a" : "transparent")
+                border.color: root.selectedIndex === -999 ? "#4488dd" : "transparent"
+                border.width: 1
 
                 Row {
                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
@@ -194,19 +245,24 @@ Rectangle {
                         anchors.verticalCenter: parent.verticalCenter
                     }
 
-                    Text {
-                        text: "Queues"
-                        color: "#cccccc"
-                        font.pixelSize: 12
-                        font.bold: true
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
+                        Text {
+                            text: "Queues"
+                            color: root.selectedIndex === -999 ? "#88bbff" : "#cccccc"
+                            font.pixelSize: 12
+                            font.bold: true
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
                 }
 
                 MouseArea {
+                    id: queueMouseAll
                     anchors.fill: parent
                     hoverEnabled: true
                     onDoubleClicked: root.queuesExpanded = !root.queuesExpanded
+                    onClicked: {
+                        root.selectedIndex = -999 // special value
+                        root.queueSelected("queue_any")
+                    }
                 }
             }
 
@@ -218,8 +274,10 @@ Rectangle {
                     visible: queueId !== "download-limits"
                     width: mainScroll.width
                     height: visible ? 26 : 0
-                    color: queueMouse.containsMouse ? "#2a2a3a" : (queueDropArea.containsDrag ? "#2a3a2a" : "transparent")
-                    border.color: queueMouse.containsMouse ? "#4488dd" : "transparent"
+                    color: root.selectedIndex === -100 - index
+                           ? "#1e3a6e"
+                           : (queueMouse.containsMouse ? "#2a2a3a" : (queueDropArea.containsDrag ? "#2a3a2a" : "transparent"))
+                    border.color: root.selectedIndex === -100 - index ? "#4488dd" : "transparent"
                     border.width: 1
 
                     Row {
@@ -239,7 +297,7 @@ Rectangle {
 
                         Text {
                             text: queueName || ""
-                            color: "#cccccc"
+                            color: root.selectedIndex === -100 - index ? "#88bbff" : "#cccccc"
                             font.pixelSize: 12
                             anchors.verticalCenter: parent.verticalCenter
                         }
@@ -249,6 +307,10 @@ Rectangle {
                         id: queueMouse
                         anchors.fill: parent
                         hoverEnabled: true
+                        onClicked: {
+                            root.selectedIndex = -100 - index
+                            root.queueSelected(queueId)
+                        }
                     }
 
                     DropArea {
@@ -263,62 +325,6 @@ Rectangle {
                                 drop.accept()
                             }
                         }
-                    }
-                }
-            }
-        }
-    }
-
-    // ── Static "Unfinished" / "Finished" section ─────────────────────────────
-    Column {
-        id: statusCats
-        anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-
-        Rectangle {
-            width: parent.width; height: 1; color: "#3a3a3a"
-        }
-
-        Repeater {
-            id: statusRepeater
-            model: [
-                { label: "Unfinished", catId: "status_active",    iconSrc: "icons/folder.ico" },
-                { label: "Finished",   catId: "status_completed", iconSrc: "icons/folder.ico" }
-            ]
-
-            delegate: Rectangle {
-                width: statusCats.width
-                height: 26
-                // selectedIndex uses negative values for status entries: -1 = Unfinished, -2 = Finished
-                color: root.selectedIndex === -(index + 1)
-                       ? "#1e3a6e"
-                       : (statusMa.containsMouse ? "#2a2a3a" : "transparent")
-
-                Row {
-                    anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                    spacing: 5
-                    Image {
-                        source: modelData.iconSrc
-                        width: 16; height: 16
-                        sourceSize.width: 16; sourceSize.height: 16
-                        fillMode: Image.PreserveAspectFit
-                        smooth: true; mipmap: true
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                    Text {
-                        text: modelData.label
-                        color: root.selectedIndex === -(index + 1) ? "#ffffff" : "#cccccc"
-                        font.pixelSize: 12
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-                }
-
-                MouseArea {
-                    id: statusMa
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    onClicked: {
-                        root.selectedIndex = -(index + 1)
-                        root.categorySelected(modelData.catId)
                     }
                 }
             }

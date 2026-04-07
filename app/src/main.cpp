@@ -15,23 +15,22 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <QGuiApplication>
-#include <QCoreApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QIcon>
-#include <QLibraryInfo>
 #include <QLocalSocket>
+#include <QLocalServer>
+#include <QSettings>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include <QSettings>
+#include <iostream>
+#include <QProcess>
+#include <QThread>
 #include <QFile>
-#include <QDir>
-#include <QDateTime>
+#include <QLibraryInfo>
 #include "AppController.h"
-#include "DownloadTableModel.h"
-#include "CategoryModel.h"
-#include "AppSettings.h"
+#include "FileIconImageProvider.h"
 #include "FileDragDropHelper.h"
 #include "FileIconImageProvider.h"
 
@@ -180,11 +179,58 @@ static int runNativeMessagingHost(int argc, char *argv[])
     if (type == QStringLiteral("download") || type == QStringLiteral("focus")) {
         QLocalSocket sock;
         sock.connectToServer(QStringLiteral("StellarDownloadManager"));
-        if (sock.waitForConnected(3000)) {
+        if (!sock.waitForConnected(500)) {
+            // Main app isn't running, we need to start it.
+            nmLog(QStringLiteral("Main app not running, launching it now..."));
+            QString program = QCoreApplication::applicationFilePath();
+#if defined(Q_OS_WIN)
+            // Firefox places native messaging hosts inside a Windows Job Object
+            // with JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE.  A plain startDetached()
+            // inherits that job, so the GUI process gets killed the moment
+            // Firefox closes its job handle.  Break out of the job first.
+            {
+                QString cmdLine = QStringLiteral("\"%1\" --gui").arg(program);
+                std::wstring cmdW = cmdLine.toStdWString();
+                STARTUPINFOW si = {};
+                si.cb = sizeof(si);
+                PROCESS_INFORMATION pi = {};
+                DWORD flags = CREATE_BREAKAWAY_FROM_JOB | CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS;
+                if (!CreateProcessW(nullptr, cmdW.data(), nullptr, nullptr,
+                                    FALSE, flags, nullptr, nullptr, &si, &pi)) {
+                    // Job may not allow breakaway — fall back to plain launch.
+                    nmLog(QStringLiteral("CreateProcess with BREAKAWAY failed (%1), falling back").arg(GetLastError()));
+                    QProcess::startDetached(program, {QStringLiteral("--gui")});
+                } else {
+                    CloseHandle(pi.hProcess);
+                    CloseHandle(pi.hThread);
+                }
+            }
+#else
+            QProcess::startDetached(program, {QStringLiteral("--gui")});
+#endif
+              
+              // Give it some time to start the IPC server
+            bool connected = false;
+            for (int i = 0; i < 10; ++i) {
+                QThread::msleep(300);
+                sock.connectToServer(QStringLiteral("StellarDownloadManager"));
+                if (sock.waitForConnected(500)) {
+                    connected = true;
+                    break;
+                }
+            }
+            if (!connected) {
+                nmLog(QStringLiteral("Failed to connect to newly launched app"));
+            }
+        }
+        
+        if (sock.state() == QLocalSocket::ConnectedState) {
             sock.write(payload);
             sock.flush();
             sock.waitForBytesWritten(3000);
+            nmLog(QStringLiteral("Successfully forwarded payload to main app"));
         }
+        
         // Always ack so the extension Promise resolves cleanly.
         writeNativeMsg(QJsonDocument(QJsonObject{
             {QStringLiteral("type"), QStringLiteral("ack")}
@@ -231,20 +277,47 @@ static int runNativeMessagingHost(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
+    QString argsStr;
+    for (int i = 0; i < argc; ++i) {
+        argsStr += QString::fromUtf8(argv[i]) + " ";
+    }
+    nmLog(QStringLiteral("App started with args: ") + argsStr);
+
+    bool forceGui = false;
+    for (int i = 1; i < argc; ++i) {
+        if (qstrcmp(argv[i], "--gui") == 0) {
+            forceGui = true;
+            break;
+        }
+    }
+    
+    nmLog(QStringLiteral("App startup. forceGui=") + (forceGui ? "true" : "false"));
+    nmLog(QStringLiteral("Checking for existing instance..."));
+    
     // Detect native-messaging mode before constructing QGuiApplication — it
     // would try to connect to a display that doesn't exist in a subprocess.
-    if (stdinIsPipe()) {
+    if (!forceGui && stdinIsPipe()) {
         nmLog(QStringLiteral("stdinIsPipe=true, entering native host mode"));
         return runNativeMessagingHost(argc, argv);
     }
 
+    nmLog(QStringLiteral("Constructing QGuiApplication..."));
+    QGuiApplication app(argc, argv);
+    nmLog(QStringLiteral("QGuiApplication constructed."));
+    
+    app.setApplicationName(QStringLiteral("Stellar Download Manager"));
+    app.setApplicationVersion(QStringLiteral("0.1.0"));
+    app.setOrganizationName(QStringLiteral("StellarProject"));
+    app.setWindowIcon(QIcon(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")));
+
     // Single-instance guard: try to reach an already-running instance.
-    // We need a minimal QCoreApplication for QLocalSocket, then destroy it.
+    QLocalServer::removeServer(QStringLiteral("StellarDownloadManager"));
     {
-        QCoreApplication probe(argc, argv);
+        nmLog(QStringLiteral("Connecting to existing instance socket..."));
         QLocalSocket sock;
         sock.connectToServer(QStringLiteral("StellarDownloadManager"));
         if (sock.waitForConnected(500)) {
+            nmLog(QStringLiteral("Existing instance found, sending focus message..."));
             // Another instance is running — tell it to raise its window and exit.
             const QByteArray msg = QJsonDocument(
                 QJsonObject{{QStringLiteral("type"), QStringLiteral("focus")}}
@@ -252,16 +325,13 @@ int main(int argc, char *argv[])
             sock.write(msg);
             sock.flush();
             sock.waitForBytesWritten(1000);
+            nmLog(QStringLiteral("Focus message sent, exiting."));
             return 0;
         }
-    } // probe destroyed here
+        nmLog(QStringLiteral("No existing instance found."));
+    }
 
-    QGuiApplication app(argc, argv);
-    app.setApplicationName(QStringLiteral("Stellar Download Manager"));
-    app.setApplicationVersion(QStringLiteral("0.1.0"));
-    app.setOrganizationName(QStringLiteral("StellarProject"));
-    app.setWindowIcon(QIcon(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")));
-
+    nmLog(QStringLiteral("Registering QML types..."));
     qmlRegisterUncreatableType<DownloadTableModel>("com.stellar.app", 1, 0, "DownloadTableModel",
         QStringLiteral("Use App.downloadModel"));
     qmlRegisterUncreatableType<CategoryModel>("com.stellar.app", 1, 0, "CategoryModel",
@@ -270,7 +340,9 @@ int main(int argc, char *argv[])
         QStringLiteral("Use App.settings"));
     qmlRegisterType<FileDragDropHelper>("com.stellar.app", 1, 0, "FileDragDropHelper");
 
+    nmLog(QStringLiteral("Instantiating AppController..."));
     AppController controller;
+    nmLog(QStringLiteral("AppController instantiated successfully."));
 
     QQmlApplicationEngine engine;
     engine.addImageProvider(QStringLiteral("fileicon"), new FileIconImageProvider);
@@ -280,7 +352,9 @@ int main(int argc, char *argv[])
     const QUrl url(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/Main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreationFailed,
                      &app, []() { QCoreApplication::exit(-1); }, Qt::QueuedConnection);
+    nmLog(QStringLiteral("Loading QML..."));
     engine.load(url);
+    nmLog(QStringLiteral("QML loaded. Executing app."));
 
     return app.exec();
 }

@@ -394,23 +394,29 @@ Rectangle {
                             anchors.fill: parent
                             sourceComponent: Component {
                                 Item {
-                                    anchors.fill: parent
-                                    Rectangle {
-                                        anchors.centerIn: parent
-                                        width: 14; height: 14; radius: 2
+                                    Image {
+                                        id: qIconImg
                                         visible: rowRect.item && rowRect.item.queueId.length > 0
-                                        color: {
-                                            if (!rowRect.item) return "transparent"
+                                        anchors.centerIn: parent
+                                        source: {
+                                            if (!rowRect.item) return ""
                                             const q = rowRect.item.queueId
-                                            if (q === "main-sync") return "#40a060"
-                                            if (q === "main-download") return "#4060c0"
-                                            if (q === "download-limits") return "#a06020"
-                                            return "#6060a0"
+                                            if (q === "main-download") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.png"
+                                            if (q === "main-sync") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.png"
+                                            if (q === "download-limits") return ""
+                                            return "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.png"
                                         }
-                                        Text {
-                                            anchors.centerIn: parent
-                                            text: "Q"; color: "white"
-                                            font.pixelSize: 8; font.bold: true
+                                        width: 14; height: 14
+                                        sourceSize.width: 14; sourceSize.height: 14
+                                        fillMode: Image.PreserveAspectFit
+                                        ToolTip.visible: qIconMouse.containsMouse && qIconImg.visible
+                                        ToolTip.text: "Queue: " + (rowRect.item && rowRect.item.queueId ? rowRect.item.queueId : "")
+                                        ToolTip.delay: 500
+                                        
+                                        MouseArea {
+                                            id: qIconMouse
+                                            anchors.fill: parent
+                                            hoverEnabled: true
                                         }
                                     }
                                 }
