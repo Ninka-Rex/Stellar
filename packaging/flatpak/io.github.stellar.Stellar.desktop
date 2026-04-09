@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Stellar Download Manager
+Comment=Manage, accelerate, and schedule downloads
+Exec=Stellar %u
+Icon=io.github.stellar.Stellar
+Terminal=false
+Type=Application
+Categories=Network;FileTransfer;
+MimeType=x-scheme-handler/stellar;application/x-bittorrent;
+StartupNotify=true
