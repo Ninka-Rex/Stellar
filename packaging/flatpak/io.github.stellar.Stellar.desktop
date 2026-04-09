@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Stellar Download Manager
-Comment=Fast, segmented download manager
+Comment=Manage, accelerate, and schedule downloads
 Exec=Stellar %u
 Icon=io.github.stellar.Stellar
 Terminal=false

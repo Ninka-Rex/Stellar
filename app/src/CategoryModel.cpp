@@ -78,39 +78,42 @@ void CategoryModel::loadFromDisk() {
     const QJsonArray arr = QJsonDocument::fromJson(file.readAll()).array();
     file.close();
 
-    // Apply saved overrides to built-in categories + load user categories
+    // Rebuild m_categories in the order stored on disk, preserving built-in defaults
+    // for anything not saved, and appending any user categories at their saved positions.
+    QList<Category> ordered;
+    ordered.reserve(arr.size());
+
     for (const QJsonValue &val : arr) {
         const QJsonObject obj = val.toObject();
         const QString id = obj[QStringLiteral("id")].toString();
         if (id.isEmpty()) continue;
 
-        // Check if this is an override of a built-in category
-        bool found = false;
+        // Find in defaults
+        int defaultIdx = -1;
         for (int i = 0; i < m_categories.size(); ++i) {
-            if (m_categories[i].id == id) {
-                // Update mutable fields of built-in category
-                if (obj.contains(QStringLiteral("label")))
-                    m_categories[i].label = obj[QStringLiteral("label")].toString();
-                if (obj.contains(QStringLiteral("extensions"))) {
-                    QStringList exts;
-                    for (const auto &e : obj[QStringLiteral("extensions")].toArray())
-                        exts << e.toString();
-                    m_categories[i].extensions = exts;
-                }
-                if (obj.contains(QStringLiteral("sitePatterns"))) {
-                    QStringList sites;
-                    for (const auto &s : obj[QStringLiteral("sitePatterns")].toArray())
-                        sites << s.toString();
-                    m_categories[i].sitePatterns = sites;
-                }
-                if (obj.contains(QStringLiteral("savePath")))
-                    m_categories[i].defaultSavePath = obj[QStringLiteral("savePath")].toString();
-                found = true;
-                break;
-            }
+            if (m_categories[i].id == id) { defaultIdx = i; break; }
         }
 
-        if (!found) {
+        if (defaultIdx >= 0) {
+            // Take the built-in entry and apply any saved field overrides
+            Category cat = m_categories[defaultIdx];
+            if (obj.contains(QStringLiteral("label")))
+                cat.label = obj[QStringLiteral("label")].toString();
+            if (obj.contains(QStringLiteral("extensions"))) {
+                QStringList exts;
+                for (const auto &e : obj[QStringLiteral("extensions")].toArray()) exts << e.toString();
+                cat.extensions = exts;
+            }
+            if (obj.contains(QStringLiteral("sitePatterns"))) {
+                QStringList sites;
+                for (const auto &s : obj[QStringLiteral("sitePatterns")].toArray()) sites << s.toString();
+                cat.sitePatterns = sites;
+            }
+            if (obj.contains(QStringLiteral("savePath")))
+                cat.defaultSavePath = obj[QStringLiteral("savePath")].toString();
+            ordered.append(cat);
+            m_categories.removeAt(defaultIdx); // remove so we know what's left
+        } else {
             // User-created category
             Category cat;
             cat.id = id;
@@ -118,13 +121,17 @@ void CategoryModel::loadFromDisk() {
             cat.iconPath = QStringLiteral("icons/folder.ico");
             cat.builtIn = false;
             cat.defaultSavePath = obj[QStringLiteral("savePath")].toString();
-            for (const auto &e : obj[QStringLiteral("extensions")].toArray())
-                cat.extensions << e.toString();
-            for (const auto &s : obj[QStringLiteral("sitePatterns")].toArray())
-                cat.sitePatterns << s.toString();
-            m_categories.append(cat);
+            for (const auto &e : obj[QStringLiteral("extensions")].toArray()) cat.extensions << e.toString();
+            for (const auto &s : obj[QStringLiteral("sitePatterns")].toArray()) cat.sitePatterns << s.toString();
+            ordered.append(cat);
         }
     }
+
+    // Append any built-in categories not present in the saved file (new defaults added in updates)
+    for (const auto &cat : m_categories)
+        ordered.append(cat);
+
+    m_categories = ordered;
 }
 
 void CategoryModel::saveToDisk() const {
@@ -295,6 +302,26 @@ void CategoryModel::updateCategory(const QString &categoryId,
             return;
         }
     }
+}
+
+void CategoryModel::moveCategory(int fromRow, int toRow) {
+    // toRow == m_categories.size() means "drop after last item" — clamp to last valid index.
+    if (toRow >= m_categories.size()) toRow = m_categories.size() - 1;
+    // Bounds and no-op checks
+    if (fromRow < 0 || fromRow >= m_categories.size()) return;
+    if (toRow   < 0) return;
+    if (fromRow == toRow) return;
+    // Protect the "all" category at index 0 — it is always first
+    if (fromRow == 0 || toRow == 0) return;
+
+    // QAbstractListModel::beginMoveRows destination is the row BEFORE which the item is inserted,
+    // so when moving forward we use toRow+1 as the destination.
+    beginResetModel();
+    m_categories.move(fromRow, toRow);
+    endResetModel();
+
+    saveToDisk();
+    emit categoriesChanged();
 }
 
 QVariantMap CategoryModel::categoryData(int row) const {

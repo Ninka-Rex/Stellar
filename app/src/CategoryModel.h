@@ -62,6 +62,7 @@ public:
                                     const QStringList &sitePatterns,
                                     const QString &savePath);
     Q_INVOKABLE QVariantMap categoryData(int row) const;
+    Q_INVOKABLE void moveCategory(int fromRow, int toRow);
 
 signals:
     void categoriesChanged();

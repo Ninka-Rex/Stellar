@@ -28,6 +28,7 @@ Window {
     property string pendingFilename: ""
     property string pendingSize:     ""
     property string pendingSavePath: ""
+    property string filenameOverride: ""
     property bool   isIntercepted:   false
     property bool   _accepted:       false
 
@@ -134,6 +135,12 @@ Window {
     FileDialog {
         id: saveAsDlg
         fileMode: FileDialog.SaveFile
+        // Ensure the OS dialog appends the original file extension when the user
+        // doesn't type one — otherwise files are saved without an extension.
+        defaultSuffix: {
+            var parts = root.pendingFilename.split('.')
+            return parts.length > 1 ? parts[parts.length - 1] : ""
+        }
         onAccepted: {
             var path = selectedFile.toString()
                 .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
@@ -219,7 +226,13 @@ Window {
 
                     Text {
                         Layout.fillWidth: true
-                        text: root.pendingFilename || "download"
+                        // Show the filename portion of the current save-as path so it
+                        // updates live as the user edits the field — not just the original URL filename.
+                        text: {
+                            var p = saveAsField.editText
+                            var sep = Math.max(p.lastIndexOf("/"), p.lastIndexOf("\\"))
+                            return sep >= 0 ? p.substring(sep + 1) : (root.pendingFilename || "download")
+                        }
                         color: "#e8e8e8"
                         font.pixelSize: 14
                         font.weight: Font.Medium
@@ -419,7 +432,7 @@ Window {
                         id: laterMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             root._accepted = true
-                            root.downloadLater(root.pendingUrl, _savePath(), _catId(), descField.text)
+                            root.downloadLater(root.pendingUrl, saveAsField.editText, _catId(), descField.text)
                             root.close()
                         }
                     }
@@ -444,7 +457,7 @@ Window {
                         id: nowMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             root._accepted = true
-                            root.downloadNow(root.pendingUrl, _savePath(), _catId(), descField.text)
+                            root.downloadNow(root.pendingUrl, saveAsField.editText, _catId(), descField.text)
                             root.close()
                         }
                     }

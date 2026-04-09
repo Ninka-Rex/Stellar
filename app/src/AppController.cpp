@@ -27,6 +27,7 @@
 #include <QJsonArray>
 #include <QDesktopServices>
 #include <QNetworkAccessManager>
+#include <QNetworkReply>
 #include <QDebug>
 #include "AppSettings.h"
 #include "DownloadQueue.h"
@@ -51,6 +52,20 @@
 #include <QTimer>
 #include <Queue.h>
 
+void AppController::checkUrl(const QString &url, QJSValue callback) {
+    QNetworkRequest request(QUrl::fromUserInput(url));
+    QNetworkReply *reply = m_nam->head(request);
+    connect(reply, &QNetworkReply::finished, this, [reply, callback]() {
+        bool ok = (reply->error() == QNetworkReply::NoError);
+        if (callback.isCallable()) {
+            QJSValueList args;
+            args << ok;
+            callback.call(args);
+        }
+        reply->deleteLater();
+    });
+}
+
 AppController::AppController(QObject *parent) : QObject(parent) {
     // ── 1. Components ────────────────────────────────────────────────────────────
     m_nam           = new QNetworkAccessManager(this);
@@ -67,6 +82,38 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_saveTimer->setSingleShot(true);
     m_saveTimer->setInterval(500);
     connect(m_saveTimer, &QTimer::timeout, this, &AppController::flushDirty);
+
+    // Forward the queue's active-count change so the QML property App.activeDownloads
+    // emits its NOTIFY signal and toolbar/statusbar bindings re-evaluate reactively.
+    // Without this connection, activeDownloadsChanged() was declared but never emitted,
+    // so "Stop All" never grayed out when all downloads finished.
+    connect(m_queue, &DownloadQueue::activeCountChanged,
+            this,    &AppController::activeDownloadsChanged);
+
+    // Update tray tooltip every 2 seconds with live download stats.
+    // Done in C++ rather than QML so the tray always reflects current state
+    // even when no QML binding has re-evaluated recently.
+    m_tooltipTimer = new QTimer(this);
+    m_tooltipTimer->setInterval(2000);
+    connect(m_tooltipTimer, &QTimer::timeout, this, [this] {
+        qint64 totalSpeed = 0;
+        for (DownloadItem *item : m_downloadModel->allItems())
+            totalSpeed += item->speed();
+
+        const int total  = m_downloadModel->allItems().size();
+        const int active = m_queue->activeCount();
+
+        QString tip = QStringLiteral("Stellar Download Manager v") + appVersion();
+        if (active > 0) {
+            if (totalSpeed >= 1024LL * 1024)
+                tip += QStringLiteral("\nSpeed: %1 MB/s").arg(double(totalSpeed) / (1024.0 * 1024.0), 0, 'f', 1);
+            else
+                tip += QStringLiteral("\nSpeed: %1 KB/s").arg(double(totalSpeed) / 1024.0, 0, 'f', 0);
+        }
+        tip += QStringLiteral("\nDownloads: %1   Running: %2").arg(total).arg(active);
+        if (m_tray) m_tray->setToolTip(tip);
+    });
+    m_tooltipTimer->start();
 
     // ── 2. IPC Server ──────────────────────────────────────────────────────────
     m_ipcServer = new QLocalServer(this);
@@ -137,11 +184,21 @@ AppController::AppController(QObject *parent) : QObject(parent) {
 
     // ── 4. Connections ──────────────────────────────────────────────────────────
     m_queue->setNam(m_nam);
+    m_queue->setSpeedLimitKBps(m_settings->globalSpeedLimitKBps());
+    connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this]() {
+        m_queue->setSpeedLimitKBps(m_settings->globalSpeedLimitKBps());
+    });
     connect(m_queue, &DownloadQueue::itemAdded, this, [this](DownloadItem *item) {
         m_downloadModel->addItem(item);
         if (!m_restoring) { m_db->save(item); watchItem(item); }
     });
     connect(m_queue, &DownloadQueue::itemRemoved, this, [this](const QString &id) {
+        // Check status before removal so we can keep the count accurate
+        auto *item = m_downloadModel->itemById(id);
+        if (item && item->statusEnum() == DownloadItem::Status::Completed) {
+            m_completedCount--;
+            emit completedDownloadsChanged();
+        }
         m_downloadModel->removeItem(id);
         m_dirtyIds.remove(id);
         m_db->remove(id);
@@ -149,9 +206,16 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_queue, &DownloadQueue::itemCompleted, this, [this](DownloadItem *item) {
         m_db->save(item);
         m_dirtyIds.remove(item->id());
+        m_completedCount++;
+        emit completedDownloadsChanged();
+        emit downloadCompleted(item);
     });
-    connect(m_nativeHost, &NativeMessagingHost::downloadRequested, this, [this](const QString &url, const QString &filename, const QString &referrer, const QString &cookies) {
+    connect(m_nativeHost, &NativeMessagingHost::downloadRequested, this, [this](const QString &url, const QString &filename, const QString &referrer, const QString &cookies, int modifierKey) {
         Q_UNUSED(filename);
+        // Skip interception if bypass modifier key is active and matches user's configured key
+        if (modifierKey > 0 && modifierKey == m_settings->bypassInterceptKey()) {
+            return;  // Let the browser download the file
+        }
         addUrl(url, {}, {}, {}, true, cookies, referrer);
     });
     connect(m_tray, &SystemTrayIcon::showRequested,        this, &AppController::showWindowRequested);
@@ -176,18 +240,32 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     if (m_db->open()) {
         m_restoring = true;
         const auto items = m_db->loadAll();
-        for (DownloadItem *item : items) {
-            m_queue->enqueueRestored(item);
-            watchItem(item);
+        for (int i = 0; i < items.size(); ++i) {
+            QTimer::singleShot(i * 16, this, [this, item = items.at(i)]() {
+                m_queue->enqueueRestored(item);
+                watchItem(item);
+            });
         }
-        m_restoring = false;
-    }
-
-    checkQueueSchedules();
-
-    if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
-            && m_settings->savedSpeedLimitKBps() > 0) {
-        m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+        QTimer::singleShot(items.size() * 16 + 50, this, [this]() {
+            m_restoring = false;
+            // Count completed downloads from the restored items
+            m_completedCount = 0;
+            for (auto *item : m_downloadModel->allItems())
+                if (item->statusEnum() == DownloadItem::Status::Completed)
+                    m_completedCount++;
+            emit completedDownloadsChanged();
+            checkQueueSchedules();
+            if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
+                    && m_settings->savedSpeedLimitKBps() > 0) {
+                m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+            }
+        });
+    } else {
+        checkQueueSchedules();
+        if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
+                && m_settings->savedSpeedLimitKBps() > 0) {
+            m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+        }
     }
 }
 
@@ -198,6 +276,7 @@ int AppController::activeDownloads() const {
 void AppController::setSelectedCategory(const QString &v) {
     if (m_selectedCategory != v) {
         m_selectedCategory = v;
+        m_selectedQueue = QString();
         m_downloadModel->setFilterCategory(v);
         emit selectedCategoryChanged();
     }
@@ -206,6 +285,7 @@ void AppController::setSelectedCategory(const QString &v) {
 void AppController::setSelectedQueue(const QString &v) {
     if (m_selectedQueue != v) {
         m_selectedQueue = v;
+        m_selectedCategory = QString();
         m_downloadModel->setFilterQueue(v);
         emit selectedQueueChanged();
     }
@@ -215,12 +295,19 @@ void AppController::addUrl(const QString &url, const QString &savePath,
                            const QString &category, const QString &description,
                            bool startNow, const QString &cookies,
                            const QString &referrer, const QString &parentUrl,
-                           const QString &username, const QString &password) {
+                           const QString &username, const QString &password,
+                           const QString &filenameOverride) {
     if (url.trimmed().isEmpty()) return;
 
     const QString id   = generateId();
     const QUrl    qurl = QUrl::fromUserInput(url);
     auto *item = new DownloadItem(id, qurl);
+
+    if (!filenameOverride.isEmpty()) {
+        item->setFilename(filenameOverride);
+        // Mark as manually set so server Content-Disposition headers won't override the user's choice
+        item->setFilenameManuallySet(true);
+    }
 
     if (!cookies.isEmpty())
         item->setCookies(cookies);
@@ -592,6 +679,25 @@ void AppController::resumeDownload(const QString &id) {
     m_queue->resume(id);
 }
 
+void AppController::redownload(const QString &id) {
+    auto *item = m_downloadModel->itemById(id);
+    if (!item) return;
+
+    QString url = item->url().toString();
+    QString savePath = item->savePath();
+    QString category = item->category();
+    QString description = item->description();
+    QString cookies = item->cookies();
+    QString referrer = item->referrer();
+    QString parentUrl = item->parentUrl();
+    QString username = item->username();
+    QString password = item->password();
+
+    m_queue->cancel(id);
+
+    addUrl(url, savePath, category, description, true, cookies, referrer, parentUrl, username, password);
+}
+
 void AppController::deleteDownload(const QString &id, int mode) {
     // Capture file path and URL before the item is removed from queue
     QString filePath;
@@ -606,16 +712,6 @@ void AppController::deleteDownload(const QString &id, int mode) {
     }
 
     m_queue->cancel(id);
-
-    // Track cancellations for the exceptions dialog feature
-    if (!itemUrl.isEmpty() && m_settings->showExceptionsDialog()) {
-        int &count = m_cancelCounts[itemUrl];
-        ++count;
-        if (count >= 2) {
-            m_cancelCounts.remove(itemUrl);
-            emit exceptionDialogRequested(itemUrl);
-        }
-    }
 
     if (!filePath.isEmpty()) {
         if (mode == 2) {
@@ -668,6 +764,11 @@ void AppController::setDownloadPassword(const QString &id, const QString &passwo
     if (item) { item->setPassword(password); scheduleSave(id); }
 }
 
+void AppController::setDownloadDescription(const QString &id, const QString &description) {
+    auto *item = m_downloadModel->itemById(id);
+    if (item) { item->setDescription(description); scheduleSave(id); }
+}
+
 bool AppController::moveDownloadFile(const QString &id, const QString &newFilePath) {
     auto *item = m_downloadModel->itemById(id);
     if (!item || item->status() != QStringLiteral("Completed")) return false;
@@ -707,6 +808,36 @@ void AppController::copyDownloadFilename(const QString &id) {
 
 QString AppController::appVersion() const { return QStringLiteral(STELLAR_VERSION); }
 QString AppController::buildTime()   const { return QStringLiteral(STELLAR_BUILD_TIME); }
+QString AppController::buildTimeFormatted() const {
+    // Convert UTC build time to Eastern time with natural language format (12-hour)
+    // STELLAR_BUILD_TIME format: "2026-04-09 02:28 UTC"
+    const QString buildStr = QStringLiteral(STELLAR_BUILD_TIME);
+    QDateTime utcTime = QDateTime::fromString(buildStr.left(16), QStringLiteral("yyyy-MM-dd HH:mm"));
+    if (!utcTime.isValid()) return buildStr;
+    utcTime.setTimeSpec(Qt::UTC);
+
+    // Convert to Eastern Time (ET = UTC - 5, EDT = UTC - 4)
+    // For simplicity, assume daylight saving time based on month
+    const int month = utcTime.date().month();
+    const int offset = (month >= 3 && month <= 10) ? -4 : -5; // EDT or EST
+    const QDateTime etTime = utcTime.addSecs(offset * 3600);
+
+    // Format as natural language: "April 8, 2026 5:18 PM Eastern Daylight Time"
+    const QString monthName = QLocale().standaloneMonthName(etTime.date().month(), QLocale::LongFormat);
+    const QString ampm = etTime.time().hour() < 12 ? QStringLiteral("AM") : QStringLiteral("PM");
+    const int hour12 = etTime.time().hour() % 12;
+    const int finalHour = (hour12 == 0) ? 12 : hour12;
+    const QString tzName = (offset == -4) ? QStringLiteral("EDT") : QStringLiteral("EST");
+
+    return QString(QStringLiteral("%1 %2, %3 %4:%5 %6 %7"))
+        .arg(monthName)
+        .arg(etTime.date().day())
+        .arg(etTime.date().year())
+        .arg(finalHour)
+        .arg(etTime.time().minute(), 2, 10, QLatin1Char('0'))
+        .arg(ampm)
+        .arg(tzName);
+}
 QString AppController::qtVersion()   const { return QString::fromLatin1(qVersion()); }
 
 QString AppController::clipboardUrl() const {
@@ -815,6 +946,12 @@ void AppController::createQueue(const QString &name)
 void AppController::deleteQueue(const QString &queueId)
 {
     if (queueId == QStringLiteral("main-download")) return; // protect main queue
+    // Remove all downloads from this queue so they're unqueued
+    for (auto *item : m_downloadModel->allItems()) {
+        if (item && item->queueId() == queueId) {
+            item->setQueueId("");
+        }
+    }
     m_queueDb->remove(queueId);
     m_queueModel->removeQueue(queueId);
 }
@@ -836,16 +973,26 @@ void AppController::startQueue(const QString &queueId)
     // Mark as recently run for periodic schedules
     m_lastQueueRun[queueId] = QDateTime::currentDateTime();
 
-    // Enqueue all pending downloads assigned to this queue
-    int startedCount = 0;
+    // Mark all items in this queue as "Queued" so scheduleNext will start them
+    // respecting the queue's maxConcurrentDownloads limit as capacity becomes available
+    int queuedCount = 0;
     for (DownloadItem *item : m_queue->items()) {
-        if (item->queueId() == queueId && item->status() == QStringLiteral("Paused")) {
-            m_queue->resume(item->id());
-            ++startedCount;
+        if (item->queueId() == queueId && (item->status() == QStringLiteral("Paused") || item->status() == QStringLiteral("Queued"))) {
+            if (item->status() != QStringLiteral("Queued")) {
+                item->setStatus(DownloadItem::Status::Queued);
+            }
+            ++queuedCount;
         }
     }
 
-    qDebug() << "Starting queue" << queueId << q->name() << "- enqueued" << startedCount << "downloads";
+    // Now trigger scheduleNext to start up to maxConcurrent downloads
+    m_queue->scheduleNext();
+
+    qDebug() << "Starting queue" << queueId << q->name() << "- queued" << queuedCount << "downloads";
+}
+
+void AppController::setTrayTooltip(const QString &tip) {
+    if (m_tray) m_tray->setToolTip(tip);
 }
 
 void AppController::stopQueue(const QString &queueId)

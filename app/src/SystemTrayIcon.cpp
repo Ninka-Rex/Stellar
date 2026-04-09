@@ -20,6 +20,7 @@
 #include <QPainter>
 #include <QFont>
 #include <QCursor>
+#include <QCoreApplication>
 
 static QIcon createDefaultIcon() {
     QPixmap pm(16, 16);
@@ -77,5 +78,7 @@ void SystemTrayIcon::setToolTip(const QString &tip) {
 }
 
 void SystemTrayIcon::showNotification(const QString &title, const QString &msg) {
-    m_tray->showMessage(title, msg, QSystemTrayIcon::Information, 3000);
+    if (qApp && qApp->inherits("QApplication")) {
+        m_tray->showMessage(title, msg, QSystemTrayIcon::Information, 3000);
+    }
 }

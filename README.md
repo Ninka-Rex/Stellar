@@ -3,6 +3,8 @@
 An open source download manager for Windows and Linux, inspired by IDM. Built with Qt 6 and QML
 
 ![Screenshot](screenshots/main.png)
+![Screenshot](screenshots/downloading.png)
+![Screenshot](screenshots/about.png)
 
 ## What it does
 

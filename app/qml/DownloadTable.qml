@@ -29,18 +29,129 @@ Rectangle {
     // Window-level drag proxy injected from Main.qml
     property var categoryDragProxy: null
 
-    // Public API called by Main.qml toolbar signals
-    function resumeSelected()  { const id = _selectedId(); if (id) App.resumeDownload(id) }
-    function stopSelected()    { const id = _selectedId(); if (id) App.pauseDownload(id)  }
+    // ── Multi-selection state ─────────────────────────────────────────────────
+    // _selectedRows is a plain JS object used as a set (keys = row indices).
+    // _selectionVersion bumps on every change so QML bindings that read it
+    // know to re-evaluate.
+    property var _selectedRows:     ({})
+    property int _selectionVersion: 0
+
+    function isRowSelected(row) { return !!_selectedRows[row] }
+
+    function _setSelection(rows) {
+        _selectedRows = rows
+        _selectionVersion++
+    }
+
+    function _toggleRow(row) {
+        var r = Object.assign({}, _selectedRows)
+        if (r[row]) delete r[row]
+        else r[row] = true
+        _setSelection(r)
+    }
+
+    function _addRangeTo(anchorRow, row) {
+        var r = Object.assign({}, _selectedRows)
+        var lo = Math.min(anchorRow, row), hi = Math.max(anchorRow, row)
+        for (var i = lo; i <= hi; i++) r[i] = true
+        _setSelection(r)
+    }
+
+    function _clearAndSelect(row) {
+        var r = {}
+        if (row >= 0) r[row] = true
+        _setSelection(r)
+    }
+
+    // Last single-click row — used as anchor for shift-click range selection
+    property int _anchorRow: -1
+
+    // Reactive property: the primary selected item (for dialogs / toolbar enablement).
+    // Returns the DownloadItem at _anchorRow, or null.
+    readonly property var currentSelectedItem: {
+        _selectionVersion  // dependency trigger
+        if (_anchorRow < 0) return null
+        return App.downloadModel.data(App.downloadModel.index(_anchorRow, 0), Qt.UserRole + 2)
+    }
+
+    // String status of the focused item — a primitive that QML reliably tracks across
+    // component boundaries. Reading currentSelectedItem.status works in local bindings
+    // but the cross-component signal chain can break when the same object is returned
+    // (no change emitted). A dedicated string property emits its own change signal.
+    readonly property string selectedItemStatus: currentSelectedItem ? currentSelectedItem.status : ""
+
+    // True when any item is selected
+    readonly property bool hasSelection: { _selectionVersion; return Object.keys(_selectedRows).length > 0 }
+
+    // Reactive properties for toolbar enabled-states.
+    // As readonly property bindings (not functions) QML emits a change signal when
+    // _selectionVersion bumps, so cross-component bindings like Toolbar's `enabled:`
+    // re-evaluate automatically. A plain function call would NOT propagate changes.
+    readonly property bool anyPausedSelected: {
+        _selectionVersion
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item && item.status === "Paused") return true
+        }
+        return false
+    }
+    readonly property bool anyActiveSelected: {
+        _selectionVersion
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item && (item.status === "Downloading" || item.status === "Queued")) return true
+        }
+        return false
+    }
+
+    // Kept for backward compatibility with any callers; internally delegates to reactive props.
+    function anySelectedHasStatus(status) {
+        if (status === "Paused")                             return anyPausedSelected
+        if (status === "Downloading" || status === "Queued") return anyActiveSelected
+        _selectionVersion
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item && item.status === status) return true
+        }
+        return false
+    }
+
+    // ── Public API called by Main.qml toolbar signals ─────────────────────────
+    function resumeSelected() {
+        _selectionVersion  // touch dependency
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item) App.resumeDownload(item.id)
+        }
+    }
+    function stopSelected() {
+        _selectionVersion
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item) App.pauseDownload(item.id)
+        }
+    }
     function pauseAll()        { App.pauseAllDownloads() }
     function deleteSelected()  {
-        const item = _selectedItem()
-        if (item) _openDeleteDialog(item)
+        // For multi-select, delete all selected. For single, show dialog.
+        var rows = Object.keys(_selectedRows)
+        if (rows.length === 1) {
+            var item = _selectedItem()
+            if (item) _openDeleteDialog(item)
+        } else if (rows.length > 1) {
+            // Delete without dialog for multiple selection
+            for (var i = 0; i < rows.length; i++) {
+                var it = App.downloadModel.data(App.downloadModel.index(parseInt(rows[i]), 0), Qt.UserRole + 2)
+                if (it) App.deleteDownload(it.id, 0)
+            }
+            _setSelection({})
+            _anchorRow = -1
+        }
     }
     function _selectedItem() {
-        if (tableView.currentRow < 0) return null
+        if (_anchorRow < 0) return null
         return App.downloadModel.data(
-            App.downloadModel.index(tableView.currentRow, 0), Qt.UserRole + 2)
+            App.downloadModel.index(_anchorRow, 0), Qt.UserRole + 2)
     }
     function _selectedId() {
         const item = _selectedItem()
@@ -61,6 +172,15 @@ Rectangle {
         onConfirmed: (mode) => App.deleteDownload(downloadId, mode)
     }
 
+    // Bump _selectionVersion when any item's data changes (e.g. status transitions
+    // from Downloading→Paused). Toolbar button enabled-states depend on
+    // anySelectedHasStatus(), which reads _selectionVersion as a reactive trigger,
+    // so without this the toolbar would stay stale after a stop/resume.
+    Connections {
+        target: App.downloadModel
+        function onDataChanged(topLeft, bottomRight, roles) { root._selectionVersion++ }
+    }
+
     // Default column definitions
     readonly property var _defaultColumnDefs: [
         { title: "Q",              key: "queue",      widthPx: 28,  visible: true  },
@@ -69,7 +189,7 @@ Rectangle {
         { title: "Status",         key: "status",     widthPx: 90,  visible: true  },
         { title: "Time left",      key: "timeleft",   widthPx: 90,  visible: true  },
         { title: "Transfer rate",  key: "speed",      widthPx: 90,  visible: true  },
-        { title: "Date added",     key: "added",      widthPx: 110, visible: true  },
+        { title: "Last try date",  key: "added",      widthPx: 130, visible: true  },
         { title: "Last try date",  key: "lasttry",    widthPx: 110, visible: false },
         { title: "Description",    key: "description",widthPx: 120, visible: false },
         { title: "Save to",        key: "saveto",     widthPx: 140, visible: false },
@@ -92,17 +212,24 @@ Rectangle {
     property var visibleCols: makeVisibleCols()
     onColumnDefsChanged: visibleCols = makeVisibleCols()
 
+    // Cached column widths - only recalculate when width changes
+    property real _lastRootWidth: 0
+    property var _cachedColWidths: ({})
+
     function colWidth(key) {
-        // Scale pixel widths proportionally to fill available width
-        var totalPx = 0
-        for (var i = 0; i < visibleCols.length; i++) totalPx += (visibleCols[i].widthPx || 100)
-        for (var j = 0; j < visibleCols.length; j++) {
-            if (visibleCols[j].key === key) {
+        // Only recalculate if root width changed
+        if (root.width !== _lastRootWidth || Object.keys(_cachedColWidths).length === 0) {
+            _lastRootWidth = root.width
+            var totalPx = 0
+            for (var i = 0; i < visibleCols.length; i++) totalPx += (visibleCols[i].widthPx || 100)
+            var newCache = {}
+            for (var j = 0; j < visibleCols.length; j++) {
                 var frac = (visibleCols[j].widthPx || 100) / Math.max(totalPx, 1)
-                return root.width * frac
+                newCache[visibleCols[j].key] = root.width * frac
             }
+            _cachedColWidths = newCache
         }
-        return 0
+        return _cachedColWidths[key] || 0
     }
 
     // ── Active filter (driven by inline find bar in Main.qml) ─────────────────
@@ -125,7 +252,8 @@ Rectangle {
             const item = model.data(model.index(i, 0), Qt.UserRole + 2)
             if (_itemMatchesFind(item, filterText, filterName, filterDesc, filterLinks, filterMatchCase, filterMatchWhole)) {
                 _findRow = i
-                tableView.currentRow = i
+                root._clearAndSelect(i)
+                root._anchorRow = i
                 tableView.positionViewAtIndex(i, ListView.Center)
                 return
             }
@@ -141,7 +269,8 @@ Rectangle {
             const item = model.data(model.index(row, 0), Qt.UserRole + 2)
             if (_itemMatchesFind(item, filterText, filterName, filterDesc, filterLinks, filterMatchCase, filterMatchWhole)) {
                 _findRow = row
-                tableView.currentRow = row
+                root._clearAndSelect(row)
+                root._anchorRow = row
                 tableView.positionViewAtIndex(row, ListView.Center)
                 return
             }
@@ -182,7 +311,8 @@ Rectangle {
             const item = model.data(model.index(i, 0), Qt.UserRole + 2)
             if (_itemMatchesFind(item, text, name, desc, links, mc, mw)) {
                 _findRow = i
-                tableView.currentRow = i
+                root._clearAndSelect(i)
+                root._anchorRow = i
                 tableView.positionViewAtIndex(i, ListView.Center)
                 return
             }
@@ -197,7 +327,8 @@ Rectangle {
             const item = model.data(model.index(row, 0), Qt.UserRole + 2)
             if (_itemMatchesFind(item, text, name, desc, links, mc, mw)) {
                 _findRow = row
-                tableView.currentRow = row
+                root._clearAndSelect(row)
+                root._anchorRow = row
                 tableView.positionViewAtIndex(row, ListView.Center)
                 return
             }
@@ -349,34 +480,49 @@ Rectangle {
         anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
         model: App.downloadModel
         clip: true
-        property int currentRow: -1
+        cacheBuffer: 650
+        reuseItems: true
+        interactive: true
+        focus: true
+
+        // Ctrl+A: select all rows currently visible in the model.
+        // We build the selection set in one pass rather than calling _toggleRow
+        // repeatedly to avoid emitting _selectionVersion for every row.
+        Keys.onPressed: function(e) {
+            if (e.key === Qt.Key_A && (e.modifiers & Qt.ControlModifier)) {
+                var r = {}
+                for (var i = 0; i < App.downloadModel.rowCount(); i++) r[i] = true
+                root._setSelection(r)
+                root._anchorRow = App.downloadModel.rowCount() - 1
+                e.accepted = true
+            }
+        }
 
         ScrollBar.vertical: ScrollBar {}
 
         delegate: Rectangle {
             id: rowRect
             width: tableView.width
+            height: 26
 
-            // Grab the DownloadItem* from the model — this binding IS reactive
-            // because Qt model delegates re-evaluate when dataChanged fires for this row
             readonly property var item: model.item
+            // Capture the ListView row index as a named property so inner Repeater
+            // delegates can reference it — inside a Repeater `index` is the column index.
+            readonly property int rowIndex: index
 
-            readonly property bool _matchesFilter:
-                root.filterText.length === 0 ||
-                root._itemMatchesFind(item, root.filterText, root.filterName, root.filterDesc,
-                                      root.filterLinks, root.filterMatchCase, root.filterMatchWhole)
+            ListView.onReused: rowMouse.dragActive = false
 
-            height:  _matchesFilter ? 26 : 0
-            visible: _matchesFilter
+            // Highlight selected rows; use _selectionVersion as a dependency so the
+            // binding re-evaluates whenever the selection changes.
+            color: {
+                root._selectionVersion
+                if (root.isRowSelected(rowIndex)) return "#1e3a6e"
+                if (rowMouse.containsMouse)        return "#2a2a2a"
+                return rowIndex % 2 === 0 ? "#1c1c1c" : "#222222"
+            }
+
             clip: true
 
-            color: tableView.currentRow === index
-                   ? "#1e3a6e"
-                   : (rowMouse.containsMouse
-                      ? "#2a2a2a"
-                      : (index % 2 === 0 ? "#1c1c1c" : "#222222"))
-
-            // Dynamic column rendering
             Row {
                 anchors.fill: parent
 
@@ -388,264 +534,181 @@ Rectangle {
                         clip: true
                         visible: width > 0
 
-                        // ── Q (queue icon) ────────────────────────────────
-                        Loader {
-                            active: modelData.key === "queue"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Item {
-                                    Image {
-                                        id: qIconImg
-                                        visible: rowRect.item && rowRect.item.queueId.length > 0
-                                        anchors.centerIn: parent
-                                        source: {
-                                            if (!rowRect.item) return ""
-                                            const q = rowRect.item.queueId
-                                            if (q === "main-download") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.png"
-                                            if (q === "main-sync") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.png"
-                                            if (q === "download-limits") return ""
-                                            return "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.png"
-                                        }
-                                        width: 14; height: 14
-                                        sourceSize.width: 14; sourceSize.height: 14
-                                        fillMode: Image.PreserveAspectFit
-                                        ToolTip.visible: qIconMouse.containsMouse && qIconImg.visible
-                                        ToolTip.text: "Queue: " + (rowRect.item && rowRect.item.queueId ? rowRect.item.queueId : "")
-                                        ToolTip.delay: 500
-                                        
-                                        MouseArea {
-                                            id: qIconMouse
-                                            anchors.fill: parent
-                                            hoverEnabled: true
-                                        }
+                        // Use rowRect.rowIndex (the ListView row) not `index` (the Repeater column).
+                        readonly property bool _sel: { root._selectionVersion; return root.isRowSelected(rowRect.rowIndex) }
+
+                        Image {
+                            visible: modelData.key === "queue" && rowRect.item && rowRect.item.queueId && rowRect.item.queueId.length > 0
+                            anchors.centerIn: parent
+                            source: {
+                                const q = rowRect.item ? rowRect.item.queueId : ""
+                                if (q === "main-download") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/main_queue.png"
+                                if (q === "main-sync") return "qrc:/qt/qml/com/stellar/app/app/qml/icons/synch_queue.png"
+                                return "qrc:/qt/qml/com/stellar/app/app/qml/icons/custom_queue.png"
+                            }
+                            width: 14; height: 14
+                            sourceSize: Qt.size(14, 14)
+                            fillMode: Image.PreserveAspectFit
+                            ToolTip.visible: ma.containsMouse
+                            ToolTip.text: {
+                                const qid = rowRect.item ? rowRect.item.queueId : ""
+                                if (!qid) return ""
+                                // Find queue name — Qt.UserRole is 32, so IdRole = 34, NameRole = 35
+                                for (var i = 0; i < App.queueModel.rowCount(); i++) {
+                                    var queueId = App.queueModel.data(App.queueModel.index(i, 0), 34)
+                                    if (queueId === qid) {
+                                        var queueName = App.queueModel.data(App.queueModel.index(i, 0), 35)
+                                        return queueName || qid
                                     }
                                 }
+                                return qid
+                            }
+                            MouseArea {
+                                id: ma
+                                anchors.fill: parent
+                                hoverEnabled: true
                             }
                         }
 
-                        // ── File Name ─────────────────────────────────────
-                        Loader {
-                            active: modelData.key === "name"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Item {
-                                    anchors.fill: parent
-                                    Row {
-                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
-                                        spacing: 6
-                                        Image {
-                                            width: 18; height: 18
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            source: rowRect.item ? "image://fileicon/" + (rowRect.item.savePath + "/" + rowRect.item.filename).replace(/\\/g, "/") : ""
-                                            sourceSize: Qt.size(18, 18)
-                                            fillMode: Image.PreserveAspectFit
-                                            smooth: true
-                                        }
-                                        Text {
-                                            text: rowRect.item ? rowRect.item.filename : ""
-                                            color: tableView.currentRow === index ? "#ffffff" : "#d0d0d0"
-                                            font.pixelSize: 12
-                                            width: root.colWidth("name") - 42
-                                            elide: Text.ElideMiddle
-                                            anchors.verticalCenter: parent.verticalCenter
-                                        }
-                                    }
-                                }
+                        Row {
+                            visible: modelData.key === "name"
+                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6 }
+                            spacing: 6
+                            width: parent.width - 12
+                            Image {
+                                width: 18; height: 18
+                                anchors.verticalCenter: parent.verticalCenter
+                                // cache:false forces a provider re-request when the source changes.
+                                // The "?c=1" suffix flips once the download completes, causing the
+                                // binding to re-evaluate and QML to fetch the real on-disk icon
+                                // instead of the extension-based placeholder used during download.
+                                source: rowRect.item ? "image://fileicon/" + (rowRect.item.savePath + "/" + rowRect.item.filename).replace(/\\/g, "/") + (rowRect.item.status === "Completed" ? "?c=1" : "") : ""
+                                cache: false
+                                sourceSize: Qt.size(18, 18)
+                                fillMode: Image.PreserveAspectFit
+                                asynchronous: true
+                            }
+                            Text {
+                                text: rowRect.item ? rowRect.item.filename : ""
+                                color: parent.parent.parent._sel ? "#ffffff" : "#d0d0d0"
+                                font.pixelSize: 12
+                                width: parent.parent.width - 42
+                                elide: Text.ElideMiddle
+                                anchors.verticalCenter: parent.verticalCenter
                             }
                         }
 
-                        // ── Size ─────────────────────────────────────────
-                        Loader {
-                            active: modelData.key === "size"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: {
-                                        if (!rowRect.item || rowRect.item.totalBytes <= 0) return "--"
-                                        const b = rowRect.item.totalBytes
-                                        if (b < 1048576)    return (b / 1024).toFixed(1) + " KB"
-                                        if (b < 1073741824) return (b / 1048576).toFixed(1) + " MB"
-                                        return (b / 1073741824).toFixed(2) + " GB"
-                                    }
-                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                                    font.pixelSize: 12
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "size"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item ? (rowRect.item.totalBytes > 0 ? (rowRect.item.totalBytes / 1048576).toFixed(1) + " MB" : "") : ""
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 12
                         }
 
-                        // ── Status ───────────────────────────────────────
-                        Loader {
-                            active: modelData.key === "status"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: {
-                                        if (!rowRect.item) return "--"
-                                        const s = rowRect.item.status
-                                        if (s === "Downloading") return (rowRect.item.progress * 100).toFixed(1) + "%"
-                                        return s
-                                    }
-                                    color: {
-                                        if (tableView.currentRow === index) return "#ffffff"
-                                        if (!rowRect.item) return "#b0b0b0"
-                                        const s = rowRect.item.status
-                                        if (s === "Downloading") return "#66cc66"
-                                        if (s === "Paused")      return "#e0c040"
-                                        if (s === "Error")       return "#e06060"
-                                        if (s === "Completed")   return "#60c0e0"
-                                        return "#b0b0b0"
-                                    }
-                                    font.pixelSize: 12
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "status"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item ? (rowRect.item.status === "Downloading" ? (rowRect.item.progress * 100).toFixed(1) + "%" : rowRect.item.status) : ""
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 12
                         }
 
-                        // ── Time left ────────────────────────────────────
-                        Loader {
-                            active: modelData.key === "timeleft"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item ? rowRect.item.timeLeft : ""
-                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                                    font.pixelSize: 12
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "timeleft"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item ? (rowRect.item.timeLeft || "") : ""
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 12
                         }
 
-                        // ── Transfer rate ────────────────────────────────
-                        Loader {
-                            active: modelData.key === "speed"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: {
-                                        if (!rowRect.item || rowRect.item.status !== "Downloading") return ""
-                                        const bps = rowRect.item.speed
-                                        if (bps <= 0)      return ""
-                                        if (bps < 1048576) return (bps / 1024).toFixed(1) + " KB/s"
-                                        return (bps / 1048576).toFixed(2) + " MB/s"
-                                    }
-                                    color: tableView.currentRow === index ? "#ffffff" : "#80c080"
-                                    font.pixelSize: 12
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "speed"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item && rowRect.item.status === "Downloading" ? (rowRect.item.speed / 1024).toFixed(1) + " KB/s" : ""
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 12
                         }
 
-                        // ── Date added ───────────────────────────────────
-                        Loader {
-                            active: modelData.key === "added"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item ? Qt.formatDateTime(rowRect.item.addedAt, "MMM dd yyyy h:mm:ss AP") : ""
-                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                                    font.pixelSize: 11
-                                }
+                        Text {
+                            // "Last try date" column — shows lastTryAt if a download was attempted,
+                            // otherwise falls back to addedAt (so newly-added items always have a date).
+                            visible: modelData.key === "added"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: {
+                                if (!rowRect.item) return ""
+                                const d = (rowRect.item.lastTryAt && rowRect.item.lastTryAt.getTime() > 0)
+                                          ? rowRect.item.lastTryAt
+                                          : rowRect.item.addedAt
+                                return d ? Qt.formatDateTime(d, "MMM dd yyyy HH:mm:ss") : ""
                             }
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 11
                         }
 
-                        // ── Last try date ────────────────────────────────
-                        Loader {
-                            active: modelData.key === "lasttry"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item && rowRect.item.lastTryAt.getTime() > 0
-                                          ? Qt.formatDateTime(rowRect.item.lastTryAt, "MM/dd/yy hh:mm")
-                                          : "--"
-                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                                    font.pixelSize: 11
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "lasttry"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item && rowRect.item.lastTryAt && rowRect.item.lastTryAt.getTime() > 0 ? Qt.formatDateTime(rowRect.item.lastTryAt, "MMM dd yyyy HH:mm:ss") : "--"
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 11
                         }
 
-                        // ── Description ──────────────────────────────────
-                        Loader {
-                            active: modelData.key === "description"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item ? (rowRect.item.description || "--") : "--"
-                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                                    font.pixelSize: 11; elide: Text.ElideRight; width: parent.width - 8
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "description"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item ? (rowRect.item.description || "--") : "--"
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 11
                         }
 
-                        // ── Save to ──────────────────────────────────────
-                        Loader {
-                            active: modelData.key === "saveto"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item ? rowRect.item.savePath : "--"
-                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                                    font.pixelSize: 11; elide: Text.ElideMiddle; width: parent.width - 8
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "saveto"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item ? (rowRect.item.savePath || "--") : "--"
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 11
                         }
 
-                        // ── Referer ──────────────────────────────────────
-                        Loader {
-                            active: modelData.key === "referrer"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item ? (rowRect.item.referrer || "--") : "--"
-                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                                    font.pixelSize: 11; elide: Text.ElideRight; width: parent.width - 8
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "referrer"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item ? (rowRect.item.referrer || "--") : "--"
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 11
                         }
 
-                        // ── Parent web page ──────────────────────────────
-                        Loader {
-                            active: modelData.key === "parenturl"
-                            anchors.fill: parent
-                            sourceComponent: Component {
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6 }
-                                    verticalAlignment: Text.AlignVCenter
-                                    text: rowRect.item ? (rowRect.item.parentUrl || "--") : "--"
-                                    color: tableView.currentRow === index ? "#ffffff" : "#b0b0b0"
-                                    font.pixelSize: 11; elide: Text.ElideRight; width: parent.width - 8
-                                }
-                            }
+                        Text {
+                            visible: modelData.key === "parenturl"
+                            anchors { fill: parent; leftMargin: 6 }
+                            verticalAlignment: Text.AlignVCenter
+                            text: rowRect.item ? (rowRect.item.parentUrl || "--") : "--"
+                            color: parent._sel ? "#ffffff" : "#b0b0b0"
+                            font.pixelSize: 11
                         }
                     }
                 }
             }
 
-            // progress bar strip at the bottom of each active row
+            // Progress bar strip at the bottom of each active row
             Rectangle {
                 anchors { bottom: parent.bottom; left: parent.left }
                 width: rowRect.item ? rowRect.item.progress * rowRect.width : 0
                 height: 3
                 color: "#4488dd"
-                visible: rowRect.item !== null && rowRect.item.status === "Downloading"
-                Behavior on width { NumberAnimation { duration: 400 } }
+                visible: rowRect.item && rowRect.item.status === "Downloading"
             }
 
-            // bottom row border
+            // Bottom row border
             Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2e2e2e" }
 
             MouseArea {
@@ -653,7 +716,7 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 acceptedButtons: Qt.LeftButton | Qt.RightButton
-                preventStealing: true   // stops ListView from taking the grab mid-drag
+                preventStealing: true
 
                 property point pressPos
                 property bool dragActive: false
@@ -670,13 +733,24 @@ Rectangle {
                     if (!dragActive && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
                         if (root.categoryDragProxy && rowRect.item) {
                             dragActive = true
-                            root.categoryDragProxy.dragDownloadId = rowRect.item.id
-                            root.categoryDragProxy.dragFilename   = rowRect.item.filename
+                            // Collect all selected items for multi-select drag
+                            var selectedIds = []
+                            for (var idx in root._selectedRows) {
+                                var rowIdx = parseInt(idx)
+                                var selectedItem = App.downloadModel.itemAt(rowIdx)
+                                if (selectedItem) selectedIds.push(selectedItem.id)
+                            }
+                            // If nothing is selected or the dragged item isn't in selection, use just that item
+                            if (selectedIds.length === 0 || !root.isRowSelected(rowRect.rowIndex)) {
+                                selectedIds = [rowRect.item.id]
+                            }
+                            root.categoryDragProxy.dragDownloadIds = selectedIds
+                            root.categoryDragProxy.dragDownloadId  = rowRect.item.id
+                            root.categoryDragProxy.dragFilename    = selectedIds.length > 1 ? selectedIds.length + " files" : rowRect.item.filename
                             root.categoryDragProxy.visible = true
                         }
                     }
                     if (dragActive && root.categoryDragProxy) {
-                        // Move proxy to cursor in window coordinates
                         var winPos = mapToItem(null, mouse.x, mouse.y)
                         root.categoryDragProxy.x = winPos.x
                         root.categoryDragProxy.y = winPos.y
@@ -688,25 +762,48 @@ Rectangle {
                         root.categoryDragProxy.Drag.drop()
                         root.categoryDragProxy.visible = false
                         root.categoryDragProxy.dragDownloadId = ""
+                        root.categoryDragProxy.dragDownloadIds = []
                         root.categoryDragProxy.dragFilename   = ""
                         dragActive = false
                     }
                 }
 
                 onClicked: function(mouse) {
-                    if (!dragActive) {
-                        tableView.currentRow = index
-                        if (mouse.button === Qt.RightButton) rowCtxMenu.popup()
+                    if (dragActive) return
+                    // Return keyboard focus to the ListView so Ctrl+A works immediately
+                    // after any click without the user needing a separate focus-click.
+                    tableView.forceActiveFocus()
+                    if (mouse.button === Qt.RightButton) {
+                        // Right-click: select the item if not already selected, then show menu
+                        if (!root.isRowSelected(rowRect.rowIndex)) {
+                            root._clearAndSelect(rowRect.rowIndex)
+                            root._anchorRow = rowRect.rowIndex
+                        }
+                        rowCtxMenu.popup()
+                    } else if (mouse.modifiers & Qt.ControlModifier) {
+                        // Ctrl+click: toggle this row in the selection
+                        root._toggleRow(rowRect.rowIndex)
+                        root._anchorRow = rowRect.rowIndex
+                    } else if (mouse.modifiers & Qt.ShiftModifier) {
+                        // Shift+click: extend selection from anchor to here
+                        if (root._anchorRow >= 0)
+                            root._addRangeTo(root._anchorRow, rowRect.rowIndex)
+                        else {
+                            root._clearAndSelect(rowRect.rowIndex)
+                            root._anchorRow = rowRect.rowIndex
+                        }
+                    } else {
+                        // Plain click: single-select
+                        root._clearAndSelect(rowRect.rowIndex)
+                        root._anchorRow = rowRect.rowIndex
                     }
                 }
 
                 onDoubleClicked: function(mouse) {
                     if (!rowRect.item) return
-                    if (rowRect.item.status === "Completed") {
-                        root.openPropertiesRequested(rowRect.item)
-                    } else {
-                        root.openProgressRequested(rowRect.item)
-                    }
+                    // Always open file properties on double-click regardless of status.
+                    // The dialog shows live status (Downloading, Paused, % progress, etc.).
+                    root.openPropertiesRequested(rowRect.item)
                 }
             }
 
@@ -716,8 +813,7 @@ Rectangle {
                     text: "Properties"
                     onTriggered: {
                         if (!rowRect.item) return
-                        if (rowRect.item.status === "Completed") root.openPropertiesRequested(rowRect.item)
-                        else root.openProgressRequested(rowRect.item)
+                        root.openPropertiesRequested(rowRect.item)
                     }
                 }
                 Action { text: "Open File";   onTriggered: { if (rowRect.item) App.openFile(rowRect.item.id)   } }
@@ -745,8 +841,21 @@ Rectangle {
                     }
                 }
 
+                // Clears the queue assignment for all currently selected downloads.
+                Action {
+                    text: "Remove from Queue"
+                    onTriggered: {
+                        for (var row in root._selectedRows) {
+                            var it = App.downloadModel.data(
+                                App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+                            if (it) App.setDownloadQueue(it.id, "")
+                        }
+                    }
+                }
+
                 MenuSeparator {}
-                Action { text: "Delete";  onTriggered: { if (rowRect.item) root._openDeleteDialog(rowRect.item) } }
+                Action { text: "Redownload"; onTriggered: { if (rowRect.item) App.redownload(rowRect.item.id) } }
+                Action { text: "Delete";    onTriggered: { if (rowRect.item) root._openDeleteDialog(rowRect.item) } }
             }
         }
 

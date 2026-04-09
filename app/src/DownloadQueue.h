@@ -52,6 +52,7 @@ public:
     Q_INVOKABLE void cancel(const QString &id);
     Q_INVOKABLE void moveUp(const QString &id);
     Q_INVOKABLE void moveDown(const QString &id);
+    Q_INVOKABLE void scheduleNext();  // Manually trigger scheduling (used by queue controller)
 
     const QList<DownloadItem *> &items() const { return m_items; }
 
@@ -65,7 +66,6 @@ signals:
     void queueChanged();
 
 private:
-    void scheduleNext();
     void onWorkerFinished(const QString &id);
     void onWorkerFailed(const QString &id, const QString &reason);
 

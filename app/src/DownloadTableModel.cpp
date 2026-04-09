@@ -15,6 +15,9 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DownloadTableModel.h"
+#include <algorithm>
+#include <QSet>
+#include <QTimer>
 
 DownloadTableModel::DownloadTableModel(QObject *parent)
     : QAbstractTableModel(parent) {}
@@ -80,7 +83,20 @@ void DownloadTableModel::addItem(DownloadItem *item) {
     connect(item, &DownloadItem::statusChanged,     this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::errorStringChanged,this, &DownloadTableModel::onItemChanged);
 
-    sortBy(m_sortColumn, m_sortAscending);
+    // Add to visible if it matches current filter
+    if (matchesFilter(item)) {
+        // Find insert position based on current sort
+        int insertPos = m_visible.size();
+        for (int i = 0; i < m_visible.size(); ++i) {
+            if (compareItems(m_visible.at(i), item, m_sortColumn, m_sortAscending) > 0) {
+                insertPos = i;
+                break;
+            }
+        }
+        beginInsertRows({}, insertPos, insertPos);
+        m_visible.insert(insertPos, item);
+        endInsertRows();
+    }
 }
 
 void DownloadTableModel::removeItem(const QString &id) {
@@ -119,51 +135,84 @@ DownloadItem *DownloadTableModel::itemByUrl(const QUrl &url) const {
 void DownloadTableModel::setFilterCategory(const QString &filter) {
     if (m_filterCategory == filter && m_filterQueue.isNull()) return;
     m_filterCategory = filter;
-    m_filterQueue.clear();
-    rebuildVisible();
+    m_filterQueue = QString(); // null, not empty — matchesFilter checks isNull()
+
+    QList<DownloadItem*> newVisible;
+    if (m_filterCategory == QStringLiteral("all")) {
+        newVisible = m_items;
+    } else {
+        newVisible.reserve(m_items.size());
+        for (auto *item : m_items) {
+            if (matchesFilter(item)) newVisible.append(item);
+        }
+    }
+
+    if (newVisible == m_visible) return;
+
+    beginResetModel();
+    m_visible = newVisible;
+    endResetModel();
 }
 
 void DownloadTableModel::setFilterQueue(const QString &filter) {
     if (m_filterQueue == filter && m_filterCategory.isNull()) return;
+
     m_filterQueue = filter;
-    m_filterCategory.clear();
-    rebuildVisible();
+    m_filterCategory = QString(); // null, not empty
+
+    QList<DownloadItem *> newVisible;
+    newVisible.reserve(m_items.size());
+    for (auto *item : m_items) {
+        if (matchesFilter(item)) newVisible.append(item);
+    }
+
+    if (newVisible == m_visible) return;
+
+    beginResetModel();
+    m_visible = newVisible;
+    endResetModel();
 }
 
 void DownloadTableModel::sortBy(const QString &column, bool ascending) {
+    if (m_visible.isEmpty()) return;
+
     m_sortColumn = column;
     m_sortAscending = ascending;
-    auto cmp = [&](DownloadItem *a, DownloadItem *b) -> bool {
-        bool result = false;
-        if (column == QStringLiteral("name"))
-            result = a->filename().toLower() < b->filename().toLower();
-        else if (column == QStringLiteral("size"))
-            result = a->totalBytes() < b->totalBytes();
-        else if (column == QStringLiteral("status"))
-            result = a->status() < b->status();
-        else if (column == QStringLiteral("timeleft"))
-            result = a->timeLeft() < b->timeLeft();
-        else if (column == QStringLiteral("speed"))
-            result = a->speed() < b->speed();
-        else if (column == QStringLiteral("added"))
-            result = a->addedAt() < b->addedAt();
-        else if (column == QStringLiteral("saveto"))
-            result = a->savePath().toLower() < b->savePath().toLower();
-        else if (column == QStringLiteral("description"))
-            result = a->description().toLower() < b->description().toLower();
-        else if (column == QStringLiteral("referrer"))
-            result = a->referrer().toLower() < b->referrer().toLower();
-        else if (column == QStringLiteral("parenturl"))
-            result = a->parentUrl().toLower() < b->parentUrl().toLower();
-        else if (column == QStringLiteral("lasttry"))
-            result = a->lastTryAt() < b->lastTryAt();
-        else
-            result = a->addedAt() < b->addedAt();
 
-        return ascending ? result : !result;
-    };
-    std::sort(m_items.begin(), m_items.end(), cmp);
-    rebuildVisible();
+    // Sort only the visible items - much faster than sorting all items
+    std::sort(m_visible.begin(), m_visible.end(), [&](DownloadItem *a, DownloadItem *b) -> bool {
+        int cmpResult = 0;
+        if (column == QStringLiteral("name"))
+            cmpResult = a->filename().toLower().compare(b->filename().toLower());
+        else if (column == QStringLiteral("size"))
+            cmpResult = a->totalBytes() < b->totalBytes() ? -1 : (a->totalBytes() > b->totalBytes() ? 1 : 0);
+        else if (column == QStringLiteral("status"))
+            cmpResult = a->status().compare(b->status());
+        else if (column == QStringLiteral("timeleft"))
+            cmpResult = a->timeLeft().compare(b->timeLeft());
+        else if (column == QStringLiteral("speed"))
+            cmpResult = a->speed() < b->speed() ? -1 : (a->speed() > b->speed() ? 1 : 0);
+        else if (column == QStringLiteral("added"))
+            cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
+        else if (column == QStringLiteral("saveto"))
+            cmpResult = a->savePath().toLower().compare(b->savePath().toLower());
+        else if (column == QStringLiteral("description"))
+            cmpResult = a->description().toLower().compare(b->description().toLower());
+        else if (column == QStringLiteral("referrer"))
+            cmpResult = a->referrer().toLower().compare(b->referrer().toLower());
+        else if (column == QStringLiteral("parenturl"))
+            cmpResult = a->parentUrl().toLower().compare(b->parentUrl().toLower());
+        else if (column == QStringLiteral("lasttry"))
+            cmpResult = a->lastTryAt() < b->lastTryAt() ? -1 : (a->lastTryAt() > b->lastTryAt() ? 1 : 0);
+        else
+            cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
+
+        if (cmpResult != 0) return ascending ? (cmpResult < 0) : (cmpResult > 0);
+        return a->id() < b->id();
+    });
+
+    // Simple approach: emit dataChanged for the entire range since rows haven't changed
+    emit dataChanged(index(0, 0), index(m_visible.size() - 1, ColCount - 1));
 }
 
 bool DownloadTableModel::matchesFilter(DownloadItem *item) const {
@@ -183,12 +232,23 @@ bool DownloadTableModel::matchesFilter(DownloadItem *item) const {
 }
 
 void DownloadTableModel::rebuildVisible() {
-    beginResetModel();
-    m_visible.clear();
-    for (auto *item : m_items)
-        if (matchesFilter(item)) m_visible.append(item);
-    endResetModel();
+    QList<DownloadItem*> newVisible;
+
+    if (m_filterCategory == QStringLiteral("all") && m_filterQueue.isNull()) {
+        newVisible = m_items;
+    } else {
+        newVisible.reserve(m_items.size());
+        for (auto *item : m_items) {
+            if (matchesFilter(item)) newVisible.append(item);
+        }
+    }
+
+    if (m_visible != newVisible) {
+        m_visible = newVisible;
+        emit layoutChanged();
+    }
 }
+
 
 void DownloadTableModel::onItemChanged() {
     auto *item = qobject_cast<DownloadItem *>(sender());
@@ -199,10 +259,12 @@ void DownloadTableModel::onItemChanged() {
 
     if (shouldBeVisible && visRow < 0) {
         // Item now matches filter — insert it at the correct position
+        // Build a set for O(1) lookup instead of O(n) contains() per iteration
+        const QSet<DownloadItem *> visibleSet(m_visible.begin(), m_visible.end());
         int insertPos = 0;
         for (int i = 0; i < m_items.size(); ++i) {
             if (m_items[i] == item) break;
-            if (m_visible.contains(m_items[i])) ++insertPos;
+            if (visibleSet.contains(m_items[i])) ++insertPos;
         }
         beginInsertRows({}, insertPos, insertPos);
         m_visible.insert(insertPos, item);
@@ -214,6 +276,37 @@ void DownloadTableModel::onItemChanged() {
     } else if (shouldBeVisible && visRow >= 0) {
         emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
     }
+}
+
+int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const {
+    int cmpResult = 0;
+    if (column == QStringLiteral("name"))
+        cmpResult = a->filename().toLower().compare(b->filename().toLower());
+    else if (column == QStringLiteral("size"))
+        cmpResult = a->totalBytes() < b->totalBytes() ? -1 : (a->totalBytes() > b->totalBytes() ? 1 : 0);
+    else if (column == QStringLiteral("status"))
+        cmpResult = a->status().compare(b->status());
+    else if (column == QStringLiteral("timeleft"))
+        cmpResult = a->timeLeft().compare(b->timeLeft());
+    else if (column == QStringLiteral("speed"))
+        cmpResult = a->speed() < b->speed() ? -1 : (a->speed() > b->speed() ? 1 : 0);
+    else if (column == QStringLiteral("added"))
+        cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
+    else if (column == QStringLiteral("saveto"))
+        cmpResult = a->savePath().toLower().compare(b->savePath().toLower());
+    else if (column == QStringLiteral("description"))
+        cmpResult = a->description().toLower().compare(b->description().toLower());
+    else if (column == QStringLiteral("referrer"))
+        cmpResult = a->referrer().toLower().compare(b->referrer().toLower());
+    else if (column == QStringLiteral("parenturl"))
+        cmpResult = a->parentUrl().toLower().compare(b->parentUrl().toLower());
+    else if (column == QStringLiteral("lasttry"))
+        cmpResult = a->lastTryAt() < b->lastTryAt() ? -1 : (a->lastTryAt() > b->lastTryAt() ? 1 : 0);
+    else
+        cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
+
+    if (cmpResult != 0) return ascending ? cmpResult : -cmpResult;
+    return a->id() < b->id() ? -1 : (a->id() > b->id() ? 1 : 0);
 }
 
 QString DownloadTableModel::formatSize(qint64 bytes) {

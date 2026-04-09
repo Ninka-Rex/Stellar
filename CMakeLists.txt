@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.2.8 LANGUAGES CXX)
+project(Stellar VERSION 0.3.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -42,7 +42,6 @@ set(BACKEND_SOURCES
     app/src/QueueDatabase.cpp
     app/src/QueueModel.cpp
     app/src/FileDragDropHelper.cpp
-    app/src/FileIconImageProvider.cpp
 )
 
 set(BACKEND_HEADERS
@@ -96,6 +95,8 @@ qt_add_qml_module(Stellar
         app/qml/FindDialog.qml
         app/qml/ColumnsDialog.qml
         app/qml/DeleteDoneConfirmDialog.qml
+        app/qml/BatchDownloadDialog.qml
+        app/qml/BatchDownloadListDialog.qml
     RESOURCES
         app/qml/icons/add.svg
         app/qml/icons/resume.svg
@@ -117,6 +118,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/delete.ico
         app/qml/icons/remove.ico
         app/qml/icons/properties.ico
+        app/qml/icons/downloads.ico
         app/qml/icons/scheduler.ico
         app/qml/icons/help.ico
         app/qml/icons/arrow_down.ico
@@ -183,7 +185,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE FALSE
+        WIN32_EXECUTABLE TRUE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)
@@ -204,9 +206,14 @@ endif()
 # ── Copy extensions to build output (dev convenience) ─────────────────────────
 set(_ext_src "${CMAKE_SOURCE_DIR}/extensions")
 set(_ext_dst "${CMAKE_BINARY_DIR}/extensions")
-if(EXISTS "${_ext_src}" AND NOT EXISTS "${_ext_dst}/firefox/manifest.json")
+if(EXISTS "${_ext_src}")
     file(COPY "${_ext_src}/" DESTINATION "${_ext_dst}")
 endif()
+
+# ── Copy tips.txt to build output (dev convenience) ──────────────────────────
+file(COPY "${CMAKE_SOURCE_DIR}/tips.txt"
+    DESTINATION "${CMAKE_BINARY_DIR}"
+)
 
 # ── Install ────────────────────────────────────────────────────────────────────
 install(TARGETS Stellar

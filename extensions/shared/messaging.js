@@ -243,12 +243,13 @@ export async function shouldIntercept(url, mimeType, filenameHint) {
  */
 export async function requestDownload(details) {
     return sendMessage({
-        type:     "download",
-        url:      details.url,
-        filename: details.filename  ?? "",
-        referrer: details.referrer  ?? "",
-        pageUrl:  details.pageUrl   ?? "",
-        cookies:  details.cookies   ?? "",
+        type:         "download",
+        url:          details.url,
+        filename:     details.filename  ?? "",
+        referrer:     details.referrer  ?? "",
+        pageUrl:      details.pageUrl   ?? "",
+        cookies:      details.cookies   ?? "",
+        modifierKey:  details.modifierKey ?? 0,
     });
 }
 

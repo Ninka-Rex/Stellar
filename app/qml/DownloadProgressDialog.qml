@@ -250,7 +250,18 @@ Window {
                             Row {
                                 spacing: 0; width: parent.width; height: 20
                                 Text { text: "Transfer rate"; color: "#666"; font.pixelSize: 12; width: 120 }
-                                Text { text: item ? root.fmtSpeed(item.speed) : "--"; color: "#55cc66"; font.pixelSize: 12 }
+                                Text {
+                                    text: {
+                                        if (!item) return "--"
+                                        var speed = root.fmtSpeed(item.speed)
+                                        if (App.settings.globalSpeedLimitKBps > 0) {
+                                            speed += " [" + App.settings.globalSpeedLimitKBps + " KBps limit]"
+                                        }
+                                        return speed
+                                    }
+                                    color: "#55cc66"
+                                    font.pixelSize: 12
+                                }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 20

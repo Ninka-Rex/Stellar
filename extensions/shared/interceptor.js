@@ -4,6 +4,33 @@
 
 import { requestDownload, extractFilename, shouldIntercept } from "./messaging.js";
 
+// Track last modifier key state to detect bypass requests
+// Auto-clears after 10 seconds (downloads are typically created instantly)
+let lastModifierKey = 0;
+let lastModifierKeyTime = 0;
+const MODIFIER_KEY_TIMEOUT = 10000;  // 10 seconds
+
+export function recordModifierKey(modifierKey) {
+    lastModifierKey = modifierKey;
+    lastModifierKeyTime = Date.now();
+    // Auto-clear after timeout
+    setTimeout(() => {
+        if (Date.now() - lastModifierKeyTime >= MODIFIER_KEY_TIMEOUT) {
+            lastModifierKey = 0;
+        }
+    }, MODIFIER_KEY_TIMEOUT);
+}
+
+function getAndClearModifierKey() {
+    const now = Date.now();
+    if (now - lastModifierKeyTime >= MODIFIER_KEY_TIMEOUT) {
+        return 0;  // Expired
+    }
+    const key = lastModifierKey;
+    lastModifierKey = 0;  // Consume it
+    return key;
+}
+
 /**
  * Called from the service worker's chrome.downloads.onCreated listener.
  * Cancels the browser download and hands off to Stellar.
@@ -25,6 +52,15 @@ function forceIntercept(url) {
 
 export async function handleDownloadCreated(downloadItem) {
     const { url, filename, referrer, mime } = downloadItem;
+
+    // Check if bypass modifier key is active
+    const modifierKey = getAndClearModifierKey();
+    if (modifierKey > 0) {
+        // User is bypassing interception, let browser handle it
+        console.log("[Stellar] Bypass key detected, letting browser handle download");
+        return;
+    }
+
     if (!forceIntercept(url) && !(await shouldIntercept(url, mime, filename))) return;
 
     // Cancel the browser-managed download
@@ -69,7 +105,7 @@ export async function handleDownloadCreated(downloadItem) {
     }
 
     try {
-        await requestDownload({ url, filename: name, referrer, pageUrl, cookies: cookieHeader });
+        await requestDownload({ url, filename: name, referrer, pageUrl, cookies: cookieHeader, modifierKey: 0 });
     } catch (err) {
         console.error("[Stellar] Failed to send download to native host:", err);
         // Fall back: re-open the URL so the browser handles it

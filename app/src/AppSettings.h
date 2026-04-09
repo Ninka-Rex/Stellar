@@ -42,6 +42,12 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool speedLimiterOnStartup READ speedLimiterOnStartup WRITE setSpeedLimiterOnStartup NOTIFY speedLimiterOnStartupChanged)
     Q_PROPERTY(int  savedSpeedLimitKBps  READ savedSpeedLimitKBps  WRITE setSavedSpeedLimitKBps  NOTIFY savedSpeedLimitKBpsChanged)
     Q_PROPERTY(bool showDownloadComplete READ showDownloadComplete WRITE setShowDownloadComplete NOTIFY showDownloadCompleteChanged)
+    Q_PROPERTY(bool showFinishedCount   READ showFinishedCount   WRITE setShowFinishedCount   NOTIFY showFinishedCountChanged)
+    // Ordered list of sidebar section IDs — determines the top-to-bottom display order.
+    // Valid IDs: "downloads", "unfinished", "finished", "queues"
+    Q_PROPERTY(QStringList sidebarOrder READ sidebarOrder WRITE setSidebarOrder NOTIFY sidebarOrderChanged)
+    // Modifier key to bypass download interception: 0=None, 1=Alt, 2=Ctrl, 3=Shift
+    Q_PROPERTY(int bypassInterceptKey READ bypassInterceptKey WRITE setBypassInterceptKey NOTIFY bypassInterceptKeyChanged)
 
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -68,6 +74,9 @@ public:
     bool speedLimiterOnStartup()  const { return m_speedLimiterOnStartup; }
     int  savedSpeedLimitKBps()    const { return m_savedSpeedLimitKBps; }
     bool showDownloadComplete()   const { return m_showDownloadComplete; }
+    bool showFinishedCount()      const { return m_showFinishedCount; }
+    QStringList sidebarOrder()    const { return m_sidebarOrder; }
+    int  bypassInterceptKey()     const { return m_bypassInterceptKey; }
 
     void setMaxConcurrent(int v);
     void setSegmentsPerDownload(int v);
@@ -87,6 +96,9 @@ public:
     void setSpeedLimiterOnStartup(bool v);
     void setSavedSpeedLimitKBps(int v);
     void setShowDownloadComplete(bool v);
+    void setShowFinishedCount(bool v);
+    void setSidebarOrder(const QStringList &v);
+    void setBypassInterceptKey(int v);
 
     Q_INVOKABLE void save();
     Q_INVOKABLE void load();
@@ -110,6 +122,9 @@ signals:
     void speedLimiterOnStartupChanged();
     void savedSpeedLimitKBpsChanged();
     void showDownloadCompleteChanged();
+    void showFinishedCountChanged();
+    void sidebarOrderChanged();
+    void bypassInterceptKeyChanged();
 
 private:
     int     m_maxConcurrent{3};
@@ -130,6 +145,9 @@ private:
     bool        m_speedLimiterOnStartup{false};
     int         m_savedSpeedLimitKBps{500};
     bool        m_showDownloadComplete{true};
+    bool        m_showFinishedCount{true};
+    QStringList m_sidebarOrder{{"downloads", "unfinished", "finished", "queues"}};
+    int         m_bypassInterceptKey{1};  // 1 = Alt key by default
 
     QSettings m_settings;
 

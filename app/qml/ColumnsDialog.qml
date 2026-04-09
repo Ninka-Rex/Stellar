@@ -239,7 +239,7 @@ Window {
                 background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
                 leftPadding: 6
                 validator: IntValidator { bottom: 30; top: 1200 }
-                onTextChanged: {
+                onEditingFinished: {
                     const v = parseInt(text)
                     if (!isNaN(v) && v >= 30 && colListView.currentIndex >= 0) {
                         var defs = root.columnDefs.slice()

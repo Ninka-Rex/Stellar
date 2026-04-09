@@ -580,7 +580,7 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
             filename = pathName;
     }
 
-    if (filename.isEmpty() || filename == m_item->filename()) return;
+    if (filename.isEmpty() || filename == m_item->filename() || m_item->isFilenameManuallySet()) return;
 
     // Rename part files on disk before updating the stored filename, so the
     // file objects and seg.partPath stay consistent with what's actually on disk.

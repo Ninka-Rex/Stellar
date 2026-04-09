@@ -26,18 +26,21 @@ AbstractButton {
     width: 70
     height: 56
 
+    // Dim the whole button when disabled so the user can see it won't respond.
+    // AbstractButton has no built-in disabled appearance; we apply it here.
+    opacity: root.enabled ? 1.0 : 0.35
+
     background: Rectangle {
         color: root.pressed ? "#3a3a4a"
              : root.hovered ? "#2d2d3d"
              : "transparent"
         radius: 0
-        
     }
 
     contentItem: Column {
         anchors.centerIn: parent
         spacing: 4
-        
+
         Image {
             anchors.horizontalCenter: parent.horizontalCenter
             source: root.iconSrc

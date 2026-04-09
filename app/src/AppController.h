@@ -15,13 +15,17 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
+
 #include <QObject>
+#include <QString>
+#include <QtQml/QJSValue>
 #include <QNetworkAccessManager>
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QTimer>
 #include <QSet>
 #include <QMap>
+
 #include "DownloadQueue.h"
 #include "DownloadTableModel.h"
 #include "CategoryModel.h"
@@ -43,8 +47,10 @@ class AppController : public QObject {
     Q_PROPERTY(QString selectedQueue     READ selectedQueue      WRITE setSelectedQueue    NOTIFY selectedQueueChanged)
     Q_PROPERTY(QString appVersion   READ appVersion   CONSTANT)
     Q_PROPERTY(QString buildTime    READ buildTime    CONSTANT)
+    Q_PROPERTY(QString buildTimeFormatted READ buildTimeFormatted CONSTANT)
     Q_PROPERTY(QString qtVersion    READ qtVersion    CONSTANT)
     Q_PROPERTY(int minutesUntilNextQueue READ minutesUntilNextQueue NOTIFY minutesUntilNextQueueChanged)
+    Q_PROPERTY(int completedDownloads READ completedDownloads NOTIFY completedDownloadsChanged)
 
 public:
     explicit AppController(QObject *parent = nullptr);
@@ -60,20 +66,23 @@ public:
     void setSelectedQueue(const QString &v);
     QString appVersion() const;
     QString buildTime() const;
+    QString buildTimeFormatted() const;
     QString qtVersion() const;
     int minutesUntilNextQueue() const;
+    int completedDownloads() const { return m_completedCount; }
 
+    Q_INVOKABLE void checkUrl(const QString &url, QJSValue callback);
     Q_INVOKABLE void addUrl(const QString &url, const QString &savePath = {},
                             const QString &category = {}, const QString &description = {},
                             bool startNow = true, const QString &cookies = {},
                             const QString &referrer = {}, const QString &parentUrl = {},
-                            const QString &username = {}, const QString &password = {});
+                            const QString &username = {}, const QString &password = {},
+                            const QString &filenameOverride = {});
     Q_INVOKABLE void deleteAllCompleted(int mode = 0);
     Q_INVOKABLE void pauseAllDownloads();
     Q_INVOKABLE void sortDownloads(const QString &column, bool ascending);
     Q_INVOKABLE void pauseDownload(const QString &id);
     Q_INVOKABLE void resumeDownload(const QString &id);
-    // mode: 0 = list only, 1 = delete file permanently, 2 = move to trash
     Q_INVOKABLE void deleteDownload(const QString &id, int mode = 0);
     Q_INVOKABLE void openFile(const QString &id);
     Q_INVOKABLE void openFolder(const QString &id);
@@ -94,26 +103,24 @@ public:
     Q_INVOKABLE void     setDownloadSpeedLimit(const QString &downloadId, int kbps);
     Q_INVOKABLE void     setDownloadUsername(const QString &downloadId, const QString &username);
     Q_INVOKABLE void     setDownloadPassword(const QString &downloadId, const QString &password);
+    Q_INVOKABLE void     setDownloadDescription(const QString &downloadId, const QString &description);
     Q_INVOKABLE bool     moveDownloadFile(const QString &downloadId, const QString &newFilePath);
     Q_INVOKABLE void     enableSpeedLimiter();
     Q_INVOKABLE void     disableSpeedLimiter();
+    Q_INVOKABLE void     redownload(const QString &id);
     Q_INVOKABLE void    setPendingCookies(const QString &url, const QString &cookies);
     Q_INVOKABLE QString takePendingCookies(const QString &url);
     Q_INVOKABLE QString takePendingReferrer(const QString &url);
     Q_INVOKABLE QString takePendingPageUrl(const QString &url);
-    // Returns empty string on success, or an error message on failure.
     Q_INVOKABLE QString  registerNativeHost() const;
-    // Returns the absolute path where the manifest was/would be written.
     Q_INVOKABLE QString  nativeHostManifestPath() const;
-    // Returns a multi-line diagnostic string for troubleshooting.
     Q_INVOKABLE QString  nativeHostDiagnostics() const;
-
-    // Queue management
     Q_INVOKABLE void createQueue(const QString &name);
     Q_INVOKABLE void deleteQueue(const QString &queueId);
     Q_INVOKABLE void saveQueues();
     Q_INVOKABLE void startQueue(const QString &queueId);
     Q_INVOKABLE void stopQueue(const QString &queueId);
+    Q_INVOKABLE void setTrayTooltip(const QString &tip);
 
 signals:
     void activeDownloadsChanged();
@@ -130,10 +137,10 @@ signals:
     void exceptionDialogRequested(const QString &url);
     void interceptedDownloadRequested(const QString &url, const QString &filename);
     void minutesUntilNextQueueChanged();
+    void completedDownloadsChanged();
 
 private:
     QString generateId() const;
-
     DownloadQueue          *m_queue{nullptr};
     DownloadTableModel     *m_downloadModel{nullptr};
     CategoryModel          *m_categoryModel{nullptr};
@@ -145,14 +152,15 @@ private:
     class QueueDatabase    *m_queueDb{nullptr};
     class QueueModel       *m_queueModel{nullptr};
     QTimer                 *m_saveTimer{nullptr};
-    QLocalServer           *m_ipcServer{nullptr};  // receives downloads from native host subprocesses
-    QSet<QString>           m_dirtyIds;   // items needing a DB write
-    QMap<QString, int>      m_cancelCounts;        // URL → number of times cancelled
-    QMap<QString, int>      m_interceptRejectCounts; // URL → number of times intercept dialog rejected
+    QTimer                 *m_tooltipTimer{nullptr};
+    QLocalServer           *m_ipcServer{nullptr};
+    QSet<QString>           m_dirtyIds;
+    QMap<QString, int>      m_cancelCounts;
+    QMap<QString, int>      m_interceptRejectCounts;
     bool                    m_restoring{false};
-    QMap<QString, QString>  m_pendingCookies;   // url → cookies for browser-intercepted downloads
-    QMap<QString, QString>  m_pendingReferrers; // url → referrer for browser-intercepted downloads
-    QMap<QString, QString>  m_pendingPageUrls;  // url → parent page URL for browser-intercepted downloads
+    QMap<QString, QString>  m_pendingCookies;
+    QMap<QString, QString>  m_pendingReferrers;
+    QMap<QString, QString>  m_pendingPageUrls;
     QString                 m_selectedCategory{QStringLiteral("all")};
     QString                 m_selectedQueue;
 
@@ -163,5 +171,6 @@ private:
     int calculateMinutesUntilNextQueue() const;
 
     QTimer                 *m_schedulerTimer{nullptr};
-    QMap<QString, QDateTime> m_lastQueueRun;  // queueId → last run time
+    QMap<QString, QDateTime> m_lastQueueRun;
+    int                     m_completedCount{0};
 };

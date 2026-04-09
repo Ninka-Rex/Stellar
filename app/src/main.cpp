@@ -126,18 +126,7 @@ static void writeNativeMsg(const QByteArray &json)
 
 static void nmLog(const QString &msg)
 {
-#if defined(Q_OS_WIN)
-    const QString path = QString::fromLocal8Bit(qgetenv("TEMP")) + QStringLiteral("\\stellar_nm.log");
-#else
-    const QString path = QStringLiteral("/tmp/stellar_nm.log");
-#endif
-    QFile f(path);
-    if (f.open(QIODevice::Append | QIODevice::Text)) {
-        f.write(QDateTime::currentDateTime().toString(Qt::ISODate).toUtf8());
-        f.write(" ");
-        f.write(msg.toUtf8());
-        f.write("\n");
-    }
+    Q_UNUSED(msg);
 }
 
 static int runNativeMessagingHost(int argc, char *argv[])

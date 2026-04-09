@@ -98,6 +98,10 @@ public:
     void setUsername(const QString &v)  { if (m_username  != v) { m_username  = v; emit usernameChanged();  } }
     void setPassword(const QString &v)  { if (m_password  != v) { m_password  = v; emit passwordChanged();  } }
     void setLastTryAt(const QDateTime &v) { if (m_lastTryAt != v) { m_lastTryAt = v; emit lastTryAtChanged(); } }
+    void setAddedAt(const QDateTime &v) { m_addedAt = v; }
+    
+    void setFilenameManuallySet(bool v) { m_filenameManuallySet = v; }
+    bool isFilenameManuallySet() const { return m_filenameManuallySet; }
 
 signals:
     void filenameChanged();
@@ -132,6 +136,7 @@ private:
     QString      m_savePath;
     QDateTime    m_addedAt;
     bool         m_resumeCapable{false};
+    bool         m_filenameManuallySet{false};
     QVariantList m_segmentData;
     QString      m_description;
     int          m_speedLimitKBps{0};

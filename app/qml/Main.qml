@@ -109,8 +109,10 @@ ApplicationWindow {
             root.show(); root.raise(); root.requestActivate()
         }
         function onDownloadAdded(item) {
-            // Don't show progress dialog for "Download Later" items (status = Paused)
+            // Don't show the progress popup for "Download Later" (Paused) or for
+            // queue-managed downloads — queues run silently in the background.
             if (!item || item.status === "Paused") return
+            if (item.queueId && item.queueId.length > 0) return
             progressDialog.item       = item
             progressDialog.downloadId = item.id
             progressDialog.show()
@@ -212,6 +214,7 @@ ApplicationWindow {
         fileInfoDialog.pendingFilename = filename
         fileInfoDialog.pendingSize     = ""
         fileInfoDialog.pendingSavePath = App.settings.defaultSavePath
+        fileInfoDialog.filenameOverride = filenameOverride
         fileInfoDialog.show()
         fileInfoDialog.raise()
     }
@@ -245,8 +248,20 @@ ApplicationWindow {
     // ── Download File Info dialog (step 2) ────────────────────────────────────
     DownloadFileInfoDialog {
         id: fileInfoDialog
-        onDownloadNow:   (url, savePath, category, desc) => App.addUrl(url, savePath, category, desc, true,  App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword)
-        onDownloadLater: (url, savePath, category, desc) => App.addUrl(url, savePath, category, desc, false, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword)
+        onDownloadNow: (url, savePath, category, desc) => {
+            // savePath from the dialog is the full path (dir + filename).
+            // Split so the filename is passed as filenameOverride, preserving the user's custom name.
+            var sep = Math.max(savePath.lastIndexOf("/"), savePath.lastIndexOf("\\"))
+            var dir   = sep >= 0 ? savePath.substring(0, sep) : savePath
+            var fname = sep >= 0 ? savePath.substring(sep + 1) : fileInfoDialog.filenameOverride
+            App.addUrl(url, dir, category, desc, true,  App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword, fname)
+        }
+        onDownloadLater: (url, savePath, category, desc) => {
+            var sep = Math.max(savePath.lastIndexOf("/"), savePath.lastIndexOf("\\"))
+            var dir   = sep >= 0 ? savePath.substring(0, sep) : savePath
+            var fname = sep >= 0 ? savePath.substring(sep + 1) : fileInfoDialog.filenameOverride
+            App.addUrl(url, dir, category, desc, false, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword, fname)
+        }
         onRejected:      (url) => App.notifyInterceptRejected(url)
     }
 
@@ -271,8 +286,33 @@ ApplicationWindow {
     // ── Scheduler Dialog ───────────────────────────────────────────────────────
     SchedulerDialog { id: schedulerDialog }
 
+    // ── Batch Download Dialogs ────────────────────────────────────────────────
+    BatchDownloadDialog { 
+        id: batchDownloadDialog 
+        onAccepted: (files) => {
+            var urlList = files.split('\n')
+            var fileObjs = []
+            for(var i=0; i<urlList.length; i++) {
+                if(urlList[i].length > 0)
+                    fileObjs.push({ name: urlList[i].split('/').pop(), url: urlList[i] })
+            }
+            batchDownloadListDialog.files = fileObjs
+            batchDownloadListDialog.show()
+            batchDownloadListDialog.raise()
+        }
+    }
+    BatchDownloadListDialog { 
+        id: batchDownloadListDialog 
+        onBatchAccepted: (urls) => {
+            for (var i = 0; i < urls.length; ++i) {
+                App.addUrl(urls[i])
+            }
+        }
+    }
+
     // ── Browser Integration Dialog ────────────────────────────────────────────
     BrowserIntegrationDialog { id: browserIntegrationDialog }
+
 
     // ── Add Exception Dialog ──────────────────────────────────────────────────
     AddExceptionDialog { id: addExceptionDialog }
@@ -304,8 +344,9 @@ ApplicationWindow {
 
     Timer {
         id: tipsTimer
-        interval: 6 * 60 * 60 * 1000  // 6 hours
+        interval: 6 * 60 * 60 * 1000  // Change tip every 6 hours
         repeat: true
+        running: App.settings.showTips && root.tipsArray.length > 0
         onTriggered: {
             if (root.tipsArray.length > 0) {
                 root.currentTipIndex = (root.currentTipIndex + 1) % root.tipsArray.length
@@ -314,25 +355,42 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        // Load tips from embedded resource
-        var xhr = new XMLHttpRequest()
-        xhr.open("GET", "qrc:/qt/qml/com/stellar/app/app/tips.txt", true)
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                var text = xhr.responseText.trim()
-                root.tipsArray = text.split(/\n/).filter(function(line) { return line.length > 0 })
-                if (root.tipsArray.length > 0 && App.settings.showTips) {
-                    tipsTimer.start()
+        loadTips()
+    }
+
+    function loadTips() {
+        // Load tips from file (embedded in QML module resources)
+        var paths = [
+            "qrc:/qt/qml/com/stellar/app/tips.txt",
+            "qrc:/com/stellar/app/tips.txt",
+            "qrc:/tips.txt"
+        ]
+
+        for (var i = 0; i < paths.length; i++) {
+            var xhr = new XMLHttpRequest()
+            xhr.open("GET", paths[i], false)
+            try {
+                xhr.send()
+                if (xhr.status === 200) {
+                    var text = xhr.responseText.trim()
+                    root.tipsArray = text.split(/\n/).filter(function(line) { return line.trim().length > 0 })
+                    root.currentTipIndex = Math.floor(Math.random() * root.tipsArray.length)
+                    console.log("Tips loaded from " + paths[i] + ": " + root.tipsArray.length + " tips")
+                    return
                 }
+            } catch (e) {
+                // Try next path
             }
         }
-        xhr.send()
+        console.warn("Could not load tips.txt from any path")
     }
 
     Connections {
         target: App.settings
         function onShowTipsChanged() {
             if (App.settings.showTips && root.tipsArray.length > 0) {
+                // Show a new tip immediately when enabled
+                root.currentTipIndex = Math.floor(Math.random() * root.tipsArray.length)
                 tipsTimer.start()
             } else {
                 tipsTimer.stop()
@@ -367,14 +425,43 @@ ApplicationWindow {
         Menu {
             title: qsTr("Tasks")
             Action { text: qsTr("Add URL…");       shortcut: "Ctrl+N";       onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
-            Action { text: qsTr("Add Batch URLs…"); shortcut: "Ctrl+Shift+N" }
+            Action { text: qsTr("Add Batch URLs…"); shortcut: "Ctrl+Shift+N"; onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
             MenuSeparator {}
             Action { text: qsTr("Exit");            shortcut: "Ctrl+Q";       onTriggered: root.quitApp() }
         }
         Menu {
             title: qsTr("File")
-            Action { text: qsTr("Open Folder") }
-            Action { text: qsTr("Open File") }
+            Action { 
+                text: qsTr("Open Folder"); 
+                onTriggered: { var item = downloadTable._selectedItem(); if (item && item.status === "Completed") App.openFolder(item.id) }
+                enabled: downloadTable._selectedItem() && downloadTable._selectedItem().status === "Completed"
+            }
+            Action { 
+                text: qsTr("Open File"); 
+                onTriggered: { var item = downloadTable._selectedItem(); if (item && item.status === "Completed") App.openFile(item.id) }
+                enabled: downloadTable._selectedItem() && downloadTable._selectedItem().status === "Completed"
+            }
+            MenuSeparator {}
+            Action { 
+                text: qsTr("Download Now"); 
+                onTriggered: { var item = downloadTable._selectedItem(); if (item && item.status === "Paused") App.resumeDownload(item.id) }
+                enabled: downloadTable._selectedItem() && downloadTable._selectedItem().status === "Paused"
+            }
+            Action { 
+                text: qsTr("Stop Download"); 
+                onTriggered: { var item = downloadTable._selectedItem(); if (item && (item.status === "Downloading" || item.status === "Queued")) App.pauseDownload(item.id) }
+                enabled: downloadTable._selectedItem() && (downloadTable._selectedItem().status === "Downloading" || downloadTable._selectedItem().status === "Queued")
+            }
+            Action { 
+                text: qsTr("Remove"); 
+                onTriggered: downloadTable._selectedItem() ? downloadTable.deleteSelected() : null
+                enabled: downloadTable._selectedItem() !== null
+            }
+            Action { 
+                text: qsTr("Redownload"); 
+                onTriggered: { var item = downloadTable._selectedItem(); if (item) App.redownload(item.id) }
+                enabled: downloadTable._selectedItem() !== null
+            }
         }
         Menu {
             title: qsTr("Downloads")
@@ -429,17 +516,17 @@ ApplicationWindow {
             MenuSeparator {}
             Menu {
                 title: qsTr("Arrange Files")
-                Action { text: qsTr("By Order Of Addition");  onTriggered: App.sortDownloads("added",      true) }
-                Action { text: qsTr("By File Name");          onTriggered: App.sortDownloads("name",       true) }
-                Action { text: qsTr("By Size");               onTriggered: App.sortDownloads("size",       true) }
-                Action { text: qsTr("By Status");             onTriggered: App.sortDownloads("status",     true) }
-                Action { text: qsTr("By Time Left");          onTriggered: App.sortDownloads("timeleft",   true) }
-                Action { text: qsTr("By Transfer Rate");      onTriggered: App.sortDownloads("speed",      false) }
-                Action { text: qsTr("By Last Try Date");      onTriggered: App.sortDownloads("lasttry",    false) }
-                Action { text: qsTr("By Description");        onTriggered: App.sortDownloads("description",true) }
-                Action { text: qsTr("By Save Path");          onTriggered: App.sortDownloads("saveto",     true) }
-                Action { text: qsTr("By Referer");            onTriggered: App.sortDownloads("referrer",   true) }
-                Action { text: qsTr("By Parent Web Page");    onTriggered: App.sortDownloads("parenturl",  true) }
+                Action { text: qsTr("By Order Of Addition");  onTriggered: { downloadTable.updateSortState("added", true); App.sortDownloads("added", true) } }
+                Action { text: qsTr("By File Name");          onTriggered: { downloadTable.updateSortState("name", true); App.sortDownloads("name", true) } }
+                Action { text: qsTr("By Size");               onTriggered: { downloadTable.updateSortState("size", true); App.sortDownloads("size", true) } }
+                Action { text: qsTr("By Status");             onTriggered: { downloadTable.updateSortState("status", true); App.sortDownloads("status", true) } }
+                Action { text: qsTr("By Time Left");          onTriggered: { downloadTable.updateSortState("timeleft", true); App.sortDownloads("timeleft", true) } }
+                Action { text: qsTr("By Transfer Rate");      onTriggered: { downloadTable.updateSortState("speed", false); App.sortDownloads("speed", false) } }
+                Action { text: qsTr("By Last Try Date");      onTriggered: { downloadTable.updateSortState("lasttry", false); App.sortDownloads("lasttry", false) } }
+                Action { text: qsTr("By Description");        onTriggered: { downloadTable.updateSortState("description", true); App.sortDownloads("description", true) } }
+                Action { text: qsTr("By Save Path");          onTriggered: { downloadTable.updateSortState("saveto", true); App.sortDownloads("saveto", true) } }
+                Action { text: qsTr("By Referer");            onTriggered: { downloadTable.updateSortState("referrer", true); App.sortDownloads("referrer", true) } }
+                Action { text: qsTr("By Parent Web Page");    onTriggered: { downloadTable.updateSortState("parenturl", true); App.sortDownloads("parenturl", true) } }
             }
             MenuSeparator {}
             Action { text: qsTr("Columns…"); onTriggered: {
@@ -485,6 +572,7 @@ ApplicationWindow {
         Drag.keys: ["text/downloadId"]
         Drag.hotSpot: Qt.point(0, 0)
         property string dragDownloadId: ""
+        property var dragDownloadIds: []
         property string dragFilename: ""
     }
 
@@ -520,6 +608,7 @@ ApplicationWindow {
             id: toolbar
             Layout.fillWidth: true
             queueModel: App.queueModel
+            downloadTable: downloadTable
             onAddClicked:             { addUrlDialog.show(); addUrlDialog.raise() }
             onResumeClicked:          downloadTable.resumeSelected()
             onStopClicked:            downloadTable.stopSelected()
@@ -711,8 +800,19 @@ ApplicationWindow {
                 id: sidebar
                 Layout.fillHeight: true
                 Layout.preferredWidth: 188
-                onCategorySelected: (catId) => App.selectedCategory = catId
-                onQueueSelected: (queueId) => App.selectedQueue = queueId
+                onCategorySelected: (catId) => {
+                    App.selectedCategory = catId
+                    // Clear selection so toolbar enabled-states re-evaluate against
+                    // the new (possibly empty) filtered view — otherwise Resume/Delete/etc.
+                    // stay lit when the newly shown category has no items.
+                    downloadTable._setSelection({})
+                    downloadTable._anchorRow = -1
+                }
+                onQueueSelected: (queueId) => {
+                    App.selectedQueue = queueId
+                    downloadTable._setSelection({})
+                    downloadTable._anchorRow = -1
+                }
             }
 
             DownloadTable {
@@ -740,26 +840,23 @@ ApplicationWindow {
         }
 
         StatusBar {
+            id: statusBar
             Layout.fillWidth: true
-            activeCount: App.activeDownloads
-        }
-    }
-
-    // ── Tip of the day (bottom right) ──────────────────────────────────────────
-    Rectangle {
-        visible: App.settings.showTips && root.tipsArray.length > 0
-        anchors { bottom: parent.bottom; right: parent.right; margins: 12 }
-        width: Math.min(280, root.width - 40)
-        height: tipText.implicitHeight + 12
-        color: "transparent"
-
-        Text {
-            id: tipText
-            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 6 }
-            text: root.tipsArray.length > root.currentTipIndex ? "💡Tip: " + root.tipsArray[root.currentTipIndex] : ""
-            color: "#666666"
-            font.pixelSize: 10
-            wrapMode: Text.WordWrap
+            activeCount:    App.activeDownloads
+            completedCount: App.completedDownloads
+            // _selectionVersion is the reactive trigger; Object.keys gives the live count.
+            selectedCount: { downloadTable._selectionVersion; return Object.keys(downloadTable._selectedRows).length }
+            tipsArray:      root.tipsArray
+            currentTipIndex: root.currentTipIndex
+            showTips:       App.settings.showTips
+            onNextTip: {
+                if (root.tipsArray.length > 0) {
+                    root.currentTipIndex = (root.currentTipIndex + 1) % root.tipsArray.length
+                }
+            }
+            onCloseTips: {
+                App.settings.setShowTips(false)
+            }
         }
     }
 }

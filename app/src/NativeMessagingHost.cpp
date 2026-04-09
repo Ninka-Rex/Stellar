@@ -44,11 +44,13 @@ void NativeMessagingHost::handleMessage(const QByteArray &json) {
         emit pingReceived();
         sendReady();
     } else if (type == QStringLiteral("download")) {
+        int modifierKey = obj[QStringLiteral("modifierKey")].toInt(0);
         emit downloadRequested(
             obj[QStringLiteral("url")].toString(),
             obj[QStringLiteral("filename")].toString(),
             obj[QStringLiteral("referrer")].toString(),
-            obj[QStringLiteral("cookies")].toString()
+            obj[QStringLiteral("cookies")].toString(),
+            modifierKey
         );
     }
 }

@@ -9,9 +9,7 @@
 "use strict";
 
 // The service worker's downloads.onCreated listener handles most cases.
-// This content script catches anchor clicks with the "download" attribute,
-// which trigger file downloads but may not always surface through
-// downloads.onCreated in time for interception.
+// This content script also tracks modifier keys for bypass interception.
 
 document.addEventListener("click", (event) => {
     const anchor = event.target.closest("a[download], a[href]");
@@ -20,11 +18,22 @@ document.addEventListener("click", (event) => {
     const href = anchor.href;
     if (!href || href.startsWith("javascript:") || href.startsWith("#")) return;
 
-    // Only act on links that look like file downloads (have an extension in the
-    // pathname or carry the `download` attribute). The service worker will do
-    // the actual interception via downloads.onCreated; we don't need to do
-    // anything here other than let the default browser behavior proceed so
-    // that the download appears in the downloads.onCreated event.
-    // This script is intentionally minimal — it exists as a hook point for
-    // future enhancements (e.g., page-level disabling, download-bar suppression).
-}, { passive: true, capture: true });
+    // Determine which modifier key is held (0=none, 1=alt, 2=ctrl, 3=shift)
+    let modifierKey = 0;
+    if (event.altKey) modifierKey = 1;
+    else if (event.ctrlKey) modifierKey = 2;
+    else if (event.shiftKey) modifierKey = 3;
+
+    // Notify the background script if a modifier key was held
+    if (modifierKey > 0) {
+        browser.runtime.sendMessage({
+            type: "recordModifierKey",
+            modifierKey: modifierKey,
+        }).catch(() => {
+            // Service worker may not be ready, ignore
+        });
+    }
+
+    // The service worker's downloads.onCreated listener will do
+    // the actual interception. This script just tracks modifier keys.
+}, { capture: true });

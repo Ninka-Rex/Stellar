@@ -74,6 +74,10 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
             const QString queueId = obj[QLatin1String("queueId")].toString();
             if (!queueId.isEmpty()) item->setQueueId(queueId);
         }
+        {
+            const QString addedStr = obj[QLatin1String("addedAt")].toString();
+            if (!addedStr.isEmpty()) item->setAddedAt(QDateTime::fromString(addedStr, Qt::ISODate));
+        }
 
         const QString statusStr = obj[QLatin1String("status")].toString();
         DownloadItem::Status s = DownloadItem::Status::Paused;

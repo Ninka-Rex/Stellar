@@ -29,7 +29,7 @@ Window {
     minimumHeight: 180
     maximumHeight: 200
     color: "#1e1e1e"
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     modality: Qt.ApplicationModal
 
     Material.theme: Material.Dark

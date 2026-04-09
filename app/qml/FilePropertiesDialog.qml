@@ -25,11 +25,11 @@ Window {
     id: root
     title: "File Properties"
     width: 500
-    height: 490
+    height: 530
     minimumWidth: 500
     maximumWidth: 500
-    minimumHeight: 490
-    maximumHeight: 490
+    minimumHeight: 530
+    maximumHeight: 530
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
 
@@ -170,22 +170,30 @@ Window {
             Text { text: "Save to:"; color: "#909090"; font.pixelSize: 12 }
             RowLayout {
                 spacing: 6
-                TextEdit {
-                    text: root.item ? (root.item.savePath.replace(/\//g, "\\") + "\\" + root.item.filename) : "--"
-                    color: "#d0d0d0"; font.pixelSize: 12
-                    wrapMode: TextEdit.NoWrap
-                    clip: true
-                    readOnly: true
-                    selectByMouse: true
-                    selectionColor: "#4488dd"
-                    selectedTextColor: "#ffffff"
+                // Scrollable single-line path — parent clips, TextInput scrolls horizontally.
+                Rectangle {
                     Layout.fillWidth: true
+                    height: 24
+                    color: "#1a1a1a"
+                    border.color: "#3c3c3c"
+                    radius: 3
+                    clip: true
 
+                    TextInput {
+                        id: pathInput
+                        anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 6; rightMargin: 6 }
+                        text: root.item ? (root.item.savePath.replace(/\//g, "\\") + "\\" + root.item.filename) : "--"
+                        color: "#d0d0d0"; font.pixelSize: 12
+                        readOnly: true
+                        selectByMouse: true
+                        clip: false
+                    }
                 }
                 Rectangle {
                     width: 50; height: 22; radius: 3
-                    color: moveMa.containsMouse ? "#1e3a6e" : "#2d2d2d"
+                    color: moveMa.containsMouse ? "#4a4a4a" : "#3a3a3a"
                     border.color: "#555"; border.width: 1
+                    Behavior on color { ColorAnimation { duration: 80 } }
                     Text { anchors.centerIn: parent; text: "Move"; color: "#d0d0d0"; font.pixelSize: 11 }
                     MouseArea {
                         id: moveMa
@@ -200,53 +208,60 @@ Window {
 
         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
-        // URL
+        // Address — read-only, horizontally scrollable, link-colored
         ColumnLayout { spacing: 3; Layout.fillWidth: true
             Text { text: "Address:"; color: "#909090"; font.pixelSize: 12 }
-            TextEdit {
-                text: root.item ? root.item.url.toString() : "--"
-                color: "#4488dd"; font.pixelSize: 12
-                font.underline: true
-                wrapMode: TextEdit.WrapAnywhere
-                Layout.fillWidth: true
-                readOnly: true
-                selectByMouse: true
-                selectionColor: "#4488dd"
-                selectedTextColor: "#ffffff"
+            Rectangle {
+                Layout.fillWidth: true; height: 24
+                color: "#1a1a1a"; border.color: "#3c3c3c"; radius: 3; clip: true
+                TextInput {
+                    anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 6; rightMargin: 6 }
+                    text: root.item ? root.item.url.toString() : "--"
+                    color: "#4488dd"; font.pixelSize: 12; font.underline: true
+                    readOnly: true; selectByMouse: true; clip: false
+                    selectionColor: "#4488dd"; selectedTextColor: "#ffffff"
+                }
             }
         }
 
-        // Description
+        // Description — editable; changes are saved immediately via App.setDownloadDescription
         ColumnLayout { spacing: 3; Layout.fillWidth: true
             Text { text: "Description:"; color: "#909090"; font.pixelSize: 12 }
-            TextEdit {
-                text: root.item && root.item.description.length > 0 ? root.item.description : "(none)"
-                color: root.item && root.item.description.length > 0 ? "#d0d0d0" : "#555555"
-                font.pixelSize: 12
-                wrapMode: TextEdit.WordWrap
-                Layout.fillWidth: true
-                readOnly: true
-                selectByMouse: true
-                selectionColor: "#4488dd"
-                selectedTextColor: "#ffffff"
+            Rectangle {
+                Layout.fillWidth: true; height: 24
+                color: "#1a1a1a"; border.color: "#3c3c3c"; radius: 3; clip: true
+                TextInput {
+                    id: descInput
+                    anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 6; rightMargin: 6 }
+                    text: root.item ? root.item.description : ""
+                    color: "#d0d0d0"; font.pixelSize: 12; clip: false
+                    selectByMouse: true
+                    selectionColor: "#4488dd"; selectedTextColor: "#ffffff"
+                    onTextChanged: {
+                        if (root.item && text !== root.item.description)
+                            App.setDownloadDescription(root.item.id, text)
+                    }
+                }
             }
         }
 
         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
-        // Parent web page
+        // Parent web page — read-only, horizontally scrollable, link-colored
         ColumnLayout { spacing: 3; Layout.fillWidth: true
-            Text { text: "The web page from which this file was obtained:"; color: "#909090"; font.pixelSize: 12 }
-            TextEdit {
-                text: root.item && root.item.parentUrl.length > 0 ? root.item.parentUrl : "(unknown)"
-                color: root.item && root.item.parentUrl.length > 0 ? "#4488dd" : "#555555"
-                font.pixelSize: 12; wrapMode: TextEdit.WrapAnywhere
-                font.underline: root.item && root.item.parentUrl.length > 0
-                Layout.fillWidth: true
-                readOnly: true
-                selectByMouse: true
-                selectionColor: "#4488dd"
-                selectedTextColor: "#ffffff"
+            Text { text: "Web page this file was obtained from:"; color: "#909090"; font.pixelSize: 12 }
+            Rectangle {
+                Layout.fillWidth: true; height: 24
+                color: "#1a1a1a"; border.color: "#3c3c3c"; radius: 3; clip: true
+                TextInput {
+                    anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 6; rightMargin: 6 }
+                    text: root.item && root.item.parentUrl.length > 0 ? root.item.parentUrl : "(unknown)"
+                    color: root.item && root.item.parentUrl.length > 0 ? "#4488dd" : "#555555"
+                    font.pixelSize: 12
+                    font.underline: root.item && root.item.parentUrl.length > 0
+                    readOnly: true; selectByMouse: true; clip: false
+                    selectionColor: "#4488dd"; selectedTextColor: "#ffffff"
+                }
             }
         }
 
@@ -260,15 +275,16 @@ Window {
             rowSpacing: 6
 
             Text { text: "Referer:"; color: "#909090"; font.pixelSize: 12 }
-            TextEdit {
-                text: root.item && root.item.referrer.length > 0 ? root.item.referrer : "(none)"
-                color: root.item && root.item.referrer.length > 0 ? "#d0d0d0" : "#555555"
-                font.pixelSize: 12; wrapMode: TextEdit.WrapAnywhere
-                Layout.fillWidth: true
-                readOnly: true
-                selectByMouse: true
-                selectionColor: "#4488dd"
-                selectedTextColor: "#ffffff"
+            Rectangle {
+                Layout.fillWidth: true; height: 24
+                color: "#1a1a1a"; border.color: "#3c3c3c"; radius: 3; clip: true
+                TextInput {
+                    anchors { left: parent.left; right: parent.right; verticalCenter: parent.verticalCenter; leftMargin: 6; rightMargin: 6 }
+                    text: root.item && root.item.referrer.length > 0 ? root.item.referrer : "(none)"
+                    color: root.item && root.item.referrer.length > 0 ? "#d0d0d0" : "#555555"
+                    font.pixelSize: 12; readOnly: true; selectByMouse: true; clip: false
+                    selectionColor: "#4488dd"; selectedTextColor: "#ffffff"
+                }
             }
 
             Text { text: "Login:"; color: "#909090"; font.pixelSize: 12 }
@@ -297,16 +313,43 @@ Window {
 
         Item { Layout.fillHeight: true }
 
-        // Close button
+        // Button row: spacer pushes both buttons to the right, Open sits left of Close.
         RowLayout {
             Layout.fillWidth: true
+            spacing: 8
+
             Item { Layout.fillWidth: true }
-            Button {
-                text: "Close"
-                implicitWidth: 80
-                background: Rectangle { color: "#3a3a3a"; radius: 3; border.color: "#555"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                onClicked: root.close()
+
+            // Plain Rectangle avoids Material Button's implicit insets that would
+            // make it render taller than its stated implicitHeight.
+            Rectangle {
+                width: 80; height: 32; radius: 3
+                color: openMa.containsMouse ? "#4a4a4a" : "#3a3a3a"
+                border.color: "#555"; border.width: 1
+                Behavior on color { ColorAnimation { duration: 80 } }
+                Text { anchors.centerIn: parent; text: "Open"; color: "#d0d0d0"; font.pixelSize: 13 }
+                MouseArea {
+                    id: openMa
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: if (root.item) Qt.openUrlExternally("file:///" + (root.item.savePath + "/" + root.item.filename).replace(/\\/g, "/"))
+                }
+            }
+
+            Rectangle {
+                width: 80; height: 32; radius: 3
+                color: closeMa.containsMouse ? "#4a4a4a" : "#3a3a3a"
+                border.color: "#555"; border.width: 1
+                Behavior on color { ColorAnimation { duration: 80 } }
+                Text { anchors.centerIn: parent; text: "Close"; color: "#d0d0d0"; font.pixelSize: 13 }
+                MouseArea {
+                    id: closeMa
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: root.close()
+                }
             }
         }
     }

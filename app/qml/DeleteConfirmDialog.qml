@@ -34,9 +34,15 @@ Window {
     signal confirmed(int deleteMode)
 
     width: 420
-    height: fileExists ? 230 : 160
+    // Material Button elements carry ~6px top/bottom insets, so the rendered button
+    // height is ~48px rather than the nominal 36px.  The original 160px was too small
+    // to fit icon row + spacing + buttons + margins, causing the button row to be
+    // clipped until the user manually resized the window.
+    height: fileExists ? 250 : 196
     minimumWidth: 380
     maximumWidth: 560
+    minimumHeight: height
+    maximumHeight: height
     color: "#1e1e1e"
     title: "Confirm Delete"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -53,8 +59,8 @@ Window {
     }
 
     ColumnLayout {
-        anchors { fill: parent; margins: 20 }
-        spacing: 14
+        anchors { fill: parent; margins: 16 }
+        spacing: 10
 
         // Icon + message
         RowLayout {

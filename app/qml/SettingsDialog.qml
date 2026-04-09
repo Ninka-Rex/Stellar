@@ -53,10 +53,22 @@ Window {
     property bool   editStartImmediately:      false
     property bool   editSpeedLimiterOnStartup: false
     property bool   editShowDownloadComplete:  true
+    property bool   editShowFinishedCount:     true
     property int    editSavedSpeedLimitKBps:   500
+    property int    editBypassInterceptKey:    0
 
     Component.onCompleted: resetEdits()
     onVisibleChanged: { if (visible) resetEdits() }
+
+    Connections {
+        target: App.settings
+        function onGlobalSpeedLimitKBpsChanged() {
+            root.editGlobalSpeedLimitKBps = App.settings.globalSpeedLimitKBps
+            if (root.editGlobalSpeedLimitKBps > 0 && root.editSavedSpeedLimitKBps === 0) {
+                root.editSavedSpeedLimitKBps = root.editGlobalSpeedLimitKBps
+            }
+        }
+    }
 
     // Track whether anything has been changed
     readonly property bool settingsChanged:
@@ -72,8 +84,10 @@ Window {
         editDuplicateAction       !== App.settings.duplicateAction  ||
         editStartImmediately      !== App.settings.startImmediately ||
         editSpeedLimiterOnStartup !== App.settings.speedLimiterOnStartup ||
+        editBypassInterceptKey    !== App.settings.bypassInterceptKey ||
         editSavedSpeedLimitKBps   !== App.settings.savedSpeedLimitKBps ||
-        editShowDownloadComplete  !== App.settings.showDownloadComplete
+        editShowDownloadComplete  !== App.settings.showDownloadComplete ||
+        editShowFinishedCount     !== App.settings.showFinishedCount
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
@@ -135,8 +149,10 @@ Window {
         App.settings.duplicateAction       = editDuplicateAction
         App.settings.startImmediately       = editStartImmediately
         App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
+        App.settings.bypassInterceptKey    = editBypassInterceptKey
         App.settings.savedSpeedLimitKBps    = editSavedSpeedLimitKBps
         App.settings.showDownloadComplete   = editShowDownloadComplete
+        App.settings.showFinishedCount      = editShowFinishedCount
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
@@ -155,8 +171,13 @@ Window {
         editDuplicateAction       = App.settings.duplicateAction
         editStartImmediately      = App.settings.startImmediately
         editSpeedLimiterOnStartup = App.settings.speedLimiterOnStartup
+        editBypassInterceptKey    = App.settings.bypassInterceptKey
         editSavedSpeedLimitKBps   = App.settings.savedSpeedLimitKBps
         editShowDownloadComplete  = App.settings.showDownloadComplete
+        editShowFinishedCount     = App.settings.showFinishedCount
+        // Reset dirty flags so Apply button is disabled until user actually changes something
+        catDirty = false
+        browserDirty = false
     }
 
     ColumnLayout {
@@ -728,6 +749,40 @@ Window {
                                 color: "#555"; font.pixelSize: 10
                             }
 
+                            Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+
+                            // ── Bypass interception key ────────────────────────────
+                            Text {
+                                text: "Bypass Download Interception"
+                                color: "#ffffff"; font.pixelSize: 14; font.bold: true
+                            }
+
+                            Text {
+                                text: "Hold this key while clicking a download link to skip interception and let the browser download:"
+                                color: "#c0c0c0"; font.pixelSize: 13
+                                wrapMode: Text.WordWrap
+                                Layout.fillWidth: true
+                            }
+
+                            Row {
+                                spacing: 12
+                                ComboBox {
+                                    id: bypassKeyCombo
+                                    model: ["None", "Alt", "Ctrl", "Shift"]
+                                    currentIndex: root.editBypassInterceptKey
+                                    implicitWidth: 120
+                                    font.pixelSize: 12
+                                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                    contentItem: Text {
+                                        leftPadding: 8
+                                        text: bypassKeyCombo.displayText
+                                        color: "#d0d0d0"; font: bypassKeyCombo.font
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+                                    onCurrentIndexChanged: root.editBypassInterceptKey = currentIndex
+                                }
+                            }
+
                             Item { height: 10 }
                         }
                     }
@@ -759,18 +814,19 @@ Window {
 
                             RowLayout {
                                 spacing: 8
-                                enabled: globalLimitChk.checked
                                 Text { text: "Maximum speed:"; color: "#a0a0a0"; font.pixelSize: 13 }
                                 TextField {
                                     implicitWidth: 90
                                     text: root.editGlobalSpeedLimitKBps > 0 ? root.editGlobalSpeedLimitKBps.toString() : root.editSavedSpeedLimitKBps.toString()
-                                    placeholderText: "0"
-                                    onTextChanged: { 
-                                        var v = parseInt(text); 
-                                        if (!isNaN(v)) {
-                                            root.editGlobalSpeedLimitKBps = v
+                                    onEditingFinished: {
+                                        var v = parseInt(text);
+                                        if (!isNaN(v) && v > 0) {
+                                            // Update both: active limit if enabled, and saved value for future re-enabling
+                                            if (globalLimitChk.checked) {
+                                                root.editGlobalSpeedLimitKBps = v
+                                            }
                                             root.editSavedSpeedLimitKBps = v
-                                        } 
+                                        }
                                     }
                                     color: "#d0d0d0"; font.pixelSize: 13
                                     background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
@@ -846,6 +902,13 @@ Window {
                             onCheckedChanged: root.editShowTips = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
+                        CheckBox {
+                            text: "Show finished download count in status bar"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editShowFinishedCount
+                            onCheckedChanged: root.editShowFinishedCount = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
 
                         Item { Layout.fillHeight: true }
                     }
@@ -886,12 +949,21 @@ Window {
 
                         GridLayout {
                             columns: 2; columnSpacing: 16; rowSpacing: 6
-                            Text { text: "Build time:"; color: "#808080"; font.pixelSize: 12 }
-                            Text { text: App.buildTime;  color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: "Build date:"; color: "#808080"; font.pixelSize: 12 }
+                            Text { text: App.buildTimeFormatted;  color: "#c0c0c0"; font.pixelSize: 12 }
                             Text { text: "Qt version:";  color: "#808080"; font.pixelSize: 12 }
                             Text { text: App.qtVersion;   color: "#c0c0c0"; font.pixelSize: 12 }
                             Text { text: "Platform:";    color: "#808080"; font.pixelSize: 12 }
-                            Text { text: Qt.platform.os; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text {
+                                text: {
+                                    const os = Qt.platform.os
+                                    if (os === "windows") return "Windows"
+                                    if (os === "linux") return "Linux"
+                                    if (os === "osx") return "macOS"
+                                    return os.charAt(0).toUpperCase() + os.slice(1)
+                                }
+                                color: "#c0c0c0"; font.pixelSize: 12
+                            }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }

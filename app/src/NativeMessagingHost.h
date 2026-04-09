@@ -34,7 +34,8 @@ public:
 
 signals:
     void downloadRequested(const QString &url, const QString &filename,
-                           const QString &referrer, const QString &cookies);
+                           const QString &referrer, const QString &cookies,
+                           int modifierKey = 0);
     void pingReceived();
 
 public slots:

@@ -58,11 +58,11 @@ Window {
 
     ColumnLayout {
         anchors { fill: parent; margins: 20 }
-        spacing: 14
+        spacing: 8
 
         // Icon + title row
         RowLayout {
-            spacing: 14
+            spacing: 10
 
             // Checkmark icon
             Image {
@@ -73,7 +73,7 @@ Window {
             }
 
             ColumnLayout {
-                spacing: 2
+                spacing: 0
                 Text {
                     text: "Download Complete"
                     color: "#44bb44"
@@ -95,7 +95,7 @@ Window {
         Rectangle {
             id: fileBox
             Layout.fillWidth: true
-            Layout.preferredHeight: 80
+            Layout.preferredHeight: 60
             color: fileBoxMoved ? "#1a1a1a" : "#252525"
             border.color: fileBoxMoved ? "#555555" : (fileDragArea.pressed ? "#88bbff" : fileDragArea.containsMouse ? "#4488dd" : "#3a3a3a")
             border.width: 2
@@ -103,18 +103,28 @@ Window {
             opacity: fileBoxMoved ? 0.6 : 1.0
 
             ColumnLayout {
-                anchors { fill: parent; margins: 12 }
-                spacing: 6
+                anchors { fill: parent; margins: 8 }
+                spacing: 4
 
                 Row {
                     spacing: 8
+                    Image {
+                        id: fileIcon
+                        width: 24; height: 24
+                        source: !fileBoxMoved && item ? "image://fileicon/" + (item.savePath + "/" + item.filename).replace(/\\/g, "/") : ""
+                        sourceSize: Qt.size(24, 24)
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
+                        visible: !fileBoxMoved
+                    }
                     Text {
-                        text: fileBoxMoved ? "✓" : "📁"
+                        text: "✓"
                         font.pixelSize: 24
-                        color: fileBoxMoved ? "#88aa88" : "white"
+                        color: "#88aa88"
+                        visible: fileBoxMoved
                     }
                     ColumnLayout {
-                        spacing: 2
+                        spacing: 0
                         Text {
                             text: fileBoxMoved ? "(File moved)" : ((item ? item.filename : "") + " (Drag to move)")
                             color: fileBoxMoved ? "#888888" : (fileDragArea.pressed ? "#88bbff" : fileDragArea.containsMouse ? "#88bbff" : "#d0d0d0")
@@ -212,7 +222,7 @@ Window {
         GridLayout {
             columns: 2
             columnSpacing: 10
-            rowSpacing: 4
+            rowSpacing: 2
             Layout.fillWidth: true
             Layout.topMargin: 0
 
@@ -223,9 +233,7 @@ Window {
             }
         }
 
-        Item { Layout.fillHeight: true; Layout.minimumHeight: 0 }
-
-        // Buttons
+        // Buttons (no spacer - minimize dialog height)
         RowLayout {
             Layout.fillWidth: true
             spacing: 8

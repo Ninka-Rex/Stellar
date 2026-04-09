@@ -48,7 +48,7 @@ public:
 
     void addItem(DownloadItem *item);
     void removeItem(const QString &id);
-    DownloadItem *itemAt(int row) const;
+    Q_INVOKABLE DownloadItem *itemAt(int row) const;
     DownloadItem *itemById(const QString &id) const;
     DownloadItem *itemByUrl(const QUrl &url) const;
 
@@ -63,6 +63,7 @@ private slots:
 
 private:
     bool matchesFilter(DownloadItem *item) const;
+    int compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const;
 
     QList<DownloadItem *> m_items;
     QList<DownloadItem *> m_visible;

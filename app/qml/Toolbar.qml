@@ -23,6 +23,16 @@ Rectangle {
     height: 64
     color: "#1f1f1f"
 
+    property var queueModel: null
+    property var downloadTable: null
+
+    // Reactive enabled-state helpers.
+    // Bind directly to readonly properties on DownloadTable rather than calling
+    // functions — QML only re-evaluates an `enabled:` binding when a *property*
+    // it accessed changes, not when a function's internal state changes.  The
+    // anyPausedSelected / anyActiveSelected properties on DownloadTable emit
+    // change signals (via _selectionVersion) and propagate correctly here.
+
     signal addClicked()
     signal resumeClicked()
     signal stopClicked()
@@ -34,8 +44,6 @@ Rectangle {
     signal startQueueRequested(string queueId)
     signal stopQueueRequested(string queueId)
     signal grabberClicked()
-
-    property var queueModel: null
 
     // bottom border
     Rectangle {
@@ -50,10 +58,22 @@ Rectangle {
         spacing: 2
 
         ToolbarBtn { label: "Add URL";        iconSrc: "icons/new_file.ico";    onClicked: root.addClicked() }
-        ToolbarBtn { label: "Resume";         iconSrc: "icons/resume.png";     onClicked: root.resumeClicked() }
-        ToolbarBtn { label: "Stop";           iconSrc: "icons/pause.png";      onClicked: root.stopClicked() }
-        ToolbarBtn { label: "Stop All";       iconSrc: "icons/pause_orange.png";      onClicked: root.stopAllClicked() }
-        ToolbarBtn { label: "Delete";         iconSrc: "icons/remove.png";     onClicked: root.deleteClicked() }
+        // selectedItemStatus is a string Q_PROPERTY on DownloadTable — it emits
+        // selectedItemStatusChanged whenever the focused item's status changes,
+        // making cross-component enabled bindings reliably reactive.
+        ToolbarBtn {
+            label: "Resume"; iconSrc: "icons/resume.png"
+            enabled: downloadTable ? downloadTable.selectedItemStatus === "Paused" : false
+            onClicked: root.resumeClicked()
+        }
+        ToolbarBtn {
+            label: "Stop"; iconSrc: "icons/pause.png"
+            enabled: downloadTable ? (downloadTable.selectedItemStatus === "Downloading"
+                                   || downloadTable.selectedItemStatus === "Queued") : false
+            onClicked: root.stopClicked()
+        }
+        ToolbarBtn { label: "Stop All"; iconSrc: "icons/pause_orange.png"; enabled: App.activeDownloads > 0;                          onClicked: root.stopAllClicked() }
+        ToolbarBtn { label: "Delete";   iconSrc: "icons/remove.png";       enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
         ToolbarBtn { label: "Delete Done";    iconSrc: "icons/files_x.png";     onClicked: root.deleteCompletedClicked() }
         ToolbarBtn { label: "Options";        iconSrc: "icons/Tools.ico";       onClicked: root.optionsClicked() }
         ToolbarBtn { label: "Scheduler";      iconSrc: "icons/scheduler.ico"; onClicked: root.schedulerClicked() }

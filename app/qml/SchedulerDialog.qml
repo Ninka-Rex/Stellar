@@ -647,7 +647,7 @@ Window {
                         Text { text: "Download"; color: "#d0d0d0" }
                         SpinBox {
                             from: 1; to: 10
-                            value: root.selectedQueue ? root.selectedQueue.maxConcurrentDownloads : 1
+                            value: root.selectedQueue ? root.selectedQueue.maxConcurrentDownloads : 3
                             onValueModified: { if (root.selectedQueue) { root.selectedQueue.maxConcurrentDownloads = value; root.checkForChanges() } }
                         }
                         Text { text: "files at the same time"; color: "#d0d0d0" }
@@ -688,50 +688,63 @@ Window {
 
                             Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
-                            // File list (filtered by queue)
-                            ListView {
-                                id: filesListView
+                            // Wrapper item lets the empty-state text overlay the list area
+                            // instead of appearing below it (ListView has fillHeight so a
+                            // sibling Text would have zero space in the ColumnLayout).
+                            Item {
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
-                                model: App.downloadModel
-                                clip: true
-                                currentIndex: -1
 
-                                delegate: Rectangle {
-                                    width: ListView.view.width
-                                    height: model.item && model.item.queueId === root.selectedQueue.id ? 40 : 0
-                                    visible: model.item && model.item.queueId === root.selectedQueue.id
-                                    color: filesListView.currentIndex === index ? "#1e3a6e" : (fileMouseArea.containsMouse ? "#2a2a3a" : (index % 2 === 0 ? "#1c1c1c" : "#202020"))
-                                    border.color: filesListView.currentIndex === index ? "#4488dd" : "transparent"
-                                    border.width: 1
+                            ListView {
+                                    id: filesListView
+                                    anchors.fill: parent
+                                    model: root.visible ? App.downloadModel : null
+                                    clip: true
+                                    currentIndex: -1
 
-                                    MouseArea {
-                                        id: fileMouseArea
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        onClicked: filesListView.currentIndex = index
-                                    }
+                                    delegate: Rectangle {
+                                        id: delegateContainer
+                                        width: ListView.view.width
+                                        // Collapse height to zero for items not belonging to the selected queue
+                                        // so they don't create invisible gaps in the list.
+                                        readonly property bool _inQueue: model.item !== null && root.selectedQueue !== null && model.item.queueId === root.selectedQueue.id
+                                        visible: _inQueue
+                                        height: _inQueue ? 26 : 0
+                                        color: filesListView.currentIndex === index ? "#1e3a6e" : (fileMouseArea.containsMouse ? "#2a2a3a" : (index % 2 === 0 ? "#1c1c1c" : "#202020"))
+                                        border.color: filesListView.currentIndex === index ? "#4488dd" : "transparent"
+                                        border.width: 1
 
-                                    ColumnLayout {
-                                        anchors { fill: parent; margins: 8 }
-                                        spacing: 4
+                                        MouseArea {
+                                            id: fileMouseArea
+                                            anchors.fill: parent
+                                            hoverEnabled: true
+                                            onClicked: filesListView.currentIndex = index
+                                        }
 
-                                        Row {
-                                            Layout.fillWidth: true
+                                        RowLayout {
+                                            anchors.fill: parent
                                             spacing: 8
+                                            anchors.leftMargin: 6
 
-                                            Text {
-                                                width: parent.width * 0.5
-                                                text: model.item ? model.item.filename : ""
-                                                color: filesListView.currentIndex === index ? "#88bbff" : "#d0d0d0"
-                                                font.pixelSize: 11
-                                                font.bold: filesListView.currentIndex === index
-                                                elide: Text.ElideMiddle
-                                                verticalAlignment: Text.AlignVCenter
+                                            Image {
+                                                Layout.preferredWidth: 18; Layout.preferredHeight: 18
+                                                source: model.item ? "image://fileicon/" + (model.item.savePath + "/" + model.item.filename).replace(/\\/g, "/") : ""
+                                                sourceSize: Qt.size(18, 18)
+                                                fillMode: Image.PreserveAspectFit
+                                                smooth: true
                                             }
 
                                             Text {
-                                                width: parent.width * 0.15
+                                                Layout.fillWidth: true
+                                                text: model.item ? model.item.filename : ""
+                                                color: filesListView.currentIndex === index ? "#88bbff" : "#d0d0d0"
+                                                font.pixelSize: 12
+                                                font.bold: filesListView.currentIndex === index
+                                                elide: Text.ElideMiddle
+                                            }
+
+                                            Text {
+                                                Layout.preferredWidth: parent.width * 0.15
                                                 text: {
                                                     if (!model.item || model.item.totalBytes <= 0) return "--"
                                                     var b = model.item.totalBytes
@@ -740,50 +753,48 @@ Window {
                                                     return (b / 1073741824).toFixed(2) + " GB"
                                                 }
                                                 color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
-                                                font.pixelSize: 10
-                                                verticalAlignment: Text.AlignVCenter
+                                                font.pixelSize: 12
                                             }
 
                                             Text {
-                                                width: parent.width * 0.2
+                                                Layout.preferredWidth: parent.width * 0.15
                                                 text: model.item ? model.item.status : "--"
-                                                color: model.item ? (model.item.status === "Downloading" ? "#66cc66" : model.item.status === "Completed" ? "#60c0e0" : filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0") : "#b0b0b0"
-                                                font.pixelSize: 10
-                                                verticalAlignment: Text.AlignVCenter
+                                                color: "#ffffff"
+                                                font.pixelSize: 12
                                             }
 
                                             Text {
-                                                width: parent.width * 0.15
+                                                Layout.preferredWidth: parent.width * 0.15
                                                 text: model.item ? model.item.timeLeft : "--"
                                                 color: filesListView.currentIndex === index ? "#aaccff" : "#b0b0b0"
-                                                font.pixelSize: 10
-                                                verticalAlignment: Text.AlignVCenter
+                                                font.pixelSize: 12
                                             }
                                         }
-                                    }
+                                     }
                                 }
-                            }
 
-                            // Empty state message
+                            // Empty-state overlay: centered in the list area.
+                            // Anchored inside the wrapper Item, not in the ColumnLayout,
+                            // so it sits in the middle of the list regardless of the
+                            // ListView consuming all available height.
                             Text {
-                                Layout.alignment: Qt.AlignCenter
-                                Layout.topMargin: 50
+                                anchors.centerIn: parent
                                 text: {
                                     if (!root.selectedQueue) return "No queue selected"
-                                    var hasFiles = false
+                                    // Check if any item in the model belongs to this queue
                                     for (var i = 0; i < App.downloadModel.rowCount(); i++) {
-                                        var item = App.downloadModel.data(App.downloadModel.index(i, 0), Qt.UserRole + 2)
+                                        var item = App.downloadModel.data(App.downloadModel.index(i, 0), Qt.UserRole + 2) // ItemRole
                                         if (item && item.queueId === root.selectedQueue.id) {
-                                            hasFiles = true
-                                            break
+                                            return "" // Has files, don't show placeholder
                                         }
                                     }
-                                    return hasFiles ? "" : "No files in queue"
+                                    return "No files in queue"
                                 }
                                 color: "#555"
                                 font.pixelSize: 12
                                 visible: text.length > 0
                             }
+                            } // end wrapper Item
                         }
                     }
 

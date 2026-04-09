@@ -1,10 +1,18 @@
 // Chrome MV3 service worker – Stellar extension
-import { handleDownloadCreated } from "../shared/interceptor.js";
+import { handleDownloadCreated, recordModifierKey } from "../shared/interceptor.js";
 import { ping, syncSettingsFromApp } from "../shared/messaging.js";
 
 // ── Download interception ─────────────────────────────────────────────────────
 chrome.downloads.onCreated.addListener((item) => {
     handleDownloadCreated(item);
+});
+
+// ── Handle modifier key tracking from content script ──────────────────────────
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.type === "recordModifierKey") {
+        recordModifierKey(message.modifierKey);
+        sendResponse({ ok: true });
+    }
 });
 
 // ── Context menu ──────────────────────────────────────────────────────────────

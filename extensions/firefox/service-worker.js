@@ -10,6 +10,26 @@
 
 const NATIVE_HOST_ID = "com.stellar.downloadmanager";
 
+// ── Modifier key tracking for bypass interception ──────────────────────────────
+let lastModifierKey = 0;
+let lastModifierKeyTime = 0;
+const MODIFIER_KEY_TIMEOUT = 10000;  // 10 seconds
+
+function recordModifierKey(modifierKey) {
+    lastModifierKey = modifierKey;
+    lastModifierKeyTime = Date.now();
+}
+
+function getAndClearModifierKey() {
+    const now = Date.now();
+    if (now - lastModifierKeyTime >= MODIFIER_KEY_TIMEOUT) {
+        return 0;  // Expired
+    }
+    const key = lastModifierKey;
+    lastModifierKey = 0;  // Consume it
+    return key;
+}
+
 // ── Default lists (kept in sync with AppSettings defaults) ───────────────────
 
 const DEFAULT_MONITORED_EXTENSIONS = new Set([
@@ -440,12 +460,13 @@ async function shouldIntercept(url, mimeType, filenameHint) {
 function sendToStellar(details) {
     return new Promise((resolve, reject) => {
         browser.runtime.sendNativeMessage(NATIVE_HOST_ID, {
-            type:     "download",
-            url:      details.url,
-            filename: details.filename ?? "",
-            referrer: details.referrer ?? "",
-            pageUrl:  details.pageUrl  ?? "",
-            cookies:  details.cookies  ?? ""
+            type:        "download",
+            url:         details.url,
+            filename:    details.filename ?? "",
+            referrer:    details.referrer ?? "",
+            pageUrl:     details.pageUrl  ?? "",
+            cookies:     details.cookies  ?? "",
+            modifierKey: details.modifierKey ?? 0
         }, (response) => {
             if (browser.runtime.lastError) {
                 reject(new Error(browser.runtime.lastError.message));
@@ -476,6 +497,14 @@ function forceIntercept(url) {
  */
 async function handleDownloadCreated(downloadItem) {
     const { url, filename, referrer, mime, id } = downloadItem;
+
+    // Check if bypass modifier key is active
+    const modifierKey = getAndClearModifierKey();
+    if (modifierKey > 0) {
+        // User is bypassing interception, let browser handle it
+        console.log("[Stellar] Bypass key detected, letting browser handle download");
+        return;
+    }
 
     // Skip URLs already being processed — prevents infinite loops if something
     // re-triggers a download event for the same URL.
@@ -555,9 +584,15 @@ browser.contextMenus.onClicked.addListener(async (info) => {
     }
 });
 
-// ── Messages from the popup ───────────────────────────────────────────────────
+// ── Messages from the content script and popup ────────────────────────────────
 
 browser.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+    if (message.type === "recordModifierKey") {
+        recordModifierKey(message.modifierKey);
+        sendResponse({ ok: true });
+        return false;
+    }
+
     if (message.type === "ping") {
         // Try pinging the native host
         browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "ping" }, (response) => {

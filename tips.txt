@@ -5,8 +5,7 @@ Use "Download Later" to queue files without starting them, useful for planning l
 Set different save paths per category so videos, music, and archives don't all land in the same folder.
 Enable "Minimize to tray" and "Close to tray" to keep Stellar running silently in the background.
 Rejected intercepted downloads twice? Stellar offers to add the URL to your exception list, so it won't bother you again.
-Segmented downloads split large files across multiple connections—check Progress > Segments to see the parallelization.
+Segmented downloads split large files across multiple connections-check Progress > Segments to see the parallelization.
 The speed limiter prevents Stellar from saturating your connection; use it to reserve bandwidth for other tasks.
-Resume interrupted downloads from where they stopped using the .stellar-meta sidecar file stored alongside the partial download.
-Right-click downloads to open the folder—faster than hunting in Explorer.
+Right-click downloads to open the folder-faster than hunting in Explorer.
 Set a global default save path in Settings, or override it per-category for automatic organization.

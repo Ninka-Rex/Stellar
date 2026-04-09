@@ -165,6 +165,11 @@ void AppSettings::load() {
     m_speedLimiterOnStartup   = m_settings.value(QStringLiteral("speedLimiterOnStartup"), false).toBool();
     m_savedSpeedLimitKBps     = m_settings.value(QStringLiteral("savedSpeedLimitKBps"), 500).toInt();
     m_showDownloadComplete    = m_settings.value(QStringLiteral("showDownloadComplete"), true).toBool();
+    m_showFinishedCount       = m_settings.value(QStringLiteral("showFinishedCount"), true).toBool();
+    m_bypassInterceptKey      = m_settings.value(QStringLiteral("bypassInterceptKey"), 1).toInt();
+    const QStringList defaultOrder{QStringLiteral("downloads"), QStringLiteral("unfinished"),
+                                   QStringLiteral("finished"),  QStringLiteral("queues")};
+    m_sidebarOrder = m_settings.value(QStringLiteral("sidebarOrder"), defaultOrder).toStringList();
 
     emit maxConcurrentChanged();
     emit segmentsPerDownloadChanged();
@@ -184,6 +189,9 @@ void AppSettings::load() {
     emit speedLimiterOnStartupChanged();
     emit savedSpeedLimitKBpsChanged();
     emit showDownloadCompleteChanged();
+    emit showFinishedCountChanged();
+    emit sidebarOrderChanged();
+    emit bypassInterceptKeyChanged();
 }
 
 void AppSettings::save() {
@@ -205,6 +213,9 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("speedLimiterOnStartup"),      m_speedLimiterOnStartup);
     m_settings.setValue(QStringLiteral("savedSpeedLimitKBps"),        m_savedSpeedLimitKBps);
     m_settings.setValue(QStringLiteral("showDownloadComplete"),        m_showDownloadComplete);
+    m_settings.setValue(QStringLiteral("showFinishedCount"),           m_showFinishedCount);
+    m_settings.setValue(QStringLiteral("sidebarOrder"),                m_sidebarOrder);
+    m_settings.setValue(QStringLiteral("bypassInterceptKey"),          m_bypassInterceptKey);
     m_settings.sync();
 }
 
@@ -226,3 +237,6 @@ void AppSettings::setStartImmediately(bool v)       { if (m_startImmediately    
 void AppSettings::setSpeedLimiterOnStartup(bool v)  { if (m_speedLimiterOnStartup  != v) { m_speedLimiterOnStartup  = v; emit speedLimiterOnStartupChanged();  save(); } }
 void AppSettings::setSavedSpeedLimitKBps(int v)     { if (m_savedSpeedLimitKBps    != v) { m_savedSpeedLimitKBps    = v; emit savedSpeedLimitKBpsChanged();    save(); } }
 void AppSettings::setShowDownloadComplete(bool v)   { if (m_showDownloadComplete   != v) { m_showDownloadComplete   = v; emit showDownloadCompleteChanged();   save(); } }
+void AppSettings::setShowFinishedCount(bool v)      { if (m_showFinishedCount      != v) { m_showFinishedCount      = v; emit showFinishedCountChanged();      save(); } }
+void AppSettings::setSidebarOrder(const QStringList &v) { if (m_sidebarOrder != v) { m_sidebarOrder = v; emit sidebarOrderChanged(); save(); } }
+void AppSettings::setBypassInterceptKey(int v)     { if (m_bypassInterceptKey     != v) { m_bypassInterceptKey     = v; emit bypassInterceptKeyChanged();     save(); } }

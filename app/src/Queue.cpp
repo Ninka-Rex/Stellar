@@ -71,7 +71,7 @@ Queue *Queue::fromVariantMap(const QString &id, const QVariantMap &map, QObject 
     q->m_stopTime = map.value(QStringLiteral("stopTime"), QStringLiteral("7:30:00 AM")).toString();
     q->m_hasMaxRetries = map.value(QStringLiteral("hasMaxRetries"), false).toBool();
     q->m_maxRetries = map.value(QStringLiteral("maxRetries"), 10).toInt();
-    q->m_maxConcurrentDownloads = map.value(QStringLiteral("maxConcurrentDownloads"), 1).toInt();
+    q->m_maxConcurrentDownloads = map.value(QStringLiteral("maxConcurrentDownloads"), 3).toInt();
     q->m_openFileWhenDone = map.value(QStringLiteral("openFileWhenDone"), false).toBool();
     q->m_openFilePath = map.value(QStringLiteral("openFilePath"), QString()).toString();
     q->m_exitIDMWhenDone = map.value(QStringLiteral("exitIDMWhenDone"), false).toBool();

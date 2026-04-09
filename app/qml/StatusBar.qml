@@ -22,7 +22,15 @@ Rectangle {
     height: 22
     color: "#1a1a1a"
 
-    property int activeCount: 0
+    property int activeCount:    0
+    property int completedCount: 0
+    property int selectedCount:  0
+    property var tipsArray:      []
+    property int currentTipIndex: 0
+    property bool showTips:      true
+
+    signal nextTip()
+    signal closeTips()
 
     // top border
     Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#3a3a3a" }
@@ -32,18 +40,84 @@ Rectangle {
         spacing: 20
 
         Text {
-            text: activeCount > 0 ? "%1 file(s) downloading".arg(activeCount) : "Ready"
+            text: {
+                var base
+                if (activeCount > 0)
+                    base = "%1 file(s) downloading".arg(activeCount)
+                else if (App.settings.showFinishedCount && completedCount > 0)
+                    base = "Ready | %1 downloads".arg(completedCount)
+                else
+                    base = "Ready"
+
+                // Append selection count when one or more rows are highlighted.
+                if (selectedCount > 0)
+                    base += " | %1 selected".arg(selectedCount)
+
+                // Append speed limiter status if enabled
+                if (App.settings.globalSpeedLimitKBps > 0) {
+                    base += " | Speed limiter enabled (" + App.settings.globalSpeedLimitKBps + " KB/s)"
+                }
+
+                return base
+            }
             color: "#a0a0a0"
             font.pixelSize: 11
+            verticalAlignment: Text.AlignVCenter
         }
 
         Item { Layout.fillWidth: true }
 
+        // Tips section (right-aligned)
+        RowLayout {
+            visible: App.settings.showTips && tipsArray.length > 0
+            spacing: 8
+            Layout.preferredWidth: 400
+
+            Text {
+                text: tipsArray.length > currentTipIndex ? "💡 " + tipsArray[currentTipIndex] : ""
+                color: "#b0b0b0"
+                font.pixelSize: 11
+                wrapMode: Text.NoWrap
+                elide: Text.ElideRight
+                Layout.fillWidth: true
+            }
+
+            Row {
+                spacing: 6
+
+                Text {
+                    text: "next >>"
+                    color: "#5588cc"
+                    font.pixelSize: 10
+                    font.underline: true
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: root.nextTip()
+                    }
+                }
+
+                Text {
+                    text: "✕"
+                    color: "#888888"
+                    font.pixelSize: 12
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        hoverEnabled: true
+                        onClicked: root.closeTips()
+                        onEntered: parent.color = "#b0b0b0"
+                        onExited: parent.color = "#888888"
+                    }
+                }
+            }
+        }
+
         Text {
-            visible: App.minutesUntilNextQueue > 0
+            visible: !App.settings.showTips || tipsArray.length === 0
             text: App.minutesUntilNextQueue === 1
                 ? "Queue runs in 1 minute"
-                : "Queue runs in %1 minutes".arg(App.minutesUntilNextQueue)
+                : (App.minutesUntilNextQueue > 0 ? "Queue runs in %1 minutes".arg(App.minutesUntilNextQueue) : "")
             color: "#a0a0a0"
             font.pixelSize: 11
         }
