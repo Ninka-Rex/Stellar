@@ -4,7 +4,7 @@ note/
 releases/
 backups/
 docs/
-packaging/
+packaging/windows/output
 .claude/
 .cmake/
 CMakeCache.txt
