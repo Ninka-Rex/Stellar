@@ -1,9 +1,0 @@
-{
-  "name": "com.stellar.downloadmanager",
-  "description": "Stellar Download Manager native messaging host",
-  "path": "/usr/bin/stellar",
-  "type": "stdio",
-  "allowed_extensions": [
-    "stellar@stellar.moe"
-  ]
-}
