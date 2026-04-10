@@ -48,6 +48,8 @@ public:
 
     void addItem(DownloadItem *item);
     void removeItem(const QString &id);
+    void beginBulkRemove();
+    void endBulkRemove();
     Q_INVOKABLE DownloadItem *itemAt(int row) const;
     DownloadItem *itemById(const QString &id) const;
     DownloadItem *itemByUrl(const QUrl &url) const;
@@ -64,6 +66,7 @@ private slots:
 private:
     bool matchesFilter(DownloadItem *item) const;
     int compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const;
+    static int statusSortKey(const QString &status);
 
     QList<DownloadItem *> m_items;
     QList<DownloadItem *> m_visible;
@@ -71,6 +74,7 @@ private:
     QString               m_filterQueue;
     QString               m_sortColumn{QStringLiteral("added")};
     bool                  m_sortAscending{true};
+    bool                  m_bulkRemoving{false};
     static QString formatSize(qint64 bytes);
     static QString formatSpeed(qint64 bps);
 };

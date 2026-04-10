@@ -51,16 +51,63 @@ void DownloadQueue::setSpeedLimitKBps(int kbps) {
     }
 }
 
+void DownloadQueue::setCustomUserAgentEnabled(bool enabled) {
+    if (m_useCustomUserAgent == enabled)
+        return;
+
+    m_useCustomUserAgent = enabled;
+    for (auto *worker : m_workers)
+        worker->setCustomUserAgentEnabled(enabled);
+}
+
+void DownloadQueue::setCustomUserAgent(const QString &userAgent) {
+    if (m_customUserAgent == userAgent)
+        return;
+
+    m_customUserAgent = userAgent;
+    for (auto *worker : m_workers)
+        worker->setCustomUserAgent(userAgent);
+}
+
+void DownloadQueue::setTemporaryDirectory(const QString &path) {
+    if (m_temporaryDirectory == path)
+        return;
+
+    m_temporaryDirectory = path;
+    for (auto *worker : m_workers)
+        worker->setTemporaryDirectory(path);
+}
+
+void DownloadQueue::setCanStartPredicate(std::function<bool(DownloadItem *)> predicate) {
+    m_canStartPredicate = std::move(predicate);
+}
+
 void DownloadQueue::setDownloadSpeedLimit(const QString &id, int kbps) {
     auto *worker = m_workers.value(id);
     if (worker)
         worker->setSpeedLimitKBps(kbps);
 }
 
+bool DownloadQueue::relocateDownload(const QString &id, const QString &newSavePath, const QString &newFilename) {
+    for (auto *item : m_items) {
+        if (!item || item->id() != id)
+            continue;
+
+        auto *worker = m_workers.value(id, nullptr);
+        if (worker)
+            return worker->relocateOutput(newSavePath, newFilename);
+
+        item->setSavePath(newSavePath);
+        item->setFilename(newFilename);
+        return true;
+    }
+    return false;
+}
+
 int DownloadQueue::activeCount() const {
     int n = 0;
     for (auto *item : m_items)
-        if (item->status() == QStringLiteral("Downloading")) ++n;
+        if (item->status() == QStringLiteral("Downloading") || item->status() == QStringLiteral("Assembling...")) ++n;
     return n;
 }
 
@@ -106,7 +153,8 @@ void DownloadQueue::enqueueRestored(DownloadItem *item) {
 
 void DownloadQueue::pause(const QString &id) {
     for (auto *item : m_items) {
-        if (item->id() == id && item->status() == QStringLiteral("Downloading")) {
+        if (item->id() == id && (item->status() == QStringLiteral("Downloading")
+                                 || item->status() == QStringLiteral("Queued"))) {
             auto *worker = m_workers.value(id, nullptr);
             if (worker) {
                 worker->pause(); // worker sets status to Paused
@@ -182,6 +230,7 @@ void DownloadQueue::scheduleNext() {
     for (auto *item : m_items) {
         if (current >= m_maxConcurrent) break;
         if (item->statusEnum() != DownloadItem::Status::Queued) continue;
+        if (m_canStartPredicate && !m_canStartPredicate(item)) continue;
 
         // Only DownloadQueue may call setStatus(Downloading)
         item->setStatus(DownloadItem::Status::Downloading);
@@ -190,6 +239,9 @@ void DownloadQueue::scheduleNext() {
         // Use per-download limit if set, otherwise use global limit
         int speedLimit = item->speedLimitKBps() > 0 ? item->speedLimitKBps() : m_speedLimitKBps;
         worker->setSpeedLimitKBps(speedLimit);
+        worker->setCustomUserAgentEnabled(m_useCustomUserAgent);
+        worker->setCustomUserAgent(m_customUserAgent);
+        worker->setTemporaryDirectory(m_temporaryDirectory);
         m_workers[item->id()] = worker;
 
         const QString id = item->id();
@@ -228,6 +280,7 @@ void DownloadQueue::onWorkerFailed(const QString &id, const QString &reason) {
             item->setStatus(DownloadItem::Status::Error);
             if (!reason.isEmpty())
                 item->setErrorString(reason);
+            emit itemFailed(item, reason);
             break;
         }
     }

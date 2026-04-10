@@ -24,10 +24,10 @@ import QtQuick.Dialogs
 Window {
     id: root
 
-    width: 620
+    width: 665
     height: 500
-    minimumWidth: 400
-    minimumHeight: 400
+    minimumWidth: 665
+    minimumHeight: 500
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     title: "Stellar Preferences"
     color: "#1e1e1e"
@@ -43,19 +43,91 @@ Window {
     property int    editMaxConcurrent:         0
     property int    editSegmentsPerDownload:   0
     property string editDefaultSavePath:       ""
+    property string editTemporaryDirectory:    ""
     property int    editGlobalSpeedLimitKBps:  0
     property bool   editMinimizeToTray:        false
     property bool   editCloseToTray:           false
     property bool   editShowTips:              true
+    property bool   editShowExceptionsDialog:  true
     property int    editMaxRetries:            0
     property int    editConnectionTimeoutSecs: 0
     property int    editDuplicateAction:       0
     property bool   editStartImmediately:      false
     property bool   editSpeedLimiterOnStartup: false
     property bool   editShowDownloadComplete:  true
+    property bool   editShowCompletionNotification: true
+    property bool   editShowErrorNotification: true
     property bool   editShowFinishedCount:     true
+    property bool   editStartDownloadWhileFileInfo: true
+    property bool   editShowQueueSelectionOnDownloadLater: true
+    property bool   editShowQueueSelectionOnBatchDownload: true
+    property bool   editUseCustomUserAgent:    false
+    property string editCustomUserAgent:       ""
     property int    editSavedSpeedLimitKBps:   500
     property int    editBypassInterceptKey:    0
+    property bool   editLaunchOnStartup:       false
+    property bool   editClipboardMonitorEnabled: false
+    property int    editDoubleClickAction:     0
+    property bool   editSpeedScheduleEnabled:  false
+    property string editSpeedScheduleJson:     "[]"
+    property bool   editAutoCheckUpdates:      true
+    property int    editLastTryDateStyle:      0
+    property bool   editLastTryUse24Hour:      true
+    property bool   editLastTryShowSeconds:    true
+
+    readonly property string defaultUserAgent: "Stellar/" + App.appVersion
+    readonly property string displayedUserAgent: editUseCustomUserAgent
+        ? editCustomUserAgent
+        : defaultUserAgent
+    readonly property string lastTryPreview: {
+        var datePart
+        switch (editLastTryDateStyle) {
+        case 1:
+            datePart = "4/10/2026"
+            break
+        case 2:
+            datePart = "10/4/2026"
+            break
+        case 3:
+            datePart = "2026-04-10"
+            break
+        default:
+            datePart = "Apr 10 2026"
+            break
+        }
+
+        var timePart
+        if (editLastTryUse24Hour)
+            timePart = editLastTryShowSeconds ? "15:49:22" : "15:49"
+        else
+            timePart = editLastTryShowSeconds ? "3:49:22 PM" : "3:49 PM"
+
+        return datePart + " " + timePart
+    }
+
+    function _normalizedMonitoredExtensionsText() {
+        return monitoredExtsArea
+            ? monitoredExtsArea.text.split(/[\s,]+/).map(function(s) {
+                return s.trim().toLowerCase().replace(/^\./, "")
+            }).filter(function(s) { return s.length > 0 }).join("|")
+            : App.settings.monitoredExtensions.join("|")
+    }
+
+    function _normalizedExcludedSitesText() {
+        return excludedSitesArea
+            ? excludedSitesArea.text.split(/\s+/).map(function(s) {
+                return s.trim()
+            }).filter(function(s) { return s.length > 0 }).join("|")
+            : App.settings.excludedSites.join("|")
+    }
+
+    function _normalizedExcludedAddressesText() {
+        return excludedAddrsArea
+            ? excludedAddrsArea.text.split("\n").map(function(s) {
+                return s.trim()
+            }).filter(function(s) { return s.length > 0 }).join("|")
+            : App.settings.excludedAddresses.join("|")
+    }
 
     Component.onCompleted: resetEdits()
     onVisibleChanged: { if (visible) resetEdits() }
@@ -75,6 +147,7 @@ Window {
         editMaxConcurrent         !== App.settings.maxConcurrent        ||
         editSegmentsPerDownload   !== App.settings.segmentsPerDownload  ||
         editDefaultSavePath       !== App.settings.defaultSavePath      ||
+        editTemporaryDirectory    !== App.settings.temporaryDirectory   ||
         editGlobalSpeedLimitKBps  !== App.settings.globalSpeedLimitKBps ||
         editMinimizeToTray        !== App.settings.minimizeToTray       ||
         editCloseToTray           !== App.settings.closeToTray          ||
@@ -84,16 +157,36 @@ Window {
         editDuplicateAction       !== App.settings.duplicateAction  ||
         editStartImmediately      !== App.settings.startImmediately ||
         editSpeedLimiterOnStartup !== App.settings.speedLimiterOnStartup ||
+        editStartDownloadWhileFileInfo !== App.settings.startDownloadWhileFileInfo ||
+        editUseCustomUserAgent    !== App.settings.useCustomUserAgent ||
+        editCustomUserAgent       !== App.settings.customUserAgent ||
+        editShowQueueSelectionOnDownloadLater !== App.settings.showQueueSelectionOnDownloadLater ||
+        editShowQueueSelectionOnBatchDownload  !== App.settings.showQueueSelectionOnBatchDownload ||
         editBypassInterceptKey    !== App.settings.bypassInterceptKey ||
         editSavedSpeedLimitKBps   !== App.settings.savedSpeedLimitKBps ||
         editShowDownloadComplete  !== App.settings.showDownloadComplete ||
-        editShowFinishedCount     !== App.settings.showFinishedCount
+        editShowCompletionNotification !== App.settings.showCompletionNotification ||
+        editShowErrorNotification !== App.settings.showErrorNotification ||
+        editShowFinishedCount     !== App.settings.showFinishedCount ||
+        editLaunchOnStartup       !== App.settings.launchOnStartup ||
+        editClipboardMonitorEnabled !== App.settings.clipboardMonitorEnabled ||
+        editDoubleClickAction     !== App.settings.doubleClickAction ||
+        editSpeedScheduleEnabled  !== App.settings.speedScheduleEnabled ||
+        editSpeedScheduleJson     !== App.settings.speedScheduleJson ||
+        editAutoCheckUpdates      !== App.settings.autoCheckUpdates ||
+        editLastTryDateStyle      !== App.settings.lastTryDateStyle ||
+        editLastTryUse24Hour      !== App.settings.lastTryUse24Hour ||
+        editLastTryShowSeconds    !== App.settings.lastTryShowSeconds
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
-    property bool browserDirty:   false
+    readonly property bool browserChanged:
+        _normalizedMonitoredExtensionsText() !== App.settings.monitoredExtensions.join("|") ||
+        _normalizedExcludedSitesText() !== App.settings.excludedSites.join("|") ||
+        _normalizedExcludedAddressesText() !== App.settings.excludedAddresses.join("|") ||
+        editShowExceptionsDialog !== App.settings.showExceptionsDialog
 
-    readonly property bool hasChanges: settingsChanged || catDirty || browserDirty
+    readonly property bool hasChanges: settingsChanged || catDirty || browserChanged
 
     FolderDialog {
         id: saveFolderDlg
@@ -103,6 +196,17 @@ Window {
             var path = selectedFolder.toString()
                            .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
             root.editDefaultSavePath = path
+        }
+    }
+
+    FolderDialog {
+        id: tempFolderDlg
+        currentFolder: root.editTemporaryDirectory.length > 0
+                       ? ("file:///" + root.editTemporaryDirectory.replace(/\\/g, "/")) : ""
+        onAccepted: {
+            var path = selectedFolder.toString()
+                           .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            root.editTemporaryDirectory = path
         }
     }
 
@@ -118,7 +222,7 @@ Window {
         }
 
         // Flush browser integration settings
-        if (browserDirty) {
+        if (browserChanged) {
             var monExts = monitoredExtsArea.text.split(/[\s,]+/).map(function(s) {
                 return s.trim().toLowerCase().replace(/^\./, "")
             }).filter(function(s) { return s.length > 0 })
@@ -132,14 +236,13 @@ Window {
             }).filter(function(s) { return s.length > 0 })
             App.settings.excludedAddresses = excAddrs
 
-            App.settings.showExceptionsDialog = showExceptDlgChk.checked
-
-            browserDirty = false
+            App.settings.showExceptionsDialog = editShowExceptionsDialog
         }
 
         App.settings.maxConcurrent         = editMaxConcurrent
         App.settings.segmentsPerDownload   = editSegmentsPerDownload
         App.settings.defaultSavePath       = editDefaultSavePath
+        App.settings.temporaryDirectory    = editTemporaryDirectory
         App.settings.globalSpeedLimitKBps  = editGlobalSpeedLimitKBps
         App.settings.minimizeToTray        = editMinimizeToTray
         App.settings.closeToTray           = editCloseToTray
@@ -149,10 +252,26 @@ Window {
         App.settings.duplicateAction       = editDuplicateAction
         App.settings.startImmediately       = editStartImmediately
         App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
+        App.settings.startDownloadWhileFileInfo = editStartDownloadWhileFileInfo
+        App.settings.showQueueSelectionOnDownloadLater = editShowQueueSelectionOnDownloadLater
+        App.settings.showQueueSelectionOnBatchDownload  = editShowQueueSelectionOnBatchDownload
+        App.settings.useCustomUserAgent    = editUseCustomUserAgent
+        App.settings.customUserAgent       = editCustomUserAgent
         App.settings.bypassInterceptKey    = editBypassInterceptKey
         App.settings.savedSpeedLimitKBps    = editSavedSpeedLimitKBps
         App.settings.showDownloadComplete   = editShowDownloadComplete
+        App.settings.showCompletionNotification = editShowCompletionNotification
+        App.settings.showErrorNotification  = editShowErrorNotification
         App.settings.showFinishedCount      = editShowFinishedCount
+        App.settings.launchOnStartup        = editLaunchOnStartup
+        App.settings.clipboardMonitorEnabled = editClipboardMonitorEnabled
+        App.settings.doubleClickAction      = editDoubleClickAction
+        App.settings.speedScheduleEnabled   = editSpeedScheduleEnabled
+        App.settings.speedScheduleJson      = editSpeedScheduleJson
+        App.settings.autoCheckUpdates       = editAutoCheckUpdates
+        App.settings.lastTryDateStyle       = editLastTryDateStyle
+        App.settings.lastTryUse24Hour       = editLastTryUse24Hour
+        App.settings.lastTryShowSeconds     = editLastTryShowSeconds
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
@@ -162,22 +281,39 @@ Window {
         editMaxConcurrent         = App.settings.maxConcurrent
         editSegmentsPerDownload   = App.settings.segmentsPerDownload
         editDefaultSavePath       = App.settings.defaultSavePath
+        editTemporaryDirectory    = App.settings.temporaryDirectory
         editGlobalSpeedLimitKBps  = App.settings.globalSpeedLimitKBps
         editMinimizeToTray        = App.settings.minimizeToTray
         editCloseToTray           = App.settings.closeToTray
         editShowTips              = App.settings.showTips
+        editShowExceptionsDialog  = App.settings.showExceptionsDialog
         editMaxRetries            = App.settings.maxRetries
         editConnectionTimeoutSecs = App.settings.connectionTimeoutSecs
         editDuplicateAction       = App.settings.duplicateAction
         editStartImmediately      = App.settings.startImmediately
         editSpeedLimiterOnStartup = App.settings.speedLimiterOnStartup
+        editStartDownloadWhileFileInfo = App.settings.startDownloadWhileFileInfo
+        editShowQueueSelectionOnDownloadLater = App.settings.showQueueSelectionOnDownloadLater
+        editShowQueueSelectionOnBatchDownload  = App.settings.showQueueSelectionOnBatchDownload
+        editUseCustomUserAgent    = App.settings.useCustomUserAgent
+        editCustomUserAgent       = App.settings.customUserAgent
         editBypassInterceptKey    = App.settings.bypassInterceptKey
         editSavedSpeedLimitKBps   = App.settings.savedSpeedLimitKBps
         editShowDownloadComplete  = App.settings.showDownloadComplete
+        editShowCompletionNotification = App.settings.showCompletionNotification
+        editShowErrorNotification = App.settings.showErrorNotification
         editShowFinishedCount     = App.settings.showFinishedCount
+        editLaunchOnStartup       = App.settings.launchOnStartup
+        editClipboardMonitorEnabled = App.settings.clipboardMonitorEnabled
+        editDoubleClickAction     = App.settings.doubleClickAction
+        editSpeedScheduleEnabled  = App.settings.speedScheduleEnabled
+        editSpeedScheduleJson     = App.settings.speedScheduleJson || "[]"
+        editAutoCheckUpdates      = App.settings.autoCheckUpdates
+        editLastTryDateStyle      = App.settings.lastTryDateStyle
+        editLastTryUse24Hour      = App.settings.lastTryUse24Hour
+        editLastTryShowSeconds    = App.settings.lastTryShowSeconds
         // Reset dirty flags so Apply button is disabled until user actually changes something
         catDirty = false
-        browserDirty = false
     }
 
     ColumnLayout {
@@ -232,8 +368,14 @@ Window {
 
                 // Connection
                 Item {
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        clip: true
+
                     ColumnLayout {
-                        anchors { fill: parent; margins: 12 }
+                        width: parent.width
+                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
                         Text { text: "Connection"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
@@ -259,7 +401,58 @@ Window {
                             Text { text: "times"; color: "#a0a0a0"; font.pixelSize: 13 }
                         }
 
-                        Item { Layout.fillHeight: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+
+                        Text {
+                            text: "User Agent"
+                            color: "#ffffff"; font.pixelSize: 14; font.bold: true
+                        }
+
+                        Text {
+                            text: "When custom mode is off, Stellar uses its built-in User-Agent with the current version."
+                            color: "#c0c0c0"; font.pixelSize: 13
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+
+                        CheckBox {
+                            text: "Use custom user agent"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editUseCustomUserAgent
+                            onCheckedChanged: root.editUseCustomUserAgent = checked
+                            contentItem: Text {
+                                text: parent.text
+                                color: "#d0d0d0"; font.pixelSize: 13
+                                leftPadding: parent.indicator.width + 4
+                            }
+                        }
+
+                        TextField {
+                            Layout.fillWidth: true
+                            text: root.displayedUserAgent
+                            readOnly: !root.editUseCustomUserAgent
+                            selectByMouse: true
+                            onTextEdited: root.editCustomUserAgent = text
+                            color: root.editUseCustomUserAgent ? "#d0d0d0" : "#7a7a7a"
+                            font.pixelSize: 13
+                            background: Rectangle {
+                                color: root.editUseCustomUserAgent ? "#2d2d2d" : "#252525"
+                                border.color: root.editUseCustomUserAgent ? "#4a4a4a" : "#3a3a3a"
+                                radius: 3
+                            }
+                        }
+
+                        Text {
+                            text: root.editUseCustomUserAgent
+                                  ? "This value will be sent exactly as entered."
+                                  : "Built-in default shown above. Enable the checkbox to edit and override it."
+                            color: "#555"; font.pixelSize: 10
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+
+                        Item { height: 12 }
+                    }
                     }
                 }
 
@@ -476,6 +669,33 @@ Window {
                                             onTextChanged: if (!root.loadingCategory) root.catDirty = true
                                         }
                                     }
+                                    // Warn when a category extension isn't in the browser auto-download list
+                                    Text {
+                                        Layout.fillWidth: true
+                                        wrapMode: Text.WordWrap
+                                        font.pixelSize: 11
+                                        color: "#e8c840"
+                                        visible: text.length > 0
+                                        text: {
+                                            var typed = catEditExts.text.split(/[\s,]+/).map(function(s) {
+                                                return s.trim().toLowerCase().replace(/^\./, "")
+                                            }).filter(function(s) { return s.length > 0 })
+
+                                            // Use the live browser tab field if available, else fall back to saved setting
+                                            var monitored = monitoredExtsArea
+                                                ? monitoredExtsArea.text.split(/[\s,]+/).map(function(s) {
+                                                    return s.trim().toLowerCase().replace(/^\./, "")
+                                                }).filter(function(s) { return s.length > 0 })
+                                                : App.settings.monitoredExtensions.slice()
+
+                                            var missing = typed.filter(function(e) {
+                                                return e.length > 0 && monitored.indexOf(e) < 0
+                                            })
+                                            return missing.length > 0
+                                                ? "⚠ Not in browser auto-download list: " + missing.join(", ")
+                                                : ""
+                                        }
+                                    }
                                 }
 
                                 // Sites
@@ -542,9 +762,16 @@ Window {
 
                 // Downloads
                 Item {
-                    ColumnLayout {
-                        anchors { fill: parent; margins: 12 }
-                        spacing: 10
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        clip: true
+
+                        ColumnLayout {
+                            width: parent.width - 24
+                            x: 12
+                            y: 12
+                            spacing: 10
 
                         Text { text: "Downloads"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
@@ -568,6 +795,32 @@ Window {
                             }
                         }
 
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+
+                        Text { text: "Stellar temporary directory:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+                            TextField {
+                                Layout.fillWidth: true
+                                text: root.editTemporaryDirectory
+                                onTextChanged: root.editTemporaryDirectory = text
+                                color: "#d0d0d0"; font.pixelSize: 13
+                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            }
+                            DlgButton {
+                                text: "Browse"
+                                onClicked: tempFolderDlg.open()
+                            }
+                        }
+
+                        Text {
+                            text: "Stellar stores partially downloaded file parts and metadata here while downloading and assembling files."
+                            color: "#7a7a7a"; font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+
                         CheckBox {
                             text: "Start downloading immediately (skip file info dialog)"
                             topPadding: 0; bottomPadding: 0
@@ -584,6 +837,35 @@ Window {
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
+                        CheckBox {
+                            text: "Start downloading immediately while displaying \"Download File Info\" dialog"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editStartDownloadWhileFileInfo
+                            onCheckedChanged: root.editStartDownloadWhileFileInfo = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                        }
+
+                        CheckBox {
+                            text: "Show queue selection panel on pressing Download Later"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editShowQueueSelectionOnDownloadLater
+                            onCheckedChanged: root.editShowQueueSelectionOnDownloadLater = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                        }
+                        CheckBox {
+                            text: "Show queue selection panel on closing batch downloads dialog"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editShowQueueSelectionOnBatchDownload
+                            onCheckedChanged: root.editShowQueueSelectionOnBatchDownload = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                        }
+                        Text {
+                            text: "Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting."
+                            color: "#7a7a7a"; font.pixelSize: 10
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
                         Text { text: "If a duplicate URL is added:"; color: "#c0c0c0"; font.pixelSize: 13 }
@@ -595,7 +877,7 @@ Window {
                                 "Overwrite the existing download",
                                 "Resume / show complete dialog"
                             ]
-                            currentIndex: App.settings.duplicateAction
+                            currentIndex: root.editDuplicateAction
                             implicitWidth: 260
                             font.pixelSize: 12
                             background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
@@ -608,7 +890,101 @@ Window {
                             onCurrentIndexChanged: root.editDuplicateAction = currentIndex
                         }
 
-                        Item { Layout.fillHeight: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+
+                        Text { text: "Double-clicking on a download in the file list:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        ComboBox {
+                            id: doubleClickActionCombo
+                            model: [
+                                "Open file properties dialog",
+                                "Open file",
+                                "Open folder"
+                            ]
+                            currentIndex: root.editDoubleClickAction
+                            implicitWidth: 260
+                            font.pixelSize: 12
+                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            contentItem: Text {
+                                leftPadding: 8
+                                text: doubleClickActionCombo.displayText
+                                color: "#d0d0d0"; font: doubleClickActionCombo.font
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            onCurrentIndexChanged: root.editDoubleClickAction = currentIndex
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+
+                        Text { text: "Last try date format:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        ComboBox {
+                            id: lastTryDateStyleCombo
+                            model: [
+                                "Apr 10 2026",
+                                "4/10/2026",
+                                "10/4/2026",
+                                "2026-04-10"
+                            ]
+                            currentIndex: root.editLastTryDateStyle
+                            implicitWidth: 220
+                            font.pixelSize: 12
+                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            contentItem: Text {
+                                leftPadding: 8
+                                text: lastTryDateStyleCombo.displayText
+                                color: "#d0d0d0"; font: lastTryDateStyleCombo.font
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            onCurrentIndexChanged: root.editLastTryDateStyle = currentIndex
+                        }
+
+                        Text { text: "Time format:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        ComboBox {
+                            id: lastTryTimeModeCombo
+                            model: [
+                                "24-hour time",
+                                "12-hour time"
+                            ]
+                            currentIndex: root.editLastTryUse24Hour ? 0 : 1
+                            implicitWidth: 220
+                            font.pixelSize: 12
+                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            contentItem: Text {
+                                leftPadding: 8
+                                text: lastTryTimeModeCombo.displayText
+                                color: "#d0d0d0"; font: lastTryTimeModeCombo.font
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            onCurrentIndexChanged: root.editLastTryUse24Hour = currentIndex === 0
+                        }
+
+                        CheckBox {
+                            text: "Show seconds"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editLastTryShowSeconds
+                            onCheckedChanged: root.editLastTryShowSeconds = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        Rectangle {
+                            Layout.fillWidth: true
+                            implicitHeight: previewColumn.implicitHeight + 16
+                            radius: 4
+                            color: "#242424"
+                            border.color: "#3a3a3a"
+
+                            ColumnLayout {
+                                id: previewColumn
+                                anchors.fill: parent
+                                anchors.margins: 8
+                                spacing: 4
+
+                                Text { text: "Preview"; color: "#909090"; font.pixelSize: 11 }
+                                Text { text: root.lastTryPreview; color: "#f0f0f0"; font.pixelSize: 13; font.family: "Consolas" }
+                            }
+                        }
+
+                            Item { height: 12 }
+                        }
                     }
                 }
 
@@ -651,7 +1027,6 @@ Window {
                                     background: null
                                     padding: 6
                                     text: App.settings.monitoredExtensions.join(" ").toUpperCase()
-                                    onTextChanged: if (!root.loadingCategory) root.browserDirty = true
                                 }
                             }
 
@@ -684,7 +1059,6 @@ Window {
                                     background: null
                                     padding: 6
                                     text: App.settings.excludedSites.join(" ")
-                                    onTextChanged: if (!root.loadingCategory) root.browserDirty = true
                                 }
                             }
 
@@ -708,8 +1082,8 @@ Window {
                                 text: "Show the dialog to add an address to the list of exceptions for a twice cancelled download"
                                 topPadding: 0; bottomPadding: 0
                                 Layout.fillWidth: true
-                                checked: App.settings.showExceptionsDialog
-                                onCheckedChanged: root.browserDirty = true
+                                checked: root.editShowExceptionsDialog
+                                onCheckedChanged: root.editShowExceptionsDialog = checked
                                 contentItem: Text {
                                     text: parent.text
                                     color: "#d0d0d0"; font.pixelSize: 12
@@ -740,7 +1114,6 @@ Window {
                                     background: null
                                     padding: 6
                                     text: App.settings.excludedAddresses.join("\n")
-                                    onTextChanged: if (!root.loadingCategory) root.browserDirty = true
                                 }
                             }
 
@@ -790,8 +1163,15 @@ Window {
 
                 // Speed Limiter
                 Item {
+                    id: speedLimiterPage
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        clip: true
+
                     ColumnLayout {
-                        anchors { fill: parent; margins: 12 }
+                        width: speedLimiterPage.width - 24
+                        x: 12; y: 12
                         spacing: 10
 
                         Text { text: "Speed Limiter"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
@@ -816,20 +1196,38 @@ Window {
                                 spacing: 8
                                 Text { text: "Maximum speed:"; color: "#a0a0a0"; font.pixelSize: 13 }
                                 TextField {
+                                    id: speedLimitField
                                     implicitWidth: 90
-                                    text: root.editGlobalSpeedLimitKBps > 0 ? root.editGlobalSpeedLimitKBps.toString() : root.editSavedSpeedLimitKBps.toString()
-                                    onEditingFinished: {
-                                        var v = parseInt(text);
+                                    color: "#d0d0d0"; font.pixelSize: 13
+                                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+
+                                    // Populate once on load and whenever the settings are reset
+                                    function syncFromModel() {
+                                        var val = root.editGlobalSpeedLimitKBps > 0
+                                            ? root.editGlobalSpeedLimitKBps
+                                            : root.editSavedSpeedLimitKBps
+                                        if (parseInt(text) !== val)
+                                            text = val.toString()
+                                    }
+                                    Component.onCompleted: syncFromModel()
+                                    Connections {
+                                        target: root
+                                        function onEditGlobalSpeedLimitKBpsChanged() { speedLimitField.syncFromModel() }
+                                        function onEditSavedSpeedLimitKBpsChanged()  {
+                                            // Only sync when the field isn't the one driving the change
+                                            if (!speedLimitField.activeFocus)
+                                                speedLimitField.syncFromModel()
+                                        }
+                                    }
+
+                                    onTextEdited: {
+                                        var v = parseInt(text)
                                         if (!isNaN(v) && v > 0) {
-                                            // Update both: active limit if enabled, and saved value for future re-enabling
-                                            if (globalLimitChk.checked) {
+                                            if (globalLimitChk.checked)
                                                 root.editGlobalSpeedLimitKBps = v
-                                            }
                                             root.editSavedSpeedLimitKBps = v
                                         }
                                     }
-                                    color: "#d0d0d0"; font.pixelSize: 13
-                                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
                                 }
                                 Text { text: "KB/s"; color: "#a0a0a0"; font.pixelSize: 13 }
                             }
@@ -842,8 +1240,300 @@ Window {
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
 
-                        Item { Layout.fillHeight: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+                        // ── Speed Limiter Scheduler ───────────────────────────────────────────────
+                        // Each rule: days[], onHour (1-12), onMinute (0-59), onAmPm, offHour,
+                        // offMinute, offAmPm, limitKBps. Stored as JSON string in editSpeedScheduleJson.
+                        CheckBox {
+                            text: "Enable speed limiter scheduler"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editSpeedScheduleEnabled
+                            onCheckedChanged: root.editSpeedScheduleEnabled = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        ColumnLayout {
+                            id: scheduleCol
+                            visible: root.editSpeedScheduleEnabled
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            property var rules: {
+                                try { return JSON.parse(root.editSpeedScheduleJson || "[]") }
+                                catch(e) { return [] }
+                            }
+                            function saveRules(arr) { root.editSpeedScheduleJson = JSON.stringify(arr) }
+                            function blankRule() {
+                                return { days: ["Mon","Tue","Wed","Thu","Fri"],
+                                         onHour: "9", onMinute: "00", onAmPm: "AM",
+                                         offHour: "5", offMinute: "00", offAmPm: "PM",
+                                         limitKBps: 500 }
+                            }
+
+                            // ── Per-rule cards ───────────────────────────────────────────────────
+                            // Style matches GrabberScheduleDialog: #1b1b1b panels, #333 borders,
+                            // #e0e0e0 text, 12px font, 26px tall inputs with small ▲▼ arrows.
+                            Repeater {
+                                model: scheduleCol.rules.length
+                                delegate: Rectangle {
+                                    id: ruleCard
+                                    required property int index
+                                    Layout.fillWidth: true
+                                    implicitHeight: cardCol.implicitHeight + 18
+                                    color: "#1b1b1b"
+                                    radius: 3
+                                    border.color: "#333333"
+
+                                    property var rule: scheduleCol.rules[ruleCard.index] || scheduleCol.blankRule()
+
+                                    // Clone this rule's field k to value v and persist to JSON
+                                    function patch(k, v) {
+                                        var arr = JSON.parse(root.editSpeedScheduleJson || "[]")
+                                        var r = JSON.parse(JSON.stringify(arr[ruleCard.index]))
+                                        r[k] = v
+                                        arr[ruleCard.index] = r
+                                        scheduleCol.saveRules(arr)
+                                    }
+                                    // Toggle a day in/out of this rule's days array
+                                    function patchDay(day, on) {
+                                        var arr = JSON.parse(root.editSpeedScheduleJson || "[]")
+                                        var r = JSON.parse(JSON.stringify(arr[ruleCard.index]))
+                                        var idx = r.days.indexOf(day)
+                                        if (on && idx < 0) r.days.push(day)
+                                        else if (!on && idx >= 0) r.days.splice(idx, 1)
+                                        arr[ruleCard.index] = r
+                                        scheduleCol.saveRules(arr)
+                                    }
+
+                                    ColumnLayout {
+                                        id: cardCol
+                                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 10 }
+                                        spacing: 8
+
+                                        // ── Header ───────────────────────────────────────────────
+                                        RowLayout {
+                                            Layout.fillWidth: true
+                                            Text {
+                                                text: "Rule " + (ruleCard.index + 1)
+                                                color: "#888888"; font.pixelSize: 11; font.bold: true
+                                            }
+                                            Item { Layout.fillWidth: true }
+                                            Text {
+                                                text: "Remove"
+                                                color: removeHov.containsMouse ? "#ff7777" : "#aa3333"
+                                                font.pixelSize: 11
+                                                MouseArea {
+                                                    id: removeHov
+                                                    anchors.fill: parent
+                                                    hoverEnabled: true
+                                                    cursorShape: Qt.PointingHandCursor
+                                                    onClicked: {
+                                                        var arr = JSON.parse(root.editSpeedScheduleJson || "[]")
+                                                        arr.splice(ruleCard.index, 1)
+                                                        scheduleCol.saveRules(arr)
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        // ── Day pills — clickable, blue when active ───────────────
+                                        RowLayout {
+                                            spacing: 3
+                                            Repeater {
+                                                model: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+                                                delegate: Rectangle {
+                                                    required property int index
+                                                    required property var modelData
+                                                    property bool on: ruleCard.rule.days && ruleCard.rule.days.indexOf(modelData) >= 0
+                                                    width: 36; height: 22; radius: 2
+                                                    color: on ? "#1a3a6a" : "#252525"
+                                                    border.color: on ? "#4488dd" : "#3a3a3a"
+                                                    Text {
+                                                        anchors.centerIn: parent
+                                                        text: modelData
+                                                        color: on ? "#aaccff" : "#666666"
+                                                        font.pixelSize: 11
+                                                    }
+                                                    MouseArea {
+                                                        anchors.fill: parent
+                                                        cursorShape: Qt.PointingHandCursor
+                                                        onClicked: ruleCard.patchDay(modelData, !on)
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        // ── On → Off / Limit row ──────────────────────────────────
+                                        // Uses the same compact input style as GrabberScheduleDialog:
+                                        // TextInput in a 50×26 Rectangle, colon separator, DarkCombo for AM/PM.
+                                        RowLayout {
+                                            spacing: 4
+                                            Layout.fillWidth: true
+
+                                            Text { text: "On"; color: "#aaaaaa"; font.pixelSize: 12 }
+
+                                            // On-hour input (1–12)
+                                            Rectangle {
+                                                width: 50; height: 26; radius: 2
+                                                color: "#1b1b1b"; border.color: onHourFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                TextInput {
+                                                    id: onHourFld
+                                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                                    text: String(ruleCard.rule.onHour || "9")
+                                                    color: "#e0e0e0"; font.pixelSize: 12
+                                                    horizontalAlignment: TextInput.AlignHCenter
+                                                    verticalAlignment: TextInput.AlignVCenter
+                                                    validator: IntValidator { bottom: 1; top: 12 }
+                                                    onTextEdited: ruleCard.patch("onHour", text)
+                                                }
+                                            }
+                                            Text { text: ":"; color: "#aaaaaa"; font.pixelSize: 13 }
+                                            // On-minute input (00–59), zero-padded
+                                            Rectangle {
+                                                width: 50; height: 26; radius: 2
+                                                color: "#1b1b1b"; border.color: onMinFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                TextInput {
+                                                    id: onMinFld
+                                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                                    text: {
+                                                        var m = parseInt(ruleCard.rule.onMinute)
+                                                        return isNaN(m) ? "00" : (m < 10 ? "0" + m : String(m))
+                                                    }
+                                                    color: "#e0e0e0"; font.pixelSize: 12
+                                                    horizontalAlignment: TextInput.AlignHCenter
+                                                    verticalAlignment: TextInput.AlignVCenter
+                                                    validator: IntValidator { bottom: 0; top: 59 }
+                                                    onTextEdited: ruleCard.patch("onMinute", text)
+                                                }
+                                            }
+                                            // AM/PM combo for On time — same style as DarkCombo
+                                            ComboBox {
+                                                model: ["AM","PM"]
+                                                currentIndex: (ruleCard.rule.onAmPm || "AM") === "PM" ? 1 : 0
+                                                implicitWidth: 62; implicitHeight: 26
+                                                font.pixelSize: 12
+                                                contentItem: Text {
+                                                    leftPadding: 8; rightPadding: 20
+                                                    text: parent.displayText; color: "#e0e0e0"; font: parent.font
+                                                    verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
+                                                }
+                                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
+                                                indicator: Text { x: parent.width-width-6; y: (parent.height-height)/2; text: "▼"; color: "#888"; font.pixelSize: 8 }
+                                                popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+                                                onCurrentIndexChanged: ruleCard.patch("onAmPm", currentIndex === 1 ? "PM" : "AM")
+                                            }
+
+                                            Text { text: "→"; color: "#555555"; font.pixelSize: 13; leftPadding: 2; rightPadding: 2 }
+                                            Text { text: "Off"; color: "#aaaaaa"; font.pixelSize: 12 }
+
+                                            // Off-hour input (1–12)
+                                            Rectangle {
+                                                width: 50; height: 26; radius: 2
+                                                color: "#1b1b1b"; border.color: offHourFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                TextInput {
+                                                    id: offHourFld
+                                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                                    text: String(ruleCard.rule.offHour || "5")
+                                                    color: "#e0e0e0"; font.pixelSize: 12
+                                                    horizontalAlignment: TextInput.AlignHCenter
+                                                    verticalAlignment: TextInput.AlignVCenter
+                                                    validator: IntValidator { bottom: 1; top: 12 }
+                                                    onTextEdited: ruleCard.patch("offHour", text)
+                                                }
+                                            }
+                                            Text { text: ":"; color: "#aaaaaa"; font.pixelSize: 13 }
+                                            // Off-minute input (00–59)
+                                            Rectangle {
+                                                width: 50; height: 26; radius: 2
+                                                color: "#1b1b1b"; border.color: offMinFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                TextInput {
+                                                    id: offMinFld
+                                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                                    text: {
+                                                        var m = parseInt(ruleCard.rule.offMinute)
+                                                        return isNaN(m) ? "00" : (m < 10 ? "0" + m : String(m))
+                                                    }
+                                                    color: "#e0e0e0"; font.pixelSize: 12
+                                                    horizontalAlignment: TextInput.AlignHCenter
+                                                    verticalAlignment: TextInput.AlignVCenter
+                                                    validator: IntValidator { bottom: 0; top: 59 }
+                                                    onTextEdited: ruleCard.patch("offMinute", text)
+                                                }
+                                            }
+                                            // AM/PM combo for Off time
+                                            ComboBox {
+                                                model: ["AM","PM"]
+                                                currentIndex: (ruleCard.rule.offAmPm || "PM") === "PM" ? 1 : 0
+                                                implicitWidth: 62; implicitHeight: 26
+                                                font.pixelSize: 12
+                                                contentItem: Text {
+                                                    leftPadding: 8; rightPadding: 20
+                                                    text: parent.displayText; color: "#e0e0e0"; font: parent.font
+                                                    verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
+                                                }
+                                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
+                                                indicator: Text { x: parent.width-width-6; y: (parent.height-height)/2; text: "▼"; color: "#888"; font.pixelSize: 8 }
+                                                popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+                                                onCurrentIndexChanged: ruleCard.patch("offAmPm", currentIndex === 1 ? "PM" : "AM")
+                                            }
+
+                                        }
+
+                                        // ── Speed limit row ───────────────────────────────────────
+                                        RowLayout {
+                                            spacing: 6
+                                            Text { text: "Limit"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Rectangle {
+                                                width: 70; height: 26; radius: 2
+                                                color: "#1b1b1b"; border.color: limitFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                TextInput {
+                                                    id: limitFld
+                                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                                    text: String(ruleCard.rule.limitKBps || 500)
+                                                    color: "#e0e0e0"; font.pixelSize: 12
+                                                    horizontalAlignment: TextInput.AlignHCenter
+                                                    verticalAlignment: TextInput.AlignVCenter
+                                                    validator: IntValidator { bottom: 1; top: 999999 }
+                                                    onTextEdited: {
+                                                        var v = parseInt(text)
+                                                        if (!isNaN(v) && v > 0) ruleCard.patch("limitKBps", v)
+                                                    }
+                                                }
+                                            }
+                                            Text { text: "KB/s"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                        }
+                                    }
+                                }
+                            } // Repeater
+
+                            // ── Add Rule button ──────────────────────────────────────────────────
+                            DlgButton {
+                                text: "+ Add Rule"
+                                onClicked: {
+                                    var arr = JSON.parse(root.editSpeedScheduleJson || "[]")
+                                    arr.push(scheduleCol.blankRule())
+                                    scheduleCol.saveRules(arr)
+                                }
+                            }
+
+                            // Informational note — same blue-tinted style as GrabberScheduleDialog
+                            Rectangle {
+                                Layout.fillWidth: true
+                                implicitHeight: scheduleNote.implicitHeight + 16
+                                color: "#1a2030"; border.color: "#2a3050"; radius: 3
+                                Text {
+                                    id: scheduleNote
+                                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
+                                    text: "Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. The limiter is cleared automatically when no rule is active."
+                                    color: "#8899bb"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                }
+                            }
+                        } // scheduleCol
+
+                        Item { height: 12 }
                     }
+                    } // ScrollView
                 }
 
                 // Notifications
@@ -858,13 +1548,15 @@ Window {
                         CheckBox {
                             text: "Show notification when download completes"
                             topPadding: 0; bottomPadding: 0
-                            checked: true
+                            checked: root.editShowCompletionNotification
+                            onCheckedChanged: root.editShowCompletionNotification = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
                             text: "Show notification on download error"
                             topPadding: 0; bottomPadding: 0
-                            checked: true
+                            checked: root.editShowErrorNotification
+                            onCheckedChanged: root.editShowErrorNotification = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
@@ -908,6 +1600,46 @@ Window {
                             checked: root.editShowFinishedCount
                             onCheckedChanged: root.editShowFinishedCount = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        CheckBox {
+                            text: "Launch Stellar on startup"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editLaunchOnStartup
+                            onCheckedChanged: root.editLaunchOnStartup = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+                        Text { text: "Updates"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        CheckBox {
+                            text: "Automatically check for updates"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editAutoCheckUpdates
+                            onCheckedChanged: root.editAutoCheckUpdates = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+                        Text { text: "Clipboard Monitoring"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        CheckBox {
+                            text: "Automatically start downloading URLs placed in the clipboard"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editClipboardMonitorEnabled
+                            onCheckedChanged: root.editClipboardMonitorEnabled = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+                        }
+
+                        Text {
+                            text: "When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser \u203a Automatically start downloading the following file types are picked up."
+                            color: "#7a7a7a"; font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                            visible: root.editClipboardMonitorEnabled
                         }
 
                         Item { Layout.fillHeight: true }
@@ -1001,6 +1733,24 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
+                        RowLayout {
+                            spacing: 8
+
+                            DlgButton {
+                                text: "Check for Updates"
+                                onClicked: App.checkForUpdates(true)
+                            }
+
+                            Text {
+                                text: App.updateAvailable ? ("Latest available: " + App.updateVersion) : ""
+                                color: "#7a7a7a"
+                                font.pixelSize: 11
+                                visible: App.updateAvailable
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
                         // Links
                         RowLayout {
                             spacing: 20
@@ -1053,44 +1803,18 @@ Window {
                 anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 12 }
                 spacing: 8
 
-                Rectangle {
-                    width: 80; height: 30; radius: 3
+                DlgButton {
+                    text: "Apply"
+                    primary: root.hasChanges
                     enabled: root.hasChanges
-                    color: enabled ? (applyMa.containsMouse ? "#4a4a7a" : "#3a3a5a") : "#2a2a2a"
-                    border.color: enabled ? "#5555aa" : "transparent"
-
-                    Text {
-                        anchors.centerIn: parent
-                        text: "Apply"
-                        color: parent.enabled ? "#ffffff" : "#555555"
-                        font.pixelSize: 13
-                    }
-                    MouseArea {
-                        id: applyMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: parent.enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
-                        onClicked: if (root.hasChanges) root.applySettings()
-                    }
+                    opacity: enabled ? 1.0 : 0.5
+                    onClicked: if (root.hasChanges) root.applySettings()
                 }
 
-                Rectangle {
-                    width: 80; height: 30; radius: 3
-                    color: okMa.containsMouse ? "#4a6aaa" : "#3a5a8a"
-
-                    Text {
-                        anchors.centerIn: parent
-                        text: "OK"
-                        color: "#ffffff"
-                        font.pixelSize: 13
-                    }
-                    MouseArea {
-                        id: okMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: { root.applySettings(); root.close() }
-                    }
+                DlgButton {
+                    text: "OK"
+                    primary: false
+                    onClicked: { root.applySettings(); root.close() }
                 }
             }
         }

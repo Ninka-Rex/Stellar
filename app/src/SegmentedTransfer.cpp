@@ -31,6 +31,16 @@ static const QString kUserAgent =
 static const QString kBrowserUserAgent =
     QStringLiteral("Mozilla/5.0 (Windows NT 10.0; Win64; x64) Stellar/%1").arg(QStringLiteral(STELLAR_VERSION));
 
+namespace {
+QString resolvedUserAgent(bool useCustomUserAgent, const QString &customUserAgent, bool browserStyleFallback) {
+    const QString trimmedCustomUserAgent = customUserAgent.trimmed();
+    if (useCustomUserAgent && !trimmedCustomUserAgent.isEmpty())
+        return trimmedCustomUserAgent;
+
+    return browserStyleFallback ? kBrowserUserAgent : kUserAgent;
+}
+}
+
 SegmentedTransfer::SegmentedTransfer(DownloadItem *item,
                                      QNetworkAccessManager *nam,
                                      int segments,
@@ -105,10 +115,9 @@ void SegmentedTransfer::start() {
 
 // Apply standard headers (UA, cookies, redirects) to any outgoing request.
 void SegmentedTransfer::applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const {
-    if (isGoogleDriveUrl(url))
-        req.setHeader(QNetworkRequest::UserAgentHeader, kBrowserUserAgent);
-    else
-        req.setHeader(QNetworkRequest::UserAgentHeader, kUserAgent);
+    req.setHeader(
+        QNetworkRequest::UserAgentHeader,
+        resolvedUserAgent(m_useCustomUserAgent, m_customUserAgent, isGoogleDriveUrl(url)));
     req.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
                      QNetworkRequest::NoLessSafeRedirectPolicy);
     if (m_item && !m_item->cookies().isEmpty())
@@ -118,6 +127,18 @@ void SegmentedTransfer::applyRequestHeaders(QNetworkRequest &req, const QUrl &ur
             (m_item->username() + QLatin1Char(':') + m_item->password()).toUtf8().toBase64();
         req.setRawHeader("Authorization", QByteArray("Basic ") + credentials);
     }
+}
+
+void SegmentedTransfer::setCustomUserAgentEnabled(bool enabled) {
+    m_useCustomUserAgent = enabled;
+}
+
+void SegmentedTransfer::setCustomUserAgent(const QString &userAgent) {
+    m_customUserAgent = userAgent;
+}
+
+void SegmentedTransfer::setTemporaryDirectory(const QString &path) {
+    m_temporaryDirectory = path;
 }
 
 void SegmentedTransfer::sendHeadRequest() {
@@ -517,6 +538,8 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
 }
 
 void SegmentedTransfer::mergeAndFinish() {
+    m_item->setStatus(DownloadItem::Status::Assembling);
+
     // Final progress update
     qint64 totalReceived = 0;
     for (const auto &seg : m_segments) totalReceived += seg.received;
@@ -873,6 +896,55 @@ void SegmentedTransfer::resume() {
     m_item->setStatus(DownloadItem::Status::Downloading);
 }
 
+bool SegmentedTransfer::relocateOutput(const QString &newSavePath, const QString &newFilename) {
+    if (!m_item)
+        return false;
+
+    const QString oldMeta = metaPath();
+    const QString oldSavePath = m_item->savePath();
+    const QString oldFilename = m_item->filename();
+
+    if (oldSavePath == newSavePath && oldFilename == newFilename)
+        return true;
+
+    QDir().mkpath(newSavePath);
+
+    for (auto &seg : m_segments) {
+        const QString newPartPath = newSavePath + QStringLiteral("/") + newFilename
+            + QStringLiteral(".stellar-part-") + QString::number(seg.index);
+        if (seg.partPath == newPartPath)
+            continue;
+
+        const QString oldPartPath = seg.partPath;
+        const bool wasOpen = seg.file && seg.file->isOpen();
+        if (wasOpen)
+            seg.file->close();
+
+        if (QFile::exists(oldPartPath)) {
+            if (!QFile::rename(oldPartPath, newPartPath)) {
+                if (wasOpen && seg.file)
+                    seg.file->open(QIODevice::Append);
+                return false;
+            }
+        }
+
+        if (seg.file)
+            seg.file->setFileName(newPartPath);
+        if (wasOpen && seg.file)
+            seg.file->open(QIODevice::Append);
+        seg.partPath = newPartPath;
+    }
+
+    m_item->setSavePath(newSavePath);
+    m_item->setFilename(newFilename);
+
+    if (QFile::exists(oldMeta))
+        QFile::rename(oldMeta, metaPath());
+
+    saveMeta();
+    return true;
+}
+
 void SegmentedTransfer::abort() {
     m_cancelled = true;
     m_progressTimer->stop();
@@ -919,12 +991,16 @@ void SegmentedTransfer::deleteMetaFile() {
 }
 
 QString SegmentedTransfer::metaPath() const {
-    return m_item->savePath() + QStringLiteral("/") + m_item->filename() + QStringLiteral(".stellar-meta");
+    return tempBaseDirectory() + QStringLiteral("/") + m_item->filename() + QStringLiteral(".stellar-meta");
 }
 
 QString SegmentedTransfer::partPath(int index) const {
-    return m_item->savePath() + QStringLiteral("/") + m_item->filename()
+    return tempBaseDirectory() + QStringLiteral("/") + m_item->filename()
            + QStringLiteral(".stellar-part-") + QString::number(index);
+}
+
+QString SegmentedTransfer::tempBaseDirectory() const {
+    return m_temporaryDirectory.trimmed().isEmpty() ? m_item->savePath() : m_temporaryDirectory.trimmed();
 }
 
 bool SegmentedTransfer::saveMeta() {
@@ -943,7 +1019,7 @@ bool SegmentedTransfer::saveMeta() {
     }
     root[QStringLiteral("segments")] = segs;
 
-    QDir().mkpath(m_item->savePath());
+    QDir().mkpath(tempBaseDirectory());
     QFile f(metaPath());
     if (!f.open(QIODevice::WriteOnly)) return false;
     f.write(QJsonDocument(root).toJson(QJsonDocument::Compact));

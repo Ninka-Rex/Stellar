@@ -22,17 +22,17 @@ Rectangle {
     height: 22
     color: "#1a1a1a"
 
-    property int activeCount:    0
+    property int activeCount: 0
     property int completedCount: 0
-    property int selectedCount:  0
-    property var tipsArray:      []
+    property int selectedCount: 0
+    property var tipsArray: []
     property int currentTipIndex: 0
-    property bool showTips:      true
+    property bool showTips: true
+    property int errorCount: App.downloadModel ? App.downloadModel.errorCount : 0
 
     signal nextTip()
     signal closeTips()
 
-    // top border
     Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#3a3a3a" }
 
     RowLayout {
@@ -41,24 +41,32 @@ Rectangle {
 
         Text {
             text: {
-                var base
+                var parts = []
+
+                parts.push("🟩 Ready")
+
                 if (activeCount > 0)
-                    base = "%1 file(s) downloading".arg(activeCount)
-                else if (App.settings.showFinishedCount && completedCount > 0)
-                    base = "Ready | %1 downloads".arg(completedCount)
-                else
-                    base = "Ready"
+                    parts.push(activeCount === 1 ? "🟦 1 active" : "🟦 %1 active".arg(activeCount))
 
-                // Append selection count when one or more rows are highlighted.
+                if (App.settings.showFinishedCount && completedCount > 0)
+                    parts.push(completedCount === 1 ? "📄 1 download" : "📄 %1 downloads".arg(completedCount))
+
+                if (errorCount > 0)
+                    parts.push(errorCount === 1 ? "🟥 1 error" : "🟥 %1 errors".arg(errorCount))
+
                 if (selectedCount > 0)
-                    base += " | %1 selected".arg(selectedCount)
+                    parts.push(selectedCount === 1 ? "🔍 1 selected" : "🔍 %1 selected".arg(selectedCount))
 
-                // Append speed limiter status if enabled
-                if (App.settings.globalSpeedLimitKBps > 0) {
-                    base += " | Speed limiter enabled (" + App.settings.globalSpeedLimitKBps + " KB/s)"
-                }
+                if (App.settings.globalSpeedLimitKBps > 0)
+                    parts.push("🛑 Speed limiter " + App.settings.globalSpeedLimitKBps + " KB/s")
 
-                return base
+                if (App.checkingForUpdates)
+                    parts.push("📡 Checking for updates")
+
+                if (App.updateStatusText && App.updateStatusText.length > 0 && !App.checkingForUpdates)
+                    parts.push(App.updateStatusText)
+
+                return parts.join("  | ")
             }
             color: "#a0a0a0"
             font.pixelSize: 11
@@ -67,19 +75,17 @@ Rectangle {
 
         Item { Layout.fillWidth: true }
 
-        // Tips section (right-aligned)
         RowLayout {
             visible: App.settings.showTips && tipsArray.length > 0
             spacing: 8
-            Layout.preferredWidth: 400
 
             Text {
-                text: tipsArray.length > currentTipIndex ? "💡 " + tipsArray[currentTipIndex] : ""
+                text: tipsArray.length > currentTipIndex ? "💡 Tip: " + tipsArray[currentTipIndex] : ""
                 color: "#b0b0b0"
                 font.pixelSize: 11
                 wrapMode: Text.NoWrap
                 elide: Text.ElideRight
-                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignRight
             }
 
             Row {
@@ -116,8 +122,8 @@ Rectangle {
         Text {
             visible: !App.settings.showTips || tipsArray.length === 0
             text: App.minutesUntilNextQueue === 1
-                ? "Queue runs in 1 minute"
-                : (App.minutesUntilNextQueue > 0 ? "Queue runs in %1 minutes".arg(App.minutesUntilNextQueue) : "")
+                ? "🟧 Queue runs in 1 minute"
+                : (App.minutesUntilNextQueue > 0 ? "🟧 Queue runs in %1 minutes".arg(App.minutesUntilNextQueue) : "")
             color: "#a0a0a0"
             font.pixelSize: 11
         }

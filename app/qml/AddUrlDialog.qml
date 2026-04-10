@@ -22,7 +22,6 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Add Download"
     width: 420
     height: authCheck.checked ? 230 : 160
     minimumWidth: 360
@@ -38,15 +37,28 @@ Window {
     property alias username: usernameField.text
     property alias password: passwordField.text
     property alias useAuth:  authCheck.checked
+    // Optional override for the window title (e.g. clipboard monitoring prompt)
+    property string titleOverride: ""
+
+    // Expose the effective title as a binding so the Window title updates reactively
+    title: titleOverride.length > 0 ? titleOverride : "Add Download"
 
     signal accepted()
 
     onVisibleChanged: {
         if (visible) {
-            var clip = App.clipboardUrl()
-            urlField.text = clip ? clip : ""
+            // If opened from the clipboard monitor, the URL is already pre-filled
+            // and titleOverride is set — skip the normal clipboard auto-fill.
+            if (titleOverride.length === 0) {
+                var clip = App.clipboardUrl()
+                urlField.text = clip ? clip : ""
+                if (clip) urlField.selectAll()
+            }
             urlField.forceActiveFocus()
-            if (clip) urlField.selectAll()
+        } else {
+            // Reset the override title when the dialog is closed so the next
+            // normal open doesn't show the clipboard prompt title.
+            titleOverride = ""
         }
     }
 
@@ -68,7 +80,6 @@ Window {
             TextField {
                 id: urlField
                 Layout.fillWidth: true
-                placeholderText: "https://example.com/file.zip"
                 selectByMouse: true
                 font.pixelSize: 12
                 background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
@@ -138,20 +149,8 @@ Window {
             Layout.fillWidth: true
             spacing: 8
             Item { Layout.fillWidth: true }
-            Button {
-                text: "Cancel"
-                implicitWidth: 80
-                background: Rectangle { color: "#3a3a3a"; radius: 3; border.color: "#555555"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                onClicked: root.close()
-            }
-            Button {
-                text: "OK"
-                implicitWidth: 80
-                background: Rectangle { color: "#1e3a6e"; radius: 3; border.color: "#4488dd"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#ffffff"; font.pixelSize: 13; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                onClicked: root._submit()
-            }
+            DlgButton { text: "Cancel"; onClicked: root.close() }
+            DlgButton { text: "OK"; primary: true; onClicked: root._submit() }
         }
     }
 }

@@ -55,7 +55,7 @@ Rectangle {
 
     Row {
         anchors { fill: parent; topMargin: 4; bottomMargin: 4; leftMargin: 2 }
-        spacing: 2
+        spacing: 0
 
         ToolbarBtn { label: "Add URL";        iconSrc: "icons/new_file.ico";    onClicked: root.addClicked() }
         // selectedItemStatus is a string Q_PROPERTY on DownloadTable — it emits

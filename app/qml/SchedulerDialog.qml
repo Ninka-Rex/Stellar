@@ -29,7 +29,7 @@ Window {
     height: 620
     minimumWidth: 700
     minimumHeight: 520
-    flags: Qt.Dialog | Qt.WindowCloseButtonHint
+    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowSystemMenuHint | Qt.WindowCloseButtonHint
     color: "#1c1c1c"
 
     Material.primary: "#4488dd"
@@ -39,8 +39,60 @@ Window {
     property var selectedQueue: null
     property bool hasChanges: false
 
-    function captureQueueState() {
+    function parseScheduleTime(value, fallbackHour, fallbackMinute, fallbackAmPm) {
+        var match = /^([0-9]{1,2}):([0-9]{2})(?::([0-9]{2}))?\s*(AM|PM|am|pm)?$/.exec((value || "").trim())
+        if (!match) {
+            return {
+                hour: String(fallbackHour),
+                minute: fallbackMinute < 10 ? "0" + fallbackMinute : String(fallbackMinute),
+                amPm: fallbackAmPm
+            }
+        }
+        return {
+            hour: String(parseInt(match[1], 10) || fallbackHour),
+            minute: match[2],
+            amPm: (match[4] || fallbackAmPm).toUpperCase()
+        }
+    }
+
+    function buildScheduleTime(hourText, minuteText, amPm) {
+        var hour = parseInt(hourText, 10)
+        var minute = parseInt(minuteText, 10)
+        if (isNaN(hour) || hour < 1 || hour > 12)
+            hour = 12
+        if (isNaN(minute) || minute < 0 || minute > 59)
+            minute = 0
+        return String(hour) + ":" + (minute < 10 ? "0" + minute : String(minute)) + ":00 " + amPm
+    }
+
+    function updateSelectedQueueTime(which, hourText, minuteText, amPm) {
+        if (!root.selectedQueue)
+            return
+        root.selectedQueue[which] = buildScheduleTime(hourText, minuteText, amPm)
+        root.checkForChanges()
+    }
+
+    function shortDayName(dayName) {
+        return dayName.slice(0, 3)
+    }
+
+    function toggleSelectedDay(dayName, enabled) {
+        if (!root.selectedQueue)
+            return
+        var days = root.selectedQueue.startDays.slice()
+        var index = days.indexOf(dayName)
+        if (enabled && index < 0)
+            days.push(dayName)
+        else if (!enabled && index >= 0)
+            days.splice(index, 1)
+        root.selectedQueue.startDays = days
+        root.checkForChanges()
+    }
+
+    function captureQueueState(force) {
         if (root.selectedQueue) {
+            if (!force && root.selectedQueue._appliedState)
+                return
             root.selectedQueue._appliedState = {
                 name: root.selectedQueue.name,
                 isDownloadQueue: root.selectedQueue.isDownloadQueue,
@@ -186,7 +238,7 @@ Window {
                             onClicked: {
                                 queueList.currentIndex = index
                                 root.selectedQueue = queueModel.queueAt(index)
-                                root.captureQueueState()
+                                root.captureQueueState(false)
                                 root.checkForChanges()
                             }
                         }
@@ -198,21 +250,18 @@ Window {
                 Layout.fillWidth: true
                 spacing: 4
 
-                Button {
+                DlgButton {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 32
                     text: "New queue"
-                    font.pixelSize: 11
-                    background: Rectangle { color: parent.pressed ? "#2a2a3a" : parent.hovered ? "#2d2d3d" : "#252525"; radius: 0; border.color: "#3a3a3a"; border.width: 1 }
                     onClicked: newQueueDialog.open()
                 }
-                Button {
+                DlgButton {
                     Layout.preferredWidth: 60
                     Layout.preferredHeight: 32
                     text: "Delete"
-                    font.pixelSize: 11
-                    background: Rectangle { color: parent.pressed ? "#2a2a3a" : parent.hovered ? "#2d2d3d" : "#252525"; radius: 0; border.color: "#3a3a3a"; border.width: 1 }
                     enabled: root.selectedQueue !== null && (root.selectedQueue ? root.selectedQueue.id !== "main-download" : false)
+                    opacity: enabled ? 1.0 : 0.5
                     onClicked: {
                         if (root.selectedQueue) {
                             App.deleteQueue(root.selectedQueue.id)
@@ -237,7 +286,7 @@ Window {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 32
                 text: root.selectedQueue ? root.selectedQueue.name : ""
-                color: "#4488dd"
+                color: "#ffffff"
                 font.pixelSize: 15
                 font.bold: true
                 horizontalAlignment: Text.AlignHCenter
@@ -333,6 +382,8 @@ Window {
                             Layout.leftMargin: 12
                             spacing: 8
 
+                            property var startParts: root.parseScheduleTime(root.selectedQueue ? root.selectedQueue.startTime : "11:00:00 PM", 11, 0, "PM")
+
                             CheckBox {
                                 id: hasStartTimeCb
                                 text: "Start download at"
@@ -341,36 +392,64 @@ Window {
                                 checked: root.selectedQueue ? root.selectedQueue.hasStartTime : false
                                 onToggled: { if (root.selectedQueue) { root.selectedQueue.hasStartTime = checked; root.checkForChanges() } }
                             }
-                            TextField {
-                                id: startTimeField
-                                Layout.preferredWidth: 130
-                                placeholderText: "HH:MM:SS AM/PM"
-                                text: root.selectedQueue ? root.selectedQueue.startTime : "11:00:00 PM"
-                                enabled: hasStartTimeCb.checked && root.selectedQueue !== null
-                                color: isValidTime(text) ? "#d0d0d0" : "#ff6666"
-
-                                function isValidTime(t) {
-                                    if (!t || t.length === 0) return false
-                                    // Match HH:MM:SS AM/PM or HH:MM format
-                                    var regex = /^([0-9]{1,2}):([0-9]{2})(:([0-9]{2}))?\s*(AM|PM|am|pm)?$/
-                                    return regex.test(t.trim())
-                                }
-
-                                onTextChanged: {
-                                    if (!root.selectedQueue) return
-                                    // Update queue immediately if valid
-                                    if (isValidTime(text)) {
-                                        root.selectedQueue.startTime = text
-                                    }
-                                    // Always trigger change detection
-                                    root.checkForChanges()
+                            Rectangle {
+                                width: 50; height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: startHourInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                opacity: (hasStartTimeCb.checked && root.selectedQueue !== null) ? 1.0 : 0.4
+                                TextInput {
+                                    id: startHourInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: parent.parent.startParts.hour
+                                    color: "#e0e0e0"
+                                    font.pixelSize: 12
+                                    horizontalAlignment: TextInput.AlignHCenter
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    enabled: hasStartTimeCb.checked && root.selectedQueue !== null
+                                    validator: IntValidator { bottom: 1; top: 12 }
+                                    onTextEdited: root.updateSelectedQueueTime("startTime", text, startMinuteInput.text, startAmPmCombo.currentText)
                                 }
                             }
-                            Text {
-                                visible: !startTimeField.isValidTime(startTimeField.text) && startTimeField.text.length > 0
-                                text: "Invalid format"
-                                color: "#ff6666"
-                                font.pixelSize: 10
+                            Text { text: ":"; color: "#aaaaaa"; font.pixelSize: 13 }
+                            Rectangle {
+                                width: 50; height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: startMinuteInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                opacity: (hasStartTimeCb.checked && root.selectedQueue !== null) ? 1.0 : 0.4
+                                TextInput {
+                                    id: startMinuteInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: parent.parent.startParts.minute
+                                    color: "#e0e0e0"
+                                    font.pixelSize: 12
+                                    horizontalAlignment: TextInput.AlignHCenter
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    enabled: hasStartTimeCb.checked && root.selectedQueue !== null
+                                    validator: IntValidator { bottom: 0; top: 59 }
+                                    onTextEdited: root.updateSelectedQueueTime("startTime", startHourInput.text, text, startAmPmCombo.currentText)
+                                }
+                            }
+                            ComboBox {
+                                id: startAmPmCombo
+                                model: ["AM", "PM"]
+                                currentIndex: parent.startParts.amPm === "PM" ? 1 : 0
+                                enabled: hasStartTimeCb.checked && root.selectedQueue !== null
+                                implicitWidth: 62
+                                implicitHeight: 26
+                                font.pixelSize: 12
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    rightPadding: 20
+                                    text: parent.displayText
+                                    color: "#e0e0e0"
+                                    font: parent.font
+                                    verticalAlignment: Text.AlignVCenter
+                                    elide: Text.ElideRight
+                                }
+                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
+                                indicator: Text { x: parent.width - width - 6; y: (parent.height - height) / 2; text: "▼"; color: "#888"; font.pixelSize: 8 }
+                                popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+                                onCurrentTextChanged: root.updateSelectedQueueTime("startTime", startHourInput.text, startMinuteInput.text, currentText)
                             }
                         }
 
@@ -400,30 +479,34 @@ Window {
                         }
 
                         // Day checkboxes (download queues only)
-                        GridLayout {
+                        RowLayout {
                             Layout.leftMargin: 40
-                            columns: 3
-                            columnSpacing: 4
-                            rowSpacing: 2
+                            spacing: 3
                             visible: root.selectedQueue ? root.selectedQueue.isDownloadQueue : true
                             enabled: hasStartTimeCb.checked && dailyRadio.checked
                             opacity: enabled ? 1.0 : 0.4
 
                             Repeater {
                                 model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-                                delegate: CheckBox {
-                                    text: modelData
-                                    topPadding: 0
-                                    bottomPadding: 0
-                                    font.pixelSize: 11
-                                    checked: root.selectedQueue ? root.selectedQueue.startDays.indexOf(modelData) >= 0 : true
-                                    onToggled: {
-                                        if (!root.selectedQueue) return
-                                        var days = root.selectedQueue.startDays.slice()
-                                        if (checked && days.indexOf(modelData) < 0) days.push(modelData)
-                                        else if (!checked) days = days.filter(function(d){ return d !== modelData })
-                                        root.selectedQueue.startDays = days
-                                        root.checkForChanges()
+                                delegate: Rectangle {
+                                    required property var modelData
+                                    property bool on: root.selectedQueue ? root.selectedQueue.startDays.indexOf(modelData) >= 0 : true
+                                    width: 36
+                                    height: 22
+                                    radius: 2
+                                    color: on ? "#1a3a6a" : "#252525"
+                                    border.color: on ? "#4488dd" : "#3a3a3a"
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: root.shortDayName(parent.modelData)
+                                        color: parent.on ? "#aaccff" : "#666666"
+                                        font.pixelSize: 11
+                                    }
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        enabled: hasStartTimeCb.checked && dailyRadio.checked
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: root.toggleSelectedDay(parent.modelData, !parent.on)
                                     }
                                 }
                             }
@@ -460,30 +543,34 @@ Window {
                         }
 
                         // Day checkboxes for sync queues
-                        GridLayout {
+                        RowLayout {
                             Layout.leftMargin: 40
-                            columns: 3
-                            columnSpacing: 4
-                            rowSpacing: 2
+                            spacing: 3
                             visible: root.selectedQueue ? !root.selectedQueue.isDownloadQueue : false
                             enabled: startAgainCb.checked
                             opacity: enabled ? 1.0 : 0.4
 
                             Repeater {
                                 model: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-                                delegate: CheckBox {
-                                    text: modelData
-                                    topPadding: 0
-                                    bottomPadding: 0
-                                    font.pixelSize: 11
-                                    checked: root.selectedQueue ? root.selectedQueue.startDays.indexOf(modelData) >= 0 : true
-                                    onToggled: {
-                                        if (!root.selectedQueue) return
-                                        var days = root.selectedQueue.startDays.slice()
-                                        if (checked && days.indexOf(modelData) < 0) days.push(modelData)
-                                        else if (!checked) days = days.filter(function(d){ return d !== modelData })
-                                        root.selectedQueue.startDays = days
-                                        root.checkForChanges()
+                                delegate: Rectangle {
+                                    required property var modelData
+                                    property bool on: root.selectedQueue ? root.selectedQueue.startDays.indexOf(modelData) >= 0 : true
+                                    width: 36
+                                    height: 22
+                                    radius: 2
+                                    color: on ? "#1a3a6a" : "#252525"
+                                    border.color: on ? "#4488dd" : "#3a3a3a"
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: root.shortDayName(parent.modelData)
+                                        color: parent.on ? "#aaccff" : "#666666"
+                                        font.pixelSize: 11
+                                    }
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        enabled: startAgainCb.checked
+                                        cursorShape: Qt.PointingHandCursor
+                                        onClicked: root.toggleSelectedDay(parent.modelData, !parent.on)
                                     }
                                 }
                             }
@@ -496,6 +583,8 @@ Window {
                             Layout.leftMargin: 12
                             spacing: 8
 
+                            property var stopParts: root.parseScheduleTime(root.selectedQueue ? root.selectedQueue.stopTime : "7:30:00 AM", 7, 30, "AM")
+
                             CheckBox {
                                 id: hasStopTimeCb
                                 text: "Stop download at"
@@ -504,36 +593,64 @@ Window {
                                 checked: root.selectedQueue ? root.selectedQueue.hasStopTime : false
                                 onToggled: { if (root.selectedQueue) { root.selectedQueue.hasStopTime = checked; root.checkForChanges() } }
                             }
-                            TextField {
-                                id: stopTimeField
-                                Layout.preferredWidth: 130
-                                placeholderText: "HH:MM:SS AM/PM"
-                                text: root.selectedQueue ? root.selectedQueue.stopTime : "7:30:00 AM"
-                                enabled: hasStopTimeCb.checked && root.selectedQueue !== null
-                                color: isValidTime(text) ? "#d0d0d0" : "#ff6666"
-
-                                function isValidTime(t) {
-                                    if (!t || t.length === 0) return false
-                                    // Match HH:MM:SS AM/PM or HH:MM format
-                                    var regex = /^([0-9]{1,2}):([0-9]{2})(:([0-9]{2}))?\s*(AM|PM|am|pm)?$/
-                                    return regex.test(t.trim())
-                                }
-
-                                onTextChanged: {
-                                    if (!root.selectedQueue) return
-                                    // Update queue immediately if valid
-                                    if (isValidTime(text)) {
-                                        root.selectedQueue.stopTime = text
-                                    }
-                                    // Always trigger change detection
-                                    root.checkForChanges()
+                            Rectangle {
+                                width: 50; height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: stopHourInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                opacity: (hasStopTimeCb.checked && root.selectedQueue !== null) ? 1.0 : 0.4
+                                TextInput {
+                                    id: stopHourInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: parent.parent.stopParts.hour
+                                    color: "#e0e0e0"
+                                    font.pixelSize: 12
+                                    horizontalAlignment: TextInput.AlignHCenter
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    enabled: hasStopTimeCb.checked && root.selectedQueue !== null
+                                    validator: IntValidator { bottom: 1; top: 12 }
+                                    onTextEdited: root.updateSelectedQueueTime("stopTime", text, stopMinuteInput.text, stopAmPmCombo.currentText)
                                 }
                             }
-                            Text {
-                                visible: !stopTimeField.isValidTime(stopTimeField.text) && stopTimeField.text.length > 0
-                                text: "Invalid format"
-                                color: "#ff6666"
-                                font.pixelSize: 10
+                            Text { text: ":"; color: "#aaaaaa"; font.pixelSize: 13 }
+                            Rectangle {
+                                width: 50; height: 26; radius: 2
+                                color: "#1b1b1b"
+                                border.color: stopMinuteInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                opacity: (hasStopTimeCb.checked && root.selectedQueue !== null) ? 1.0 : 0.4
+                                TextInput {
+                                    id: stopMinuteInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: parent.parent.stopParts.minute
+                                    color: "#e0e0e0"
+                                    font.pixelSize: 12
+                                    horizontalAlignment: TextInput.AlignHCenter
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    enabled: hasStopTimeCb.checked && root.selectedQueue !== null
+                                    validator: IntValidator { bottom: 0; top: 59 }
+                                    onTextEdited: root.updateSelectedQueueTime("stopTime", stopHourInput.text, text, stopAmPmCombo.currentText)
+                                }
+                            }
+                            ComboBox {
+                                id: stopAmPmCombo
+                                model: ["AM", "PM"]
+                                currentIndex: parent.stopParts.amPm === "PM" ? 1 : 0
+                                enabled: hasStopTimeCb.checked && root.selectedQueue !== null
+                                implicitWidth: 62
+                                implicitHeight: 26
+                                font.pixelSize: 12
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    rightPadding: 20
+                                    text: parent.displayText
+                                    color: "#e0e0e0"
+                                    font: parent.font
+                                    verticalAlignment: Text.AlignVCenter
+                                    elide: Text.ElideRight
+                                }
+                                background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
+                                indicator: Text { x: parent.width - width - 6; y: (parent.height - height) / 2; text: "▼"; color: "#888"; font.pixelSize: 8 }
+                                popup.background: Rectangle { color: "#2a2a2a"; border.color: "#444"; radius: 3 }
+                                onCurrentTextChanged: root.updateSelectedQueueTime("stopTime", stopHourInput.text, stopMinuteInput.text, currentText)
                             }
                         }
 
@@ -965,43 +1082,42 @@ Window {
                 Layout.topMargin: 8
                 spacing: 8
 
-                Button {
+                DlgButton {
                     text: "Start now"
                     Layout.preferredWidth: 90
                     Layout.preferredHeight: 32
-                    background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: "#3a3a3a"; border.width: 1 }
                     enabled: root.selectedQueue !== null
+                    primary: true
                     onClicked: { if (root.selectedQueue) App.startQueue(root.selectedQueue.id) }
                 }
-                Button {
+                DlgButton {
                     text: "Stop"
                     Layout.preferredWidth: 90
                     Layout.preferredHeight: 32
-                    background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: "#3a3a3a"; border.width: 1 }
                     enabled: root.selectedQueue !== null
+                    opacity: enabled ? 1.0 : 0.5
                     onClicked: { if (root.selectedQueue) App.stopQueue(root.selectedQueue.id) }
                 }
 
                 Item { Layout.fillWidth: true }
 
-                Button {
+                DlgButton {
                     text: "Apply"
                     Layout.preferredWidth: 80
                     Layout.preferredHeight: 32
+                    primary: root.hasChanges
                     enabled: root.hasChanges
                     opacity: enabled ? 1.0 : 0.5
-                    background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: parent.enabled ? "#3a3a3a" : "#666666"; border.width: 1 }
                     onClicked: {
                         App.saveQueues()
-                        root.captureQueueState()
+                        root.captureQueueState(true)
                         root.hasChanges = false
                     }
                 }
-                Button {
+                DlgButton {
                     text: "Close"
                     Layout.preferredWidth: 80
                     Layout.preferredHeight: 32
-                    background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: "#3a3a3a"; border.width: 1 }
                     onClicked: root.close()
                 }
             }
@@ -1112,18 +1228,13 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     Item { Layout.fillWidth: true }
-                    Button {
+                    DlgButton {
                         text: "OK"
-                        Layout.preferredWidth: 80
-                        Layout.preferredHeight: 32
-                        background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: "#3a3a3a"; border.width: 1 }
+                        primary: true
                         onClicked: confirmNewQueue()
                     }
-                    Button {
+                    DlgButton {
                         text: "Cancel"
-                        Layout.preferredWidth: 80
-                        Layout.preferredHeight: 32
-                        background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: "#3a3a3a"; border.width: 1 }
                         onClicked: { newQueueNameField.text = ""; newQueueDialog.close() }
                     }
                 }
@@ -1160,7 +1271,7 @@ Window {
                 root.selectedQueue = queueModel.queueAt(0)
             }
         }
-        root.captureQueueState()
+        root.captureQueueState(false)
         root.hasChanges = false
     }
 }

@@ -320,36 +320,14 @@ Window {
 
             Item { Layout.fillWidth: true }
 
-            // Plain Rectangle avoids Material Button's implicit insets that would
-            // make it render taller than its stated implicitHeight.
-            Rectangle {
-                width: 80; height: 32; radius: 3
-                color: openMa.containsMouse ? "#4a4a4a" : "#3a3a3a"
-                border.color: "#555"; border.width: 1
-                Behavior on color { ColorAnimation { duration: 80 } }
-                Text { anchors.centerIn: parent; text: "Open"; color: "#d0d0d0"; font.pixelSize: 13 }
-                MouseArea {
-                    id: openMa
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: if (root.item) Qt.openUrlExternally("file:///" + (root.item.savePath + "/" + root.item.filename).replace(/\\/g, "/"))
-                }
+            DlgButton {
+                text: "Open"
+                onClicked: if (root.item) Qt.openUrlExternally("file:///" + (root.item.savePath + "/" + root.item.filename).replace(/\\/g, "/"))
             }
 
-            Rectangle {
-                width: 80; height: 32; radius: 3
-                color: closeMa.containsMouse ? "#4a4a4a" : "#3a3a3a"
-                border.color: "#555"; border.width: 1
-                Behavior on color { ColorAnimation { duration: 80 } }
-                Text { anchors.centerIn: parent; text: "Close"; color: "#d0d0d0"; font.pixelSize: 13 }
-                MouseArea {
-                    id: closeMa
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: root.close()
-                }
+            DlgButton {
+                text: "Close"
+                onClicked: root.close()
             }
         }
     }

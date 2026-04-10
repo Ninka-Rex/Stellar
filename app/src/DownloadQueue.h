@@ -18,6 +18,8 @@
 #include <QObject>
 #include <QList>
 #include <QHash>
+#include <QString>
+#include <functional>
 #include "DownloadItem.h"
 
 class QNetworkAccessManager;
@@ -42,7 +44,12 @@ public:
 
     void setNam(QNetworkAccessManager *nam) { m_nam = nam; }
     void setSpeedLimitKBps(int kbps);
+    void setCustomUserAgentEnabled(bool enabled);
+    void setCustomUserAgent(const QString &userAgent);
+    void setTemporaryDirectory(const QString &path);
+    void setCanStartPredicate(std::function<bool(DownloadItem *)> predicate);
     Q_INVOKABLE void setDownloadSpeedLimit(const QString &id, int kbps);
+    Q_INVOKABLE bool relocateDownload(const QString &id, const QString &newSavePath, const QString &newFilename);
 
     Q_INVOKABLE void enqueue(DownloadItem *item);
     Q_INVOKABLE void enqueueHeld(DownloadItem *item);      // add as Paused, don't start
@@ -63,6 +70,7 @@ signals:
     void itemAdded(DownloadItem *item);
     void itemRemoved(const QString &id);
     void itemCompleted(DownloadItem *item);
+    void itemFailed(DownloadItem *item, const QString &reason);
     void queueChanged();
 
 private:
@@ -75,4 +83,8 @@ private:
     int m_maxConcurrent{3};
     int m_segmentsPerDownload{8};
     int m_speedLimitKBps{0};
+    bool m_useCustomUserAgent{false};
+    QString m_customUserAgent;
+    QString m_temporaryDirectory;
+    std::function<bool(DownloadItem *)> m_canStartPredicate;
 };

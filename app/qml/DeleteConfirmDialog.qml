@@ -28,6 +28,7 @@ Window {
     //   1 = delete file permanently
     //   2 = move file to trash
     property string downloadId: ""
+    property var downloadIds: []
     property string filename: ""
     property bool fileExists: false   // true when file is on disk (completed download)
 
@@ -38,7 +39,7 @@ Window {
     // height is ~48px rather than the nominal 36px.  The original 160px was too small
     // to fit icon row + spacing + buttons + margins, causing the button row to be
     // clipped until the user manually resized the window.
-    height: fileExists ? 250 : 196
+    height: fileExists ? 232 : 166
     minimumWidth: 380
     maximumWidth: 560
     minimumHeight: height
@@ -59,8 +60,9 @@ Window {
     }
 
     ColumnLayout {
+        id: contentColumn
         anchors { fill: parent; margins: 16 }
-        spacing: 10
+        spacing: 8
 
         // Icon + message
         RowLayout {
@@ -104,7 +106,7 @@ Window {
                 id: deleteFileChk
                 text: "Also delete file from disk"
                 checked: false
-                topPadding: 4
+                topPadding: 0
                 bottomPadding: 0
                 onToggled: { if (!checked) permDeleteChk.checked = false }
                 contentItem: Text {
@@ -121,7 +123,7 @@ Window {
                 text: "Permanently delete (don't move to trash)"
                 checked: false
                 enabled: deleteFileChk.checked
-                topPadding: 4
+                topPadding: 0
                 bottomPadding: 0
                 contentItem: Text {
                     text: parent.text
@@ -133,7 +135,7 @@ Window {
             }
         }
 
-        Item { Layout.fillHeight: true }
+        Item { Layout.fillHeight: true; Layout.maximumHeight: 6 }
 
         // Buttons
         RowLayout {
@@ -142,19 +144,14 @@ Window {
 
             Item { Layout.fillWidth: true }
 
-            Button {
+            DlgButton {
                 text: "Cancel"
-                implicitWidth: 80
-                background: Rectangle { color: "#3a3a3a"; radius: 3 }
-                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter }
                 onClicked: root.close()
             }
 
-            Button {
+            DlgButton {
                 text: "Delete"
-                implicitWidth: 80
-                background: Rectangle { color: "#8b2020"; radius: 3 }
-                contentItem: Text { text: parent.text; color: "#ffffff"; font.bold: true; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter }
+                destructive: true
                 onClicked: {
                     var mode = 0
                     if (root.fileExists && deleteFileChk.checked) {

@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Stellar Download Manager",
+  "version": "0.1.0",
+  "description": "Intercepts browser downloads and sends them to the Stellar download manager.",
+  "icons": {
+    "16":  "icons/milky-way.png",
+    "48":  "icons/milky-way.png",
+    "128": "icons/milky-way.png"
+  },
+  "background": {
+    "service_worker": "service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16":  "icons/milky-way.png",
+      "48":  "icons/milky-way.png"
+    }
+  },
+  "permissions": [
+    "downloads",
+    "nativeMessaging",
+    "storage",
+    "contextMenus",
+    "cookies",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

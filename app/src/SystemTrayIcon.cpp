@@ -21,6 +21,12 @@
 #include <QFont>
 #include <QCursor>
 #include <QCoreApplication>
+#include <QProcess>
+#include <QStandardPaths>
+
+#if defined(STELLAR_WINDOWS)
+#  include <windows.h>
+#endif
 
 static QIcon createDefaultIcon() {
     QPixmap pm(16, 16);
@@ -40,6 +46,15 @@ static QIcon createDefaultIcon() {
     return QIcon(pm);
 }
 
+static QString psQuoted(const QString &value)
+{
+    QString escaped = value;
+    escaped.replace(QLatin1Char('\''), QStringLiteral("''"));
+    escaped.replace(QLatin1Char('\r'), QStringLiteral(" "));
+    escaped.replace(QLatin1Char('\n'), QStringLiteral(" "));
+    return QStringLiteral("'") + escaped + QStringLiteral("'");
+}
+
 SystemTrayIcon::SystemTrayIcon(QObject *parent)
     : QObject(parent)
 {
@@ -52,10 +67,15 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
             [this](QSystemTrayIcon::ActivationReason reason) {
         switch (reason) {
         case QSystemTrayIcon::DoubleClick:
-        case QSystemTrayIcon::Trigger:
+            // Double-click opens the main window.
             emit showRequested();
             break;
+        case QSystemTrayIcon::Trigger:
         case QSystemTrayIcon::Context: {
+            // Single left-click and right-click both show the context menu.
+            // On Windows, Trigger and Context can both fire for right-click
+            // depending on the Qt/Windows version, so we handle both the same
+            // way to avoid the menu AND window opening simultaneously.
             const QPoint pos = QCursor::pos();
             emit contextMenuRequested(pos.x(), pos.y());
             break;
@@ -78,7 +98,59 @@ void SystemTrayIcon::setToolTip(const QString &tip) {
 }
 
 void SystemTrayIcon::showNotification(const QString &title, const QString &msg) {
-    if (qApp && qApp->inherits("QApplication")) {
-        m_tray->showMessage(title, msg, QSystemTrayIcon::Information, 3000);
+    const QString safeTitle = title.trimmed().isEmpty()
+        ? QStringLiteral("Stellar Download Manager")
+        : title.trimmed();
+    const QString safeMsg = msg.trimmed();
+
+#if defined(STELLAR_WINDOWS)
+    const QString script = QStringLiteral(
+        "Add-Type -AssemblyName System.Windows.Forms; "
+        "Add-Type -AssemblyName System.Drawing; "
+        "$n = New-Object System.Windows.Forms.NotifyIcon; "
+        "$n.Icon = [System.Drawing.SystemIcons]::Information; "
+        "$n.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info; "
+        "$n.BalloonTipTitle = %1; "
+        "$n.BalloonTipText = %2; "
+        "$n.Visible = $true; "
+        "$n.ShowBalloonTip(4000); "
+        "Start-Sleep -Milliseconds 4500; "
+        "$n.Dispose();")
+        .arg(psQuoted(safeTitle), psQuoted(safeMsg));
+    QProcess::startDetached(QStringLiteral("powershell"), {
+        QStringLiteral("-NoProfile"),
+        QStringLiteral("-NonInteractive"),
+        QStringLiteral("-WindowStyle"), QStringLiteral("Hidden"),
+        QStringLiteral("-Command"), script
+    });
+#elif defined(STELLAR_LINUX)
+    const QString notifySend = QStandardPaths::findExecutable(QStringLiteral("notify-send"));
+    if (!notifySend.isEmpty()) {
+        QProcess::startDetached(notifySend, {
+            QStringLiteral("--app-name=Stellar"),
+            safeTitle,
+            safeMsg
+        });
+    } else {
+        const QString kdialog = QStandardPaths::findExecutable(QStringLiteral("kdialog"));
+        if (!kdialog.isEmpty()) {
+            QProcess::startDetached(kdialog, {
+                QStringLiteral("--title"), safeTitle,
+                QStringLiteral("--passivepopup"), safeMsg,
+                QStringLiteral("4")
+            });
+        } else {
+            const QString zenity = QStandardPaths::findExecutable(QStringLiteral("zenity"));
+            if (!zenity.isEmpty()) {
+                QProcess::startDetached(zenity, {
+                    QStringLiteral("--notification"),
+                    QStringLiteral("--text=%1").arg(QStringLiteral("%1\n%2").arg(safeTitle, safeMsg))
+                });
+            }
+        }
     }
+#else
+    Q_UNUSED(safeTitle);
+    Q_UNUSED(safeMsg);
+#endif
 }

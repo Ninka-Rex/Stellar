@@ -22,158 +22,242 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Batch download"
-    width: 800
+    title: "Batch download review"
+    width: 940
     height: 600
-    minimumWidth: 600
-    minimumHeight: 400
-    color: "#1e1e1e"
+    minimumWidth: 780
+    minimumHeight: 460
+    color: "#232323"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
 
     Material.theme: Material.Dark
-    Material.background: "#1e1e1e"
-    Material.accent: "#4488dd"
+    Material.background: "#232323"
+    Material.accent: "#5a8ec8"
 
     property var files: []
     signal batchAccepted(var files)
+
+    ListModel { id: fileModel }
+
+    Component.onCompleted: _rebuild()
+    onFilesChanged: _rebuild()
+
+    function _baseName(url) {
+        var tail = url.split("/").pop()
+        return tail.split("?")[0]
+    }
+
+    function _patternHint() {
+        if (files.length === 0)
+            return "e.g. file*.zip"
+        var first = files[0]
+        var base = first && first.url ? _baseName(first.url) : (first && first.name ? first.name : "")
+        if (base.length === 0)
+            return "e.g. file*.zip"
+        var dot = base.lastIndexOf(".")
+        if (dot < 0)
+            return "e.g. " + base
+        return "e.g. " + base.substring(0, dot) + "*" + base.substring(dot)
+    }
+
+    function _applyPattern(baseName) {
+        var pattern = batchPatternField.text.trim()
+        if (pattern.length === 0)
+            return baseName
+        if (pattern.indexOf("*") < 0)
+            return pattern
+        return pattern.replace("*", baseName)
+    }
+
+    function _refreshNames() {
+        var seen = {}
+        for (var i = 0; i < fileModel.count; ++i) {
+            var item = fileModel.get(i)
+            var baseName = item.baseName || item.name
+            var name = _applyPattern(baseName)
+            if (name.length === 0)
+                name = baseName
+            var dot = name.lastIndexOf(".")
+            var stem = dot >= 0 ? name.substring(0, dot) : name
+            var ext = dot >= 0 ? name.substring(dot) : ""
+            var finalName = name
+            var n = 1
+            while (seen[finalName.toLowerCase()]) {
+                ++n
+                finalName = stem + "_" + n + ext
+            }
+            seen[finalName.toLowerCase()] = true
+            fileModel.setProperty(i, "name", finalName)
+        }
+    }
+
+    function _rebuild() {
+        fileModel.clear()
+        for (var i = 0; i < files.length; ++i) {
+            var f = files[i]
+            fileModel.append({
+                baseName: f.name || _baseName(f.url),
+                name: f.filename && f.filename.length ? f.filename : (f.name || _baseName(f.url)),
+                url: f.url,
+                status: "Checking...",
+                selected: true
+            })
+        }
+        if (batchPatternField.text.length === 0)
+            batchPatternField.placeholderText = _patternHint()
+        _refreshNames()
+        _recheck()
+    }
+
+    function _recheck() {
+        for (var i = 0; i < fileModel.count; ++i) {
+            (function(idx) {
+                var url = fileModel.get(idx).url
+                App.checkUrl(url, function(ok) {
+                    fileModel.setProperty(idx, "status", ok ? "Found" : "Not Found")
+                    if (!ok)
+                        fileModel.setProperty(idx, "selected", false)
+                })
+            })(i)
+        }
+    }
 
     function _accept() {
         var filesToAdd = []
         for (var i = 0; i < fileModel.count; ++i) {
             var item = fileModel.get(i)
-            if (item.selected && item.status === "Found") {
-                filesToAdd.push(item.url)
-            }
+            if (item.selected && item.status === "Found")
+                filesToAdd.push({ url: item.url, filename: item.name })
         }
         root.batchAccepted(filesToAdd)
         root.close()
     }
 
-    onFilesChanged: {
-        fileModel.clear()
-        console.log("Files changed, total files: " + files.length)
-        for (var i = 0; i < files.length; i++) {
-            var f = files[i]
-            console.log("Adding file to model: " + f.url)
-            fileModel.append({ name: f.name, url: f.url, status: "Checking...", selected: true })
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.margins: 14
+        spacing: 10
+
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 3
+            Text { text: "Batch download review"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+            Text { text: "Choose the files to add, and optionally replace the names with a wildcard pattern."; color: "#a9a9a9"; font.pixelSize: 10; wrapMode: Text.WordWrap; Layout.fillWidth: true }
         }
-        
-        // Trigger checks separately to ensure UI is ready
-        for (var j = 0; j < fileModel.count; ++j) {
-            (function(idx) {
-                var url = fileModel.get(idx).url
-                App.checkUrl(url, function(ok) {
-                    fileModel.setProperty(idx, "status", ok ? "Found" : "Not Found")
-                    if (!ok) {
-                        fileModel.setProperty(idx, "selected", false)
+
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 4
+            Text {
+                text: "Replace file names using asterisk wildcard for the filename pattern"
+                color: "#d0d0d0"
+                font.pixelSize: 11
+                wrapMode: Text.WordWrap
+                Layout.fillWidth: true
+            }
+            TextField {
+                id: batchPatternField
+                Layout.fillWidth: true
+                placeholderText: _patternHint()
+                color: "#e8edf5"
+                background: Rectangle { color: "#232323"; border.color: "#4a4a4a"; radius: 0 }
+                onTextChanged: _refreshNames()
+            }
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
+            Text { text: "Files"; color: "#d0d0d0"; font.pixelSize: 12 }
+            Item { Layout.fillWidth: true }
+            DlgButton {
+                text: "Check all"
+                onClicked: _setAllSelected(true)
+            }
+            DlgButton {
+                text: "Uncheck all"
+                onClicked: _setAllSelected(false)
+            }
+        }
+
+        ListView {
+            id: fileList
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            model: fileModel
+            clip: true
+            spacing: 1
+            delegate: Rectangle {
+                width: fileList.width
+                height: 30
+                color: index % 2 === 0 ? "#303030" : "#2d2d2d"
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.leftMargin: 8
+                    anchors.rightMargin: 8
+                    spacing: 10
+                    Item {
+                        Layout.preferredWidth: 28
+                        Layout.fillHeight: true
+                        CheckBox {
+                            anchors.centerIn: parent
+                            checked: model.selected
+                            onCheckedChanged: fileModel.setProperty(index, "selected", checked)
+                        }
                     }
-                })
-            })(j)
+                    Text {
+                        text: name
+                        color: "#e0e0e0"
+                        font.pixelSize: 10
+                        Layout.preferredWidth: 260
+                        elide: Text.ElideRight
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    Text {
+                        text: status
+                        color: "#c0c0c0"
+                        font.pixelSize: 10
+                        Layout.preferredWidth: 90
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    Text {
+                        text: url
+                        color: "#c8c8c8"
+                        font.pixelSize: 10
+                        elide: Text.ElideMiddle
+                        Layout.fillWidth: true
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+            }
+            ScrollBar.vertical: ScrollBar {}
+        }
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
+            Text {
+                Layout.fillWidth: true
+                text: "The queue step comes after OK if you want these grouped before they start."
+                color: "#9a9a9a"
+                font.pixelSize: 9
+            }
+            DlgButton {
+                text: "Cancel"
+                onClicked: root.close()
+            }
+            DlgButton {
+                text: "OK"
+                primary: true
+                onClicked: _accept()
+            }
         }
     }
 
-    ListModel { id: fileModel }
-
-    ColumnLayout {
-        anchors { fill: parent; margins: 16 }
-        spacing: 12
-
-        Text {
-            text: "Please check the links, which you want to add to the download list of IDM, and click OK button.\nYou may wait until IDM checks and fills all file types."
-            color: "#c0c0c0"
-            font.pixelSize: 12
-        }
-
-        // Table
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            color: "#252525"
-            border.color: "#3a3a3a"
-
-            ListView {
-                id: fileList
-                anchors.fill: parent
-                model: fileModel
-                clip: true
-                header: Rectangle {
-                    width: fileList.width; height: 30; color: "#2d2d2d"
-                    Row {
-                        anchors.fill: parent; spacing: 4
-                        Text { text: "File Name"; color: "#aaa"; width: 150; verticalAlignment: Text.AlignVCenter }
-                        Text { text: "File Type"; color: "#aaa"; width: 80; verticalAlignment: Text.AlignVCenter }
-                        Text { text: "Size"; color: "#aaa"; width: 60; verticalAlignment: Text.AlignVCenter }
-                        Text { text: "Download from"; color: "#aaa"; width: 200; verticalAlignment: Text.AlignVCenter }
-                        Text { text: "Save to"; color: "#aaa"; width: 200; verticalAlignment: Text.AlignVCenter }
-                    }
-                }
-                delegate: Rectangle {
-                    width: fileList.width; height: 26
-                    color: index % 2 === 0 ? "#1c1c1c" : "#202020"
-                    Row {
-                        anchors.fill: parent; spacing: 4
-                        CheckBox { 
-                            checked: model.selected; 
-                            onCheckedChanged: {
-                                console.log("Checkbox changed for: " + name + " to: " + checked);
-                                fileModel.setProperty(index, "selected", checked);
-                            }
-                        }
-                        Text { text: name; color: "#d0d0d0"; width: 150; elide: Text.ElideRight; verticalAlignment: Text.AlignVCenter }
-                        Text { text: status; color: status === "Not Found" ? "#cc6666" : (status === "Found" ? "#66bb88" : "#888"); width: 80; verticalAlignment: Text.AlignVCenter }
-                        Text { text: ""; color: "#d0d0d0"; width: 60; verticalAlignment: Text.AlignVCenter }
-                        Text { text: url; color: "#d0d0d0"; width: 200; elide: Text.ElideRight; verticalAlignment: Text.AlignVCenter }
-                        Text { text: "Downloads/" + name; color: "#d0d0d0"; width: 200; elide: Text.ElideRight; verticalAlignment: Text.AlignVCenter }
-                    }
-                }
-            }
-        }
-
-        // Bottom settings
-        RowLayout {
-            Layout.fillWidth: true
-            
-            GroupBox {
-                Layout.fillWidth: true
-                title: "Save to directory/category"
-                ColumnLayout {
-                    RadioButton { text: "Every file to the directory according to the category of the file"; checked: true; font.pixelSize: 12 }
-                    RowLayout {
-                        RadioButton { text: "All files to one category"; font.pixelSize: 12 }
-                        ComboBox { model: ["General"]; Layout.preferredWidth: 150 }
-                    }
-                    RowLayout {
-                        RadioButton { text: "All files to one directory"; font.pixelSize: 12 }
-                        TextField { Layout.fillWidth: true; text: "C:\\Users\\User\\Downloads" }
-                        Button { text: "Browse..." }
-                    }
-                }
-            }
-            
-            ColumnLayout {
-                Text { text: "Replace file names using asterisk wildcard for the file name pattern:"; color: "#c0c0c0"; font.pixelSize: 12 }
-                TextField { Layout.fillWidth: true; text: "idman*build63.exe" }
-                
-                RowLayout {
-                    Layout.topMargin: 20
-                    Item { Layout.fillWidth: true }
-                        Button { 
-                        text: "OK"; 
-                        onClicked: _accept()
-                        implicitWidth: 80; implicitHeight: 30;
-                        background: Rectangle { color: "#1e3a6e"; radius: 0; border.color: "#4488dd"; border.width: 1 } 
-                        contentItem: Text { text: parent.text; color: "#ffffff"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                    }
-                    Button { 
-                        text: "Cancel"; 
-                        onClicked: root.close();
-                        implicitWidth: 80; implicitHeight: 30;
-                        background: Rectangle { color: "#3a3a3a"; radius: 0; border.color: "#555555"; border.width: 1 } 
-                        contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                    }
-                }
-            }
+    function _setAllSelected(selected) {
+        for (var i = 0; i < fileModel.count; ++i) {
+            fileModel.setProperty(i, "selected", selected)
         }
     }
 }

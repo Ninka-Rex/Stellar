@@ -258,21 +258,16 @@ Window {
             Layout.fillWidth: true
             spacing: 8
             Item { Layout.fillWidth: true }
-            Button {
+            DlgButton {
                 text: "OK"
-                implicitWidth: 80
-                background: Rectangle { color: "#1e3a6e"; radius: 3; border.color: "#4488dd"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#ffffff"; font.pixelSize: 13; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                primary: true
                 onClicked: {
                     root.columnsChanged(root.columnDefs)
                     root.close()
                 }
             }
-            Button {
+            DlgButton {
                 text: "Cancel"
-                implicitWidth: 80
-                background: Rectangle { color: "#3a3a3a"; radius: 3; border.color: "#555"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
                 onClicked: root.close()
             }
         }

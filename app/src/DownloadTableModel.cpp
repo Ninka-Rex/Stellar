@@ -107,13 +107,28 @@ void DownloadTableModel::removeItem(const QString &id) {
             m_items.removeAt(i);
             int visRow = m_visible.indexOf(item);
             if (visRow >= 0) {
-                beginRemoveRows({}, visRow, visRow);
-                m_visible.removeAt(visRow);
-                endRemoveRows();
+                if (m_bulkRemoving) {
+                    // Deferred — model will be reset in endBulkRemove()
+                    m_visible.removeAt(visRow);
+                } else {
+                    beginRemoveRows({}, visRow, visRow);
+                    m_visible.removeAt(visRow);
+                    endRemoveRows();
+                }
             }
             return;
         }
     }
+}
+
+void DownloadTableModel::beginBulkRemove() {
+    m_bulkRemoving = true;
+    beginResetModel();
+}
+
+void DownloadTableModel::endBulkRemove() {
+    m_bulkRemoving = false;
+    endResetModel();
 }
 
 DownloadItem *DownloadTableModel::itemAt(int row) const {
@@ -187,7 +202,7 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
         else if (column == QStringLiteral("size"))
             cmpResult = a->totalBytes() < b->totalBytes() ? -1 : (a->totalBytes() > b->totalBytes() ? 1 : 0);
         else if (column == QStringLiteral("status"))
-            cmpResult = a->status().compare(b->status());
+            cmpResult = statusSortKey(a->status()) - statusSortKey(b->status());
         else if (column == QStringLiteral("timeleft"))
             cmpResult = a->timeLeft().compare(b->timeLeft());
         else if (column == QStringLiteral("speed"))
@@ -274,8 +289,33 @@ void DownloadTableModel::onItemChanged() {
         m_visible.removeAt(visRow);
         endRemoveRows();
     } else if (shouldBeVisible && visRow >= 0) {
-        emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
+        // Check if the sort order is violated and a re-sort is needed
+        bool needsResort = false;
+        if (visRow > 0 && compareItems(m_visible[visRow - 1], item, m_sortColumn, m_sortAscending) > 0)
+            needsResort = true;
+        else if (visRow < m_visible.size() - 1 && compareItems(item, m_visible[visRow + 1], m_sortColumn, m_sortAscending) > 0)
+            needsResort = true;
+
+        if (needsResort) {
+            beginResetModel();
+            std::sort(m_visible.begin(), m_visible.end(), [&](DownloadItem *a, DownloadItem *b) {
+                return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+            });
+            endResetModel();
+        } else {
+            emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
+        }
     }
+}
+
+int DownloadTableModel::statusSortKey(const QString &status) {
+    if (status == QStringLiteral("Downloading"))  return 0;
+    if (status == QStringLiteral("Assembling"))   return 1;
+    if (status == QStringLiteral("Queued"))        return 2;
+    if (status == QStringLiteral("Paused"))        return 3;
+    if (status == QStringLiteral("Failed"))        return 4;
+    if (status == QStringLiteral("Completed"))     return 5;
+    return 6;
 }
 
 int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const {
@@ -285,7 +325,7 @@ int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QSt
     else if (column == QStringLiteral("size"))
         cmpResult = a->totalBytes() < b->totalBytes() ? -1 : (a->totalBytes() > b->totalBytes() ? 1 : 0);
     else if (column == QStringLiteral("status"))
-        cmpResult = a->status().compare(b->status());
+        cmpResult = statusSortKey(a->status()) - statusSortKey(b->status());
     else if (column == QStringLiteral("timeleft"))
         cmpResult = a->timeLeft().compare(b->timeLeft());
     else if (column == QStringLiteral("speed"))

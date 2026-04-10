@@ -17,12 +17,22 @@
 #include "DownloadItem.h"
 #include <QFileInfo>
 
+int DownloadItem::s_dateStyle = 0;
+bool DownloadItem::s_use24Hour = true;
+bool DownloadItem::s_showSeconds = true;
+
 DownloadItem::DownloadItem(const QString &id, const QUrl &url, QObject *parent)
     : QObject(parent), m_id(id), m_url(url), m_addedAt(QDateTime::currentDateTime())
 {
     m_filename = QFileInfo(url.path()).fileName();
     if (m_filename.isEmpty())
         m_filename = QStringLiteral("download");
+}
+
+void DownloadItem::configureDateTimeFormat(int dateStyle, bool use24Hour, bool showSeconds) {
+    s_dateStyle = dateStyle;
+    s_use24Hour = use24Hour;
+    s_showSeconds = showSeconds;
 }
 
 double DownloadItem::progress() const {
@@ -35,6 +45,7 @@ QString DownloadItem::status() const {
     case Status::Queued:      return QStringLiteral("Queued");
     case Status::Downloading: return QStringLiteral("Downloading");
     case Status::Paused:      return QStringLiteral("Paused");
+    case Status::Assembling:  return QStringLiteral("Assembling...");
     case Status::Completed:   return QStringLiteral("Completed");
     case Status::Error:       return QStringLiteral("Error");
     }
@@ -49,6 +60,48 @@ QString DownloadItem::timeLeft() const {
     const qint64 h = remaining / 3600, m = (remaining % 3600) / 60;
     return m > 0 ? QStringLiteral("%1 hour%2 %3 min").arg(h).arg(h > 1 ? "s" : "").arg(m)
                  : QStringLiteral("%1 hour%2").arg(h).arg(h > 1 ? "s" : "");
+}
+
+QString DownloadItem::addedDateStr() const {
+    const QDateTime &d = (m_lastTryAt.isValid() && m_lastTryAt.toMSecsSinceEpoch() > 0)
+        ? m_lastTryAt : m_addedAt;
+    return d.isValid() ? formatDateTime(d) : QString();
+}
+
+QString DownloadItem::lastTryDateStr() const {
+    return (m_lastTryAt.isValid() && m_lastTryAt.toMSecsSinceEpoch() > 0)
+        ? formatDateTime(m_lastTryAt)
+        : QStringLiteral("--");
+}
+
+QString DownloadItem::formatDateTime(const QDateTime &dt) {
+    if (!dt.isValid())
+        return QString();
+
+    QString dateFormat;
+    switch (s_dateStyle) {
+    case 1:
+        dateFormat = QStringLiteral("M/d/yyyy");
+        break;
+    case 2:
+        dateFormat = QStringLiteral("d/M/yyyy");
+        break;
+    case 3:
+        dateFormat = QStringLiteral("yyyy-MM-dd");
+        break;
+    case 0:
+    default:
+        dateFormat = QStringLiteral("MMM d yyyy");
+        break;
+    }
+
+    QString timeFormat;
+    if (s_use24Hour)
+        timeFormat = s_showSeconds ? QStringLiteral("HH:mm:ss") : QStringLiteral("HH:mm");
+    else
+        timeFormat = s_showSeconds ? QStringLiteral("h:mm:ss AP") : QStringLiteral("h:mm AP");
+
+    return dt.toString(dateFormat + QStringLiteral(" ") + timeFormat);
 }
 
 void DownloadItem::setFilename(const QString &v)       { if (m_filename      != v) { m_filename      = v; emit filenameChanged();      } }

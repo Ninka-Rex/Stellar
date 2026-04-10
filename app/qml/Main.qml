@@ -23,8 +23,8 @@ import com.stellar.app 1.0
 ApplicationWindow {
     id: root
     visible: true
-    width: 1100
-    height: 680
+    width: Math.max(minimumWidth, App.settings.mainWindowWidth > 0 ? App.settings.mainWindowWidth : 1100)
+    height: Math.max(minimumHeight, App.settings.mainWindowHeight > 0 ? App.settings.mainWindowHeight : 680)
     minimumWidth: 800
     minimumHeight: 500
     title: "Stellar Download Manager " + App.appVersion
@@ -37,10 +37,22 @@ ApplicationWindow {
     // ── Minimize to tray on close ─────────────────────────────────────────────
     property bool isQuitting:    false
     property bool findBarActive: false
+    property bool speedScheduleOwnsLimit: false
+    property var selectedDownloadItem: downloadTable ? downloadTable._selectedItem() : null
 
     function closeFindBar() {
         findBarActive = false
         downloadTable.clearFilter()
+    }
+
+    onWidthChanged: {
+        if (visibility !== Window.Minimized && width >= minimumWidth)
+            App.settings.mainWindowWidth = width
+    }
+
+    onHeightChanged: {
+        if (visibility !== Window.Minimized && height >= minimumHeight)
+            App.settings.mainWindowHeight = height
     }
 
     onClosing: (close) => {
@@ -58,6 +70,7 @@ ApplicationWindow {
     // ── Tray context menu (standalone window so it works when main window is hidden) ──
     Window {
         id: trayMenu
+        transientParent: null
         flags: Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
         width: 180
         height: menuCol.implicitHeight + 2
@@ -106,6 +119,8 @@ ApplicationWindow {
         target: App
 
         function onShowWindowRequested() {
+            if (root.visibility === Window.Minimized)
+                root.visibility = Window.Windowed
             root.show(); root.raise(); root.requestActivate()
         }
         function onDownloadAdded(item) {
@@ -113,6 +128,7 @@ ApplicationWindow {
             // queue-managed downloads — queues run silently in the background.
             if (!item || item.status === "Paused") return
             if (item.queueId && item.queueId.length > 0) return
+            if (item.category && App.isGrabberProjectId(item.category)) return
             progressDialog.item       = item
             progressDialog.downloadId = item.id
             progressDialog.show()
@@ -123,6 +139,8 @@ ApplicationWindow {
                 progressDialog.hide()
             // Don't show complete dialog for queue-assigned downloads or if disabled in settings
             if (!item || (item.queueId && item.queueId.length > 0))
+                return
+            if (item.category && App.isGrabberProjectId(item.category))
                 return
             if (!App.settings.showDownloadComplete)
                 return
@@ -146,12 +164,36 @@ ApplicationWindow {
         function onContextMenuRequested(x, y) {
             trayMenu.popup(x, y)
         }
+        function onUpdateDialogRequested() {
+            if (Qt.platform.os === "windows") {
+                updateAvailableDialog.show()
+                updateAvailableDialog.raise()
+                updateAvailableDialog.requestActivate()
+            }
+        }
+        function onUpdateUpToDate() {
+            quickUpdateDialog.messageText = "You are using the latest version of Stellar Download Manager. Please check back again for updates at a later time."
+            quickUpdateDialog.show()
+            quickUpdateDialog.raise()
+            quickUpdateDialog.requestActivate()
+        }
+        function onUpdateError(message) {
+            quickUpdateDialog.messageText = message
+            quickUpdateDialog.show()
+            quickUpdateDialog.raise()
+            quickUpdateDialog.requestActivate()
+        }
         function onExceptionDialogRequested(url) {
             addExceptionDialog.url = url
             addExceptionDialog.show()
             addExceptionDialog.raise()
         }
         function onInterceptedDownloadRequested(url, filename) {
+            if (root.visibility === Window.Minimized)
+                root.visibility = Window.Windowed
+            root.show()
+            root.raise()
+            root.requestActivate()
             var existing = App.findDuplicateUrl(url)
             if (existing) {
                 var action = App.settings.duplicateAction
@@ -174,15 +216,183 @@ ApplicationWindow {
             fileInfoDialog.pendingFilename = name
             fileInfoDialog.pendingSize     = ""
             fileInfoDialog.pendingSavePath = App.settings.defaultSavePath
+            fileInfoDialog.pendingDownloadId = App.settings.startDownloadWhileFileInfo
+                ? App.beginPendingDownload(url, name, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), "", "")
+                : ""
             fileInfoDialog.isIntercepted   = true
             fileInfoDialog.show()
             fileInfoDialog.raise()
+            fileInfoDialog.requestActivate()
         }
+    }
+
+    // ── Grabber explore-finished: run completion actions ─────────────────────
+    Connections {
+        target: App
+        function onGrabberExploreFinished(projectId) {
+            var proj = App.grabberProjectData(projectId)
+            var sched = proj.schedule || {}
+            if (sched.exitApp) {
+                root.quitApp()
+                return
+            }
+            if (sched.turnOffComputer) {
+                App.shutdownComputer()
+            }
+        }
+    }
+
+    // ── Grabber schedule checker (runs every 30 s) ────────────────────────────
+    Timer {
+        id: grabberScheduleTimer
+        interval: 30000
+        repeat: true
+        running: true
+        onTriggered: {
+            var count = App.grabberProjectModel.rowCount()
+            var now = new Date()
+            for (var i = 0; i < count; ++i) {
+                var proj = App.grabberProjectModel.projectData(i)
+                if (!proj) continue
+                var sched = proj.schedule || {}
+                if (!sched.enabled) continue
+                if (!sched.startAt) continue
+
+                var h = parseInt(sched.startHour) || 12
+                var m = parseInt(sched.startMinute) || 0
+                var ampm = sched.startAmpm || "AM"
+                var h24 = (ampm === "PM" ? (h < 12 ? h + 12 : 12) : (h === 12 ? 0 : h))
+
+                var mode = sched.scheduleMode || "once"
+                var shouldRun = false
+
+                if (mode === "once") {
+                    // Fire once at exact date/time (within the 30s window)
+                    var mo = parseInt(sched.onceMonth) || 1
+                    var da = parseInt(sched.onceDay) || 1
+                    var yr = parseInt(sched.onceYear) || now.getFullYear()
+                    var target = new Date(yr, mo - 1, da, h24, m, 0, 0)
+                    var diff = now - target
+                    if (diff >= 0 && diff < 30000) shouldRun = true
+                } else if (mode === "daily") {
+                    var days = sched.days || []
+                    var dayIdx = now.getDay() // 0=Sun
+                    var dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+                    if (days.indexOf(dayNames[dayIdx]) >= 0
+                            && now.getHours() === h24 && now.getMinutes() === m
+                            && now.getSeconds() < 30) {
+                        shouldRun = true
+                    }
+                }
+
+                if (shouldRun) App.runGrabber(proj)
+            }
+        }
+    }
+
+    // ── Clipboard URL monitoring — react to signal from AppController ────────────
+    // When the user copies a URL matching a monitored extension, show the Add URL
+    // dialog pre-filled with that URL and a friendly title explaining why it appeared.
+    Connections {
+        target: App
+        function onClipboardUrlDetected(url) {
+            // Pre-fill the URL field and override the dialog title
+            addUrlDialog.url = url
+            addUrlDialog.titleOverride = "Download link was found in clipboard. Do you want to download it?"
+            addUrlDialog.show()
+            addUrlDialog.raise()
+            addUrlDialog.requestActivate()
+        }
+    }
+
+    // ── Speed limiter scheduler ───────────────────────────────────────────────
+    // Evaluated every 60 seconds AND immediately when settings are applied.
+    // Each rule: days[], onHour (1-12), onMinute (0-59), onAmPm, offHour,
+    // offMinute, offAmPm, limitKBps.  First matching rule wins.
+
+    // Named function so it can be called directly (e.g. from Apply button)
+    // as well as from the recurring timer below.
+    function runSpeedScheduleCheck() {
+        if (!App.settings.speedScheduleEnabled) {
+            // Scheduler just turned off — clear any limit it had set
+            if (speedScheduleOwnsLimit && App.settings.globalSpeedLimitKBps > 0)
+                App.settings.globalSpeedLimitKBps = 0
+            speedScheduleOwnsLimit = false
+            return
+        }
+
+        var rules = []
+        try { rules = JSON.parse(App.settings.speedScheduleJson || "[]") }
+        catch (e) { return }
+        if (!rules || rules.length === 0) {
+            if (speedScheduleOwnsLimit && App.settings.globalSpeedLimitKBps > 0)
+                App.settings.globalSpeedLimitKBps = 0
+            speedScheduleOwnsLimit = false
+            return
+        }
+
+        var now = new Date()
+        var dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+        var todayName = dayNames[now.getDay()]
+        var nowTotal = now.getHours() * 60 + now.getMinutes()
+
+        var matchedRule = null
+        for (var i = 0; i < rules.length; ++i) {
+            var r = rules[i]
+            if (!r.days || r.days.indexOf(todayName) < 0) continue
+
+            // Convert 12-hour time to minutes-since-midnight
+            var onH = parseInt(r.onHour) || 12
+            var on24 = (r.onAmPm === "PM")
+                ? (onH < 12 ? onH + 12 : 12) * 60 + (parseInt(r.onMinute) || 0)
+                : (onH === 12 ? 0 : onH)    * 60 + (parseInt(r.onMinute) || 0)
+
+            var offH = parseInt(r.offHour) || 5
+            var off24 = (r.offAmPm === "PM")
+                ? (offH < 12 ? offH + 12 : 12) * 60 + (parseInt(r.offMinute) || 0)
+                : (offH === 12 ? 0 : offH)     * 60 + (parseInt(r.offMinute) || 0)
+
+            // Handle same-day and overnight ranges
+            var active = (on24 <= off24)
+                ? (nowTotal >= on24 && nowTotal < off24)          // e.g. 9 AM – 5 PM
+                : (nowTotal >= on24 || nowTotal < off24)           // e.g. 10 PM – 6 AM
+            if (active) { matchedRule = r; break }
+        }
+
+        if (matchedRule !== null) {
+            // Apply this rule's limit
+            var kbps = parseInt(matchedRule.limitKBps) || 500
+            if (App.settings.globalSpeedLimitKBps !== kbps)
+                App.settings.globalSpeedLimitKBps = kbps
+            speedScheduleOwnsLimit = true
+        } else {
+            // No active rule — clear the scheduled limit
+            if (speedScheduleOwnsLimit && App.settings.globalSpeedLimitKBps > 0)
+                App.settings.globalSpeedLimitKBps = 0
+            speedScheduleOwnsLimit = false
+        }
+    }
+
+    // Re-evaluate immediately when the user applies scheduler settings
+    Connections {
+        target: App.settings
+        function onSpeedScheduleEnabledChanged() { root.runSpeedScheduleCheck() }
+        function onSpeedScheduleJsonChanged()    { root.runSpeedScheduleCheck() }
+    }
+
+    Timer {
+        id: speedScheduleTimer
+        interval: 60000
+        repeat: true
+        running: true   // always running; the function guards on speedScheduleEnabled
+        triggeredOnStart: true
+        onTriggered: root.runSpeedScheduleCheck()
     }
 
     // ── Add URL dialog (step 1) ───────────────────────────────────────────────
     AddUrlDialog {
         id: addUrlDialog
+        transientParent: root
         onAccepted: {
             if (url.trim().length === 0) return
             // Store auth credentials for step 2
@@ -207,6 +417,11 @@ ApplicationWindow {
     }
 
     function _showFileInfoDialog(url, filenameOverride) {
+        if (root.visibility === Window.Minimized)
+            root.visibility = Window.Windowed
+        root.show()
+        root.raise()
+        root.requestActivate()
         var filename = filenameOverride.length > 0
             ? filenameOverride
             : (url.split("/").pop().split("?")[0] || "download")
@@ -215,8 +430,12 @@ ApplicationWindow {
         fileInfoDialog.pendingSize     = ""
         fileInfoDialog.pendingSavePath = App.settings.defaultSavePath
         fileInfoDialog.filenameOverride = filenameOverride
+        fileInfoDialog.pendingDownloadId = App.settings.startDownloadWhileFileInfo
+            ? App.beginPendingDownload(url, filename, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword)
+            : ""
         fileInfoDialog.show()
         fileInfoDialog.raise()
+        fileInfoDialog.requestActivate()
     }
 
     function _handleDuplicateAction(action, remember, existing, url) {
@@ -244,25 +463,124 @@ ApplicationWindow {
     // Pending auth from AddUrlDialog step 1
     property string _pendingUsername: ""
     property string _pendingPassword: ""
+    property var _pendingBatchUrls: []
+    property var _pendingLaterRequest: null
+    property string _pendingQueueContext: ""
+    property var _afterDownloadLaterWarning: null
 
     // ── Download File Info dialog (step 2) ────────────────────────────────────
     DownloadFileInfoDialog {
         id: fileInfoDialog
-        onDownloadNow: (url, savePath, category, desc) => {
-            // savePath from the dialog is the full path (dir + filename).
-            // Split so the filename is passed as filenameOverride, preserving the user's custom name.
-            var sep = Math.max(savePath.lastIndexOf("/"), savePath.lastIndexOf("\\"))
-            var dir   = sep >= 0 ? savePath.substring(0, sep) : savePath
-            var fname = sep >= 0 ? savePath.substring(sep + 1) : fileInfoDialog.filenameOverride
-            App.addUrl(url, dir, category, desc, true,  App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword, fname)
+        onDownloadNow: (downloadId, url, savePath, category, desc) => {
+            if (downloadId && downloadId.length > 0) {
+                App.finalizePendingDownload(downloadId, savePath, category, desc, true, "")
+            } else {
+                var sep = Math.max(savePath.lastIndexOf("/"), savePath.lastIndexOf("\\"))
+                var dir   = sep >= 0 ? savePath.substring(0, sep) : savePath
+                var fname = sep >= 0 ? savePath.substring(sep + 1) : fileInfoDialog.filenameOverride
+                App.addUrl(url, dir, category, desc, true, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword, fname)
+            }
+            fileInfoDialog.pendingDownloadId = ""
         }
-        onDownloadLater: (url, savePath, category, desc) => {
-            var sep = Math.max(savePath.lastIndexOf("/"), savePath.lastIndexOf("\\"))
-            var dir   = sep >= 0 ? savePath.substring(0, sep) : savePath
-            var fname = sep >= 0 ? savePath.substring(sep + 1) : fileInfoDialog.filenameOverride
-            App.addUrl(url, dir, category, desc, false, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword, fname)
+        onDownloadLater: (downloadId, url, savePath, category, desc) => {
+            if (downloadId && downloadId.length > 0)
+                App.pauseDownload(downloadId)
+            root._afterDownloadLaterWarning = function() {
+                if (App.settings.showQueueSelectionOnDownloadLater) {
+                    queueSelectionDialog.initialQueueId = ""
+                    queueSelectionDialog.initialStartProcessing = false
+                    queueSelectionDialog.initialAskAgain = false
+                    queueSelectionDialog.queueIds = App.queueIds()
+                    queueSelectionDialog.queueNames = App.queueNames()
+                    queueSelectionDialog.pendingContext = "later"
+                    queueSelectionDialog.pendingLaterDownloadId = downloadId
+                    queueSelectionDialog.pendingLaterUrl = url
+                    queueSelectionDialog.pendingLaterSavePath = savePath
+                    queueSelectionDialog.pendingLaterCategory = category
+                    queueSelectionDialog.pendingLaterDesc = desc
+                    queueSelectionDialog.pendingLaterFilename = fileInfoDialog.filenameOverride
+                    queueSelectionDialog.pendingLaterUsername = root._pendingUsername
+                    queueSelectionDialog.pendingLaterPassword = root._pendingPassword
+                    queueSelectionDialog.noteText = "Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting."
+                    queueSelectionDialog.show()
+                    queueSelectionDialog.raise()
+                } else if (downloadId && downloadId.length > 0) {
+                    App.finalizePendingDownload(downloadId, savePath, category, desc, false, "")
+                } else {
+                    var sep = Math.max(savePath.lastIndexOf("/"), savePath.lastIndexOf("\\"))
+                    var dir   = sep >= 0 ? savePath.substring(0, sep) : savePath
+                    var fname = sep >= 0 ? savePath.substring(sep + 1) : fileInfoDialog.filenameOverride
+                    App.addUrl(url, dir, category, desc, false, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword, fname)
+                }
+                fileInfoDialog.pendingDownloadId = ""
+            }
+            if (downloadId && downloadId.length > 0) {
+                downloadLaterWarningDialog.show()
+                downloadLaterWarningDialog.raise()
+                downloadLaterWarningDialog.requestActivate()
+            } else {
+                root._afterDownloadLaterWarning()
+            }
         }
-        onRejected:      (url) => App.notifyInterceptRejected(url)
+        onRejected: (downloadId, url) => {
+            if (downloadId && downloadId.length > 0)
+                App.discardPendingDownload(downloadId)
+            if (fileInfoDialog.isIntercepted)
+                App.notifyInterceptRejected(url)
+            fileInfoDialog.pendingDownloadId = ""
+        }
+    }
+
+    Window {
+        id: downloadLaterWarningDialog
+        title: "Download Later"
+        transientParent: root
+        width: 480
+        height: 220
+        minimumWidth: 380
+        minimumHeight: 200
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+        modality: Qt.ApplicationModal
+        color: "#1e1e1e"
+
+        Material.theme: Material.Dark
+        Material.background: "#1e1e1e"
+        Material.accent: "#4488dd"
+
+        onClosing: {
+            root._afterDownloadLaterWarning = null
+        }
+
+        ColumnLayout {
+            anchors { fill: parent; margins: 20 }
+            spacing: 16
+
+            Text {
+                Layout.fillWidth: true
+                text: "You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the \"Download File Info\" dialog.\n\nYou can turn this off in Settings → Downloads."
+                color: "#d0d0d0"
+                font.pixelSize: 13
+                wrapMode: Text.WordWrap
+                lineHeight: 1.3
+            }
+
+            Item { Layout.fillHeight: true }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Item { Layout.fillWidth: true }
+                DlgButton {
+                    text: "OK"
+                    primary: true
+                    onClicked: {
+                        downloadLaterWarningDialog.close()
+                        if (root._afterDownloadLaterWarning)
+                            root._afterDownloadLaterWarning()
+                        root._afterDownloadLaterWarning = null
+                    }
+                }
+            }
+        }
     }
 
     // ── Duplicate Download Dialog ─────────────────────────────────────────────
@@ -282,6 +600,123 @@ ApplicationWindow {
 
     // ── Settings / About Dialog ───────────────────────────────────────────────
     SettingsDialog { id: settingsDialog }
+    Window {
+        id: quickUpdateDialog
+        title: "Quick Update"
+        transientParent: root
+        width: 440
+        height: 170
+        minimumWidth: 420
+        minimumHeight: 160
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+        modality: Qt.ApplicationModal
+        color: "#1e1e1e"
+        property string messageText: ""
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 16
+            spacing: 12
+
+            Text {
+                Layout.fillWidth: true
+                text: quickUpdateDialog.messageText
+                wrapMode: Text.WordWrap
+                color: "#d8d8d8"
+                font.pixelSize: 13
+            }
+
+            Item { Layout.fillHeight: true }
+
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                DlgButton {
+                    text: "OK"
+                    onClicked: quickUpdateDialog.close()
+                }
+            }
+        }
+    }
+
+    Window {
+        id: updateAvailableDialog
+        title: "New version of Stellar Download Manager is available"
+        transientParent: root
+        width: 620
+        height: 500
+        minimumWidth: 560
+        minimumHeight: 420
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+        modality: Qt.ApplicationModal
+        color: "#1e1e1e"
+        property bool dismissOnClose: true
+
+        onClosing: {
+            if (dismissOnClose)
+                App.dismissAvailableUpdate()
+            dismissOnClose = true
+        }
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 16
+            spacing: 12
+
+            Text {
+                text: "Version " + App.updateVersion + " is available."
+                color: "#ffffff"
+                font.pixelSize: 16
+                font.bold: true
+            }
+
+            Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+            ScrollView {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                clip: true
+
+                Text {
+                    width: parent.width
+                    text: App.updateChangelog && App.updateChangelog.length > 0
+                        ? App.updateChangelog
+                        : "No changelog is available for this update."
+                    color: "#cfcfcf"
+                    font.pixelSize: 12
+                    wrapMode: Text.WordWrap
+                    textFormat: Text.PlainText
+                }
+            }
+
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                spacing: 8
+
+                DlgButton {
+                    text: "Update Now"
+                    primary: true
+                    onClicked: {
+                        if (App.startUpdateInstall()) {
+                            updateAvailableDialog.dismissOnClose = false
+                            updateAvailableDialog.close()
+                        } else {
+                            quickUpdateDialog.messageText = "Stellar could not start the update installer download."
+                            quickUpdateDialog.show()
+                            quickUpdateDialog.raise()
+                        }
+                    }
+                }
+
+                DlgButton {
+                    text: "Cancel"
+                    onClicked: {
+                        App.dismissAvailableUpdate()
+                        updateAvailableDialog.close()
+                    }
+                }
+            }
+        }
+    }
 
     // ── Scheduler Dialog ───────────────────────────────────────────────────────
     SchedulerDialog { id: schedulerDialog }
@@ -303,12 +738,91 @@ ApplicationWindow {
     }
     BatchDownloadListDialog { 
         id: batchDownloadListDialog 
-        onBatchAccepted: (urls) => {
-            for (var i = 0; i < urls.length; ++i) {
-                App.addUrl(urls[i])
+        onBatchAccepted: (files) => {
+            if (App.settings.showQueueSelectionOnBatchDownload) {
+                queueSelectionDialog.initialQueueId = ""
+                queueSelectionDialog.initialStartProcessing = false
+                queueSelectionDialog.initialAskAgain = false
+                queueSelectionDialog.queueIds = App.queueIds()
+                queueSelectionDialog.queueNames = App.queueNames()
+                queueSelectionDialog.pendingContext = "batch"
+                queueSelectionDialog.pendingBatchUrls = files
+                queueSelectionDialog.noteText = "Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting."
+                queueSelectionDialog.show()
+                queueSelectionDialog.raise()
+            } else {
+                for (var i = 0; i < files.length; ++i) {
+                    App.addUrl(files[i].url, "", "", "", true, "", "", "", "", "", files[i].filename)
+                }
             }
         }
     }
+
+    QueueSelectionDialog {
+        id: queueSelectionDialog
+        onAccepted: (queueId, startProcessing, askAgain) => {
+            if (queueId.length === 0)
+                return
+        }
+        onCreateQueueRequested: (name) => {
+            queueSelectionDialog.queueIds = App.queueIds()
+            queueSelectionDialog.queueNames = App.queueNames()
+            queueSelectionDialog.initialQueueId = queueSelectionDialog.queueIds.length > 0
+                ? queueSelectionDialog.queueIds[queueSelectionDialog.queueIds.length - 1]
+                : ""
+            queueSelectionDialog.forceActiveFocus()
+        }
+    }
+
+    GrabberDialog {
+        id: grabberDialog
+        onResultsRequested: (projectId) => {
+            grabberResultsDialog.projectId = projectId
+            grabberResultsDialog.show()
+            grabberResultsDialog.raise()
+            grabberResultsDialog.requestActivate()
+        }
+    }
+
+    GrabberResultsDialog {
+        id: grabberResultsDialog
+        onQueueAssignmentRequested: (projectId) => {
+            grabberResultsDialog.actionTaken = true
+            queueSelectionDialog.initialQueueId = ""
+            queueSelectionDialog.initialStartProcessing = true
+            queueSelectionDialog.initialAskAgain = false
+            queueSelectionDialog.queueIds = App.queueIds()
+            queueSelectionDialog.queueNames = App.queueNames()
+            queueSelectionDialog.pendingContext = "grabber"
+            queueSelectionDialog.pendingGrabberProjectId = projectId
+            queueSelectionDialog.noteText = "Choose a queue for the checked Grabber files."
+            queueSelectionDialog.show()
+            queueSelectionDialog.raise()
+            queueSelectionDialog.requestActivate()
+        }
+        onScheduleRequested: (projectId) => {
+            grabberScheduleDialog.projectId = projectId
+            grabberScheduleDialog.show()
+            grabberScheduleDialog.raise()
+            grabberScheduleDialog.requestActivate()
+        }
+        onStatisticsRequested: (projectId) => {
+            grabberStatisticsDialog.projectId = projectId
+            grabberStatisticsDialog.show()
+            grabberStatisticsDialog.raise()
+            grabberStatisticsDialog.requestActivate()
+        }
+        onEditProjectRequested: (projectId) => {
+            grabberDialog.projectId = projectId
+            grabberDialog.show()
+            grabberDialog.raise()
+            grabberDialog.requestActivate()
+        }
+    }
+
+    GrabberScheduleDialog { id: grabberScheduleDialog }
+
+    GrabberStatisticsDialog { id: grabberStatisticsDialog }
 
     // ── Browser Integration Dialog ────────────────────────────────────────────
     BrowserIntegrationDialog { id: browserIntegrationDialog }
@@ -359,20 +873,18 @@ ApplicationWindow {
     }
 
     function loadTips() {
-        // Load tips from file (embedded in QML module resources)
+        // Load tips from embedded Qt resources via C++ to avoid QML XHR file-read restrictions.
         var paths = [
+            "qrc:/tips.txt",
             "qrc:/qt/qml/com/stellar/app/tips.txt",
-            "qrc:/com/stellar/app/tips.txt",
-            "qrc:/tips.txt"
+            "qrc:/qt/qml/com/stellar/app/app/qml/tips.txt",
+            "qrc:/com/stellar/app/tips.txt"
         ]
 
         for (var i = 0; i < paths.length; i++) {
-            var xhr = new XMLHttpRequest()
-            xhr.open("GET", paths[i], false)
             try {
-                xhr.send()
-                if (xhr.status === 200) {
-                    var text = xhr.responseText.trim()
+                var text = App.readTextResource(paths[i]).trim()
+                if (text.length > 0) {
                     root.tipsArray = text.split(/\n/).filter(function(line) { return line.trim().length > 0 })
                     root.currentTipIndex = Math.floor(Math.random() * root.tipsArray.length)
                     console.log("Tips loaded from " + paths[i] + ": " + root.tipsArray.length + " tips")
@@ -405,10 +917,43 @@ ApplicationWindow {
             Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
         }
 
+        // Shared compact MenuItem delegate used by all drop-down menus.
+        // Dense Material gives 24px items; we trim to 22px with smaller font.
+        component CompactMenuItem: MenuItem {
+            id: _cmi
+            implicitHeight: 22
+            height: 22
+            topPadding: 0; bottomPadding: 0; verticalPadding: 0
+            leftPadding: 12; rightPadding: 12
+            spacing: 0
+            font.pixelSize: 12
+            indicator: Item { width: 0; height: 0 }
+            arrow: Text {
+                x: _cmi.width - width - 8
+                anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+                text: "▶"
+                font.pixelSize: 8
+                color: "#888888"
+                visible: _cmi.subMenu !== null
+            }
+            contentItem: Text {
+                text: _cmi.text
+                font: _cmi.font
+                color: _cmi.enabled ? "#d0d0d0" : "#666666"
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+            }
+            background: Rectangle {
+                implicitHeight: 22
+                color: _cmi.highlighted ? "#1e3a6e" : "transparent"
+            }
+        }
+
         delegate: MenuBarItem {
+            // Equal 12px side padding on every menu title for even spacing
             verticalPadding: 2
-            leftPadding: 8
-            rightPadding: 8
+            leftPadding: 12
+            rightPadding: 12
             contentItem: Text {
                 text: parent.text
                 font: parent.font
@@ -417,13 +962,15 @@ ApplicationWindow {
             }
             background: Rectangle {
                 implicitHeight: 24
-                implicitWidth: 40
                 color: parent.highlighted ? "#1e3a6e" : "transparent"
             }
         }
 
         Menu {
             title: qsTr("Tasks")
+            delegate: CompactMenuItem
+            implicitWidth: 200
+            topPadding: 0; bottomPadding: 0
             Action { text: qsTr("Add URL…");       shortcut: "Ctrl+N";       onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
             Action { text: qsTr("Add Batch URLs…"); shortcut: "Ctrl+Shift+N"; onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
             MenuSeparator {}
@@ -431,40 +978,46 @@ ApplicationWindow {
         }
         Menu {
             title: qsTr("File")
-            Action { 
+            delegate: CompactMenuItem
+            implicitWidth: 200
+            topPadding: 0; bottomPadding: 0
+            Action {
                 text: qsTr("Open Folder"); 
-                onTriggered: { var item = downloadTable._selectedItem(); if (item && item.status === "Completed") App.openFolder(item.id) }
-                enabled: downloadTable._selectedItem() && downloadTable._selectedItem().status === "Completed"
+                onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Completed") App.openFolder(item.id) }
+                enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Completed"
             }
             Action { 
                 text: qsTr("Open File"); 
-                onTriggered: { var item = downloadTable._selectedItem(); if (item && item.status === "Completed") App.openFile(item.id) }
-                enabled: downloadTable._selectedItem() && downloadTable._selectedItem().status === "Completed"
+                onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Completed") App.openFile(item.id) }
+                enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Completed"
             }
             MenuSeparator {}
             Action { 
                 text: qsTr("Download Now"); 
-                onTriggered: { var item = downloadTable._selectedItem(); if (item && item.status === "Paused") App.resumeDownload(item.id) }
-                enabled: downloadTable._selectedItem() && downloadTable._selectedItem().status === "Paused"
+                onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Paused") App.resumeDownload(item.id) }
+                enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Paused"
             }
             Action { 
                 text: qsTr("Stop Download"); 
-                onTriggered: { var item = downloadTable._selectedItem(); if (item && (item.status === "Downloading" || item.status === "Queued")) App.pauseDownload(item.id) }
-                enabled: downloadTable._selectedItem() && (downloadTable._selectedItem().status === "Downloading" || downloadTable._selectedItem().status === "Queued")
+                onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued")) App.pauseDownload(item.id) }
+                enabled: root.selectedDownloadItem && (root.selectedDownloadItem.status === "Downloading" || root.selectedDownloadItem.status === "Queued")
             }
             Action { 
                 text: qsTr("Remove"); 
-                onTriggered: downloadTable._selectedItem() ? downloadTable.deleteSelected() : null
-                enabled: downloadTable._selectedItem() !== null
+                onTriggered: root.selectedDownloadItem ? downloadTable.deleteSelected() : null
+                enabled: root.selectedDownloadItem !== null
             }
             Action { 
                 text: qsTr("Redownload"); 
-                onTriggered: { var item = downloadTable._selectedItem(); if (item) App.redownload(item.id) }
-                enabled: downloadTable._selectedItem() !== null
+                onTriggered: { var item = root.selectedDownloadItem; if (item) App.redownload(item.id) }
+                enabled: root.selectedDownloadItem !== null
             }
         }
         Menu {
             title: qsTr("Downloads")
+            delegate: CompactMenuItem
+            implicitWidth: 200
+            topPadding: 0; bottomPadding: 0
             Action { text: qsTr("Pause all");  shortcut: "Ctrl+P"; onTriggered: downloadTable.pauseAll() }
             Action { text: qsTr("Stop all");   onTriggered: downloadTable.pauseAll() }
             MenuSeparator {}
@@ -509,24 +1062,27 @@ ApplicationWindow {
         }
         Menu {
             title: qsTr("View")
+            delegate: CompactMenuItem
+            implicitWidth: 200
+            topPadding: 0; bottomPadding: 0
             Action {
-                text: sidebar.visible ? qsTr("Hide Categories") : qsTr("Show Categories")
-                onTriggered: sidebar.visible = !sidebar.visible
+                text: (sidebar && sidebar.visible) ? qsTr("Hide Categories") : qsTr("Show Categories")
+                onTriggered: if (sidebar) sidebar.visible = !sidebar.visible
             }
             MenuSeparator {}
             Menu {
                 title: qsTr("Arrange Files")
-                Action { text: qsTr("By Order Of Addition");  onTriggered: { downloadTable.updateSortState("added", true); App.sortDownloads("added", true) } }
-                Action { text: qsTr("By File Name");          onTriggered: { downloadTable.updateSortState("name", true); App.sortDownloads("name", true) } }
-                Action { text: qsTr("By Size");               onTriggered: { downloadTable.updateSortState("size", true); App.sortDownloads("size", true) } }
-                Action { text: qsTr("By Status");             onTriggered: { downloadTable.updateSortState("status", true); App.sortDownloads("status", true) } }
-                Action { text: qsTr("By Time Left");          onTriggered: { downloadTable.updateSortState("timeleft", true); App.sortDownloads("timeleft", true) } }
-                Action { text: qsTr("By Transfer Rate");      onTriggered: { downloadTable.updateSortState("speed", false); App.sortDownloads("speed", false) } }
-                Action { text: qsTr("By Last Try Date");      onTriggered: { downloadTable.updateSortState("lasttry", false); App.sortDownloads("lasttry", false) } }
-                Action { text: qsTr("By Description");        onTriggered: { downloadTable.updateSortState("description", true); App.sortDownloads("description", true) } }
-                Action { text: qsTr("By Save Path");          onTriggered: { downloadTable.updateSortState("saveto", true); App.sortDownloads("saveto", true) } }
-                Action { text: qsTr("By Referer");            onTriggered: { downloadTable.updateSortState("referrer", true); App.sortDownloads("referrer", true) } }
-                Action { text: qsTr("By Parent Web Page");    onTriggered: { downloadTable.updateSortState("parenturl", true); App.sortDownloads("parenturl", true) } }
+                Action { text: qsTr("By Order Of Addition");  onTriggered: App.sortDownloads("added", true) }
+                Action { text: qsTr("By File Name");          onTriggered: App.sortDownloads("name", true) }
+                Action { text: qsTr("By Size");               onTriggered: App.sortDownloads("size", true) }
+                Action { text: qsTr("By Status");             onTriggered: App.sortDownloads("status", true) }
+                Action { text: qsTr("By Time Left");          onTriggered: App.sortDownloads("timeleft", true) }
+                Action { text: qsTr("By Transfer Rate");      onTriggered: App.sortDownloads("speed", false) }
+                Action { text: qsTr("By Last Try Date");      onTriggered: App.sortDownloads("lasttry", false) }
+                Action { text: qsTr("By Description");        onTriggered: App.sortDownloads("description", true) }
+                Action { text: qsTr("By Save Path");          onTriggered: App.sortDownloads("saveto", true) }
+                Action { text: qsTr("By Referer");            onTriggered: App.sortDownloads("referrer", true) }
+                Action { text: qsTr("By Parent Web Page");    onTriggered: App.sortDownloads("parenturl", true) }
             }
             MenuSeparator {}
             Action { text: qsTr("Columns…"); onTriggered: {
@@ -537,10 +1093,15 @@ ApplicationWindow {
         }
         Menu {
             title: qsTr("Options")
+            delegate: CompactMenuItem
+            implicitWidth: 200
+            topPadding: 0; bottomPadding: 0
             Action { text: qsTr("Preferences…"); shortcut: "Ctrl+,"; onTriggered: settingsDialog.show() }
             Action { text: qsTr("Scheduler");    onTriggered: schedulerDialog.show() }
             Menu {
                 title: qsTr("Speed Limiter")
+                delegate: CompactMenuItem
+                implicitWidth: 200
                 Action { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
                 Action { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
                 MenuSeparator {}
@@ -549,10 +1110,17 @@ ApplicationWindow {
         }
         Menu {
             title: qsTr("Help")
+            delegate: CompactMenuItem
+            implicitWidth: 200
+            topPadding: 0; bottomPadding: 0
+            Action { text: qsTr("Check for Updates"); onTriggered: App.checkForUpdates(true) }
+            MenuSeparator {}
             Action { text: qsTr("About Stellar"); onTriggered: { settingsDialog.initialPage = 7; settingsDialog.show(); settingsDialog.raise() } }
             MenuSeparator {}
             Menu {
                 title: qsTr("Browser Integration")
+                delegate: CompactMenuItem
+                implicitWidth: 200
                 Action { text: qsTr("Firefox Extension…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise() } }
                 MenuSeparator {}
                 Action { text: qsTr("Open Extension Folder"); onTriggered: App.openExtensionFolder() }
@@ -619,7 +1187,12 @@ ApplicationWindow {
             onSchedulerClicked:       schedulerDialog.show()
             onStartQueueRequested:    (queueId) => App.startQueue(queueId)
             onStopQueueRequested:     (queueId) => App.stopQueue(queueId)
-            onGrabberClicked:         {}
+            onGrabberClicked: {
+                grabberDialog.projectId = ""
+                grabberDialog.show()
+                grabberDialog.raise()
+                grabberDialog.requestActivate()
+            }
         }
 
         // ── Inline Find Bar ───────────────────────────────────────────────────
@@ -810,6 +1383,24 @@ ApplicationWindow {
                 }
                 onQueueSelected: (queueId) => {
                     App.selectedQueue = queueId
+                    downloadTable._setSelection({})
+                    downloadTable._anchorRow = -1
+                }
+                onGrabberProjectSelected: (projectId) => {
+                    App.selectedCategory = projectId
+                    downloadTable._setSelection({})
+                    downloadTable._anchorRow = -1
+                }
+                onEditGrabberProjectRequested: (projectId) => {
+                    grabberDialog.projectId = projectId
+                    grabberDialog.show()
+                    grabberDialog.raise()
+                    grabberDialog.requestActivate()
+                }
+                onDeleteGrabberProjectRequested: (projectId) => {
+                    App.deleteGrabberProject(projectId)
+                    if (App.selectedCategory === projectId)
+                        App.selectedCategory = "all"
                     downloadTable._setSelection({})
                     downloadTable._anchorRow = -1
                 }
