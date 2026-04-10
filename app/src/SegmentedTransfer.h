@@ -42,8 +42,12 @@ public:
     Q_INVOKABLE void pause();
     Q_INVOKABLE void resume();
     Q_INVOKABLE void abort();
+    Q_INVOKABLE bool relocateOutput(const QString &newSavePath, const QString &newFilename);
 
     void setSpeedLimitKBps(int kbps);
+    void setCustomUserAgentEnabled(bool enabled);
+    void setCustomUserAgent(const QString &userAgent);
+    void setTemporaryDirectory(const QString &path);
 
 
 signals:
@@ -80,6 +84,7 @@ private:
 
     bool saveMeta();
     bool loadMeta();
+    QString tempBaseDirectory() const;
     QString metaPath() const;
     QString partPath(int index) const;
 
@@ -103,6 +108,9 @@ private:
     QList<Segment>  m_segments;
     QTimer         *m_progressTimer{nullptr};
     qint64          m_lastReceived{0};
+    bool            m_useCustomUserAgent{false};
+    QString         m_customUserAgent;
+    QString         m_temporaryDirectory;
 
     // HEAD reply kept alive until processed
     QNetworkReply  *m_headReply{nullptr};

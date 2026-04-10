@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.3.1 LANGUAGES CXX)
+project(Stellar VERSION 0.3.5 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -38,6 +38,9 @@ set(BACKEND_SOURCES
     app/src/AppSettings.cpp
     app/src/SystemTrayIcon.cpp
     app/src/DownloadDatabase.cpp
+    app/src/GrabberCrawler.cpp
+    app/src/GrabberProjectModel.cpp
+    app/src/GrabberResultModel.cpp
     app/src/Queue.cpp
     app/src/QueueDatabase.cpp
     app/src/QueueModel.cpp
@@ -55,6 +58,9 @@ set(BACKEND_HEADERS
     app/src/AppSettings.h
     app/src/SystemTrayIcon.h
     app/src/DownloadDatabase.h
+    app/src/GrabberCrawler.h
+    app/src/GrabberProjectModel.h
+    app/src/GrabberResultModel.h
     app/src/Queue.h
     app/src/QueueDatabase.h
     app/src/QueueModel.h
@@ -97,6 +103,15 @@ qt_add_qml_module(Stellar
         app/qml/DeleteDoneConfirmDialog.qml
         app/qml/BatchDownloadDialog.qml
         app/qml/BatchDownloadListDialog.qml
+        app/qml/GrabberDialog.qml
+        app/qml/GrabberResultsDialog.qml
+        app/qml/GrabberProjectPickerDialog.qml
+        app/qml/GrabberSettingsDialog.qml
+        app/qml/GrabberScheduleDialog.qml
+        app/qml/GrabberStatisticsDialog.qml
+        app/qml/GrabberIncludeFiltersDialog.qml
+        app/qml/QueueSelectionDialog.qml
+        app/qml/DlgButton.qml
     RESOURCES
         app/qml/icons/add.svg
         app/qml/icons/resume.svg
@@ -121,6 +136,8 @@ qt_add_qml_module(Stellar
         app/qml/icons/downloads.ico
         app/qml/icons/scheduler.ico
         app/qml/icons/help.ico
+        app/qml/icons/update.ico
+        app/qml/icons/clock.png
         app/qml/icons/arrow_down.ico
         app/qml/icons/arrow_up.ico
         app/qml/icons/rename.ico
@@ -159,6 +176,11 @@ qt_add_qml_module(Stellar
         app/qml/icons/main_queue.png
         app/qml/icons/custom_queue.png
         app/qml/icons/synch_queue.png
+        app/qml/icons/globe.png
+        app/qml/icons/page.ico
+        app/qml/icons/cloud_copylink.ico
+        app/qml/icons/folder_view.ico
+        app/qml/icons/about.ico
         tips.txt
 )
 
@@ -185,7 +207,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE TRUE
+        WIN32_EXECUTABLE FALSE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)
@@ -221,7 +243,7 @@ install(TARGETS Stellar
     BUNDLE  DESTINATION .
 )
 install(FILES "${CMAKE_SOURCE_DIR}/tips.txt"
-    DESTINATION "."
+    DESTINATION "${CMAKE_INSTALL_BINDIR}"
 )
 install(DIRECTORY "${CMAKE_SOURCE_DIR}/extensions/"
     DESTINATION "extensions"

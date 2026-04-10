@@ -17,7 +17,9 @@
 #pragma once
 #include <QObject>
 #include <QList>
+#include <QMap>
 #include <QString>
+#include <QTimer>
 #include "DownloadItem.h"
 
 // Persists download history to a JSON file.
@@ -32,11 +34,16 @@ public:
     QList<DownloadItem *> loadAll();
     void save(DownloadItem *item);
     void remove(const QString &id);
-    void flush();   // write in-memory state to disk immediately
+    void flush();   // write in-memory state to disk immediately (stops debounce timer)
+
+private slots:
+    void commitToDisk();   // the actual file write — called by the debounce timer
 
 private:
-    void writeToDisk();
+    void scheduleDiskWrite();  // arms the debounce timer
+
     QString m_filePath;
+    QTimer  m_writeTimer;
 
     // In-memory mirror of every item we're tracking, keyed by id.
     // Kept as QVariantMap so we don't need to find the live DownloadItem

@@ -238,29 +238,22 @@ Window {
             Layout.fillWidth: true
             spacing: 8
 
-            Button {
+            DlgButton {
                 text: "Open File"
-                implicitWidth: 100
-                background: Rectangle { color: "#1e3a6e"; radius: 3; border.color: "#4488dd"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#ffffff"; font.pixelSize: 12; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                primary: true
                 onClicked: { if (item) App.openFile(item.id); root.close() }
             }
 
-            Button {
+            DlgButton {
                 text: "Show in Folder"
-                implicitWidth: 120
-                background: Rectangle { color: "#2d2d2d"; radius: 3; border.color: "#555555"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
+                implicitWidth: 130
                 onClicked: { if (item) App.openFolderSelectFile(item.id); root.close() }
             }
 
             Item { Layout.fillWidth: true }
 
-            Button {
+            DlgButton {
                 text: "Close"
-                implicitWidth: 80
-                background: Rectangle { color: "#2d2d2d"; radius: 3; border.color: "#555555"; border.width: 1 }
-                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
                 onClicked: root.close()
             }
         }

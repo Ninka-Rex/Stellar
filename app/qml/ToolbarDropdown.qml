@@ -26,8 +26,25 @@ AbstractButton {
 
     signal queueSelected(string queueId)
 
-    width: 70
-    height: 70
+    function visibleQueues() {
+        var queues = []
+        if (!root.queueModel)
+            return queues
+
+        for (var row = 0; row < root.queueModel.rowCount(); ++row) {
+            var queue = root.queueModel.queueAt(row)
+            if (!queue || queue.id === "download-limits")
+                continue
+            queues.push({
+                queueId: queue.id,
+                queueName: queue.name || ""
+            })
+        }
+        return queues
+    }
+
+    width: 76
+    height: 62
 
     background: Rectangle {
         color: root.pressed ? "#3a3a4a"
@@ -55,6 +72,9 @@ AbstractButton {
             color: root.hovered ? "#ffffff" : "#d0d0d0"
             font.pixelSize: 11
             horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+            width: root.width - 4
+            maximumLineCount: 2
         }
     }
 
@@ -67,13 +87,26 @@ AbstractButton {
     Menu {
         id: menu
         y: root.height
+        topPadding: 0
+        bottomPadding: 0
+        padding: 0
 
-        Repeater {
-            model: root.queueModel
+        Instantiator {
+            model: root.visibleQueues()
+
             delegate: MenuItem {
-                visible: queueId !== "download-limits"
-                text: queueName || ""
-                onTriggered: root.queueSelected(queueId)
+                required property var modelData
+                text: modelData.queueName
+                onTriggered: root.queueSelected(modelData.queueId)
+            }
+
+            onObjectAdded: function(index, object) {
+                menu.insertItem(index, object)
+            }
+
+            onObjectRemoved: function(index, object) {
+                menu.removeItem(object)
+                object.destroy()
             }
         }
     }

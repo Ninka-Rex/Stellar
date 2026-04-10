@@ -26,6 +26,10 @@ Window {
     property string downloadId: ""
     property var    item: null
     property bool   detailsVisible: true
+    property bool   openFileWhenDone: false
+    property bool   openFolderWhenDone: false
+    property bool   shutdownWhenDone: false
+    property bool   completionHandled: false
 
     width: 620
     height: 520
@@ -54,6 +58,10 @@ Window {
 
     onItemChanged: {
         _updatingSpeedUI = true
+        openFileWhenDone = false
+        openFolderWhenDone = false
+        shutdownWhenDone = false
+        completionHandled = item && item.status === "Completed"
         if (item && item.speedLimitKBps > 0) {
             speedInput.text = String(item.speedLimitKBps)
             limitThisChk.checked = true
@@ -109,6 +117,31 @@ Window {
         if (s === "Completed")   return "#44aadd"
         if (s === "Error")       return "#dd5555"
         return "#909090"
+    }
+
+    function statusLabel() {
+        if (!item)
+            return "--"
+        if (item.status === "Paused" && item.progress > 0)
+            return Math.round(item.progress * 100) + "%"
+        return item.status
+    }
+
+    function handleCompletion() {
+        if (!item || completionHandled || item.status !== "Completed")
+            return
+        completionHandled = true
+        if (openFileWhenDone)
+            App.openFile(item.id)
+        if (openFolderWhenDone)
+            App.openFolderSelectFile(item.id)
+        if (shutdownWhenDone)
+            App.shutdownComputer()
+    }
+
+    Connections {
+        target: item
+        function onStatusChanged() { root.handleCompletion() }
     }
 
     ColumnLayout {
@@ -223,7 +256,7 @@ Window {
                                 }
 
                                 Text {
-                                    text: item ? item.status : "--"
+                                    text: root.statusLabel()
                                     color: item ? root.statusColor(item.status) : "#b0b0b0"
                                     font.pixelSize: 12
                                     font.bold: true
@@ -339,57 +372,21 @@ Window {
                         Item { Layout.fillWidth: true }
 
                         // Pause / Start
-                        Rectangle {
-                            height: 26
-                            width: 80
-                            radius: 3
+                        DlgButton {
+                            text: (item && item.status === "Paused") ? "Start" : "Pause"
                             enabled: item !== null && (item.status === "Downloading" || item.status === "Paused" || item.status === "Queued")
                             opacity: enabled ? 1.0 : 0.4
-                            color: pauseMa.pressed ? "#3a3a3a" : (pauseMa.containsMouse ? "#333333" : "#2a2a2a")
-                            border.color: "#484848"
-
-                            Text {
-                                anchors.centerIn: parent
-                                text: (item && item.status === "Paused") ? "Start" : "Pause"
-                                color: "#d0d0d0"
-                                font.pixelSize: 12
-                            }
-
-                            MouseArea {
-                                id: pauseMa
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: {
-                                    if (!item) return
-                                    if (item.status === "Downloading") App.pauseDownload(item.id)
-                                    else App.resumeDownload(item.id)
-                                }
+                            onClicked: {
+                                if (!item) return
+                                if (item.status === "Downloading") App.pauseDownload(item.id)
+                                else App.resumeDownload(item.id)
                             }
                         }
 
                         // Cancel
-                        Rectangle {
-                            height: 26
-                            width: 80
-                            radius: 3
-                            color: cancelMa.pressed ? "#3a3a3a" : (cancelMa.containsMouse ? "#333333" : "#2a2a2a")
-                            border.color: "#484848"
-
-                            Text {
-                                anchors.centerIn: parent
-                                text: "Cancel"
-                                color: "#d0d0d0"
-                                font.pixelSize: 12
-                            }
-
-                            MouseArea {
-                                id: cancelMa
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: root.close()
-                            }
+                        DlgButton {
+                            text: "Cancel"
+                            onClicked: root.close()
                         }
                     }
 
@@ -572,9 +569,40 @@ Window {
                 ColumnLayout {
                     anchors { fill: parent; margins: 16 }
                     spacing: 12
-                    CheckBox { text: "Open file when done" }
-                    CheckBox { text: "Open folder when done" }
-                    CheckBox { text: "Shutdown computer when queue is done" }
+                    Text {
+                        text: "Options On Completion"
+                        color: "#cccccc"
+                        font.pixelSize: 12
+                        font.bold: true
+                    }
+                    CheckBox {
+                        text: "Open file when done"
+                        checked: root.openFileWhenDone
+                        topPadding: 0
+                        bottomPadding: 0
+                        onToggled: root.openFileWhenDone = checked
+                    }
+                    CheckBox {
+                        text: "Open folder when done"
+                        checked: root.openFolderWhenDone
+                        topPadding: 0
+                        bottomPadding: 0
+                        onToggled: root.openFolderWhenDone = checked
+                    }
+                    CheckBox {
+                        text: "Shutdown computer when done"
+                        checked: root.shutdownWhenDone
+                        topPadding: 0
+                        bottomPadding: 0
+                        onToggled: root.shutdownWhenDone = checked
+                    }
+                    Text {
+                        Layout.fillWidth: true
+                        text: "These options are temporary for this download only and start unchecked each time."
+                        color: "#909090"
+                        font.pixelSize: 11
+                        wrapMode: Text.WordWrap
+                    }
                     Item { Layout.fillHeight: true }
                 }
             }

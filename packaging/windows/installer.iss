@@ -40,6 +40,9 @@ WizardStyle=modern
 PrivilegesRequired=lowest
 ; Restart-free uninstall of previous version
 CloseApplications=yes
+ForceCloseApplications=yes
+RestartApplications=yes
+CloseApplicationsFilter=Stellar.exe
 ; Version info shown in Add/Remove Programs
 VersionInfoVersion={#AppVersion}
 VersionInfoCompany={#AppPublisher}
@@ -114,3 +117,20 @@ Filename: "taskkill.exe"; Parameters: "/f /im {#AppExeName}"; Flags: runhidden; 
 ; Clean up user data only if the user explicitly opts in — we don't wipe downloads.json silently.
 ; Log/temp files that are safe to remove:
 Type: filesandordirs; Name: "{localappdata}\Stellar\logs"
+
+[Code]
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  ManifestPath: string;
+  ManifestText: string;
+begin
+  if CurStep = ssPostInstall then
+  begin
+    ManifestPath := ExpandConstant('{app}\native-host-manifest.json');
+    if LoadStringFromFile(ManifestPath, ManifestText) then
+    begin
+      StringChangeEx(ManifestText, 'Stellar.exe', ExpandConstant('{app}\Stellar.exe'), True);
+      SaveStringToFile(ManifestPath, ManifestText, False);
+    end;
+  end;
+end;

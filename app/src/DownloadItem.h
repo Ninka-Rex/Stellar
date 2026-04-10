@@ -46,12 +46,15 @@ class DownloadItem : public QObject {
     Q_PROPERTY(QString  username       READ username       NOTIFY usernameChanged)
     Q_PROPERTY(QString  password       READ password       NOTIFY passwordChanged)
     Q_PROPERTY(QDateTime lastTryAt     READ lastTryAt      NOTIFY lastTryAtChanged)
+    Q_PROPERTY(QString  addedDateStr  READ addedDateStr   NOTIFY lastTryAtChanged)
+    Q_PROPERTY(QString  lastTryDateStr READ lastTryDateStr NOTIFY lastTryAtChanged)
 
 public:
-    enum class Status { Queued, Downloading, Paused, Completed, Error };
+    enum class Status { Queued, Downloading, Paused, Assembling, Completed, Error };
     Q_ENUM(Status)
 
     explicit DownloadItem(const QString &id, const QUrl &url, QObject *parent = nullptr);
+    static void configureDateTimeFormat(int dateStyle, bool use24Hour, bool showSeconds);
 
     QString      id()            const { return m_id; }
     QString      filename()      const { return m_filename; }
@@ -76,6 +79,9 @@ public:
     QString      username()       const { return m_username; }
     QString      password()       const { return m_password; }
     QDateTime    lastTryAt()      const { return m_lastTryAt; }
+    QString      addedDateStr()   const;
+    QString      lastTryDateStr() const;
+    void refreshDateStrings() { emit lastTryAtChanged(); }
 
     void setFilename(const QString &v);
     void setTotalBytes(qint64 v);
@@ -125,6 +131,7 @@ signals:
     void lastTryAtChanged();
 
 private:
+    static QString formatDateTime(const QDateTime &dt);
     QString      m_id;
     QUrl         m_url;
     QString      m_filename;
@@ -148,4 +155,7 @@ private:
     QString      m_username;
     QString      m_password;
     QDateTime    m_lastTryAt;
+    static int   s_dateStyle;
+    static bool  s_use24Hour;
+    static bool  s_showSeconds;
 };

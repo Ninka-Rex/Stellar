@@ -28,9 +28,9 @@ Window {
     signal resolved(int action, bool remember)  // 1=AddNumbered, 2=Overwrite, 3=Resume
 
     width: 480
-    height: 290
+    height: 300
     minimumWidth: 480
-    minimumHeight: 290
+    minimumHeight: 300
     title: "Duplicate Download Link"
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -128,30 +128,17 @@ Window {
             Layout.fillWidth: true; spacing: 8
             Item { Layout.fillWidth: true }
 
-            Rectangle {
-                width: 80; height: 30; radius: 3
-                color: cancelMa.containsMouse ? "#444444" : "#333333"
-                border.color: "#555555"; border.width: 1
-                Text { anchors.centerIn: parent; text: "Cancel"; color: "#d0d0d0"; font.pixelSize: 12 }
-                MouseArea {
-                    id: cancelMa; anchors.fill: parent
-                    hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                    onClicked: root.close()
-                }
+            DlgButton {
+                text: "Cancel"
+                onClicked: root.close()
             }
 
-            Rectangle {
-                width: 80; height: 30; radius: 3
-                color: okMa.containsMouse ? "#4a6aaa" : "#1e3a6e"
-                border.color: "#4488dd"; border.width: 1
-                Text { anchors.centerIn: parent; text: "OK"; color: "#ffffff"; font.pixelSize: 12; font.bold: true }
-                MouseArea {
-                    id: okMa; anchors.fill: parent
-                    hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        root.resolved(root.selectedAction, rememberChk.checked)
-                        root.close()
-                    }
+            DlgButton {
+                text: "OK"
+                primary: true
+                onClicked: {
+                    root.resolved(root.selectedAction, rememberChk.checked)
+                    root.close()
                 }
             }
         }

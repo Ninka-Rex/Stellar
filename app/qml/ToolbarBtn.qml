@@ -22,9 +22,10 @@ AbstractButton {
     id: root
     property string label: ""
     property string iconSrc: ""
+    property int iconSize: 32
     
-    width: 70
-    height: 56
+    width: 76
+    height: 62
 
     // Dim the whole button when disabled so the user can see it won't respond.
     // AbstractButton has no built-in disabled appearance; we apply it here.
@@ -44,10 +45,15 @@ AbstractButton {
         Image {
             anchors.horizontalCenter: parent.horizontalCenter
             source: root.iconSrc
-            width: 32
-            height: 32
+            width: root.iconSize
+            height: root.iconSize
+            sourceSize.width: root.iconSize
+            sourceSize.height: root.iconSize
             fillMode: Image.PreserveAspectFit
-            smooth: true
+            smooth: false
+            mipmap: false
+            asynchronous: false
+            cache: true
         }
 
         Text {
@@ -56,6 +62,9 @@ AbstractButton {
             color: root.hovered ? "#ffffff" : "#d0d0d0"
             font.pixelSize: 11
             horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.WordWrap
+            width: root.width - 4
+            maximumLineCount: 2
         }
     }
 

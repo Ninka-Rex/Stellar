@@ -16,85 +16,33 @@
 
 #pragma once
 
-#include <QQuickImageProvider>
+#include <QQuickAsyncImageProvider>
 #include <QFileIconProvider>
 #include <QHash>
 #include <QPixmap>
 #include <QIcon>
 #include <QFileInfo>
+#include <QRunnable>
+#include <QThreadPool>
+#include <QMutex>
+#ifdef Q_OS_WIN
+#  include <objbase.h>
+#endif
 
-class FileIconImageProvider : public QQuickImageProvider
-{
-public:
-    explicit FileIconImageProvider()
-        : QQuickImageProvider(QQuickImageProvider::Pixmap)
-    {
-        generateFastIcons();
+// Shared icon cache — accessed by worker threads, protected by mutex.
+// Keyed by full path (for existing files) or "__ext__<ext>" (for extension fallback).
+struct IconCache {
+    QMutex mutex;
+    QHash<QString, QPixmap> cache;
+    QFileIconProvider iconProvider;
+
+    static IconCache &instance() {
+        static IconCache s;
+        return s;
     }
 
-    QPixmap requestPixmap(const QString &id, QSize *size, const QSize &requestedSize) override
-    {
-        const int sz = requestedSize.isValid() ? qMax(requestedSize.width(), requestedSize.height()) : 32;
-
-        // Strip query string (e.g. "?c=1") appended by QML to bust its image cache
-        // when a download completes and we need to switch from the extension-based
-        // placeholder to the real on-disk file icon.
-        const int qmark = id.indexOf(QLatin1Char('?'));
-        const QString cleanId = qmark >= 0 ? id.left(qmark) : id;
-
-        auto returnPixmap = [&](const QPixmap &src) -> QPixmap {
-            QPixmap px = src;
-            if (requestedSize.isValid() && !px.isNull())
-                px = px.scaled(requestedSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-            if (size) *size = px.size();
-            return px;
-        };
-
-        // Fast path: return from cache without filesystem access
-        {
-            auto it = m_pathCache.constFind(cleanId);
-            if (it != m_pathCache.constEnd())
-                return returnPixmap(it.value());
-        }
-
-        // CRITICAL: Check filesystem FIRST for real files - this gets custom EXE icons
-        QFileInfo fi(cleanId);
-        if (fi.exists()) {
-            const QIcon icon = m_iconProvider.icon(fi);
-            const QPixmap px = icon.pixmap(sz, sz);
-            m_pathCache.insert(cleanId, px);
-            return returnPixmap(px);
-        }
-
-        // File doesn't exist yet (still downloading) — use extension-based icon
-        const int dotPos = cleanId.lastIndexOf(QLatin1Char('.'));
-        const QString ext = (dotPos >= 0) ? cleanId.mid(dotPos + 1).toLower() : QString();
-        const QString cacheKey = ext.isEmpty() ? QStringLiteral("__noext__") : ext;
-
-        // Check extension cache
-        {
-            auto it = m_extCache.constFind(cacheKey);
-            if (it != m_extCache.constEnd())
-                return returnPixmap(it.value());
-        }
-
-        // Use fast pre-computed icon for extension
-        auto fastIt = m_fastIcons.constFind(cacheKey);
-        if (fastIt != m_fastIcons.constEnd()) {
-            m_extCache.insert(cacheKey, fastIt.value());
-            return returnPixmap(fastIt.value());
-        }
-
-        // Fallback: generate and cache
-        const QString dummy = ext.isEmpty() ? QStringLiteral("file") : (QStringLiteral("file.") + ext);
-        const QIcon icon = m_iconProvider.icon(QFileInfo(dummy));
-        const QPixmap px = icon.pixmap(sz, sz);
-        m_extCache.insert(cacheKey, px);
-        return returnPixmap(px);
-    }
-
-private:
-    void generateFastIcons()
+    // Populate common extensions at startup so first renders are instant.
+    void preload()
     {
         const QStringList commonExts = {
             QStringLiteral("exe"), QStringLiteral("zip"), QStringLiteral("rar"),
@@ -113,18 +61,136 @@ private:
             QStringLiteral("jar"), QStringLiteral("msi"), QStringLiteral("deb"),
             QStringLiteral("rpm"), QStringLiteral("dmg"), QStringLiteral("iso")
         };
-
-        const int sz = 32;
+        QMutexLocker locker(&mutex);
         for (const QString &ext : commonExts) {
-            const QString dummy = QStringLiteral("file.") + ext;
-            const QIcon icon = m_iconProvider.icon(QFileInfo(dummy));
-            m_fastIcons.insert(ext, icon.pixmap(sz, sz));
+            const QString key = QStringLiteral("__ext__") + ext;
+            if (!cache.contains(key)) {
+                const QIcon icon = iconProvider.icon(QFileInfo(QStringLiteral("file.") + ext));
+                cache.insert(key, icon.pixmap(32, 32));
+            }
         }
-        m_fastIcons.insert(QStringLiteral("__noext__"), m_iconProvider.icon(QFileInfo(QStringLiteral("file"))).pixmap(sz, sz));
+        const QString noExtKey = QStringLiteral("__ext____noext__");
+        if (!cache.contains(noExtKey)) {
+            cache.insert(noExtKey, iconProvider.icon(QFileInfo(QStringLiteral("file"))).pixmap(32, 32));
+        }
     }
 
-    QFileIconProvider m_iconProvider;
-    QHash<QString, QPixmap> m_fastIcons;
-    QHash<QString, QPixmap> m_extCache;
-    QHash<QString, QPixmap> m_pathCache;
+    QPixmap get(const QString &cleanId, int sz)
+    {
+        // 1. Full-path cache — hit means we already fetched the real icon for this file.
+        {
+            QMutexLocker locker(&mutex);
+            auto it = cache.constFind(cleanId);
+            if (it != cache.constEnd())
+                return scaled(it.value(), sz);
+        }
+
+        // 2. Filesystem check BEFORE extension cache — existing files (e.g. completed
+        //    EXE downloads with custom embedded icons) must be looked up by full path.
+        //    Checking extension cache first would return the generic EXE icon instead.
+        QFileInfo fi(cleanId);
+        if (fi.exists()) {
+            const QIcon icon = iconProvider.icon(fi);  // SHGetFileInfo — needs COM STA
+            const QPixmap px = icon.pixmap(32, 32);
+            {
+                QMutexLocker locker(&mutex);
+                cache.insert(cleanId, px);
+            }
+            return scaled(px, sz);
+        }
+
+        // 3. Extension cache — only reached for files that don't exist yet (in-progress
+        //    or paused downloads). Safe to use generic icon here.
+        const int dotPos = cleanId.lastIndexOf(QLatin1Char('.'));
+        const QString ext = (dotPos >= 0) ? cleanId.mid(dotPos + 1).toLower() : QString();
+        const QString extKey = QStringLiteral("__ext__") + (ext.isEmpty() ? QStringLiteral("__noext__") : ext);
+        {
+            QMutexLocker locker(&mutex);
+            auto it = cache.constFind(extKey);
+            if (it != cache.constEnd())
+                return scaled(it.value(), sz);
+        }
+
+        // 4. Generate and cache extension icon.
+        const QString dummy = ext.isEmpty() ? QStringLiteral("file") : (QStringLiteral("file.") + ext);
+        const QIcon icon = iconProvider.icon(QFileInfo(dummy));
+        const QPixmap px = icon.pixmap(32, 32);
+        {
+            QMutexLocker locker(&mutex);
+            cache.insert(extKey, px);
+        }
+        return scaled(px, sz);
+    }
+
+private:
+    IconCache() = default;
+
+    static QPixmap scaled(const QPixmap &src, int sz) {
+        if (sz == 32 || src.isNull()) return src;
+        return src.scaled(sz, sz, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
+};
+
+// Async response object — does the actual work on a thread pool thread.
+class FileIconResponse : public QQuickImageResponse, public QRunnable
+{
+public:
+    FileIconResponse(const QString &id, const QSize &requestedSize)
+        : m_id(id), m_requestedSize(requestedSize)
+    {
+        setAutoDelete(false);
+    }
+
+    QQuickTextureFactory *textureFactory() const override
+    {
+        return QQuickTextureFactory::textureFactoryForImage(m_image);
+    }
+
+    void run() override
+    {
+        // QFileIconProvider::icon() calls SHGetFileInfo on Windows, which requires
+        // COM to be initialized as STA on the calling thread. Thread pool threads
+        // don't have COM initialized by default — without this, real file icons
+        // (e.g. custom EXE icons) silently fall back to the generic shell icon.
+#ifdef Q_OS_WIN
+        CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
+#endif
+
+        // Strip query string (e.g. "?c=1") used to bust QML's image cache
+        const int qmark = m_id.indexOf(QLatin1Char('?'));
+        const QString cleanId = qmark >= 0 ? m_id.left(qmark) : m_id;
+
+        const int sz = m_requestedSize.isValid()
+                       ? qMax(m_requestedSize.width(), m_requestedSize.height())
+                       : 32;
+
+        const QPixmap px = IconCache::instance().get(cleanId, sz);
+        m_image = px.toImage();
+
+#ifdef Q_OS_WIN
+        CoUninitialize();
+#endif
+        emit finished();
+    }
+
+private:
+    QString  m_id;
+    QSize    m_requestedSize;
+    QImage   m_image;
+};
+
+class FileIconImageProvider : public QQuickAsyncImageProvider
+{
+public:
+    explicit FileIconImageProvider()
+    {
+        IconCache::instance().preload();
+    }
+
+    QQuickImageResponse *requestImageResponse(const QString &id, const QSize &requestedSize) override
+    {
+        auto *response = new FileIconResponse(id, requestedSize);
+        QThreadPool::globalInstance()->start(response);
+        return response;
+    }
 };

@@ -2,11 +2,12 @@
   "manifest_version": 3,
   "name": "Stellar Download Manager",
   "version": "0.1.0",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAudo7fO5G8MpfibREwuPm1YFJMnKOXgMI0OA93+kDkQtyi5jO7LqRrYSyNixG3/8d8XQvcnF3IRMZ6dyXe+SLBYcfJr3Jjczy4yXf3m+iHGfQCy6o33mvKs34Cg1xdbT8M3pQ6LcXKzj3sXIySG40ylnMSfk/Lym3opAneluTT16oC+vFyPaSp8jPdXq+QiiZMmH6m/x0sWKK5JMjARZ5ET27PR5/vdhyEf4U10oyjp0w55ltzNlJ9+RgZGeyweawzRw/elhQvzL2Bad0WzPR0oAh6aaSbpjGKjIRcUiGiVJx/ranl5bu7SgfUrh159ba+rjWDeba5cNzxFE7ypzFlQIDAQAB",
   "description": "Intercepts browser downloads and sends them to the Stellar download manager.",
   "icons": {
-    "16":  "icons/icon16.png",
-    "48":  "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16":  "icons/milky-way.png",
+    "48":  "icons/milky-way.png",
+    "128": "icons/milky-way.png"
   },
   "background": {
     "service_worker": "service-worker.js",
@@ -15,8 +16,8 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16":  "icons/icon16.png",
-      "48":  "icons/icon48.png"
+      "16":  "icons/milky-way.png",
+      "48":  "icons/milky-way.png"
     }
   },
   "permissions": [
@@ -24,7 +25,8 @@
     "nativeMessaging",
     "storage",
     "contextMenus",
-    "cookies"
+    "cookies",
+    "tabs"
   ],
   "host_permissions": [
     "<all_urls>"

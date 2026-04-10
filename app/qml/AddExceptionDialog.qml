@@ -83,34 +83,19 @@ Window {
 
             Item { Layout.fillWidth: true }
 
-            Rectangle {
-                width: 80; height: 30; radius: 3
-                color: noMa.containsMouse ? "#3a3a3a" : "#2a2a2a"
-                border.color: "#555"
-                Text { anchors.centerIn: parent; text: "No"; color: "#c0c0c0"; font.pixelSize: 13 }
-                MouseArea {
-                    id: noMa
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: { root.rejected(); root.close() }
-                }
+            DlgButton {
+                text: "No"
+                onClicked: { root.rejected(); root.close() }
             }
 
-            Rectangle {
-                width: 110; height: 30; radius: 3
-                color: yesMa.containsMouse ? "#4a6aaa" : "#3a5a8a"
-                Text { anchors.centerIn: parent; text: "Add Exception"; color: "#ffffff"; font.pixelSize: 13 }
-                MouseArea {
-                    id: yesMa
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        App.addExcludedAddress(root.url)
-                        root.accepted()
-                        root.close()
-                    }
+            DlgButton {
+                text: "Add Exception"
+                primary: true
+                implicitWidth: 120
+                onClicked: {
+                    App.addExcludedAddress(root.url)
+                    root.accepted()
+                    root.close()
                 }
             }
         }

@@ -23,7 +23,11 @@
 #include <QJsonObject>
 #include <QDebug>
 
-DownloadDatabase::DownloadDatabase(QObject *parent) : QObject(parent) {}
+DownloadDatabase::DownloadDatabase(QObject *parent) : QObject(parent) {
+    m_writeTimer.setSingleShot(true);
+    m_writeTimer.setInterval(150);   // coalesce rapid save/remove calls
+    connect(&m_writeTimer, &QTimer::timeout, this, &DownloadDatabase::commitToDisk);
+}
 
 bool DownloadDatabase::open() {
     const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
@@ -81,14 +85,13 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
 
         const QString statusStr = obj[QLatin1String("status")].toString();
         DownloadItem::Status s = DownloadItem::Status::Paused;
-        if (statusStr == QLatin1String("Completed"))   s = DownloadItem::Status::Completed;
-        else if (statusStr == QLatin1String("Error"))   s = DownloadItem::Status::Error;
-        else if (statusStr == QLatin1String("Queued"))  s = DownloadItem::Status::Paused;
+        if (statusStr == QLatin1String("Completed"))        s = DownloadItem::Status::Completed;
+        else if (statusStr == QLatin1String("Error"))       s = DownloadItem::Status::Error;
+        else if (statusStr == QLatin1String("Queued"))      s = DownloadItem::Status::Paused;
+        else if (statusStr == QLatin1String("Assembling...")) s = DownloadItem::Status::Paused;
         item->setStatus(s);
 
-        // Keep a mirror in m_entries
         m_entries[id] = obj.toVariantMap();
-
         result.append(item);
     }
     return result;
@@ -118,19 +121,27 @@ void DownloadDatabase::save(DownloadItem *item) {
         m[QStringLiteral("lastTryAt")] = item->lastTryAt().toString(Qt::ISODate);
 
     m_entries[item->id()] = m;
-    writeToDisk();
+    scheduleDiskWrite();
 }
 
 void DownloadDatabase::remove(const QString &id) {
     if (m_entries.remove(id))
-        writeToDisk();
+        scheduleDiskWrite();
 }
 
 void DownloadDatabase::flush() {
-    writeToDisk();
+    m_writeTimer.stop();
+    commitToDisk();
 }
 
-void DownloadDatabase::writeToDisk() {
+void DownloadDatabase::scheduleDiskWrite() {
+    // (Re-)start the timer. If called again within the interval the previous
+    // pending write is cancelled and a fresh one is scheduled — so a burst of
+    // 200 remove() calls results in exactly one file write.
+    m_writeTimer.start();
+}
+
+void DownloadDatabase::commitToDisk() {
     QJsonArray arr;
     for (auto it = m_entries.constBegin(); it != m_entries.constEnd(); ++it)
         arr.append(QJsonObject::fromVariantMap(it.value()));

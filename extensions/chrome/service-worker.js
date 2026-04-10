@@ -1,21 +1,124 @@
-// Chrome MV3 service worker – Stellar extension
-import { handleDownloadCreated, recordModifierKey } from "../shared/interceptor.js";
-import { ping, syncSettingsFromApp } from "../shared/messaging.js";
+// Chrome MV3 service worker - Stellar extension
+// Copyright (C) 2026 Ninka_
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-// ── Download interception ─────────────────────────────────────────────────────
+import { handleDownloadCreated, recordModifierKey } from "./shared/interceptor.js";
+import { ping, syncSettingsFromApp } from "./shared/messaging.js";
+
+const ICONS_ENABLED = {
+    16: "icons/milky-way.png",
+    48: "icons/milky-way.png",
+    128: "icons/milky-way.png",
+};
+
+const ICONS_DISABLED = {
+    16: "icons/milky-way-bw.png",
+    48: "icons/milky-way-bw.png",
+    128: "icons/milky-way-bw.png",
+};
+
+async function refreshIcon() {
+    try {
+        const stored = await chrome.storage.local.get(["enabled"]);
+        const enabled = stored.enabled !== false;
+        await chrome.action.setIcon({ path: enabled ? ICONS_ENABLED : ICONS_DISABLED });
+    } catch (err) {
+        console.warn("[Stellar] Could not refresh extension icon:", err);
+    }
+}
+
+async function updateConnectionState() {
+    const alive = await ping();
+    await refreshIcon();
+    if (!alive) {
+        console.warn("[Stellar] Native host not responding during icon refresh.");
+    }
+}
+
+// Download interception
 chrome.downloads.onCreated.addListener((item) => {
     handleDownloadCreated(item);
 });
 
-// ── Handle modifier key tracking from content script ──────────────────────────
+// Handle modifier key tracking from content script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "recordModifierKey") {
         recordModifierKey(message.modifierKey);
         sendResponse({ ok: true });
+        return true;
+    }
+
+    if (message.type === "getSettings") {
+        (async () => {
+            try {
+                const stored = await chrome.storage.local.get([
+                    "monitoredExtensions",
+                    "excludedSites",
+                    "excludedAddresses",
+                    "enabled"
+                ]);
+                sendResponse({
+                    type: "settings",
+                    monitoredExtensions: stored.monitoredExtensions ?? [],
+                    excludedSites: stored.excludedSites ?? [],
+                    excludedAddresses: stored.excludedAddresses ?? [],
+                    enabled: stored.enabled !== false
+                });
+            } catch (err) {
+                sendResponse({ type: "settings", enabled: true, error: err?.message ?? "unknown" });
+            }
+        })();
+        return true;
+    }
+
+    if (message.type === "ping") {
+        (async () => {
+            try {
+                const alive = await ping();
+                sendResponse({ alive });
+            } catch (err) {
+                sendResponse({ alive: false, error: err?.message ?? "unknown" });
+            }
+        })();
+        return true;
+    }
+
+    if (message.type === "focus") {
+        chrome.runtime.sendNativeMessage("com.stellar.downloadmanager", { type: "focus" }, (response) => {
+            if (chrome.runtime.lastError) {
+                sendResponse({ ok: false, error: chrome.runtime.lastError.message });
+            } else {
+                sendResponse({ ok: true, response });
+            }
+        });
+        return true;
+    }
+
+    if (message.type === "setEnabled") {
+        chrome.storage.local.set({ enabled: !!message.value }, () => {
+            if (chrome.runtime.lastError) {
+                sendResponse({ ok: false, error: chrome.runtime.lastError.message });
+            } else {
+                sendResponse({ ok: true });
+            }
+        });
+        return true;
     }
 });
 
-// ── Context menu ──────────────────────────────────────────────────────────────
+// Context menu
 chrome.runtime.onInstalled.addListener(async () => {
     chrome.contextMenus.create({
         id: "stellar-download-link",
@@ -27,14 +130,14 @@ chrome.runtime.onInstalled.addListener(async () => {
         title: "Download with Stellar",
         contexts: ["video", "audio", "image"],
     });
-    // Sync settings from app so the extension uses the user's configured lists
     await syncSettingsFromApp();
+    await refreshIcon();
 });
 
 chrome.contextMenus.onClicked.addListener(async (info) => {
     const url = info.linkUrl || info.srcUrl || info.pageUrl;
     if (!url) return;
-    const { requestDownload } = await import("../shared/messaging.js");
+    const { requestDownload } = await import("./shared/messaging.js");
     let cookieHeader = "";
     try {
         const urlObj = new URL(url);
@@ -55,15 +158,15 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
     await requestDownload({ url, referrer: info.frameUrl ?? info.pageUrl ?? "", pageUrl: info.pageUrl ?? "", cookies: cookieHeader });
 });
 
-// ── Extension icon badge ──────────────────────────────────────────────────────
-async function updateBadge() {
-    const alive = await ping();
-    chrome.action.setBadgeText({ text: alive ? "" : "OFF" });
-    chrome.action.setBadgeBackgroundColor({ color: alive ? "#4CAF50" : "#F44336" });
-}
-
 chrome.runtime.onStartup.addListener(async () => {
-    updateBadge();
     await syncSettingsFromApp();
+    await refreshIcon();
 });
-updateBadge();
+
+chrome.storage.onChanged.addListener(async (changes, areaName) => {
+    if (areaName === "local" && Object.prototype.hasOwnProperty.call(changes, "enabled")) {
+        await refreshIcon();
+    }
+});
+
+updateConnectionState();

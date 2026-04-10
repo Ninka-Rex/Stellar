@@ -29,6 +29,7 @@ Window {
     property string pendingSize:     ""
     property string pendingSavePath: ""
     property string filenameOverride: ""
+    property string pendingDownloadId: ""
     property bool   isIntercepted:   false
     property bool   _accepted:       false
 
@@ -45,9 +46,9 @@ Window {
     Material.background: "#1a1a1a"
     Material.accent: "#4488dd"
 
-    signal downloadNow(string url, string savePath, string category, string description)
-    signal downloadLater(string url, string savePath, string category, string description)
-    signal rejected(string url)
+    signal downloadNow(string downloadId, string url, string savePath, string category, string description)
+    signal downloadLater(string downloadId, string url, string savePath, string category, string description)
+    signal rejected(string downloadId, string url)
 
     onVisibleChanged: {
         if (visible) {
@@ -55,8 +56,8 @@ Window {
             requestActivate()
         }
         if (!visible) {
-            if (isIntercepted && !_accepted)
-                rejected(pendingUrl)
+            if (!_accepted && pendingDownloadId.length > 0)
+                rejected(pendingDownloadId, pendingUrl)
             _accepted     = false
             isIntercepted = false
         }
@@ -410,56 +411,33 @@ Window {
                 spacing: 8
 
                 // Cancel — far left, understated
-                Rectangle {
-                    width: 80; height: 32; radius: 4
-                    color: cancelMa.containsMouse ? "#2a2a2a" : "transparent"
-                    border.color: cancelMa.containsMouse ? "#444444" : "#383838"
-                    Behavior on color { ColorAnimation { duration: 80 } }
-                    Text { anchors.centerIn: parent; text: "Cancel"; color: "#707070"; font.pixelSize: 12 }
-                    MouseArea { id: cancelMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; onClicked: root.close() }
+                DlgButton {
+                    text: "Cancel"
+                    onClicked: root.close()
                 }
 
                 Item { Layout.fillWidth: true }
 
                 // Download Later
-                Rectangle {
-                    width: 130; height: 32; radius: 4
-                    color: laterMa.containsMouse ? "#2e2e2e" : "#252525"
-                    border.color: laterMa.containsMouse ? "#505050" : "#404040"
-                    Behavior on color { ColorAnimation { duration: 80 } }
-                    Text { anchors.centerIn: parent; text: "Download Later"; color: "#b0b0b0"; font.pixelSize: 12 }
-                    MouseArea {
-                        id: laterMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                        onClicked: {
-                            root._accepted = true
-                            root.downloadLater(root.pendingUrl, saveAsField.editText, _catId(), descField.text)
-                            root.close()
-                        }
+                DlgButton {
+                    text: "Download Later"
+                    implicitWidth: 130
+                    onClicked: {
+                        root._accepted = true
+                        root.downloadLater(root.pendingDownloadId, root.pendingUrl, saveAsField.editText, _catId(), descField.text)
+                        root.close()
                     }
                 }
 
                 // Start Download — primary action
-                Rectangle {
-                    width: 130; height: 32; radius: 4
-                    color: nowMa.containsMouse ? "#2a4f90" : "#1e3f7a"
-                    Behavior on color { ColorAnimation { duration: 80 } }
-
-                    // Subtle top highlight
-                    Rectangle {
-                        width: parent.width - 2; height: 1
-                        anchors { top: parent.top; topMargin: 1; horizontalCenter: parent.horizontalCenter }
-                        color: "#44aaffaa"; radius: 1
-                        opacity: 0.3
-                    }
-
-                    Text { anchors.centerIn: parent; text: "Start Download"; color: "#ffffff"; font.pixelSize: 12; font.weight: Font.Medium }
-                    MouseArea {
-                        id: nowMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                        onClicked: {
-                            root._accepted = true
-                            root.downloadNow(root.pendingUrl, saveAsField.editText, _catId(), descField.text)
-                            root.close()
-                        }
+                DlgButton {
+                    text: "Start Download"
+                    primary: true
+                    implicitWidth: 130
+                    onClicked: {
+                        root._accepted = true
+                        root.downloadNow(root.pendingDownloadId, root.pendingUrl, saveAsField.editText, _catId(), descField.text)
+                        root.close()
                     }
                 }
             }
