@@ -2,7 +2,21 @@
 
 Apr 10, 2026
 
-Version 0.3.5 is available
+Version 0.3.6 Beta is available
+
+Windows and Firefox beta release only
+
+This build is focused on the Windows app and Firefox integration.
+Some features are still untested, some behavior may still be buggy, 
+and this release should be treated as an early beta.
+
+What's new in version 0.3.6?
+
+- Added in-app update checking
+- Added bundled Firefox `.xpi` packaging for Windows releases
+- Improved status bar messaging for active downloads, finished downloads, 
+  selected items, errors, speed limiter state, queue timing, and update checks
+- Added configurable Last Try Date formatting with 12-hour and 24-hour time options
 
 What's new in version 0.3.5?
 
