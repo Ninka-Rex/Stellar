@@ -183,7 +183,7 @@ Window {
 
                 Text {
                     Layout.fillWidth: true
-                    text: "Open the extension folder — it contains <b>stellar-firefox-0.1.3.xpi</b>."
+                    text: "Open the extension folder — it contains <b>stellar-firefox.xpi</b>."
                     color: "#999"
                     font.pixelSize: 12
                     wrapMode: Text.WordWrap

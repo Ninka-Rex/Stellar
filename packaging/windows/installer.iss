@@ -23,9 +23,9 @@ AppPublisher={#AppPublisher}
 AppPublisherURL={#AppURL}
 AppSupportURL={#AppURL}
 AppUpdatesURL={#AppURL}
-; Install to %LOCALAPPDATA%\Stellar — no UAC, no admin required
-DefaultDirName={localappdata}\Stellar
-DefaultGroupName=Stellar
+; Install to %LOCALAPPDATA%\StellarDownloadManager — no UAC, no admin required
+DefaultDirName={localappdata}\StellarDownloadManager
+DefaultGroupName=StellarDownloadManager
 ; Output goes to packaging/windows/output/
 OutputDir=output
 OutputBaseFilename=StellarSetup-{#AppVersion}
@@ -40,7 +40,6 @@ WizardStyle=modern
 PrivilegesRequired=lowest
 ; Restart-free uninstall of previous version
 CloseApplications=yes
-ForceCloseApplications=yes
 RestartApplications=yes
 CloseApplicationsFilter=Stellar.exe
 ; Version info shown in Add/Remove Programs
@@ -72,13 +71,14 @@ Source: "{#BuildDir}\networkinformation\*";     DestDir: "{app}\networkinformati
 Source: "{#BuildDir}\platforms\*";              DestDir: "{app}\platforms";            Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
 Source: "{#BuildDir}\styles\*";                 DestDir: "{app}\styles";               Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
 Source: "{#BuildDir}\tls\*";                    DestDir: "{app}\tls";                  Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
-Source: "{#BuildDir}\qmltooling\*";             DestDir: "{app}\qmltooling";            Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
-
 ; QML imports (windeployqt copies these)
 Source: "{#BuildDir}\qml\*";                    DestDir: "{app}\qml";                  Flags: ignoreversion recursesubdirs createallsubdirs
 
-; Qt translations
-Source: "{#BuildDir}\translations\*";           DestDir: "{app}\translations";         Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
+; Firefox extension package
+Source: "{#BuildDir}\extensions\firefox\stellar-firefox.xpi"; DestDir: "{app}\extensions\firefox"; Flags: ignoreversion skipifsourcedoesntexist
+
+; App content files
+Source: "{#BuildDir}\tips.txt";                  DestDir: "{app}";                      Flags: ignoreversion skipifsourcedoesntexist
 
 ; Visual C++ Redistributable (windeployqt copies this)
 Source: "{#BuildDir}\vc_redist.x64.exe";        DestDir: "{tmp}";                       Flags: deleteafterinstall skipifsourcedoesntexist
@@ -119,18 +119,11 @@ Filename: "taskkill.exe"; Parameters: "/f /im {#AppExeName}"; Flags: runhidden; 
 Type: filesandordirs; Name: "{localappdata}\Stellar\logs"
 
 [Code]
-procedure CurStepChanged(CurStep: TSetupStep);
+function PrepareToInstall(var NeedsRestart: Boolean): String;
 var
-  ManifestPath: string;
-  ManifestText: string;
+  ResultCode: Integer;
 begin
-  if CurStep = ssPostInstall then
-  begin
-    ManifestPath := ExpandConstant('{app}\native-host-manifest.json');
-    if LoadStringFromFile(ManifestPath, ManifestText) then
-    begin
-      StringChangeEx(ManifestText, 'Stellar.exe', ExpandConstant('{app}\Stellar.exe'), True);
-      SaveStringToFile(ManifestPath, ManifestText, False);
-    end;
-  end;
+  Exec(ExpandConstant('{sys}\taskkill.exe'), '/f /im {#AppExeName}', '', SW_HIDE,
+    ewWaitUntilTerminated, ResultCode);
+  Result := '';
 end;

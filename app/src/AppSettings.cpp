@@ -135,7 +135,7 @@ QStringList AppSettings::defaultExcludedAddresses() {
 
 AppSettings::AppSettings(QObject *parent)
     : QObject(parent),
-      m_settings(QStringLiteral("StellarProject"), QStringLiteral("Stellar"))
+      m_settings(QStringLiteral("StellarDownloadManager"), QStringLiteral("StellarDownloadManager"))
 {
     m_defaultSavePath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     m_temporaryDirectory = QStandardPaths::writableLocation(QStandardPaths::TempLocation)
@@ -196,7 +196,7 @@ void AppSettings::load() {
     m_grabberIncludeFiltersJson = m_settings.value(QStringLiteral("grabberIncludeFiltersJson"), QString()).toString();
     m_grabberExcludeFiltersJson = m_settings.value(QStringLiteral("grabberExcludeFiltersJson"), QString()).toString();
     m_bypassInterceptKey      = m_settings.value(QStringLiteral("bypassInterceptKey"), 1).toInt();
-    m_launchOnStartup         = m_settings.value(QStringLiteral("launchOnStartup"), false).toBool();
+    m_launchOnStartup         = m_settings.value(QStringLiteral("launchOnStartup"), true).toBool();
     m_clipboardMonitorEnabled = m_settings.value(QStringLiteral("clipboardMonitorEnabled"), false).toBool();
     m_doubleClickAction       = m_settings.value(QStringLiteral("doubleClickAction"), 0).toInt();
     m_speedScheduleEnabled    = m_settings.value(QStringLiteral("speedScheduleEnabled"), false).toBool();
