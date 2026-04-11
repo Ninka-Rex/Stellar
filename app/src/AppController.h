@@ -61,6 +61,7 @@ class AppController : public QObject {
     Q_PROPERTY(QString grabberStatusText READ grabberStatusText NOTIFY grabberStatusTextChanged)
     Q_PROPERTY(int minutesUntilNextQueue READ minutesUntilNextQueue NOTIFY minutesUntilNextQueueChanged)
     Q_PROPERTY(int completedDownloads READ completedDownloads NOTIFY completedDownloadsChanged)
+    Q_PROPERTY(int recentErrorDownloads READ recentErrorDownloads NOTIFY recentErrorDownloadsChanged)
     Q_PROPERTY(bool updateAvailable READ updateAvailable NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateVersion READ updateVersion NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateChangelog READ updateChangelog NOTIFY updateAvailableChanged)
@@ -90,6 +91,7 @@ public:
     QString grabberStatusText() const { return m_grabberStatusText; }
     int minutesUntilNextQueue() const;
     int completedDownloads() const { return m_completedCount; }
+    int recentErrorDownloads() const;
     bool updateAvailable() const { return m_updateAvailable; }
     QString updateVersion() const { return m_updateVersion; }
     QString updateChangelog() const { return m_updateChangelog; }
@@ -205,6 +207,7 @@ signals:
     void grabberError(const QString &message);
     void minutesUntilNextQueueChanged();
     void completedDownloadsChanged();
+    void recentErrorDownloadsChanged();
     void updateAvailableChanged();
     void updateStatusTextChanged();
     void checkingForUpdatesChanged();
@@ -264,6 +267,7 @@ private:
     int calculateMinutesUntilNextQueue() const;
     void scheduleGrabberResultsPersist();
     void persistActiveGrabberResults();
+    void pruneRecentErrorDownloads();
     void setCheckingForUpdates(bool checking);
     void finishUpdateCheckUi(const std::function<void()> &finishWork);
     static int compareVersionStrings(const QString &lhs, const QString &rhs);
@@ -289,6 +293,8 @@ private:
     QSet<QString>           m_queueLimitNotifications;
     QMap<QString, int>      m_queueRetryCounts;
     int                     m_completedCount{0};
+    QMap<QString, QDateTime> m_recentErrorDownloads;
+    QTimer                 *m_recentErrorTimer{nullptr};
     bool                    m_updateAvailable{false};
     QString                 m_updateVersion;
     QString                 m_updateInstallerUrl;

@@ -642,10 +642,10 @@ ApplicationWindow {
         id: updateAvailableDialog
         title: "New version of Stellar Download Manager is available"
         transientParent: root
-        width: 620
-        height: 500
-        minimumWidth: 560
-        minimumHeight: 420
+        width: 500
+        height: 375
+        minimumWidth: 500
+        minimumHeight: 375
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
         modality: Qt.ApplicationModal
         color: "#1e1e1e"

@@ -28,7 +28,7 @@ Rectangle {
     property var tipsArray: []
     property int currentTipIndex: 0
     property bool showTips: true
-    property int errorCount: App.downloadModel ? App.downloadModel.errorCount : 0
+    property int errorCount: App.recentErrorDownloads
 
     signal nextTip()
     signal closeTips()
@@ -43,16 +43,18 @@ Rectangle {
             text: {
                 var parts = []
 
-                parts.push("🟩 Ready")
+                if (errorCount > 0)
+                    parts.push(errorCount === 1 ? "🟨 1 error" : "🟨 %1 errors".arg(errorCount))
+                else if (activeCount > 0)
+                    parts.push(activeCount === 1 ? "🟦 1 active" : "🟦 %1 active".arg(activeCount))
+                else
+                    parts.push("🟩 Ready")
 
-                if (activeCount > 0)
+                if (activeCount > 0 && errorCount > 0)
                     parts.push(activeCount === 1 ? "🟦 1 active" : "🟦 %1 active".arg(activeCount))
 
                 if (App.settings.showFinishedCount && completedCount > 0)
                     parts.push(completedCount === 1 ? "📄 1 download" : "📄 %1 downloads".arg(completedCount))
-
-                if (errorCount > 0)
-                    parts.push(errorCount === 1 ? "🟥 1 error" : "🟥 %1 errors".arg(errorCount))
 
                 if (selectedCount > 0)
                     parts.push(selectedCount === 1 ? "🔍 1 selected" : "🔍 %1 selected".arg(selectedCount))

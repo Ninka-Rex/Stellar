@@ -230,7 +230,7 @@ static int runNativeMessagingHost(int argc, char *argv[])
     if (type == QStringLiteral("getSettings")) {
         // Read settings directly from QSettings — no need for the running app.
         // This means changes saved by the app are immediately visible to the extension.
-        QSettings s(QStringLiteral("StellarProject"), QStringLiteral("Stellar"));
+        QSettings s(QStringLiteral("StellarDownloadManager"), QStringLiteral("StellarDownloadManager"));
 
         auto toJsonArray = [&](const QString &key, const QStringList &defaultVal) -> QJsonArray {
             QVariant v = s.value(key);
@@ -294,9 +294,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     nmLog(QStringLiteral("QGuiApplication constructed."));
     
-    app.setApplicationName(QStringLiteral("Stellar Download Manager"));
+    app.setApplicationName(QStringLiteral("StellarDownloadManager"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));
-    app.setOrganizationName(QStringLiteral("StellarProject"));
+    app.setOrganizationName(QStringLiteral("StellarDownloadManager"));
     app.setWindowIcon(QIcon(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")));
 
     // Single-instance guard: try to reach an already-running instance.

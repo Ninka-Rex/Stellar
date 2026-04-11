@@ -111,6 +111,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_saveTimer->setSingleShot(true);
     m_saveTimer->setInterval(500);
     connect(m_saveTimer, &QTimer::timeout, this, &AppController::flushDirty);
+    m_recentErrorTimer = new QTimer(this);
+    m_recentErrorTimer->setInterval(30000);
+    connect(m_recentErrorTimer, &QTimer::timeout, this, &AppController::pruneRecentErrorDownloads);
+    m_recentErrorTimer->start();
     m_grabberPersistTimer = new QTimer(this);
     m_grabberPersistTimer->setSingleShot(true);
     m_grabberPersistTimer->setInterval(400);
@@ -362,6 +366,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             emit completedDownloadsChanged();
         }
         m_downloadModel->removeItem(id);
+        if (m_recentErrorDownloads.remove(id) > 0)
+            emit recentErrorDownloadsChanged();
         m_dirtyIds.remove(id);
         m_db->remove(id);
     });
@@ -454,6 +460,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_queue, &DownloadQueue::itemFailed, this, [this](DownloadItem *item, const QString &reason) {
         if (!item)
             return;
+        m_recentErrorDownloads[item->id()] = QDateTime::currentDateTime();
+        emit recentErrorDownloadsChanged();
         m_db->save(item);
         m_dirtyIds.remove(item->id());
         Queue *queue = (!item->queueId().isEmpty() && m_queueModel)
@@ -1266,11 +1274,11 @@ void AppController::copyDownloadFilename(const QString &id) {
 }
 
 QString AppController::updateMetadataUrl() {
-    return QStringLiteral("https://raw.githubusercontent.com/Ninka-Rex/Stellar/main/update.json");
+    return QStringLiteral("https://raw.githubusercontent.com/Ninka-Rex/Stellar/refs/heads/master/update.json");
 }
 
 QString AppController::updateChangelogUrl() {
-    return QStringLiteral("https://raw.githubusercontent.com/Ninka-Rex/Stellar/main/changelog.md");
+    return QStringLiteral("https://raw.githubusercontent.com/Ninka-Rex/Stellar/refs/heads/master/changelog.md");
 }
 
 void AppController::setCheckingForUpdates(bool checking) {
@@ -1424,10 +1432,16 @@ void AppController::checkForUpdates(bool manual) {
                 : QString();
             changelogReply->deleteLater();
             metadata[QStringLiteral("changelog")] = changelogText;
-
-            finishUpdateCheckUi([this, metadata, manual]() {
-                m_updateChangelog = metadata.value(QStringLiteral("changelog")).toString();
-                applyUpdateMetadata(metadata, manual);
+            m_updateChangelog = metadata.value(QStringLiteral("changelog")).toString();
+            applyUpdateMetadata(metadata, manual);
+            finishUpdateCheckUi([this]() {
+                if (!m_settings->autoCheckUpdates())
+                    m_updateStatusText.clear();
+                else if (m_updateAvailable)
+                    m_updateStatusText = QStringLiteral("🎊 Update available! (%1)").arg(m_updateVersion);
+                else
+                    m_updateStatusText.clear();
+                emit updateStatusTextChanged();
             });
         });
     });
@@ -1471,7 +1485,6 @@ bool AppController::startUpdateInstall() {
     if (!item)
         return false;
 
-    m_queue->enqueue(item);
     m_pendingUpdateDownloadId = item->id();
     m_pendingUpdateInstallerPath = tempDir + QStringLiteral("/") + filename;
     m_pendingUpdateSha256 = m_updateSha256;
@@ -1522,6 +1535,16 @@ QString AppController::clipboardUrl() const {
         return text.split(QLatin1Char('\n')).first().trimmed();
     }
     return {};
+}
+
+int AppController::recentErrorDownloads() const {
+    const QDateTime cutoff = QDateTime::currentDateTime().addSecs(-300);
+    int count = 0;
+    for (auto it = m_recentErrorDownloads.constBegin(); it != m_recentErrorDownloads.constEnd(); ++it) {
+        if (it.value().isValid() && it.value() >= cutoff)
+            ++count;
+    }
+    return count;
 }
 
 QStringList AppController::queueIds() const {
@@ -1619,6 +1642,27 @@ void AppController::watchItem(DownloadItem *item) {
         if (item)
             enforceQueueDownloadLimits(item->queueId());
     });
+    connect(item, &DownloadItem::statusChanged, this, [this, item, id]() {
+        if (item && item->statusEnum() != DownloadItem::Status::Error) {
+            if (m_recentErrorDownloads.remove(id) > 0)
+                emit recentErrorDownloadsChanged();
+        }
+    });
+}
+
+void AppController::pruneRecentErrorDownloads() {
+    const QDateTime cutoff = QDateTime::currentDateTime().addSecs(-300);
+    bool changed = false;
+    for (auto it = m_recentErrorDownloads.begin(); it != m_recentErrorDownloads.end(); ) {
+        if (!it.value().isValid() || it.value() < cutoff) {
+            it = m_recentErrorDownloads.erase(it);
+            changed = true;
+        } else {
+            ++it;
+        }
+    }
+    if (changed)
+        emit recentErrorDownloadsChanged();
 }
 
 void AppController::scheduleSave(const QString &id) {

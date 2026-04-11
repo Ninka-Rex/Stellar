@@ -1,6 +1,6 @@
 # Stellar Download Manager Updates
 
-Apr 10 2026
+Apr 10, 2026
 
 Version 0.3.5 is available
 
