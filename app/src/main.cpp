@@ -37,6 +37,7 @@
 #if defined(Q_OS_WIN)
 #  include <windows.h>
 #else
+#  include <sys/stat.h>
 #  include <unistd.h>
 #endif
 
@@ -106,7 +107,10 @@ static bool nmWrite(const char *buf, quint32 n)
 
 static bool stdinIsPipe()
 {
-    return !isatty(STDIN_FILENO);
+    struct stat st = {};
+    if (::fstat(STDIN_FILENO, &st) != 0)
+        return false;
+    return S_ISFIFO(st.st_mode) || S_ISSOCK(st.st_mode);
 }
 
 #endif  // Q_OS_WIN

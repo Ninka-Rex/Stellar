@@ -8,3 +8,4 @@ Type=Application
 Categories=Network;FileTransfer;
 MimeType=x-scheme-handler/stellar;application/x-bittorrent;
 StartupNotify=true
+StartupWMClass=Stellar

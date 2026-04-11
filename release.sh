@@ -33,6 +33,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
+TODAY_UTC="$(date -u +%Y-%m-%d)"
 
 # ── Auto-detect version from CMakeLists.txt ──────────────────────────────────
 if [[ -z "$VERSION" ]]; then
@@ -45,6 +46,7 @@ if [[ -z "$VERSION" ]]; then
 fi
 
 FLATPAK_MANIFEST="$ROOT/packaging/flatpak/io.github.stellar.Stellar.yml"
+FLATPAK_METAINFO="$ROOT/packaging/flatpak/io.github.stellar.Stellar.metainfo.xml"
 FLATPAK_BUILD_DIR="$ROOT/build/flatpak"
 FLATPAK_REPO_DIR="$ROOT/build/flatpak-repo"
 DIST_DIR="$ROOT/dist"
@@ -55,6 +57,33 @@ FLATPAK_FILE="$LINUX_DIST_DIR/io.github.stellar.Stellar.flatpak"
 log()  { echo -e "\033[0;36m[release]\033[0m $*"; }
 ok()   { echo -e "\033[0;32m[release]\033[0m $*"; }
 warn() { echo -e "\033[0;33m[release]\033[0m $*"; }
+
+update_flatpak_metainfo() {
+    log "Stamping Flatpak metainfo with version $VERSION ($TODAY_UTC)..."
+    python3 - "$FLATPAK_METAINFO" "$VERSION" "$TODAY_UTC" <<'PY'
+import sys
+import xml.etree.ElementTree as ET
+
+path, version, release_date = sys.argv[1:]
+tree = ET.parse(path)
+root = tree.getroot()
+releases = root.find("releases")
+if releases is None:
+    releases = ET.SubElement(root, "releases")
+
+first_release = releases.find("release")
+if first_release is not None and first_release.get("version") == version:
+    first_release.set("date", release_date)
+else:
+    new_release = ET.Element("release", {"version": version, "date": release_date})
+    desc = ET.SubElement(new_release, "description")
+    p = ET.SubElement(desc, "p")
+    p.text = "Release metadata updated automatically by release.sh."
+    releases.insert(0, new_release)
+
+tree.write(path, encoding="UTF-8", xml_declaration=True)
+PY
+}
 
 # ── Direct CMake build (non-Flatpak, for testing/CI) ─────────────────────────
 if [[ $SKIP_BUILD -eq 0 ]]; then
@@ -69,6 +98,7 @@ fi
 
 # ── Flatpak build ─────────────────────────────────────────────────────────────
 if [[ $SKIP_FLATPAK -eq 0 ]]; then
+    update_flatpak_metainfo
     log "Building Flatpak..."
     mkdir -p "$FLATPAK_BUILD_DIR" "$FLATPAK_REPO_DIR" "$LINUX_DIST_DIR"
 
