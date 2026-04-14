@@ -159,7 +159,7 @@ Priority: optional
 Architecture: $ARCH
 Maintainer: Ninka_
 Installed-Size: 1
-Depends: libc6, libstdc++6, libgcc-s1, zlib1g, libx11-6, libxcb1, libxkbcommon0
+Depends: libc6, libstdc++6, libgcc-s1, zlib1g, libx11-6, libxcb1, libxkbcommon0, libxcb-cursor0, libxkbcommon-x11-0, libxcb-icccm4, libxcb-image0, libxcb-keysyms1, libxcb-render-util0, libxcb-xinerama0
 Homepage: https://stellar.moe/
 Description: Stellar Download Manager
  Fast, segmented, IDM-style download manager.
