@@ -3,7 +3,7 @@
 # Usage: ./release.sh [--version 0.2.0] [--skip-build] [--skip-deb]
 #
 # Prerequisites:
-#   cmake, ninja, dpkg-deb, gzip, sha256sum
+#   cmake, ninja, dpkg-deb, gzip, sha256sum, ldd
 #   Qt 6 Linux development packages
 #   yt-dlp and ffmpeg available on PATH for packaging, or set YTDLP_PATH / FFMPEG_PATH
 #
@@ -61,6 +61,7 @@ need_tool() {
 need_tool cmake
 need_tool sha256sum
 need_tool dpkg-deb
+need_tool ldd
 
 resolve_binary() {
     local env_name="$1"
@@ -78,6 +79,76 @@ resolve_binary() {
     exit 1
 }
 
+copy_shared_object() {
+    local src="$1"
+    local dst_dir="$2"
+    [[ -f "$src" ]] || return 0
+    cp -L "$src" "$dst_dir/"
+}
+
+qt_install_prefix() {
+    if command -v qmake6 >/dev/null 2>&1; then
+        qmake6 -query QT_INSTALL_PREFIX
+        return
+    fi
+    if command -v qmake >/dev/null 2>&1; then
+        qmake -query QT_INSTALL_PREFIX
+        return
+    fi
+    local qtcore
+    qtcore="$(ldd "$ROOT/build/linux-release/Stellar" | awk '/libQt6Core/ {print $3; exit}')"
+    if [[ -n "$qtcore" ]]; then
+        dirname "$(dirname "$qtcore")"
+        return
+    fi
+    echo "ERROR: Could not determine Qt install prefix." >&2
+    exit 1
+}
+
+bundle_qt_runtime() {
+    local app_dir="$DEB_ROOT/opt/stellar"
+    local lib_dir="$app_dir/lib"
+    local plugin_dir="$app_dir/plugins"
+    local qml_dir="$app_dir/qml"
+    local qt_prefix qt_plugins qt_qml
+
+    qt_prefix="$(qt_install_prefix)"
+    qt_plugins="$qt_prefix/plugins"
+    qt_qml="$qt_prefix/qml"
+
+    mkdir -p "$lib_dir" "$plugin_dir" "$qml_dir"
+    log "Bundling Qt runtime from: $qt_prefix"
+
+    while read -r so; do
+        [[ -n "$so" ]] || continue
+        copy_shared_object "$so" "$lib_dir"
+    done < <(ldd "$app_dir/Stellar" \
+        | awk '/=> \// {print $3}' \
+        | grep -E 'libQt6|libicu|libdouble-conversion|libpcre2-16' || true)
+
+    for sub in platforms platformthemes imageformats iconengines styles tls xcbglintegrations wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration; do
+        if [[ -d "$qt_plugins/$sub" ]]; then
+            mkdir -p "$plugin_dir/$sub"
+            cp -a "$qt_plugins/$sub/." "$plugin_dir/$sub/"
+        fi
+    done
+
+    for mod in QtQml QtQuick QtQuick.2 QtQuick.Controls QtQuick.Controls.Material QtQuick.Dialogs QtQuick.Layouts QtQuick.Shapes Qt5Compat; do
+        if [[ -d "$qt_qml/$mod" ]]; then
+            mkdir -p "$qml_dir/$mod"
+            cp -a "$qt_qml/$mod/." "$qml_dir/$mod/"
+        fi
+    done
+
+    cat > "$app_dir/qt.conf" <<'EOF'
+[Paths]
+Prefix=.
+Libraries=lib
+Plugins=plugins
+QmlImports=qml
+EOF
+}
+
 update_deb_manifest() {
     mkdir -p "$DEB_DIR"
     cat > "$DEB_DIR/control" <<EOF
@@ -88,7 +159,7 @@ Priority: optional
 Architecture: $ARCH
 Maintainer: Ninka_
 Installed-Size: 1
-Depends: libqt6core6, libqt6network6, libqt6qml6, libqt6quick6, libqt6quickcontrols2-6, libqt6quickdialogs2-6, libqt6widgets6
+Depends: libc6, libstdc++6, libgcc-s1, zlib1g, libx11-6, libxcb1, libxkbcommon0
 Homepage: https://stellar.moe/
 Description: Stellar Download Manager
  Fast, segmented, IDM-style download manager.
@@ -150,9 +221,16 @@ stage_deb() {
     cp "$ROOT/app/qml/icons/milky-way.png" \
         "$DEB_ROOT/usr/share/icons/hicolor/128x128/apps/io.github.stellar.Stellar.png"
 
-    ln -sf /opt/stellar/Stellar "$DEB_ROOT/usr/bin/stellar"
-    ln -sf /opt/stellar/yt-dlp "$DEB_ROOT/opt/stellar/yt-dlp"
-    ln -sf /opt/stellar/ffmpeg "$DEB_ROOT/opt/stellar/ffmpeg"
+    cat > "$DEB_ROOT/usr/bin/stellar" <<'EOF'
+#!/bin/sh
+set -e
+APPDIR="/opt/stellar"
+export LD_LIBRARY_PATH="$APPDIR/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="$APPDIR/plugins"
+export QML2_IMPORT_PATH="$APPDIR/qml"
+exec "$APPDIR/Stellar" "$@"
+EOF
+    chmod 0755 "$DEB_ROOT/usr/bin/stellar"
 
     python3 - "$DEB_ROOT/usr/lib/mozilla/native-messaging-hosts/com.stellar.downloadmanager.json" <<'PY'
 import json, sys
@@ -160,12 +238,14 @@ from pathlib import Path
 
 path = Path(sys.argv[1])
 data = json.loads(path.read_text(encoding="utf-8"))
-data["path"] = "/opt/stellar/Stellar"
+data["path"] = "/usr/bin/stellar"
 path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 PY
 
-    sed -i "s|^Exec=.*|Exec=/opt/stellar/Stellar|; s|^Icon=.*|Icon=io.github.stellar.Stellar|" \
+    sed -i "s|^Exec=.*|Exec=/usr/bin/stellar|; s|^Icon=.*|Icon=io.github.stellar.Stellar|" \
         "$DEB_ROOT/usr/share/applications/io.github.stellar.Stellar.desktop"
+
+    bundle_qt_runtime
 
     install -m 0755 "$DEB_DIR/postinst" "$DEB_ROOT/DEBIAN/postinst"
     install -m 0644 "$DEB_DIR/control" "$DEB_ROOT/DEBIAN/control"
