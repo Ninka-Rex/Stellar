@@ -133,6 +133,24 @@ bundle_qt_runtime() {
         fi
     done
 
+    # Copy transitive native deps required by Qt platform plugins (not just Qt libs).
+    # This is what prevents "could not load xcb plugin" on mixed Debian/Ubuntu variants.
+    if [[ -d "$plugin_dir/platforms" ]]; then
+        while read -r dep; do
+            [[ -n "$dep" ]] || continue
+            copy_shared_object "$dep" "$lib_dir"
+        done < <(
+            find "$plugin_dir/platforms" "$plugin_dir/xcbglintegrations" -type f -name '*.so' 2>/dev/null \
+                | while read -r plugin_so; do
+                    ldd "$plugin_so" \
+                        | awk '/=> \// {print $3}'
+                  done \
+                | sort -u \
+                | grep -E '/lib(xcb|xkbcommon|X11|Xext|Xrender|Xi|SM|ICE|fontconfig|freetype|glib|dbus|EGL|GL|drm|wayland|xshmfence|xcb-cursor|xcb-util|xcb-render-util|xcb-image|xcb-icccm|xcb-keysyms|xcb-xinerama)' \
+                || true
+        )
+    fi
+
     for mod in QtQml QtQuick QtQuick.2 QtQuick.Controls QtQuick.Controls.Material QtQuick.Dialogs QtQuick.Layouts QtQuick.Shapes Qt5Compat; do
         if [[ -d "$qt_qml/$mod" ]]; then
             mkdir -p "$qml_dir/$mod"
@@ -227,6 +245,7 @@ set -e
 APPDIR="/opt/stellar"
 export LD_LIBRARY_PATH="$APPDIR/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="$APPDIR/plugins"
+export QT_QPA_PLATFORM_PLUGIN_PATH="$APPDIR/plugins/platforms"
 export QML2_IMPORT_PATH="$APPDIR/qml"
 exec "$APPDIR/Stellar" "$@"
 EOF
