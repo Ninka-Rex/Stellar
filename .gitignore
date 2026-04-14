@@ -24,4 +24,4 @@ backup.ps1
 CLAUDE.md
 AGENTS.md
 *.mmdb
-
+app/data/*.mmdb
