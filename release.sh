@@ -86,6 +86,25 @@ copy_shared_object() {
     cp -L "$src" "$dst_dir/"
 }
 
+resolve_shared_library() {
+    local soname="$1"
+    local found=""
+    if command -v ldconfig >/dev/null 2>&1; then
+        found="$(ldconfig -p 2>/dev/null | awk -v n="$soname" '$1==n {print $NF; exit}')"
+        if [[ -n "$found" && -f "$found" ]]; then
+            printf '%s\n' "$found"
+            return 0
+        fi
+    fi
+    for d in /lib /lib64 /usr/lib /usr/lib64 /usr/lib/x86_64-linux-gnu /lib/x86_64-linux-gnu; do
+        if [[ -f "$d/$soname" ]]; then
+            printf '%s\n' "$d/$soname"
+            return 0
+        fi
+    done
+    return 1
+}
+
 qt_install_prefix() {
     if command -v qmake6 >/dev/null 2>&1; then
         qmake6 -query QT_INSTALL_PREFIX
@@ -150,6 +169,33 @@ bundle_qt_runtime() {
                 || true
         )
     fi
+
+    # Hard-pin critical xcb chain required by Qt's xcb platform plugin on Debian/Ubuntu.
+    local xcb_sonames=(
+        "libxcb-cursor.so.0"
+        "libxcb.so.1"
+        "libxcb-render.so.0"
+        "libxcb-render-util.so.0"
+        "libxcb-image.so.0"
+        "libxcb-icccm.so.4"
+        "libxcb-keysyms.so.1"
+        "libxcb-xinerama.so.0"
+        "libxcb-xkb.so.1"
+        "libxkbcommon.so.0"
+        "libxkbcommon-x11.so.0"
+        "libX11.so.6"
+        "libX11-xcb.so.1"
+        "libXrender.so.1"
+        "libXext.so.6"
+        "libXi.so.6"
+        "libxshmfence.so.1"
+    )
+    local so resolved
+    for so in "${xcb_sonames[@]}"; do
+        if resolved="$(resolve_shared_library "$so")"; then
+            copy_shared_object "$resolved" "$lib_dir"
+        fi
+    done
 
     for mod in QtQml QtQuick QtQuick.2 QtQuick.Controls QtQuick.Controls.Material QtQuick.Dialogs QtQuick.Layouts QtQuick.Shapes Qt5Compat; do
         if [[ -d "$qt_qml/$mod" ]]; then
