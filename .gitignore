@@ -22,4 +22,6 @@ cmake_install.cmake
 Thumbs.db
 backup.ps1
 CLAUDE.md
-AGENTS.mdapp/data/*.mmdb
+AGENTS.md
+app/data/*.mmdb
+
