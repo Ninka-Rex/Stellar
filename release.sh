@@ -3,7 +3,7 @@
 # Usage: ./release.sh [--version 0.2.0] [--skip-build] [--skip-deb]
 #
 # Prerequisites:
-#   cmake, ninja, dpkg-deb, gzip, sha256sum, ldd
+#   cmake, ninja, dpkg-deb, gzip, sha256sum, ldd, readelf
 #   Qt 6 Linux development packages
 #   yt-dlp and ffmpeg available on PATH for packaging, or set YTDLP_PATH / FFMPEG_PATH
 #
@@ -62,6 +62,7 @@ need_tool cmake
 need_tool sha256sum
 need_tool dpkg-deb
 need_tool ldd
+need_tool readelf
 
 resolve_binary() {
     local env_name="$1"
@@ -82,8 +83,24 @@ resolve_binary() {
 copy_shared_object() {
     local src="$1"
     local dst_dir="$2"
-    [[ -f "$src" ]] || return 0
-    cp -L "$src" "$dst_dir/"
+    [[ -e "$src" ]] || return 0
+    mkdir -p "$dst_dir"
+
+    local resolved base soname
+    resolved="$(readlink -f "$src")"
+    base="$(basename "$resolved")"
+    cp -L "$resolved" "$dst_dir/$base"
+
+    # Preserve source symlink/name (often SONAME path such as libfoo.so.1).
+    if [[ -L "$src" ]]; then
+        ln -sf "$base" "$dst_dir/$(basename "$src")"
+    fi
+
+    # Ensure SONAME symlink exists for the dynamic loader.
+    soname="$(readelf -d "$resolved" 2>/dev/null | awk -F'[][]' '/SONAME/ {print $2; exit}')"
+    if [[ -n "$soname" ]]; then
+        ln -sf "$base" "$dst_dir/$soname"
+    fi
 }
 
 resolve_shared_library() {
@@ -103,6 +120,30 @@ resolve_shared_library() {
         fi
     done
     return 1
+}
+
+collect_binary_dependencies_recursive() {
+    local dst_dir="$1"
+    shift
+
+    local queue=("$@")
+    local seen=""
+
+    while [[ ${#queue[@]} -gt 0 ]]; do
+        local target="${queue[0]}"
+        queue=("${queue[@]:1}")
+        [[ -e "$target" ]] || continue
+
+        while read -r dep; do
+            [[ -n "$dep" ]] || continue
+            if grep -Fqx "$dep" <<<"$seen"; then
+                continue
+            fi
+            seen="${seen}${dep}"$'\n'
+            copy_shared_object "$dep" "$dst_dir"
+            queue+=("$dep")
+        done < <(ldd "$target" 2>/dev/null | awk '/=> \// {print $3}' || true)
+    done
 }
 
 qt_install_prefix() {
@@ -138,13 +179,6 @@ bundle_qt_runtime() {
     mkdir -p "$lib_dir" "$plugin_dir" "$qml_dir"
     log "Bundling Qt runtime from: $qt_prefix"
 
-    while read -r so; do
-        [[ -n "$so" ]] || continue
-        copy_shared_object "$so" "$lib_dir"
-    done < <(ldd "$app_dir/Stellar" \
-        | awk '/=> \// {print $3}' \
-        | grep -E 'libQt6|libicu|libdouble-conversion|libpcre2-16' || true)
-
     for sub in platforms platformthemes imageformats iconengines styles tls xcbglintegrations wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration; do
         if [[ -d "$qt_plugins/$sub" ]]; then
             mkdir -p "$plugin_dir/$sub"
@@ -152,27 +186,18 @@ bundle_qt_runtime() {
         fi
     done
 
-    # Copy transitive native deps required by Qt platform plugins (not just Qt libs).
-    # This is what prevents "could not load xcb plugin" on mixed Debian/Ubuntu variants.
-    if [[ -d "$plugin_dir/platforms" ]]; then
-        while read -r dep; do
-            [[ -n "$dep" ]] || continue
-            copy_shared_object "$dep" "$lib_dir"
-        done < <(
-            find "$plugin_dir/platforms" "$plugin_dir/xcbglintegrations" -type f -name '*.so' 2>/dev/null \
-                | while read -r plugin_so; do
-                    ldd "$plugin_so" \
-                        | awk '/=> \// {print $3}'
-                  done \
-                | sort -u \
-                | grep -E '/lib(xcb|xkbcommon|X11|Xext|Xrender|Xi|SM|ICE|fontconfig|freetype|glib|dbus|EGL|GL|drm|wayland|xshmfence|xcb-cursor|xcb-util|xcb-render-util|xcb-image|xcb-icccm|xcb-keysyms|xcb-xinerama)' \
-                || true
-        )
-    fi
+    # Recursively collect dependencies for the main binary and every bundled plugin/QML shared object.
+    local dep_roots=("$app_dir/Stellar")
+    while read -r sofile; do
+        [[ -n "$sofile" ]] || continue
+        dep_roots+=("$sofile")
+    done < <(find "$plugin_dir" "$qml_dir" -type f -name '*.so' 2>/dev/null || true)
+    collect_binary_dependencies_recursive "$lib_dir" "${dep_roots[@]}"
 
     # Hard-pin critical xcb chain required by Qt's xcb platform plugin on Debian/Ubuntu.
     local xcb_sonames=(
         "libxcb-cursor.so.0"
+        "libxcb-util.so.1"
         "libxcb.so.1"
         "libxcb-render.so.0"
         "libxcb-render-util.so.0"
@@ -196,6 +221,11 @@ bundle_qt_runtime() {
             copy_shared_object "$resolved" "$lib_dir"
         fi
     done
+
+    if [[ ! -e "$lib_dir/libxcb-cursor.so.0" ]]; then
+        echo "ERROR: Failed to bundle libxcb-cursor.so.0 (required by Qt xcb platform plugin)." >&2
+        exit 1
+    fi
 
     for mod in QtQml QtQuick QtQuick.2 QtQuick.Controls QtQuick.Controls.Material QtQuick.Dialogs QtQuick.Layouts QtQuick.Shapes Qt5Compat; do
         if [[ -d "$qt_qml/$mod" ]]; then
