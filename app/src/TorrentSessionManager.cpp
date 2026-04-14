@@ -33,6 +33,7 @@
 #include <QNetworkInterface>
 #include <QUrl>
 #include <QFile>
+#include <QStandardPaths>
 #include <algorithm>
 
 #if defined(STELLAR_HAS_LIBTORRENT)
@@ -177,8 +178,16 @@ QStringList interfaceBindAddresses(const QNetworkInterface &iface) {
 
 QStringList geoDbCandidates() {
     const QString appDir = QCoreApplication::applicationDirPath();
+    QString writableDataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    if (writableDataDir.isEmpty())
+        writableDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    writableDataDir = writableDataDir.isEmpty()
+        ? QString()
+        : QDir::cleanPath(writableDataDir + QStringLiteral("/data"));
     return {
+        writableDataDir + QStringLiteral("/dbip-city-lite-2026-04.mmdb"),
         appDir + QStringLiteral("/data/dbip-city-lite-2026-04.mmdb"),
+        appDir + QStringLiteral("/dbip-city-lite-2026-04.mmdb"),
         appDir + QStringLiteral("/../data/dbip-city-lite-2026-04.mmdb"),
         QDir::cleanPath(QCoreApplication::applicationDirPath() + QStringLiteral("/../../app/data/dbip-city-lite-2026-04.mmdb")),
         QDir::cleanPath(QCoreApplication::applicationDirPath() + QStringLiteral("/../../../app/data/dbip-city-lite-2026-04.mmdb"))

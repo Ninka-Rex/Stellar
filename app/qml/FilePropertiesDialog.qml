@@ -464,7 +464,7 @@ Window {
         var cc = safeStr(code).trim().toLowerCase()
         if (!cc || cc.length !== 2)
             return ""
-        return "qrc:/app/qml/flags/" + cc + ".svg"
+        return Qt.resolvedUrl("flags/" + cc + ".svg")
     }
     function torrentClientIconSource(clientName) {
         var name = baseClientName(clientName).toLowerCase()

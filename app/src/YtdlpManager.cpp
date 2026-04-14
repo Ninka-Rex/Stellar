@@ -24,6 +24,19 @@
 #include <QStandardPaths>
 #include <QDebug>
 
+namespace {
+QString writableToolRoot() {
+    QString dir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    if (dir.isEmpty())
+        dir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    if (dir.isEmpty())
+        dir = QCoreApplication::applicationDirPath();
+    dir += QLatin1String("/tools");
+    QDir().mkpath(dir);
+    return dir;
+}
+}
+
 // ── Platform-specific binary name and download URL ───────────────────────────
 #if defined(Q_OS_WIN)
 static const QLatin1String kBinaryName("yt-dlp.exe");
@@ -50,13 +63,18 @@ QString YtdlpManager::resolvedBinaryPath() const {
             return m_customPath;
     }
 
-    // 2. Bundled binary next to the application executable
+    // 2. Writable app-local tool install (preferred for self-updates on Linux)
+    const QString writable = writableToolRoot() + QLatin1Char('/') + kBinaryName;
+    if (QFile::exists(writable))
+        return writable;
+
+    // 3. Bundled binary next to the application executable
     const QString appDir = QCoreApplication::applicationDirPath();
     const QString bundled = appDir + QLatin1Char('/') + kBinaryName;
     if (QFile::exists(bundled))
         return bundled;
 
-    // 3. Fall back to the bare name so the OS will search PATH
+    // 4. Fall back to the bare name so the OS will search PATH
     return QString(kBinaryName);
 }
 
@@ -111,6 +129,11 @@ static QString findFfmpeg(const QString &ytdlpBinaryPath) {
         const QString candidate = QFileInfo(ytdlpBinaryPath).absolutePath() + QLatin1Char('/') + name;
         if (QFile::exists(candidate))
             return QDir::toNativeSeparators(candidate);
+    }
+    {
+        const QString writableCandidate = writableToolRoot() + QLatin1Char('/') + name;
+        if (QFile::exists(writableCandidate))
+            return QDir::toNativeSeparators(writableCandidate);
     }
     // 2. Flatpak ffmpeg-full extension (/app/lib/ffmpeg/ffmpeg)
     {
@@ -177,7 +200,7 @@ void YtdlpManager::onVersionProcessError(QProcess::ProcessError err) {
 void YtdlpManager::downloadBinary() {
     if (m_downloading) return;  // already in progress
 
-    const QString appDir  = QCoreApplication::applicationDirPath();
+    const QString appDir  = writableToolRoot();
     const QString destPath = appDir + QLatin1Char('/') + kBinaryName;
 
     if (!QDir().mkpath(appDir)) {

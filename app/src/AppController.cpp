@@ -84,6 +84,28 @@ QString effectiveTemporaryDirectory(const AppSettings *settings) {
         : configured;
 }
 
+QString writableRuntimeRoot() {
+    QString dir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
+    if (dir.isEmpty())
+        dir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    if (dir.isEmpty())
+        dir = QCoreApplication::applicationDirPath();
+    QDir().mkpath(dir);
+    return dir;
+}
+
+QString writableRuntimeDataDir() {
+    const QString dir = writableRuntimeRoot() + QStringLiteral("/data");
+    QDir().mkpath(dir);
+    return dir;
+}
+
+QString writableRuntimeToolsDir() {
+    const QString dir = writableRuntimeRoot() + QStringLiteral("/tools");
+    QDir().mkpath(dir);
+    return dir;
+}
+
 QString buildYtdlpProxyUrl(const AppSettings *settings, const QUrl &targetUrl) {
     if (!settings)
         return {};
@@ -1015,7 +1037,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (item && item->id() == m_pendingIpToCityDbDownloadId) {
             const QString dbUpdateId = item->id();
             const QString archivePath = item->savePath() + QStringLiteral("/") + item->filename();
-            const QString targetDir = QCoreApplication::applicationDirPath() + QStringLiteral("/data");
+            const QString targetDir = writableRuntimeDataDir();
             QDir().mkpath(targetDir);
             if (m_torrentSession)
                 m_torrentSession->releaseGeoDatabaseForUpdate();
@@ -1061,7 +1083,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (item && item->id() == m_pendingFfmpegDownloadId) {
             const QString ffmpegUpdateId = item->id();
             const QString payloadPath = item->savePath() + QStringLiteral("/") + item->filename();
-            const QString installDir = QCoreApplication::applicationDirPath();
+            const QString installDir = writableRuntimeToolsDir();
 
             QString failureReason;
             const bool hashOk = verifyFileSha256(payloadPath, m_ffmpegUpdateSha256, &failureReason);
@@ -4684,9 +4706,9 @@ void AppController::downloadYtdlpBinary() {
 // Look for ffmpeg next to the yt-dlp binary first (bundled install), then fall
 // back to an empty string meaning "let yt-dlp search PATH itself".
 QString AppController::detectFfmpegPath(const QString &ytdlpBinaryPath) {
-    if (ytdlpBinaryPath.isEmpty()) return {};
-    const QFileInfo ytdlpInfo(ytdlpBinaryPath);
-    const QString dir = ytdlpInfo.absolutePath();
+    const QString dir = ytdlpBinaryPath.isEmpty()
+        ? writableRuntimeToolsDir()
+        : QFileInfo(ytdlpBinaryPath).absolutePath();
 #if defined(Q_OS_WIN)
     const QString candidate = dir + QStringLiteral("/ffmpeg.exe");
 #else

@@ -86,10 +86,27 @@ copy_shared_object() {
     [[ -e "$src" ]] || return 0
     mkdir -p "$dst_dir"
 
-    local resolved base soname
+    local resolved base soname dest
     resolved="$(readlink -f "$src")"
     base="$(basename "$resolved")"
-    cp -L "$resolved" "$dst_dir/$base"
+    dest="$dst_dir/$base"
+
+    if [[ -e "$dest" ]]; then
+        local dest_resolved
+        dest_resolved="$(readlink -f "$dest")"
+        if [[ "$dest_resolved" == "$resolved" ]]; then
+            if [[ -L "$src" ]]; then
+                ln -sf "$base" "$dst_dir/$(basename "$src")"
+            fi
+            soname="$(readelf -d "$resolved" 2>/dev/null | awk -F'[][]' '/SONAME/ {print $2; exit}')"
+            if [[ -n "$soname" ]]; then
+                ln -sf "$base" "$dst_dir/$soname"
+            fi
+            return 0
+        fi
+    fi
+
+    cp -L "$resolved" "$dest"
 
     # Preserve source symlink/name (often SONAME path such as libfoo.so.1).
     if [[ -L "$src" ]]; then
@@ -170,14 +187,22 @@ bundle_qt_runtime() {
     local lib_dir="$app_dir/lib"
     local plugin_dir="$app_dir/plugins"
     local qml_dir="$app_dir/qml"
-    local qt_prefix qt_plugins qt_qml
+    local qt_prefix qt_plugins qt_qml qt_lib
 
     qt_prefix="$(qt_install_prefix)"
+    qt_lib="$qt_prefix/lib"
     qt_plugins="$qt_prefix/plugins"
     qt_qml="$qt_prefix/qml"
 
     mkdir -p "$lib_dir" "$plugin_dir" "$qml_dir"
     log "Bundling Qt runtime from: $qt_prefix"
+
+    # Bundle the full Qt shared-library set from the build's Qt installation so
+    # helper libs like libQt6XcbQpa are always present beside the app.
+    while read -r qt_so; do
+        [[ -n "$qt_so" ]] || continue
+        copy_shared_object "$qt_so" "$lib_dir"
+    done < <(find "$qt_lib" -maxdepth 1 -type f \( -name 'libQt6*.so.*' -o -name 'libicu*.so.*' -o -name 'libdouble-conversion.so.*' -o -name 'libpcre2-16.so.*' \) 2>/dev/null || true)
 
     for sub in platforms platformthemes imageformats iconengines styles tls xcbglintegrations wayland-decoration-client wayland-graphics-integration-client wayland-shell-integration; do
         if [[ -d "$qt_plugins/$sub" ]]; then
@@ -227,7 +252,7 @@ bundle_qt_runtime() {
         exit 1
     fi
 
-    for mod in QtQml QtQuick QtQuick.2 QtQuick.Controls QtQuick.Controls.Material QtQuick.Dialogs QtQuick.Layouts QtQuick.Shapes Qt5Compat; do
+    for mod in QtCore QtQml QtQuick QtQuick.2 QtQuick.Controls QtQuick.Controls.Material QtQuick.Dialogs QtQuick.Layouts QtQuick.Shapes Qt5Compat; do
         if [[ -d "$qt_qml/$mod" ]]; then
             mkdir -p "$qml_dir/$mod"
             cp -a "$qt_qml/$mod/." "$qml_dir/$mod/"
@@ -241,6 +266,27 @@ Libraries=lib
 Plugins=plugins
 QmlImports=qml
 EOF
+}
+
+patch_bundled_rpaths() {
+    local app_dir="$DEB_ROOT/opt/stellar"
+
+    if ! command -v patchelf >/dev/null 2>&1; then
+        warn "patchelf not found; skipping RPATH patching."
+        return
+    fi
+
+    patchelf --set-rpath '$ORIGIN/lib' "$app_dir/Stellar"
+
+    while read -r sofile; do
+        [[ -n "$sofile" ]] || continue
+        patchelf --set-rpath '$ORIGIN/../../lib:$ORIGIN/../../../lib:$ORIGIN/../../../../lib' "$sofile" || true
+    done < <(find "$app_dir/plugins" -type f -name '*.so' 2>/dev/null || true)
+
+    while read -r sofile; do
+        [[ -n "$sofile" ]] || continue
+        patchelf --set-rpath '$ORIGIN:$ORIGIN/../lib:$ORIGIN/../../lib:$ORIGIN/../../../lib:$ORIGIN/../../../../lib' "$sofile" || true
+    done < <(find "$app_dir/qml" -type f -name '*.so' 2>/dev/null || true)
 }
 
 update_deb_manifest() {
@@ -341,6 +387,7 @@ PY
         "$DEB_ROOT/usr/share/applications/io.github.stellar.Stellar.desktop"
 
     bundle_qt_runtime
+    patch_bundled_rpaths
 
     install -m 0755 "$DEB_DIR/postinst" "$DEB_ROOT/DEBIAN/postinst"
     install -m 0644 "$DEB_DIR/control" "$DEB_ROOT/DEBIAN/control"
