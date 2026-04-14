@@ -37,6 +37,7 @@ Window {
     Material.accent: "#4488dd"
 
     property int    initialPage: 0   // set to 5 to jump to About
+    signal whatsNewRequested()
 
     // Plain var properties — no live binding to App.settings so that
     // settingsChanged can detect when the user has made changes.
@@ -54,6 +55,7 @@ Window {
     property int    editDuplicateAction:       0
     property bool   editStartImmediately:      false
     property bool   editSpeedLimiterOnStartup: false
+    property int    editGlobalUploadLimitKBps: 0
     property bool   editShowDownloadComplete:  true
     property bool   editShowCompletionNotification: true
     property bool   editShowErrorNotification: true
@@ -74,6 +76,25 @@ Window {
     property int    editLastTryDateStyle:      0
     property bool   editLastTryUse24Hour:      true
     property bool   editLastTryShowSeconds:    true
+    // yt-dlp settings
+    property string editYtdlpCustomBinaryPath: ""
+    property bool   editYtdlpAutoUpdate:       false
+    property bool   editTorrentEnableDht:      true
+    property bool   editTorrentEnableLsd:      true
+    property bool   editTorrentEnableUpnp:     true
+    property bool   editTorrentEnableNatPmp:   true
+    property int    editTorrentListenPort:     6881
+    property int    editTorrentConnectionsLimit: 200
+    property string editTorrentCustomUserAgent: ""
+    property string editTorrentBindInterface:  ""
+    property var    torrentAdapterOptions:     []
+    // Proxy settings — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
+    property int    editProxyType:     0
+    property string editProxyHost:     ""
+    property int    editProxyPort:     8080
+    property string editProxyUsername: ""
+    property string editProxyPassword: ""
+    property var    ipToCityDbInfo:    ({})
 
     readonly property string defaultUserAgent: "Stellar/" + App.appVersion
     readonly property string displayedUserAgent: editUseCustomUserAgent
@@ -129,8 +150,98 @@ Window {
             : App.settings.excludedAddresses.join("|")
     }
 
-    Component.onCompleted: resetEdits()
-    onVisibleChanged: { if (visible) resetEdits() }
+    function refreshTorrentNetworkAdapters() {
+        var adapters = App.torrentNetworkAdapters()
+        torrentAdapterOptions = adapters && adapters.length ? adapters : [{
+            id: "",
+            name: "Default route",
+            details: "Let the OS choose the active network adapter."
+        }]
+        var boundId = editTorrentBindInterface && editTorrentBindInterface.length > 0
+            ? editTorrentBindInterface
+            : App.settings.torrentBindInterface
+        ensureTorrentAdapterOption(boundId)
+    }
+
+    function indexOfTorrentAdapter(adapterId) {
+        for (var i = 0; i < torrentAdapterOptions.length; ++i) {
+            if ((torrentAdapterOptions[i].id || "") === (adapterId || ""))
+                return i
+        }
+        return 0
+    }
+
+    function torrentAdapterDetails(adapterId) {
+        var index = indexOfTorrentAdapter(adapterId)
+        if (index >= 0 && index < torrentAdapterOptions.length)
+            return torrentAdapterOptions[index].details || ""
+        return ""
+    }
+
+    function ensureTorrentAdapterOption(adapterId) {
+        if (!adapterId || indexOfTorrentAdapter(adapterId) !== 0 || (torrentAdapterOptions.length > 0 && (torrentAdapterOptions[0].id || "") === adapterId))
+            return
+        torrentAdapterOptions = torrentAdapterOptions.concat([{
+            id: adapterId,
+            name: adapterId + " (Unavailable)",
+            details: "This adapter is not currently available. Reconnect it or choose a different adapter."
+        }])
+    }
+
+    function refreshIpToCityDbInfo() {
+        App.refreshIpToCityDbInfo()
+        ipToCityDbInfo = App.ipToCityDbInfo
+    }
+
+    function formatBytes(bytes) {
+        var n = Number(bytes || 0)
+        if (n <= 0) return "0 B"
+        var units = ["B", "KB", "MB", "GB", "TB"]
+        var i = 0
+        while (n >= 1024 && i < units.length - 1) {
+            n /= 1024
+            ++i
+        }
+        return n.toFixed(i === 0 ? 0 : 2) + " " + units[i]
+    }
+
+    component ProxyRadioButton: RadioButton {
+        topPadding: 0
+        bottomPadding: 0
+        contentItem: Text {
+            text: parent.text
+            color: "#d0d0d0"
+            font.pixelSize: 13
+            leftPadding: parent.indicator.width + 4
+            verticalAlignment: Text.AlignVCenter
+        }
+    }
+
+    Component.onCompleted: {
+        refreshTorrentNetworkAdapters()
+        refreshIpToCityDbInfo()
+        resetEdits()
+        catList.currentIndex = root.initialPage
+    }
+    onInitialPageChanged: {
+        if (visible)
+            catList.currentIndex = root.initialPage
+    }
+    onVisibleChanged: {
+        if (visible) {
+            refreshTorrentNetworkAdapters()
+            refreshIpToCityDbInfo()
+            resetEdits()
+            catList.currentIndex = root.initialPage
+        }
+    }
+
+    Connections {
+        target: App
+        function onIpToCityDbInfoChanged() {
+            root.ipToCityDbInfo = App.ipToCityDbInfo
+        }
+    }
 
     Connections {
         target: App.settings
@@ -157,6 +268,7 @@ Window {
         editDuplicateAction       !== App.settings.duplicateAction  ||
         editStartImmediately      !== App.settings.startImmediately ||
         editSpeedLimiterOnStartup !== App.settings.speedLimiterOnStartup ||
+        editGlobalUploadLimitKBps !== App.settings.globalUploadLimitKBps ||
         editStartDownloadWhileFileInfo !== App.settings.startDownloadWhileFileInfo ||
         editUseCustomUserAgent    !== App.settings.useCustomUserAgent ||
         editCustomUserAgent       !== App.settings.customUserAgent ||
@@ -176,7 +288,22 @@ Window {
         editAutoCheckUpdates      !== App.settings.autoCheckUpdates ||
         editLastTryDateStyle      !== App.settings.lastTryDateStyle ||
         editLastTryUse24Hour      !== App.settings.lastTryUse24Hour ||
-        editLastTryShowSeconds    !== App.settings.lastTryShowSeconds
+        editLastTryShowSeconds    !== App.settings.lastTryShowSeconds ||
+        editYtdlpCustomBinaryPath !== App.settings.ytdlpCustomBinaryPath ||
+        editYtdlpAutoUpdate       !== App.settings.ytdlpAutoUpdate       ||
+        editTorrentEnableDht      !== App.settings.torrentEnableDht      ||
+        editTorrentEnableLsd      !== App.settings.torrentEnableLsd      ||
+        editTorrentEnableUpnp     !== App.settings.torrentEnableUpnp     ||
+        editTorrentEnableNatPmp   !== App.settings.torrentEnableNatPmp   ||
+        editTorrentListenPort     !== App.settings.torrentListenPort     ||
+        editTorrentConnectionsLimit !== App.settings.torrentConnectionsLimit ||
+        editTorrentCustomUserAgent !== App.settings.torrentCustomUserAgent ||
+        editTorrentBindInterface  !== App.settings.torrentBindInterface  ||
+        editProxyType             !== App.settings.proxyType             ||
+        editProxyHost             !== App.settings.proxyHost             ||
+        editProxyPort             !== App.settings.proxyPort             ||
+        editProxyUsername         !== App.settings.proxyUsername         ||
+        editProxyPassword         !== App.settings.proxyPassword
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
@@ -207,6 +334,21 @@ Window {
             var path = selectedFolder.toString()
                            .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
             root.editTemporaryDirectory = path
+        }
+    }
+
+    // File picker for a custom yt-dlp binary location
+    FileDialog {
+        id: ytdlpFileDlg
+        title: "Select yt-dlp binary"
+        fileMode: FileDialog.OpenFile
+        nameFilters: Qt.platform.os === "windows"
+                     ? ["yt-dlp executable (yt-dlp.exe)", "All files (*)"]
+                     : ["yt-dlp executable (yt-dlp)", "All files (*)"]
+        onAccepted: {
+            var path = selectedFile.toString()
+                .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            root.editYtdlpCustomBinaryPath = path
         }
     }
 
@@ -252,6 +394,7 @@ Window {
         App.settings.duplicateAction       = editDuplicateAction
         App.settings.startImmediately       = editStartImmediately
         App.settings.speedLimiterOnStartup  = editSpeedLimiterOnStartup
+        App.settings.globalUploadLimitKBps = editGlobalUploadLimitKBps
         App.settings.startDownloadWhileFileInfo = editStartDownloadWhileFileInfo
         App.settings.showQueueSelectionOnDownloadLater = editShowQueueSelectionOnDownloadLater
         App.settings.showQueueSelectionOnBatchDownload  = editShowQueueSelectionOnBatchDownload
@@ -272,12 +415,28 @@ Window {
         App.settings.lastTryDateStyle       = editLastTryDateStyle
         App.settings.lastTryUse24Hour       = editLastTryUse24Hour
         App.settings.lastTryShowSeconds     = editLastTryShowSeconds
+        App.settings.ytdlpCustomBinaryPath  = editYtdlpCustomBinaryPath
+        App.settings.ytdlpAutoUpdate        = editYtdlpAutoUpdate
+        App.settings.torrentEnableDht       = editTorrentEnableDht
+        App.settings.torrentEnableLsd       = editTorrentEnableLsd
+        App.settings.torrentEnableUpnp      = editTorrentEnableUpnp
+        App.settings.torrentEnableNatPmp    = editTorrentEnableNatPmp
+        App.settings.torrentListenPort      = editTorrentListenPort
+        App.settings.torrentConnectionsLimit = editTorrentConnectionsLimit
+        App.settings.torrentCustomUserAgent = editTorrentCustomUserAgent
+        App.settings.torrentBindInterface   = editTorrentBindInterface
+        App.settings.proxyType              = editProxyType
+        App.settings.proxyHost              = editProxyHost
+        App.settings.proxyPort              = editProxyPort
+        App.settings.proxyUsername          = editProxyUsername
+        App.settings.proxyPassword          = editProxyPassword
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
     }
 
     function resetEdits() {
+        refreshTorrentNetworkAdapters()
         editMaxConcurrent         = App.settings.maxConcurrent
         editSegmentsPerDownload   = App.settings.segmentsPerDownload
         editDefaultSavePath       = App.settings.defaultSavePath
@@ -292,6 +451,7 @@ Window {
         editDuplicateAction       = App.settings.duplicateAction
         editStartImmediately      = App.settings.startImmediately
         editSpeedLimiterOnStartup = App.settings.speedLimiterOnStartup
+        editGlobalUploadLimitKBps = App.settings.globalUploadLimitKBps
         editStartDownloadWhileFileInfo = App.settings.startDownloadWhileFileInfo
         editShowQueueSelectionOnDownloadLater = App.settings.showQueueSelectionOnDownloadLater
         editShowQueueSelectionOnBatchDownload  = App.settings.showQueueSelectionOnBatchDownload
@@ -312,6 +472,22 @@ Window {
         editLastTryDateStyle      = App.settings.lastTryDateStyle
         editLastTryUse24Hour      = App.settings.lastTryUse24Hour
         editLastTryShowSeconds    = App.settings.lastTryShowSeconds
+        editYtdlpCustomBinaryPath = App.settings.ytdlpCustomBinaryPath
+        editYtdlpAutoUpdate       = App.settings.ytdlpAutoUpdate
+        editTorrentEnableDht      = App.settings.torrentEnableDht
+        editTorrentEnableLsd      = App.settings.torrentEnableLsd
+        editTorrentEnableUpnp     = App.settings.torrentEnableUpnp
+        editTorrentEnableNatPmp   = App.settings.torrentEnableNatPmp
+        editTorrentListenPort     = App.settings.torrentListenPort
+        editTorrentConnectionsLimit = App.settings.torrentConnectionsLimit
+        editTorrentCustomUserAgent = App.settings.torrentCustomUserAgent
+        editTorrentBindInterface  = App.settings.torrentBindInterface
+        ensureTorrentAdapterOption(editTorrentBindInterface)
+        editProxyType             = App.settings.proxyType
+        editProxyHost             = App.settings.proxyHost
+        editProxyPort             = App.settings.proxyPort
+        editProxyUsername         = App.settings.proxyUsername
+        editProxyPassword         = App.settings.proxyPassword
         // Reset dirty flags so Apply button is disabled until user actually changes something
         catDirty = false
     }
@@ -335,7 +511,7 @@ Window {
                     id: catList
                     anchors.fill: parent
                     anchors.topMargin: 8
-                    model: ["Connection", "Categories", "Downloads", "Browser", "Speed Limiter", "Notifications", "General", "About"]
+                    model: ["Connection", "Categories", "Downloads", "Browser", "Speed Limiter", "Notifications", "General", "Media", "Torrents", "About"]
                     currentIndex: root.initialPage
 
                     delegate: Rectangle {
@@ -446,6 +622,129 @@ Window {
                             text: root.editUseCustomUserAgent
                                   ? "This value will be sent exactly as entered."
                                   : "Built-in default shown above. Enable the checkbox to edit and override it."
+                            color: "#555"; font.pixelSize: 10
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e"; Layout.topMargin: 4 }
+
+                        Text {
+                            text: "Proxy"
+                            color: "#ffffff"; font.pixelSize: 14; font.bold: true
+                        }
+
+                        // Type selector
+                        ColumnLayout {
+                            spacing: 6
+
+                            ProxyRadioButton {
+                                id: proxyNoneRadio
+                                text: "No proxy"
+                                checked: root.editProxyType === 0
+                                onClicked: root.editProxyType = 0
+                            }
+                            ProxyRadioButton {
+                                text: "Use system proxy"
+                                checked: root.editProxyType === 1
+                                onClicked: root.editProxyType = 1
+                            }
+                            ProxyRadioButton {
+                                text: "HTTP / HTTPS proxy"
+                                checked: root.editProxyType === 2
+                                onClicked: root.editProxyType = 2
+                            }
+                            ProxyRadioButton {
+                                text: "SOCKS5 proxy"
+                                checked: root.editProxyType === 3
+                                onClicked: root.editProxyType = 3
+                            }
+                        }
+
+                        // Host / port / auth — only shown for custom proxy types
+                        ColumnLayout {
+                            visible: root.editProxyType === 2 || root.editProxyType === 3
+                            spacing: 8
+                            Layout.fillWidth: true
+
+                            // Host + port row
+                            RowLayout {
+                                spacing: 8
+                                Layout.fillWidth: true
+
+                                Text { text: "Host:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                                TextField {
+                                    Layout.fillWidth: true
+                                    text: root.editProxyHost
+                                    selectByMouse: true
+                                    font.pixelSize: 13
+                                    onTextEdited: root.editProxyHost = text
+                                    background: Rectangle {
+                                        color: "#2d2d2d"; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
+                                    }
+                                    color: "#d0d0d0"
+                                }
+                                Text { text: "Port:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                                SpinBox {
+                                    from: 1; to: 65535
+                                    value: root.editProxyPort
+                                    editable: true
+                                    implicitWidth: 120
+                                    textFromValue: function(value, locale) { return value.toString() }
+                                    valueFromText: function(text, locale) {
+                                        var parsed = parseInt((text || "").replace(/[^0-9]/g, ""))
+                                        return isNaN(parsed) ? root.editProxyPort : parsed
+                                    }
+                                    onValueModified: root.editProxyPort = value
+                                }
+                            }
+
+                            // Auth (optional)
+                            GridLayout {
+                                columns: 2; columnSpacing: 8; rowSpacing: 6
+                                Layout.fillWidth: true
+
+                                Text { text: "Username:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                                TextField {
+                                    Layout.fillWidth: true
+                                    placeholderText: "Optional"
+                                    text: root.editProxyUsername
+                                    selectByMouse: true
+                                    font.pixelSize: 13
+                                    onTextEdited: root.editProxyUsername = text
+                                    background: Rectangle {
+                                        color: "#2d2d2d"; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
+                                    }
+                                    color: "#d0d0d0"
+                                }
+
+                                Text { text: "Password:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                                TextField {
+                                    Layout.fillWidth: true
+                                    placeholderText: "Optional"
+                                    text: root.editProxyPassword
+                                    echoMode: TextInput.Password
+                                    selectByMouse: true
+                                    font.pixelSize: 13
+                                    onTextEdited: root.editProxyPassword = text
+                                    background: Rectangle {
+                                        color: "#2d2d2d"; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
+                                    }
+                                    color: "#d0d0d0"
+                                }
+                            }
+
+                            Text {
+                                text: "All downloads, video downloads, and update checks are routed through this proxy."
+                                color: "#555"; font.pixelSize: 10
+                                wrapMode: Text.WordWrap
+                                Layout.fillWidth: true
+                            }
+                        }
+
+                        Text {
+                            visible: root.editProxyType === 1
+                            text: "Stellar will use the proxy configured in your operating system network settings."
                             color: "#555"; font.pixelSize: 10
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -1232,6 +1531,52 @@ Window {
                                 Text { text: "KB/s"; color: "#a0a0a0"; font.pixelSize: 13 }
                             }
 
+                            CheckBox {
+                                id: globalUploadLimitChk
+                                text: "Enable global upload limit"
+                                topPadding: 0; bottomPadding: 0
+                                checked: root.editGlobalUploadLimitKBps > 0
+                                onToggled: {
+                                    if (!checked) {
+                                        root.editGlobalUploadLimitKBps = 0
+                                    } else if (root.editGlobalUploadLimitKBps <= 0) {
+                                        root.editGlobalUploadLimitKBps = 500
+                                    }
+                                }
+                                contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                            }
+
+                            RowLayout {
+                                spacing: 8
+                                Text { text: "Maximum upload:"; color: "#a0a0a0"; font.pixelSize: 13 }
+                                TextField {
+                                    id: uploadLimitField
+                                    implicitWidth: 90
+                                    color: "#d0d0d0"; font.pixelSize: 13
+                                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+
+                                    function syncFromModel() {
+                                        var val = root.editGlobalUploadLimitKBps > 0 ? root.editGlobalUploadLimitKBps : 500
+                                        if (parseInt(text) !== val)
+                                            text = val.toString()
+                                    }
+                                    Component.onCompleted: syncFromModel()
+                                    Connections {
+                                        target: root
+                                        function onEditGlobalUploadLimitKBpsChanged() {
+                                            if (!uploadLimitField.activeFocus)
+                                                uploadLimitField.syncFromModel()
+                                        }
+                                    }
+                                    onTextEdited: {
+                                        var v = parseInt(text)
+                                        if (!isNaN(v) && v > 0 && globalUploadLimitChk.checked)
+                                            root.editGlobalUploadLimitKBps = v
+                                    }
+                                }
+                                Text { text: "KB/s"; color: "#a0a0a0"; font.pixelSize: 13 }
+                            }
+
                         CheckBox {
                             text: "Always turn on speed limiter on Stellar startup"
                             topPadding: 0; bottomPadding: 0
@@ -1244,7 +1589,7 @@ Window {
 
                         // ── Speed Limiter Scheduler ───────────────────────────────────────────────
                         // Each rule: days[], onHour (1-12), onMinute (0-59), onAmPm, offHour,
-                        // offMinute, offAmPm, limitKBps. Stored as JSON string in editSpeedScheduleJson.
+                        // offMinute, offAmPm, downLimitKBps, upLimitKBps. Stored in editSpeedScheduleJson.
                         CheckBox {
                             text: "Enable speed limiter scheduler"
                             topPadding: 0; bottomPadding: 0
@@ -1268,7 +1613,7 @@ Window {
                                 return { days: ["Mon","Tue","Wed","Thu","Fri"],
                                          onHour: "9", onMinute: "00", onAmPm: "AM",
                                          offHour: "5", offMinute: "00", offAmPm: "PM",
-                                         limitKBps: 500 }
+                                         downLimitKBps: 500, upLimitKBps: 500 }
                             }
 
                             // ── Per-rule cards ───────────────────────────────────────────────────
@@ -1483,21 +1828,41 @@ Window {
                                         // ── Speed limit row ───────────────────────────────────────
                                         RowLayout {
                                             spacing: 6
-                                            Text { text: "Limit"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Text { text: "Download"; color: "#aaaaaa"; font.pixelSize: 12 }
                                             Rectangle {
                                                 width: 70; height: 26; radius: 2
-                                                color: "#1b1b1b"; border.color: limitFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                color: "#1b1b1b"; border.color: downLimitFld.activeFocus ? "#4488dd" : "#3a3a3a"
                                                 TextInput {
-                                                    id: limitFld
+                                                    id: downLimitFld
                                                     anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                                    text: String(ruleCard.rule.limitKBps || 500)
+                                                    text: String(ruleCard.rule.downLimitKBps || 500)
                                                     color: "#e0e0e0"; font.pixelSize: 12
                                                     horizontalAlignment: TextInput.AlignHCenter
                                                     verticalAlignment: TextInput.AlignVCenter
                                                     validator: IntValidator { bottom: 1; top: 999999 }
                                                     onTextEdited: {
                                                         var v = parseInt(text)
-                                                        if (!isNaN(v) && v > 0) ruleCard.patch("limitKBps", v)
+                                                        if (!isNaN(v) && v > 0) ruleCard.patch("downLimitKBps", v)
+                                                    }
+                                                }
+                                            }
+                                            Text { text: "KB/s"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Item { Layout.preferredWidth: 10 }
+                                            Text { text: "Upload"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Rectangle {
+                                                width: 70; height: 26; radius: 2
+                                                color: "#1b1b1b"; border.color: upLimitFld.activeFocus ? "#4488dd" : "#3a3a3a"
+                                                TextInput {
+                                                    id: upLimitFld
+                                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                                    text: String(ruleCard.rule.upLimitKBps || 500)
+                                                    color: "#e0e0e0"; font.pixelSize: 12
+                                                    horizontalAlignment: TextInput.AlignHCenter
+                                                    verticalAlignment: TextInput.AlignVCenter
+                                                    validator: IntValidator { bottom: 1; top: 999999 }
+                                                    onTextEdited: {
+                                                        var v = parseInt(text)
+                                                        if (!isNaN(v) && v > 0) ruleCard.patch("upLimitKBps", v)
                                                     }
                                                 }
                                             }
@@ -1525,7 +1890,7 @@ Window {
                                 Text {
                                     id: scheduleNote
                                     anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
-                                    text: "Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. The limiter is cleared automatically when no rule is active."
+                                    text: "Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active."
                                     color: "#8899bb"; font.pixelSize: 11; wrapMode: Text.WordWrap
                                 }
                             }
@@ -1646,7 +2011,7 @@ Window {
                     }
                 }
 
-                // About
+                // Media (video/audio downloader)
                 Item {
                     ScrollView {
                         anchors.fill: parent
@@ -1658,135 +2023,900 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: "About"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: "Video Downloader"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear."
+                            color: "#909090"; font.pixelSize: 12
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        // ── Status indicator ──────────────────────────────────────────
+                        Text { text: "Binary status"; color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
+
+                        RowLayout {
+                            spacing: 10
+
+                            // Status dot
+                            Rectangle {
+                                width: 10; height: 10; radius: 5
+                                color: App.ytdlpManager.available ? "#44cc44"
+                                     : (App.ytdlpManager.downloading ? "#ddaa22" : "#cc4444")
+                            }
+
+                            Text {
+                                text: App.ytdlpManager.statusText
+                                color: "#c0c0c0"
+                                font.pixelSize: 12
+                                Layout.fillWidth: true
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        // Download/update progress bar (shown during download)
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: 8; radius: 4
+                            color: "#2a2a2a"
+                            visible: App.ytdlpManager.downloading
+
+                            Rectangle {
+                                width: parent.width * (App.ytdlpManager.downloadProgress / 100.0)
+                                height: parent.height; radius: parent.radius
+                                color: "#4488dd"
+                            }
+                        }
+
+                        RowLayout {
+                            spacing: 8
+                            DlgButton {
+                                text: App.ytdlpManager.available ? "Update yt-dlp" : "Download yt-dlp"
+                                enabled: !App.ytdlpManager.downloading
+                                onClicked: {
+                                    if (App.ytdlpManager.available)
+                                        App.ytdlpManager.selfUpdate()
+                                    else
+                                        App.downloadYtdlpBinary()
+                                }
+                            }
+                            DlgButton {
+                                text: "Cancel"
+                                visible: App.ytdlpManager.downloading
+                                onClicked: App.ytdlpManager.cancelDownload()
+                            }
+                            DlgButton {
+                                text: "Re-check"
+                                enabled: !App.ytdlpManager.downloading
+                                onClicked: App.ytdlpManager.checkAvailability()
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        // ── ffmpeg status ─────────────────────────────────────────────
+                        Text { text: "ffmpeg status"; color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
+
+                        RowLayout {
+                            spacing: 10
+                            Rectangle {
+                                width: 10; height: 10; radius: 5
+                                color: App.ytdlpManager.ffmpegAvailable ? "#44cc44" : "#cc4444"
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: App.ytdlpManager.ffmpegAvailable
+                                      ? ("ffmpeg found: " + App.ytdlpManager.ffmpegPath)
+                                      : "ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)"
+                                color: App.ytdlpManager.ffmpegAvailable ? "#c0c0c0" : "#dd8844"
+                                font.pixelSize: 12
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            visible: App.ffmpegUpdateStatus.length > 0
+                            text: App.ffmpegUpdateStatus
+                            color: App.ffmpegUpdating ? "#9ab8ff" : "#9a9a9a"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        RowLayout {
+                            spacing: 8
+                            DlgButton {
+                                text: App.ffmpegUpdating ? "Updating FFmpeg..." : "Update FFmpeg"
+                                enabled: !App.ffmpegUpdating
+                                onClicked: App.updateFfmpegBinary()
+                            }
+                            DlgButton {
+                                text: "Get ffmpeg (gyan.dev)"
+                                visible: !App.ytdlpManager.ffmpegAvailable
+                                onClicked: Qt.openUrlExternally("https://www.gyan.dev/ffmpeg/builds/")
+                            }
+                        }
+
+                        // Info box explaining what to do
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: ffmpegNote.implicitHeight + 16
+                            radius: 4
+                            color: "#1a2030"
+                            border.color: "#2a3050"
+                            visible: !App.ytdlpManager.ffmpegAvailable
+
+                            Text {
+                                id: ffmpegNote
+                                anchors { fill: parent; margins: 8 }
+                                text: "ffmpeg is required to merge separate video and audio streams into MP4/MKV. " +
+                                      "Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).\n\n" +
+                                      "To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), " +
+                                      "extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. " +
+                                      "Then click Re-check above."
+                                color: "#8899bb"; font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        DlgButton {
+                            visible: false
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        // ── Custom binary path ────────────────────────────────────────
+                        Text { text: "Custom binary path"; color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version."
+                            color: "#808080"; font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 6
+
+                            TextField {
+                                id: ytdlpPathField
+                                Layout.fillWidth: true
+                                font.pixelSize:   12
+                                color:            "#d0d0d0"
+                                leftPadding:      8
+                                rightPadding:     8
+                                placeholderText:  "(auto - use bundled or system yt-dlp)"
+                                placeholderTextColor: "#555555"
+                                text: root.editYtdlpCustomBinaryPath
+                                onTextChanged: root.editYtdlpCustomBinaryPath = text
+                                background: Rectangle {
+                                    color:        "#1b1b1b"
+                                    border.color: ytdlpPathField.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    radius: 3
+                                }
+                            }
+
+                            DlgButton {
+                                text: "Browse…"
+                                onClicked: ytdlpFileDlg.open()
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        // ── Auto-update option ────────────────────────────────────────
+                        CheckBox {
+                            id: ytdlpAutoUpdateCheck
+                            text: "Automatically update yt-dlp at startup"
+                            font.pixelSize: 12
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editYtdlpAutoUpdate
+                            onCheckedChanged: root.editYtdlpAutoUpdate = checked
+                            contentItem: Text {
+                                text: parent.text
+                                color: "#c0c0c0"
+                                font: parent.font
+                                leftPadding: parent.indicator.width + parent.spacing
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "When enabled, Stellar will run \"yt-dlp -U\" at startup to keep the binary up to date. Requires an active internet connection."
+                            color: "#666666"; font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Item { height: 12 }
+                    }
+                    } // ScrollView
+                }
+
+                // Torrents
+                Item {
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        clip: true
+
+                    ColumnLayout {
+                        width: parent.width
+                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+                        spacing: 10
+
+                        Text { text: "Torrent Downloads"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "These settings apply to .torrent files and magnet links."
+                            color: "#909090"; font.pixelSize: 12
+                            wrapMode: Text.WordWrap
+                        }
+
+                        GridLayout {
+                            Layout.fillWidth: true
+                            columns: 2
+                            columnSpacing: 10
+                            rowSpacing: 8
+
+                            Text { text: "Listen port"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            TextField {
+                                Layout.preferredWidth: 120
+                                text: String(root.editTorrentListenPort)
+                                validator: IntValidator { bottom: 1; top: 65535 }
+                                color: "#d0d0d0"
+                                background: Rectangle {
+                                    color: "#1b1b1b"
+                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    radius: 3
+                                }
+                                onTextEdited: {
+                                    var parsed = parseInt(text, 10)
+                                    if (!isNaN(parsed))
+                                        root.editTorrentListenPort = parsed
+                                }
+                            }
+
+                            Text { text: "Connection limit"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            SpinBox {
+                                from: 10; to: 2000
+                                value: root.editTorrentConnectionsLimit
+                                editable: true
+                                onValueChanged: root.editTorrentConnectionsLimit = value
+                            }
+
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        Text { text: "Port Test"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections."
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 10
+
+                            Button {
+                                text: App.torrentPortTestInProgress ? "Testing..." : "Test Port"
+                                enabled: !App.torrentPortTestInProgress
+                                onClicked: App.testTorrentPort()
+                            }
+
+                            Text {
+                                Layout.fillWidth: true
+                                text: App.torrentPortTestMessage
+                                color: {
+                                    if (App.torrentPortTestStatus === "open")
+                                        return "#7bd88f"
+                                    if (App.torrentPortTestStatus === "closed")
+                                        return "#ff8a80"
+                                    if (App.torrentPortTestStatus === "testing")
+                                        return "#d0d0d0"
+                                    return "#a0a0a0"
+                                }
+                                font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        Text { text: "Networking"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        CheckBox {
+                            text: "Enable DHT"
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editTorrentEnableDht
+                            onCheckedChanged: root.editTorrentEnableDht = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: "Enable local service discovery"
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editTorrentEnableLsd
+                            onCheckedChanged: root.editTorrentEnableLsd = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: "Enable UPnP"
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editTorrentEnableUpnp
+                            onCheckedChanged: root.editTorrentEnableUpnp = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: "Enable NAT-PMP"
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editTorrentEnableNatPmp
+                            onCheckedChanged: root.editTorrentEnableNatPmp = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        Text { text: "Advanced"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        Text { text: "Custom bittorrent user agent"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        TextField {
+                            Layout.fillWidth: true
+                            text: root.editTorrentCustomUserAgent
+                            placeholderText: "Default: Stellar/<custom user agent or torrent>"
+                            onTextChanged: root.editTorrentCustomUserAgent = text
+                            color: "#d0d0d0"
+                            background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                        }
+
+                        Text { text: "Bind to network adapter"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        ComboBox {
+                            id: torrentAdapterCombo
+                            Layout.fillWidth: true
+                            model: root.torrentAdapterOptions
+                            currentIndex: root.indexOfTorrentAdapter(root.editTorrentBindInterface)
+                            font.pixelSize: 12
+                            background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            contentItem: Text {
+                                leftPadding: 8
+                                text: {
+                                    var option = torrentAdapterCombo.currentIndex >= 0 && torrentAdapterCombo.currentIndex < root.torrentAdapterOptions.length
+                                        ? root.torrentAdapterOptions[torrentAdapterCombo.currentIndex]
+                                        : null
+                                    return option ? option.name : "Default route"
+                                }
+                                color: "#d0d0d0"
+                                font: torrentAdapterCombo.font
+                                verticalAlignment: Text.AlignVCenter
+                                elide: Text.ElideRight
+                            }
+                            delegate: ItemDelegate {
+                                required property int index
+                                required property var modelData
+                                width: torrentAdapterCombo.width
+                                highlighted: torrentAdapterCombo.highlightedIndex === index
+                                contentItem: Column {
+                                    spacing: 2
+                                    Text {
+                                        text: modelData.name || ""
+                                        color: "#d0d0d0"
+                                        font.pixelSize: 12
+                                        elide: Text.ElideRight
+                                    }
+                                    Text {
+                                        text: modelData.details || ""
+                                        color: "#808080"
+                                        font.pixelSize: 11
+                                        elide: Text.ElideRight
+                                    }
+                                }
+                                onClicked: torrentAdapterCombo.currentIndex = index
+                            }
+                            onActivated: {
+                                var option = root.torrentAdapterOptions[currentIndex]
+                                root.editTorrentBindInterface = option ? (option.id || "") : ""
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: root.editTorrentBindInterface.length > 0 ? "This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection." : "No adapter binding. Torrent traffic follows the system route."
+                            color: root.editTorrentBindInterface.length > 0 ? "#ffffff" : "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: root.torrentAdapterDetails(root.editTorrentBindInterface)
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            visible: text.length > 0
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected."
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        Text { text: "IP-to-City Database"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        GridLayout {
+                            Layout.fillWidth: true
+                            columns: 2
+                            columnSpacing: 10
+                            rowSpacing: 6
+
+                            Text { text: "Version"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text {
+                                Layout.fillWidth: true
+                                text: root.ipToCityDbInfo.versionStatus || "Unknown"
+                                color: "#d0d0d0"
+                                font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+
+                            Text { text: "Path"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text {
+                                Layout.fillWidth: true
+                                text: root.ipToCityDbInfo.path || "Not found"
+                                color: "#d0d0d0"
+                                font.pixelSize: 11
+                                wrapMode: Text.WrapAnywhere
+                            }
+
+                            Text { text: "Size"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text {
+                                text: root.formatBytes(root.ipToCityDbInfo.sizeBytes || 0)
+                                color: "#d0d0d0"
+                                font.pixelSize: 11
+                            }
+
+                            Text { text: "Entries"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text {
+                                text: root.ipToCityDbInfo.entryCountFormatted || "Unknown"
+                                color: "#d0d0d0"
+                                font.pixelSize: 11
+                            }
+
+                            Text { text: "Last Modified"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text {
+                                text: root.ipToCityDbInfo.lastModified || "Unknown"
+                                color: "#d0d0d0"
+                                font.pixelSize: 11
+                            }
+
+                            Text { text: "Status"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text {
+                                text: App.ipToCityDbUpdateStatus.length > 0
+                                    ? App.ipToCityDbUpdateStatus
+                                    : (root.ipToCityDbInfo.loaded ? "Loaded" : "Available but not loaded")
+                                color: App.ipToCityDbUpdateStatus.length > 0 ? "#cccccc" : "#8ab4f8"
+                                font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            DlgButton {
+                                text: App.ipToCityDbUpdating ? "Downloading..." : "Update IP-to-City DB"
+                                enabled: !App.ipToCityDbUpdating
+                                onClicked: App.updateIpToCityDbFromCachedUrl()
+                            }
+                            DlgButton {
+                                text: "Refresh Info"
+                                onClicked: root.refreshIpToCityDbInfo()
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: App.ipToCityDbUpdateUrl && App.ipToCityDbUpdateUrl.length > 0
+                                ? ("Source: " + App.ipToCityDbUpdateUrl)
+                                : "Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json."
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Item { height: 12 }
+                    }
+                    } // ScrollView
+                }
+
+                // About
+                Item {
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        clip: true
+
+                    ColumnLayout {
+                        width: parent.width
+                        anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 16; rightMargin: 16; topMargin: 16 }
+                        spacing: 0
+
+                        // ── Identity block ────────────────────────────────────────────
                         RowLayout {
                             spacing: 16
+                            Layout.bottomMargin: 14
+
                             Image {
-                                Layout.preferredWidth: 75
-                                Layout.preferredHeight: 75
+                                Layout.preferredWidth: 64
+                                Layout.preferredHeight: 64
                                 source: "icons/milky-way.png"
                                 fillMode: Image.PreserveAspectFit
                                 smooth: true
                             }
+
                             ColumnLayout {
-                                spacing: 2
-                                Text { text: "Stellar Download Manager"; color: "#ffffff"; font.pixelSize: 15; font.bold: true }
-                                Text { text: "Version " + App.appVersion; color: "#4488dd"; font.pixelSize: 13 }
+                                spacing: 3
+                                Layout.fillWidth: true
+
+                                Text {
+                                    text: "Stellar Download Manager"
+                                    color: "#ffffff"; font.pixelSize: 15; font.bold: true
+                                }
+
+                                // Version + update status on the same line
+                                RowLayout {
+                                    spacing: 10
+
+                                    Text {
+                                        text: "Version " + App.appVersion
+                                        color: "#4488dd"; font.pixelSize: 12
+                                    }
+
+                                    // Separator dot — only visible when update info is shown
+                                    Text {
+                                        text: "\u00B7"
+                                        color: "#444444"; font.pixelSize: 12
+                                        visible: App.updateAvailable
+                                    }
+
+                                    Text {
+                                        text: App.updateAvailable
+                                              ? ("Update available: " + App.updateVersion)
+                                              : ""
+                                        color: "#55bb77"; font.pixelSize: 12
+                                        visible: App.updateAvailable
+                                    }
+                                }
+
+                                // Check for updates + What's New — inline, understated
+                                RowLayout {
+                                    spacing: 10
+                                    Layout.topMargin: 1
+
+                                    Text {
+                                        text: "Check for updates"
+                                        color: "#555555"; font.pixelSize: 11; font.underline: true
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            cursorShape: Qt.PointingHandCursor
+                                            onClicked: App.checkForUpdates(true)
+                                            onEntered: parent.color = "#4488dd"
+                                            onExited:  parent.color = "#555555"
+                                        }
+                                    }
+                                    Text { text: "\u00B7"; color: "#333333"; font.pixelSize: 11 }
+                                    Text {
+                                        text: "What's New"
+                                        color: "#555555"; font.pixelSize: 11; font.underline: true
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            cursorShape: Qt.PointingHandCursor
+                                            onClicked: root.whatsNewRequested()
+                                            onEntered: parent.color = "#4488dd"
+                                            onExited:  parent.color = "#555555"
+                                        }
+                                    }
+                                }
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a"; Layout.bottomMargin: 12 }
 
+                        // ── Build info ────────────────────────────────────────────────
                         GridLayout {
-                            columns: 2; columnSpacing: 16; rowSpacing: 6
-                            Text { text: "Build date:"; color: "#808080"; font.pixelSize: 12 }
-                            Text { text: App.buildTimeFormatted;  color: "#c0c0c0"; font.pixelSize: 12 }
-                            Text { text: "Qt version:";  color: "#808080"; font.pixelSize: 12 }
-                            Text { text: App.qtVersion;   color: "#c0c0c0"; font.pixelSize: 12 }
-                            Text { text: "Platform:";    color: "#808080"; font.pixelSize: 12 }
+                            columns: 2; columnSpacing: 20; rowSpacing: 5
+                            Layout.bottomMargin: 14
+
+                            Text { text: "Build date";  color: "#606060"; font.pixelSize: 12 }
+                            Text { text: App.buildTimeFormatted; color: "#b0b0b0"; font.pixelSize: 12 }
+                            Text { text: "Qt version";  color: "#606060"; font.pixelSize: 12 }
+                            Text { text: App.qtVersion; color: "#b0b0b0"; font.pixelSize: 12 }
+                            Text { text: "Platform";    color: "#606060"; font.pixelSize: 12 }
                             Text {
                                 text: {
                                     const os = Qt.platform.os
                                     if (os === "windows") return "Windows"
-                                    if (os === "linux") return "Linux"
-                                    if (os === "osx") return "macOS"
+                                    if (os === "linux")   return "Linux"
+                                    if (os === "osx")     return "macOS"
                                     return os.charAt(0).toUpperCase() + os.slice(1)
                                 }
-                                color: "#c0c0c0"; font.pixelSize: 12
+                                color: "#b0b0b0"; font.pixelSize: 12
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a"; Layout.bottomMargin: 12 }
 
-                        Text {
-                            text: "A fast, multi-segment download manager with browser integration support."
-                            color: "#909090"; font.pixelSize: 12
-                            wrapMode: Text.WordWrap
-                            Layout.fillWidth: true
-                        }
-
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
-                        // License
-                        Text {
-                            text: "Copyright \u00A9 2026 Ninka_"
-                            color: "#808080"; font.pixelSize: 12
-                        }
-                        Text {
-                            Layout.fillWidth: true
-                            text: "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, version 3."
-                            color: "#606060"; font.pixelSize: 11
-                            wrapMode: Text.WordWrap
-                        }
-                        Text {
-                            text: "GNU General Public License v3.0"
-                            color: "#4488dd"; font.pixelSize: 12
-                            font.underline: true
-                            MouseArea {
-                                anchors.fill: parent
-                                cursorShape: Qt.PointingHandCursor
-                                onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/gpl-3.0.html")
-                            }
-                        }
-
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
+                        // ── License + Links ───────────────────────────────────────────
                         RowLayout {
-                            spacing: 8
-
-                            DlgButton {
-                                text: "Check for Updates"
-                                onClicked: App.checkForUpdates(true)
-                            }
+                            spacing: 16
+                            Layout.bottomMargin: 16
 
                             Text {
-                                text: App.updateAvailable ? ("Latest available: " + App.updateVersion) : ""
-                                color: "#7a7a7a"
-                                font.pixelSize: 11
-                                visible: App.updateAvailable
+                                text: "Copyright \u00A9 2026 Ninka_"
+                                color: "#707070"; font.pixelSize: 11
+                            }
+                            Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
+                            Text {
+                                text: "GNU GPL v3.0"
+                                color: "#4488dd"; font.pixelSize: 11
+                                font.underline: true
+                                MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    onClicked: Qt.openUrlExternally("https://www.gnu.org/licenses/gpl-3.0.html") }
+                            }
+                            Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
+                            Text {
+                                text: "stellar.moe"
+                                color: "#4488dd"; font.pixelSize: 11
+                                font.underline: true
+                                MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    onClicked: Qt.openUrlExternally("https://stellar.moe/") }
+                            }
+                            Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
+                            Text {
+                                text: "GitHub"
+                                color: "#4488dd"; font.pixelSize: 11
+                                font.underline: true
+                                MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    onClicked: Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") }
+                            }
+                            Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
+                            Text {
+                                text: "Releases"
+                                color: "#4488dd"; font.pixelSize: 11
+                                font.underline: true
+                                MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    onClicked: Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar/releases") }
                             }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3 or later."
+                            color: "#808080"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            Layout.bottomMargin: 8
+                        }
 
-                        // Links
-                        RowLayout {
-                            spacing: 20
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a"; Layout.topMargin: 4; Layout.bottomMargin: 14 }
 
-                            Column {
-                                spacing: 2
-                                Text { text: "Website"; color: "#606060"; font.pixelSize: 11 }
-                                Text {
-                                    text: "stellar.moe"
-                                    color: "#4488dd"; font.pixelSize: 12
-                                    font.underline: true
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("https://stellar.moe/")
-                                    }
-                                }
+                        // ── Third-party credits ───────────────────────────────────────
+                        // FFmpeg is invoked as an external executable (not linked into Stellar).
+                        // Attribution is required by its LGPL-2.1+ / GPL-2+ license.
+                        // Full license texts are in THIRD-PARTY-NOTICES.txt.
+                        Text {
+                            text: "Third-party software"
+                            color: "#909090"; font.pixelSize: 12; font.bold: true
+                            Layout.bottomMargin: 10
+                        }
+
+                        // FFmpeg
+                        ColumnLayout {
+                            spacing: 3
+                            Layout.fillWidth: true
+                            Layout.bottomMargin: 10
+
+                            RowLayout {
+                                spacing: 8
+                                Text { text: "FFmpeg"; color: "#d0d0d0"; font.pixelSize: 12; font.bold: true }
+                                Text { text: "LGPL-2.1+ / GPL-2+"; color: "#555555"; font.pixelSize: 10 }
                             }
-
-                            Column {
-                                spacing: 2
-                                Text { text: "Source code"; color: "#606060"; font.pixelSize: 11 }
+                            Text {
+                                Layout.fillWidth: true
+                                text: "Copyright \u00A9 2000\u2013present the FFmpeg developers. " +
+                                      "Used for merging video and audio streams. " +
+                                      "FFmpeg is a trademark of Fabrice Bellard."
+                                color: "#666666"; font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                            RowLayout {
+                                spacing: 12
                                 Text {
-                                    text: "github.com/Ninka-Rex/Stellar"
-                                    color: "#4488dd"; font.pixelSize: 12
-                                    font.underline: true
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        cursorShape: Qt.PointingHandCursor
-                                        onClicked: Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar")
-                                    }
+                                    text: "ffmpeg.org"
+                                    color: "#4488dd"; font.pixelSize: 11; font.underline: true
+                                    MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                        onClicked: Qt.openUrlExternally("https://ffmpeg.org/") }
+                                }
+                                Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
+                                Text {
+                                    text: "Git source"
+                                    color: "#4488dd"; font.pixelSize: 11; font.underline: true
+                                    MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                        onClicked: Qt.openUrlExternally("https://git.ffmpeg.org/ffmpeg.git") }
                                 }
                             }
                         }
 
-                        Item { height: 12 }
+                        // libtorrent
+                        ColumnLayout {
+                            spacing: 3
+                            Layout.fillWidth: true
+                            Layout.bottomMargin: 10
+
+                            RowLayout {
+                                spacing: 8
+                                Text { text: "libtorrent"; color: "#d0d0d0"; font.pixelSize: 12; font.bold: true }
+                                Text { text: "BSD-3-Clause"; color: "#555555"; font.pixelSize: 10 }
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: "Copyright \u00A9 Arvid Norberg and contributors. " +
+                                      "Used for BitTorrent protocol support."
+                                color: "#666666"; font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                            RowLayout {
+                                spacing: 12
+                                Text {
+                                    text: "libtorrent.org"
+                                    color: "#4488dd"; font.pixelSize: 11; font.underline: true
+                                    MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                        onClicked: Qt.openUrlExternally("https://libtorrent.org/") }
+                                }
+                                Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
+                                Text {
+                                    text: "GitHub"
+                                    color: "#4488dd"; font.pixelSize: 11; font.underline: true
+                                    MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                        onClicked: Qt.openUrlExternally("https://github.com/arvidn/libtorrent") }
+                                }
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 10 }
+
+                        // yt-dlp
+                        ColumnLayout {
+                            spacing: 3
+                            Layout.fillWidth: true
+                            Layout.bottomMargin: 10
+
+                            RowLayout {
+                                spacing: 8
+                                Text { text: "yt-dlp"; color: "#d0d0d0"; font.pixelSize: 12; font.bold: true }
+                                Text { text: "The Unlicense"; color: "#555555"; font.pixelSize: 10 }
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: "yt-dlp contributors (The Unlicense, public-domain dedication). " +
+                                      "Used for video metadata extraction and media downloading features."
+                                color: "#666666"; font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                            RowLayout {
+                                spacing: 12
+                                Text {
+                                    text: "yt-dlp on GitHub"
+                                    color: "#4488dd"; font.pixelSize: 11; font.underline: true
+                                    MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                        onClicked: Qt.openUrlExternally("https://github.com/yt-dlp/yt-dlp") }
+                                }
+                                Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
+                                Text {
+                                    text: "Unlicense"
+                                    color: "#4488dd"; font.pixelSize: 11; font.underline: true
+                                    MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                        onClicked: Qt.openUrlExternally("http://unlicense.org/") }
+                                }
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 10 }
+
+                        // Qt Framework
+                        ColumnLayout {
+                            spacing: 3
+                            Layout.fillWidth: true
+                            Layout.bottomMargin: 14
+
+                            RowLayout {
+                                spacing: 8
+                                Text { text: "Qt " + App.qtVersion; color: "#d0d0d0"; font.pixelSize: 12; font.bold: true }
+                                Text { text: "LGPL-3"; color: "#555555"; font.pixelSize: 10 }
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: "Copyright \u00A9 The Qt Company Ltd. Used under the LGPL-3 with the Qt LGPL exception."
+                                color: "#666666"; font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                            Text {
+                                text: "code.qt.io"
+                                color: "#4488dd"; font.pixelSize: 11; font.underline: true
+                                MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    onClicked: Qt.openUrlExternally("https://code.qt.io/") }
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 10 }
+
+                        // DB-IP
+                        ColumnLayout {
+                            spacing: 3
+                            Layout.fillWidth: true
+                            Layout.bottomMargin: 10
+
+                            RowLayout {
+                                spacing: 8
+                                Text { text: "DB-IP City Lite"; color: "#d0d0d0"; font.pixelSize: 12; font.bold: true }
+                                Text { text: "CC BY 4.0"; color: "#555555"; font.pixelSize: 10 }
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: "Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0."
+                                color: "#666666"; font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: "You may use this data with proper attribution to DB-IP in your application and related materials."
+                                color: "#666666"; font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                            Text {
+                                text: "db-ip.com"
+                                color: "#4488dd"; font.pixelSize: 11; font.underline: true
+                                MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                    onClicked: Qt.openUrlExternally("https://db-ip.com/") }
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation."
+                            color: "#484848"; font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            Layout.bottomMargin: 16
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 12 }
+
+                        Text {
+                            text: "Thanks for using Stellar \uD83D\uDC99"
+                            color: "#505050"; font.pixelSize: 11
+                            Layout.bottomMargin: 12
+                        }
+
+                        Item { height: 4 }
                     }
                     } // ScrollView
                 }

@@ -59,8 +59,12 @@ class AppSettings : public QObject {
     Q_PROPERTY(QString grabberIncludeFiltersJson READ grabberIncludeFiltersJson WRITE setGrabberIncludeFiltersJson NOTIFY grabberIncludeFiltersJsonChanged)
     Q_PROPERTY(QString grabberExcludeFiltersJson READ grabberExcludeFiltersJson WRITE setGrabberExcludeFiltersJson NOTIFY grabberExcludeFiltersJsonChanged)
     // Ordered list of sidebar section IDs — determines the top-to-bottom display order.
-    // Valid IDs: "downloads", "unfinished", "finished", "queues"
+    // Valid IDs: "downloads", "unfinished", "finished", "queues", "torrents"
     Q_PROPERTY(QStringList sidebarOrder READ sidebarOrder WRITE setSidebarOrder NOTIFY sidebarOrderChanged)
+    // Ordered list of torrent subcategory IDs within the Torrents section.
+    // Valid IDs: "torrent_downloading", "torrent_seeding", "torrent_stopped",
+    //            "torrent_active", "torrent_inactive", "torrent_checking", "torrent_moving"
+    Q_PROPERTY(QStringList torrentSubcatOrder READ torrentSubcatOrder WRITE setTorrentSubcatOrder NOTIFY torrentSubcatOrderChanged)
     // Modifier key to bypass download interception: 0=None, 1=Alt, 2=Ctrl, 3=Shift
     Q_PROPERTY(int bypassInterceptKey READ bypassInterceptKey WRITE setBypassInterceptKey NOTIFY bypassInterceptKeyChanged)
     // Launch Stellar automatically when the OS starts
@@ -79,6 +83,32 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool lastTryShowSeconds READ lastTryShowSeconds WRITE setLastTryShowSeconds NOTIFY lastTryShowSecondsChanged)
     Q_PROPERTY(int mainWindowWidth READ mainWindowWidth WRITE setMainWindowWidth NOTIFY mainWindowWidthChanged)
     Q_PROPERTY(int mainWindowHeight READ mainWindowHeight WRITE setMainWindowHeight NOTIFY mainWindowHeightChanged)
+    // yt-dlp integration
+    Q_PROPERTY(QString ytdlpCustomBinaryPath READ ytdlpCustomBinaryPath WRITE setYtdlpCustomBinaryPath NOTIFY ytdlpCustomBinaryPathChanged)
+    Q_PROPERTY(bool    ytdlpAutoUpdate       READ ytdlpAutoUpdate       WRITE setYtdlpAutoUpdate       NOTIFY ytdlpAutoUpdateChanged)
+    Q_PROPERTY(bool    torrentEnableDht READ torrentEnableDht WRITE setTorrentEnableDht NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool    torrentEnableLsd READ torrentEnableLsd WRITE setTorrentEnableLsd NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool    torrentEnableUpnp READ torrentEnableUpnp WRITE setTorrentEnableUpnp NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool    torrentEnableNatPmp READ torrentEnableNatPmp WRITE setTorrentEnableNatPmp NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentListenPort READ torrentListenPort WRITE setTorrentListenPort NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentConnectionsLimit READ torrentConnectionsLimit WRITE setTorrentConnectionsLimit NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentDownloadLimitKBps READ torrentDownloadLimitKBps WRITE setTorrentDownloadLimitKBps NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentUploadLimitKBps READ torrentUploadLimitKBps WRITE setTorrentUploadLimitKBps NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     globalUploadLimitKBps READ globalUploadLimitKBps WRITE setGlobalUploadLimitKBps NOTIFY globalUploadLimitKBpsChanged)
+    Q_PROPERTY(double  torrentDefaultShareRatio READ torrentDefaultShareRatio WRITE setTorrentDefaultShareRatio NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentDefaultSeedingTimeMins READ torrentDefaultSeedingTimeMins WRITE setTorrentDefaultSeedingTimeMins NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentDefaultInactiveSeedingTimeMins READ torrentDefaultInactiveSeedingTimeMins WRITE setTorrentDefaultInactiveSeedingTimeMins NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentDefaultShareLimitAction READ torrentDefaultShareLimitAction WRITE setTorrentDefaultShareLimitAction NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(QString torrentCustomUserAgent READ torrentCustomUserAgent WRITE setTorrentCustomUserAgent NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(QString torrentBindInterface READ torrentBindInterface WRITE setTorrentBindInterface NOTIFY torrentSettingsChanged)
+    // Proxy — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
+    // Per-host connection limit — caps concurrent segments to a single server (some ban >4)
+    Q_PROPERTY(int     perHostConnectionLimit READ perHostConnectionLimit WRITE setPerHostConnectionLimit NOTIFY perHostConnectionLimitChanged)
+    Q_PROPERTY(int     proxyType     READ proxyType     WRITE setProxyType     NOTIFY proxyTypeChanged)
+    Q_PROPERTY(QString proxyHost     READ proxyHost     WRITE setProxyHost     NOTIFY proxyHostChanged)
+    Q_PROPERTY(int     proxyPort     READ proxyPort     WRITE setProxyPort     NOTIFY proxyPortChanged)
+    Q_PROPERTY(QString proxyUsername READ proxyUsername WRITE setProxyUsername NOTIFY proxyUsernameChanged)
+    Q_PROPERTY(QString proxyPassword READ proxyPassword WRITE setProxyPassword NOTIFY proxyPasswordChanged)
 
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -121,7 +151,8 @@ public:
     bool grabberUseAdvancedProcessing() const { return m_grabberUseAdvancedProcessing; }
     QString grabberIncludeFiltersJson() const { return m_grabberIncludeFiltersJson; }
     QString grabberExcludeFiltersJson() const { return m_grabberExcludeFiltersJson; }
-    QStringList sidebarOrder()    const { return m_sidebarOrder; }
+    QStringList sidebarOrder()         const { return m_sidebarOrder; }
+    QStringList torrentSubcatOrder()   const { return m_torrentSubcatOrder; }
     int  bypassInterceptKey()         const { return m_bypassInterceptKey; }
     bool launchOnStartup()            const { return m_launchOnStartup; }
     bool clipboardMonitorEnabled()    const { return m_clipboardMonitorEnabled; }
@@ -135,6 +166,29 @@ public:
     bool lastTryShowSeconds()         const { return m_lastTryShowSeconds; }
     int  mainWindowWidth()            const { return m_mainWindowWidth; }
     int  mainWindowHeight()           const { return m_mainWindowHeight; }
+    QString ytdlpCustomBinaryPath()   const { return m_ytdlpCustomBinaryPath; }
+    bool    ytdlpAutoUpdate()         const { return m_ytdlpAutoUpdate; }
+    bool    torrentEnableDht()        const { return m_torrentEnableDht; }
+    bool    torrentEnableLsd()        const { return m_torrentEnableLsd; }
+    bool    torrentEnableUpnp()       const { return m_torrentEnableUpnp; }
+    bool    torrentEnableNatPmp()     const { return m_torrentEnableNatPmp; }
+    int     torrentListenPort()       const { return m_torrentListenPort; }
+    int     torrentConnectionsLimit() const { return m_torrentConnectionsLimit; }
+    int     torrentDownloadLimitKBps() const { return m_torrentDownloadLimitKBps; }
+    int     torrentUploadLimitKBps()  const { return m_torrentUploadLimitKBps; }
+    int     globalUploadLimitKBps()   const { return m_globalUploadLimitKBps; }
+    double  torrentDefaultShareRatio() const { return m_torrentDefaultShareRatio; }
+    int     torrentDefaultSeedingTimeMins() const { return m_torrentDefaultSeedingTimeMins; }
+    int     torrentDefaultInactiveSeedingTimeMins() const { return m_torrentDefaultInactiveSeedingTimeMins; }
+    int     torrentDefaultShareLimitAction() const { return m_torrentDefaultShareLimitAction; }
+    QString torrentCustomUserAgent()  const { return m_torrentCustomUserAgent; }
+    QString torrentBindInterface()    const { return m_torrentBindInterface; }
+    int     proxyType()               const { return m_proxyType; }
+    QString proxyHost()               const { return m_proxyHost; }
+    int     proxyPort()               const { return m_proxyPort; }
+    QString proxyUsername()           const { return m_proxyUsername; }
+    QString proxyPassword()           const { return m_proxyPassword; }
+    int     perHostConnectionLimit()  const { return m_perHostConnectionLimit; }
 
     void setMaxConcurrent(int v);
     void setSegmentsPerDownload(int v);
@@ -171,6 +225,7 @@ public:
     void setGrabberIncludeFiltersJson(const QString &v);
     void setGrabberExcludeFiltersJson(const QString &v);
     void setSidebarOrder(const QStringList &v);
+    void setTorrentSubcatOrder(const QStringList &v);
     void setBypassInterceptKey(int v);
     void setLaunchOnStartup(bool v);
     void setClipboardMonitorEnabled(bool v);
@@ -184,6 +239,29 @@ public:
     void setLastTryShowSeconds(bool v);
     void setMainWindowWidth(int v);
     void setMainWindowHeight(int v);
+    void setYtdlpCustomBinaryPath(const QString &v);
+    void setYtdlpAutoUpdate(bool v);
+    void setTorrentEnableDht(bool v);
+    void setTorrentEnableLsd(bool v);
+    void setTorrentEnableUpnp(bool v);
+    void setTorrentEnableNatPmp(bool v);
+    void setTorrentListenPort(int v);
+    void setTorrentConnectionsLimit(int v);
+    void setTorrentDownloadLimitKBps(int v);
+    void setTorrentUploadLimitKBps(int v);
+    void setGlobalUploadLimitKBps(int v);
+    void setTorrentDefaultShareRatio(double v);
+    void setTorrentDefaultSeedingTimeMins(int v);
+    void setTorrentDefaultInactiveSeedingTimeMins(int v);
+    void setTorrentDefaultShareLimitAction(int v);
+    void setTorrentCustomUserAgent(const QString &v);
+    void setTorrentBindInterface(const QString &v);
+    void setProxyType(int v);
+    void setProxyHost(const QString &v);
+    void setProxyPort(int v);
+    void setProxyUsername(const QString &v);
+    void setPerHostConnectionLimit(int v);
+    void setProxyPassword(const QString &v);
 
     Q_INVOKABLE void save();
     Q_INVOKABLE void load();
@@ -224,6 +302,7 @@ signals:
     void grabberIncludeFiltersJsonChanged();
     void grabberExcludeFiltersJsonChanged();
     void sidebarOrderChanged();
+    void torrentSubcatOrderChanged();
     void bypassInterceptKeyChanged();
     void launchOnStartupChanged();
     void clipboardMonitorEnabledChanged();
@@ -237,6 +316,16 @@ signals:
     void lastTryShowSecondsChanged();
     void mainWindowWidthChanged();
     void mainWindowHeightChanged();
+    void ytdlpCustomBinaryPathChanged();
+    void ytdlpAutoUpdateChanged();
+    void torrentSettingsChanged();
+    void globalUploadLimitKBpsChanged();
+    void proxyTypeChanged();
+    void proxyHostChanged();
+    void proxyPortChanged();
+    void proxyUsernameChanged();
+    void perHostConnectionLimitChanged();
+    void proxyPasswordChanged();
 
 private:
     int     m_maxConcurrent{3};
@@ -273,7 +362,9 @@ private:
     bool        m_grabberUseAdvancedProcessing{true};
     QString     m_grabberIncludeFiltersJson;
     QString     m_grabberExcludeFiltersJson;
-    QStringList m_sidebarOrder{{"downloads", "unfinished", "finished", "grabber", "queues"}};
+    QStringList m_sidebarOrder{{"downloads", "unfinished", "finished", "grabber", "queues", "torrents"}};
+    QStringList m_torrentSubcatOrder{{"torrent_downloading", "torrent_seeding", "torrent_stopped",
+                                      "torrent_active", "torrent_inactive", "torrent_checking", "torrent_moving"}};
     int         m_bypassInterceptKey{1};  // 1 = Alt key by default
     bool        m_launchOnStartup{false};
     bool        m_clipboardMonitorEnabled{false};
@@ -287,6 +378,30 @@ private:
     bool        m_lastTryShowSeconds{true};
     int         m_mainWindowWidth{1100};
     int         m_mainWindowHeight{680};
+    QString     m_ytdlpCustomBinaryPath;  // empty = auto-detect
+    bool        m_ytdlpAutoUpdate{false}; // check for yt-dlp updates on startup
+    bool        m_torrentEnableDht{true};
+    bool        m_torrentEnableLsd{true};
+    bool        m_torrentEnableUpnp{true};
+    bool        m_torrentEnableNatPmp{true};
+    int         m_torrentListenPort{6881};
+    int         m_torrentConnectionsLimit{200};
+    int         m_torrentDownloadLimitKBps{0};
+    int         m_torrentUploadLimitKBps{0};
+    int         m_globalUploadLimitKBps{0};
+    double      m_torrentDefaultShareRatio{0.0};
+    int         m_torrentDefaultSeedingTimeMins{0};
+    int         m_torrentDefaultInactiveSeedingTimeMins{0};
+    int         m_torrentDefaultShareLimitAction{1};
+    QString     m_torrentCustomUserAgent;
+    QString     m_torrentBindInterface;
+    // Proxy — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
+    int         m_proxyType{0};
+    QString     m_proxyHost;
+    int         m_proxyPort{8080};
+    QString     m_proxyUsername;
+    int         m_perHostConnectionLimit{8};
+    QString     m_proxyPassword;
 
     // Apply or remove OS startup entry depending on v
     void applyStartupRegistration(bool v) const;

@@ -31,19 +31,22 @@ Window {
     property var downloadIds: []
     property string filename: ""
     property bool fileExists: false   // true when file is on disk (completed download)
+    property bool hasTorrentSelection: false
 
     signal confirmed(int deleteMode)
+
+    readonly property int _dialogHeight: (fileExists || hasTorrentSelection) ? 232 : 166
 
     width: 420
     // Material Button elements carry ~6px top/bottom insets, so the rendered button
     // height is ~48px rather than the nominal 36px.  The original 160px was too small
     // to fit icon row + spacing + buttons + margins, causing the button row to be
     // clipped until the user manually resized the window.
-    height: fileExists ? 232 : 166
+    height: _dialogHeight
     minimumWidth: 380
     maximumWidth: 560
-    minimumHeight: height
-    maximumHeight: height
+    minimumHeight: _dialogHeight
+    maximumHeight: _dialogHeight
     color: "#1e1e1e"
     title: "Confirm Delete"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -93,7 +96,7 @@ Window {
 
         // File-on-disk options (only shown for completed downloads)
         ColumnLayout {
-            visible: root.fileExists
+            visible: root.fileExists || root.hasTorrentSelection
             spacing: 4
 
             Rectangle {
@@ -104,7 +107,9 @@ Window {
 
             CheckBox {
                 id: deleteFileChk
-                text: "Also delete file from disk"
+                text: root.hasTorrentSelection
+                    ? "Also delete torrent files from disk"
+                    : "Also delete file from disk"
                 checked: false
                 topPadding: 0
                 bottomPadding: 0
@@ -154,7 +159,7 @@ Window {
                 destructive: true
                 onClicked: {
                     var mode = 0
-                    if (root.fileExists && deleteFileChk.checked) {
+                    if ((root.fileExists || root.hasTorrentSelection) && deleteFileChk.checked) {
                         mode = permDeleteChk.checked ? 1 : 2
                     }
                     root.confirmed(mode)

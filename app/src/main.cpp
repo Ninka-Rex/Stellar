@@ -33,6 +33,9 @@
 #include "FileIconImageProvider.h"
 #include "FileDragDropHelper.h"
 #include "FileIconImageProvider.h"
+#include "TorrentSearchManager.h"
+#include "TorrentSearchPluginModel.h"
+#include "TorrentSearchResultModel.h"
 
 #if defined(Q_OS_WIN)
 #  include <windows.h>
@@ -331,6 +334,14 @@ int main(int argc, char *argv[])
         QStringLiteral("Use App.categoryModel"));
     qmlRegisterUncreatableType<AppSettings>("com.stellar.app", 1, 0, "AppSettings",
         QStringLiteral("Use App.settings"));
+    qmlRegisterUncreatableType<YtdlpManager>("com.stellar.app", 1, 0, "YtdlpManager",
+        QStringLiteral("Use App.ytdlpManager"));
+    qmlRegisterUncreatableType<TorrentSearchManager>("com.stellar.app", 1, 0, "TorrentSearchManager",
+        QStringLiteral("Use App.torrentSearchManager"));
+    qmlRegisterUncreatableType<TorrentSearchPluginModel>("com.stellar.app", 1, 0, "TorrentSearchPluginModel",
+        QStringLiteral("Use App.torrentSearchManager.pluginModel"));
+    qmlRegisterUncreatableType<TorrentSearchResultModel>("com.stellar.app", 1, 0, "TorrentSearchResultModel",
+        QStringLiteral("Use App.torrentSearchManager.resultModel"));
     qmlRegisterType<FileDragDropHelper>("com.stellar.app", 1, 0, "FileDragDropHelper");
 
     nmLog(QStringLiteral("Instantiating AppController..."));

@@ -44,6 +44,7 @@ Rectangle {
     signal startQueueRequested(string queueId)
     signal stopQueueRequested(string queueId)
     signal grabberClicked()
+    signal searchEngineClicked()
 
     // bottom border
     Rectangle {
@@ -69,7 +70,8 @@ Rectangle {
         ToolbarBtn {
             label: "Stop"; iconSrc: "icons/pause.png"
             enabled: downloadTable ? (downloadTable.selectedItemStatus === "Downloading"
-                                   || downloadTable.selectedItemStatus === "Queued") : false
+                                   || downloadTable.selectedItemStatus === "Queued"
+                                   || downloadTable.selectedItemStatus === "Seeding") : false
             onClicked: root.stopClicked()
         }
         ToolbarBtn { label: "Stop All"; iconSrc: "icons/pause_orange.png"; enabled: App.activeDownloads > 0;                          onClicked: root.stopAllClicked() }
@@ -95,5 +97,6 @@ Rectangle {
         }
 
         ToolbarBtn { label: "Grabber";        iconSrc: "icons/wand.ico";   onClicked: root.grabberClicked() }
+        ToolbarBtn { label: "Search Engine";  iconSrc: "icons/search.ico"; onClicked: root.searchEngineClicked() }
     }
 }

@@ -64,6 +64,9 @@ Window {
 
     function _submit() {
         if (urlField.text.trim().length === 0) return
+        var trimmed = urlField.text.trim()
+        if (/^[0-9a-fA-F]{40}$/.test(trimmed))
+            urlField.text = "magnet:?xt=urn:btih:" + trimmed.toLowerCase()
         root.accepted()
         root.close()
     }

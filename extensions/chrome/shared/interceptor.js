@@ -33,16 +33,27 @@ function getAndClearModifierKey() {
     return key;
 }
 
-const FORCE_INTERCEPT_HOSTS = [
-    "drive.usercontent.google.com",
-    "drive.google.com",
-    "docs.google.com",
-];
-
 function forceIntercept(url) {
     try {
-        const host = new URL(url).hostname.toLowerCase();
-        return FORCE_INTERCEPT_HOSTS.some(h => host === h || host.endsWith("." + h));
+        const u = new URL(url);
+        const host = u.hostname.toLowerCase();
+        const path = u.pathname.toLowerCase();
+        const isDriveUserContent = host === "drive.usercontent.google.com"
+            || host.endsWith(".drive.usercontent.google.com");
+        if (isDriveUserContent) return true;
+
+        const isGoogleDocHost = host === "drive.google.com"
+            || host.endsWith(".drive.google.com")
+            || host === "docs.google.com"
+            || host.endsWith(".docs.google.com");
+        if (!isGoogleDocHost) return false;
+
+        // Force-intercept only true file download endpoints, not webapp APIs,
+        // thumbnail/viewer calls, or other in-page assets.
+        if (path === "/uc" || path.includes("/download/")) return true;
+        if (u.searchParams.get("export") === "download") return true;
+        if (u.searchParams.has("response-content-disposition")) return true;
+        return false;
     } catch {
         return false;
     }

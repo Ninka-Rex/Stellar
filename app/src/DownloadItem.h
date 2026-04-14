@@ -48,9 +48,45 @@ class DownloadItem : public QObject {
     Q_PROPERTY(QDateTime lastTryAt     READ lastTryAt      NOTIFY lastTryAtChanged)
     Q_PROPERTY(QString  addedDateStr  READ addedDateStr   NOTIFY lastTryAtChanged)
     Q_PROPERTY(QString  lastTryDateStr READ lastTryDateStr NOTIFY lastTryAtChanged)
+    Q_PROPERTY(bool     isTorrent     READ isTorrent      NOTIFY torrentChanged)
+    Q_PROPERTY(QString  torrentSource READ torrentSource  NOTIFY torrentChanged)
+    Q_PROPERTY(QString  torrentInfoHash READ torrentInfoHash NOTIFY torrentChanged)
+    Q_PROPERTY(int      torrentSeeders     READ torrentSeeders     NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentListSeeders READ torrentListSeeders NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentPeers       READ torrentPeers       NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentListPeers   READ torrentListPeers   NOTIFY torrentStatsChanged)
+    Q_PROPERTY(double   torrentRatio  READ torrentRatio   NOTIFY torrentStatsChanged)
+    Q_PROPERTY(qint64   torrentUploaded READ torrentUploaded NOTIFY torrentStatsChanged)
+    Q_PROPERTY(qint64   torrentDownloaded READ torrentDownloaded NOTIFY torrentStatsChanged)
+    Q_PROPERTY(qint64   torrentUploadSpeed   READ torrentUploadSpeed   NOTIFY torrentStatsChanged)
+    Q_PROPERTY(float    torrentAvailability  READ torrentAvailability  NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentPiecesDone    READ torrentPiecesDone    NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentPiecesTotal   READ torrentPiecesTotal   NOTIFY torrentStatsChanged)
+    Q_PROPERTY(qint64   torrentActiveTimeSecs  READ torrentActiveTimeSecs  NOTIFY torrentStatsChanged)
+    Q_PROPERTY(qint64   torrentSeedingTimeSecs READ torrentSeedingTimeSecs NOTIFY torrentStatsChanged)
+    Q_PROPERTY(qint64   torrentWastedBytes   READ torrentWastedBytes   NOTIFY torrentStatsChanged)
+    Q_PROPERTY(int      torrentConnections   READ torrentConnections   NOTIFY torrentStatsChanged)
+    Q_PROPERTY(bool     torrentHasMetadata  READ torrentHasMetadata  NOTIFY torrentChanged)
+    Q_PROPERTY(bool     torrentIsSingleFile READ torrentIsSingleFile NOTIFY torrentChanged)
+    Q_PROPERTY(bool     torrentIsPrivate    READ torrentIsPrivate    NOTIFY torrentChanged)
+    Q_PROPERTY(QString  torrentResumeData   READ torrentResumeData   NOTIFY torrentChanged)
+    Q_PROPERTY(bool torrentDisableDht READ torrentDisableDht WRITE setTorrentDisableDht NOTIFY torrentFlagsChanged)
+    Q_PROPERTY(bool torrentDisablePex READ torrentDisablePex WRITE setTorrentDisablePex NOTIFY torrentFlagsChanged)
+    Q_PROPERTY(bool torrentDisableLsd READ torrentDisableLsd WRITE setTorrentDisableLsd NOTIFY torrentFlagsChanged)
+    // Per-torrent speed and share limits
+    Q_PROPERTY(int    perTorrentDownLimitKBps READ perTorrentDownLimitKBps WRITE setPerTorrentDownLimitKBps NOTIFY torrentLimitsChanged)
+    Q_PROPERTY(int    perTorrentUpLimitKBps   READ perTorrentUpLimitKBps   WRITE setPerTorrentUpLimitKBps   NOTIFY torrentLimitsChanged)
+    Q_PROPERTY(double torrentShareRatioLimit  READ torrentShareRatioLimit  WRITE setTorrentShareRatioLimit  NOTIFY torrentLimitsChanged)
+    Q_PROPERTY(int    torrentSeedingTimeLimitMins READ torrentSeedingTimeLimitMins WRITE setTorrentSeedingTimeLimitMins NOTIFY torrentLimitsChanged)
+    Q_PROPERTY(int    torrentInactiveSeedingTimeLimitMins READ torrentInactiveSeedingTimeLimitMins WRITE setTorrentInactiveSeedingTimeLimitMins NOTIFY torrentLimitsChanged)
+    Q_PROPERTY(int    torrentShareLimitAction READ torrentShareLimitAction WRITE setTorrentShareLimitAction NOTIFY torrentLimitsChanged)
+    // yt-dlp integration: marks items that are downloaded via YtdlpTransfer
+    // rather than the regular SegmentedTransfer engine.
+    Q_PROPERTY(bool     isYtdlp       READ isYtdlp        CONSTANT)
+    Q_PROPERTY(QString  ytdlpFormatId READ ytdlpFormatId  NOTIFY ytdlpFormatIdChanged)
 
 public:
-    enum class Status { Queued, Downloading, Paused, Assembling, Completed, Error };
+    enum class Status { Queued, Checking, Downloading, Moving, Seeding, Paused, Assembling, Completed, Error };
     Q_ENUM(Status)
 
     explicit DownloadItem(const QString &id, const QUrl &url, QObject *parent = nullptr);
@@ -87,6 +123,7 @@ public:
     void setTotalBytes(qint64 v);
     void setDoneBytes(qint64 v);
     void setSpeed(qint64 bytesPerSec);
+    void setEtaSpeed(qint64 bytesPerSec);
     void setStatus(Status s);
     void setCategory(const QString &v);
     void setSavePath(const QString &v);
@@ -109,6 +146,80 @@ public:
     void setFilenameManuallySet(bool v) { m_filenameManuallySet = v; }
     bool isFilenameManuallySet() const { return m_filenameManuallySet; }
 
+    bool isTorrent() const { return m_isTorrent; }
+    QString torrentSource() const { return m_torrentSource; }
+    QString torrentInfoHash() const { return m_torrentInfoHash; }
+    int torrentSeeders()     const { return m_torrentSeeders; }
+    int torrentListSeeders() const { return m_torrentListSeeders; }
+    int torrentPeers()       const { return m_torrentPeers; }
+    int torrentListPeers()   const { return m_torrentListPeers; }
+    double torrentRatio() const { return m_torrentRatio; }
+    qint64 torrentUploaded() const { return m_torrentUploaded; }
+    qint64 torrentDownloaded() const { return m_torrentDownloaded; }
+    qint64 torrentUploadSpeed()    const { return m_torrentUploadSpeed; }
+    float  torrentAvailability()   const { return m_torrentAvailability; }
+    int    torrentPiecesDone()     const { return m_torrentPiecesDone; }
+    int    torrentPiecesTotal()    const { return m_torrentPiecesTotal; }
+    qint64 torrentActiveTimeSecs() const { return m_torrentActiveTimeSecs; }
+    qint64 torrentSeedingTimeSecs()const { return m_torrentSeedingTimeSecs; }
+    qint64 torrentWastedBytes()    const { return m_torrentWastedBytes; }
+    int    torrentConnections()    const { return m_torrentConnections; }
+    bool torrentHasMetadata()  const { return m_torrentHasMetadata; }
+    bool torrentIsSingleFile() const { return m_torrentIsSingleFile; }
+    bool torrentIsPrivate()    const { return m_torrentIsPrivate; }
+    bool torrentDisableDht()   const { return m_torrentDisableDht; }
+    bool torrentDisablePex()   const { return m_torrentDisablePex; }
+    bool torrentDisableLsd()   const { return m_torrentDisableLsd; }
+    QString torrentResumeData() const { return m_torrentResumeData; }
+    void setIsTorrent(bool v);
+    void setTorrentSource(const QString &v);
+    void setTorrentInfoHash(const QString &v);
+    void setTorrentSeeders(int v);
+    void setTorrentListSeeders(int v) { if (m_torrentListSeeders != v) { m_torrentListSeeders = v; emit torrentStatsChanged(); } }
+    void setTorrentPeers(int v);
+    void setTorrentListPeers(int v)   { if (m_torrentListPeers   != v) { m_torrentListPeers   = v; emit torrentStatsChanged(); } }
+    void setTorrentRatio(double v);
+    void setTorrentUploaded(qint64 v);
+    void setTorrentDownloaded(qint64 v);
+    void setTorrentUploadSpeed(qint64 v);
+    void setTorrentAvailability(float v)    { if (m_torrentAvailability   != v) { m_torrentAvailability   = v; emit torrentStatsChanged(); } }
+    void setTorrentPiecesDone(int v)        { if (m_torrentPiecesDone     != v) { m_torrentPiecesDone     = v; emit torrentStatsChanged(); } }
+    void setTorrentPiecesTotal(int v)       { if (m_torrentPiecesTotal    != v) { m_torrentPiecesTotal    = v; emit torrentStatsChanged(); } }
+    void setTorrentActiveTimeSecs(qint64 v) { if (m_torrentActiveTimeSecs != v) { m_torrentActiveTimeSecs = v; emit torrentStatsChanged(); } }
+    void setTorrentSeedingTimeSecs(qint64 v){ if (m_torrentSeedingTimeSecs!= v) { m_torrentSeedingTimeSecs= v; emit torrentStatsChanged(); } }
+    void setTorrentWastedBytes(qint64 v)    { if (m_torrentWastedBytes    != v) { m_torrentWastedBytes    = v; emit torrentStatsChanged(); } }
+    void setTorrentConnections(int v)       { if (m_torrentConnections    != v) { m_torrentConnections    = v; emit torrentStatsChanged(); } }
+    void setTorrentHasMetadata(bool v);
+    void setTorrentIsSingleFile(bool v) { if (m_torrentIsSingleFile != v) { m_torrentIsSingleFile = v; emit torrentChanged(); } }
+    void setTorrentIsPrivate(bool v)    { if (m_torrentIsPrivate    != v) { m_torrentIsPrivate    = v; emit torrentChanged(); } }
+    void setTorrentDisableDht(bool v)   { if (m_torrentDisableDht   != v) { m_torrentDisableDht   = v; emit torrentFlagsChanged(); } }
+    void setTorrentDisablePex(bool v)   { if (m_torrentDisablePex   != v) { m_torrentDisablePex   = v; emit torrentFlagsChanged(); } }
+    void setTorrentDisableLsd(bool v)   { if (m_torrentDisableLsd   != v) { m_torrentDisableLsd   = v; emit torrentFlagsChanged(); } }
+    void setTorrentResumeData(const QString &v);
+    void clearTorrentStats();
+
+    // Per-torrent limits
+    int    perTorrentDownLimitKBps() const { return m_perTorrentDownLimitKBps; }
+    int    perTorrentUpLimitKBps()   const { return m_perTorrentUpLimitKBps; }
+    double torrentShareRatioLimit()  const { return m_torrentShareRatioLimit; }
+    int    torrentSeedingTimeLimitMins() const { return m_torrentSeedingTimeLimitMins; }
+    int    torrentInactiveSeedingTimeLimitMins() const { return m_torrentInactiveSeedingTimeLimitMins; }
+    int    torrentShareLimitAction() const { return m_torrentShareLimitAction; }
+    void setPerTorrentDownLimitKBps(int v)   { if (m_perTorrentDownLimitKBps != v) { m_perTorrentDownLimitKBps = v; emit torrentLimitsChanged(); } }
+    void setPerTorrentUpLimitKBps(int v)     { if (m_perTorrentUpLimitKBps   != v) { m_perTorrentUpLimitKBps   = v; emit torrentLimitsChanged(); } }
+    void setTorrentShareRatioLimit(double v) { if (m_torrentShareRatioLimit  != v) { m_torrentShareRatioLimit  = v; emit torrentLimitsChanged(); } }
+    void setTorrentSeedingTimeLimitMins(int v) { if (m_torrentSeedingTimeLimitMins != v) { m_torrentSeedingTimeLimitMins = v; emit torrentLimitsChanged(); } }
+    void setTorrentInactiveSeedingTimeLimitMins(int v) { if (m_torrentInactiveSeedingTimeLimitMins != v) { m_torrentInactiveSeedingTimeLimitMins = v; emit torrentLimitsChanged(); } }
+    void setTorrentShareLimitAction(int v)   { if (m_torrentShareLimitAction != v) { m_torrentShareLimitAction = v; emit torrentLimitsChanged(); } }
+
+    // yt-dlp fields
+    bool    isYtdlp()       const { return m_isYtdlp; }
+    QString ytdlpFormatId() const { return m_ytdlpFormatId; }
+    void setIsYtdlp(bool v)                { m_isYtdlp = v; }
+    void setYtdlpFormatId(const QString &v) {
+        if (m_ytdlpFormatId != v) { m_ytdlpFormatId = v; emit ytdlpFormatIdChanged(); }
+    }
+
 signals:
     void filenameChanged();
     void totalBytesChanged();
@@ -129,6 +240,11 @@ signals:
     void usernameChanged();
     void passwordChanged();
     void lastTryAtChanged();
+    void torrentChanged();
+    void torrentStatsChanged();
+    void torrentLimitsChanged();
+    void torrentFlagsChanged();
+    void ytdlpFormatIdChanged();
 
 private:
     static QString formatDateTime(const QDateTime &dt);
@@ -138,6 +254,7 @@ private:
     qint64       m_totalBytes{0};
     qint64       m_doneBytes{0};
     qint64       m_speed{0};
+    qint64       m_etaSpeed{0};   // longer-window average used only for ETA calculation
     Status       m_status{Status::Queued};
     QString      m_category{"Other"};
     QString      m_savePath;
@@ -155,6 +272,39 @@ private:
     QString      m_username;
     QString      m_password;
     QDateTime    m_lastTryAt;
+    bool         m_isTorrent{false};
+    QString      m_torrentSource;
+    QString      m_torrentInfoHash;
+    int          m_torrentSeeders{0};
+    int          m_torrentListSeeders{0};
+    int          m_torrentPeers{0};
+    int          m_torrentListPeers{0};
+    double       m_torrentRatio{0.0};
+    qint64       m_torrentUploaded{0};
+    qint64       m_torrentDownloaded{0};
+    qint64       m_torrentUploadSpeed{0};
+    float        m_torrentAvailability{0.f};
+    int          m_torrentPiecesDone{0};
+    int          m_torrentPiecesTotal{0};
+    qint64       m_torrentActiveTimeSecs{0};
+    qint64       m_torrentSeedingTimeSecs{0};
+    qint64       m_torrentWastedBytes{0};
+    int          m_torrentConnections{0};
+    bool         m_torrentHasMetadata{false};
+    bool         m_torrentIsSingleFile{true};   // true until metadata proves otherwise
+    bool         m_torrentIsPrivate{false};
+    bool         m_torrentDisableDht{false};
+    bool         m_torrentDisablePex{false};
+    bool         m_torrentDisableLsd{false};
+    QString      m_torrentResumeData;
+    int          m_perTorrentDownLimitKBps{0};
+    int          m_perTorrentUpLimitKBps{0};
+    double       m_torrentShareRatioLimit{-1.0};
+    int          m_torrentSeedingTimeLimitMins{-1};
+    int          m_torrentInactiveSeedingTimeLimitMins{-1};
+    int          m_torrentShareLimitAction{-1};
+    bool         m_isYtdlp{false};      // true → YtdlpTransfer manages this item
+    QString      m_ytdlpFormatId;       // yt-dlp format selector used for this download
     static int   s_dateStyle;
     static bool  s_use24Hour;
     static bool  s_showSeconds;

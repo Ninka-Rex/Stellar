@@ -22,4 +22,3 @@ Currently work in progress
 ## License
 
 [GPL v3.0](LICENSE)
-

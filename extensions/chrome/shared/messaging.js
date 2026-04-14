@@ -137,6 +137,87 @@ function getUrlHost(url) {
     catch { return ""; }
 }
 
+function hasExplicitDownloadIntent(url) {
+    try {
+        const u = new URL(url);
+        const path = u.pathname.toLowerCase();
+        const dlValue = (u.searchParams.get("dl") || "").toLowerCase();
+        const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
+        return path.includes("/download/")
+            || u.searchParams.has("download")
+            || dlIntent
+            || u.searchParams.has("attachment")
+            || u.searchParams.has("filename")
+            || u.searchParams.has("response-content-disposition")
+            || u.searchParams.get("export") === "download"
+            || u.searchParams.get("alt") === "media";
+    } catch {
+        return false;
+    }
+}
+
+function isApiRpcRequest(url, filenameHint = "", mimeType = "") {
+    try {
+        const u = new URL(url);
+        const host = u.hostname.toLowerCase();
+        const path = u.pathname.toLowerCase();
+        const dlValue = (u.searchParams.get("dl") || "").toLowerCase();
+        const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
+        const fn = String(filenameHint || "").toLowerCase();
+        const mt = String(mimeType || "").toLowerCase();
+        const hasPathExt = /\/[^/?#]+\.[a-z0-9]{1,8}$/i.test(path);
+        const apiPath = /(?:^|\/)(api|graphql|rpc|ajax|batchexecute)(?:\/|$)/i.test(path)
+            || path.includes("/_/");
+        const explicitDownload = path.includes("/download/")
+            || u.searchParams.has("download")
+            || dlIntent
+            || u.searchParams.has("attachment")
+            || u.searchParams.has("filename")
+            || u.searchParams.has("response-content-disposition")
+            || u.searchParams.get("alt") === "media"
+            || u.searchParams.get("export") === "download";
+
+        // Analytics/telemetry beacons should never be treated as downloads.
+        if ((path.endsWith("/td") || path.includes("/td/"))
+            && (u.searchParams.has("gtm") || /^gtm-/i.test(String(u.searchParams.get("id") || "")))) {
+            return true;
+        }
+
+        if (apiPath && !explicitDownload
+            && (!hasPathExt || fn === "response.bin" || fn === "response"
+                || mt.startsWith("application/json") || mt.startsWith("text/plain")
+                || mt.startsWith("text/javascript"))) {
+            return true;
+        }
+        // YouTube webapp static asset buckets (not user downloads).
+        if ((host === "youtube.com" || host.endsWith(".youtube.com"))
+            && (path.startsWith("/s/") || path.startsWith("/yts/"))) {
+            return true;
+        }
+        // Google batchexecute endpoints (Gemini/Bard and other Google web apps)
+        // can appear as downloadable "response.bin" blobs in browser download
+        // events, but they are app RPC traffic and should never be intercepted.
+        if ((host === "gemini.google.com" || host.endsWith(".google.com"))
+            && path.includes("/data/batchexecute")) {
+            return true;
+        }
+        if (u.searchParams.has("rpcids") && u.searchParams.get("rt") === "c")
+            return true;
+        // Google Chat/Gmail API endpoints can be surfaced by the browser as
+        // "response.bin" downloads; they are XHR/fetch API traffic.
+        if ((host === "chat.google.com" || host === "mail.google.com")
+            && (path.includes("/api/") || path.startsWith("/u/0/api/"))) {
+            return true;
+        }
+        // Generic guard for API-shaped responses mislabeled as response.bin.
+        if ((fn === "response.bin" || fn === "response")
+            && (path.includes("/api/") || mt.startsWith("application/json") || mt.startsWith("text/plain"))) {
+            return true;
+        }
+    } catch { /* ignore */ }
+    return false;
+}
+
 // ── shouldIntercept ───────────────────────────────────────────────────────────
 
 /**
@@ -146,10 +227,11 @@ function getUrlHost(url) {
  * @param {string} [filenameHint]  filename from download item (may have extension even if URL doesn't)
  * @returns {Promise<boolean>}
  */
-export async function shouldIntercept(url, mimeType, filenameHint) {
+export async function shouldIntercept(url, mimeType, filenameHint, explicitIntent = false) {
     if (!url || url.startsWith("data:") || url.startsWith("blob:")) return false;
     if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("ftp://"))
         return false;
+    if (isApiRpcRequest(url, filenameHint, mimeType)) return false;
 
     const settings = await getSettings();
     if (!settings.enabled) return false;
@@ -179,8 +261,20 @@ export async function shouldIntercept(url, mimeType, filenameHint) {
         if (dotIdx >= 0) ext = filenameHint.slice(dotIdx + 1).toLowerCase().replace(/[^a-z0-9]/g, "");
     }
 
+    const MEDIA_EXTS = new Set([
+        "mp3","m4a","aac","ogg","wav","wma","flac","aif","ra",
+        "mp4","m4v","mkv","avi","mov","wmv","webm","mpeg","mpg","3gp","ogv","rm","rmvb","asf","qt"
+    ]);
+    const explicitDownload = hasExplicitDownloadIntent(url) || explicitIntent;
+
     // If we have a known extension: intercept only if it's in the monitored list.
-    if (ext) return settings.monitoredExtensions.has(ext);
+    if (ext) {
+        // Media URLs are often in-page playback assets. Require explicit
+        // download intent before auto-intercepting them.
+        if (MEDIA_EXTS.has(ext) && !explicitDownload)
+            return false;
+        return settings.monitoredExtensions.has(ext);
+    }
 
     // No extension info — fall back to MIME type mapping.
     if (mimeType) {
@@ -223,10 +317,12 @@ export async function shouldIntercept(url, mimeType, filenameHint) {
         }
         // Generic video/audio catch-alls: intercept only if the user monitors any video/audio type.
         if (mimeType.startsWith("video/")) {
+            if (!explicitDownload) return false;
             const VIDEO_EXTS = ["mp4","mkv","avi","mov","wmv","flv","webm","m4v","mpg","mpeg","3gp","ogv","rm","rmvb","asf","qt"];
             return VIDEO_EXTS.some(e => settings.monitoredExtensions.has(e));
         }
         if (mimeType.startsWith("audio/")) {
+            if (!explicitDownload) return false;
             const AUDIO_EXTS = ["mp3","aac","wav","flac","ogg","m4a","wma","ra","aif","mpa"];
             return AUDIO_EXTS.some(e => settings.monitoredExtensions.has(e));
         }

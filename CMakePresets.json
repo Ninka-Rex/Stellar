@@ -7,7 +7,14 @@
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "ENABLE_LIBTORRENT": "ON",
+        "LIBTORRENT_ROOT": "$env{LIBTORRENT_ROOT}",
+        "LIBTORRENT_SOURCE_DIR": "${sourceDir}/third_party/libtorrent-rasterbar-2.0.12",
+        "BOOST_ROOT": "$env{BOOST_ROOT}",
+        "BOOST_INCLUDEDIR": "$env{BOOST_INCLUDEDIR}",
+        "BOOST_LIBRARYDIR": "$env{BOOST_LIBRARYDIR}",
+        "OpenSSL_ROOT_DIR": "$env{OpenSSL_ROOT_DIR}"
       }
     },
     {

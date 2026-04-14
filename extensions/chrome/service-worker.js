@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-import { handleDownloadCreated, recordModifierKey } from "./shared/interceptor.js";
-import { ping, syncSettingsFromApp } from "./shared/messaging.js";
+import { handleDownloadCreated, recordModifierKey, forceIntercept } from "./shared/interceptor.js";
+import { ping, requestDownload, shouldIntercept, syncSettingsFromApp } from "./shared/messaging.js";
 
 const ICONS_ENABLED = {
     16: "icons/milky-way.png",
@@ -114,6 +114,55 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 sendResponse({ ok: true });
             }
         });
+        return true;
+    }
+
+    if (message.type === "interceptLinkClick") {
+        (async () => {
+            try {
+                const url = message.url || "";
+                const filename = message.filename || "";
+                const explicitIntent = !!message.explicitIntent;
+                const allowed = forceIntercept(url) || await shouldIntercept(url, "", filename, explicitIntent);
+                if (!allowed) {
+                    sendResponse({ ok: false, reason: "not-intercepted" });
+                    return;
+                }
+                let cookieHeader = message.cookies || "";
+                if (!cookieHeader) {
+                    try {
+                        const urlObj = new URL(url);
+                        const cookieUrls = [url];
+                        const parts = urlObj.hostname.split(".");
+                        for (let i = 1; i < parts.length - 1; i++)
+                            cookieUrls.push(`${urlObj.protocol}//${parts.slice(i).join(".")}/`);
+                        const seen = new Set();
+                        const allCookies = [];
+                        for (const cu of cookieUrls) {
+                            const batch = await chrome.cookies.getAll({ url: cu });
+                            for (const c of batch) {
+                                if (!seen.has(c.name)) { seen.add(c.name); allCookies.push(c); }
+                            }
+                        }
+                        cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
+                    } catch (err) {
+                        console.warn("[Stellar] Could not collect cookies for intercepted link:", err);
+                    }
+                }
+                await requestDownload({
+                    url,
+                    filename,
+                    referrer: message.referrer || "",
+                    pageUrl: message.pageUrl || "",
+                    cookies: cookieHeader,
+                    modifierKey: 0,
+                });
+                sendResponse({ ok: true });
+            } catch (err) {
+                console.error("[Stellar] Failed to process interceptLinkClick:", err);
+                sendResponse({ ok: false, error: err?.message ?? "unknown" });
+            }
+        })();
         return true;
     }
 });

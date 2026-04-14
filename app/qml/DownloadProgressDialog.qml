@@ -106,13 +106,14 @@ Window {
 
     function fmtSpeed(bps) {
         if (!bps || bps <= 0) return "--"
-        if (bps < 1024)    return bps + " B/s"
-        if (bps < 1048576) return (bps / 1024).toFixed(1) + " KB/s"
-        return (bps / 1048576).toFixed(2) + " MB/s"
+        if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s"
+        if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s"
+        if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s"
+        return bps + " B/s"
     }
 
     function statusColor(s) {
-        if (s === "Downloading") return "#44cc55"
+        if (s === "Downloading") return "#4488dd"   // blue — "Receiving data..."
         if (s === "Paused")      return "#ddbb44"
         if (s === "Completed")   return "#44aadd"
         if (s === "Error")       return "#dd5555"
@@ -122,6 +123,8 @@ Window {
     function statusLabel() {
         if (!item)
             return "--"
+        if (item.status === "Downloading")
+            return "Receiving data..."
         if (item.status === "Paused" && item.progress > 0)
             return Math.round(item.progress * 100) + "%"
         return item.status
@@ -310,6 +313,20 @@ Window {
                                     font.pixelSize: 12
                                 }
                             }
+
+                            // Error detail row — only shown when status is Error
+                            Row {
+                                visible: item && item.status === "Error" && item.errorString !== ""
+                                spacing: 0; width: parent.width
+                                Text { text: "Error detail"; color: "#666"; font.pixelSize: 12; width: 120; topPadding: 2 }
+                                Text {
+                                    text: item ? item.errorString : ""
+                                    color: "#dd5555"
+                                    font.pixelSize: 11
+                                    width: parent.width - 120
+                                    wrapMode: Text.WrapAnywhere
+                                }
+                            }
                         }
                     }
 
@@ -488,11 +505,34 @@ Window {
                                 }
 
                                 ListView {
+                                    id: segmentList
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
                                     clip: true
-                                    model: (item && item.segmentData) ? item.segmentData : []
+                                    model: item ? item.segmentData : []
                                     ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+
+                                    // Every progress tick (250 ms) emits a new QVariantList for
+                                    // segmentData, which QML treats as a full model reset and
+                                    // snaps contentY back to 0 — user loses their scroll place.
+                                    // Save user-driven scroll position and restore it after
+                                    // each model swap.
+                                    property real _savedY: 0
+                                    onModelChanged: {
+                                        var y = _savedY
+                                        Qt.callLater(function() {
+                                            var maxY = Math.max(0, contentHeight - height)
+                                            contentY = Math.min(y, maxY)
+                                        })
+                                    }
+                                    onMovementEnded: _savedY = contentY
+                                    onContentYChanged: {
+                                        // Only record user-driven changes; the programmatic
+                                        // reset-to-0 on model swap happens while `moving` is
+                                        // false, so this filter excludes it cleanly.
+                                        if (moving)
+                                            _savedY = contentY
+                                    }
 
                                     delegate: Rectangle {
                                         width: ListView.view.width

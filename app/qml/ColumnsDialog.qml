@@ -36,13 +36,24 @@ Window {
 
     // columnDefs is passed in from DownloadTable and mutated in place
     property var columnDefs: []
+    property var localDefs: []
 
     signal columnsChanged(var defs)
 
+    function syncLocal() {
+        localDefs = (columnDefs && columnDefs.slice) ? columnDefs.slice() : []
+    }
+
+    onVisibleChanged: if (visible) syncLocal()
+    onColumnDefsChanged: syncLocal()
+
     function swap(i, j) {
-        var defs = columnDefs.slice()
+        // Save contentY before the model reassignment resets it to 0
+        var savedY = colListView.contentY
+        var defs = localDefs.slice()
         var tmp = defs[i]; defs[i] = defs[j]; defs[j] = tmp
-        columnDefs = defs
+        localDefs = defs
+        Qt.callLater(function() { colListView.contentY = savedY })
     }
 
     ColumnLayout {
@@ -74,7 +85,7 @@ Window {
                 ListView {
                     id: colListView
                     anchors { fill: parent; margins: 2 }
-                    model: root.columnDefs
+                    model: root.localDefs
                     currentIndex: 0
 
                     delegate: Rectangle {
@@ -90,9 +101,9 @@ Window {
                                 checked: modelData.visible
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: {
-                                    var defs = root.columnDefs.slice()
+                                    var defs = root.localDefs.slice()
                                     defs[index] = Object.assign({}, defs[index], { visible: checked })
-                                    root.columnDefs = defs
+                                    root.localDefs = defs
                                 }
                             }
 
@@ -138,18 +149,18 @@ Window {
 
                 Rectangle {
                     width: 100; height: 28; radius: 3
-                    color: moveDownMa.containsMouse && colListView.currentIndex < root.columnDefs.length - 1 ? "#1e3a6e" : "#2d2d2d"
+                    color: moveDownMa.containsMouse && colListView.currentIndex < root.localDefs.length - 1 ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
-                    opacity: colListView.currentIndex < root.columnDefs.length - 1 ? 1.0 : 0.4
+                    opacity: colListView.currentIndex < root.localDefs.length - 1 ? 1.0 : 0.4
                     Text { anchors.centerIn: parent; text: "Move Down"; color: "#d0d0d0"; font.pixelSize: 12 }
                     MouseArea {
                         id: moveDownMa
                         anchors.fill: parent
                         hoverEnabled: true
-                        cursorShape: colListView.currentIndex < root.columnDefs.length - 1 ? Qt.PointingHandCursor : Qt.ArrowCursor
+                        cursorShape: colListView.currentIndex < root.localDefs.length - 1 ? Qt.PointingHandCursor : Qt.ArrowCursor
                         onClicked: {
                             const i = colListView.currentIndex
-                            if (i < root.columnDefs.length - 1) { root.swap(i, i + 1); colListView.currentIndex = i + 1 }
+                            if (i < root.localDefs.length - 1) { root.swap(i, i + 1); colListView.currentIndex = i + 1 }
                         }
                     }
                 }
@@ -159,8 +170,8 @@ Window {
                 Rectangle {
                     width: 100; height: 28; radius: 3
                     property bool canShow: colListView.currentIndex >= 0
-                        && root.columnDefs.length > colListView.currentIndex
-                        && !root.columnDefs[colListView.currentIndex].visible
+                        && root.localDefs.length > colListView.currentIndex
+                        && !root.localDefs[colListView.currentIndex].visible
                     color: showMa.containsMouse && canShow ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: canShow ? 1.0 : 0.4
@@ -172,9 +183,9 @@ Window {
                         cursorShape: parent.canShow ? Qt.PointingHandCursor : Qt.ArrowCursor
                         onClicked: {
                             if (parent.canShow) {
-                                var defs = root.columnDefs.slice()
+                                var defs = root.localDefs.slice()
                                 defs[colListView.currentIndex] = Object.assign({}, defs[colListView.currentIndex], { visible: true })
-                                root.columnDefs = defs
+                                root.localDefs = defs
                             }
                         }
                     }
@@ -183,8 +194,8 @@ Window {
                 Rectangle {
                     width: 100; height: 28; radius: 3
                     property bool canHide: colListView.currentIndex >= 0
-                        && root.columnDefs.length > colListView.currentIndex
-                        && root.columnDefs[colListView.currentIndex].visible
+                        && root.localDefs.length > colListView.currentIndex
+                        && root.localDefs[colListView.currentIndex].visible
                     color: hideMa.containsMouse && canHide ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: canHide ? 1.0 : 0.4
@@ -196,9 +207,9 @@ Window {
                         cursorShape: parent.canHide ? Qt.PointingHandCursor : Qt.ArrowCursor
                         onClicked: {
                             if (parent.canHide) {
-                                var defs = root.columnDefs.slice()
+                                var defs = root.localDefs.slice()
                                 defs[colListView.currentIndex] = Object.assign({}, defs[colListView.currentIndex], { visible: false })
-                                root.columnDefs = defs
+                                root.localDefs = defs
                             }
                         }
                     }
@@ -232,8 +243,8 @@ Window {
             }
             TextField {
                 implicitWidth: 60; implicitHeight: 26
-                text: colListView.currentIndex >= 0 && root.columnDefs.length > colListView.currentIndex
-                      ? (root.columnDefs[colListView.currentIndex].widthPx || 120).toString()
+                text: colListView.currentIndex >= 0 && root.localDefs.length > colListView.currentIndex
+                      ? (root.localDefs[colListView.currentIndex].widthPx || 120).toString()
                       : "120"
                 color: "#d0d0d0"; font.pixelSize: 12
                 background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
@@ -242,9 +253,9 @@ Window {
                 onEditingFinished: {
                     const v = parseInt(text)
                     if (!isNaN(v) && v >= 30 && colListView.currentIndex >= 0) {
-                        var defs = root.columnDefs.slice()
+                        var defs = root.localDefs.slice()
                         defs[colListView.currentIndex] = Object.assign({}, defs[colListView.currentIndex], { widthPx: v })
-                        root.columnDefs = defs
+                        root.localDefs = defs
                     }
                 }
             }
@@ -262,7 +273,7 @@ Window {
                 text: "OK"
                 primary: true
                 onClicked: {
-                    root.columnsChanged(root.columnDefs)
+                    root.columnsChanged(root.localDefs)
                     root.close()
                 }
             }

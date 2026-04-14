@@ -82,6 +82,8 @@ void DownloadTableModel::addItem(DownloadItem *item) {
     connect(item, &DownloadItem::speedChanged,     this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::statusChanged,     this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::errorStringChanged,this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::torrentStatsChanged, this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::torrentChanged, this, &DownloadTableModel::onItemChanged);
 
     // Add to visible if it matches current filter
     if (matchesFilter(item)) {
@@ -205,8 +207,10 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
             cmpResult = statusSortKey(a->status()) - statusSortKey(b->status());
         else if (column == QStringLiteral("timeleft"))
             cmpResult = a->timeLeft().compare(b->timeLeft());
-        else if (column == QStringLiteral("speed"))
+        else if (column == QStringLiteral("speed") || column == QStringLiteral("downspeed"))
             cmpResult = a->speed() < b->speed() ? -1 : (a->speed() > b->speed() ? 1 : 0);
+        else if (column == QStringLiteral("upspeed"))
+            cmpResult = a->torrentUploadSpeed() < b->torrentUploadSpeed() ? -1 : (a->torrentUploadSpeed() > b->torrentUploadSpeed() ? 1 : 0);
         else if (column == QStringLiteral("added"))
             cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
         else if (column == QStringLiteral("saveto"))
@@ -219,6 +223,16 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
             cmpResult = a->parentUrl().toLower().compare(b->parentUrl().toLower());
         else if (column == QStringLiteral("lasttry"))
             cmpResult = a->lastTryAt() < b->lastTryAt() ? -1 : (a->lastTryAt() > b->lastTryAt() ? 1 : 0);
+        else if (column == QStringLiteral("seeders"))
+            cmpResult = a->torrentSeeders() < b->torrentSeeders() ? -1 : (a->torrentSeeders() > b->torrentSeeders() ? 1 : 0);
+        else if (column == QStringLiteral("peers"))
+            cmpResult = a->torrentPeers() < b->torrentPeers() ? -1 : (a->torrentPeers() > b->torrentPeers() ? 1 : 0);
+        else if (column == QStringLiteral("ratio"))
+            cmpResult = a->torrentRatio() < b->torrentRatio() ? -1 : (a->torrentRatio() > b->torrentRatio() ? 1 : 0);
+        else if (column == QStringLiteral("uploaded"))
+            cmpResult = a->torrentUploaded() < b->torrentUploaded() ? -1 : (a->torrentUploaded() > b->torrentUploaded() ? 1 : 0);
+        else if (column == QStringLiteral("downloaded"))
+            cmpResult = a->torrentDownloaded() < b->torrentDownloaded() ? -1 : (a->torrentDownloaded() > b->torrentDownloaded() ? 1 : 0);
         else
             cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
 
@@ -243,6 +257,31 @@ bool DownloadTableModel::matchesFilter(DownloadItem *item) const {
         return item->status() != QStringLiteral("Completed");
     if (m_filterCategory == QStringLiteral("status_completed"))
         return item->status() == QStringLiteral("Completed");
+
+    // Torrent section filters
+    if (m_filterCategory == QStringLiteral("torrent_all"))
+        return item->isTorrent();
+    if (m_filterCategory == QStringLiteral("torrent_downloading"))
+        return item->isTorrent() && item->status() == QStringLiteral("Downloading");
+    if (m_filterCategory == QStringLiteral("torrent_seeding"))
+        return item->isTorrent() && item->status() == QStringLiteral("Seeding");
+    if (m_filterCategory == QStringLiteral("torrent_stopped"))
+        return item->isTorrent() && item->status() == QStringLiteral("Paused");
+    if (m_filterCategory == QStringLiteral("torrent_active"))
+        // Active = currently transferring data (download or upload speed > 0)
+        return item->isTorrent() && (item->speed() > 0 || item->torrentUploadSpeed() > 0);
+    if (m_filterCategory == QStringLiteral("torrent_inactive"))
+        // Inactive = not paused/completed but no data flowing
+        return item->isTorrent()
+            && item->status() != QStringLiteral("Paused")
+            && item->status() != QStringLiteral("Completed")
+            && item->speed() == 0
+            && item->torrentUploadSpeed() == 0;
+    if (m_filterCategory == QStringLiteral("torrent_checking"))
+        return item->isTorrent() && item->status() == QStringLiteral("Checking");
+    if (m_filterCategory == QStringLiteral("torrent_moving"))
+        return item->isTorrent() && item->status() == QStringLiteral("Moving");
+
     return item->category() == m_filterCategory;
 }
 
@@ -309,13 +348,15 @@ void DownloadTableModel::onItemChanged() {
 }
 
 int DownloadTableModel::statusSortKey(const QString &status) {
-    if (status == QStringLiteral("Downloading"))  return 0;
-    if (status == QStringLiteral("Assembling"))   return 1;
-    if (status == QStringLiteral("Queued"))        return 2;
-    if (status == QStringLiteral("Paused"))        return 3;
-    if (status == QStringLiteral("Failed"))        return 4;
-    if (status == QStringLiteral("Completed"))     return 5;
-    return 6;
+    if (status == QStringLiteral("Checking"))     return 0;
+    if (status == QStringLiteral("Downloading"))  return 1;
+    if (status == QStringLiteral("Seeding"))      return 2;
+    if (status == QStringLiteral("Assembling"))   return 3;
+    if (status == QStringLiteral("Queued"))       return 4;
+    if (status == QStringLiteral("Paused"))       return 5;
+    if (status == QStringLiteral("Failed"))       return 6;
+    if (status == QStringLiteral("Completed"))    return 7;
+    return 8;
 }
 
 int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const {
@@ -328,8 +369,10 @@ int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QSt
         cmpResult = statusSortKey(a->status()) - statusSortKey(b->status());
     else if (column == QStringLiteral("timeleft"))
         cmpResult = a->timeLeft().compare(b->timeLeft());
-    else if (column == QStringLiteral("speed"))
+    else if (column == QStringLiteral("speed") || column == QStringLiteral("downspeed"))
         cmpResult = a->speed() < b->speed() ? -1 : (a->speed() > b->speed() ? 1 : 0);
+    else if (column == QStringLiteral("upspeed"))
+        cmpResult = a->torrentUploadSpeed() < b->torrentUploadSpeed() ? -1 : (a->torrentUploadSpeed() > b->torrentUploadSpeed() ? 1 : 0);
     else if (column == QStringLiteral("added"))
         cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
     else if (column == QStringLiteral("saveto"))
@@ -342,6 +385,16 @@ int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QSt
         cmpResult = a->parentUrl().toLower().compare(b->parentUrl().toLower());
     else if (column == QStringLiteral("lasttry"))
         cmpResult = a->lastTryAt() < b->lastTryAt() ? -1 : (a->lastTryAt() > b->lastTryAt() ? 1 : 0);
+    else if (column == QStringLiteral("seeders"))
+        cmpResult = a->torrentSeeders() < b->torrentSeeders() ? -1 : (a->torrentSeeders() > b->torrentSeeders() ? 1 : 0);
+    else if (column == QStringLiteral("peers"))
+        cmpResult = a->torrentPeers() < b->torrentPeers() ? -1 : (a->torrentPeers() > b->torrentPeers() ? 1 : 0);
+    else if (column == QStringLiteral("ratio"))
+        cmpResult = a->torrentRatio() < b->torrentRatio() ? -1 : (a->torrentRatio() > b->torrentRatio() ? 1 : 0);
+    else if (column == QStringLiteral("uploaded"))
+        cmpResult = a->torrentUploaded() < b->torrentUploaded() ? -1 : (a->torrentUploaded() > b->torrentUploaded() ? 1 : 0);
+    else if (column == QStringLiteral("downloaded"))
+        cmpResult = a->torrentDownloaded() < b->torrentDownloaded() ? -1 : (a->torrentDownloaded() > b->torrentDownloaded() ? 1 : 0);
     else
         cmpResult = a->addedAt() < b->addedAt() ? -1 : (a->addedAt() > b->addedAt() ? 1 : 0);
 
@@ -350,10 +403,13 @@ int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QSt
 }
 
 QString DownloadTableModel::formatSize(qint64 bytes) {
-    if (bytes < 1024)       return QStringLiteral("%1 B").arg(bytes);
-    if (bytes < 1<<20)      return QStringLiteral("%1 KB").arg(bytes / 1024.0, 0, 'f', 1);
-    if (bytes < 1<<30)      return QStringLiteral("%1 MB").arg(bytes / (1<<20), 0, 'f', 1);
-    return                         QStringLiteral("%1 GB").arg(bytes / double(1<<30), 0, 'f', 2);
+    static constexpr double kKB = 1024.0;
+    static constexpr double kMB = kKB * 1024.0;
+    static constexpr double kGB = kMB * 1024.0;
+    if (bytes < 1024) return QStringLiteral("%1 B").arg(bytes);
+    if (bytes < kMB)  return QStringLiteral("%1 KB").arg(bytes / kKB, 0, 'f', 1);
+    if (bytes < kGB)  return QStringLiteral("%1 MB").arg(bytes / kMB, 0, 'f', 1);
+    return                  QStringLiteral("%1 GB").arg(bytes / kGB, 0, 'f', 1);
 }
 
 QString DownloadTableModel::formatSpeed(qint64 bps) {

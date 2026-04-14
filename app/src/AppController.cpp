@@ -28,7 +28,12 @@
 #include <QJsonArray>
 #include <QDesktopServices>
 #include <QNetworkAccessManager>
+#include <QNetworkInterface>
+#include <QNetworkProxy>
+#include <QNetworkProxyFactory>
 #include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QUrlQuery>
 #include <QDebug>
 #include "AppSettings.h"
 #include "DownloadQueue.h"
@@ -42,25 +47,384 @@
 #include "GrabberResultModel.h"
 #include "QueueDatabase.h"
 #include "QueueModel.h"
+#include "YtdlpManager.h"
+#include "TorrentFileModel.h"
+#include "YtdlpTransfer.h"
 #if defined(STELLAR_WINDOWS)
 #  include <windows.h>
+#  include <shellapi.h>
 #endif
 #include <QUrl>
 #include <QFile>
 #include <QFileInfo>
+#include <QSaveFile>
 #include <QStandardPaths>
 #include <QCoreApplication>
 #include <QGuiApplication>
 #include <QClipboard>
 #include <QProcess>
 #include <QTimer>
+#include <QLocale>
 #include <QRegularExpression>
 #include <QVersionNumber>
 #include <QCryptographicHash>
+#include <QTemporaryDir>
+#include <QDirIterator>
+#include <QFileDevice>
 #include <Queue.h>
 
 namespace {
 constexpr int kMinimumUpdateCheckIndicatorMs = 3000;
+constexpr qint64 kTorrentSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
+
+QString effectiveTemporaryDirectory(const AppSettings *settings) {
+    const QString configured = settings ? settings->temporaryDirectory().trimmed() : QString();
+    return configured.isEmpty()
+        ? (QStandardPaths::writableLocation(QStandardPaths::TempLocation) + QStringLiteral("/Stellar"))
+        : configured;
+}
+
+QString buildYtdlpProxyUrl(const AppSettings *settings, const QUrl &targetUrl) {
+    if (!settings)
+        return {};
+
+    auto proxyToUrl = [](const QNetworkProxy &proxy) -> QString {
+        if (proxy.type() == QNetworkProxy::NoProxy ||
+            proxy.type() == QNetworkProxy::DefaultProxy) {
+            return {};
+        }
+
+        const QString host = proxy.hostName().trimmed();
+        if (host.isEmpty() || proxy.port() <= 0)
+            return {};
+
+        const QString scheme = proxy.type() == QNetworkProxy::Socks5Proxy
+            ? QStringLiteral("socks5")
+            : QStringLiteral("http");
+
+        QUrl url;
+        url.setScheme(scheme);
+        url.setHost(host);
+        url.setPort(proxy.port());
+        if (!proxy.user().isEmpty())
+            url.setUserName(proxy.user());
+        if (!proxy.password().isEmpty())
+            url.setPassword(proxy.password());
+        return url.toString(QUrl::FullyEncoded);
+    };
+
+    switch (settings->proxyType()) {
+    case 1: {
+        const QNetworkProxyQuery query(targetUrl.isValid() ? targetUrl
+                                                           : QUrl(QStringLiteral("http://example.com")));
+        const QList<QNetworkProxy> proxies = QNetworkProxyFactory::systemProxyForQuery(query);
+        for (const QNetworkProxy &proxy : proxies) {
+            const QString proxyUrl = proxyToUrl(proxy);
+            if (!proxyUrl.isEmpty())
+                return proxyUrl;
+        }
+        return {};
+    }
+    case 2:
+    case 3: {
+        const QString host = settings->proxyHost().trimmed();
+        const int port = settings->proxyPort();
+        if (host.isEmpty() || port <= 0)
+            return {};
+
+        QNetworkProxy proxy(settings->proxyType() == 3
+                                ? QNetworkProxy::Socks5Proxy
+                                : QNetworkProxy::HttpProxy,
+                            host,
+                            static_cast<quint16>(port),
+                            settings->proxyUsername(),
+                            settings->proxyPassword());
+        return proxyToUrl(proxy);
+    }
+    default:
+        return {};
+    }
+}
+
+void applyPerTorrentSpeedLimits(TorrentSessionManager *session, DownloadItem *item) {
+    if (!session || !item || !item->isTorrent())
+        return;
+    session->setPerTorrentDownloadLimit(item->id(), item->perTorrentDownLimitKBps());
+    session->setPerTorrentUploadLimit(item->id(), item->perTorrentUpLimitKBps());
+}
+
+bool isBareTorrentInfoHash(const QString &value) {
+    const QString trimmed = value.trimmed();
+    if (trimmed.size() != 40)
+        return false;
+    for (const QChar ch : trimmed) {
+        if (!ch.isDigit() && (ch.toLower() < QLatin1Char('a') || ch.toLower() > QLatin1Char('f')))
+            return false;
+    }
+    return true;
+}
+
+QString normalizeTorrentSource(const QString &source) {
+    const QString trimmed = source.trimmed();
+    if (isBareTorrentInfoHash(trimmed))
+        return QStringLiteral("magnet:?xt=urn:btih:%1").arg(trimmed.toLower());
+    return trimmed;
+}
+
+QString extractDbVersionFromName(const QString &name) {
+    static const QRegularExpression re(QStringLiteral("dbip-city-lite-(\\d{4}-\\d{2})\\.mmdb(?:\\.gz)?"),
+                                       QRegularExpression::CaseInsensitiveOption);
+    const QRegularExpressionMatch m = re.match(name);
+    return m.hasMatch() ? m.captured(1) : QString();
+}
+
+bool extractGzipToFile(const QString &archivePath, const QString &targetPath, QString *errorText) {
+#if defined(Q_OS_WIN)
+    const QString inEscaped = QString(archivePath).replace('\'', QStringLiteral("''"));
+    const QString outEscaped = QString(targetPath).replace('\'', QStringLiteral("''"));
+    QString script = QStringLiteral(
+        "$in='%1';"
+        "$out='%2';"
+        "$src=[System.IO.File]::OpenRead($in);"
+        "try {"
+        "  $gz=New-Object System.IO.Compression.GzipStream($src,[System.IO.Compression.CompressionMode]::Decompress);"
+        "  try {"
+        "    $dst=[System.IO.File]::Create($out);"
+        "    try { $gz.CopyTo($dst) } finally { $dst.Dispose() }"
+        "  } finally { $gz.Dispose() }"
+        "} finally { $src.Dispose() }")
+        .arg(inEscaped, outEscaped);
+
+    QProcess ps;
+    ps.setProgram(QStringLiteral("powershell"));
+    ps.setArguments({ QStringLiteral("-NoProfile"),
+                      QStringLiteral("-NonInteractive"),
+                      QStringLiteral("-Command"),
+                      script });
+    ps.start();
+    if (!ps.waitForFinished()) {
+        if (errorText)
+            *errorText = QStringLiteral("Failed to run PowerShell for gzip extraction.");
+        return false;
+    }
+    if (ps.exitStatus() != QProcess::NormalExit || ps.exitCode() != 0) {
+        const QString stderrText = QString::fromUtf8(ps.readAllStandardError()).trimmed();
+        if (errorText)
+            *errorText = stderrText.isEmpty()
+                ? QStringLiteral("PowerShell gzip extraction failed.")
+                : stderrText;
+        return false;
+    }
+    return QFileInfo::exists(targetPath) && QFileInfo(targetPath).size() > 0;
+#else
+    QProcess gzip;
+    gzip.setProgram(QStringLiteral("gzip"));
+    gzip.setArguments({ QStringLiteral("-dc"), archivePath });
+    gzip.start();
+    if (!gzip.waitForFinished()) {
+        if (errorText)
+            *errorText = QStringLiteral("Failed to run gzip for extraction.");
+        return false;
+    }
+    if (gzip.exitStatus() != QProcess::NormalExit || gzip.exitCode() != 0) {
+        const QString stderrText = QString::fromUtf8(gzip.readAllStandardError()).trimmed();
+        if (errorText)
+            *errorText = stderrText.isEmpty()
+                ? QStringLiteral("gzip extraction failed.")
+                : stderrText;
+        return false;
+    }
+
+    const QByteArray mmdbBytes = gzip.readAllStandardOutput();
+    if (mmdbBytes.isEmpty()) {
+        if (errorText)
+            *errorText = QStringLiteral("The downloaded archive did not contain a valid MMDB file.");
+        return false;
+    }
+    QSaveFile out(targetPath);
+    if (!out.open(QIODevice::WriteOnly)) {
+        if (errorText)
+            *errorText = QStringLiteral("Cannot write %1: %2").arg(targetPath, out.errorString());
+        return false;
+    }
+    if (out.write(mmdbBytes) != mmdbBytes.size()) {
+        if (errorText)
+            *errorText = QStringLiteral("Failed while writing %1.").arg(targetPath);
+        out.cancelWriting();
+        return false;
+    }
+    if (!out.commit()) {
+        if (errorText)
+            *errorText = QStringLiteral("Failed to finalize %1.").arg(targetPath);
+        return false;
+    }
+    return true;
+#endif
+}
+
+QByteArray fileSha256Hex(const QString &path, QString *errorText) {
+    QFile f(path);
+    if (!f.open(QIODevice::ReadOnly)) {
+        if (errorText)
+            *errorText = QStringLiteral("Could not open %1 for hash verification: %2")
+                             .arg(path, f.errorString());
+        return {};
+    }
+    return QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256).toHex();
+}
+
+bool verifyFileSha256(const QString &path, const QString &expectedHex, QString *errorText) {
+    const QString normalized = expectedHex.trimmed().toLower();
+    if (normalized.isEmpty())
+        return true;
+    const QByteArray actual = fileSha256Hex(path, errorText);
+    if (actual.isEmpty() && !normalized.isEmpty())
+        return false;
+    if (QString::fromLatin1(actual).toLower() == normalized)
+        return true;
+    if (errorText)
+        *errorText = QStringLiteral("Hash verification failed for %1.").arg(QFileInfo(path).fileName());
+    return false;
+}
+
+bool installFfmpegFromPayload(const QString &payloadPath, const QString &targetDir, QString *errorText) {
+    const QString lowerName = QFileInfo(payloadPath).fileName().toLower();
+#if defined(Q_OS_WIN)
+    const QString targetPath = QDir(targetDir).filePath(QStringLiteral("ffmpeg.exe"));
+    if (lowerName.endsWith(QStringLiteral(".exe"))) {
+        QFile::remove(targetPath);
+        if (!QFile::copy(payloadPath, targetPath)) {
+            if (errorText)
+                *errorText = QStringLiteral("Could not install ffmpeg.exe to %1").arg(targetPath);
+            return false;
+        }
+        return true;
+    }
+
+    if (!lowerName.endsWith(QStringLiteral(".zip"))) {
+        if (errorText)
+            *errorText = QStringLiteral("Unsupported FFmpeg archive format: %1").arg(lowerName);
+        return false;
+    }
+
+    QTemporaryDir tempDir;
+    if (!tempDir.isValid()) {
+        if (errorText)
+            *errorText = QStringLiteral("Could not create temporary directory for FFmpeg extraction.");
+        return false;
+    }
+
+    const QString inEscaped = QString(payloadPath).replace('\'', QStringLiteral("''"));
+    const QString outEscaped = QString(tempDir.path()).replace('\'', QStringLiteral("''"));
+    const QString script = QStringLiteral(
+        "Expand-Archive -LiteralPath '%1' -DestinationPath '%2' -Force")
+                               .arg(inEscaped, outEscaped);
+    QProcess ps;
+    ps.setProgram(QStringLiteral("powershell"));
+    ps.setArguments({ QStringLiteral("-NoProfile"),
+                      QStringLiteral("-NonInteractive"),
+                      QStringLiteral("-Command"),
+                      script });
+    ps.start();
+    if (!ps.waitForFinished() || ps.exitStatus() != QProcess::NormalExit || ps.exitCode() != 0) {
+        const QString stderrText = QString::fromUtf8(ps.readAllStandardError()).trimmed();
+        if (errorText)
+            *errorText = stderrText.isEmpty()
+                ? QStringLiteral("Could not extract FFmpeg ZIP archive.")
+                : stderrText;
+        return false;
+    }
+
+    QString extracted;
+    QDirIterator it(tempDir.path(), QStringList{ QStringLiteral("ffmpeg.exe") }, QDir::Files, QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        extracted = it.next();
+        if (!extracted.isEmpty())
+            break;
+    }
+    if (extracted.isEmpty()) {
+        if (errorText)
+            *errorText = QStringLiteral("FFmpeg archive did not contain ffmpeg.exe.");
+        return false;
+    }
+
+    QFile::remove(targetPath);
+    if (!QFile::copy(extracted, targetPath)) {
+        if (errorText)
+            *errorText = QStringLiteral("Could not copy ffmpeg.exe to %1").arg(targetPath);
+        return false;
+    }
+    return true;
+#else
+    const QString targetPath = QDir(targetDir).filePath(QStringLiteral("ffmpeg"));
+
+    if (lowerName.endsWith(QStringLiteral(".tar.xz"))
+        || lowerName.endsWith(QStringLiteral(".txz"))
+        || lowerName.endsWith(QStringLiteral(".tar.gz"))
+        || lowerName.endsWith(QStringLiteral(".tgz"))) {
+        QTemporaryDir tempDir;
+        if (!tempDir.isValid()) {
+            if (errorText)
+                *errorText = QStringLiteral("Could not create temporary directory for FFmpeg extraction.");
+            return false;
+        }
+
+        QProcess tar;
+        tar.setProgram(QStringLiteral("tar"));
+        tar.setArguments({ QStringLiteral("-xf"), payloadPath, QStringLiteral("-C"), tempDir.path() });
+        tar.start();
+        if (!tar.waitForFinished() || tar.exitStatus() != QProcess::NormalExit || tar.exitCode() != 0) {
+            const QString stderrText = QString::fromUtf8(tar.readAllStandardError()).trimmed();
+            if (errorText)
+                *errorText = stderrText.isEmpty()
+                    ? QStringLiteral("Could not extract FFmpeg archive with tar.")
+                    : stderrText;
+            return false;
+        }
+
+        QString extracted;
+        QDirIterator it(tempDir.path(), QStringList{ QStringLiteral("ffmpeg") }, QDir::Files, QDirIterator::Subdirectories);
+        while (it.hasNext()) {
+            const QString candidate = it.next();
+            if (QFileInfo(candidate).isExecutable()) {
+                extracted = candidate;
+                break;
+            }
+            if (extracted.isEmpty())
+                extracted = candidate;
+        }
+        if (extracted.isEmpty()) {
+            if (errorText)
+                *errorText = QStringLiteral("FFmpeg archive did not contain an ffmpeg binary.");
+            return false;
+        }
+
+        QFile::remove(targetPath);
+        if (!QFile::copy(extracted, targetPath)) {
+            if (errorText)
+                *errorText = QStringLiteral("Could not copy ffmpeg to %1").arg(targetPath);
+            return false;
+        }
+    } else if (lowerName.endsWith(QStringLiteral(".gz"))) {
+        if (!extractGzipToFile(payloadPath, targetPath, errorText))
+            return false;
+    } else {
+        QFile::remove(targetPath);
+        if (!QFile::copy(payloadPath, targetPath)) {
+            if (errorText)
+                *errorText = QStringLiteral("Could not install ffmpeg to %1").arg(targetPath);
+            return false;
+        }
+    }
+
+    QFile targetFile(targetPath);
+    targetFile.setPermissions(
+        QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner |
+        QFileDevice::ReadGroup | QFileDevice::ExeGroup |
+        QFileDevice::ReadOther | QFileDevice::ExeOther);
+    return true;
+#endif
+}
 }
 
 void AppController::checkUrl(const QString &url, QJSValue callback) {
@@ -107,6 +471,62 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_db            = new DownloadDatabase(this);
     m_queueDb       = new QueueDatabase(this);
     m_queueModel    = new QueueModel(this);
+    m_ytdlpManager  = new YtdlpManager(m_nam, this);
+    m_torrentSearchManager = new TorrentSearchManager(m_nam, this);
+    m_torrentSession = new TorrentSessionManager(this);
+    refreshIpToCityDbInfo();
+
+    QTimer::singleShot(0, this, [this]() {
+        if (!m_nam || !m_torrentSession)
+            return;
+        QNetworkRequest request(QUrl(QStringLiteral("https://api.ipify.org?format=text")));
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+        request.setHeader(QNetworkRequest::UserAgentHeader,
+                          QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION)));
+        QNetworkReply *reply = m_nam->get(request);
+        connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+            const QString ip = QString::fromUtf8(reply->readAll()).trimmed();
+            reply->deleteLater();
+            if (reply->error() != QNetworkReply::NoError || ip.isEmpty())
+                return;
+            QNetworkRequest geoRequest(QUrl(QStringLiteral("https://ipwho.is/%1").arg(ip)));
+            geoRequest.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+            geoRequest.setHeader(QNetworkRequest::UserAgentHeader,
+                                 QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION)));
+            QNetworkReply *geoReply = m_nam->get(geoRequest);
+            connect(geoReply, &QNetworkReply::finished, this, [this, geoReply, ip]() {
+                const QByteArray payload = geoReply->readAll();
+                const bool ok = geoReply->error() == QNetworkReply::NoError;
+                geoReply->deleteLater();
+                if (!ok) {
+                    m_torrentSession->setDetectedExternalAddress(ip);
+                    return;
+                }
+
+                const QJsonDocument doc = QJsonDocument::fromJson(payload);
+                const QJsonObject obj = doc.object();
+                const bool success = obj.value(QStringLiteral("success")).toBool(true);
+                const double latitude = obj.value(QStringLiteral("latitude")).toDouble();
+                const double longitude = obj.value(QStringLiteral("longitude")).toDouble();
+                const bool hasCoordinates = success && (latitude != 0.0 || longitude != 0.0);
+                m_torrentSession->setDetectedExternalAddress(ip, latitude, longitude, hasCoordinates);
+            });
+        });
+    });
+
+    // ── Proxy ────────────────────────────────────────────────────────────────────
+    // Apply once on startup, then re-apply whenever any proxy setting changes.
+    // QNetworkProxy::setApplicationProxy is process-wide — every QNetworkAccessManager
+    // that does not have its own explicit proxy set inherits it automatically,
+    // which covers m_nam (downloads, updates, grabber) and the yt-dlp probe NAM.
+    applyProxy();
+    auto reconnectProxy = [this]() { applyProxy(); };
+    connect(m_settings, &AppSettings::proxyTypeChanged,     this, reconnectProxy);
+    connect(m_settings, &AppSettings::proxyHostChanged,     this, reconnectProxy);
+    connect(m_settings, &AppSettings::proxyPortChanged,     this, reconnectProxy);
+    connect(m_settings, &AppSettings::proxyUsernameChanged, this, reconnectProxy);
+    connect(m_settings, &AppSettings::proxyPasswordChanged, this, reconnectProxy);
+
     m_saveTimer     = new QTimer(this);
     m_saveTimer->setSingleShot(true);
     m_saveTimer->setInterval(500);
@@ -133,24 +553,64 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_tooltipTimer = new QTimer(this);
     m_tooltipTimer->setInterval(2000);
     connect(m_tooltipTimer, &QTimer::timeout, this, [this] {
-        qint64 totalSpeed = 0;
-        for (DownloadItem *item : m_downloadModel->allItems())
-            totalSpeed += item->speed();
+        qint64 totalDownSpeed = 0;
+        qint64 totalUpSpeed = 0;
+        for (DownloadItem *item : m_downloadModel->allItems()) {
+            totalDownSpeed += item->speed();
+            if (item->isTorrent())
+                totalUpSpeed += item->torrentUploadSpeed();
+        }
 
         const int total  = m_downloadModel->allItems().size();
         const int active = m_queue->activeCount();
 
         QString tip = QStringLiteral("Stellar Download Manager v") + appVersion();
         if (active > 0) {
-            if (totalSpeed >= 1024LL * 1024)
-                tip += QStringLiteral("\nSpeed: %1 MB/s").arg(double(totalSpeed) / (1024.0 * 1024.0), 0, 'f', 1);
-            else
-                tip += QStringLiteral("\nSpeed: %1 KB/s").arg(double(totalSpeed) / 1024.0, 0, 'f', 0);
+            auto formatSpeedLine = [](qint64 bytesPerSecond) {
+                if (bytesPerSecond >= 1024LL * 1024)
+                    return QStringLiteral("%1 MB/s").arg(double(bytesPerSecond) / (1024.0 * 1024.0), 0, 'f', 1);
+                return QStringLiteral("%1 KB/s").arg(double(bytesPerSecond) / 1024.0, 0, 'f', 0);
+            };
+            tip += QStringLiteral("\nDown: %1").arg(formatSpeedLine(totalDownSpeed));
+            tip += QStringLiteral("\nUp: %1").arg(formatSpeedLine(totalUpSpeed));
         }
         tip += QStringLiteral("\nDownloads: %1   Running: %2").arg(total).arg(active);
         if (m_tray) m_tray->setToolTip(tip);
     });
     m_tooltipTimer->start();
+
+    m_torrentSpeedHistoryTimer = new QTimer(this);
+    m_torrentSpeedHistoryTimer->setInterval(1000);
+    connect(m_torrentSpeedHistoryTimer, &QTimer::timeout, this, [this]() {
+        const qint64 nowMs = QDateTime::currentMSecsSinceEpoch();
+        const qint64 cutoff = nowMs - kTorrentSpeedHistoryRetentionMs;
+        QSet<QString> activeIds;
+        const auto items = m_downloadModel->allItems();
+        for (DownloadItem *item : items) {
+            if (!item || !item->isTorrent())
+                continue;
+            activeIds.insert(item->id());
+            auto &series = m_torrentSpeedHistory[item->id()];
+            const int down = static_cast<int>(std::max<qint64>(0, item->speed()));
+            const int up = static_cast<int>(std::max<qint64>(0, item->torrentUploadSpeed()));
+            const bool shouldAppend = series.isEmpty()
+                || series.last().downBps != down
+                || series.last().upBps != up
+                || (nowMs - series.last().timestampMs) >= 10000; // heartbeat every 10s
+            if (shouldAppend)
+                series.append({ nowMs, down, up });
+            while (!series.isEmpty() && series.first().timestampMs < cutoff)
+                series.removeFirst();
+        }
+        for (auto it = m_torrentSpeedHistory.begin(); it != m_torrentSpeedHistory.end();) {
+            if (!activeIds.contains(it.key())) {
+                it = m_torrentSpeedHistory.erase(it);
+            } else {
+                ++it;
+            }
+        }
+    });
+    m_torrentSpeedHistoryTimer->start();
 
     // ── 2. IPC Server ──────────────────────────────────────────────────────────
     m_ipcServer = new QLocalServer(this);
@@ -172,7 +632,20 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 const QString cookies   = obj.value(QStringLiteral("cookies")).toString();
                 const QString referrer  = obj.value(QStringLiteral("referrer")).toString();
                 const QString pageUrl   = obj.value(QStringLiteral("pageUrl")).toString();
-                if (m_settings->startImmediately()) {
+                if (isTorrentUri(url)) {
+                    beginTorrentMetadataDownload(url,
+                                                 m_settings->defaultSavePath(),
+                                                 QString(),
+                                                 QString(),
+                                                 true);
+                    emit showWindowRequested();
+                } else if (isLikelyYtdlpUrl(url)) {
+                    if (!cookies.isEmpty()) m_pendingCookies[url] = cookies;
+                    if (!referrer.isEmpty()) m_pendingReferrers[url] = referrer;
+                    if (!pageUrl.isEmpty()) m_pendingPageUrls[url] = pageUrl;
+                    emit showWindowRequested();
+                    emit interceptedDownloadRequested(url, name);
+                } else if (m_settings->startImmediately()) {
                     addUrl(url, {}, {}, {}, true, cookies, referrer, pageUrl);
                     emit showWindowRequested();
                 } else {
@@ -225,10 +698,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_queue->setCustomUserAgentEnabled(m_settings->useCustomUserAgent());
     m_queue->setCustomUserAgent(m_settings->customUserAgent());
     m_queue->setTemporaryDirectory(m_settings->temporaryDirectory());
+    m_queue->setMaxConnectionsPerHost(m_settings->perHostConnectionLimit());
     m_queue->setCanStartPredicate([this](DownloadItem *item) {
         return canStartDownloadItem(item);
     });
-    cleanupTemporaryDirectory();
     connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this]() {
         m_queue->setSpeedLimitKBps(m_settings->globalSpeedLimitKBps());
     });
@@ -267,6 +740,69 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_queue->setTemporaryDirectory(m_settings->temporaryDirectory());
         cleanupTemporaryDirectory();
     });
+    connect(m_settings, &AppSettings::perHostConnectionLimitChanged, this, [this]() {
+        m_queue->setMaxConnectionsPerHost(m_settings->perHostConnectionLimit());
+    });
+    m_torrentSession->applySettings(m_settings);
+    connect(m_settings, &AppSettings::torrentSettingsChanged, this, [this]() {
+        m_torrentSession->applySettings(m_settings);
+    });
+    connect(m_settings, &AppSettings::torrentSettingsChanged, this, &AppController::torrentBindingStatusTextChanged);
+    connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this]() {
+        m_torrentSession->applySettings(m_settings);
+    });
+    connect(m_settings, &AppSettings::globalUploadLimitKBpsChanged, this, [this]() {
+        m_torrentSession->applySettings(m_settings);
+    });
+    connect(m_settings, &AppSettings::customUserAgentChanged, this, [this]() {
+        m_torrentSession->applySettings(m_settings);
+    });
+    connect(m_torrentSession, &TorrentSessionManager::torrentShareLimitReached, this, [this](const QString &id, int action) {
+        if (action == 0 || action == 1) {
+            pauseDownload(id);
+        } else if (action == 2) {
+            deleteDownload(id, 0);
+        } else if (action == 3) {
+            deleteDownload(id, 1);
+        }
+    });
+    connect(m_torrentSession, &TorrentSessionManager::torrentFinished, this, [this](const QString &id) {
+        auto *item = m_downloadModel->itemById(id);
+        if (!item)
+            return;
+        const bool isPaused = item->statusEnum() == DownloadItem::Status::Paused;
+        if (!isPaused)
+            item->setStatus(DownloadItem::Status::Seeding);
+        scheduleSave(id);
+        // Suppress startup noise: restored/stopped torrents can emit a finished
+        // alert as session state rehydrates, but that should not trigger a
+        // "Download Complete" popup.
+        if (!isPaused && !m_restoring)
+            emit downloadCompleted(item);
+        emit activeDownloadsChanged();
+    });
+    connect(m_torrentSession, &TorrentSessionManager::torrentErrored, this, [this](const QString &id, const QString &reason) {
+        auto *item = m_downloadModel->itemById(id);
+        if (!item)
+            return;
+        item->setStatus(DownloadItem::Status::Error);
+        item->setErrorString(reason);
+        scheduleSave(id);
+        emit activeDownloadsChanged();
+    });
+
+    // ── yt-dlp Manager wiring ─────────────────────────────────────────────────
+    // Sync custom binary path from settings on startup and when it changes.
+    m_ytdlpManager->setCustomPath(m_settings->ytdlpCustomBinaryPath());
+    connect(m_settings, &AppSettings::ytdlpCustomBinaryPathChanged, this, [this]() {
+        m_ytdlpManager->setCustomPath(m_settings->ytdlpCustomBinaryPath());
+    });
+    // Check yt-dlp availability and optionally self-update on launch.
+    connect(m_ytdlpManager, &YtdlpManager::checkComplete, this, [this]() {
+        if (m_settings->ytdlpAutoUpdate() && m_ytdlpManager->available())
+            m_ytdlpManager->selfUpdate();
+    });
+    m_ytdlpManager->checkAvailability();
 
     // ── Clipboard URL monitoring ───────────────────────────────────────────────
     // When enabled, watch the system clipboard for URLs whose file extensions
@@ -286,6 +822,15 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         QUrl url(text);
         if (!url.isValid() || (url.scheme() != QLatin1String("http") && url.scheme() != QLatin1String("https")))
             return;
+
+        // yt-dlp-compatible sites have no file extension in the URL — check them first.
+        // If the URL looks like a supported video site, emit the dedicated signal so
+        // QML can open the yt-dlp format picker instead of the regular Add URL dialog.
+        if (isLikelyYtdlpUrl(text)) {
+            m_lastClipboardUrl = text;
+            emit ytdlpClipboardUrlDetected(text);
+            return;
+        }
 
         // Extract the file extension from the URL path (ignore query / fragment)
         const QString path = url.path();
@@ -369,9 +914,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (m_recentErrorDownloads.remove(id) > 0)
             emit recentErrorDownloadsChanged();
         m_dirtyIds.remove(id);
+        m_lastProgressPersistBytes.remove(id);
+        m_lastProgressPersistAt.remove(id);
         m_db->remove(id);
     });
     connect(m_queue, &DownloadQueue::itemCompleted, this, [this](DownloadItem *item) {
+        const bool isIpToCityUpdateItem = (item && item->id() == m_pendingIpToCityDbDownloadId);
+        const bool isFfmpegUpdateItem = (item && item->id() == m_pendingFfmpegDownloadId);
         m_db->save(item);
         m_dirtyIds.remove(item->id());
         m_queueRetryCounts.remove(item->id());
@@ -412,7 +961,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 }
             }
         }
-        if (!m_pendingFileInfoDownloads.contains(item->id())
+        if (!isIpToCityUpdateItem
+            && !isFfmpegUpdateItem
+            && !m_pendingFileInfoDownloads.contains(item->id())
             && m_settings->showCompletionNotification()
             && m_tray
             && !isGrabberProjectId(item->category())) {
@@ -421,7 +972,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 : item->filename();
             m_tray->showNotification(QStringLiteral("Download Complete"), name);
         }
-        if (!m_pendingFileInfoDownloads.contains(item->id()))
+        if (!isIpToCityUpdateItem
+            && !isFfmpegUpdateItem
+            && !m_pendingFileInfoDownloads.contains(item->id()))
             emit downloadCompleted(item);
 
         if (item && item->id() == m_pendingUpdateDownloadId) {
@@ -449,6 +1002,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         QCoreApplication::quit();
                     else
                         emit updateError(QStringLiteral("Stellar downloaded the update, but could not launch the installer."));
+#else
+                    m_updateStatusText = QStringLiteral("Update package downloaded: %1").arg(installerPath);
+                    emit updateStatusTextChanged();
 #endif
                 }
             }
@@ -456,10 +1012,106 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_pendingUpdateInstallerPath.clear();
             m_pendingUpdateSha256.clear();
         }
+        if (item && item->id() == m_pendingIpToCityDbDownloadId) {
+            const QString dbUpdateId = item->id();
+            const QString archivePath = item->savePath() + QStringLiteral("/") + item->filename();
+            const QString targetDir = QCoreApplication::applicationDirPath() + QStringLiteral("/data");
+            QDir().mkpath(targetDir);
+            if (m_torrentSession)
+                m_torrentSession->releaseGeoDatabaseForUpdate();
+
+            const QString sourceName = item->filename();
+            QString targetName = sourceName;
+            if (targetName.endsWith(QStringLiteral(".gz"), Qt::CaseInsensitive))
+                targetName.chop(3);
+            if (targetName.isEmpty())
+                targetName = QStringLiteral("dbip-city-lite-2026-04.mmdb");
+            const QString targetPath = targetDir + QStringLiteral("/") + targetName;
+
+            bool installOk = false;
+            QString failureReason;
+            if (sourceName.endsWith(QStringLiteral(".gz"), Qt::CaseInsensitive)) {
+                installOk = extractGzipToFile(archivePath, targetPath, &failureReason);
+            } else {
+                QFile::remove(targetPath);
+                installOk = QFile::copy(archivePath, targetPath);
+                if (!installOk)
+                    failureReason = QStringLiteral("Could not install %1 to %2").arg(sourceName, targetPath);
+            }
+
+            m_pendingIpToCityDbDownloadId.clear();
+            m_ipToCityDbUpdating = false;
+            if (installOk) {
+                m_ipToCityDbUpdateStatus = QStringLiteral("IP-to-city database updated successfully.");
+                refreshIpToCityDbInfo();
+            } else {
+                m_ipToCityDbUpdateStatus = failureReason.isEmpty()
+                    ? QStringLiteral("IP-to-city database update failed.")
+                    : failureReason;
+                refreshIpToCityDbInfo();
+            }
+            QFile::remove(archivePath);
+            emit ipToCityDbUpdateStateChanged();
+            QTimer::singleShot(0, this, [this, dbUpdateId]() {
+                if (!m_downloadModel->itemById(dbUpdateId))
+                    return;
+                deleteDownloads(QStringList{dbUpdateId}, 0);
+            });
+        }
+        if (item && item->id() == m_pendingFfmpegDownloadId) {
+            const QString ffmpegUpdateId = item->id();
+            const QString payloadPath = item->savePath() + QStringLiteral("/") + item->filename();
+            const QString installDir = QCoreApplication::applicationDirPath();
+
+            QString failureReason;
+            const bool hashOk = verifyFileSha256(payloadPath, m_ffmpegUpdateSha256, &failureReason);
+            bool installOk = false;
+            if (hashOk)
+                installOk = installFfmpegFromPayload(payloadPath, installDir, &failureReason);
+
+            m_pendingFfmpegDownloadId.clear();
+            m_ffmpegUpdating = false;
+            if (hashOk && installOk) {
+                m_ffmpegUpdateStatus = QStringLiteral("FFmpeg updated successfully.");
+                if (m_ytdlpManager)
+                    m_ytdlpManager->checkAvailability();
+            } else {
+                m_ffmpegUpdateStatus = failureReason.isEmpty()
+                    ? QStringLiteral("FFmpeg update failed.")
+                    : failureReason;
+            }
+            QFile::remove(payloadPath);
+            emit ffmpegUpdateStateChanged();
+            QTimer::singleShot(0, this, [this, ffmpegUpdateId]() {
+                if (!m_downloadModel->itemById(ffmpegUpdateId))
+                    return;
+                deleteDownloads(QStringList{ffmpegUpdateId}, 0);
+            });
+        }
     });
     connect(m_queue, &DownloadQueue::itemFailed, this, [this](DownloadItem *item, const QString &reason) {
         if (!item)
             return;
+        if (item->id() == m_pendingIpToCityDbDownloadId) {
+            const QString archivePath = item->savePath() + QStringLiteral("/") + item->filename();
+            m_pendingIpToCityDbDownloadId.clear();
+            m_ipToCityDbUpdating = false;
+            m_ipToCityDbUpdateStatus = reason.isEmpty()
+                ? QStringLiteral("IP-to-city database update download failed.")
+                : QStringLiteral("IP-to-city database update download failed: %1").arg(reason);
+            QFile::remove(archivePath);
+            emit ipToCityDbUpdateStateChanged();
+        }
+        if (item->id() == m_pendingFfmpegDownloadId) {
+            const QString payloadPath = item->savePath() + QStringLiteral("/") + item->filename();
+            m_pendingFfmpegDownloadId.clear();
+            m_ffmpegUpdating = false;
+            m_ffmpegUpdateStatus = reason.isEmpty()
+                ? QStringLiteral("FFmpeg update download failed.")
+                : QStringLiteral("FFmpeg update download failed: %1").arg(reason);
+            QFile::remove(payloadPath);
+            emit ffmpegUpdateStateChanged();
+        }
         m_recentErrorDownloads[item->id()] = QDateTime::currentDateTime();
         emit recentErrorDownloadsChanged();
         m_db->save(item);
@@ -467,20 +1119,28 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         Queue *queue = (!item->queueId().isEmpty() && m_queueModel)
             ? m_queueModel->queueById(item->queueId())
             : nullptr;
-        if (queue && queue->hasMaxRetries()) {
-            const int retries = m_queueRetryCounts.value(item->id(), 0);
-            if (retries < queue->maxRetries()) {
-                m_queueRetryCounts[item->id()] = retries + 1;
-                QTimer::singleShot(1000, this, [this, id = item->id()]() {
-                    DownloadItem *retryItem = m_downloadModel->itemById(id);
-                    if (!retryItem || retryItem->statusEnum() != DownloadItem::Status::Error)
-                        return;
-                    retryItem->setStatus(DownloadItem::Status::Queued);
-                    scheduleSave(id);
-                    m_queue->scheduleNext();
-                });
-                return;
-            }
+        // Determine retry limit: queue-specific if available, else global setting.
+        int maxRetries = 0;
+        if (queue && queue->hasMaxRetries())
+            maxRetries = queue->maxRetries();
+        else if (m_settings->maxRetries() > 0)
+            maxRetries = m_settings->maxRetries();
+
+        const int retries = m_queueRetryCounts.value(item->id(), 0);
+        if (maxRetries > 0 && retries < maxRetries) {
+            m_queueRetryCounts[item->id()] = retries + 1;
+            // Exponential backoff: 2s, 4s, 8s, 16s, ... capped at 60s
+            int delayMs = (std::min)(2000 * (1 << retries), 60000);
+            QTimer::singleShot(delayMs, this, [this, id = item->id()]() {
+                DownloadItem *retryItem = m_downloadModel->itemById(id);
+                if (!retryItem || retryItem->statusEnum() != DownloadItem::Status::Error)
+                    return;
+                retryItem->setStatus(DownloadItem::Status::Queued);
+                retryItem->setErrorString({});
+                scheduleSave(id);
+                m_queue->scheduleNext();
+            });
+            return;
         }
         m_queueRetryCounts.remove(item->id());
         if (!item->queueId().isEmpty() && item->doneBytes() > 0) {
@@ -514,6 +1174,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_tray, &SystemTrayIcon::contextMenuRequested,  this, &AppController::contextMenuRequested);
     
     connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this, [this]() {
+        const auto items = m_downloadModel->allItems();
+        for (DownloadItem *item : items) {
+            if (item && item->isTorrent())
+                m_torrentSession->saveResumeData(item->id());
+        }
         flushDirty();
     });
     if (m_settings->autoCheckUpdates()) {
@@ -536,6 +1201,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             QTimer::singleShot(i * 16, this, [this, item = items.at(i)]() {
                 m_queue->enqueueRestored(item);
                 watchItem(item);
+                if (item->isTorrent()) {
+                    m_torrentSession->restoreTorrent(item);
+                    applyPerTorrentSpeedLimits(m_torrentSession, item);
+                }
             });
         }
         QTimer::singleShot(items.size() * 16 + 50, this, [this]() {
@@ -552,27 +1221,73 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                   if (queue && queue->startOnIDMStartup() && queue->id() != QStringLiteral("download-limits"))
                       startQueue(queue->id());
               }
+              cleanupTemporaryDirectory();
               if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
                       && m_settings->savedSpeedLimitKBps() > 0) {
                   m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
-            }
+              }
         });
-      } else {
-          checkQueueSchedules();
-          for (int i = 0; i < m_queueModel->rowCount(); ++i) {
-              Queue *queue = m_queueModel->queueAt(i);
-              if (queue && queue->startOnIDMStartup() && queue->id() != QStringLiteral("download-limits"))
-                  startQueue(queue->id());
-          }
-          if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
-                  && m_settings->savedSpeedLimitKBps() > 0) {
-              m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+    } else {
+        checkQueueSchedules();
+        for (int i = 0; i < m_queueModel->rowCount(); ++i) {
+            Queue *queue = m_queueModel->queueAt(i);
+            if (queue && queue->startOnIDMStartup() && queue->id() != QStringLiteral("download-limits"))
+                startQueue(queue->id());
         }
+        if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
+                && m_settings->savedSpeedLimitKBps() > 0) {
+            m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+        }
+        cleanupTemporaryDirectory();
     }
 }
 
 int AppController::activeDownloads() const {
-    return m_queue->activeCount();
+    int count = 0;
+    for (DownloadItem *item : m_downloadModel->allItems()) {
+        if (!item)
+            continue;
+        if (item->statusEnum() == DownloadItem::Status::Downloading
+            || item->statusEnum() == DownloadItem::Status::Seeding
+            || item->statusEnum() == DownloadItem::Status::Assembling)
+            ++count;
+    }
+    return count;
+}
+
+QString AppController::torrentBindingStatusText() const {
+    if (!m_settings)
+        return {};
+
+    const QString bindTarget = m_settings->torrentBindInterface().trimmed();
+    if (bindTarget.isEmpty())
+        return {};
+
+    const QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
+    for (const QNetworkInterface &iface : interfaces) {
+        if (iface.name() != bindTarget)
+            continue;
+
+        const QString label = iface.humanReadableName().trimmed().isEmpty()
+            ? iface.name()
+            : iface.humanReadableName().trimmed();
+        return QStringLiteral("🛡️ Bound to %1").arg(label);
+    }
+
+    return QStringLiteral("🛡️ Bound to %1").arg(bindTarget);
+}
+
+void AppController::setTorrentPortTestState(bool inProgress, const QString &status, const QString &message) {
+    if (m_torrentPortTestInProgress == inProgress
+        && m_torrentPortTestStatus == status
+        && m_torrentPortTestMessage == message) {
+        return;
+    }
+
+    m_torrentPortTestInProgress = inProgress;
+    m_torrentPortTestStatus = status;
+    m_torrentPortTestMessage = message;
+    emit torrentPortTestChanged();
 }
 
 void AppController::setSelectedCategory(const QString &v) {
@@ -651,6 +1366,67 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
     return item;
 }
 
+DownloadItem *AppController::createTorrentItem(const QString &source, const QString &savePath,
+                                               const QString &category, const QString &description,
+                                               bool startNow, const QString &queueId, bool emitUiSignal,
+                                               bool staged) {
+    const QString trimmed = source.trimmed();
+    if (trimmed.isEmpty())
+        return nullptr;
+
+    const QString id = generateId();
+    const QUrl qurl = QUrl::fromUserInput(trimmed);
+    auto *item = new DownloadItem(id, qurl);
+    item->setIsTorrent(true);
+    item->setTorrentSource(trimmed);
+
+    const QString filename = trimmed.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)
+        ? QStringLiteral("Magnetized transfer")
+        : QFileInfo(trimmed).completeBaseName();
+    if (!filename.isEmpty()) {
+        item->setFilename(filename);
+        item->setFilenameManuallySet(true);
+    }
+
+    const QString resolvedCategory = !category.isEmpty()
+        ? category
+        : QStringLiteral("Other");
+    item->setCategory(resolvedCategory);
+    item->setDescription(description);
+    item->setQueueId(queueId);
+    item->setResumeCapable(true);
+    const QString resolvedSavePath = savePath.isEmpty()
+        ? (m_settings->defaultSavePath().isEmpty()
+            ? QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)
+            : m_settings->defaultSavePath())
+        : savePath;
+    item->setSavePath(resolvedSavePath);
+    item->setStatus((staged || !startNow) ? DownloadItem::Status::Paused
+                                          : DownloadItem::Status::Downloading);
+
+    if (staged) {
+        m_pendingTorrentItems[item->id()] = item;
+        connect(item, &DownloadItem::torrentChanged, this, [this, item]() {
+            if (!item)
+                return;
+            if (!m_pendingTorrentItems.contains(item->id()))
+                return;
+            if (!item->torrentHasMetadata())
+                return;
+            if (m_torrentSession)
+                m_torrentSession->pause(item->id());
+            item->setStatus(DownloadItem::Status::Paused);
+        });
+    } else {
+        m_queue->enqueueRestored(item);
+        watchItem(item);
+        m_db->save(item);
+        if (emitUiSignal)
+            emit downloadAdded(item);
+    }
+    return item;
+}
+
 void AppController::addUrl(const QString &url, const QString &savePath,
                            const QString &category, const QString &description,
                            bool startNow, const QString &cookies,
@@ -660,6 +1436,375 @@ void AppController::addUrl(const QString &url, const QString &savePath,
     createDownloadItem(url, savePath, category, description, startNow, cookies,
                        referrer, parentUrl, username, password, filenameOverride,
                        queueId, true);
+}
+
+bool AppController::isTorrentUri(const QString &value) const {
+    return m_torrentSession && m_torrentSession->isTorrentUri(value);
+}
+
+QObject *AppController::downloadById(const QString &id) const {
+    if (m_pendingTorrentItems.contains(id))
+        return m_pendingTorrentItems.value(id);
+    return m_downloadModel->itemById(id);
+}
+
+QObject *AppController::torrentFileModel(const QString &id) const {
+    return m_torrentSession ? m_torrentSession->fileModel(id) : nullptr;
+}
+
+QObject *AppController::torrentPeerModel(const QString &id) const {
+    return m_torrentSession ? m_torrentSession->peerModel(id) : nullptr;
+}
+
+QObject *AppController::torrentTrackerModel(const QString &id) const {
+    return m_torrentSession ? m_torrentSession->trackerModel(id) : nullptr;
+}
+
+QVariantList AppController::torrentNetworkAdapters() const {
+    QVariantList adapters;
+
+    QVariantMap defaultOption;
+    defaultOption.insert(QStringLiteral("id"), QString());
+    defaultOption.insert(QStringLiteral("name"), QStringLiteral("Default route"));
+    defaultOption.insert(QStringLiteral("details"), QStringLiteral("Let the OS choose the active network adapter."));
+    adapters.push_back(defaultOption);
+
+    const QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
+    for (const QNetworkInterface &iface : interfaces) {
+        const auto flags = iface.flags();
+        if (!flags.testFlag(QNetworkInterface::IsUp) ||
+            !flags.testFlag(QNetworkInterface::IsRunning) ||
+            flags.testFlag(QNetworkInterface::IsLoopBack)) {
+            continue;
+        }
+
+        QStringList addresses;
+        const QList<QNetworkAddressEntry> entries = iface.addressEntries();
+        for (const QNetworkAddressEntry &entry : entries) {
+            const QHostAddress address = entry.ip();
+            if (address.isNull() || address.isLoopback())
+                continue;
+            if (address.protocol() != QAbstractSocket::IPv4Protocol &&
+                address.protocol() != QAbstractSocket::IPv6Protocol) {
+                continue;
+            }
+
+            addresses.push_back(address.toString());
+        }
+
+        if (addresses.isEmpty())
+            continue;
+
+        QVariantMap option;
+        option.insert(QStringLiteral("id"), iface.name());
+        option.insert(QStringLiteral("name"),
+                      iface.humanReadableName().trimmed().isEmpty()
+                          ? iface.name()
+                          : iface.humanReadableName().trimmed());
+        option.insert(QStringLiteral("details"), addresses.join(QStringLiteral(", ")));
+        adapters.push_back(option);
+    }
+
+    return adapters;
+}
+
+void AppController::testTorrentPort() {
+    if (!m_torrentSession || !m_settings) {
+        setTorrentPortTestState(false, QStringLiteral("error"),
+                                QStringLiteral("Torrent support is unavailable in this build."));
+        return;
+    }
+
+    const QString externalIp = m_torrentSession->detectedExternalAddress().trimmed();
+    const int port = m_settings->torrentListenPort();
+    if (externalIp.isEmpty()) {
+        setTorrentPortTestState(false, QStringLiteral("error"),
+                                QStringLiteral("External IP is not known yet. Start the torrent session and try again."));
+        return;
+    }
+    if (port <= 0 || port > 65535) {
+        setTorrentPortTestState(false, QStringLiteral("error"),
+                                QStringLiteral("Torrent listen port is not valid."));
+        return;
+    }
+
+    // respectful cooldown because i'm stealing this service from someone else
+
+    if (m_torrentPortTestCooldown.isValid() && m_torrentPortTestCooldown.elapsed() < 4000) {
+        return;
+    }
+
+    setTorrentPortTestState(true, QStringLiteral("testing"),
+                            QStringLiteral("Testing port %1 on %2...").arg(port).arg(externalIp));
+    m_torrentPortTestCooldown.restart();
+
+    QNetworkRequest request(QUrl(QStringLiteral("https://ports.yougetsignal.com/check-port.php")));
+    request.setHeader(QNetworkRequest::ContentTypeHeader,
+                      QStringLiteral("application/x-www-form-urlencoded; charset=UTF-8"));
+    request.setRawHeader("User-Agent",
+                         QByteArray("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0"));
+    request.setRawHeader("Accept",
+                         QByteArray("text/javascript, text/html, application/xml, text/xml, */*"));
+    request.setRawHeader("X-Requested-With", QByteArray("XMLHttpRequest"));
+    request.setRawHeader("X-Prototype-Version", QByteArray("1.6.0"));
+    request.setRawHeader("Origin", QByteArray("https://www.yougetsignal.com"));
+    request.setRawHeader("Referer", QByteArray("https://www.yougetsignal.com/"));
+
+    QUrlQuery form;
+    form.addQueryItem(QStringLiteral("remoteAddress"), externalIp);
+    form.addQueryItem(QStringLiteral("portNumber"), QString::number(port));
+    QNetworkReply *reply = m_nam->post(request, form.query(QUrl::FullyEncoded).toUtf8());
+
+    connect(reply, &QNetworkReply::finished, this, [this, reply, externalIp, port]() {
+        const QByteArray body = reply->readAll();
+        const QString responseText = QString::fromUtf8(body);
+        const QNetworkReply::NetworkError error = reply->error();
+        const QString errorText = reply->errorString();
+        reply->deleteLater();
+
+        if (error != QNetworkReply::NoError) {
+            setTorrentPortTestState(false, QStringLiteral("error"),
+                                    QStringLiteral("Port test failed: %1").arg(errorText));
+            return;
+        }
+
+        const QString lower = responseText.toLower();
+        if (lower.contains(QStringLiteral("is open"))) {
+            setTorrentPortTestState(false, QStringLiteral("open"),
+                                    QStringLiteral("Port %1 is open on %2. Incoming torrent connections should work.")
+                                        .arg(port).arg(externalIp));
+            return;
+        }
+
+        if (lower.contains(QStringLiteral("is closed"))) {
+            setTorrentPortTestState(false, QStringLiteral("closed"),
+                                    QStringLiteral("Port %1 is closed on %2. Check your firewall, router or VPN port forwarding, and adapter binding.")
+                                        .arg(port).arg(externalIp));
+            return;
+        }
+
+        setTorrentPortTestState(false, QStringLiteral("error"),
+                                QStringLiteral("Port test returned an unexpected response."));
+    });
+}
+
+bool AppController::setTorrentFileWanted(const QString &downloadId, int row, bool wanted) {
+    return m_torrentSession ? m_torrentSession->setFileWanted(downloadId, row, wanted) : false;
+}
+
+bool AppController::addTorrentTracker(const QString &downloadId, const QString &url) {
+    return m_torrentSession ? m_torrentSession->addTracker(downloadId, url) : false;
+}
+
+bool AppController::removeTorrentTracker(const QString &downloadId, const QString &url) {
+    return m_torrentSession ? m_torrentSession->removeTracker(downloadId, url) : false;
+}
+
+bool AppController::renameTorrentFile(const QString &downloadId, int fileIndex, const QString &newName) {
+    if (!m_torrentSession)
+        return false;
+
+    // Apply to libtorrent first, then mirror optimistically in the model.
+    // For path-based operations the backend needs the pre-rename path context.
+    if (!m_torrentSession->renameTorrentFile(downloadId, fileIndex, newName))
+        return false;
+
+    if (auto *model = qobject_cast<TorrentFileModel *>(m_torrentSession->fileModel(downloadId))) {
+        for (int row = 0; row < model->rowCount(); ++row) {
+            if (model->fileIndexAt(row) == fileIndex) {
+                model->renameEntry(row, newName);
+                break;
+            }
+        }
+    }
+    return true;
+}
+
+bool AppController::renameTorrentPath(const QString &downloadId, const QString &currentPath, const QString &newName) {
+    if (!m_torrentSession)
+        return false;
+
+    // Apply to libtorrent first so currentPath still matches the pre-rename tree.
+    if (!m_torrentSession->renameTorrentPath(downloadId, currentPath, newName))
+        return false;
+
+    if (auto *model = qobject_cast<TorrentFileModel *>(m_torrentSession->fileModel(downloadId)))
+        model->renamePath(currentPath, newName);
+    return true;
+}
+
+void AppController::setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd) {
+    if (m_torrentSession)
+        m_torrentSession->setTorrentFlags(downloadId, disableDht, disablePex, disableLsd);
+}
+
+QString AppController::addMagnetLink(const QString &uri, const QString &savePath,
+                                     const QString &category, const QString &description,
+                                     bool startNow, const QString &queueId) {
+    Q_UNUSED(startNow);
+    if (!m_torrentSession || !m_torrentSession->available()) {
+        emit errorOccurred(QStringLiteral("Torrent support is unavailable in this build."));
+        return {};
+    }
+    auto *item = createTorrentItem(normalizeTorrentSource(uri), savePath, category, description, true, queueId, false, true);
+    if (!item)
+        return {};
+    if (!m_torrentSession->addMagnet(item, false)) {
+        discardTorrentDownload(item->id());
+        emit errorOccurred(QStringLiteral("Failed to add magnet link."));
+        return {};
+    } else {
+        applyPerTorrentSpeedLimits(m_torrentSession, item);
+    }
+    return item->id();
+}
+
+QString AppController::addTorrentFile(const QString &filePath, const QString &savePath,
+                                      const QString &category, const QString &description,
+                                      bool startNow, const QString &queueId) {
+    Q_UNUSED(startNow);
+    if (!m_torrentSession || !m_torrentSession->available()) {
+        emit errorOccurred(QStringLiteral("Torrent support is unavailable in this build."));
+        return {};
+    }
+    auto *item = createTorrentItem(filePath, savePath, category, description, true, queueId, false, true);
+    if (!item)
+        return {};
+    // Staged .torrent adds should not start piece transfer before the metadata
+    // dialog is confirmed; metadata is already present in the .torrent file.
+    if (!m_torrentSession->addTorrentFile(item, filePath, true)) {
+        discardTorrentDownload(item->id());
+        emit errorOccurred(QStringLiteral("Failed to add torrent file."));
+        return {};
+    } else {
+        applyPerTorrentSpeedLimits(m_torrentSession, item);
+    }
+    return item->id();
+}
+
+QString AppController::beginTorrentMetadataDownload(const QString &source, const QString &savePath,
+                                                    const QString &category, const QString &description,
+                                                    bool startWhenReady) {
+    const QString trimmed = source.trimmed();
+    if (trimmed.isEmpty())
+        return {};
+    if (!m_torrentSession || !m_torrentSession->available()) {
+        emit errorOccurred(QStringLiteral("Torrent support is unavailable in this build."));
+        return {};
+    }
+
+    QString downloadId;
+    if (isTorrentUri(trimmed))
+        downloadId = addMagnetLink(trimmed, savePath, category, description, false, {});
+    else
+        return {};
+
+    if (!downloadId.isEmpty()) {
+        emit showWindowRequested();
+        emit torrentMetadataRequested(downloadId, startWhenReady);
+    }
+    return downloadId;
+}
+
+bool AppController::confirmTorrentDownload(const QString &downloadId, const QString &savePath,
+                                           const QString &category, const QString &description,
+                                           bool startNow, const QString &queueId) {
+    auto it = m_pendingTorrentItems.find(downloadId);
+    if (it == m_pendingTorrentItems.end())
+        return false;
+
+    DownloadItem *item = it.value();
+    if (!item)
+        return false;
+
+    const QString requestedSavePath = normalizeTorrentSaveDirectory(savePath);
+    const QString previousSavePath = item->savePath().trimmed();
+    if (!requestedSavePath.isEmpty())
+        item->setSavePath(requestedSavePath);
+    if (!category.isEmpty())
+        item->setCategory(category);
+    item->setDescription(description);
+    item->setQueueId(queueId);
+
+    m_pendingTorrentItems.erase(it);
+    m_queue->enqueueRestored(item);
+    watchItem(item);
+    m_db->save(item);
+
+    const QString effectiveSavePath = item->savePath().trimmed();
+    if (m_torrentSession && !effectiveSavePath.isEmpty()
+        && QDir::cleanPath(previousSavePath) != QDir::cleanPath(effectiveSavePath)) {
+        // The torrent handle already exists while this item is staged. If the user
+        // changed save directory in the metadata dialog we must move storage on the
+        // live handle as well, otherwise libtorrent keeps writing to the old path.
+        m_torrentSession->moveStorage(downloadId, effectiveSavePath);
+    }
+
+    if (!startNow && item->torrentHasMetadata()) {
+        m_torrentSession->pause(downloadId);
+        item->setStatus(DownloadItem::Status::Paused);
+        m_torrentSession->saveResumeData(downloadId);
+    } else {
+        // Always force a hash recheck on confirmation so pre-existing data in the
+        // chosen save directory is discovered before piece download continues.
+        m_torrentSession->forceRecheck(downloadId);
+        m_torrentSession->resume(item);
+        applyPerTorrentSpeedLimits(m_torrentSession, item);
+        if (!item->torrentHasMetadata()) {
+            QPointer<DownloadItem> guardedItem(item);
+            connect(item, &DownloadItem::torrentChanged, this, [this, guardedItem, downloadId]() {
+                if (!guardedItem || !guardedItem->torrentHasMetadata())
+                    return;
+                if (m_torrentSession) {
+                    m_torrentSession->forceRecheck(downloadId);
+                    m_torrentSession->resume(guardedItem);
+                }
+            }, Qt::SingleShotConnection);
+        }
+    }
+
+    emit downloadAdded(item);
+    emit activeDownloadsChanged();
+    return true;
+}
+
+QString AppController::normalizeTorrentSaveDirectory(const QString &path) const {
+    QString raw = QDir::fromNativeSeparators(path.trimmed());
+    if (raw.isEmpty())
+        return raw;
+    while (raw.length() > 1 && raw.endsWith(QLatin1Char('/')))
+        raw.chop(1);
+
+    QFileInfo info(raw);
+    if (info.exists()) {
+        if (info.isDir())
+            return QDir::cleanPath(info.absoluteFilePath());
+        return QDir::cleanPath(info.absolutePath());
+    }
+
+    const int sep = raw.lastIndexOf(QLatin1Char('/'));
+    if (sep < 0)
+        return QDir::cleanPath(raw);
+    const QString leaf = raw.mid(sep + 1);
+    if (leaf.endsWith(QStringLiteral(".torrent"), Qt::CaseInsensitive))
+        return QDir::cleanPath(raw.left(sep));
+
+    // Default to directory semantics for non-existing paths so users can type
+    // target folders that don't exist yet.
+    return QDir::cleanPath(raw);
+}
+
+void AppController::discardTorrentDownload(const QString &downloadId) {
+    auto it = m_pendingTorrentItems.find(downloadId);
+    if (it == m_pendingTorrentItems.end())
+        return;
+    DownloadItem *item = it.value();
+    m_pendingTorrentItems.erase(it);
+    if (item && item->isTorrent())
+        m_torrentSession->remove(downloadId, true);
+    if (item)
+        item->deleteLater();
+    m_torrentSpeedHistory.remove(downloadId);
 }
 
 QString AppController::beginPendingDownload(const QString &url,
@@ -1052,12 +2197,16 @@ QString AppController::takePendingPageUrl(const QString &url) {
     return m_pendingPageUrls.take(url);
 }
 
-void AppController::deleteAllCompleted(int mode) {
+void AppController::deleteAllCompleted(int mode, bool includeSeedingTorrents) {
     QStringList toDelete;
     const auto items = m_downloadModel->allItems();
     for (auto *item : items) {
-        if (item->status() == QStringLiteral("Completed"))
+        if (!item)
+            continue;
+        if (item->status() == QStringLiteral("Completed")
+            || (includeSeedingTorrents && item->isTorrent() && item->status() == QStringLiteral("Seeding"))) {
             toDelete << item->id();
+        }
     }
     if (toDelete.isEmpty()) return;
     m_downloadModel->beginBulkRemove();
@@ -1078,8 +2227,19 @@ void AppController::deleteDownloads(const QStringList &ids, int mode) {
 void AppController::pauseAllDownloads() {
     const auto items = m_downloadModel->allItems();
     for (auto *item : items) {
-        if (item->status() == QStringLiteral("Downloading") || item->status() == QStringLiteral("Queued"))
+        if (item->status() != QStringLiteral("Downloading") && item->status() != QStringLiteral("Queued"))
+            continue;
+        if (item->isTorrent()) {
+            m_torrentSession->pause(item->id());
+            item->setStatus(DownloadItem::Status::Paused);
+            scheduleSave(item->id());
+        } else if (item->isYtdlp()) {
+            auto *worker = m_ytdlpWorkers.value(item->id());
+            if (worker) worker->pause();
+            else        item->setStatus(DownloadItem::Status::Paused);
+        } else {
             m_queue->pause(item->id());
+        }
     }
 }
 
@@ -1094,6 +2254,28 @@ void AppController::setDownloadSpeedLimit(const QString &downloadId, int kbps) {
         item->setSpeedLimitKBps(kbps);
     // Also set on active worker if it exists
     m_queue->setDownloadSpeedLimit(downloadId, kbps);
+}
+
+void AppController::setTorrentSpeedLimits(const QString &downloadId, int downKBps, int upKBps) {
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item)
+        return;
+    item->setPerTorrentDownLimitKBps(downKBps);
+    item->setPerTorrentUpLimitKBps(upKBps);
+    m_torrentSession->setPerTorrentDownloadLimit(downloadId, downKBps);
+    m_torrentSession->setPerTorrentUploadLimit(downloadId, upKBps);
+    scheduleSave(downloadId);
+}
+
+void AppController::setTorrentShareLimits(const QString &downloadId, double ratio, int seedTimeMins, int inactiveTimeMins, int action) {
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item)
+        return;
+    item->setTorrentShareRatioLimit(ratio);
+    item->setTorrentSeedingTimeLimitMins(seedTimeMins);
+    item->setTorrentInactiveSeedingTimeLimitMins(inactiveTimeMins);
+    item->setTorrentShareLimitAction(action);
+    scheduleSave(downloadId);
 }
 
 void AppController::notifyInterceptRejected(const QString &url) {
@@ -1116,20 +2298,104 @@ void AppController::addExcludedAddress(const QString &pattern) {
 }
 
 void AppController::pauseDownload(const QString &id) {
+    auto *item = m_downloadModel->itemById(id);
+    if (item && item->isTorrent()) {
+        m_torrentSession->pause(id);
+        item->setStatus(DownloadItem::Status::Paused);
+        m_torrentSession->saveResumeData(id);
+        scheduleSave(id);
+        emit activeDownloadsChanged();
+        return;
+    }
+    if (item && item->isYtdlp()) {
+        auto *worker = m_ytdlpWorkers.value(id);
+        if (worker) worker->pause();
+        else        item->setStatus(DownloadItem::Status::Paused);
+        return;
+    }
     m_queue->pause(id);
 }
 
 void AppController::resumeDownload(const QString &id) {
     DownloadItem *item = m_downloadModel->itemById(id);
     const bool wasPendingFileInfoDownload = m_pendingFileInfoDownloads.remove(id);
+
+    if (item && item->isTorrent()) {
+        m_torrentSession->resume(item);
+        applyPerTorrentSpeedLimits(m_torrentSession, item);
+        scheduleSave(id);
+        emit activeDownloadsChanged();
+        return;
+    }
+
+    if (item && item->isYtdlp()) {
+        // A paused yt-dlp item is resumed by creating a new YtdlpTransfer with
+        // resume=true, which passes --continue so yt-dlp picks up the partial file.
+        if (item->statusEnum() == DownloadItem::Status::Paused) {
+            // ytdlpFormatId stores "<formatId>|<container>|<outputTemplate>"
+            // The output template may itself contain '|' in yt-dlp selectors,
+            // so split on the FIRST two '|' only.
+            const QString stored    = item->ytdlpFormatId();
+            const int p1            = stored.indexOf(QLatin1Char('|'));
+            const int p2            = p1 >= 0 ? stored.indexOf(QLatin1Char('|'), p1 + 1) : -1;
+            const QString formatId  = p1 >= 0 ? stored.left(p1) : stored;
+            const QString container = (p1 >= 0 && p2 > p1)
+                                      ? stored.mid(p1 + 1, p2 - p1 - 1)
+                                      : (p1 >= 0 ? stored.mid(p1 + 1) : QStringLiteral("mp4"));
+            const QString tmpl      = p2 >= 0 ? stored.mid(p2 + 1) : QString();
+            startYtdlpWorker(item, formatId, container, /*resume=*/true, tmpl);
+        }
+        return;
+    }
+
     m_queue->resume(id);
     if (wasPendingFileInfoDownload && item && item->queueId().isEmpty())
         emit downloadAdded(item);
 }
 
+void AppController::forceRecheckTorrent(const QString &id) {
+    auto *item = m_downloadModel->itemById(id);
+    if (item && item->isTorrent() && m_torrentSession) {
+        m_torrentSession->forceRecheck(id);
+    }
+}
+
 void AppController::redownload(const QString &id) {
     auto *item = m_downloadModel->itemById(id);
     if (!item) return;
+
+    if (item->isYtdlp()) {
+        // For yt-dlp items, abort any running worker then restart from scratch (no resume).
+        auto *worker = m_ytdlpWorkers.take(id);
+        if (worker) { worker->abort(); worker->deleteLater(); }
+        item->setDoneBytes(0);
+        item->setTotalBytes(0);
+        item->setSpeed(0);
+        const QString stored2   = item->ytdlpFormatId();
+        const int q1            = stored2.indexOf(QLatin1Char('|'));
+        const int q2            = q1 >= 0 ? stored2.indexOf(QLatin1Char('|'), q1 + 1) : -1;
+        const QString formatId  = q1 >= 0 ? stored2.left(q1) : stored2;
+        const QString container = (q1 >= 0 && q2 > q1)
+                                  ? stored2.mid(q1 + 1, q2 - q1 - 1)
+                                  : (q1 >= 0 ? stored2.mid(q1 + 1) : QStringLiteral("mp4"));
+        const QString tmpl2     = q2 >= 0 ? stored2.mid(q2 + 1) : QString();
+        startYtdlpWorker(item, formatId, container, /*resume=*/false, tmpl2);
+        return;
+    }
+
+    if (item->isTorrent()) {
+        const QString source = item->torrentSource();
+        const QString savePath = item->savePath();
+        const QString category = item->category();
+        const QString description = item->description();
+        const QString queueId = item->queueId();
+        deleteDownload(id, 0);
+        const QString newId = source.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)
+            ? addMagnetLink(source, savePath, category, description, true, queueId)
+            : addTorrentFile(source, savePath, category, description, true, queueId);
+        confirmTorrentDownload(newId, savePath, category, description, true, queueId);
+        return;
+    }
 
     QString url = item->url().toString();
     QString savePath = item->savePath();
@@ -1147,19 +2413,64 @@ void AppController::redownload(const QString &id) {
 }
 
 void AppController::deleteDownload(const QString &id, int mode) {
+    if (m_pendingTorrentItems.contains(id)) {
+        discardTorrentDownload(id);
+        return;
+    }
     // Capture file path and URL before the item is removed from queue
     QString filePath;
     QString itemUrl;
+    QString savePath;
+    QString filename;
+    bool isCompleted = false;
+    bool isTorrent = false;
+    bool deleteTorrentPayload = false;
     {
         auto *item = m_downloadModel->itemById(id);
         if (item) {
             itemUrl = item->url().toString();
-            if (mode > 0 && item->status() == QStringLiteral("Completed"))
-                filePath = item->savePath() + QStringLiteral("/") + item->filename();
+            savePath = item->savePath();
+            filename = item->filename();
+            isCompleted = (item->statusEnum() == DownloadItem::Status::Completed);
+            isTorrent = item->isTorrent();
+            if (mode > 0 && isCompleted)
+                filePath = savePath + QStringLiteral("/") + filename;
+            if (mode > 0 && isTorrent)
+                deleteTorrentPayload = true;
         }
     }
 
+    if (isTorrent) {
+        // Always let libtorrent delete torrent payload from the actual active
+        // storage path. This avoids deleting stale paths from UI metadata when the
+        // handle storage directory changed.
+        m_torrentSession->remove(id, deleteTorrentPayload);
+    }
+
+    // Abort any running yt-dlp worker for this item before cancelling the queue entry
+    auto *ytWorker = m_ytdlpWorkers.take(id);
+    if (ytWorker) { ytWorker->abort(); ytWorker->deleteLater(); }
+
     m_queue->cancel(id);
+    m_torrentSpeedHistory.remove(id);
+
+    // Clean up temp/part files for non-completed downloads.
+    // DownloadQueue::cancel() calls abort() on the active worker (which cleans
+    // up), but paused items have no worker so their part/meta files linger.
+    if (!isCompleted && !filename.isEmpty()) {
+        QString tempDir = m_settings->temporaryDirectory().trimmed();
+        if (tempDir.isEmpty()) tempDir = savePath;
+        QtConcurrent::run([tempDir, filename]() {
+            QDir d(tempDir);
+            // Remove meta file
+            QFile::remove(tempDir + QStringLiteral("/") + filename + QStringLiteral(".stellar-meta"));
+            // Remove all part files matching this filename
+            const QStringList filters = { filename + QStringLiteral(".stellar-part-*") };
+            const QFileInfoList parts = d.entryInfoList(filters, QDir::Files);
+            for (const QFileInfo &fi : parts)
+                QFile::remove(fi.absoluteFilePath());
+        });
+    }
 
     if (!filePath.isEmpty()) {
         // Run file deletion on a thread pool thread — never block the UI for disk IO.
@@ -1176,6 +2487,10 @@ void AppController::deleteDownload(const QString &id, int mode) {
 void AppController::openFile(const QString &id) {
     auto *item = m_downloadModel->itemById(id);
     if (!item) return;
+    if (item->filename().isEmpty()) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        return;
+    }
     QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath() + QStringLiteral("/") + item->filename()));
 }
 
@@ -1190,17 +2505,37 @@ void AppController::openFolderSelectFile(const QString &id) {
     if (!item) return;
 
 #if defined(STELLAR_WINDOWS)
-    const QString filePath = item->savePath() + QDir::separator() + item->filename();
+    // Multi-file torrents are folder targets; selecting "savePath/filename" is often
+    // invalid while downloading and can point to a non-existent path.
+    if (item->isTorrent() && !item->torrentIsSingleFile()) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        return;
+    }
+
+    // If the filename is unknown (e.g. yt-dlp item where metadata wasn't captured),
+    // just open the directory so the user isn't sent to the wrong place.
+    if (item->filename().isEmpty()) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        return;
+    }
+    const QString filePath   = item->savePath() + QLatin1Char('/') + item->filename();
+    if (!QFileInfo::exists(filePath)) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        return;
+    }
     const QString nativePath = QDir::toNativeSeparators(filePath);
 
-    // Pass the flag and the path as separate elements in the list
-    QStringList arguments;
-    arguments << "/select," << nativePath;
-
-    QProcess::startDetached(QStringLiteral("explorer.exe"), arguments);
+    // explorer.exe /select,<path> — use ShellExecuteW so we don't fight Qt's
+    // argument-list quoting, which wraps each element in quotes and breaks
+    // the /select,path syntax that explorer expects as one token.
+    const std::wstring params = (QStringLiteral("/select,\"") + nativePath + QStringLiteral("\"")).toStdWString();
+    ShellExecuteW(nullptr, L"open", L"explorer.exe", params.c_str(), nullptr, SW_SHOWNORMAL);
 
 #else
-    // On Linux/Mac, open the folder and select the file if possible
+    if (item->filename().isEmpty()) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        return;
+    }
     QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
 #endif
 }
@@ -1222,7 +2557,20 @@ void AppController::setDownloadDescription(const QString &id, const QString &des
 
 bool AppController::moveDownloadFile(const QString &id, const QString &newFilePath) {
     auto *item = m_downloadModel->itemById(id);
-    if (!item || item->status() != QStringLiteral("Completed")) return false;
+    if (!item)
+        return false;
+
+    if (item->isTorrent()) {
+        const QFileInfo newInfo(newFilePath);
+        const QString newDir = newInfo.isDir() ? newInfo.absoluteFilePath() : newInfo.absolutePath();
+        if (newDir.isEmpty() || !m_torrentSession || !m_torrentSession->moveStorage(id, newDir))
+            return false;
+        item->setSavePath(newDir);
+        scheduleSave(id);
+        return true;
+    }
+
+    if (item->status() != QStringLiteral("Completed")) return false;
 
     const QString oldPath = item->savePath() + QStringLiteral("/") + item->filename();
     const QFileInfo newInfo(newFilePath);
@@ -1273,12 +2621,141 @@ void AppController::copyDownloadFilename(const QString &id) {
     }
 }
 
+QVariantList AppController::torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds) const {
+    QVariantList out;
+    const auto it = m_torrentSpeedHistory.constFind(downloadId);
+    if (it == m_torrentSpeedHistory.constEnd())
+        return out;
+
+    const qint64 nowMs = QDateTime::currentMSecsSinceEpoch();
+    const qint64 cutoff = maxAgeSeconds > 0 ? (nowMs - static_cast<qint64>(maxAgeSeconds) * 1000LL) : 0;
+    const auto &series = it.value();
+    out.reserve(series.size());
+    for (const TorrentSpeedSample &sample : series) {
+        if (cutoff > 0 && sample.timestampMs < cutoff)
+            continue;
+        QVariantMap row;
+        row.insert(QStringLiteral("t"), sample.timestampMs);
+        row.insert(QStringLiteral("down"), sample.downBps);
+        row.insert(QStringLiteral("up"), sample.upBps);
+        out.push_back(row);
+    }
+    return out;
+}
+
+void AppController::clearTorrentSpeedHistory(const QString &downloadId) {
+    m_torrentSpeedHistory.remove(downloadId);
+}
+
+QString AppController::downloadShareLink(const QString &id) const {
+    auto *item = m_downloadModel->itemById(id);
+    if (!item)
+        return {};
+    if (!item->isTorrent())
+        return item->url().toString();
+
+    const QString source = item->torrentSource().trimmed();
+    if (source.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive))
+        return source;
+
+    const QString infoHash = item->torrentInfoHash().trimmed();
+    if (!infoHash.isEmpty())
+        return QStringLiteral("magnet:?xt=urn:btih:%1").arg(infoHash.toLower());
+
+    if (!source.isEmpty())
+        return source;
+    return item->url().toString();
+}
+
+bool AppController::exportTorrentFilesToDirectory(const QStringList &downloadIds, const QString &directoryPath) {
+    if (downloadIds.isEmpty()) {
+        emit errorOccurred(QStringLiteral("No torrents were selected for export."));
+        return false;
+    }
+
+    QDir outDir(directoryPath.trimmed());
+    if (outDir.path().isEmpty()) {
+        emit errorOccurred(QStringLiteral("Please select a destination folder."));
+        return false;
+    }
+    if (!outDir.exists() && !QDir().mkpath(outDir.path())) {
+        emit errorOccurred(QStringLiteral("Failed to create export folder: %1").arg(outDir.path()));
+        return false;
+    }
+
+    auto sanitizeBaseName = [](QString name) {
+        name = name.trimmed();
+        if (name.isEmpty())
+            name = QStringLiteral("torrent");
+        static const QRegularExpression invalidChars(QStringLiteral(R"([<>:"/\\|?*\x00-\x1f])"));
+        name.replace(invalidChars, QStringLiteral("_"));
+        while (name.endsWith(QLatin1Char('.')) || name.endsWith(QLatin1Char(' ')))
+            name.chop(1);
+        if (name.isEmpty())
+            name = QStringLiteral("torrent");
+        return name;
+    };
+
+    QSet<QString> usedNames;
+    int exportedCount = 0;
+    int torrentCount = 0;
+
+    for (const QString &id : downloadIds) {
+        DownloadItem *item = m_downloadModel->itemById(id);
+        if (!item || !item->isTorrent())
+            continue;
+        ++torrentCount;
+
+        QString baseName = sanitizeBaseName(item->filename());
+        if (baseName.compare(QStringLiteral("Magnetized transfer"), Qt::CaseInsensitive) == 0
+            && !item->torrentInfoHash().trimmed().isEmpty()) {
+            baseName = item->torrentInfoHash().trimmed().toLower();
+        }
+
+        QString candidate = baseName;
+        int suffix = 2;
+        while (usedNames.contains(candidate.toLower()) || QFileInfo::exists(outDir.filePath(candidate + QStringLiteral(".torrent")))) {
+            candidate = QStringLiteral("%1 (%2)").arg(baseName).arg(suffix++);
+        }
+        usedNames.insert(candidate.toLower());
+        const QString outputPath = outDir.filePath(candidate + QStringLiteral(".torrent"));
+
+        bool exported = false;
+        if (m_torrentSession)
+            exported = m_torrentSession->exportTorrentFile(id, outputPath);
+
+        if (!exported) {
+            const QString sourcePath = item->torrentSource().trimmed();
+            if (!sourcePath.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)
+                && QFileInfo::exists(sourcePath)) {
+                exported = QFile::copy(sourcePath, outputPath);
+            }
+        }
+
+        if (exported)
+            ++exportedCount;
+    }
+
+    if (torrentCount == 0) {
+        emit errorOccurred(QStringLiteral("No torrent downloads are selected."));
+        return false;
+    }
+    if (exportedCount == 0) {
+        emit errorOccurred(QStringLiteral("Failed to export selected torrents."));
+        return false;
+    }
+    if (exportedCount < torrentCount) {
+        emit errorOccurred(QStringLiteral("Exported %1 of %2 torrents. Some torrents may still be loading metadata.").arg(exportedCount).arg(torrentCount));
+    }
+    return true;
+}
+
 QString AppController::updateMetadataUrl() {
-    return QStringLiteral("https://raw.githubusercontent.com/Ninka-Rex/Stellar/refs/heads/master/update.json");
+    return QStringLiteral("https://ninka-rex.github.io/Stellar/update.json");
 }
 
 QString AppController::updateChangelogUrl() {
-    return QStringLiteral("https://raw.githubusercontent.com/Ninka-Rex/Stellar/refs/heads/master/changelog.md");
+    return QStringLiteral("https://ninka-rex.github.io/Stellar/changelog.md");
 }
 
 void AppController::setCheckingForUpdates(bool checking) {
@@ -1312,8 +2789,9 @@ int AppController::compareVersionStrings(const QString &lhs, const QString &rhs)
 
 void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
     const QString version = map.value(QStringLiteral("version")).toString().trimmed();
+    cacheIpToCityDbUpdateUrl(map);
+    cacheFfmpegUpdateMetadata(map);
     if (version.isEmpty()) {
-        emit updateError(QStringLiteral("Update metadata is missing a version number."));
         return;
     }
 
@@ -1324,6 +2802,8 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
             m_updateVersion.clear();
             m_updateInstallerUrl.clear();
             m_updateSha256.clear();
+            m_updateLinuxInstallerUrl.clear();
+            m_updateLinuxSha256.clear();
             m_updateChangelog.clear();
             emit updateAvailableChanged();
         }
@@ -1333,8 +2813,18 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
     }
 
     m_updateVersion = version;
+    m_updateLinuxInstallerUrl = map.value(QStringLiteral("linuxInstallerUrl")).toString().trimmed();
+    m_updateLinuxSha256 = map.value(QStringLiteral("linuxSha256")).toString().trimmed();
     m_updateInstallerUrl = map.value(QStringLiteral("installerUrl")).toString().trimmed();
     m_updateSha256 = map.value(QStringLiteral("sha256")).toString().trimmed();
+#if defined(Q_OS_WIN)
+    // On Windows, installerUrl/sha256 are canonical.
+#else
+    if (!m_updateLinuxInstallerUrl.isEmpty())
+        m_updateInstallerUrl = m_updateLinuxInstallerUrl;
+    if (!m_updateLinuxSha256.isEmpty())
+        m_updateSha256 = m_updateLinuxSha256;
+#endif
     m_updateAvailable = true;
     emit updateAvailableChanged();
 
@@ -1347,12 +2837,10 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
         emit updateStatusTextChanged();
     }
 
-#if defined(Q_OS_WIN)
+    // Always show the changelog dialog when manually triggered, or on Windows for auto-check.
+    // On Linux/macOS there's no installer to offer, but the user can still read the changelog.
     if (manual || (m_settings->autoCheckUpdates() && m_settings->skippedUpdateVersion() != m_updateVersion))
         emit updateDialogRequested();
-#else
-    Q_UNUSED(manual)
-#endif
 }
 
 void AppController::checkForUpdates(bool manual) {
@@ -1374,7 +2862,7 @@ void AppController::checkForUpdates(bool manual) {
         reply->deleteLater();
 
         if (!networkError.isEmpty()) {
-            finishUpdateCheckUi([this, networkError, manual]() {
+            finishUpdateCheckUi([this]() {
                 if (!m_settings->autoCheckUpdates())
                     m_updateStatusText.clear();
                 else if (m_updateAvailable)
@@ -1382,15 +2870,13 @@ void AppController::checkForUpdates(bool manual) {
                 else
                     m_updateStatusText.clear();
                 emit updateStatusTextChanged();
-                if (manual)
-                    emit updateError(QStringLiteral("Could not check for updates: %1").arg(networkError));
             });
             return;
         }
 
         const QJsonDocument doc = QJsonDocument::fromJson(payload);
         if (!doc.isObject()) {
-            finishUpdateCheckUi([this, manual]() {
+            finishUpdateCheckUi([this]() {
                 if (!m_settings->autoCheckUpdates())
                     m_updateStatusText.clear();
                 else if (m_updateAvailable)
@@ -1398,17 +2884,19 @@ void AppController::checkForUpdates(bool manual) {
                 else
                     m_updateStatusText.clear();
                 emit updateStatusTextChanged();
-                if (manual)
-                    emit updateError(QStringLiteral("Update metadata is not valid JSON."));
             });
             return;
         }
 
         QVariantMap metadata = doc.object().toVariantMap();
+        cacheIpToCityDbUpdateUrl(metadata);
+        cacheFfmpegUpdateMetadata(metadata);
         const QString version = metadata.value(QStringLiteral("version")).toString().trimmed();
         const bool available = !version.isEmpty() && compareVersionStrings(version, appVersion()) > 0;
         if (!available) {
-            finishUpdateCheckUi([this, manual]() {
+            if (manual)
+                emit updateUpToDate();
+            finishUpdateCheckUi([this]() {
                 m_updateAvailable = false;
                 m_updateVersion.clear();
                 m_updateInstallerUrl.clear();
@@ -1417,8 +2905,6 @@ void AppController::checkForUpdates(bool manual) {
                 emit updateAvailableChanged();
                 m_updateStatusText.clear();
                 emit updateStatusTextChanged();
-                if (manual)
-                    emit updateUpToDate();
             });
             return;
         }
@@ -1447,15 +2933,92 @@ void AppController::checkForUpdates(bool manual) {
     });
 }
 
+void AppController::applyProxy() {
+    const int type = m_settings->proxyType();
+
+    QNetworkProxy proxy;
+    bool active = false;
+
+    // Always disable the system-proxy factory first.  If we leave it enabled
+    // while also setting an explicit proxy, Qt may ignore the explicit proxy
+    // on some platforms (especially Windows with WinHTTP).
+    QNetworkProxyFactory::setUseSystemConfiguration(false);
+
+    switch (type) {
+    case 1: { // System proxy — query the OS and apply the first result explicitly.
+        // We query manually instead of using setUseSystemConfiguration(true) so
+        // that the same resolved proxy is set on m_nam directly (see below).
+        const QNetworkProxyQuery q(QUrl(QStringLiteral("http://example.com")));
+        const QList<QNetworkProxy> list = QNetworkProxyFactory::systemProxyForQuery(q);
+        proxy = (!list.isEmpty() && list.first().type() != QNetworkProxy::NoProxy)
+                ? list.first()
+                : QNetworkProxy(QNetworkProxy::NoProxy);
+        active = (proxy.type() != QNetworkProxy::NoProxy);
+        break;
+    }
+    case 2: // HTTP/HTTPS
+        proxy.setType(QNetworkProxy::HttpProxy);
+        proxy.setHostName(m_settings->proxyHost());
+        proxy.setPort(static_cast<quint16>(m_settings->proxyPort()));
+        if (!m_settings->proxyUsername().isEmpty()) {
+            proxy.setUser(m_settings->proxyUsername());
+            proxy.setPassword(m_settings->proxyPassword());
+        }
+        active = !m_settings->proxyHost().trimmed().isEmpty();
+        break;
+
+    case 3: // SOCKS5
+        proxy.setType(QNetworkProxy::Socks5Proxy);
+        proxy.setHostName(m_settings->proxyHost());
+        proxy.setPort(static_cast<quint16>(m_settings->proxyPort()));
+        if (!m_settings->proxyUsername().isEmpty()) {
+            proxy.setUser(m_settings->proxyUsername());
+            proxy.setPassword(m_settings->proxyPassword());
+        }
+        active = !m_settings->proxyHost().trimmed().isEmpty();
+        break;
+
+    default: // None
+        proxy.setType(QNetworkProxy::NoProxy);
+        active = false;
+        break;
+    }
+
+    // Set both the application-wide default AND on m_nam directly.
+    // QNetworkAccessManager reads the application proxy at request time, not at
+    // construction time, so setApplicationProxy is sufficient for most cases —
+    // but setting it on the NAM explicitly guarantees it for all Qt versions.
+    QNetworkProxy::setApplicationProxy(proxy);
+    m_nam->setProxy(proxy);
+
+    if (m_proxyActive != active) {
+        m_proxyActive = active;
+        emit proxyActiveChanged();
+    }
+}
+
+void AppController::fetchChangelog() {
+    // Fetch the changelog unconditionally — used by "What's New" regardless of update state.
+    if (!m_updateChangelog.isEmpty())
+        return; // already have it
+    QNetworkRequest req{QUrl(AppController::updateChangelogUrl())};
+    req.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar/%1").arg(appVersion()));
+    QNetworkReply *reply = m_nam->get(req);
+    connect(reply, &QNetworkReply::finished, this, [this, reply]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            m_updateChangelog = QString::fromUtf8(reply->readAll());
+            emit updateAvailableChanged(); // updateChangelog property uses this NOTIFY
+        }
+        reply->deleteLater();
+    });
+}
+
 void AppController::dismissAvailableUpdate() {
     if (!m_updateVersion.isEmpty())
         m_settings->setSkippedUpdateVersion(m_updateVersion);
 }
 
 bool AppController::startUpdateInstall() {
-#if !defined(Q_OS_WIN)
-    return false;
-#else
     if (!m_updateAvailable || m_updateInstallerUrl.trimmed().isEmpty())
         return false;
 
@@ -1465,7 +3028,11 @@ bool AppController::startUpdateInstall() {
     QDir().mkpath(tempDir);
 
     const QString filename = QFileInfo(QUrl(m_updateInstallerUrl).path()).fileName().isEmpty()
+#if defined(Q_OS_WIN)
         ? QStringLiteral("StellarSetup-%1.exe").arg(m_updateVersion)
+#else
+        ? QStringLiteral("stellar-%1.deb").arg(m_updateVersion)
+#endif
         : QFileInfo(QUrl(m_updateInstallerUrl).path()).fileName();
 
     DownloadItem *item = createDownloadItem(
@@ -1489,7 +3056,181 @@ bool AppController::startUpdateInstall() {
     m_pendingUpdateInstallerPath = tempDir + QStringLiteral("/") + filename;
     m_pendingUpdateSha256 = m_updateSha256;
     return true;
+}
+
+void AppController::cacheIpToCityDbUpdateUrl(const QVariantMap &map) {
+    const QString url = map.value(QStringLiteral("IPtoCityDB")).toString().trimmed();
+    if (url == m_ipToCityDbUpdateUrl)
+        return;
+    m_ipToCityDbUpdateUrl = url;
+    emit ipToCityDbUpdateUrlChanged();
+    refreshIpToCityDbInfo();
+}
+
+void AppController::cacheFfmpegUpdateMetadata(const QVariantMap &map) {
+    auto firstNonEmpty = [&map](const QStringList &keys) -> QString {
+        for (const QString &key : keys) {
+            const QString value = map.value(key).toString().trimmed();
+            if (!value.isEmpty())
+                return value;
+        }
+        return {};
+    };
+
+#if defined(Q_OS_WIN)
+    const QString url = firstNonEmpty({
+        QStringLiteral("ffmpegWindowsUrl"),
+        QStringLiteral("windowsFfmpegUrl"),
+        QStringLiteral("ffmpegUrl")
+    });
+    const QString sha = firstNonEmpty({
+        QStringLiteral("ffmpegWindowsSha256"),
+        QStringLiteral("windowsFfmpegSha256"),
+        QStringLiteral("ffmpegSha256")
+    });
+#else
+    const QString url = firstNonEmpty({
+        QStringLiteral("ffmpegLinuxUrl"),
+        QStringLiteral("linuxFfmpegUrl"),
+        QStringLiteral("ffmpegUrl")
+    });
+    const QString sha = firstNonEmpty({
+        QStringLiteral("ffmpegLinuxSha256"),
+        QStringLiteral("linuxFfmpegSha256"),
+        QStringLiteral("ffmpegSha256")
+    });
 #endif
+
+    bool changed = false;
+    if (url != m_ffmpegUpdateUrl) {
+        m_ffmpegUpdateUrl = url;
+        changed = true;
+    }
+    if (sha != m_ffmpegUpdateSha256) {
+        m_ffmpegUpdateSha256 = sha;
+        changed = true;
+    }
+    if (changed)
+        emit ffmpegUpdateStateChanged();
+}
+
+void AppController::refreshIpToCityDbInfo() {
+    if (!m_torrentSession)
+        return;
+    QVariantMap nextInfo = m_torrentSession->geoDatabaseInfo();
+
+    const qulonglong entryCount = nextInfo.value(QStringLiteral("entryCount")).toULongLong();
+    nextInfo.insert(QStringLiteral("entryCountFormatted"),
+                    entryCount > 0 ? QLocale().toString(entryCount) : QStringLiteral("Unknown"));
+
+    const QString currentVersion = extractDbVersionFromName(QFileInfo(nextInfo.value(QStringLiteral("path")).toString()).fileName());
+    const QString latestVersion = extractDbVersionFromName(QFileInfo(QUrl(m_ipToCityDbUpdateUrl).path()).fileName());
+    nextInfo.insert(QStringLiteral("currentVersion"), currentVersion);
+    nextInfo.insert(QStringLiteral("latestVersion"), latestVersion);
+    if (!currentVersion.isEmpty() && !latestVersion.isEmpty()) {
+        nextInfo.insert(QStringLiteral("versionStatus"),
+                        currentVersion == latestVersion
+                            ? QStringLiteral("%1 (up to date)").arg(currentVersion)
+                            : QStringLiteral("%1 (latest: %2)").arg(currentVersion, latestVersion));
+    } else if (!currentVersion.isEmpty()) {
+        nextInfo.insert(QStringLiteral("versionStatus"), currentVersion);
+    } else {
+        nextInfo.insert(QStringLiteral("versionStatus"), QStringLiteral("Unknown"));
+    }
+
+    if (nextInfo == m_ipToCityDbInfo)
+        return;
+    m_ipToCityDbInfo = nextInfo;
+    emit ipToCityDbInfoChanged();
+}
+
+void AppController::updateIpToCityDbFromCachedUrl() {
+    if (m_ipToCityDbUpdating)
+        return;
+    if (m_ipToCityDbUpdateUrl.trimmed().isEmpty()) {
+        m_ipToCityDbUpdateStatus = QStringLiteral("No IP-to-city DB URL is cached yet. Run Check for updates first.");
+        emit ipToCityDbUpdateStateChanged();
+        return;
+    }
+
+    const QString tempDir = effectiveTemporaryDirectory(m_settings);
+    QDir().mkpath(tempDir);
+
+    QString filename = QFileInfo(QUrl(m_ipToCityDbUpdateUrl).path()).fileName();
+    if (filename.isEmpty())
+        filename = QStringLiteral("dbip-city-lite-2026-04.mmdb.gz");
+
+    DownloadItem *item = createDownloadItem(
+        m_ipToCityDbUpdateUrl,
+        tempDir,
+        QStringLiteral("Other"),
+        QStringLiteral("IP-to-city database update"),
+        true,
+        QString(),
+        QString(),
+        QString(),
+        QString(),
+        QString(),
+        filename,
+        QString(),
+        false);
+    if (!item) {
+        m_ipToCityDbUpdateStatus = QStringLiteral("Could not create download item for IP-to-city DB update.");
+        emit ipToCityDbUpdateStateChanged();
+        return;
+    }
+
+    m_pendingIpToCityDbDownloadId = item->id();
+    m_ipToCityDbUpdating = true;
+    m_ipToCityDbUpdateStatus = QStringLiteral("Downloading IP-to-city database update...");
+    emit ipToCityDbUpdateStateChanged();
+}
+
+void AppController::updateFfmpegBinary() {
+    if (m_ffmpegUpdating)
+        return;
+    if (m_ffmpegUpdateUrl.trimmed().isEmpty()) {
+        m_ffmpegUpdateStatus = QStringLiteral("No FFmpeg URL is cached yet. Run Check for updates first.");
+        emit ffmpegUpdateStateChanged();
+        return;
+    }
+
+    const QString tempDir = effectiveTemporaryDirectory(m_settings);
+    QDir().mkpath(tempDir);
+
+    QString filename = QFileInfo(QUrl(m_ffmpegUpdateUrl).path()).fileName();
+    if (filename.isEmpty()) {
+#if defined(Q_OS_WIN)
+        filename = QStringLiteral("ffmpeg-update.zip");
+#else
+        filename = QStringLiteral("ffmpeg-update.tar.xz");
+#endif
+    }
+
+    DownloadItem *item = createDownloadItem(
+        m_ffmpegUpdateUrl,
+        tempDir,
+        QStringLiteral("Other"),
+        QStringLiteral("FFmpeg binary update"),
+        true,
+        QString(),
+        QString(),
+        QString(),
+        QString(),
+        QString(),
+        filename,
+        QString(),
+        false);
+    if (!item) {
+        m_ffmpegUpdateStatus = QStringLiteral("Could not create download item for FFmpeg update.");
+        emit ffmpegUpdateStateChanged();
+        return;
+    }
+
+    m_pendingFfmpegDownloadId = item->id();
+    m_ffmpegUpdating = true;
+    m_ffmpegUpdateStatus = QStringLiteral("Downloading FFmpeg update...");
+    emit ffmpegUpdateStateChanged();
 }
 
 
@@ -1530,7 +3271,9 @@ QString AppController::qtVersion()   const { return QString::fromLatin1(qVersion
 QString AppController::clipboardUrl() const {
     const QString text = QGuiApplication::clipboard()->text().trimmed();
     if (text.startsWith(QLatin1String("http://")) || text.startsWith(QLatin1String("https://"))
-        || text.startsWith(QLatin1String("ftp://"))) {
+        || text.startsWith(QLatin1String("ftp://"))
+        || text.startsWith(QLatin1String("magnet:?"), Qt::CaseInsensitive)
+        || isBareTorrentInfoHash(text)) {
         // Only return the first line in case of multi-line clipboard
         return text.split(QLatin1Char('\n')).first().trimmed();
     }
@@ -1629,14 +3372,39 @@ void AppController::watchItem(DownloadItem *item) {
     const QString id = item->id();
     auto sched = [this, id]() { scheduleSave(id); };
     connect(item, &DownloadItem::statusChanged,    this, sched);
+    connect(item, &DownloadItem::statusChanged,    this, &AppController::activeDownloadsChanged);
     connect(item, &DownloadItem::totalBytesChanged, this, sched);
     connect(item, &DownloadItem::doneBytesChanged,  this, sched);
     connect(item, &DownloadItem::resumeCapableChanged, this, sched);
     connect(item, &DownloadItem::savePathChanged,   this, sched);
     connect(item, &DownloadItem::filenameChanged,   this, sched);
+    connect(item, &DownloadItem::torrentChanged,    this, sched);
+    connect(item, &DownloadItem::torrentStatsChanged, this, sched);
     connect(item, &DownloadItem::doneBytesChanged, this, [this, item]() {
         if (item && !item->queueId().isEmpty())
             enforceQueueDownloadLimits(item->queueId());
+    });
+    connect(item, &DownloadItem::doneBytesChanged, this, [this, item, id]() {
+        if (!item)
+            return;
+        if (item->statusEnum() != DownloadItem::Status::Downloading
+            && item->statusEnum() != DownloadItem::Status::Assembling)
+            return;
+
+        const qint64 currentBytes = item->doneBytes();
+        const qint64 lastBytes = m_lastProgressPersistBytes.value(id, -1);
+        const QDateTime now = QDateTime::currentDateTimeUtc();
+        const QDateTime lastAt = m_lastProgressPersistAt.value(id);
+
+        const bool crossedByteThreshold = lastBytes < 0 || (currentBytes - lastBytes) >= (4ll * 1024 * 1024);
+        const bool crossedTimeThreshold = !lastAt.isValid() || lastAt.msecsTo(now) >= 2000;
+        if (!crossedByteThreshold && !crossedTimeThreshold)
+            return;
+
+        m_db->save(item);
+        m_dirtyIds.remove(id);
+        m_lastProgressPersistBytes[id] = currentBytes;
+        m_lastProgressPersistAt[id] = now;
     });
     connect(item, &DownloadItem::queueIdChanged, this, [this, item]() {
         if (item)
@@ -1646,6 +3414,12 @@ void AppController::watchItem(DownloadItem *item) {
         if (item && item->statusEnum() != DownloadItem::Status::Error) {
             if (m_recentErrorDownloads.remove(id) > 0)
                 emit recentErrorDownloadsChanged();
+        }
+        if (!item || item->statusEnum() == DownloadItem::Status::Completed
+            || item->statusEnum() == DownloadItem::Status::Error
+            || item->statusEnum() == DownloadItem::Status::Paused) {
+            m_lastProgressPersistBytes.remove(id);
+            m_lastProgressPersistAt.remove(id);
         }
     });
 }
@@ -1674,15 +3448,18 @@ void AppController::scheduleSave(const QString &id) {
 void AppController::flushDirty() {
     const auto items = m_queue->items();
     for (DownloadItem *item : items) {
-        if (m_dirtyIds.contains(item->id()))
+        if (m_dirtyIds.contains(item->id())) {
+            if (item->isTorrent())
+                m_torrentSession->saveResumeData(item->id());
             m_db->save(item);
+        }
     }
     m_dirtyIds.clear();
 }
 
 void AppController::cleanupTemporaryDirectory()
 {
-    const QString tempDirPath = m_settings ? m_settings->temporaryDirectory().trimmed() : QString();
+    const QString tempDirPath = effectiveTemporaryDirectory(m_settings);
     if (tempDirPath.isEmpty())
         return;
 
@@ -1694,14 +3471,17 @@ void AppController::cleanupTemporaryDirectory()
     for (DownloadItem *item : m_queue->items()) {
         if (!item)
             continue;
+        if (item->filename().trimmed().isEmpty())
+            continue;
+        if (item->statusEnum() == DownloadItem::Status::Completed
+            || item->statusEnum() == DownloadItem::Status::Error)
+            continue;
         const QString baseName = tempDir.absoluteFilePath(item->filename());
         activePaths.insert(baseName + QStringLiteral(".stellar-meta"));
         for (int i = 0; i < 32; ++i)
             activePaths.insert(baseName + QStringLiteral(".stellar-part-") + QString::number(i));
-        activePaths.insert(tempDir.absoluteFilePath(item->filename()));
     }
 
-    const QDateTime cutoff = QDateTime::currentDateTime().addDays(-2);
     const QFileInfoList entries = tempDir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
     for (const QFileInfo &entry : entries) {
         const QString filePath = entry.absoluteFilePath();
@@ -1712,8 +3492,6 @@ void AppController::cleanupTemporaryDirectory()
         if (!isStellarTemp)
             continue;
         if (activePaths.contains(filePath))
-            continue;
-        if (entry.lastModified() > cutoff)
             continue;
         QFile::remove(filePath);
     }
@@ -2187,16 +3965,26 @@ void AppController::startQueue(const QString &queueId)
     // Mark as recently run for periodic schedules
     m_lastQueueRun[queueId] = QDateTime::currentDateTime();
 
-    // Mark all items in this queue as "Queued" so scheduleNext will start them
-    // respecting the queue's maxConcurrentDownloads limit as capacity becomes available
+    // Resume torrent items explicitly via TorrentSessionManager; non-torrent items
+    // are moved to Queued and started by DownloadQueue::scheduleNext().
     int queuedCount = 0;
     for (DownloadItem *item : m_queue->items()) {
-        if (item->queueId() == queueId && (item->status() == QStringLiteral("Paused") || item->status() == QStringLiteral("Queued"))) {
-            if (item->status() != QStringLiteral("Queued")) {
-                item->setStatus(DownloadItem::Status::Queued);
-            }
-            ++queuedCount;
+        if (!item || item->queueId() != queueId)
+            continue;
+        const bool pausedOrQueued = item->status() == QStringLiteral("Paused")
+            || item->status() == QStringLiteral("Queued");
+        if (!pausedOrQueued)
+            continue;
+
+        if (item->isTorrent()) {
+            if (canStartDownloadItem(item))
+                resumeDownload(item->id());
+            continue;
         }
+
+        if (item->status() != QStringLiteral("Queued"))
+            item->setStatus(DownloadItem::Status::Queued);
+        ++queuedCount;
     }
 
     // Now trigger scheduleNext to start up to maxConcurrent downloads
@@ -2214,13 +4002,19 @@ void AppController::stopQueue(const QString &queueId)
     Queue *q = m_queueModel->queueById(queueId);
     if (!q || queueId == QStringLiteral("download-limits")) return;
 
-    // Pause all actively downloading items in this queue
+    // Pause all active/queued items in this queue through the unified pause path.
+    // For torrents this is required so libtorrent is paused as well.
     int stoppedCount = 0;
     for (DownloadItem *item : m_queue->items()) {
-        if (item->queueId() == queueId &&
-            (item->status() == QStringLiteral("Downloading") ||
-             item->status() == QStringLiteral("Queued"))) {
-            m_queue->pause(item->id());
+        if (!item || item->queueId() != queueId)
+            continue;
+        const QString status = item->status();
+        if (status == QStringLiteral("Downloading")
+                || status == QStringLiteral("Queued")
+                || status == QStringLiteral("Checking")
+                || status == QStringLiteral("Moving")
+                || status == QStringLiteral("Seeding")) {
+            pauseDownload(item->id());
             ++stoppedCount;
         }
     }
@@ -2528,4 +4322,449 @@ void AppController::checkQueueSchedules()
     if (currentMinutes != prevMinutes) {
         emit minutesUntilNextQueueChanged();
     }
+}
+
+// ── yt-dlp public API ─────────────────────────────────────────────────────────
+
+// Table of domain fragments that yt-dlp reliably supports.  Checked against the
+// URL host after stripping the "www." prefix so both "youtube.com" and
+// "www.youtube.com" are matched by a single entry.
+static const QStringList kYtdlpDomains = {
+    QStringLiteral("youtube.com"),
+    QStringLiteral("youtu.be"),
+    QStringLiteral("vimeo.com"),
+    QStringLiteral("twitter.com"),
+    QStringLiteral("x.com"),
+    QStringLiteral("instagram.com"),
+    QStringLiteral("facebook.com"),
+    QStringLiteral("fb.watch"),
+    QStringLiteral("tiktok.com"),
+    QStringLiteral("twitch.tv"),
+    QStringLiteral("dailymotion.com"),
+    QStringLiteral("reddit.com"),
+    QStringLiteral("streamable.com"),
+    QStringLiteral("soundcloud.com"),
+    QStringLiteral("bandcamp.com"),
+    QStringLiteral("bilibili.com"),
+    QStringLiteral("nicovideo.jp"),
+    QStringLiteral("rumble.com"),
+    QStringLiteral("odysee.com"),
+    QStringLiteral("bitchute.com"),
+    QStringLiteral("brighteon.com"),
+    QStringLiteral("mixcloud.com"),
+    QStringLiteral("ted.com"),
+    QStringLiteral("bbc.co.uk"),
+    QStringLiteral("cnn.com"),
+};
+
+bool AppController::isLikelyYtdlpUrl(const QString &urlStr) const {
+    const QUrl url(urlStr);
+    if (!url.isValid()) return false;
+    if (url.scheme() != QLatin1String("http") && url.scheme() != QLatin1String("https"))
+        return false;
+
+    // Strip leading "www." so entries in kYtdlpDomains don't need both variants.
+    QString host = url.host().toLower();
+    if (host.startsWith(QLatin1String("www.")))
+        host = host.mid(4);
+    const QString path = url.path().toLower();
+
+    // Never treat obvious static assets or API transport endpoints as media URLs.
+    if (path.contains(QLatin1String("/api/"))
+        || path.contains(QLatin1String("/_/"))
+        || path.startsWith(QLatin1String("/s/"))
+        || path.startsWith(QLatin1String("/yts/"))
+        || path.startsWith(QLatin1String("/images/"))
+        || path.endsWith(QLatin1String(".mp3"))
+        || path.endsWith(QLatin1String(".m4a"))
+        || path.endsWith(QLatin1String(".mp4"))
+        || path.endsWith(QLatin1String(".webm"))
+        || path.endsWith(QLatin1String(".m3u8"))
+        || path.endsWith(QLatin1String(".ts"))
+        || path.endsWith(QLatin1String(".json"))
+        || path.endsWith(QLatin1String(".js"))
+        || path.endsWith(QLatin1String(".css"))
+        || path.endsWith(QLatin1String(".jpg"))
+        || path.endsWith(QLatin1String(".jpeg"))
+        || path.endsWith(QLatin1String(".png"))
+        || path.endsWith(QLatin1String(".webp"))
+        || path.endsWith(QLatin1String(".svg"))
+        || path.endsWith(QLatin1String(".ico")))
+        return false;
+
+    // YouTube requires content-style URL shapes; host-only matching is too broad.
+    if (host == QLatin1String("youtube.com") || host.endsWith(QLatin1String(".youtube.com"))) {
+        const bool looksLikeContent = path == QLatin1String("/watch")
+            || path.startsWith(QLatin1String("/shorts/"))
+            || path.startsWith(QLatin1String("/live/"))
+            || path.startsWith(QLatin1String("/playlist"))
+            || path.startsWith(QLatin1String("/clip/"))
+            || path.startsWith(QLatin1String("/embed/"))
+            || path.startsWith(QLatin1String("/@"));
+        return looksLikeContent;
+    }
+    if (host == QLatin1String("youtu.be")) {
+        const QString p = path.trimmed();
+        return p.length() > 1 && p != QLatin1String("/");
+    }
+
+    for (const QString &domain : kYtdlpDomains) {
+        if (host == domain || host.endsWith(QLatin1Char('.') + domain))
+            return true;
+    }
+    return false;
+}
+
+QString AppController::beginYtdlpInfo(const QString &url) {
+    if (!m_ytdlpManager->available()) {
+        const QString probeId = QUuid::createUuid().toString(QUuid::WithoutBraces);
+        emit ytdlpInfoFailed(probeId, url,
+            QStringLiteral("yt-dlp is not installed. Please download it in Settings → Video Downloader."));
+        return probeId;
+    }
+
+    const QString probeId = QUuid::createUuid().toString(QUuid::WithoutBraces);
+
+    // Run "yt-dlp --dump-json --no-playlist <url>" to get full video metadata
+    // including the format list, without downloading any media.
+    auto *proc = new QProcess(this);
+    proc->setProgram(m_ytdlpManager->binaryPath());
+    QStringList args = {
+        QStringLiteral("--dump-json"),
+        QStringLiteral("--no-playlist"),
+        QStringLiteral("--no-warnings"),
+    };
+    const QString proxyUrl = buildYtdlpProxyUrl(m_settings, QUrl::fromUserInput(url));
+    args << QStringLiteral("--proxy") << proxyUrl;
+    args << url;
+    proc->setArguments(args);
+    proc->setProcessChannelMode(QProcess::MergedChannels);
+
+    m_ytdlpProbes[probeId] = { proc, url };
+
+    connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+            this, [this, probeId, url, proc](int exitCode, QProcess::ExitStatus) {
+        if (!m_ytdlpProbes.contains(probeId)) {
+            proc->deleteLater();
+            return;
+        }
+        m_ytdlpProbes.remove(probeId);
+
+        if (exitCode != 0) {
+            const QString errOutput = QString::fromUtf8(proc->readAllStandardOutput()).trimmed();
+            proc->deleteLater();
+            emit ytdlpInfoFailed(probeId, url,
+                errOutput.isEmpty()
+                    ? QStringLiteral("yt-dlp exited with code %1").arg(exitCode)
+                    : errOutput);
+            return;
+        }
+
+        const QByteArray raw = proc->readAllStandardOutput();
+        proc->deleteLater();
+
+        const QJsonDocument doc = QJsonDocument::fromJson(raw);
+        if (!doc.isObject()) {
+            emit ytdlpInfoFailed(probeId, url,
+                QStringLiteral("yt-dlp returned invalid JSON (output length: %1)").arg(raw.size()));
+            return;
+        }
+
+        const QJsonObject root = doc.object();
+        const QString title = root.value(QLatin1String("title")).toString();
+
+        // ── Build format list ─────────────────────────────────────────────────
+        // We expose one entry per distinct video-height bucket plus an "audio only"
+        // option.  Each entry carries enough metadata for the QML picker to show a
+        // useful label and let the user make an informed choice.
+        const QJsonArray formatsJson = root.value(QLatin1String("formats")).toArray();
+
+        // Collect the best-quality video+audio format for each height bucket.
+        // Key: height (0 = audio-only).  Value: best format object seen so far.
+        QMap<int, QJsonObject> bestByHeight;
+
+        for (const QJsonValue &fv : formatsJson) {
+            const QJsonObject f = fv.toObject();
+            const QString vcodec = f.value(QLatin1String("vcodec")).toString();
+            const QString acodec = f.value(QLatin1String("acodec")).toString();
+            const bool hasVideo = (!vcodec.isEmpty() && vcodec != QLatin1String("none"));
+            const bool hasAudio = (!acodec.isEmpty() && acodec != QLatin1String("none"));
+
+            if (!hasVideo && !hasAudio) continue;
+
+            const int height = hasVideo ? f.value(QLatin1String("height")).toInt(0) : 0;
+
+            // Keep the entry with the highest total bitrate for each bucket.
+            const double tbr = f.value(QLatin1String("tbr")).toDouble(0.0);
+            if (!bestByHeight.contains(height) ||
+                tbr > bestByHeight[height].value(QLatin1String("tbr")).toDouble(0.0)) {
+                bestByHeight[height] = f;
+            }
+        }
+
+        // Convert to QVariantList in descending resolution order.
+        QVariantList formats;
+
+        // Standard height buckets in descending order; anything else is omitted
+        // because yt-dlp's "bestvideo+bestaudio/best" selector is preferable.
+        const QList<int> orderedHeights = {2160, 1440, 1080, 720, 480, 360, 240, 144, 0};
+        for (int h : orderedHeights) {
+            if (!bestByHeight.contains(h)) continue;
+            const QJsonObject &f = bestByHeight[h];
+
+            QString label;
+            QString formatId;
+            if (h == 0) {
+                // Audio-only bucket
+                label    = QStringLiteral("Audio only (best)");
+                formatId = QStringLiteral("bestaudio/best");
+            } else {
+                label    = QStringLiteral("%1p").arg(h);
+                // Select best video at this height merged with best audio
+                formatId = QStringLiteral("bestvideo[height<=%1]+bestaudio/best[height<=%1]/best").arg(h);
+            }
+
+            // Add file size if known
+            const qint64 filesize = static_cast<qint64>(
+                f.value(QLatin1String("filesize")).toDouble(0.0));
+            const qint64 filesizeApprox = static_cast<qint64>(
+                f.value(QLatin1String("filesize_approx")).toDouble(0.0));
+            const qint64 size = filesize > 0 ? filesize : filesizeApprox;
+
+            QVariantMap entry;
+            entry[QStringLiteral("id")]       = formatId;
+            entry[QStringLiteral("label")]    = label;
+            entry[QStringLiteral("ext")]      = f.value(QLatin1String("ext")).toString();
+            entry[QStringLiteral("width")]    = f.value(QLatin1String("width")).toInt(0);
+            entry[QStringLiteral("height")]   = h;
+            entry[QStringLiteral("fps")]      = f.value(QLatin1String("fps")).toInt(0);
+            entry[QStringLiteral("tbr")]      = f.value(QLatin1String("tbr")).toDouble(0.0);
+            entry[QStringLiteral("vcodec")]   = f.value(QLatin1String("vcodec")).toString();
+            entry[QStringLiteral("acodec")]   = f.value(QLatin1String("acodec")).toString();
+            entry[QStringLiteral("filesize")] = size;
+            formats.append(entry);
+        }
+
+        // Always add a "Best quality" option at the top.
+        QVariantMap best;
+        best[QStringLiteral("id")]       = QStringLiteral("bestvideo+bestaudio/best");
+        best[QStringLiteral("label")]    = QStringLiteral("Best quality");
+        best[QStringLiteral("ext")]      = QStringLiteral("mp4");
+        best[QStringLiteral("width")]    = 0;
+        best[QStringLiteral("height")]   = 9999;
+        best[QStringLiteral("tbr")]      = 0.0;
+        best[QStringLiteral("vcodec")]   = QString();
+        best[QStringLiteral("acodec")]   = QString();
+        best[QStringLiteral("filesize")] = static_cast<qint64>(0);
+        formats.prepend(best);
+
+        emit ytdlpInfoReady(probeId, url, title, formats);
+    });
+
+    connect(proc, &QProcess::errorOccurred, this, [this, probeId, url, proc](QProcess::ProcessError) {
+        if (!m_ytdlpProbes.contains(probeId)) {
+            proc->deleteLater();
+            return;
+        }
+        m_ytdlpProbes.remove(probeId);
+        const QString reason = proc->errorString().isEmpty()
+            ? QStringLiteral("Failed to start yt-dlp")
+            : proc->errorString();
+        proc->deleteLater();
+        emit ytdlpInfoFailed(probeId, url, reason);
+    });
+
+    proc->start();
+    return probeId;
+}
+
+void AppController::cancelYtdlpInfo(const QString &probeId) {
+    auto it = m_ytdlpProbes.find(probeId);
+    if (it == m_ytdlpProbes.end()) return;
+
+    QProcess *proc = it.value().process;
+    m_ytdlpProbes.erase(it);
+
+    if (proc) {
+        disconnect(proc, nullptr, this, nullptr);
+        proc->kill();
+        proc->waitForFinished(2000);
+        proc->deleteLater();
+    }
+}
+
+void AppController::finalizeYtdlpDownload(const QString &url,
+                                           const QString &saveDir,
+                                           const QString &category,
+                                           const QString &formatId,
+                                           const QString &containerFormat,
+                                           bool uniqueFilename,
+                                           const QString &videoTitle) {
+    // Create the DownloadItem here — not before.  This is intentionally later than
+    // the regular HTTP flow (which creates the item as soon as the URL is submitted)
+    // so that yt-dlp downloads only appear in the list once the user has confirmed
+    // the format choice.  That avoids a ghost "Watch" entry showing up with a blank
+    // icon while the YtdlpDialog is open.
+    const QString id   = generateId();
+    const QUrl    qurl = QUrl::fromUserInput(url);
+    auto *item = new DownloadItem(id, qurl);
+
+    item->setSavePath(saveDir);
+    item->setFilename(QString());
+    item->setIsYtdlp(true);
+
+    const QString resolvedCategory = category.isEmpty()
+        ? m_categoryModel->categoryForUrl(qurl, QString())
+        : category;
+    item->setCategory(resolvedCategory);
+
+    const QString container = containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat;
+
+    // When the user chose "Add Numbered", compute a collision-free output template
+    // using the video title already known from the --dump-json probe.
+    // Scan the save directory for any file whose base name matches the title and
+    // find the first unused _2/_3/_N suffix.  Pure filesystem check — no extra
+    // yt-dlp subprocess needed.
+    QString outputTemplate = QStringLiteral("%(title)s.%(ext)s");
+    if (uniqueFilename && !videoTitle.isEmpty()) {
+        QDir dir(saveDir);
+        dir.mkpath(saveDir);
+
+        const QFileInfoList allFiles = dir.entryInfoList(QDir::Files | QDir::NoDotAndDotDot);
+        auto baseExists = [&](const QString &b) {
+            for (const QFileInfo &f : allFiles)
+                if (f.completeBaseName().compare(b, Qt::CaseInsensitive) == 0)
+                    return true;
+            return false;
+        };
+
+        if (baseExists(videoTitle)) {
+            int n = 2;
+            while (baseExists(videoTitle + QLatin1Char('_') + QString::number(n)))
+                ++n;
+            outputTemplate = videoTitle + QLatin1Char('_') + QString::number(n)
+                             + QStringLiteral(".%(ext)s");
+        }
+        // else no collision — default template is fine
+    }
+
+    // Store "formatId|container|outputTemplate" so resume/redownload can replay
+    // the same settings (keeps numbered names consistent on retry).
+    item->setYtdlpFormatId(formatId + QLatin1Char('|') + container
+                           + QLatin1Char('|') + outputTemplate);
+
+    // Enqueue the item (triggers m_downloadModel->addItem via itemAdded signal),
+    // persist it, and notify the UI.  The queue's scheduleNext() skips yt-dlp
+    // items so this won't try to start a SegmentedTransfer.
+    m_queue->enqueueHeld(item);
+    m_db->save(item);
+    watchItem(item);
+    emit downloadAdded(item);
+
+    startYtdlpWorker(item, formatId, container, /*resume=*/false, outputTemplate);
+}
+
+void AppController::startYtdlpDownload(const QString &downloadId, const QString &formatId,
+                                        const QString &containerFormat) {
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item) return;
+
+    item->setIsYtdlp(true);
+    const QString container = containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat;
+    item->setYtdlpFormatId(formatId + QLatin1Char('|') + container);
+    startYtdlpWorker(item, formatId, container, /*resume=*/false);
+}
+
+void AppController::downloadYtdlpBinary() {
+    m_ytdlpManager->downloadBinary();
+}
+
+// ── yt-dlp internal helpers ───────────────────────────────────────────────────
+
+// Look for ffmpeg next to the yt-dlp binary first (bundled install), then fall
+// back to an empty string meaning "let yt-dlp search PATH itself".
+QString AppController::detectFfmpegPath(const QString &ytdlpBinaryPath) {
+    if (ytdlpBinaryPath.isEmpty()) return {};
+    const QFileInfo ytdlpInfo(ytdlpBinaryPath);
+    const QString dir = ytdlpInfo.absolutePath();
+#if defined(Q_OS_WIN)
+    const QString candidate = dir + QStringLiteral("/ffmpeg.exe");
+#else
+    const QString candidate = dir + QStringLiteral("/ffmpeg");
+#endif
+    if (QFile::exists(candidate))
+        return candidate;
+    return {};  // let yt-dlp find system ffmpeg via PATH
+}
+
+void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId,
+                                      const QString &containerFormat, bool resume,
+                                      const QString &outputTemplate) {
+    if (!item) return;
+
+    // Abort any existing worker for this item (e.g., a stale one from a previous run).
+    auto *existing = m_ytdlpWorkers.take(item->id());
+    if (existing) { existing->abort(); existing->deleteLater(); }
+
+    const QString saveDir    = item->savePath();
+
+    // Ensure the destination directory exists before handing it to yt-dlp.
+    if (!saveDir.isEmpty())
+        QDir().mkpath(saveDir);
+
+    // Show Downloading immediately so the UI never briefly flashes a stale status
+    // (e.g. Completed from a previous run) while the pre-flight probe is running.
+    item->setStatus(DownloadItem::Status::Downloading);
+
+    // Prefer the path YtdlpManager already resolved (next to yt-dlp binary or PATH).
+    const QString ffmpegPath = m_ytdlpManager->ffmpegPath().isEmpty()
+                               ? detectFfmpegPath(m_ytdlpManager->binaryPath())
+                               : m_ytdlpManager->ffmpegPath();
+    const QString resolvedTemplate = outputTemplate.isEmpty()
+        ? QStringLiteral("%(title)s.%(ext)s") : outputTemplate;
+
+    // yt-dlp runs out-of-process, so it must receive an explicit proxy URL.
+    const QString proxyUrl = buildYtdlpProxyUrl(m_settings, item->url());
+
+    auto *worker = new YtdlpTransfer(item, m_ytdlpManager->binaryPath(),
+                                     formatId, containerFormat, saveDir, ffmpegPath,
+                                     resume, resolvedTemplate, proxyUrl, this);
+    m_ytdlpWorkers[item->id()] = worker;
+
+    const QString id = item->id();
+    connect(worker, &YtdlpTransfer::finished, this, [this, id]() {
+        onYtdlpWorkerFinished(id);
+    });
+    connect(worker, &YtdlpTransfer::failed, this, [this, id](const QString &reason) {
+        onYtdlpWorkerFailed(id, reason);
+    });
+
+    worker->start();
+    emit activeDownloadsChanged();
+}
+
+void AppController::onYtdlpWorkerFinished(const QString &id) {
+    auto *worker = m_ytdlpWorkers.take(id);
+    if (worker) worker->deleteLater();
+
+    auto *item = m_downloadModel->itemById(id);
+    if (item) {
+        scheduleSave(id);
+        emit downloadCompleted(item);
+    }
+    emit activeDownloadsChanged();
+}
+
+void AppController::onYtdlpWorkerFailed(const QString &id, const QString &reason) {
+    auto *worker = m_ytdlpWorkers.take(id);
+    if (worker) worker->deleteLater();
+
+    auto *item = m_downloadModel->itemById(id);
+    if (item) {
+        item->setStatus(DownloadItem::Status::Error);
+        if (!reason.isEmpty())
+            item->setErrorString(reason);
+        scheduleSave(id);
+    }
+    emit activeDownloadsChanged();
 }

@@ -1,0 +1,113 @@
+Stellar Download Manager — Third-Party Software Notices
+========================================================
+
+This file lists the third-party software components used by Stellar Download
+Manager, their licenses, and where to obtain their source code.
+
+------------------------------------------------------------------------
+1. FFmpeg
+------------------------------------------------------------------------
+
+Stellar optionally locates and invokes the FFmpeg executable to merge
+video and audio streams when downloading from video-hosting sites.
+Stellar does NOT distribute FFmpeg; it is a separate program that the
+user installs independently.  If your copy of Stellar was bundled with
+an ffmpeg.exe binary, that binary is an unmodified, official FFmpeg
+build and is governed by the licenses described below.
+
+FFmpeg is a trademark of Fabrice Bellard.
+Copyright (C) 2000-present the FFmpeg developers.
+Website: https://ffmpeg.org/
+
+FFmpeg is distributed under the following licenses (your build may use
+one or more of these, depending on which codecs and libraries it was
+compiled with):
+
+  • GNU Lesser General Public License version 2.1 or later (LGPL-2.1+)
+    Full text: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+
+  • GNU Lesser General Public License version 3 (LGPL-3)
+    Full text: https://www.gnu.org/licenses/lgpl-3.0.html
+
+  • GNU General Public License version 2 or later (GPL-2+)
+    Full text: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+  • GNU General Public License version 3 (GPL-3)
+    Full text: https://www.gnu.org/licenses/gpl-3.0.html
+
+An FFmpeg build is GPL-licensed if it was compiled with any GPL
+component (e.g. libx264, libx265).  A build is LGPL-licensed if it
+was compiled without GPL-only components.  To determine which license
+applies to the ffmpeg.exe on your system, run:
+
+    ffmpeg -version
+
+and look for "configuration:" in the output.  Any option containing
+"enable-gpl" or "enable-nonfree" indicates a GPL build.
+
+FFmpeg source code for official releases is available at:
+    https://ffmpeg.org/download.html
+    https://git.ffmpeg.org/ffmpeg.git
+
+As required by the LGPL, users of Stellar are free to replace the
+ffmpeg.exe binary with any other LGPL-compliant build of FFmpeg.
+Because FFmpeg is invoked as a separate executable (not linked into
+Stellar), no recompilation of Stellar is required to do so.  Simply
+replace the ffmpeg.exe file in the same directory as yt-dlp.exe or
+ensure a different ffmpeg.exe is earlier in your PATH.
+
+------------------------------------------------------------------------
+2. Qt Framework
+------------------------------------------------------------------------
+
+Stellar is built using the Qt framework version 6.
+
+Qt (open-source edition) is Copyright (C) The Qt Company Ltd.
+Website: https://www.qt.io/
+
+Qt is used under the GNU Lesser General Public License version 3
+(LGPL-3) with the Qt LGPL exception.
+Full text: https://www.gnu.org/licenses/lgpl-3.0.html
+Qt exception: https://www.qt.io/licensing/open-source-lgpl-obligations
+
+Qt source code is available at: https://code.qt.io/
+
+------------------------------------------------------------------------
+3. libtorrent
+------------------------------------------------------------------------
+
+Stellar uses libtorrent (Rasterbar) for BitTorrent protocol support.
+
+libtorrent is Copyright (C) Arvid Norberg and contributors.
+Website: https://libtorrent.org/
+Source code: https://github.com/arvidn/libtorrent
+
+libtorrent is distributed under the BSD 3-Clause License.
+Full text: https://opensource.org/license/bsd-3-clause
+
+------------------------------------------------------------------------
+4. SQLite
+------------------------------------------------------------------------
+
+Stellar uses SQLite (via Qt's QtSql module) for persisting download
+history and queue data.
+
+SQLite is in the public domain.
+Website: https://www.sqlite.org/
+Copyright notice: https://www.sqlite.org/copyright.html
+
+------------------------------------------------------------------------
+5. Stellar itself
+------------------------------------------------------------------------
+
+Stellar Download Manager
+Copyright (C) 2026 Ninka_
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, version 3.
+
+Full text: https://www.gnu.org/licenses/gpl-3.0.html
+Source code: https://github.com/Ninka-Rex/Stellar
+
+------------------------------------------------------------------------

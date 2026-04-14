@@ -35,18 +35,23 @@ function getAndClearModifierKey() {
  * Called from the service worker's chrome.downloads.onCreated listener.
  * Cancels the browser download and hands off to Stellar.
  */
-// Domains that serve direct file downloads without a file extension in the URL.
-// Always intercept these regardless of extension/MIME type.
-const FORCE_INTERCEPT_HOSTS = [
-    "drive.usercontent.google.com",
-    "drive.google.com",
-    "docs.google.com",
-];
-
-function forceIntercept(url) {
+export function forceIntercept(url) {
     try {
-        const host = new URL(url).hostname.toLowerCase();
-        return FORCE_INTERCEPT_HOSTS.some(h => host === h || host.endsWith("." + h));
+        const u = new URL(url);
+        const host = u.hostname.toLowerCase();
+        const path = u.pathname.toLowerCase();
+        const isDriveUserContent = host === "drive.usercontent.google.com"
+            || host.endsWith(".drive.usercontent.google.com");
+        const isGoogleDocHost = host === "drive.google.com"
+            || host.endsWith(".drive.google.com")
+            || host === "docs.google.com"
+            || host.endsWith(".docs.google.com");
+        if (!isDriveUserContent && !isGoogleDocHost) return false;
+        if (path === "/uc" || path.startsWith("/download") || path.includes("/download/")) return true;
+        if (u.searchParams.get("export") === "download") return true;
+        if (u.searchParams.has("response-content-disposition")) return true;
+        if (isDriveUserContent && u.searchParams.has("id")) return true;
+        return false;
     } catch { return false; }
 }
 

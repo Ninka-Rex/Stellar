@@ -31,16 +31,19 @@ Button {
 
     implicitWidth:  Math.max(80, contentItem.implicitWidth + 24)
     implicitHeight: 36
+    opacity: enabled ? 1.0 : 0.55
 
     background: Rectangle {
         radius: 3
         border.width: 1
         color: {
+            if (!parent.enabled) return "#2a2a2a"
             if (destructive) return parent.pressed ? "#a02828" : (parent.hovered ? "#9a2525" : "#8b2020")
             if (primary)     return parent.pressed ? "#254a8a" : (parent.hovered ? "#22429e" : "#1e3a6e")
             return parent.pressed ? "#484848" : (parent.hovered ? "#424242" : "#3a3a3a")
         }
         border.color: {
+            if (!parent.enabled) return "#444444"
             if (destructive) return "#cc3333"
             if (primary)     return "#4488dd"
             return "#555555"
@@ -49,7 +52,7 @@ Button {
 
     contentItem: Text {
         text:               parent.text
-        color:              (primary || destructive) ? "#ffffff" : "#d0d0d0"
+        color:              !parent.enabled ? "#8e8e8e" : ((primary || destructive) ? "#ffffff" : "#d0d0d0")
         font.pixelSize:     13
         font.bold:          primary || destructive
         horizontalAlignment: Text.AlignHCenter

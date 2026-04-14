@@ -23,11 +23,12 @@ import QtQuick.Layouts
 Window {
     id: root
     title: "Delete Completed Downloads"
+    property bool includeSeedingTorrents: false
     width: 440
-    height: 200
+    height: 236
     minimumWidth: 360
-    minimumHeight: 180
-    maximumHeight: 200
+    minimumHeight: 216
+    maximumHeight: 236
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     modality: Qt.ApplicationModal
@@ -36,7 +37,12 @@ Window {
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
 
-    signal confirmed()
+    signal confirmed(bool includeSeedingTorrents)
+
+    onVisibleChanged: {
+        if (visible)
+            includeSeedingTorrents = false
+    }
 
     ColumnLayout {
         anchors { fill: parent; margins: 20 }
@@ -54,6 +60,21 @@ Window {
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
 
+        CheckBox {
+            text: "Delete completed and seeding torrents"
+            checked: root.includeSeedingTorrents
+            topPadding: 0
+            bottomPadding: 0
+            onToggled: root.includeSeedingTorrents = checked
+            contentItem: Text {
+                text: parent.text
+                color: "#d0d0d0"
+                font.pixelSize: 12
+                leftPadding: parent.indicator.width + 6
+                verticalAlignment: Text.AlignVCenter
+            }
+        }
+
         Item { Layout.fillHeight: true }
 
         RowLayout {
@@ -65,7 +86,7 @@ Window {
                 implicitWidth: 80
                 background: Rectangle { color: "#1e3a6e"; radius: 3; border.color: "#4488dd"; border.width: 1 }
                 contentItem: Text { text: parent.text; color: "#ffffff"; font.pixelSize: 13; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                onClicked: { root.confirmed(); root.close() }
+                onClicked: { root.confirmed(root.includeSeedingTorrents); root.close() }
             }
             Button {
                 text: "No"

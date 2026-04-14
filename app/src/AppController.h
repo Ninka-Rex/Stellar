@@ -26,7 +26,9 @@
 #include <QSet>
 #include <QMap>
 #include <QVariantMap>
+#include <QVariantList>
 #include <QDateTime>
+#include <QElapsedTimer>
 #include <functional>
 
 #include "DownloadQueue.h"
@@ -41,6 +43,10 @@
 #include "GrabberResultModel.h"
 #include "QueueDatabase.h"
 #include "QueueModel.h"
+#include "TorrentSearchManager.h"
+#include "YtdlpManager.h"
+#include "YtdlpTransfer.h"
+#include "TorrentSessionManager.h"
 
 class AppController : public QObject {
     Q_OBJECT
@@ -67,6 +73,21 @@ class AppController : public QObject {
     Q_PROPERTY(QString updateChangelog READ updateChangelog NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateStatusText READ updateStatusText NOTIFY updateStatusTextChanged)
     Q_PROPERTY(bool checkingForUpdates READ checkingForUpdates NOTIFY checkingForUpdatesChanged)
+    Q_PROPERTY(QString torrentBindingStatusText READ torrentBindingStatusText NOTIFY torrentBindingStatusTextChanged)
+    Q_PROPERTY(bool torrentPortTestInProgress READ torrentPortTestInProgress NOTIFY torrentPortTestChanged)
+    Q_PROPERTY(QString torrentPortTestStatus READ torrentPortTestStatus NOTIFY torrentPortTestChanged)
+    Q_PROPERTY(QString torrentPortTestMessage READ torrentPortTestMessage NOTIFY torrentPortTestChanged)
+    Q_PROPERTY(QVariantMap ipToCityDbInfo READ ipToCityDbInfo NOTIFY ipToCityDbInfoChanged)
+    Q_PROPERTY(QString ipToCityDbUpdateUrl READ ipToCityDbUpdateUrl NOTIFY ipToCityDbUpdateUrlChanged)
+    Q_PROPERTY(bool ipToCityDbUpdating READ ipToCityDbUpdating NOTIFY ipToCityDbUpdateStateChanged)
+    Q_PROPERTY(QString ipToCityDbUpdateStatus READ ipToCityDbUpdateStatus NOTIFY ipToCityDbUpdateStateChanged)
+    Q_PROPERTY(bool ffmpegUpdating READ ffmpegUpdating NOTIFY ffmpegUpdateStateChanged)
+    Q_PROPERTY(QString ffmpegUpdateStatus READ ffmpegUpdateStatus NOTIFY ffmpegUpdateStateChanged)
+    // yt-dlp integration — exposes YtdlpManager to QML for binary status/download UI
+    Q_PROPERTY(YtdlpManager *ytdlpManager READ ytdlpManager CONSTANT)
+    Q_PROPERTY(TorrentSearchManager *torrentSearchManager READ torrentSearchManager CONSTANT)
+    // True when a custom proxy (HTTP or SOCKS5) is currently active
+    Q_PROPERTY(bool proxyActive READ proxyActive NOTIFY proxyActiveChanged)
 
 public:
     explicit AppController(QObject *parent = nullptr);
@@ -97,6 +118,81 @@ public:
     QString updateChangelog() const { return m_updateChangelog; }
     QString updateStatusText() const { return m_updateStatusText; }
     bool checkingForUpdates() const { return m_checkingForUpdates; }
+    QString torrentBindingStatusText() const;
+    bool torrentPortTestInProgress() const { return m_torrentPortTestInProgress; }
+    QString torrentPortTestStatus() const { return m_torrentPortTestStatus; }
+    QString torrentPortTestMessage() const { return m_torrentPortTestMessage; }
+    QVariantMap ipToCityDbInfo() const { return m_ipToCityDbInfo; }
+    QString ipToCityDbUpdateUrl() const { return m_ipToCityDbUpdateUrl; }
+    bool ipToCityDbUpdating() const { return m_ipToCityDbUpdating; }
+    QString ipToCityDbUpdateStatus() const { return m_ipToCityDbUpdateStatus; }
+    bool ffmpegUpdating() const { return m_ffmpegUpdating; }
+    QString ffmpegUpdateStatus() const { return m_ffmpegUpdateStatus; }
+    YtdlpManager *ytdlpManager() const { return m_ytdlpManager; }
+    TorrentSearchManager *torrentSearchManager() const { return m_torrentSearchManager; }
+    bool proxyActive() const { return m_proxyActive; }
+
+    // ── yt-dlp public API ────────────────────────────────────────────────────────
+    // Returns true if the URL looks like a site supported by yt-dlp (YouTube, Vimeo, etc.)
+    Q_INVOKABLE bool isLikelyYtdlpUrl(const QString &url) const;
+
+    // Asynchronously probe the URL with "yt-dlp --dump-json".
+    // Emits ytdlpInfoReady(formats) on success or ytdlpInfoFailed(reason) on error.
+    // Returns a probe ID so callers can match response signals to requests.
+    Q_INVOKABLE QString beginYtdlpInfo(const QString &url);
+
+    // Cancel a running --dump-json probe (identified by probeId from beginYtdlpInfo).
+    Q_INVOKABLE void cancelYtdlpInfo(const QString &probeId);
+
+    // One-stop create + start for yt-dlp downloads.
+    // Creates a new DownloadItem from `url`, configures it with the chosen format
+    // and save directory, then immediately starts the transfer.  The item only
+    // appears in the download list once this is called (not before the user
+    // confirms the format in YtdlpDialog), so there is never a "Watch" ghost entry.
+    Q_INVOKABLE void finalizeYtdlpDownload(const QString &url,
+                                           const QString &saveDir,
+                                           const QString &category,
+                                           const QString &formatId,
+                                           const QString &containerFormat,
+                                           bool uniqueFilename = false,
+                                           const QString &videoTitle = {});
+
+    // Start a yt-dlp download.  Item must already be in the queue as a held item
+    // (enqueueHeld) so it appears in the UI.  formatId is a yt-dlp format selector.
+    Q_INVOKABLE void startYtdlpDownload(const QString &downloadId, const QString &formatId,
+                                        const QString &containerFormat = {});
+
+    // Download the yt-dlp binary (delegates to YtdlpManager).
+    Q_INVOKABLE void downloadYtdlpBinary();
+    Q_INVOKABLE bool isTorrentUri(const QString &value) const;
+    Q_INVOKABLE QObject *downloadById(const QString &id) const;
+    Q_INVOKABLE QObject *torrentFileModel(const QString &id) const;
+    Q_INVOKABLE QObject *torrentPeerModel(const QString &id) const;
+    Q_INVOKABLE QObject *torrentTrackerModel(const QString &id) const;
+    Q_INVOKABLE QVariantList torrentNetworkAdapters() const;
+    Q_INVOKABLE void testTorrentPort();
+    Q_INVOKABLE void refreshIpToCityDbInfo();
+    Q_INVOKABLE void updateIpToCityDbFromCachedUrl();
+    Q_INVOKABLE void updateFfmpegBinary();
+    Q_INVOKABLE bool setTorrentFileWanted(const QString &downloadId, int row, bool wanted);
+    Q_INVOKABLE bool addTorrentTracker(const QString &downloadId, const QString &url);
+    Q_INVOKABLE bool removeTorrentTracker(const QString &downloadId, const QString &url);
+    Q_INVOKABLE bool renameTorrentFile(const QString &downloadId, int fileIndex, const QString &newName);
+    Q_INVOKABLE bool renameTorrentPath(const QString &downloadId, const QString &currentPath, const QString &newName);
+    Q_INVOKABLE void setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd = false);
+    Q_INVOKABLE QString addMagnetLink(const QString &uri, const QString &savePath = {},
+                                      const QString &category = {}, const QString &description = {},
+                                      bool startNow = true, const QString &queueId = {});
+    Q_INVOKABLE QString addTorrentFile(const QString &filePath, const QString &savePath = {},
+                                       const QString &category = {}, const QString &description = {},
+                                       bool startNow = true, const QString &queueId = {});
+    Q_INVOKABLE QString beginTorrentMetadataDownload(const QString &source, const QString &savePath = {},
+                                                     const QString &category = {}, const QString &description = {},
+                                                     bool startWhenReady = true);
+    Q_INVOKABLE bool confirmTorrentDownload(const QString &downloadId, const QString &savePath = {},
+                                            const QString &category = {}, const QString &description = {},
+                                            bool startNow = true, const QString &queueId = {});
+    Q_INVOKABLE void discardTorrentDownload(const QString &downloadId);
 
     Q_INVOKABLE void checkUrl(const QString &url, QJSValue callback);
     Q_INVOKABLE void addUrl(const QString &url, const QString &savePath = {},
@@ -119,7 +215,7 @@ public:
                                              bool startNow,
                                              const QString &queueId = {});
     Q_INVOKABLE void discardPendingDownload(const QString &downloadId);
-    Q_INVOKABLE void deleteAllCompleted(int mode = 0);
+    Q_INVOKABLE void deleteAllCompleted(int mode = 0, bool includeSeedingTorrents = false);
     Q_INVOKABLE void deleteDownloads(const QStringList &ids, int mode = 0);
     Q_INVOKABLE void pauseAllDownloads();
     Q_INVOKABLE void sortDownloads(const QString &column, bool ascending);
@@ -131,6 +227,10 @@ public:
     Q_INVOKABLE void openFolderSelectFile(const QString &id);
     Q_INVOKABLE void moveFileToDesktop(const QString &id);
     Q_INVOKABLE void copyDownloadFilename(const QString &id);
+    Q_INVOKABLE QString downloadShareLink(const QString &id) const;
+    Q_INVOKABLE bool exportTorrentFilesToDirectory(const QStringList &downloadIds, const QString &directoryPath);
+    Q_INVOKABLE QVariantList torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds = 0) const;
+    Q_INVOKABLE void clearTorrentSpeedHistory(const QString &downloadId);
     Q_INVOKABLE QString clipboardUrl() const;
     Q_INVOKABLE void setDownloadCategory(const QString &downloadId, const QString &categoryId);
     Q_INVOKABLE void setDownloadQueue(const QString &downloadId, const QString &queueId);
@@ -141,11 +241,15 @@ public:
     Q_INVOKABLE QObject *findDuplicateUrl(const QString &url) const;
     Q_INVOKABLE QString  generateNumberedFilename(const QString &filename) const;
     Q_INVOKABLE bool     fileExists(const QString &path) const;
+    Q_INVOKABLE QString  normalizeTorrentSaveDirectory(const QString &path) const;
     Q_INVOKABLE void     copyToClipboard(const QString &text) const;
     Q_INVOKABLE void     openExtensionFolder() const;
     Q_INVOKABLE void     addExcludedAddress(const QString &pattern);
     Q_INVOKABLE void     notifyInterceptRejected(const QString &url);
     Q_INVOKABLE void     setDownloadSpeedLimit(const QString &downloadId, int kbps);
+    Q_INVOKABLE void setTorrentSpeedLimits(const QString &downloadId, int downKBps, int upKBps);
+    Q_INVOKABLE void setTorrentShareLimits(const QString &downloadId, double ratio, int seedTimeMins, int inactiveTimeMins, int action);
+    Q_INVOKABLE void forceRecheckTorrent(const QString &downloadId);
     Q_INVOKABLE void     setDownloadUsername(const QString &downloadId, const QString &username);
     Q_INVOKABLE void     setDownloadPassword(const QString &downloadId, const QString &password);
     Q_INVOKABLE void     setDownloadDescription(const QString &downloadId, const QString &description);
@@ -184,6 +288,7 @@ public:
     Q_INVOKABLE void saveGrabberProjectSchedule(const QString &projectId, const QVariantMap &scheduleMap);
     Q_INVOKABLE QString readTextResource(const QString &path) const;
     Q_INVOKABLE void checkForUpdates(bool manual = false);
+    Q_INVOKABLE void fetchChangelog();
     Q_INVOKABLE void dismissAvailableUpdate();
     Q_INVOKABLE bool startUpdateInstall();
 
@@ -193,6 +298,7 @@ signals:
     void selectedQueueChanged();
     void errorOccurred(const QString &message);
     void showWindowRequested();
+    void torrentMetadataRequested(const QString &downloadId, bool startWhenReady);
     void downloadAdded(QObject *item);
     void downloadCompleted(QObject *item);
     void trayGithubRequested();
@@ -214,9 +320,30 @@ signals:
     void updateDialogRequested();
     void updateUpToDate();
     void updateError(const QString &message);
+    void ipToCityDbInfoChanged();
+    void ipToCityDbUpdateUrlChanged();
+    void ipToCityDbUpdateStateChanged();
+    void ffmpegUpdateStateChanged();
+    void proxyActiveChanged();
+    void torrentBindingStatusTextChanged();
+    void torrentPortTestChanged();
     // Emitted when clipboard monitoring is on and a matching URL is detected.
     // url is the full URL string; the QML side shows the Add URL dialog.
     void clipboardUrlDetected(const QString &url);
+
+    // ── yt-dlp signals ───────────────────────────────────────────────────────────
+    // Emitted when a --dump-json probe completes successfully.
+    // probeId matches the return value from beginYtdlpInfo().
+    // title is the video title; formats is a list of QVariantMaps:
+    //   { "id": string, "label": string, "ext": string,
+    //     "width": int, "height": int, "tbr": double, "vcodec": string,
+    //     "acodec": string, "filesize": qint64 }
+    void ytdlpInfoReady(const QString &probeId, const QString &url,
+                        const QString &title, const QVariantList &formats);
+    // Emitted when a --dump-json probe fails or yt-dlp is not available.
+    void ytdlpInfoFailed(const QString &probeId, const QString &url, const QString &reason);
+    // Emitted when a clipboard URL looks like a yt-dlp site (no file extension needed).
+    void ytdlpClipboardUrlDetected(const QString &url);
 
 private:
     QString generateId() const;
@@ -239,6 +366,8 @@ private:
     QSet<QString>           m_dirtyIds;
     QMap<QString, int>      m_cancelCounts;
     QMap<QString, int>      m_interceptRejectCounts;
+    QMap<QString, qint64>   m_lastProgressPersistBytes;
+    QMap<QString, QDateTime> m_lastProgressPersistAt;
     bool                    m_restoring{false};
     QMap<QString, QString>  m_pendingCookies;
     QMap<QString, QString>  m_pendingReferrers;
@@ -270,6 +399,9 @@ private:
     void pruneRecentErrorDownloads();
     void setCheckingForUpdates(bool checking);
     void finishUpdateCheckUi(const std::function<void()> &finishWork);
+    void setTorrentPortTestState(bool inProgress, const QString &status, const QString &message);
+    void cacheIpToCityDbUpdateUrl(const QVariantMap &map);
+    void cacheFfmpegUpdateMetadata(const QVariantMap &map);
     static int compareVersionStrings(const QString &lhs, const QString &rhs);
     void applyUpdateMetadata(const QVariantMap &map, bool manual);
     static QString updateMetadataUrl();
@@ -281,6 +413,10 @@ private:
                                      const QString &username, const QString &password,
                                      const QString &filenameOverride, const QString &queueId,
                                      bool emitUiSignal);
+    DownloadItem *createTorrentItem(const QString &source, const QString &savePath,
+                                    const QString &category, const QString &description,
+                                    bool startNow, const QString &queueId, bool emitUiSignal,
+                                    bool staged = false);
     QString resolveGrabberSaveDirectory(const QVariantMap &project,
                                         const QUrl &url,
                                         const QString &filename,
@@ -298,7 +434,12 @@ private:
     bool                    m_updateAvailable{false};
     QString                 m_updateVersion;
     QString                 m_updateInstallerUrl;
+    QString                 m_updateLinuxInstallerUrl;
     QString                 m_updateSha256;
+    QString                 m_updateLinuxSha256;
+    QString                 m_ipToCityDbUpdateUrl;
+    QString                 m_ffmpegUpdateUrl;
+    QString                 m_ffmpegUpdateSha256;
     QString                 m_updateChangelog;
     QString                 m_updateStatusText;
     bool                    m_checkingForUpdates{false};
@@ -307,4 +448,50 @@ private:
     QString                 m_pendingUpdateDownloadId;
     QString                 m_pendingUpdateInstallerPath;
     QString                 m_pendingUpdateSha256;
+    QString                 m_pendingIpToCityDbDownloadId;
+    QString                 m_pendingFfmpegDownloadId;
+
+    // ── yt-dlp ───────────────────────────────────────────────────────────────────
+    YtdlpManager                    *m_ytdlpManager{nullptr};
+    TorrentSearchManager           *m_torrentSearchManager{nullptr};
+    TorrentSessionManager          *m_torrentSession{nullptr};
+    // Active YtdlpTransfer workers keyed by download item ID
+    QMap<QString, YtdlpTransfer *>   m_ytdlpWorkers;
+    QMap<QString, DownloadItem *>    m_pendingTorrentItems;
+    QTimer                 *m_torrentSpeedHistoryTimer{nullptr};
+    struct TorrentSpeedSample {
+        qint64 timestampMs{0};
+        int downBps{0};
+        int upBps{0};
+    };
+    QMap<QString, QVector<TorrentSpeedSample>> m_torrentSpeedHistory;
+    // Running --dump-json info probes keyed by probe ID (QUuid string)
+    struct YtdlpProbe {
+        QProcess  *process{nullptr};
+        QString    url;
+    };
+    QMap<QString, YtdlpProbe>        m_ytdlpProbes;
+
+    bool m_proxyActive{false};
+    bool m_torrentPortTestInProgress{false};
+    QString m_torrentPortTestStatus;
+    QString m_torrentPortTestMessage;
+    QVariantMap m_ipToCityDbInfo;
+    bool m_ipToCityDbUpdating{false};
+    QString m_ipToCityDbUpdateStatus;
+    bool m_ffmpegUpdating{false};
+    QString m_ffmpegUpdateStatus;
+    QElapsedTimer m_torrentPortTestCooldown;
+
+    // Helpers
+    void applyProxy(); // reads proxy settings and applies QNetworkProxy::setApplicationProxy
+    // formatId and containerFormat are stored together in ytdlpFormatId as
+    // "<formatId>|<containerFormat>" so resume/redownload can retrieve both.
+    void startYtdlpWorker(DownloadItem *item, const QString &formatId,
+                          const QString &containerFormat, bool resume,
+                          const QString &outputTemplate = {});
+    void onYtdlpWorkerFinished(const QString &id);
+    void onYtdlpWorkerFailed(const QString &id, const QString &reason);
+    // Returns the path to ffmpeg if found next to yt-dlp or on system PATH.
+    static QString detectFfmpegPath(const QString &ytdlpBinaryPath);
 };

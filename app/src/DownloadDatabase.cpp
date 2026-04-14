@@ -21,6 +21,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QSaveFile>
 #include <QDebug>
 
 DownloadDatabase::DownloadDatabase(QObject *parent) : QObject(parent) {
@@ -83,11 +84,42 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
             if (!addedStr.isEmpty()) item->setAddedAt(QDateTime::fromString(addedStr, Qt::ISODate));
         }
 
+        // Restore yt-dlp fields; absent key → false/empty for regular downloads
+        item->setIsYtdlp(obj[QLatin1String("isYtdlp")].toBool(false));
+        item->setYtdlpFormatId(obj[QLatin1String("ytdlpFormatId")].toString());
+        item->setIsTorrent(obj[QLatin1String("isTorrent")].toBool(false));
+        item->setTorrentSource(obj[QLatin1String("torrentSource")].toString());
+        item->setTorrentInfoHash(obj[QLatin1String("torrentInfoHash")].toString());
+        item->setTorrentSeeders(obj[QLatin1String("torrentSeeders")].toInt());
+        item->setTorrentPeers(obj[QLatin1String("torrentPeers")].toInt());
+        item->setTorrentRatio(obj[QLatin1String("torrentRatio")].toDouble(0.0));
+        item->setTorrentUploaded(obj[QLatin1String("torrentUploaded")].toVariant().toLongLong());
+        item->setTorrentDownloaded(obj[QLatin1String("torrentDownloaded")].toVariant().toLongLong());
+        item->setTorrentUploadSpeed(obj[QLatin1String("torrentUploadSpeed")].toVariant().toLongLong());
+        item->setTorrentHasMetadata(obj[QLatin1String("torrentHasMetadata")].toBool(false));
+        item->setTorrentIsSingleFile(obj[QLatin1String("torrentIsSingleFile")].toBool(true));
+        item->setTorrentDisableDht(obj[QLatin1String("torrentDisableDht")].toBool(false));
+        item->setTorrentDisablePex(obj[QLatin1String("torrentDisablePex")].toBool(false));
+        item->setTorrentDisableLsd(obj[QLatin1String("torrentDisableLsd")].toBool(false));
+        item->setTorrentResumeData(obj[QLatin1String("torrentResumeData")].toString());
+        item->setPerTorrentDownLimitKBps(obj[QLatin1String("perTorrentDownLimitKBps")].toInt(0));
+        item->setPerTorrentUpLimitKBps(obj[QLatin1String("perTorrentUpLimitKBps")].toInt(0));
+        item->setTorrentShareRatioLimit(obj[QLatin1String("torrentShareRatioLimit")].toDouble(-1.0));
+        item->setTorrentSeedingTimeLimitMins(obj[QLatin1String("torrentSeedingTimeLimitMins")].toInt(-1));
+        item->setTorrentInactiveSeedingTimeLimitMins(obj[QLatin1String("torrentInactiveSeedingTimeLimitMins")].toInt(-1));
+        item->setTorrentShareLimitAction(obj[QLatin1String("torrentShareLimitAction")].toInt(-1));
+
         const QString statusStr = obj[QLatin1String("status")].toString();
         DownloadItem::Status s = DownloadItem::Status::Paused;
-        if (statusStr == QLatin1String("Completed"))        s = DownloadItem::Status::Completed;
+        if (statusStr == QLatin1String("Checking"))         s = DownloadItem::Status::Checking;
+        else if (statusStr == QLatin1String("Downloading")) s = DownloadItem::Status::Downloading;
+        else if (statusStr == QLatin1String("Seeding"))     s = DownloadItem::Status::Seeding;
+        else if (statusStr == QLatin1String("Paused"))      s = DownloadItem::Status::Paused;
+        else if (statusStr == QLatin1String("Completed"))   s = DownloadItem::Status::Completed;
         else if (statusStr == QLatin1String("Error"))       s = DownloadItem::Status::Error;
-        else if (statusStr == QLatin1String("Queued"))      s = DownloadItem::Status::Paused;
+        else if (statusStr == QLatin1String("Queued")) {
+            s = item->isTorrent() ? DownloadItem::Status::Downloading : DownloadItem::Status::Paused;
+        }
         else if (statusStr == QLatin1String("Assembling...")) s = DownloadItem::Status::Paused;
         item->setStatus(s);
 
@@ -119,6 +151,34 @@ void DownloadDatabase::save(DownloadItem *item) {
     m[QStringLiteral("queueId")]        = item->queueId();
     if (item->lastTryAt().isValid())
         m[QStringLiteral("lastTryAt")] = item->lastTryAt().toString(Qt::ISODate);
+    // yt-dlp items need their engine flag and format selector preserved across restarts
+    if (item->isYtdlp()) {
+        m[QStringLiteral("isYtdlp")]       = true;
+        m[QStringLiteral("ytdlpFormatId")] = item->ytdlpFormatId();
+    }
+    if (item->isTorrent()) {
+        m[QStringLiteral("isTorrent")] = true;
+        m[QStringLiteral("torrentSource")] = item->torrentSource();
+        m[QStringLiteral("torrentInfoHash")] = item->torrentInfoHash();
+        m[QStringLiteral("torrentSeeders")] = item->torrentSeeders();
+        m[QStringLiteral("torrentPeers")] = item->torrentPeers();
+        m[QStringLiteral("torrentRatio")] = item->torrentRatio();
+        m[QStringLiteral("torrentUploaded")] = item->torrentUploaded();
+        m[QStringLiteral("torrentDownloaded")] = item->torrentDownloaded();
+        m[QStringLiteral("torrentUploadSpeed")] = item->torrentUploadSpeed();
+        m[QStringLiteral("torrentHasMetadata")]  = item->torrentHasMetadata();
+        m[QStringLiteral("torrentIsSingleFile")] = item->torrentIsSingleFile();
+        m[QStringLiteral("torrentDisableDht")]   = item->torrentDisableDht();
+        m[QStringLiteral("torrentDisablePex")]   = item->torrentDisablePex();
+        m[QStringLiteral("torrentDisableLsd")]   = item->torrentDisableLsd();
+        m[QStringLiteral("torrentResumeData")] = item->torrentResumeData();
+        m[QStringLiteral("perTorrentDownLimitKBps")] = item->perTorrentDownLimitKBps();
+        m[QStringLiteral("perTorrentUpLimitKBps")]   = item->perTorrentUpLimitKBps();
+        m[QStringLiteral("torrentShareRatioLimit")]  = item->torrentShareRatioLimit();
+        m[QStringLiteral("torrentSeedingTimeLimitMins")] = item->torrentSeedingTimeLimitMins();
+        m[QStringLiteral("torrentInactiveSeedingTimeLimitMins")] = item->torrentInactiveSeedingTimeLimitMins();
+        m[QStringLiteral("torrentShareLimitAction")] = item->torrentShareLimitAction();
+    }
 
     m_entries[item->id()] = m;
     scheduleDiskWrite();
@@ -146,11 +206,11 @@ void DownloadDatabase::commitToDisk() {
     for (auto it = m_entries.constBegin(); it != m_entries.constEnd(); ++it)
         arr.append(QJsonObject::fromVariantMap(it.value()));
 
-    QFile f(m_filePath);
-    if (!f.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+    QSaveFile f(m_filePath);
+    if (!f.open(QIODevice::WriteOnly)) {
         qWarning() << "DownloadDatabase: cannot write" << m_filePath;
         return;
     }
-    f.write(QJsonDocument(arr).toJson(QJsonDocument::Compact));
-    f.close();
+    if (f.write(QJsonDocument(arr).toJson(QJsonDocument::Compact)) < 0 || !f.commit())
+        qWarning() << "DownloadDatabase: cannot commit" << m_filePath;
 }

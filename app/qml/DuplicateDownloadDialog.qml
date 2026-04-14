@@ -47,6 +47,8 @@ Window {
             var isComplete = existingItem && existingItem.status === "Completed"
             selectedAction = isComplete ? 1 : 3
             rememberChk.checked = false
+            raise()
+            requestActivate()
         }
     }
 

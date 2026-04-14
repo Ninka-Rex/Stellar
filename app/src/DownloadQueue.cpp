@@ -78,6 +78,15 @@ void DownloadQueue::setTemporaryDirectory(const QString &path) {
         worker->setTemporaryDirectory(path);
 }
 
+void DownloadQueue::setMaxConnectionsPerHost(int v) {
+    if (m_maxConnectionsPerHost == v)
+        return;
+
+    m_maxConnectionsPerHost = v;
+    for (auto *worker : m_workers)
+        worker->setMaxConnectionsPerHost(v);
+}
+
 void DownloadQueue::setCanStartPredicate(std::function<bool(DownloadItem *)> predicate) {
     m_canStartPredicate = std::move(predicate);
 }
@@ -230,6 +239,8 @@ void DownloadQueue::scheduleNext() {
     for (auto *item : m_items) {
         if (current >= m_maxConcurrent) break;
         if (item->statusEnum() != DownloadItem::Status::Queued) continue;
+        // Alternate backends are managed outside DownloadQueue.
+        if (item->isYtdlp() || item->isTorrent()) continue;
         if (m_canStartPredicate && !m_canStartPredicate(item)) continue;
 
         // Only DownloadQueue may call setStatus(Downloading)
@@ -242,6 +253,7 @@ void DownloadQueue::scheduleNext() {
         worker->setCustomUserAgentEnabled(m_useCustomUserAgent);
         worker->setCustomUserAgent(m_customUserAgent);
         worker->setTemporaryDirectory(m_temporaryDirectory);
+        worker->setMaxConnectionsPerHost(m_maxConnectionsPerHost);
         m_workers[item->id()] = worker;
 
         const QString id = item->id();

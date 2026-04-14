@@ -22,7 +22,15 @@
 #include <QJsonArray>
 #include <QDir>
 #include <QFileInfo>
+#include <QSaveFile>
 #include <QUrl>
+#include <QTimer>
+#include <QDateTime>
+#include <QSslError>
+#include <QStringList>
+#include <QSet>
+#include <QNetworkCookieJar>
+#include <QNetworkCookie>
 #include <algorithm>
 #include <QDebug>
 
@@ -38,6 +46,90 @@ QString resolvedUserAgent(bool useCustomUserAgent, const QString &customUserAgen
         return trimmedCustomUserAgent;
 
     return browserStyleFallback ? kBrowserUserAgent : kUserAgent;
+}
+
+bool copyFileContents(QIODevice &src, QIODevice &dst) {
+    static constexpr qint64 kChunkSize = 1024 * 1024;
+    while (!src.atEnd()) {
+        const QByteArray chunk = src.read(kChunkSize);
+        if (chunk.isEmpty())
+            return false;
+        if (dst.write(chunk) != chunk.size())
+            return false;
+    }
+    return true;
+}
+
+// Strip characters that are invalid in filenames on Windows (and also
+// problematic on Linux if the file is later copied to a FAT/NTFS drive).
+// The caller owns uniqueness — this function only cares about legality.
+QString sanitizeFilename(const QString &in) {
+    if (in.isEmpty())
+        return QStringLiteral("download");
+
+    static const QString kInvalid = QStringLiteral("<>:\"/\\|?*");
+    QString out;
+    out.reserve(in.size());
+    for (QChar c : in) {
+        if (c.unicode() < 0x20 || kInvalid.contains(c))
+            out.append(QLatin1Char('_'));
+        else
+            out.append(c);
+    }
+
+    // Windows silently strips trailing spaces/dots; doing it ourselves
+    // keeps the on-disk name consistent with what we think it is, which
+    // matters for the part-file→output-file rename path.
+    while (!out.isEmpty() && (out.endsWith(QLatin1Char(' ')) || out.endsWith(QLatin1Char('.'))))
+        out.chop(1);
+
+    // Reserved device names on Windows (CON, PRN, AUX, NUL, COM1-9, LPT1-9)
+    // are rejected even with an extension, so prefix an underscore.
+    static const QSet<QString> kReserved = {
+        QStringLiteral("CON"), QStringLiteral("PRN"), QStringLiteral("AUX"), QStringLiteral("NUL"),
+        QStringLiteral("COM1"), QStringLiteral("COM2"), QStringLiteral("COM3"),
+        QStringLiteral("COM4"), QStringLiteral("COM5"), QStringLiteral("COM6"),
+        QStringLiteral("COM7"), QStringLiteral("COM8"), QStringLiteral("COM9"),
+        QStringLiteral("LPT1"), QStringLiteral("LPT2"), QStringLiteral("LPT3"),
+        QStringLiteral("LPT4"), QStringLiteral("LPT5"), QStringLiteral("LPT6"),
+        QStringLiteral("LPT7"), QStringLiteral("LPT8"), QStringLiteral("LPT9"),
+    };
+    QString base = out;
+    const int dot = base.indexOf(QLatin1Char('.'));
+    if (dot > 0) base = base.left(dot);
+    if (kReserved.contains(base.toUpper()))
+        out.prepend(QLatin1Char('_'));
+
+    // Hard cap length to keep room for the ".stellar-part-NN" suffix on
+    // systems with a 255-byte NAME_MAX (ext4, NTFS, APFS all cap at 255).
+    static constexpr int kMaxNameLen = 200;
+    if (out.size() > kMaxNameLen) {
+        const int dotPos = out.lastIndexOf(QLatin1Char('.'));
+        if (dotPos > 0 && (out.size() - dotPos) <= 16) {
+            // Preserve extension
+            const QString ext = out.mid(dotPos);
+            out = out.left(kMaxNameLen - ext.size()) + ext;
+        } else {
+            out.truncate(kMaxNameLen);
+        }
+    }
+
+    return out.isEmpty() ? QStringLiteral("download") : out;
+}
+
+// Prefix paths with \\?\ on Windows when they approach the 260-char MAX_PATH
+// limit.  This disables Win32 path parsing and allows up to ~32 K characters.
+// The path must be absolute and use native (backslash) separators.
+QString longPath(const QString &path) {
+#ifdef Q_OS_WIN
+    if (path.size() > 240) {
+        QString native = QDir::toNativeSeparators(QDir::cleanPath(path));
+        if (!native.startsWith(QStringLiteral("\\\\?\\")))
+            return QStringLiteral("\\\\?\\") + native;
+        return native;
+    }
+#endif
+    return path;
 }
 }
 
@@ -75,30 +167,32 @@ void SegmentedTransfer::start() {
     m_paused    = false;
     m_cancelled = false;
 
+    seedCookieJar();
     m_item->setLastTryAt(QDateTime::currentDateTime());
+
+    m_effectiveUrl = QUrl(); // reset on every fresh start
 
     qDebug() << "[ST] start() url=" << m_item->url().toString()
              << "isGDrive=" << isGoogleDriveUrl(m_item->url())
              << "hasCookies=" << !m_item->cookies().isEmpty()
              << "cookieLen=" << m_item->cookies().size();
 
-    // Google Drive doesn't reliably respond to HEAD — skip straight to GET
-    // with HTML interception so we can detect confirmation pages.
-    // Also skip loadMeta() for GDrive: previous attempts may have saved
-    // meta/part files containing HTML garbage that we'd blindly resume.
+    // Google Drive: only discard stale non-resumable metas (single-segment downloads
+    // produced by old code or confirmation-page fallbacks that may contain HTML bytes).
+    // Valid range-based metas (resumeCapable == true) are preserved so partially-
+    // downloaded files survive restarts and hard kills.
     if (isGoogleDriveUrl(m_item->url())) {
-        // Remove any stale part/meta files from previous (possibly bad) attempts
-        QFile::remove(metaPath());
-        QFile::remove(partPath(0));
-        m_gdriveIntercepting = true;
-        m_resumeCapable = false;
-        m_item->setResumeCapable(false);
-        setupSegments(0, false);
-        saveMeta();
-        startAllSegments();
-        m_progressTimer->start();
-        emit started();
-        return;
+        bool hasValidRangeMeta = false;
+        QFile mf(metaPath());
+        if (mf.exists() && mf.open(QIODevice::ReadOnly)) {
+            QJsonDocument doc = QJsonDocument::fromJson(mf.readAll());
+            mf.close();
+            hasValidRangeMeta = doc.object()[QStringLiteral("resumeCapable")].toBool(false);
+        }
+        if (!hasValidRangeMeta) {
+            QFile::remove(metaPath());
+            QFile::remove(partPath(0));
+        }
     }
 
     // Try to resume from existing meta
@@ -120,8 +214,30 @@ void SegmentedTransfer::applyRequestHeaders(QNetworkRequest &req, const QUrl &ur
         resolvedUserAgent(m_useCustomUserAgent, m_customUserAgent, isGoogleDriveUrl(url)));
     req.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
                      QNetworkRequest::NoLessSafeRedirectPolicy);
-    if (m_item && !m_item->cookies().isEmpty())
+
+    // CRITICAL: force identity encoding.  Qt's NAM transparently decompresses
+    // gzip/deflate responses, which silently breaks byte-range math — the
+    // server sends compressed bytes matching our Range header, but we see
+    // decompressed bytes on the reply, so `received` no longer corresponds
+    // to byte offsets on the server and segments assemble into garbage.
+    req.setRawHeader("Accept-Encoding", "identity");
+
+    // Look more like a browser.  Many filehosters (Rapidgator, Uploaded, etc.)
+    // reject requests missing Accept / Accept-Language.
+    req.setRawHeader("Accept", "*/*");
+    req.setRawHeader("Accept-Language", "en-US,en;q=0.9");
+
+    // Cookies are injected into the NAM's cookie jar by seedCookieJar()
+    // so they survive redirect chains.  Only fall back to the raw header
+    // if the jar is unavailable (should never happen in practice).
+    if (m_item && !m_item->cookies().isEmpty() && (!m_nam || !m_nam->cookieJar()))
         req.setRawHeader("Cookie", m_item->cookies().toUtf8());
+
+    // Referer: critical for hotlink-protected hosters.  Stored on the item
+    // by the browser extension but was previously never sent — major gap.
+    if (m_item && !m_item->referrer().isEmpty())
+        req.setRawHeader("Referer", m_item->referrer().toUtf8());
+
     if (m_item && !m_item->username().isEmpty()) {
         const QByteArray credentials =
             (m_item->username() + QLatin1Char(':') + m_item->password()).toUtf8().toBase64();
@@ -141,9 +257,49 @@ void SegmentedTransfer::setTemporaryDirectory(const QString &path) {
     m_temporaryDirectory = path;
 }
 
-void SegmentedTransfer::sendHeadRequest() {
-    QNetworkRequest req(m_item->url());
-    applyRequestHeaders(req, m_item->url());
+void SegmentedTransfer::setMaxConnectionsPerHost(int v) {
+    m_maxConnectionsPerHost = qBound(1, v, kMaxDynamicSegments);
+}
+
+void SegmentedTransfer::seedCookieJar() {
+    if (!m_item || m_item->cookies().isEmpty() || !m_nam) return;
+    auto *jar = m_nam->cookieJar();
+    if (!jar) return;
+
+    QList<QNetworkCookie> cookies;
+    const QByteArray raw = m_item->cookies().toUtf8();
+    for (const QByteArray &pair : raw.split(';')) {
+        QByteArray trimmed = pair.trimmed();
+        int eq = trimmed.indexOf('=');
+        if (eq > 0) {
+            QNetworkCookie c(trimmed.left(eq), trimmed.mid(eq + 1));
+            c.setDomain(m_item->url().host());
+            c.setPath(QStringLiteral("/"));
+            cookies.append(c);
+        }
+    }
+    jar->setCookiesFromUrl(cookies, m_item->url());
+}
+
+void SegmentedTransfer::startNextPendingSegment() {
+    int active = 0;
+    for (const auto &seg : m_segments)
+        if (!seg.done && seg.reply) ++active;
+    if (active >= m_maxConnectionsPerHost) return;
+
+    for (auto &seg : m_segments) {
+        if (!seg.done && !seg.reply) {
+            startSegment(seg);
+            return;
+        }
+    }
+}
+
+void SegmentedTransfer::sendHeadRequest(const QUrl &overrideUrl) {
+    const QUrl targetUrl = overrideUrl.isValid() ? overrideUrl : m_item->url();
+    QNetworkRequest req(targetUrl);
+    applyRequestHeaders(req, targetUrl);
+    req.setTransferTimeout(15'000); // 15 s — don't hang forever on a dead server
 
     m_headReply = m_nam->head(req);
     connect(m_headReply, &QNetworkReply::finished, this, [this]() {
@@ -193,6 +349,10 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
         return;
     }
 
+    // Capture entity validators for If-Range on resume.
+    m_etag = QString::fromUtf8(reply->rawHeader("ETag"));
+    m_lastModified = QString::fromUtf8(reply->rawHeader("Last-Modified"));
+
     m_resumeCapable = (acceptRanges.trimmed().compare(QStringLiteral("bytes"), Qt::CaseInsensitive) == 0
                        && contentLength > 0);
 
@@ -204,6 +364,9 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
     // Extract filename from Content-Disposition if present
     updateFilenameFromReply(reply);
 
+    // Track the final URL after redirects so segment GETs go to the right host
+    // (e.g. GDrive HEAD may redirect to a CDN URL that accepts Range requests).
+    m_effectiveUrl = reply->url();
     reply->deleteLater();
     m_headReply = nullptr;
 
@@ -249,9 +412,12 @@ void SegmentedTransfer::startAllSegments() {
     // Ensure save path dir exists
     QDir().mkpath(m_item->savePath());
 
+    int started = 0;
     for (auto &seg : m_segments) {
+        if (started >= m_maxConnectionsPerHost) break;
         if (!seg.done) {
             startSegment(seg);
+            ++started;
         }
     }
 }
@@ -259,7 +425,7 @@ void SegmentedTransfer::startAllSegments() {
 void SegmentedTransfer::startSegment(Segment &seg) {
     // Open part file for appending
     if (!seg.file) {
-        seg.file = new QFile(seg.partPath);
+        seg.file = new QFile(longPath(seg.partPath));
     }
     if (!seg.file->isOpen()) {
         if (!seg.file->open(QIODevice::Append)) {
@@ -268,8 +434,11 @@ void SegmentedTransfer::startSegment(Segment &seg) {
         }
     }
 
-    QNetworkRequest req(m_item->url());
-    applyRequestHeaders(req, m_item->url());
+    // Use the effective URL (final URL after redirects) when available.
+    // Falls back to the item URL so existing resume paths continue to work.
+    const QUrl requestUrl = m_effectiveUrl.isValid() ? m_effectiveUrl : m_item->url();
+    QNetworkRequest req(requestUrl);
+    applyRequestHeaders(req, requestUrl);
 
     // Set Range header if applicable
     if (seg.endOffset >= 0) {
@@ -282,8 +451,21 @@ void SegmentedTransfer::startSegment(Segment &seg) {
             return;
         }
         req.setRawHeader("Range", QStringLiteral("bytes=%1-%2").arg(from).arg(to).toUtf8());
+
+        // If-Range: if we're resuming a partially-downloaded segment and we
+        // have a server entity tag, tell the server "give me the range only
+        // if the resource still matches; otherwise send the whole file".
+        // This catches the case where a file changed server-side between
+        // pause and resume — without it we'd silently splice old+new bytes.
+        if (seg.received > 0) {
+            if (!m_etag.isEmpty())
+                req.setRawHeader("If-Range", m_etag.toUtf8());
+            else if (!m_lastModified.isEmpty())
+                req.setRawHeader("If-Range", m_lastModified.toUtf8());
+        }
     }
 
+    seg.lastByteTime = QDateTime::currentMSecsSinceEpoch();
     seg.reply = m_nam->get(req);
 
     int idx = seg.index;
@@ -293,6 +475,16 @@ void SegmentedTransfer::startSegment(Segment &seg) {
     connect(seg.reply, &QNetworkReply::finished, this, [this, idx]() {
         onSegmentFinished(idx);
     });
+    // Surface TLS errors into the log + errorString so users can diagnose
+    // obscure hoster issues instead of seeing "Network error on segment N".
+    connect(seg.reply, &QNetworkReply::sslErrors, this,
+            [this, idx](const QList<QSslError> &errors) {
+        QStringList msgs;
+        for (const QSslError &e : errors) msgs << e.errorString();
+        const QString joined = msgs.join(QStringLiteral("; "));
+        qDebug() << "[ST] segment" << idx << "TLS errors:" << joined;
+        if (m_item) m_item->setErrorString(QStringLiteral("TLS: ") + joined);
+    });
 }
 
 void SegmentedTransfer::onSegmentReadyRead(int index) {
@@ -300,23 +492,31 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     auto &seg = m_segments[index];
     if (!seg.reply || !seg.file) return;
 
-    // Google Drive HTML interception: buffer the first chunk to sniff content type
-    if (m_gdriveIntercepting && index == 0) {
-        // If redirected to accounts.google.com, it's an auth wall — fail immediately
-        QString replyHost = seg.reply->url().host().toLower();
-        qDebug() << "[GDrive] readyRead, replyHost=" << replyHost << "bufSize=" << m_gdriveHtmlBuf.size();
+    // GDrive auth check: if any segment (including Range-based resume segments)
+    // ends up at accounts.google.com the session cookie has expired.  Abort all
+    // connections immediately so we don't save an HTML login page as file data.
+    // Parts and meta are intentionally left on disk so the user can re-add the
+    // download from the browser (with fresh cookies) and resume from where it stopped.
+    if (isGoogleDriveUrl(m_item->url())) {
+        const QString replyHost = seg.reply->url().host().toLower();
         if (replyHost.contains(QStringLiteral("accounts.google.com"))) {
-            qDebug() << "[GDrive] auth wall detected";
-            seg.reply->disconnect(this);
-            seg.reply->abort();
-            seg.reply->deleteLater();
-            seg.reply = nullptr;
-            if (seg.file) { seg.file->close(); QFile::remove(seg.partPath); }
+            m_progressTimer->stop();
+            for (auto &s : m_segments) {
+                if (s.reply) { s.reply->disconnect(this); s.reply->abort(); s.reply->deleteLater(); s.reply = nullptr; }
+                if (s.file)  { s.file->close(); }
+            }
             m_gdriveIntercepting = false;
             m_gdriveHtmlBuf.clear();
-            emit failed(QStringLiteral("Google Drive requires sign-in. Right-click the link in your browser and use \"Download with Stellar\" so the extension can pass your login cookies."));
+            emit failed(QStringLiteral("Google Drive session expired. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume — your partial download will be reused."));
             return;
         }
+    }
+
+    // Google Drive HTML interception: buffer the first chunk to sniff content type
+    if (m_gdriveIntercepting && index == 0) {
+        // Note: accounts.google.com auth-wall is already caught by the top-level
+        // GDrive auth check above, so we only reach here for non-auth responses.
+        qDebug() << "[GDrive] readyRead, replyHost=" << seg.reply->url().host() << "bufSize=" << m_gdriveHtmlBuf.size();
 
         QByteArray data = seg.reply->readAll();
         m_gdriveHtmlBuf.append(data);
@@ -330,24 +530,138 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
         bool looksLikeHtml = head.contains("<html") || head.contains("<!DOCTYPE") || head.contains("<!doctype");
 
         if (hasContentDisp || (!looksLikeHtml && m_gdriveHtmlBuf.size() > 512)) {
-            // Real file — flush buffer to disk and switch to normal mode
+            // Real file detected — check range support before committing to single-segment.
             m_gdriveIntercepting = false;
             updateFilenameFromReply(seg.reply);
             qint64 cl = seg.reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+            const QString acceptRanges = QString::fromUtf8(seg.reply->rawHeader("Accept-Ranges")).trimmed();
+            const bool rangeCapable = (acceptRanges.compare(QStringLiteral("bytes"), Qt::CaseInsensitive) == 0
+                                       && cl > (qint64)kMinSegmentSize * m_segmentCount);
+            if (rangeCapable) {
+                // Abort the streaming GET and restart with proper Range segments.
+                // The sniff buffer is discarded — negligible loss vs the gain of
+                // parallel connections covering the entire file.
+                m_effectiveUrl = seg.reply->url();
+                m_etag = QString::fromUtf8(seg.reply->rawHeader("ETag"));
+                m_lastModified = QString::fromUtf8(seg.reply->rawHeader("Last-Modified"));
+                seg.reply->disconnect(this);
+                seg.reply->abort();
+                seg.reply->deleteLater();
+                seg.reply = nullptr;
+                if (seg.file) { seg.file->close(); QFile::remove(seg.partPath); delete seg.file; seg.file = nullptr; }
+                m_gdriveHtmlBuf.clear();
+                m_resumeCapable = true;
+                m_item->setResumeCapable(true);
+                m_item->setTotalBytes(cl);
+                setupSegments(cl, true);
+                saveMeta();
+                startAllSegments();
+                return;
+            }
+            // Not range-capable (or file too small) — continue as single segment.
             if (cl > 0) m_item->setTotalBytes(cl);
-
-            seg.file->write(m_gdriveHtmlBuf);
-            seg.received += m_gdriveHtmlBuf.size();
+            qint64 wrote = seg.file->write(m_gdriveHtmlBuf);
+            if (wrote != m_gdriveHtmlBuf.size()) {
+                m_item->setStatus(DownloadItem::Status::Error);
+                emit failed(QStringLiteral("Disk write failed: %1").arg(seg.file->errorString()));
+                return;
+            }
+            seg.received += wrote;
             m_gdriveHtmlBuf.clear();
         }
         // Otherwise keep buffering until finished (confirmation pages are small)
         return;
     }
 
+    // Universal range-upgrade: when a non-ranged single-segment GET returns its
+    // first bytes and the server announces Accept-Ranges: bytes with a known
+    // Content-Length, abort and restart as multi-segment.  This catches any site
+    // where HEAD was skipped or failed but the actual GET supports ranges — the
+    // GDrive confirmation-page restart, CDNs that ignore HEAD, etc.
+    if (!m_gdriveIntercepting
+        && m_segments.size() == 1 && seg.endOffset < 0
+        && seg.received == 0 && seg.pending.isEmpty()) {
+        const QString acceptRanges = QString::fromUtf8(seg.reply->rawHeader("Accept-Ranges")).trimmed();
+        const qint64 cl = seg.reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+        if (acceptRanges.compare(QStringLiteral("bytes"), Qt::CaseInsensitive) == 0
+            && cl > (qint64)kMinSegmentSize * m_segmentCount) {
+            updateFilenameFromReply(seg.reply);
+            m_effectiveUrl = seg.reply->url();
+            m_etag = QString::fromUtf8(seg.reply->rawHeader("ETag"));
+            m_lastModified = QString::fromUtf8(seg.reply->rawHeader("Last-Modified"));
+            seg.reply->disconnect(this);
+            seg.reply->abort();
+            seg.reply->deleteLater();
+            seg.reply = nullptr;
+            if (seg.file) { seg.file->close(); QFile::remove(seg.partPath); delete seg.file; seg.file = nullptr; }
+            m_resumeCapable = true;
+            m_item->setResumeCapable(true);
+            m_item->setTotalBytes(cl);
+            setupSegments(cl, true);
+            saveMeta();
+            startAllSegments();
+            return;
+        }
+    }
+
+    seg.lastByteTime = QDateTime::currentMSecsSinceEpoch();
+
     // On the very first data from segment 0, try to pick up the filename
     // from Content-Disposition (many servers only send it on GET, not HEAD).
     if (index == 0 && seg.received == 0 && seg.pending.isEmpty()) {
         updateFilenameFromReply(seg.reply);
+    }
+
+    // First-byte validation for ranged segments -------------------------
+    //   1. 206 vs 200: if the server ignored Range and returned 200 to
+    //      every segment, all segments would write the full file → garbage.
+    //      Fall back to a single non-ranged connection.
+    //   2. Content-Range total must match our known total.  If it doesn't,
+    //      the file changed server-side since we probed — abort rather
+    //      than splice mismatched bytes together.
+    //   3. Content-Range start must equal our expected `from`.  Some
+    //      proxies silently adjust ranges; catching this avoids corrupted
+    //      offsets downstream.
+    if (seg.endOffset >= 0 && seg.received == 0) {
+        const int httpStatus = seg.reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+        if (httpStatus == 200 && m_segments.size() > 1) {
+            qDebug() << "[ST] segment" << index << "got 200 instead of 206 — server ignores Range; falling back to single segment";
+            fallbackToSingleSegment();
+            return;
+        }
+
+        if (httpStatus == 206) {
+            const QByteArray cr = seg.reply->rawHeader("Content-Range");
+            // Expected form: "bytes <start>-<end>/<total>"
+            if (!cr.isEmpty()) {
+                int slash = cr.lastIndexOf('/');
+                int dash  = cr.indexOf('-');
+                int space = cr.indexOf(' ');
+                if (space > 0 && dash > space && slash > dash) {
+                    bool okStart = false, okTotal = false;
+                    qint64 start = cr.mid(space + 1, dash - space - 1).trimmed().toLongLong(&okStart);
+                    QByteArray totalBa = cr.mid(slash + 1).trimmed();
+                    qint64 total = (totalBa == "*") ? -1 : totalBa.toLongLong(&okTotal);
+
+                    const qint64 expectedStart = seg.startOffset + seg.received;
+                    if (okStart && start != expectedStart) {
+                        qDebug() << "[ST] segment" << index << "Content-Range start mismatch:"
+                                 << start << "vs expected" << expectedStart;
+                        m_item->setStatus(DownloadItem::Status::Error);
+                        emit failed(QStringLiteral("Server returned wrong byte range"));
+                        return;
+                    }
+                    if (okTotal && total > 0 && m_item->totalBytes() > 0 && total != m_item->totalBytes()) {
+                        qDebug() << "[ST] segment" << index << "total size changed server-side:"
+                                 << total << "vs expected" << m_item->totalBytes();
+                        m_item->setStatus(DownloadItem::Status::Error);
+                        emit failed(QStringLiteral("File on server changed size during download"));
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     QByteArray data = seg.reply->readAll();
@@ -356,8 +670,17 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     if (m_speedLimitKBps > 0) {
         seg.pending.append(data);
     } else {
-        seg.file->write(data);
-        seg.received += data.size();
+        qint64 wrote = seg.file->write(data);
+        if (wrote != data.size()) {
+            // Disk full, permission denied, I/O error — fatal.  Abort
+            // everything; retrying won't help if the disk is full.
+            QString err = seg.file->errorString();
+            qDebug() << "[ST] disk write failed on segment" << index << ":" << err;
+            m_item->setStatus(DownloadItem::Status::Error);
+            emit failed(QStringLiteral("Disk write failed: %1").arg(err));
+            return;
+        }
+        seg.received += wrote;
     }
 }
 
@@ -394,7 +717,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         if (isAuthRedirect) {
             m_gdriveIntercepting = false;
             m_gdriveHtmlBuf.clear();
-            emit failed(QStringLiteral("Google Drive requires sign-in. Right-click the link in your browser and use \"Download with Stellar\" so the extension can pass your login cookies."));
+            emit failed(QStringLiteral("Google Drive session expired. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume — your partial download will be reused."));
             return;
         }
 
@@ -433,14 +756,64 @@ void SegmentedTransfer::onSegmentFinished(int index) {
     }
 
     QNetworkReply::NetworkError err = seg.reply->error();
+    int httpStatus = seg.reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+    QByteArray retryAfterHdr = seg.reply->rawHeader("Retry-After");
     seg.reply->deleteLater();
     seg.reply = nullptr;
 
+    // --- Error / status classification ---------------------------------
+    // Retriable: transport errors, 5xx, 408, 429 (with Retry-After honored).
+    // Permanent: 4xx (except 408/429) — retrying is pointless.
+    // Success:   2xx with error==NoError, AND received matches expected.
+    auto isPermanentHttp = [](int s) {
+        return s >= 400 && s < 500 && s != 408 && s != 429;
+    };
+    auto isRetriableHttp = [](int s) {
+        return s == 408 || s == 429 || (s >= 500 && s < 600);
+    };
+
     if (err != QNetworkReply::NoError && err != QNetworkReply::OperationCanceledError) {
         if (seg.file) seg.file->close();
-        m_item->setStatus(DownloadItem::Status::Error);
-        emit failed(QStringLiteral("Network error on segment %1").arg(index));
+        if (httpStatus > 0 && isPermanentHttp(httpStatus)) {
+            m_item->setStatus(DownloadItem::Status::Error);
+            emit failed(QStringLiteral("HTTP %1 on segment %2 — not retriable")
+                        .arg(httpStatus).arg(index + 1));
+            return;
+        }
+        // Honor Retry-After (seconds form only — the HTTP-date form is rare
+        // and Qt's parser doesn't expose it cleanly here).
+        int extraDelayMs = 0;
+        if (!retryAfterHdr.isEmpty()) {
+            bool ok = false;
+            int seconds = retryAfterHdr.trimmed().toInt(&ok);
+            if (ok && seconds > 0 && seconds < 600)
+                extraDelayMs = seconds * 1000;
+        }
+        retrySegment(index, extraDelayMs);
         return;
+    }
+
+    // Some servers return 4xx/5xx with err==NoError (they just close cleanly
+    // after sending an HTML error body).  Catch that here.
+    if (httpStatus >= 400) {
+        if (seg.file) seg.file->close();
+        if (isPermanentHttp(httpStatus)) {
+            m_item->setStatus(DownloadItem::Status::Error);
+            emit failed(QStringLiteral("HTTP %1 on segment %2 — not retriable")
+                        .arg(httpStatus).arg(index + 1));
+            return;
+        }
+        if (isRetriableHttp(httpStatus)) {
+            int extraDelayMs = 0;
+            if (!retryAfterHdr.isEmpty()) {
+                bool ok = false;
+                int seconds = retryAfterHdr.trimmed().toInt(&ok);
+                if (ok && seconds > 0 && seconds < 600)
+                    extraDelayMs = seconds * 1000;
+            }
+            retrySegment(index, extraDelayMs);
+            return;
+        }
     }
 
     // Throttled with unflushed data: let onProgressTick drain pending before marking done
@@ -449,8 +822,30 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         return;
     }
 
+    // --- Content-length verification -----------------------------------
+    // For ranged segments, `received` must match the expected segment size,
+    // otherwise the server closed early and we'd silently produce a truncated
+    // file.  Retry instead of marking done.
+    if (seg.endOffset >= 0) {
+        qint64 expected = seg.endOffset - seg.startOffset + 1;
+        if (seg.received < expected) {
+            qDebug() << "[ST] segment" << index << "short:"
+                     << seg.received << "of" << expected << "— retrying";
+            if (seg.file) seg.file->close();
+            retrySegment(index);
+            return;
+        }
+    }
+
     seg.done = true;
     if (seg.file) seg.file->close();
+
+    // Dynamic segmentation: we have a free connection — try to steal work
+    // from the slowest remaining segment.  This is the key IDM behavior.
+    maybeStealWork();
+
+    // If there are segments waiting due to per-host connection cap, start one.
+    startNextPendingSegment();
 
     bool allDone = true;
     for (const auto &s : m_segments) {
@@ -480,9 +875,17 @@ void SegmentedTransfer::onProgressTick() {
 
                 qint64 toWrite = std::min((qint64)seg.pending.size(), budgetPerSeg);
                 if (toWrite > 0) {
-                    seg.file->write(seg.pending.constData(), toWrite);
-                    seg.received += toWrite;
-                    seg.pending.remove(0, (int)toWrite);
+                    qint64 wrote = seg.file->write(seg.pending.constData(), toWrite);
+                    if (wrote != toWrite) {
+                        QString err = seg.file->errorString();
+                        qDebug() << "[ST] throttled disk write failed:" << err;
+                        m_progressTimer->stop();
+                        m_item->setStatus(DownloadItem::Status::Error);
+                        emit failed(QStringLiteral("Disk write failed: %1").arg(err));
+                        return;
+                    }
+                    seg.received += wrote;
+                    seg.pending.remove(0, (int)wrote);
                 }
 
                 if (seg.networkDone && seg.pending.isEmpty()) {
@@ -502,6 +905,25 @@ void SegmentedTransfer::onProgressTick() {
         }
     }
 
+    // Stall detection: if a live reply hasn't delivered any bytes within the
+    // stall window, the connection is likely hung — kill it and retry.
+    {
+        qint64 now = QDateTime::currentMSecsSinceEpoch();
+        for (int i = 0; i < m_segments.size(); ++i) {
+            auto &seg = m_segments[i];
+            if (seg.done || !seg.reply || seg.lastByteTime == 0) continue;
+            if (now - seg.lastByteTime > kStallTimeoutMs) {
+                qDebug() << "[ST] segment" << i << "stalled (" << (now - seg.lastByteTime) << "ms) — retrying";
+                seg.reply->disconnect(this);
+                seg.reply->abort();
+                seg.reply->deleteLater();
+                seg.reply = nullptr;
+                if (seg.file) seg.file->close();
+                retrySegment(i);
+            }
+        }
+    }
+
     qint64 totalReceived = 0;
     for (const auto &seg : m_segments) {
         totalReceived += seg.received;
@@ -510,11 +932,39 @@ void SegmentedTransfer::onProgressTick() {
     m_item->setDoneBytes(totalReceived);
 
     qint64 delta = totalReceived - m_lastReceived;
-    qint64 speedBps = delta * 4; // divide by 0.25s → multiply by 4
-    m_item->setSpeed(speedBps);
     m_lastReceived = totalReceived;
 
+    // Maintain sliding window of per-tick byte deltas (max 120 ticks = 30 s at 250 ms/tick)
+    m_speedSamples.append(delta);
+    if (m_speedSamples.size() > 120)
+        m_speedSamples.removeFirst();
+
+    // Display speed: 2-second window (last 8 ticks) — prevents wild jumps in the UI
+    int displayN = std::min((int)m_speedSamples.size(), 8);
+    qint64 displaySum = 0;
+    for (int i = (int)m_speedSamples.size() - displayN; i < (int)m_speedSamples.size(); ++i)
+        displaySum += m_speedSamples[i];
+    qint64 speedBps = displayN > 0 ? (displaySum * 4 / displayN) : 0;
+    m_item->setSpeed(speedBps);
+
+    // ETA speed: 30-second window (all samples) — stable enough to give a calm countdown
+    {
+        qint64 sum = 0;
+        for (qint64 s : m_speedSamples) sum += s;
+        qint64 etaSpeedBps = !m_speedSamples.isEmpty() ? (sum * 4 / (int)m_speedSamples.size()) : 0;
+        m_item->setEtaSpeed(etaSpeedBps);
+    }
+
     updateSegmentDataOnItem();
+
+    // Checkpoint the meta file every ~5 s so an ungraceful exit loses at
+    // most 5 s of progress instead of the entire download.  loadMeta()
+    // already clamps to actual part-file size, so this is strictly a
+    // safety net for the in-memory state.
+    if (++m_ticksSinceMetaSave >= 20) {  // 20 × 250 ms = 5 s
+        m_ticksSinceMetaSave = 0;
+        saveMeta();
+    }
 
     emit progressChanged(totalReceived, m_item->totalBytes(), speedBps);
 }
@@ -544,9 +994,11 @@ void SegmentedTransfer::mergeAndFinish() {
     qint64 totalReceived = 0;
     for (const auto &seg : m_segments) totalReceived += seg.received;
     m_item->setDoneBytes(totalReceived);
+    m_speedSamples.clear();
     m_item->setSpeed(0);
+    m_item->setEtaSpeed(0);
 
-    QString outPath = m_item->savePath() + QStringLiteral("/") + m_item->filename();
+    QString outPath = longPath(m_item->savePath() + QStringLiteral("/") + m_item->filename());
 
     // If single segment with no range, rename the part file to the final name
     if (m_segments.size() == 1 && m_segments[0].endOffset < 0) {
@@ -561,24 +1013,38 @@ void SegmentedTransfer::mergeAndFinish() {
             // Cross-device or locked: copy then delete
             QFile src(partSrc);
             QFile dst(outPath);
-            if (src.open(QIODevice::ReadOnly) && dst.open(QIODevice::WriteOnly)) {
-                const qint64 kChunk = 1024 * 1024;
-                while (!src.atEnd()) dst.write(src.read(kChunk));
+            if (!src.open(QIODevice::ReadOnly) || !dst.open(QIODevice::WriteOnly | QIODevice::Truncate)
+                || !copyFileContents(src, dst)) {
+                emit failed(QStringLiteral("Cannot create output file: %1").arg(outPath));
+                return;
             }
             QFile::remove(partSrc);
         }
     } else {
         QFile outFile(outPath);
-        if (!outFile.open(QIODevice::WriteOnly)) {
+        if (!outFile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
             emit failed(QStringLiteral("Cannot create output file: %1").arg(outPath));
             return;
         }
-        for (const auto &seg : m_segments) {
-            QFile partFile(seg.partPath);
-            if (partFile.open(QIODevice::ReadOnly)) {
-                outFile.write(partFile.readAll());
-                partFile.close();
+
+        // Dynamic segmentation may have appended segments out of file order.
+        // Concatenate in ascending startOffset order instead of array order.
+        QList<const Segment *> ordered;
+        ordered.reserve(m_segments.size());
+        for (const auto &seg : m_segments) ordered.append(&seg);
+        std::sort(ordered.begin(), ordered.end(),
+                  [](const Segment *a, const Segment *b) {
+                      return a->startOffset < b->startOffset;
+                  });
+
+        for (const auto *segPtr : ordered) {
+            QFile partFile(segPtr->partPath);
+            if (!partFile.open(QIODevice::ReadOnly) || !copyFileContents(partFile, outFile)) {
+                outFile.close();
+                emit failed(QStringLiteral("Cannot read part file: %1").arg(segPtr->partPath));
+                return;
             }
+            partFile.close();
         }
         outFile.close();
     }
@@ -603,7 +1069,14 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
             filename = pathName;
     }
 
-    if (filename.isEmpty() || filename == m_item->filename() || m_item->isFilenameManuallySet()) return;
+    if (filename.isEmpty() || m_item->isFilenameManuallySet()) return;
+
+    // Strip filesystem-illegal characters before doing any compare or rename.
+    // The old code compared a raw server-supplied filename against the
+    // item's filename, which meant an invalid filename could get past the
+    // equality check and then fail at rename time.
+    filename = sanitizeFilename(filename);
+    if (filename == m_item->filename()) return;
 
     // Rename part files on disk before updating the stored filename, so the
     // file objects and seg.partPath stay consistent with what's actually on disk.
@@ -611,8 +1084,8 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
     for (auto &seg : m_segments) {
         QString oldPart = seg.partPath;
         // Compute what the new partPath will be (based on the new filename)
-        QString newPart = m_item->savePath() + QStringLiteral("/") + filename
-                          + QStringLiteral(".stellar-part-") + QString::number(seg.index);
+        QString newPart = longPath(m_item->savePath() + QStringLiteral("/") + filename
+                          + QStringLiteral(".stellar-part-") + QString::number(seg.index));
         if (oldPart == newPart) continue;
 
         if (QFile::exists(oldPart)) {
@@ -866,8 +1339,10 @@ void SegmentedTransfer::pause() {
     }
 
     saveMeta();
+    m_speedSamples.clear();
     m_item->setStatus(DownloadItem::Status::Paused);
     m_item->setSpeed(0);
+    m_item->setEtaSpeed(0);
 }
 
 void SegmentedTransfer::resume() {
@@ -910,8 +1385,8 @@ bool SegmentedTransfer::relocateOutput(const QString &newSavePath, const QString
     QDir().mkpath(newSavePath);
 
     for (auto &seg : m_segments) {
-        const QString newPartPath = newSavePath + QStringLiteral("/") + newFilename
-            + QStringLiteral(".stellar-part-") + QString::number(seg.index);
+        const QString newPartPath = longPath(newSavePath + QStringLiteral("/") + newFilename
+            + QStringLiteral(".stellar-part-") + QString::number(seg.index));
         if (seg.partPath == newPartPath)
             continue;
 
@@ -973,6 +1448,8 @@ void SegmentedTransfer::abort() {
         }
     }
 
+    m_speedSamples.clear();
+
     cleanupPartFiles();
     deleteMetaFile();
 
@@ -980,9 +1457,157 @@ void SegmentedTransfer::abort() {
     // The item's final state will be set by whoever is calling abort().
 }
 
+// Retry a single segment after an error or stall, with exponential backoff.
+// Once kMaxSegmentRetries is exceeded the whole download is failed.
+// extraDelayMs lets the caller add a Retry-After delay on top of the backoff.
+void SegmentedTransfer::retrySegment(int index, int extraDelayMs) {
+    if (m_cancelled || m_paused || index < 0 || index >= m_segments.size()) return;
+    auto &seg = m_segments[index];
+
+    if (seg.retryCount >= kMaxSegmentRetries) {
+        m_item->setStatus(DownloadItem::Status::Error);
+        emit failed(QStringLiteral("Segment %1 failed after %2 retries").arg(index + 1).arg(kMaxSegmentRetries));
+        return;
+    }
+
+    int delayMs = 1000 * (1 << seg.retryCount) + extraDelayMs; // 1 s, 2 s, 4 s, 8 s (+ Retry-After)
+    ++seg.retryCount;
+
+    qDebug() << "[ST] segment" << index << "scheduling retry" << seg.retryCount << "in" << delayMs << "ms";
+    m_item->setDescription(QStringLiteral("Segment %1 retrying (attempt %2)…").arg(index + 1).arg(seg.retryCount));
+
+    QTimer::singleShot(delayMs, this, [this, index]() {
+        if (m_cancelled || m_paused || index >= m_segments.size()) return;
+        m_item->setDescription({});
+        startSegment(m_segments[index]);
+    });
+}
+
+// Dynamic segmentation (IDM-style): when a segment finishes, check whether
+// any other segment still has a significant amount of work left.  If so,
+// split its remaining range in half and spawn a new segment for the second
+// half, keeping all connections busy until the very end of the download.
+//
+// Only safe on range-capable servers, and only if we haven't already
+// exploded into an absurd number of segments.
+void SegmentedTransfer::maybeStealWork() {
+    if (m_cancelled || m_paused) return;
+    if (!m_resumeCapable) return;
+    if (m_segments.size() >= kMaxDynamicSegments) return;
+
+    // Count currently active connections — don't exceed the per-host cap.
+    int activeCount = 0;
+    for (const auto &seg : m_segments)
+        if (!seg.done && seg.reply) ++activeCount;
+    if (activeCount >= m_maxConnectionsPerHost) return;
+
+    // Pick the segment with the most bytes still to fetch.
+    int victimIdx = -1;
+    qint64 victimRemaining = 0;
+    for (int i = 0; i < m_segments.size(); ++i) {
+        const auto &seg = m_segments[i];
+        if (seg.done || !seg.reply || seg.endOffset < 0) continue;
+        qint64 pos = seg.startOffset + seg.received;
+        qint64 remaining = seg.endOffset - pos + 1;
+        if (remaining > victimRemaining) {
+            victimRemaining = remaining;
+            victimIdx = i;
+        }
+    }
+    if (victimIdx < 0 || victimRemaining < kStealThresholdBytes) return;
+
+    auto &victim = m_segments[victimIdx];
+    qint64 pos     = victim.startOffset + victim.received;
+    qint64 oldEnd  = victim.endOffset;
+    qint64 mid     = pos + victimRemaining / 2;
+
+    qDebug() << "[ST] stealing: splitting segment" << victimIdx
+             << "range" << pos << "-" << oldEnd << "at" << mid
+             << "(" << victimRemaining << "bytes remaining)";
+
+    // Abort the victim cleanly — its file is still valid up to `received`.
+    victim.reply->disconnect(this);
+    victim.reply->abort();
+    victim.reply->deleteLater();
+    victim.reply = nullptr;
+    if (victim.file && victim.file->isOpen()) victim.file->close();
+
+    // Shrink the victim to the first half.
+    victim.endOffset  = mid - 1;
+    victim.retryCount = 0;   // fresh retry budget for the shortened range
+    victim.lastByteTime = 0;
+
+    // Create a new segment for the second half.
+    Segment ns;
+    ns.index       = m_segments.size();
+    ns.startOffset = mid;
+    ns.endOffset   = oldEnd;
+    ns.received    = 0;
+    ns.partPath    = partPath(ns.index);
+    m_segments.append(ns);
+
+    // Persist the new layout BEFORE any network I/O happens, so a crash
+    // between splitting and starting leaves a recoverable state on disk.
+    saveMeta();
+
+    // Restart the victim and fire up the new connection.
+    startSegment(m_segments[victimIdx]);
+    startSegment(m_segments.last());
+}
+
+// Called when a server ignores our Range header and returns 200 for every segment.
+// We abort everything and restart as a single non-ranged connection.
+void SegmentedTransfer::fallbackToSingleSegment() {
+    if (m_cancelled || m_paused) return;
+
+    m_progressTimer->stop();
+
+    for (auto &seg : m_segments) {
+        if (seg.reply) {
+            seg.reply->disconnect(this);
+            seg.reply->abort();
+            seg.reply->deleteLater();
+            seg.reply = nullptr;
+        }
+        if (seg.file) {
+            seg.file->close();
+            QFile::remove(seg.partPath);
+            delete seg.file;
+            seg.file = nullptr;
+        }
+    }
+    m_segments.clear();
+    m_speedSamples.clear();
+    m_lastReceived = 0;
+
+    m_resumeCapable = false;
+    m_item->setResumeCapable(false);
+    m_item->setDoneBytes(0);
+    m_item->setTotalBytes(0);
+
+    setupSegments(0, false);
+    saveMeta();
+    startAllSegments();
+    m_progressTimer->start();
+}
+
 void SegmentedTransfer::cleanupPartFiles() {
+    // Remove every part file we currently know about.
     for (const auto &seg : m_segments) {
         QFile::remove(seg.partPath);
+    }
+
+    // Also sweep any orphaned `*.stellar-part-*` files matching the current
+    // filename.  Dynamic segmentation can leave gaps in the index space
+    // (e.g. we resumed at 8 segments but a prior session had 12), and a
+    // stale filename change would leave the old parts dangling too.
+    const QString dir = tempBaseDirectory();
+    const QString prefix = m_item->filename() + QStringLiteral(".stellar-part-");
+    QDir d(dir);
+    const QStringList filters = { prefix + QStringLiteral("*") };
+    const QFileInfoList stragglers = d.entryInfoList(filters, QDir::Files | QDir::NoDotAndDotDot);
+    for (const QFileInfo &fi : stragglers) {
+        QFile::remove(fi.absoluteFilePath());
     }
 }
 
@@ -991,12 +1616,12 @@ void SegmentedTransfer::deleteMetaFile() {
 }
 
 QString SegmentedTransfer::metaPath() const {
-    return tempBaseDirectory() + QStringLiteral("/") + m_item->filename() + QStringLiteral(".stellar-meta");
+    return longPath(tempBaseDirectory() + QStringLiteral("/") + m_item->filename() + QStringLiteral(".stellar-meta"));
 }
 
 QString SegmentedTransfer::partPath(int index) const {
-    return tempBaseDirectory() + QStringLiteral("/") + m_item->filename()
-           + QStringLiteral(".stellar-part-") + QString::number(index);
+    return longPath(tempBaseDirectory() + QStringLiteral("/") + m_item->filename()
+           + QStringLiteral(".stellar-part-") + QString::number(index));
 }
 
 QString SegmentedTransfer::tempBaseDirectory() const {
@@ -1005,8 +1630,15 @@ QString SegmentedTransfer::tempBaseDirectory() const {
 
 bool SegmentedTransfer::saveMeta() {
     QJsonObject root;
-    root[QStringLiteral("url")]        = m_item->url().toString();
-    root[QStringLiteral("totalBytes")] = m_item->totalBytes();
+    // Fully-encoded form is stable across Qt versions and survives
+    // round-tripping through the JSON parser.
+    root[QStringLiteral("url")]           = QString::fromUtf8(m_item->url().toEncoded());
+    root[QStringLiteral("totalBytes")]    = m_item->totalBytes();
+    root[QStringLiteral("resumeCapable")] = m_resumeCapable;
+    if (!m_etag.isEmpty())
+        root[QStringLiteral("etag")] = m_etag;
+    if (!m_lastModified.isEmpty())
+        root[QStringLiteral("lastModified")] = m_lastModified;
 
     QJsonArray segs;
     for (const auto &seg : m_segments) {
@@ -1020,10 +1652,11 @@ bool SegmentedTransfer::saveMeta() {
     root[QStringLiteral("segments")] = segs;
 
     QDir().mkpath(tempBaseDirectory());
-    QFile f(metaPath());
+    QSaveFile f(metaPath());
     if (!f.open(QIODevice::WriteOnly)) return false;
-    f.write(QJsonDocument(root).toJson(QJsonDocument::Compact));
-    return true;
+    if (f.write(QJsonDocument(root).toJson(QJsonDocument::Compact)) < 0)
+        return false;
+    return f.commit();
 }
 
 bool SegmentedTransfer::loadMeta() {
@@ -1035,33 +1668,65 @@ bool SegmentedTransfer::loadMeta() {
     if (doc.isNull()) return false;
 
     QJsonObject root = doc.object();
+    const QString metaUrl = root[QStringLiteral("url")].toString();
+    const QString itemUrl = QString::fromUtf8(m_item->url().toEncoded());
+    if (!metaUrl.isEmpty() && metaUrl != itemUrl)
+        return false;
+
     qint64 totalBytes = root[QStringLiteral("totalBytes")].toVariant().toLongLong();
-    if (totalBytes > 0) m_item->setTotalBytes(totalBytes);
+    if (totalBytes <= 0)
+        return false;
+    m_item->setTotalBytes(totalBytes);
+
+    m_etag = root[QStringLiteral("etag")].toString();
+    m_lastModified = root[QStringLiteral("lastModified")].toString();
 
     QJsonArray segs = root[QStringLiteral("segments")].toArray();
     if (segs.isEmpty()) return false;
 
     m_segments.clear();
+    qint64 done = 0;
     for (int i = 0; i < segs.size(); ++i) {
         QJsonObject s = segs[i].toObject();
         Segment seg;
         seg.index       = i;
         seg.startOffset = s[QStringLiteral("startOffset")].toVariant().toLongLong();
         seg.endOffset   = s[QStringLiteral("endOffset")].toVariant().toLongLong();
-        seg.received    = s[QStringLiteral("received")].toVariant().toLongLong();
-        seg.done        = s[QStringLiteral("done")].toBool();
         seg.partPath    = partPath(i);
+        if (seg.startOffset < 0)
+            return false;
+        if (seg.endOffset >= 0 && seg.endOffset < seg.startOffset)
+            return false;
+
+        const qint64 expectedLength = seg.endOffset >= 0
+            ? (seg.endOffset - seg.startOffset + 1)
+            : totalBytes;
+        if (expectedLength < 0)
+            return false;
+
+        const qint64 savedReceived = s[QStringLiteral("received")].toVariant().toLongLong();
+        const QFileInfo partInfo(seg.partPath);
+        const qint64 actualSize = partInfo.exists() ? partInfo.size() : 0;
+        seg.received = std::clamp(actualSize, 0ll, expectedLength);
+        if (savedReceived > seg.received) {
+            qDebug() << "[ST] loadMeta clamped" << seg.partPath
+                     << "from" << savedReceived << "to" << seg.received;
+        }
+        seg.done = (seg.received >= expectedLength && expectedLength > 0);
+        done += seg.received;
         m_segments.append(seg);
     }
 
-    m_resumeCapable = (segs.size() > 0 && totalBytes > 0);
+    if (done > totalBytes)
+        return false;
+
+    m_resumeCapable = !m_segments.isEmpty();
     m_item->setResumeCapable(m_resumeCapable);
 
-    // Calculate already-done bytes
-    qint64 done = 0;
-    for (const auto &seg : m_segments) done += seg.received;
     m_lastReceived = done;
     m_item->setDoneBytes(done);
+
+    saveMeta();
 
     return true;
 }

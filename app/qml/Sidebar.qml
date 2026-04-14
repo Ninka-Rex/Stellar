@@ -44,6 +44,25 @@ Rectangle {
     property bool allDownloadsExpanded: true
     property bool queuesExpanded: true
     property bool grabberExpanded: true
+    property bool torrentsExpanded: true
+
+    // ── Torrent subcategory drag-and-drop state ───────────────────────────────
+    property int  _torrentSubcatDragFrom:    -1
+    property int  _torrentSubcatDropTarget:  -1
+    property bool _torrentSubcatDragging:    false
+
+    // selectedIndex values for torrent subcategories: -200 - subcatIndex
+    // e.g. torrent header = -200, subcats = -201, -202, …
+
+    function _applyTorrentSubcatReorder() {
+        if (!_torrentSubcatDragging || _torrentSubcatDragFrom < 0 || _torrentSubcatDropTarget < 0) return
+        if (_torrentSubcatDragFrom === _torrentSubcatDropTarget) return
+        var to = (_torrentSubcatDragFrom < _torrentSubcatDropTarget) ? _torrentSubcatDropTarget - 1 : _torrentSubcatDropTarget
+        if (_torrentSubcatDragFrom === to) return
+        var order = App.settings.torrentSubcatOrder.slice()
+        order.splice(to, 0, order.splice(_torrentSubcatDragFrom, 1)[0])
+        App.settings.torrentSubcatOrder = order
+    }
 
     // ── Category drag-and-drop state ──────────────────────────────────────────
     property int  _catDragFrom:   -1
@@ -129,6 +148,7 @@ Rectangle {
                         if (secId === "finished")   return 28
                         if (secId === "grabber")    return grabberCol.height
                         if (secId === "queues")     return queuesCol.height
+                        if (secId === "torrents")   return torrentsCol.height
                         return 0
                     }
 
@@ -788,6 +808,243 @@ Rectangle {
                             height: 2
                             color: "#4488dd"
                             z: 10
+                        }
+                    }
+
+                    // ── Torrents section ──────────────────────────────────────
+                    Column {
+                        id: torrentsCol
+                        visible: sectionDelegate.secId === "torrents"
+                        width: parent.width; spacing: 0
+
+                        // Torrents header — clicking selects all torrents; dragging reorders this section
+                        Rectangle {
+                            width: parent.width; height: 28
+                            color: root.selectedIndex === -200 ? "#1e3a6e" : (torrentHeaderMa.containsMouse ? "#2a2a3a" : "transparent")
+                            border.color: root.selectedIndex === -200 ? "#4488dd" : "transparent"; border.width: 1
+
+                            Row {
+                                anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
+                                spacing: 2
+                                Text { text: root.torrentsExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12; width: 16; anchors.verticalCenter: parent.verticalCenter }
+                                Image { source: "icons/torrent-categories/all_torrents.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: "Torrents"; color: root.selectedIndex === -200 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; font.bold: root.selectedIndex === -200; anchors.verticalCenter: parent.verticalCenter }
+                            }
+
+                            MouseArea {
+                                id: torrentHeaderMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                preventStealing: true
+
+                                property real _pressY:  0
+                                property bool _didDrag: false
+
+                                onPressed:  { _pressY = mouseY; _didDrag = false }
+
+                                onPositionChanged: {
+                                    if (!(pressedButtons & Qt.LeftButton)) return
+                                    if (!root._secDragging && Math.abs(mouseY - _pressY) > 12) {
+                                        root._secDragFrom = sectionDelegate.secIdx; root._secDragging = true; _didDrag = true
+                                    }
+                                    if (root._secDragging) {
+                                        var posY = torrentHeaderMa.mapToItem(sidebarColumn, mouseX, mouseY).y
+                                        var tgt = sectionRepeater.count
+                                        for (var i = 0; i < sectionRepeater.count; i++) {
+                                            var si = sectionRepeater.itemAt(i)
+                                            if (si && posY < si.y + si.height / 2) { tgt = i; break }
+                                        }
+                                        root._secDropTarget = tgt
+                                    }
+                                }
+
+                                onReleased: {
+                                    var dragFrom = root._secDragFrom
+                                    var dragging = root._secDragging
+                                    var dropTarget = root._secDropTarget
+                                    var thisIdx = sectionDelegate.secIdx
+                                    var rootRef = root
+                                    var maRef = torrentHeaderMa
+
+                                    torrentHeaderMa.preventStealing = false
+
+                                    Qt.callLater(function() {
+                                        if (thisIdx === dragFrom && dragging && dropTarget >= 0) {
+                                            rootRef._applySectionReorder()
+                                        }
+                                        rootRef._secDragging = false
+                                        rootRef._secDragFrom = -1
+                                        rootRef._secDropTarget = -1
+                                        maRef.preventStealing = true
+                                    })
+
+                                    _didDrag = false
+                                    _pressY = 0
+                                }
+
+                                onClicked:       { root.selectedIndex = -200; root.categorySelected("torrent_all") }
+                                onDoubleClicked: root.torrentsExpanded = !root.torrentsExpanded
+                            }
+                        }
+
+                        // Torrent subcategories — individually draggable within this section
+                        Repeater {
+                            id: torrentSubcatRepeater
+                            model: root.torrentsExpanded ? App.settings.torrentSubcatOrder : null
+
+                            delegate: Item {
+                                id: torrentSubcatDelegate
+                                readonly property int    modelRow: index
+                                readonly property string subcatId: modelData
+                                readonly property string subcatLabel: {
+                                    switch (subcatId) {
+                                    case "torrent_downloading": return "Downloading"
+                                    case "torrent_seeding":     return "Seeding"
+                                    case "torrent_stopped":     return "Stopped"
+                                    case "torrent_active":      return "Active"
+                                    case "torrent_inactive":    return "Inactive"
+                                    case "torrent_checking":    return "Checking"
+                                    case "torrent_moving":      return "Moving"
+                                    default:                    return subcatId
+                                    }
+                                }
+                                readonly property string subcatIcon: {
+                                    switch (subcatId) {
+                                    case "torrent_downloading": return "icons/torrent-categories/downloading.png"
+                                    case "torrent_seeding":     return "icons/torrent-categories/seeding.png"
+                                    case "torrent_stopped":     return "icons/torrent-categories/stopped.png"
+                                    case "torrent_active":      return "icons/torrent-categories/active.png"
+                                    case "torrent_inactive":    return "icons/torrent-categories/inactive.png"
+                                    case "torrent_checking":    return "icons/torrent-categories/checking.png"
+                                    case "torrent_moving":      return "icons/torrent-categories/moving.png"
+                                    default:                    return "icons/folder.ico"
+                                    }
+                                }
+                                // selectedIndex for subcats: -201 .. -207
+                                readonly property int selIdx: -201 - index
+
+                                width: mainScroll.width
+                                height: 26
+
+                                // Insert line above this row while dragging
+                                Rectangle {
+                                    visible: root._torrentSubcatDragging
+                                          && root._torrentSubcatDropTarget === torrentSubcatDelegate.modelRow
+                                          && root._torrentSubcatDragFrom !== root._torrentSubcatDropTarget
+                                          && root._torrentSubcatDragFrom !== root._torrentSubcatDropTarget - 1
+                                    anchors { top: parent.top; left: parent.left; right: parent.right }
+                                    height: 2; color: "#4488dd"; z: 10
+                                }
+
+                                Rectangle {
+                                    id: torrentSubcatBg
+                                    anchors.fill: parent
+                                    color: root.selectedIndex === torrentSubcatDelegate.selIdx ? "#1e3a6e"
+                                         : (torrentSubcatMa.containsMouse && !root._torrentSubcatDragging ? "#2a2a3a"
+                                         : (torrentSubcatDrop.containsDrag ? "#2a3a2a" : "transparent"))
+                                    border.color: root.selectedIndex === torrentSubcatDelegate.selIdx ? "#4488dd" : "transparent"
+                                    border.width: 1
+                                    opacity: (root._torrentSubcatDragging && root._torrentSubcatDragFrom === torrentSubcatDelegate.modelRow) ? 0.4 : 1.0
+
+                                    Row {
+                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 22 }
+                                        spacing: 5
+                                        Image {
+                                            source: torrentSubcatDelegate.subcatIcon; width: 16; height: 16
+                                            sourceSize.width: 16; sourceSize.height: 16
+                                            fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true
+                                            anchors.verticalCenter: parent.verticalCenter
+                                        }
+                                        Text {
+                                            text: torrentSubcatDelegate.subcatLabel
+                                            color: root.selectedIndex === torrentSubcatDelegate.selIdx ? "#88bbff" : "#cccccc"
+                                            font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter
+                                        }
+                                    }
+                                }
+
+                                MouseArea {
+                                    id: torrentSubcatMa
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    cursorShape: root._torrentSubcatDragging ? Qt.ClosedHandCursor : Qt.PointingHandCursor
+                                    preventStealing: true
+
+                                    property real _pressY:  0
+                                    property bool _didDrag: false
+
+                                    onPressed:  { _pressY = mouseY; _didDrag = false }
+
+                                    onPositionChanged: {
+                                        if (!(pressedButtons & Qt.LeftButton)) return
+                                        if (!root._torrentSubcatDragging && Math.abs(mouseY - _pressY) > 6) {
+                                            root._torrentSubcatDragFrom = torrentSubcatDelegate.modelRow
+                                            root._torrentSubcatDragging = true; _didDrag = true
+                                            torrentSubcatMa.preventStealing = true
+                                        }
+                                        if (root._torrentSubcatDragging) {
+                                            var cursorY = torrentSubcatMa.mapToItem(sidebarColumn, mouseX, mouseY).y
+                                            var count = App.settings.torrentSubcatOrder.length
+                                            var target = count
+                                            for (var r = 0; r < count; r++) {
+                                                var del = torrentSubcatRepeater.itemAt(r)
+                                                if (!del || del.height === 0) continue
+                                                var delTop = del.mapToItem(sidebarColumn, 0, 0).y
+                                                if (cursorY < delTop + del.height / 2) { target = r; break }
+                                            }
+                                            root._torrentSubcatDropTarget = target
+                                        }
+                                    }
+
+                                    onReleased: {
+                                        var dragFrom = root._torrentSubcatDragFrom
+                                        var dragging = root._torrentSubcatDragging
+                                        var dropTarget = root._torrentSubcatDropTarget
+                                        var thisRow = torrentSubcatDelegate.modelRow
+                                        var rootRef = root
+                                        var maRef = torrentSubcatMa
+
+                                        torrentSubcatMa.preventStealing = false
+
+                                        Qt.callLater(function() {
+                                            if (thisRow === dragFrom && dragging && dropTarget >= 0) {
+                                                rootRef._applyTorrentSubcatReorder()
+                                            }
+                                            rootRef._torrentSubcatDragging = false
+                                            rootRef._torrentSubcatDragFrom = -1
+                                            rootRef._torrentSubcatDropTarget = -1
+                                            maRef.preventStealing = true
+                                        })
+
+                                        _didDrag = false
+                                        _pressY = 0
+                                    }
+
+                                    onClicked: {
+                                        if (!_didDrag) {
+                                            root.selectedIndex = torrentSubcatDelegate.selIdx
+                                            root.categorySelected(torrentSubcatDelegate.subcatId)
+                                        }
+                                        _didDrag = false
+                                    }
+                                }
+
+                                // Accept download drags — moving a download to a torrent subcat
+                                // doesn't change category but is a no-op drop (just deselects)
+                                DropArea {
+                                    id: torrentSubcatDrop
+                                    anchors.fill: parent; keys: ["text/downloadId"]
+                                    onDropped: (drop) => { drop.accept() }
+                                }
+                            }
+                        }
+
+                        // Insert line at bottom of subcat list
+                        Rectangle {
+                            visible: root._torrentSubcatDragging
+                                  && root._torrentSubcatDropTarget >= App.settings.torrentSubcatOrder.length
+                                  && root._torrentSubcatDragFrom !== App.settings.torrentSubcatOrder.length - 1
+                            width: parent.width; height: 2; color: "#4488dd"; z: 10
                         }
                     }
 

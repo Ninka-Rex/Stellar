@@ -17,6 +17,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
+import QtQuick.Dialogs
 import QtQuick.Layouts
 import com.stellar.app 1.0
 
@@ -37,12 +38,97 @@ ApplicationWindow {
     // ── Minimize to tray on close ─────────────────────────────────────────────
     property bool isQuitting:    false
     property bool findBarActive: false
-    property bool speedScheduleOwnsLimit: false
+    property bool speedScheduleOwnsDownLimit: false
+    property bool speedScheduleOwnsUpLimit: false
     property var selectedDownloadItem: downloadTable ? downloadTable._selectedItem() : null
+    property int selectedTorrentCount: downloadTable ? downloadTable.selectedTorrentCountValue : 0
+    property var pendingTorrentExportIds: []
 
     function closeFindBar() {
         findBarActive = false
         downloadTable.clearFilter()
+    }
+
+    function showSettingsPage(page) {
+        settingsDialog.initialPage = page
+        settingsDialog.show()
+        settingsDialog.raise()
+        settingsDialog.requestActivate()
+    }
+
+    function showAndActivate(win) {
+        if (!win)
+            return
+        win.show()
+        win.raise()
+        win.requestActivate()
+        Qt.callLater(function() {
+            if (win.visible) {
+                win.raise()
+                win.requestActivate()
+            }
+        })
+    }
+
+    function showTorrentSearchWindow() {
+        torrentSearchWindow.show()
+        torrentSearchWindow.raise()
+        torrentSearchWindow.requestActivate()
+    }
+
+    function normalizeTorrentInput(value) {
+        var trimmed = (value || "").trim()
+        if (/^[0-9a-fA-F]{40}$/.test(trimmed))
+            return "magnet:?xt=urn:btih:" + trimmed.toLowerCase()
+        return trimmed
+    }
+
+    function torrentSaveDirFromInputPath(pathText) {
+        return App.normalizeTorrentSaveDirectory(pathText || "")
+    }
+
+    function showTorrentMetadataDialog(downloadId, startWhenReady) {
+        if (!downloadId || downloadId.length === 0)
+            return
+        torrentMetadataDialog.pendingSourceLabel = ""
+        torrentMetadataDialog.downloadId = downloadId
+        torrentMetadataDialog.startWhenReady = startWhenReady
+        torrentMetadataDialog.show()
+        torrentMetadataDialog.raise()
+        torrentMetadataDialog.requestActivate()
+    }
+
+    function showTorrentMetadataDialogForFile(torrentFilePath, saveDir, category, description, startWhenReady) {
+        if (!torrentFilePath || torrentFilePath.length === 0)
+            return
+        torrentMetadataDialog.downloadId = ""
+        torrentMetadataDialog.pendingSourceLabel = torrentFilePath.split(/[/\\]/).pop()
+        torrentMetadataDialog.savePath = saveDir
+        torrentMetadataDialog.category = category || ""
+        torrentMetadataDialog.description = description || ""
+        torrentMetadataDialog.startWhenReady = startWhenReady
+        torrentMetadataDialog.show()
+        torrentMetadataDialog.raise()
+        torrentMetadataDialog.requestActivate()
+        Qt.callLater(function() {
+            var torrentFileId = App.addTorrentFile(torrentFilePath, saveDir, category || "", description || "", false, "")
+            torrentMetadataDialog.downloadId = torrentFileId
+        })
+    }
+
+    MessageDialog {
+        id: appErrorDialog
+        title: "Stellar"
+        text: ""
+        buttons: MessageDialog.Ok
+    }
+
+    Connections {
+        target: App
+        function onErrorOccurred(message) {
+            appErrorDialog.text = message && message.length > 0 ? message : "An unexpected error occurred."
+            appErrorDialog.open()
+        }
     }
 
     onWidthChanged: {
@@ -104,11 +190,11 @@ ApplicationWindow {
             TrayMenuItem { label: "Add URL…";     onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: "GitHub";        onClicked: { trayMenu.visible = false; Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") } }
-            TrayMenuItem { label: "About Stellar"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); settingsDialog.initialPage = 7; settingsDialog.show(); settingsDialog.raise() } }
+            TrayMenuItem { label: "About Stellar"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(9) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + "Speed Limiter: Turn On";  onClicked: { trayMenu.visible = false; App.enableSpeedLimiter() } }
             TrayMenuItem { label: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "") + "Speed Limiter: Turn Off"; onClicked: { trayMenu.visible = false; App.disableSpeedLimiter() } }
-            TrayMenuItem { label: "Speed Limiter Settings…"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); settingsDialog.initialPage = 4; settingsDialog.show(); settingsDialog.raise() } }
+            TrayMenuItem { label: "Speed Limiter Settings…"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(4) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: "Exit Stellar";  onClicked: { trayMenu.visible = false; root.quitApp() } }
         }
@@ -123,10 +209,19 @@ ApplicationWindow {
                 root.visibility = Window.Windowed
             root.show(); root.raise(); root.requestActivate()
         }
+        function onTorrentMetadataRequested(downloadId, startWhenReady) {
+            if (root.visibility === Window.Minimized)
+                root.visibility = Window.Windowed
+            root.show()
+            root.raise()
+            root.requestActivate()
+            root.showTorrentMetadataDialog(downloadId, startWhenReady)
+        }
         function onDownloadAdded(item) {
             // Don't show the progress popup for "Download Later" (Paused) or for
             // queue-managed downloads — queues run silently in the background.
             if (!item || item.status === "Paused") return
+            if (item.isTorrent) return
             if (item.queueId && item.queueId.length > 0) return
             if (item.category && App.isGrabberProjectId(item.category)) return
             progressDialog.item       = item
@@ -139,6 +234,8 @@ ApplicationWindow {
                 progressDialog.hide()
             // Don't show complete dialog for queue-assigned downloads or if disabled in settings
             if (!item || (item.queueId && item.queueId.length > 0))
+                return
+            if (item.isTorrent && item.status === "Seeding")
                 return
             if (item.category && App.isGrabberProjectId(item.category))
                 return
@@ -153,23 +250,19 @@ ApplicationWindow {
         }
         function onTrayAboutRequested() {
             root.show(); root.raise()
-            settingsDialog.initialPage = 7
-            settingsDialog.show(); settingsDialog.raise()
+            root.showSettingsPage(9)
         }
         function onTraySpeedLimiterRequested() {
             root.show(); root.raise()
-            settingsDialog.initialPage = 4
-            settingsDialog.show(); settingsDialog.raise()
+            root.showSettingsPage(4)
         }
         function onContextMenuRequested(x, y) {
             trayMenu.popup(x, y)
         }
         function onUpdateDialogRequested() {
-            if (Qt.platform.os === "windows") {
-                updateAvailableDialog.show()
-                updateAvailableDialog.raise()
-                updateAvailableDialog.requestActivate()
-            }
+            updateAvailableDialog.show()
+            updateAvailableDialog.raise()
+            updateAvailableDialog.requestActivate()
         }
         function onUpdateUpToDate() {
             quickUpdateDialog.messageText = "You are using the latest version of Stellar Download Manager. Please check back again for updates at a later time."
@@ -194,6 +287,21 @@ ApplicationWindow {
             root.show()
             root.raise()
             root.requestActivate()
+
+            if (App.isTorrentUri(url)) {
+                var magnetId = App.addMagnetLink(url, App.settings.defaultSavePath, "", "", false, "")
+                if (magnetId && magnetId.length > 0) {
+                    root.showTorrentMetadataDialog(magnetId, true)
+                }
+                return
+            }
+
+            if (App.isLikelyYtdlpUrl(url)) {
+                _showYtdlpDialog(url)
+                ytdlpDialog.uniqueFilename = false
+                return
+            }
+
             var existing = App.findDuplicateUrl(url)
             if (existing) {
                 var action = App.settings.duplicateAction
@@ -201,9 +309,7 @@ ApplicationWindow {
                     // Ask — show duplicate dialog
                     duplicateDialog.existingItem = existing
                     duplicateDialog._pendingUrl  = url
-                    duplicateDialog.show()
-                    duplicateDialog.raise()
-                    duplicateDialog.requestActivate()
+                    showAndActivate(duplicateDialog)
                 } else {
                     _handleDuplicateAction(action, false, existing, url)
                 }
@@ -220,9 +326,7 @@ ApplicationWindow {
                 ? App.beginPendingDownload(url, name, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), "", "")
                 : ""
             fileInfoDialog.isIntercepted   = true
-            fileInfoDialog.show()
-            fileInfoDialog.raise()
-            fileInfoDialog.requestActivate()
+            showAndActivate(fileInfoDialog)
         }
     }
 
@@ -308,16 +412,18 @@ ApplicationWindow {
     // ── Speed limiter scheduler ───────────────────────────────────────────────
     // Evaluated every 60 seconds AND immediately when settings are applied.
     // Each rule: days[], onHour (1-12), onMinute (0-59), onAmPm, offHour,
-    // offMinute, offAmPm, limitKBps.  First matching rule wins.
+    // offMinute, offAmPm, downLimitKBps, upLimitKBps. First matching rule wins.
 
     // Named function so it can be called directly (e.g. from Apply button)
     // as well as from the recurring timer below.
     function runSpeedScheduleCheck() {
         if (!App.settings.speedScheduleEnabled) {
-            // Scheduler just turned off — clear any limit it had set
-            if (speedScheduleOwnsLimit && App.settings.globalSpeedLimitKBps > 0)
+            if (speedScheduleOwnsDownLimit && App.settings.globalSpeedLimitKBps > 0)
                 App.settings.globalSpeedLimitKBps = 0
-            speedScheduleOwnsLimit = false
+            if (speedScheduleOwnsUpLimit && App.settings.globalUploadLimitKBps > 0)
+                App.settings.globalUploadLimitKBps = 0
+            speedScheduleOwnsDownLimit = false
+            speedScheduleOwnsUpLimit = false
             return
         }
 
@@ -325,9 +431,12 @@ ApplicationWindow {
         try { rules = JSON.parse(App.settings.speedScheduleJson || "[]") }
         catch (e) { return }
         if (!rules || rules.length === 0) {
-            if (speedScheduleOwnsLimit && App.settings.globalSpeedLimitKBps > 0)
+            if (speedScheduleOwnsDownLimit && App.settings.globalSpeedLimitKBps > 0)
                 App.settings.globalSpeedLimitKBps = 0
-            speedScheduleOwnsLimit = false
+            if (speedScheduleOwnsUpLimit && App.settings.globalUploadLimitKBps > 0)
+                App.settings.globalUploadLimitKBps = 0
+            speedScheduleOwnsDownLimit = false
+            speedScheduleOwnsUpLimit = false
             return
         }
 
@@ -360,16 +469,26 @@ ApplicationWindow {
         }
 
         if (matchedRule !== null) {
-            // Apply this rule's limit
-            var kbps = parseInt(matchedRule.limitKBps) || 500
-            if (App.settings.globalSpeedLimitKBps !== kbps)
-                App.settings.globalSpeedLimitKBps = kbps
-            speedScheduleOwnsLimit = true
+            var downKbps = parseInt(matchedRule.downLimitKBps)
+            if (isNaN(downKbps) || downKbps <= 0)
+                downKbps = parseInt(matchedRule.limitKBps) || 500 // backward compatibility
+            var upKbps = parseInt(matchedRule.upLimitKBps)
+            if (isNaN(upKbps) || upKbps <= 0)
+                upKbps = 500
+
+            if (App.settings.globalSpeedLimitKBps !== downKbps)
+                App.settings.globalSpeedLimitKBps = downKbps
+            if (App.settings.globalUploadLimitKBps !== upKbps)
+                App.settings.globalUploadLimitKBps = upKbps
+            speedScheduleOwnsDownLimit = true
+            speedScheduleOwnsUpLimit = true
         } else {
-            // No active rule — clear the scheduled limit
-            if (speedScheduleOwnsLimit && App.settings.globalSpeedLimitKBps > 0)
+            if (speedScheduleOwnsDownLimit && App.settings.globalSpeedLimitKBps > 0)
                 App.settings.globalSpeedLimitKBps = 0
-            speedScheduleOwnsLimit = false
+            if (speedScheduleOwnsUpLimit && App.settings.globalUploadLimitKBps > 0)
+                App.settings.globalUploadLimitKBps = 0
+            speedScheduleOwnsDownLimit = false
+            speedScheduleOwnsUpLimit = false
         }
     }
 
@@ -395,28 +514,90 @@ ApplicationWindow {
         transientParent: root
         onAccepted: {
             if (url.trim().length === 0) return
+            var normalizedUrl = App.isTorrentUri(url) ? root.normalizeTorrentInput(url) : url
             // Store auth credentials for step 2
             root._pendingUsername = useAuth ? username : ""
             root._pendingPassword = useAuth ? password : ""
-            var existing = App.findDuplicateUrl(url)
+            var existing = App.findDuplicateUrl(normalizedUrl)
             if (existing) {
                 var action = App.settings.duplicateAction
                 if (action === 0) {
                     // Ask the user
                     duplicateDialog.existingItem = existing
-                    duplicateDialog._pendingUrl  = url
+                    duplicateDialog._pendingUrl  = normalizedUrl
                     duplicateDialog.show()
                     duplicateDialog.raise()
                 } else {
-                    _handleDuplicateAction(action, false, existing, url)
+                    _handleDuplicateAction(action, false, existing, normalizedUrl)
                 }
             } else {
-                _showFileInfoDialog(url, "")
+                if (App.isTorrentUri(normalizedUrl)) {
+                    var torrentId = App.addMagnetLink(normalizedUrl, App.settings.defaultSavePath, "", "", false, "")
+                    if (torrentId && torrentId.length > 0)
+                        root.showTorrentMetadataDialog(torrentId, true)
+                } else {
+                    _showFileInfoDialog(normalizedUrl, "")
+                }
             }
         }
     }
 
+    FileDialog {
+        id: addTorrentFileDialog
+        title: "Add Torrent File"
+        fileMode: FileDialog.OpenFile
+        nameFilters: ["Torrent files (*.torrent)", "All files (*)"]
+        onAccepted: {
+            var path = selectedFile.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            root._pendingTorrentFilePath = ""
+            fileInfoDialog.pendingDownloadId = ""
+            root.showTorrentMetadataDialogForFile(path, App.settings.defaultSavePath, "", "", true)
+        }
+    }
+
+    FolderDialog {
+        id: exportTorrentFolderDialog
+        title: "Export .torrent Files"
+        onAccepted: {
+            if (!root.pendingTorrentExportIds || root.pendingTorrentExportIds.length === 0)
+                return
+            var dir = selectedFolder.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            App.exportTorrentFilesToDirectory(root.pendingTorrentExportIds, dir)
+            root.pendingTorrentExportIds = []
+        }
+        onRejected: root.pendingTorrentExportIds = []
+    }
+
+    // Open the yt-dlp format picker for a video site URL.
+    // No DownloadItem is created here — it only appears in the list once the
+    // user confirms a format and App.finalizeYtdlpDownload() runs.
+    function _showYtdlpDialog(url) {
+        if (root.visibility === Window.Minimized)
+            root.visibility = Window.Windowed
+        root.show()
+        root.raise()
+        root.requestActivate()
+        ytdlpDialog.pendingUrl = url
+        ytdlpDialog.show()
+        ytdlpDialog.raise()
+        ytdlpDialog.requestActivate()
+    }
+
     function _showFileInfoDialog(url, filenameOverride) {
+        // Route yt-dlp-compatible URLs to the video format picker instead.
+        if (App.isLikelyYtdlpUrl(url)) {
+            _showYtdlpDialog(url)
+            return
+        }
+        if (App.isTorrentUri(url)) {
+            var torrentId = App.addMagnetLink(url, App.settings.defaultSavePath, "", "", false, "")
+            showTorrentMetadataDialog(torrentId, true)
+            return
+        }
         if (root.visibility === Window.Minimized)
             root.visibility = Window.Windowed
         root.show()
@@ -424,7 +605,9 @@ ApplicationWindow {
         root.requestActivate()
         var filename = filenameOverride.length > 0
             ? filenameOverride
-            : (url.split("/").pop().split("?")[0] || "download")
+            : (App.isTorrentUri(url)
+                ? "Magnetized Transfer"
+                : (url.split("/").pop().split("?")[0] || "download"))
         fileInfoDialog.pendingUrl      = url
         fileInfoDialog.pendingFilename = filename
         fileInfoDialog.pendingSize     = ""
@@ -453,16 +636,25 @@ ApplicationWindow {
             App.deleteDownload(existing.id, 0)
             _showFileInfoDialog(url, "")
         } else {
-            // AddNumbered: generate a unique filename, proceed to file info dialog
-            var base = url.split("/").pop().split("?")[0] || "download"
-            var numbered = App.generateNumberedFilename(base)
-            _showFileInfoDialog(url, numbered)
+            // AddNumbered: for yt-dlp URLs the filename is chosen by yt-dlp itself
+            // (from video metadata), so generating a numbered name here has no effect —
+            // just open the format picker as a fresh download.
+            // For regular URLs, generate a unique filename as usual.
+            if (App.isLikelyYtdlpUrl(url)) {
+                _showYtdlpDialog(url)
+                ytdlpDialog.uniqueFilename = true
+            } else {
+                var base = url.split("/").pop().split("?")[0] || "download"
+                var numbered = App.generateNumberedFilename(base)
+                _showFileInfoDialog(url, numbered)
+            }
         }
     }
 
     // Pending auth from AddUrlDialog step 1
     property string _pendingUsername: ""
     property string _pendingPassword: ""
+    property string _pendingTorrentFilePath: ""
     property var _pendingBatchUrls: []
     property var _pendingLaterRequest: null
     property string _pendingQueueContext: ""
@@ -471,7 +663,23 @@ ApplicationWindow {
     // ── Download File Info dialog (step 2) ────────────────────────────────────
     DownloadFileInfoDialog {
         id: fileInfoDialog
+        transientParent: root
         onDownloadNow: (downloadId, url, savePath, category, desc) => {
+            if (root._pendingTorrentFilePath.length > 0) {
+                var pendingTorrentPathNow = root._pendingTorrentFilePath
+                var torrentFileDir = root.torrentSaveDirFromInputPath(savePath)
+                root._pendingTorrentFilePath = ""
+                fileInfoDialog.pendingDownloadId = ""
+                root.showTorrentMetadataDialogForFile(pendingTorrentPathNow, torrentFileDir, category, desc, true)
+                return
+            }
+            if (App.isTorrentUri(url)) {
+                var torrentDir = root.torrentSaveDirFromInputPath(savePath)
+                var magnetId = App.addMagnetLink(url, torrentDir, category, desc, false, "")
+                fileInfoDialog.pendingDownloadId = ""
+                root.showTorrentMetadataDialog(magnetId, true)
+                return
+            }
             if (downloadId && downloadId.length > 0) {
                 App.finalizePendingDownload(downloadId, savePath, category, desc, true, "")
             } else {
@@ -483,6 +691,27 @@ ApplicationWindow {
             fileInfoDialog.pendingDownloadId = ""
         }
         onDownloadLater: (downloadId, url, savePath, category, desc) => {
+            if (root._pendingTorrentFilePath.length > 0) {
+                var pendingTorrentPath = root._pendingTorrentFilePath
+                root._afterDownloadLaterWarning = function() {
+                    var torrentFileDir = root.torrentSaveDirFromInputPath(savePath)
+                    root._pendingTorrentFilePath = ""
+                    fileInfoDialog.pendingDownloadId = ""
+                    root.showTorrentMetadataDialogForFile(pendingTorrentPath, torrentFileDir, category, desc, false)
+                }
+                root._afterDownloadLaterWarning()
+                return
+            }
+            if (App.isTorrentUri(url)) {
+                root._afterDownloadLaterWarning = function() {
+                    var torrentDir = root.torrentSaveDirFromInputPath(savePath)
+                    var magnetId = App.addMagnetLink(url, torrentDir, category, desc, false, "")
+                    fileInfoDialog.pendingDownloadId = ""
+                    root.showTorrentMetadataDialog(magnetId, false)
+                }
+                root._afterDownloadLaterWarning()
+                return
+            }
             if (downloadId && downloadId.length > 0)
                 App.pauseDownload(downloadId)
             root._afterDownloadLaterWarning = function() {
@@ -525,9 +754,64 @@ ApplicationWindow {
         onRejected: (downloadId, url) => {
             if (downloadId && downloadId.length > 0)
                 App.discardPendingDownload(downloadId)
+            root._pendingTorrentFilePath = ""
             if (fileInfoDialog.isIntercepted)
                 App.notifyInterceptRejected(url)
             fileInfoDialog.pendingDownloadId = ""
+        }
+    }
+
+    // ── yt-dlp format picker dialog ───────────────────────────────────────────
+    // Shown when a yt-dlp-compatible URL is submitted via Add URL or clipboard.
+    // The URL is probed with "yt-dlp --dump-json" so the user can choose quality
+    // before the actual download starts.
+    YtdlpDialog {
+        id: ytdlpDialog
+        transientParent: root
+
+        onDownloadRequested: (url, formatId, containerFormat, savePath, category, uniqueFilename, videoTitle) => {
+            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, uniqueFilename, videoTitle)
+        }
+    }
+
+    TorrentMetadataDialog {
+        id: torrentMetadataDialog
+        transientParent: root
+        onDownloadNowRequested: (downloadId, savePath, category, description) => {
+            App.confirmTorrentDownload(downloadId, savePath, category, description, true, "")
+        }
+        onDownloadLaterRequested: (downloadId, savePath, category, description) => {
+            if (App.settings.showQueueSelectionOnDownloadLater) {
+                queueSelectionDialog.initialQueueId = ""
+                queueSelectionDialog.initialStartProcessing = false
+                queueSelectionDialog.initialAskAgain = false
+                queueSelectionDialog.queueIds = App.queueIds()
+                queueSelectionDialog.queueNames = App.queueNames()
+                queueSelectionDialog.pendingContext = "torrentLater"
+                queueSelectionDialog.pendingTorrentLaterDownloadId = downloadId
+                queueSelectionDialog.pendingTorrentLaterSavePath = savePath
+                queueSelectionDialog.pendingTorrentLaterCategory = category
+                queueSelectionDialog.pendingTorrentLaterDesc = description
+                queueSelectionDialog.noteText = "Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting."
+                queueSelectionDialog.show()
+                queueSelectionDialog.raise()
+                queueSelectionDialog.requestActivate()
+            } else {
+                App.confirmTorrentDownload(downloadId, savePath, category, description, false, "")
+            }
+        }
+    }
+
+    TorrentSearchWindow {
+        id: torrentSearchWindow
+        transientParent: root
+    }
+
+    // React to ytdlp clipboard detection from AppController
+    Connections {
+        target: App
+        function onYtdlpClipboardUrlDetected(url) {
+            _showYtdlpDialog(url)
         }
     }
 
@@ -586,6 +870,7 @@ ApplicationWindow {
     // ── Duplicate Download Dialog ─────────────────────────────────────────────
     DuplicateDownloadDialog {
         id: duplicateDialog
+        transientParent: root
         property string _pendingUrl: ""
         onResolved: (action, remember) => {
             _handleDuplicateAction(action, remember, existingItem, _pendingUrl)
@@ -599,7 +884,17 @@ ApplicationWindow {
     DownloadCompleteDialog { id: completeDialog }
 
     // ── Settings / About Dialog ───────────────────────────────────────────────
-    SettingsDialog { id: settingsDialog }
+    SettingsDialog {
+        id: settingsDialog
+        onWhatsNewRequested: {
+            // Fetch changelog if we don't have it yet, then open the window
+            if (!App.updateChangelog || App.updateChangelog.length === 0)
+                App.fetchChangelog()
+            whatsNewDialog.show()
+            whatsNewDialog.raise()
+            whatsNewDialog.requestActivate()
+        }
+    }
     Window {
         id: quickUpdateDialog
         title: "Quick Update"
@@ -695,6 +990,7 @@ ApplicationWindow {
                 DlgButton {
                     text: "Update Now"
                     primary: true
+                    visible: Qt.platform.os === "windows"
                     onClicked: {
                         if (App.startUpdateInstall()) {
                             updateAvailableDialog.dismissOnClose = false
@@ -713,6 +1009,62 @@ ApplicationWindow {
                         App.dismissAvailableUpdate()
                         updateAvailableDialog.close()
                     }
+                }
+            }
+        }
+    }
+
+    // ── What's New / Changelog viewer ─────────────────────────────────────────
+    Window {
+        id: whatsNewDialog
+        title: "What's New in Stellar"
+        transientParent: root
+        width: 500
+        height: 375
+        minimumWidth: 500
+        minimumHeight: 375
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+        modality: Qt.ApplicationModal
+        color: "#1e1e1e"
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 16
+            spacing: 12
+
+            Text {
+                text: App.updateChangelog && App.updateChangelog.length > 0
+                    ? "Changelog"
+                    : "What's New"
+                color: "#ffffff"
+                font.pixelSize: 16
+                font.bold: true
+            }
+
+            Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+            ScrollView {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                clip: true
+
+                Text {
+                    width: parent.width
+                    text: App.updateChangelog && App.updateChangelog.length > 0
+                        ? App.updateChangelog
+                        : "No changelog is available."
+                    color: "#cfcfcf"
+                    font.pixelSize: 12
+                    wrapMode: Text.WordWrap
+                    textFormat: Text.PlainText
+                }
+            }
+
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                DlgButton {
+                    text: "Close"
+                    onClicked: whatsNewDialog.close()
                 }
             }
         }
@@ -834,7 +1186,7 @@ ApplicationWindow {
     // ── Delete Done Confirm Dialog ────────────────────────────────────────────
     DeleteDoneConfirmDialog {
         id: deleteDoneConfirmDialog
-        onConfirmed: App.deleteAllCompleted(0)
+        onConfirmed: (includeSeedingTorrents) => App.deleteAllCompleted(0, includeSeedingTorrents)
     }
 
     // ── File Properties Dialog ────────────────────────────────────────────────
@@ -972,6 +1324,7 @@ ApplicationWindow {
             implicitWidth: 200
             topPadding: 0; bottomPadding: 0
             Action { text: qsTr("Add URL…");       shortcut: "Ctrl+N";       onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
+            Action { text: qsTr("Add Torrent File…"); shortcut: "Ctrl+Shift+T"; onTriggered: addTorrentFileDialog.open() }
             Action { text: qsTr("Add Batch URLs…"); shortcut: "Ctrl+Shift+N"; onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
             MenuSeparator {}
             Action { text: qsTr("Exit");            shortcut: "Ctrl+Q";       onTriggered: root.quitApp() }
@@ -1011,6 +1364,15 @@ ApplicationWindow {
                 text: qsTr("Redownload"); 
                 onTriggered: { var item = root.selectedDownloadItem; if (item) App.redownload(item.id) }
                 enabled: root.selectedDownloadItem !== null
+            }
+            Action {
+                text: qsTr("Export .torrent…")
+                onTriggered: {
+                    root.pendingTorrentExportIds = downloadTable.selectedTorrentIds()
+                    if (root.pendingTorrentExportIds.length > 0)
+                        exportTorrentFolderDialog.open()
+                }
+                enabled: root.selectedTorrentCount > 0
             }
         }
         Menu {
@@ -1115,7 +1477,7 @@ ApplicationWindow {
             topPadding: 0; bottomPadding: 0
             Action { text: qsTr("Check for Updates"); onTriggered: App.checkForUpdates(true) }
             MenuSeparator {}
-            Action { text: qsTr("About Stellar"); onTriggered: { settingsDialog.initialPage = 7; settingsDialog.show(); settingsDialog.raise() } }
+            Action { text: qsTr("About Stellar"); onTriggered: root.showSettingsPage(9) }
             MenuSeparator {}
             Menu {
                 title: qsTr("Browser Integration")
@@ -1124,7 +1486,7 @@ ApplicationWindow {
                 Action { text: qsTr("Firefox Extension…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise() } }
                 MenuSeparator {}
                 Action { text: qsTr("Open Extension Folder"); onTriggered: App.openExtensionFolder() }
-                Action { text: qsTr("Browser Settings…"); onTriggered: { settingsDialog.initialPage = 3; settingsDialog.show(); settingsDialog.raise() } }
+                Action { text: qsTr("Browser Settings…"); onTriggered: root.showSettingsPage(3) }
             }
         }
     }
@@ -1192,6 +1554,9 @@ ApplicationWindow {
                 grabberDialog.show()
                 grabberDialog.raise()
                 grabberDialog.requestActivate()
+            }
+            onSearchEngineClicked: {
+                root.showTorrentSearchWindow()
             }
         }
 
@@ -1411,6 +1776,11 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 categoryDragProxy: dragProxy
+                onExportTorrentsRequested: (downloadIds) => {
+                    root.pendingTorrentExportIds = downloadIds
+                    if (downloadIds && downloadIds.length > 0)
+                        exportTorrentFolderDialog.open()
+                }
                 onOpenProgressRequested: (item) => {
                     progressDialog.item       = item
                     progressDialog.downloadId = item ? item.id : ""
@@ -1418,6 +1788,15 @@ ApplicationWindow {
                     progressDialog.raise()
                 }
                 onOpenPropertiesRequested: (item) => {
+                    if (!item)
+                        return
+                    if (!item.isTorrent && (item.status === "Downloading" || item.status === "Assembling")) {
+                        progressDialog.item       = item
+                        progressDialog.downloadId = item.id
+                        progressDialog.show()
+                        progressDialog.raise()
+                        return
+                    }
                     filePropertiesDialog.item = item
                     filePropertiesDialog.show()
                     filePropertiesDialog.raise()
@@ -1446,7 +1825,7 @@ ApplicationWindow {
                 }
             }
             onCloseTips: {
-                App.settings.setShowTips(false)
+                App.settings.showTips = false
             }
         }
     }

@@ -59,14 +59,26 @@ Rectangle {
                 if (selectedCount > 0)
                     parts.push(selectedCount === 1 ? "🔍 1 selected" : "🔍 %1 selected".arg(selectedCount))
 
-                if (App.settings.globalSpeedLimitKBps > 0)
-                    parts.push("🛑 Speed limiter " + App.settings.globalSpeedLimitKBps + " KB/s")
+                if (App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) {
+                    var limitParts = []
+                    if (App.settings.globalSpeedLimitKBps > 0)
+                        limitParts.push("↓ " + App.settings.globalSpeedLimitKBps + " KB/s")
+                    if (App.settings.globalUploadLimitKBps > 0)
+                        limitParts.push("↑ " + App.settings.globalUploadLimitKBps + " KB/s")
+                    parts.push("🛑 Speed limiter " + limitParts.join(" / "))
+                }
+
+                if (App.proxyActive)
+                    parts.push("🌐 Proxy on")
 
                 if (App.checkingForUpdates)
                     parts.push("📡 Checking for updates")
 
                 if (App.updateStatusText && App.updateStatusText.length > 0 && !App.checkingForUpdates)
                     parts.push(App.updateStatusText)
+
+                if (App.torrentBindingStatusText && App.torrentBindingStatusText.length > 0)
+                    parts.push(App.torrentBindingStatusText)
 
                 return parts.join("  | ")
             }

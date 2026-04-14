@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Stellar Download Manager",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Intercepts browser downloads and routes them to the Stellar download manager.",
 
   "icons": {
@@ -29,7 +29,9 @@
     "storage",
     "contextMenus",
     "tabs",
-    "cookies"
+    "cookies",
+    "webRequest",
+    "webRequestBlocking"
   ],
 
   "host_permissions": [
@@ -51,7 +53,7 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"],
-      "run_at": "document_idle"
+      "run_at": "document_start"
     }
   ]
 }

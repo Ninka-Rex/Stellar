@@ -137,6 +137,65 @@ function getUrlHost(url) {
     catch { return ""; }
 }
 
+// ── isApiRpcRequest ───────────────────────────────────────────────────────────
+
+/**
+ * Returns true if the URL looks like an internal API/RPC call rather than a
+ * user-initiated file download. Used to avoid intercepting page-internal XHR
+ * traffic that the downloads.onCreated path might surface.
+ */
+function isApiRpcRequest(url, filenameHint = "", mimeType = "") {
+    try {
+        const u = new URL(url);
+        const path = u.pathname.toLowerCase();
+        const fn = String(filenameHint || "").toLowerCase();
+        const mt = String(mimeType || "").toLowerCase();
+
+        // If the URL path ends with a real file extension it is a file download,
+        // even if the path also contains /api/ segments (e.g. /api/files/doc.pdf).
+        const pathExtMatch = /\.([a-z0-9]{1,10})(?:[?#]|$)/.exec(path);
+        if (pathExtMatch) {
+            const NON_DL = new Set(["js","json","html","htm","css","xml","svg","map","ts","jsx","tsx","wasm","php","aspx"]);
+            if (!NON_DL.has(pathExtMatch[1])) return false;
+        }
+
+        const apiPath = /(?:^|\/)(api|graphql|rpc|ajax|batchexecute)(?:\/|$)/i.test(path)
+            || path.includes("/_/");
+
+        const dlValue = (u.searchParams.get("dl") || "").toLowerCase();
+        const explicitDownload = path.includes("/download/")
+            || u.searchParams.has("download")
+            || dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download"
+            || u.searchParams.has("attachment")
+            || u.searchParams.has("filename")
+            || u.searchParams.has("response-content-disposition")
+            || u.searchParams.get("alt") === "media"
+            || u.searchParams.get("export") === "download";
+
+        // Analytics/telemetry beacons should never be treated as downloads.
+        if ((path.endsWith("/td") || path.includes("/td/"))
+            && (u.searchParams.has("gtm") || /^gtm-/i.test(String(u.searchParams.get("id") || "")))) {
+            return true;
+        }
+
+        if (apiPath && !explicitDownload
+            && (!pathExtMatch || fn === "response.bin" || fn === "response"
+                || mt.startsWith("application/json") || mt.startsWith("text/plain")
+                || mt.startsWith("text/javascript"))) {
+            return true;
+        }
+
+        if (u.searchParams.has("rpcids") && u.searchParams.get("rt") === "c") return true;
+
+        if ((fn === "response.bin" || fn === "response")
+            && (path.includes("/api/") || mt.startsWith("application/json")
+                || mt.startsWith("text/plain") || mt.startsWith("text/javascript"))) {
+            return true;
+        }
+    } catch {}
+    return false;
+}
+
 // ── shouldIntercept ───────────────────────────────────────────────────────────
 
 /**
@@ -144,12 +203,17 @@ function getUrlHost(url) {
  * @param {string} url
  * @param {string|null} mimeType
  * @param {string} [filenameHint]  filename from download item (may have extension even if URL doesn't)
+ * @param {boolean} [explicitIntent]  true when the user explicitly initiated a download
+ *   (e.g. clicked <a download>, programmatic .click() intercepted, or Content-Disposition: attachment)
  * @returns {Promise<boolean>}
  */
-export async function shouldIntercept(url, mimeType, filenameHint) {
+export async function shouldIntercept(url, mimeType, filenameHint, explicitIntent = false) {
     if (!url || url.startsWith("data:") || url.startsWith("blob:")) return false;
     if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("ftp://"))
         return false;
+
+    // Skip internal API/RPC traffic unless the user explicitly initiated it as a download.
+    if (!explicitIntent && isApiRpcRequest(url, filenameHint, mimeType)) return false;
 
     const settings = await getSettings();
     if (!settings.enabled) return false;
@@ -180,7 +244,17 @@ export async function shouldIntercept(url, mimeType, filenameHint) {
     }
 
     // If we have a known extension: intercept only if it's in the monitored list.
-    if (ext) return settings.monitoredExtensions.has(ext);
+    // Media extensions (audio/video) are always allowed when intent is explicit.
+    if (ext) {
+        if (explicitIntent) return settings.monitoredExtensions.has(ext);
+        const MEDIA_EXTS = new Set(["mp3","m4a","aac","ogg","wav","wma","flac","aif","ra",
+            "mp4","m4v","mkv","avi","mov","wmv","webm","mpeg","mpg","3gp","ogv","rm","rmvb","asf","qt"]);
+        if (MEDIA_EXTS.has(ext)) return false; // media without explicit intent = playback link, not download
+        return settings.monitoredExtensions.has(ext);
+    }
+
+    // Explicit user intent with no extension info: trust the click (e.g. blob-resolved API URL).
+    if (explicitIntent) return true;
 
     // No extension info — fall back to MIME type mapping.
     if (mimeType) {

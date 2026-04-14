@@ -25,6 +25,7 @@ Rectangle {
     signal openProgressRequested(var item)
     signal openPropertiesRequested(var item)
     signal openColumnsSettingsRequested()
+    signal exportTorrentsRequested(var downloadIds)
 
     // Window-level drag proxy injected from Main.qml
     property var categoryDragProxy: null
@@ -82,6 +83,17 @@ Rectangle {
 
     // True when any item is selected
     readonly property bool hasSelection: { _selectionVersion; return Object.keys(_selectedRows).length > 0 }
+    readonly property int selectedTorrentCountValue: {
+        _selectionVersion
+        var count = 0
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item && item.isTorrent)
+                count++
+        }
+        return count
+    }
+    readonly property bool anyTorrentSelected: selectedTorrentCountValue > 0
 
     // Reactive properties for toolbar enabled-states.
     // As readonly property bindings (not functions) QML emits a change signal when
@@ -99,7 +111,7 @@ Rectangle {
         _selectionVersion
         for (var row in _selectedRows) {
             var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
-            if (item && (item.status === "Downloading" || item.status === "Queued")) return true
+            if (item && (item.status === "Downloading" || item.status === "Queued" || item.status === "Seeding")) return true
         }
         return false
     }
@@ -107,7 +119,7 @@ Rectangle {
     // Kept for backward compatibility with any callers; internally delegates to reactive props.
     function anySelectedHasStatus(status) {
         if (status === "Paused")                             return anyPausedSelected
-        if (status === "Downloading" || status === "Queued") return anyActiveSelected
+        if (status === "Downloading" || status === "Queued" || status === "Seeding") return anyActiveSelected
         _selectionVersion
         for (var row in _selectedRows) {
             var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
@@ -141,15 +153,18 @@ Rectangle {
         } else if (rows.length > 1) {
             var ids = []
             var fileExists = false
+            var hasTorrentSelection = false
             for (var i = 0; i < rows.length; i++) {
                 var it = App.downloadModel.data(App.downloadModel.index(parseInt(rows[i]), 0), Qt.UserRole + 2)
                 if (!it) continue
                 ids.push(it.id)
+                if (it.isTorrent)
+                    hasTorrentSelection = true
                 if (it.status === "Completed")
                     fileExists = true
             }
             if (ids.length > 0) {
-                _openDeleteDialog(null, ids, fileExists)
+                _openDeleteDialog(null, ids, fileExists, hasTorrentSelection)
                 _setSelection({})
                 _anchorRow = -1
             }
@@ -160,17 +175,64 @@ Rectangle {
         return App.downloadModel.data(
             App.downloadModel.index(_anchorRow, 0), Qt.UserRole + 2)
     }
+    function _selectedItems() {
+        _selectionVersion
+        var items = []
+        for (var row in _selectedRows) {
+            var item = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
+            if (item)
+                items.push(item)
+        }
+        return items
+    }
+    function selectedTorrentIds() {
+        var ids = []
+        var items = _selectedItems()
+        for (var i = 0; i < items.length; ++i) {
+            if (items[i].isTorrent)
+                ids.push(items[i].id)
+        }
+        return ids
+    }
+    function selectedTorrentCount() {
+        return selectedTorrentCountValue
+    }
+    function hasAnyTorrentSelected() {
+        return anyTorrentSelected
+    }
+    function copySelectedShareLinks() {
+        var items = _selectedItems()
+        if (items.length === 0 && _ctxItem)
+            items = [_ctxItem]
+        var links = []
+        for (var i = 0; i < items.length; ++i) {
+            var link = App.downloadShareLink(items[i].id)
+            if (link && link.length > 0)
+                links.push(link)
+        }
+        if (links.length > 0)
+            App.copyToClipboard(links.join("\n"))
+    }
+    function requestExportSelectedTorrents() {
+        var ids = selectedTorrentIds()
+        if (ids.length > 0)
+            exportTorrentsRequested(ids)
+    }
     function _selectedId() {
         const item = _selectedItem()
         return item ? item.id : null
     }
-    function _openDeleteDialog(item, ids, fileExists) {
+    function _openDeleteDialog(item, ids, fileExists, hasTorrentSelection) {
+        var torrentSelected = !!hasTorrentSelection
+        if (!torrentSelected && item)
+            torrentSelected = !!item.isTorrent
         deleteDialog.downloadId = item ? item.id : ""
         deleteDialog.downloadIds = ids || (item ? [item.id] : [])
         deleteDialog.filename   = item ? item.filename : (deleteDialog.downloadIds.length > 1 ? deleteDialog.downloadIds.length + " selected downloads" : "")
         deleteDialog.fileExists = typeof fileExists === "boolean"
                                  ? fileExists
                                  : (item && item.status === "Completed")
+        deleteDialog.hasTorrentSelection = torrentSelected
         deleteDialog.show()
         deleteDialog.raise()
         deleteDialog.requestActivate()
@@ -206,7 +268,18 @@ Rectangle {
         Action { text: "Open Folder"; onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
         MenuSeparator {}
         Action { text: "Copy Filename"; onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
-        Action { text: "Copy URL";      onTriggered: { if (root._ctxItem) App.copyToClipboard(root._ctxItem.url.toString()) } }
+        Action {
+            text: root._ctxItem && root._ctxItem.isTorrent ? "Copy Magnet Link" : "Copy URL"
+            onTriggered: root.copySelectedShareLinks()
+        }
+        Repeater {
+            model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
+            delegate: MenuItem {
+                text: "Export .torrent…"
+                enabled: root.anyTorrentSelected
+                onTriggered: root.requestExportSelectedTorrents()
+            }
+        }
         MenuSeparator {}
         Action { text: "Resume"; onTriggered: root.resumeSelected() }
         Action { text: "Stop";   onTriggered: root.stopSelected()   }
@@ -260,7 +333,13 @@ Rectangle {
         { title: "Size",           key: "size",       widthPx: 80,  visible: true  },
         { title: "Status",         key: "status",     widthPx: 90,  visible: true  },
         { title: "Time left",      key: "timeleft",   widthPx: 90,  visible: true  },
-        { title: "Transfer rate",  key: "speed",      widthPx: 90,  visible: true  },
+        { title: "Down Speed",     key: "downspeed",  widthPx: 90,  visible: true  },
+        { title: "Up Speed",       key: "upspeed",    widthPx: 90,  visible: true  },
+        { title: "Seeders",        key: "seeders",    widthPx: 70,  visible: false },
+        { title: "Peers",          key: "peers",      widthPx: 70,  visible: false },
+        { title: "Ratio",          key: "ratio",      widthPx: 70,  visible: false },
+        { title: "Uploaded",       key: "uploaded",   widthPx: 90,  visible: false },
+        { title: "Downloaded",     key: "downloaded", widthPx: 90,  visible: false },
         { title: "Last try date",  key: "added",      widthPx: 130, visible: true  },
         { title: "Last try date",  key: "lasttry",    widthPx: 110, visible: false },
         { title: "Description",    key: "description",widthPx: 120, visible: false },
@@ -290,6 +369,8 @@ Rectangle {
         if (defs && defs.length) {
             for (var j = 0; j < defs.length; j++) {
                 var saved = defs[j]
+                if (saved && saved.key === "speed")
+                    saved.key = "downspeed"
                 if (!saved || !saved.key || seen[saved.key] || !defaultsByKey[saved.key])
                     continue
 
@@ -389,6 +470,15 @@ Rectangle {
         return 24
     }
 
+    function formatBytesShort(bytes) {
+        if (!bytes || bytes <= 0)
+            return ""
+        if (bytes >= 1073741824) return (bytes / 1073741824).toFixed(2) + " GB"
+        if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + " MB"
+        if (bytes >= 1024) return (bytes / 1024).toFixed(1) + " KB"
+        return bytes + " B"
+    }
+
     property real visibleContentWidth: totalVisibleWidth()
     onVisibleColsChanged: visibleContentWidth = totalVisibleWidth()
 
@@ -396,6 +486,48 @@ Rectangle {
     // recreate the header cell mid-drag.
     property string _resizingColumnKey: ""
     property real _resizingColumnWidth: 0
+
+    // Maps column key → x offset in the row. Recomputed whenever visibleContentWidth
+    // changes (resize, reorder, visibility toggle all flow through it).
+    property var _colXMap: {
+        visibleContentWidth   // reactive dependency
+        return _buildColXMap()
+    }
+    function _buildColXMap() {
+        var map = {}
+        var x = 0
+        for (var i = 0; i < visibleCols.length; i++) {
+            var col = visibleCols[i]
+            map[col.key] = x
+            x += colWidth(col.key)
+        }
+        return map
+    }
+
+    // Column reorder drag state
+    property string _colDragFromKey:          ""
+    property string _colDragInsertBeforeKey:  ""
+    property bool   _colDragging:             false
+
+    function _applyColReorder() {
+        if (!_colDragFromKey) return
+        var defs = columnDefs.slice()
+        var fromIdx = -1
+        for (var i = 0; i < defs.length; i++) { if (defs[i].key === _colDragFromKey) { fromIdx = i; break } }
+        if (fromIdx < 0) return
+        var toIdx
+        if (_colDragInsertBeforeKey === "__end__") {
+            toIdx = defs.length
+        } else {
+            toIdx = -1
+            for (var j = 0; j < defs.length; j++) { if (defs[j].key === _colDragInsertBeforeKey) { toIdx = j; break } }
+        }
+        if (toIdx < 0 || toIdx === fromIdx) return
+        var moved = defs.splice(fromIdx, 1)[0]
+        if (toIdx > fromIdx) toIdx--
+        defs.splice(toIdx, 0, moved)
+        columnDefs = defs
+    }
 
     Component.onCompleted: _suppressColumnDefsSave = false
 
@@ -410,6 +542,12 @@ Rectangle {
     function clearFilter() {
         filterText = ""
         _findRow   = -1
+    }
+
+    function itemMatchesActiveFilter(item) {
+        return filterText.length === 0
+            || _itemMatchesFind(item, filterText, filterName, filterDesc,
+                                filterLinks, filterMatchCase, filterMatchWhole)
     }
 
     function findFirstFiltered() {
@@ -517,7 +655,7 @@ Rectangle {
     }
 
     // Sortable column keys (queue and progress columns are not sortable)
-    readonly property var _sortableKeys: ["name","size","status","timeleft","speed","added","lasttry","description","saveto","referrer","parenturl"]
+    readonly property var _sortableKeys: ["name","size","status","timeleft","downspeed","upspeed","seeders","peers","ratio","uploaded","downloaded","added","lasttry","description","saveto","referrer","parenturl"]
 
     // ── Column visibility context menu ────────────────────────────────────────
     Menu {
@@ -551,11 +689,13 @@ Rectangle {
         clip: true
 
         Row {
+            id: headerRow
             x: -tableView.contentX
             width: root.visibleContentWidth
             height: parent.height
 
             Repeater {
+                id: headerCellRepeater
                 model: root.visibleCols
                 delegate: Rectangle {
                     id: headerCell
@@ -563,7 +703,28 @@ Rectangle {
                     height: parent.height
                     readonly property bool isSortable: root._sortableKeys.indexOf(modelData.key) >= 0
                     readonly property bool isActive:   root.sortKey === modelData.key
-                    color: (isSortable && headerCellMouse.containsMouse) ? "#383838" : "transparent"
+                    color: (isSortable && headerCellMouse.containsMouse && !root._colDragging) ? "#383838" : "transparent"
+                    opacity: (root._colDragging && root._colDragFromKey === modelData.key) ? 0.5 : 1.0
+
+                    // Drop insert-line: shown to the LEFT of this column when it's the insert target
+                    Rectangle {
+                        visible: root._colDragging && root._colDragInsertBeforeKey === modelData.key
+                        width: 2; height: parent.height
+                        anchors.left: parent.left
+                        color: "#4488dd"
+                        z: 20
+                    }
+
+                    // Insert-line at the very END of the header (shown on last visible col's right edge)
+                    Rectangle {
+                        visible: root._colDragging
+                              && root._colDragInsertBeforeKey === "__end__"
+                              && index === headerCellRepeater.count - 1
+                        width: 2; height: parent.height
+                        anchors.right: parent.right
+                        color: "#4488dd"
+                        z: 20
+                    }
 
                     Text {
                         anchors {
@@ -594,8 +755,58 @@ Rectangle {
                         id: headerCellMouse
                         anchors { fill: parent; rightMargin: 10 }
                         hoverEnabled: true
-                        cursorShape: headerCell.isSortable ? Qt.PointingHandCursor : Qt.ArrowCursor
-                        onClicked: if (headerCell.isSortable) root.applySort(modelData.key)
+                        preventStealing: true
+                        cursorShape: root._colDragging ? Qt.ClosedHandCursor
+                                   : (headerCell.isSortable ? Qt.PointingHandCursor : Qt.ArrowCursor)
+
+                        property real _pressX:  0
+                        property bool _didDrag: false
+
+                        onPressed:  { _pressX = mouseX; _didDrag = false }
+
+                        onPositionChanged: {
+                            if (!(pressedButtons & Qt.LeftButton)) return
+                            if (!root._colDragging && Math.abs(mouseX - _pressX) > 8) {
+                                root._colDragFromKey = modelData.key
+                                root._colDragging = true
+                                _didDrag = true
+                            }
+                            if (root._colDragging && root._colDragFromKey === modelData.key) {
+                                // Map cursor X to the header Row's coordinate space (accounts for scroll)
+                                var cursorX = headerCellMouse.mapToItem(headerRow, mouseX, 0).x
+                                var insertBefore = "__end__"
+                                var xAcc = 0
+                                for (var i = 0; i < root.visibleCols.length; i++) {
+                                    var colW = root.colWidth(root.visibleCols[i].key)
+                                    if (cursorX < xAcc + colW / 2) {
+                                        insertBefore = root.visibleCols[i].key
+                                        break
+                                    }
+                                    xAcc += colW
+                                }
+                                root._colDragInsertBeforeKey = insertBefore
+                            }
+                        }
+
+                        onReleased: {
+                            var didDrag = _didDrag
+                            var rootRef = root
+
+                            Qt.callLater(function() {
+                                if (didDrag) rootRef._applyColReorder()
+                                rootRef._colDragging = false
+                                rootRef._colDragFromKey = ""
+                                rootRef._colDragInsertBeforeKey = ""
+                            })
+
+                            _didDrag = false
+                            _pressX = 0
+                        }
+
+                        onClicked: {
+                            if (!_didDrag && headerCell.isSortable) root.applySort(modelData.key)
+                            _didDrag = false
+                        }
                     }
 
                     Rectangle {
@@ -695,9 +906,13 @@ Rectangle {
         Keys.onPressed: function(e) {
             if (e.key === Qt.Key_A && (e.modifiers & Qt.ControlModifier)) {
                 var r = {}
-                for (var i = 0; i < App.downloadModel.rowCount(); i++) r[i] = true
+                for (var i = 0; i < App.downloadModel.rowCount(); i++) {
+                    var item = App.downloadModel.data(App.downloadModel.index(i, 0), Qt.UserRole + 2)
+                    if (root.itemMatchesActiveFilter(item))
+                        r[i] = true
+                }
                 root._setSelection(r)
-                root._anchorRow = App.downloadModel.rowCount() - 1
+                root._anchorRow = Object.keys(r).length > 0 ? parseInt(Object.keys(r).pop()) : -1
                 e.accepted = true
             }
         }
@@ -708,7 +923,8 @@ Rectangle {
         delegate: Rectangle {
             id: rowRect
             width: root.visibleContentWidth
-            height: 26
+            visible: root.itemMatchesActiveFilter(item)
+            height: visible ? 26 : 0
 
             readonly property var item: model.item
             readonly property int rowIndex: index
@@ -736,12 +952,15 @@ Rectangle {
             // column slot per row (~7 contexts × 20 rows = 140 contexts, each ~10ms = 1400ms).
             // Hardcoded Items have zero per-slot context overhead; visibility and width are
             // just property bindings on pre-existing objects.
-            Row {
-                anchors { top: parent.top; left: parent.left; bottom: parent.bottom; bottomMargin: 1 }
+            // Each cell uses explicit x from _colXMap so column order always matches the
+            // header regardless of how the user has reordered columnDefs.
+            Item {
+                anchors { top: parent.top; left: parent.left; right: parent.right; bottom: parent.bottom }
 
                 // ── Queue ─────────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("queue")
+                    x:       root._colXMap["queue"] || 0
                     width:   root.colWidth("queue")
                     height:  rowRect.height - 1
                     clip: true
@@ -775,6 +994,7 @@ Rectangle {
                 // ── File Name ─────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("name")
+                    x:       root._colXMap["name"] || 0
                     width:   root.colWidth("name")
                     height:  rowRect.height - 1
                     clip: true
@@ -785,7 +1005,14 @@ Rectangle {
                         Image {
                             width: 18; height: 18
                             anchors.verticalCenter: parent.verticalCenter
-                            source: rowRect.item ? "image://fileicon/" + (rowRect.item.savePath + "/" + rowRect.item.filename).replace(/\\/g, "/") + (rowRect.item.status === "Completed" ? "?c=1" : "") : ""
+                            source: {
+                                if (!rowRect.item)
+                                    return ""
+                                var basePath = (rowRect.item.savePath + "/" + rowRect.item.filename).replace(/\\/g, "/")
+                                if (rowRect.item.isTorrent && !rowRect.item.torrentIsSingleFile)
+                                    basePath += "/"
+                                return "image://fileicon/" + basePath + (rowRect.item.status === "Completed" ? "?c=1" : "")
+                            }
                             sourceSize: Qt.size(18, 18)
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
@@ -804,13 +1031,14 @@ Rectangle {
                 // ── Size ──────────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("size")
+                    x:       root._colXMap["size"] || 0
                     width:   root.colWidth("size")
                     height:  rowRect.height - 1
                     clip: true
                     Text {
                         anchors { fill: parent; leftMargin: 6 }
                         verticalAlignment: Text.AlignVCenter
-                        text: rowRect.item ? (rowRect.item.totalBytes > 0 ? (rowRect.item.totalBytes / 1048576).toFixed(1) + " MB" : "") : ""
+                        text: rowRect.item ? formatBytesShort(rowRect.item.totalBytes) : ""
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
                         font.pixelSize: 12
                     }
@@ -819,15 +1047,23 @@ Rectangle {
                 // ── Status / Progress ─────────────────────────────────────────
                 Item {
                     visible: root._colVisible("status")
+                    x:       root._colXMap["status"] || 0
                     width:   root.colWidth("status")
                     height:  rowRect.height - 1
                     clip: true
                     Text {
                         anchors { fill: parent; leftMargin: 6 }
                         verticalAlignment: Text.AlignVCenter
-                        text: rowRect.item ? ((rowRect.item.status === "Downloading" || (rowRect.item.status === "Paused" && rowRect.item.progress > 0))
-                                              ? (rowRect.item.progress * 100).toFixed(1) + "%"
-                                              : rowRect.item.status) : ""
+                        text: {
+                            if (!rowRect.item) return ""
+                            if (rowRect.item.isTorrent && !rowRect.item.torrentHasMetadata)
+                                return "Pending"
+                            if (rowRect.item.status === "Downloading")
+                                return (rowRect.item.progress * 100).toFixed(1) + "%"
+                            if (rowRect.item.status === "Paused" && rowRect.item.progress > 0)
+                                return (rowRect.item.progress * 100).toFixed(1) + "% (Stopped)"
+                            return rowRect.item.status
+                        }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
                         font.pixelSize: 12
                     }
@@ -836,6 +1072,7 @@ Rectangle {
                 // ── Time Left ─────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("timeleft")
+                    x:       root._colXMap["timeleft"] || 0
                     width:   root.colWidth("timeleft")
                     height:  rowRect.height - 1
                     clip: true
@@ -848,16 +1085,134 @@ Rectangle {
                     }
                 }
 
-                // ── Transfer Rate ─────────────────────────────────────────────
+                // ── Down Speed ─────────────────────────────────────────────
                 Item {
-                    visible: root._colVisible("speed")
-                    width:   root.colWidth("speed")
+                    visible: root._colVisible("downspeed")
+                    x:       root._colXMap["downspeed"] || 0
+                    width:   root.colWidth("downspeed")
                     height:  rowRect.height - 1
                     clip: true
                     Text {
                         anchors { fill: parent; leftMargin: 6 }
                         verticalAlignment: Text.AlignVCenter
-                        text: rowRect.item && rowRect.item.status === "Downloading" ? (rowRect.item.speed / 1024).toFixed(1) + " KB/s" : ""
+                        text: {
+                            if (!rowRect.item) return ""
+                            // Show download speed for both regular and torrent downloads
+                            var st = rowRect.item.status
+                            if (st !== "Downloading" && st !== "Seeding") return ""
+                            var bps = rowRect.item.speed
+                            if (bps <= 0) return ""
+                            if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s"
+                            if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s"
+                            if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s"
+                            return bps + " B/s"
+                        }
+                        color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                        font.pixelSize: 12
+                    }
+                }
+
+                // ── Up Speed ─────────────────────────────────────────────
+                Item {
+                    visible: root._colVisible("upspeed")
+                    x:       root._colXMap["upspeed"] || 0
+                    width:   root.colWidth("upspeed")
+                    height:  rowRect.height - 1
+                    clip: true
+                    Text {
+                        anchors { fill: parent; leftMargin: 6 }
+                        verticalAlignment: Text.AlignVCenter
+                        text: {
+                            if (!rowRect.item || !rowRect.item.isTorrent) return ""
+                            if (rowRect.item.status !== "Downloading" && rowRect.item.status !== "Seeding") return ""
+                            var bps = rowRect.item.torrentUploadSpeed
+                            if (bps >= 1073741824) return (bps / 1073741824).toFixed(2) + " GB/s"
+                            if (bps >= 1048576)    return (bps / 1048576).toFixed(2) + " MB/s"
+                            if (bps >= 1024)       return (bps / 1024).toFixed(1) + " KB/s"
+                            return bps > 0 ? (bps + " B/s") : ""
+                        }
+                        color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                        font.pixelSize: 12
+                    }
+                }
+
+                // ── Seeders ───────────────────────────────────────────────────
+                Item {
+                    visible: root._colVisible("seeders")
+                    x:       root._colXMap["seeders"] || 0
+                    width:   root.colWidth("seeders")
+                    height:  rowRect.height - 1
+                    clip: true
+                    Text {
+                        anchors { fill: parent; leftMargin: 6 }
+                        verticalAlignment: Text.AlignVCenter
+                        text: {
+                            if (!rowRect.item || !rowRect.item.isTorrent) return ""
+                            return rowRect.item.torrentSeeders + " (" + rowRect.item.torrentListSeeders + ")"
+                        }
+                        color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                        font.pixelSize: 12
+                    }
+                }
+
+                Item {
+                    visible: root._colVisible("peers")
+                    x:       root._colXMap["peers"] || 0
+                    width:   root.colWidth("peers")
+                    height:  rowRect.height - 1
+                    clip: true
+                    Text {
+                        anchors { fill: parent; leftMargin: 6 }
+                        verticalAlignment: Text.AlignVCenter
+                        text: {
+                            if (!rowRect.item || !rowRect.item.isTorrent) return ""
+                            return rowRect.item.torrentPeers + " (" + rowRect.item.torrentListPeers + ")"
+                        }
+                        color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                        font.pixelSize: 12
+                    }
+                }
+
+                Item {
+                    visible: root._colVisible("ratio")
+                    x:       root._colXMap["ratio"] || 0
+                    width:   root.colWidth("ratio")
+                    height:  rowRect.height - 1
+                    clip: true
+                    Text {
+                        anchors { fill: parent; leftMargin: 6 }
+                        verticalAlignment: Text.AlignVCenter
+                        text: rowRect.item && rowRect.item.isTorrent ? rowRect.item.torrentRatio.toFixed(2) : ""
+                        color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                        font.pixelSize: 12
+                    }
+                }
+
+                Item {
+                    visible: root._colVisible("uploaded")
+                    x:       root._colXMap["uploaded"] || 0
+                    width:   root.colWidth("uploaded")
+                    height:  rowRect.height - 1
+                    clip: true
+                    Text {
+                        anchors { fill: parent; leftMargin: 6 }
+                        verticalAlignment: Text.AlignVCenter
+                        text: rowRect.item && rowRect.item.isTorrent ? root.formatBytesShort(rowRect.item.torrentUploaded) : ""
+                        color: rowRect._sel ? "#ffffff" : "#b0b0b0"
+                        font.pixelSize: 12
+                    }
+                }
+
+                Item {
+                    visible: root._colVisible("downloaded")
+                    x:       root._colXMap["downloaded"] || 0
+                    width:   root.colWidth("downloaded")
+                    height:  rowRect.height - 1
+                    clip: true
+                    Text {
+                        anchors { fill: parent; leftMargin: 6 }
+                        verticalAlignment: Text.AlignVCenter
+                        text: rowRect.item && rowRect.item.isTorrent ? root.formatBytesShort(rowRect.item.torrentDownloaded) : ""
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
                         font.pixelSize: 12
                     }
@@ -866,6 +1221,7 @@ Rectangle {
                 // ── Last Try Date ─────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("added")
+                    x:       root._colXMap["added"] || 0
                     width:   root.colWidth("added")
                     height:  rowRect.height - 1
                     clip: true
@@ -881,6 +1237,7 @@ Rectangle {
                 // ── Last Try Date (alt column) ────────────────────────────────
                 Item {
                     visible: root._colVisible("lasttry")
+                    x:       root._colXMap["lasttry"] || 0
                     width:   root.colWidth("lasttry")
                     height:  rowRect.height - 1
                     clip: true
@@ -896,6 +1253,7 @@ Rectangle {
                 // ── Description ───────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("description")
+                    x:       root._colXMap["description"] || 0
                     width:   root.colWidth("description")
                     height:  rowRect.height - 1
                     clip: true
@@ -911,6 +1269,7 @@ Rectangle {
                 // ── Save To ───────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("saveto")
+                    x:       root._colXMap["saveto"] || 0
                     width:   root.colWidth("saveto")
                     height:  rowRect.height - 1
                     clip: true
@@ -926,6 +1285,7 @@ Rectangle {
                 // ── Referrer ──────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("referrer")
+                    x:       root._colXMap["referrer"] || 0
                     width:   root.colWidth("referrer")
                     height:  rowRect.height - 1
                     clip: true
@@ -941,6 +1301,7 @@ Rectangle {
                 // ── Parent URL ────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("parenturl")
+                    x:       root._colXMap["parenturl"] || 0
                     width:   root.colWidth("parenturl")
                     height:  rowRect.height - 1
                     clip: true
@@ -952,7 +1313,7 @@ Rectangle {
                         font.pixelSize: 11
                     }
                 }
-            }
+            } // Item (column layout)
 
             // Progress bar strip at the bottom of each active row
             Rectangle {
@@ -1057,6 +1418,14 @@ Rectangle {
 
                 onDoubleClicked: function(mouse) {
                     if (!rowRect.item) return
+                    if (rowRect.item.isTorrent) {
+                        root.openPropertiesRequested(rowRect.item)
+                        return
+                    }
+                    if (rowRect.item.status === "Downloading" || rowRect.item.status === "Assembling") {
+                        root.openProgressRequested(rowRect.item)
+                        return
+                    }
                     // Dispatch based on the user's double-click action preference.
                     // 0 = Open file properties dialog (default)
                     // 1 = Open file directly
@@ -1077,8 +1446,14 @@ Rectangle {
         // empty state
         Text {
             anchors.centerIn: parent
-            visible: tableView.count === 0
-            text: "No downloads yet.\nClick  Add URL  to start."
+            readonly property bool searchActive: root.filterText.length > 0
+            readonly property int filteredCount: searchActive
+                ? root.countMatches(root.filterText, root.filterName, root.filterDesc,
+                                    root.filterLinks, root.filterMatchCase, root.filterMatchWhole)
+                : tableView.count
+            visible: filteredCount === 0
+            text: searchActive ? "No matching downloads."
+                               : "No downloads yet.\nClick  Add URL  to start."
             horizontalAlignment: Text.AlignHCenter
             color: "#444444"
             font.pixelSize: 14

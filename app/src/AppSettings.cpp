@@ -208,13 +208,46 @@ void AppSettings::load() {
     m_lastTryShowSeconds      = m_settings.value(QStringLiteral("lastTryShowSeconds"), true).toBool();
     m_mainWindowWidth         = m_settings.value(QStringLiteral("mainWindowWidth"), 1100).toInt();
     m_mainWindowHeight        = m_settings.value(QStringLiteral("mainWindowHeight"), 680).toInt();
+    m_ytdlpCustomBinaryPath   = m_settings.value(QStringLiteral("ytdlpCustomBinaryPath"), QString()).toString();
+    m_ytdlpAutoUpdate         = m_settings.value(QStringLiteral("ytdlpAutoUpdate"), false).toBool();
+    m_torrentEnableDht        = m_settings.value(QStringLiteral("torrentEnableDht"), true).toBool();
+    m_torrentEnableLsd        = m_settings.value(QStringLiteral("torrentEnableLsd"), true).toBool();
+    m_torrentEnableUpnp       = m_settings.value(QStringLiteral("torrentEnableUpnp"), true).toBool();
+    m_torrentEnableNatPmp     = m_settings.value(QStringLiteral("torrentEnableNatPmp"), true).toBool();
+    m_torrentListenPort       = m_settings.value(QStringLiteral("torrentListenPort"), 6881).toInt();
+    m_torrentConnectionsLimit = m_settings.value(QStringLiteral("torrentConnectionsLimit"), 200).toInt();
+    m_torrentDownloadLimitKBps = m_settings.value(QStringLiteral("torrentDownloadLimitKBps"), 0).toInt();
+    m_torrentUploadLimitKBps  = m_settings.value(QStringLiteral("torrentUploadLimitKBps"), 0).toInt();
+    m_globalUploadLimitKBps   = m_settings.value(QStringLiteral("globalUploadLimitKBps"), 0).toInt();
+    m_torrentDefaultShareRatio = m_settings.value(QStringLiteral("torrentDefaultShareRatio"), 0.0).toDouble();
+    m_torrentDefaultSeedingTimeMins = m_settings.value(QStringLiteral("torrentDefaultSeedingTimeMins"), 0).toInt();
+    m_torrentDefaultInactiveSeedingTimeMins = m_settings.value(QStringLiteral("torrentDefaultInactiveSeedingTimeMins"), 0).toInt();
+    m_torrentDefaultShareLimitAction = m_settings.value(QStringLiteral("torrentDefaultShareLimitAction"), 1).toInt();
+    m_torrentCustomUserAgent  = m_settings.value(QStringLiteral("torrentCustomUserAgent"), QString()).toString();
+    m_torrentBindInterface    = m_settings.value(QStringLiteral("torrentBindInterface"), QString()).toString();
+    m_proxyType               = m_settings.value(QStringLiteral("proxyType"), 0).toInt();
+    m_proxyHost               = m_settings.value(QStringLiteral("proxyHost"), QString()).toString();
+    m_proxyPort               = m_settings.value(QStringLiteral("proxyPort"), 8080).toInt();
+    m_proxyUsername           = m_settings.value(QStringLiteral("proxyUsername"), QString()).toString();
+    m_proxyPassword           = m_settings.value(QStringLiteral("proxyPassword"), QString()).toString();
+    m_perHostConnectionLimit  = m_settings.value(QStringLiteral("perHostConnectionLimit"), 8).toInt();
     const QStringList defaultOrder{QStringLiteral("downloads"), QStringLiteral("unfinished"),
                                    QStringLiteral("finished"), QStringLiteral("grabber"),
-                                   QStringLiteral("queues")};
+                                   QStringLiteral("queues"), QStringLiteral("torrents")};
     m_sidebarOrder = m_settings.value(QStringLiteral("sidebarOrder"), defaultOrder).toStringList();
     for (const QString &sectionId : defaultOrder) {
         if (!m_sidebarOrder.contains(sectionId))
             m_sidebarOrder.append(sectionId);
+    }
+    const QStringList defaultSubcatOrder{
+        QStringLiteral("torrent_downloading"), QStringLiteral("torrent_seeding"),
+        QStringLiteral("torrent_stopped"),     QStringLiteral("torrent_active"),
+        QStringLiteral("torrent_inactive"),    QStringLiteral("torrent_checking"),
+        QStringLiteral("torrent_moving")};
+    m_torrentSubcatOrder = m_settings.value(QStringLiteral("torrentSubcatOrder"), defaultSubcatOrder).toStringList();
+    for (const QString &subcatId : defaultSubcatOrder) {
+        if (!m_torrentSubcatOrder.contains(subcatId))
+            m_torrentSubcatOrder.append(subcatId);
     }
 
     emit maxConcurrentChanged();
@@ -252,6 +285,7 @@ void AppSettings::load() {
     emit grabberIncludeFiltersJsonChanged();
     emit grabberExcludeFiltersJsonChanged();
     emit sidebarOrderChanged();
+    emit torrentSubcatOrderChanged();
     emit bypassInterceptKeyChanged();
     emit launchOnStartupChanged();
     emit clipboardMonitorEnabledChanged();
@@ -265,6 +299,16 @@ void AppSettings::load() {
     emit lastTryShowSecondsChanged();
     emit mainWindowWidthChanged();
     emit mainWindowHeightChanged();
+    emit ytdlpCustomBinaryPathChanged();
+    emit ytdlpAutoUpdateChanged();
+    emit torrentSettingsChanged();
+    emit globalUploadLimitKBpsChanged();
+    emit proxyTypeChanged();
+    emit proxyHostChanged();
+    emit proxyPortChanged();
+    emit proxyUsernameChanged();
+    emit proxyPasswordChanged();
+    emit perHostConnectionLimitChanged();
 }
 
 void AppSettings::save() {
@@ -303,6 +347,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("grabberIncludeFiltersJson"), m_grabberIncludeFiltersJson);
     m_settings.setValue(QStringLiteral("grabberExcludeFiltersJson"), m_grabberExcludeFiltersJson);
     m_settings.setValue(QStringLiteral("sidebarOrder"),                m_sidebarOrder);
+    m_settings.setValue(QStringLiteral("torrentSubcatOrder"),          m_torrentSubcatOrder);
     m_settings.setValue(QStringLiteral("bypassInterceptKey"),          m_bypassInterceptKey);
     m_settings.setValue(QStringLiteral("launchOnStartup"),             m_launchOnStartup);
     m_settings.setValue(QStringLiteral("clipboardMonitorEnabled"),     m_clipboardMonitorEnabled);
@@ -316,6 +361,29 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("lastTryShowSeconds"),          m_lastTryShowSeconds);
     m_settings.setValue(QStringLiteral("mainWindowWidth"),             m_mainWindowWidth);
     m_settings.setValue(QStringLiteral("mainWindowHeight"),            m_mainWindowHeight);
+    m_settings.setValue(QStringLiteral("ytdlpCustomBinaryPath"),       m_ytdlpCustomBinaryPath);
+    m_settings.setValue(QStringLiteral("ytdlpAutoUpdate"),             m_ytdlpAutoUpdate);
+    m_settings.setValue(QStringLiteral("torrentEnableDht"),            m_torrentEnableDht);
+    m_settings.setValue(QStringLiteral("torrentEnableLsd"),            m_torrentEnableLsd);
+    m_settings.setValue(QStringLiteral("torrentEnableUpnp"),           m_torrentEnableUpnp);
+    m_settings.setValue(QStringLiteral("torrentEnableNatPmp"),         m_torrentEnableNatPmp);
+    m_settings.setValue(QStringLiteral("torrentListenPort"),           m_torrentListenPort);
+    m_settings.setValue(QStringLiteral("torrentConnectionsLimit"),     m_torrentConnectionsLimit);
+    m_settings.setValue(QStringLiteral("torrentDownloadLimitKBps"),    m_torrentDownloadLimitKBps);
+    m_settings.setValue(QStringLiteral("torrentUploadLimitKBps"),      m_torrentUploadLimitKBps);
+    m_settings.setValue(QStringLiteral("globalUploadLimitKBps"),       m_globalUploadLimitKBps);
+    m_settings.setValue(QStringLiteral("torrentDefaultShareRatio"),    m_torrentDefaultShareRatio);
+    m_settings.setValue(QStringLiteral("torrentDefaultSeedingTimeMins"), m_torrentDefaultSeedingTimeMins);
+    m_settings.setValue(QStringLiteral("torrentDefaultInactiveSeedingTimeMins"), m_torrentDefaultInactiveSeedingTimeMins);
+    m_settings.setValue(QStringLiteral("torrentDefaultShareLimitAction"), m_torrentDefaultShareLimitAction);
+    m_settings.setValue(QStringLiteral("torrentCustomUserAgent"),      m_torrentCustomUserAgent);
+    m_settings.setValue(QStringLiteral("torrentBindInterface"),        m_torrentBindInterface);
+    m_settings.setValue(QStringLiteral("proxyType"),                   m_proxyType);
+    m_settings.setValue(QStringLiteral("proxyHost"),                   m_proxyHost);
+    m_settings.setValue(QStringLiteral("proxyPort"),                   m_proxyPort);
+    m_settings.setValue(QStringLiteral("proxyUsername"),               m_proxyUsername);
+    m_settings.setValue(QStringLiteral("proxyPassword"),               m_proxyPassword);
+    m_settings.setValue(QStringLiteral("perHostConnectionLimit"),     m_perHostConnectionLimit);
     m_settings.sync();
 }
 
@@ -354,6 +422,7 @@ void AppSettings::setGrabberUseAdvancedProcessing(bool v) { if (m_grabberUseAdva
 void AppSettings::setGrabberIncludeFiltersJson(const QString &v) { if (m_grabberIncludeFiltersJson != v) { m_grabberIncludeFiltersJson = v; emit grabberIncludeFiltersJsonChanged(); save(); } }
 void AppSettings::setGrabberExcludeFiltersJson(const QString &v) { if (m_grabberExcludeFiltersJson != v) { m_grabberExcludeFiltersJson = v; emit grabberExcludeFiltersJsonChanged(); save(); } }
 void AppSettings::setSidebarOrder(const QStringList &v) { if (m_sidebarOrder != v) { m_sidebarOrder = v; emit sidebarOrderChanged(); save(); } }
+void AppSettings::setTorrentSubcatOrder(const QStringList &v) { if (m_torrentSubcatOrder != v) { m_torrentSubcatOrder = v; emit torrentSubcatOrderChanged(); save(); } }
 void AppSettings::setBypassInterceptKey(int v)     { if (m_bypassInterceptKey     != v) { m_bypassInterceptKey     = v; emit bypassInterceptKeyChanged();     save(); } }
 
 void AppSettings::setLaunchOnStartup(bool v) {
@@ -453,6 +522,46 @@ void AppSettings::setMainWindowHeight(int v) {
         save();
     }
 }
+
+void AppSettings::setYtdlpCustomBinaryPath(const QString &v) {
+    if (m_ytdlpCustomBinaryPath != v) {
+        m_ytdlpCustomBinaryPath = v;
+        emit ytdlpCustomBinaryPathChanged();
+        save();
+    }
+}
+
+void AppSettings::setYtdlpAutoUpdate(bool v) {
+    if (m_ytdlpAutoUpdate != v) {
+        m_ytdlpAutoUpdate = v;
+        emit ytdlpAutoUpdateChanged();
+        save();
+    }
+}
+
+void AppSettings::setTorrentEnableDht(bool v)             { if (m_torrentEnableDht != v) { m_torrentEnableDht = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentEnableLsd(bool v)             { if (m_torrentEnableLsd != v) { m_torrentEnableLsd = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentEnableUpnp(bool v)            { if (m_torrentEnableUpnp != v) { m_torrentEnableUpnp = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentEnableNatPmp(bool v)          { if (m_torrentEnableNatPmp != v) { m_torrentEnableNatPmp = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentListenPort(int v)             { if (m_torrentListenPort != v) { m_torrentListenPort = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentConnectionsLimit(int v)       { if (m_torrentConnectionsLimit != v) { m_torrentConnectionsLimit = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentDownloadLimitKBps(int v)      { if (m_torrentDownloadLimitKBps != v) { m_torrentDownloadLimitKBps = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentUploadLimitKBps(int v)        { if (m_torrentUploadLimitKBps != v) { m_torrentUploadLimitKBps = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setGlobalUploadLimitKBps(int v)         { if (m_globalUploadLimitKBps != v) { m_globalUploadLimitKBps = v; emit globalUploadLimitKBpsChanged(); save(); } }
+void AppSettings::setTorrentDefaultShareRatio(double v)   { if (m_torrentDefaultShareRatio != v) { m_torrentDefaultShareRatio = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentDefaultSeedingTimeMins(int v) { if (m_torrentDefaultSeedingTimeMins != v) { m_torrentDefaultSeedingTimeMins = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentDefaultInactiveSeedingTimeMins(int v) { if (m_torrentDefaultInactiveSeedingTimeMins != v) { m_torrentDefaultInactiveSeedingTimeMins = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentDefaultShareLimitAction(int v) { if (m_torrentDefaultShareLimitAction != v) { m_torrentDefaultShareLimitAction = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentCustomUserAgent(const QString &v) { if (m_torrentCustomUserAgent != v) { m_torrentCustomUserAgent = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentBindInterface(const QString &v) { if (m_torrentBindInterface != v) { m_torrentBindInterface = v; emit torrentSettingsChanged(); save(); } }
+
+void AppSettings::setPerHostConnectionLimit(int v) { if (m_perHostConnectionLimit != v) { m_perHostConnectionLimit = v; emit perHostConnectionLimitChanged(); save(); } }
+
+void AppSettings::setProxyType(int v)            { if (m_proxyType     != v) { m_proxyType     = v; emit proxyTypeChanged();     save(); } }
+void AppSettings::setProxyHost(const QString &v) { if (m_proxyHost     != v) { m_proxyHost     = v; emit proxyHostChanged();     save(); } }
+void AppSettings::setProxyPort(int v)            { if (m_proxyPort     != v) { m_proxyPort     = v; emit proxyPortChanged();     save(); } }
+void AppSettings::setProxyUsername(const QString &v) { if (m_proxyUsername != v) { m_proxyUsername = v; emit proxyUsernameChanged(); save(); } }
+void AppSettings::setProxyPassword(const QString &v) { if (m_proxyPassword != v) { m_proxyPassword = v; emit proxyPasswordChanged(); save(); } }
 
 void AppSettings::applyStartupRegistration(bool enable) const {
 #ifdef Q_OS_WIN

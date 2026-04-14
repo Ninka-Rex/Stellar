@@ -52,6 +52,10 @@ Window {
     property string pendingLaterFilename: ""
     property string pendingLaterUsername: ""
     property string pendingLaterPassword: ""
+    property string pendingTorrentLaterDownloadId: ""
+    property string pendingTorrentLaterSavePath: ""
+    property string pendingTorrentLaterCategory: ""
+    property string pendingTorrentLaterDesc: ""
 
     signal accepted(string queueId, bool startProcessing, bool askAgain)
     signal createQueueRequested(string name)
@@ -205,6 +209,16 @@ Window {
             }
             if (queueId.length > 0 && startChk.checked)
                 App.startQueue(queueId)
+        } else if (pendingContext === "torrentLater" && pendingTorrentLaterDownloadId.length > 0) {
+            App.settings.showQueueSelectionOnDownloadLater = !askChk.checked
+            App.confirmTorrentDownload(pendingTorrentLaterDownloadId,
+                                       pendingTorrentLaterSavePath,
+                                       pendingTorrentLaterCategory,
+                                       pendingTorrentLaterDesc,
+                                       false,
+                                       queueId)
+            if (queueId.length > 0 && startChk.checked)
+                App.startQueue(queueId)
         }
         root.accepted(queueId, startChk.checked, askChk.checked)
         root.pendingContext = ""
@@ -218,6 +232,10 @@ Window {
         root.pendingLaterFilename = ""
         root.pendingLaterUsername = ""
         root.pendingLaterPassword = ""
+        root.pendingTorrentLaterDownloadId = ""
+        root.pendingTorrentLaterSavePath = ""
+        root.pendingTorrentLaterCategory = ""
+        root.pendingTorrentLaterDesc = ""
         root.close()
     }
 
@@ -240,6 +258,14 @@ Window {
                            App.takePendingCookies(pendingLaterUrl), App.takePendingReferrer(pendingLaterUrl),
                            App.takePendingPageUrl(pendingLaterUrl), pendingLaterUsername, pendingLaterPassword, fname)
             }
+        } else if (pendingContext === "torrentLater" && pendingTorrentLaterDownloadId.length > 0) {
+            App.settings.showQueueSelectionOnDownloadLater = !askChk.checked
+            App.confirmTorrentDownload(pendingTorrentLaterDownloadId,
+                                       pendingTorrentLaterSavePath,
+                                       pendingTorrentLaterCategory,
+                                       pendingTorrentLaterDesc,
+                                       startChk.checked,
+                                       "")
         }
         root.pendingContext = ""
         root.pendingGrabberProjectId = ""
@@ -252,6 +278,10 @@ Window {
         root.pendingLaterFilename = ""
         root.pendingLaterUsername = ""
         root.pendingLaterPassword = ""
+        root.pendingTorrentLaterDownloadId = ""
+        root.pendingTorrentLaterSavePath = ""
+        root.pendingTorrentLaterCategory = ""
+        root.pendingTorrentLaterDesc = ""
         root.close()
     }
 }

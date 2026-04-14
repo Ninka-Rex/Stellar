@@ -262,13 +262,16 @@ void GrabberResultModel::sortBy(const QString &column, Qt::SortOrder order)
 
 QString GrabberResultModel::sizeText(qint64 sizeBytes)
 {
+    static constexpr double kKB = 1024.0;
+    static constexpr double kMB = kKB * 1024.0;
+    static constexpr double kGB = kMB * 1024.0;
     if (sizeBytes < 0)
         return QStringLiteral("Unknown");
     if (sizeBytes < 1024)
         return QString::number(sizeBytes) + QStringLiteral(" B");
-    if (sizeBytes < 1024 * 1024)
-        return QString::number(sizeBytes / 1024.0, 'f', 1) + QStringLiteral(" KB");
-    if (sizeBytes < 1024ll * 1024ll * 1024ll)
-        return QString::number(sizeBytes / 1048576.0, 'f', 1) + QStringLiteral(" MB");
-    return QString::number(sizeBytes / 1073741824.0, 'f', 2) + QStringLiteral(" GB");
+    if (sizeBytes < kMB)
+        return QString::number(sizeBytes / kKB, 'f', 1) + QStringLiteral(" KB");
+    if (sizeBytes < kGB)
+        return QString::number(sizeBytes / kMB, 'f', 1) + QStringLiteral(" MB");
+    return QString::number(sizeBytes / kGB, 'f', 1) + QStringLiteral(" GB");
 }

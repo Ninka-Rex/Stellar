@@ -80,8 +80,17 @@ Source: "{#BuildDir}\extensions\firefox\stellar-firefox.xpi"; DestDir: "{app}\ex
 ; App content files
 Source: "{#BuildDir}\tips.txt";                  DestDir: "{app}";                      Flags: ignoreversion skipifsourcedoesntexist
 
+; Third-party license notices (required for LGPL/GPL compliance — FFmpeg, Qt, SQLite)
+Source: "..\..\THIRD-PARTY-NOTICES.txt";         DestDir: "{app}";                      Flags: ignoreversion
+
 ; Visual C++ Redistributable (windeployqt copies this)
 Source: "{#BuildDir}\vc_redist.x64.exe";        DestDir: "{tmp}";                       Flags: deleteafterinstall skipifsourcedoesntexist
+
+; yt-dlp binary (optional — the app can also download it on first run)
+; Place yt-dlp.exe next to the installer script or in the build output directory
+; before packaging.  skipifsourcedoesntexist allows the installer to build
+; without the binary present; the app will prompt the user to download it.
+Source: "{#BuildDir}\yt-dlp.exe";              DestDir: "{app}";          Flags: ignoreversion skipifsourcedoesntexist
 
 ; Native messaging manifest (path placeholder filled by [Registry])
 Source: "native-host-manifest-installed.json";  DestDir: "{app}";          DestName: "native-host-manifest.json"; Flags: ignoreversion

@@ -71,6 +71,12 @@ const DEFAULT_EXCLUDED_ADDRESSES = [];
 const SETTINGS_CACHE_TTL_MS = 5000;
 let cachedSettings = null;
 let cachedSettingsTime = 0;
+let liveSettings = {
+    monitoredExtensions: DEFAULT_MONITORED_EXTENSIONS,
+    excludedSites: DEFAULT_EXCLUDED_SITES,
+    excludedAddresses: DEFAULT_EXCLUDED_ADDRESSES,
+    enabled: true,
+};
 
 async function getSettings() {
     const now = Date.now();
@@ -85,6 +91,16 @@ async function getSettings() {
     };
     cachedSettingsTime = now;
     return cachedSettings;
+}
+
+async function reloadLiveSettings() {
+    const stored = await browser.storage.local.get(["monitoredExtensions", "excludedSites", "excludedAddresses", "enabled"]);
+    liveSettings = {
+        monitoredExtensions: stored.monitoredExtensions ? new Set(stored.monitoredExtensions) : DEFAULT_MONITORED_EXTENSIONS,
+        excludedSites: stored.excludedSites ?? DEFAULT_EXCLUDED_SITES,
+        excludedAddresses: stored.excludedAddresses ?? DEFAULT_EXCLUDED_ADDRESSES,
+        enabled: stored.enabled !== false,
+    };
 }
 
 browser.storage.onChanged.addListener(() => {
@@ -115,6 +131,8 @@ async function syncSettingsFromApp() {
         }
     } catch (err) {
         console.info("[Stellar] Could not sync settings from app:", err.message);
+    } finally {
+        await reloadLiveSettings();
     }
 }
 
@@ -146,9 +164,137 @@ function getUrlHost(url) {
     catch { return ""; }
 }
 
-async function shouldIntercept(url, mimeType, filenameHint) {
+function hasExplicitDownloadIntent(url) {
+    try {
+        const u = new URL(url);
+        const path = u.pathname.toLowerCase();
+        const dlValue = (u.searchParams.get("dl") || "").toLowerCase();
+        const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
+        return path.includes("/download/")
+            || u.searchParams.has("download")
+            || dlIntent
+            || u.searchParams.has("attachment")
+            || u.searchParams.has("filename")
+            || u.searchParams.has("response-content-disposition")
+            || u.searchParams.get("export") === "download"
+            || u.searchParams.get("alt") === "media";
+    } catch {
+        return false;
+    }
+}
+
+function isApiRpcRequest(url, filenameHint = "", mimeType = "") {
+    try {
+        const u = new URL(url);
+        const host = u.hostname.toLowerCase();
+        const path = u.pathname.toLowerCase();
+        const dlValue = (u.searchParams.get("dl") || "").toLowerCase();
+        const dlIntent = dlValue === "1" || dlValue === "true" || dlValue === "yes" || dlValue === "download";
+        const fn = String(filenameHint || "").toLowerCase();
+        const mt = String(mimeType || "").toLowerCase();
+        const hasPathExt = /\/[^/?#]+\.[a-z0-9]{1,8}$/i.test(path);
+        const apiPath = /(?:^|\/)(api|graphql|rpc|ajax|batchexecute)(?:\/|$)/i.test(path)
+            || path.includes("/_/");
+        const explicitDownload = path.includes("/download/")
+            || u.searchParams.has("download")
+            || dlIntent
+            || u.searchParams.has("attachment")
+            || u.searchParams.has("filename")
+            || u.searchParams.has("response-content-disposition")
+            || u.searchParams.get("alt") === "media"
+            || u.searchParams.get("export") === "download";
+
+        // Analytics/telemetry beacons should never be treated as downloads.
+        if ((path.endsWith("/td") || path.includes("/td/"))
+            && (u.searchParams.has("gtm") || /^gtm-/i.test(String(u.searchParams.get("id") || "")))) {
+            return true;
+        }
+
+        if (apiPath && !explicitDownload
+            && (!hasPathExt || fn === "response.bin" || fn === "response"
+                || mt.startsWith("application/json") || mt.startsWith("text/plain")
+                || mt.startsWith("text/javascript"))) {
+            return true;
+        }
+        // YouTube webapp static asset buckets (not user downloads).
+        if ((host === "youtube.com" || host.endsWith(".youtube.com"))
+            && (path.startsWith("/s/") || path.startsWith("/yts/"))) {
+            return true;
+        }
+        if ((host === "gemini.google.com" || host.endsWith(".google.com"))
+            && path.includes("/data/batchexecute")) {
+            return true;
+        }
+        if (u.searchParams.has("rpcids") && u.searchParams.get("rt") === "c")
+            return true;
+        if ((fn === "response.bin" || fn === "response")
+            && (path.includes("/api/") || mt.startsWith("application/json")
+                || mt.startsWith("text/plain") || mt.startsWith("text/javascript"))) {
+            return true;
+        }
+    } catch {}
+    return false;
+}
+
+function forceIntercept(url) {
+    try {
+        const u = new URL(url);
+        const host = u.hostname.toLowerCase();
+        const path = u.pathname.toLowerCase();
+        const isDriveUserContent = host === "drive.usercontent.google.com"
+            || host.endsWith(".drive.usercontent.google.com");
+        const isGoogleDocHost = host === "drive.google.com"
+            || host.endsWith(".drive.google.com")
+            || host === "docs.google.com"
+            || host.endsWith(".docs.google.com");
+        if (!isDriveUserContent && !isGoogleDocHost) return false;
+        // Only intercept URLs that carry explicit download signals — auth/warmup
+        // endpoints on these hosts (e.g. /auth_warmupv) must not be captured.
+        if (path === "/uc" || path.startsWith("/download") || path.includes("/download/")) return true;
+        if (u.searchParams.get("export") === "download") return true;
+        if (u.searchParams.has("response-content-disposition")) return true;
+        if (isDriveUserContent && u.searchParams.has("id")) return true;
+        return false;
+    } catch { return false; }
+}
+
+function shouldInterceptSync(url, mimeType, filenameHint, explicitIntent = false) {
     if (!url || url.startsWith("data:") || url.startsWith("blob:")) return false;
     if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("ftp://")) return false;
+    if (isApiRpcRequest(url, filenameHint, mimeType)) return false;
+    if (!liveSettings.enabled) return false;
+    const host = getUrlHost(url);
+    for (const pattern of liveSettings.excludedSites) if (matchesSitePattern(host, pattern)) return false;
+    for (const pattern of liveSettings.excludedAddresses) if (matchesAddressPattern(url, pattern)) return false;
+    if (mimeType) {
+        const PASS_THROUGH = ["text/html", "text/css", "application/javascript", "image/svg", "image/gif", "image/png", "image/jpeg", "image/webp"];
+        if (PASS_THROUGH.some(t => mimeType.startsWith(t))) return false;
+    }
+    let ext = getUrlExtension(url);
+    if (!ext && filenameHint) {
+        const dotIdx = filenameHint.lastIndexOf(".");
+        if (dotIdx >= 0) ext = filenameHint.slice(dotIdx + 1).toLowerCase().replace(/[^a-z0-9]/g, "");
+    }
+    const MEDIA_EXTS = new Set([
+        "mp3","m4a","aac","ogg","wav","wma","flac","aif","ra",
+        "mp4","m4v","mkv","avi","mov","wmv","webm","mpeg","mpg","3gp","ogv","rm","rmvb","asf","qt"
+    ]);
+    const explicitDownload = hasExplicitDownloadIntent(url) || explicitIntent;
+    if (ext) {
+        if (MEDIA_EXTS.has(ext) && !explicitDownload)
+            return false;
+        return liveSettings.monitoredExtensions.has(ext);
+    }
+    // Explicit user-initiated download clicks (e.g. blob-resolved signed URLs
+    // without a file extension) should still be captured by Stellar.
+    if (explicitDownload) return true;
+    return false;
+}
+
+async function shouldIntercept(url, mimeType, filenameHint, explicitIntent = false) {
+    if (!url || url.startsWith("data:") || url.startsWith("blob:")) return false;
+    if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("ftp://")) return false;
+    if (isApiRpcRequest(url, filenameHint, mimeType)) return false;
     const settings = await getSettings();
     if (!settings.enabled) return false;
     const host = getUrlHost(url);
@@ -163,7 +309,19 @@ async function shouldIntercept(url, mimeType, filenameHint) {
         const dotIdx = filenameHint.lastIndexOf(".");
         if (dotIdx >= 0) ext = filenameHint.slice(dotIdx + 1).toLowerCase().replace(/[^a-z0-9]/g, "");
     }
-    if (ext) return settings.monitoredExtensions.has(ext);
+    const MEDIA_EXTS = new Set([
+        "mp3","m4a","aac","ogg","wav","wma","flac","aif","ra",
+        "mp4","m4v","mkv","avi","mov","wmv","webm","mpeg","mpg","3gp","ogv","rm","rmvb","asf","qt"
+    ]);
+    const explicitDownload = hasExplicitDownloadIntent(url) || explicitIntent;
+    if (ext) {
+        if (MEDIA_EXTS.has(ext) && !explicitDownload)
+            return false;
+        return settings.monitoredExtensions.has(ext);
+    }
+    // Explicit user-initiated download clicks (e.g. blob-resolved signed URLs
+    // without a file extension) should still be captured by Stellar.
+    if (explicitDownload) return true;
     return false;
 }
 
@@ -204,20 +362,90 @@ async function refreshIcon() {
     await browser.action.setIcon({ path: enabled ? ICONS_ENABLED : ICONS_DISABLED });
 }
 
-browser.downloads.onCreated.addListener(async (item) => {
-    const modifierKey = getAndClearModifierKey();
-    if (modifierKey > 0) return;
-    if (!(await shouldIntercept(item.url, item.mime, item.filename))) return;
-    await browser.downloads.cancel(item.id);
-    await browser.downloads.erase({ id: item.id });
-    const name = item.filename || "";
-    let pageUrl = "";
-    try {
-        const tabs = await browser.tabs.query({ active: true, currentWindow: true });
-        if (tabs.length > 0) pageUrl = tabs[0].url || "";
-    } catch {}
-    await requestDownload({ url: item.url, filename: name, referrer: item.referrer || "", pageUrl, cookies: "", modifierKey: 0 });
-});
+function getHeaderValue(headers, name) {
+    const wanted = name.toLowerCase();
+    for (const h of headers || []) {
+        if ((h.name || "").toLowerCase() === wanted) return h.value || "";
+    }
+    return "";
+}
+
+function getFilenameFromContentDisposition(contentDisposition) {
+    if (!contentDisposition) return "";
+    const utf8Match = contentDisposition.match(/filename\*\s*=\s*UTF-8''([^;]+)/i);
+    if (utf8Match && utf8Match[1]) {
+        try { return decodeURIComponent(utf8Match[1].replace(/^"|"$/g, "")); } catch {}
+    }
+    const basicMatch = contentDisposition.match(/filename\s*=\s*("?)([^";]+)\1/i);
+    if (basicMatch && basicMatch[2]) return basicMatch[2];
+    return "";
+}
+
+browser.webRequest.onHeadersReceived.addListener(
+    (details) => {
+        // Only intercept navigation-type requests. Page-internal fetches (XHR/fetch),
+        // beacons, pings, websockets, and CSP reports are never user-initiated downloads.
+        const NON_DOWNLOAD_TYPES = new Set(["xmlhttprequest","beacon","ping","csp_report","websocket"]);
+        if (NON_DOWNLOAD_TYPES.has(details.type)) return {};
+
+        const modifierKey = getAndClearModifierKey();
+        if (modifierKey > 0) return {};
+
+        const contentType = getHeaderValue(details.responseHeaders, "content-type").toLowerCase();
+        const contentDisposition = getHeaderValue(details.responseHeaders, "content-disposition");
+        const filenameHint = getFilenameFromContentDisposition(contentDisposition);
+        // Content-Disposition: attachment means the server explicitly wants this saved as a file.
+        // Treat it as explicit download intent regardless of URL structure.
+        const isAttachment = /^\s*attachment/i.test(contentDisposition);
+
+        if (!forceIntercept(details.url) && !shouldInterceptSync(details.url, contentType, filenameHint, isAttachment)) return {};
+
+        const pageUrl = details.documentUrl || details.originUrl || "";
+        const referrer = details.originUrl || details.documentUrl || "";
+
+        const capturedUrl = details.url;
+        const capturedFilename = filenameHint;
+        const capturedReferrer = referrer;
+        const capturedPageUrl = pageUrl;
+        setTimeout(async () => {
+            let cookieHeader = "";
+            try {
+                const urlObj = new URL(capturedUrl);
+                const cookieUrls = [capturedUrl];
+                // Also collect from parent domains so auth cookies (e.g. on .google.com)
+                // are included when the download host is a subdomain like drive.usercontent.google.com.
+                const parts = urlObj.hostname.split(".");
+                for (let i = 1; i < parts.length - 1; i++)
+                    cookieUrls.push(`${urlObj.protocol}//${parts.slice(i).join(".")}/`);
+                const seen = new Set();
+                const allCookies = [];
+                for (const cu of cookieUrls) {
+                    const batch = await browser.cookies.getAll({ url: cu });
+                    for (const c of batch) {
+                        if (!seen.has(c.name)) { seen.add(c.name); allCookies.push(c); }
+                    }
+                }
+                cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
+            } catch (err) {
+                console.warn("[Stellar] Could not collect cookies for intercepted download:", err);
+            }
+            requestDownload({
+                url: capturedUrl,
+                filename: capturedFilename,
+                referrer: capturedReferrer,
+                pageUrl: capturedPageUrl,
+                cookies: cookieHeader,
+                modifierKey: 0,
+            }).catch((err) => {
+                console.error("[Stellar] Failed to send download to native host:", err);
+            });
+        }, 0);
+
+        return { cancel: true };
+    },
+    { urls: ["<all_urls>"] },
+    ["blocking", "responseHeaders"]
+);
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "recordModifierKey") {
@@ -254,6 +482,57 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         sendResponse({ ok: true });
         return true;
     }
+
+    if (message.type === "interceptLinkClick") {
+        (async () => {
+            try {
+                const url = message.url || "";
+                const filename = message.filename || "";
+                const explicitIntent = !!message.explicitIntent;
+                const allowed = forceIntercept(url) || await shouldIntercept(url, "", filename, explicitIntent);
+                if (!allowed) {
+                    sendResponse({ ok: false, reason: "not-intercepted" });
+                    return;
+                }
+                // Collect cookies in the background so authenticated API endpoints
+                // (e.g. blob-resolved download URLs requiring session tokens) work.
+                let cookieHeader = message.cookies || "";
+                if (!cookieHeader) {
+                    try {
+                        const urlObj = new URL(url);
+                        const cookieUrls = [url];
+                        const parts = urlObj.hostname.split(".");
+                        for (let i = 1; i < parts.length - 1; i++)
+                            cookieUrls.push(`${urlObj.protocol}//${parts.slice(i).join(".")}/`);
+                        const seen = new Set();
+                        const allCookies = [];
+                        for (const cu of cookieUrls) {
+                            const batch = await browser.cookies.getAll({ url: cu });
+                            for (const c of batch) {
+                                if (!seen.has(c.name)) { seen.add(c.name); allCookies.push(c); }
+                            }
+                        }
+                        cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
+                    } catch (err) {
+                        console.warn("[Stellar] Could not collect cookies for intercepted link:", err);
+                    }
+                }
+                await requestDownload({
+                    url,
+                    filename,
+                    referrer: message.referrer || "",
+                    pageUrl: message.pageUrl || "",
+                    cookies: cookieHeader,
+                    modifierKey: 0,
+                });
+                sendResponse({ ok: true });
+            } catch (err) {
+                console.error("[Stellar] Failed to process interceptLinkClick:", err);
+                sendResponse({ ok: false, error: err?.message ?? "unknown" });
+            }
+        })();
+        return true;
+    }
 });
 
 browser.runtime.onInstalled.addListener(async () => {
@@ -263,11 +542,48 @@ browser.runtime.onInstalled.addListener(async () => {
     await refreshIcon();
 });
 
+browser.contextMenus.onClicked.addListener(async (info) => {
+    const url = info.linkUrl || info.srcUrl || info.pageUrl;
+    if (!url) return;
+    let cookieHeader = "";
+    try {
+        const urlObj = new URL(url);
+        const cookieUrls = [url];
+        const parts = urlObj.hostname.split(".");
+        for (let i = 1; i < parts.length - 1; i++)
+            cookieUrls.push(`${urlObj.protocol}//${parts.slice(i).join(".")}/`);
+        const seen = new Set();
+        const allCookies = [];
+        for (const cu of cookieUrls) {
+            const batch = await browser.cookies.getAll({ url: cu });
+            for (const c of batch) {
+                if (!seen.has(c.name)) { seen.add(c.name); allCookies.push(c); }
+            }
+        }
+        cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
+    } catch {}
+    try {
+        await requestDownload({
+            url,
+            filename: "",
+            referrer: info.frameUrl ?? info.pageUrl ?? "",
+            pageUrl: info.pageUrl ?? "",
+            cookies: cookieHeader,
+            modifierKey: 0,
+        });
+    } catch (err) {
+        console.error("[Stellar] Context menu download failed:", err);
+    }
+});
+
 browser.runtime.onStartup.addListener(async () => {
     await syncSettingsFromApp();
     await refreshIcon();
 });
 
 browser.storage.onChanged.addListener(async () => {
+    await reloadLiveSettings();
     await refreshIcon();
 });
+
+reloadLiveSettings().catch(() => {});

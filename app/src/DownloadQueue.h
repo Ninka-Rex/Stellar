@@ -47,6 +47,7 @@ public:
     void setCustomUserAgentEnabled(bool enabled);
     void setCustomUserAgent(const QString &userAgent);
     void setTemporaryDirectory(const QString &path);
+    void setMaxConnectionsPerHost(int v);
     void setCanStartPredicate(std::function<bool(DownloadItem *)> predicate);
     Q_INVOKABLE void setDownloadSpeedLimit(const QString &id, int kbps);
     Q_INVOKABLE bool relocateDownload(const QString &id, const QString &newSavePath, const QString &newFilename);
@@ -86,5 +87,6 @@ private:
     bool m_useCustomUserAgent{false};
     QString m_customUserAgent;
     QString m_temporaryDirectory;
+    int m_maxConnectionsPerHost{8};
     std::function<bool(DownloadItem *)> m_canStartPredicate;
 };

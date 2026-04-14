@@ -21,12 +21,16 @@
 #include <QHash>
 #include <QPixmap>
 #include <QIcon>
+#include <QDir>
 #include <QFileInfo>
 #include <QRunnable>
 #include <QThreadPool>
 #include <QMutex>
 #ifdef Q_OS_WIN
 #  include <objbase.h>
+#  include <shlobj.h>     // SHCreateItemFromParsingName
+#  include <shobjidl.h>   // IShellItemImageFactory, IShellItem
+#  include <QImage>       // QImage::fromHBITMAP (Qt6 Windows public API)
 #endif
 
 // Shared icon cache — accessed by worker threads, protected by mutex.
@@ -85,13 +89,77 @@ struct IconCache {
                 return scaled(it.value(), sz);
         }
 
+        // 1a. Folder hint — path ends with "/" meaning we want a folder icon.
+        //     Use QDir::tempPath() as a guaranteed-existing directory so the OS
+        //     shell always returns the proper folder icon, then cache it once.
+        if (cleanId.endsWith(QLatin1Char('/'))) {
+            const QString folderKey = QStringLiteral("__folder__");
+            {
+                QMutexLocker locker(&mutex);
+                auto it = cache.constFind(folderKey);
+                if (it != cache.constEnd())
+                    return scaled(it.value(), sz);
+            }
+            const QIcon icon = iconProvider.icon(QFileInfo(QDir::tempPath()));
+            const QPixmap px = icon.pixmap(32, 32);
+            {
+                QMutexLocker locker(&mutex);
+                cache.insert(folderKey, px);
+            }
+            return scaled(px, sz);
+        }
+
         // 2. Filesystem check BEFORE extension cache — existing files (e.g. completed
-        //    EXE downloads with custom embedded icons) must be looked up by full path.
-        //    Checking extension cache first would return the generic EXE icon instead.
+        //    EXE downloads with custom embedded icons, or video files with thumbnails)
+        //    must be looked up by full path so we get the real per-file thumbnail.
+        //    Checking the extension cache first would return the generic shell icon.
         QFileInfo fi(cleanId);
         if (fi.exists()) {
-            const QIcon icon = iconProvider.icon(fi);  // SHGetFileInfo — needs COM STA
-            const QPixmap px = icon.pixmap(32, 32);
+            // For video/image files, ask Windows Shell for its thumbnail preview via
+            // IShellItemImageFactory::GetImage — the same image Explorer shows.
+            // Fall back to SHGetFileInfo (generic shell icon) for all other types.
+            QPixmap px;
+#ifdef Q_OS_WIN
+            const QString ext = fi.suffix().toLower();
+            static const QStringList kThumbnailExts = {
+                QStringLiteral("mp4"), QStringLiteral("mkv"), QStringLiteral("avi"),
+                QStringLiteral("mov"), QStringLiteral("wmv"), QStringLiteral("flv"),
+                QStringLiteral("webm"), QStringLiteral("m4v"), QStringLiteral("mpg"),
+                QStringLiteral("mpeg"), QStringLiteral("ts"), QStringLiteral("jpg"),
+                QStringLiteral("jpeg"), QStringLiteral("png"), QStringLiteral("gif"),
+                QStringLiteral("bmp"), QStringLiteral("webp"), QStringLiteral("tiff")
+            };
+            if (kThumbnailExts.contains(ext)) {
+                // IShellItemImageFactory provides the same thumbnails as Explorer.
+                // It requires COM STA (already initialized by the caller) and a
+                // native wide-string path.
+                IShellItem *psi = nullptr;
+                const std::wstring wpath = cleanId.toStdWString();
+                if (SUCCEEDED(SHCreateItemFromParsingName(wpath.c_str(), nullptr,
+                                                          IID_PPV_ARGS(&psi)))) {
+                    IShellItemImageFactory *pFactory = nullptr;
+                    if (SUCCEEDED(psi->QueryInterface(IID_PPV_ARGS(&pFactory)))) {
+                        const int thumbSz = qMax(sz, 256); // request at least 256px
+                        HBITMAP hBmp = nullptr;
+                        if (SUCCEEDED(pFactory->GetImage({ thumbSz, thumbSz },
+                                                         SIIGBF_BIGGERSIZEOK, &hBmp))) {
+                            px = QPixmap::fromImage(
+                                QImage::fromHBITMAP(hBmp).convertToFormat(
+                                    QImage::Format_ARGB32_Premultiplied));
+                            DeleteObject(hBmp);
+                        }
+                        pFactory->Release();
+                    }
+                    psi->Release();
+                }
+            }
+#endif
+            if (px.isNull()) {
+                // No thumbnail (non-video/image, or Shell thumbnail unavailable) —
+                // fall back to the shell file-type icon via SHGetFileInfo.
+                const QIcon icon = iconProvider.icon(fi);
+                px = icon.pixmap(32, 32);
+            }
             {
                 QMutexLocker locker(&mutex);
                 cache.insert(cleanId, px);
