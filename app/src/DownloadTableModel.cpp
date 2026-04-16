@@ -163,6 +163,9 @@ void DownloadTableModel::setFilterCategory(const QString &filter) {
             if (matchesFilter(item)) newVisible.append(item);
         }
     }
+    std::sort(newVisible.begin(), newVisible.end(), [&](DownloadItem *a, DownloadItem *b) {
+        return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+    });
 
     if (newVisible == m_visible) return;
 
@@ -182,6 +185,9 @@ void DownloadTableModel::setFilterQueue(const QString &filter) {
     for (auto *item : m_items) {
         if (matchesFilter(item)) newVisible.append(item);
     }
+    std::sort(newVisible.begin(), newVisible.end(), [&](DownloadItem *a, DownloadItem *b) {
+        return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+    });
 
     if (newVisible == m_visible) return;
 
@@ -191,10 +197,9 @@ void DownloadTableModel::setFilterQueue(const QString &filter) {
 }
 
 void DownloadTableModel::sortBy(const QString &column, bool ascending) {
-    if (m_visible.isEmpty()) return;
-
     m_sortColumn = column;
     m_sortAscending = ascending;
+    if (m_visible.isEmpty()) return;
 
     // Sort only the visible items - much faster than sorting all items
     std::sort(m_visible.begin(), m_visible.end(), [&](DownloadItem *a, DownloadItem *b) -> bool {
@@ -296,6 +301,9 @@ void DownloadTableModel::rebuildVisible() {
             if (matchesFilter(item)) newVisible.append(item);
         }
     }
+    std::sort(newVisible.begin(), newVisible.end(), [&](DownloadItem *a, DownloadItem *b) {
+        return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
+    });
 
     if (m_visible != newVisible) {
         m_visible = newVisible;

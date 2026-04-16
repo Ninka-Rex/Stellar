@@ -29,9 +29,12 @@ YtdlpTransfer::YtdlpTransfer(DownloadItem *item,
                               const QString &containerFormat,
                               const QString &saveDir,
                               const QString &ffmpegPath,
+                              int            speedLimitKBps,
                               bool           resume,
                               const QString &outputTemplate,
                               const QString &proxyUrl,
+                              bool           playlistMode,
+                              int            maxItems,
                               QObject       *parent)
     : QObject(parent)
     , m_item(item)
@@ -40,9 +43,12 @@ YtdlpTransfer::YtdlpTransfer(DownloadItem *item,
     , m_containerFormat(containerFormat.isEmpty() ? QStringLiteral("mp4") : containerFormat)
     , m_saveDir(saveDir)
     , m_ffmpegPath(ffmpegPath)
+    , m_speedLimitKBps(speedLimitKBps)
     , m_resume(resume)
     , m_outputTemplate(outputTemplate.isEmpty() ? QStringLiteral("%(title)s.%(ext)s") : outputTemplate)
     , m_proxyUrl(proxyUrl)
+    , m_playlistMode(playlistMode)
+    , m_maxItems(maxItems)
 {
 }
 
@@ -85,8 +91,16 @@ void YtdlpTransfer::start() {
     //   --windows-filenames      strip illegal Windows path characters (Windows only)
     //   --continue               (optional) resume a partial download
     QStringList args;
-    args << QStringLiteral("--no-playlist")
-         << QStringLiteral("--newline")
+    if (m_playlistMode) {
+        args << QStringLiteral("--yes-playlist");
+        if (m_maxItems > 0)
+            // playlist-items uses a Python-slice range: "1:N" downloads the first N items
+            args << QStringLiteral("--playlist-items")
+                 << QStringLiteral("1:") + QString::number(m_maxItems);
+    } else {
+        args << QStringLiteral("--no-playlist");
+    }
+    args << QStringLiteral("--newline")
          << QStringLiteral("--no-warnings")
          << QStringLiteral("-f")  << m_formatSel;
 
@@ -110,6 +124,10 @@ void YtdlpTransfer::start() {
     // Tell yt-dlp where ffmpeg is if we have a non-default location.
     if (!m_ffmpegPath.isEmpty())
         args << QStringLiteral("--ffmpeg-location") << m_ffmpegPath;
+
+    if (m_speedLimitKBps > 0)
+        args << QStringLiteral("--limit-rate")
+             << QString::number(m_speedLimitKBps) + QStringLiteral("K");
 
     if (m_resume)
         args << QStringLiteral("--continue");
@@ -150,6 +168,19 @@ void YtdlpTransfer::start() {
     // Mark the item as actively downloading and capable of being resumed
     m_item->setStatus(DownloadItem::Status::Downloading);
     m_item->setResumeCapable(true);
+
+    // Snapshot the save directory before launching so the fallback filename
+    // reconciliation on completion can restrict its search to files that are
+    // genuinely new or grew since this transfer started, rather than any file
+    // that happens to be recent in a busy shared folder.
+    m_preLaunchSnapshot.clear();
+    {
+        const QFileInfoList existing = QDir(m_saveDir).entryInfoList(
+            QDir::Files | QDir::NoDotAndDotDot);
+        m_preLaunchSnapshot.reserve(existing.size());
+        for (const QFileInfo &fi : existing)
+            m_preLaunchSnapshot.insert(fi.fileName(), fi.size());
+    }
 
     m_process->start();
     emit started();
@@ -198,6 +229,18 @@ void YtdlpTransfer::onReadyReadStdout() {
 }
 
 void YtdlpTransfer::handleLine(const QString &line) {
+    if (m_playlistMode) {
+        static const QRegularExpression kItemRe(
+            QStringLiteral(R"(\[download\]\s+Downloading item\s+(\d+)\s+of\s+(\d+))"),
+            QRegularExpression::CaseInsensitiveOption);
+        const QRegularExpressionMatch itemMatch = kItemRe.match(line);
+        if (itemMatch.hasMatch()) {
+            m_playlistCurrentIndex = itemMatch.captured(1).toInt();
+            m_playlistTotalItems = itemMatch.captured(2).toInt();
+            emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, QString());
+        }
+    }
+
     // ── Progress line ──────────────────────────────────────────────────────────
     if (tryParseProgressLine(line))
         return;
@@ -213,8 +256,11 @@ void YtdlpTransfer::handleLine(const QString &line) {
                              path.lastIndexOf(QLatin1Char('\\')));
         if (sep >= 0) {
             const QString filename = path.mid(sep + 1);
-            if (!filename.isEmpty())
+            if (!filename.isEmpty()) {
                 m_item->setFilename(filename);
+                if (m_playlistMode && m_playlistCurrentIndex > 0)
+                    emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, filename);
+            }
         }
         return;
     }
@@ -232,8 +278,14 @@ void YtdlpTransfer::handleLine(const QString &line) {
             const int sep = qMax(name.lastIndexOf(QLatin1Char('/')),
                                  name.lastIndexOf(QLatin1Char('\\')));
             const QString filename = (sep >= 0) ? name.mid(sep + 1) : name;
-            if (!filename.isEmpty())
+            if (!filename.isEmpty()) {
                 m_item->setFilename(filename);
+                if (m_playlistMode && m_playlistCurrentIndex > 0) {
+                    emit playlistItemStarted(m_playlistCurrentIndex, m_playlistTotalItems, filename);
+                    emit playlistItemProgress(m_playlistCurrentIndex, 100.0);
+                    emit playlistItemFinished(m_playlistCurrentIndex);
+                }
+            }
         }
         if (m_item->totalBytes() > 0)
             m_item->setDoneBytes(m_item->totalBytes());
@@ -341,6 +393,11 @@ bool YtdlpTransfer::tryParseProgressLine(const QString &line) {
         m_item->setStatus(DownloadItem::Status::Downloading);
 
     emit progressChanged(overallDone, overallTotal, speedBps);
+    if (m_playlistMode && m_playlistCurrentIndex > 0) {
+        emit playlistItemProgress(m_playlistCurrentIndex, pct);
+        if (pct >= 99.5)
+            emit playlistItemFinished(m_playlistCurrentIndex);
+    }
     return true;
 }
 
@@ -385,11 +442,60 @@ void YtdlpTransfer::onProcessFinished(int exitCode, QProcess::ExitStatus exitSta
         {
             const QString storedPath = m_saveDir + QLatin1Char('/') + m_item->filename();
             if (m_item->filename().isEmpty() || !QFile::exists(storedPath)) {
-                QDir dir(m_saveDir);
-                const QFileInfoList files = dir.entryInfoList(
+                // Stdout-derived filename is missing or doesn't match any real file
+                // (common on Windows when yt-dlp emits the path in the system
+                // codepage instead of UTF-8, corrupting non-ASCII characters).
+                //
+                // Use the pre-launch directory snapshot to restrict candidates to
+                // files that are attributable to THIS transfer:
+                //   - Brand-new files (not present in the snapshot at all), OR
+                //   - Files that grew since launch (a resumed partial file).
+                // Among those, prefer files whose extension matches the requested
+                // container format, then fall back to the most-recently-modified
+                // candidate.  This avoids claiming an unrelated file from a busy
+                // shared save folder.
+                const QString wantedExt = m_containerFormat.toLower();
+                const QFileInfoList all = QDir(m_saveDir).entryInfoList(
                     QDir::Files | QDir::NoDotAndDotDot, QDir::Time);
-                if (!files.isEmpty())
-                    m_item->setFilename(files.first().fileName());
+
+                QFileInfo bestMatch;
+                for (const QFileInfo &fi : all) {
+                    const QString name = fi.fileName();
+                    // Skip .part/.stellar-* temporary files — yt-dlp may leave
+                    // these if a previous attempt was interrupted.
+                    if (name.endsWith(QStringLiteral(".part"), Qt::CaseInsensitive) ||
+                        name.contains(QStringLiteral(".stellar-")))
+                        continue;
+
+                    const bool isNew     = !m_preLaunchSnapshot.contains(name);
+                    const bool isGrown   = !isNew &&
+                        fi.size() > m_preLaunchSnapshot.value(name, fi.size());
+
+                    if (!isNew && !isGrown)
+                        continue; // pre-existing file unchanged — not ours
+
+                    // First qualifying candidate wins unless a later one has a
+                    // better extension match.  The list is already sorted newest-
+                    // first (QDir::Time), so within the same extension tier the
+                    // most recently modified file is chosen automatically.
+                    if (bestMatch.fileName().isEmpty()) {
+                        bestMatch = fi;
+                    } else {
+                        const bool curHasExt  = bestMatch.suffix().toLower() == wantedExt;
+                        const bool candHasExt = fi.suffix().toLower() == wantedExt;
+                        if (candHasExt && !curHasExt)
+                            bestMatch = fi; // upgrade to a better extension match
+                    }
+                }
+
+                if (!bestMatch.fileName().isEmpty()) {
+                    qDebug() << "[YtdlpTransfer] filename reconciled via snapshot:"
+                             << bestMatch.fileName();
+                    m_item->setFilename(bestMatch.fileName());
+                } else {
+                    qWarning() << "[YtdlpTransfer] could not reconcile filename in"
+                               << m_saveDir;
+                }
             }
         }
 

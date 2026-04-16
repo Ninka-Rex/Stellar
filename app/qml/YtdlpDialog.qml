@@ -19,6 +19,7 @@ import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
+import QtQuick.Dialogs
 
 // YtdlpDialog — format picker shown when a yt-dlp-compatible URL is submitted.
 //
@@ -26,7 +27,7 @@ import QtQuick.Layouts
 //   1. Caller sets `pendingUrl` and calls show()/raise()/requestActivate().
 //   2. Dialog runs App.beginYtdlpInfo(url) to probe available formats.
 //   3. On success the format list is shown; user selects quality + save location.
-//   4. User clicks "Download" → `downloadRequested(url, formatId, ...)` emitted.
+//   4. User clicks "Download" → `downloadRequested(...)` emitted.
 //      No DownloadItem is created until the user confirms — the entry only appears
 //      in the download list once App.finalizeYtdlpDownload() is called by the handler.
 //   5. Closing without confirming just closes the dialog; nothing to clean up.
@@ -34,25 +35,22 @@ Window {
     id: root
 
     // ── Public API ────────────────────────────────────────────────────────────
-    // Set these before showing the dialog.
-    property string pendingUrl: ""  // URL being probed
+    property string pendingUrl: ""
 
-    // Set to true when opened from a "Add Numbered" duplicate action so yt-dlp
-    // appends _2/_3/etc. to the filename to avoid collisions.
+    // Set to true when opened from a "Add Numbered" duplicate action.
     property bool uniqueFilename: false
 
-    // Emitted when the user confirms the download.  `url` is the original URL;
-    // no DownloadItem exists yet — the handler must call App.finalizeYtdlpDownload()
-    // which creates it and adds it to the list.
+    // Emitted when the user confirms the download.
     signal downloadRequested(string url, string formatId,
                              string containerFormat, string savePath, string category,
-                             bool uniqueFilename, string videoTitle)
+                             bool uniqueFilename, string videoTitle,
+                             bool playlistMode, int maxItems)
 
     // ── Window appearance ─────────────────────────────────────────────────────
-    width:       660
-    height:      560
-    minimumWidth:  520
-    minimumHeight: 440
+    width:       680
+    height:      620
+    minimumWidth:  540
+    minimumHeight: 480
     title:       "Video Download"
     color:       "#1e1e1e"
     modality:    Qt.ApplicationModal
@@ -63,12 +61,33 @@ Window {
     Material.accent:     "#4488dd"
 
     // ── Private state ─────────────────────────────────────────────────────────
-    property string  _probeId:    ""        // active beginYtdlpInfo probe ID
-    property string  _title:      ""        // video title from yt-dlp metadata
-    property var     _formats:    []        // QVariantList of format maps
-    property bool    _probing:    false     // true while --dump-json is running
-    property string  _probeError: ""        // non-empty when probing failed
-    property bool    _accepted:   false     // true after user clicks Download
+    property string  _probeId:    ""
+    property string  _title:      ""
+    property var     _formats:    []
+    property bool    _probing:    false
+    property string  _probeError: ""
+    property bool    _accepted:   false
+
+    // Whether the URL looks like a channel/playlist (not a single video).
+    readonly property bool _isChannelUrl: {
+        var u = pendingUrl.toLowerCase()
+        return u.indexOf("/@") >= 0
+            || u.indexOf("/channel/") >= 0
+            || u.indexOf("/c/") >= 0
+            || u.indexOf("/user/") >= 0
+            || u.indexOf("playlist?list=") >= 0
+            || u.indexOf("&list=") >= 0
+    }
+    readonly property bool _isYoutubeChannelRootUrl: {
+        var u = pendingUrl.toLowerCase()
+        var isYoutube = (u.indexOf("youtube.com/") >= 0 || u.indexOf("youtu.be/") >= 0)
+        if (!isYoutube) return false
+        if (u.indexOf("list=") >= 0) return false
+        return u.indexOf("/@") >= 0
+            || u.indexOf("/channel/") >= 0
+            || u.indexOf("/c/") >= 0
+            || u.indexOf("/user/") >= 0
+    }
 
     // ── Lifecycle ─────────────────────────────────────────────────────────────
     onVisibleChanged: {
@@ -100,7 +119,6 @@ Window {
     }
 
     function _startProbe() {
-        // Cancel any existing probe first
         if (_probeId.length > 0)
             App.cancelYtdlpInfo(_probeId)
         _probeId    = ""
@@ -111,12 +129,64 @@ Window {
         _probeId    = App.beginYtdlpInfo(pendingUrl)
     }
 
+    function _channelScopedUrl(scope) {
+        var raw = (pendingUrl || "").trim()
+        if (!root._isYoutubeChannelRootUrl)
+            return raw
+        if (scope === "all")
+            return raw
+
+        var cut = raw.search(/[?#]/)
+        var suffix = ""
+        var base = raw
+        if (cut >= 0) {
+            base = raw.slice(0, cut)
+            suffix = raw.slice(cut)
+        }
+
+        if (base.endsWith("/"))
+            base = base.slice(0, -1)
+        base = base.replace(/\/(videos|shorts|live|streams)$/i, "")
+
+        var tab = scope === "shorts" ? "shorts" : (scope === "live" ? "streams" : "videos")
+        return base + "/" + tab + suffix
+    }
+
     function _formatSize(bytes) {
         if (!bytes || bytes <= 0) return ""
         if (bytes >= 1073741824) return (bytes / 1073741824).toFixed(1) + " GiB"
         if (bytes >= 1048576)    return (bytes / 1048576).toFixed(1) + " MiB"
         if (bytes >= 1024)       return (bytes / 1024).toFixed(0) + " KiB"
         return bytes + " B"
+    }
+
+    // Map a raw vcodec string from yt-dlp to a short human-readable codec name.
+    // yt-dlp returns strings like "vp09.00.40.08", "avc1.640028", "av01.0.08M.08".
+    function _codecLabel(vcodec) {
+        if (!vcodec || vcodec === "none") return ""
+        var v = vcodec.toLowerCase()
+        if (v.indexOf("av01") >= 0 || v.indexOf("av1") >= 0)  return "AV1"
+        if (v.indexOf("vp09") >= 0 || v.indexOf("vp9") >= 0)  return "VP9"
+        if (v.indexOf("vp08") >= 0 || v.indexOf("vp8") >= 0)  return "VP8"
+        if (v.indexOf("avc") >= 0  || v.indexOf("h264") >= 0) return "H.264"
+        if (v.indexOf("hvc") >= 0  || v.indexOf("hevc") >= 0 || v.indexOf("h265") >= 0) return "H.265"
+        if (v.indexOf("theora") >= 0) return "Theora"
+        // Unknown codec — return a trimmed prefix (before first dot/space)
+        var dot = v.indexOf(".")
+        return dot > 0 ? vcodec.substring(0, dot).toUpperCase() : vcodec.toUpperCase()
+    }
+
+    // Map acodec to a short label.
+    function _acodecLabel(acodec) {
+        if (!acodec || acodec === "none") return ""
+        var a = acodec.toLowerCase()
+        if (a.indexOf("opus") >= 0)  return "Opus"
+        if (a.indexOf("mp4a") >= 0 || a.indexOf("aac") >= 0) return "AAC"
+        if (a.indexOf("mp3")  >= 0)  return "MP3"
+        if (a.indexOf("vorbis") >= 0) return "Vorbis"
+        if (a.indexOf("flac") >= 0)  return "FLAC"
+        var dot = a.indexOf(".")
+        return dot > 0 ? acodec.substring(0, dot).toUpperCase() : acodec.toUpperCase()
     }
 
     // ── Category helpers ──────────────────────────────────────────────────────
@@ -142,7 +212,6 @@ Window {
         }
     }
     function _catIndexForVideo() {
-        // Auto-select a "Video" category if one exists; fall back to index 0.
         for (var i = 0; i < categoryIds.length; i++) {
             var lbl = (categoryLabels[i] || "").toLowerCase()
             if (lbl === "video" || lbl === "videos") return i
@@ -162,9 +231,7 @@ Window {
             root._title      = title
             root._formats    = formats
             root._probeError = ""
-            // Pre-select "Best quality" (index 0)
             formatList.currentIndex = 0
-            // Initialise save path from auto-selected category
             var catIdx = root._catIndexForVideo()
             catCombo.currentIndex = catIdx
             root._updateSavePath(catIdx)
@@ -183,6 +250,22 @@ Window {
         dir = dir.replace(/\//g, "\\")
         if (dir.length > 0 && !dir.endsWith("\\")) dir += "\\"
         savePathField.text = dir
+    }
+
+    FolderDialog {
+        id: saveFolderDialog
+        currentFolder: savePathField.text.trim().length > 0
+                       ? ("file:///" + savePathField.text.trim().replace(/\\/g, "/"))
+                       : ("file:///" + App.settings.defaultSavePath.replace(/\\/g, "/"))
+        onAccepted: {
+            var path = selectedFolder.toString()
+                .replace(/^file:\/\/\//, "")
+                .replace(/^file:\/\//, "")
+            path = path.replace(/\//g, "\\")
+            if (path.length > 0 && !path.endsWith("\\"))
+                path += "\\"
+            savePathField.text = path
+        }
     }
 
     // ── UI ────────────────────────────────────────────────────────────────────
@@ -205,18 +288,17 @@ Window {
                 }
                 spacing: 14
 
-                // Play icon badge
-                Rectangle {
-                    width: 44; height: 44
-                    radius: 6
-                    color: "#1a2a1a"
-                    border.color: "#3a6a3a"
+                Item {
+                    width: 44
+                    height: 44
 
-                    Text {
+                    Image {
                         anchors.centerIn: parent
-                        text: "▶"
-                        font.pixelSize: 20
-                        color: "#5aaa5a"
+                        source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/wand.ico"
+                        width: 28
+                        height: 28
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
                     }
                 }
 
@@ -229,7 +311,7 @@ Window {
                         text: root._title.length > 0
                               ? root._title
                               : (root._probing
-                                 ? "Fetching video info…"
+                                 ? "Fetching video info\u2026"
                                  : (root._probeError.length > 0 ? "Could not fetch video info" : "Video Download"))
                         color: "#e8e8e8"
                         font.pixelSize: 13
@@ -265,7 +347,7 @@ Window {
                 }
                 Text {
                     Layout.alignment: Qt.AlignHCenter
-                    text: "Fetching available formats…"
+                    text: "Fetching available formats\u2026"
                     color: "#aaaaaa"
                     font.pixelSize: 13
                 }
@@ -287,7 +369,7 @@ Window {
 
                 Text {
                     Layout.alignment: Qt.AlignHCenter
-                    text: "⚠"
+                    text: "\u26A0"
                     font.pixelSize: 36
                     color: "#cc4444"
                 }
@@ -320,7 +402,7 @@ Window {
                     fill:    parent
                     margins: 18
                 }
-                spacing: 12
+                spacing: 10
                 visible: !root._probing && root._probeError.length === 0 && root._formats.length > 0
 
                 // Quality list label
@@ -354,69 +436,114 @@ Window {
                             policy: ScrollBar.AsNeeded
                         }
 
-                        delegate: ItemDelegate {
-                            width:          formatList.width
-                            height:         32
-                            highlighted:    formatList.currentIndex === index
-                            padding:        0
+                        delegate: Rectangle {
+                            id: fmtDelegate
+                            width:  formatList.width
+                            height: 34
 
-                            background: Rectangle {
-                                color: formatList.currentIndex === index
-                                       ? "#1a3a6a"
-                                       : (hovered ? "#252535" : "transparent")
-                                Rectangle {
-                                    // Left accent bar shown when selected
-                                    width:  3; height: parent.height
-                                    color:  "#4488dd"
-                                    visible: formatList.currentIndex === index
-                                }
+                            readonly property bool isSelected: formatList.currentIndex === index
+                            readonly property bool isHovered:  fmtMouse.containsMouse
+
+                            color: isSelected ? "#1a3a6a"
+                                              : (isHovered ? "#232333" : "transparent")
+
+                            // Left accent bar when selected
+                            Rectangle {
+                                width: 3; height: parent.height
+                                color: "#4488dd"
+                                visible: fmtDelegate.isSelected
                             }
 
-                            contentItem: RowLayout {
+                            RowLayout {
                                 anchors {
                                     fill:        parent
-                                    leftMargin:  12
+                                    leftMargin:  14
                                     rightMargin: 12
                                 }
                                 spacing: 8
 
-                                // Quality label ("Best quality", "1080p", "720p", "Audio only", …)
+                                // Quality label ("Best quality", "2160p", "1080p", "Audio only", …)
                                 Text {
                                     text: modelData.label || ""
-                                    color: formatList.currentIndex === index ? "#c0d8ff" : "#d0d0d0"
+                                    color: fmtDelegate.isSelected ? "#c0d8ff" : "#d0d0d0"
                                     font.pixelSize: 13
-                                    font.weight: formatList.currentIndex === index ? Font.Medium : Font.Normal
-                                    Layout.minimumWidth: 90
+                                    font.weight: fmtDelegate.isSelected ? Font.Medium : Font.Normal
+                                    Layout.minimumWidth: 80
                                 }
 
-                                // Codec / extension badge — only when known and not the "Best" catch-all
+                                // Video codec badge — shown when we know the codec and it's a video format
                                 Rectangle {
-                                    property string _ext: (modelData.ext || "").toLowerCase()
-                                    visible: _ext.length > 0 && modelData.id !== "best"
+                                    property string _codec: root._codecLabel(modelData.vcodec || "")
+                                    visible: _codec.length > 0 && modelData.id !== "best"
                                              && modelData.id !== "bestvideo+bestaudio/best"
-                                    width:  extText.implicitWidth + 10
-                                    height: 16
+                                    width:  codecText.implicitWidth + 10
+                                    height: 17
                                     radius: 3
-                                    color: "#1e2a1e"
-                                    border.color: "#2a4a2a"
+                                    color: {
+                                        switch(_codec) {
+                                        case "AV1":   return "#1a2020"
+                                        case "VP9":   return "#1e1a20"
+                                        case "H.264": return "#1a2030"
+                                        case "H.265": return "#201a1a"
+                                        default:      return "#1e1e1e"
+                                        }
+                                    }
+                                    border.color: {
+                                        switch(_codec) {
+                                        case "AV1":   return "#2a5040"
+                                        case "VP9":   return "#3a2a50"
+                                        case "H.264": return "#2a4060"
+                                        case "H.265": return "#502a2a"
+                                        default:      return "#3a3a3a"
+                                        }
+                                    }
                                     Text {
-                                        id: extText
+                                        id: codecText
                                         anchors.centerIn: parent
-                                        text: parent._ext
-                                        color: "#6aaa6a"
+                                        text: parent._codec
+                                        color: {
+                                            switch(parent._codec) {
+                                            case "AV1":   return "#5abba0"
+                                            case "VP9":   return "#9a70cc"
+                                            case "H.264": return "#6a9acc"
+                                            case "H.265": return "#cc7a7a"
+                                            default:      return "#aaaaaa"
+                                            }
+                                        }
                                         font.pixelSize: 10
                                     }
                                 }
 
-                                // FPS badge — only for video and when meaningful (not 30/null)
+                                // Audio codec badge — shown for audio-only formats
+                                Rectangle {
+                                    property string _acodec: root._acodecLabel(modelData.acodec || "")
+                                    // Show for audio-only rows (height === 0) when we know the codec
+                                    visible: _acodec.length > 0
+                                             && (modelData.height === 0 || !modelData.vcodec || modelData.vcodec === "none")
+                                             && modelData.id !== "best"
+                                    width:  acodecText.implicitWidth + 10
+                                    height: 17
+                                    radius: 3
+                                    color: "#1a1e20"
+                                    border.color: "#2a4040"
+                                    Text {
+                                        id: acodecText
+                                        anchors.centerIn: parent
+                                        text: parent._acodec
+                                        color: "#5a9aaa"
+                                        font.pixelSize: 10
+                                    }
+                                }
+
+                                // FPS badge — only for high-framerate (not 30/null)
                                 Rectangle {
                                     property int _fps: modelData.fps || 0
-                                    visible: _fps > 0 && _fps !== 30 && modelData.height > 0
+                                    visible: _fps > 0 && _fps !== 30 && (modelData.height || 0) > 0
                                     width:  fpsText.implicitWidth + 10
-                                    height: 16
+                                    height: 17
                                     radius: 3
-                                    color: "#1e1e2e"
-                                    border.color: "#2a2a4e"
+                                    color: "#1e1e2a"
+                                    border.color: "#2a2a50"
                                     Text {
                                         id: fpsText
                                         anchors.centerIn: parent
@@ -431,19 +558,228 @@ Window {
                                 // File size — right-aligned, only when known
                                 Text {
                                     text: root._formatSize(modelData.filesize)
-                                    color: "#8899bb"
+                                    color: fmtDelegate.isSelected ? "#8aaddd" : "#6a8aaa"
                                     font.pixelSize: 12
-                                    visible: modelData.filesize > 0
+                                    visible: (modelData.filesize || 0) > 0
                                 }
                             }
 
-                            onClicked: formatList.currentIndex = index
+                            MouseArea {
+                                id: fmtMouse
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: formatList.currentIndex = index
+                            }
+                        }
+                    }
+                }
+
+                // ── Channel / playlist options ─────────────────────────────────
+                // Shown whenever the URL looks like a channel or playlist.
+                Rectangle {
+                    Layout.fillWidth: true
+                    visible: root._isChannelUrl
+                    height: channelRow.implicitHeight + 20
+                    radius: 3
+                    color:  "#1a2030"
+                    border.color: "#2a3a5a"
+
+                    ColumnLayout {
+                        id: channelRow
+                        anchors { fill: parent; margins: 10 }
+                        spacing: 8
+
+                        // Header row
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            Text {
+                                text: "Channel / Playlist"
+                                color: "#8899bb"
+                                font.pixelSize: 11
+                                font.weight: Font.Medium
+                            }
+
+                            Item { Layout.fillWidth: true }
+
+                            // "All videos" vs "Latest N" toggle
+                            RowLayout {
+                                spacing: 4
+
+                                RadioButton {
+                                    id: allVideosRadio
+                                    checked: true
+                                    text: "All videos"
+                                    font.pixelSize: 11
+                                    palette.windowText: "#c0c0c0"
+                                    topPadding: 0
+                                    bottomPadding: 0
+                                    padding: 0
+                                    leftPadding: 0
+                                    Layout.alignment: Qt.AlignVCenter
+                                    indicator: Rectangle {
+                                        implicitWidth: 14; implicitHeight: 14
+                                        radius: 7
+                                        color: allVideosRadio.checked ? "#1a3a6a" : "#1b1b1b"
+                                        border.color: allVideosRadio.checked ? "#4488dd" : "#555555"
+                                        Rectangle {
+                                            width: 6; height: 6; radius: 3
+                                            anchors.centerIn: parent
+                                            color: "#4488dd"
+                                            visible: allVideosRadio.checked
+                                        }
+                                    }
+                                    contentItem: Text {
+                                        leftPadding: allVideosRadio.indicator.width + 6
+                                        text: allVideosRadio.text
+                                        color: "#c0c0c0"
+                                        font: allVideosRadio.font
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+                                }
+
+                                RadioButton {
+                                    id: latestNRadio
+                                    text: "Latest"
+                                    font.pixelSize: 11
+                                    palette.windowText: "#c0c0c0"
+                                    topPadding: 0
+                                    bottomPadding: 0
+                                    padding: 0
+                                    leftPadding: 8
+                                    Layout.alignment: Qt.AlignVCenter
+                                    indicator: Rectangle {
+                                        implicitWidth: 14; implicitHeight: 14
+                                        radius: 7
+                                        color: latestNRadio.checked ? "#1a3a6a" : "#1b1b1b"
+                                        border.color: latestNRadio.checked ? "#4488dd" : "#555555"
+                                        Rectangle {
+                                            width: 6; height: 6; radius: 3
+                                            anchors.centerIn: parent
+                                            color: "#4488dd"
+                                            visible: latestNRadio.checked
+                                        }
+                                    }
+                                    contentItem: Text {
+                                        leftPadding: latestNRadio.indicator.width + 6
+                                        text: latestNRadio.text
+                                        color: "#c0c0c0"
+                                        font: latestNRadio.font
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+                                }
+
+                                // N spinner — active only when "Latest N" is chosen
+                                Rectangle {
+                                    width: 52; height: 22
+                                    radius: 3
+                                    color: "#1b1b1b"
+                                    Layout.alignment: Qt.AlignVCenter
+                                    border.color: latestNField.activeFocus ? "#4488dd"
+                                                                           : (latestNRadio.checked ? "#3a3a5a" : "#2a2a2a")
+                                    opacity: latestNRadio.checked ? 1.0 : 0.4
+
+                                    TextInput {
+                                        id: latestNField
+                                        anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                        text: "10"
+                                        color: "#d0d0d0"
+                                        font.pixelSize: 12
+                                        verticalAlignment: Text.AlignVCenter
+                                        inputMethodHints: Qt.ImhDigitsOnly
+                                        validator: IntValidator { bottom: 1; top: 9999 }
+                                        enabled: latestNRadio.checked
+                                        selectByMouse: true
+                                        onActiveFocusChanged: if (activeFocus) selectAll()
+                                    }
+                                }
+
+                                Text {
+                                    text: "videos"
+                                    color: latestNRadio.checked ? "#8899bb" : "#444455"
+                                    font.pixelSize: 11
+                                    Layout.alignment: Qt.AlignVCenter
+                                }
+                            }
+                        }
+
+                        // Info note
+                        Text {
+                            Layout.fillWidth: true
+                            text: root._isYoutubeChannelRootUrl
+                                  ? "YouTube channel URLs include all uploads by default (videos, shorts, and live). Use Scope to target one tab."
+                                  : "Videos will be saved in a subfolder named after the channel."
+                            color: "#5a6a8a"
+                            font.pixelSize: 10
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Rectangle {
+                            Layout.fillWidth: true
+                            visible: root._isYoutubeChannelRootUrl
+                            radius: 3
+                            color: "#162236"
+                            border.color: "#28456f"
+                            height: scopeRow.implicitHeight + 14
+
+                            RowLayout {
+                                id: scopeRow
+                                anchors { fill: parent; margins: 7 }
+                                spacing: 8
+
+                                Text {
+                                    text: "Scope:"
+                                    color: "#89a6d4"
+                                    font.pixelSize: 11
+                                    font.weight: Font.Medium
+                                }
+
+                                ButtonGroup { id: scopeGroup }
+
+                                RadioButton {
+                                    id: scopeAll
+                                    checked: true
+                                    text: "All uploads"
+                                    ButtonGroup.group: scopeGroup
+                                    topPadding: 0
+                                    bottomPadding: 0
+                                    padding: 0
+                                    Layout.alignment: Qt.AlignVCenter
+                                }
+                                RadioButton {
+                                    id: scopeVideos
+                                    text: "Videos tab"
+                                    ButtonGroup.group: scopeGroup
+                                    topPadding: 0
+                                    bottomPadding: 0
+                                    padding: 0
+                                    Layout.alignment: Qt.AlignVCenter
+                                }
+                                RadioButton {
+                                    id: scopeShorts
+                                    text: "Shorts tab"
+                                    ButtonGroup.group: scopeGroup
+                                    topPadding: 0
+                                    bottomPadding: 0
+                                    padding: 0
+                                    Layout.alignment: Qt.AlignVCenter
+                                }
+                                RadioButton {
+                                    id: scopeLive
+                                    text: "Live tab"
+                                    ButtonGroup.group: scopeGroup
+                                    topPadding: 0
+                                    bottomPadding: 0
+                                    padding: 0
+                                    Layout.alignment: Qt.AlignVCenter
+                                }
+                            }
                         }
                     }
                 }
 
                 // ── ffmpeg warning ────────────────────────────────────────────
-                // Shown when the user picks a merging format but ffmpeg is absent.
                 Rectangle {
                     Layout.fillWidth: true
                     height: ffmpegWarnText.implicitHeight + 12
@@ -451,10 +787,6 @@ Window {
                     color: "#2a1a0a"
                     border.color: "#6a3a0a"
                     visible: {
-                        var fmt = root._formats[formatList.currentIndex]
-                        if (!fmt) return false
-                        // Audio-only uses --extract-audio which also needs ffmpeg for re-encoding
-                        // webm selects a native yt-dlp stream so no merge needed
                         var needsMerge = containerCombo.currentText !== "webm"
                         return needsMerge && !App.ytdlpManager.ffmpegAvailable
                     }
@@ -462,8 +794,8 @@ Window {
                     Text {
                         id: ffmpegWarnText
                         anchors { fill: parent; margins: 6 }
-                        text: "⚠  ffmpeg is not installed — this download will fall back to a pre-muxed stream (usually WebM ≤480p). " +
-                              "Drop ffmpeg.exe next to yt-dlp.exe for HD MP4/MKV. See Settings → Video Downloader."
+                        text: "\u26A0  ffmpeg is not installed - this download will fall back to a pre-muxed stream (usually WebM <=480p). " +
+                              "Drop ffmpeg.exe next to yt-dlp.exe for HD MP4/MKV. See Settings > Video Downloader."
                         color: "#ddaa55"; font.pixelSize: 11
                         wrapMode: Text.WordWrap
                     }
@@ -488,13 +820,18 @@ Window {
                         color:            "#d0d0d0"
                         leftPadding:      8
                         rightPadding:     8
-                        placeholderText:  "Save directory…"
+                        placeholderText:  "Save directory\u2026"
                         placeholderTextColor: "#555555"
                         background: Rectangle {
                             color:        "#1b1b1b"
                             border.color: savePathField.activeFocus ? "#4488dd" : "#3a3a3a"
                             radius:       3
                         }
+                    }
+
+                    DlgButton {
+                        text: "Save As..."
+                        onClicked: saveFolderDialog.open()
                     }
                 }
 
@@ -560,7 +897,7 @@ Window {
                     }
                 }
 
-                // ── Container / format ────────────────────────────────────────
+                // ── Container / output format ─────────────────────────────────
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 8
@@ -577,19 +914,15 @@ Window {
                         implicitWidth: 110
                         font.pixelSize: 12
 
-                        // Dynamic list: audio containers when "Audio only" is selected,
-                        // video containers otherwise.
                         property bool _isAudioOnly: {
                             var fmt = root._formats[formatList.currentIndex]
                             return fmt ? (fmt.height === 0) : false
                         }
-                        // Reset to index 0 whenever the model switches between audio/video
-                        // to prevent a stale index pointing to the wrong format.
                         on_IsAudioOnlyChanged: currentIndex = 0
                         model: _isAudioOnly
                                ? ["mp3", "m4a", "opus", "flac", "wav", "aac"]
                                : ["mp4", "mkv", "webm", "mov"]
-                        currentIndex: 0  // mp4 / mp3 are the sane defaults
+                        currentIndex: 0
 
                         contentItem: Text {
                             leftPadding:  8
@@ -628,26 +961,6 @@ Window {
                             }
                         }
                     }
-
-                    Text {
-                        text: {
-                            var fmt = root._formats[formatList.currentIndex]
-                            if (!fmt) return ""
-                            if (fmt.height === 0)
-                                return ""
-                            var c = containerCombo.currentText
-                            if (c === "mp4" || c === "mkv")
-                                return ""
-                            if (c === "webm")
-                                return ""
-                            return ""
-                        }
-                        color: "#555577"
-                        font.pixelSize: 11
-                        Layout.fillWidth: true
-                        wrapMode: Text.NoWrap
-                        elide: Text.ElideRight
-                    }
                 }
             }
         }
@@ -676,7 +989,7 @@ Window {
             }
 
             DlgButton {
-                text:    "Download"
+                text:    root._isChannelUrl ? "Download Channel" : "Download"
                 primary: true
                 enabled: !root._probing
                          && root._probeError.length === 0
@@ -686,14 +999,25 @@ Window {
                 onClicked: {
                     root._accepted = true
                     var fmt = root._formats[formatList.currentIndex]
-                    var formatId = fmt ? (fmt.id || "bestvideo+bestaudio/best") : "bestvideo+bestaudio/best"
+                    var formatId  = fmt ? (fmt.id || "bestvideo+bestaudio/best") : "bestvideo+bestaudio/best"
                     var container = containerCombo.currentText || "mp4"
-                    var savePath = savePathField.text.trim()
-                    // Strip trailing path separator — yt-dlp receives the directory
+                    var savePath  = savePathField.text.trim()
                     while (savePath.endsWith("/") || savePath.endsWith("\\"))
                         savePath = savePath.slice(0, -1)
                     var catId = root.categoryIds[catCombo.currentIndex] || ""
-                    root.downloadRequested(root.pendingUrl, formatId, container, savePath, catId, root.uniqueFilename, root._title)
+                    var isPlaylist = root._isChannelUrl
+                    var nItems = (isPlaylist && latestNRadio.checked)
+                                 ? (parseInt(latestNField.text) || 10) : 0
+                    var scope = "all"
+                    if (root._isYoutubeChannelRootUrl) {
+                        if (scopeVideos.checked) scope = "videos"
+                        else if (scopeShorts.checked) scope = "shorts"
+                        else if (scopeLive.checked) scope = "live"
+                    }
+                    var effectiveUrl = root._channelScopedUrl(scope)
+                    root.downloadRequested(effectiveUrl, formatId, container,
+                                           savePath, catId, root.uniqueFilename,
+                                           root._title, isPlaylist, nItems)
                     root.close()
                 }
             }

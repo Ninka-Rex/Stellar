@@ -25,3 +25,4 @@ CLAUDE.md
 AGENTS.md
 *.mmdb
 app/data/*.mmdb
+*.pem

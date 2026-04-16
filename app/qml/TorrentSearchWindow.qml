@@ -32,7 +32,7 @@ Window {
     property string queryText: ""
     property string sortKey: "seeders"
     property bool sortAscending: false
-    property string colOrderJson: '["name","size","seeders","leechers","engine","published"]'
+    property string colOrderJson: '["name","size","seeders","leechers","engine","publishedOn"]'
     property real colName: 330
     property real colSize: 100
     property real colSeeders: 70
@@ -51,7 +51,7 @@ Window {
         { title: "Seeders", key: "seeders" },
         { title: "Leechers", key: "leechers" },
         { title: "Engine", key: "engine" },
-        { title: "Published On", key: "published" }
+        { title: "Published On", key: "publishedOn" }
     ]
     property var colsOrdered: {
         try {
@@ -83,7 +83,7 @@ Window {
         else if (key === "engine") width = colEngine
         width = Number(width)
         if (!isFinite(width))
-            width = key === "name" ? 330 : (key === "engine" ? 110 : (key === "published" ? 120 : 100))
+            width = key === "name" ? 330 : (key === "engine" ? 110 : (key === "publishedOn" ? 120 : 100))
         return Math.max(key === "name" ? 180 : 60, Math.round(width))
     }
 
@@ -136,7 +136,7 @@ Window {
         setColumnWidth("seeders", colSeeders)
         setColumnWidth("leechers", colLeechers)
         setColumnWidth("engine", colEngine)
-        setColumnWidth("published", colPublished)
+        setColumnWidth("publishedOn", colPublished)
     }
 
     function sortBy(key) {
@@ -144,13 +144,18 @@ Window {
             sortAscending = !sortAscending
         else {
             sortKey = key
-            sortAscending = key === "name" || key === "engine" || key === "published"
+            sortAscending = key === "name" || key === "engine" || key === "publishedOn"
         }
         App.torrentSearchManager.resultModel.sortBy(key, sortAscending)
     }
 
     function startSearch() {
         App.torrentSearchManager.refreshRuntimeState()
+        // Push the active sort into the model before results start arriving so
+        // appendEntry() positions each row correctly from the first result.
+        // Without this, searches always insert in arrival order regardless of
+        // what the column headers advertise.
+        App.torrentSearchManager.resultModel.sortBy(sortKey, sortAscending)
         App.torrentSearchManager.search(queryText)
     }
 
@@ -466,7 +471,7 @@ Window {
                             elide: Text.ElideRight
                         }
                         Text {
-                            x: root.colXMap["published"] || 0
+                            x: root.colXMap["publishedOn"] || 0
                             width: root.colPublished - 12
                             anchors.verticalCenter: parent.verticalCenter
                             leftPadding: 6

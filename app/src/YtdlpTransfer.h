@@ -19,6 +19,8 @@
 #include <QProcess>
 #include <QString>
 #include <QByteArray>
+#include <QHash>
+#include <QDateTime>
 #include "DownloadItem.h"
 
 // YtdlpTransfer drives a single yt-dlp subprocess to download a video or
@@ -61,9 +63,12 @@ public:
                            const QString &containerFormat,
                            const QString &saveDir,
                            const QString &ffmpegPath      = {},
+                           int            speedLimitKBps  = 0,
                            bool           resume          = false,
                            const QString &outputTemplate  = {},
                            const QString &proxyUrl        = {},
+                           bool           playlistMode    = false,
+                           int            maxItems        = 0,
                            QObject       *parent          = nullptr);
     ~YtdlpTransfer() override;
 
@@ -78,6 +83,9 @@ signals:
     void progressChanged(qint64 done, qint64 total, qint64 speedBps);
     void finished();                    // yt-dlp exited 0 — file is complete
     void failed(const QString &reason); // non-zero exit or process error
+    void playlistItemStarted(int index, int total, const QString &title);
+    void playlistItemProgress(int index, double percent);
+    void playlistItemFinished(int index);
 
 private slots:
     void onReadyReadStdout();
@@ -103,9 +111,12 @@ private:
     QString       m_containerFormat;
     QString       m_saveDir;
     QString       m_ffmpegPath;
+    int           m_speedLimitKBps{0};
     bool          m_resume{false};
     QString       m_outputTemplate;
     QString       m_proxyUrl;   // e.g. "http://host:port" or "socks5://host:port", empty = no proxy
+    bool          m_playlistMode{false};  // true → download all items in a playlist/channel
+    int           m_maxItems{0};          // 0 = unlimited; N = only first N items
     bool          m_aborted{false};
 
     // Accumulation buffer for incomplete stdout lines.
@@ -121,9 +132,18 @@ private:
     // Phase transition detection: when the reported percentage drops from >90 %
     // back to near 0 %, a new download phase has started (audio after video).
 
+    // Snapshot of save-directory files taken just before the process starts.
+    // Maps filename → size-in-bytes at launch time.  The fallback filename
+    // reconciliation at completion uses this to restrict candidates to files
+    // that are genuinely new (not in snapshot) or grew since launch (resume),
+    // rather than any file touched within a broad recent-time window.
+    QHash<QString, qint64> m_preLaunchSnapshot;
+
     qint64 m_accumulatedBytes{0};   // bytes from fully-completed phases
     qint64 m_currentPhaseDone{0};   // bytes received in the running phase
     qint64 m_currentPhaseTotal{0};  // total bytes announced for the running phase
     double m_lastPercent{0.0};      // last percentage seen in the running phase
     bool   m_seenFullPhase{false};  // true once the first 100 % has been seen
+    int    m_playlistCurrentIndex{0};
+    int    m_playlistTotalItems{0};
 };

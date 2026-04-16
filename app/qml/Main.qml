@@ -210,11 +210,6 @@ ApplicationWindow {
             root.show(); root.raise(); root.requestActivate()
         }
         function onTorrentMetadataRequested(downloadId, startWhenReady) {
-            if (root.visibility === Window.Minimized)
-                root.visibility = Window.Windowed
-            root.show()
-            root.raise()
-            root.requestActivate()
             root.showTorrentMetadataDialog(downloadId, startWhenReady)
         }
         function onDownloadAdded(item) {
@@ -222,6 +217,7 @@ ApplicationWindow {
             // queue-managed downloads — queues run silently in the background.
             if (!item || item.status === "Paused") return
             if (item.isTorrent) return
+            if (item.isYtdlp && item.ytdlpPlaylistMode) return
             if (item.queueId && item.queueId.length > 0) return
             if (item.category && App.isGrabberProjectId(item.category)) return
             progressDialog.item       = item
@@ -235,7 +231,7 @@ ApplicationWindow {
             // Don't show complete dialog for queue-assigned downloads or if disabled in settings
             if (!item || (item.queueId && item.queueId.length > 0))
                 return
-            if (item.isTorrent && item.status === "Seeding")
+            if (item.isYtdlp && item.ytdlpPlaylistMode)
                 return
             if (item.category && App.isGrabberProjectId(item.category))
                 return
@@ -282,12 +278,6 @@ ApplicationWindow {
             addExceptionDialog.raise()
         }
         function onInterceptedDownloadRequested(url, filename) {
-            if (root.visibility === Window.Minimized)
-                root.visibility = Window.Windowed
-            root.show()
-            root.raise()
-            root.requestActivate()
-
             if (App.isTorrentUri(url)) {
                 var magnetId = App.addMagnetLink(url, App.settings.defaultSavePath, "", "", false, "")
                 if (magnetId && magnetId.length > 0) {
@@ -576,11 +566,6 @@ ApplicationWindow {
     // No DownloadItem is created here — it only appears in the list once the
     // user confirms a format and App.finalizeYtdlpDownload() runs.
     function _showYtdlpDialog(url) {
-        if (root.visibility === Window.Minimized)
-            root.visibility = Window.Windowed
-        root.show()
-        root.raise()
-        root.requestActivate()
         ytdlpDialog.pendingUrl = url
         ytdlpDialog.show()
         ytdlpDialog.raise()
@@ -598,11 +583,6 @@ ApplicationWindow {
             showTorrentMetadataDialog(torrentId, true)
             return
         }
-        if (root.visibility === Window.Minimized)
-            root.visibility = Window.Windowed
-        root.show()
-        root.raise()
-        root.requestActivate()
         var filename = filenameOverride.length > 0
             ? filenameOverride
             : (App.isTorrentUri(url)
@@ -769,8 +749,160 @@ ApplicationWindow {
         id: ytdlpDialog
         transientParent: root
 
-        onDownloadRequested: (url, formatId, containerFormat, savePath, category, uniqueFilename, videoTitle) => {
-            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, uniqueFilename, videoTitle)
+        onDownloadRequested: (url, formatId, containerFormat, savePath, category, uniqueFilename, videoTitle, playlistMode, maxItems) => {
+            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, uniqueFilename, videoTitle, playlistMode, maxItems)
+        }
+    }
+
+    Window {
+        id: ytdlpBatchWindow
+        width: 760
+        height: 520
+        minimumWidth: 620
+        minimumHeight: 420
+        title: "Channel Download Progress"
+        color: "#1e1e1e"
+        modality: Qt.NonModal
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+        visible: false
+
+        onVisibleChanged: {
+            if (!visible && App.ytdlpBatchActive) {
+                // keep it dockable; user can close while it continues in background
+            }
+        }
+
+        Connections {
+            target: App
+            function onYtdlpBatchChanged() {
+                if (App.ytdlpBatchActive) {
+                    ytdlpBatchWindow.show()
+                    ytdlpBatchWindow.raise()
+                    ytdlpBatchWindow.requestActivate()
+                }
+            }
+        }
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 6
+            spacing: 6
+
+            Text {
+                Layout.fillWidth: true
+                text: App.ytdlpBatchLabel.length > 0 ? App.ytdlpBatchLabel : "Channel/Playlist"
+                color: "#d8d8d8"
+                font.pixelSize: 12
+                elide: Text.ElideMiddle
+            }
+
+            Text {
+                Layout.fillWidth: true
+                property int totalCount: App.ytdlpBatchItems.length
+                property int doneCount: {
+                    var c = 0
+                    for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
+                        if ((App.ytdlpBatchItems[i].status || "") === "Completed") c++
+                    return c
+                }
+                property int activeCount: {
+                    var c = 0
+                    for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
+                        if ((App.ytdlpBatchItems[i].status || "") === "Downloading") c++
+                    return c
+                }
+                property int queuedCount: Math.max(0, totalCount - doneCount - activeCount)
+                property real avgProgress: {
+                    if (App.ytdlpBatchItems.length === 0) return 0
+                    var sum = 0
+                    for (var i = 0; i < App.ytdlpBatchItems.length; ++i)
+                        sum += (App.ytdlpBatchItems[i].progress || 0)
+                    return sum / App.ytdlpBatchItems.length
+                }
+                text: "Total: " + totalCount
+                      + "   Completed: " + doneCount
+                      + "   Downloading: " + activeCount
+                      + "   Queued: " + queuedCount
+                      + "   Overall: " + Math.round(avgProgress) + "%"
+                color: "#9fa9b8"
+                font.pixelSize: 11
+                elide: Text.ElideRight
+            }
+
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "#181818"
+                border.color: "#313131"
+                radius: 4
+
+                ListView {
+                    anchors.fill: parent
+                    anchors.margins: 1
+                    clip: true
+                    model: App.ytdlpBatchItems
+
+                    delegate: Rectangle {
+                        width: ListView.view.width
+                        height: 34
+                        color: index % 2 === 0 ? "#1d1d1d" : "#191919"
+
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.leftMargin: 10
+                            anchors.rightMargin: 10
+                            spacing: 8
+
+                            Text {
+                                text: (modelData.index || (index + 1)) + "."
+                                color: "#8b8b8b"
+                                font.pixelSize: 11
+                                Layout.preferredWidth: 28
+                            }
+                            Text {
+                                text: modelData.title || ("Item " + (index + 1))
+                                color: "#d0d0d0"
+                                font.pixelSize: 11
+                                elide: Text.ElideMiddle
+                                Layout.fillWidth: true
+                            }
+                            Text {
+                                text: modelData.status || "Queued"
+                                color: modelData.status === "Completed" ? "#7bc67b"
+                                      : modelData.status === "Downloading" ? "#88b4ff" : "#999999"
+                                font.pixelSize: 11
+                                Layout.preferredWidth: 90
+                                horizontalAlignment: Text.AlignRight
+                            }
+                            ProgressBar {
+                                from: 0
+                                to: 100
+                                value: Math.max(0, Math.min(100, modelData.progress || 0))
+                                Layout.preferredWidth: 140
+                            }
+                        }
+                    }
+                }
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Item { Layout.fillWidth: true }
+                DlgButton {
+                    text: "Stop"
+                    enabled: App.ytdlpBatchActive
+                    onClicked: App.stopActiveYtdlpBatch()
+                }
+                DlgButton {
+                    text: "Resume"
+                    enabled: !App.ytdlpBatchActive && App.ytdlpBatchCanResume
+                    onClicked: App.resumeLastYtdlpBatch()
+                }
+                DlgButton {
+                    text: "Close"
+                    onClicked: ytdlpBatchWindow.hide()
+                }
+            }
         }
     }
 

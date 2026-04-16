@@ -30,6 +30,7 @@ Window {
     property bool   openFolderWhenDone: false
     property bool   shutdownWhenDone: false
     property bool   completionHandled: false
+    property var    _pendingSegmentData: null
 
     width: 620
     height: 520
@@ -49,6 +50,27 @@ Window {
         }
     }
 
+    function _normalizeSegmentData(data) {
+        return data ? data : []
+    }
+
+    function syncSegmentList(data) {
+        var next = _normalizeSegmentData(data)
+        var oldCount = segmentListModel.count
+        var newCount = next.length
+        var shared = Math.min(oldCount, newCount)
+
+        for (var i = 0; i < shared; ++i) {
+            segmentListModel.set(i, next[i])
+        }
+        for (var j = oldCount - 1; j >= newCount; --j) {
+            segmentListModel.remove(j)
+        }
+        for (var k = shared; k < newCount; ++k) {
+            segmentListModel.append(next[k])
+        }
+    }
+
     onVisibleChanged: {
         if (visible) {
             raise()
@@ -62,6 +84,8 @@ Window {
         openFolderWhenDone = false
         shutdownWhenDone = false
         completionHandled = item && item.status === "Completed"
+        syncSegmentList(item ? item.segmentData : [])
+        _pendingSegmentData = null
         if (item && item.speedLimitKBps > 0) {
             speedInput.text = String(item.speedLimitKBps)
             limitThisChk.checked = true
@@ -114,10 +138,10 @@ Window {
 
     function statusColor(s) {
         if (s === "Downloading") return "#4488dd"   // blue — "Receiving data..."
-        if (s === "Paused")      return "#ddbb44"
-        if (s === "Completed")   return "#44aadd"
-        if (s === "Error")       return "#dd5555"
-        return "#909090"
+        if (s === "Paused")      return "#c8c8c8"
+        if (s === "Completed")   return "#c8c8c8"
+        if (s === "Error")       return "#c8c8c8"
+        return "#c8c8c8"
     }
 
     function statusLabel() {
@@ -145,7 +169,18 @@ Window {
     Connections {
         target: item
         function onStatusChanged() { root.handleCompletion() }
+        function onSegmentDataChanged() {
+            var nextData = item ? item.segmentData : []
+            if (segmentList.moving || segmentList.flicking || segmentList.dragging) {
+                root._pendingSegmentData = nextData
+            } else {
+                root.syncSegmentList(nextData)
+                root._pendingSegmentData = null
+            }
+        }
     }
+
+    ListModel { id: segmentListModel }
 
     ColumnLayout {
         anchors.fill: parent
@@ -295,7 +330,7 @@ Window {
                                         }
                                         return speed
                                     }
-                                    color: "#55cc66"
+                                    color: "#c8c8c8"
                                     font.pixelSize: 12
                                 }
                             }
@@ -309,7 +344,7 @@ Window {
                                 Text { text: "Resume capability"; color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
                                     text: (item && item.resumeCapable) ? "Yes" : "No"
-                                    color: (item && item.resumeCapable) ? "#55cc66" : "#dd5555"
+                                    color: (item && item.resumeCapable) ? "#c8c8c8" : "#c8c8c8"
                                     font.pixelSize: 12
                                 }
                             }
@@ -509,29 +544,14 @@ Window {
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
                                     clip: true
-                                    model: item ? item.segmentData : []
+                                    model: segmentListModel
                                     ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
 
-                                    // Every progress tick (250 ms) emits a new QVariantList for
-                                    // segmentData, which QML treats as a full model reset and
-                                    // snaps contentY back to 0 — user loses their scroll place.
-                                    // Save user-driven scroll position and restore it after
-                                    // each model swap.
-                                    property real _savedY: 0
-                                    onModelChanged: {
-                                        var y = _savedY
-                                        Qt.callLater(function() {
-                                            var maxY = Math.max(0, contentHeight - height)
-                                            contentY = Math.min(y, maxY)
-                                        })
-                                    }
-                                    onMovementEnded: _savedY = contentY
-                                    onContentYChanged: {
-                                        // Only record user-driven changes; the programmatic
-                                        // reset-to-0 on model swap happens while `moving` is
-                                        // false, so this filter excludes it cleanly.
-                                        if (moving)
-                                            _savedY = contentY
+                                    onMovementEnded: {
+                                        if (root._pendingSegmentData !== null) {
+                                            root.syncSegmentList(root._pendingSegmentData)
+                                            root._pendingSegmentData = null
+                                        }
                                     }
 
                                     delegate: Rectangle {
@@ -543,8 +563,8 @@ Window {
                                             anchors { fill: parent; leftMargin: 8 }
                                             spacing: 0
                                             Text { width: 34;  text: (index + 1) + ".";               color: "#999"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
-                                            Text { width: 110; text: root.fmtBytes(modelData.received); color: "#cccccc"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
-                                            Text {             text: modelData.info ?? "";              color: "#6aaa6a"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 110; text: root.fmtBytes(received); color: "#cccccc"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                            Text {             text: info ?? "";                 color: "#6aaa6a"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         }
                                     }
                                 }

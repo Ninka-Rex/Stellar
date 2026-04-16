@@ -20,6 +20,10 @@
 #include <QDataStream>
 #include <QFile>
 
+// Chrome and Firefox both cap native messages at 1 MB.
+// Enforced in readMessage() before any buffer allocation.
+static constexpr quint32 kMaxNativeMessageSize = 1024u * 1024u;
+
 NativeMessagingHost::NativeMessagingHost(QObject *parent) : QObject(parent) {}
 
 void NativeMessagingHost::start() {
@@ -32,6 +36,18 @@ void NativeMessagingHost::readMessage() {
     // 1. Read 4-byte little-endian length from stdin
     // 2. Read that many bytes as UTF-8 JSON
     // 3. Call handleMessage()
+    //
+    // SECURITY: CWE-789 — enforce the 1 MB message cap mandated by the Chrome
+    // and Firefox Native Messaging specs before allocating the message buffer.
+    // Without this, a malicious or misbehaving extension (or any process that
+    // can write to stdin) could send len = 0xFFFFFFFF and trigger a 4 GB
+    // allocation, crashing the process or exhausting system memory.
+    //
+    //   quint32 len = /* read 4 bytes LE from stdin */;
+    //   if (len == 0 || len > kMaxNativeMessageSize) { /* close / log / return */ }
+    //   QByteArray json(len, Qt::Uninitialized);
+    //   /* read len bytes */
+    //   handleMessage(json);
 }
 
 void NativeMessagingHost::handleMessage(const QByteArray &json) {

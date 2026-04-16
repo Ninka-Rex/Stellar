@@ -18,10 +18,12 @@
 
 #include <QObject>
 #include <QHash>
+#include <QDateTime>
 #include <QPointer>
 #include <QSet>
 #include <QTimer>
 #include <QVariantMap>
+#include <QStringList>
 #include <memory>
 
 class AppSettings;
@@ -59,8 +61,11 @@ public:
     QObject *peerModel(const QString &downloadId) const;
     QObject *trackerModel(const QString &downloadId) const;
     bool setFileWanted(const QString &downloadId, int row, bool wanted);
+    bool setFileWantedByFileIndex(const QString &downloadId, int fileIndex, bool wanted);
+    bool setFileWantedByPath(const QString &downloadId, const QString &path, bool wanted);
     bool addTracker(const QString &downloadId, const QString &url);
     bool removeTracker(const QString &downloadId, const QString &url);
+    QStringList trackerUrls(const QString &downloadId) const;
     void setPerTorrentDownloadLimit(const QString &downloadId, int kbps);
     void setPerTorrentUploadLimit(const QString &downloadId, int kbps);
     bool moveStorage(const QString &downloadId, const QString &newSavePath);
@@ -69,6 +74,13 @@ public:
     bool exportTorrentFile(const QString &downloadId, const QString &outputPath) const;
     void setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd = false);
     void forceRecheck(const QString &downloadId);
+    void forceReannounce(const QString &downloadId, const QStringList &trackerUrls = {});
+    // Returns a flat list of ints, one per piece:
+    //   -2 = have (fully downloaded)
+    //   -1 = partial (block(s) in flight / write-queue)
+    //    0 = missing, no peer has it
+    //    N = missing, N peers have it
+    QVariantList torrentPieceMap(const QString &downloadId) const;
     QString detectedExternalAddress() const {
 #if defined(STELLAR_HAS_LIBTORRENT)
         return m_externalAddress;
@@ -88,6 +100,14 @@ signals:
 
 private:
 #if defined(STELLAR_HAS_LIBTORRENT)
+    struct TrackerAlertSnapshot {
+        QString status;
+        QString message;
+        int seeders{-1};
+        int peers{-1};
+        QDateTime updatedAt;
+    };
+
     struct PeerLocation;
     struct GeoDbState;
     void ensureSession();
@@ -117,6 +137,8 @@ private:
     QHash<QString, qint64> m_lastUploadBytesForInactive;
     QHash<QString, QDateTime> m_lastUploadActivityTime;
     QHash<QString, QDateTime> m_lastResumeSaveRequest;
+    QHash<QString, QHash<QString, QDateTime>> m_trackerReannounceUntil;
+    QHash<QString, QHash<QString, TrackerAlertSnapshot>> m_trackerAlertSnapshots;
     QHash<QString, QString> m_trackerIpCache;
     QString m_externalAddress;
     double m_localLatitude{0.0};
@@ -133,6 +155,8 @@ private:
 #if !defined(STELLAR_HAS_LIBTORRENT)
 inline bool TorrentSessionManager::moveStorage(const QString &, const QString &) { return false; }
 inline bool TorrentSessionManager::renameTorrentFile(const QString &, int, const QString &) { return false; }
+inline bool TorrentSessionManager::setFileWantedByFileIndex(const QString &, int, bool) { return false; }
+inline bool TorrentSessionManager::setFileWantedByPath(const QString &, const QString &, bool) { return false; }
 inline void TorrentSessionManager::setTorrentFlags(const QString &, bool, bool, bool) {}
 inline void TorrentSessionManager::setDetectedExternalAddress(const QString &) {}
 inline void TorrentSessionManager::setDetectedExternalAddress(const QString &, double, double, bool) {}

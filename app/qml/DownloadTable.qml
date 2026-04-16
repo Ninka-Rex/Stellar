@@ -529,7 +529,11 @@ Rectangle {
         columnDefs = defs
     }
 
-    Component.onCompleted: _suppressColumnDefsSave = false
+    Component.onCompleted: {
+        _suppressColumnDefsSave = false
+        // Keep model ordering in sync with the visible sort indicator at startup.
+        App.downloadModel.sortBy(sortKey, sortAscending)
+    }
 
     // ── Active filter (driven by inline find bar in Main.qml) ─────────────────
     property string filterText:       ""

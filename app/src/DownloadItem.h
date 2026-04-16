@@ -20,6 +20,7 @@
 #include <QUrl>
 #include <QDateTime>
 #include <QVariantList>
+#include <QStringList>
 
 class DownloadItem : public QObject {
     Q_OBJECT
@@ -50,6 +51,7 @@ class DownloadItem : public QObject {
     Q_PROPERTY(QString  lastTryDateStr READ lastTryDateStr NOTIFY lastTryAtChanged)
     Q_PROPERTY(bool     isTorrent     READ isTorrent      NOTIFY torrentChanged)
     Q_PROPERTY(QString  torrentSource READ torrentSource  NOTIFY torrentChanged)
+    Q_PROPERTY(QStringList torrentTrackers READ torrentTrackers NOTIFY torrentChanged)
     Q_PROPERTY(QString  torrentInfoHash READ torrentInfoHash NOTIFY torrentChanged)
     Q_PROPERTY(int      torrentSeeders     READ torrentSeeders     NOTIFY torrentStatsChanged)
     Q_PROPERTY(int      torrentListSeeders READ torrentListSeeders NOTIFY torrentStatsChanged)
@@ -84,6 +86,7 @@ class DownloadItem : public QObject {
     // rather than the regular SegmentedTransfer engine.
     Q_PROPERTY(bool     isYtdlp       READ isYtdlp        CONSTANT)
     Q_PROPERTY(QString  ytdlpFormatId READ ytdlpFormatId  NOTIFY ytdlpFormatIdChanged)
+    Q_PROPERTY(bool     ytdlpPlaylistMode READ ytdlpPlaylistMode NOTIFY ytdlpPlaylistModeChanged)
 
 public:
     enum class Status { Queued, Checking, Downloading, Moving, Seeding, Paused, Assembling, Completed, Error };
@@ -148,6 +151,7 @@ public:
 
     bool isTorrent() const { return m_isTorrent; }
     QString torrentSource() const { return m_torrentSource; }
+    QStringList torrentTrackers() const { return m_torrentTrackers; }
     QString torrentInfoHash() const { return m_torrentInfoHash; }
     int torrentSeeders()     const { return m_torrentSeeders; }
     int torrentListSeeders() const { return m_torrentListSeeders; }
@@ -173,6 +177,7 @@ public:
     QString torrentResumeData() const { return m_torrentResumeData; }
     void setIsTorrent(bool v);
     void setTorrentSource(const QString &v);
+    void setTorrentTrackers(const QStringList &v) { if (m_torrentTrackers != v) { m_torrentTrackers = v; emit torrentChanged(); } }
     void setTorrentInfoHash(const QString &v);
     void setTorrentSeeders(int v);
     void setTorrentListSeeders(int v) { if (m_torrentListSeeders != v) { m_torrentListSeeders = v; emit torrentStatsChanged(); } }
@@ -215,9 +220,13 @@ public:
     // yt-dlp fields
     bool    isYtdlp()       const { return m_isYtdlp; }
     QString ytdlpFormatId() const { return m_ytdlpFormatId; }
+    bool    ytdlpPlaylistMode() const { return m_ytdlpPlaylistMode; }
     void setIsYtdlp(bool v)                { m_isYtdlp = v; }
     void setYtdlpFormatId(const QString &v) {
         if (m_ytdlpFormatId != v) { m_ytdlpFormatId = v; emit ytdlpFormatIdChanged(); }
+    }
+    void setYtdlpPlaylistMode(bool v) {
+        if (m_ytdlpPlaylistMode != v) { m_ytdlpPlaylistMode = v; emit ytdlpPlaylistModeChanged(); }
     }
 
 signals:
@@ -245,6 +254,7 @@ signals:
     void torrentLimitsChanged();
     void torrentFlagsChanged();
     void ytdlpFormatIdChanged();
+    void ytdlpPlaylistModeChanged();
 
 private:
     static QString formatDateTime(const QDateTime &dt);
@@ -274,6 +284,7 @@ private:
     QDateTime    m_lastTryAt;
     bool         m_isTorrent{false};
     QString      m_torrentSource;
+    QStringList  m_torrentTrackers;
     QString      m_torrentInfoHash;
     int          m_torrentSeeders{0};
     int          m_torrentListSeeders{0};
@@ -305,6 +316,7 @@ private:
     int          m_torrentShareLimitAction{-1};
     bool         m_isYtdlp{false};      // true → YtdlpTransfer manages this item
     QString      m_ytdlpFormatId;       // yt-dlp format selector used for this download
+    bool         m_ytdlpPlaylistMode{false};
     static int   s_dateStyle;
     static bool  s_use24Hour;
     static bool  s_showSeconds;

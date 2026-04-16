@@ -24,6 +24,44 @@
 #include <QSaveFile>
 #include <QDebug>
 
+namespace {
+
+// Simple obfuscation (NOT encryption) for stored HTTP credentials.
+// Goal: prevent casual exposure via cloud backups, log grepping, or shoulder
+// surfing.  A motivated attacker with access to the binary can trivially
+// reverse this — that is an accepted limitation for this threat model.
+//
+// Stored format: "~e~" prefix + Base64( plaintext XOR key ).
+// The prefix lets us detect legacy plaintext values saved by older versions
+// and return them as-is (backwards compatible read path).
+static const char kCredKey[] = "S7t3ll@rDM!k3y#9";
+static const QLatin1String kCredPrefix("~e~");
+
+QString obfuscateCred(const QString &plain)
+{
+    if (plain.isEmpty()) return {};
+    QByteArray data = plain.toUtf8();
+    const int keyLen = static_cast<int>(sizeof(kCredKey) - 1);
+    for (int i = 0; i < data.size(); ++i)
+        data[i] = static_cast<char>(static_cast<unsigned char>(data[i]) ^ static_cast<unsigned char>(kCredKey[i % keyLen]));
+    return kCredPrefix + QString::fromLatin1(data.toBase64());
+}
+
+QString deobfuscateCred(const QString &stored)
+{
+    if (stored.isEmpty()) return {};
+    // Legacy plaintext (written by older versions before obfuscation was added)
+    if (!stored.startsWith(kCredPrefix))
+        return stored;
+    QByteArray data = QByteArray::fromBase64(stored.mid(kCredPrefix.size()).toLatin1());
+    const int keyLen = static_cast<int>(sizeof(kCredKey) - 1);
+    for (int i = 0; i < data.size(); ++i)
+        data[i] = static_cast<char>(static_cast<unsigned char>(data[i]) ^ static_cast<unsigned char>(kCredKey[i % keyLen]));
+    return QString::fromUtf8(data);
+}
+
+} // namespace
+
 DownloadDatabase::DownloadDatabase(QObject *parent) : QObject(parent) {
     m_writeTimer.setSingleShot(true);
     m_writeTimer.setInterval(150);   // coalesce rapid save/remove calls
@@ -69,8 +107,8 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setResumeCapable(obj[QLatin1String("resumeCapable")].toBool());
         item->setReferrer(obj[QLatin1String("referrer")].toString());
         item->setParentUrl(obj[QLatin1String("parentUrl")].toString());
-        item->setUsername(obj[QLatin1String("username")].toString());
-        item->setPassword(obj[QLatin1String("password")].toString());
+        item->setUsername(deobfuscateCred(obj[QLatin1String("username")].toString()));
+        item->setPassword(deobfuscateCred(obj[QLatin1String("password")].toString()));
         {
             const QString ltStr = obj[QLatin1String("lastTryAt")].toString();
             if (!ltStr.isEmpty()) item->setLastTryAt(QDateTime::fromString(ltStr, Qt::ISODate));
@@ -87,8 +125,10 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         // Restore yt-dlp fields; absent key → false/empty for regular downloads
         item->setIsYtdlp(obj[QLatin1String("isYtdlp")].toBool(false));
         item->setYtdlpFormatId(obj[QLatin1String("ytdlpFormatId")].toString());
+        item->setYtdlpPlaylistMode(obj[QLatin1String("ytdlpPlaylistMode")].toBool(false));
         item->setIsTorrent(obj[QLatin1String("isTorrent")].toBool(false));
         item->setTorrentSource(obj[QLatin1String("torrentSource")].toString());
+        item->setTorrentTrackers(obj[QLatin1String("torrentTrackers")].toVariant().toStringList());
         item->setTorrentInfoHash(obj[QLatin1String("torrentInfoHash")].toString());
         item->setTorrentSeeders(obj[QLatin1String("torrentSeeders")].toInt());
         item->setTorrentPeers(obj[QLatin1String("torrentPeers")].toInt());
@@ -146,8 +186,11 @@ void DownloadDatabase::save(DownloadItem *item) {
     m[QStringLiteral("addedAt")]        = item->addedAt().toString(Qt::ISODate);
     m[QStringLiteral("referrer")]       = item->referrer();
     m[QStringLiteral("parentUrl")]      = item->parentUrl();
-    m[QStringLiteral("username")]       = item->username();
-    m[QStringLiteral("password")]       = item->password();
+    // Only persist credentials when present; obfuscate to avoid plaintext in backups.
+    if (!item->username().isEmpty())
+        m[QStringLiteral("username")] = obfuscateCred(item->username());
+    if (!item->password().isEmpty())
+        m[QStringLiteral("password")] = obfuscateCred(item->password());
     m[QStringLiteral("queueId")]        = item->queueId();
     if (item->lastTryAt().isValid())
         m[QStringLiteral("lastTryAt")] = item->lastTryAt().toString(Qt::ISODate);
@@ -155,10 +198,12 @@ void DownloadDatabase::save(DownloadItem *item) {
     if (item->isYtdlp()) {
         m[QStringLiteral("isYtdlp")]       = true;
         m[QStringLiteral("ytdlpFormatId")] = item->ytdlpFormatId();
+        m[QStringLiteral("ytdlpPlaylistMode")] = item->ytdlpPlaylistMode();
     }
     if (item->isTorrent()) {
         m[QStringLiteral("isTorrent")] = true;
         m[QStringLiteral("torrentSource")] = item->torrentSource();
+        m[QStringLiteral("torrentTrackers")] = item->torrentTrackers();
         m[QStringLiteral("torrentInfoHash")] = item->torrentInfoHash();
         m[QStringLiteral("torrentSeeders")] = item->torrentSeeders();
         m[QStringLiteral("torrentPeers")] = item->torrentPeers();

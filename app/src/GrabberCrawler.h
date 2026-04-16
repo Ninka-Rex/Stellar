@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include <QHash>
 #include <QObject>
 #include <QQueue>
 #include <QSet>
@@ -60,6 +61,9 @@ private:
 
     QNetworkAccessManager *m_nam{nullptr};
     bool m_running{false};
+    // Cache of hostname → isPrivate results so we do at most one blocking DNS
+    // lookup per unique host per crawl run (SSRF mitigation for non-IP URLs).
+    mutable QHash<QString, bool> m_resolvedHostCache;
     QVariantMap m_project;
     QQueue<PageTask> m_pendingPages;
     QSet<QString> m_seenPages;
@@ -93,6 +97,7 @@ private:
     bool shouldExploreUrl(const QUrl &url, int depth) const;
     bool isSameSite(const QUrl &url) const;
     bool isWithinMainDomain(const QUrl &url) const;
+    static bool isPrivateOrLoopbackHost(const QString &host);
     bool isLikelyHtmlPage(const QUrl &url) const;
     bool passesFileFilters(const QUrl &url, const QString &filename) const;
     bool passesSizeFilters(qint64 sizeBytes) const;

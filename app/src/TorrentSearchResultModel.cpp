@@ -67,16 +67,55 @@ QString formatPublishedOn(const QString &value) {
     return trimmed;
 }
 
+// Parse a raw publishedOn value (Unix-epoch string or any of the known date
+// formats) into a QDate.  Returns an invalid QDate when no format matches.
+QDate parsePublishedOn(const QString &value) {
+    const QString trimmed = value.trimmed();
+    if (trimmed.isEmpty())
+        return {};
+
+    // Unix epoch (seconds since 1970-01-01)
+    bool ok = false;
+    const qint64 epoch = trimmed.toLongLong(&ok);
+    if (ok && epoch > 0)
+        return QDateTime::fromSecsSinceEpoch(epoch, Qt::UTC).date();
+
+    // Named date formats — must match the list in formatPublishedOn() exactly
+    // so the comparator and the display function agree on what constitutes a
+    // valid date.
+    static const QStringList kFormats = {
+        QStringLiteral("M/d/yyyy"),
+        QStringLiteral("MM/dd/yyyy"),
+        QStringLiteral("M/d/yy"),
+        QStringLiteral("MM/dd/yy"),
+        QStringLiteral("yyyy-MM-dd"),
+        QStringLiteral("yyyy/MM/dd"),
+        QStringLiteral("dd/MM/yyyy"),
+        QStringLiteral("dd-MM-yyyy")
+    };
+    for (const QString &format : kFormats) {
+        const QDate date = QDate::fromString(trimmed, format);
+        if (date.isValid())
+            return date;
+    }
+    return {};
+}
+
 bool publishedOnLessThan(const QString &a, const QString &b, bool ascending) {
-    bool aOk = false;
-    bool bOk = false;
-    const qint64 aEpoch = a.trimmed().toLongLong(&aOk);
-    const qint64 bEpoch = b.trimmed().toLongLong(&bOk);
-    if (aOk && bOk && aEpoch > 0 && bEpoch > 0)
-        return ascending ? aEpoch < bEpoch : aEpoch > bEpoch;
-    const QString av = a.toLower();
-    const QString bv = b.toLower();
-    return ascending ? av < bv : av > bv;
+    const QDate aDate = parsePublishedOn(a);
+    const QDate bDate = parsePublishedOn(b);
+
+    // Both parsed — compare chronologically.
+    if (aDate.isValid() && bDate.isValid())
+        return ascending ? aDate < bDate : aDate > bDate;
+
+    // One parsed, one didn't — sort valid dates before unparseable strings.
+    if (aDate.isValid() != bDate.isValid())
+        return ascending ? aDate.isValid() : bDate.isValid();
+
+    // Neither parsed — fall back to case-insensitive lexicographic order so
+    // the sort is at least stable and predictable for unknown formats.
+    return ascending ? a.toLower() < b.toLower() : a.toLower() > b.toLower();
 }
 }
 

@@ -88,6 +88,10 @@ class AppController : public QObject {
     Q_PROPERTY(TorrentSearchManager *torrentSearchManager READ torrentSearchManager CONSTANT)
     // True when a custom proxy (HTTP or SOCKS5) is currently active
     Q_PROPERTY(bool proxyActive READ proxyActive NOTIFY proxyActiveChanged)
+    Q_PROPERTY(bool ytdlpBatchActive READ ytdlpBatchActive NOTIFY ytdlpBatchChanged)
+    Q_PROPERTY(bool ytdlpBatchCanResume READ ytdlpBatchCanResume NOTIFY ytdlpBatchChanged)
+    Q_PROPERTY(QString ytdlpBatchLabel READ ytdlpBatchLabel NOTIFY ytdlpBatchChanged)
+    Q_PROPERTY(QVariantList ytdlpBatchItems READ ytdlpBatchItems NOTIFY ytdlpBatchChanged)
 
 public:
     explicit AppController(QObject *parent = nullptr);
@@ -131,6 +135,10 @@ public:
     YtdlpManager *ytdlpManager() const { return m_ytdlpManager; }
     TorrentSearchManager *torrentSearchManager() const { return m_torrentSearchManager; }
     bool proxyActive() const { return m_proxyActive; }
+    bool ytdlpBatchActive() const { return !m_activeYtdlpBatchId.isEmpty(); }
+    bool ytdlpBatchCanResume() const { return !m_lastYtdlpBatchId.isEmpty(); }
+    QString ytdlpBatchLabel() const { return m_activeYtdlpBatchLabel; }
+    QVariantList ytdlpBatchItems() const { return m_activeYtdlpBatchItems; }
 
     // ── yt-dlp public API ────────────────────────────────────────────────────────
     // Returns true if the URL looks like a site supported by yt-dlp (YouTube, Vimeo, etc.)
@@ -155,7 +163,9 @@ public:
                                            const QString &formatId,
                                            const QString &containerFormat,
                                            bool uniqueFilename = false,
-                                           const QString &videoTitle = {});
+                                           const QString &videoTitle = {},
+                                           bool playlistMode = false,
+                                           int  maxItems = 0);
 
     // Start a yt-dlp download.  Item must already be in the queue as a held item
     // (enqueueHeld) so it appears in the UI.  formatId is a yt-dlp format selector.
@@ -164,6 +174,8 @@ public:
 
     // Download the yt-dlp binary (delegates to YtdlpManager).
     Q_INVOKABLE void downloadYtdlpBinary();
+    Q_INVOKABLE void stopActiveYtdlpBatch();
+    Q_INVOKABLE void resumeLastYtdlpBatch();
     Q_INVOKABLE bool isTorrentUri(const QString &value) const;
     Q_INVOKABLE QObject *downloadById(const QString &id) const;
     Q_INVOKABLE QObject *torrentFileModel(const QString &id) const;
@@ -175,6 +187,8 @@ public:
     Q_INVOKABLE void updateIpToCityDbFromCachedUrl();
     Q_INVOKABLE void updateFfmpegBinary();
     Q_INVOKABLE bool setTorrentFileWanted(const QString &downloadId, int row, bool wanted);
+    Q_INVOKABLE bool setTorrentFileWantedByIndex(const QString &downloadId, int fileIndex, bool wanted);
+    Q_INVOKABLE bool setTorrentFileWantedByPath(const QString &downloadId, const QString &path, bool wanted);
     Q_INVOKABLE bool addTorrentTracker(const QString &downloadId, const QString &url);
     Q_INVOKABLE bool removeTorrentTracker(const QString &downloadId, const QString &url);
     Q_INVOKABLE bool renameTorrentFile(const QString &downloadId, int fileIndex, const QString &newName);
@@ -229,7 +243,8 @@ public:
     Q_INVOKABLE void copyDownloadFilename(const QString &id);
     Q_INVOKABLE QString downloadShareLink(const QString &id) const;
     Q_INVOKABLE bool exportTorrentFilesToDirectory(const QStringList &downloadIds, const QString &directoryPath);
-    Q_INVOKABLE QVariantList torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds = 0) const;
+    Q_INVOKABLE QVariantList torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds = 0, int maxPoints = 0) const;
+    Q_INVOKABLE QVariantList torrentPieceMap(const QString &downloadId) const;
     Q_INVOKABLE void clearTorrentSpeedHistory(const QString &downloadId);
     Q_INVOKABLE QString clipboardUrl() const;
     Q_INVOKABLE void setDownloadCategory(const QString &downloadId, const QString &categoryId);
@@ -250,6 +265,7 @@ public:
     Q_INVOKABLE void setTorrentSpeedLimits(const QString &downloadId, int downKBps, int upKBps);
     Q_INVOKABLE void setTorrentShareLimits(const QString &downloadId, double ratio, int seedTimeMins, int inactiveTimeMins, int action);
     Q_INVOKABLE void forceRecheckTorrent(const QString &downloadId);
+    Q_INVOKABLE void forceReannounceTorrent(const QString &downloadId, const QStringList &trackerUrls = {});
     Q_INVOKABLE void     setDownloadUsername(const QString &downloadId, const QString &username);
     Q_INVOKABLE void     setDownloadPassword(const QString &downloadId, const QString &password);
     Q_INVOKABLE void     setDownloadDescription(const QString &downloadId, const QString &description);
@@ -288,6 +304,7 @@ public:
     Q_INVOKABLE void saveGrabberProjectSchedule(const QString &projectId, const QVariantMap &scheduleMap);
     Q_INVOKABLE QString readTextResource(const QString &path) const;
     Q_INVOKABLE void checkForUpdates(bool manual = false);
+    Q_INVOKABLE void testProxy();
     Q_INVOKABLE void fetchChangelog();
     Q_INVOKABLE void dismissAvailableUpdate();
     Q_INVOKABLE bool startUpdateInstall();
@@ -325,6 +342,9 @@ signals:
     void ipToCityDbUpdateStateChanged();
     void ffmpegUpdateStateChanged();
     void proxyActiveChanged();
+    // success=true means GitHub was reachable; message holds latency or error text
+    void proxyTestResult(bool success, const QString &message);
+    void ytdlpBatchChanged();
     void torrentBindingStatusTextChanged();
     void torrentPortTestChanged();
     // Emitted when clipboard monitoring is on and a matching URL is detected.
@@ -369,6 +389,10 @@ private:
     QMap<QString, qint64>   m_lastProgressPersistBytes;
     QMap<QString, QDateTime> m_lastProgressPersistAt;
     bool                    m_restoring{false};
+    // IDs of torrents that were already seeding/complete when restored from the
+    // database. Completion alerts for these IDs are suppressed — they are not
+    // new downloads finishing, just libtorrent re-emitting state on reconnect.
+    QSet<QString>           m_restoredSeedingIds;
     QMap<QString, QString>  m_pendingCookies;
     QMap<QString, QString>  m_pendingReferrers;
     QMap<QString, QString>  m_pendingPageUrls;
@@ -439,7 +463,6 @@ private:
     QString                 m_updateLinuxSha256;
     QString                 m_ipToCityDbUpdateUrl;
     QString                 m_ffmpegUpdateUrl;
-    QString                 m_ffmpegUpdateSha256;
     QString                 m_updateChangelog;
     QString                 m_updateStatusText;
     bool                    m_checkingForUpdates{false};
@@ -457,6 +480,10 @@ private:
     TorrentSessionManager          *m_torrentSession{nullptr};
     // Active YtdlpTransfer workers keyed by download item ID
     QMap<QString, YtdlpTransfer *>   m_ytdlpWorkers;
+    QString                           m_activeYtdlpBatchId;
+    QString                           m_lastYtdlpBatchId;
+    QString                           m_activeYtdlpBatchLabel;
+    QVariantList                      m_activeYtdlpBatchItems;
     QMap<QString, DownloadItem *>    m_pendingTorrentItems;
     QTimer                 *m_torrentSpeedHistoryTimer{nullptr};
     struct TorrentSpeedSample {
@@ -469,6 +496,7 @@ private:
     struct YtdlpProbe {
         QProcess  *process{nullptr};
         QString    url;
+        QByteArray output;
     };
     QMap<QString, YtdlpProbe>        m_ytdlpProbes;
 
@@ -485,11 +513,13 @@ private:
 
     // Helpers
     void applyProxy(); // reads proxy settings and applies QNetworkProxy::setApplicationProxy
+    void fetchPublicIp(); // fetches external IP via ipify then geo via ipwho.is; always uses current proxy
     // formatId and containerFormat are stored together in ytdlpFormatId as
     // "<formatId>|<containerFormat>" so resume/redownload can retrieve both.
     void startYtdlpWorker(DownloadItem *item, const QString &formatId,
                           const QString &containerFormat, bool resume,
-                          const QString &outputTemplate = {});
+                          const QString &outputTemplate = {},
+                          bool playlistMode = false, int maxItems = 0);
     void onYtdlpWorkerFinished(const QString &id);
     void onYtdlpWorkerFailed(const QString &id, const QString &reason);
     // Returns the path to ffmpeg if found next to yt-dlp or on system PATH.

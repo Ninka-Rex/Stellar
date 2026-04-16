@@ -19,6 +19,8 @@
 #include <QByteArray>
 #include <QFileInfo>
 #include <QFutureWatcher>
+#include <QHostAddress>
+#include <QHostInfo>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
@@ -78,6 +80,7 @@ void GrabberCrawler::cancel()
     m_activeReplies = 0;
     m_activeMetadataReplies = 0;
     m_collectingMetadata = false;
+    m_resolvedHostCache.clear();
 }
 
 void GrabberCrawler::pumpQueue()
@@ -152,12 +155,19 @@ void GrabberCrawler::fetchPage(const PageTask &task)
     m_seenPages.insert(normalized);
 
     QNetworkRequest request(task.url);
-    request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar Grabber"));
 
     const QString auth = basicAuthHeader();
-    if (!auth.isEmpty())
+    if (!auth.isEmpty()) {
         request.setRawHeader("Authorization", auth.toUtf8());
+        // SECURITY: CWE-522 — SameOriginRedirectPolicy prevents the Authorization
+        // header from being forwarded to a different host on redirect.
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                             QNetworkRequest::SameOriginRedirectPolicy);
+    } else {
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                             QNetworkRequest::NoLessSafeRedirectPolicy);
+    }
 
     QNetworkReply *reply = m_nam->get(request);
     ++m_activeReplies;
@@ -288,12 +298,17 @@ void GrabberCrawler::probeResultMetadata(int row)
         return;
 
     QNetworkRequest request(url);
-    request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar Grabber"));
 
     const QString auth = basicAuthHeader();
-    if (!auth.isEmpty())
+    if (!auth.isEmpty()) {
         request.setRawHeader("Authorization", auth.toUtf8());
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                             QNetworkRequest::SameOriginRedirectPolicy);
+    } else {
+        request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                             QNetworkRequest::NoLessSafeRedirectPolicy);
+    }
 
     QNetworkReply *reply = m_nam->head(request);
     ++m_activeMetadataReplies;
@@ -395,6 +410,49 @@ bool GrabberCrawler::matchesAnyPattern(const QString &text, const QStringList &p
     return false;
 }
 
+// SECURITY: SSRF protection (CWE-918).
+// The crawler accepts a start URL from the user, follows links, and makes
+// outbound HTTP requests.  Without this check, a malicious website can
+// redirect the crawler to internal network addresses (loopback, RFC-1918,
+// link-local) to probe services that are not publicly reachable — including
+// the AWS/GCP instance-metadata endpoint at 169.254.169.254 which can yield
+// cloud credentials.
+//
+// We resolve the host string to a QHostAddress (handles both literal IPs and
+// hostnames that were already resolved by Qt before we see them here) and
+// then check Qt's built-in isLoopback() / isLinkLocal() predicates plus
+// manual range checks for the RFC-1918 private ranges that Qt does not expose
+// as a single predicate.
+bool GrabberCrawler::isPrivateOrLoopbackHost(const QString &host)
+{
+    QHostAddress addr;
+    if (!addr.setAddress(host))
+        return false; // hostname, not a literal IP — DNS resolution happens later; can't block here
+
+    if (addr.isLoopback() || addr.isLinkLocal())
+        return true;
+
+    // IPv4 private ranges: 10/8, 172.16/12, 192.168/16 (RFC 1918)
+    // and CGNAT 100.64/10 (RFC 6598) which is also non-routable.
+    if (addr.protocol() == QAbstractSocket::IPv4Protocol) {
+        const quint32 ip = addr.toIPv4Address();
+        const quint32 a  = (ip >> 24) & 0xFF;
+        const quint32 b  = (ip >> 16) & 0xFF;
+        if (a == 10)                          return true; // 10.0.0.0/8
+        if (a == 172 && b >= 16 && b <= 31)   return true; // 172.16.0.0/12
+        if (a == 192 && b == 168)             return true; // 192.168.0.0/16
+        if (a == 100 && b >= 64 && b <= 127)  return true; // 100.64.0.0/10 CGNAT
+    }
+
+    // IPv6 unique-local fc00::/7
+    if (addr.protocol() == QAbstractSocket::IPv6Protocol) {
+        const Q_IPV6ADDR v6 = addr.toIPv6Address();
+        if ((v6[0] & 0xFE) == 0xFC) return true; // fc00::/7
+    }
+
+    return false;
+}
+
 bool GrabberCrawler::shouldExploreUrl(const QUrl &url, int depth) const
 {
     if (!url.isValid())
@@ -403,6 +461,35 @@ bool GrabberCrawler::shouldExploreUrl(const QUrl &url, int depth) const
     const QString scheme = url.scheme().toLower();
     if (scheme != QStringLiteral("http") && scheme != QStringLiteral("https"))
         return false;
+
+    // SECURITY: block SSRF to private/loopback addresses (see isPrivateOrLoopbackHost).
+    // For literal-IP URLs the check is immediate.  For hostnames we perform a
+    // blocking DNS lookup (once per unique host per crawl, cached) so that a
+    // remote page cannot redirect the crawler to an internal address via a
+    // hostname that resolves to RFC-1918 / loopback space.
+    {
+        const QString host = url.host().toLower();
+        if (!m_resolvedHostCache.contains(host)) {
+            QHostAddress literalAddr;
+            if (literalAddr.setAddress(host)) {
+                // Literal IP — no DNS needed
+                m_resolvedHostCache[host] = isPrivateOrLoopbackHost(host);
+            } else {
+                // Resolve hostname synchronously; cache result for this crawl run
+                const QHostInfo info = QHostInfo::fromName(host);
+                bool isPrivate = false;
+                for (const QHostAddress &addr : info.addresses()) {
+                    if (isPrivateOrLoopbackHost(addr.toString())) {
+                        isPrivate = true;
+                        break;
+                    }
+                }
+                m_resolvedHostCache[host] = isPrivate;
+            }
+        }
+        if (m_resolvedHostCache.value(host))
+            return false;
+    }
 
     bool sameSite = isSameSite(url);
     if (!sameSite && m_project.value(QStringLiteral("exploreMainDomain")).toBool())

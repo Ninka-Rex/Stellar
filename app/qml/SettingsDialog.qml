@@ -685,17 +685,22 @@ Window {
                                     color: "#d0d0d0"
                                 }
                                 Text { text: "Port:"; color: "#c0c0c0"; font.pixelSize: 13 }
-                                SpinBox {
-                                    from: 1; to: 65535
-                                    value: root.editProxyPort
-                                    editable: true
+                                TextField {
                                     implicitWidth: 120
-                                    textFromValue: function(value, locale) { return value.toString() }
-                                    valueFromText: function(text, locale) {
-                                        var parsed = parseInt((text || "").replace(/[^0-9]/g, ""))
-                                        return isNaN(parsed) ? root.editProxyPort : parsed
+                                    text: root.editProxyPort.toString()
+                                    selectByMouse: true
+                                    font.pixelSize: 13
+                                    inputMethodHints: Qt.ImhDigitsOnly
+                                    validator: IntValidator { bottom: 1; top: 65535 }
+                                    onTextEdited: {
+                                        var v = parseInt(text)
+                                        if (!isNaN(v) && v >= 1 && v <= 65535)
+                                            root.editProxyPort = v
                                     }
-                                    onValueModified: root.editProxyPort = value
+                                    background: Rectangle {
+                                        color: "#2d2d2d"; border.color: parent.activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3
+                                    }
+                                    color: "#d0d0d0"
                                 }
                             }
 
@@ -735,7 +740,7 @@ Window {
                             }
 
                             Text {
-                                text: "All downloads, video downloads, and update checks are routed through this proxy."
+                                text: "All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy."
                                 color: "#555"; font.pixelSize: 10
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
@@ -748,6 +753,60 @@ Window {
                             color: "#555"; font.pixelSize: 10
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
+                        }
+
+                        // ── Proxy test ────────────────────────────────────────
+                        RowLayout {
+                            id: proxyTestRow
+                            visible: root.editProxyType !== 0
+                            Layout.fillWidth: true
+                            spacing: 10
+
+                            property bool _testing: false
+                            property string _result: ""
+                            property bool _ok: false
+
+                            Timer {
+                                id: proxyTestTimeout
+                                interval: 12000  // 2 s headroom over the 10 s network timeout
+                                repeat: false
+                                onTriggered: {
+                                    if (proxyTestRow._testing) {
+                                        proxyTestRow._testing = false
+                                        proxyTestRow._ok = false
+                                        proxyTestRow._result = "Timed out — proxy did not respond"
+                                    }
+                                }
+                            }
+
+                            Connections {
+                                target: App
+                                function onProxyTestResult(success, message) {
+                                    proxyTestTimeout.stop()
+                                    proxyTestRow._testing = false
+                                    proxyTestRow._ok = success
+                                    proxyTestRow._result = message
+                                }
+                            }
+
+                            DlgButton {
+                                text: proxyTestRow._testing ? "Testing…" : "Test Proxy"
+                                enabled: !proxyTestRow._testing
+                                onClicked: {
+                                    proxyTestRow._result = ""
+                                    proxyTestRow._testing = true
+                                    proxyTestTimeout.restart()
+                                    App.testProxy()
+                                }
+                            }
+                            Text {
+                                visible: proxyTestRow._result.length > 0
+                                text: proxyTestRow._result
+                                color: proxyTestRow._ok ? "#66cc88" : "#dd6655"
+                                font.pixelSize: 11
+                                Layout.fillWidth: true
+                                wrapMode: Text.WordWrap
+                            }
                         }
 
                         Item { height: 12 }
@@ -2766,6 +2825,8 @@ Window {
                             }
                         }
 
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#222222"; Layout.bottomMargin: 10 }
+
                         // libtorrent
                         ColumnLayout {
                             spacing: 3
@@ -2883,12 +2944,6 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: "Stellar uses the DB-IP City Lite geolocation database, distributed under Creative Commons Attribution 4.0."
-                                color: "#666666"; font.pixelSize: 11
-                                wrapMode: Text.WordWrap
-                            }
-                            Text {
-                                Layout.fillWidth: true
-                                text: "You may use this data with proper attribution to DB-IP in your application and related materials."
                                 color: "#666666"; font.pixelSize: 11
                                 wrapMode: Text.WordWrap
                             }

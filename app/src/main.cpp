@@ -306,12 +306,13 @@ int main(int argc, char *argv[])
     app.setOrganizationName(QStringLiteral("StellarDownloadManager"));
     app.setWindowIcon(QIcon(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")));
 
-    // Single-instance guard: try to reach an already-running instance.
-    QLocalServer::removeServer(QStringLiteral("StellarDownloadManager"));
+    // Single-instance guard: try to reach an already-running instance first.
+    // Only remove stale server entries when connect is explicitly refused.
+    const QString kServerName = QStringLiteral("StellarDownloadManager");
     {
         nmLog(QStringLiteral("Connecting to existing instance socket..."));
         QLocalSocket sock;
-        sock.connectToServer(QStringLiteral("StellarDownloadManager"));
+        sock.connectToServer(kServerName);
         if (sock.waitForConnected(500)) {
             nmLog(QStringLiteral("Existing instance found, sending focus message..."));
             // Another instance is running — tell it to raise its window and exit.
@@ -324,7 +325,13 @@ int main(int argc, char *argv[])
             nmLog(QStringLiteral("Focus message sent, exiting."));
             return 0;
         }
-        nmLog(QStringLiteral("No existing instance found."));
+
+        if (sock.error() == QLocalSocket::ConnectionRefusedError) {
+            nmLog(QStringLiteral("Found stale single-instance socket, removing it."));
+            QLocalServer::removeServer(kServerName);
+        } else {
+            nmLog(QStringLiteral("No existing instance found."));
+        }
     }
 
     nmLog(QStringLiteral("Registering QML types..."));

@@ -1,6 +1,0 @@
-[NativeHost] registered OK
-qrc:/qt-project.org/imports/QtQuick/Controls/Material/SpinBox.qml:31:18: QML QQuickTextInput: Binding loop detected for property "text":
-qrc:/qt-project.org/imports/QtQuick/Controls/Material/SpinBox.qml:32:9
-qml: Tips loaded from qrc:/tips.txt: 11 tips
-qrc:/qt-project.org/imports/QtQuick/Controls/Material/SpinBox.qml:31:18: QML QQuickTextInput: Binding loop detected for property "text":
-qrc:/qt-project.org/imports/QtQuick/Controls/Material/SpinBox.qml:32:9

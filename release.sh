@@ -291,6 +291,11 @@ patch_bundled_rpaths() {
 
 update_deb_manifest() {
     mkdir -p "$DEB_DIR"
+    local installed_size_kib=1
+    if [[ -d "$DEB_ROOT" ]]; then
+        installed_size_kib="$(du -sk "$DEB_ROOT" | awk '{print $1}')"
+        [[ -n "$installed_size_kib" ]] || installed_size_kib=1
+    fi
     cat > "$DEB_DIR/control" <<EOF
 Package: stellar
 Version: $VERSION
@@ -298,7 +303,7 @@ Section: utils
 Priority: optional
 Architecture: $ARCH
 Maintainer: Ninka_
-Installed-Size: 1
+Installed-Size: $installed_size_kib
 Depends: libc6, libstdc++6, libgcc-s1, zlib1g, libx11-6, libxcb1, libxkbcommon0, libxcb-cursor0, libxkbcommon-x11-0, libxcb-icccm4, libxcb-image0, libxcb-keysyms1, libxcb-render-util0, libxcb-xinerama0
 Homepage: https://stellar.moe/
 Description: Stellar Download Manager
@@ -389,13 +394,13 @@ PY
     bundle_qt_runtime
     patch_bundled_rpaths
 
-    install -m 0755 "$DEB_DIR/postinst" "$DEB_ROOT/DEBIAN/postinst"
-    install -m 0644 "$DEB_DIR/control" "$DEB_ROOT/DEBIAN/control"
 }
 
 build_deb() {
-    update_deb_manifest
     stage_deb
+    update_deb_manifest
+    install -m 0755 "$DEB_DIR/postinst" "$DEB_ROOT/DEBIAN/postinst"
+    install -m 0644 "$DEB_DIR/control" "$DEB_ROOT/DEBIAN/control"
     mkdir -p "$DIST_DIR"
     log "Building .deb..."
     dpkg-deb --root-owner-group --build "$DEB_ROOT" "$DEB_FILE"

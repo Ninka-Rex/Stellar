@@ -17,6 +17,7 @@
 #include "TorrentFileModel.h"
 
 #include <functional>
+#include <QSet>
 #include <QStringList>
 
 TorrentFileModel::TorrentFileModel(QObject *parent)
@@ -51,6 +52,11 @@ QHash<int, QByteArray> TorrentFileModel::roleNames() const {
 }
 
 void TorrentFileModel::setEntries(const QVector<Entry> &entries) {
+    // Preserve which folders the user has collapsed so a live update doesn't
+    // re-expand them or snap the scroll position.
+    QSet<QString> collapsedPaths;
+    saveCollapsedPaths(m_root, collapsedPaths);
+
     m_fileEntries = entries;
     clearTree();
 
@@ -81,7 +87,9 @@ void TorrentFileModel::setEntries(const QVector<Entry> &entries) {
                 child->name = part;
                 child->path = currentPath;
                 child->isFolder = !isLeaf;
-                child->expanded = true;
+                // Restore collapsed state — new folders default to expanded unless
+                // the user had explicitly collapsed this path before the update.
+                child->expanded = !collapsedPaths.contains(currentPath);
                 child->parent = parent;
                 child->depth = parent == m_root ? 0 : parent->depth + 1;
                 parent->children.push_back(child);
@@ -140,7 +148,34 @@ bool TorrentFileModel::setWanted(int row, bool wanted) {
     Node *node = m_visibleRows.at(row);
     applyWantedRecursive(node, wanted);
     recalculateFolderState(m_root);
-    rebuildVisibleRows();
+    // Wanted state doesn't change which rows are visible — emit dataChanged
+    // only, so the ListView scroll position is preserved.
+    if (!m_visibleRows.isEmpty())
+        emit dataChanged(index(0), index(m_visibleRows.size() - 1), { WantedRole, ProgressRole, SizeRole });
+    return true;
+}
+
+bool TorrentFileModel::setWantedByFileIndex(int fileIndex, bool wanted) {
+    // Scan visible rows for the leaf node matching this libtorrent file index.
+    // Visible-row numbers are unstable across expand/collapse; file indices are not.
+    for (int row = 0; row < m_visibleRows.size(); ++row) {
+        Node *node = m_visibleRows.at(row);
+        if (!node->isFolder && node->fileIndex == fileIndex)
+            return setWanted(row, wanted);
+    }
+    return false;
+}
+
+bool TorrentFileModel::setWantedByPath(const QString &path, bool wanted) {
+    // findNodeByPath searches the tree (not just visible rows), so it works
+    // even if the folder is collapsed and has no corresponding visible row.
+    Node *node = findNodeByPath(m_root, path);
+    if (!node)
+        return false;
+    applyWantedRecursive(node, wanted);
+    recalculateFolderState(m_root);
+    if (!m_visibleRows.isEmpty())
+        emit dataChanged(index(0), index(m_visibleRows.size() - 1), { WantedRole, ProgressRole, SizeRole });
     return true;
 }
 
@@ -150,8 +185,41 @@ bool TorrentFileModel::toggleExpanded(int row) {
     Node *node = m_visibleRows.at(row);
     if (!node || !node->isFolder)
         return false;
-    node->expanded = !node->expanded;
-    rebuildVisibleRows();
+
+    // Collect the visible descendants that will appear/disappear so we can
+    // emit incremental signals instead of a full reset (which scrolls to top).
+    QVector<Node *> affected;
+    collectDescendants(node, affected);
+
+    if (node->expanded) {
+        // Collapsing: remove all currently-visible descendants (rows row+1 .. row+N)
+        const int first = row + 1;
+        const int last  = row + affected.size();
+        if (last >= first) {
+            beginRemoveRows({}, first, last);
+            m_visibleRows.remove(first, affected.size());
+            endRemoveRows();
+        }
+        node->expanded = false;
+    } else {
+        // Expanding: compute what rows would become visible and insert them
+        node->expanded = true;
+        QVector<Node *> toInsert;
+        for (Node *child : node->children)
+            collectVisibleRows_into(child, toInsert);
+        if (!toInsert.isEmpty()) {
+            const int first = row + 1;
+            const int last  = row + toInsert.size();
+            beginInsertRows({}, first, last);
+            for (int i = 0; i < toInsert.size(); ++i)
+                m_visibleRows.insert(first + i, toInsert.at(i));
+            endInsertRows();
+        }
+    }
+
+    // Notify the folder row itself so the expand arrow updates
+    const QModelIndex folderIdx = index(row, 0);
+    emit dataChanged(folderIdx, folderIdx, { ExpandedRole });
     return true;
 }
 
@@ -279,6 +347,41 @@ void TorrentFileModel::collectVisibleRows(Node *node) {
         return;
     for (Node *child : node->children)
         collectVisibleRows(child);
+}
+
+// Collects nodes that would become visible when expanding — into an external
+// vector rather than m_visibleRows, used by the incremental toggleExpanded path.
+void TorrentFileModel::collectVisibleRows_into(Node *node, QVector<Node *> &out) {
+    if (!node)
+        return;
+    out.push_back(node);
+    if (!node->isFolder || !node->expanded)
+        return;
+    for (Node *child : node->children)
+        collectVisibleRows_into(child, out);
+}
+
+// Collects all currently-visible descendants of node (not including node itself).
+void TorrentFileModel::collectDescendants(Node *node, QVector<Node *> &out) const {
+    if (!node || !node->isFolder || !node->expanded)
+        return;
+    for (Node *child : node->children) {
+        out.push_back(child);
+        collectDescendants(child, out);
+    }
+}
+
+// Walks the tree and records the path of every collapsed folder into out.
+void TorrentFileModel::saveCollapsedPaths(Node *node, QSet<QString> &out) const {
+    if (!node)
+        return;
+    for (Node *child : node->children) {
+        if (child->isFolder) {
+            if (!child->expanded)
+                out.insert(child->path);
+            saveCollapsedPaths(child, out);
+        }
+    }
 }
 
 void TorrentFileModel::applyWantedRecursive(Node *node, bool wanted) {

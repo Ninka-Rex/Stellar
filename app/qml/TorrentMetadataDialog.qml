@@ -262,7 +262,7 @@ Window {
             clip: true
 
             Loader {
-                anchors.fill: parent
+                anchors { fill: parent; margins: 12 }
                 active: !!root.item
                 sourceComponent: root.item && root.item.torrentHasMetadata ? filesView : waitingView
             }
@@ -349,7 +349,6 @@ Window {
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 12
             spacing: 8
 
             RowLayout {
@@ -384,8 +383,11 @@ Window {
                         clip: true
 
                         Row {
-                            x: -(metaFileList ? metaFileList.contentX : 0)
-                            width: root.fileTableWidth()
+                            // Match the delegate Row's leftMargin:6 / rightMargin:8 so
+                            // the header has consistent margins regardless of whether
+                            // the vertical ScrollBar is visible.
+                            x: 6 - (metaFileList ? metaFileList.contentX : 0)
+                            width: parent.width - 14
                             height: parent.height
                             spacing: 0
 
@@ -741,7 +743,14 @@ Window {
                         DlgButton {
                             id: metaRenameConfirmBtn
                             text: "Rename"; primary: true
-                            enabled: metaRenameInput.text.trim().length > 0 && metaRenameInput.text.trim() !== metaRenameDialog._currentName
+                            enabled: {
+                                var t = metaRenameInput.text.trim()
+                                return t.length > 0
+                                    && t !== metaRenameDialog._currentName
+                                    && t !== "." && t !== ".."
+                                    && t.indexOf("/") === -1
+                                    && t.indexOf("\\") === -1
+                            }
                             onClicked: {
                                 var newName = metaRenameInput.text.trim()
                                 if (newName.length > 0 && root.downloadId.length > 0) {
@@ -818,8 +827,14 @@ Window {
                             anchors.fill: parent
                             hoverEnabled: true
                             onClicked: {
-                                if (root.downloadId.length > 0)
-                                    App.setTorrentFileWanted(root.downloadId, metaFileCtxPopup._row, !metaFileCtxPopup._wanted)
+                                if (root.downloadId.length > 0) {
+                                    // Use stable identifiers instead of the visible row
+                                    // number, which changes when folders expand/collapse.
+                                    if (metaFileCtxPopup._fileIndex >= 0)
+                                        App.setTorrentFileWantedByIndex(root.downloadId, metaFileCtxPopup._fileIndex, !metaFileCtxPopup._wanted)
+                                    else
+                                        App.setTorrentFileWantedByPath(root.downloadId, metaFileCtxPopup._path, !metaFileCtxPopup._wanted)
+                                }
                                 metaFileCtxPopup.close()
                             }
                         }

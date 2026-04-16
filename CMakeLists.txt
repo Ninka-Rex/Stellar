@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.5.6 LANGUAGES C CXX)
+project(Stellar VERSION 0.5.7 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -366,7 +366,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE FALSE
+        WIN32_EXECUTABLE TRUE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)

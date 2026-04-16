@@ -16,6 +16,7 @@
 
 #include "YtdlpManager.h"
 #include <QCoreApplication>
+#include <QCryptographicHash>
 #include <QFile>
 #include <QFileInfo>
 #include <QDir>
@@ -47,6 +48,18 @@ static const QLatin1String kBinaryName("yt-dlp");
 static const QLatin1String kDownloadUrl(
     "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp");
 #endif
+
+// SECURITY: CWE-494 — yt-dlp publishes a SHA2-512SUMS file alongside each
+// release binary.  We fetch it first and verify the downloaded binary before
+// making it executable.  Without this check, a MITM (DNS hijack, rogue CDN
+// node, or GitHub account compromise) could serve a malicious binary that
+// would be silently written to disk and immediately executed via
+// checkAvailability().  Fetching both artefacts over TLS from the same host
+// under Qt's NoLessSafeRedirectPolicy means an attacker must compromise the
+// HTTPS channel or the release artefacts simultaneously — feasible for a
+// nation-state, but eliminates the easy passive MITM case.
+static const QLatin1String kSumsUrl(
+    "https://github.com/yt-dlp/yt-dlp/releases/latest/download/SHA2-512SUMS");
 
 YtdlpManager::YtdlpManager(QNetworkAccessManager *nam, QObject *parent)
     : QObject(parent), m_nam(nam)
@@ -211,25 +224,93 @@ void YtdlpManager::downloadBinary() {
     }
 
     m_downloading      = true;
+    m_expectedSha512.clear();
     m_downloadProgress = 0;
     emit downloadingChanged();
     emit downloadProgressChanged();
-    setStatusText(QStringLiteral("Downloading yt-dlp…"));
 
-    const QUrl downloadUrl{QString(kDownloadUrl)};
-    QNetworkRequest req{downloadUrl};
-    // Follow GitHub's redirect chain (HTTP → HTTPS → CDN)
-    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
-                     QNetworkRequest::NoLessSafeRedirectPolicy);
+    // Step 1: fetch the SHA2-512SUMS manifest from the same GitHub release.
+    // The binary download starts only after we have the expected hash (step 2
+    // below), so we can verify the binary before making it executable.
+    setStatusText(QStringLiteral("Fetching yt-dlp checksum…"));
+    QNetworkRequest sumsReq{QUrl(QString(kSumsUrl))};
+    sumsReq.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                         QNetworkRequest::NoLessSafeRedirectPolicy);
+    m_sumsReply = m_nam->get(sumsReq);
+    m_sumsReply->setProperty("destPath", destPath);
 
-    m_downloadReply = m_nam->get(req);
-    // Store destination path so the finished slot knows where to write
-    m_downloadReply->setProperty("destPath", destPath);
+    connect(m_sumsReply, &QNetworkReply::finished, this, [this]() {
+        auto *sumsReply = qobject_cast<QNetworkReply *>(sender());
+        if (!sumsReply) return;
+        const QString destPath = sumsReply->property("destPath").toString();
 
-    connect(m_downloadReply, &QNetworkReply::downloadProgress,
-            this, &YtdlpManager::onBinaryDownloadProgress);
-    connect(m_downloadReply, &QNetworkReply::finished,
-            this, &YtdlpManager::onBinaryDownloadFinished);
+        if (sumsReply->error() != QNetworkReply::NoError) {
+            // SECURITY: CWE-494 — fail closed.  A MITM can trivially block the
+            // SUMS request (TCP RST, 404, timeout) to bypass hash verification
+            // and serve a malicious binary.  We refuse to proceed rather than
+            // installing an unverified binary.
+            const QString err = QStringLiteral("Could not fetch SHA2-512SUMS: %1. "
+                "Aborting to prevent installing an unverified binary.")
+                .arg(sumsReply->errorString());
+            qWarning() << "[YtdlpManager]" << err;
+            sumsReply->deleteLater();
+            m_sumsReply  = nullptr;
+            m_downloading = false;
+            emit downloadingChanged();
+            setStatusText(err);
+            emit updateComplete(false, err);
+            return;
+        } else {
+            // Parse "hash  filename" lines; find the entry for our binary.
+            const QByteArray sumsData = sumsReply->readAll();
+            for (const QByteArray &line : sumsData.split('\n')) {
+                const QByteArray trimmed = line.trimmed();
+                if (trimmed.isEmpty()) continue;
+                // Format: "<sha512hex>  <filename>" (two spaces)
+                const int sep = trimmed.indexOf("  ");
+                if (sep < 0) continue;
+                const QByteArray filename = trimmed.mid(sep + 2).trimmed();
+                if (filename == kBinaryName) {
+                    m_expectedSha512 = QString::fromLatin1(trimmed.left(sep).trimmed().toLower());
+                    qDebug() << "[YtdlpManager] Expected SHA-512:" << m_expectedSha512;
+                    break;
+                }
+            }
+            if (m_expectedSha512.isEmpty()) {
+                // SECURITY: CWE-494 — fail closed. A malformed or tampered manifest
+                // that simply omits our binary name must not be treated as "no check
+                // needed". Proceeding without a known-good hash would let an attacker
+                // serve an arbitrary binary by publishing a manifest that doesn't
+                // list our file.
+                const QString err = QStringLiteral(
+                    "yt-dlp binary name not found in SHA2-512SUMS manifest. "
+                    "Aborting to prevent installing an unverified binary.");
+                qWarning() << "[YtdlpManager]" << err;
+                sumsReply->deleteLater();
+                m_sumsReply   = nullptr;
+                m_downloading = false;
+                emit downloadingChanged();
+                setStatusText(err);
+                emit updateComplete(false, err);
+                return;
+            }
+        }
+
+        sumsReply->deleteLater();
+        m_sumsReply = nullptr;
+
+        // Step 2: now download the binary itself.
+        setStatusText(QStringLiteral("Downloading yt-dlp…"));
+        QNetworkRequest req{QUrl(QString(kDownloadUrl))};
+        req.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                         QNetworkRequest::NoLessSafeRedirectPolicy);
+        m_downloadReply = m_nam->get(req);
+        m_downloadReply->setProperty("destPath", destPath);
+        connect(m_downloadReply, &QNetworkReply::downloadProgress,
+                this, &YtdlpManager::onBinaryDownloadProgress);
+        connect(m_downloadReply, &QNetworkReply::finished,
+                this, &YtdlpManager::onBinaryDownloadFinished);
+    });
 }
 
 void YtdlpManager::onBinaryDownloadProgress(qint64 received, qint64 total) {
@@ -269,6 +350,36 @@ void YtdlpManager::onBinaryDownloadFinished() {
         return;
     }
 
+    // SECURITY: CWE-494 — verify SHA-512 before writing to disk.
+    // m_expectedSha512 was fetched from GitHub's SHA2-512SUMS file for this
+    // release (see downloadBinary()).  We abort if the hash is absent (the
+    // manifest parsing already prevents reaching here without one, but this
+    // is a belt-and-suspenders guard) or if it doesn't match — a mismatch
+    // means the download was corrupted or tampered with in transit.
+    if (m_expectedSha512.isEmpty()) {
+        const QString err = QStringLiteral(
+            "yt-dlp binary integrity check skipped — no expected hash. "
+            "Aborting to prevent installing an unverified binary.");
+        qWarning() << "[YtdlpManager]" << err;
+        setStatusText(err);
+        emit updateComplete(false, err);
+        return;
+    }
+    {
+        const QString actualSha512 = QString::fromLatin1(
+            QCryptographicHash::hash(data, QCryptographicHash::Sha512).toHex().toLower());
+        if (actualSha512 != m_expectedSha512) {
+            const QString err = QStringLiteral(
+                "yt-dlp binary failed SHA-512 verification. "
+                "The download may have been tampered with. Aborting.");
+            qWarning() << "[YtdlpManager]" << err;
+            setStatusText(err);
+            emit updateComplete(false, err);
+            return;
+        }
+        qDebug() << "[YtdlpManager] SHA-512 verified OK.";
+    }
+
     // Write the binary to disk
     QFile file(destPath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
@@ -300,6 +411,12 @@ void YtdlpManager::onBinaryDownloadFinished() {
 }
 
 void YtdlpManager::cancelDownload() {
+    // Abort the SUMS fetch if it's still in flight (step 1 of downloadBinary).
+    if (m_sumsReply) {
+        m_sumsReply->abort();
+        m_sumsReply->deleteLater();
+        m_sumsReply = nullptr;
+    }
     if (m_downloadReply) {
         m_downloadReply->abort();
         m_downloadReply->deleteLater();

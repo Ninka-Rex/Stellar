@@ -227,6 +227,8 @@ Window {
     property bool swarmLiveHoverActive: false
     property real swarmLiveHoverX: 0
     property var swarmHoverSample: null
+    property real _swarmNowMs: 0
+    property var _swarmDecimated: []
     property int    editPerTorrentDownLimitKBps: 0
     property int    editPerTorrentUpLimitKBps: 0
     property bool   peerMapHoverVisible: false
@@ -395,6 +397,7 @@ Window {
         root.swarmCountryRows = root.breakdownRows(root.swarmCountryBreakdown, "country")
         root.swarmClientLegendRows = root.topBreakdownRows(root.swarmClientRows, 8)
         root.swarmCountryLegendRows = root.topBreakdownRows(root.swarmCountryRows, 8)
+        Qt.callLater(root._rebuildSwarmCache)
         if (root.currentTab === 5 && root.swarmCanvasRef)
             root.swarmCanvasRef.requestPaint()
         if (root.currentTab === 5 && root.swarmLiveCanvasRef) root.swarmLiveCanvasRef.requestPaint()
@@ -464,7 +467,9 @@ Window {
         var cc = safeStr(code).trim().toLowerCase()
         if (!cc || cc.length !== 2)
             return ""
-        return Qt.resolvedUrl("flags/" + cc + ".svg")
+        // Flags are registered as qt_add_resources with PREFIX "/" and path
+        // "app/qml/flags/*.svg", so the absolute QRC path is used here.
+        return "qrc:/app/qml/flags/" + cc + ".svg"
     }
     function torrentClientIconSource(clientName) {
         var name = baseClientName(clientName).toLowerCase()
@@ -589,15 +594,81 @@ Window {
             return m + " min " + sec + " sec ago"
         return sec + " sec ago"
     }
+    // Stable time anchor for the graph's right edge.  Set once per data refresh
+    // and reused by every paint and hover-position calculation so the x-axis
+    // doesn't shift between repaints (which caused the jitter).
+    property real _speedNowMs: 0
+
     function refreshSpeedHistory() {
         if (!_isTorrent || !item) {
             speedSamples = []
+            _speedNowMs = Date.now()
             return
         }
-        speedSamples = App.torrentSpeedHistory(item.id, speedSpanSeconds)
+        _speedNowMs = Date.now()
+        speedSamples = App.torrentSpeedHistory(item.id, speedSpanSeconds, 1000)
         if (currentTab === 1 && speedGraphCanvasRef)
             speedGraphCanvasRef.requestPaint()
     }
+    // Reduce pts to at most maxPts by averaging each bucket.
+    // Averaging preserves the real throughput shape — peak-only decimation
+    // exaggerates spikes and produces a misleadingly jagged curve on long spans.
+    function decimateSamples(pts, maxPts) {
+        if (pts.length <= maxPts) return pts
+        var step = pts.length / maxPts
+        var out = []
+        for (var bi = 0; bi < maxPts; ++bi) {
+            var lo = Math.floor(bi * step)
+            var hi = Math.min(pts.length - 1, Math.floor((bi + 1) * step) - 1)
+            if (lo > hi) hi = lo
+            var sumDown = 0, sumUp = 0, n = 0
+            for (var j = lo; j <= hi; ++j) {
+                sumDown += Number(pts[j].down) || 0
+                sumUp   += Number(pts[j].up)   || 0
+                n++
+            }
+            // Use the midpoint sample's timestamp for accurate time placement.
+            var mid = pts[Math.floor((lo + hi) / 2)]
+            out.push({ t: mid.t, down: sumDown / n, up: sumUp / n })
+        }
+        return out
+    }
+
+    // Cached decimated sample array — rebuilt only when the raw data or the
+    // selected time span changes, NOT on every mouse move or canvas repaint.
+    // The canvas and hover tooltip both read from this property.
+    property var _speedDecimated: []
+    function _rebuildDecimatedCache() {
+        // C++ pre-decimated to ~1000 points. Apply a data-level box-blur pass
+        // to smooth bucket-to-bucket variance that Catmull-Rom can't hide on
+        // long time spans.  Number of passes scales with the selected window:
+        //   < 10 min  → 0 passes (raw data, fine-grained enough)
+        //   10–60 min → 1 pass
+        //   1–3 hr    → 3 passes
+        //   > 3 hr    → 6 passes
+        var rows = speedVisibleSamples()
+        var span = speedSpanSeconds
+        var passes = span < 600 ? 0 : span < 3600 ? 1 : span < 10800 ? 3 : 6
+        for (var p = 0; p < passes; ++p) {
+            var blurred = new Array(rows.length)
+            for (var i = 0; i < rows.length; ++i) {
+                if (i === 0 || i === rows.length - 1) {
+                    blurred[i] = { t: rows[i].t, down: rows[i].down, up: rows[i].up }
+                } else {
+                    blurred[i] = {
+                        t:    rows[i].t,
+                        down: (rows[i-1].down + rows[i].down + rows[i+1].down) / 3,
+                        up:   (rows[i-1].up   + rows[i].up   + rows[i+1].up)   / 3
+                    }
+                }
+            }
+            rows = blurred
+        }
+        _speedDecimated = rows
+    }
+    onSpeedSamplesChanged:     Qt.callLater(_rebuildDecimatedCache)
+    onSpeedSpanSecondsChanged: Qt.callLater(_rebuildDecimatedCache)
+
     function speedVisibleSamples() {
         var now = Date.now()
         var start = now - (speedSpanSeconds * 1000)
@@ -929,6 +1000,7 @@ Window {
         swarmCountryRows = breakdownRows(swarmCountryBreakdown, "country")
         swarmClientLegendRows = topBreakdownRows(swarmClientRows, 8)
         swarmCountryLegendRows = topBreakdownRows(swarmCountryRows, 8)
+        Qt.callLater(_rebuildSwarmCache)
     }
 
     function persistSwarmStatsForCurrent() {
@@ -1091,10 +1163,59 @@ Window {
     function swarmLegendSample() {
         if (swarmLiveHoverActive && swarmHoverSample)
             return swarmHoverSample
-        var samples = swarmVisibleSamples().slice(-Math.max(60, Math.round(swarmPeriodSeconds / 60)))
-        if (samples.length === 0)
+        var d = _swarmDecimated
+        if (d.length === 0)
             return { t: Date.now(), peers: 0, seeders: 0, ratio: 0 }
-        return samples[samples.length - 1]
+        return d[d.length - 1]
+    }
+
+    function _rebuildSwarmCache() {
+        _swarmNowMs = Date.now()
+        var rows = swarmVisibleSamples()
+        // Decimate to a canvas-friendly count before blurring.
+        var maxPts = 400
+        if (rows.length > maxPts) {
+            var step = rows.length / maxPts
+            var dec = []
+            for (var bi = 0; bi < maxPts; ++bi) {
+                var lo = Math.floor(bi * step)
+                var hi = Math.min(rows.length - 1, Math.floor((bi + 1) * step) - 1)
+                if (lo > hi) hi = lo
+                var sp = 0, ss = 0, sr = 0, n = 0
+                for (var j = lo; j <= hi; ++j) {
+                    sp += Number(rows[j].peers)   || 0
+                    ss += Number(rows[j].seeders) || 0
+                    sr += Number(rows[j].ratio)   || 0
+                    n++
+                }
+                var mid = rows[Math.floor((lo + hi) / 2)]
+                dec.push({ t: mid.t, peers: sp / n, seeders: ss / n, ratio: sr / n,
+                           client: mid.client, country: mid.country })
+            }
+            rows = dec
+        }
+        // Box-blur passes scale with span length.
+        var span = swarmPeriodSeconds
+        var passes = span < 600 ? 0 : span < 3600 ? 1 : span < 10800 ? 3 : 6
+        for (var p = 0; p < passes; ++p) {
+            var blurred = new Array(rows.length)
+            for (var i = 0; i < rows.length; ++i) {
+                if (i === 0 || i === rows.length - 1) {
+                    blurred[i] = rows[i]
+                } else {
+                    blurred[i] = {
+                        t:       rows[i].t,
+                        peers:   (rows[i-1].peers   + rows[i].peers   + rows[i+1].peers)   / 3,
+                        seeders: (rows[i-1].seeders + rows[i].seeders + rows[i+1].seeders) / 3,
+                        ratio:   (rows[i-1].ratio   + rows[i].ratio   + rows[i+1].ratio)   / 3,
+                        client:  rows[i].client,
+                        country: rows[i].country
+                    }
+                }
+            }
+            rows = blurred
+        }
+        _swarmDecimated = rows
     }
 
     Timer {
@@ -1113,6 +1234,7 @@ Window {
             root.swarmClientLegendRows = root.topBreakdownRows(root.swarmClientRows, 8)
             root.swarmCountryLegendRows = root.topBreakdownRows(root.swarmCountryRows, 8)
             root.persistSwarmStatsForCurrent()
+            root._rebuildSwarmCache()
             if (root.currentTab === 5 && root.swarmCanvasRef)
                 root.swarmCanvasRef.requestPaint()
             if (root.currentTab === 5 && root.swarmLiveCanvasRef) root.swarmLiveCanvasRef.requestPaint()
@@ -1575,7 +1697,7 @@ Window {
                 Row {
                     anchors.fill: parent; spacing: 0
                     Repeater {
-                        model: ["General", "Speed", "Files", "Peers", "Swarm Map", "Swarm Statistics", "Trackers"]
+                        model: ["General", "Speed", "Files", "Peers", "Swarm Map", "Swarm Statistics", "Trackers", "Piece Map"]
                         delegate: Rectangle {
                             width: tabLbl.implicitWidth + 28; height: parent.height
                             color: root.currentTab === index
@@ -1881,17 +2003,23 @@ Window {
                                     if (w < 40 || h < 40)
                                         return
 
-                                    var topPad = 12
+                                    var topPad = 10
                                     var rightPad = 56
-                                    var bottomPad = 24
-                                    var leftPad = 8
+                                    var bottomPad = 22
+                                    var leftPad = 6
                                     var plotX = leftPad
                                     var plotY = topPad
                                     var plotW = Math.max(10, w - leftPad - rightPad)
                                     var plotH = Math.max(10, h - topPad - bottomPad)
-                                    var nowMs = Date.now()
+                                    // Anchor the time axis to the last data-refresh timestamp so
+                                    // every repaint (including hover crosshair redraws) uses the
+                                    // same right edge.  Using Date.now() here shifted x-positions
+                                    // by a few ms on every paint, causing visible jitter.
+                                    var nowMs = root._speedNowMs || Date.now()
                                     var startMs = nowMs - root.speedSpanSeconds * 1000
-                                    var samples = root.speedVisibleSamples()
+                                    // Use the pre-built decimated cache — avoids re-running the
+                                    // filter + decimation on every hover-crosshair repaint.
+                                    var samples = root._speedDecimated
 
                                     var maxV = 1
                                     for (var i = 0; i < samples.length; ++i)
@@ -1910,67 +2038,115 @@ Window {
                                         return plotY + plotH - (Math.max(0, v) / axisTop) * plotH
                                     }
 
-                                    ctx.fillStyle = "#101010"
+                                    // Background
+                                    ctx.fillStyle = "#0e1014"
                                     ctx.fillRect(0, 0, w, h)
-                                    ctx.strokeStyle = "#262626"
+
+                                    // Subtle grid
+                                    ctx.strokeStyle = "#1c2028"
                                     ctx.lineWidth = 1
                                     for (var gy = 0; gy <= 4; ++gy) {
-                                        var y = Math.round(plotY + (plotH * gy / 4)) + 0.5
-                                        ctx.beginPath(); ctx.moveTo(plotX, y); ctx.lineTo(plotX + plotW, y); ctx.stroke()
+                                        var gy2 = Math.round(plotY + plotH * gy / 4) + 0.5
+                                        ctx.beginPath(); ctx.moveTo(plotX, gy2); ctx.lineTo(plotX + plotW, gy2); ctx.stroke()
                                     }
                                     for (var gx = 0; gx <= 6; ++gx) {
-                                        var x = Math.round(plotX + (plotW * gx / 6)) + 0.5
-                                        ctx.beginPath(); ctx.moveTo(x, plotY); ctx.lineTo(x, plotY + plotH); ctx.stroke()
+                                        var gx2 = Math.round(plotX + plotW * gx / 6) + 0.5
+                                        ctx.beginPath(); ctx.moveTo(gx2, plotY); ctx.lineTo(gx2, plotY + plotH); ctx.stroke()
                                     }
 
-                                    function drawSeries(key, stroke, fill) {
-                                        if (samples.length === 0) return
-                                        ctx.beginPath()
-                                        for (var i = 0; i < samples.length; ++i) {
-                                            var x = pxForTime(samples[i].t)
-                                            var y = pyForRate(samples[i][key])
-                                            if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y)
-                                        }
-                                        ctx.strokeStyle = stroke
-                                        ctx.lineWidth = 1.8
-                                        ctx.stroke()
+                                    // Catmull-Rom spline area+line series.
+                                    // Unlike the midpoint-quadratic approach, Catmull-Rom passes
+                                    // through every data point and derives smooth tangents from
+                                    // neighbouring points, so the curve stays readable on long
+                                    // spans where bucket values vary significantly.
+                                    // Conversion to canvas cubicBezierTo control points:
+                                    //   cp1 = P[i]   + (P[i+1] - P[i-1]) / 6
+                                    //   cp2 = P[i+1] - (P[i+2] - P[i])   / 6
+                                    function drawSmoothedSeries(key, stroke, fillColor) {
+                                        var n = samples.length
+                                        if (n === 0) return
 
-                                        ctx.beginPath()
-                                        for (var j = 0; j < samples.length; ++j) {
-                                            var fx = pxForTime(samples[j].t)
-                                            var fy = pyForRate(samples[j][key])
-                                            if (j === 0) ctx.moveTo(fx, fy); else ctx.lineTo(fx, fy)
+                                        // Pre-compute pixel coordinates once.
+                                        var xs = new Array(n), ys = new Array(n)
+                                        for (var pi = 0; pi < n; ++pi) {
+                                            xs[pi] = pxForTime(samples[pi].t)
+                                            ys[pi] = pyForRate(samples[pi][key])
                                         }
-                                        ctx.lineTo(pxForTime(samples[samples.length - 1].t), plotY + plotH)
-                                        ctx.lineTo(pxForTime(samples[0].t), plotY + plotH)
+
+                                        var baseY  = plotY + plotH
+                                        var firstX = xs[0]
+
+                                        // Build the filled area path.
+                                        ctx.beginPath()
+                                        ctx.moveTo(xs[0], ys[0])
+                                        if (n === 1) {
+                                            ctx.lineTo(xs[0], ys[0])
+                                        } else {
+                                            for (var ci = 0; ci < n - 1; ++ci) {
+                                                // Clamp neighbour indices to array bounds.
+                                                var im1 = Math.max(0, ci - 1)
+                                                var ip2 = Math.min(n - 1, ci + 2)
+                                                var cp1x = xs[ci]     + (xs[ci + 1] - xs[im1])     / 6
+                                                var cp1y = ys[ci]     + (ys[ci + 1] - ys[im1])     / 6
+                                                var cp2x = xs[ci + 1] - (xs[ip2]    - xs[ci])      / 6
+                                                var cp2y = ys[ci + 1] - (ys[ip2]    - ys[ci])      / 6
+                                                ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, xs[ci + 1], ys[ci + 1])
+                                            }
+                                        }
+                                        ctx.lineTo(xs[n - 1], baseY)
+                                        ctx.lineTo(firstX, baseY)
                                         ctx.closePath()
-                                        ctx.fillStyle = fill
-                                        ctx.fill()
-                                    }
-                                    drawSeries("down", "#4ea2ff", "rgba(78,162,255,0.15)")
-                                    drawSeries("up", "#58cc88", "rgba(88,204,136,0.12)")
+                                        ctx.fillStyle = fillColor; ctx.fill()
 
-                                    ctx.fillStyle = "#7c8a99"
-                                    ctx.font = "11px sans-serif"
+                                        // Stroke the same spline on top of the fill.
+                                        ctx.beginPath()
+                                        ctx.moveTo(xs[0], ys[0])
+                                        if (n === 1) {
+                                            ctx.lineTo(xs[0], ys[0])
+                                        } else {
+                                            for (var si = 0; si < n - 1; ++si) {
+                                                var sm1 = Math.max(0, si - 1)
+                                                var sp2 = Math.min(n - 1, si + 2)
+                                                var sc1x = xs[si]     + (xs[si + 1] - xs[sm1])     / 6
+                                                var sc1y = ys[si]     + (ys[si + 1] - ys[sm1])     / 6
+                                                var sc2x = xs[si + 1] - (xs[sp2]    - xs[si])      / 6
+                                                var sc2y = ys[si + 1] - (ys[sp2]    - ys[si])      / 6
+                                                ctx.bezierCurveTo(sc1x, sc1y, sc2x, sc2y, xs[si + 1], ys[si + 1])
+                                            }
+                                        }
+                                        ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.stroke()
+                                    }
+
+                                    drawSmoothedSeries("up",   "#4cc87a", "rgba(76,200,122,0.14)")
+                                    drawSmoothedSeries("down", "#4ea2ff", "rgba(78,162,255,0.22)")
+
+                                    // Y-axis labels
+                                    ctx.fillStyle = "#667788"
+                                    ctx.font = "10px sans-serif"
                                     ctx.textAlign = "left"
                                     ctx.textBaseline = "middle"
                                     for (var ly = 0; ly <= 4; ++ly) {
                                         var val = axisTop * (1 - ly / 4)
-                                        var ty = plotY + (plotH * ly / 4)
-                                        ctx.fillText(root.speedAxisLabel(val), plotX + plotW + 6, ty)
+                                        var ty = plotY + plotH * ly / 4
+                                        ctx.fillText(root.speedAxisLabel(val), plotX + plotW + 5, ty)
                                     }
+
+                                    // X-axis time labels — show hours for long spans
                                     ctx.textAlign = "center"
                                     ctx.textBaseline = "top"
                                     for (var lx = 0; lx <= 6; ++lx) {
                                         var secAgo = Math.round(root.speedSpanSeconds * (1 - lx / 6))
                                         var tx = plotX + plotW * lx / 6
-                                        var label = secAgo >= 60 ? (Math.round(secAgo / 60) + "m") : (secAgo + "s")
-                                        ctx.fillText("-" + label, tx, plotY + plotH + 5)
+                                        var timeLabel = secAgo >= 3600
+                                            ? (Math.floor(secAgo / 3600) + "h")
+                                            : (secAgo >= 60 ? (Math.round(secAgo / 60) + "m") : (secAgo + "s"))
+                                        ctx.fillText("-" + timeLabel, tx, plotY + plotH + 4)
                                     }
 
+                                    // Hover crosshair
                                     if (root.speedHoverActive) {
                                         var hx = Math.max(plotX, Math.min(plotX + plotW, root.speedHoverX))
-                                        ctx.strokeStyle = "rgba(255,255,255,0.30)"
+                                        ctx.strokeStyle = "rgba(200,220,255,0.25)"
                                         ctx.lineWidth = 1
                                         ctx.beginPath()
                                         ctx.moveTo(hx + 0.5, plotY)
@@ -2010,12 +2186,12 @@ Window {
                                 width: tipCol.implicitWidth + 12
                                 height: tipCol.implicitHeight + 10
 
-                                readonly property var _samples: root.speedVisibleSamples()
+                                readonly property var _samples: root._speedDecimated
                                 readonly property real _plotLeft: 8
                                 readonly property real _plotRightPad: 56
                                 readonly property real _plotWidth: Math.max(1, speedGraphCanvasLoader.width - _plotLeft - _plotRightPad)
                                 readonly property real _ratio: Math.max(0, Math.min(1, (root.speedHoverX - _plotLeft) / _plotWidth))
-                                readonly property real _targetT: Date.now() - root.speedSpanSeconds * 1000 + (_ratio * root.speedSpanSeconds * 1000)
+                                readonly property real _targetT: (root._speedNowMs || Date.now()) - root.speedSpanSeconds * 1000 + (_ratio * root.speedSpanSeconds * 1000)
                                 readonly property int _nearestIndex: {
                                     if (_samples.length === 0) return -1
                                     var best = 0
@@ -2427,7 +2603,14 @@ Window {
                                         id: renameConfirmBtn
                                         text: "Rename"
                                         primary: true
-                                        enabled: renameInput.text.trim().length > 0 && renameInput.text.trim() !== renameDialog._currentName
+                                        enabled: {
+                                            var t = renameInput.text.trim()
+                                            return t.length > 0
+                                                && t !== renameDialog._currentName
+                                                && t !== "." && t !== ".."
+                                                && t.indexOf("/") === -1
+                                                && t.indexOf("\\") === -1
+                                        }
                                         onClicked: {
                                             var newName = renameInput.text.trim()
                                             if (newName.length > 0 && root.item) {
@@ -2504,8 +2687,14 @@ Window {
                                         anchors.fill: parent
                                         hoverEnabled: true
                                         onClicked: {
-                                            if (root.item)
-                                                App.setTorrentFileWanted(root.item.id, fileCtxPopup._row, !fileCtxPopup._wanted)
+                                            if (root.item) {
+                                                // Use stable identifiers instead of the visible row
+                                                // number, which changes when folders expand/collapse.
+                                                if (fileCtxPopup._fileIndex >= 0)
+                                                    App.setTorrentFileWantedByIndex(root.item.id, fileCtxPopup._fileIndex, !fileCtxPopup._wanted)
+                                                else
+                                                    App.setTorrentFileWantedByPath(root.item.id, fileCtxPopup._path, !fileCtxPopup._wanted)
+                                            }
                                             fileCtxPopup.close()
                                         }
                                     }
@@ -2791,7 +2980,9 @@ Window {
                                             place += (place ? ", " : "") + region
                                         else if (regionName)
                                             place += (place ? ", " : "") + regionName
-                                        return pd.endpoint + ":" + pd.port + (cc || place ? ("\n" + (pd.countryFlag || "??") + " " + (cc || "??") + (place ? (" - " + place) : "")) : "\nLocation unavailable")
+                                        var locLine = cc ? (cc + (place ? " - " + place : "")) : (place || "Location unavailable")
+                                        var clientLine = safeStr(pd.client) || "Unknown client"
+                                        return pd.endpoint + ":" + pd.port + "\n" + locLine + "\n" + clientLine
                                     }
                                 }
 
@@ -2809,16 +3000,6 @@ Window {
                                                 fillMode: Image.PreserveAspectFit; smooth: true; asynchronous: true
                                                 source: root.countryFlagSource(pd.countryCode)
                                                 visible: status === Image.Ready
-                                            }
-                                            Text {
-                                                anchors.verticalCenter: parent.verticalCenter
-                                                text: {
-                                                    var cc = safeStr(pd.countryCode)
-                                                    var region = safeStr(pd.regionCode)
-                                                    if (cc === "US" || cc === "CA") return region || cc || "--"
-                                                    return cc || "--"
-                                                }
-                                                color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight
                                             }
                                         }
                                     }
@@ -2860,7 +3041,7 @@ Window {
                                                     leftMargin: clientIcon.visible ? 6 : 0
                                                     right: parent.right; verticalCenter: parent.verticalCenter
                                                 }
-                                                text: root.baseClientName(pd.client); color: "#b0b0b0"; font.pixelSize: 12; elide: Text.ElideRight
+                                                text: pd.client; color: "#b0b0b0"; font.pixelSize: 12; elide: Text.ElideRight
                                             }
                                         }
                                     }
@@ -2947,6 +3128,7 @@ Window {
                             Layout.fillWidth: true
                             Layout.topMargin: 2
                             Layout.bottomMargin: 2
+                            Layout.leftMargin: 10
                             spacing: 6
 
                             Text {
@@ -3727,471 +3909,379 @@ Window {
                     }
                 }
 
-                // ── Trackers ──────────────────────────────────────────────────
+                // ── Swarm Statistics ──────────────────────────────────────────
                 Item {
-                    ColumnLayout {
-                        anchors { fill: parent; margins: 10 }
-                        spacing: 6
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        clip: true
+                        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                        ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-                        RowLayout {
-                            Layout.fillWidth: true
-                            Text { text: "Window"; color: "#8ea1b5"; font.pixelSize: 12 }
-                            ComboBox {
-                                Layout.preferredWidth: 130
-                                model: root.swarmPeriodOptions.map(function(o){ return o.label })
-                                currentIndex: root.swarmPeriodIndex
-                                onActivated: root.swarmPeriodIndex = currentIndex
-                            }
-                            Item { Layout.fillWidth: true }
-                        }
-                        Text {
-                            Layout.fillWidth: true
-                            text: "Tip: Peers/Seeders come from tracker-reported swarm counts (not just currently connected peers). Ratio is uploaded ÷ downloaded and helps estimate health."
-                            color: "#8ea1b5"
-                            font.pixelSize: 10
-                            wrapMode: Text.WordWrap
-                        }
+                        ColumnLayout {
+                            width: parent.width
+                            spacing: 0
 
-                        RowLayout {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 208
-                            spacing: 8
-
+                            // ── Client Fingerprint horizontal bar chart ────────
                             Rectangle {
                                 Layout.fillWidth: true
-                                Layout.preferredHeight: 208
-                                color: "#171717"
-                                border.color: "#2d2d2d"
-                                radius: 3
+                                Layout.leftMargin: 10; Layout.rightMargin: 10; Layout.topMargin: 10
+                                color: "#171717"; border.color: "#2d2d2d"; radius: 3
+                                implicitHeight: clientBarCol.implicitHeight + 16
+
                                 ColumnLayout {
+                                    id: clientBarCol
                                     anchors { fill: parent; margins: 8 }
-                                    spacing: 4
-                                    Text { text: "Client Fingerprint Breakdown"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true }
-                                    Text {
-                                        text: {
-                                            var filtered = root.breakdownExcludedCount(root.swarmClientBreakdown, "client")
-                                            return filtered > 0 ? ("Filtered " + String(filtered) + " unknown peers") : "Top identified clients"
-                                        }
-                                        color: "#8ea1b5"
-                                        font.pixelSize: 10
-                                    }
+                                    spacing: 6
+
                                     RowLayout {
                                         Layout.fillWidth: true
-                                        Layout.fillHeight: true
-                                        spacing: 8
-                                        Canvas {
-                                            id: clientPie
-                                            Layout.preferredWidth: 168
-                                            Layout.preferredHeight: 168
-                                            antialiasing: true
-                                            renderTarget: Canvas.Image
-                                            Component.onCompleted: root.swarmClientPieRef = clientPie
-                                            Component.onDestruction: if (root.swarmClientPieRef === clientPie) root.swarmClientPieRef = null
-                                            onPaint: {
-                                                var ctx = getContext("2d")
-                                                ctx.reset()
-                                                var rows = root.swarmClientRows
-                                                var cx = width / 2
-                                                var cy = height / 2
-                                                var radius = Math.max(24, Math.min(width, height) / 2 - 2)
-                                                if (rows.length === 0) {
-                                                    ctx.strokeStyle = "#2d2d2d"
-                                                    ctx.lineWidth = 1
-                                                    ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.stroke()
-                                                    return
-                                                }
-                                                var totalPct = 0
-                                                for (var t = 0; t < rows.length; ++t)
-                                                    totalPct += Math.max(0, Number(rows[t].pct) || 0)
-                                                totalPct = Math.max(0.000001, totalPct)
-                                                var start = -Math.PI / 2
-                                                for (var i = 0; i < rows.length; ++i) {
-                                                    var frac = Math.max(0, Number(rows[i].pct) || 0) / totalPct
-                                                    var end = (i === rows.length - 1) ? (-Math.PI / 2 + Math.PI * 2) : (start + frac * Math.PI * 2)
-                                                    ctx.beginPath()
-                                                    ctx.moveTo(cx, cy)
-                                                    ctx.arc(cx, cy, radius, start, end, false)
-                                                    ctx.closePath()
-                                                    ctx.fillStyle = rows[i].color
-                                                    ctx.fill()
-                                                    start = end
-                                                }
+                                        Text { text: "Client Fingerprint"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true; Layout.fillWidth: true }
+                                        Text {
+                                            text: {
+                                                var n = root.breakdownExcludedCount(root.swarmClientBreakdown, "client")
+                                                return n > 0 ? (n + " unknown filtered") : "Top identified clients"
                                             }
-                                        }
-                                        ListView {
-                                            Layout.fillWidth: true
-                                            Layout.fillHeight: true
-                                            clip: true
-                                            spacing: 1
-                                            model: root.swarmClientLegendRows
-                                            delegate: RowLayout {
-                                                required property var modelData
-                                                width: ListView.view.width
-                                                spacing: 5
-                                                Rectangle {
-                                                    Layout.preferredWidth: 8
-                                                    Layout.preferredHeight: 8
-                                                    radius: 4
-                                                    color: modelData.color
-                                                    border.color: "#0f0f0f"
-                                                    border.width: 1
-                                                    Layout.alignment: Qt.AlignVCenter
-                                                }
-                                                Image {
-                                                    Layout.preferredWidth: 14
-                                                    Layout.preferredHeight: 14
-                                                    fillMode: Image.PreserveAspectFit
-                                                    source: root.torrentClientIconSource(modelData.label)
-                                                    visible: status === Image.Ready
-                                                }
-                                                Text {
-                                                    text: modelData.label
-                                                    color: "#b6c0ca"
-                                                    font.pixelSize: 11
-                                                    Layout.fillWidth: true
-                                                    elide: Text.ElideRight
-                                                }
-                                                Text { text: modelData.pct.toFixed(1) + "%"; color: "#9fb2c6"; font.pixelSize: 11; Layout.preferredWidth: 46; horizontalAlignment: Text.AlignRight }
-                                            }
+                                            color: "#4a6070"; font.pixelSize: 10
                                         }
                                     }
-                                }
-                            }
 
-                            Rectangle {
-                                Layout.fillWidth: true
-                                Layout.preferredHeight: 208
-                                color: "#171717"
-                                border.color: "#2d2d2d"
-                                radius: 3
-                                ColumnLayout {
-                                    anchors { fill: parent; margins: 8 }
-                                    spacing: 4
-                                    Text { text: "Country Breakdown"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true }
-                                    Text {
-                                        text: {
-                                            var filtered = root.breakdownExcludedCount(root.swarmCountryBreakdown, "country")
-                                            return filtered > 0 ? ("Filtered " + String(filtered) + " unknown peers") : "Top identified countries"
-                                        }
-                                        color: "#8ea1b5"
-                                        font.pixelSize: 10
-                                    }
-                                    RowLayout {
-                                        Layout.fillWidth: true
-                                        Layout.fillHeight: true
-                                        spacing: 8
-                                        Canvas {
-                                            id: countryPie
-                                            Layout.preferredWidth: 168
-                                            Layout.preferredHeight: 168
-                                            antialiasing: true
-                                            renderTarget: Canvas.Image
-                                            Component.onCompleted: root.swarmCountryPieRef = countryPie
-                                            Component.onDestruction: if (root.swarmCountryPieRef === countryPie) root.swarmCountryPieRef = null
-                                            onPaint: {
-                                                var ctx = getContext("2d")
-                                                ctx.reset()
-                                                var rows = root.swarmCountryRows
-                                                var cx = width / 2
-                                                var cy = height / 2
-                                                var radius = Math.max(24, Math.min(width, height) / 2 - 2)
-                                                if (rows.length === 0) {
-                                                    ctx.strokeStyle = "#2d2d2d"
-                                                    ctx.lineWidth = 1
-                                                    ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.stroke()
-                                                    return
-                                                }
-                                                var totalPct = 0
-                                                for (var t = 0; t < rows.length; ++t)
-                                                    totalPct += Math.max(0, Number(rows[t].pct) || 0)
-                                                totalPct = Math.max(0.000001, totalPct)
-                                                var start = -Math.PI / 2
-                                                for (var i = 0; i < rows.length; ++i) {
-                                                    var frac = Math.max(0, Number(rows[i].pct) || 0) / totalPct
-                                                    var end = (i === rows.length - 1) ? (-Math.PI / 2 + Math.PI * 2) : (start + frac * Math.PI * 2)
-                                                    ctx.beginPath()
-                                                    ctx.moveTo(cx, cy)
-                                                    ctx.arc(cx, cy, radius, start, end, false)
-                                                    ctx.closePath()
-                                                    ctx.fillStyle = rows[i].color
-                                                    ctx.fill()
-                                                    start = end
-                                                }
-                                            }
-                                        }
-                                        ListView {
-                                            Layout.fillWidth: true
-                                            Layout.fillHeight: true
-                                            clip: true
-                                            spacing: 1
-                                            model: root.swarmCountryLegendRows
-                                            delegate: RowLayout {
-                                                required property var modelData
-                                                width: ListView.view.width
-                                                spacing: 5
-                                                Rectangle {
-                                                    Layout.preferredWidth: 8
-                                                    Layout.preferredHeight: 8
-                                                    radius: 4
-                                                    color: modelData.color
-                                                    border.color: "#0f0f0f"
-                                                    border.width: 1
-                                                    Layout.alignment: Qt.AlignVCenter
-                                                }
-                                                Image {
-                                                    Layout.preferredWidth: 18
-                                                    Layout.preferredHeight: 12
-                                                    fillMode: Image.PreserveAspectFit
-                                                    source: root.countryFlagSource(modelData.label)
-                                                    visible: status === Image.Ready
-                                                }
-                                                Text {
-                                                    text: modelData.label
-                                                    color: "#b6c0ca"
-                                                    font.pixelSize: 11
-                                                    Layout.fillWidth: true
-                                                    elide: Text.ElideRight
-                                                }
-                                                Text { text: modelData.pct.toFixed(1) + "%"; color: "#9fb2c6"; font.pixelSize: 11; Layout.preferredWidth: 46; horizontalAlignment: Text.AlignRight }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        Rectangle {
-                            Layout.fillWidth: true
-                            Layout.preferredHeight: 178
-                            color: "#171717"
-                            border.color: "#2d2d2d"
-                            radius: 3
-                            ColumnLayout {
-                                anchors.fill: parent
-                                anchors.margins: 8
-                                spacing: 4
-                                Text { text: "Live Peer/Seeder/Ratio Chart"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true }
-                                RowLayout {
-                                    Layout.fillWidth: true
-                                    spacing: 10
-                                    readonly property var s: root.swarmLegendSample()
-                                    Text { text: "Peers " + String(Number(parent.s.peers) || 0); color: "#4b9cff"; font.pixelSize: 11 }
-                                    Text { text: "Seeders " + String(Number(parent.s.seeders) || 0); color: "#66bb7a"; font.pixelSize: 11 }
-                                    Text { text: "Ratio " + root.ratioText(parent.s.ratio); color: "#f0c25a"; font.pixelSize: 11 }
-                                    Item { Layout.fillWidth: true }
-                                    Text { text: root.formatClockTime(parent.s.t); color: "#9fb2c6"; font.pixelSize: 11 }
-                                }
-                                Item {
-                                    Layout.fillWidth: true
-                                    Layout.fillHeight: true
-                                    id: swarmLiveCanvas
-                                    Canvas {
-                                        id: swarmLivePlot
-                                        anchors.fill: parent
-                                        antialiasing: true
-                                        renderTarget: Canvas.Image
-                                        Component.onCompleted: root.swarmLiveCanvasRef = swarmLivePlot
-                                        Component.onDestruction: if (root.swarmLiveCanvasRef === swarmLivePlot) root.swarmLiveCanvasRef = null
-                                        onPaint: {
-                                            var ctx = getContext("2d")
-                                            ctx.reset()
-                                            var w = width
-                                            var h = height
-                                            if (w < 40 || h < 40)
-                                                return
-                                            var top = 12
-                                            var right = 60
-                                            var bottom = 24
-                                            var left = 8
-                                            var plotX = left
-                                            var plotY = top
-                                            var plotW = Math.max(10, w - left - right)
-                                            var plotH = Math.max(10, h - top - bottom)
-                                            var nowMs = Date.now()
-                                            var startMs = nowMs - root.swarmPeriodSeconds * 1000
-                                            var samples = root.swarmVisibleSamples().slice(-Math.max(60, Math.round(root.swarmPeriodSeconds / 60)))
-                                            var maxPeers = 1
-                                            var maxRatio = 1
-                                            for (var i = 0; i < samples.length; ++i) {
-                                                maxPeers = Math.max(maxPeers, Number(samples[i].peers) || 0, Number(samples[i].seeders) || 0)
-                                                maxRatio = Math.max(maxRatio, Number(samples[i].ratio) || 0)
-                                            }
-                                            var peerScale = Math.pow(10, Math.floor(Math.log(maxPeers) / Math.log(10)))
-                                            var peerNorm = maxPeers / peerScale
-                                            var peerStep = (peerNorm <= 1) ? 1 : (peerNorm <= 2 ? 2 : (peerNorm <= 5 ? 5 : 10))
-                                            var peerAxisTop = Math.max(1, peerStep * peerScale)
-                                            while (peerAxisTop < maxPeers) peerAxisTop *= 2
-                                            var ratioAxisTop = Math.max(1, Math.ceil(maxRatio * 10) / 10)
-
-                                            function pxForTime(t) {
-                                                return plotX + ((t - startMs) / (root.swarmPeriodSeconds * 1000)) * plotW
-                                            }
-                                            function pyForPeers(v) {
-                                                return plotY + plotH - (Math.max(0, v) / peerAxisTop) * plotH
-                                            }
-                                            function pyForRatio(v) {
-                                                return plotY + plotH - (Math.max(0, v) / ratioAxisTop) * plotH
-                                            }
-
-                                            ctx.fillStyle = "#101010"
-                                            ctx.fillRect(0, 0, w, h)
-                                            ctx.strokeStyle = "#262626"
-                                            ctx.lineWidth = 1
-                                            for (var gy = 0; gy <= 4; ++gy) {
-                                                var y = Math.round(plotY + (plotH * gy / 4)) + 0.5
-                                                ctx.beginPath(); ctx.moveTo(plotX, y); ctx.lineTo(plotX + plotW, y); ctx.stroke()
-                                            }
-                                            for (var gx = 0; gx <= 6; ++gx) {
-                                                var x = Math.round(plotX + (plotW * gx / 6)) + 0.5
-                                                ctx.beginPath(); ctx.moveTo(x, plotY); ctx.lineTo(x, plotY + plotH); ctx.stroke()
-                                            }
-
-                                            function drawPeerSeries(key, stroke, fill) {
-                                                if (samples.length === 0) return
-                                                ctx.beginPath()
-                                                for (var i = 0; i < samples.length; ++i) {
-                                                    var x = pxForTime(samples[i].t)
-                                                    var y = pyForPeers(samples[i][key])
-                                                    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y)
-                                                }
-                                                ctx.strokeStyle = stroke
-                                                ctx.lineWidth = 1.8
-                                                ctx.stroke()
-
-                                                ctx.beginPath()
-                                                for (var j = 0; j < samples.length; ++j) {
-                                                    var fx = pxForTime(samples[j].t)
-                                                    var fy = pyForPeers(samples[j][key])
-                                                    if (j === 0) ctx.moveTo(fx, fy); else ctx.lineTo(fx, fy)
-                                                }
-                                                ctx.lineTo(pxForTime(samples[samples.length - 1].t), plotY + plotH)
-                                                ctx.lineTo(pxForTime(samples[0].t), plotY + plotH)
-                                                ctx.closePath()
-                                                ctx.fillStyle = fill
-                                                ctx.fill()
-                                            }
-                                            drawPeerSeries("peers", "#4ea2ff", "rgba(78,162,255,0.15)")
-                                            drawPeerSeries("seeders", "#58cc88", "rgba(88,204,136,0.12)")
-
-                                            if (samples.length > 0) {
-                                                ctx.strokeStyle = "#f0c25a"
-                                                ctx.lineWidth = 1.7
-                                                ctx.setLineDash([5, 4])
-                                                ctx.beginPath()
-                                                for (var k = 0; k < samples.length; ++k) {
-                                                    var rx = pxForTime(samples[k].t)
-                                                    var ry = pyForRatio(samples[k].ratio)
-                                                    if (k === 0) ctx.moveTo(rx, ry); else ctx.lineTo(rx, ry)
-                                                }
-                                                ctx.stroke()
-                                                ctx.setLineDash([])
-                                            }
-
-                                            ctx.fillStyle = "#7c8a99"
-                                            ctx.font = "11px sans-serif"
-                                            ctx.textAlign = "left"
-                                            ctx.textBaseline = "middle"
-                                            for (var ly = 0; ly <= 4; ++ly) {
-                                                var peerVal = peerAxisTop * (1 - ly / 4)
-                                                var ty = plotY + (plotH * ly / 4)
-                                                ctx.fillText(String(Math.round(peerVal)), plotX + plotW + 6, ty)
-                                            }
-                                            ctx.textAlign = "center"
-                                            ctx.textBaseline = "top"
-                                            for (var lx = 0; lx <= 6; ++lx) {
-                                                var secAgo = Math.round(root.swarmPeriodSeconds * (1 - lx / 6))
-                                                var tx = plotX + plotW * lx / 6
-                                                var label = secAgo >= 60 ? (Math.round(secAgo / 60) + "m") : (secAgo + "s")
-                                                ctx.fillText("-" + label, tx, plotY + plotH + 5)
-                                            }
-
-                                            if (root.swarmLiveHoverActive && samples.length > 0) {
-                                                var nx = Math.max(0, Math.min(1, (root.swarmLiveHoverX - plotX) / plotW))
-                                                var idx = Math.max(0, Math.min(samples.length - 1, Math.round(nx * (samples.length - 1))))
-                                                var sx = plotX + (samples.length <= 1 ? 0 : (plotW * idx / (samples.length - 1)))
-                                                var sample = samples[idx]
-                                                root.swarmHoverSample = sample
-                                                ctx.strokeStyle = "#9fb2c6"
-                                                ctx.lineWidth = 1
-                                                ctx.beginPath()
-                                                ctx.moveTo(sx, plotY)
-                                                ctx.lineTo(sx, plotY + plotH)
-                                                ctx.stroke()
-
-                                                function dotPeers(color, key) {
-                                                    var value = Number(sample[key]) || 0
-                                                    var sy = pyForPeers(value)
-                                                    ctx.beginPath()
-                                                    ctx.arc(sx, sy, 3, 0, Math.PI * 2)
-                                                    ctx.fillStyle = color
-                                                    ctx.fill()
-                                                }
-                                                dotPeers("#4ea2ff", "peers")
-                                                dotPeers("#58cc88", "seeders")
-                                                ctx.beginPath()
-                                                ctx.arc(sx, pyForRatio(Number(sample.ratio) || 0), 3, 0, Math.PI * 2)
-                                                ctx.fillStyle = "#f0c25a"
-                                                ctx.fill()
-
-                                            } else {
-                                                root.swarmHoverSample = null
-                                            }
-                                        }
-                                    }
-                                    MouseArea {
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        acceptedButtons: Qt.NoButton
-                                        onPositionChanged: function(mouse) {
-                                            root.swarmLiveHoverX = mouse.x
-                                            root.swarmLiveHoverActive = true
-                                            if (root.swarmLiveCanvasRef) root.swarmLiveCanvasRef.requestPaint()
-                                        }
-                                        onExited: {
-                                            root.swarmLiveHoverActive = false
-                                            root.swarmHoverSample = null
-                                            if (root.swarmLiveCanvasRef) root.swarmLiveCanvasRef.requestPaint()
-                                        }
-                                    }
+                                    // Stacked proportion bar
                                     Rectangle {
-                                        visible: root.swarmLiveHoverActive && !!root.swarmHoverSample
-                                        radius: 3
-                                        color: "#101722"
-                                        border.color: "#2f465d"
-                                        anchors.top: parent.top
-                                        anchors.topMargin: 10
-                                        x: Math.max(10, Math.min(parent.width - width - 10, root.swarmLiveHoverX + 14))
-                                        width: swarmTipCol.implicitWidth + 12
-                                        height: swarmTipCol.implicitHeight + 10
-                                        Column {
-                                            id: swarmTipCol
-                                            anchors.centerIn: parent
-                                            spacing: 2
-                                            Text {
-                                                text: root.swarmHoverSample ? root.formatClockTime(root.swarmHoverSample.t) : ""
-                                                color: "#dbe8f6"
-                                                font.pixelSize: 11
-                                                font.bold: true
+                                        id: clientStackedBar
+                                        Layout.fillWidth: true; height: 14; radius: 7; color: "#0d0d0d"; clip: true
+                                        readonly property var _rows: root.swarmClientLegendRows
+                                        readonly property real _totalPct: {
+                                            var s = 0
+                                            for (var i = 0; i < _rows.length; ++i) s += _rows[i].pct
+                                            return Math.max(0.0001, s)
+                                        }
+                                        Row {
+                                            anchors.fill: parent; spacing: 0
+                                            Repeater {
+                                                model: clientStackedBar._rows
+                                                Rectangle {
+                                                    required property var modelData
+                                                    required property int index
+                                                    width: Math.max(0, (modelData.pct / clientStackedBar._totalPct) * clientStackedBar.width)
+                                                    height: clientStackedBar.height
+                                                    color: modelData.color
+                                                }
                                             }
-                                            Text {
-                                                text: root.swarmHoverSample ? ("Peers " + String(Number(root.swarmHoverSample.peers) || 0)) : ""
-                                                color: "#8fc0f2"
-                                                font.pixelSize: 11
+                                        }
+                                    }
+
+                                    // Per-client rows with inline bar
+                                    Repeater {
+                                        model: root.swarmClientLegendRows
+                                        RowLayout {
+                                            required property var modelData
+                                            required property int index
+                                            Layout.fillWidth: true; spacing: 6
+
+                                            Rectangle { width: 10; height: 10; radius: 5; color: modelData.color; Layout.alignment: Qt.AlignVCenter }
+                                            Image {
+                                                Layout.preferredWidth: 14; Layout.preferredHeight: 14
+                                                fillMode: Image.PreserveAspectFit; smooth: true; asynchronous: true
+                                                source: root.torrentClientIconSource(modelData.label)
+                                                opacity: status === Image.Ready ? 1 : 0
                                             }
-                                            Text {
-                                                text: root.swarmHoverSample ? ("Seeders " + String(Number(root.swarmHoverSample.seeders) || 0)) : ""
-                                                color: "#97ddb3"
-                                                font.pixelSize: 11
+                                            Text { text: modelData.label; color: "#b6c0ca"; font.pixelSize: 11; Layout.preferredWidth: 110; elide: Text.ElideRight }
+                                            Rectangle {
+                                                Layout.fillWidth: true; height: 8; radius: 4; color: "#0d0d0d"
+                                                Rectangle {
+                                                    width: Math.max(0, parent.width * modelData.pct / 100)
+                                                    height: parent.height; radius: 4; color: modelData.color; opacity: 0.85
+                                                }
                                             }
-                                            Text {
-                                                text: root.swarmHoverSample ? ("Ratio " + root.ratioText(root.swarmHoverSample.ratio)) : ""
-                                                color: "#f0c25a"
-                                                font.pixelSize: 11
+                                            Text { text: modelData.pct.toFixed(1) + "%"; color: "#9fb2c6"; font.pixelSize: 11; Layout.preferredWidth: 40; horizontalAlignment: Text.AlignRight }
+                                        }
+                                    }
+                                }
+                            }
+
+                            // ── Country horizontal bar chart ──────────────────
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.leftMargin: 10; Layout.rightMargin: 10; Layout.topMargin: 6
+                                color: "#171717"; border.color: "#2d2d2d"; radius: 3
+                                implicitHeight: countryBarCol.implicitHeight + 16
+
+                                ColumnLayout {
+                                    id: countryBarCol
+                                    anchors { fill: parent; margins: 8 }
+                                    spacing: 6
+
+                                    RowLayout {
+                                        Layout.fillWidth: true
+                                        Text { text: "Country Breakdown"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true; Layout.fillWidth: true }
+                                        Text {
+                                            text: {
+                                                var n = root.breakdownExcludedCount(root.swarmCountryBreakdown, "country")
+                                                return n > 0 ? (n + " unknown filtered") : "Top identified countries"
+                                            }
+                                            color: "#4a6070"; font.pixelSize: 10
+                                        }
+                                    }
+
+                                    // Stacked proportion bar
+                                    Rectangle {
+                                        id: countryStackedBar
+                                        Layout.fillWidth: true; height: 14; radius: 7; color: "#0d0d0d"; clip: true
+                                        readonly property var _rows: root.swarmCountryLegendRows
+                                        readonly property real _totalPct: {
+                                            var s = 0
+                                            for (var i = 0; i < _rows.length; ++i) s += _rows[i].pct
+                                            return Math.max(0.0001, s)
+                                        }
+                                        Row {
+                                            anchors.fill: parent; spacing: 0
+                                            Repeater {
+                                                model: countryStackedBar._rows
+                                                Rectangle {
+                                                    required property var modelData
+                                                    required property int index
+                                                    width: Math.max(0, (modelData.pct / countryStackedBar._totalPct) * countryStackedBar.width)
+                                                    height: countryStackedBar.height
+                                                    color: modelData.color
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    // Per-country rows with inline bar + flag
+                                    Repeater {
+                                        model: root.swarmCountryLegendRows
+                                        RowLayout {
+                                            required property var modelData
+                                            required property int index
+                                            Layout.fillWidth: true; spacing: 6
+
+                                            Rectangle { width: 10; height: 10; radius: 5; color: modelData.color; Layout.alignment: Qt.AlignVCenter }
+                                            Image {
+                                                Layout.preferredWidth: 18; Layout.preferredHeight: 12
+                                                fillMode: Image.PreserveAspectFit; smooth: true; asynchronous: true
+                                                source: root.countryFlagSource(modelData.label)
+                                                visible: status === Image.Ready
+                                            }
+                                            Text { text: modelData.label; color: "#b6c0ca"; font.pixelSize: 11; Layout.preferredWidth: 110; elide: Text.ElideRight }
+                                            Rectangle {
+                                                Layout.fillWidth: true; height: 8; radius: 4; color: "#0d0d0d"
+                                                Rectangle {
+                                                    width: Math.max(0, parent.width * modelData.pct / 100)
+                                                    height: parent.height; radius: 4; color: modelData.color; opacity: 0.85
+                                                }
+                                            }
+                                            Text { text: modelData.pct.toFixed(1) + "%"; color: "#9fb2c6"; font.pixelSize: 11; Layout.preferredWidth: 40; horizontalAlignment: Text.AlignRight }
+                                        }
+                                    }
+                                }
+                            }
+
+                            // ── Peers & Seeders over time ─────────────────────
+                            // Ratio is shown as a text stat only — it lives on a
+                            // completely different numeric scale than peer counts
+                            // and overlaying it on the same Y axis is misleading.
+                            Rectangle {
+                                Layout.fillWidth: true
+                                Layout.leftMargin: 10; Layout.rightMargin: 10
+                                Layout.topMargin: 6; Layout.bottomMargin: 10
+                                height: 226
+                                color: "#171717"; border.color: "#2d2d2d"; radius: 3
+
+                                ColumnLayout {
+                                    anchors.fill: parent; anchors.margins: 8; spacing: 4
+
+                                    RowLayout {
+                                        Layout.fillWidth: true; spacing: 12
+                                        Text { text: "Peers & Seeders"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true }
+                                        Item { Layout.fillWidth: true }
+                                        readonly property var _s: root.swarmLegendSample()
+                                        Text { text: "Peers "   + String(Number(parent._s.peers)   || 0); color: "#4b9cff"; font.pixelSize: 11 }
+                                        Text { text: "Seeders " + String(Number(parent._s.seeders) || 0); color: "#66bb7a"; font.pixelSize: 11 }
+                                        Text { text: "Ratio "   + root.ratioText(parent._s.ratio);        color: "#f0c25a"; font.pixelSize: 11 }
+                                        Text { text: root.formatClockTime(parent._s.t); color: "#5a6a7a"; font.pixelSize: 11 }
+                                        ComboBox {
+                                            Layout.preferredWidth: 100
+                                            model: root.swarmPeriodOptions.map(function(o){ return o.label })
+                                            currentIndex: root.swarmPeriodIndex
+                                            onActivated: root.swarmPeriodIndex = currentIndex
+                                            font.pixelSize: 11
+                                        }
+                                    }
+
+                                    Item {
+                                        id: swarmLiveCanvas
+                                        Layout.fillWidth: true
+                                        Layout.fillHeight: true
+
+                                        Canvas {
+                                            id: swarmLivePlot
+                                            anchors.fill: parent
+                                            antialiasing: true
+                                            renderTarget: Canvas.Image
+                                            Component.onCompleted: root.swarmLiveCanvasRef = swarmLivePlot
+                                            Component.onDestruction: if (root.swarmLiveCanvasRef === swarmLivePlot) root.swarmLiveCanvasRef = null
+
+                                            onPaint: {
+                                                var ctx = getContext("2d")
+                                                ctx.reset()
+                                                var w = width, h = height
+                                                if (w < 40 || h < 40) return
+                                                var top = 10, right = 52, bottom = 22, left = 6
+                                                var plotX = left, plotY = top
+                                                var plotW = Math.max(10, w - left - right)
+                                                var plotH = Math.max(10, h - top - bottom)
+                                                var nowMs = root._swarmNowMs || Date.now()
+                                                var startMs = nowMs - root.swarmPeriodSeconds * 1000
+                                                var samples = root._swarmDecimated
+
+                                                var maxPeers = 1
+                                                for (var i = 0; i < samples.length; ++i)
+                                                    maxPeers = Math.max(maxPeers, Number(samples[i].peers) || 0, Number(samples[i].seeders) || 0)
+                                                var peerScale = Math.pow(10, Math.floor(Math.log(maxPeers) / Math.log(10)))
+                                                var peerNorm = maxPeers / peerScale
+                                                var peerStep = peerNorm <= 1 ? 1 : (peerNorm <= 2 ? 2 : (peerNorm <= 5 ? 5 : 10))
+                                                var peerAxisTop = Math.max(1, peerStep * peerScale)
+                                                while (peerAxisTop < maxPeers) peerAxisTop *= 2
+
+                                                function pxForT(t) {
+                                                    if (samples.length <= 1) return plotX + plotW / 2
+                                                    return plotX + ((t - startMs) / (root.swarmPeriodSeconds * 1000)) * plotW
+                                                }
+                                                function pyForP(v) {
+                                                    return plotY + plotH - (Math.max(0, v) / peerAxisTop) * plotH
+                                                }
+
+                                                ctx.fillStyle = "#0e1014"; ctx.fillRect(0, 0, w, h)
+
+                                                ctx.strokeStyle = "#1e2228"; ctx.lineWidth = 1
+                                                for (var gy = 0; gy <= 4; ++gy) {
+                                                    var gy2 = Math.round(plotY + plotH * gy / 4) + 0.5
+                                                    ctx.beginPath(); ctx.moveTo(plotX, gy2); ctx.lineTo(plotX + plotW, gy2); ctx.stroke()
+                                                }
+                                                for (var gx = 0; gx <= 6; ++gx) {
+                                                    var gx2 = Math.round(plotX + plotW * gx / 6) + 0.5
+                                                    ctx.beginPath(); ctx.moveTo(gx2, plotY); ctx.lineTo(gx2, plotY + plotH); ctx.stroke()
+                                                }
+
+                                                function drawSmoothedArea(key, stroke, fillColor) {
+                                                    var n = samples.length
+                                                    if (n === 0) return
+                                                    var xs = new Array(n), ys = new Array(n)
+                                                    for (var pi = 0; pi < n; ++pi) {
+                                                        xs[pi] = pxForT(samples[pi].t)
+                                                        ys[pi] = pyForP(Number(samples[pi][key]) || 0)
+                                                    }
+                                                    var baseY = plotY + plotH
+                                                    var firstX = xs[0]
+                                                    // Fill pass
+                                                    ctx.beginPath(); ctx.moveTo(xs[0], ys[0])
+                                                    if (n === 1) {
+                                                        ctx.lineTo(xs[0], ys[0])
+                                                    } else {
+                                                        for (var ci = 0; ci < n - 1; ++ci) {
+                                                            var im1 = Math.max(0, ci - 1), ip2 = Math.min(n - 1, ci + 2)
+                                                            ctx.bezierCurveTo(
+                                                                xs[ci]     + (xs[ci+1] - xs[im1]) / 6,
+                                                                ys[ci]     + (ys[ci+1] - ys[im1]) / 6,
+                                                                xs[ci+1]   - (xs[ip2]  - xs[ci])  / 6,
+                                                                ys[ci+1]   - (ys[ip2]  - ys[ci])  / 6,
+                                                                xs[ci+1], ys[ci+1])
+                                                        }
+                                                    }
+                                                    ctx.lineTo(xs[n-1], baseY); ctx.lineTo(firstX, baseY)
+                                                    ctx.closePath(); ctx.fillStyle = fillColor; ctx.fill()
+                                                    // Stroke pass
+                                                    ctx.beginPath(); ctx.moveTo(xs[0], ys[0])
+                                                    if (n > 1) {
+                                                        for (var si = 0; si < n - 1; ++si) {
+                                                            var sm1 = Math.max(0, si - 1), sp2 = Math.min(n - 1, si + 2)
+                                                            ctx.bezierCurveTo(
+                                                                xs[si]     + (xs[si+1] - xs[sm1]) / 6,
+                                                                ys[si]     + (ys[si+1] - ys[sm1]) / 6,
+                                                                xs[si+1]   - (xs[sp2]  - xs[si])  / 6,
+                                                                ys[si+1]   - (ys[sp2]  - ys[si])  / 6,
+                                                                xs[si+1], ys[si+1])
+                                                        }
+                                                    }
+                                                    ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.stroke()
+                                                }
+
+                                                drawSmoothedArea("seeders", "#58cc88", "rgba(88,204,136,0.18)")
+                                                drawSmoothedArea("peers",   "#4ea2ff", "rgba(78,162,255,0.22)")
+
+                                                ctx.fillStyle = "#667788"; ctx.font = "10px sans-serif"
+                                                ctx.textAlign = "left"; ctx.textBaseline = "middle"
+                                                for (var ly = 0; ly <= 4; ++ly) {
+                                                    var peerVal = peerAxisTop * (1 - ly / 4)
+                                                    ctx.fillText(String(Math.round(peerVal)), plotX + plotW + 5, plotY + plotH * ly / 4)
+                                                }
+                                                ctx.textAlign = "center"; ctx.textBaseline = "top"
+                                                for (var lx = 0; lx <= 6; ++lx) {
+                                                    var secAgo = Math.round(root.swarmPeriodSeconds * (1 - lx / 6))
+                                                    var tx = plotX + plotW * lx / 6
+                                                    var lbl = secAgo >= 3600 ? (Math.floor(secAgo / 3600) + "h")
+                                                                             : (secAgo >= 60 ? (Math.round(secAgo / 60) + "m") : (secAgo + "s"))
+                                                    ctx.fillText("-" + lbl, tx, plotY + plotH + 4)
+                                                }
+
+                                                if (root.swarmLiveHoverActive && samples.length > 0) {
+                                                    var nx = Math.max(0, Math.min(1, (root.swarmLiveHoverX - plotX) / plotW))
+                                                    var idx = Math.max(0, Math.min(samples.length - 1, Math.round(nx * (samples.length - 1))))
+                                                    var sx = plotX + (samples.length <= 1 ? 0 : (plotW * idx / (samples.length - 1)))
+                                                    var sample = samples[idx]
+                                                    root.swarmHoverSample = sample
+                                                    ctx.strokeStyle = "rgba(180,200,220,0.25)"; ctx.lineWidth = 1
+                                                    ctx.beginPath(); ctx.moveTo(sx, plotY); ctx.lineTo(sx, plotY + plotH); ctx.stroke()
+                                                    function dotAt(color, key) {
+                                                        ctx.beginPath(); ctx.arc(sx, pyForP(Number(sample[key]) || 0), 4, 0, Math.PI * 2)
+                                                        ctx.fillStyle = color; ctx.fill()
+                                                    }
+                                                    dotAt("#4ea2ff", "peers"); dotAt("#58cc88", "seeders")
+                                                } else {
+                                                    root.swarmHoverSample = null
+                                                }
+                                            }
+                                        }
+
+                                        MouseArea {
+                                            anchors.fill: parent
+                                            hoverEnabled: true; acceptedButtons: Qt.NoButton
+                                            onPositionChanged: function(mouse) {
+                                                root.swarmLiveHoverX = mouse.x
+                                                root.swarmLiveHoverActive = true
+                                                if (root.swarmLiveCanvasRef) root.swarmLiveCanvasRef.requestPaint()
+                                            }
+                                            onExited: {
+                                                root.swarmLiveHoverActive = false
+                                                root.swarmHoverSample = null
+                                                if (root.swarmLiveCanvasRef) root.swarmLiveCanvasRef.requestPaint()
+                                            }
+                                        }
+
+                                        Rectangle {
+                                            visible: root.swarmLiveHoverActive && !!root.swarmHoverSample
+                                            radius: 3; color: "#101722"; border.color: "#2f465d"
+                                            anchors.top: parent.top; anchors.topMargin: 8
+                                            x: Math.max(8, Math.min(parent.width - width - 8, root.swarmLiveHoverX + 12))
+                                            width: swarmTipCol.implicitWidth + 12
+                                            height: swarmTipCol.implicitHeight + 10
+                                            Column {
+                                                id: swarmTipCol
+                                                anchors.centerIn: parent; spacing: 2
+                                                Text { text: root.swarmHoverSample ? root.formatClockTime(root.swarmHoverSample.t) : ""; color: "#dbe8f6"; font.pixelSize: 11; font.bold: true }
+                                                Text { text: root.swarmHoverSample ? ("Peers "   + String(Math.round(Number(root.swarmHoverSample.peers)   || 0))) : ""; color: "#8fc0f2"; font.pixelSize: 11 }
+                                                Text { text: root.swarmHoverSample ? ("Seeders " + String(Math.round(Number(root.swarmHoverSample.seeders) || 0))) : ""; color: "#97ddb3"; font.pixelSize: 11 }
+                                                Text { text: root.swarmHoverSample ? ("Ratio "   + root.ratioText(root.swarmHoverSample.ratio))                    : ""; color: "#f0c25a"; font.pixelSize: 11 }
                                             }
                                         }
                                     }
                                 }
                             }
+
+                            // Bottom spacer so ScrollView has clean padding at the end
+                            Item { Layout.fillWidth: true; height: 1 }
                         }
                     }
                 }
@@ -4205,6 +4295,15 @@ Window {
                         // destructive/copy actions so right-clicking them feels inert.
                         property bool isSystemEntry: false
 
+                        Action {
+                            text: "Force Reannounce"
+                            enabled: !trackerCtxMenu.isSystemEntry && !!root.item
+                            onTriggered: {
+                                if (root.item && trackerCtxMenu.trackerUrl.length > 0)
+                                    App.forceReannounceTorrent(root.item.id, [trackerCtxMenu.trackerUrl])
+                            }
+                        }
+                        MenuSeparator {}
                         Action {
                             text: "Copy URL"
                             enabled: !trackerCtxMenu.isSystemEntry
@@ -4246,6 +4345,45 @@ Window {
                                     leftPadding: 8
                                 }
                                 Item { Layout.fillWidth: true }
+
+                                Text {
+                                    id: reannounceStatusTxt
+                                    text: ""
+                                    color: "#6aaa6a"; font.pixelSize: 11
+                                    Layout.alignment: Qt.AlignVCenter
+                                    opacity: 0
+                                    Behavior on opacity { NumberAnimation { duration: 200 } }
+                                }
+                                Timer {
+                                    id: reannounceStatusTimer
+                                    interval: 2500
+                                    onTriggered: reannounceStatusTxt.opacity = 0
+                                }
+
+                                DlgButton {
+                                    text: "Reannounce All"
+                                    enabled: !!root.item
+                                    ToolTip.visible: hovered
+                                    ToolTip.delay: 400
+                                    ToolTip.text: "Tell every tracker you're here right now, instead of waiting for the\nnormal announce interval. Useful if your peer count suddenly dropped."
+                                    onClicked: {
+                                        if (!root.item) return
+                                        App.forceReannounceTorrent(root.item.id)
+                                        reannounceStatusTxt.text = "Reannouncing..."
+                                        reannounceStatusTxt.color = "#6aaa6a"
+                                        reannounceStatusTxt.opacity = 1
+                                        reannounceStatusTimer.restart()
+                                        trackerRowFlashTimer.restart()
+                                    }
+                                }
+
+                                Timer {
+                                    id: trackerRowFlashTimer
+                                    interval: 500
+                                    property bool flashing: false
+                                    onTriggered: flashing = false
+                                    onRunningChanged: if (running) flashing = true
+                                }
                                 DlgButton {
                                     text: root.showTrackerAdd ? "Cancel" : "Add trackers…"
                                     primary: !root.showTrackerAdd
@@ -4456,9 +4594,10 @@ Window {
                                 required property bool   isSystemEntry
 
                                 width: Math.max(ListView.view.width, trackerList.contentWidth); height: 28
-                                color: trMa.containsMouse
-                                       ? "#2a2a2a"
-                                       : (index % 2 === 0 ? "#1c1c1c" : "#222222")
+                                color: trackerRowFlashTimer.flashing
+                                       ? "#1a2a3a"
+                                       : (trMa.containsMouse ? "#2a2a2a" : (index % 2 === 0 ? "#1c1c1c" : "#222222"))
+                                Behavior on color { ColorAnimation { duration: trackerRowFlashTimer.flashing ? 80 : 350 } }
 
                                 MouseArea {
                                     id: trMa; anchors.fill: parent; hoverEnabled: true
@@ -4531,8 +4670,17 @@ Window {
                                         Text {
                                             anchors { fill: parent; leftMargin: 6 }
                                             verticalAlignment: Text.AlignVCenter
-                                            text: safeStr(trd.message).length > 0 ? safeStr(trd.message) : (trd.isSystemEntry ? "" : ("Tier " + String(trd.tier | 0)))
-                                            color: "#8ea1b5"; font.pixelSize: 12; elide: Text.ElideRight
+                                            text: {
+                                                var msg = safeStr(trd.message)
+                                                if (msg.length > 0) return msg
+                                                // No message from tracker yet — show status as a hint
+                                                // so the column isn't completely empty
+                                                if (trd.isSystemEntry) return ""
+                                                var s = safeStr(trd.status)
+                                                return s === "Idle" ? "Waiting to announce" : ""
+                                            }
+                                            color: safeStr(trd.message).length > 0 ? "#8ea1b5" : "#4a5a6a"
+                                            font.pixelSize: 12; elide: Text.ElideRight
                                         }
                                     }
                                 }
@@ -4543,6 +4691,373 @@ Window {
                     Timer {
                         id: addStatusClearTimer; interval: 4000
                         onTriggered: addStatusTxt.text = ""
+                    }
+                }
+
+                // ── Piece Map ─────────────────────────────────────────────────
+                Item {
+                    id: pieceMapTab
+
+                    readonly property bool isActive: visible && root._isTorrent && root.currentTab === 7
+                    property var pieceData: []
+                    // maxRarity is the highest peer-count seen; used to scale the rarity gradient.
+                    property int maxRarity: 1
+                    // flashSet: sparse object mapping piece index → flash colour string.
+                    // Populated on each refresh for pieces whose status changed; cleared by flashTimer.
+                    property var flashSet: ({})
+                    property bool hasFlash: false
+
+                    onIsActiveChanged: {
+                        if (isActive) pieceRefreshTimer.restart()
+                        else          pieceRefreshTimer.stop()
+                    }
+
+                    // Clear stale data whenever the dialog switches to a different download
+                    // so a seeding torrent never briefly shows the previous torrent's pieces.
+                    Connections {
+                        target: root
+                        function onItemChanged() {
+                            pieceMapTab.pieceData = []
+                            pieceMapTab.flashSet = ({})
+                            pieceMapTab.hasFlash = false
+                        }
+                    }
+
+                    function refresh() {
+                        if (!root._isTorrent || !root.item) return
+                        var raw = App.torrentPieceMap(root.item.id)
+                        if (!raw || raw.length === 0) return
+
+                        var mx = 1
+                        for (var i = 0; i < raw.length; ++i) {
+                            var v = raw[i] & 0xFFFF
+                            if (v > mx) mx = v
+                        }
+                        pieceMapTab.maxRarity = mx
+
+                        // Only flash on meaningful status-category changes, not peer-count noise.
+                        // Category: -2=have, -3=skipped, -4..=downloading, 0=unavailable, >0=missing
+                        function cat(v) {
+                            if (v === -2) return 0   // have
+                            if (v === -3) return 1   // skipped
+                            if (v <= -4)  return 2   // downloading
+                            if (v === 0)  return 3   // unavailable
+                            return 4                 // missing (any peer count)
+                        }
+                        var prev = pieceMapTab.pieceData
+                        var newFlash = ({})
+                        var anyFlash = false
+                        if (prev && prev.length === raw.length) {
+                            for (var j = 0; j < raw.length; ++j) {
+                                if (cat(prev[j]) !== cat(raw[j])) {
+                                    newFlash[j] = pieceCanvas.lightenColor(
+                                        pieceCanvas.pieceColor(raw[j], mx), 0.55)
+                                    anyFlash = true
+                                }
+                            }
+                        }
+
+                        pieceMapTab.pieceData = raw
+                        if (anyFlash) {
+                            pieceMapTab.flashSet = newFlash
+                            pieceMapTab.hasFlash = true
+                            pieceCanvas.requestPaint()   // draw flash frame
+                            flashTimer.restart()
+                        } else {
+                            pieceCanvas.requestPaint()
+                        }
+                    }
+
+                    Timer {
+                        id: flashTimer
+                        interval: 160; repeat: false
+                        onTriggered: {
+                            pieceMapTab.flashSet = ({})
+                            pieceMapTab.hasFlash = false
+                            pieceCanvas.requestPaint()   // draw final colour
+                        }
+                    }
+
+                    Timer {
+                        id: pieceRefreshTimer
+                        interval: 2000; repeat: true; running: pieceMapTab.isActive
+                        onTriggered: pieceMapTab.refresh()
+                    }
+                    // Also refresh immediately when tab becomes active
+                    Connections {
+                        target: pieceMapTab
+                        function onIsActiveChanged() {
+                            if (pieceMapTab.isActive) pieceMapTab.refresh()
+                        }
+                    }
+
+                    ColumnLayout {
+                        anchors { fill: parent; margins: 10 }
+                        spacing: 8
+
+                        // Legend row
+                        Row {
+                            Layout.fillWidth: true
+                            spacing: 14
+
+                            Text {
+                                text: "Legend:"
+                                color: "#6a8099"; font.pixelSize: 11
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            Repeater {
+                                model: [
+                                    { color: "#2ecc71", label: "Have" },
+                                    { color: "#4a9de8", label: "Downloading" },
+                                    { color: "#c0392b", label: "Rare" },
+                                    { color: "#27ae60", label: "Common" },
+                                    { color: "#e67e22", label: "High Priority" },
+                                    { color: "#888888", label: "Skipped" },
+                                    { color: "#1e1e1e", label: "Unavailable" }
+                                ]
+                                delegate: Row {
+                                    required property var modelData
+                                    spacing: 5
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    Rectangle {
+                                        width: 14; height: 14; radius: 2
+                                        color: modelData.color
+                                        border.color: Qt.darker(modelData.color, 1.3); border.width: 1
+                                        anchors.verticalCenter: parent.verticalCenter
+                                    }
+                                    Text {
+                                        text: modelData.label; color: "#b0b0b0"; font.pixelSize: 11
+                                        anchors.verticalCenter: parent.verticalCenter
+                                    }
+                                }
+                            }
+
+                            Item { Layout.fillWidth: true }
+
+                            Text {
+                                id: pieceSummaryText
+                                color: "#6a8099"; font.pixelSize: 11
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: {
+                                    var d = pieceMapTab.pieceData
+                                    if (!d || d.length === 0) return ""
+                                    var have = 0, partial = 0, skipped = 0, missing = 0
+                                    for (var i = 0; i < d.length; ++i) {
+                                        var v = d[i]
+                                        if (v === -2)      have++
+                                        else if (v === -3) skipped++
+                                        else if (v <= -4)  partial++
+                                        else               missing++
+                                    }
+                                    var parts = [d.length + " pieces", have + " downloaded"]
+                                    if (partial > 0) parts.push(partial + " downloading")
+                                    if (skipped > 0) parts.push(skipped + " skipped")
+                                    return parts.join("  -  ")
+                                }
+                            }
+                        }
+
+                        // Canvas
+                        Canvas {
+                            id: pieceCanvas
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+
+                            // Hover state for tooltip
+                            property int hoveredPiece: -1
+                            property int hoveredPieceStatus: 0
+                            property int hoveredPieceAvail: 0
+
+                            // Resolve piece index from mouse position given current layout
+                            function pieceAt(mx, my) {
+                                var d = pieceMapTab.pieceData
+                                if (!d || d.length === 0) return -1
+                                var cs = cellSizeForCount(d.length)
+                                if (cs <= 0) return -1
+                                var cols = Math.max(1, Math.floor(width / cs))
+                                var col = Math.floor(mx / cs)
+                                var row = Math.floor(my / cs)
+                                var idx = row * cols + col
+                                return (idx >= 0 && idx < d.length) ? idx : -1
+                            }
+
+                            function cellSizeForCount(n) {
+                                if (n <= 0) return 14
+                                // Ideal: fit all pieces in available area at reasonable cell size
+                                // Start at 14px, step down to 2px minimum; pick largest that fits
+                                var sizes = [14, 12, 10, 8, 6, 4, 3, 2]
+                                for (var i = 0; i < sizes.length; ++i) {
+                                    var cs = sizes[i]
+                                    var cols = Math.floor(width / cs)
+                                    if (cols <= 0) continue
+                                    var rows = Math.ceil(n / cols)
+                                    if (rows * cs <= height) return cs
+                                }
+                                // At 2px still doesn't fit: use run-length mode (1 col = many pieces)
+                                return -Math.ceil(n / Math.max(1, Math.floor(width / 2)))
+                            }
+
+                            // Returns CSS colour for a piece value using the encoding from C++:
+                            //   -2                : have
+                            //   -3                : skipped (user deselected)
+                            //   -(4+pct)  (-4..-103): downloading, pct% of blocks done
+                            //   0                 : unavailable (no peers)
+                            //   N                 : N peers have it (normal priority)
+                            //   N | 0x10000       : N peers, high-priority piece
+                            function pieceColor(val, maxRarity) {
+                                if (val === -2) return "#2ecc71"   // have — green
+                                if (val === -3) return "#888888"   // skipped — grey
+                                if (val <= -4) {
+                                    // Downloading: shade of blue proportional to block progress.
+                                    // pct = 0 → dark blue, pct = 99 → bright cyan-blue
+                                    var pct = Math.min(99, -(val + 4))
+                                    var t = pct / 99
+                                    var r2 = Math.round(0x1a + (0x4a - 0x1a) * t)
+                                    var g2 = Math.round(0x4a + (0x9d - 0x4a) * t)
+                                    var b2 = Math.round(0x80 + (0xe8 - 0x80) * t)
+                                    return "rgb(" + r2 + "," + g2 + "," + b2 + ")"
+                                }
+                                var hp  = (val & 0x10000) !== 0
+                                var cnt = val & 0xFFFF
+                                if (cnt === 0) return "#141414"    // unavailable — near black
+                                if (hp) return "#e67e22"           // high priority — orange
+                                // Map 1..maxRarity to red (rare) → green (common)
+                                var t2 = maxRarity > 1 ? (cnt - 1) / (maxRarity - 1) : 1.0
+                                // t2=0 → rare #c0392b (red), t2=1 → common #27ae60 (green)
+                                var r = Math.round(0xc0 + (0x27 - 0xc0) * t2)
+                                var g = Math.round(0x39 + (0xae - 0x39) * t2)
+                                var b = Math.round(0x2b + (0x60 - 0x2b) * t2)
+                                return "rgb(" + r + "," + g + "," + b + ")"
+                            }
+
+                            // Blend a CSS colour string toward white by factor t (0=unchanged, 1=white).
+                            // Handles both "#rrggbb" and "rgb(r,g,b)" formats.
+                            function lightenColor(color, t) {
+                                var r, g, b
+                                if (color.charAt(0) === '#') {
+                                    r = parseInt(color.substr(1, 2), 16)
+                                    g = parseInt(color.substr(3, 2), 16)
+                                    b = parseInt(color.substr(5, 2), 16)
+                                } else {
+                                    var m = color.match(/rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/)
+                                    if (!m) return color
+                                    r = parseInt(m[1]); g = parseInt(m[2]); b = parseInt(m[3])
+                                }
+                                r = Math.round(r + (255 - r) * t)
+                                g = Math.round(g + (255 - g) * t)
+                                b = Math.round(b + (255 - b) * t)
+                                return "rgb(" + r + "," + g + "," + b + ")"
+                            }
+
+                            onPaint: {
+                                var ctx = getContext("2d")
+                                ctx.clearRect(0, 0, width, height)
+                                ctx.fillStyle = "#0e1014"
+                                ctx.fillRect(0, 0, width, height)
+
+                                var d = pieceMapTab.pieceData
+                                if (!d || d.length === 0) {
+                                    ctx.fillStyle = "#555"
+                                    ctx.font = "13px sans-serif"
+                                    ctx.textAlign = "center"
+                                    ctx.fillText("No piece data available", width / 2, height / 2)
+                                    return
+                                }
+
+                                var maxR   = pieceMapTab.maxRarity
+                                var flash  = pieceMapTab.hasFlash ? pieceMapTab.flashSet : null
+                                var cs = cellSizeForCount(d.length)
+
+                                if (cs > 0) {
+                                    // Normal mode: one cell per piece
+                                    var cols = Math.max(1, Math.floor(width / cs))
+                                    var gap = cs >= 4 ? 1 : 0
+                                    for (var i = 0; i < d.length; ++i) {
+                                        var col = i % cols
+                                        var row = Math.floor(i / cols)
+                                        // Use flash colour for changed pieces on the first paint after refresh
+                                        ctx.fillStyle = (flash && flash[i] !== undefined)
+                                            ? flash[i]
+                                            : pieceColor(d[i], maxR)
+                                        ctx.fillRect(col * cs + gap, row * cs + gap, cs - gap, cs - gap)
+                                    }
+                                } else {
+                                    // Run mode: many pieces per 2px column — colour by dominant status in range
+                                    var piecesPerCol = -cs  // cs is negative in run mode
+                                    var numCols = Math.ceil(d.length / piecesPerCol)
+                                    var colW = 2
+                                    for (var c = 0; c < numCols; ++c) {
+                                        var start = c * piecesPerCol
+                                        var end = Math.min(start + piecesPerCol, d.length)
+                                        // Count statuses in this run
+                                        var haveCount = 0, partialCount = 0, skipCount = 0
+                                        var rareSum = 0, rareN = 0
+                                        for (var j = start; j < end; ++j) {
+                                            var dv = d[j]
+                                            if (dv === -2)       haveCount++
+                                            else if (dv === -3)  skipCount++
+                                            else if (dv <= -4)   partialCount++
+                                            else if (dv > 0)     { rareSum += (dv & 0xFFFF); rareN++ }
+                                        }
+                                        var runLen = end - start
+                                        var domColor
+                                        if (haveCount >= runLen * 0.5)
+                                            domColor = "#2ecc71"
+                                        else if (partialCount > 0)
+                                            domColor = "#4a9de8"
+                                        else if (rareN > 0)
+                                            domColor = pieceColor(Math.round(rareSum / rareN), maxR)
+                                        else if (skipCount > 0)
+                                            domColor = "#888888"
+                                        else
+                                            domColor = "#141414"
+                                        ctx.fillStyle = domColor
+                                        ctx.fillRect(c * colW, 0, colW, height)
+                                    }
+                                }
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onPositionChanged: function(mouse) {
+                                    var idx = pieceCanvas.pieceAt(mouse.x, mouse.y)
+                                    pieceCanvas.hoveredPiece = idx
+                                    if (idx >= 0 && idx < pieceMapTab.pieceData.length)
+                                        pieceCanvas.hoveredPieceAvail = pieceMapTab.pieceData[idx]
+                                    else
+                                        pieceCanvas.hoveredPieceAvail = 0
+                                }
+                                onExited: pieceCanvas.hoveredPiece = -1
+
+                                ToolTip.visible: pieceCanvas.hoveredPiece >= 0
+                                ToolTip.delay: 0
+                                ToolTip.text: {
+                                    var idx = pieceCanvas.hoveredPiece
+                                    if (idx < 0) return ""
+                                    var val = pieceCanvas.hoveredPieceAvail
+                                    var status
+                                    if (val === -2) {
+                                        status = "Downloaded"
+                                    } else if (val === -3) {
+                                        status = "Skipped (file not selected)"
+                                    } else if (val <= -4) {
+                                        var pct = Math.min(99, -(val + 4))
+                                        status = "Downloading - " + pct + "% of blocks received"
+                                    } else {
+                                        var hp  = (val & 0x10000) !== 0
+                                        var cnt = val & 0xFFFF
+                                        if (cnt === 0)
+                                            status = "Unavailable - no peers have this piece"
+                                        else
+                                            status = "Missing - " + cnt + (cnt === 1 ? " peer has it" : " peers have it") + (hp ? " (high priority)" : "")
+                                    }
+                                    return "Piece #" + idx + "\n" + status
+                                }
+                            }
+                        }
                     }
                 }
             }

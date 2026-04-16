@@ -31,6 +31,8 @@
 #include <QHostAddress>
 #include <QHostInfo>
 #include <QNetworkInterface>
+#include <QNetworkProxy>
+#include <QNetworkProxyFactory>
 #include <QUrl>
 #include <QFile>
 #include <QStandardPaths>
@@ -85,6 +87,27 @@ QString normalizeTorrentUri(const QString &value) {
     if (isBareTorrentInfoHash(trimmed))
         return QStringLiteral("magnet:?xt=urn:btih:%1").arg(trimmed.toLower());
     return trimmed;
+}
+
+QString trackerStatusKey(const QString &urlText) {
+    const QString trimmed = urlText.trimmed();
+    if (trimmed.isEmpty())
+        return {};
+
+    QUrl url(trimmed);
+    if (!url.isValid() || url.scheme().isEmpty() || url.host().isEmpty())
+        return trimmed;
+
+    QString path = url.path();
+    while (path.endsWith(QLatin1Char('/')) && path.size() > 1)
+        path.chop(1);
+    url.setPath(path);
+
+    QString scheme = url.scheme().toLower();
+    QString host = url.host().toLower();
+    url.setScheme(scheme);
+    url.setHost(host);
+    return url.toString(QUrl::FullyEncoded);
 }
 
 libtorrent::span<char const> asSpan(const QByteArray &data) {
@@ -378,6 +401,8 @@ void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) 
     m_pausedIds.remove(downloadId);
     m_movingIds.remove(downloadId);
     m_lastResumeSaveRequest.remove(downloadId);
+    m_trackerReannounceUntil.remove(downloadId);
+    m_trackerAlertSnapshots.remove(downloadId);
     if (handle.is_valid() && m_session) {
         libtorrent::remove_flags_t flags{};
         if (deleteFiles)
@@ -453,6 +478,54 @@ bool TorrentSessionManager::setFileWanted(const QString &downloadId, int row, bo
 #endif
 }
 
+bool TorrentSessionManager::setFileWantedByFileIndex(const QString &downloadId, int fileIndex, bool wanted) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    auto *model = m_fileModels.value(downloadId, nullptr);
+    const auto handle = m_handles.value(downloadId);
+    if (!model || !handle.is_valid())
+        return false;
+    auto *fileModel = qobject_cast<TorrentFileModel *>(model);
+    if (!fileModel || !fileModel->setWantedByFileIndex(fileIndex, wanted))
+        return false;
+
+    const QVector<TorrentFileModel::Entry> entries = fileModel->fileEntries();
+    std::vector<libtorrent::download_priority_t> priorities;
+    priorities.reserve(entries.size());
+    for (const auto &entry : entries)
+        priorities.push_back(entry.wanted ? libtorrent::default_priority : libtorrent::dont_download);
+    handle.prioritize_files(priorities);
+    saveResumeData(downloadId);
+    return true;
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(fileIndex); Q_UNUSED(wanted);
+    return false;
+#endif
+}
+
+bool TorrentSessionManager::setFileWantedByPath(const QString &downloadId, const QString &path, bool wanted) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    auto *model = m_fileModels.value(downloadId, nullptr);
+    const auto handle = m_handles.value(downloadId);
+    if (!model || !handle.is_valid())
+        return false;
+    auto *fileModel = qobject_cast<TorrentFileModel *>(model);
+    if (!fileModel || !fileModel->setWantedByPath(path, wanted))
+        return false;
+
+    const QVector<TorrentFileModel::Entry> entries = fileModel->fileEntries();
+    std::vector<libtorrent::download_priority_t> priorities;
+    priorities.reserve(entries.size());
+    for (const auto &entry : entries)
+        priorities.push_back(entry.wanted ? libtorrent::default_priority : libtorrent::dont_download);
+    handle.prioritize_files(priorities);
+    saveResumeData(downloadId);
+    return true;
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(path); Q_UNUSED(wanted);
+    return false;
+#endif
+}
+
 bool TorrentSessionManager::addTracker(const QString &downloadId, const QString &url) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const auto handle = m_handles.value(downloadId);
@@ -460,6 +533,8 @@ bool TorrentSessionManager::addTracker(const QString &downloadId, const QString 
         return false;
     handle.add_tracker(libtorrent::announce_entry(url.trimmed().toStdString()));
     handle.post_trackers();
+    if (DownloadItem *item = m_items.value(downloadId, nullptr).data())
+        item->setTorrentTrackers(trackerUrls(downloadId));
     saveResumeData(downloadId);
     return true;
 #else
@@ -482,6 +557,13 @@ bool TorrentSessionManager::removeTracker(const QString &downloadId, const QStri
                    trackers.end());
     handle.replace_trackers(trackers);
     handle.post_trackers();
+    if (DownloadItem *item = m_items.value(downloadId, nullptr).data()) {
+        QStringList urls;
+        urls.reserve(static_cast<int>(trackers.size()));
+        for (const auto &tracker : trackers)
+            urls.push_back(QString::fromStdString(tracker.url));
+        item->setTorrentTrackers(urls);
+    }
     saveResumeData(downloadId);
     return true;
 #else
@@ -568,6 +650,63 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
                      QStringLiteral("0.0.0.0:%1,[::]:%1").arg(settings->torrentListenPort()).toStdString());
         pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
     }
+    // Apply proxy settings so tracker announces and peer connections are routed
+    // through the same proxy the rest of the app uses.
+    const int proxyType = settings->proxyType();
+    if (proxyType == 0) {
+        // No proxy — clear any previously configured proxy.
+        pack.set_int(libtorrent::settings_pack::proxy_type,
+                     libtorrent::settings_pack::none);
+        pack.set_str(libtorrent::settings_pack::proxy_hostname, std::string());
+        pack.set_int(libtorrent::settings_pack::proxy_port, 0);
+        pack.set_str(libtorrent::settings_pack::proxy_username, std::string());
+        pack.set_str(libtorrent::settings_pack::proxy_password, std::string());
+    } else if (proxyType == 1) {
+        // System proxy — query Qt for the resolved proxy and forward it.
+        const QNetworkProxyQuery q(QUrl(QStringLiteral("http://example.com")));
+        const QList<QNetworkProxy> list = QNetworkProxyFactory::systemProxyForQuery(q);
+        const QNetworkProxy &sys = (!list.isEmpty() && list.first().type() != QNetworkProxy::NoProxy)
+                                   ? list.first()
+                                   : QNetworkProxy(QNetworkProxy::NoProxy);
+        if (sys.type() == QNetworkProxy::Socks5Proxy) {
+            pack.set_int(libtorrent::settings_pack::proxy_type,
+                         libtorrent::settings_pack::socks5);
+        } else if (sys.type() == QNetworkProxy::HttpProxy) {
+            pack.set_int(libtorrent::settings_pack::proxy_type,
+                         libtorrent::settings_pack::http);
+        } else {
+            pack.set_int(libtorrent::settings_pack::proxy_type,
+                         libtorrent::settings_pack::none);
+        }
+        if (sys.type() != QNetworkProxy::NoProxy) {
+            pack.set_str(libtorrent::settings_pack::proxy_hostname,
+                         sys.hostName().toStdString());
+            pack.set_int(libtorrent::settings_pack::proxy_port, sys.port());
+            pack.set_str(libtorrent::settings_pack::proxy_username,
+                         sys.user().toStdString());
+            pack.set_str(libtorrent::settings_pack::proxy_password,
+                         sys.password().toStdString());
+        }
+    } else {
+        // Manual HTTP or SOCKS5 proxy.
+        const int ltType = (proxyType == 3)
+            ? (settings->proxyUsername().isEmpty()
+               ? libtorrent::settings_pack::socks5
+               : libtorrent::settings_pack::socks5_pw)
+            : (settings->proxyUsername().isEmpty()
+               ? libtorrent::settings_pack::http
+               : libtorrent::settings_pack::http_pw);
+        pack.set_int(libtorrent::settings_pack::proxy_type, ltType);
+        pack.set_str(libtorrent::settings_pack::proxy_hostname,
+                     settings->proxyHost().trimmed().toStdString());
+        pack.set_int(libtorrent::settings_pack::proxy_port,
+                     settings->proxyPort());
+        pack.set_str(libtorrent::settings_pack::proxy_username,
+                     settings->proxyUsername().toStdString());
+        pack.set_str(libtorrent::settings_pack::proxy_password,
+                     settings->proxyPassword().toStdString());
+    }
+
     m_session->apply_settings(pack);
 }
 
@@ -658,6 +797,23 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
         m_peerModels[item->id()] = new TorrentPeerModel(this);
     if (!m_trackerModels.contains(item->id()))
         m_trackerModels[item->id()] = new TorrentTrackerModel(this);
+
+    const QStringList persistedTrackers = item->torrentTrackers();
+    if (!persistedTrackers.isEmpty()) {
+        std::vector<libtorrent::announce_entry> entries;
+        entries.reserve(persistedTrackers.size());
+        for (const QString &trackerUrl : persistedTrackers) {
+            const QString trimmed = trackerUrl.trimmed();
+            if (!trimmed.isEmpty())
+                entries.emplace_back(trimmed.toStdString());
+        }
+        if (!entries.empty()) {
+            handle.replace_trackers(entries);
+            handle.post_trackers();
+        }
+    }
+
+    item->setTorrentTrackers(trackerUrls(item->id()));
     item->setIsTorrent(true);
     item->setStatus(startPaused ? DownloadItem::Status::Paused : DownloadItem::Status::Checking);
     updateItemFromStatus(item, handle);
@@ -728,6 +884,93 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             const auto buf = libtorrent::write_resume_data_buf(resume->params);
             const QByteArray encoded(buf.data(), static_cast<qsizetype>(buf.size()));
             item->setTorrentResumeData(QString::fromLatin1(encoded.toBase64()));
+        }
+        return;
+    }
+
+    if (auto *announce = libtorrent::alert_cast<libtorrent::tracker_announce_alert>(alert)) {
+        const QString id = idForHandle(announce->handle);
+        if (!id.isEmpty()) {
+            TrackerAlertSnapshot snapshot;
+            snapshot.status = QStringLiteral("Announcing");
+            snapshot.message = QStringLiteral("Announce sent");
+            snapshot.updatedAt = QDateTime::currentDateTimeUtc();
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(announce->tracker_url()))] = snapshot;
+            updateModels(id, announce->handle);
+        }
+        return;
+    }
+
+    if (auto *reply = libtorrent::alert_cast<libtorrent::tracker_reply_alert>(alert)) {
+        const QString id = idForHandle(reply->handle);
+        if (!id.isEmpty()) {
+            TrackerAlertSnapshot snapshot;
+            snapshot.status = QStringLiteral("Working");
+            snapshot.message = QStringLiteral("Tracker replied (%1 peers)").arg(reply->num_peers);
+            snapshot.peers = std::max(0, reply->num_peers);
+            snapshot.updatedAt = QDateTime::currentDateTimeUtc();
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(reply->tracker_url()))] = snapshot;
+            updateModels(id, reply->handle);
+        }
+        return;
+    }
+
+    if (auto *warning = libtorrent::alert_cast<libtorrent::tracker_warning_alert>(alert)) {
+        const QString id = idForHandle(warning->handle);
+        if (!id.isEmpty()) {
+            TrackerAlertSnapshot snapshot;
+            snapshot.status = QStringLiteral("Warning");
+            snapshot.message = QString::fromUtf8(warning->warning_message());
+            snapshot.updatedAt = QDateTime::currentDateTimeUtc();
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(warning->tracker_url()))] = snapshot;
+            updateModels(id, warning->handle);
+        }
+        return;
+    }
+
+    if (auto *trackerError = libtorrent::alert_cast<libtorrent::tracker_error_alert>(alert)) {
+        const QString id = idForHandle(trackerError->handle);
+        if (!id.isEmpty()) {
+            TrackerAlertSnapshot snapshot;
+            snapshot.status = QStringLiteral("Error");
+            const QString reason = QString::fromUtf8(trackerError->failure_reason());
+            snapshot.message = reason.isEmpty()
+                ? QString::fromStdString(trackerError->error.message())
+                : reason;
+            snapshot.updatedAt = QDateTime::currentDateTimeUtc();
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(trackerError->tracker_url()))] = snapshot;
+            updateModels(id, trackerError->handle);
+        }
+        return;
+    }
+
+    if (auto *scrapeReply = libtorrent::alert_cast<libtorrent::scrape_reply_alert>(alert)) {
+        const QString id = idForHandle(scrapeReply->handle);
+        if (!id.isEmpty()) {
+            TrackerAlertSnapshot snapshot;
+            snapshot.status = QStringLiteral("Working");
+            snapshot.message = QStringLiteral("Scrape reply received");
+            snapshot.seeders = std::max(0, scrapeReply->complete);
+            snapshot.peers = std::max(0, scrapeReply->incomplete);
+            snapshot.updatedAt = QDateTime::currentDateTimeUtc();
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(scrapeReply->tracker_url()))] = snapshot;
+            updateModels(id, scrapeReply->handle);
+        }
+        return;
+    }
+
+    if (auto *scrapeFailed = libtorrent::alert_cast<libtorrent::scrape_failed_alert>(alert)) {
+        const QString id = idForHandle(scrapeFailed->handle);
+        if (!id.isEmpty()) {
+            TrackerAlertSnapshot snapshot;
+            snapshot.status = QStringLiteral("Error");
+            const QString reason = QString::fromUtf8(scrapeFailed->error_message());
+            snapshot.message = reason.isEmpty()
+                ? QString::fromStdString(scrapeFailed->error.message())
+                : reason;
+            snapshot.updatedAt = QDateTime::currentDateTimeUtc();
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(scrapeFailed->tracker_url()))] = snapshot;
+            updateModels(id, scrapeFailed->handle);
         }
         return;
     }
@@ -975,10 +1218,23 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             entry.tier = tracker.tier;
             entry.source = QStringLiteral("Tracker");
             entry.systemEntry = false;
+            const QDateTime nowUtc = QDateTime::currentDateTimeUtc();
+            const QString trackerKey = trackerStatusKey(entry.url);
+            const QDateTime reannounceUntil =
+                m_trackerReannounceUntil.value(downloadId).value(trackerKey);
+            const bool reannouncePending = reannounceUntil.isValid() && nowUtc < reannounceUntil;
             QString endpointMessage;
             QString endpointError;
+            bool anyUpdating = false;
+            bool anyStarted = false;
+            bool anyCompleted = false;
+            bool anyFailures = false;
             for (const auto &endpoint : tracker.endpoints) {
                 for (const auto &infohash : endpoint.info_hashes) {
+                    anyUpdating = anyUpdating || infohash.updating;
+                    anyStarted = anyStarted || infohash.start_sent;
+                    anyCompleted = anyCompleted || infohash.complete_sent;
+                    anyFailures = anyFailures || (infohash.fails > 0);
                     if (endpointMessage.isEmpty() && !infohash.message.empty())
                         endpointMessage = QString::fromStdString(infohash.message);
                     if (endpointError.isEmpty() && infohash.last_error)
@@ -989,16 +1245,50 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                 if (!endpointMessage.isEmpty() && !endpointError.isEmpty())
                     break;
             }
-            entry.status = !endpointError.isEmpty()
-                ? QStringLiteral("Error")
-                : (tracker.verified ? QStringLiteral("Working") : QStringLiteral("Idle"));
-            entry.message = !endpointMessage.isEmpty() ? endpointMessage : endpointError;
+            if (!endpointError.isEmpty()) {
+                entry.status = QStringLiteral("Error");
+                entry.message = endpointError;
+            } else if (anyUpdating) {
+                entry.status = QStringLiteral("Announcing");
+                entry.message = endpointMessage;
+            } else if (tracker.verified) {
+                entry.status = QStringLiteral("Working");
+                entry.message = endpointMessage;
+            } else if (anyStarted || anyCompleted) {
+                entry.status = QStringLiteral("Working");
+                entry.message = endpointMessage;
+            } else if (anyFailures) {
+                entry.status = QStringLiteral("Error");
+                entry.message = endpointMessage;
+            } else if (!endpointMessage.isEmpty()) {
+                entry.status = QStringLiteral("Announcing");
+                entry.message = endpointMessage;
+            } else if (reannouncePending) {
+                entry.status = QStringLiteral("Reannouncing");
+                entry.message = QStringLiteral("Reannounce requested, waiting for tracker response");
+            } else {
+                entry.status = QStringLiteral("Idle");
+            }
 
             if (const auto *infohash = firstTrackerInfohash(tracker)) {
                 entry.seeders = infohash->scrape_complete >= 0 ? infohash->scrape_complete : 0;
                 entry.peers = infohash->scrape_incomplete >= 0 ? infohash->scrape_incomplete : 0;
                 if (entry.message.isEmpty())
                     entry.message = QString::fromStdString(infohash->message);
+            }
+
+            const TrackerAlertSnapshot snapshot =
+                m_trackerAlertSnapshots.value(downloadId).value(trackerKey);
+            if (snapshot.updatedAt.isValid()
+                && snapshot.updatedAt.secsTo(QDateTime::currentDateTimeUtc()) <= 120) {
+                if (!snapshot.status.isEmpty())
+                    entry.status = snapshot.status;
+                if (!snapshot.message.isEmpty())
+                    entry.message = snapshot.message;
+                if (snapshot.seeders >= 0)
+                    entry.seeders = snapshot.seeders;
+                if (snapshot.peers >= 0)
+                    entry.peers = snapshot.peers;
             }
 
             // Geo-locate tracker hostname
@@ -1459,6 +1749,150 @@ void TorrentSessionManager::forceRecheck(const QString &downloadId) {
     handle.force_recheck();
 #else
     Q_UNUSED(downloadId);
+#endif
+}
+
+void TorrentSessionManager::forceReannounce(const QString &downloadId, const QStringList &trackerUrls) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid())
+        return;
+
+    // ignore_min_interval bypasses the tracker's minimum announce interval so
+    // the request actually fires even if we just announced a minute ago.
+    const auto flags = libtorrent::torrent_handle::ignore_min_interval;
+
+    const QDateTime reannounceUntil = QDateTime::currentDateTimeUtc().addSecs(15);
+
+    if (trackerUrls.isEmpty()) {
+        // Reannounce to every tracker immediately.
+        // tracker_index=-1 is the libtorrent convention for "all trackers".
+        handle.force_reannounce(0, -1, flags);
+        const auto trackers = handle.trackers();
+        auto &untilByUrl = m_trackerReannounceUntil[downloadId];
+        for (const auto &tracker : trackers)
+            untilByUrl[trackerStatusKey(QString::fromStdString(tracker.url))] = reannounceUntil;
+        handle.post_trackers();
+        updateModels(downloadId, handle);
+        return;
+    }
+
+    // Reannounce only to the specified tracker URLs.
+    const auto trackers = handle.trackers();
+    auto &untilByUrl = m_trackerReannounceUntil[downloadId];
+    for (int i = 0; i < static_cast<int>(trackers.size()); ++i) {
+        const QString url = QString::fromStdString(trackers[i].url);
+        if (trackerUrls.contains(url)) {
+            handle.force_reannounce(0, i, flags);
+            untilByUrl[trackerStatusKey(url)] = reannounceUntil;
+        }
+    }
+    handle.post_trackers();
+    updateModels(downloadId, handle);
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(trackerUrls);
+#endif
+}
+
+QStringList TorrentSessionManager::trackerUrls(const QString &downloadId) const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid())
+        return {};
+    const auto trackers = handle.trackers();
+    QStringList urls;
+    urls.reserve(static_cast<int>(trackers.size()));
+    for (const auto &tracker : trackers)
+        urls.push_back(QString::fromStdString(tracker.url));
+    return urls;
+#else
+    Q_UNUSED(downloadId);
+    return {};
+#endif
+}
+
+// Piece map encoding (one int per piece):
+//   -2               : have (fully downloaded and verified)
+//   -3               : skipped (user deselected — dont_download priority)
+//   -(4 + pct)       : actively downloading; pct = 0..99 block progress %
+//                      so the range is -4 (0%) .. -103 (99%)
+//   0                : unavailable — piece is missing AND no peers have it
+//   N                : missing, N peers have it (normal priority)
+//   N | 0x10000      : missing, N peers have it AND the piece is high-priority
+QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid())
+        return {};
+
+    std::vector<int> avail;
+    try {
+        handle.piece_availability(avail);
+    } catch (...) {
+        return {};
+    }
+    if (avail.empty())
+        return {};
+
+    libtorrent::torrent_status st;
+    try {
+        st = handle.status(libtorrent::torrent_handle::query_pieces);
+    } catch (...) {
+        return {};
+    }
+
+    const int total = static_cast<int>(avail.size());
+    const bool hasBitfield = (static_cast<int>(st.pieces.size()) == total);
+    // In seed mode libtorrent may return an empty pieces bitfield even though
+    // all pieces are present. num_pieces is the reliable fallback.
+    const bool isComplete = (st.num_pieces == total);
+
+    // Piece priorities: detect skipped (dont_download = 0) and high-priority (top_priority = 7).
+    std::vector<libtorrent::download_priority_t> priorities;
+    try {
+        priorities = handle.get_piece_priorities();
+    } catch (...) {}
+    const bool hasPriorities = (static_cast<int>(priorities.size()) == total);
+
+    QVariantList out;
+    out.reserve(total);
+    for (int i = 0; i < total; ++i) {
+        if ((hasBitfield && st.pieces[libtorrent::piece_index_t{i}]) || (!hasBitfield && isComplete)) {
+            out.push_back(-2);  // have
+            continue;
+        }
+        if (hasPriorities && priorities[i] == libtorrent::dont_download) {
+            out.push_back(-3);  // skipped — user deselected this file/piece
+            continue;
+        }
+        int val = avail[i];
+        if (hasPriorities && priorities[i] == libtorrent::top_priority && val > 0)
+            val |= 0x10000;  // flag: high-priority missing piece
+        out.push_back(val);
+    }
+
+    // Overwrite downloading pieces with block-level progress encoded as -(4 + pct).
+    // get_download_queue() returns only active pieces, so this loop is cheap.
+    try {
+        const auto queue = handle.get_download_queue();
+        for (const auto &pp : queue) {
+            const int idx = static_cast<int>(pp.piece_index);
+            if (idx < 0 || idx >= total)
+                continue;
+            if (out[idx] == -2 || out[idx] == -3)
+                continue;  // already have / skipped — don't overwrite
+            const int blocks = pp.blocks_in_piece;
+            // finished = written to disk, writing = in write queue; both count as progress
+            const int done   = pp.finished + pp.writing;
+            const int pct    = (blocks > 0) ? qBound(0, done * 100 / blocks, 99) : 0;
+            out[idx] = -(4 + pct);
+        }
+    } catch (...) {}
+
+    return out;
+#else
+    Q_UNUSED(downloadId);
+    return {};
 #endif
 }
 

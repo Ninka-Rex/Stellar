@@ -227,16 +227,34 @@ void SegmentedTransfer::applyRequestHeaders(QNetworkRequest &req, const QUrl &ur
     req.setRawHeader("Accept", "*/*");
     req.setRawHeader("Accept-Language", "en-US,en;q=0.9");
 
+    // SECURITY: CRLF header injection (CWE-113).
+    // Qt's setRawHeader() does not validate header values for embedded CRLF
+    // sequences.  Both cookies and referrer originate from the browser
+    // extension (untrusted external input).  A value containing "\r\n" would
+    // split the HTTP request and let an attacker inject arbitrary headers,
+    // potentially poisoning shared caches or bypassing server-side checks.
+    // Strip CR, LF, and NUL before touching any header derived from
+    // extension-supplied data.
+    auto stripCrlf = [](const QString &s) -> QByteArray {
+        QString out;
+        out.reserve(s.size());
+        for (const QChar c : s) {
+            if (c != u'\r' && c != u'\n' && c != u'\0')
+                out.append(c);
+        }
+        return out.toUtf8();
+    };
+
     // Cookies are injected into the NAM's cookie jar by seedCookieJar()
     // so they survive redirect chains.  Only fall back to the raw header
     // if the jar is unavailable (should never happen in practice).
     if (m_item && !m_item->cookies().isEmpty() && (!m_nam || !m_nam->cookieJar()))
-        req.setRawHeader("Cookie", m_item->cookies().toUtf8());
+        req.setRawHeader("Cookie", stripCrlf(m_item->cookies()));
 
     // Referer: critical for hotlink-protected hosters.  Stored on the item
     // by the browser extension but was previously never sent — major gap.
     if (m_item && !m_item->referrer().isEmpty())
-        req.setRawHeader("Referer", m_item->referrer().toUtf8());
+        req.setRawHeader("Referer", stripCrlf(m_item->referrer()));
 
     if (m_item && !m_item->username().isEmpty()) {
         const QByteArray credentials =
@@ -979,9 +997,9 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
         if (seg.done)
             m[QStringLiteral("info")] = QStringLiteral("Complete");
         else if (seg.reply)
-            m[QStringLiteral("info")] = QStringLiteral("Downloading...");
+            m[QStringLiteral("info")] = QStringLiteral("Receiving data...");
         else
-            m[QStringLiteral("info")] = QStringLiteral("Waiting...");
+            m[QStringLiteral("info")] = QStringLiteral("Receiving data...");
         list.append(m);
     }
     m_item->setSegmentData(list);
@@ -1076,6 +1094,16 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
     // item's filename, which meant an invalid filename could get past the
     // equality check and then fail at rename time.
     filename = sanitizeFilename(filename);
+
+    // SECURITY: Path traversal via Content-Disposition (CWE-22).
+    // sanitizeFilename() strips characters illegal on Windows/Linux but does
+    // NOT strip directory separators that survive as '..' components (e.g.
+    // "../../evil.exe" contains only dots and letters, all of which are
+    // legal).  A malicious server can write files outside the save directory
+    // by sending:  Content-Disposition: attachment; filename="../../evil.exe"
+    // Taking only the basename discards any directory component the server
+    // tried to inject, whether encoded or plain.
+    filename = QFileInfo(filename).fileName();
     if (filename == m_item->filename()) return;
 
     // Rename part files on disk before updating the stored filename, so the
@@ -1111,46 +1139,45 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
 QString SegmentedTransfer::parseContentDispositionFilename(const QByteArray &header) {
     if (header.isEmpty()) return {};
 
-    qDebug() << "[parseContentDispositionFilename] raw header:" << header;
-
-    // Try RFC 5987 filename*=UTF-8''encoded_name first
+    // Try RFC 5987 extended value (filename*=charset'language'encoded) first.
+    // SECURITY: CWE-20 — validate that the charset field claims UTF-8 before
+    // calling QUrl::fromPercentEncoding (which always decodes as UTF-8).
+    // Silently accepting ISO-8859-1 or windows-1251 would produce mojibake for
+    // bytes ≥ 0x80, potentially resulting in corrupt filenames on disk.
+    // If the charset is anything other than UTF-8 we fall through to the plain
+    // filename= field which is unambiguously interpreted as UTF-8/Latin-1.
     int starIdx = header.indexOf("filename*=");
     if (starIdx >= 0) {
         QByteArray val = header.mid(starIdx + 10).trimmed();
-        // Strip encoding prefix up to the second single-quote
+        // Format: charset'language'encoded-value
         int q1 = val.indexOf('\'');
         if (q1 >= 0) {
+            const QByteArray charset = val.left(q1).trimmed().toLower();
             int q2 = val.indexOf('\'', q1 + 1);
-            if (q2 >= 0)
+            if (q2 >= 0 && (charset == "utf-8" || charset == "utf8")) {
                 val = val.mid(q2 + 1);
-        }
-        // May be terminated by ;
-        int semi = val.indexOf(';');
-        if (semi >= 0) val = val.left(semi);
-        QString decoded = QUrl::fromPercentEncoding(val.trimmed());
-        if (!decoded.isEmpty()) {
-            qDebug() << "[parseContentDispositionFilename] RFC 5987 filename:" << decoded;
-            return decoded;
+                int semi = val.indexOf(';');
+                if (semi >= 0) val = val.left(semi);
+                QString decoded = QUrl::fromPercentEncoding(val.trimmed());
+                if (!decoded.isEmpty())
+                    return decoded;
+            }
+            // Non-UTF-8 charset claimed — fall through to plain filename=
         }
     }
 
     // Plain filename="value" or filename=value
     int idx = header.indexOf("filename=");
-    if (idx < 0) {
-        qDebug() << "[parseContentDispositionFilename] no filename= found";
+    if (idx < 0)
         return {};
-    }
     QByteArray val = header.mid(idx + 9).trimmed();
-    // May be terminated by ;
     int semi = val.indexOf(';');
     if (semi >= 0) val = val.left(semi);
     val = val.trimmed();
     // Strip quotes
     if (val.startsWith('"') && val.endsWith('"'))
         val = val.mid(1, val.size() - 2);
-    QString result = QString::fromUtf8(val);
-    qDebug() << "[parseContentDispositionFilename] plain filename:" << result;
-    return result;
+    return QString::fromUtf8(val);
 }
 
 bool SegmentedTransfer::isGoogleDriveUrl(const QUrl &url) const {

@@ -118,7 +118,12 @@ private:
     int                    m_downloadProgress{0};
     QString                m_statusText;
 
+    // SHA-512 hex digest fetched from GitHub's SHA2-512SUMS file before the
+    // binary download starts; verified in onBinaryDownloadFinished().
+    QString m_expectedSha512;
+
     QProcess      *m_versionProcess{nullptr};    // running --version probe
     QProcess      *m_selfUpdateProcess{nullptr}; // running -U self-update
     QNetworkReply *m_downloadReply{nullptr};     // in-flight binary download
+    QNetworkReply *m_sumsReply{nullptr};         // in-flight SHA2-512SUMS fetch
 };

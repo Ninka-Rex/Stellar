@@ -462,9 +462,39 @@ bool TorrentSearchManager::togglePluginEnabled(int row) {
 }
 
 bool TorrentSearchManager::uninstallPlugin(const QString &fileName) {
-    if (fileName.isEmpty())
+    const QString trimmed = fileName.trimmed();
+    if (trimmed.isEmpty())
         return false;
-    const QString path = QDir(pluginDirectory()).filePath(fileName);
+
+    // Accept only plain plugin filenames (no path segments), and only .py plugins.
+    const QFileInfo nameInfo(trimmed);
+    if (nameInfo.fileName() != trimmed
+        || nameInfo.suffix().compare(QStringLiteral("py"), Qt::CaseInsensitive) != 0) {
+        return false;
+    }
+
+    static const QRegularExpression kSafePluginName(
+        QStringLiteral("^[A-Za-z0-9_.-]+\\.py$"),
+        QRegularExpression::CaseInsensitiveOption);
+    if (!kSafePluginName.match(trimmed).hasMatch())
+        return false;
+
+    const QDir pluginDir(pluginDirectory());
+    const QString pluginRoot = QDir::cleanPath(pluginDir.absolutePath());
+    const QString candidatePath = QDir::cleanPath(pluginDir.absoluteFilePath(trimmed));
+    const Qt::CaseSensitivity cs =
+#if defined(Q_OS_WIN)
+        Qt::CaseInsensitive;
+#else
+        Qt::CaseSensitive;
+#endif
+    const QString rootPrefix = pluginRoot + QDir::separator();
+    if (candidatePath.compare(pluginRoot, cs) != 0
+        && !candidatePath.startsWith(rootPrefix, cs)) {
+        return false;
+    }
+
+    const QString path = candidatePath;
     const bool ok = QFile::remove(path);
     refreshPlugins();
     return ok;
