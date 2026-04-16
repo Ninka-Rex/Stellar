@@ -37,6 +37,10 @@ Window {
 
     property bool fileBoxMoved: false
 
+    onItemChanged: {
+        fileBoxMoved = false
+    }
+
     width: 480
     height: 280
     minimumWidth: 420
@@ -126,7 +130,7 @@ Window {
                     ColumnLayout {
                         spacing: 0
                         Text {
-                            text: fileBoxMoved ? "(File moved)" : ((item ? item.filename : "") + " (Drag to move)")
+                            text: fileBoxMoved ? "(File copied)" : ((item ? item.filename : "") + " (Drag to copy)")
                             color: fileBoxMoved ? "#888888" : (fileDragArea.pressed ? "#88bbff" : fileDragArea.containsMouse ? "#88bbff" : "#d0d0d0")
                             font.pixelSize: 11
                             font.bold: true

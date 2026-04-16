@@ -186,7 +186,6 @@ chrome.runtime.onInstalled.addListener(async () => {
 chrome.contextMenus.onClicked.addListener(async (info) => {
     const url = info.linkUrl || info.srcUrl || info.pageUrl;
     if (!url) return;
-    const { requestDownload } = await import("./shared/messaging.js");
     let cookieHeader = "";
     try {
         const urlObj = new URL(url);
@@ -204,7 +203,11 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
         }
         cookieHeader = allCookies.map(c => `${c.name}=${c.value}`).join("; ");
     } catch { /* cookies permission may not be granted */ }
-    await requestDownload({ url, referrer: info.frameUrl ?? info.pageUrl ?? "", pageUrl: info.pageUrl ?? "", cookies: cookieHeader });
+    try {
+        await requestDownload({ url, referrer: info.frameUrl ?? info.pageUrl ?? "", pageUrl: info.pageUrl ?? "", cookies: cookieHeader });
+    } catch (err) {
+        console.error("[Stellar] Context menu download failed:", err);
+    }
 });
 
 chrome.runtime.onStartup.addListener(async () => {

@@ -1003,7 +1003,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
     }
 }
 
-void TorrentSessionManager::updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle) {
+void TorrentSessionManager::updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle, bool forceTrackerUpdate) {
     if (!handle.is_valid())
         return;
 
@@ -1171,7 +1171,9 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
     // Tracker models are notably heavier because they also resolve and
     // geo-locate tracker endpoints, so keep those on the slower cadence
     // without penalizing the peer list refresh rate.
-    if (m_modelTick % 3 != 0)
+    // forceTrackerUpdate bypasses the cadence gate (e.g. after a manual reannounce
+    // so the status change is visible immediately rather than up to 3s later).
+    if (!forceTrackerUpdate && m_modelTick % 3 != 0)
         return;
 
     if (auto *trackerModel = qobject_cast<TorrentTrackerModel *>(m_trackerModels.value(downloadId, nullptr))) {
@@ -1764,31 +1766,20 @@ void TorrentSessionManager::forceReannounce(const QString &downloadId, const QSt
 
     const QDateTime reannounceUntil = QDateTime::currentDateTimeUtc().addSecs(15);
 
-    if (trackerUrls.isEmpty()) {
-        // Reannounce to every tracker immediately.
-        // tracker_index=-1 is the libtorrent convention for "all trackers".
-        handle.force_reannounce(0, -1, flags);
-        const auto trackers = handle.trackers();
-        auto &untilByUrl = m_trackerReannounceUntil[downloadId];
-        for (const auto &tracker : trackers)
-            untilByUrl[trackerStatusKey(QString::fromStdString(tracker.url))] = reannounceUntil;
-        handle.post_trackers();
-        updateModels(downloadId, handle);
-        return;
-    }
-
-    // Reannounce only to the specified tracker URLs.
+    // Always iterate by index — passing tracker_index=-1 doesn't reliably
+    // propagate ignore_min_interval to all trackers in all libtorrent versions.
     const auto trackers = handle.trackers();
     auto &untilByUrl = m_trackerReannounceUntil[downloadId];
+    const bool all = trackerUrls.isEmpty();
     for (int i = 0; i < static_cast<int>(trackers.size()); ++i) {
         const QString url = QString::fromStdString(trackers[i].url);
-        if (trackerUrls.contains(url)) {
+        if (all || trackerUrls.contains(url)) {
             handle.force_reannounce(0, i, flags);
             untilByUrl[trackerStatusKey(url)] = reannounceUntil;
         }
     }
     handle.post_trackers();
-    updateModels(downloadId, handle);
+    updateModels(downloadId, handle, /*forceTrackerUpdate=*/true);
 #else
     Q_UNUSED(downloadId); Q_UNUSED(trackerUrls);
 #endif
@@ -1825,15 +1816,6 @@ QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) c
     if (!handle.is_valid())
         return {};
 
-    std::vector<int> avail;
-    try {
-        handle.piece_availability(avail);
-    } catch (...) {
-        return {};
-    }
-    if (avail.empty())
-        return {};
-
     libtorrent::torrent_status st;
     try {
         st = handle.status(libtorrent::torrent_handle::query_pieces);
@@ -1841,7 +1823,24 @@ QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) c
         return {};
     }
 
-    const int total = static_cast<int>(avail.size());
+    // Determine total piece count. status().num_pieces counts only pieces we
+    // have verified, so prefer the torrent file's authoritative value when available.
+    int total = 0;
+    if (auto tf = handle.torrent_file())
+        total = tf->num_pieces();
+    if (total <= 0)
+        total = st.num_pieces;
+    if (total <= 0)
+        return {};
+
+    std::vector<int> avail;
+    try {
+        handle.piece_availability(avail);
+    } catch (...) {}
+    // In seed mode libtorrent returns an empty availability vector because it
+    // no longer tracks per-piece peer counts. Treat that as fully seeded.
+    const bool seedMode = avail.empty();
+
     const bool hasBitfield = (static_cast<int>(st.pieces.size()) == total);
     // In seed mode libtorrent may return an empty pieces bitfield even though
     // all pieces are present. num_pieces is the reliable fallback.
@@ -1857,7 +1856,7 @@ QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) c
     QVariantList out;
     out.reserve(total);
     for (int i = 0; i < total; ++i) {
-        if ((hasBitfield && st.pieces[libtorrent::piece_index_t{i}]) || (!hasBitfield && isComplete)) {
+        if ((hasBitfield && st.pieces[libtorrent::piece_index_t{i}]) || (!hasBitfield && isComplete) || seedMode) {
             out.push_back(-2);  // have
             continue;
         }
@@ -1865,7 +1864,7 @@ QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) c
             out.push_back(-3);  // skipped — user deselected this file/piece
             continue;
         }
-        int val = avail[i];
+        int val = static_cast<int>(avail.size()) > i ? avail[i] : 0;
         if (hasPriorities && priorities[i] == libtorrent::top_priority && val > 0)
             val |= 0x10000;  // flag: high-priority missing piece
         out.push_back(val);

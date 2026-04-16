@@ -116,7 +116,7 @@ private:
     void handleAlert(libtorrent::alert *alert);
     QString idForHandle(const libtorrent::torrent_handle &handle) const;
     void updateItemFromStatus(DownloadItem *item, const libtorrent::torrent_handle &handle);
-    void updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle);
+    void updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle, bool forceTrackerUpdate = false);
     bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath);
     void checkShareLimits(const QString &id, DownloadItem *item, const AppSettings *settings);
     void ensureGeoDb();

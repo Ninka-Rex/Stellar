@@ -137,10 +137,9 @@ Window {
     }
 
     function statusColor(s) {
-        if (s === "Downloading") return "#4488dd"   // blue — "Receiving data..."
-        if (s === "Paused")      return "#c8c8c8"
-        if (s === "Completed")   return "#c8c8c8"
-        if (s === "Error")       return "#c8c8c8"
+        if (s === "Downloading") return "#4488dd"   // blue
+        if (s === "Assembling")  return "#cc9933"   // amber
+        if (s === "Error")       return "#dd5555"   // red
         return "#c8c8c8"
     }
 
@@ -149,6 +148,8 @@ Window {
             return "--"
         if (item.status === "Downloading")
             return "Receiving data..."
+        if (item.status === "Assembling")
+            return "Assembling..."
         if (item.status === "Paused" && item.progress > 0)
             return Math.round(item.progress * 100) + "%"
         return item.status
@@ -367,24 +368,53 @@ Window {
 
                     // ── Progress bar ─────────────────────────────────────────
                     Rectangle {
+                        id: progressBarRect
                         Layout.fillWidth: true
                         height: 24
                         color: "#2a2a2a"
                         radius: 3
                         clip: true
 
-                        // Fill
+                        readonly property bool assembling: item && item.status === "Assembling"
+
+                        // Normal fill (hidden during assembly)
                         Rectangle {
-                            width: item ? Math.max(0, item.progress * parent.width) : 0
-                            height: parent.height
+                            visible: !progressBarRect.assembling
+                            width: item ? Math.max(0, item.progress * progressBarRect.width) : 0
+                            height: progressBarRect.height
                             color: "#33bb44"
                             radius: 3
                             Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutCubic } }
                         }
 
+                        // Indeterminate stripe shown while assembling.
+                        // Uses id references instead of parent chains — NumberAnimation
+                        // evaluates from/to in a scope where 'parent' is the animation
+                        // object itself, not the enclosing Rectangle.
+                        Rectangle {
+                            id: assemblyStripe
+                            visible: progressBarRect.assembling
+                            width: progressBarRect.width * 0.35
+                            height: progressBarRect.height
+                            radius: 3
+                            color: "#cc9933"
+
+                            NumberAnimation on x {
+                                running: assemblyStripe.visible
+                                loops: Animation.Infinite
+                                from: -assemblyStripe.width
+                                to: progressBarRect.width
+                                duration: 1200
+                                easing.type: Easing.InOutSine
+                            }
+                        }
+
                         Text {
                             anchors.centerIn: parent
-                            text: item ? Math.round(item.progress * 100) + "%" : "0%"
+                            text: {
+                                if (item && item.status === "Assembling") return "Assembling..."
+                                return item ? Math.round(item.progress * 100) + "%" : "0%"
+                            }
                             color: "white"
                             font.pixelSize: 11
                             font.bold: true
@@ -564,7 +594,7 @@ Window {
                                             spacing: 0
                                             Text { width: 34;  text: (index + 1) + ".";               color: "#999"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                             Text { width: 110; text: root.fmtBytes(received); color: "#cccccc"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
-                                            Text {             text: info ?? "";                 color: "#6aaa6a"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                            Text {             text: info ?? "";                 color: "#e0e0e0"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         }
                                     }
                                 }

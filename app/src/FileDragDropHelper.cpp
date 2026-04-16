@@ -19,6 +19,7 @@
 #include <QDrag>
 #include <QUrl>
 #include <QGuiApplication>
+#include <QWindow>
 #include <QDebug>
 #include <QPixmap>
 #include <QFile>
@@ -55,9 +56,15 @@ void FileDragDropHelper::startDrag(const QString &filePath) {
     // text/uri-list is the standard for file drag-drop operations
     mimeData->setUrls(urls);
 
-    // Create drag object with copy action
-    // DropAction can be CopyAction or MoveAction depending on what you want
-    QDrag *drag = new QDrag(this);
+    // QDrag requires a QWindow* parent on Linux/Wayland so the compositor can
+    // associate the drag session with the source surface. A bare QObject parent
+    // causes the Wayland drag-and-drop handshake to fail (drop is rejected).
+    // focusWindow() gives us the real window handle; fall back to this object
+    // (works on X11/Windows) only when no window is focused.
+    QObject *dragParent = QGuiApplication::focusWindow()
+                          ? static_cast<QObject *>(QGuiApplication::focusWindow())
+                          : this;
+    QDrag *drag = new QDrag(dragParent);
     drag->setMimeData(mimeData);
 
     // Set drag visual (optional - shows the file icon while dragging)
@@ -65,22 +72,12 @@ void FileDragDropHelper::startDrag(const QString &filePath) {
     pixmap.fill(Qt::transparent);
     drag->setPixmap(pixmap);
 
-    // Execute the drag operation
-    // This is a blocking call that returns when drop completes
+    // Only offer CopyAction — the file stays in the download folder.
+    // Offering MoveAction lets file managers silently delete the source.
     qDebug() << "Starting drag operation...";
-    Qt::DropAction dropAction = drag->exec(Qt::CopyAction | Qt::MoveAction);
+    Qt::DropAction dropAction = drag->exec(Qt::CopyAction);
 
-    bool success = false;
-    if (dropAction == Qt::MoveAction) {
-        qDebug() << "File drag-drop completed: Move action";
-        success = true;
-    } else if (dropAction == Qt::CopyAction) {
-        qDebug() << "File drag-drop completed: Copy action";
-        success = true;
-    } else {
-        qDebug() << "File drag-drop was cancelled or rejected";
-        success = false;
-    }
-
+    const bool success = (dropAction == Qt::CopyAction);
+    qDebug() << (success ? "File drag-drop completed: Copy action" : "File drag-drop cancelled or rejected");
     emit dragCompleted(success);
 }

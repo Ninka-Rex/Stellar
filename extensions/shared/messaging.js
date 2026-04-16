@@ -89,11 +89,12 @@ export async function syncSettingsFromApp() {
         const response = await sendMessage({ type: "getSettings" });
         if (response?.type === "settings") {
             const update = {};
-            if (Array.isArray(response.monitoredExtensions) && response.monitoredExtensions.length > 0)
+            // Allow empty arrays — the user may have cleared all entries in the app.
+            if (Array.isArray(response.monitoredExtensions))
                 update.monitoredExtensions = response.monitoredExtensions;
-            if (Array.isArray(response.excludedSites) && response.excludedSites.length > 0)
+            if (Array.isArray(response.excludedSites))
                 update.excludedSites = response.excludedSites;
-            if (Array.isArray(response.excludedAddresses) && response.excludedAddresses.length > 0)
+            if (Array.isArray(response.excludedAddresses))
                 update.excludedAddresses = response.excludedAddresses;
             if (Object.keys(update).length > 0) {
                 await chrome.storage.local.set(update);
@@ -109,7 +110,7 @@ export async function syncSettingsFromApp() {
 
 function wildcardToRegex(pattern) {
     const escaped = pattern
-        .replace(/[.+^${}()|[\]\\]/g, "\\$&")
+        .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
         .replace(/\*/g, ".*");
     return new RegExp("^" + escaped + "$", "i");
 }
@@ -344,8 +345,13 @@ export async function ping() {
  */
 export function extractFilename(url, contentDisposition) {
     if (contentDisposition) {
-        const match = contentDisposition.match(/filename\*?=(?:UTF-8'')?["']?([^"';\n]+)/i);
-        if (match) return decodeURIComponent(match[1].trim());
+        // Prefer RFC 5987 encoded form (filename*=UTF-8''...) over plain filename=.
+        const utf8Match = contentDisposition.match(/filename\*\s*=\s*UTF-8''([^;]+)/i);
+        if (utf8Match && utf8Match[1]) {
+            try { return decodeURIComponent(utf8Match[1].replace(/^"|"$/g, "").trim()); } catch {}
+        }
+        const basicMatch = contentDisposition.match(/filename\s*=\s*("?)([^";]+)\1/i);
+        if (basicMatch && basicMatch[2]) return basicMatch[2].trim();
     }
     try {
         const pathname = new URL(url).pathname;

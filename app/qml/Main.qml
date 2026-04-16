@@ -228,8 +228,11 @@ ApplicationWindow {
         function onDownloadCompleted(item) {
             if (progressDialog.visible && progressDialog.item === item)
                 progressDialog.hide()
+            // Torrents go Completed → Seeding; never show the complete dialog for them.
+            if (!item || item.isTorrent)
+                return
             // Don't show complete dialog for queue-assigned downloads or if disabled in settings
-            if (!item || (item.queueId && item.queueId.length > 0))
+            if (item.queueId && item.queueId.length > 0)
                 return
             if (item.isYtdlp && item.ytdlpPlaylistMode)
                 return
@@ -1245,6 +1248,15 @@ ApplicationWindow {
     QueueSelectionDialog {
         id: queueSelectionDialog
         onAccepted: (queueId, startProcessing, askAgain) => {
+            // After confirming a grabber queue selection, close the results dialog
+            // and bring the main download list to the front so the user can see the
+            // newly queued files immediately.
+            if (queueSelectionDialog.pendingContext === "grabber") {
+                grabberResultsDialog.close()
+                root.show()
+                root.raise()
+                root.requestActivate()
+            }
             if (queueId.length === 0)
                 return
         }
@@ -1270,6 +1282,12 @@ ApplicationWindow {
 
     GrabberResultsDialog {
         id: grabberResultsDialog
+        onFilesAddedToDownloadList: {
+            grabberResultsDialog.close()
+            root.show()
+            root.raise()
+            root.requestActivate()
+        }
         onQueueAssignmentRequested: (projectId) => {
             grabberResultsDialog.actionTaken = true
             queueSelectionDialog.initialQueueId = ""

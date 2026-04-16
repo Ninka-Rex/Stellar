@@ -48,6 +48,7 @@ function installBlobResolverBridge() {
     const blobMeta = new WeakMap();
     const bufferMeta = new WeakMap();
     const blobUrlMap = new Map();
+    const pendingProgrammatic = new Map();
     const maxEntries = 2000;
 
     function rememberBlobUrl(blobUrl, meta) {
@@ -150,8 +151,85 @@ function installBlobResolverBridge() {
     }
     window.Blob = StellarBlob;
 
+    const origAnchorClick = HTMLAnchorElement.prototype.click;
+    HTMLAnchorElement.prototype.click = function(...args) {
+        try {
+            if (this.__stellarBypassClick) {
+                this.__stellarBypassClick = false;
+                return origAnchorClick.apply(this, args);
+            }
+            const href = String(this.href || this.getAttribute("href") || "");
+            if (href && this.hasAttribute("download")) {
+                const filename = String(this.getAttribute("download") || "");
+                const reqId = "stellar-prog-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+                const timer = setTimeout(() => {
+                    const p = pendingProgrammatic.get(reqId);
+                    if (!p) return;
+                    pendingProgrammatic.delete(reqId);
+                }, 5000);
+                pendingProgrammatic.set(reqId, { anchor: this, timer });
+                window.postMessage({ __stellarType: "programmaticDownloadIntent", reqId, href, filename }, "*");
+                return;
+            }
+        } catch {}
+        return origAnchorClick.apply(this, args);
+    };
+
+    const origAnchorDispatchEvent = HTMLAnchorElement.prototype.dispatchEvent;
+    HTMLAnchorElement.prototype.dispatchEvent = function(ev) {
+        try {
+            if (this.__stellarBypassClick)
+                return origAnchorDispatchEvent.call(this, ev);
+            const isClick = ev && ev.type === "click";
+            const href = String(this.href || this.getAttribute("href") || "");
+            if (isClick && href && this.hasAttribute("download")) {
+                const filename = String(this.getAttribute("download") || "");
+                const reqId = "stellar-prog-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+                const timer = setTimeout(() => {
+                    const p = pendingProgrammatic.get(reqId);
+                    if (!p) return;
+                    pendingProgrammatic.delete(reqId);
+                }, 5000);
+                pendingProgrammatic.set(reqId, { anchor: this, timer });
+                window.postMessage({ __stellarType: "programmaticDownloadIntent", reqId, href, filename }, "*");
+                return true;
+            }
+        } catch {}
+        return origAnchorDispatchEvent.call(this, ev);
+    };
+
+    const origWindowOpen = window.open;
+    if (typeof origWindowOpen === "function") {
+        window.open = function(url, ...rest) {
+            try {
+                const href = String(url || "");
+                if (href.startsWith("blob:")) {
+                    const reqId = "stellar-prog-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+                    const timer = setTimeout(() => { pendingProgrammatic.delete(reqId); }, 5000);
+                    pendingProgrammatic.set(reqId, { anchor: null, timer });
+                    window.postMessage({ __stellarType: "programmaticDownloadIntent", reqId, href, filename: "" }, "*");
+                    return null;
+                }
+            } catch {}
+            return origWindowOpen.call(this, url, ...rest);
+        };
+    }
+
     window.addEventListener("message", (ev) => {
         const msg = ev.data;
+        if (msg && msg.__stellarType === "programmaticDownloadAck") {
+            const p = pendingProgrammatic.get(msg.reqId);
+            if (!p) return;
+            pendingProgrammatic.delete(msg.reqId);
+            clearTimeout(p.timer);
+            if (!msg.handled && p.anchor) {
+                try {
+                    p.anchor.__stellarBypassClick = true;
+                    origAnchorClick.call(p.anchor);
+                } catch {}
+            }
+            return;
+        }
         if (!msg || msg.__stellarType !== "resolveBlobRequest") return;
         const blobUrl = String(msg.blobUrl || "");
         const mapping = blobUrlMap.get(blobUrl) || null;
@@ -203,6 +281,50 @@ function resolveBlobSourceUrl(blobUrl) {
 // are intercepted even before any blob URL resolution request occurs.
 installBlobResolverBridge();
 
+async function tryInterceptUrl(url, filename, explicitIntent) {
+    const href = String(url || "");
+    if (!href) return false;
+    let requestUrl = href;
+    if (href.startsWith("blob:")) {
+        const resolved = await resolveBlobSourceUrl(href);
+        if (resolved && (resolved.startsWith("http://") || resolved.startsWith("https://")))
+            requestUrl = resolved;
+        else
+            return false;
+    }
+    const payload = {
+        type: "interceptLinkClick",
+        url: requestUrl,
+        filename: filename || "",
+        explicitIntent: !!explicitIntent,
+        pageUrl: location.href,
+        referrer: document.referrer || location.href,
+        cookies: "",
+        modifierKey: 0,
+    };
+    try {
+        let resp = await chrome.runtime.sendMessage(payload);
+        if (resp?.ok) return true;
+        // Retry once to tolerate service worker cold-start wake latency.
+        await new Promise((r) => setTimeout(r, 120));
+        resp = await chrome.runtime.sendMessage(payload);
+        return !!resp?.ok;
+    } catch {
+        return false;
+    }
+}
+
+window.addEventListener("message", (ev) => {
+    const msg = ev.data;
+    if (!msg || msg.__stellarType !== "programmaticDownloadIntent") return;
+    const reqId = String(msg.reqId || "");
+    if (!reqId) return;
+    (async () => {
+        const handled = await tryInterceptUrl(String(msg.href || ""), String(msg.filename || ""), true);
+        window.postMessage({ __stellarType: "programmaticDownloadAck", reqId, handled }, "*");
+    })();
+});
+
 document.addEventListener("click", async (e) => {
     if (e.defaultPrevented) return;
     if (e.button !== 0) return;
@@ -229,31 +351,10 @@ document.addEventListener("click", async (e) => {
     if (!shouldPreIntercept(target, target.href)) return;
     const explicitIntent = target.hasAttribute("download");
 
-    const href = target.href;
-    let requestUrl = href;
-    if (href.startsWith("blob:")) {
-        const resolved = await resolveBlobSourceUrl(href);
-        if (resolved && (resolved.startsWith("http://") || resolved.startsWith("https://")))
-            requestUrl = resolved;
-        else
-            return; // Unknown blob source: let browser handle explicit blob download.
-    }
-
     e.preventDefault();
     e.stopPropagation();
 
-    chrome.runtime.sendMessage({
-        type: "interceptLinkClick",
-        url: requestUrl,
-        filename: target.getAttribute("download") || "",
-        explicitIntent,
-        pageUrl: location.href,
-        referrer: document.referrer || location.href,
-        cookies: "",
-        modifierKey: 0,
-    }).then((resp) => {
-        if (!resp?.ok && !explicitIntent) window.location.href = href;
-    }).catch(() => {
-        if (!explicitIntent) window.location.href = href;
-    });
+    const href = target.href;
+    const handled = await tryInterceptUrl(href, target.getAttribute("download") || "", explicitIntent);
+    if (!handled && !explicitIntent) window.location.href = href;
 }, true);  // capture phase

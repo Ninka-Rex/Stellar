@@ -16,6 +16,8 @@
 
 #include "SegmentedTransfer.h"
 #include "AppVersion.h"
+#include <QtConcurrent/QtConcurrent>
+#include <QFutureWatcher>
 #include <QNetworkRequest>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -1008,7 +1010,7 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
 void SegmentedTransfer::mergeAndFinish() {
     m_item->setStatus(DownloadItem::Status::Assembling);
 
-    // Final progress update
+    // Final progress tick before blocking I/O begins.
     qint64 totalReceived = 0;
     for (const auto &seg : m_segments) totalReceived += seg.received;
     m_item->setDoneBytes(totalReceived);
@@ -1018,60 +1020,106 @@ void SegmentedTransfer::mergeAndFinish() {
 
     QString outPath = longPath(m_item->savePath() + QStringLiteral("/") + m_item->filename());
 
-    // If single segment with no range, rename the part file to the final name
-    if (m_segments.size() == 1 && m_segments[0].endOffset < 0) {
+    // Collect part paths in byte order before leaving the main thread.
+    // Dynamic segmentation can append segments out of array order; sort by
+    // startOffset so the concatenated file is correct.
+    struct PartInfo { QString path; qint64 startOffset; };
+    QList<PartInfo> parts;
+    parts.reserve(static_cast<int>(m_segments.size()));
+
+    bool singleNoRange = (m_segments.size() == 1 && m_segments[0].endOffset < 0);
+    if (singleNoRange) {
         QString partSrc = m_segments[0].partPath;
-        // If the expected part file doesn't exist (e.g. filename changed mid-download
-        // and the rename above didn't run), fall back to whatever the QFile was
-        // actually opened with.
         if (!QFile::exists(partSrc) && m_segments[0].file)
             partSrc = m_segments[0].file->fileName();
-
-        if (!QFile::rename(partSrc, outPath)) {
-            // Cross-device or locked: copy then delete
-            QFile src(partSrc);
-            QFile dst(outPath);
-            if (!src.open(QIODevice::ReadOnly) || !dst.open(QIODevice::WriteOnly | QIODevice::Truncate)
-                || !copyFileContents(src, dst)) {
-                emit failed(QStringLiteral("Cannot create output file: %1").arg(outPath));
-                return;
-            }
-            QFile::remove(partSrc);
-        }
+        parts.append({ partSrc, 0 });
     } else {
-        QFile outFile(outPath);
-        if (!outFile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-            emit failed(QStringLiteral("Cannot create output file: %1").arg(outPath));
+        for (const auto &seg : m_segments)
+            parts.append({ seg.partPath, seg.startOffset });
+        std::sort(parts.begin(), parts.end(),
+                  [](const PartInfo &a, const PartInfo &b) {
+                      return a.startOffset < b.startOffset;
+                  });
+    }
+
+    // Run the file concatenation off the main thread so the UI stays live and
+    // the "Assembling..." status is actually visible.
+    auto *watcher = new QFutureWatcher<QString>(this);
+
+    connect(watcher, &QFutureWatcher<QString>::finished, this,
+            [this, watcher]() {
+        watcher->deleteLater();
+        const QString err = watcher->result();
+        if (!err.isEmpty()) {
+            m_item->setStatus(DownloadItem::Status::Error);
+            emit failed(err);
             return;
         }
+        cleanupPartFiles();
+        deleteMetaFile();
+        m_item->setStatus(DownloadItem::Status::Completed);
+        emit finished();
+    });
 
-        // Dynamic segmentation may have appended segments out of file order.
-        // Concatenate in ascending startOffset order instead of array order.
-        QList<const Segment *> ordered;
-        ordered.reserve(m_segments.size());
-        for (const auto &seg : m_segments) ordered.append(&seg);
-        std::sort(ordered.begin(), ordered.end(),
-                  [](const Segment *a, const Segment *b) {
-                      return a->startOffset < b->startOffset;
-                  });
+    watcher->setFuture(QtConcurrent::run([singleNoRange, parts, outPath]() -> QString {
+        if (singleNoRange) {
+            // Fast path: rename in place.
+            const QString &partSrc = parts[0].path;
+            if (QFile::rename(partSrc, outPath))
+                return {};
 
-        for (const auto *segPtr : ordered) {
-            QFile partFile(segPtr->partPath);
-            if (!partFile.open(QIODevice::ReadOnly) || !copyFileContents(partFile, outFile)) {
+            // Rename failed (cross-device or permission denied on destination).
+            // Try copy+delete.
+            QFile src(partSrc);
+            if (!src.open(QIODevice::ReadOnly))
+                return QStringLiteral("Cannot open part file for reading: %1 (%2)")
+                    .arg(partSrc, src.errorString());
+
+            QFile dst(outPath);
+            if (!dst.open(QIODevice::WriteOnly | QIODevice::Truncate))
+                return QStringLiteral("Cannot create output file: %1 (%2)")
+                    .arg(outPath, dst.errorString());
+
+            if (!copyFileContents(src, dst)) {
+                dst.close();
+                QFile::remove(outPath);
+                return QStringLiteral("Write failed while assembling: %1").arg(dst.errorString());
+            }
+            dst.close();
+            QFile::remove(partSrc);
+            return {};
+        }
+
+        // Multi-segment: concatenate in startOffset order.
+        QFile outFile(outPath);
+        if (!outFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+            return QStringLiteral("Cannot create output file: %1 (%2)")
+                .arg(outPath, outFile.errorString());
+
+        for (const auto &part : parts) {
+            QFile partFile(part.path);
+            if (!partFile.open(QIODevice::ReadOnly)) {
                 outFile.close();
-                emit failed(QStringLiteral("Cannot read part file: %1").arg(segPtr->partPath));
-                return;
+                QFile::remove(outPath);
+                return QStringLiteral("Cannot open part file for reading: %1 (%2)")
+                    .arg(part.path, partFile.errorString());
+            }
+            if (!copyFileContents(partFile, outFile)) {
+                const QString err = outFile.errorString();
+                partFile.close();
+                outFile.close();
+                QFile::remove(outPath);
+                return QStringLiteral("Write failed while assembling: %1").arg(err);
             }
             partFile.close();
         }
+
         outFile.close();
-    }
+        if (outFile.error() != QFileDevice::NoError)
+            return QStringLiteral("Output file error after assembly: %1").arg(outFile.errorString());
 
-    cleanupPartFiles();
-    deleteMetaFile();
-
-    m_item->setStatus(DownloadItem::Status::Completed);
-    emit finished();
+        return {};
+    }));
 }
 
 void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {

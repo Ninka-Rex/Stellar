@@ -71,11 +71,11 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
             emit showRequested();
             break;
         case QSystemTrayIcon::Trigger:
+            // Single left-click opens the main window.
+            emit showRequested();
+            break;
         case QSystemTrayIcon::Context: {
-            // Single left-click and right-click both show the context menu.
-            // On Windows, Trigger and Context can both fire for right-click
-            // depending on the Qt/Windows version, so we handle both the same
-            // way to avoid the menu AND window opening simultaneously.
+            // Right-click shows the context menu.
             const QPoint pos = QCursor::pos();
             emit contextMenuRequested(pos.x(), pos.y());
             break;

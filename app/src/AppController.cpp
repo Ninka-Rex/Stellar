@@ -15,6 +15,8 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AppController.h"
+#include <QQuickWindow>
+#include <QIcon>
 #include "DownloadItem.h"
 #include "AppVersion.h"
 #include <QtConcurrent>
@@ -559,6 +561,11 @@ bool installFfmpegFromPayload(const QString &payloadPath, const QString &targetD
     return true;
 #endif
 }
+}
+
+void AppController::setWindowIcon(QObject *window, const QString &iconPath) {
+    if (auto *qw = qobject_cast<QQuickWindow *>(window))
+        qw->setIcon(QIcon(iconPath));
 }
 
 void AppController::checkUrl(const QString &url, QJSValue callback) {

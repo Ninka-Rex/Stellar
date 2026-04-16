@@ -118,11 +118,12 @@ async function syncSettingsFromApp() {
         });
         if (response?.type === "settings") {
             const update = {};
-            if (Array.isArray(response.monitoredExtensions) && response.monitoredExtensions.length > 0)
+            // Allow empty arrays — the user may have cleared all entries in the app.
+            if (Array.isArray(response.monitoredExtensions))
                 update.monitoredExtensions = response.monitoredExtensions;
-            if (Array.isArray(response.excludedSites) && response.excludedSites.length > 0)
+            if (Array.isArray(response.excludedSites))
                 update.excludedSites = response.excludedSites;
-            if (Array.isArray(response.excludedAddresses) && response.excludedAddresses.length > 0)
+            if (Array.isArray(response.excludedAddresses))
                 update.excludedAddresses = response.excludedAddresses;
             if (Object.keys(update).length > 0) {
                 await browser.storage.local.set(update);
@@ -137,7 +138,7 @@ async function syncSettingsFromApp() {
 }
 
 function wildcardToRegex(pattern) {
-    const escaped = pattern.replace(/[.+^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*");
+    const escaped = pattern.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*");
     return new RegExp("^" + escaped + "$", "i");
 }
 

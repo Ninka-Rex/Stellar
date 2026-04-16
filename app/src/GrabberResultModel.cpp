@@ -19,7 +19,6 @@
 #include <QUrl>
 
 #include <algorithm>
-#include <limits>
 
 namespace {
 QString hostFromUrl(const QString &value)
@@ -146,6 +145,10 @@ void GrabberResultModel::appendResults(const QList<GrabberResult> &results)
         m_results.append(r);
     }
     endInsertRows();
+
+    // Keep the live sort order without resetting scroll position.
+    if (!m_sortColumn.isEmpty())
+        applySortLayout();
 }
 
 void GrabberResultModel::updateResultSize(const QString &url, qint64 sizeBytes)
@@ -162,6 +165,11 @@ void GrabberResultModel::updateResultSize(const QString &url, qint64 sizeBytes)
         result.sizeBytes = sizeBytes;
         const QModelIndex modelIndex = index(row);
         emit dataChanged(modelIndex, modelIndex, { SizeBytesRole, SizeTextRole });
+
+        // If the list is currently sorted by size, re-sort in-place so the updated
+        // row moves to its correct position without resetting the scroll position.
+        if (m_sortColumn == QStringLiteral("size"))
+            applySortLayout();
         return;
     }
 }
@@ -236,44 +244,79 @@ QVariantMap GrabberResultModel::resultData(int row) const
     };
 }
 
+static QString sortValueForResult(const QString &column, const GrabberResult &result)
+{
+    if (column == QStringLiteral("filename"))
+        return result.filename.toLower();
+    if (column == QStringLiteral("filetype")) {
+        const QString source = !result.filename.isEmpty() ? result.filename : result.url;
+        const int dot = source.lastIndexOf(QLatin1Char('.'));
+        return dot >= 0 ? source.mid(dot + 1).toLower() : QStringLiteral("unknown");
+    }
+    if (column == QStringLiteral("downloadfrom"))
+        return result.url.toLower();
+    if (column == QStringLiteral("linktext"))
+        return hostFromUrl(result.sourcePage.isEmpty() ? result.url : result.sourcePage);
+    if (column == QStringLiteral("saveto"))
+        return result.filename.toLower();
+    if (column == QStringLiteral("status"))
+        return QStringLiteral("ready");
+    return result.filename.toLower();
+}
+
 void GrabberResultModel::sortBy(const QString &column, Qt::SortOrder order)
 {
-    if (m_results.size() < 2)
+    m_sortColumn = column;
+    m_sortOrder  = order;
+
+    if (m_results.size() < 2) {
+        // Nothing to sort but store state for future appends.
         return;
+    }
 
-    auto sortValue = [&](const GrabberResult &result) -> QString {
-        if (column == QStringLiteral("filename"))
-            return result.filename.toLower();
-        if (column == QStringLiteral("filetype")) {
-            const QString source = !result.filename.isEmpty() ? result.filename : result.url;
-            const int dot = source.lastIndexOf(QLatin1Char('.'));
-            return dot >= 0 ? source.mid(dot + 1).toLower() : QStringLiteral("unknown");
-        }
-        if (column == QStringLiteral("downloadfrom"))
-            return result.url.toLower();
-        if (column == QStringLiteral("linktext"))
-            return hostFromUrl(result.sourcePage.isEmpty() ? result.url : result.sourcePage);
-        if (column == QStringLiteral("saveto"))
-            return result.filename.toLower();
-        if (column == QStringLiteral("status"))
-            return QStringLiteral("ready");
-        return result.filename.toLower();
-    };
-
+    // User-triggered sort: full reset so the view scrolls back to top (expected UX).
     beginResetModel();
     std::stable_sort(m_results.begin(), m_results.end(),
                      [&](const GrabberResult &lhs, const GrabberResult &rhs) {
         if (column == QStringLiteral("size")) {
-            const qint64 left = lhs.sizeBytes < 0 ? std::numeric_limits<qint64>::max() : lhs.sizeBytes;
-            const qint64 right = rhs.sizeBytes < 0 ? std::numeric_limits<qint64>::max() : rhs.sizeBytes;
-            return order == Qt::AscendingOrder ? left < right : left > right;
+            const bool lUnknown = lhs.sizeBytes < 0;
+            const bool rUnknown = rhs.sizeBytes < 0;
+            if (lUnknown != rUnknown) return rUnknown; // unknown always sorts last
+            if (lUnknown) return false;                // both unknown — equal
+            return order == Qt::AscendingOrder ? lhs.sizeBytes < rhs.sizeBytes
+                                               : lhs.sizeBytes > rhs.sizeBytes;
         }
-
-        const QString left = sortValue(lhs);
-        const QString right = sortValue(rhs);
+        const QString left  = sortValueForResult(column, lhs);
+        const QString right = sortValueForResult(column, rhs);
         return order == Qt::AscendingOrder ? left < right : left > right;
     });
     endResetModel();
+}
+
+void GrabberResultModel::applySortLayout()
+{
+    if (m_sortColumn.isEmpty() || m_results.size() < 2)
+        return;
+
+    const QString column = m_sortColumn;
+    const Qt::SortOrder order = m_sortOrder;
+
+    emit layoutAboutToBeChanged();
+    std::stable_sort(m_results.begin(), m_results.end(),
+                     [&](const GrabberResult &lhs, const GrabberResult &rhs) {
+        if (column == QStringLiteral("size")) {
+            const bool lUnknown = lhs.sizeBytes < 0;
+            const bool rUnknown = rhs.sizeBytes < 0;
+            if (lUnknown != rUnknown) return rUnknown; // unknown always sorts last
+            if (lUnknown) return false;                // both unknown — equal
+            return order == Qt::AscendingOrder ? lhs.sizeBytes < rhs.sizeBytes
+                                               : lhs.sizeBytes > rhs.sizeBytes;
+        }
+        const QString left  = sortValueForResult(column, lhs);
+        const QString right = sortValueForResult(column, rhs);
+        return order == Qt::AscendingOrder ? left < right : left > right;
+    });
+    emit layoutChanged();
 }
 
 QString GrabberResultModel::sizeText(qint64 sizeBytes)

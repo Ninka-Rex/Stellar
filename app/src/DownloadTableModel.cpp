@@ -202,7 +202,14 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
     if (m_visible.isEmpty()) return;
 
     // Sort only the visible items - much faster than sorting all items
+    static const QStringList kTorrentCols = {
+        QStringLiteral("seeders"), QStringLiteral("peers"), QStringLiteral("ratio"),
+        QStringLiteral("uploaded"), QStringLiteral("downloaded"), QStringLiteral("upspeed")
+    };
     std::sort(m_visible.begin(), m_visible.end(), [&](DownloadItem *a, DownloadItem *b) -> bool {
+        // Non-torrent items always sort after torrent items for torrent-specific columns.
+        if (kTorrentCols.contains(column) && a->isTorrent() != b->isTorrent())
+            return a->isTorrent();  // torrent < non-torrent (comes first)
         int cmpResult = 0;
         if (column == QStringLiteral("name"))
             cmpResult = a->filename().toLower().compare(b->filename().toLower());
@@ -229,9 +236,13 @@ void DownloadTableModel::sortBy(const QString &column, bool ascending) {
         else if (column == QStringLiteral("lasttry"))
             cmpResult = a->lastTryAt() < b->lastTryAt() ? -1 : (a->lastTryAt() > b->lastTryAt() ? 1 : 0);
         else if (column == QStringLiteral("seeders"))
-            cmpResult = a->torrentSeeders() < b->torrentSeeders() ? -1 : (a->torrentSeeders() > b->torrentSeeders() ? 1 : 0);
+            // Sort by tracker-reported total (listSeeders), not connected count — the
+            // connected count is noisy (0–50) and nearly identical across active torrents.
+            cmpResult = a->torrentListSeeders() < b->torrentListSeeders() ? -1 : (a->torrentListSeeders() > b->torrentListSeeders() ? 1 : 0);
         else if (column == QStringLiteral("peers"))
-            cmpResult = a->torrentPeers() < b->torrentPeers() ? -1 : (a->torrentPeers() > b->torrentPeers() ? 1 : 0);
+            cmpResult = a->torrentListPeers() < b->torrentListPeers() ? -1 : (a->torrentListPeers() > b->torrentListPeers() ? 1 : 0);
+        else if (column == QStringLiteral("queue"))
+            cmpResult = a->queueId().compare(b->queueId());
         else if (column == QStringLiteral("ratio"))
             cmpResult = a->torrentRatio() < b->torrentRatio() ? -1 : (a->torrentRatio() > b->torrentRatio() ? 1 : 0);
         else if (column == QStringLiteral("uploaded"))
@@ -368,6 +379,17 @@ int DownloadTableModel::statusSortKey(const QString &status) {
 }
 
 int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QString &column, bool ascending) const {
+    // For torrent-specific columns, always rank non-torrent items after torrent items
+    // regardless of sort direction so HTTP downloads don't pollute torrent rankings.
+    static const QStringList torrentCols = {
+        QStringLiteral("seeders"), QStringLiteral("peers"), QStringLiteral("ratio"),
+        QStringLiteral("uploaded"), QStringLiteral("downloaded"), QStringLiteral("upspeed")
+    };
+    if (torrentCols.contains(column)) {
+        if (a->isTorrent() != b->isTorrent())
+            return a->isTorrent() ? -1 : 1;  // torrent always ranks above non-torrent
+    }
+
     int cmpResult = 0;
     if (column == QStringLiteral("name"))
         cmpResult = a->filename().toLower().compare(b->filename().toLower());
@@ -394,9 +416,11 @@ int DownloadTableModel::compareItems(DownloadItem *a, DownloadItem *b, const QSt
     else if (column == QStringLiteral("lasttry"))
         cmpResult = a->lastTryAt() < b->lastTryAt() ? -1 : (a->lastTryAt() > b->lastTryAt() ? 1 : 0);
     else if (column == QStringLiteral("seeders"))
-        cmpResult = a->torrentSeeders() < b->torrentSeeders() ? -1 : (a->torrentSeeders() > b->torrentSeeders() ? 1 : 0);
+        cmpResult = a->torrentListSeeders() < b->torrentListSeeders() ? -1 : (a->torrentListSeeders() > b->torrentListSeeders() ? 1 : 0);
     else if (column == QStringLiteral("peers"))
-        cmpResult = a->torrentPeers() < b->torrentPeers() ? -1 : (a->torrentPeers() > b->torrentPeers() ? 1 : 0);
+        cmpResult = a->torrentListPeers() < b->torrentListPeers() ? -1 : (a->torrentListPeers() > b->torrentListPeers() ? 1 : 0);
+    else if (column == QStringLiteral("queue"))
+        cmpResult = a->queueId().compare(b->queueId());
     else if (column == QStringLiteral("ratio"))
         cmpResult = a->torrentRatio() < b->torrentRatio() ? -1 : (a->torrentRatio() > b->torrentRatio() ? 1 : 0);
     else if (column == QStringLiteral("uploaded"))

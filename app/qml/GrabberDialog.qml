@@ -21,13 +21,13 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Stellar Wizard. Step " + (stepIndex + 1) + " - " + stepTitles[stepIndex]
+    title: "Stellar Grabber – Step " + (stepIndex + 1) + " of " + stepTitles.length + ": " + stepTitles[stepIndex]
     width: 700
     height: 540
     minimumWidth: 700
     minimumHeight: 540
     color: "#1e1e1e"
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
     modality: Qt.ApplicationModal
 
     Material.theme: Material.Dark
@@ -447,6 +447,7 @@ Window {
     }
 
     Component.onCompleted: {
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.ico")
         refreshRecentProjects()
         loadProject(root.projectId.length > 0
             ? App.grabberProjectData(root.projectId)
@@ -570,101 +571,182 @@ Window {
             anchors.margins: 0
             spacing: 0
 
+            // Menu bar — plain Row of custom items so we own the height completely.
+            // MenuBar inside a non-ApplicationWindow uses Material's internal height
+            // which ignores delegate implicitHeight and clips descenders.
             Rectangle {
                 Layout.fillWidth: true
                 height: 30
                 color: "#252525"
-                MenuBar {
+
+                Rectangle {
+                    anchors.bottom: parent.bottom
+                    width: parent.width; height: 1
+                    color: "#383838"
+                }
+
+                // Menus declared here so the Row delegates can reference them by id.
+                Menu {
+                    id: projectMenu
+                    Action {
+                        text: "New"
+                        onTriggered: {
+                            root.projectId = ""
+                            loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true })
+                        }
+                    }
+                    Action {
+                        text: "Load"
+                        onTriggered: {
+                            projectPickerDialog.selectedProjectId = ""
+                            projectPickerDialog.show()
+                            projectPickerDialog.raise()
+                        }
+                    }
+                    Action { text: "Save"; onTriggered: saveProjectOnly() }
+                    Action { text: "Save current settings as a template"; onTriggered: saveTemplatePopup.open() }
+                    MenuSeparator {}
+                    Menu {
+                        id: recentProjectsMenu
+                        title: "Recent Projects"
+                        Instantiator {
+                            model: root.recentProjectRows
+                            delegate: MenuItem {
+                                text: modelData.name || "Project"
+                                onTriggered: loadProjectById(modelData.id)
+                            }
+                            onObjectAdded:   function(index, object) { recentProjectsMenu.insertItem(index, object) }
+                            onObjectRemoved: function(index, object) { recentProjectsMenu.removeItem(object) }
+                        }
+                    }
+                    MenuSeparator {}
+                    Action { text: "Close"; onTriggered: root.close() }
+                }
+
+                Menu {
+                    id: optionsMenu
+                    Action {
+                        text: "Grabber settings"
+                        onTriggered: { grabberSettingsDialog.show(); grabberSettingsDialog.raise() }
+                    }
+                }
+
+                Row {
                     anchors.fill: parent
-                    background: Rectangle {
-                        color: "#252525"
-                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
-                    }
-                    delegate: MenuBarItem {
-                        verticalPadding: 2
-                        leftPadding: 8
-                        rightPadding: 8
-                        contentItem: Text {
-                            text: parent.text
-                            font: parent.font
-                            color: "#d0d0d0"
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                        background: Rectangle {
-                            implicitHeight: 24
-                            implicitWidth: 40
-                            color: parent.highlighted ? "#1e3a6e" : "transparent"
-                        }
-                    }
+                    spacing: 0
 
-                    Menu {
-                        title: "Project"
-                        Action {
-                            text: "New"
-                            onTriggered: {
-                                root.projectId = ""
-                                loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true })
-                            }
-                        }
-                        Action {
-                            text: "Load"
-                            onTriggered: {
-                                projectPickerDialog.selectedProjectId = ""
-                                projectPickerDialog.show()
-                                projectPickerDialog.raise()
-                            }
-                        }
-                        Action { text: "Save"; onTriggered: saveProjectOnly() }
-                        Action { text: "Save current settings as a template"; onTriggered: saveTemplatePopup.open() }
-                        MenuSeparator {}
-                        Menu {
-                            id: recentProjectsMenu
-                            title: "Recent Projects"
-                            Instantiator {
-                                model: root.recentProjectRows
-                                delegate: MenuItem {
-                                    text: modelData.name || "Project"
-                                    onTriggered: loadProjectById(modelData.id)
-                                }
-                                onObjectAdded: function(index, object) { recentProjectsMenu.insertItem(index, object) }
-                                onObjectRemoved: function(index, object) { recentProjectsMenu.removeItem(object) }
-                            }
-                        }
-                        MenuSeparator {}
-                        Action { text: "Close"; onTriggered: root.close() }
-                    }
+                    Repeater {
+                        model: [
+                            { label: "Project", menu: projectMenu },
+                            { label: "Options", menu: optionsMenu }
+                        ]
+                        delegate: Rectangle {
+                            width: mbLabel.implicitWidth + 20
+                            height: parent.height
+                            color: mbMa.containsMouse || modelData.menu.visible ? "#1e3a6e" : "transparent"
 
-                    Menu {
-                        title: "Options"
-                        Action {
-                            text: "Grabber settings"
-                            onTriggered: {
-                                grabberSettingsDialog.show()
-                                grabberSettingsDialog.raise()
+                            Text {
+                                id: mbLabel
+                                anchors.centerIn: parent
+                                text: modelData.label
+                                color: "#d0d0d0"
+                                font.pixelSize: 13
+                            }
+
+                            MouseArea {
+                                id: mbMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: modelData.menu.popup(0, parent.height)
                             }
                         }
                     }
                 }
             }
 
+            // Step header — icon + title + breadcrumb pill
             Rectangle {
                 Layout.fillWidth: true
-                height: 40
-                color: "#1e1e1e"
+                height: 46
+                color: "#222222"
+
                 Rectangle {
                     anchors.bottom: parent.bottom
-                    width: parent.width
-                    height: 1
+                    width: parent.width; height: 1
                     color: "#343434"
                 }
-                StepLabel {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 16
-                    text: root.title
-                    font.bold: true
-                    font.pixelSize: 15
-                    color: "#f2f2f2"
+
+                Row {
+                    anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 14 }
+                    spacing: 10
+
+                    Image {
+                        source: "icons/wand.ico"
+                        width: 20; height: 20
+                        sourceSize: Qt.size(20, 20)
+                        fillMode: Image.PreserveAspectFit
+                        smooth: true
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    Text {
+                        text: stepTitles[stepIndex]
+                        color: "#f0f0f0"
+                        font.pixelSize: 14
+                        font.bold: true
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+                }
+
+                // Step breadcrumb — right side
+                Row {
+                    anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 14 }
+                    spacing: 4
+
+                    Repeater {
+                        model: stepTitles.length
+                        delegate: Row {
+                            spacing: 4
+                            anchors.verticalCenter: parent.verticalCenter
+
+                            // Chevron separator (not before first)
+                            Text {
+                                visible: index > 0
+                                text: "›"
+                                color: "#555"
+                                font.pixelSize: 14
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            Rectangle {
+                                width: stepPillText.implicitWidth + 14
+                                height: 20
+                                radius: 10
+                                color: index === stepIndex ? "#1e3a6e" : "transparent"
+                                border.color: index === stepIndex ? "#4488dd" : (index < stepIndex ? "#336622" : "#444")
+                                border.width: 1
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                MouseArea {
+                                    anchors.fill: parent
+                                    cursorShape: Qt.PointingHandCursor
+                                    onClicked: stepIndex = index
+                                }
+
+                                Text {
+                                    id: stepPillText
+                                    anchors.centerIn: parent
+                                    text: (index + 1) + ""
+                                    color: index === stepIndex ? "#88bbff"
+                                         : index < stepIndex  ? "#66aa44"
+                                         : "#888"
+                                    font.pixelSize: 11
+                                    font.bold: index === stepIndex
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

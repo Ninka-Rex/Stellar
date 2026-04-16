@@ -64,9 +64,21 @@ public:
     Q_INVOKABLE QVariantMap resultData(int row) const;
     void sortBy(const QString &column, Qt::SortOrder order);
 
+    // Active sort column/order — kept so that appendResults and updateResultSize
+    // can maintain sort order without a full model reset (uses layoutChanged instead).
+    QString sortColumn() const { return m_sortColumn; }
+
 private:
     QList<GrabberResult> m_results;
     int m_checkedCount{0}; // maintained incrementally — never recomputed from scratch
+    QString m_sortColumn;
+    Qt::SortOrder m_sortOrder{Qt::AscendingOrder};
+
+    // Re-sorts m_results in-place using layoutAboutToBeChanged/layoutChanged so the
+    // ListView does not reset its scroll position.  Only called for live updates
+    // (new rows inserted, size metadata arrived); user-triggered sortBy() still uses
+    // beginResetModel so the view scrolls back to the top as expected.
+    void applySortLayout();
 
     static QString sizeText(qint64 sizeBytes);
 };

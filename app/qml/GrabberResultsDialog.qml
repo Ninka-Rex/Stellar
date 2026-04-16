@@ -22,12 +22,12 @@ import QtQuick.Layouts
 Window {
     id: root
     title: "Stellar Grabber"
-    width: 1240
-    height: 760
+    width: 1060
+    height: 570
     minimumWidth: 1060
-    minimumHeight: 640
+    minimumHeight: 570
     color: "#1e1e1e"
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint
     modality: Qt.ApplicationModal
 
     Material.theme: Material.Dark
@@ -71,6 +71,9 @@ Window {
     signal scheduleRequested(string projectId)
     signal statisticsRequested(string projectId)
     signal editProjectRequested(string projectId)
+    // Emitted after the user triggers a download action so the caller can bring
+    // the main window to the front and close this dialog.
+    signal filesAddedToDownloadList()
 
     function isRowSelected(row) { return !!selectedRows[row] }
     function setSelection(rows) { selectedRows = rows; selectionVersion += 1 }
@@ -102,10 +105,9 @@ Window {
         for (var i = 0; i < rows.length; ++i) App.setGrabberResultChecked(rows[i], checked)
     }
     function allRowsChecked() {
-        if (totalCount === 0) return false
-        for (var i = 0; i < totalCount; ++i)
-            if (!App.grabberResultModel.resultData(i).checked) return false
-        return true
+        // O(1): compare maintained counters instead of iterating every row.
+        // checkedCount and totalCount are both updated incrementally on model changes.
+        return totalCount > 0 && checkedCount === totalCount
     }
     function toggleAllChecked(checked) { App.setAllGrabberResultsChecked(checked) }
 
@@ -342,6 +344,10 @@ Window {
         }
     }
 
+    Component.onCompleted: {
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.ico")
+    }
+
     onClosing: (close) => {
         if (actionTaken || !projectId.length) return
         var project = projectData()
@@ -409,42 +415,51 @@ Window {
             // ── Menu bar ──────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 28
+                height: 30
                 color: "#252525"
 
-                MenuBar {
-                    anchors.fill: parent
-                    background: Rectangle {
-                        color: "#252525"
-                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
-                    }
-                    delegate: MenuBarItem {
-                        verticalPadding: 2
-                        leftPadding: 8
-                        rightPadding: 8
-                        contentItem: Text {
-                            text: parent.text
-                            font: parent.font
-                            color: "#d0d0d0"
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                        background: Rectangle {
-                            implicitHeight: 24
-                            implicitWidth: 40
-                            color: parent.highlighted ? "#1e3a6e" : "transparent"
-                        }
-                    }
+                Menu {
+                    id: mbProjectMenu
+                    Action { text: "Edit current project"; onTriggered: root.editProjectRequested(root.projectId) }
+                    Action { text: "Close"; onTriggered: root.close() }
+                }
+                Menu {
+                    id: mbOptionsMenu
+                    Action { text: "Grabber settings"; onTriggered: root.openGrabberSettings() }
+                }
 
-                    Menu {
-                        title: "Project"
-                        Action { text: "Edit current project"; onTriggered: root.editProjectRequested(root.projectId) }
-                        Action { text: "Close"; onTriggered: root.close() }
-                    }
-                    Menu {
-                        title: "Options"
-                        Action { text: "Grabber settings"; onTriggered: root.openGrabberSettings() }
+                Row {
+                    anchors.fill: parent
+
+                    Repeater {
+                        model: [
+                            { label: "Project", menu: mbProjectMenu },
+                            { label: "Options", menu: mbOptionsMenu }
+                        ]
+                        delegate: Rectangle {
+                            required property var modelData
+                            width: mbLabel.implicitWidth + 20
+                            height: 30
+                            color: mbMa.containsMouse || modelData.menu.visible ? "#1e3a6e" : "transparent"
+
+                            Text {
+                                id: mbLabel
+                                anchors.centerIn: parent
+                                text: modelData.label
+                                color: "#d0d0d0"
+                                font.pixelSize: 13
+                            }
+                            MouseArea {
+                                id: mbMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: modelData.menu.popup(0, parent.height)
+                            }
+                        }
                     }
                 }
+
+                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
             }
 
             // ── Project info ──────────────────────────────────────────────────
@@ -523,7 +538,7 @@ Window {
             // ── Toolbar ───────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 66
+                height: 70
                 color: "#252525"
 
                 Rectangle {
@@ -549,7 +564,7 @@ Window {
                             model: [
                                 { label: "Start\nExploring",   action: "start",         icon: "resume.png",         btnWidth: 88 },
                                 { label: "Stop\nExploring",    action: "stop",          icon: "pause.png",          btnWidth: 88 },
-                                { label: "Start\nDownloading", action: "download",      icon: "arrow_download.ico", btnWidth: 96 },
+                                { label: "Start\nDownloading", action: "download",      icon: "arrow_down.png",     btnWidth: 96 },
                                 { label: "Stop\nDownloads",    action: "stopDownloads", icon: "pause_orange.png",   btnWidth: 88 },
                                 { label: "Update\nAll",        action: "update",        icon: "update.ico",         btnWidth: 80 },
                                 { label: "Schedule\nProject",  action: "schedule",      icon: "clock.png",          btnWidth: 88 },
@@ -558,6 +573,7 @@ Window {
                             delegate: ToolbarBtn {
                                 label: modelData.label
                                 iconSrc: "icons/" + modelData.icon
+                                iconSize: 28
                                 width: modelData.btnWidth
                                 height: 62
                                 enabled: {
@@ -579,6 +595,7 @@ Window {
                                     else if (modelData.action === "download") {
                                         root.actionTaken = true
                                         App.downloadGrabberResults(root.projectId, true)
+                                        root.filesAddedToDownloadList()
                                     } else if (modelData.action === "stopDownloads")
                                         App.stopGrabberResultDownloads(root.projectId)
                                     else if (modelData.action === "queue")
@@ -893,7 +910,6 @@ Window {
 
                     Flickable {
                         id: tableFlick
-                        property var window: root
                         anchors.fill: parent
                         clip: true
                         contentWidth: Math.max(width, totalColumnWidth())
@@ -943,8 +959,8 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                             anchors.left: parent.left; anchors.leftMargin: 8
                                             visible: modelData.key !== "check"
-                                            text: modelData.title + tableFlick.window.sortIndicator(modelData.key)
-                                            color: tableFlick.window.sortColumn === modelData.key ? "#88bbff" : "#909090"
+                                            text: modelData.title + root.sortIndicator(modelData.key)
+                                            color: root.sortColumn === modelData.key ? "#88bbff" : "#909090"
                                             font.bold: true; font.pixelSize: 11
                                         }
 
@@ -955,13 +971,13 @@ Window {
                                             enabled: modelData.key !== "check"
                                             hoverEnabled: true
                                             cursorShape: modelData.key !== "check" ? Qt.PointingHandCursor : Qt.ArrowCursor
-                                            onClicked: tableFlick.window.sortBy(modelData.key)
+                                            onClicked: root.sortBy(modelData.key)
                                         }
 
                                         Rectangle {
                                             anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: parent.right
                                             width: 1
-                                            color: resizeHover.hovered || resizeDrag.active || tableFlick.window.resizingColumnKey === modelData.key
+                                            color: resizeHover.hovered || resizeDrag.active || root.resizingColumnKey === modelData.key
                                                    ? "#4488dd" : "#333333"
                                         }
 
@@ -973,17 +989,17 @@ Window {
                                             target: null; xAxis.enabled: true; yAxis.enabled: false
                                             onActiveChanged: {
                                                 if (active) {
-                                                    dragStartWidth = tableFlick.window.columnWidth(modelData.key)
-                                                    tableFlick.window.resizingColumnKey = modelData.key
-                                                    tableFlick.window.resizingColumnWidth = dragStartWidth
-                                                } else if (tableFlick.window.resizingColumnKey === modelData.key) {
-                                                    tableFlick.window.setColumnWidth(modelData.key, tableFlick.window.resizingColumnWidth)
-                                                    tableFlick.window.resizingColumnKey = ""
+                                                    dragStartWidth = root.columnWidth(modelData.key)
+                                                    root.resizingColumnKey = modelData.key
+                                                    root.resizingColumnWidth = dragStartWidth
+                                                } else if (root.resizingColumnKey === modelData.key) {
+                                                    root.setColumnWidth(modelData.key, root.resizingColumnWidth)
+                                                    root.resizingColumnKey = ""
                                                 }
                                             }
                                             onTranslationChanged: {
                                                 if (!active) return
-                                                tableFlick.window.resizingColumnWidth = Math.max(
+                                                root.resizingColumnWidth = Math.max(
                                                     modelData.key === "check" ? 34 : 60, dragStartWidth + translation.x)
                                             }
                                         }
@@ -1085,9 +1101,12 @@ Window {
                         }
 
                         // ── Empty state ───────────────────────────────────────
+                        // Anchored to the Flickable's visible viewport (width/height)
+                        // rather than the scrollable contentWidth, so it stays centered
+                        // when the window is narrower than the total column width.
                         Column {
-                            anchors.centerIn: parent
-                            anchors.verticalCenterOffset: headerRow.height / 2
+                            x: (tableFlick.width - width) / 2
+                            y: headerRow.height + (tableFlick.height - headerRow.height - height) / 2
                             spacing: 8
                             visible: root.totalCount === 0
                             Text {

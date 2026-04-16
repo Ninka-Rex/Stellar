@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -41,8 +41,8 @@ Window {
     readonly property var torrentTrackerModel: _isTorrent ? App.torrentTrackerModel(item.id) : null
     readonly property bool peerListActive: visible && _isTorrent && currentTab === 3
     readonly property bool peerMapActive: visible && _isTorrent && currentTab === 4
-    readonly property bool peerUpdatesActive: visible && _isTorrent && (currentTab === 3 || currentTab === 4 || currentTab === 5)
-    readonly property bool trackerTabActive: visible && _isTorrent && currentTab === 6
+    readonly property bool peerUpdatesActive: visible && _isTorrent && (currentTab === 3 || currentTab === 4)
+    readonly property bool trackerTabActive: visible && _isTorrent && currentTab === 5
     readonly property var activePeerListModel: peerListActive ? torrentPeerModel : null
     readonly property var activePeerMapModel: peerMapActive ? torrentPeerModel : null
     readonly property var activeTrackerListModel: trackerTabActive ? torrentTrackerModel : null
@@ -322,7 +322,7 @@ Window {
         property alias swarmStatsStoreJson: root.swarmStatsStoreJson
     }
 
-    // ── Window sizing ────────────────────────────────────────────────────────
+    // â”€â”€ Window sizing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     function _applySize() {
         if (_isTorrent) {
             minimumWidth  = 820
@@ -420,7 +420,7 @@ Window {
             if (!root.item || !root.item.isTorrent)
                 return
             // Sync cached edit values only when the speed limit dialog has no
-            // unsaved edits — otherwise the user's in-flight changes win.
+            // unsaved edits â€” otherwise the user's in-flight changes win.
             if (!speedLimitDialog.dirty) {
                 root.editPerTorrentDownLimitKBps = root.item.perTorrentDownLimitKBps | 0
                 root.editPerTorrentUpLimitKBps   = root.item.perTorrentUpLimitKBps   | 0
@@ -436,7 +436,7 @@ Window {
         }
     }
 
-    // ── Helpers ──────────────────────────────────────────────────────────────
+    // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     function safeStr(v) { return (v === undefined || v === null) ? "" : String(v) }
     function torrentStatusLabel() {
         switch (_torrentStatusText) {
@@ -493,7 +493,7 @@ Window {
             return name.indexOf("biglybt") !== -1
                 ? "icons/torrent-client-logos/biglybt.png"
                 : "icons/torrent-client-logos/vuze.png"
-        if (name.indexOf("utorrent") !== -1 || name.indexOf("µtorrent") !== -1 || name.indexOf("μtorrent") !== -1 || name.indexOf("microtorrent") !== -1)
+        if (name.indexOf("utorrent") !== -1 || name.indexOf("Âµtorrent") !== -1 || name.indexOf("Î¼torrent") !== -1 || name.indexOf("microtorrent") !== -1)
             return "icons/torrent-client-logos/utorrent.png"
         if (name.indexOf("bitcomet") !== -1)
             return "icons/torrent-client-logos/bitcomet.png"
@@ -611,7 +611,7 @@ Window {
             speedGraphCanvasRef.requestPaint()
     }
     // Reduce pts to at most maxPts by averaging each bucket.
-    // Averaging preserves the real throughput shape — peak-only decimation
+    // Averaging preserves the real throughput shape â€” peak-only decimation
     // exaggerates spikes and produces a misleadingly jagged curve on long spans.
     function decimateSamples(pts, maxPts) {
         if (pts.length <= maxPts) return pts
@@ -634,7 +634,7 @@ Window {
         return out
     }
 
-    // Cached decimated sample array — rebuilt only when the raw data or the
+    // Cached decimated sample array â€” rebuilt only when the raw data or the
     // selected time span changes, NOT on every mouse move or canvas repaint.
     // The canvas and hover tooltip both read from this property.
     property var _speedDecimated: []
@@ -642,10 +642,10 @@ Window {
         // C++ pre-decimated to ~1000 points. Apply a data-level box-blur pass
         // to smooth bucket-to-bucket variance that Catmull-Rom can't hide on
         // long time spans.  Number of passes scales with the selected window:
-        //   < 10 min  → 0 passes (raw data, fine-grained enough)
-        //   10–60 min → 1 pass
-        //   1–3 hr    → 3 passes
-        //   > 3 hr    → 6 passes
+        //   < 10 min  â†’ 0 passes (raw data, fine-grained enough)
+        //   10â€“60 min â†’ 1 pass
+        //   1â€“3 hr    â†’ 3 passes
+        //   > 3 hr    â†’ 6 passes
         var rows = speedVisibleSamples()
         var span = speedSpanSeconds
         var passes = span < 600 ? 0 : span < 3600 ? 1 : span < 10800 ? 3 : 6
@@ -712,7 +712,7 @@ Window {
         var lat = Number(latitude) + root.peerMapLatOffset
         if (!isFinite(lat))
             lat = 0
-        // world-map.svg (Natural Earth 110m) uses equirectangular projection spanning ±90°.
+        // world-map.svg (Natural Earth 110m) uses equirectangular projection spanning Â±90Â°.
         // x = (lon+180)/360*width, y = (90-lat)/180*height
         lat = Math.max(-90, Math.min(90, lat))
         var normalized = (90 - lat) / 180
@@ -735,19 +735,19 @@ Window {
     }
     function flagColor(flag) {
         switch (flag) {
-        case "IN":  return "#e8c84a"   // yellow — incoming
-        case "OUT": return "#7a8899"   // muted — outgoing
-        case "TRK": return "#5f93c9"   // blue — tracker
-        case "DHT": return "#4db8ff"   // cyan-blue — DHT
-        case "PEX": return "#a06de8"   // purple — PeX
-        case "LSD": return "#4caf7d"   // green — local
-        case "UTP": return "#5ecfe8"   // teal — uTP
-        case "ENC": return "#7dd87d"   // green — encrypted
-        case "SNB": return "#e86a5c"   // red — snubbed
-        case "UPO": return "#c97de8"   // magenta — upload-only
-        case "OPT": return "#e8a35c"   // orange — optimistic
-        case "HPX": return "#ff8ab4"   // pink — holepunch
-        case "I2P": return "#a8ff78"   // lime — I2P
+        case "IN":  return "#e8c84a"   // yellow â€” incoming
+        case "OUT": return "#7a8899"   // muted â€” outgoing
+        case "TRK": return "#5f93c9"   // blue â€” tracker
+        case "DHT": return "#4db8ff"   // cyan-blue â€” DHT
+        case "PEX": return "#a06de8"   // purple â€” PeX
+        case "LSD": return "#4caf7d"   // green â€” local
+        case "UTP": return "#5ecfe8"   // teal â€” uTP
+        case "ENC": return "#7dd87d"   // green â€” encrypted
+        case "SNB": return "#e86a5c"   // red â€” snubbed
+        case "UPO": return "#c97de8"   // magenta â€” upload-only
+        case "OPT": return "#e8a35c"   // orange â€” optimistic
+        case "HPX": return "#ff8ab4"   // pink â€” holepunch
+        case "I2P": return "#a8ff78"   // lime â€” I2P
         default:    return "#708396"
         }
     }
@@ -829,10 +829,10 @@ Window {
         return isFinite(v) ? v.toFixed(2) : "0.00"
     }
 
-    // Formats seconds into human-readable "Xh Xm" / "Xm Xs" / "Xs" / "—"
+    // Formats seconds into human-readable "Xh Xm" / "Xm Xs" / "Xs" / "â€”"
     function formatDuration(secs) {
         var s = Math.max(0, secs | 0)
-        if (s <= 0) return "—"
+        if (s <= 0) return "â€”"
         var h = Math.floor(s / 3600)
         var m = Math.floor((s % 3600) / 60)
         var r = s % 60
@@ -1218,6 +1218,7 @@ Window {
         _swarmDecimated = rows
     }
 
+    /* Swarm Statistics monitoring timer â€” disabled pending rework
     Timer {
         id: swarmStatsTimer
         interval: 60000
@@ -1242,6 +1243,7 @@ Window {
             if (root.currentTab === 5 && root.swarmCountryPieRef) root.swarmCountryPieRef.requestPaint()
         }
     }
+    */
 
     function restorePeerListViewport() {
         if (!_peerViewportRestorePending)
@@ -1269,7 +1271,7 @@ Window {
         })
     }
 
-    // ── Shared components ────────────────────────────────────────────────────
+    // â”€â”€ Shared components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     component ReadOnlyField: Rectangle {
         property alias fieldText: ti.text
         property color textColor: "#d0d0d0"
@@ -1288,7 +1290,7 @@ Window {
         }
     }
 
-    // ── File chooser ─────────────────────────────────────────────────────────
+    // â”€â”€ File chooser â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     FileDialog {
         id: moveFileDialog
         title: _isTorrent ? "Move Torrent Data To..." : "Move File To..."
@@ -1324,7 +1326,7 @@ Window {
         }
     }
 
-    // ── Root layout ──────────────────────────────────────────────────────────
+    // â”€â”€ Root layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 0
@@ -1402,14 +1404,14 @@ Window {
         }
     }
 
-    // ── Per-torrent speed limit dialog (opened from General tab) ─────────────
+    // â”€â”€ Per-torrent speed limit dialog (opened from General tab) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     TorrentSpeedLimitDialog {
         id: speedLimitDialog
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     // Regular HTTP/FTP file layout
-    // ═══════════════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     Component {
         id: regularLayout
         ColumnLayout {
@@ -1559,15 +1561,15 @@ Window {
         }
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     // Torrent layout
-    // ═══════════════════════════════════════════════════════════════════════════
+    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
     Component {
         id: torrentLayout
         ColumnLayout {
             spacing: 8
 
-            // ── Summary header ────────────────────────────────────────────────
+            // â”€â”€ Summary header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             Rectangle {
                 Layout.fillWidth: true; Layout.preferredHeight: 170
                 color: "#222228"; border.width: 0; radius: 0
@@ -1581,24 +1583,18 @@ Window {
                         Layout.bottomMargin: 10
                         spacing: 10
 
-                        Item {
-                            Layout.preferredWidth: 36
-                            Layout.preferredHeight: 36
-
-                            Image {
-                                anchors.centerIn: parent
-                                width: 30
-                                height: 30
-                                source: {
-                                    if (!root.item) return ""
-                                    var p = safeStr(root.item.savePath).replace(/\\/g, "/")
-                                    var f = safeStr(root.item.filename)
-                                    return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
-                                }
-                                sourceSize: Qt.size(30, 30)
-                                fillMode: Image.PreserveAspectFit
-                                asynchronous: true
+                        Image {
+                            Layout.preferredWidth: 30
+                            Layout.preferredHeight: 30
+                            source: {
+                                if (!root.item) return ""
+                                var p = safeStr(root.item.savePath).replace(/\\/g, "/")
+                                var f = safeStr(root.item.filename)
+                                return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
                             }
+                            sourceSize: Qt.size(30, 30)
+                            fillMode: Image.PreserveAspectFit
+                            asynchronous: true
                         }
 
                         ColumnLayout {
@@ -1612,7 +1608,7 @@ Window {
                                 text: {
                                     if (!root.item) return ""
                                     var h = safeStr(root.item.torrentInfoHash)
-                                    return h ? ("Hash: " + h) : "Waiting for metadata…"
+                                    return h ? ("Hash: " + h) : "Waiting for metadataâ€¦"
                                 }
                                 color: "#8ea1b5"; font.pixelSize: 11
                                 elide: Text.ElideMiddle; Layout.fillWidth: true
@@ -1656,7 +1652,7 @@ Window {
                         }
                         Text {
                             text: root.item ? root.compactSpeed(root.item.speed) : "0 B/s"
-                            color: "#c8c8c8"; font.pixelSize: 12; Layout.preferredWidth: 90
+                            color: "#c8c8c8"; font.pixelSize: 12
                             horizontalAlignment: Text.AlignRight
                         }
                     }
@@ -1687,7 +1683,7 @@ Window {
                 }
             }
 
-            // ── Tab strip ─────────────────────────────────────────────────────
+            // â”€â”€ Tab strip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             Rectangle {
                 Layout.fillWidth: true; height: 34
                 color: "#252525"
@@ -1697,7 +1693,7 @@ Window {
                 Row {
                     anchors.fill: parent; spacing: 0
                     Repeater {
-                        model: ["General", "Speed", "Files", "Peers", "Swarm Map", "Swarm Statistics", "Trackers", "Piece Map"]
+                        model: ["General", "Speed", "Files", "Peers", "Swarm Map", "Trackers", "Piece Map"]
                         delegate: Rectangle {
                             width: tabLbl.implicitWidth + 28; height: parent.height
                             color: root.currentTab === index
@@ -1724,18 +1720,18 @@ Window {
                 }
             }
 
-            // ── Tab pages ─────────────────────────────────────────────────────
+            // â”€â”€ Tab pages â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             StackLayout {
                 Layout.fillWidth: true; Layout.fillHeight: true
                 currentIndex: root.currentTab
 
-                // ── General ───────────────────────────────────────────────────
+                // â”€â”€ General â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                 Item {
                     ColumnLayout {
                         anchors { fill: parent; margins: 10 }
                         spacing: 8
 
-                        // — Torrent info card —
+                        // â€” Torrent info card â€”
                         Rectangle {
                             Layout.fillWidth: true
                             color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 3
@@ -1789,7 +1785,7 @@ Window {
                             }
                         }
 
-                        // — Save location + Transfer stats (merged) —
+                        // â€” Save location + Transfer stats (merged) â€”
                         Rectangle {
                             Layout.fillWidth: true
                             color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 3
@@ -1845,10 +1841,10 @@ Window {
                                         Text { text: "Pieces"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
                                             text: {
-                                                if (!root.item) return "—"
+                                                if (!root.item) return "â€”"
                                                 var done = root.item.torrentPiecesDone | 0
                                                 var total = root.item.torrentPiecesTotal | 0
-                                                if (total <= 0) return done > 0 ? String(done) : "—"
+                                                if (total <= 0) return done > 0 ? String(done) : "â€”"
                                                 return done + " / " + total + "  (" + Math.round(done / total * 100) + "%)"
                                             }
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
@@ -1856,9 +1852,9 @@ Window {
                                         Text { text: "Availability"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
                                             text: {
-                                                if (!root.item) return "—"
+                                                if (!root.item) return "â€”"
                                                 var av = root.item.torrentAvailability
-                                                return (typeof av === "number" && av > 0) ? av.toFixed(2) + " copies" : "—"
+                                                return (typeof av === "number" && av > 0) ? av.toFixed(2) + " copies" : "â€”"
                                             }
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
@@ -1866,37 +1862,37 @@ Window {
                                         // Speed section
                                         Text { text: "Download speed"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "—"
+                                            text: root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "â€”"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
                                         Text { text: "Upload speed"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—"
+                                            text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "â€”"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
 
                                         // Activity section
                                         Text { text: "Connections"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? String(root.item.torrentConnections | 0) : "—"
+                                            text: root.item ? String(root.item.torrentConnections | 0) : "â€”"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
                                         Text { text: "Active"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "—"
+                                            text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "â€”"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
 
                                         // Seeding section
                                         Text { text: "Seeding"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "—"
+                                            text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "â€”"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
                                         Text { text: "Wasted"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
                                             text: {
-                                                if (!root.item) return "—"
+                                                if (!root.item) return "â€”"
                                                 var w = root.item.torrentWastedBytes
                                                 return (w > 0) ? root.compactBytes(w) : "None"
                                             }
@@ -1907,7 +1903,7 @@ Window {
                                         // Share ratio
                                         Text { text: "Share ratio"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.ratioText(root.item.torrentRatio) : "—"
+                                            text: root.item ? root.ratioText(root.item.torrentRatio) : "â€”"
                                             color: {
                                                 if (!root.item) return "#c8c8c8"
                                                 var r = Number(root.item.torrentRatio)
@@ -1924,9 +1920,9 @@ Window {
                                                 var d = root.item.perTorrentDownLimitKBps | 0
                                                 var u = root.item.perTorrentUpLimitKBps   | 0
                                                 var parts = []
-                                                if (d > 0) parts.push("↓ " + d + " KB/s")
-                                                if (u > 0) parts.push("↑ " + u + " KB/s")
-                                                return parts.join("  •  ")
+                                                if (d > 0) parts.push("â†“ " + d + " KB/s")
+                                                if (u > 0) parts.push("â†‘ " + u + " KB/s")
+                                                return parts.join("  â€¢  ")
                                             }
                                             color: "#e8a040"; font.pixelSize: 11; Layout.fillWidth: true
                                             visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
@@ -1952,7 +1948,7 @@ Window {
                             }
                         }
 
-                        // — Description —
+                        // â€” Description â€”
                     }
                 }
 
@@ -2017,7 +2013,7 @@ Window {
                                     // by a few ms on every paint, causing visible jitter.
                                     var nowMs = root._speedNowMs || Date.now()
                                     var startMs = nowMs - root.speedSpanSeconds * 1000
-                                    // Use the pre-built decimated cache — avoids re-running the
+                                    // Use the pre-built decimated cache â€” avoids re-running the
                                     // filter + decimation on every hover-crosshair repaint.
                                     var samples = root._speedDecimated
 
@@ -2131,7 +2127,7 @@ Window {
                                         ctx.fillText(root.speedAxisLabel(val), plotX + plotW + 5, ty)
                                     }
 
-                                    // X-axis time labels — show hours for long spans
+                                    // X-axis time labels â€” show hours for long spans
                                     ctx.textAlign = "center"
                                     ctx.textBaseline = "top"
                                     for (var lx = 0; lx <= 6; ++lx) {
@@ -2264,7 +2260,7 @@ Window {
                         }
                     }
                 }
-                // ── Files ─────────────────────────────────────────────────────
+                // â”€â”€ Files â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                 Item {
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
@@ -2393,7 +2389,7 @@ Window {
                                         width: 16; height: parent.height
                                         Text {
                                             visible: fd.isFolder; anchors.centerIn: parent
-                                            text: fd.expanded ? "▾" : "▸"
+                                            text: fd.expanded ? "â–¾" : "â–¸"
                                             color: "#888"; font.pixelSize: 11
                                         }
                                         MouseArea {
@@ -2403,7 +2399,7 @@ Window {
                                         }
                                     }
 
-                                    // Wanted checkbox — shown for both files and folders.
+                                    // Wanted checkbox â€” shown for both files and folders.
                                     // Toggling a folder entry sets wanted on all its children.
                                     Item {
                                         width: 22; height: parent.height
@@ -2414,7 +2410,7 @@ Window {
                                             border.color: fd.wanted ? "#4488dd" : "#3a3a3a"
                                             Text {
                                                 visible: fd.wanted; anchors.centerIn: parent
-                                                text: "✓"; color: "#fff"
+                                                text: "âœ“"; color: "#fff"
                                                 font.pixelSize: 10; font.bold: true
                                             }
                                         }
@@ -2442,7 +2438,7 @@ Window {
                                         asynchronous: true
                                     }
 
-                                    // Name — width subtracts: depth-indent, expand-toggle (16),
+                                    // Name â€” width subtracts: depth-indent, expand-toggle (16),
                                     // checkbox (22), icon (16) + gap (4), outer margins (6+8).
                                     Text {
                                         width: root.fileColName - Math.max(0, fd.depth) * 14 - 16 - 22 - 16
@@ -2668,7 +2664,7 @@ Window {
                                             Text {
                                                 visible: fileCtxPopup._wanted
                                                 anchors.centerIn: parent
-                                                text: "✓"
+                                                text: "âœ“"
                                                 color: "#fff"
                                                 font.pixelSize: 10
                                                 font.bold: true
@@ -2742,7 +2738,7 @@ Window {
                     }
                 }
 
-                // ── Peers ─────────────────────────────────────────────────────
+                // â”€â”€ Peers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                 Item {
                     // Peer column widths live on root so they survive tab switches.
                     // Each column header cell has a DragHandler resize handle, mirroring
@@ -2754,7 +2750,7 @@ Window {
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
 
-                        // Header — styled identically to DownloadTable
+                        // Header â€” styled identically to DownloadTable
                         Rectangle {
                             id: peerHeader
                             Layout.fillWidth: true; height: 26
@@ -2800,7 +2796,7 @@ Window {
                                         Text {
                                             id: sortArrow
                                             anchors { verticalCenter: parent.verticalCenter; right: rh.left; rightMargin: 4 }
-                                            text: root.peerSortAscending ? "▲" : "▼"
+                                            text: root.peerSortAscending ? "â–²" : "â–¼"
                                             color: "#88bbff"; font.pixelSize: 9
                                             visible: root.peerSortKey === modelData.sortKey
                                         }
@@ -3180,7 +3176,7 @@ Window {
                     }
                 }
 
-                // ── Peer Map ────────────────────────────────────────────────
+                // â”€â”€ Peer Map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                 Item {
                     Rectangle {
                         anchors.fill: parent
@@ -3217,7 +3213,7 @@ Window {
                                             width: 14; height: 14; radius: 2
                                             color: inactiveCheck.checked ? "#4488dd" : "#1b1b1b"
                                             border.color: inactiveCheck.checked ? "#4488dd" : "#3a3a3a"
-                                            Text { visible: inactiveCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
+                                            Text { visible: inactiveCheck.checked; text: "âœ“"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
                                         }
                                         contentItem: Item {}
                                     }
@@ -3237,7 +3233,7 @@ Window {
                                             width: 14; height: 14; radius: 2
                                             color: trackerDotsCheck.checked ? "#4488dd" : "#1b1b1b"
                                             border.color: trackerDotsCheck.checked ? "#4488dd" : "#3a3a3a"
-                                            Text { visible: trackerDotsCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
+                                            Text { visible: trackerDotsCheck.checked; text: "âœ“"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
                                         }
                                         contentItem: Item {}
                                     }
@@ -3369,7 +3365,7 @@ Window {
                                             required property int upSpeed
                                             required property bool isSeed
                                             required property string source
-                                            required property double progress   // fraction 0–1; was missing, causing all peers to show 0%
+                                            required property double progress   // fraction 0â€“1; was missing, causing all peers to show 0%
 
                                             readonly property bool hasCoordinates: isFinite(latitude) && isFinite(longitude) && !(latitude === 0 && longitude === 0)
                                             readonly property bool isActive: downSpeed > 0 || upSpeed > 0
@@ -3415,7 +3411,7 @@ Window {
                                                     Text { text: endpoint + ":" + port; color: "#f0f5fb"; font.pixelSize: 11; font.bold: true; elide: Text.ElideRight; width: parent.width }
                                                     Text { text: client; color: "#c5d2de"; font.pixelSize: 11; elide: Text.ElideRight; width: parent.width }
                                                     Text { text: root.peerPlaceText(parent.parent); color: "#95a9bb"; font.pixelSize: 10; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: (isSeed ? "Seed" : "Peer") + " • " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10; width: parent.width }
+                                                    Text { text: (isSeed ? "Seed" : "Peer") + " â€¢ " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10; width: parent.width }
                                                     Text { text: "Down " + root.compactSpeed(downSpeed) + "  Up " + root.compactSpeed(upSpeed); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
                                                     Text { text: "RTT " + (rtt > 0 ? (rtt + " ms") : "--"); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
                                                 }
@@ -3649,7 +3645,7 @@ Window {
 
                                             // Speed row
                                             Text {
-                                                text: "↓ " + root.compactSpeed(root.peerMapHoverDownSpeed) + "  ↑ " + root.compactSpeed(root.peerMapHoverUpSpeed)
+                                                text: "â†“ " + root.compactSpeed(root.peerMapHoverDownSpeed) + "  â†‘ " + root.compactSpeed(root.peerMapHoverUpSpeed)
                                                 color: "#9fb6c8"
                                                 font.pixelSize: 11
                                                 width: parent.width
@@ -3657,7 +3653,7 @@ Window {
 
                                             // Ping + progress row
                                             Text {
-                                                text: "Ping " + (root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "—") + "  " + Math.round(root.peerMapHoverProgress * 100) + "% done"
+                                                text: "Ping " + (root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "â€”") + "  " + Math.round(root.peerMapHoverProgress * 100) + "% done"
                                                 color: "#9fb6c8"
                                                 font.pixelSize: 11
                                                 width: parent.width
@@ -3744,7 +3740,7 @@ Window {
                                                 spacing: 4
                                                 Text { text: "Peers"; color: "#6a8099"; font.pixelSize: 11 }
                                                 Text {
-                                                    text: root.peerMapTrackerHoverCount > 0 ? String(root.peerMapTrackerHoverCount) : "—"
+                                                    text: root.peerMapTrackerHoverCount > 0 ? String(root.peerMapTrackerHoverCount) : "â€”"
                                                     color: "#c5d2de"; font.pixelSize: 11
                                                 }
                                             }
@@ -3909,389 +3905,12 @@ Window {
                     }
                 }
 
-                // ── Swarm Statistics ──────────────────────────────────────────
-                Item {
-                    ScrollView {
-                        anchors.fill: parent
-                        contentWidth: availableWidth
-                        clip: true
-                        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-                        ScrollBar.vertical.policy: ScrollBar.AsNeeded
-
-                        ColumnLayout {
-                            width: parent.width
-                            spacing: 0
-
-                            // ── Client Fingerprint horizontal bar chart ────────
-                            Rectangle {
-                                Layout.fillWidth: true
-                                Layout.leftMargin: 10; Layout.rightMargin: 10; Layout.topMargin: 10
-                                color: "#171717"; border.color: "#2d2d2d"; radius: 3
-                                implicitHeight: clientBarCol.implicitHeight + 16
-
-                                ColumnLayout {
-                                    id: clientBarCol
-                                    anchors { fill: parent; margins: 8 }
-                                    spacing: 6
-
-                                    RowLayout {
-                                        Layout.fillWidth: true
-                                        Text { text: "Client Fingerprint"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true; Layout.fillWidth: true }
-                                        Text {
-                                            text: {
-                                                var n = root.breakdownExcludedCount(root.swarmClientBreakdown, "client")
-                                                return n > 0 ? (n + " unknown filtered") : "Top identified clients"
-                                            }
-                                            color: "#4a6070"; font.pixelSize: 10
-                                        }
-                                    }
-
-                                    // Stacked proportion bar
-                                    Rectangle {
-                                        id: clientStackedBar
-                                        Layout.fillWidth: true; height: 14; radius: 7; color: "#0d0d0d"; clip: true
-                                        readonly property var _rows: root.swarmClientLegendRows
-                                        readonly property real _totalPct: {
-                                            var s = 0
-                                            for (var i = 0; i < _rows.length; ++i) s += _rows[i].pct
-                                            return Math.max(0.0001, s)
-                                        }
-                                        Row {
-                                            anchors.fill: parent; spacing: 0
-                                            Repeater {
-                                                model: clientStackedBar._rows
-                                                Rectangle {
-                                                    required property var modelData
-                                                    required property int index
-                                                    width: Math.max(0, (modelData.pct / clientStackedBar._totalPct) * clientStackedBar.width)
-                                                    height: clientStackedBar.height
-                                                    color: modelData.color
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    // Per-client rows with inline bar
-                                    Repeater {
-                                        model: root.swarmClientLegendRows
-                                        RowLayout {
-                                            required property var modelData
-                                            required property int index
-                                            Layout.fillWidth: true; spacing: 6
-
-                                            Rectangle { width: 10; height: 10; radius: 5; color: modelData.color; Layout.alignment: Qt.AlignVCenter }
-                                            Image {
-                                                Layout.preferredWidth: 14; Layout.preferredHeight: 14
-                                                fillMode: Image.PreserveAspectFit; smooth: true; asynchronous: true
-                                                source: root.torrentClientIconSource(modelData.label)
-                                                opacity: status === Image.Ready ? 1 : 0
-                                            }
-                                            Text { text: modelData.label; color: "#b6c0ca"; font.pixelSize: 11; Layout.preferredWidth: 110; elide: Text.ElideRight }
-                                            Rectangle {
-                                                Layout.fillWidth: true; height: 8; radius: 4; color: "#0d0d0d"
-                                                Rectangle {
-                                                    width: Math.max(0, parent.width * modelData.pct / 100)
-                                                    height: parent.height; radius: 4; color: modelData.color; opacity: 0.85
-                                                }
-                                            }
-                                            Text { text: modelData.pct.toFixed(1) + "%"; color: "#9fb2c6"; font.pixelSize: 11; Layout.preferredWidth: 40; horizontalAlignment: Text.AlignRight }
-                                        }
-                                    }
-                                }
-                            }
-
-                            // ── Country horizontal bar chart ──────────────────
-                            Rectangle {
-                                Layout.fillWidth: true
-                                Layout.leftMargin: 10; Layout.rightMargin: 10; Layout.topMargin: 6
-                                color: "#171717"; border.color: "#2d2d2d"; radius: 3
-                                implicitHeight: countryBarCol.implicitHeight + 16
-
-                                ColumnLayout {
-                                    id: countryBarCol
-                                    anchors { fill: parent; margins: 8 }
-                                    spacing: 6
-
-                                    RowLayout {
-                                        Layout.fillWidth: true
-                                        Text { text: "Country Breakdown"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true; Layout.fillWidth: true }
-                                        Text {
-                                            text: {
-                                                var n = root.breakdownExcludedCount(root.swarmCountryBreakdown, "country")
-                                                return n > 0 ? (n + " unknown filtered") : "Top identified countries"
-                                            }
-                                            color: "#4a6070"; font.pixelSize: 10
-                                        }
-                                    }
-
-                                    // Stacked proportion bar
-                                    Rectangle {
-                                        id: countryStackedBar
-                                        Layout.fillWidth: true; height: 14; radius: 7; color: "#0d0d0d"; clip: true
-                                        readonly property var _rows: root.swarmCountryLegendRows
-                                        readonly property real _totalPct: {
-                                            var s = 0
-                                            for (var i = 0; i < _rows.length; ++i) s += _rows[i].pct
-                                            return Math.max(0.0001, s)
-                                        }
-                                        Row {
-                                            anchors.fill: parent; spacing: 0
-                                            Repeater {
-                                                model: countryStackedBar._rows
-                                                Rectangle {
-                                                    required property var modelData
-                                                    required property int index
-                                                    width: Math.max(0, (modelData.pct / countryStackedBar._totalPct) * countryStackedBar.width)
-                                                    height: countryStackedBar.height
-                                                    color: modelData.color
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    // Per-country rows with inline bar + flag
-                                    Repeater {
-                                        model: root.swarmCountryLegendRows
-                                        RowLayout {
-                                            required property var modelData
-                                            required property int index
-                                            Layout.fillWidth: true; spacing: 6
-
-                                            Rectangle { width: 10; height: 10; radius: 5; color: modelData.color; Layout.alignment: Qt.AlignVCenter }
-                                            Image {
-                                                Layout.preferredWidth: 18; Layout.preferredHeight: 12
-                                                fillMode: Image.PreserveAspectFit; smooth: true; asynchronous: true
-                                                source: root.countryFlagSource(modelData.label)
-                                                visible: status === Image.Ready
-                                            }
-                                            Text { text: modelData.label; color: "#b6c0ca"; font.pixelSize: 11; Layout.preferredWidth: 110; elide: Text.ElideRight }
-                                            Rectangle {
-                                                Layout.fillWidth: true; height: 8; radius: 4; color: "#0d0d0d"
-                                                Rectangle {
-                                                    width: Math.max(0, parent.width * modelData.pct / 100)
-                                                    height: parent.height; radius: 4; color: modelData.color; opacity: 0.85
-                                                }
-                                            }
-                                            Text { text: modelData.pct.toFixed(1) + "%"; color: "#9fb2c6"; font.pixelSize: 11; Layout.preferredWidth: 40; horizontalAlignment: Text.AlignRight }
-                                        }
-                                    }
-                                }
-                            }
-
-                            // ── Peers & Seeders over time ─────────────────────
-                            // Ratio is shown as a text stat only — it lives on a
-                            // completely different numeric scale than peer counts
-                            // and overlaying it on the same Y axis is misleading.
-                            Rectangle {
-                                Layout.fillWidth: true
-                                Layout.leftMargin: 10; Layout.rightMargin: 10
-                                Layout.topMargin: 6; Layout.bottomMargin: 10
-                                height: 226
-                                color: "#171717"; border.color: "#2d2d2d"; radius: 3
-
-                                ColumnLayout {
-                                    anchors.fill: parent; anchors.margins: 8; spacing: 4
-
-                                    RowLayout {
-                                        Layout.fillWidth: true; spacing: 12
-                                        Text { text: "Peers & Seeders"; color: "#d7d7d7"; font.pixelSize: 12; font.bold: true }
-                                        Item { Layout.fillWidth: true }
-                                        readonly property var _s: root.swarmLegendSample()
-                                        Text { text: "Peers "   + String(Number(parent._s.peers)   || 0); color: "#4b9cff"; font.pixelSize: 11 }
-                                        Text { text: "Seeders " + String(Number(parent._s.seeders) || 0); color: "#66bb7a"; font.pixelSize: 11 }
-                                        Text { text: "Ratio "   + root.ratioText(parent._s.ratio);        color: "#f0c25a"; font.pixelSize: 11 }
-                                        Text { text: root.formatClockTime(parent._s.t); color: "#5a6a7a"; font.pixelSize: 11 }
-                                        ComboBox {
-                                            Layout.preferredWidth: 100
-                                            model: root.swarmPeriodOptions.map(function(o){ return o.label })
-                                            currentIndex: root.swarmPeriodIndex
-                                            onActivated: root.swarmPeriodIndex = currentIndex
-                                            font.pixelSize: 11
-                                        }
-                                    }
-
-                                    Item {
-                                        id: swarmLiveCanvas
-                                        Layout.fillWidth: true
-                                        Layout.fillHeight: true
-
-                                        Canvas {
-                                            id: swarmLivePlot
-                                            anchors.fill: parent
-                                            antialiasing: true
-                                            renderTarget: Canvas.Image
-                                            Component.onCompleted: root.swarmLiveCanvasRef = swarmLivePlot
-                                            Component.onDestruction: if (root.swarmLiveCanvasRef === swarmLivePlot) root.swarmLiveCanvasRef = null
-
-                                            onPaint: {
-                                                var ctx = getContext("2d")
-                                                ctx.reset()
-                                                var w = width, h = height
-                                                if (w < 40 || h < 40) return
-                                                var top = 10, right = 52, bottom = 22, left = 6
-                                                var plotX = left, plotY = top
-                                                var plotW = Math.max(10, w - left - right)
-                                                var plotH = Math.max(10, h - top - bottom)
-                                                var nowMs = root._swarmNowMs || Date.now()
-                                                var startMs = nowMs - root.swarmPeriodSeconds * 1000
-                                                var samples = root._swarmDecimated
-
-                                                var maxPeers = 1
-                                                for (var i = 0; i < samples.length; ++i)
-                                                    maxPeers = Math.max(maxPeers, Number(samples[i].peers) || 0, Number(samples[i].seeders) || 0)
-                                                var peerScale = Math.pow(10, Math.floor(Math.log(maxPeers) / Math.log(10)))
-                                                var peerNorm = maxPeers / peerScale
-                                                var peerStep = peerNorm <= 1 ? 1 : (peerNorm <= 2 ? 2 : (peerNorm <= 5 ? 5 : 10))
-                                                var peerAxisTop = Math.max(1, peerStep * peerScale)
-                                                while (peerAxisTop < maxPeers) peerAxisTop *= 2
-
-                                                function pxForT(t) {
-                                                    if (samples.length <= 1) return plotX + plotW / 2
-                                                    return plotX + ((t - startMs) / (root.swarmPeriodSeconds * 1000)) * plotW
-                                                }
-                                                function pyForP(v) {
-                                                    return plotY + plotH - (Math.max(0, v) / peerAxisTop) * plotH
-                                                }
-
-                                                ctx.fillStyle = "#0e1014"; ctx.fillRect(0, 0, w, h)
-
-                                                ctx.strokeStyle = "#1e2228"; ctx.lineWidth = 1
-                                                for (var gy = 0; gy <= 4; ++gy) {
-                                                    var gy2 = Math.round(plotY + plotH * gy / 4) + 0.5
-                                                    ctx.beginPath(); ctx.moveTo(plotX, gy2); ctx.lineTo(plotX + plotW, gy2); ctx.stroke()
-                                                }
-                                                for (var gx = 0; gx <= 6; ++gx) {
-                                                    var gx2 = Math.round(plotX + plotW * gx / 6) + 0.5
-                                                    ctx.beginPath(); ctx.moveTo(gx2, plotY); ctx.lineTo(gx2, plotY + plotH); ctx.stroke()
-                                                }
-
-                                                function drawSmoothedArea(key, stroke, fillColor) {
-                                                    var n = samples.length
-                                                    if (n === 0) return
-                                                    var xs = new Array(n), ys = new Array(n)
-                                                    for (var pi = 0; pi < n; ++pi) {
-                                                        xs[pi] = pxForT(samples[pi].t)
-                                                        ys[pi] = pyForP(Number(samples[pi][key]) || 0)
-                                                    }
-                                                    var baseY = plotY + plotH
-                                                    var firstX = xs[0]
-                                                    // Fill pass
-                                                    ctx.beginPath(); ctx.moveTo(xs[0], ys[0])
-                                                    if (n === 1) {
-                                                        ctx.lineTo(xs[0], ys[0])
-                                                    } else {
-                                                        for (var ci = 0; ci < n - 1; ++ci) {
-                                                            var im1 = Math.max(0, ci - 1), ip2 = Math.min(n - 1, ci + 2)
-                                                            ctx.bezierCurveTo(
-                                                                xs[ci]     + (xs[ci+1] - xs[im1]) / 6,
-                                                                ys[ci]     + (ys[ci+1] - ys[im1]) / 6,
-                                                                xs[ci+1]   - (xs[ip2]  - xs[ci])  / 6,
-                                                                ys[ci+1]   - (ys[ip2]  - ys[ci])  / 6,
-                                                                xs[ci+1], ys[ci+1])
-                                                        }
-                                                    }
-                                                    ctx.lineTo(xs[n-1], baseY); ctx.lineTo(firstX, baseY)
-                                                    ctx.closePath(); ctx.fillStyle = fillColor; ctx.fill()
-                                                    // Stroke pass
-                                                    ctx.beginPath(); ctx.moveTo(xs[0], ys[0])
-                                                    if (n > 1) {
-                                                        for (var si = 0; si < n - 1; ++si) {
-                                                            var sm1 = Math.max(0, si - 1), sp2 = Math.min(n - 1, si + 2)
-                                                            ctx.bezierCurveTo(
-                                                                xs[si]     + (xs[si+1] - xs[sm1]) / 6,
-                                                                ys[si]     + (ys[si+1] - ys[sm1]) / 6,
-                                                                xs[si+1]   - (xs[sp2]  - xs[si])  / 6,
-                                                                ys[si+1]   - (ys[sp2]  - ys[si])  / 6,
-                                                                xs[si+1], ys[si+1])
-                                                        }
-                                                    }
-                                                    ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.stroke()
-                                                }
-
-                                                drawSmoothedArea("seeders", "#58cc88", "rgba(88,204,136,0.18)")
-                                                drawSmoothedArea("peers",   "#4ea2ff", "rgba(78,162,255,0.22)")
-
-                                                ctx.fillStyle = "#667788"; ctx.font = "10px sans-serif"
-                                                ctx.textAlign = "left"; ctx.textBaseline = "middle"
-                                                for (var ly = 0; ly <= 4; ++ly) {
-                                                    var peerVal = peerAxisTop * (1 - ly / 4)
-                                                    ctx.fillText(String(Math.round(peerVal)), plotX + plotW + 5, plotY + plotH * ly / 4)
-                                                }
-                                                ctx.textAlign = "center"; ctx.textBaseline = "top"
-                                                for (var lx = 0; lx <= 6; ++lx) {
-                                                    var secAgo = Math.round(root.swarmPeriodSeconds * (1 - lx / 6))
-                                                    var tx = plotX + plotW * lx / 6
-                                                    var lbl = secAgo >= 3600 ? (Math.floor(secAgo / 3600) + "h")
-                                                                             : (secAgo >= 60 ? (Math.round(secAgo / 60) + "m") : (secAgo + "s"))
-                                                    ctx.fillText("-" + lbl, tx, plotY + plotH + 4)
-                                                }
-
-                                                if (root.swarmLiveHoverActive && samples.length > 0) {
-                                                    var nx = Math.max(0, Math.min(1, (root.swarmLiveHoverX - plotX) / plotW))
-                                                    var idx = Math.max(0, Math.min(samples.length - 1, Math.round(nx * (samples.length - 1))))
-                                                    var sx = plotX + (samples.length <= 1 ? 0 : (plotW * idx / (samples.length - 1)))
-                                                    var sample = samples[idx]
-                                                    root.swarmHoverSample = sample
-                                                    ctx.strokeStyle = "rgba(180,200,220,0.25)"; ctx.lineWidth = 1
-                                                    ctx.beginPath(); ctx.moveTo(sx, plotY); ctx.lineTo(sx, plotY + plotH); ctx.stroke()
-                                                    function dotAt(color, key) {
-                                                        ctx.beginPath(); ctx.arc(sx, pyForP(Number(sample[key]) || 0), 4, 0, Math.PI * 2)
-                                                        ctx.fillStyle = color; ctx.fill()
-                                                    }
-                                                    dotAt("#4ea2ff", "peers"); dotAt("#58cc88", "seeders")
-                                                } else {
-                                                    root.swarmHoverSample = null
-                                                }
-                                            }
-                                        }
-
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            hoverEnabled: true; acceptedButtons: Qt.NoButton
-                                            onPositionChanged: function(mouse) {
-                                                root.swarmLiveHoverX = mouse.x
-                                                root.swarmLiveHoverActive = true
-                                                if (root.swarmLiveCanvasRef) root.swarmLiveCanvasRef.requestPaint()
-                                            }
-                                            onExited: {
-                                                root.swarmLiveHoverActive = false
-                                                root.swarmHoverSample = null
-                                                if (root.swarmLiveCanvasRef) root.swarmLiveCanvasRef.requestPaint()
-                                            }
-                                        }
-
-                                        Rectangle {
-                                            visible: root.swarmLiveHoverActive && !!root.swarmHoverSample
-                                            radius: 3; color: "#101722"; border.color: "#2f465d"
-                                            anchors.top: parent.top; anchors.topMargin: 8
-                                            x: Math.max(8, Math.min(parent.width - width - 8, root.swarmLiveHoverX + 12))
-                                            width: swarmTipCol.implicitWidth + 12
-                                            height: swarmTipCol.implicitHeight + 10
-                                            Column {
-                                                id: swarmTipCol
-                                                anchors.centerIn: parent; spacing: 2
-                                                Text { text: root.swarmHoverSample ? root.formatClockTime(root.swarmHoverSample.t) : ""; color: "#dbe8f6"; font.pixelSize: 11; font.bold: true }
-                                                Text { text: root.swarmHoverSample ? ("Peers "   + String(Math.round(Number(root.swarmHoverSample.peers)   || 0))) : ""; color: "#8fc0f2"; font.pixelSize: 11 }
-                                                Text { text: root.swarmHoverSample ? ("Seeders " + String(Math.round(Number(root.swarmHoverSample.seeders) || 0))) : ""; color: "#97ddb3"; font.pixelSize: 11 }
-                                                Text { text: root.swarmHoverSample ? ("Ratio "   + root.ratioText(root.swarmHoverSample.ratio))                    : ""; color: "#f0c25a"; font.pixelSize: 11 }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            // Bottom spacer so ScrollView has clean padding at the end
-                            Item { Layout.fillWidth: true; height: 1 }
-                        }
-                    }
-                }
-
                 Item {
                     // Shared context menu for tracker rows
                     Menu {
                         id: trackerCtxMenu
                         property string trackerUrl: ""
-                        // DHT/PEX/LSD are virtual "trackers" with no real URL — disable
+                        // DHT/PEX/LSD are virtual "trackers" with no real URL â€” disable
                         // destructive/copy actions so right-clicking them feels inert.
                         property bool isSystemEntry: false
 
@@ -4323,7 +3942,7 @@ Window {
                         }
                     }
 
-                    // Add tracker panel — slides in/out from the top
+                    // Add tracker panel â€” slides in/out from the top
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
 
@@ -4385,7 +4004,7 @@ Window {
                                     onRunningChanged: if (running) flashing = true
                                 }
                                 DlgButton {
-                                    text: root.showTrackerAdd ? "Cancel" : "Add trackers…"
+                                    text: root.showTrackerAdd ? "Cancel" : "Add trackersâ€¦"
                                     primary: !root.showTrackerAdd
                                     onClicked: {
                                         root.showTrackerAdd = !root.showTrackerAdd
@@ -4673,7 +4292,7 @@ Window {
                                             text: {
                                                 var msg = safeStr(trd.message)
                                                 if (msg.length > 0) return msg
-                                                // No message from tracker yet — show status as a hint
+                                                // No message from tracker yet â€” show status as a hint
                                                 // so the column isn't completely empty
                                                 if (trd.isSystemEntry) return ""
                                                 var s = safeStr(trd.status)
@@ -4694,15 +4313,15 @@ Window {
                     }
                 }
 
-                // ── Piece Map ─────────────────────────────────────────────────
+                // â”€â”€ Piece Map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
                 Item {
                     id: pieceMapTab
 
-                    readonly property bool isActive: visible && root._isTorrent && root.currentTab === 7
+                    readonly property bool isActive: visible && root._isTorrent && root.currentTab === 6
                     property var pieceData: []
                     // maxRarity is the highest peer-count seen; used to scale the rarity gradient.
                     property int maxRarity: 1
-                    // flashSet: sparse object mapping piece index → flash colour string.
+                    // flashSet: sparse object mapping piece index â†’ flash colour string.
                     // Populated on each refresh for pieces whose status changed; cleared by flashTimer.
                     property var flashSet: ({})
                     property bool hasFlash: false
@@ -4906,11 +4525,11 @@ Window {
                             //   N                 : N peers have it (normal priority)
                             //   N | 0x10000       : N peers, high-priority piece
                             function pieceColor(val, maxRarity) {
-                                if (val === -2) return "#2ecc71"   // have — green
-                                if (val === -3) return "#888888"   // skipped — grey
+                                if (val === -2) return "#2ecc71"   // have â€” green
+                                if (val === -3) return "#888888"   // skipped â€” grey
                                 if (val <= -4) {
                                     // Downloading: shade of blue proportional to block progress.
-                                    // pct = 0 → dark blue, pct = 99 → bright cyan-blue
+                                    // pct = 0 â†’ dark blue, pct = 99 â†’ bright cyan-blue
                                     var pct = Math.min(99, -(val + 4))
                                     var t = pct / 99
                                     var r2 = Math.round(0x1a + (0x4a - 0x1a) * t)
@@ -4920,11 +4539,11 @@ Window {
                                 }
                                 var hp  = (val & 0x10000) !== 0
                                 var cnt = val & 0xFFFF
-                                if (cnt === 0) return "#141414"    // unavailable — near black
-                                if (hp) return "#e67e22"           // high priority — orange
-                                // Map 1..maxRarity to red (rare) → green (common)
+                                if (cnt === 0) return "#141414"    // unavailable â€” near black
+                                if (hp) return "#e67e22"           // high priority â€” orange
+                                // Map 1..maxRarity to red (rare) â†’ green (common)
                                 var t2 = maxRarity > 1 ? (cnt - 1) / (maxRarity - 1) : 1.0
-                                // t2=0 → rare #c0392b (red), t2=1 → common #27ae60 (green)
+                                // t2=0 â†’ rare #c0392b (red), t2=1 â†’ common #27ae60 (green)
                                 var r = Math.round(0xc0 + (0x27 - 0xc0) * t2)
                                 var g = Math.round(0x39 + (0xae - 0x39) * t2)
                                 var b = Math.round(0x2b + (0x60 - 0x2b) * t2)
@@ -4983,7 +4602,7 @@ Window {
                                         ctx.fillRect(col * cs + gap, row * cs + gap, cs - gap, cs - gap)
                                     }
                                 } else {
-                                    // Run mode: many pieces per 2px column — colour by dominant status in range
+                                    // Run mode: many pieces per 2px column â€” colour by dominant status in range
                                     var piecesPerCol = -cs  // cs is negative in run mode
                                     var numCols = Math.ceil(d.length / piecesPerCol)
                                     var colW = 2
