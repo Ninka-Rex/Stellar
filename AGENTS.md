@@ -235,7 +235,7 @@ This prevents stale geometry from the previous component.
 
 When a `ListView` model is replaced on every live update from a `QVariantList` Q_PROPERTY (for example `DownloadItem::segmentData`), QML performs a full model reset and the view jumps. A next-frame `contentY` restore can still show a visible "jump up then back down" jitter.
 
-Pattern used in `DownloadProgressDialog.qml` segment list — replicate for similar high-frequency lists:
+Pattern used in `DownloadProgressDialog.qml` segment list   replicate for similar high-frequency lists:
 - Keep a stable `ListModel` bound to the `ListView`.
 - Update rows in place (`set`, `remove`, `append`) instead of replacing the whole model each tick.
 - While user scrolling is active (`moving` / `flicking` / `dragging`), defer structural updates and apply only the latest pending snapshot on `onMovementEnded`.

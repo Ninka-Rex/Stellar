@@ -280,11 +280,12 @@ int main(int argc, char *argv[])
     nmLog(QStringLiteral("App started with args: ") + argsStr);
 
     bool forceGui = false;
+    bool startMinimized = false;
     for (int i = 1; i < argc; ++i) {
-        if (qstrcmp(argv[i], "--gui") == 0) {
+        if (qstrcmp(argv[i], "--gui") == 0)
             forceGui = true;
-            break;
-        }
+        else if (qstrcmp(argv[i], "--minimized") == 0)
+            startMinimized = true;
     }
     
     nmLog(QStringLiteral("App startup. forceGui=") + (forceGui ? "true" : "false"));
@@ -358,6 +359,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.addImageProvider(QStringLiteral("fileicon"), new FileIconImageProvider);
     engine.rootContext()->setContextProperty(QStringLiteral("App"), &controller);
+    engine.rootContext()->setContextProperty(QStringLiteral("StartMinimized"), startMinimized);
     engine.addImportPath(QLibraryInfo::path(QLibraryInfo::QmlImportsPath));
 
     const QUrl url(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/Main.qml"));

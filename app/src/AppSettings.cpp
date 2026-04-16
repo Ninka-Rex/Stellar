@@ -309,6 +309,12 @@ void AppSettings::load() {
     emit proxyUsernameChanged();
     emit proxyPasswordChanged();
     emit perHostConnectionLimitChanged();
+
+    // Reconcile OS startup entry with the stored setting.  Without this, the
+    // registry key (Windows) or .desktop file (Linux) may be absent even though
+    // launchOnStartup is true — e.g. after a fresh install or if the entry was
+    // deleted out of band.
+    applyStartupRegistration(m_launchOnStartup);
 }
 
 void AppSettings::save() {
@@ -571,9 +577,11 @@ void AppSettings::applyStartupRegistration(bool enable) const {
         QStringLiteral("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"),
         QSettings::NativeFormat);
     if (enable) {
-        // Store the path with forward-slash → backslash so the shell finds it
+        // Store the path with forward-slash → backslash so the shell finds it.
+        // --minimized tells the app to start hidden in the tray on OS login.
         const QString exePath = QCoreApplication::applicationFilePath().replace('/', '\\');
-        runKey.setValue(QStringLiteral("Stellar"), exePath);
+        runKey.setValue(QStringLiteral("Stellar"),
+                        QStringLiteral("\"%1\" --minimized").arg(exePath));
     } else {
         runKey.remove(QStringLiteral("Stellar"));
     }
@@ -593,7 +601,7 @@ void AppSettings::applyStartupRegistration(bool enable) const {
               << "Type=Application\n"
               << "Name=Stellar\n"
               << "Comment=Stellar Download Manager\n"
-              << "Exec=" << QCoreApplication::applicationFilePath() << "\n"
+              << "Exec=" << QCoreApplication::applicationFilePath() << " --minimized\n"
               << "Hidden=false\n"
               << "NoDisplay=false\n"
               << "X-GNOME-Autostart-enabled=true\n";

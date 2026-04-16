@@ -1354,6 +1354,11 @@ ApplicationWindow {
 
     Component.onCompleted: {
         loadTips()
+        // When launched by the OS at login, start hidden in the tray instead of
+        // showing the main window.  The tray icon is always visible regardless.
+        if (typeof StartMinimized !== "undefined" && StartMinimized) {
+            root.visible = false
+        }
     }
 
     function loadTips() {

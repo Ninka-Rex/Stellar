@@ -51,7 +51,6 @@ void GrabberCrawler::start(const QVariantMap &project)
     m_results.clear();
     m_activeReplies = 0;
     m_activeMetadataReplies = 0;
-    m_collectingMetadata = false;
     m_pendingMetadataRows.clear();
     m_pagesFetched = 0;
     m_maxConcurrent = qBound(1, project.value(QStringLiteral("filesToExploreAtOnce"), 4).toInt(), 10);
@@ -79,7 +78,6 @@ void GrabberCrawler::cancel()
     m_results.clear();
     m_activeReplies = 0;
     m_activeMetadataReplies = 0;
-    m_collectingMetadata = false;
     m_resolvedHostCache.clear();
 }
 
@@ -101,15 +99,9 @@ void GrabberCrawler::finishIfDone()
         return;
     }
 
-    if (!m_collectingMetadata) {
-        m_collectingMetadata = true;
-        for (int i = 0; i < m_results.size(); ++i)
-            m_pendingMetadataRows.enqueue(i);
-        pumpMetadataQueue();
-        if (!m_pendingMetadataRows.isEmpty() || m_activeMetadataReplies > 0)
-            return;
-    }
-
+    // Metadata probing runs concurrently with crawling (started in maybeAddFileResult),
+    // so by the time the last page finishes there may still be in-flight HEAD replies
+    // or queued rows.  Wait for those to drain before emitting finished().
     if (m_activeMetadataReplies > 0 || !m_pendingMetadataRows.isEmpty())
         return;
 
@@ -140,7 +132,12 @@ void GrabberCrawler::finishIfDone()
 
 void GrabberCrawler::pumpMetadataQueue()
 {
-    while (m_running && m_activeMetadataReplies < m_maxConcurrent && !m_pendingMetadataRows.isEmpty())
+    // Metadata HEAD requests run concurrently with page crawling using a fixed
+    // budget of 4 slots, independent of the page-fetch concurrency limit.
+    // This keeps the metadata queue draining throughout the crawl rather than
+    // only starting after all pages are done.
+    static constexpr int kMaxMetadataConcurrent = 4;
+    while (m_running && m_activeMetadataReplies < kMaxMetadataConcurrent && !m_pendingMetadataRows.isEmpty())
         probeResultMetadata(m_pendingMetadataRows.dequeue());
 }
 
@@ -196,97 +193,198 @@ void GrabberCrawler::fetchPage(const PageTask &task)
         const QUrl resolvedUrl = reply->url();
         reply->deleteLater();
 
-        // Run the expensive HTML parsing off the UI thread.
-        // Capture everything by value; the watcher continuation runs back on the
-        // main thread so it is safe to call processPage / pumpQueue there.
-        const PageTask resolvedTask{ resolvedUrl, task.depth, task.sourcePage };
-        auto *watcher = new QFutureWatcher<QList<QUrl>>(this);
-        connect(watcher, &QFutureWatcher<QList<QUrl>>::finished, this,
-                [this, watcher, resolvedTask, html, gen]() {
+        // Run ALL expensive classification work off the UI thread:
+        // HTML parsing, JS URL extraction, isLikelyHtmlPage, pattern/depth
+        // checks, and regex-based file-filter matching.  The watcher callback
+        // on the main thread only does cheap hash-set dedup and queue ops.
+        const int taskDepth = task.depth;
+        auto *watcher = new QFutureWatcher<OffThreadResult>(this);
+        connect(watcher, &QFutureWatcher<OffThreadResult>::finished, this,
+                [this, watcher, resolvedUrl, gen]() {
             watcher->deleteLater();
             if (gen != m_generation) return;
             if (!m_running) return;
             ++m_pagesFetched;
-            processPage(resolvedTask, html, watcher->result());
+
+            const OffThreadResult result = watcher->result();
+            emit progressChanged(result.progressText);
+
+            // ── Candidate pages ────────────────────────────────────────────
+            for (const OffThreadResult::PageCandidate &cand : result.pages) {
+                // SSRF: DNS check — hash lookup only (non-blocking).
+                // If the host is new, schedule an async lookup and tentatively
+                // allow it; one request may go through before DNS resolves,
+                // which is an acceptable tradeoff for a desktop app.
+                const QString host = cand.url.host().toLower();
+                if (!m_resolvedHostCache.contains(host)) {
+                    // Literal IPs can be checked immediately with no DNS needed.
+                    QHostAddress literalAddr;
+                    if (literalAddr.setAddress(host)) {
+                        m_resolvedHostCache[host] = isPrivateOrLoopbackHost(host);
+                    } else {
+                        m_resolvedHostCache[host] = false; // tentatively safe while DNS resolves
+                        const int capturedGen = gen;
+                        QHostInfo::lookupHost(host, this,
+                        [this, host, capturedGen](const QHostInfo &info) {
+                            if (capturedGen != m_generation) return;
+                            bool isPrivate = false;
+                            for (const QHostAddress &addr : info.addresses()) {
+                                if (isPrivateOrLoopbackHost(addr.toString())) {
+                                    isPrivate = true;
+                                    break;
+                                }
+                            }
+                            m_resolvedHostCache[host] = isPrivate;
+                            // Pages already queued from this host stay in m_seenPages
+                            // so they won't be re-fetched even if now known-private.
+                        });
+                    }
+                }
+                if (m_resolvedHostCache.value(host)) continue; // known private
+
+                const QString normalized = normalizeUrl(cand.url);
+                if (normalized.isEmpty() || m_seenPages.contains(normalized)) continue;
+                m_pendingPages.enqueue({ cand.url, cand.depth, cand.sourcePage });
+            }
+
+            // ── Candidate files ────────────────────────────────────────────
+            // Collect all new files for this page into one list, dedup against
+            // m_seenResultKeys, then emit a single batch signal.  This avoids
+            // per-file signal overhead and reduces model notifications from
+            // O(files_per_page) to O(1) per crawled page.
+            QList<GrabberResult> newResults;
+            for (const OffThreadResult::FileCandidate &cand : result.files) {
+                const QString duplicateKey =
+                    m_project.value(QStringLiteral("hideDuplicateFiles")).toBool()
+                        ? cand.filename.toLower()
+                        : cand.normalizedUrl;
+                if (m_seenResultKeys.contains(duplicateKey))
+                    continue;
+                m_seenResultKeys.insert(duplicateKey);
+
+                const int newRow = m_results.size();
+                m_results.append({ cand.url, cand.filename, cand.sourcePage, -1 });
+                m_pendingMetadataRows.enqueue(newRow);
+
+                GrabberResult gr;
+                gr.checked  = true;
+                gr.url       = cand.url;
+                gr.filename  = cand.filename;
+                gr.sourcePage = cand.sourcePage;
+                gr.sizeBytes  = -1;
+                newResults.append(gr);
+            }
+            if (!newResults.isEmpty()) {
+                emit resultsFound(newResults);
+                emit progressChanged(QStringLiteral("Found %1 files across %2 pages")
+                                     .arg(m_results.size()).arg(m_pagesFetched));
+                pumpMetadataQueue();
+            }
+
             pumpQueue();
         });
-        // extractLinks is const and only reads html + baseUrl — safe to run in parallel
         watcher->setFuture(QtConcurrent::run(
-            [this, resolvedUrl, html]() { return extractLinks(resolvedUrl, html); }
+            [this, resolvedUrl, html, taskDepth]() -> OffThreadResult {
+                return classifyLinks(resolvedUrl, html, taskDepth);
+            }
         ));
     });
 }
 
-void GrabberCrawler::processPage(const PageTask &task, const QByteArray &html, const QList<QUrl> &links)
+// ── Off-thread classification ─────────────────────────────────────────────────
+// Runs inside QtConcurrent::run — must only access immutable-during-crawl members:
+// m_project, m_startUrl, m_rootDomain, m_startPathPrefix.
+// Mutable state (m_seenPages, m_seenResultKeys, m_resolvedHostCache) is touched
+// only in the main-thread watcher callback, never here.
+GrabberCrawler::OffThreadResult GrabberCrawler::classifyLinks(
+    const QUrl &resolvedUrl,
+    const QByteArray &html,
+    int taskDepth) const
 {
-    emit progressChanged(QStringLiteral("Exploring %1").arg(task.url.toString()));
-    for (const QUrl &link : links) {
-        if (!link.isValid())
-            continue;
+    OffThreadResult out;
+    out.progressText = QStringLiteral("Exploring %1").arg(resolvedUrl.toString());
+    const QString sourcePage = resolvedUrl.toString();
 
-        if (isLikelyHtmlPage(link))
-            maybeQueuePage(link, task.depth + 1, task.url.toString());
-        else
-            maybeAddFileResult(link, task.url.toString());
-    }
+    // Harvest all raw links from the HTML.
+    QList<QUrl> links = extractLinks(resolvedUrl, html);
 
+    // Optionally scan script text for explicit https?:// URLs.
+    // This is intentionally conservative: we search for quoted URL literals
+    // but do not execute JavaScript.
     if (m_project.value(QStringLiteral("processJavaScript")).toBool()) {
-        // This is intentionally conservative: we look for explicit URLs inside
-        // script text, but we do not execute remote JavaScript during crawling.
         static const QRegularExpression quotedUrlRe(
             QStringLiteral(R"((https?:\/\/[^"'\\\s<>]+))"),
             QRegularExpression::CaseInsensitiveOption);
         const QString text = QString::fromUtf8(html);
         QRegularExpressionMatchIterator it = quotedUrlRe.globalMatch(text);
         while (it.hasNext()) {
-            const QString raw = it.next().captured(1);
-            const QUrl url = QUrl::fromUserInput(raw);
-            if (isLikelyHtmlPage(url))
-                maybeQueuePage(url, task.depth + 1, task.url.toString());
-            else
-                maybeAddFileResult(url, task.url.toString());
+            const QUrl url = QUrl::fromUserInput(it.next().captured(1));
+            if (url.isValid())
+                links.append(url);
         }
     }
+
+    for (const QUrl &link : links) {
+        if (!link.isValid())
+            continue;
+
+        if (isLikelyHtmlPage(link)) {
+            // checkUrlDepthAndPatterns does all shouldExploreUrl checks except
+            // DNS — the DNS cache lookup happens on the main thread (fast hash
+            // lookup) and async resolution is scheduled there too.
+            if (checkUrlDepthAndPatterns(link, taskDepth + 1))
+                out.pages.append({ link, taskDepth + 1, sourcePage });
+        } else {
+            const QString filename = filenameForUrl(link);
+            if (filename.isEmpty())
+                continue;
+            if (!passesFileFilters(link, filename))
+                continue;
+            out.files.append({ link.toString(), normalizeUrl(link), filename, sourcePage });
+        }
+    }
+
+    return out;
 }
 
-void GrabberCrawler::maybeQueuePage(const QUrl &url, int depth, const QString &sourcePage)
-{
-    if (!shouldExploreUrl(url, depth))
-        return;
-    const QString normalized = normalizeUrl(url);
-    if (normalized.isEmpty() || m_seenPages.contains(normalized))
-        return;
-    m_pendingPages.enqueue({ url, depth, sourcePage });
-}
-
-void GrabberCrawler::maybeAddFileResult(const QUrl &url, const QString &sourcePage)
+// Pattern/depth subset of the old shouldExploreUrl — no DNS, safe to call off-thread.
+bool GrabberCrawler::checkUrlDepthAndPatterns(const QUrl &url, int depth) const
 {
     if (!url.isValid())
-        return;
+        return false;
 
-    const QString filename = filenameForUrl(url);
-    if (!passesFileFilters(url, filename))
-        return;
+    const QString scheme = url.scheme().toLower();
+    if (scheme != QStringLiteral("http") && scheme != QStringLiteral("https"))
+        return false;
 
-    QString duplicateKey = filename.toLower();
-    if (!m_project.value(QStringLiteral("hideDuplicateFiles")).toBool())
-        duplicateKey = normalizeUrl(url);
+    bool sameSite = isSameSite(url);
+    if (!sameSite && m_project.value(QStringLiteral("exploreMainDomain")).toBool())
+        sameSite = isWithinMainDomain(url);
 
-    if (m_seenResultKeys.contains(duplicateKey))
-        return;
-    m_seenResultKeys.insert(duplicateKey);
+    int maxDepth = m_project.value(QStringLiteral("exploreOtherLevels"), 0).toInt();
+    if (sameSite)
+        maxDepth = m_project.value(QStringLiteral("exploreThisLevels"), 0).toInt();
+    if (depth > maxDepth)
+        return false;
 
-    const QString urlText = url.toString();
-    m_results.append({ urlText, filename, sourcePage, -1 });
-    emit resultFound(QVariantMap{
-        { QStringLiteral("checked"), true },
-        { QStringLiteral("url"), urlText },
-        { QStringLiteral("filename"), filename },
-        { QStringLiteral("sourcePage"), sourcePage },
-        { QStringLiteral("sizeBytes"), -1 }
-    });
-    emit progressChanged(QStringLiteral("Found %1 files across %2 pages").arg(m_results.size()).arg(m_pagesFetched));
+    const QString urlText = normalizeUrl(url);
+    const QStringList includePatterns = m_project.value(QStringLiteral("exploreIncludePatterns")).toStringList();
+    const QStringList excludePatterns = m_project.value(QStringLiteral("exploreExcludePatterns")).toStringList()
+        + m_project.value(QStringLiteral("logoutPatterns")).toStringList();
+
+    if (!includePatterns.isEmpty() && !matchesAnyPattern(urlText, includePatterns))
+        return false;
+    if (matchesAnyPattern(urlText, excludePatterns))
+        return false;
+
+    if (m_project.value(QStringLiteral("dontExploreParentDirectories")).toBool() && sameSite) {
+        if (!url.path().startsWith(m_startPathPrefix))
+            return false;
+    }
+
+    return true;
 }
+
 
 void GrabberCrawler::probeResultMetadata(int row)
 {
@@ -453,72 +551,6 @@ bool GrabberCrawler::isPrivateOrLoopbackHost(const QString &host)
     return false;
 }
 
-bool GrabberCrawler::shouldExploreUrl(const QUrl &url, int depth) const
-{
-    if (!url.isValid())
-        return false;
-
-    const QString scheme = url.scheme().toLower();
-    if (scheme != QStringLiteral("http") && scheme != QStringLiteral("https"))
-        return false;
-
-    // SECURITY: block SSRF to private/loopback addresses (see isPrivateOrLoopbackHost).
-    // For literal-IP URLs the check is immediate.  For hostnames we perform a
-    // blocking DNS lookup (once per unique host per crawl, cached) so that a
-    // remote page cannot redirect the crawler to an internal address via a
-    // hostname that resolves to RFC-1918 / loopback space.
-    {
-        const QString host = url.host().toLower();
-        if (!m_resolvedHostCache.contains(host)) {
-            QHostAddress literalAddr;
-            if (literalAddr.setAddress(host)) {
-                // Literal IP — no DNS needed
-                m_resolvedHostCache[host] = isPrivateOrLoopbackHost(host);
-            } else {
-                // Resolve hostname synchronously; cache result for this crawl run
-                const QHostInfo info = QHostInfo::fromName(host);
-                bool isPrivate = false;
-                for (const QHostAddress &addr : info.addresses()) {
-                    if (isPrivateOrLoopbackHost(addr.toString())) {
-                        isPrivate = true;
-                        break;
-                    }
-                }
-                m_resolvedHostCache[host] = isPrivate;
-            }
-        }
-        if (m_resolvedHostCache.value(host))
-            return false;
-    }
-
-    bool sameSite = isSameSite(url);
-    if (!sameSite && m_project.value(QStringLiteral("exploreMainDomain")).toBool())
-        sameSite = isWithinMainDomain(url);
-
-    int maxDepth = m_project.value(QStringLiteral("exploreOtherLevels"), 0).toInt();
-    if (sameSite)
-        maxDepth = m_project.value(QStringLiteral("exploreThisLevels"), 0).toInt();
-    if (depth > maxDepth)
-        return false;
-
-    const QString urlText = normalizeUrl(url);
-    const QStringList includePatterns = m_project.value(QStringLiteral("exploreIncludePatterns")).toStringList();
-    const QStringList excludePatterns = m_project.value(QStringLiteral("exploreExcludePatterns")).toStringList()
-        + m_project.value(QStringLiteral("logoutPatterns")).toStringList();
-
-    if (!includePatterns.isEmpty() && !matchesAnyPattern(urlText, includePatterns))
-        return false;
-    if (matchesAnyPattern(urlText, excludePatterns))
-        return false;
-
-    if (m_project.value(QStringLiteral("dontExploreParentDirectories")).toBool() && sameSite) {
-        const QString path = url.path();
-        if (!path.startsWith(m_startPathPrefix))
-            return false;
-    }
-
-    return true;
-}
 
 bool GrabberCrawler::isSameSite(const QUrl &url) const
 {

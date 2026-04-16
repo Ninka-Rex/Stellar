@@ -52,6 +52,10 @@ Window {
     property var expandedFolderNodes: ({})
     property var expandedLinkNodes: ({})
     property var expandedSections: ({ "link": true, "folder": true })
+    // Cached sidebar tree lists — rebuilt explicitly rather than reactively so that
+    // rapid row inserts during a crawl don't trigger O(n) rebuilds per insert.
+    property var _linkItems: []
+    property var _folderItems: []
     property var columnDefs: [
         { title: "", key: "check", widthPx: 34 },
         { title: "File Name", key: "filename", widthPx: 210 },
@@ -258,10 +262,13 @@ Window {
     }
 
     function computeStatus(url) {
+        // Skip the C++ lookup for every visible row while the crawler is running —
+        // the answer is always "Exploring" and the call is expensive at scale.
+        if (App.grabberBusy) return "Exploring"
         var existing = App.findDuplicateUrl(url)
         if (existing && existing.category === projectId) return existing.status
         if (existing) return "Already in list"
-        return App.grabberBusy ? "Exploring" : "Ready"
+        return "Ready"
     }
     function saveToText(filename) {
         var project = projectData()
@@ -297,6 +304,20 @@ Window {
         if (sortColumn !== column) return ""
         return sortAscending ? " ▲" : " ▼"
     }
+    function rebuildSidebarTrees() {
+        _linkItems   = isSectionExpanded("link")   ? linkTreeItems()   : []
+        _folderItems = isSectionExpanded("folder") ? folderTreeItems() : []
+    }
+
+    // Debounce sidebar rebuilds during crawling so rapid row inserts don't
+    // queue thousands of O(n) tree reconstructions.
+    Timer {
+        id: sidebarRebuildTimer
+        interval: 350
+        repeat: false
+        onTriggered: root.rebuildSidebarTrees()
+    }
+
     function visibleRowCount() {
         if (sideMode === "all") return totalCount
         var visible = 0
@@ -317,6 +338,7 @@ Window {
             expandedSections = { "link": true, "folder": true }
             App.loadGrabberProjectResults(projectId)
             refreshState()
+            rebuildSidebarTrees()
         }
     }
 
@@ -334,20 +356,25 @@ Window {
         function onDataChanged() {
             root.checkedCount = App.checkedGrabberResultCount()
             root.totalCount = App.grabberResultModel.rowCount()
+            // No sidebar rebuild — data-only changes (checked state, size) don't affect the tree
         }
         function onModelReset() {
             root.checkedCount = App.checkedGrabberResultCount()
             root.totalCount = App.grabberResultModel.rowCount()
+            root.rebuildSidebarTrees()
         }
         function onRowsInserted() {
             root.checkedCount = App.checkedGrabberResultCount()
             root.totalCount = App.grabberResultModel.rowCount()
+            // Debounce: avoid rebuilding the O(n) sidebar tree on every single result found
+            sidebarRebuildTimer.restart()
         }
         function onRowsRemoved() {
             root.checkedCount = App.checkedGrabberResultCount()
             root.totalCount = App.grabberResultModel.rowCount()
             root.setSelection({})
             root.anchorRow = -1
+            root.rebuildSidebarTrees()
         }
     }
 
@@ -685,13 +712,16 @@ Window {
                                     }
                                     MouseArea {
                                         anchors.fill: parent
-                                        onClicked: setSectionExpanded("link", !isSectionExpanded("link"))
+                                        onClicked: {
+                                            setSectionExpanded("link", !isSectionExpanded("link"))
+                                            root.rebuildSidebarTrees()
+                                        }
                                     }
                                 }
 
                                 // ── Link View items ───────────────────────────
                                 Repeater {
-                                    model: isSectionExpanded("link") ? linkTreeItems() : []
+                                    model: root._linkItems
                                     delegate: Rectangle {
                                         required property var modelData
                                         property bool isSelected: sideMode === "link" && sideFilterValue === modelData.id
@@ -740,8 +770,10 @@ Window {
                                                 root.sideFilterValue = modelData.id
                                             }
                                             onDoubleClicked: {
-                                                if (modelData.isDomain && modelData.hasChildren)
+                                                if (modelData.isDomain && modelData.hasChildren) {
                                                     root.setLinkNodeExpanded(modelData.id, !modelData.isExpanded)
+                                                    root.rebuildSidebarTrees()
+                                                }
                                             }
                                         }
                                     }
@@ -777,13 +809,16 @@ Window {
                                     }
                                     MouseArea {
                                         anchors.fill: parent
-                                        onClicked: setSectionExpanded("folder", !isSectionExpanded("folder"))
+                                        onClicked: {
+                                            setSectionExpanded("folder", !isSectionExpanded("folder"))
+                                            root.rebuildSidebarTrees()
+                                        }
                                     }
                                 }
 
                                 // ── Folder View items ─────────────────────────
                                 Repeater {
-                                    model: isSectionExpanded("folder") ? folderTreeItems() : []
+                                    model: root._folderItems
                                     delegate: Rectangle {
                                         required property var modelData
                                         property bool isSelected: sideMode === "folder" && sideFilterValue === modelData.id
@@ -831,8 +866,10 @@ Window {
                                                 root.sideFilterValue = modelData.id
                                             }
                                             onDoubleClicked: {
-                                                if (modelData.hasChildren)
+                                                if (modelData.hasChildren) {
                                                     root.setFolderExpanded(modelData.id, !root.isFolderExpanded(modelData.id))
+                                                    root.rebuildSidebarTrees()
+                                                }
                                             }
                                         }
                                     }
@@ -986,6 +1023,31 @@ Window {
                                 border.color: root.isRowSelected(index) ? "#4488dd" : "transparent"
                                 border.width: 1
 
+                                // rowMouse is declared before Row so it has lower z-order.
+                                // This allows the CheckBox and other Row children (higher z)
+                                // to receive clicks first; unhandled clicks fall through to rowMouse.
+                                MouseArea {
+                                    id: rowMouse
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                    hoverEnabled: true
+                                    onClicked: function(mouse) {
+                                        if (mouse.button === Qt.RightButton) {
+                                            if (!root.isRowSelected(index)) { root.clearAndSelect(index); root.anchorRow = index }
+                                            resultsContextMenu.popup()
+                                            return
+                                        }
+                                        if (mouse.modifiers & Qt.ControlModifier) {
+                                            root.toggleRow(index); root.anchorRow = index
+                                        } else if (mouse.modifiers & Qt.ShiftModifier) {
+                                            if (root.anchorRow >= 0) root.addRangeTo(root.anchorRow, index)
+                                            else { root.clearAndSelect(index); root.anchorRow = index }
+                                        } else {
+                                            root.clearAndSelect(index); root.anchorRow = index
+                                        }
+                                    }
+                                }
+
                                 Row {
                                     anchors.fill: parent
                                     spacing: 0
@@ -1014,28 +1076,6 @@ Window {
                                     Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? "#ffffff" : "#888888"; elide: Text.ElideRight; font.pixelSize: 11 }
                                     Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#aaddff" : "#5588cc"; elide: Text.ElideMiddle; font.pixelSize: 11 }
                                     Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? "#ffffff" : "#777777"; elide: Text.ElideMiddle; font.pixelSize: 11 }
-                                }
-
-                                MouseArea {
-                                    id: rowMouse
-                                    anchors.fill: parent
-                                    acceptedButtons: Qt.LeftButton | Qt.RightButton
-                                    hoverEnabled: true
-                                    onClicked: function(mouse) {
-                                        if (mouse.button === Qt.RightButton) {
-                                            if (!root.isRowSelected(index)) { root.clearAndSelect(index); root.anchorRow = index }
-                                            resultsContextMenu.popup()
-                                            return
-                                        }
-                                        if (mouse.modifiers & Qt.ControlModifier) {
-                                            root.toggleRow(index); root.anchorRow = index
-                                        } else if (mouse.modifiers & Qt.ShiftModifier) {
-                                            if (root.anchorRow >= 0) root.addRangeTo(root.anchorRow, index)
-                                            else { root.clearAndSelect(index); root.anchorRow = index }
-                                        } else {
-                                            root.clearAndSelect(index); root.anchorRow = index
-                                        }
-                                    }
                                 }
 
                                 Rectangle {

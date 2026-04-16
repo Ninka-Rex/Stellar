@@ -965,8 +965,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (foundMatch.hasMatch())
             m_grabberMatchedFiles = foundMatch.captured(1).toInt();
     });
-    connect(m_grabberCrawler, &GrabberCrawler::resultFound, this, [this](const QVariantMap &result) {
-        m_grabberResultModel->appendResult(result);
+    connect(m_grabberCrawler, &GrabberCrawler::resultsFound, this,
+            [this](const QList<GrabberResult> &results) {
+        m_grabberResultModel->appendResults(results);
         m_grabberMatchedFiles = m_grabberResultModel->rowCount();
         scheduleGrabberResultsPersist();
     });

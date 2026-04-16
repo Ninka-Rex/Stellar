@@ -248,7 +248,6 @@ qt_add_qml_module(Stellar
         app/qml/icons/arrow_left.ico
         app/qml/icons/exit.ico
         app/qml/icons/add.ico
-        app/qml/icons/Tools.ico
         app/qml/icons/wand.ico
         app/qml/icons/search.ico
         app/qml/icons/cancel.ico
@@ -256,7 +255,6 @@ qt_add_qml_module(Stellar
         app/qml/icons/paste.ico
         app/qml/icons/copy_file.ico
         app/qml/icons/move_file.ico
-        app/qml/icons/x_square.ico
         app/qml/icons/milky-way.png
         app/qml/icons/milky-way.ico
         app/scripts/torrent_search_runner.py

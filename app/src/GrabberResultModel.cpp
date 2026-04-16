@@ -80,6 +80,7 @@ bool GrabberResultModel::setData(const QModelIndex &index, const QVariant &value
         const bool checked = value.toBool();
         if (result.checked == checked)
             return false;
+        m_checkedCount += checked ? 1 : -1;
         result.checked = checked;
         emit dataChanged(index, index, { role });
         return true;
@@ -98,6 +99,7 @@ void GrabberResultModel::setResults(const QVariantList &results)
     beginResetModel();
     m_results.clear();
     m_results.reserve(results.size());
+    m_checkedCount = 0;
     for (const QVariant &value : results) {
         const QVariantMap map = value.toMap();
         GrabberResult result;
@@ -106,8 +108,10 @@ void GrabberResultModel::setResults(const QVariantList &results)
         result.filename = map.value(QStringLiteral("filename")).toString();
         result.sourcePage = map.value(QStringLiteral("sourcePage")).toString();
         result.sizeBytes = map.value(QStringLiteral("sizeBytes"), -1).toLongLong();
-        if (!result.url.isEmpty())
+        if (!result.url.isEmpty()) {
+            if (result.checked) ++m_checkedCount;
             m_results.append(result);
+        }
     }
     endResetModel();
 }
@@ -125,7 +129,22 @@ void GrabberResultModel::appendResult(const QVariantMap &map)
 
     const int row = m_results.size();
     beginInsertRows(QModelIndex(), row, row);
+    if (result.checked) ++m_checkedCount;
     m_results.append(result);
+    endInsertRows();
+}
+
+void GrabberResultModel::appendResults(const QList<GrabberResult> &results)
+{
+    if (results.isEmpty())
+        return;
+    const int first = m_results.size();
+    const int last  = first + static_cast<int>(results.size()) - 1;
+    beginInsertRows(QModelIndex(), first, last);
+    for (const GrabberResult &r : results) {
+        if (r.checked) ++m_checkedCount;
+        m_results.append(r);
+    }
     endInsertRows();
 }
 
@@ -149,7 +168,7 @@ void GrabberResultModel::updateResultSize(const QString &url, qint64 sizeBytes)
 
 void GrabberResultModel::setChecked(int row, bool checked)
 {
-    setData(index(row), checked, CheckedRole);
+    setData(index(row), checked, CheckedRole); // counter updated inside setData
 }
 
 void GrabberResultModel::setAllChecked(bool checked)
@@ -159,17 +178,14 @@ void GrabberResultModel::setAllChecked(bool checked)
 
     for (GrabberResult &result : m_results)
         result.checked = checked;
+    m_checkedCount = checked ? static_cast<int>(m_results.size()) : 0;
     emit dataChanged(index(0), index(m_results.size() - 1), { CheckedRole });
 }
 
+// O(1) — counter is maintained incrementally by all mutating methods.
 int GrabberResultModel::checkedCount() const
 {
-    int count = 0;
-    for (const GrabberResult &result : m_results) {
-        if (result.checked)
-            ++count;
-    }
-    return count;
+    return m_checkedCount;
 }
 
 QVariantList GrabberResultModel::allResults() const

@@ -563,7 +563,7 @@ Window {
 
     Rectangle {
         anchors.fill: parent
-        color: "#121212"
+        color: "#1e1e1e"
 
         ColumnLayout {
             anchors.fill: parent

@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include "GrabberResultModel.h"
+
 #include <QHash>
 #include <QObject>
 #include <QQueue>
@@ -40,7 +42,9 @@ public slots:
 
 signals:
     void progressChanged(const QString &statusText);
-    void resultFound(const QVariantMap &result);
+    // Emitted once per crawled page with all newly discovered files — avoids
+    // per-file signal overhead and keeps the model update cost O(1) per page.
+    void resultsFound(const QList<GrabberResult> &results);
     void resultMetadataUpdated(const QString &url, qint64 sizeBytes);
     void finished(const QVariantList &results);
     void failed(const QString &message);
@@ -59,6 +63,26 @@ private:
         qint64 sizeBytes{-1};
     };
 
+    // Returned by the off-thread classifyLinks task.  All classification work
+    // (HTML parsing, JS scan, regex pattern matching) happens off the UI thread;
+    // the main-thread callback only does cheap hash-set dedup and queue ops.
+    struct OffThreadResult {
+        struct PageCandidate {
+            QUrl url;
+            int depth{0};
+            QString sourcePage;
+        };
+        struct FileCandidate {
+            QString url;           // raw URL string
+            QString normalizedUrl; // for hideDuplicates=false keying
+            QString filename;
+            QString sourcePage;
+        };
+        QList<PageCandidate> pages;
+        QList<FileCandidate> files;
+        QString progressText;
+    };
+
     QNetworkAccessManager *m_nam{nullptr};
     bool m_running{false};
     // Cache of hostname → isPrivate results so we do at most one blocking DNS
@@ -74,7 +98,6 @@ private:
     int m_activeMetadataReplies{0};
     int m_pagesFetched{0};
     int m_maxConcurrent{4};
-    bool m_collectingMetadata{false};
     QUrl m_startUrl;
     QString m_rootDomain;
     QString m_startPathPrefix;
@@ -85,16 +108,17 @@ private:
     void finishIfDone();
     void fetchPage(const PageTask &task);
     void probeResultMetadata(int row);
-    void processPage(const PageTask &task, const QByteArray &html, const QList<QUrl> &links);
-    void maybeQueuePage(const QUrl &url, int depth, const QString &sourcePage);
-    void maybeAddFileResult(const QUrl &url, const QString &sourcePage);
+    // classifyLinks: runs entirely off the UI thread.  Reads only immutable-during-crawl
+    // members (m_project, m_startUrl, m_rootDomain, m_startPathPrefix) so no locking needed.
+    OffThreadResult classifyLinks(const QUrl &resolvedUrl, const QByteArray &html, int taskDepth) const;
+    // Pattern/depth checks from shouldExploreUrl, without the blocking DNS lookup.
+    bool checkUrlDepthAndPatterns(const QUrl &url, int depth) const;
     QList<QUrl> extractLinks(const QUrl &baseUrl, const QByteArray &html) const;
     QString normalizeUrl(const QUrl &url) const;
     QString basicAuthHeader() const;
     QString filenameForUrl(const QUrl &url) const;
     QString wildcardToRegex(const QString &pattern) const;
     bool matchesAnyPattern(const QString &text, const QStringList &patterns) const;
-    bool shouldExploreUrl(const QUrl &url, int depth) const;
     bool isSameSite(const QUrl &url) const;
     bool isWithinMainDomain(const QUrl &url) const;
     static bool isPrivateOrLoopbackHost(const QString &host);

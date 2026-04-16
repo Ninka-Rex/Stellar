@@ -51,9 +51,13 @@ public:
 
     Q_INVOKABLE void setResults(const QVariantList &results);
     Q_INVOKABLE void appendResult(const QVariantMap &result);
+    // Batch-insert multiple results in one beginInsertRows/endInsertRows pair.
+    // Prefer this over repeated appendResult calls to avoid O(n²) notification cost.
+    void appendResults(const QList<GrabberResult> &results);
     Q_INVOKABLE void updateResultSize(const QString &url, qint64 sizeBytes);
     Q_INVOKABLE void setChecked(int row, bool checked);
     Q_INVOKABLE void setAllChecked(bool checked);
+    // O(1) — maintained by an incremental counter, never iterates m_results.
     Q_INVOKABLE int checkedCount() const;
     Q_INVOKABLE QVariantList allResults() const;
     Q_INVOKABLE QVariantList checkedResults() const;
@@ -62,6 +66,7 @@ public:
 
 private:
     QList<GrabberResult> m_results;
+    int m_checkedCount{0}; // maintained incrementally — never recomputed from scratch
 
     static QString sizeText(qint64 sizeBytes);
 };
