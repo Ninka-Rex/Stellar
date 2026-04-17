@@ -29,7 +29,9 @@ class TorrentPeerModel : public QAbstractListModel {
     Q_PROPERTY(QString localIp READ localIp NOTIFY localLocationChanged)
     Q_PROPERTY(int localPort READ localPort NOTIFY localLocationChanged)
     Q_PROPERTY(QString localCountryCode READ localCountryCode NOTIFY localLocationChanged)
+    Q_PROPERTY(QString localRegionName READ localRegionName NOTIFY localLocationChanged)
     Q_PROPERTY(QString localCityName READ localCityName NOTIFY localLocationChanged)
+    Q_PROPERTY(QString localClientName READ localClientName NOTIFY localLocationChanged)
 public:
     enum Roles {
         EndpointRole = Qt::UserRole + 1,
@@ -86,11 +88,15 @@ public:
     QString localIp() const { return m_localIp; }
     int localPort() const { return m_localPort; }
     QString localCountryCode() const { return m_localCountryCode; }
+    QString localRegionName() const { return m_localRegionName; }
     QString localCityName() const { return m_localCityName; }
+    QString localClientName() const { return m_localClientName; }
 
     void setEntries(const QVector<Entry> &entries);
     void setLocalLocation(bool hasLocation, double latitude, double longitude);
-    void setLocalInfo(const QString &ip, int port, const QString &countryCode, const QString &cityName);
+    void setLocalInfo(const QString &ip, int port, const QString &countryCode,
+                      const QString &regionName, const QString &cityName,
+                      const QString &clientName);
     Q_INVOKABLE void sortBy(const QString &key, bool ascending);
     Q_INVOKABLE QString peerKeyAt(int row) const;
     Q_INVOKABLE int indexOfPeerKey(const QString &key) const;
@@ -118,5 +124,7 @@ private:
     QString m_localIp;
     int m_localPort{0};
     QString m_localCountryCode;
+    QString m_localRegionName;
     QString m_localCityName;
+    QString m_localClientName;
 };

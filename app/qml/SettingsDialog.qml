@@ -2536,7 +2536,7 @@ Window {
                         TextField {
                             Layout.fillWidth: true
                             text: root.editTorrentCustomUserAgent
-                            placeholderText: "Default: Stellar/<custom user agent or torrent>"
+                            placeholderText: "Default: Stellar/" + App.appVersion
                             onTextChanged: root.editTorrentCustomUserAgent = text
                             color: "#d0d0d0"
                             background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }

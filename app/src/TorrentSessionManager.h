@@ -141,6 +141,9 @@ private:
     QHash<QString, QHash<QString, TrackerAlertSnapshot>> m_trackerAlertSnapshots;
     QHash<QString, QString> m_trackerIpCache;
     QString m_externalAddress;
+    QString m_localCountryCode;
+    QString m_localRegionName;
+    QString m_localCityName;
     double m_localLatitude{0.0};
     double m_localLongitude{0.0};
     bool m_hasLocalCoordinates{false};

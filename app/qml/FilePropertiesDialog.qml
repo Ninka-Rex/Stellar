@@ -1591,6 +1591,7 @@ Window {
                         Image {
                             Layout.preferredWidth: 30
                             Layout.preferredHeight: 30
+                            Layout.rightMargin: 6
                             source: {
                                 if (!root.item) return ""
                                 var p = safeStr(root.item.savePath).replace(/\\/g, "/")
@@ -3199,7 +3200,7 @@ Window {
                                 spacing: 12
 
                                 Text {
-                                    text: root.activePeerMapModel ? (root.activePeerMapModel.rowCount() + " peers") : "0 peers"
+                                    text: root.activePeerMapModel ? (root.activePeerMapModel.rowCount() + " known peers") : "0 known peers"
                                     color: "#8ea1b5"
                                     font.pixelSize: 11
                                 }
@@ -3810,7 +3811,9 @@ Window {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                 }
                                                 Text {
-                                                    text: "Stellar"
+                                                    text: root.torrentPeerModel && root.torrentPeerModel.localClientName.length > 0
+                                                          ? root.torrentPeerModel.localClientName
+                                                          : ("Stellar/" + App.appVersion)
                                                     color: "#c5d2de"
                                                     font.pixelSize: 12
                                                     anchors.verticalCenter: parent.verticalCenter
@@ -3829,7 +3832,21 @@ Window {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                 }
                                                 Text {
-                                                    text: root.torrentPeerModel ? root.torrentPeerModel.localCityName : ""
+                                                    text: {
+                                                        if (!root.torrentPeerModel)
+                                                            return ""
+                                                        var parts = []
+                                                        var city = root.torrentPeerModel.localCityName
+                                                        var region = root.torrentPeerModel.localRegionName
+                                                        var country = root.torrentPeerModel.localCountryCode
+                                                        if (city && city.length > 0)
+                                                            parts.push(city)
+                                                        if (region && region.length > 0)
+                                                            parts.push(region)
+                                                        if (country && country.length > 0)
+                                                            parts.push(country)
+                                                        return parts.join(", ")
+                                                    }
                                                     color: "#95a9bb"
                                                     font.pixelSize: 11
                                                     elide: Text.ElideRight

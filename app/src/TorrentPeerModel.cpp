@@ -206,11 +206,15 @@ void TorrentPeerModel::setLocalLocation(bool hasLocation, double latitude, doubl
     emit localLocationChanged();
 }
 
-void TorrentPeerModel::setLocalInfo(const QString &ip, int port, const QString &countryCode, const QString &cityName) {
+void TorrentPeerModel::setLocalInfo(const QString &ip, int port, const QString &countryCode,
+                                    const QString &regionName, const QString &cityName,
+                                    const QString &clientName) {
     m_localIp = ip;
     m_localPort = port;
     m_localCountryCode = countryCode;
+    m_localRegionName = regionName;
     m_localCityName = cityName;
+    m_localClientName = clientName;
     emit localLocationChanged();
 }
 

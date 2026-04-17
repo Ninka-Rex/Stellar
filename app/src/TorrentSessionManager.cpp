@@ -217,6 +217,15 @@ QStringList geoDbCandidates() {
     };
 }
 
+QString defaultTorrentUserAgent(const AppSettings *settings) {
+    if (settings) {
+        const QString custom = settings->torrentCustomUserAgent().trimmed();
+        if (!custom.isEmpty())
+            return custom;
+    }
+    return QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION));
+}
+
 #if defined(STELLAR_HAS_MAXMINDDB)
 QString mmdbString(MMDB_entry_s *entry, const char *const *path) {
     MMDB_entry_data_s data;
@@ -371,8 +380,6 @@ void TorrentSessionManager::pause(const QString &downloadId) {
     }
     if (auto *peerModel = qobject_cast<TorrentPeerModel *>(m_peerModels.value(downloadId, nullptr)))
         peerModel->setEntries({});
-    if (auto *trackerModel = qobject_cast<TorrentTrackerModel *>(m_trackerModels.value(downloadId, nullptr)))
-        trackerModel->setEntries({});
 #else
     Q_UNUSED(downloadId);
 #endif
@@ -609,9 +616,7 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
         ? settings->globalUploadLimitKBps()
         : 0;
     pack.set_int(libtorrent::settings_pack::upload_rate_limit, effectiveUploadLimitKBps * 1024);
-    const QString userAgent = settings->torrentCustomUserAgent().trimmed().isEmpty()
-        ? QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION))
-        : settings->torrentCustomUserAgent().trimmed();
+    const QString userAgent = defaultTorrentUserAgent(settings);
     pack.set_str(libtorrent::settings_pack::user_agent, userAgent.toStdString());
     const QString bindTarget = settings->torrentBindInterface().trimmed();
     if (!bindTarget.isEmpty()) {
@@ -1043,12 +1048,12 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             peerModel->setLocalLocation(m_hasLocalCoordinates, m_localLatitude, m_localLongitude);
             if (!m_externalAddress.isEmpty()) {
                 const int listenPort = m_session ? m_session->listen_port() : 0;
-                peerModel->setLocalInfo(m_externalAddress, listenPort, {}, {});
+                peerModel->setLocalInfo(m_externalAddress, listenPort, m_localCountryCode,
+                                        m_localRegionName, m_localCityName,
+                                        defaultTorrentUserAgent(m_settings));
             }
             peerModel->setEntries({});
         }
-        if (auto *trackerModel = qobject_cast<TorrentTrackerModel *>(m_trackerModels.value(downloadId, nullptr)))
-            trackerModel->setEntries({});
         return;
     }
 
@@ -1057,7 +1062,9 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
         peerModel->setLocalLocation(m_hasLocalCoordinates, m_localLatitude, m_localLongitude);
         if (!m_externalAddress.isEmpty()) {
             const int listenPort = m_session ? m_session->listen_port() : 0;
-            peerModel->setLocalInfo(m_externalAddress, listenPort, {}, {});
+            peerModel->setLocalInfo(m_externalAddress, listenPort, m_localCountryCode,
+                                    m_localRegionName, m_localCityName,
+                                    defaultTorrentUserAgent(m_settings));
         }
         if (!peerModel->liveUpdatesEnabled())
             peerModel = nullptr;
@@ -1913,11 +1920,15 @@ void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress)
     m_hasLocalCoordinates = !qFuzzyIsNull(latitude) || !qFuzzyIsNull(longitude);
     m_localLatitude = latitude;
     m_localLongitude = longitude;
+    m_localCountryCode = countryCode;
+    m_localRegionName = regionName;
+    m_localCityName = cityName;
     const int listenPort = m_session ? m_session->listen_port() : 0;
     for (auto it = m_peerModels.begin(); it != m_peerModels.end(); ++it) {
         if (auto *peerModel = qobject_cast<TorrentPeerModel *>(it.value())) {
             peerModel->setLocalLocation(m_hasLocalCoordinates, m_localLatitude, m_localLongitude);
-            peerModel->setLocalInfo(ip, listenPort, countryCode, cityName);
+            peerModel->setLocalInfo(ip, listenPort, countryCode, regionName, cityName,
+                                    defaultTorrentUserAgent(m_settings));
         }
     }
 #else
@@ -1940,6 +1951,7 @@ void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress,
         m_hasLocalCoordinates = true;
         m_localLatitude = latitude;
         m_localLongitude = longitude;
+        lookupPeerLocation(ip, &countryCode, &regionCode, &regionName, &cityName, nullptr, nullptr);
     } else {
         double fallbackLatitude = 0.0;
         double fallbackLongitude = 0.0;
@@ -1948,12 +1960,16 @@ void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress,
         m_localLatitude = fallbackLatitude;
         m_localLongitude = fallbackLongitude;
     }
+    m_localCountryCode = countryCode;
+    m_localRegionName = regionName;
+    m_localCityName = cityName;
 
     const int listenPort = m_session ? m_session->listen_port() : 0;
     for (auto it = m_peerModels.begin(); it != m_peerModels.end(); ++it) {
         if (auto *peerModel = qobject_cast<TorrentPeerModel *>(it.value())) {
             peerModel->setLocalLocation(m_hasLocalCoordinates, m_localLatitude, m_localLongitude);
-            peerModel->setLocalInfo(ip, listenPort, countryCode, cityName);
+            peerModel->setLocalInfo(ip, listenPort, countryCode, regionName, cityName,
+                                    defaultTorrentUserAgent(m_settings));
         }
     }
 #else
