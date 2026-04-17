@@ -719,6 +719,83 @@ Window {
         var drawableHeight = peerMapSvgMaxY - peerMapSvgMinY
         return ((peerMapSvgMinY + normalized * drawableHeight) / 387.0) * height
     }
+    function peerLocationLabel(countryCode, regionName, cityName) {
+        var cc = safeStr(countryCode).trim().toUpperCase()
+        var region = safeStr(regionName).trim()
+        var city = safeStr(cityName).trim()
+        var parts = []
+        if (city.length > 0)
+            parts.push(city)
+        if (region.length > 0)
+            parts.push(region)
+        if (cc.length > 0)
+            parts.push(cc)
+        return parts.length > 0 ? parts.join(", ") : "Location unavailable"
+    }
+    function hasGeoCoordinates(latitude, longitude) {
+        var lat = Number(latitude)
+        var lon = Number(longitude)
+        return isFinite(lat) && isFinite(lon) && !(lat === 0 && lon === 0)
+    }
+    function haversineKm(lat1, lon1, lat2, lon2) {
+        var a1 = Number(lat1), o1 = Number(lon1), a2 = Number(lat2), o2 = Number(lon2)
+        if (!isFinite(a1) || !isFinite(o1) || !isFinite(a2) || !isFinite(o2))
+            return NaN
+        var rad = Math.PI / 180.0
+        var dLat = (a2 - a1) * rad
+        var dLon = (o2 - o1) * rad
+        var s1 = Math.sin(dLat / 2.0)
+        var s2 = Math.sin(dLon / 2.0)
+        var aa = s1 * s1 + Math.cos(a1 * rad) * Math.cos(a2 * rad) * s2 * s2
+        var c = 2.0 * Math.atan2(Math.sqrt(aa), Math.sqrt(1.0 - aa))
+        return 6371.0 * c
+    }
+    function distanceSummary(latitude, longitude) {
+        if (!root.torrentPeerModel || !root.torrentPeerModel.hasLocalLocation || !hasGeoCoordinates(latitude, longitude))
+            return "Distance unavailable"
+        var km = haversineKm(root.torrentPeerModel.localLatitude, root.torrentPeerModel.localLongitude,
+                             latitude, longitude)
+        if (!isFinite(km))
+            return "Distance unavailable"
+        var mi = km * 0.621371
+        return km.toFixed(km >= 100 ? 0 : 1) + " km (" + mi.toFixed(mi >= 100 ? 0 : 1) + " mi)"
+    }
+    function peerInfoMapTransform(peer, width, height) {
+        var marginX = 34
+        var marginY = 52
+        var localOk = !!root.torrentPeerModel && root.torrentPeerModel.hasLocalLocation
+        var peerOk = peer && root.hasGeoCoordinates(peer.latitude, peer.longitude)
+        if (!localOk || !peerOk)
+            return { scale: 1, offsetX: 0, offsetY: 0, localX: width / 2, localY: height / 2, peerX: width / 2, peerY: height / 2 }
+
+        var lx = root.peerMapX(root.torrentPeerModel.localLongitude, width)
+        var ly = root.peerMapY(root.torrentPeerModel.localLatitude, width, height)
+        var px = root.peerMapX(peer.longitude, width)
+        var py = root.peerMapY(peer.latitude, width, height)
+        var minX = Math.min(lx, px)
+        var maxX = Math.max(lx, px)
+        var minY = Math.min(ly, py)
+        var maxY = Math.max(ly, py)
+        var spanX = Math.max(24, maxX - minX)
+        var spanY = Math.max(18, maxY - minY)
+        var fitScale = Math.min((width - marginX * 2) / spanX, (height - marginY * 2) / spanY)
+        var scale = Math.min(16, Math.max(0.8, fitScale))
+        var cx = (lx + px) / 2
+        var cy = (ly + py) / 2
+        return {
+            scale: scale,
+            offsetX: width / 2 - cx * scale,
+            offsetY: height / 2 - cy * scale,
+            localX: lx * scale + (width / 2 - cx * scale),
+            localY: ly * scale + (height / 2 - cy * scale),
+            peerX: px * scale + (width / 2 - cx * scale),
+            peerY: py * scale + (height / 2 - cy * scale)
+        }
+    }
+    function peerFlagsList(flags) {
+        var raw = safeStr(flags).trim()
+        return raw.length > 0 ? raw.split(/\s+/) : []
+    }
     function peerLineWidth(peer) {
         if (!peer)
             return 1
@@ -2948,13 +3025,14 @@ Window {
                                 parent: Overlay.overlay
                                 modal: false
                                 width: 180
-                                height: 34
+                                height: 69
                                 padding: 0
                                 closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
                                 property string endpoint: ""
                                 property int port: 0
                                 property string client: ""
                                 property string countryCode: ""
+                                property var peerData: ({})
 
                                 background: Rectangle {
                                     color: "#252525"
@@ -2962,37 +3040,457 @@ Window {
                                     radius: 4
                                 }
 
-                                contentItem: Rectangle {
-                                    implicitWidth: 180
-                                    implicitHeight: 34
-                                    color: peerBanHover.containsMouse ? "#303030" : "transparent"
+                                contentItem: Column {
+                                    spacing: 0
 
-                                    Row {
-                                        anchors.verticalCenter: parent.verticalCenter
-                                        anchors.left: parent.left
-                                        anchors.leftMargin: 10
-                                        spacing: 8
+                                    Rectangle {
+                                        width: 180
+                                        height: 34
+                                        color: peerInfoHover.containsMouse ? "#303030" : "transparent"
 
                                         Text {
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            anchors.left: parent.left
+                                            anchors.leftMargin: 10
+                                            text: "Peer Info"
+                                            color: peerCtxMenu.endpoint.length > 0 ? "#e0e0e0" : "#777777"
+                                            font.pixelSize: 12
+                                        }
+
+                                        MouseArea {
+                                            id: peerInfoHover
+                                            anchors.fill: parent
+                                            hoverEnabled: true
+                                            enabled: peerCtxMenu.endpoint.length > 0
+                                            onClicked: {
+                                                peerInfoDialog.openForPeer(peerCtxMenu.peerData)
+                                                peerCtxMenu.close()
+                                            }
+                                        }
+                                    }
+
+                                    Rectangle { width: 180; height: 1; color: "#3a3a3a" }
+
+                                    Rectangle {
+                                        width: 180
+                                        height: 34
+                                        color: peerBanHover.containsMouse ? "#303030" : "transparent"
+
+                                        Text {
+                                            anchors.verticalCenter: parent.verticalCenter
+                                            anchors.left: parent.left
+                                            anchors.leftMargin: 10
                                             text: "Ban peer"
                                             color: (!!root.item && peerCtxMenu.endpoint.length > 0) ? "#e0e0e0" : "#777777"
                                             font.pixelSize: 12
                                         }
-                                    }
 
-                                    MouseArea {
-                                        id: peerBanHover
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        enabled: !!root.item && peerCtxMenu.endpoint.length > 0
-                                        onClicked: {
-                                            if (root.item) {
-                                                if (root.torrentPeerModel)
-                                                    root.torrentPeerModel.removePeer(peerCtxMenu.endpoint, peerCtxMenu.port)
-                                                App.banTorrentPeer(root.item.id, peerCtxMenu.endpoint, peerCtxMenu.port,
-                                                                   peerCtxMenu.client, peerCtxMenu.countryCode)
+                                        MouseArea {
+                                            id: peerBanHover
+                                            anchors.fill: parent
+                                            hoverEnabled: true
+                                            enabled: !!root.item && peerCtxMenu.endpoint.length > 0
+                                            onClicked: {
+                                                if (root.item) {
+                                                    if (root.torrentPeerModel)
+                                                        root.torrentPeerModel.removePeer(peerCtxMenu.endpoint, peerCtxMenu.port)
+                                                    App.banTorrentPeer(root.item.id, peerCtxMenu.endpoint, peerCtxMenu.port,
+                                                                       peerCtxMenu.client, peerCtxMenu.countryCode)
+                                                }
+                                                peerCtxMenu.close()
                                             }
-                                            peerCtxMenu.close()
+                                        }
+                                    }
+                                }
+                            }
+
+                            Window {
+                                id: peerInfoDialog
+                                width: 560
+                                height: 470
+                                minimumWidth: 540
+                                minimumHeight: 450
+                                modality: Qt.ApplicationModal
+                                flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
+                                title: "Peer Info"
+                                color: "#1e1e1e"
+                                property var peerData: ({})
+                                function blankPeerData() {
+                                    return {
+                                        endpoint: "",
+                                        port: 0,
+                                        client: "",
+                                        countryCode: "",
+                                        countryFlag: "",
+                                        regionCode: "",
+                                        regionName: "",
+                                        cityName: "",
+                                        progress: 0,
+                                        downSpeed: 0,
+                                        upSpeed: 0,
+                                        downloaded: 0,
+                                        uploaded: 0,
+                                        isSeed: false,
+                                        flags: "",
+                                        latitude: 0,
+                                        longitude: 0,
+                                        rtt: 0,
+                                        source: ""
+                                    }
+                                }
+                                function openForPeer(peer) {
+                                    peerData = blankPeerData()
+                                    peerData = peer || blankPeerData()
+                                    show()
+                                    raise()
+                                    requestActivate()
+                                }
+
+                                Rectangle {
+                                    anchors.fill: parent
+                                    color: "#1e1e1e"
+
+                                    ColumnLayout {
+                                        anchors.fill: parent
+                                        anchors.margins: 10
+                                        spacing: 8
+
+                                        Rectangle {
+                                            Layout.fillWidth: true
+                                            color: "transparent"
+                                            border.width: 0
+                                            implicitHeight: 54
+
+                                            RowLayout {
+                                                anchors.fill: parent
+                                                anchors.margins: 6
+                                                spacing: 6
+
+                                                Image {
+                                                    source: root.torrentClientIconSource(peerInfoDialog.peerData.client)
+                                                    width: 28
+                                                    height: 28
+                                                    sourceSize.width: 28
+                                                    sourceSize.height: 28
+                                                    Layout.rightMargin: 6
+                                                    fillMode: Image.PreserveAspectFit
+                                                    smooth: true
+                                                    visible: status === Image.Ready
+                                                }
+                                                ColumnLayout {
+                                                    Layout.fillWidth: true
+                                                    spacing: 2
+
+                                                    Row {
+                                                        Layout.fillWidth: true
+                                                        spacing: 6
+
+                                                        Text {
+                                                            text: root.safeStr(peerInfoDialog.peerData.endpoint) || "--"
+                                                            color: "#f0f0f0"
+                                                            font.pixelSize: 15
+                                                            font.bold: true
+                                                            elide: Text.ElideRight
+                                                            anchors.verticalCenter: parent.verticalCenter
+                                                        }
+                                                        Text {
+                                                            text: String(peerInfoDialog.peerData.port || 0)
+                                                            color: "#8d8d8d"
+                                                            font.pixelSize: 15
+                                                            anchors.verticalCenter: parent.verticalCenter
+                                                        }
+                                                    }
+                                                    Text {
+                                                        text: root.safeStr(peerInfoDialog.peerData.client) || "Unknown client"
+                                                        color: "#8fb4d9"
+                                                        font.pixelSize: 12
+                                                        elide: Text.ElideRight
+                                                        Layout.fillWidth: true
+                                                    }
+                                                    Text {
+                                                        text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName)
+                                                        color: "#9eb0c2"
+                                                        font.pixelSize: 11
+                                                        elide: Text.ElideRight
+                                                        Layout.fillWidth: true
+                                                    }
+                                                }
+                                                Image {
+                                                    source: root.countryFlagSource(peerInfoDialog.peerData.countryCode)
+                                                    width: 28
+                                                    height: 20
+                                                    sourceSize.width: 28
+                                                    sourceSize.height: 20
+                                                    fillMode: Image.PreserveAspectFit
+                                                    smooth: true
+                                                    visible: status === Image.Ready
+                                                }
+                                            }
+                                        }
+
+                                        GridLayout {
+                                            Layout.fillWidth: true
+                                            columns: 3
+                                            columnSpacing: 10
+                                            rowSpacing: 10
+
+                                            Rectangle {
+                                                Layout.fillWidth: true
+                                                color: "transparent"
+                                                border.width: 0
+                                                implicitHeight: 124
+
+                                                Column {
+                                                    anchors.fill: parent
+                                                    anchors.margins: 10
+                                                    spacing: 6
+
+                                                    Text { text: "Connection"; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                                                    Text { text: "Source: " + (root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: "Role: " + (peerInfoDialog.peerData.isSeed ? "Seeder" : "Peer"); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: "Ping: " + ((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: "Progress: " + Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100) + "%"; color: "#d0d0d0"; font.pixelSize: 12 }
+                                                }
+                                            }
+
+                                            Rectangle {
+                                                Layout.fillWidth: true
+                                                color: "transparent"
+                                                border.width: 0
+                                                implicitHeight: 124
+
+                                                Column {
+                                                    anchors.fill: parent
+                                                    anchors.margins: 10
+                                                    spacing: 6
+
+                                                    Text { text: "Transfer"; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                                                    Text { text: "Down: " + root.compactSpeed(peerInfoDialog.peerData.downSpeed); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: "Up: " + root.compactSpeed(peerInfoDialog.peerData.upSpeed); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: "Total down: " + root.compactBytes(peerInfoDialog.peerData.downloaded); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: "Total up: " + root.compactBytes(peerInfoDialog.peerData.uploaded); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                }
+                                            }
+
+                                            Rectangle {
+                                                Layout.fillWidth: true
+                                                color: "transparent"
+                                                border.width: 0
+                                                implicitHeight: 124
+
+                                                Column {
+                                                    anchors.fill: parent
+                                                    anchors.margins: 10
+                                                    spacing: 6
+
+                                                    Text { text: "Location"; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                                                    Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: "#d0d0d0"; font.pixelSize: 12; wrapMode: Text.WordWrap; width: parent.width }
+                                                    Text { text: "Distance: " + root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude); color: "#d0d0d0"; font.pixelSize: 12; wrapMode: Text.WordWrap; width: parent.width }
+                                                    Text { text: "Country: " + (root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: "Client: " + (root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight; width: parent.width }
+                                                }
+                                            }
+                                        }
+
+                                        Item {
+                                            Layout.fillWidth: true
+                                            Layout.preferredHeight: 210
+
+                                            ColumnLayout {
+                                                anchors.fill: parent
+                                                anchors.margins: 2
+                                                spacing: 8
+
+                                                Rectangle {
+                                                    Layout.fillWidth: true
+                                                    Layout.fillHeight: true
+                                                    color: "#13202d"
+                                                    border.color: "#34485d"
+                                                    clip: true
+
+                                                    Item {
+                                                        anchors.fill: parent
+                                                        anchors.margins: 6
+                                                        readonly property real mapHeight: height
+                                                        readonly property real baseMapWidth: mapHeight * (800.0 / 387.0)
+                                                        readonly property real baseMapX: (width - baseMapWidth) / 2
+                                                        readonly property bool hasLocal: !!root.torrentPeerModel && root.torrentPeerModel.hasLocalLocation
+                                                        readonly property bool hasPeer: root.hasGeoCoordinates(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)
+                                                        readonly property var transformData: root.peerInfoMapTransform(peerInfoDialog.peerData, baseMapWidth, mapHeight)
+                                                        readonly property real localX: transformData.localX
+                                                        readonly property real localY: transformData.localY
+                                                        readonly property real peerX: transformData.peerX
+                                                        readonly property real peerY: transformData.peerY
+
+                                                        Item {
+                                                            x: parent.baseMapX + parent.transformData.offsetX
+                                                            y: parent.transformData.offsetY
+                                                            width: parent.baseMapWidth * parent.transformData.scale
+                                                            height: parent.mapHeight * parent.transformData.scale
+
+                                                            Image {
+                                                                id: mapImage
+                                                                anchors.fill: parent
+                                                                source: "icons/world-map.svg"
+                                                                fillMode: Image.Stretch
+                                                                smooth: true
+                                                                sourceSize.width: 1200
+                                                                sourceSize.height: 581
+                                                            }
+                                                        }
+
+                                                        Item {
+                                                            visible: parent.hasLocal && parent.hasPeer
+                                                            readonly property real x1: parent.baseMapX + parent.localX
+                                                            readonly property real y1: parent.localY
+                                                            readonly property real x2: parent.baseMapX + parent.peerX
+                                                            readonly property real y2: parent.peerY
+                                                            readonly property real dx: x2 - x1
+                                                            readonly property real dy: y2 - y1
+                                                            readonly property real length: Math.sqrt(dx * dx + dy * dy)
+
+                                                            x: x1
+                                                            y: y1
+                                                            width: length
+                                                            height: 2
+                                                            rotation: Math.atan2(dy, dx) * 180 / Math.PI
+                                                            transformOrigin: Item.Left
+
+                                                            Rectangle {
+                                                                anchors.verticalCenter: parent.verticalCenter
+                                                                width: parent.width
+                                                                height: 2
+                                                                color: "#6db6ff"
+                                                            }
+                                                        }
+
+                                                        Rectangle { visible: parent.hasLocal; x: parent.baseMapX + parent.localX - 4; y: parent.localY - 4; width: 8; height: 8; radius: 4; color: "#8a63ff"; border.color: "#ffffff"; border.width: 1 }
+                                                        Rectangle { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX - 4; y: parent.peerY - 4; width: 8; height: 8; radius: 4; color: peerInfoDialog.peerData.isSeed ? "#67bb7a" : "#62a8ff"; border.color: "#ffffff"; border.width: 1 }
+                                                        Text { visible: parent.hasLocal; x: parent.baseMapX + parent.localX + 6; y: parent.localY - 9; text: "You"; color: "#f6f6f6"; font.pixelSize: 10; font.bold: true }
+                                                        Text { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX + 6; y: parent.peerY - 9; text: "Peer"; color: "#f6f6f6"; font.pixelSize: 10; font.bold: true }
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+                                        RowLayout {
+                                            Layout.fillWidth: true
+                                            spacing: 10
+
+                                            RowLayout {
+                                                Layout.fillWidth: true
+                                                spacing: 6
+
+                                                Text {
+                                                    text: "Flags"
+                                                    color: "#9eb0c2"
+                                                    font.pixelSize: 11
+                                                    font.bold: true
+                                                    visible: root.peerFlagsList(peerInfoDialog.peerData.flags).length > 0
+                                                }
+
+                                                Flow {
+                                                    Layout.fillWidth: true
+                                                    spacing: 6
+
+                                                    Repeater {
+                                                        model: root.peerFlagsList(peerInfoDialog.peerData.flags)
+                                                        delegate: Rectangle {
+                                                            required property string modelData
+                                                            height: 14
+                                                            width: badgeLbl.implicitWidth + 6
+                                                            radius: 2
+                                                            color: "transparent"
+                                                            border.color: badgeColor(modelData)
+                                                            border.width: 1
+                                                            function badgeColor(flag) {
+                                                                if (flag === "Seed") return "#c0a54a"
+                                                                if (flag === "Peer") return "#7a8899"
+                                                                return root.flagColor(flag)
+                                                            }
+
+                                                            ToolTip.visible: badgeMouse.containsMouse
+                                                            ToolTip.text: {
+                                                                switch (modelData) {
+                                                                case "IN": return "Incoming connection"
+                                                                case "OUT": return "Outgoing connection"
+                                                                case "TRK": return "Discovered via tracker"
+                                                                case "DHT": return "Discovered via DHT"
+                                                                case "PEX": return "Discovered via peer exchange"
+                                                                case "LSD": return "Discovered via local service discovery"
+                                                                case "UTP": return "Using uTP"
+                                                                case "ENC": return "Encrypted connection"
+                                                                case "SNB": return "Peer is snubbed"
+                                                                case "UPO": return "Upload-only peer"
+                                                                case "OPT": return "Optimistically unchoked"
+                                                                case "HPX": return "Holepunched connection"
+                                                                case "I2P": return "I2P transport"
+                                                                default: return modelData
+                                                                }
+                                                            }
+
+                                                            Text {
+                                                                id: badgeLbl
+                                                                anchors.centerIn: parent
+                                                                text: modelData
+                                                                color: "white"
+                                                                font.pixelSize: 9
+                                                                font.bold: true
+                                                            }
+
+                                                            MouseArea {
+                                                                id: badgeMouse
+                                                                anchors.fill: parent
+                                                                hoverEnabled: true
+                                                                acceptedButtons: Qt.NoButton
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            RowLayout {
+                                                spacing: 8
+                                                DlgButton {
+                                                    text: "Ban Peer"
+                                                    destructive: true
+                                                    enabled: !!root.item && root.safeStr(peerInfoDialog.peerData.endpoint).length > 0
+                                                    height: 28
+                                                    implicitHeight: 28
+                                                    Layout.preferredHeight: 28
+                                                    Layout.minimumHeight: 28
+                                                    Layout.maximumHeight: 28
+                                                    Layout.preferredWidth: 84
+                                                    Layout.minimumWidth: 84
+                                                    Layout.maximumWidth: 84
+                                                    onClicked: {
+                                                        if (root.item) {
+                                                            if (root.torrentPeerModel)
+                                                                root.torrentPeerModel.removePeer(peerInfoDialog.peerData.endpoint, peerInfoDialog.peerData.port)
+                                                            App.banTorrentPeer(root.item.id,
+                                                                               peerInfoDialog.peerData.endpoint,
+                                                                               peerInfoDialog.peerData.port,
+                                                                               peerInfoDialog.peerData.client,
+                                                                               peerInfoDialog.peerData.countryCode)
+                                                        }
+                                                        peerInfoDialog.close()
+                                                    }
+                                                }
+                                                DlgButton {
+                                                    text: "Close"
+                                                    primary: true
+                                                    height: 28
+                                                    implicitHeight: 28
+                                                    Layout.preferredHeight: 28
+                                                    Layout.minimumHeight: 28
+                                                    Layout.maximumHeight: 28
+                                                    Layout.preferredWidth: 84
+                                                    Layout.minimumWidth: 84
+                                                    Layout.maximumWidth: 84
+                                                    onClicked: peerInfoDialog.close()
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -3016,6 +3514,10 @@ Window {
                                 required property var    uploaded
                                 required property bool   isSeed
                                 required property string flags
+                                required property real   latitude
+                                required property real   longitude
+                                required property int    rtt
+                                required property string source
 
                                 width: Math.max(peerListView.width, peerListView.contentWidth)
                                 height: 26
@@ -3191,6 +3693,27 @@ Window {
                                         peerCtxMenu.port = pd.port
                                         peerCtxMenu.client = pd.client
                                         peerCtxMenu.countryCode = pd.countryCode
+                                        peerCtxMenu.peerData = {
+                                            endpoint: pd.endpoint,
+                                            port: pd.port,
+                                            client: pd.client,
+                                            countryCode: pd.countryCode,
+                                            countryFlag: pd.countryFlag,
+                                            regionCode: pd.regionCode,
+                                            regionName: pd.regionName,
+                                            cityName: pd.cityName,
+                                            progress: pd.progress,
+                                            downSpeed: pd.downSpeed,
+                                            upSpeed: pd.upSpeed,
+                                            downloaded: pd.downloaded,
+                                            uploaded: pd.uploaded,
+                                            isSeed: pd.isSeed,
+                                            flags: pd.flags,
+                                            latitude: pd.latitude,
+                                            longitude: pd.longitude,
+                                            rtt: pd.rtt,
+                                            source: pd.source
+                                        }
                                         var pos = mapToItem(Overlay.overlay, mouse.x, mouse.y)
                                         peerCtxMenu.x = pos.x
                                         peerCtxMenu.y = pos.y
