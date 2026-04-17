@@ -2620,6 +2620,10 @@ void AppController::deleteDownload(const QString &id, int mode) {
     bool deleteTorrentPayload = false;
     {
         auto *item = m_downloadModel->itemById(id);
+        // Accumulate all-time torrent stats before the item is removed
+        if (item && item->isTorrent()) {
+            m_settings->accumulateTorrentStats(item->torrentUploaded(), item->torrentDownloaded());
+        }
         if (item) {
             itemUrl = item->url().toString();
             savePath = item->savePath();
@@ -2907,6 +2911,33 @@ QVariantList AppController::torrentPieceMap(const QString &downloadId) const {
 
 void AppController::clearTorrentSpeedHistory(const QString &downloadId) {
     m_torrentSpeedHistory.remove(downloadId);
+}
+
+QVariantMap AppController::torrentAllTimeStats() const {
+    // Sum torrentUploaded/torrentDownloaded from all live torrent items in memory,
+    // then add the historical accumulator (from previously deleted items).
+    qint64 uploaded   = m_settings->torrentHistoricalUploadedBytes();
+    qint64 downloaded = m_settings->torrentHistoricalDownloadedBytes();
+    const auto items = m_downloadModel->allItems();
+    for (auto *item : items) {
+        if (item && item->isTorrent()) {
+            uploaded   += item->torrentUploaded();
+            downloaded += item->torrentDownloaded();
+        }
+    }
+    double ratio = (downloaded > 0) ? (double(uploaded) / double(downloaded)) : 0.0;
+    QVariantMap result;
+    result[QStringLiteral("uploadedBytes")]   = QVariant::fromValue(uploaded);
+    result[QStringLiteral("downloadedBytes")] = QVariant::fromValue(downloaded);
+    result[QStringLiteral("ratio")]           = ratio;
+    return result;
+}
+
+void AppController::resetTorrentAllTimeStats() {
+    // Zero out the historical accumulator. Live item stats are part of the session
+    // and cannot be reset from here, so we zero the accumulator that persists them
+    // across sessions — next call to torrentAllTimeStats() will only reflect live data.
+    m_settings->resetTorrentHistoricalStats();
 }
 
 QString AppController::downloadShareLink(const QString &id) const {

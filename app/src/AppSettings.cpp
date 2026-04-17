@@ -231,6 +231,9 @@ void AppSettings::load() {
     m_torrentBlockedPeerCountries = m_settings.value(QStringLiteral("torrentBlockedPeerCountries"), QStringList()).toStringList();
     m_torrentAutoBanAbusivePeers = m_settings.value(QStringLiteral("torrentAutoBanAbusivePeers"), false).toBool();
     m_torrentAutoBanMediaPlayerPeers = m_settings.value(QStringLiteral("torrentAutoBanMediaPlayerPeers"), false).toBool();
+    m_torrentEncryptionMode = m_settings.value(QStringLiteral("torrentEncryptionMode"), 0).toInt();
+    m_torrentHistoricalUploadedBytes   = m_settings.value(QStringLiteral("torrentHistoricalUploadedBytes"), 0LL).toLongLong();
+    m_torrentHistoricalDownloadedBytes = m_settings.value(QStringLiteral("torrentHistoricalDownloadedBytes"), 0LL).toLongLong();
     m_proxyType               = m_settings.value(QStringLiteral("proxyType"), 0).toInt();
     m_proxyHost               = m_settings.value(QStringLiteral("proxyHost"), QString()).toString();
     m_proxyPort               = m_settings.value(QStringLiteral("proxyPort"), 8080).toInt();
@@ -397,6 +400,9 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("torrentBlockedPeerCountries"), m_torrentBlockedPeerCountries);
     m_settings.setValue(QStringLiteral("torrentAutoBanAbusivePeers"), m_torrentAutoBanAbusivePeers);
     m_settings.setValue(QStringLiteral("torrentAutoBanMediaPlayerPeers"), m_torrentAutoBanMediaPlayerPeers);
+    m_settings.setValue(QStringLiteral("torrentEncryptionMode"),          m_torrentEncryptionMode);
+    m_settings.setValue(QStringLiteral("torrentHistoricalUploadedBytes"),   m_torrentHistoricalUploadedBytes);
+    m_settings.setValue(QStringLiteral("torrentHistoricalDownloadedBytes"), m_torrentHistoricalDownloadedBytes);
     m_settings.setValue(QStringLiteral("proxyType"),                   m_proxyType);
     m_settings.setValue(QStringLiteral("proxyHost"),                   m_proxyHost);
     m_settings.setValue(QStringLiteral("proxyPort"),                   m_proxyPort);
@@ -586,6 +592,19 @@ void AppSettings::setTorrentBlockedPeerUserAgents(const QString &v) { if (m_torr
 void AppSettings::setTorrentBlockedPeerCountries(const QStringList &v) { if (m_torrentBlockedPeerCountries != v) { m_torrentBlockedPeerCountries = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentAutoBanAbusivePeers(bool v) { if (m_torrentAutoBanAbusivePeers != v) { m_torrentAutoBanAbusivePeers = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentAutoBanMediaPlayerPeers(bool v) { if (m_torrentAutoBanMediaPlayerPeers != v) { m_torrentAutoBanMediaPlayerPeers = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentEncryptionMode(int v) { if (m_torrentEncryptionMode != v) { m_torrentEncryptionMode = v; emit torrentSettingsChanged(); save(); } }
+
+void AppSettings::accumulateTorrentStats(qint64 uploadedBytes, qint64 downloadedBytes) {
+    m_torrentHistoricalUploadedBytes   += uploadedBytes;
+    m_torrentHistoricalDownloadedBytes += downloadedBytes;
+    save();
+}
+
+void AppSettings::resetTorrentHistoricalStats() {
+    m_torrentHistoricalUploadedBytes   = 0;
+    m_torrentHistoricalDownloadedBytes = 0;
+    save();
+}
 
 void AppSettings::setPerHostConnectionLimit(int v) { if (m_perHostConnectionLimit != v) { m_perHostConnectionLimit = v; emit perHostConnectionLimitChanged(); save(); } }
 

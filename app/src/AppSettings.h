@@ -109,6 +109,8 @@ class AppSettings : public QObject {
     Q_PROPERTY(QStringList torrentBlockedPeerCountries READ torrentBlockedPeerCountries WRITE setTorrentBlockedPeerCountries NOTIFY torrentSettingsChanged)
     Q_PROPERTY(bool torrentAutoBanAbusivePeers READ torrentAutoBanAbusivePeers WRITE setTorrentAutoBanAbusivePeers NOTIFY torrentSettingsChanged)
     Q_PROPERTY(bool torrentAutoBanMediaPlayerPeers READ torrentAutoBanMediaPlayerPeers WRITE setTorrentAutoBanMediaPlayerPeers NOTIFY torrentSettingsChanged)
+    // Encryption mode: 0=Prefer (default), 1=Require, 2=Allow (disable encryption)
+    Q_PROPERTY(int  torrentEncryptionMode READ torrentEncryptionMode WRITE setTorrentEncryptionMode NOTIFY torrentSettingsChanged)
     // Proxy — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
     // Per-host connection limit — caps concurrent segments to a single server (some ban >4)
     Q_PROPERTY(int     perHostConnectionLimit READ perHostConnectionLimit WRITE setPerHostConnectionLimit NOTIFY perHostConnectionLimitChanged)
@@ -197,6 +199,7 @@ public:
     QStringList torrentBlockedPeerCountries() const { return m_torrentBlockedPeerCountries; }
     bool torrentAutoBanAbusivePeers() const { return m_torrentAutoBanAbusivePeers; }
     bool torrentAutoBanMediaPlayerPeers() const { return m_torrentAutoBanMediaPlayerPeers; }
+    int  torrentEncryptionMode()          const { return m_torrentEncryptionMode; }
     int     proxyType()               const { return m_proxyType; }
     QString proxyHost()               const { return m_proxyHost; }
     int     proxyPort()               const { return m_proxyPort; }
@@ -276,6 +279,11 @@ public:
     void setTorrentBlockedPeerCountries(const QStringList &v);
     void setTorrentAutoBanAbusivePeers(bool v);
     void setTorrentAutoBanMediaPlayerPeers(bool v);
+    void setTorrentEncryptionMode(int v);
+    qint64 torrentHistoricalUploadedBytes() const { return m_torrentHistoricalUploadedBytes; }
+    qint64 torrentHistoricalDownloadedBytes() const { return m_torrentHistoricalDownloadedBytes; }
+    void accumulateTorrentStats(qint64 uploadedBytes, qint64 downloadedBytes);
+    void resetTorrentHistoricalStats();
     void setProxyType(int v);
     void setProxyHost(const QString &v);
     void setProxyPort(int v);
@@ -422,6 +430,10 @@ private:
     QStringList m_torrentBlockedPeerCountries;
     bool        m_torrentAutoBanAbusivePeers{false};
     bool        m_torrentAutoBanMediaPlayerPeers{false};
+    int         m_torrentEncryptionMode{0}; // 0=Prefer, 1=Require, 2=Allow
+    // All-time torrent transfer accumulators — incremented when a torrent item is deleted
+    qint64      m_torrentHistoricalUploadedBytes{0};
+    qint64      m_torrentHistoricalDownloadedBytes{0};
     // Proxy — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
     int         m_proxyType{0};
     QString     m_proxyHost;

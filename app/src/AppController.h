@@ -258,6 +258,8 @@ public:
     Q_INVOKABLE QVariantList torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds = 0, int maxPoints = 0) const;
     Q_INVOKABLE QVariantList torrentPieceMap(const QString &downloadId) const;
     Q_INVOKABLE void clearTorrentSpeedHistory(const QString &downloadId);
+    Q_INVOKABLE QVariantMap torrentAllTimeStats() const;
+    Q_INVOKABLE void resetTorrentAllTimeStats();
     Q_INVOKABLE QString clipboardUrl() const;
     Q_INVOKABLE void setDownloadCategory(const QString &downloadId, const QString &categoryId);
     Q_INVOKABLE void setDownloadQueue(const QString &downloadId, const QString &queueId);

@@ -175,7 +175,7 @@ void SegmentedTransfer::start() {
     m_effectiveUrl = QUrl(); // reset on every fresh start
 
     qDebug() << "[ST] start() url=" << m_item->url().toString()
-             << "isGDrive=" << isGoogleDriveUrl(m_item->url())
+             << "isConfirmPage=" << isConfirmPageUrl(m_item->url())
              << "hasCookies=" << !m_item->cookies().isEmpty()
              << "cookieLen=" << m_item->cookies().size();
 
@@ -183,7 +183,7 @@ void SegmentedTransfer::start() {
     // produced by old code or confirmation-page fallbacks that may contain HTML bytes).
     // Valid range-based metas (resumeCapable == true) are preserved so partially-
     // downloaded files survive restarts and hard kills.
-    if (isGoogleDriveUrl(m_item->url())) {
+    if (isConfirmPageUrl(m_item->url())) {
         bool hasValidRangeMeta = false;
         QFile mf(metaPath());
         if (mf.exists() && mf.open(QIODevice::ReadOnly)) {
@@ -213,7 +213,7 @@ void SegmentedTransfer::start() {
 void SegmentedTransfer::applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const {
     req.setHeader(
         QNetworkRequest::UserAgentHeader,
-        resolvedUserAgent(m_useCustomUserAgent, m_customUserAgent, isGoogleDriveUrl(url)));
+        resolvedUserAgent(m_useCustomUserAgent, m_customUserAgent, isConfirmPageUrl(url)));
     req.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
                      QNetworkRequest::NoLessSafeRedirectPolicy);
 
@@ -354,13 +354,13 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
 
     // Google Drive may return text/html (virus-scan confirmation page).
     // Fall back to single GET so we can detect and handle the HTML in onSegmentReadyRead.
-    bool gdriveHtml = isGoogleDriveUrl(m_item->url()) && contentType.contains(QStringLiteral("text/html"));
-    if (gdriveHtml) {
+    bool needsHtmlIntercept = isConfirmPageUrl(m_item->url()) && contentType.contains(QStringLiteral("text/html"));
+    if (needsHtmlIntercept) {
         reply->deleteLater();
         m_headReply = nullptr;
         m_resumeCapable = false;
         m_item->setResumeCapable(false);
-        m_gdriveIntercepting = true;
+        m_htmlIntercepting = true;
         setupSegments(0, false);
         saveMeta();
         startAllSegments();
@@ -517,7 +517,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     // connections immediately so we don't save an HTML login page as file data.
     // Parts and meta are intentionally left on disk so the user can re-add the
     // download from the browser (with fresh cookies) and resume from where it stopped.
-    if (isGoogleDriveUrl(m_item->url())) {
+    if (isConfirmPageUrl(m_item->url())) {
         const QString replyHost = seg.reply->url().host().toLower();
         if (replyHost.contains(QStringLiteral("accounts.google.com"))) {
             m_progressTimer->stop();
@@ -525,33 +525,33 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
                 if (s.reply) { s.reply->disconnect(this); s.reply->abort(); s.reply->deleteLater(); s.reply = nullptr; }
                 if (s.file)  { s.file->close(); }
             }
-            m_gdriveIntercepting = false;
-            m_gdriveHtmlBuf.clear();
+            m_htmlIntercepting = false;
+            m_htmlInterceptBuf.clear();
             emit failed(QStringLiteral("Google Drive session expired. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume — your partial download will be reused."));
             return;
         }
     }
 
     // Google Drive HTML interception: buffer the first chunk to sniff content type
-    if (m_gdriveIntercepting && index == 0) {
+    if (m_htmlIntercepting && index == 0) {
         // Note: accounts.google.com auth-wall is already caught by the top-level
         // GDrive auth check above, so we only reach here for non-auth responses.
-        qDebug() << "[GDrive] readyRead, replyHost=" << seg.reply->url().host() << "bufSize=" << m_gdriveHtmlBuf.size();
+        qDebug() << "[HTMLIntercept] readyRead, replyHost=" << seg.reply->url().host() << "bufSize=" << m_htmlInterceptBuf.size();
 
         QByteArray data = seg.reply->readAll();
-        m_gdriveHtmlBuf.append(data);
+        m_htmlInterceptBuf.append(data);
 
         // Check Content-Disposition header — if present, it's the real file
         QByteArray cd = seg.reply->rawHeader("Content-Disposition");
         bool hasContentDisp = !cd.isEmpty() && cd.contains("filename");
 
         // Sniff the first bytes for HTML
-        QByteArray head = m_gdriveHtmlBuf.left(512).trimmed();
+        QByteArray head = m_htmlInterceptBuf.left(512).trimmed();
         bool looksLikeHtml = head.contains("<html") || head.contains("<!DOCTYPE") || head.contains("<!doctype");
 
-        if (hasContentDisp || (!looksLikeHtml && m_gdriveHtmlBuf.size() > 512)) {
+        if (hasContentDisp || (!looksLikeHtml && m_htmlInterceptBuf.size() > 512)) {
             // Real file detected — check range support before committing to single-segment.
-            m_gdriveIntercepting = false;
+            m_htmlIntercepting = false;
             updateFilenameFromReply(seg.reply);
             qint64 cl = seg.reply->header(QNetworkRequest::ContentLengthHeader).toLongLong();
             const QString acceptRanges = QString::fromUtf8(seg.reply->rawHeader("Accept-Ranges")).trimmed();
@@ -569,7 +569,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
                 seg.reply->deleteLater();
                 seg.reply = nullptr;
                 if (seg.file) { seg.file->close(); QFile::remove(seg.partPath); delete seg.file; seg.file = nullptr; }
-                m_gdriveHtmlBuf.clear();
+                m_htmlInterceptBuf.clear();
                 m_resumeCapable = true;
                 m_item->setResumeCapable(true);
                 m_item->setTotalBytes(cl);
@@ -580,14 +580,14 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
             }
             // Not range-capable (or file too small) — continue as single segment.
             if (cl > 0) m_item->setTotalBytes(cl);
-            qint64 wrote = seg.file->write(m_gdriveHtmlBuf);
-            if (wrote != m_gdriveHtmlBuf.size()) {
+            qint64 wrote = seg.file->write(m_htmlInterceptBuf);
+            if (wrote != m_htmlInterceptBuf.size()) {
                 m_item->setStatus(DownloadItem::Status::Error);
                 emit failed(QStringLiteral("Disk write failed: %1").arg(seg.file->errorString()));
                 return;
             }
             seg.received += wrote;
-            m_gdriveHtmlBuf.clear();
+            m_htmlInterceptBuf.clear();
         }
         // Otherwise keep buffering until finished (confirmation pages are small)
         return;
@@ -598,7 +598,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
     // Content-Length, abort and restart as multi-segment.  This catches any site
     // where HEAD was skipped or failed but the actual GET supports ranges — the
     // GDrive confirmation-page restart, CDNs that ignore HEAD, etc.
-    if (!m_gdriveIntercepting
+    if (!m_htmlIntercepting
         && m_segments.size() == 1 && seg.endOffset < 0
         && seg.received == 0 && seg.pending.isEmpty()) {
         const QString acceptRanges = QString::fromUtf8(seg.reply->rawHeader("Accept-Ranges")).trimmed();
@@ -718,12 +718,12 @@ void SegmentedTransfer::onSegmentFinished(int index) {
 
     // Google Drive HTML interception: response finished while still intercepting
     // means the entire response is small (confirmation page or auth redirect)
-    if (m_gdriveIntercepting && index == 0) {
+    if (m_htmlIntercepting && index == 0) {
         QString replyHost = seg.reply->url().host().toLower();
         bool isAuthRedirect = replyHost.contains(QStringLiteral("accounts.google.com"));
 
         if (seg.reply->bytesAvailable() > 0)
-            m_gdriveHtmlBuf.append(seg.reply->readAll());
+            m_htmlInterceptBuf.append(seg.reply->readAll());
         QNetworkReply::NetworkError err = seg.reply->error();
         seg.reply->deleteLater();
         seg.reply = nullptr;
@@ -735,26 +735,26 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         }
 
         if (isAuthRedirect) {
-            m_gdriveIntercepting = false;
-            m_gdriveHtmlBuf.clear();
+            m_htmlIntercepting = false;
+            m_htmlInterceptBuf.clear();
             emit failed(QStringLiteral("Google Drive session expired. Re-add the download from your browser (right-click → Download with Stellar) to refresh authentication, then resume — your partial download will be reused."));
             return;
         }
 
         // Small response — check if it's a confirmation page
-        QByteArray head = m_gdriveHtmlBuf.left(512).trimmed();
+        QByteArray head = m_htmlInterceptBuf.left(512).trimmed();
         if (head.contains("<html") || head.contains("<!DOCTYPE") || head.contains("<!doctype")) {
-            handleGDriveConfirmPage(m_gdriveHtmlBuf);
+            handleConfirmPage(m_htmlInterceptBuf);
         } else {
             // Small non-HTML response — write it as the file
-            m_gdriveIntercepting = false;
+            m_htmlIntercepting = false;
             if (!seg.file) seg.file = new QFile(seg.partPath);
             if (seg.file->open(QIODevice::WriteOnly)) {
-                seg.file->write(m_gdriveHtmlBuf);
-                seg.received = m_gdriveHtmlBuf.size();
+                seg.file->write(m_htmlInterceptBuf);
+                seg.received = m_htmlInterceptBuf.size();
                 seg.file->close();
             }
-            m_gdriveHtmlBuf.clear();
+            m_htmlInterceptBuf.clear();
             seg.done = true;
             m_progressTimer->stop();
             mergeAndFinish();
@@ -1228,14 +1228,14 @@ QString SegmentedTransfer::parseContentDispositionFilename(const QByteArray &hea
     return QString::fromUtf8(val);
 }
 
-bool SegmentedTransfer::isGoogleDriveUrl(const QUrl &url) const {
+bool SegmentedTransfer::isConfirmPageUrl(const QUrl &url) const {
     const QString host = url.host().toLower();
     return host.endsWith(QStringLiteral("drive.google.com")) ||
            host.endsWith(QStringLiteral("drive.usercontent.google.com"));
 }
 
-void SegmentedTransfer::handleGDriveConfirmPage(const QByteArray &html) {
-    qDebug() << "[GDrive] handling confirmation page, size:" << html.size();
+void SegmentedTransfer::handleConfirmPage(const QByteArray &html) {
+    qDebug() << "[HTMLIntercept] handling confirmation page, size:" << html.size();
     // Google Drive virus-scan confirmation page contains a form that
     // POSTs (or links) to the real download.  We look for the form action
     // URL or a direct download link.
@@ -1289,11 +1289,11 @@ void SegmentedTransfer::handleGDriveConfirmPage(const QByteArray &html) {
         }
     }
 
-    qDebug() << "[GDrive] parsed confirmation page, newUrl:" << newUrl;
+    qDebug() << "[HTMLIntercept] parsed confirmation page, newUrl:" << newUrl;
     if (!newUrl.isValid()) {
         // Can't parse confirmation page — deliver what we got (the HTML)
         // and let it finish as-is; user will see a bad file.
-        qDebug() << "[GDrive] FAILED to parse, first 2000 bytes:" << html.left(2000);
+        qDebug() << "[HTMLIntercept] FAILED to parse, first 2000 bytes:" << html.left(2000);
         emit failed(QStringLiteral("Google Drive returned a confirmation page that could not be parsed"));
         return;
     }
@@ -1317,8 +1317,8 @@ void SegmentedTransfer::handleGDriveConfirmPage(const QByteArray &html) {
     m_progressTimer->stop();
 
     // Restart download with the real URL
-    m_gdriveIntercepting = false;
-    m_gdriveHtmlBuf.clear();
+    m_htmlIntercepting = false;
+    m_htmlInterceptBuf.clear();
     m_item->setDoneBytes(0);
     m_item->setTotalBytes(0);
 

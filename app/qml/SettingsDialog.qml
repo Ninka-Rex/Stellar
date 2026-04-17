@@ -93,6 +93,7 @@ Window {
     property var    editTorrentBannedPeers: []
     property bool   editTorrentAutoBanAbusivePeers: false
     property bool   editTorrentAutoBanMediaPlayerPeers: false
+    property int    editTorrentEncryptionMode: 0
     property var    torrentAdapterOptions:     []
     property var    torrentCountryOptions:     []
     property string selectedTorrentCountryCode: ""
@@ -351,6 +352,7 @@ Window {
         JSON.stringify(editTorrentBannedPeers) !== JSON.stringify(App.settings.torrentBannedPeers) ||
         editTorrentAutoBanAbusivePeers !== App.settings.torrentAutoBanAbusivePeers ||
         editTorrentAutoBanMediaPlayerPeers !== App.settings.torrentAutoBanMediaPlayerPeers ||
+        editTorrentEncryptionMode !== App.settings.torrentEncryptionMode ||
         editProxyType             !== App.settings.proxyType             ||
         editProxyHost             !== App.settings.proxyHost             ||
         editProxyPort             !== App.settings.proxyPort             ||
@@ -526,6 +528,7 @@ Window {
         App.settings.torrentBannedPeers = editTorrentBannedPeers
         App.settings.torrentAutoBanAbusivePeers = editTorrentAutoBanAbusivePeers
         App.settings.torrentAutoBanMediaPlayerPeers = editTorrentAutoBanMediaPlayerPeers
+        App.settings.torrentEncryptionMode = editTorrentEncryptionMode
         App.settings.proxyType              = editProxyType
         App.settings.proxyHost              = editProxyHost
         App.settings.proxyPort              = editProxyPort
@@ -589,6 +592,7 @@ Window {
         editTorrentBannedPeers = App.settings.torrentBannedPeers.slice()
         editTorrentAutoBanAbusivePeers = App.settings.torrentAutoBanAbusivePeers
         editTorrentAutoBanMediaPlayerPeers = App.settings.torrentAutoBanMediaPlayerPeers
+        editTorrentEncryptionMode = App.settings.torrentEncryptionMode
         ensureTorrentAdapterOption(editTorrentBindInterface)
         editProxyType             = App.settings.proxyType
         editProxyHost             = App.settings.proxyHost
@@ -2716,6 +2720,60 @@ Window {
                             wrapMode: Text.WordWrap
                         }
 
+                        Text { text: "Encryption Mode"; color: "#c0c0c0"; font.pixelSize: 12 }
+
+                        ComboBox {
+                            id: encryptionModeCombo
+                            implicitWidth: 220
+                            model: ["Prefer encryption", "Require encryption", "Allow encryption"]
+                            // model index maps: 0=Prefer, 1=Require, 2=Allow — matches torrentEncryptionMode values
+                            currentIndex: root.editTorrentEncryptionMode
+                            onActivated: root.editTorrentEncryptionMode = currentIndex
+                            contentItem: Text {
+                                leftPadding: 8
+                                text: encryptionModeCombo.displayText
+                                color: "#d0d0d0"
+                                font.pixelSize: 13
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                            background: Rectangle {
+                                color: "#1b1b1b"
+                                border.color: encryptionModeCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                radius: 3
+                            }
+                            indicator: Text {
+                                x: encryptionModeCombo.width - width - 8
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: "▾"
+                                color: "#888888"
+                                font.pixelSize: 10
+                            }
+                            popup: Popup {
+                                y: encryptionModeCombo.height
+                                width: encryptionModeCombo.width
+                                padding: 0
+                                background: Rectangle { color: "#252525"; border.color: "#3a3a3a"; radius: 3 }
+                                contentItem: ListView {
+                                    implicitHeight: contentHeight
+                                    model: encryptionModeCombo.delegateModel
+                                    currentIndex: encryptionModeCombo.highlightedIndex
+                                }
+                            }
+                            delegate: ItemDelegate {
+                                width: encryptionModeCombo.width
+                                contentItem: Text {
+                                    text: modelData
+                                    color: "#d0d0d0"
+                                    font.pixelSize: 13
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                                background: Rectangle {
+                                    color: highlighted ? "#1a3a6a" : "transparent"
+                                }
+                                highlighted: encryptionModeCombo.highlightedIndex === index
+                            }
+                        }
+
                         Text { text: "Blocked user agents"; color: "#c0c0c0"; font.pixelSize: 12 }
                         Rectangle {
                             Layout.fillWidth: true
@@ -3112,6 +3170,68 @@ Window {
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        Text { text: "Statistics"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Cumulative transfer totals across all torrents, including removed ones."
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        GridLayout {
+                            id: torrentStatsGrid
+                            Layout.fillWidth: true
+                            columns: 2
+                            columnSpacing: 16
+                            rowSpacing: 6
+
+                            property var stats: ({})
+
+                            function refresh() {
+                                stats = App.torrentAllTimeStats()
+                            }
+
+                            Component.onCompleted: refresh()
+
+                            Timer {
+                                interval: 2000
+                                running: torrentStatsGrid.visible
+                                repeat: true
+                                onTriggered: torrentStatsGrid.refresh()
+                            }
+
+                            Text { text: "Total Downloaded"; color: "#8899aa"; font.pixelSize: 12 }
+                            Text {
+                                text: root.formatBytes(torrentStatsGrid.stats.downloadedBytes || 0)
+                                color: "#c8c8c8"; font.pixelSize: 12
+                            }
+
+                            Text { text: "Total Uploaded"; color: "#8899aa"; font.pixelSize: 12 }
+                            Text {
+                                text: root.formatBytes(torrentStatsGrid.stats.uploadedBytes || 0)
+                                color: "#c8c8c8"; font.pixelSize: 12
+                            }
+
+                            Text { text: "All-time Share Ratio"; color: "#8899aa"; font.pixelSize: 12 }
+                            Text {
+                                text: {
+                                    var r = torrentStatsGrid.stats.ratio || 0
+                                    return r.toFixed(3)
+                                }
+                                color: {
+                                    var r = torrentStatsGrid.stats.ratio || 0
+                                    if (r >= 1.0) return "#7bd88f"
+                                    if (r >= 0.5) return "#f0c060"
+                                    return "#ff8a80"
+                                }
+                                font.pixelSize: 12
+                            }
                         }
 
                         Item { height: 12 }

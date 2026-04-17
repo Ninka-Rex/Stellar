@@ -98,8 +98,8 @@ private:
     void updateSegmentDataOnItem();
     void updateFilenameFromReply(QNetworkReply *reply);
     static QString parseContentDispositionFilename(const QByteArray &header);
-    bool isGoogleDriveUrl(const QUrl &url) const;
-    void handleGDriveConfirmPage(const QByteArray &html);
+    bool isConfirmPageUrl(const QUrl &url) const;
+    void handleConfirmPage(const QByteArray &html);
     void applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const;
     void retrySegment(int index, int extraDelayMs = 0);
     void fallbackToSingleSegment();
@@ -114,8 +114,8 @@ private:
     bool                   m_cancelled{false};
     bool                   m_resumeCapable{false};
     int                    m_speedLimitKBps{0};
-    bool                   m_gdriveIntercepting{false};
-    QByteArray             m_gdriveHtmlBuf;
+    bool                   m_htmlIntercepting{false};
+    QByteArray             m_htmlInterceptBuf;
 
     QList<Segment>  m_segments;
     QTimer         *m_progressTimer{nullptr};
