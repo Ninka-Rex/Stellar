@@ -86,11 +86,16 @@ Source: "..\..\THIRD-PARTY-NOTICES.txt";         DestDir: "{app}";              
 ; Visual C++ Redistributable (windeployqt copies this)
 Source: "{#BuildDir}\vc_redist.x64.exe";        DestDir: "{tmp}";                       Flags: deleteafterinstall skipifsourcedoesntexist
 
-; yt-dlp binary (optional — the app can also download it on first run)
-; Place yt-dlp.exe next to the installer script or in the build output directory
-; before packaging.  skipifsourcedoesntexist allows the installer to build
-; without the binary present; the app will prompt the user to download it.
+; yt-dlp binary — bundled by release.ps1 (downloaded from github.com/yt-dlp/yt-dlp).
+; skipifsourcedoesntexist allows the installer to build without it; the app will
+; prompt the user to download it on first run.
 Source: "{#BuildDir}\yt-dlp.exe";              DestDir: "{app}";          Flags: ignoreversion skipifsourcedoesntexist
+
+; ffmpeg + ffprobe — bundled by release.ps1 (downloaded from BtbN/FFmpeg-Builds).
+; Both are required for HD video merging and post-processing (thumbnail embedding,
+; chapter modification via SponsorBlock, etc.).
+Source: "{#BuildDir}\ffmpeg.exe";              DestDir: "{app}";          Flags: ignoreversion skipifsourcedoesntexist
+Source: "{#BuildDir}\ffprobe.exe";             DestDir: "{app}";          Flags: ignoreversion skipifsourcedoesntexist
 
 ; Native messaging manifest (path placeholder filled by [Registry])
 Source: "native-host-manifest-installed.json";  DestDir: "{app}";          DestName: "native-host-manifest.json"; Flags: ignoreversion

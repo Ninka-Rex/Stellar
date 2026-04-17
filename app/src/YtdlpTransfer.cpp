@@ -24,18 +24,21 @@
 // ── Constructor / Destructor ──────────────────────────────────────────────────
 
 YtdlpTransfer::YtdlpTransfer(DownloadItem *item,
-                              const QString &ytdlpPath,
-                              const QString &formatSel,
-                              const QString &containerFormat,
-                              const QString &saveDir,
-                              const QString &ffmpegPath,
-                              int            speedLimitKBps,
-                              bool           resume,
-                              const QString &outputTemplate,
-                              const QString &proxyUrl,
-                              bool           playlistMode,
-                              int            maxItems,
-                              QObject       *parent)
+                              const QString    &ytdlpPath,
+                              const QString    &formatSel,
+                              const QString    &containerFormat,
+                              const QString    &saveDir,
+                              const QString    &ffmpegPath,
+                              int               speedLimitKBps,
+                              bool              resume,
+                              const QString    &outputTemplate,
+                              const QString    &proxyUrl,
+                              bool              playlistMode,
+                              int               maxItems,
+                              const YtdlpOptions &options,
+                              const QString    &jsRuntimePath,
+                              const QString    &jsRuntimeName,
+                              QObject          *parent)
     : QObject(parent)
     , m_item(item)
     , m_ytdlpPath(ytdlpPath)
@@ -49,6 +52,9 @@ YtdlpTransfer::YtdlpTransfer(DownloadItem *item,
     , m_proxyUrl(proxyUrl)
     , m_playlistMode(playlistMode)
     , m_maxItems(maxItems)
+    , m_options(options)
+    , m_jsRuntimePath(jsRuntimePath)
+    , m_jsRuntimeName(jsRuntimeName)
 {
 }
 
@@ -91,6 +97,7 @@ void YtdlpTransfer::start() {
     //   --windows-filenames      strip illegal Windows path characters (Windows only)
     //   --continue               (optional) resume a partial download
     QStringList args;
+    args << QStringLiteral("--ignore-config");
     if (m_playlistMode) {
         args << QStringLiteral("--yes-playlist");
         if (m_maxItems > 0)
@@ -125,9 +132,11 @@ void YtdlpTransfer::start() {
     if (!m_ffmpegPath.isEmpty())
         args << QStringLiteral("--ffmpeg-location") << m_ffmpegPath;
 
-    if (m_speedLimitKBps > 0)
-        args << QStringLiteral("--limit-rate")
-             << QString::number(m_speedLimitKBps) + QStringLiteral("K");
+    // ── Rate limit (per-download override takes precedence over global) ────────
+    const int effectiveRate = (m_options.rateLimitKBps > 0) ? m_options.rateLimitKBps
+                                                             : m_speedLimitKBps;
+    if (effectiveRate > 0)
+        args << QStringLiteral("--limit-rate") << QString::number(effectiveRate) + QStringLiteral("K");
 
     if (m_resume)
         args << QStringLiteral("--continue");
@@ -139,6 +148,71 @@ void YtdlpTransfer::start() {
         args << QStringLiteral("--proxy") << m_proxyUrl;
     else
         args << QStringLiteral("--proxy") << QStringLiteral("");  // explicit "no proxy"
+
+    // ── Subtitles ─────────────────────────────────────────────────────────────
+    if (m_options.writeSubs || m_options.writeAutoSubs) {
+        if (m_options.writeAutoSubs)
+            args << QStringLiteral("--write-auto-subs");
+        else
+            args << QStringLiteral("--write-subs");
+        if (!m_options.subLangs.trimmed().isEmpty())
+            args << QStringLiteral("--sub-langs") << m_options.subLangs.trimmed();
+        if (m_options.embedSubs)
+            args << QStringLiteral("--embed-subs");
+    }
+
+    // ── Post-processing ───────────────────────────────────────────────────────
+    if (m_options.embedThumbnail)
+        args << QStringLiteral("--embed-thumbnail");
+    if (m_options.embedMetadata)
+        args << QStringLiteral("--embed-metadata");
+    if (m_options.sponsorBlock)
+        // "default" removes: sponsor, selfpromo, interaction, intro, outro (all but filler)
+        args << QStringLiteral("--sponsorblock-remove") << QStringLiteral("default");
+
+    // ── Filters / access ─────────────────────────────────────────────────────
+    if (!m_options.dateAfter.trimmed().isEmpty())
+        args << QStringLiteral("--dateafter") << m_options.dateAfter.trimmed();
+    if (!m_options.cookiesFromBrowser.trimmed().isEmpty()) {
+        args << QStringLiteral("--cookies-from-browser") << m_options.cookiesFromBrowser.trimmed();
+        // Browser cookies can make yt-dlp prefer YouTube's web_creator client
+        // for some accounts; without a PO token that can make requested formats
+        // vanish. Keep the regular clients for cookie-based retries.
+        // Do NOT pass extractor-args when using browser cookies.
+        // yt-dlp's with-cookie default (tv_downgraded,web_safari for free accounts)
+        // already filters out POT-requiring formats automatically — the
+        // formats=missing_pot flag we use in the probe would expose those
+        // non-downloadable formats and cause "Requested format is not available".
+    }
+
+    // ── Output extras ─────────────────────────────────────────────────────────
+    if (m_options.writeDescription)
+        args << QStringLiteral("--write-description");
+    if (m_options.writeThumbnailFile)
+        args << QStringLiteral("--write-thumbnail");
+    if (m_options.splitChapters)
+        args << QStringLiteral("--split-chapters");
+    if (!m_options.downloadSections.trimmed().isEmpty())
+        args << QStringLiteral("--download-sections") << m_options.downloadSections.trimmed();
+
+    // ── Playlist extras ───────────────────────────────────────────────────────
+    if (m_options.playlistRandom)
+        args << QStringLiteral("--playlist-random");
+    if (m_options.liveFromStart)
+        args << QStringLiteral("--live-from-start");
+    if (m_options.useArchive)
+        args << QStringLiteral("--download-archive")
+             << m_saveDir + QStringLiteral("/yt-dlp-archive.txt");
+
+    // ── JS runtime for EJS YouTube n-challenge solver ─────────────────────────
+    // yt-dlp 2026.03.17+ requires an external JS runtime (deno/node/bun/quickjs)
+    // to execute EJS scripts that solve YouTube's n-parameter throttling challenge.
+    // Without this, YouTube URLs return only storyboard formats (no real video/audio).
+    // Format: --js-runtimes <name>:/path/to/binary
+    if (!m_jsRuntimePath.isEmpty() && !m_jsRuntimeName.isEmpty()) {
+        args << QStringLiteral("--js-runtimes")
+             << (m_jsRuntimeName + QLatin1Char(':') + m_jsRuntimePath);
+    }
 
     args << m_item->url().toString();
 

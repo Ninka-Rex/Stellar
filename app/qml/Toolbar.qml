@@ -78,7 +78,7 @@ Rectangle {
         ToolbarBtn { label: "Delete";   iconSrc: "icons/remove.png";       enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
         ToolbarBtn { label: "Delete Done";    iconSrc: "icons/files_x.png";     onClicked: root.deleteCompletedClicked() }
         ToolbarBtn { label: "Options";        iconSrc: "icons/Tools.ico";       onClicked: root.optionsClicked() }
-        ToolbarBtn { label: "Scheduler";      iconSrc: "icons/scheduler.ico"; onClicked: root.schedulerClicked() }
+        ToolbarBtn { label: "Scheduler";      iconSrc: "icons/scheduler.png"; onClicked: root.schedulerClicked() }
 
         // Start Queue dropdown
         ToolbarDropdown {

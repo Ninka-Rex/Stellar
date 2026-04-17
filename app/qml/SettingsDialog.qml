@@ -79,6 +79,7 @@ Window {
     // yt-dlp settings
     property string editYtdlpCustomBinaryPath: ""
     property bool   editYtdlpAutoUpdate:       false
+    property string editYtdlpJsRuntimePath:    ""
     property bool   editTorrentEnableDht:      true
     property bool   editTorrentEnableLsd:      true
     property bool   editTorrentEnableUpnp:     true
@@ -291,6 +292,7 @@ Window {
         editLastTryShowSeconds    !== App.settings.lastTryShowSeconds ||
         editYtdlpCustomBinaryPath !== App.settings.ytdlpCustomBinaryPath ||
         editYtdlpAutoUpdate       !== App.settings.ytdlpAutoUpdate       ||
+        editYtdlpJsRuntimePath    !== App.settings.ytdlpJsRuntimePath    ||
         editTorrentEnableDht      !== App.settings.torrentEnableDht      ||
         editTorrentEnableLsd      !== App.settings.torrentEnableLsd      ||
         editTorrentEnableUpnp     !== App.settings.torrentEnableUpnp     ||
@@ -349,6 +351,21 @@ Window {
             var path = selectedFile.toString()
                 .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
             root.editYtdlpCustomBinaryPath = path
+        }
+    }
+
+    // File picker for a custom JS runtime (deno/node/bun/qjs) location
+    FileDialog {
+        id: jsRuntimeFileDlg
+        title: "Select JavaScript runtime binary"
+        fileMode: FileDialog.OpenFile
+        nameFilters: Qt.platform.os === "windows"
+                     ? ["Executable (*.exe)", "All files (*)"]
+                     : ["All files (*)"]
+        onAccepted: {
+            var path = selectedFile.toString()
+                .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            root.editYtdlpJsRuntimePath = path
         }
     }
 
@@ -417,6 +434,7 @@ Window {
         App.settings.lastTryShowSeconds     = editLastTryShowSeconds
         App.settings.ytdlpCustomBinaryPath  = editYtdlpCustomBinaryPath
         App.settings.ytdlpAutoUpdate        = editYtdlpAutoUpdate
+        App.settings.ytdlpJsRuntimePath     = editYtdlpJsRuntimePath
         App.settings.torrentEnableDht       = editTorrentEnableDht
         App.settings.torrentEnableLsd       = editTorrentEnableLsd
         App.settings.torrentEnableUpnp      = editTorrentEnableUpnp
@@ -474,6 +492,7 @@ Window {
         editLastTryShowSeconds    = App.settings.lastTryShowSeconds
         editYtdlpCustomBinaryPath = App.settings.ytdlpCustomBinaryPath
         editYtdlpAutoUpdate       = App.settings.ytdlpAutoUpdate
+        editYtdlpJsRuntimePath    = App.settings.ytdlpJsRuntimePath
         editTorrentEnableDht      = App.settings.torrentEnableDht
         editTorrentEnableLsd      = App.settings.torrentEnableLsd
         editTorrentEnableUpnp     = App.settings.torrentEnableUpnp
@@ -2262,6 +2281,86 @@ Window {
                             DlgButton {
                                 text: "Browse…"
                                 onClicked: ytdlpFileDlg.open()
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        // ── JavaScript runtime (EJS n-challenge solver) ───────────────
+                        Text { text: "JavaScript runtime"; color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            Rectangle {
+                                width:  10; height: 10; radius: 5
+                                color: App.ytdlpManager.jsRuntimeAvailable ? "#44cc44" : "#cc4444"
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: App.ytdlpManager.jsRuntimeAvailable
+                                      ? (App.ytdlpManager.jsRuntimeName + " found: " + App.ytdlpManager.jsRuntimePath)
+                                      : "No JS runtime found — YouTube n-challenge solving disabled"
+                                color: App.ytdlpManager.jsRuntimeAvailable ? "#c0c0c0" : "#dd8844"
+                                font.pixelSize: 12
+                                elide: Text.ElideRight
+                            }
+                        }
+
+                        // Info box shown when no runtime is detected
+                        Rectangle {
+                            Layout.fillWidth: true
+                            height: jsRuntimeNote.implicitHeight + 16
+                            radius: 4
+                            color: "#1a2030"
+                            border.color: "#2a3050"
+                            visible: !App.ytdlpManager.jsRuntimeAvailable
+
+                            Text {
+                                id: jsRuntimeNote
+                                anchors { fill: parent; margins: 8 }
+                                text: "yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). " +
+                                      "Without it, YouTube downloads may fail or return only low-quality storyboard formats.\n\n" +
+                                      "Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. " +
+                                      "Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above."
+                                color: "#8899bb"; font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH)."
+                            color: "#808080"; font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 6
+
+                            TextField {
+                                id: jsRuntimePathField
+                                Layout.fillWidth: true
+                                font.pixelSize:   12
+                                color:            "#d0d0d0"
+                                leftPadding:      8
+                                rightPadding:     8
+                                placeholderText:  "(auto-detect from PATH and yt-dlp folder)"
+                                placeholderTextColor: "#555555"
+                                text: root.editYtdlpJsRuntimePath
+                                onTextChanged: root.editYtdlpJsRuntimePath = text
+                                background: Rectangle {
+                                    color:        "#1b1b1b"
+                                    border.color: jsRuntimePathField.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    radius: 3
+                                }
+                            }
+
+                            DlgButton {
+                                text: "Browse…"
+                                onClicked: jsRuntimeFileDlg.open()
                             }
                         }
 

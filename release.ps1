@@ -1,5 +1,5 @@
 # Stellar Download Manager — Windows release script
-# Usage:  .\release.ps1 [-Version "0.2.0"] [-QtDir "C:\Qt\6.8.x\msvc2022_64"] [-SkipBuild] [-SkipInstaller] [-SkipArchive]
+# Usage:  .\release.ps1 [-Version "0.2.0"] [-QtDir "C:\Qt\6.8.x\msvc2022_64"] [-SkipBuild] [-SkipInstaller] [-SkipArchive] [-SkipBinaries]
 #
 # Prerequisites (must be on PATH or provided via -QtDir):
 #   - CMake + Ninja
@@ -7,17 +7,23 @@
 #   - Inno Setup 6  (iscc.exe)
 #   - 7-Zip          (7z.exe)
 #
+# Third-party binaries (auto-downloaded unless -SkipBinaries):
+#   - yt-dlp.exe   — from github.com/yt-dlp/yt-dlp/releases/latest
+#   - ffmpeg.exe   — from github.com/BtbN/FFmpeg-Builds (GPL shared, latest)
+#   - ffprobe.exe  — bundled in the same ffmpeg archive
+#
 # Output:
 #   dist\windows\StellarSetup-<Version>.exe
 #   dist\Stellar-<Version>-windows-installer.7z
 #   dist\Stellar-<Version>-source.7z
 
 param(
-    [string]$Version    = "0.2.4",
-    [string]$QtDir      = "",          # e.g. C:\Qt\6.8.3\msvc2022_64
+    [string]$Version       = "0.2.4",
+    [string]$QtDir         = "",          # e.g. C:\Qt\6.8.3\msvc2022_64
     [switch]$SkipBuild,
     [switch]$SkipInstaller,
-    [switch]$SkipArchive
+    [switch]$SkipArchive,
+    [switch]$SkipBinaries                 # skip downloading yt-dlp/ffmpeg/ffprobe
 )
 
 Set-StrictMode -Version Latest
@@ -88,6 +94,70 @@ if (-not $SkipBuild) {
     Write-Host "[release] Build complete." -ForegroundColor Green
 } else {
     Write-Host "[release] Skipping build." -ForegroundColor DarkGray
+}
+
+# ── Third-party binaries (yt-dlp, ffmpeg, ffprobe) ───────────────────────────
+if (-not $SkipBinaries) {
+    Write-Host "`n[release] Fetching third-party binaries..." -ForegroundColor Yellow
+
+    # yt-dlp.exe — single-file release from GitHub
+    $YtdlpDest = "$BuildDir\yt-dlp.exe"
+    if (Test-Path $YtdlpDest) {
+        Write-Host "[release]   yt-dlp.exe already present, skipping download." -ForegroundColor DarkGray
+    } else {
+        Write-Host "[release]   Downloading yt-dlp.exe..."
+        $YtdlpUrl = "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe"
+        Invoke-WebRequest -Uri $YtdlpUrl -OutFile $YtdlpDest -UseBasicParsing
+        Write-Host "[release]   yt-dlp.exe downloaded." -ForegroundColor Green
+    }
+
+    # ffmpeg.exe + ffprobe.exe — from BtbN's GPL shared Windows build on GitHub.
+    # This release ships the full FFmpeg suite (ffmpeg, ffprobe, ffplay) as a ZIP.
+    # We use the "essentials" build (GPL, shared libs stripped in, ~70 MB) so the
+    # installer stays self-contained without separate DLLs.
+    $FfmpegDest  = "$BuildDir\ffmpeg.exe"
+    $FfprobeDest = "$BuildDir\ffprobe.exe"
+    if ((Test-Path $FfmpegDest) -and (Test-Path $FfprobeDest)) {
+        Write-Host "[release]   ffmpeg.exe + ffprobe.exe already present, skipping download." -ForegroundColor DarkGray
+    } else {
+        Write-Host "[release]   Resolving latest FFmpeg release from BtbN/FFmpeg-Builds..."
+        # Fetch the latest release JSON to get the actual asset URL (avoids hardcoding a version).
+        $FfmpegApiUrl = "https://api.github.com/repos/BtbN/FFmpeg-Builds/releases/latest"
+        $headers = @{ "User-Agent" = "StellarReleaseScript/1.0" }
+        $release = Invoke-RestMethod -Uri $FfmpegApiUrl -Headers $headers
+        # Pick the win64 GPL-shared essentials ZIP (no separate DLLs needed).
+        $asset = $release.assets | Where-Object {
+            $_.name -match "ffmpeg-master-latest-win64-gpl\.zip$"
+        } | Select-Object -First 1
+        if (-not $asset) {
+            Write-Error "Could not find ffmpeg-master-latest-win64-gpl.zip in BtbN release assets."
+        }
+        $FfmpegZipUrl = $asset.browser_download_url
+        Write-Host "[release]   Downloading $($asset.name) (~$('{0:N0}' -f ($asset.size/1MB)) MB)..."
+        $FfmpegZip = "$env:TEMP\stellar-ffmpeg-release.zip"
+        Invoke-WebRequest -Uri $FfmpegZipUrl -OutFile $FfmpegZip -UseBasicParsing
+
+        Write-Host "[release]   Extracting ffmpeg.exe and ffprobe.exe..."
+        $FfmpegExtract = "$env:TEMP\stellar-ffmpeg-extract"
+        if (Test-Path $FfmpegExtract) { Remove-Item $FfmpegExtract -Recurse -Force }
+        Expand-Archive -LiteralPath $FfmpegZip -DestinationPath $FfmpegExtract -Force
+
+        # BtbN archives contain a single top-level directory with a bin\ subdirectory.
+        $FfmpegBin  = Get-ChildItem $FfmpegExtract -Recurse -Filter "ffmpeg.exe"  | Select-Object -First 1
+        $FfprobeBin = Get-ChildItem $FfmpegExtract -Recurse -Filter "ffprobe.exe" | Select-Object -First 1
+
+        if (-not $FfmpegBin)  { Write-Error "ffmpeg.exe not found in downloaded archive." }
+        if (-not $FfprobeBin) { Write-Error "ffprobe.exe not found in downloaded archive." }
+
+        Copy-Item $FfmpegBin.FullName  $FfmpegDest  -Force
+        Copy-Item $FfprobeBin.FullName $FfprobeDest -Force
+
+        Remove-Item $FfmpegZip     -Force
+        Remove-Item $FfmpegExtract -Recurse -Force
+        Write-Host "[release]   ffmpeg.exe + ffprobe.exe installed." -ForegroundColor Green
+    }
+} else {
+    Write-Host "[release] Skipping third-party binary download." -ForegroundColor DarkGray
 }
 
 # ── windeployqt ──────────────────────────────────────────────────────────────

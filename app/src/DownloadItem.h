@@ -218,9 +218,11 @@ public:
     void setTorrentShareLimitAction(int v)   { if (m_torrentShareLimitAction != v) { m_torrentShareLimitAction = v; emit torrentLimitsChanged(); } }
 
     // yt-dlp fields
-    bool    isYtdlp()       const { return m_isYtdlp; }
-    QString ytdlpFormatId() const { return m_ytdlpFormatId; }
+    bool    isYtdlp()           const { return m_isYtdlp; }
+    QString ytdlpFormatId()     const { return m_ytdlpFormatId; }
     bool    ytdlpPlaylistMode() const { return m_ytdlpPlaylistMode; }
+    // JSON blob storing extra yt-dlp options (subtitles, SponsorBlock, etc.) for resume.
+    QString ytdlpExtraOptions() const { return m_ytdlpExtraOptions; }
     void setIsYtdlp(bool v)                { m_isYtdlp = v; }
     void setYtdlpFormatId(const QString &v) {
         if (m_ytdlpFormatId != v) { m_ytdlpFormatId = v; emit ytdlpFormatIdChanged(); }
@@ -228,6 +230,7 @@ public:
     void setYtdlpPlaylistMode(bool v) {
         if (m_ytdlpPlaylistMode != v) { m_ytdlpPlaylistMode = v; emit ytdlpPlaylistModeChanged(); }
     }
+    void setYtdlpExtraOptions(const QString &v) { m_ytdlpExtraOptions = v; }
 
 signals:
     void filenameChanged();
@@ -317,6 +320,7 @@ private:
     bool         m_isYtdlp{false};      // true → YtdlpTransfer manages this item
     QString      m_ytdlpFormatId;       // yt-dlp format selector used for this download
     bool         m_ytdlpPlaylistMode{false};
+    QString      m_ytdlpExtraOptions;   // JSON blob of extra yt-dlp options for resume
     static int   s_dateStyle;
     static bool  s_use24Hour;
     static bool  s_showSeconds;

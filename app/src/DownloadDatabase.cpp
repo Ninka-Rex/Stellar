@@ -126,6 +126,7 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setIsYtdlp(obj[QLatin1String("isYtdlp")].toBool(false));
         item->setYtdlpFormatId(obj[QLatin1String("ytdlpFormatId")].toString());
         item->setYtdlpPlaylistMode(obj[QLatin1String("ytdlpPlaylistMode")].toBool(false));
+        item->setYtdlpExtraOptions(obj[QLatin1String("ytdlpExtraOptions")].toString());
         item->setIsTorrent(obj[QLatin1String("isTorrent")].toBool(false));
         item->setTorrentSource(obj[QLatin1String("torrentSource")].toString());
         item->setTorrentTrackers(obj[QLatin1String("torrentTrackers")].toVariant().toStringList());
@@ -196,9 +197,11 @@ void DownloadDatabase::save(DownloadItem *item) {
         m[QStringLiteral("lastTryAt")] = item->lastTryAt().toString(Qt::ISODate);
     // yt-dlp items need their engine flag and format selector preserved across restarts
     if (item->isYtdlp()) {
-        m[QStringLiteral("isYtdlp")]       = true;
-        m[QStringLiteral("ytdlpFormatId")] = item->ytdlpFormatId();
+        m[QStringLiteral("isYtdlp")]           = true;
+        m[QStringLiteral("ytdlpFormatId")]     = item->ytdlpFormatId();
         m[QStringLiteral("ytdlpPlaylistMode")] = item->ytdlpPlaylistMode();
+        if (!item->ytdlpExtraOptions().isEmpty())
+            m[QStringLiteral("ytdlpExtraOptions")] = item->ytdlpExtraOptions();
     }
     if (item->isTorrent()) {
         m[QStringLiteral("isTorrent")] = true;

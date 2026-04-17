@@ -322,7 +322,7 @@ Window {
         property alias swarmStatsStoreJson: root.swarmStatsStoreJson
     }
 
-    // â”€â”€ Window sizing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Window sizing ────────────────────────────────────────────────────────
     function _applySize() {
         if (_isTorrent) {
             minimumWidth  = 820
@@ -420,7 +420,7 @@ Window {
             if (!root.item || !root.item.isTorrent)
                 return
             // Sync cached edit values only when the speed limit dialog has no
-            // unsaved edits â€” otherwise the user's in-flight changes win.
+            // unsaved edits — otherwise the user's in-flight changes win.
             if (!speedLimitDialog.dirty) {
                 root.editPerTorrentDownLimitKBps = root.item.perTorrentDownLimitKBps | 0
                 root.editPerTorrentUpLimitKBps   = root.item.perTorrentUpLimitKBps   | 0
@@ -436,7 +436,7 @@ Window {
         }
     }
 
-    // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Helpers ──────────────────────────────────────────────────────────────
     function safeStr(v) { return (v === undefined || v === null) ? "" : String(v) }
     function torrentStatusLabel() {
         switch (_torrentStatusText) {
@@ -611,7 +611,7 @@ Window {
             speedGraphCanvasRef.requestPaint()
     }
     // Reduce pts to at most maxPts by averaging each bucket.
-    // Averaging preserves the real throughput shape â€” peak-only decimation
+    // Averaging preserves the real throughput shape — peak-only decimation
     // exaggerates spikes and produces a misleadingly jagged curve on long spans.
     function decimateSamples(pts, maxPts) {
         if (pts.length <= maxPts) return pts
@@ -634,7 +634,7 @@ Window {
         return out
     }
 
-    // Cached decimated sample array â€” rebuilt only when the raw data or the
+    // Cached decimated sample array — rebuilt only when the raw data or the
     // selected time span changes, NOT on every mouse move or canvas repaint.
     // The canvas and hover tooltip both read from this property.
     property var _speedDecimated: []
@@ -642,10 +642,10 @@ Window {
         // C++ pre-decimated to ~1000 points. Apply a data-level box-blur pass
         // to smooth bucket-to-bucket variance that Catmull-Rom can't hide on
         // long time spans.  Number of passes scales with the selected window:
-        //   < 10 min  â†’ 0 passes (raw data, fine-grained enough)
-        //   10â€“60 min â†’ 1 pass
-        //   1â€“3 hr    â†’ 3 passes
-        //   > 3 hr    â†’ 6 passes
+        //   < 10 min  ↑ 0 passes (raw data, fine-grained enough)
+        //   10–60 min ↑ 1 pass
+        //   1–3 hr    ↑ 3 passes
+        //   > 3 hr    ↑ 6 passes
         var rows = speedVisibleSamples()
         var span = speedSpanSeconds
         var passes = span < 600 ? 0 : span < 3600 ? 1 : span < 10800 ? 3 : 6
@@ -725,29 +725,34 @@ Window {
         var speed = Math.max(Number(peer.downSpeed) || 0, Number(peer.upSpeed) || 0)
         if (speed <= 0)
             return 0
+        var base = 1.5
         if (speed >= 5 * 1024 * 1024)
-            return 4
-        if (speed >= 1024 * 1024)
-            return 3
-        if (speed >= 128 * 1024)
-            return 2
-        return 1.5
+            base = 4
+        else if (speed >= 1024 * 1024)
+            base = 3
+        else if (speed >= 128 * 1024)
+            base = 2
+
+        // The map surface itself is zoom-scaled, so compensate here to keep the
+        // connection thickness visually consistent as the user zooms in/out.
+        var zoom = Math.max(1.0, Number(root.peerMapZoom) || 1.0)
+        return Math.max(1, base / zoom)
     }
     function flagColor(flag) {
         switch (flag) {
-        case "IN":  return "#e8c84a"   // yellow â€” incoming
-        case "OUT": return "#7a8899"   // muted â€” outgoing
-        case "TRK": return "#5f93c9"   // blue â€” tracker
-        case "DHT": return "#4db8ff"   // cyan-blue â€” DHT
-        case "PEX": return "#a06de8"   // purple â€” PeX
-        case "LSD": return "#4caf7d"   // green â€” local
-        case "UTP": return "#5ecfe8"   // teal â€” uTP
-        case "ENC": return "#7dd87d"   // green â€” encrypted
-        case "SNB": return "#e86a5c"   // red â€” snubbed
-        case "UPO": return "#c97de8"   // magenta â€” upload-only
-        case "OPT": return "#e8a35c"   // orange â€” optimistic
-        case "HPX": return "#ff8ab4"   // pink â€” holepunch
-        case "I2P": return "#a8ff78"   // lime â€” I2P
+        case "IN":  return "#e8c84a"   // yellow — incoming
+        case "OUT": return "#7a8899"   // muted — outgoing
+        case "TRK": return "#5f93c9"   // blue — tracker
+        case "DHT": return "#4db8ff"   // cyan-blue — DHT
+        case "PEX": return "#a06de8"   // purple — PeX
+        case "LSD": return "#4caf7d"   // green — local
+        case "UTP": return "#5ecfe8"   // teal — uTP
+        case "ENC": return "#7dd87d"   // green — encrypted
+        case "SNB": return "#e86a5c"   // red — snubbed
+        case "UPO": return "#c97de8"   // magenta — upload-only
+        case "OPT": return "#e8a35c"   // orange — optimistic
+        case "HPX": return "#ff8ab4"   // pink — holepunch
+        case "I2P": return "#a8ff78"   // lime — I2P
         default:    return "#708396"
         }
     }
@@ -829,10 +834,10 @@ Window {
         return isFinite(v) ? v.toFixed(2) : "0.00"
     }
 
-    // Formats seconds into human-readable "Xh Xm" / "Xm Xs" / "Xs" / "â€”"
+    // Formats seconds into human-readable "Xh Xm" / "Xm Xs" / "Xs" / "—"
     function formatDuration(secs) {
         var s = Math.max(0, secs | 0)
-        if (s <= 0) return "â€”"
+        if (s <= 0) return "—"
         var h = Math.floor(s / 3600)
         var m = Math.floor((s % 3600) / 60)
         var r = s % 60
@@ -1218,7 +1223,7 @@ Window {
         _swarmDecimated = rows
     }
 
-    /* Swarm Statistics monitoring timer â€” disabled pending rework
+    /* Swarm Statistics monitoring timer — disabled pending rework
     Timer {
         id: swarmStatsTimer
         interval: 60000
@@ -1271,7 +1276,7 @@ Window {
         })
     }
 
-    // â”€â”€ Shared components â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Shared components ────────────────────────────────────────────────────
     component ReadOnlyField: Rectangle {
         property alias fieldText: ti.text
         property color textColor: "#d0d0d0"
@@ -1290,7 +1295,7 @@ Window {
         }
     }
 
-    // â”€â”€ File chooser â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── File chooser ─────────────────────────────────────────────────────────
     FileDialog {
         id: moveFileDialog
         title: _isTorrent ? "Move Torrent Data To..." : "Move File To..."
@@ -1326,7 +1331,7 @@ Window {
         }
     }
 
-    // â”€â”€ Root layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Root layout ──────────────────────────────────────────────────────────
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 0
@@ -1404,14 +1409,14 @@ Window {
         }
     }
 
-    // â”€â”€ Per-torrent speed limit dialog (opened from General tab) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Per-torrent speed limit dialog (opened from General tab) ─────────────
     TorrentSpeedLimitDialog {
         id: speedLimitDialog
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════════════════════
     // Regular HTTP/FTP file layout
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════════════════════
     Component {
         id: regularLayout
         ColumnLayout {
@@ -1561,15 +1566,15 @@ Window {
         }
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════════════════════
     // Torrent layout
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════════════════════
     Component {
         id: torrentLayout
         ColumnLayout {
             spacing: 8
 
-            // â”€â”€ Summary header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Summary header ────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true; Layout.preferredHeight: 170
                 color: "#222228"; border.width: 0; radius: 0
@@ -1608,7 +1613,7 @@ Window {
                                 text: {
                                     if (!root.item) return ""
                                     var h = safeStr(root.item.torrentInfoHash)
-                                    return h ? ("Hash: " + h) : "Waiting for metadataâ€¦"
+                                    return h ? ("Hash: " + h) : "Waiting for metadata…"
                                 }
                                 color: "#8ea1b5"; font.pixelSize: 11
                                 elide: Text.ElideMiddle; Layout.fillWidth: true
@@ -1683,7 +1688,7 @@ Window {
                 }
             }
 
-            // â”€â”€ Tab strip â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Tab strip ─────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true; height: 34
                 color: "#252525"
@@ -1720,18 +1725,18 @@ Window {
                 }
             }
 
-            // â”€â”€ Tab pages â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+            // ── Tab pages ─────────────────────────────────────────────────────
             StackLayout {
                 Layout.fillWidth: true; Layout.fillHeight: true
                 currentIndex: root.currentTab
 
-                // â”€â”€ General â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── General ───────────────────────────────────────────────────
                 Item {
                     ColumnLayout {
                         anchors { fill: parent; margins: 10 }
                         spacing: 8
 
-                        // â€” Torrent info card â€”
+                        // — Torrent info card —
                         Rectangle {
                             Layout.fillWidth: true
                             color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 3
@@ -1785,7 +1790,7 @@ Window {
                             }
                         }
 
-                        // â€” Save location + Transfer stats (merged) â€”
+                        // — Save location + Transfer stats (merged) —
                         Rectangle {
                             Layout.fillWidth: true
                             color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 3
@@ -1841,10 +1846,10 @@ Window {
                                         Text { text: "Pieces"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
                                             text: {
-                                                if (!root.item) return "â€”"
+                                                if (!root.item) return "—"
                                                 var done = root.item.torrentPiecesDone | 0
                                                 var total = root.item.torrentPiecesTotal | 0
-                                                if (total <= 0) return done > 0 ? String(done) : "â€”"
+                                                if (total <= 0) return done > 0 ? String(done) : "—"
                                                 return done + " / " + total + "  (" + Math.round(done / total * 100) + "%)"
                                             }
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
@@ -1852,9 +1857,9 @@ Window {
                                         Text { text: "Availability"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
                                             text: {
-                                                if (!root.item) return "â€”"
+                                                if (!root.item) return "—"
                                                 var av = root.item.torrentAvailability
-                                                return (typeof av === "number" && av > 0) ? av.toFixed(2) + " copies" : "â€”"
+                                                return (typeof av === "number" && av > 0) ? av.toFixed(2) + " copies" : "—"
                                             }
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
@@ -1862,37 +1867,37 @@ Window {
                                         // Speed section
                                         Text { text: "Download speed"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "â€”"
+                                            text: root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "—"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
                                         Text { text: "Upload speed"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "â€”"
+                                            text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
 
                                         // Activity section
                                         Text { text: "Connections"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? String(root.item.torrentConnections | 0) : "â€”"
+                                            text: root.item ? String(root.item.torrentConnections | 0) : "—"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
                                         Text { text: "Active"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "â€”"
+                                            text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "—"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
 
                                         // Seeding section
                                         Text { text: "Seeding"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "â€”"
+                                            text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "—"
                                             color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
                                         }
                                         Text { text: "Wasted"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
                                             text: {
-                                                if (!root.item) return "â€”"
+                                                if (!root.item) return "—"
                                                 var w = root.item.torrentWastedBytes
                                                 return (w > 0) ? root.compactBytes(w) : "None"
                                             }
@@ -1903,7 +1908,7 @@ Window {
                                         // Share ratio
                                         Text { text: "Share ratio"; color: "#8899aa"; font.pixelSize: 11 }
                                         Text {
-                                            text: root.item ? root.ratioText(root.item.torrentRatio) : "â€”"
+                                            text: root.item ? root.ratioText(root.item.torrentRatio) : "—"
                                             color: {
                                                 if (!root.item) return "#c8c8c8"
                                                 var r = Number(root.item.torrentRatio)
@@ -1920,9 +1925,9 @@ Window {
                                                 var d = root.item.perTorrentDownLimitKBps | 0
                                                 var u = root.item.perTorrentUpLimitKBps   | 0
                                                 var parts = []
-                                                if (d > 0) parts.push("â†“ " + d + " KB/s")
-                                                if (u > 0) parts.push("â†‘ " + u + " KB/s")
-                                                return parts.join("  â€¢  ")
+                                                if (d > 0) parts.push("↓ " + d + " KB/s")
+                                                if (u > 0) parts.push("↑ " + u + " KB/s")
+                                                return parts.join("  •  ")
                                             }
                                             color: "#e8a040"; font.pixelSize: 11; Layout.fillWidth: true
                                             visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
@@ -1948,7 +1953,7 @@ Window {
                             }
                         }
 
-                        // â€” Description â€”
+                        // — Description —
                     }
                 }
 
@@ -2013,7 +2018,7 @@ Window {
                                     // by a few ms on every paint, causing visible jitter.
                                     var nowMs = root._speedNowMs || Date.now()
                                     var startMs = nowMs - root.speedSpanSeconds * 1000
-                                    // Use the pre-built decimated cache â€” avoids re-running the
+                                    // Use the pre-built decimated cache — avoids re-running the
                                     // filter + decimation on every hover-crosshair repaint.
                                     var samples = root._speedDecimated
 
@@ -2127,7 +2132,7 @@ Window {
                                         ctx.fillText(root.speedAxisLabel(val), plotX + plotW + 5, ty)
                                     }
 
-                                    // X-axis time labels â€” show hours for long spans
+                                    // X-axis time labels — show hours for long spans
                                     ctx.textAlign = "center"
                                     ctx.textBaseline = "top"
                                     for (var lx = 0; lx <= 6; ++lx) {
@@ -2260,7 +2265,7 @@ Window {
                         }
                     }
                 }
-                // â”€â”€ Files â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Files ─────────────────────────────────────────────────────
                 Item {
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
@@ -2389,7 +2394,7 @@ Window {
                                         width: 16; height: parent.height
                                         Text {
                                             visible: fd.isFolder; anchors.centerIn: parent
-                                            text: fd.expanded ? "â–¾" : "â–¸"
+                                            text: fd.expanded ? "▾" : "▸"
                                             color: "#888"; font.pixelSize: 11
                                         }
                                         MouseArea {
@@ -2399,7 +2404,7 @@ Window {
                                         }
                                     }
 
-                                    // Wanted checkbox â€” shown for both files and folders.
+                                    // Wanted checkbox — shown for both files and folders.
                                     // Toggling a folder entry sets wanted on all its children.
                                     Item {
                                         width: 22; height: parent.height
@@ -2410,7 +2415,7 @@ Window {
                                             border.color: fd.wanted ? "#4488dd" : "#3a3a3a"
                                             Text {
                                                 visible: fd.wanted; anchors.centerIn: parent
-                                                text: "âœ“"; color: "#fff"
+                                                text: "✓"; color: "#fff"
                                                 font.pixelSize: 10; font.bold: true
                                             }
                                         }
@@ -2438,7 +2443,7 @@ Window {
                                         asynchronous: true
                                     }
 
-                                    // Name â€” width subtracts: depth-indent, expand-toggle (16),
+                                    // Name — width subtracts: depth-indent, expand-toggle (16),
                                     // checkbox (22), icon (16) + gap (4), outer margins (6+8).
                                     Text {
                                         width: root.fileColName - Math.max(0, fd.depth) * 14 - 16 - 22 - 16
@@ -2664,7 +2669,7 @@ Window {
                                             Text {
                                                 visible: fileCtxPopup._wanted
                                                 anchors.centerIn: parent
-                                                text: "âœ“"
+                                                text: "✓"
                                                 color: "#fff"
                                                 font.pixelSize: 10
                                                 font.bold: true
@@ -2738,7 +2743,7 @@ Window {
                     }
                 }
 
-                // â”€â”€ Peers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Peers ─────────────────────────────────────────────────────
                 Item {
                     // Peer column widths live on root so they survive tab switches.
                     // Each column header cell has a DragHandler resize handle, mirroring
@@ -2750,7 +2755,7 @@ Window {
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
 
-                        // Header â€” styled identically to DownloadTable
+                        // Header — styled identically to DownloadTable
                         Rectangle {
                             id: peerHeader
                             Layout.fillWidth: true; height: 26
@@ -2796,7 +2801,7 @@ Window {
                                         Text {
                                             id: sortArrow
                                             anchors { verticalCenter: parent.verticalCenter; right: rh.left; rightMargin: 4 }
-                                            text: root.peerSortAscending ? "â–²" : "â–¼"
+                                            text: root.peerSortAscending ? "▲" : "▼"
                                             color: "#88bbff"; font.pixelSize: 9
                                             visible: root.peerSortKey === modelData.sortKey
                                         }
@@ -3176,7 +3181,7 @@ Window {
                     }
                 }
 
-                // â”€â”€ Peer Map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Peer Map ────────────────────────────────────────────────
                 Item {
                     Rectangle {
                         anchors.fill: parent
@@ -3213,7 +3218,7 @@ Window {
                                             width: 14; height: 14; radius: 2
                                             color: inactiveCheck.checked ? "#4488dd" : "#1b1b1b"
                                             border.color: inactiveCheck.checked ? "#4488dd" : "#3a3a3a"
-                                            Text { visible: inactiveCheck.checked; text: "âœ“"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
+                                            Text { visible: inactiveCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
                                         }
                                         contentItem: Item {}
                                     }
@@ -3233,7 +3238,7 @@ Window {
                                             width: 14; height: 14; radius: 2
                                             color: trackerDotsCheck.checked ? "#4488dd" : "#1b1b1b"
                                             border.color: trackerDotsCheck.checked ? "#4488dd" : "#3a3a3a"
-                                            Text { visible: trackerDotsCheck.checked; text: "âœ“"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
+                                            Text { visible: trackerDotsCheck.checked; text: "✓"; color: "#fff"; font.pixelSize: 10; anchors.centerIn: parent }
                                         }
                                         contentItem: Item {}
                                     }
@@ -3365,7 +3370,7 @@ Window {
                                             required property int upSpeed
                                             required property bool isSeed
                                             required property string source
-                                            required property double progress   // fraction 0â€“1; was missing, causing all peers to show 0%
+                                            required property double progress   // fraction 0–1; was missing, causing all peers to show 0%
 
                                             readonly property bool hasCoordinates: isFinite(latitude) && isFinite(longitude) && !(latitude === 0 && longitude === 0)
                                             readonly property bool isActive: downSpeed > 0 || upSpeed > 0
@@ -3411,7 +3416,7 @@ Window {
                                                     Text { text: endpoint + ":" + port; color: "#f0f5fb"; font.pixelSize: 11; font.bold: true; elide: Text.ElideRight; width: parent.width }
                                                     Text { text: client; color: "#c5d2de"; font.pixelSize: 11; elide: Text.ElideRight; width: parent.width }
                                                     Text { text: root.peerPlaceText(parent.parent); color: "#95a9bb"; font.pixelSize: 10; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: (isSeed ? "Seed" : "Peer") + " â€¢ " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10; width: parent.width }
+                                                    Text { text: (isSeed ? "Seed" : "Peer") + " • " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10; width: parent.width }
                                                     Text { text: "Down " + root.compactSpeed(downSpeed) + "  Up " + root.compactSpeed(upSpeed); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
                                                     Text { text: "RTT " + (rtt > 0 ? (rtt + " ms") : "--"); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
                                                 }
@@ -3645,7 +3650,7 @@ Window {
 
                                             // Speed row
                                             Text {
-                                                text: "â†“ " + root.compactSpeed(root.peerMapHoverDownSpeed) + "  â†‘ " + root.compactSpeed(root.peerMapHoverUpSpeed)
+                                                text: "↓ " + root.compactSpeed(root.peerMapHoverDownSpeed) + "  → " + root.compactSpeed(root.peerMapHoverUpSpeed)
                                                 color: "#9fb6c8"
                                                 font.pixelSize: 11
                                                 width: parent.width
@@ -3653,7 +3658,7 @@ Window {
 
                                             // Ping + progress row
                                             Text {
-                                                text: "Ping " + (root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "â€”") + "  " + Math.round(root.peerMapHoverProgress * 100) + "% done"
+                                                text: "Ping " + (root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "—") + "  " + Math.round(root.peerMapHoverProgress * 100) + "% done"
                                                 color: "#9fb6c8"
                                                 font.pixelSize: 11
                                                 width: parent.width
@@ -3740,7 +3745,7 @@ Window {
                                                 spacing: 4
                                                 Text { text: "Peers"; color: "#6a8099"; font.pixelSize: 11 }
                                                 Text {
-                                                    text: root.peerMapTrackerHoverCount > 0 ? String(root.peerMapTrackerHoverCount) : "â€”"
+                                                    text: root.peerMapTrackerHoverCount > 0 ? String(root.peerMapTrackerHoverCount) : "—"
                                                     color: "#c5d2de"; font.pixelSize: 11
                                                 }
                                             }
@@ -3910,7 +3915,7 @@ Window {
                     Menu {
                         id: trackerCtxMenu
                         property string trackerUrl: ""
-                        // DHT/PEX/LSD are virtual "trackers" with no real URL â€” disable
+                        // DHT/PEX/LSD are virtual "trackers" with no real URL — disable
                         // destructive/copy actions so right-clicking them feels inert.
                         property bool isSystemEntry: false
 
@@ -3942,7 +3947,7 @@ Window {
                         }
                     }
 
-                    // Add tracker panel â€” slides in/out from the top
+                    // Add tracker panel — slides in/out from the top
                     ColumnLayout {
                         anchors.fill: parent; spacing: 0
 
@@ -4004,7 +4009,7 @@ Window {
                                     onRunningChanged: if (running) flashing = true
                                 }
                                 DlgButton {
-                                    text: root.showTrackerAdd ? "Cancel" : "Add trackersâ€¦"
+                                    text: root.showTrackerAdd ? "Cancel" : "Add trackers…"
                                     primary: !root.showTrackerAdd
                                     onClicked: {
                                         root.showTrackerAdd = !root.showTrackerAdd
@@ -4292,7 +4297,7 @@ Window {
                                             text: {
                                                 var msg = safeStr(trd.message)
                                                 if (msg.length > 0) return msg
-                                                // No message from tracker yet â€” show status as a hint
+                                                // No message from tracker yet — show status as a hint
                                                 // so the column isn't completely empty
                                                 if (trd.isSystemEntry) return ""
                                                 var s = safeStr(trd.status)
@@ -4313,7 +4318,7 @@ Window {
                     }
                 }
 
-                // â”€â”€ Piece Map â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Piece Map ─────────────────────────────────────────────────
                 Item {
                     id: pieceMapTab
 
@@ -4321,7 +4326,7 @@ Window {
                     property var pieceData: []
                     // maxRarity is the highest peer-count seen; used to scale the rarity gradient.
                     property int maxRarity: 1
-                    // flashSet: sparse object mapping piece index â†’ flash colour string.
+                    // flashSet: sparse object mapping piece index ↑ flash colour string.
                     // Populated on each refresh for pieces whose status changed; cleared by flashTimer.
                     property var flashSet: ({})
                     property bool hasFlash: false
@@ -4525,11 +4530,11 @@ Window {
                             //   N                 : N peers have it (normal priority)
                             //   N | 0x10000       : N peers, high-priority piece
                             function pieceColor(val, maxRarity) {
-                                if (val === -2) return "#2ecc71"   // have â€” green
-                                if (val === -3) return "#888888"   // skipped â€” grey
+                                if (val === -2) return "#2ecc71"   // have — green
+                                if (val === -3) return "#888888"   // skipped — grey
                                 if (val <= -4) {
                                     // Downloading: shade of blue proportional to block progress.
-                                    // pct = 0 â†’ dark blue, pct = 99 â†’ bright cyan-blue
+                                    // pct = 0 ↑ dark blue, pct = 99 ↑ bright cyan-blue
                                     var pct = Math.min(99, -(val + 4))
                                     var t = pct / 99
                                     var r2 = Math.round(0x1a + (0x4a - 0x1a) * t)
@@ -4539,11 +4544,11 @@ Window {
                                 }
                                 var hp  = (val & 0x10000) !== 0
                                 var cnt = val & 0xFFFF
-                                if (cnt === 0) return "#141414"    // unavailable â€” near black
-                                if (hp) return "#e67e22"           // high priority â€” orange
-                                // Map 1..maxRarity to red (rare) â†’ green (common)
+                                if (cnt === 0) return "#141414"    // unavailable — near black
+                                if (hp) return "#e67e22"           // high priority — orange
+                                // Map 1..maxRarity to red (rare) ↑ green (common)
                                 var t2 = maxRarity > 1 ? (cnt - 1) / (maxRarity - 1) : 1.0
-                                // t2=0 â†’ rare #c0392b (red), t2=1 â†’ common #27ae60 (green)
+                                // t2=0 ↑ rare #c0392b (red), t2=1 ↑ common #27ae60 (green)
                                 var r = Math.round(0xc0 + (0x27 - 0xc0) * t2)
                                 var g = Math.round(0x39 + (0xae - 0x39) * t2)
                                 var b = Math.round(0x2b + (0x60 - 0x2b) * t2)
@@ -4602,7 +4607,7 @@ Window {
                                         ctx.fillRect(col * cs + gap, row * cs + gap, cs - gap, cs - gap)
                                     }
                                 } else {
-                                    // Run mode: many pieces per 2px column â€” colour by dominant status in range
+                                    // Run mode: many pieces per 2px column — colour by dominant status in range
                                     var piecesPerCol = -cs  // cs is negative in run mode
                                     var numCols = Math.ceil(d.length / piecesPerCol)
                                     var colW = 2

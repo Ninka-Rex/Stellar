@@ -123,11 +123,176 @@ ApplicationWindow {
         buttons: MessageDialog.Ok
     }
 
+    Window {
+        id: ytdlpCookieRetryDialog
+        width: 480
+        minimumWidth: 420
+        height: 260
+        minimumHeight: 240
+        title: "Browser Cookies Required"
+        color: "#1e1e1e"
+        modality: Qt.ApplicationModal
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+
+        property string downloadId: ""
+        property string errorReason: ""
+
+        function _browserIndex(name) {
+            var key = (name || "").toLowerCase()
+            for (var i = 0; i < cookieBrowserCombo.model.length; ++i) {
+                if (cookieBrowserCombo.model[i].toLowerCase() === key)
+                    return i
+            }
+            return 0
+        }
+
+        function _openFor(downloadIdValue, reason, suggestedBrowser) {
+            downloadId = downloadIdValue || ""
+            errorReason = reason || ""
+            cookieBrowserCombo.currentIndex = _browserIndex(suggestedBrowser)
+            show()
+            raise()
+            requestActivate()
+        }
+
+        onVisibleChanged: {
+            if (!visible) {
+                downloadId = ""
+                errorReason = ""
+                cookieBrowserCombo.currentIndex = 0
+            }
+        }
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 16
+            spacing: 10
+
+            Text {
+                Layout.fillWidth: true
+                text: "This YouTube download looks like it needs login cookies."
+                color: "#e0e0e0"
+                font.pixelSize: 14
+                font.weight: Font.Medium
+                wrapMode: Text.WordWrap
+            }
+
+            Text {
+                Layout.fillWidth: true
+                text: ytdlpCookieRetryDialog.errorReason
+                color: "#aaaaaa"
+                font.pixelSize: 11
+                wrapMode: Text.WordWrap
+            }
+
+            Rectangle {
+                Layout.fillWidth: true
+                implicitHeight: 64
+                radius: 4
+                color: "#1a2030"
+                border.color: "#2a3050"
+
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    spacing: 6
+
+                    Text {
+                        text: "Cookies from browser:"
+                        color: "#8899bb"
+                        font.pixelSize: 11
+                    }
+
+                    ComboBox {
+                        id: cookieBrowserCombo
+                        Layout.preferredWidth: 130
+                        implicitHeight: 26
+                        model: ["Chrome","Firefox","Edge","Brave","Opera","Vivaldi","Safari"]
+                        contentItem: Text {
+                            leftPadding: 8
+                            text: cookieBrowserCombo.displayText
+                            color: "#d0d0d0"
+                            font: cookieBrowserCombo.font
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                        background: Rectangle {
+                            color: "#1b1b1b"
+                            border.color: cookieBrowserCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                            radius: 3
+                        }
+                        delegate: ItemDelegate {
+                            id: cookieBrowserDelegate
+                            width: cookieBrowserCombo.width
+                            height: 24
+                            contentItem: Text {
+                                text: modelData
+                                color: "#d0d0d0"
+                                font.pixelSize: 11
+                                verticalAlignment: Text.AlignVCenter
+                                leftPadding: 8
+                            }
+                            background: Rectangle { color: cookieBrowserDelegate.hovered ? "#2a3a5a" : "#1b1b1b" }
+                        }
+                        popup: Popup {
+                            y: cookieBrowserCombo.height + 2
+                            width: cookieBrowserCombo.width
+                            implicitHeight: contentItem.implicitHeight + 4
+                            padding: 2
+                            background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 3 }
+                            contentItem: ListView {
+                                implicitHeight: contentHeight
+                                clip: true
+                                model: cookieBrowserCombo.delegateModel
+                            }
+                        }
+                    }
+                }
+            }
+
+            Text {
+                Layout.fillWidth: true
+                text: "Stellar will retry the same yt-dlp item with that browser's cookies."
+                color: "#667788"
+                font.pixelSize: 10
+                wrapMode: Text.WordWrap
+            }
+
+            Item { Layout.fillHeight: true }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+
+                Item { Layout.fillWidth: true }
+
+                DlgButton {
+                    text: "Cancel"
+                    onClicked: ytdlpCookieRetryDialog.close()
+                }
+
+                DlgButton {
+                    text: "Retry Download"
+                    primary: true
+                    enabled: ytdlpCookieRetryDialog.downloadId.length > 0
+                    onClicked: {
+                        if (App.retryYtdlpWithBrowserCookies(ytdlpCookieRetryDialog.downloadId,
+                                                             cookieBrowserCombo.currentText.toLowerCase())) {
+                            ytdlpCookieRetryDialog.close()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     Connections {
         target: App
         function onErrorOccurred(message) {
             appErrorDialog.text = message && message.length > 0 ? message : "An unexpected error occurred."
             appErrorDialog.open()
+        }
+        function onYtdlpCookieRetryRequested(downloadId, reason, suggestedBrowser) {
+            ytdlpCookieRetryDialog._openFor(downloadId, reason, suggestedBrowser)
         }
     }
 
@@ -752,9 +917,10 @@ ApplicationWindow {
         id: ytdlpDialog
         transientParent: root
 
-        onDownloadRequested: (url, formatId, containerFormat, savePath, category, uniqueFilename, videoTitle, playlistMode, maxItems) => {
-            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, uniqueFilename, videoTitle, playlistMode, maxItems)
+        onDownloadRequested: (url, formatId, containerFormat, savePath, category, uniqueFilename, videoTitle, playlistMode, maxItems, extraOptions) => {
+            App.finalizeYtdlpDownload(url, savePath, category, formatId, containerFormat, uniqueFilename, videoTitle, playlistMode, maxItems, extraOptions)
         }
+        onOpenSettingsRequested: (page) => showSettingsPage(page)
     }
 
     Window {

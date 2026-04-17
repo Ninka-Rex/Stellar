@@ -30,7 +30,7 @@ Rectangle {
     // Window-level drag proxy injected from Main.qml
     property var categoryDragProxy: null
 
-    // â”€â”€ Multi-selection state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Multi-selection state ─────────────────────────────────────────────────
     // _selectedRows is a plain JS object used as a set (keys = row indices).
     // _selectionVersion bumps on every change so QML bindings that read it
     // know to re-evaluate.
@@ -64,7 +64,7 @@ Rectangle {
         _setSelection(r)
     }
 
-    // Last single-click row â€” used as anchor for shift-click range selection
+    // Last single-click row — used as anchor for shift-click range selection
     property int _anchorRow: -1
 
     // Reactive property: the primary selected item (for dialogs / toolbar enablement).
@@ -75,7 +75,7 @@ Rectangle {
         return App.downloadModel.data(App.downloadModel.index(_anchorRow, 0), Qt.UserRole + 2)
     }
 
-    // String status of the focused item â€” a primitive that QML reliably tracks across
+    // String status of the focused item — a primitive that QML reliably tracks across
     // component boundaries. Reading currentSelectedItem.status works in local bindings
     // but the cross-component signal chain can break when the same object is returned
     // (no change emitted). A dedicated string property emits its own change signal.
@@ -128,7 +128,7 @@ Rectangle {
         return false
     }
 
-    // â”€â”€ Public API called by Main.qml toolbar signals â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Public API called by Main.qml toolbar signals ─────────────────────────
     function resumeSelected() {
         _selectionVersion  // touch dependency
         for (var row in _selectedRows) {
@@ -238,7 +238,7 @@ Rectangle {
         deleteDialog.requestActivate()
     }
 
-    // â”€â”€ Delete confirmation dialog â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Delete confirmation dialog ────────────────────────────────────────────
     DeleteConfirmDialog {
         id: deleteDialog
         property var downloadIds: []
@@ -251,13 +251,13 @@ Rectangle {
         }
     }
 
-    // The item that was right-clicked â€” set by the row MouseArea before showing the
+    // The item that was right-clicked — set by the row MouseArea before showing the
     // shared context menu. Avoids creating one Menu+Repeater per delegate row.
     property var _ctxItem: null
 
     // Single shared context menu for all rows. Previously each delegate had its own
-    // Menu containing a Repeater over App.queueModel â€” that created K*N QQmlContexts
-    // (queues Ã— rows) which was the O(N) scaling bottleneck on category switch.
+    // Menu containing a Repeater over App.queueModel — that created K*N QQmlContexts
+    // (queues × rows) which was the O(N) scaling bottleneck on category switch.
     Menu {
         id: rowCtxMenu
         Action {
@@ -275,7 +275,7 @@ Rectangle {
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
             delegate: MenuItem {
-                text: "Export .torrentâ€¦"
+                text: "Export .torrent…"
                 enabled: root.anyTorrentSelected
                 onTriggered: root.requestExportSelectedTorrents()
             }
@@ -312,7 +312,7 @@ Rectangle {
     // Bump _selectionVersion only when a SELECTED row's data changes so toolbar
     // enabled-states (anyPausedSelected, anyActiveSelected) stay accurate after
     // stop/resume. Firing on every dataChanged (speed, progress, bytes) caused
-    // O(rows Ã— cols) JS re-evaluations on every progress tick â€” major CPU churn.
+    // O(rows × cols) JS re-evaluations on every progress tick — major CPU churn.
     Connections {
         target: App.downloadModel
         function onDataChanged(topLeft, bottomRight, roles) {
@@ -348,7 +348,7 @@ Rectangle {
         { title: "Parent web page",key: "parenturl",  widthPx: 140, visible: false },
     ]
 
-    // Column definitions â€“ visibility toggled from context menu / ColumnsDialog
+    // Column definitions — visibility toggled from context menu / ColumnsDialog
     property bool _suppressColumnDefsSave: true
 
     function _cloneDefaultColumnDefs() {
@@ -487,7 +487,7 @@ Rectangle {
     property string _resizingColumnKey: ""
     property real _resizingColumnWidth: 0
 
-    // Maps column key â†’ x offset in the row. Recomputed whenever visibleContentWidth
+    // Maps column key → x offset in the row. Recomputed whenever visibleContentWidth
     // changes (resize, reorder, visibility toggle all flow through it).
     property var _colXMap: {
         visibleContentWidth   // reactive dependency
@@ -535,7 +535,7 @@ Rectangle {
         App.downloadModel.sortBy(sortKey, sortAscending)
     }
 
-    // â”€â”€ Active filter (driven by inline find bar in Main.qml) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Active filter (driven by inline find bar in Main.qml) ─────────────────
     property string filterText:       ""
     property bool   filterName:       true
     property bool   filterDesc:       false
@@ -644,7 +644,7 @@ Rectangle {
         }
     }
 
-    // â”€â”€ Sort state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Sort state ────────────────────────────────────────────────────────────
     property string sortKey:       "added"
     property bool   sortAscending: false
 
@@ -661,7 +661,7 @@ Rectangle {
     // Sortable column keys (queue and progress columns are not sortable)
     readonly property var _sortableKeys: ["name","size","status","timeleft","downspeed","upspeed","seeders","peers","ratio","uploaded","downloaded","added","lasttry","description","saveto","referrer","parenturl","queue"]
 
-    // â”€â”€ Column visibility context menu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Column visibility context menu ────────────────────────────────────────
     Menu {
         id: colCtxMenu
         Repeater {
@@ -684,7 +684,7 @@ Rectangle {
         }
     }
 
-    // â”€â”€ Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Header ────────────────────────────────────────────────────────────────
     Rectangle {
         id: header
         anchors { top: parent.top; left: parent.left; right: parent.right }
@@ -819,7 +819,7 @@ Rectangle {
                         color: "#3a3a3a"
                     }
 
-                    // â”€â”€ Column resize handle â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                    // ── Column resize handle ──────────────────────────────
                     Item {
                         id: resizeHandle
                         width: 10
@@ -892,7 +892,7 @@ Rectangle {
         Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
     }
 
-    // â”€â”€ Rows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ── Rows ──────────────────────────────────────────────────────────────────
     ListView {
         id: tableView
         anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
@@ -936,7 +936,7 @@ Rectangle {
             readonly property string addedDateStr:   item ? item.addedDateStr   : ""
             readonly property string lastTryDateStr: item ? item.lastTryDateStr : "--"
 
-            // Shared selection state â€” read once per row, referenced by each column cell.
+            // Shared selection state — read once per row, referenced by each column cell.
             // All cells share this property rather than each computing their own binding
             // against _selectionVersion, keeping the binding fan-out flat.
             readonly property bool _sel: { root._selectionVersion; return root.isRowSelected(rowIndex) }
@@ -952,8 +952,8 @@ Rectangle {
 
             clip: true
 
-            // Fixed column layout â€” NO Repeater. The Repeater created one QQmlContext per
-            // column slot per row (~7 contexts Ã— 20 rows = 140 contexts, each ~10ms = 1400ms).
+            // Fixed column layout — NO Repeater. The Repeater created one QQmlContext per
+            // column slot per row (~7 contexts × 20 rows = 140 contexts, each ~10ms = 1400ms).
             // Hardcoded Items have zero per-slot context overhead; visibility and width are
             // just property bindings on pre-existing objects.
             // Each cell uses explicit x from _colXMap so column order always matches the
@@ -961,7 +961,7 @@ Rectangle {
             Item {
                 anchors { top: parent.top; left: parent.left; right: parent.right; bottom: parent.bottom }
 
-                // â”€â”€ Queue â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Queue ─────────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("queue")
                     x:       root._colXMap["queue"] || 0
@@ -995,7 +995,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ File Name â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── File Name ─────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("name")
                     x:       root._colXMap["name"] || 0
@@ -1032,7 +1032,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Size â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Size ──────────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("size")
                     x:       root._colXMap["size"] || 0
@@ -1048,7 +1048,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Status / Progress â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Status / Progress ─────────────────────────────────────────
                 Item {
                     visible: root._colVisible("status")
                     x:       root._colXMap["status"] || 0
@@ -1073,7 +1073,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Time Left â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Time Left ─────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("timeleft")
                     x:       root._colXMap["timeleft"] || 0
@@ -1089,7 +1089,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Down Speed â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Down Speed ─────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("downspeed")
                     x:       root._colXMap["downspeed"] || 0
@@ -1116,7 +1116,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Up Speed â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Up Speed ─────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("upspeed")
                     x:       root._colXMap["upspeed"] || 0
@@ -1140,7 +1140,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Seeders â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Seeders ───────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("seeders")
                     x:       root._colXMap["seeders"] || 0
@@ -1222,7 +1222,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Last Try Date â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Last Try Date ─────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("added")
                     x:       root._colXMap["added"] || 0
@@ -1238,7 +1238,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Last Try Date (alt column) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Last Try Date (alt column) ────────────────────────────────
                 Item {
                     visible: root._colVisible("lasttry")
                     x:       root._colXMap["lasttry"] || 0
@@ -1254,7 +1254,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Description â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Description ───────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("description")
                     x:       root._colXMap["description"] || 0
@@ -1270,7 +1270,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Save To â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Save To ───────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("saveto")
                     x:       root._colXMap["saveto"] || 0
@@ -1286,7 +1286,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Referrer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Referrer ──────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("referrer")
                     x:       root._colXMap["referrer"] || 0
@@ -1302,7 +1302,7 @@ Rectangle {
                     }
                 }
 
-                // â”€â”€ Parent URL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+                // ── Parent URL ────────────────────────────────────────────────
                 Item {
                     visible: root._colVisible("parenturl")
                     x:       root._colXMap["parenturl","queue"] || 0

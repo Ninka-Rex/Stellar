@@ -5,7 +5,7 @@
 # Prerequisites:
 #   cmake, ninja, dpkg-deb, gzip, sha256sum, ldd, readelf
 #   Qt 6 Linux development packages
-#   yt-dlp and ffmpeg available on PATH for packaging, or set YTDLP_PATH / FFMPEG_PATH
+#   yt-dlp, ffmpeg, and ffprobe available on PATH for packaging, or set YTDLP_PATH / FFMPEG_PATH / FFPROBE_PATH
 #
 # Output:
 #   dist/linux/stellar_<version>_amd64.deb
@@ -333,9 +333,10 @@ build_app() {
 }
 
 stage_deb() {
-    local ytdlp_path ffmpeg_path
+    local ytdlp_path ffmpeg_path ffprobe_path
     ytdlp_path="$(resolve_binary YTDLP_PATH yt-dlp)"
     ffmpeg_path="$(resolve_binary FFMPEG_PATH ffmpeg)"
+    ffprobe_path="$(resolve_binary FFPROBE_PATH ffprobe)"
 
     log "Staging .deb filesystem..."
     rm -rf "$DEB_ROOT"
@@ -350,8 +351,9 @@ stage_deb() {
         "$DEB_ROOT/DEBIAN"
 
     cp "$ROOT/build/linux-release/Stellar" "$DEB_ROOT/opt/stellar/Stellar"
-    cp "$ytdlp_path" "$DEB_ROOT/opt/stellar/yt-dlp"
+    cp "$ytdlp_path"  "$DEB_ROOT/opt/stellar/yt-dlp"
     cp "$ffmpeg_path" "$DEB_ROOT/opt/stellar/ffmpeg"
+    cp "$ffprobe_path" "$DEB_ROOT/opt/stellar/ffprobe"
     cp "$ROOT/app/data/dbip-city-lite-2026-04.mmdb" "$DEB_ROOT/opt/stellar/dbip-city-lite-2026-04.mmdb"
     cp "$ROOT/tips.txt" "$DEB_ROOT/opt/stellar/tips.txt"
     cp -R "$ROOT/extensions" "$DEB_ROOT/opt/stellar/extensions"

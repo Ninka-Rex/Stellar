@@ -151,7 +151,7 @@ public:
     // Asynchronously probe the URL with "yt-dlp --dump-json".
     // Emits ytdlpInfoReady(formats) on success or ytdlpInfoFailed(reason) on error.
     // Returns a probe ID so callers can match response signals to requests.
-    Q_INVOKABLE QString beginYtdlpInfo(const QString &url);
+    Q_INVOKABLE QString beginYtdlpInfo(const QString &url, const QString &cookiesBrowser = {});
 
     // Cancel a running --dump-json probe (identified by probeId from beginYtdlpInfo).
     Q_INVOKABLE void cancelYtdlpInfo(const QString &probeId);
@@ -169,7 +169,8 @@ public:
                                            bool uniqueFilename = false,
                                            const QString &videoTitle = {},
                                            bool playlistMode = false,
-                                           int  maxItems = 0);
+                                           int  maxItems = 0,
+                                           const QVariantMap &extraOptions = {});
 
     // Start a yt-dlp download.  Item must already be in the queue as a held item
     // (enqueueHeld) so it appears in the UI.  formatId is a yt-dlp format selector.
@@ -180,6 +181,7 @@ public:
     Q_INVOKABLE void downloadYtdlpBinary();
     Q_INVOKABLE void stopActiveYtdlpBatch();
     Q_INVOKABLE void resumeLastYtdlpBatch();
+    Q_INVOKABLE bool retryYtdlpWithBrowserCookies(const QString &downloadId, const QString &browser);
     Q_INVOKABLE bool isTorrentUri(const QString &value) const;
     Q_INVOKABLE QObject *downloadById(const QString &id) const;
     Q_INVOKABLE QObject *torrentFileModel(const QString &id) const;
@@ -368,6 +370,8 @@ signals:
     void ytdlpInfoFailed(const QString &probeId, const QString &url, const QString &reason);
     // Emitted when a clipboard URL looks like a yt-dlp site (no file extension needed).
     void ytdlpClipboardUrlDetected(const QString &url);
+    void ytdlpCookieRetryRequested(const QString &downloadId, const QString &reason,
+                                   const QString &suggestedBrowser);
 
 private:
     QString generateId() const;
@@ -500,7 +504,8 @@ private:
     struct YtdlpProbe {
         QProcess  *process{nullptr};
         QString    url;
-        QByteArray output;
+        QByteArray output;       // stdout (JSON)
+        QByteArray stderrOutput; // stderr (error messages)
     };
     QMap<QString, YtdlpProbe>        m_ytdlpProbes;
 
@@ -523,9 +528,13 @@ private:
     void startYtdlpWorker(DownloadItem *item, const QString &formatId,
                           const QString &containerFormat, bool resume,
                           const QString &outputTemplate = {},
-                          bool playlistMode = false, int maxItems = 0);
+                          bool playlistMode = false, int maxItems = 0,
+                          const YtdlpOptions &options = {});
     void onYtdlpWorkerFinished(const QString &id);
     void onYtdlpWorkerFailed(const QString &id, const QString &reason);
     // Returns the path to ffmpeg if found next to yt-dlp or on system PATH.
     static QString detectFfmpegPath(const QString &ytdlpBinaryPath);
+    static bool ytdlpErrorSuggestsCookies(const QString &reason);
+    static QString normalizeYtdlpBrowserName(const QString &browser);
+    static QString preferredBrowserFromReason(const QString &reason);
 };

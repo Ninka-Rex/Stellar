@@ -210,6 +210,7 @@ void AppSettings::load() {
     m_mainWindowHeight        = m_settings.value(QStringLiteral("mainWindowHeight"), 680).toInt();
     m_ytdlpCustomBinaryPath   = m_settings.value(QStringLiteral("ytdlpCustomBinaryPath"), QString()).toString();
     m_ytdlpAutoUpdate         = m_settings.value(QStringLiteral("ytdlpAutoUpdate"), false).toBool();
+    m_ytdlpJsRuntimePath      = m_settings.value(QStringLiteral("ytdlpJsRuntimePath"), QString()).toString();
     m_torrentEnableDht        = m_settings.value(QStringLiteral("torrentEnableDht"), true).toBool();
     m_torrentEnableLsd        = m_settings.value(QStringLiteral("torrentEnableLsd"), true).toBool();
     m_torrentEnableUpnp       = m_settings.value(QStringLiteral("torrentEnableUpnp"), true).toBool();
@@ -301,6 +302,7 @@ void AppSettings::load() {
     emit mainWindowHeightChanged();
     emit ytdlpCustomBinaryPathChanged();
     emit ytdlpAutoUpdateChanged();
+    emit ytdlpJsRuntimePathChanged();
     emit torrentSettingsChanged();
     emit globalUploadLimitKBpsChanged();
     emit proxyTypeChanged();
@@ -369,6 +371,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("mainWindowHeight"),            m_mainWindowHeight);
     m_settings.setValue(QStringLiteral("ytdlpCustomBinaryPath"),       m_ytdlpCustomBinaryPath);
     m_settings.setValue(QStringLiteral("ytdlpAutoUpdate"),             m_ytdlpAutoUpdate);
+    m_settings.setValue(QStringLiteral("ytdlpJsRuntimePath"),          m_ytdlpJsRuntimePath);
     m_settings.setValue(QStringLiteral("torrentEnableDht"),            m_torrentEnableDht);
     m_settings.setValue(QStringLiteral("torrentEnableLsd"),            m_torrentEnableLsd);
     m_settings.setValue(QStringLiteral("torrentEnableUpnp"),           m_torrentEnableUpnp);
@@ -541,6 +544,14 @@ void AppSettings::setYtdlpAutoUpdate(bool v) {
     if (m_ytdlpAutoUpdate != v) {
         m_ytdlpAutoUpdate = v;
         emit ytdlpAutoUpdateChanged();
+        save();
+    }
+}
+
+void AppSettings::setYtdlpJsRuntimePath(const QString &v) {
+    if (m_ytdlpJsRuntimePath != v) {
+        m_ytdlpJsRuntimePath = v;
+        emit ytdlpJsRuntimePathChanged();
         save();
     }
 }

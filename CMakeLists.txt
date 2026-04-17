@@ -236,9 +236,9 @@ qt_add_qml_module(Stellar
         app/qml/icons/remove.ico
         app/qml/icons/properties.ico
         app/qml/icons/downloads.ico
-        app/qml/icons/scheduler.ico
+        app/qml/icons/scheduler.png
         app/qml/icons/help.ico
-        app/qml/icons/update.ico
+        app/qml/icons/update.png
         app/qml/icons/clock.png
         app/qml/icons/arrow_down.png
         app/qml/icons/arrow_up.ico

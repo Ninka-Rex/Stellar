@@ -79,6 +79,13 @@ namespace {
 constexpr int kMinimumUpdateCheckIndicatorMs = 3000;
 constexpr qint64 kTorrentSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
 
+QString cleanedYtdlpError(const QString &reason) {
+    QString text = reason;
+    text.replace(QStringLiteral("\r\n"), QStringLiteral("\n"));
+    text.replace(QRegularExpression(QStringLiteral(R"((\r?\n)+null\s*$)")), QString());
+    return text.trimmed();
+}
+
 QString effectiveTemporaryDirectory(const AppSettings *settings) {
     const QString configured = settings ? settings->temporaryDirectory().trimmed() : QString();
     return configured.isEmpty()
@@ -334,38 +341,72 @@ bool verifyFileSha256(const QString &path, const QString &expectedHex, QString *
     return false;
 }
 
+// Atomically install a single binary from sourcePath to targetPath.
+// Uses a temp+backup swap so the target is never left in a partial state.
+static bool installBinary(const QString &sourcePath, const QString &targetPath, QString *errorText) {
+    const QString tempPath   = targetPath + QStringLiteral(".stellar-new");
+    const QString backupPath = targetPath + QStringLiteral(".stellar-bak");
+    QFile::remove(tempPath);
+    if (!QFile::copy(sourcePath, tempPath)) {
+        if (errorText)
+            *errorText = QStringLiteral("Could not stage %1 to %2")
+                             .arg(QFileInfo(targetPath).fileName(), tempPath);
+        QFile::remove(tempPath);
+        return false;
+    }
+    QFile::remove(backupPath);
+    if (QFile::exists(targetPath))
+        QFile::rename(targetPath, backupPath);
+    if (!QFile::rename(tempPath, targetPath)) {
+        QFile::remove(tempPath);
+        if (QFile::exists(backupPath))
+            QFile::rename(backupPath, targetPath); // restore
+        if (errorText)
+            *errorText = QStringLiteral("Could not install %1 to %2")
+                             .arg(QFileInfo(targetPath).fileName(), targetPath);
+        return false;
+    }
+    QFile::remove(backupPath);
+#if !defined(Q_OS_WIN)
+    QFile f(targetPath);
+    f.setPermissions(
+        QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner |
+        QFileDevice::ReadGroup | QFileDevice::ExeGroup |
+        QFileDevice::ReadOther | QFileDevice::ExeOther);
+#endif
+    return true;
+}
+
+// Find the best candidate for a binary named `name` in an extracted directory tree.
+// Prefers the "bin/" subdirectory (canonical layout of ffmpeg-release archives).
+static QString findBinaryInTree(const QString &root, const QString &name) {
+    QString bestBin;
+    QString fallback;
+    QDirIterator it(root, QStringList{ name }, QDir::Files, QDirIterator::Subdirectories);
+    while (it.hasNext()) {
+        const QString candidate = it.next();
+        const QFileInfo fi(candidate);
+#if !defined(Q_OS_WIN)
+        if (!fi.isExecutable()) { if (fallback.isEmpty()) fallback = candidate; continue; }
+#endif
+        if (fi.dir().dirName().toLower() == QLatin1String("bin")) {
+            bestBin = candidate;
+            break;
+        }
+        if (fallback.isEmpty()) fallback = candidate;
+    }
+    return bestBin.isEmpty() ? fallback : bestBin;
+}
+
 bool installFfmpegFromPayload(const QString &payloadPath, const QString &targetDir, QString *errorText) {
     const QString lowerName = QFileInfo(payloadPath).fileName().toLower();
 #if defined(Q_OS_WIN)
-    const QString targetPath = QDir(targetDir).filePath(QStringLiteral("ffmpeg.exe"));
-    if (lowerName.endsWith(QStringLiteral(".exe"))) {
-        // Copy to a temp file first so we never leave the target directory
-        // without a working binary if the copy fails mid-way.
-        const QString tempPath   = targetPath + QStringLiteral(".stellar-new");
-        const QString backupPath = targetPath + QStringLiteral(".stellar-bak");
-        QFile::remove(tempPath);
-        if (!QFile::copy(payloadPath, tempPath)) {
-            if (errorText)
-                *errorText = QStringLiteral("Could not stage ffmpeg.exe to %1").arg(tempPath);
-            QFile::remove(tempPath);
-            return false;
-        }
-        // Atomically swap: keep a backup of the old binary until the rename
-        // succeeds so we can restore it on failure.
-        QFile::remove(backupPath);
-        if (QFile::exists(targetPath))
-            QFile::rename(targetPath, backupPath);
-        if (!QFile::rename(tempPath, targetPath)) {
-            QFile::remove(tempPath);
-            if (QFile::exists(backupPath))
-                QFile::rename(backupPath, targetPath); // restore
-            if (errorText)
-                *errorText = QStringLiteral("Could not install ffmpeg.exe to %1").arg(targetPath);
-            return false;
-        }
-        QFile::remove(backupPath);
-        return true;
-    }
+    const QString ffmpegTarget  = QDir(targetDir).filePath(QStringLiteral("ffmpeg.exe"));
+    const QString ffprobeTarget = QDir(targetDir).filePath(QStringLiteral("ffprobe.exe"));
+
+    // Bare .exe — single ffmpeg binary (no ffprobe bundled)
+    if (lowerName.endsWith(QStringLiteral(".exe")))
+        return installBinary(payloadPath, ffmpegTarget, errorText);
 
     if (!lowerName.endsWith(QStringLiteral(".zip"))) {
         if (errorText)
@@ -380,76 +421,39 @@ bool installFfmpegFromPayload(const QString &payloadPath, const QString &targetD
         return false;
     }
 
-    const QString inEscaped = QString(payloadPath).replace('\'', QStringLiteral("''"));
+    const QString inEscaped  = QString(payloadPath).replace('\'', QStringLiteral("''"));
     const QString outEscaped = QString(tempDir.path()).replace('\'', QStringLiteral("''"));
-    const QString script = QStringLiteral(
-        "Expand-Archive -LiteralPath '%1' -DestinationPath '%2' -Force")
-                               .arg(inEscaped, outEscaped);
     QProcess ps;
     ps.setProgram(QStringLiteral("powershell"));
-    ps.setArguments({ QStringLiteral("-NoProfile"),
-                      QStringLiteral("-NonInteractive"),
+    ps.setArguments({ QStringLiteral("-NoProfile"), QStringLiteral("-NonInteractive"),
                       QStringLiteral("-Command"),
-                      script });
+                      QStringLiteral("Expand-Archive -LiteralPath '%1' -DestinationPath '%2' -Force")
+                          .arg(inEscaped, outEscaped) });
     ps.start();
     if (!ps.waitForFinished() || ps.exitStatus() != QProcess::NormalExit || ps.exitCode() != 0) {
-        const QString stderrText = QString::fromUtf8(ps.readAllStandardError()).trimmed();
-        if (errorText)
-            *errorText = stderrText.isEmpty()
-                ? QStringLiteral("Could not extract FFmpeg ZIP archive.")
-                : stderrText;
+        const QString err = QString::fromUtf8(ps.readAllStandardError()).trimmed();
+        if (errorText) *errorText = err.isEmpty() ? QStringLiteral("Could not extract FFmpeg ZIP archive.") : err;
         return false;
     }
 
-    // Bug 2c fix: prefer a binary located inside a "bin/" subdirectory (the
-    // canonical layout of ffmpeg-release-full.zip) over a root-level match,
-    // so a multi-binary archive doesn't silently install the wrong file.
-    QString extracted;
-    QString fallback;
-    QDirIterator it(tempDir.path(), QStringList{ QStringLiteral("ffmpeg.exe") }, QDir::Files, QDirIterator::Subdirectories);
-    while (it.hasNext()) {
-        const QString candidate = it.next();
-        if (QFileInfo(candidate).dir().dirName().toLower() == QStringLiteral("bin")) {
-            extracted = candidate;
-            break;
-        }
-        if (fallback.isEmpty())
-            fallback = candidate;
-    }
-    if (extracted.isEmpty())
-        extracted = fallback;
-    if (extracted.isEmpty()) {
-        if (errorText)
-            *errorText = QStringLiteral("FFmpeg archive did not contain ffmpeg.exe.");
+    const QString extractedFfmpeg  = findBinaryInTree(tempDir.path(), QStringLiteral("ffmpeg.exe"));
+    const QString extractedFfprobe = findBinaryInTree(tempDir.path(), QStringLiteral("ffprobe.exe"));
+
+    if (extractedFfmpeg.isEmpty()) {
+        if (errorText) *errorText = QStringLiteral("FFmpeg archive did not contain ffmpeg.exe.");
         return false;
     }
+    if (!installBinary(extractedFfmpeg, ffmpegTarget, errorText))
+        return false;
+    // ffprobe is optional — the archive might not include it (e.g., bare .exe builds).
+    // Install it when present; don't fail when absent.
+    if (!extractedFfprobe.isEmpty())
+        installBinary(extractedFfprobe, ffprobeTarget, nullptr);
 
-    {
-        const QString tempPath   = targetPath + QStringLiteral(".stellar-new");
-        const QString backupPath = targetPath + QStringLiteral(".stellar-bak");
-        QFile::remove(tempPath);
-        if (!QFile::copy(extracted, tempPath)) {
-            if (errorText)
-                *errorText = QStringLiteral("Could not stage ffmpeg.exe to %1").arg(tempPath);
-            QFile::remove(tempPath);
-            return false;
-        }
-        QFile::remove(backupPath);
-        if (QFile::exists(targetPath))
-            QFile::rename(targetPath, backupPath);
-        if (!QFile::rename(tempPath, targetPath)) {
-            QFile::remove(tempPath);
-            if (QFile::exists(backupPath))
-                QFile::rename(backupPath, targetPath);
-            if (errorText)
-                *errorText = QStringLiteral("Could not install ffmpeg.exe to %1").arg(targetPath);
-            return false;
-        }
-        QFile::remove(backupPath);
-    }
     return true;
 #else
-    const QString targetPath = QDir(targetDir).filePath(QStringLiteral("ffmpeg"));
+    const QString ffmpegTarget  = QDir(targetDir).filePath(QStringLiteral("ffmpeg"));
+    const QString ffprobeTarget = QDir(targetDir).filePath(QStringLiteral("ffprobe"));
 
     if (lowerName.endsWith(QStringLiteral(".tar.xz"))
         || lowerName.endsWith(QStringLiteral(".txz"))
@@ -467,97 +471,38 @@ bool installFfmpegFromPayload(const QString &payloadPath, const QString &targetD
         tar.setArguments({ QStringLiteral("-xf"), payloadPath, QStringLiteral("-C"), tempDir.path() });
         tar.start();
         if (!tar.waitForFinished() || tar.exitStatus() != QProcess::NormalExit || tar.exitCode() != 0) {
-            const QString stderrText = QString::fromUtf8(tar.readAllStandardError()).trimmed();
-            if (errorText)
-                *errorText = stderrText.isEmpty()
-                    ? QStringLiteral("Could not extract FFmpeg archive with tar.")
-                    : stderrText;
+            const QString err = QString::fromUtf8(tar.readAllStandardError()).trimmed();
+            if (errorText) *errorText = err.isEmpty() ? QStringLiteral("Could not extract FFmpeg archive with tar.") : err;
             return false;
         }
 
-        // Bug 2c fix: prefer the executable from a "bin/" subdirectory to
-        // avoid picking an unintended binary from multi-binary archives.
-        QString extracted;
-        QString fallback;
-        QDirIterator it(tempDir.path(), QStringList{ QStringLiteral("ffmpeg") }, QDir::Files, QDirIterator::Subdirectories);
-        while (it.hasNext()) {
-            const QString candidate = it.next();
-            const QFileInfo fi(candidate);
-            const bool inBin = fi.dir().dirName().toLower() == QStringLiteral("bin");
-            if (inBin && fi.isExecutable()) {
-                extracted = candidate;
-                break;
-            }
-            if (fallback.isEmpty() && fi.isExecutable())
-                fallback = candidate;
-            if (fallback.isEmpty())
-                fallback = candidate;
-        }
-        if (extracted.isEmpty())
-            extracted = fallback;
-        if (extracted.isEmpty()) {
-            if (errorText)
-                *errorText = QStringLiteral("FFmpeg archive did not contain an ffmpeg binary.");
+        const QString extractedFfmpeg  = findBinaryInTree(tempDir.path(), QStringLiteral("ffmpeg"));
+        const QString extractedFfprobe = findBinaryInTree(tempDir.path(), QStringLiteral("ffprobe"));
+
+        if (extractedFfmpeg.isEmpty()) {
+            if (errorText) *errorText = QStringLiteral("FFmpeg archive did not contain an ffmpeg binary.");
             return false;
         }
+        if (!installBinary(extractedFfmpeg, ffmpegTarget, errorText))
+            return false;
+        if (!extractedFfprobe.isEmpty())
+            installBinary(extractedFfprobe, ffprobeTarget, nullptr);
 
-        {
-            const QString tempPath   = targetPath + QStringLiteral(".stellar-new");
-            const QString backupPath = targetPath + QStringLiteral(".stellar-bak");
-            QFile::remove(tempPath);
-            if (!QFile::copy(extracted, tempPath)) {
-                if (errorText)
-                    *errorText = QStringLiteral("Could not stage ffmpeg to %1").arg(tempPath);
-                QFile::remove(tempPath);
-                return false;
-            }
-            QFile::remove(backupPath);
-            if (QFile::exists(targetPath))
-                QFile::rename(targetPath, backupPath);
-            if (!QFile::rename(tempPath, targetPath)) {
-                QFile::remove(tempPath);
-                if (QFile::exists(backupPath))
-                    QFile::rename(backupPath, targetPath);
-                if (errorText)
-                    *errorText = QStringLiteral("Could not install ffmpeg to %1").arg(targetPath);
-                return false;
-            }
-            QFile::remove(backupPath);
-        }
     } else if (lowerName.endsWith(QStringLiteral(".gz"))) {
-        // extractGzipToFile already writes to a temp path internally via
-        // QSaveFile, so no additional swap is needed here.
-        if (!extractGzipToFile(payloadPath, targetPath, errorText))
+        // Single-binary gzip — no ffprobe in this payload.
+        if (!extractGzipToFile(payloadPath, ffmpegTarget, errorText))
             return false;
+        QFile f(ffmpegTarget);
+        f.setPermissions(
+            QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner |
+            QFileDevice::ReadGroup | QFileDevice::ExeGroup |
+            QFileDevice::ReadOther | QFileDevice::ExeOther);
     } else {
-        const QString tempPath   = targetPath + QStringLiteral(".stellar-new");
-        const QString backupPath = targetPath + QStringLiteral(".stellar-bak");
-        QFile::remove(tempPath);
-        if (!QFile::copy(payloadPath, tempPath)) {
-            if (errorText)
-                *errorText = QStringLiteral("Could not stage ffmpeg to %1").arg(tempPath);
-            QFile::remove(tempPath);
+        // Unknown format — treat as a bare ffmpeg binary.
+        if (!installBinary(payloadPath, ffmpegTarget, errorText))
             return false;
-        }
-        QFile::remove(backupPath);
-        if (QFile::exists(targetPath))
-            QFile::rename(targetPath, backupPath);
-        if (!QFile::rename(tempPath, targetPath)) {
-            QFile::remove(tempPath);
-            if (QFile::exists(backupPath))
-                QFile::rename(backupPath, targetPath);
-            if (errorText)
-                *errorText = QStringLiteral("Could not install ffmpeg to %1").arg(targetPath);
-            return false;
-        }
-        QFile::remove(backupPath);
     }
 
-    QFile targetFile(targetPath);
-    targetFile.setPermissions(
-        QFileDevice::ReadOwner | QFileDevice::WriteOwner | QFileDevice::ExeOwner |
-        QFileDevice::ReadGroup | QFileDevice::ExeGroup |
-        QFileDevice::ReadOther | QFileDevice::ExeOther);
     return true;
 #endif
 }
@@ -905,6 +850,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_ytdlpManager->setCustomPath(m_settings->ytdlpCustomBinaryPath());
     connect(m_settings, &AppSettings::ytdlpCustomBinaryPathChanged, this, [this]() {
         m_ytdlpManager->setCustomPath(m_settings->ytdlpCustomBinaryPath());
+    });
+    // Sync custom JS runtime path from settings on startup and when it changes.
+    m_ytdlpManager->setCustomJsRuntimePath(m_settings->ytdlpJsRuntimePath());
+    connect(m_settings, &AppSettings::ytdlpJsRuntimePathChanged, this, [this]() {
+        m_ytdlpManager->setCustomJsRuntimePath(m_settings->ytdlpJsRuntimePath());
     });
     // Check yt-dlp availability and optionally self-update on launch.
     connect(m_ytdlpManager, &YtdlpManager::checkComplete, this, [this]() {
@@ -2524,8 +2474,9 @@ void AppController::resumeDownload(const QString &id) {
                                       ? stored.mid(p1 + 1, p2 - p1 - 1)
                                       : (p1 >= 0 ? stored.mid(p1 + 1) : QStringLiteral("mp4"));
             const QString tmpl      = p2 >= 0 ? stored.mid(p2 + 1) : QString();
+            const YtdlpOptions resumeOpts = YtdlpOptions::fromJson(item->ytdlpExtraOptions());
             startYtdlpWorker(item, formatId, container, /*resume=*/true, tmpl,
-                             item->ytdlpPlaylistMode());
+                             item->ytdlpPlaylistMode(), 0, resumeOpts);
         }
         return;
     }
@@ -2561,8 +2512,9 @@ void AppController::redownload(const QString &id) {
                                   ? stored2.mid(q1 + 1, q2 - q1 - 1)
                                   : (q1 >= 0 ? stored2.mid(q1 + 1) : QStringLiteral("mp4"));
         const QString tmpl2     = q2 >= 0 ? stored2.mid(q2 + 1) : QString();
+        const YtdlpOptions redownloadOpts = YtdlpOptions::fromJson(item->ytdlpExtraOptions());
         startYtdlpWorker(item, formatId, container, /*resume=*/false, tmpl2,
-                         item->ytdlpPlaylistMode());
+                         item->ytdlpPlaylistMode(), 0, redownloadOpts);
         return;
     }
 
@@ -4779,7 +4731,7 @@ bool AppController::isLikelyYtdlpUrl(const QString &urlStr) const {
     return false;
 }
 
-QString AppController::beginYtdlpInfo(const QString &url) {
+QString AppController::beginYtdlpInfo(const QString &url, const QString &cookiesBrowser) {
     if (!m_ytdlpManager->available()) {
         const QString probeId = QUuid::createUuid().toString(QUuid::WithoutBraces);
         emit ytdlpInfoFailed(probeId, url,
@@ -4795,6 +4747,7 @@ QString AppController::beginYtdlpInfo(const QString &url) {
     auto *proc = new QProcess(this);
     proc->setProgram(m_ytdlpManager->binaryPath());
     QStringList args = {
+        QStringLiteral("--ignore-config"),
         QStringLiteral("--dump-single-json"),
         QStringLiteral("--no-warnings"),
     };
@@ -4805,12 +4758,43 @@ QString AppController::beginYtdlpInfo(const QString &url) {
     } else {
         args << QStringLiteral("--no-playlist");
     }
+    if (!cookiesBrowser.isEmpty()) {
+        args << QStringLiteral("--cookies-from-browser") << cookiesBrowser.toLower();
+        // Logged-in YouTube probes use the default client set (tv_downgraded,web_safari
+        // for free accounts), which supports cookie authentication.
+        // web_creator is excluded because it requires a PO token for format retrieval and
+        // would hide formats rather than expose them.
+        // formats=missing_pot,incomplete exposes the full quality list in the picker UI;
+        // the real transfer omits this flag so POT-requiring formats are filtered out.
+        args << QStringLiteral("--extractor-args")
+             << QStringLiteral("youtube:player_client=default,-web_creator;formats=missing_pot,incomplete");
+    }
+    // The probe only needs metadata plus the formats array; do not validate a
+    // concrete downloadable selector here. Ask for every format, including ones
+    // that are currently incomplete/unplayable, so the UI can still present a
+    // quality list and let the real transfer decide what is actually available.
+    args << QStringLiteral("--allow-unplayable-formats")
+         << QStringLiteral("-f") << QStringLiteral("all");
+    // Without ffmpeg, yt-dlp's default selector (bestvideo*+bestaudio) cannot merge
+    // separate DASH streams and raises "Requested format is not available". Through a
+    // VPN or proxy YouTube often serves DASH-only — passing ffmpeg location fixes this.
+    const QString ffmpegPath = m_ytdlpManager->ffmpegPath();
+    if (!ffmpegPath.isEmpty())
+        args << QStringLiteral("--ffmpeg-location") << ffmpegPath;
+    // JS runtime for EJS n-challenge solving — same as the actual transfer.
+    // Without this the probe also gets throttled URLs / storyboard-only formats.
+    const QString jsRtPath = m_ytdlpManager->jsRuntimePath();
+    const QString jsRtName = m_ytdlpManager->jsRuntimeName();
+    if (!jsRtPath.isEmpty() && !jsRtName.isEmpty())
+        args << QStringLiteral("--js-runtimes") << (jsRtName + QLatin1Char(':') + jsRtPath);
     const QString proxyUrl = buildYtdlpProxyUrl(m_settings, QUrl::fromUserInput(url));
     if (!proxyUrl.isEmpty())
         args << QStringLiteral("--proxy") << proxyUrl;
     args << url;
     proc->setArguments(args);
-    proc->setProcessChannelMode(QProcess::MergedChannels);
+    proc->setProcessChannelMode(QProcess::SeparateChannels);
+
+    qDebug() << "[YtdlpProbe] starting:" << proc->program() << args;
 
     m_ytdlpProbes[probeId] = { proc, url, QByteArray() };
 
@@ -4819,6 +4803,21 @@ QString AppController::beginYtdlpInfo(const QString &url) {
         if (it == m_ytdlpProbes.end())
             return;
         it->output += proc->readAllStandardOutput();
+    });
+
+    // Accumulate stderr and log lines as they arrive.
+    connect(proc, &QProcess::readyReadStandardError, this, [this, probeId, proc]() {
+        const QByteArray data = proc->readAllStandardError();
+        auto it = m_ytdlpProbes.find(probeId);
+        if (it != m_ytdlpProbes.end())
+            it->stderrOutput += data;
+#ifdef Q_OS_WIN
+        const QString text = QString::fromLocal8Bit(data).trimmed();
+#else
+        const QString text = QString::fromUtf8(data).trimmed();
+#endif
+        if (!text.isEmpty())
+            qDebug() << "[YtdlpProbe]" << text;
     });
 
     connect(proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
@@ -4830,10 +4829,30 @@ QString AppController::beginYtdlpInfo(const QString &url) {
         }
         QByteArray raw = it->output;
         raw += proc->readAllStandardOutput();
+        QByteArray stderrAccum = it->stderrOutput;
         m_ytdlpProbes.erase(it);
 
+        qDebug() << "[YtdlpProbe] finished, exitCode:" << exitCode
+                 << "stdout bytes:" << raw.size();
+
         if (exitCode != 0) {
-            const QString errOutput = QString::fromUtf8(raw).trimmed();
+            // stderr was accumulated by readyReadStandardError into stderrAccum.
+            const QByteArray stderrBytes = stderrAccum;
+#ifdef Q_OS_WIN
+            QString errOutput = QString::fromLocal8Bit(stderrBytes).trimmed();
+#else
+            QString errOutput = QString::fromUtf8(stderrBytes).trimmed();
+#endif
+            if (errOutput.isEmpty()) {
+                // Fallback: stdout (may be "null" or partial JSON — strip it)
+#ifdef Q_OS_WIN
+                errOutput = QString::fromLocal8Bit(raw).trimmed();
+#else
+                errOutput = QString::fromUtf8(raw).trimmed();
+#endif
+                if (errOutput == QLatin1String("null")) errOutput.clear();
+            }
+            qDebug() << "[YtdlpProbe] error:" << errOutput;
             proc->deleteLater();
             emit ytdlpInfoFailed(probeId, url,
                 errOutput.isEmpty()
@@ -4876,9 +4895,12 @@ QString AppController::beginYtdlpInfo(const QString &url) {
         // useful label and let the user make an informed choice.
         const QJsonArray formatsJson = mediaObject.value(QLatin1String("formats")).toArray();
 
-        // Collect the best-quality video+audio format for each height bucket.
+        // Collect the best-quality format for each height bucket.
         // Key: height (0 = audio-only).  Value: best format object seen so far.
         QMap<int, QJsonObject> bestByHeight;
+        QJsonObject bestAudioOnly;
+        QJsonObject bestOverall;
+        int bestOverallHeight = 0;
 
         for (const QJsonValue &fv : formatsJson) {
             const QJsonObject f = fv.toObject();
@@ -4889,13 +4911,47 @@ QString AppController::beginYtdlpInfo(const QString &url) {
 
             if (!hasVideo && !hasAudio) continue;
 
-            const int height = hasVideo ? f.value(QLatin1String("height")).toInt(0) : 0;
+            int height = hasVideo ? f.value(QLatin1String("height")).toInt(0) : 0;
+            // Some YouTube clients (TV, DASH responses) omit the height field.
+            // Fall back to parsing it from the "resolution" string ("WxH" or "HxW").
+            if (height == 0 && hasVideo) {
+                const QString res = f.value(QLatin1String("resolution")).toString();
+                const int xIdx = res.indexOf(QLatin1Char('x'));
+                if (xIdx >= 0) {
+                    const int w = res.left(xIdx).toInt();
+                    const int h2 = res.mid(xIdx + 1).toInt();
+                    // resolution is always "width x height" in yt-dlp
+                    height = (h2 > 0) ? h2 : w;
+                }
+                // Also try format_note which yt-dlp sets to e.g. "1080p" or "720p60"
+                if (height == 0) {
+                    static const QRegularExpression kNoteRe(QStringLiteral(R"((\d{3,4})p)"));
+                    const QString note = f.value(QLatin1String("format_note")).toString();
+                    const QRegularExpressionMatch m2 = kNoteRe.match(note);
+                    if (m2.hasMatch()) height = m2.captured(1).toInt();
+                }
+            }
+            const QString formatIdValue = f.value(QLatin1String("format_id")).toString();
+            if (formatIdValue.isEmpty())
+                continue;
 
             // Keep the entry with the highest total bitrate for each bucket.
             const double tbr = f.value(QLatin1String("tbr")).toDouble(0.0);
             if (!bestByHeight.contains(height) ||
                 tbr > bestByHeight[height].value(QLatin1String("tbr")).toDouble(0.0)) {
                 bestByHeight[height] = f;
+            }
+            if (!hasVideo && hasAudio
+                && (bestAudioOnly.isEmpty()
+                    || tbr > bestAudioOnly.value(QLatin1String("tbr")).toDouble(0.0))) {
+                bestAudioOnly = f;
+            }
+            if (hasVideo && (bestOverall.isEmpty()
+                || height > bestOverallHeight
+                || (height == bestOverallHeight
+                    && tbr > bestOverall.value(QLatin1String("tbr")).toDouble(0.0)))) {
+                bestOverall = f;
+                bestOverallHeight = height;
             }
         }
 
@@ -4908,17 +4964,28 @@ QString AppController::beginYtdlpInfo(const QString &url) {
         for (int h : orderedHeights) {
             if (!bestByHeight.contains(h)) continue;
             const QJsonObject &f = bestByHeight[h];
+            const QString exactFormatId = f.value(QLatin1String("format_id")).toString();
+            const QString vcodec = f.value(QLatin1String("vcodec")).toString();
+            const QString acodec = f.value(QLatin1String("acodec")).toString();
+            const bool hasVideo = (!vcodec.isEmpty() && vcodec != QLatin1String("none"));
+            const bool hasAudio = (!acodec.isEmpty() && acodec != QLatin1String("none"));
 
             QString label;
             QString formatId;
             if (h == 0) {
                 // Audio-only bucket
                 label    = QStringLiteral("Audio only (best)");
-                formatId = QStringLiteral("bestaudio/best");
+                formatId = !bestAudioOnly.isEmpty()
+                    ? bestAudioOnly.value(QLatin1String("format_id")).toString()
+                    : exactFormatId;
             } else {
-                label    = QStringLiteral("%1p").arg(h);
-                // Select best video at this height merged with best audio
-                formatId = QStringLiteral("bestvideo[height<=%1]+bestaudio/best[height<=%1]/best").arg(h);
+                label = QStringLiteral("%1p").arg(h);
+                // Use a height-capped quality selector rather than an exact format ID.
+                // Exact IDs from a missing_pot/incomplete probe often require a PO token
+                // to download (even with browser cookies), so the transfer would fail with
+                // "Requested format is not available".  A height-based selector lets yt-dlp
+                // pick the best actually-downloadable stream at or below that resolution.
+                formatId = QStringLiteral("bestvideo[height<=%1]+bestaudio/b[height<=%1]").arg(h);
             }
 
             // Add file size if known
@@ -4942,18 +5009,33 @@ QString AppController::beginYtdlpInfo(const QString &url) {
             formats.append(entry);
         }
 
-        // Always add a "Best quality" option at the top.
-        QVariantMap best;
-        best[QStringLiteral("id")]       = QStringLiteral("bestvideo+bestaudio/best");
-        best[QStringLiteral("label")]    = QStringLiteral("Best quality");
-        best[QStringLiteral("ext")]      = QStringLiteral("mp4");
-        best[QStringLiteral("width")]    = 0;
-        best[QStringLiteral("height")]   = 9999;
-        best[QStringLiteral("tbr")]      = 0.0;
-        best[QStringLiteral("vcodec")]   = QString();
-        best[QStringLiteral("acodec")]   = QString();
-        best[QStringLiteral("filesize")] = static_cast<qint64>(0);
-        formats.prepend(best);
+        // Always expose at least one concrete selectable entry when the probe
+        // succeeded. Logged-in YouTube responses sometimes lack the canonical
+        // height buckets we display above, which otherwise leaves the dialog
+        // blank even though yt-dlp returned a usable formats array.
+        // "Best quality" entry: always use the generic yt-dlp selector rather than an
+        // exact format ID.  Probe-derived IDs often come from missing_pot/incomplete
+        // formats that require a PO token to download even with browser cookies.
+        // bv*+ba/b means: best video combined with best audio, fallback to best muxed.
+        const bool hasBestEntry = !bestOverall.isEmpty() || !bestAudioOnly.isEmpty();
+        if (hasBestEntry) {
+            QJsonObject bestEntrySource = bestOverall.isEmpty() ? bestAudioOnly : bestOverall;
+            QVariantMap best;
+            best[QStringLiteral("id")] = QStringLiteral("bv*+ba/b");
+            best[QStringLiteral("label")] = QStringLiteral("Best quality");
+            best[QStringLiteral("ext")] = bestEntrySource.value(QLatin1String("ext")).toString(QStringLiteral("mp4"));
+            best[QStringLiteral("width")] = bestEntrySource.value(QLatin1String("width")).toInt(0);
+            best[QStringLiteral("height")] = bestOverallHeight;
+            best[QStringLiteral("fps")] = bestEntrySource.value(QLatin1String("fps")).toInt(0);
+            best[QStringLiteral("tbr")] = bestEntrySource.value(QLatin1String("tbr")).toDouble(0.0);
+            best[QStringLiteral("vcodec")] = bestEntrySource.value(QLatin1String("vcodec")).toString();
+            best[QStringLiteral("acodec")] = bestEntrySource.value(QLatin1String("acodec")).toString();
+            best[QStringLiteral("filesize")] = static_cast<qint64>(0);
+
+            // Always prepend "Best quality" — it uses a generic selector distinct
+            // from all the height-based selectors in the list, so it's never a dup.
+            formats.prepend(best);
+        }
 
         emit ytdlpInfoReady(probeId, url, title, formats);
     });
@@ -4998,7 +5080,8 @@ void AppController::finalizeYtdlpDownload(const QString &url,
                                            bool uniqueFilename,
                                            const QString &videoTitle,
                                            bool playlistMode,
-                                           int  maxItems) {
+                                           int  maxItems,
+                                           const QVariantMap &extraOptions) {
     // Create the DownloadItem here — not before.  This is intentionally later than
     // the regular HTTP flow (which creates the item as soon as the URL is submitted)
     // so that yt-dlp downloads only appear in the list once the user has confirmed
@@ -5062,13 +5145,20 @@ void AppController::finalizeYtdlpDownload(const QString &url,
     // Enqueue the item (triggers m_downloadModel->addItem via itemAdded signal),
     // persist it, and notify the UI.  The queue's scheduleNext() skips yt-dlp
     // items so this won't try to start a SegmentedTransfer.
+    // Convert QML-supplied options map to a typed struct, then serialise to JSON
+    // so the options survive an app restart and can be replayed on resume.
+    const YtdlpOptions opts = YtdlpOptions::fromVariantMap(extraOptions);
+    const QString optsJson  = opts.toJson();
+    if (!optsJson.isEmpty())
+        item->setYtdlpExtraOptions(optsJson);
+
     m_queue->enqueueHeld(item);
     m_db->save(item);
     watchItem(item);
     emit downloadAdded(item);
 
     startYtdlpWorker(item, formatId, container, /*resume=*/false, outputTemplate,
-                     playlistMode, maxItems);
+                     playlistMode, maxItems, opts);
 }
 
 void AppController::startYtdlpDownload(const QString &downloadId, const QString &formatId,
@@ -5121,6 +5211,39 @@ void AppController::resumeLastYtdlpBatch() {
 
 // Look for ffmpeg next to the yt-dlp binary first (bundled install), then fall
 // back to an empty string meaning "let yt-dlp search PATH itself".
+bool AppController::retryYtdlpWithBrowserCookies(const QString &downloadId, const QString &browser) {
+    auto *item = m_downloadModel->itemById(downloadId);
+    if (!item || !item->isYtdlp())
+        return false;
+
+    const QString normalizedBrowser = normalizeYtdlpBrowserName(browser);
+    if (normalizedBrowser.isEmpty())
+        return false;
+
+    const QString stored = item->ytdlpFormatId();
+    const int p1 = stored.indexOf(QLatin1Char('|'));
+    const int p2 = p1 >= 0 ? stored.indexOf(QLatin1Char('|'), p1 + 1) : -1;
+    const QString formatId = p1 >= 0 ? stored.left(p1) : stored;
+    const QString container = (p1 >= 0 && p2 > p1)
+        ? stored.mid(p1 + 1, p2 - p1 - 1)
+        : (p1 >= 0 ? stored.mid(p1 + 1) : QStringLiteral("mp4"));
+    const QString outputTemplate = p2 >= 0 ? stored.mid(p2 + 1) : QString();
+
+    YtdlpOptions opts = YtdlpOptions::fromJson(item->ytdlpExtraOptions());
+    opts.cookiesFromBrowser = normalizedBrowser;
+    item->setYtdlpExtraOptions(opts.toJson());
+    item->setErrorString({});
+    item->setDoneBytes(0);
+    item->setTotalBytes(0);
+    item->setSpeed(0);
+    item->setStatus(DownloadItem::Status::Queued);
+    scheduleSave(downloadId);
+
+    startYtdlpWorker(item, formatId, container, /*resume=*/false, outputTemplate,
+                     item->ytdlpPlaylistMode(), 0, opts);
+    return true;
+}
+
 QString AppController::detectFfmpegPath(const QString &ytdlpBinaryPath) {
     const QString dir = ytdlpBinaryPath.isEmpty()
         ? writableRuntimeToolsDir()
@@ -5138,7 +5261,8 @@ QString AppController::detectFfmpegPath(const QString &ytdlpBinaryPath) {
 void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId,
                                       const QString &containerFormat, bool resume,
                                       const QString &outputTemplate,
-                                      bool playlistMode, int maxItems) {
+                                      bool playlistMode, int maxItems,
+                                      const YtdlpOptions &options) {
     if (!item) return;
 
     // Abort any existing worker for this item (e.g., a stale one from a previous run).
@@ -5154,6 +5278,7 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
     // Show Downloading immediately so the UI never briefly flashes a stale status
     // (e.g. Completed from a previous run) while the pre-flight probe is running.
     item->setStatus(DownloadItem::Status::Downloading);
+    item->setErrorString({});
 
     // Prefer the path YtdlpManager already resolved (next to yt-dlp binary or PATH).
     const QString ffmpegPath = m_ytdlpManager->ffmpegPath().isEmpty()
@@ -5169,7 +5294,10 @@ void AppController::startYtdlpWorker(DownloadItem *item, const QString &formatId
                                      formatId, containerFormat, saveDir, ffmpegPath,
                                      m_settings ? m_settings->globalSpeedLimitKBps() : 0,
                                      resume, resolvedTemplate, proxyUrl,
-                                     playlistMode, maxItems, this);
+                                     playlistMode, maxItems, options,
+                                     m_ytdlpManager->jsRuntimePath(),
+                                     m_ytdlpManager->jsRuntimeName(),
+                                     this);
     m_ytdlpWorkers[item->id()] = worker;
     if (playlistMode) {
         m_activeYtdlpBatchId = item->id();
@@ -5250,6 +5378,47 @@ void AppController::onYtdlpWorkerFinished(const QString &id) {
     emit activeDownloadsChanged();
 }
 
+bool AppController::ytdlpErrorSuggestsCookies(const QString &reason) {
+    const QString text = cleanedYtdlpError(reason).toLower();
+    return text.contains(QStringLiteral("sign in to confirm"))
+        || text.contains(QStringLiteral("use --cookies-from-browser"))
+        || text.contains(QStringLiteral("cookies are needed"))
+        || text.contains(QStringLiteral("members-only"))
+        || text.contains(QStringLiteral("age-restricted"))
+        || text.contains(QStringLiteral("this video is private"))
+        || text.contains(QStringLiteral("login required"))
+        || text.contains(QStringLiteral("authentication required"));
+}
+
+QString AppController::normalizeYtdlpBrowserName(const QString &browser) {
+    const QString key = browser.trimmed().toLower();
+    if (key == QLatin1String("chrome") || key == QLatin1String("firefox")
+        || key == QLatin1String("edge") || key == QLatin1String("brave")
+        || key == QLatin1String("opera") || key == QLatin1String("vivaldi")
+        || key == QLatin1String("safari")) {
+        return key;
+    }
+    return {};
+}
+
+QString AppController::preferredBrowserFromReason(const QString &reason) {
+    const QString text = cleanedYtdlpError(reason).toLower();
+    static const QStringList browsers = {
+        QStringLiteral("firefox"),
+        QStringLiteral("chrome"),
+        QStringLiteral("edge"),
+        QStringLiteral("brave"),
+        QStringLiteral("opera"),
+        QStringLiteral("vivaldi"),
+        QStringLiteral("safari"),
+    };
+    for (const QString &browser : browsers) {
+        if (text.contains(browser))
+            return browser;
+    }
+    return {};
+}
+
 void AppController::onYtdlpWorkerFailed(const QString &id, const QString &reason) {
     auto *worker = m_ytdlpWorkers.take(id);
     if (worker) worker->deleteLater();
@@ -5257,9 +5426,14 @@ void AppController::onYtdlpWorkerFailed(const QString &id, const QString &reason
     auto *item = m_downloadModel->itemById(id);
     if (item) {
         item->setStatus(DownloadItem::Status::Error);
-        if (!reason.isEmpty())
-            item->setErrorString(reason);
+        const QString cleanedReason = cleanedYtdlpError(reason);
+        if (!cleanedReason.isEmpty())
+            item->setErrorString(cleanedReason);
         scheduleSave(id);
+        if (ytdlpErrorSuggestsCookies(cleanedReason)) {
+            emit ytdlpCookieRetryRequested(id, cleanedReason,
+                                           preferredBrowserFromReason(cleanedReason));
+        }
     }
     if (id == m_activeYtdlpBatchId) {
         m_activeYtdlpBatchId.clear();

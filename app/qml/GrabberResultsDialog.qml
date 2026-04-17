@@ -566,7 +566,7 @@ Window {
                                 { label: "Stop\nExploring",    action: "stop",          icon: "pause.png",          btnWidth: 88 },
                                 { label: "Start\nDownloading", action: "download",      icon: "arrow_down.png",     btnWidth: 96 },
                                 { label: "Stop\nDownloads",    action: "stopDownloads", icon: "pause_orange.png",   btnWidth: 88 },
-                                { label: "Update\nAll",        action: "update",        icon: "update.ico",         btnWidth: 80 },
+                                { label: "Update\nAll",        action: "update",        icon: "update.png",         btnWidth: 80 },
                                 { label: "Schedule\nProject",  action: "schedule",      icon: "clock.png",          btnWidth: 88 },
                                 { label: "Statistics",         action: "stats",         icon: "about.ico",          btnWidth: 84 }
                             ]

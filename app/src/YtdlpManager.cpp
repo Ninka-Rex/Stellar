@@ -102,6 +102,114 @@ void YtdlpManager::setCustomPath(const QString &path) {
     checkAvailability();
 }
 
+void YtdlpManager::setCustomJsRuntimePath(const QString &path) {
+    if (m_customJsRuntimePath == path) return;
+    m_customJsRuntimePath = path;
+    detectJsRuntime();
+}
+
+// Search for a JS runtime binary in the given directory.
+// Fills outPath and outName on success; returns true.
+static bool findRuntimeInDir(const QString &dir,
+                              QString &outPath, QString &outName)
+{
+    struct Candidate { const char *exe; const char *name; };
+#if defined(Q_OS_WIN)
+    static const Candidate kCandidates[] = {
+        { "deno.exe",   "deno"    },
+        { "node.exe",   "node"    },
+        { "bun.exe",    "bun"     },
+        { "qjs.exe",    "quickjs" },
+        { nullptr, nullptr }
+    };
+#else
+    static const Candidate kCandidates[] = {
+        { "deno",    "deno"    },
+        { "node",    "node"    },
+        { "nodejs",  "node"    },
+        { "bun",     "bun"     },
+        { "qjs",     "quickjs" },
+        { nullptr, nullptr }
+    };
+#endif
+    for (int i = 0; kCandidates[i].exe; ++i) {
+        const QString p = dir + QLatin1Char('/') + QLatin1String(kCandidates[i].exe);
+        if (QFile::exists(p)) {
+            outPath = QDir::toNativeSeparators(p);
+            outName = QLatin1String(kCandidates[i].name);
+            return true;
+        }
+    }
+    return false;
+}
+
+void YtdlpManager::detectJsRuntime() {
+    QString path, name;
+
+    // 1. User-supplied override takes absolute precedence.
+    if (!m_customJsRuntimePath.trimmed().isEmpty()) {
+        const QFileInfo fi(m_customJsRuntimePath.trimmed());
+        if (fi.exists() && fi.isFile()) {
+            // Derive the runtime name from the binary filename.
+            const QString base = fi.baseName().toLower();
+            if (base.startsWith(QLatin1String("deno")))         name = QStringLiteral("deno");
+            else if (base.startsWith(QLatin1String("node")))    name = QStringLiteral("node");
+            else if (base.startsWith(QLatin1String("bun")))     name = QStringLiteral("bun");
+            else if (base.startsWith(QLatin1String("qjs")))     name = QStringLiteral("quickjs");
+            else                                                 name = base;
+            path = QDir::toNativeSeparators(m_customJsRuntimePath.trimmed());
+        }
+        // Custom path set but invalid — don't fall back to auto-detection; the user
+        // explicitly configured something, so surface the "not found" state.
+        goto done;
+    }
+
+    // 2. Same directory as the yt-dlp binary (bundled install).
+    {
+        const QString ytdlpDir = QFileInfo(resolvedBinaryPath()).absolutePath();
+        if (findRuntimeInDir(ytdlpDir, path, name)) goto done;
+    }
+
+    // 3. App executable directory.
+    if (findRuntimeInDir(QCoreApplication::applicationDirPath(), path, name)) goto done;
+
+    // 4. Writable tool root (where we also download yt-dlp itself).
+    if (findRuntimeInDir(writableToolRoot(), path, name)) goto done;
+
+    // 5. System PATH — try each candidate name.
+    {
+        static const struct { const char *exe; const char *rname; } kPathNames[] = {
+            { "deno",   "deno"    },
+            { "node",   "node"    },
+#if !defined(Q_OS_WIN)
+            { "nodejs", "node"    },
+#endif
+            { "bun",    "bun"     },
+            { "qjs",    "quickjs" },
+            { nullptr, nullptr }
+        };
+        for (int i = 0; kPathNames[i].exe; ++i) {
+            const QString found = QStandardPaths::findExecutable(QLatin1String(kPathNames[i].exe));
+            if (!found.isEmpty()) {
+                path = found;
+                name = QLatin1String(kPathNames[i].rname);
+                goto done;
+            }
+        }
+    }
+
+done:
+    if (path != m_jsRuntimePath || name != m_jsRuntimeName) {
+        m_jsRuntimePath = path;
+        m_jsRuntimeName = name;
+        emit jsRuntimeChanged();
+        if (!path.isEmpty())
+            qDebug() << "[YtdlpManager] JS runtime:" << name << "->" << path;
+        else
+            qDebug() << "[YtdlpManager] No JS runtime found (yt-dlp YouTube n-challenge will fail)";
+    }
+}
+
 // ── Availability check ────────────────────────────────────────────────────────
 
 void YtdlpManager::checkAvailability() {
@@ -129,34 +237,97 @@ void YtdlpManager::checkAvailability() {
     m_versionProcess->start();
 }
 
-// Look for ffmpeg.exe / ffmpeg next to yt-dlp first, then on system PATH.
-// Returns the full path if found, or an empty string if not.
+// Check whether both ffmpeg and ffprobe exist in the given directory.
+// Returns the path to ffmpeg if found there, empty string otherwise.
+// *outHasFfprobe is set accordingly (only meaningful when return is non-empty).
+static QString probeDir(const QString &dir, bool *outHasFfprobe) {
+#if defined(Q_OS_WIN)
+    static const QLatin1String kFfmpeg("ffmpeg.exe");
+    static const QLatin1String kFfprobe("ffprobe.exe");
+#else
+    static const QLatin1String kFfmpeg("ffmpeg");
+    static const QLatin1String kFfprobe("ffprobe");
+#endif
+    const QString ff = dir + QLatin1Char('/') + kFfmpeg;
+    if (!QFile::exists(ff)) return {};
+    *outHasFfprobe = QFile::exists(dir + QLatin1Char('/') + kFfprobe);
+    return QDir::toNativeSeparators(ff);
+}
+
+// Find the best ffmpeg installation for passing to yt-dlp's --ffmpeg-location.
+//
+// yt-dlp derives the search directory for ALL post-processing tools (ffmpeg,
+// ffprobe, ffplay, …) from the parent directory of whatever path is passed to
+// --ffmpeg-location.  If ffprobe is absent from that directory, post-processing
+// steps that need it (thumbnail embedding, chapter modification) will fail even
+// if ffprobe is available elsewhere on PATH.
+//
+// Strategy:
+//   1. Search candidate directories in priority order; return the first one
+//      that has BOTH ffmpeg and ffprobe.
+//   2. If no co-located pair is found, check whether ffprobe exists on PATH;
+//      if so, return empty — letting yt-dlp fall back to PATH search for both
+//      tools (only safe when ffmpeg is also reachable via PATH).
+//   3. Last resort: return ffmpeg-alone path so at least merging works.
 static QString findFfmpeg(const QString &ytdlpBinaryPath) {
 #if defined(Q_OS_WIN)
-    const QString name = QStringLiteral("ffmpeg.exe");
+    static const QLatin1String kFfmpegExe("ffmpeg.exe");
+    static const QLatin1String kFfprobeExe("ffprobe.exe");
 #else
-    const QString name = QStringLiteral("ffmpeg");
+    static const QLatin1String kFfmpegExe("ffmpeg");
+    static const QLatin1String kFfprobeExe("ffprobe");
 #endif
-    // 1. Same directory as yt-dlp (bundled / AppImage install)
+
+    QString ffmpegOnlyFallback;  // ffmpeg found but ffprobe absent — kept as last resort
+
+    auto tryDir = [&](const QString &dir) -> QString {
+        bool hasFfprobe = false;
+        const QString ff = probeDir(dir, &hasFfprobe);
+        if (ff.isEmpty()) return {};
+        if (hasFfprobe)   return ff;
+        if (ffmpegOnlyFallback.isEmpty()) ffmpegOnlyFallback = ff;
+        return {};
+    };
+
+    // 1. Same directory as yt-dlp binary (bundled install)
     if (!ytdlpBinaryPath.isEmpty()) {
-        const QString candidate = QFileInfo(ytdlpBinaryPath).absolutePath() + QLatin1Char('/') + name;
-        if (QFile::exists(candidate))
-            return QDir::toNativeSeparators(candidate);
+        if (const QString r = tryDir(QFileInfo(ytdlpBinaryPath).absolutePath()); !r.isEmpty()) return r;
     }
+
+    // 2. Writable tool root (where Stellar self-downloads yt-dlp)
+    if (const QString r = tryDir(writableToolRoot()); !r.isEmpty()) return r;
+
+    // 3. Flatpak ffmpeg-full extension
+    if (const QString r = tryDir(QStringLiteral("/app/lib/ffmpeg")); !r.isEmpty()) return r;
+
+    // 4. System PATH — ffmpeg's directory might also contain ffprobe
     {
-        const QString writableCandidate = writableToolRoot() + QLatin1Char('/') + name;
-        if (QFile::exists(writableCandidate))
-            return QDir::toNativeSeparators(writableCandidate);
+        const QString pathFfmpeg = QStandardPaths::findExecutable(QString(kFfmpegExe));
+        if (!pathFfmpeg.isEmpty()) {
+            if (const QString r = tryDir(QFileInfo(pathFfmpeg).absolutePath()); !r.isEmpty()) return r;
+        }
     }
-    // 2. Flatpak ffmpeg-full extension (/app/lib/ffmpeg/ffmpeg)
-    {
-        const QString flatpakFf = QStringLiteral("/app/lib/ffmpeg/") + name;
-        if (QFile::exists(flatpakFf))
-            return flatpakFf;
+
+    // No co-located ffmpeg+ffprobe pair found anywhere.
+    // If ffprobe IS available on PATH independently, return empty so that
+    // yt-dlp resolves both tools from PATH rather than being locked to a
+    // directory that only has ffmpeg (which would shadow the PATH ffprobe).
+    const QString pathFfprobe = QStandardPaths::findExecutable(QString(kFfprobeExe));
+    if (!pathFfprobe.isEmpty()) {
+        // ffprobe is on PATH; check whether ffmpeg is also on PATH — if so,
+        // returning empty is safe (yt-dlp will pick up both from PATH).
+        const QString pathFfmpeg2 = QStandardPaths::findExecutable(QString(kFfmpegExe));
+        if (!pathFfmpeg2.isEmpty())
+            return {};  // let yt-dlp use PATH for the full suite
+        // ffprobe on PATH but ffmpeg is NOT; pass ffprobe's directory as the
+        // location so yt-dlp at least finds ffprobe (ffmpeg from PATH will be
+        // missing but that situation is unusual and the user will see an error).
+        return QDir::toNativeSeparators(pathFfprobe);
     }
-    // 3. System PATH
-    const QString onPath = QStandardPaths::findExecutable(name);
-    return onPath;
+
+    // Last resort: ffmpeg-only location — merging works, ffprobe-dependent
+    // post-processing (chapter modification, some thumbnail embedding) will fail.
+    return ffmpegOnlyFallback;
 }
 
 void YtdlpManager::onVersionProcessFinished(int exitCode, QProcess::ExitStatus exitStatus) {
@@ -184,6 +355,9 @@ void YtdlpManager::onVersionProcessFinished(int exitCode, QProcess::ExitStatus e
                 "yt-dlp %1 — ffmpeg NOT found. HD downloads require ffmpeg. "
                 "Drop ffmpeg.exe next to yt-dlp.exe or install ffmpeg to PATH.").arg(output));
         }
+
+        // Detect JS runtime for yt-dlp EJS YouTube n-challenge solver.
+        detectJsRuntime();
     } else {
         setAvailable(false);
         setVersion(QString());

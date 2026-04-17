@@ -86,6 +86,9 @@ class AppSettings : public QObject {
     // yt-dlp integration
     Q_PROPERTY(QString ytdlpCustomBinaryPath READ ytdlpCustomBinaryPath WRITE setYtdlpCustomBinaryPath NOTIFY ytdlpCustomBinaryPathChanged)
     Q_PROPERTY(bool    ytdlpAutoUpdate       READ ytdlpAutoUpdate       WRITE setYtdlpAutoUpdate       NOTIFY ytdlpAutoUpdateChanged)
+    // Path to a JS runtime for yt-dlp's EJS YouTube challenge solver (deno/node/bun/qjs).
+    // Empty = auto-detect from PATH and app directory.
+    Q_PROPERTY(QString ytdlpJsRuntimePath    READ ytdlpJsRuntimePath    WRITE setYtdlpJsRuntimePath    NOTIFY ytdlpJsRuntimePathChanged)
     Q_PROPERTY(bool    torrentEnableDht READ torrentEnableDht WRITE setTorrentEnableDht NOTIFY torrentSettingsChanged)
     Q_PROPERTY(bool    torrentEnableLsd READ torrentEnableLsd WRITE setTorrentEnableLsd NOTIFY torrentSettingsChanged)
     Q_PROPERTY(bool    torrentEnableUpnp READ torrentEnableUpnp WRITE setTorrentEnableUpnp NOTIFY torrentSettingsChanged)
@@ -168,6 +171,7 @@ public:
     int  mainWindowHeight()           const { return m_mainWindowHeight; }
     QString ytdlpCustomBinaryPath()   const { return m_ytdlpCustomBinaryPath; }
     bool    ytdlpAutoUpdate()         const { return m_ytdlpAutoUpdate; }
+    QString ytdlpJsRuntimePath()      const { return m_ytdlpJsRuntimePath; }
     bool    torrentEnableDht()        const { return m_torrentEnableDht; }
     bool    torrentEnableLsd()        const { return m_torrentEnableLsd; }
     bool    torrentEnableUpnp()       const { return m_torrentEnableUpnp; }
@@ -241,6 +245,7 @@ public:
     void setMainWindowHeight(int v);
     void setYtdlpCustomBinaryPath(const QString &v);
     void setYtdlpAutoUpdate(bool v);
+    void setYtdlpJsRuntimePath(const QString &v);
     void setTorrentEnableDht(bool v);
     void setTorrentEnableLsd(bool v);
     void setTorrentEnableUpnp(bool v);
@@ -318,6 +323,7 @@ signals:
     void mainWindowHeightChanged();
     void ytdlpCustomBinaryPathChanged();
     void ytdlpAutoUpdateChanged();
+    void ytdlpJsRuntimePathChanged();
     void torrentSettingsChanged();
     void globalUploadLimitKBpsChanged();
     void proxyTypeChanged();
@@ -378,8 +384,9 @@ private:
     bool        m_lastTryShowSeconds{true};
     int         m_mainWindowWidth{1100};
     int         m_mainWindowHeight{680};
-    QString     m_ytdlpCustomBinaryPath;  // empty = auto-detect
-    bool        m_ytdlpAutoUpdate{false}; // check for yt-dlp updates on startup
+    QString     m_ytdlpCustomBinaryPath;   // empty = auto-detect
+    bool        m_ytdlpAutoUpdate{false};  // check for yt-dlp updates on startup
+    QString     m_ytdlpJsRuntimePath;      // empty = auto-detect from PATH/app dir
     bool        m_torrentEnableDht{true};
     bool        m_torrentEnableLsd{true};
     bool        m_torrentEnableUpnp{true};

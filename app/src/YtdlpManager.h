@@ -41,6 +41,12 @@ class YtdlpManager : public QObject {
     // True if ffmpeg is found next to yt-dlp or on PATH (required for HD mp4 merging)
     Q_PROPERTY(bool    ffmpegAvailable  READ ffmpegAvailable  NOTIFY ffmpegAvailableChanged)
     Q_PROPERTY(QString ffmpegPath       READ ffmpegPath       NOTIFY ffmpegAvailableChanged)
+    // JavaScript runtime for yt-dlp's EJS YouTube challenge solver.
+    // yt-dlp bundles the EJS scripts in its .exe but needs an external runtime
+    // (Deno, Node.js, Bun, or QuickJS) to execute them.
+    Q_PROPERTY(bool    jsRuntimeAvailable READ jsRuntimeAvailable NOTIFY jsRuntimeChanged)
+    Q_PROPERTY(QString jsRuntimePath      READ jsRuntimePath      NOTIFY jsRuntimeChanged)
+    Q_PROPERTY(QString jsRuntimeName      READ jsRuntimeName      NOTIFY jsRuntimeChanged)
 
 public:
     explicit YtdlpManager(QNetworkAccessManager *nam, QObject *parent = nullptr);
@@ -53,6 +59,14 @@ public:
     QString statusText()       const { return m_statusText; }
     bool    ffmpegAvailable()  const { return m_ffmpegAvailable; }
     QString ffmpegPath()       const { return m_ffmpegPath; }
+    bool    jsRuntimeAvailable() const { return !m_jsRuntimePath.isEmpty(); }
+    // Resolved path to the runtime binary (may be user-overridden via setCustomJsRuntimePath).
+    QString jsRuntimePath()    const { return m_jsRuntimePath; }
+    // Short name for --js-runtimes: "deno", "node", "bun", or "quickjs".
+    QString jsRuntimeName()    const { return m_jsRuntimeName; }
+
+    // Override the JS runtime location. Pass empty to re-run auto-detection.
+    void    setCustomJsRuntimePath(const QString &path);
 
     // Returns the resolved path to the yt-dlp executable.
     // The file may not yet exist (e.g., before downloadBinary() is called).
@@ -87,6 +101,7 @@ signals:
     void downloadProgressChanged();
     void statusTextChanged();
     void ffmpegAvailableChanged();
+    void jsRuntimeChanged();
 
     // Emitted after checkAvailability() completes (regardless of outcome).
     void checkComplete();
@@ -107,6 +122,8 @@ private:
     void    setStatusText(const QString &text);
     void    setAvailable(bool v);
     void    setVersion(const QString &v);
+    // Scan PATH and app directory for a usable JS runtime; sets m_jsRuntimePath/Name.
+    void    detectJsRuntime();
 
     QNetworkAccessManager *m_nam{nullptr};
     QString                m_customPath;
@@ -115,6 +132,9 @@ private:
     bool                   m_downloading{false};
     bool                   m_ffmpegAvailable{false};
     QString                m_ffmpegPath;
+    QString                m_jsRuntimePath;  // resolved path to JS runtime binary
+    QString                m_jsRuntimeName;  // "deno", "node", "bun", or "quickjs"
+    QString                m_customJsRuntimePath; // user override, empty = auto
     int                    m_downloadProgress{0};
     QString                m_statusText;
 
