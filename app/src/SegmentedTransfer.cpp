@@ -992,6 +992,12 @@ void SegmentedTransfer::onProgressTick() {
 void SegmentedTransfer::updateSegmentDataOnItem() {
     QVariantList list;
     for (const auto &seg : m_segments) {
+        // Dynamic segments (index >= m_segmentCount) are implementation details —
+        // they steal work from existing slots and should not add new rows to the UI.
+        // The victim segment's row still reflects its own progress; the new segment's
+        // bytes contribute to the overall progress bar but don't need their own row.
+        if (seg.index >= m_segmentCount) continue;
+
         QVariantMap m;
         m[QStringLiteral("startByte")] = seg.startOffset;
         m[QStringLiteral("endByte")]   = seg.endOffset;
@@ -1001,19 +1007,37 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
         else if (seg.reply)
             m[QStringLiteral("info")] = QStringLiteral("Receiving data...");
         else
-            m[QStringLiteral("info")] = QStringLiteral("Receiving data...");
+            m[QStringLiteral("info")] = QStringLiteral("Waiting...");
         list.append(m);
     }
     m_item->setSegmentData(list);
 }
 
 void SegmentedTransfer::mergeAndFinish() {
+    // Check write access to the save directory before attempting assembly.
+    // Catches missing permissions on Windows (ACLs) and Linux (read-only mounts)
+    // before we spin up the worker thread and fail deep in I/O with a cryptic error.
+    {
+        const QString saveDir = m_item->savePath();
+        QFileInfo dirInfo(saveDir);
+        if (!dirInfo.isDir()) {
+            QDir().mkpath(saveDir);
+            dirInfo.refresh();
+        }
+        if (!dirInfo.isWritable()) {
+            m_item->setStatus(DownloadItem::Status::Error);
+            emit failed(QStringLiteral("No write permission for download directory: %1")
+                        .arg(saveDir));
+            return;
+        }
+    }
+
     m_item->setStatus(DownloadItem::Status::Assembling);
 
-    // Final progress tick before blocking I/O begins.
-    qint64 totalReceived = 0;
-    for (const auto &seg : m_segments) totalReceived += seg.received;
-    m_item->setDoneBytes(totalReceived);
+    // Reset doneBytes to 0 so the progress bar shows assembly progress from
+    // scratch (0 → totalBytes) rather than staying pinned at 100%.
+    qint64 totalForAssembly = m_item->totalBytes();
+    m_item->setDoneBytes(0);
     m_speedSamples.clear();
     m_item->setSpeed(0);
     m_item->setEtaSpeed(0);
@@ -1061,15 +1085,27 @@ void SegmentedTransfer::mergeAndFinish() {
         emit finished();
     });
 
-    watcher->setFuture(QtConcurrent::run([singleNoRange, parts, outPath]() -> QString {
+    auto *itemPtr = m_item;
+    watcher->setFuture(QtConcurrent::run([singleNoRange, parts, outPath, itemPtr, totalForAssembly]() -> QString {
+        static constexpr qint64 kChunkSize = 1024 * 1024; // 1 MB copy chunks
+        // Reports current assembled-bytes count to the main thread via a queued
+        // invocation — safe to call from the worker thread.
+        auto reportProgress = [&](qint64 written) {
+            QMetaObject::invokeMethod(itemPtr, [itemPtr, written]() {
+                itemPtr->setDoneBytes(written);
+            }, Qt::QueuedConnection);
+        };
+
         if (singleNoRange) {
-            // Fast path: rename in place.
+            // Fast path: rename in place — atomic, so we jump straight to 100%.
             const QString &partSrc = parts[0].path;
-            if (QFile::rename(partSrc, outPath))
+            if (QFile::rename(partSrc, outPath)) {
+                reportProgress(totalForAssembly);
                 return {};
+            }
 
             // Rename failed (cross-device or permission denied on destination).
-            // Try copy+delete.
+            // Fall back to copy+delete with progress reporting.
             QFile src(partSrc);
             if (!src.open(QIODevice::ReadOnly))
                 return QStringLiteral("Cannot open part file for reading: %1 (%2)")
@@ -1080,22 +1116,31 @@ void SegmentedTransfer::mergeAndFinish() {
                 return QStringLiteral("Cannot create output file: %1 (%2)")
                     .arg(outPath, dst.errorString());
 
-            if (!copyFileContents(src, dst)) {
-                dst.close();
-                QFile::remove(outPath);
-                return QStringLiteral("Write failed while assembling: %1").arg(dst.errorString());
+            qint64 written = 0;
+            while (!src.atEnd()) {
+                const QByteArray chunk = src.read(kChunkSize);
+                if (chunk.isEmpty()) break;
+                if (dst.write(chunk) != chunk.size()) {
+                    const QString err = dst.errorString();
+                    dst.close();
+                    QFile::remove(outPath);
+                    return QStringLiteral("Write failed while assembling: %1").arg(err);
+                }
+                written += chunk.size();
+                reportProgress(written);
             }
             dst.close();
             QFile::remove(partSrc);
             return {};
         }
 
-        // Multi-segment: concatenate in startOffset order.
+        // Multi-segment: concatenate in startOffset order with per-chunk progress.
         QFile outFile(outPath);
         if (!outFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
             return QStringLiteral("Cannot create output file: %1 (%2)")
                 .arg(outPath, outFile.errorString());
 
+        qint64 written = 0;
         for (const auto &part : parts) {
             QFile partFile(part.path);
             if (!partFile.open(QIODevice::ReadOnly)) {
@@ -1104,12 +1149,18 @@ void SegmentedTransfer::mergeAndFinish() {
                 return QStringLiteral("Cannot open part file for reading: %1 (%2)")
                     .arg(part.path, partFile.errorString());
             }
-            if (!copyFileContents(partFile, outFile)) {
-                const QString err = outFile.errorString();
-                partFile.close();
-                outFile.close();
-                QFile::remove(outPath);
-                return QStringLiteral("Write failed while assembling: %1").arg(err);
+            while (!partFile.atEnd()) {
+                const QByteArray chunk = partFile.read(kChunkSize);
+                if (chunk.isEmpty()) break;
+                if (outFile.write(chunk) != chunk.size()) {
+                    const QString err = outFile.errorString();
+                    partFile.close();
+                    outFile.close();
+                    QFile::remove(outPath);
+                    return QStringLiteral("Write failed while assembling: %1").arg(err);
+                }
+                written += chunk.size();
+                reportProgress(written);
             }
             partFile.close();
         }

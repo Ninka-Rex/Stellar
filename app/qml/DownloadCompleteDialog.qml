@@ -42,9 +42,9 @@ Window {
     }
 
     width: 480
-    height: 280
+    height: 240
     minimumWidth: 420
-    minimumHeight: 280
+    minimumHeight: 240
     maximumWidth: 700
     maximumHeight: 400
     color: "#1e1e1e"
@@ -70,9 +70,12 @@ Window {
 
             // Checkmark icon
             Image {
-                width: 46
-                height: 46
-                source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/checkmark_download_complete.ico"
+                width: 24
+                height: 24
+                sourceSize.width: 24
+                sourceSize.height: 24
+                source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/checkmark.png"
+                fillMode: Image.PreserveAspectFit
                 smooth: true
             }
 

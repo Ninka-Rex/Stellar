@@ -301,7 +301,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/remove.png
         app/qml/icons/gear.png
         app/qml/icons/download.png
-        app/qml/icons/checkmark_download_complete.ico
+        app/qml/icons/checkmark.png
         app/qml/icons/queues.png
         app/qml/icons/main_queue.png
         app/qml/icons/custom_queue.png

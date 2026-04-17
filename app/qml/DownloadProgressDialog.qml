@@ -381,43 +381,24 @@ Window {
 
                         readonly property bool assembling: item && item.status === "Assembling"
 
-                        // Normal fill (hidden during assembly)
+                        // Progress fill — amber during assembly, green otherwise.
+                        // During assembly, doneBytes is reset to 0 in C++ and updated
+                        // as bytes are concatenated, so item.progress reflects real progress.
                         Rectangle {
-                            visible: !progressBarRect.assembling
                             width: item ? Math.max(0, item.progress * progressBarRect.width) : 0
                             height: progressBarRect.height
-                            color: "#33bb44"
+                            color: progressBarRect.assembling ? "#cc9933" : "#33bb44"
                             radius: 3
-                            Behavior on width { NumberAnimation { duration: 300; easing.type: Easing.OutCubic } }
-                        }
-
-                        // Indeterminate stripe shown while assembling.
-                        // Uses id references instead of parent chains — NumberAnimation
-                        // evaluates from/to in a scope where 'parent' is the animation
-                        // object itself, not the enclosing Rectangle.
-                        Rectangle {
-                            id: assemblyStripe
-                            visible: progressBarRect.assembling
-                            width: progressBarRect.width * 0.35
-                            height: progressBarRect.height
-                            radius: 3
-                            color: "#cc9933"
-
-                            NumberAnimation on x {
-                                running: assemblyStripe.visible
-                                loops: Animation.Infinite
-                                from: -assemblyStripe.width
-                                to: progressBarRect.width
-                                duration: 1200
-                                easing.type: Easing.InOutSine
-                            }
+                            Behavior on width { NumberAnimation { duration: 200; easing.type: Easing.OutCubic } }
                         }
 
                         Text {
                             anchors.centerIn: parent
                             text: {
-                                if (item && item.status === "Assembling") return "Assembling..."
-                                return item ? Math.round(item.progress * 100) + "%" : "0%"
+                                if (!item) return "0%"
+                                var pct = Math.round(item.progress * 100)
+                                if (item.status === "Assembling") return "Assembling... " + pct + "%"
+                                return pct + "%"
                             }
                             color: "white"
                             font.pixelSize: 11
