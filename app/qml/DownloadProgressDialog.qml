@@ -326,9 +326,13 @@ Window {
                                     text: {
                                         if (!item) return "--"
                                         var speed = root.fmtSpeed(item.speed)
-                                        if (App.settings.globalSpeedLimitKBps > 0) {
-                                            speed += " [" + App.settings.globalSpeedLimitKBps + " KBps limit]"
-                                        }
+                                        var limit = 0
+                                        if (item.speedLimitKBps > 0)
+                                            limit = item.speedLimitKBps
+                                        else if (App.settings.globalSpeedLimitKBps > 0)
+                                            limit = App.settings.globalSpeedLimitKBps
+                                        if (limit > 0)
+                                            speed += " (Limited " + root.fmtSpeed(limit * 1024) + ")"
                                         return speed
                                     }
                                     color: "#c8c8c8"
