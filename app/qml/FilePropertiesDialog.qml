@@ -493,7 +493,7 @@ Window {
             return name.indexOf("biglybt") !== -1
                 ? "icons/torrent-client-logos/biglybt.png"
                 : "icons/torrent-client-logos/vuze.png"
-        if (name.indexOf("utorrent") !== -1 || name.indexOf("Âµtorrent") !== -1 || name.indexOf("Î¼torrent") !== -1 || name.indexOf("microtorrent") !== -1)
+        if (name.indexOf("utorrent") !== -1 || name.indexOf("\u00b5torrent") !== -1 || name.indexOf("\u03bctorrent") !== -1 || name.indexOf("microtorrent") !== -1)
             return "icons/torrent-client-logos/utorrent.png"
         if (name.indexOf("bitcomet") !== -1)
             return "icons/torrent-client-logos/bitcomet.png"
@@ -570,7 +570,7 @@ Window {
         if (lower.indexOf("deluge") !== -1) return "Deluge"
         if (lower.indexOf("qbittorrent") !== -1) return "qBittorrent"
         if (lower.indexOf("transmission") !== -1) return "Transmission"
-        if (lower.indexOf("utorrent") !== -1 || lower.indexOf("microtorrent") !== -1) return "uTorrent"
+        if (lower.indexOf("utorrent") !== -1 || lower.indexOf("\u00b5torrent") !== -1 || lower.indexOf("\u03bctorrent") !== -1 || lower.indexOf("microtorrent") !== -1) return "uTorrent"
         if (lower.indexOf("libtorrent") !== -1 || lower.indexOf("rasterbar") !== -1) return "libtorrent"
         name = name.replace(/\s*[/ ]\d+(?:\.\d+)*\s*$/g, "")
         name = name.replace(/\s+v\d+(?:\.\d+)*\s*$/gi, "")
@@ -2983,8 +2983,11 @@ Window {
                             clip: true; model: root.activePeerListModel; spacing: 0
                             contentWidth: root.peerColCountry + root.peerColPeer + root.peerColPort + root.peerColClient +
                                           root.peerColProgress + root.peerColDown + root.peerColUp + root.peerColDownloaded + root.peerColUploaded + root.peerColType
+                            // Enable horizontal drag-to-pan in addition to the scrollbar.
+                            // Without this the ListView only intercepts vertical flick gestures.
+                            flickableDirection: Flickable.HorizontalAndVerticalFlick
                             ScrollBar.vertical:   ScrollBar { policy: ScrollBar.AsNeeded }
-                            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
+                            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOn }
                             focus: true
                             reuseItems: true
                             Component.onCompleted: root._peerListViewRef = peerListView
