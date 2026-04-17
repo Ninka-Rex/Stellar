@@ -88,7 +88,15 @@ Window {
     property int    editTorrentConnectionsLimit: 200
     property string editTorrentCustomUserAgent: ""
     property string editTorrentBindInterface:  ""
+    property string editTorrentBlockedPeerUserAgents: ""
+    property var    editTorrentBlockedPeerCountries: []
+    property var    editTorrentBannedPeers: []
+    property bool   editTorrentAutoBanAbusivePeers: false
+    property bool   editTorrentAutoBanMediaPlayerPeers: false
     property var    torrentAdapterOptions:     []
+    property var    torrentCountryOptions:     []
+    property string selectedTorrentCountryCode: ""
+    property string manualBanPeerText: ""
     // Proxy settings — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
     property int    editProxyType:     0
     property string editProxyHost:     ""
@@ -189,6 +197,41 @@ Window {
         }])
     }
 
+    function refreshTorrentCountryOptions() {
+        var options = App.torrentCountryOptions()
+        torrentCountryOptions = options && options.length ? options : []
+        if (selectedTorrentCountryCode.length === 0 && torrentCountryOptions.length > 0)
+            selectedTorrentCountryCode = torrentCountryOptions[0].code || ""
+    }
+
+    function torrentCountryName(code) {
+        var cc = String(code || "").toUpperCase()
+        for (var i = 0; i < torrentCountryOptions.length; ++i) {
+            var option = torrentCountryOptions[i]
+            if ((option.code || "").toUpperCase() === cc)
+                return option.name || cc
+        }
+        return cc
+    }
+
+    function addBlockedTorrentCountry(code) {
+        var cc = String(code || "").trim().toUpperCase()
+        if (cc.length !== 2)
+            return
+        var next = editTorrentBlockedPeerCountries.slice()
+        if (next.indexOf(cc) !== -1)
+            return
+        next.push(cc)
+        next.sort()
+        editTorrentBlockedPeerCountries = next
+    }
+
+    function removeBlockedTorrentCountry(code) {
+        var cc = String(code || "").trim().toUpperCase()
+        var next = editTorrentBlockedPeerCountries.filter(function(v) { return String(v).toUpperCase() !== cc })
+        editTorrentBlockedPeerCountries = next
+    }
+
     function refreshIpToCityDbInfo() {
         App.refreshIpToCityDbInfo()
         ipToCityDbInfo = App.ipToCityDbInfo
@@ -220,6 +263,7 @@ Window {
 
     Component.onCompleted: {
         refreshTorrentNetworkAdapters()
+        refreshTorrentCountryOptions()
         refreshIpToCityDbInfo()
         resetEdits()
         catList.currentIndex = root.initialPage
@@ -231,6 +275,7 @@ Window {
     onVisibleChanged: {
         if (visible) {
             refreshTorrentNetworkAdapters()
+            refreshTorrentCountryOptions()
             refreshIpToCityDbInfo()
             resetEdits()
             catList.currentIndex = root.initialPage
@@ -301,6 +346,11 @@ Window {
         editTorrentConnectionsLimit !== App.settings.torrentConnectionsLimit ||
         editTorrentCustomUserAgent !== App.settings.torrentCustomUserAgent ||
         editTorrentBindInterface  !== App.settings.torrentBindInterface  ||
+        editTorrentBlockedPeerUserAgents !== App.settings.torrentBlockedPeerUserAgents ||
+        JSON.stringify(editTorrentBlockedPeerCountries) !== JSON.stringify(App.settings.torrentBlockedPeerCountries) ||
+        JSON.stringify(editTorrentBannedPeers) !== JSON.stringify(App.settings.torrentBannedPeers) ||
+        editTorrentAutoBanAbusivePeers !== App.settings.torrentAutoBanAbusivePeers ||
+        editTorrentAutoBanMediaPlayerPeers !== App.settings.torrentAutoBanMediaPlayerPeers ||
         editProxyType             !== App.settings.proxyType             ||
         editProxyHost             !== App.settings.proxyHost             ||
         editProxyPort             !== App.settings.proxyPort             ||
@@ -316,6 +366,34 @@ Window {
         editShowExceptionsDialog !== App.settings.showExceptionsDialog
 
     readonly property bool hasChanges: settingsChanged || catDirty || browserChanged
+    readonly property var visibleTorrentBannedPeers: (function() {
+        var activeByEndpoint = {}
+        var active = App.torrentBannedPeers || []
+        for (var i = 0; i < active.length; ++i) {
+            var peer = active[i]
+            if (!peer || !peer.permanent)
+                continue
+            var endpoint = String(peer.endpoint || "")
+            if (endpoint.length > 0)
+                activeByEndpoint[endpoint] = peer
+        }
+
+        var out = []
+        for (var j = 0; j < root.editTorrentBannedPeers.length; ++j) {
+            var manualEndpoint = String(root.editTorrentBannedPeers[j] || "")
+            if (manualEndpoint.length === 0)
+                continue
+            var existing = activeByEndpoint[manualEndpoint]
+            out.push(existing ? existing : {
+                endpoint: manualEndpoint,
+                reason: "Manual ban",
+                countryCode: "",
+                client: "",
+                permanent: true
+            })
+        }
+        return out
+    })()
 
     FolderDialog {
         id: saveFolderDlg
@@ -443,6 +521,11 @@ Window {
         App.settings.torrentConnectionsLimit = editTorrentConnectionsLimit
         App.settings.torrentCustomUserAgent = editTorrentCustomUserAgent
         App.settings.torrentBindInterface   = editTorrentBindInterface
+        App.settings.torrentBlockedPeerUserAgents = editTorrentBlockedPeerUserAgents
+        App.settings.torrentBlockedPeerCountries = editTorrentBlockedPeerCountries
+        App.settings.torrentBannedPeers = editTorrentBannedPeers
+        App.settings.torrentAutoBanAbusivePeers = editTorrentAutoBanAbusivePeers
+        App.settings.torrentAutoBanMediaPlayerPeers = editTorrentAutoBanMediaPlayerPeers
         App.settings.proxyType              = editProxyType
         App.settings.proxyHost              = editProxyHost
         App.settings.proxyPort              = editProxyPort
@@ -501,6 +584,11 @@ Window {
         editTorrentConnectionsLimit = App.settings.torrentConnectionsLimit
         editTorrentCustomUserAgent = App.settings.torrentCustomUserAgent
         editTorrentBindInterface  = App.settings.torrentBindInterface
+        editTorrentBlockedPeerUserAgents = App.settings.torrentBlockedPeerUserAgents
+        editTorrentBlockedPeerCountries = App.settings.torrentBlockedPeerCountries.slice()
+        editTorrentBannedPeers = App.settings.torrentBannedPeers.slice()
+        editTorrentAutoBanAbusivePeers = App.settings.torrentAutoBanAbusivePeers
+        editTorrentAutoBanMediaPlayerPeers = App.settings.torrentAutoBanMediaPlayerPeers
         ensureTorrentAdapterOption(editTorrentBindInterface)
         editProxyType             = App.settings.proxyType
         editProxyHost             = App.settings.proxyHost
@@ -2614,6 +2702,331 @@ Window {
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        Text { text: "Torrent Security"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK."
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Text { text: "Blocked user agents"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 96
+                            color: "#1b1b1b"
+                            border.color: blockedPeerAgentsInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                            radius: 3
+                            clip: true
+
+                            ScrollView {
+                                anchors.fill: parent
+                                TextArea {
+                                    id: blockedPeerAgentsInput
+                                    text: root.editTorrentBlockedPeerUserAgents
+                                    color: "#d0d0d0"
+                                    placeholderText: "One substring per line, for example:\naria2"
+                                    wrapMode: TextEdit.Wrap
+                                    selectByMouse: true
+                                    background: null
+                                    onTextChanged: root.editTorrentBlockedPeerUserAgents = text
+                                }
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied."
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Text { text: "Manually ban peer"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            TextField {
+                                Layout.fillWidth: true
+                                text: root.manualBanPeerText
+                                placeholderText: "IP address, for example 203.0.113.42"
+                                color: "#d0d0d0"
+                                background: Rectangle {
+                                    color: "#1b1b1b"
+                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    radius: 3
+                                }
+                                onTextChanged: root.manualBanPeerText = text
+                            }
+
+                            DlgButton {
+                                text: "Ban"
+                                enabled: root.manualBanPeerText.trim().length > 0
+                                onClicked: {
+                                    if (App.banTorrentPeer("", root.manualBanPeerText.trim(), 0, "", "")) {
+                                        root.manualBanPeerText = ""
+                                    }
+                                }
+                            }
+                        }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Manual bans are permanent until you remove them from the banned peers list below."
+                            color: "#666666"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Text { text: "Block peers by country"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+
+                            ComboBox {
+                                id: blockedCountryCombo
+                                Layout.fillWidth: true
+                                model: root.torrentCountryOptions
+                                textRole: "name"
+                                valueRole: "code"
+                                currentIndex: {
+                                    for (var i = 0; i < root.torrentCountryOptions.length; ++i) {
+                                        if ((root.torrentCountryOptions[i].code || "") === root.selectedTorrentCountryCode)
+                                            return i
+                                    }
+                                    return root.torrentCountryOptions.length > 0 ? 0 : -1
+                                }
+                                onActivated: {
+                                    var option = root.torrentCountryOptions[currentIndex]
+                                    root.selectedTorrentCountryCode = option ? (option.code || "") : ""
+                                }
+                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    text: {
+                                        var option = blockedCountryCombo.currentIndex >= 0 && blockedCountryCombo.currentIndex < root.torrentCountryOptions.length
+                                            ? root.torrentCountryOptions[blockedCountryCombo.currentIndex]
+                                            : null
+                                        return option ? ((option.code || "") + " - " + (option.name || "")) : ""
+                                    }
+                                    color: "#d0d0d0"
+                                    verticalAlignment: Text.AlignVCenter
+                                    elide: Text.ElideRight
+                                }
+                                popup: Popup {
+                                    parent: Overlay.overlay
+                                    y: blockedCountryCombo.mapToItem(Overlay.overlay, 0, blockedCountryCombo.height).y
+                                    x: blockedCountryCombo.mapToItem(Overlay.overlay, 0, 0).x
+                                    width: blockedCountryCombo.width
+                                    padding: 0
+                                    clip: true
+                                    z: 10000
+                                    implicitHeight: Math.min(contentItem.implicitHeight, 280)
+                                    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+
+                                    background: Rectangle {
+                                        color: "#252525"
+                                        border.color: "#3a3a3a"
+                                        radius: 3
+                                    }
+
+                                    contentItem: ListView {
+                                        clip: true
+                                        implicitHeight: contentHeight
+                                        model: blockedCountryCombo.popup.visible ? blockedCountryCombo.delegateModel : null
+                                        currentIndex: blockedCountryCombo.highlightedIndex
+                                        ScrollBar.vertical: ScrollBar { }
+                                    }
+                                }
+                                delegate: ItemDelegate {
+                                    required property int index
+                                    required property var modelData
+                                    width: blockedCountryCombo.width
+                                    onClicked: blockedCountryCombo.currentIndex = index
+                                    contentItem: Text {
+                                        text: (modelData.code || "") + " - " + (modelData.name || "")
+                                        color: "#d0d0d0"
+                                        font.pixelSize: 12
+                                        elide: Text.ElideRight
+                                    }
+                                }
+                            }
+
+                            DlgButton {
+                                text: "Add"
+                                enabled: root.selectedTorrentCountryCode.length === 2
+                                onClicked: root.addBlockedTorrentCountry(root.selectedTorrentCountryCode)
+                            }
+                        }
+
+                        ColumnLayout {
+                            Layout.fillWidth: true
+                            spacing: 4
+
+                            Repeater {
+                                model: root.editTorrentBlockedPeerCountries
+                                delegate: Rectangle {
+                                    required property string modelData
+                                    Layout.fillWidth: true
+                                    implicitHeight: 34
+                                    radius: 3
+                                    color: "#252525"
+                                    border.color: "#3a3a3a"
+                                    clip: true
+
+                                    RowLayout {
+                                        anchors.fill: parent
+                                        anchors.leftMargin: 10
+                                        anchors.rightMargin: 8
+                                        anchors.topMargin: 2
+                                        anchors.bottomMargin: 4
+                                        spacing: 8
+
+                                        Image {
+                                            source: "qrc:/app/qml/flags/" + String(modelData || "").toLowerCase() + ".svg"
+                                            width: 18
+                                            height: 13
+                                            sourceSize.width: 18
+                                            sourceSize.height: 13
+                                            fillMode: Image.PreserveAspectFit
+                                            smooth: true
+                                        }
+                                        Text {
+                                            Layout.fillWidth: true
+                                            text: modelData + " - " + root.torrentCountryName(modelData)
+                                            color: "#d0d0d0"
+                                            font.pixelSize: 12
+                                            elide: Text.ElideRight
+                                        }
+                                        DlgButton {
+                                            text: "Remove"
+                                            Layout.alignment: Qt.AlignVCenter
+                                            Layout.preferredHeight: 28
+                                            onClicked: root.removeBlockedTorrentCountry(modelData)
+                                        }
+                                    }
+                                }
+                            }
+
+                            Text {
+                                visible: root.editTorrentBlockedPeerCountries.length === 0
+                                text: "No blocked countries."
+                                color: "#666666"
+                                font.pixelSize: 11
+                            }
+                        }
+
+                        CheckBox {
+                            text: "Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader"
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editTorrentAutoBanAbusivePeers
+                            onCheckedChanged: root.editTorrentAutoBanAbusivePeers = checked
+                            contentItem: Text {
+                                text: parent.text
+                                color: "#d0d0d0"
+                                font.pixelSize: 13
+                                leftPadding: parent.indicator.width + 4
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        CheckBox {
+                            text: "Auto Ban BitTorrent Media Player Peer"
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editTorrentAutoBanMediaPlayerPeers
+                            onCheckedChanged: root.editTorrentAutoBanMediaPlayerPeers = checked
+                            contentItem: Text {
+                                text: parent.text
+                                color: "#d0d0d0"
+                                font.pixelSize: 13
+                                leftPadding: parent.indicator.width + 4
+                                wrapMode: Text.WordWrap
+                            }
+                        }
+
+                        Text { text: "Manually banned peers"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: 160
+                            color: "#171717"
+                            border.color: "#303030"
+                            radius: 3
+                            clip: true
+
+                            ListView {
+                                id: bannedPeersList
+                                anchors.fill: parent
+                                anchors.margins: 6
+                                model: root.visibleTorrentBannedPeers
+                                spacing: 4
+
+                                delegate: Rectangle {
+                                    required property var modelData
+                                    width: ListView.view.width
+                                    implicitHeight: 42
+                                    radius: 3
+                                    color: "#222222"
+                                    border.color: "#343434"
+
+                                    RowLayout {
+                                        anchors.fill: parent
+                                        anchors.leftMargin: 10
+                                        anchors.rightMargin: 8
+                                        spacing: 8
+
+                                        ColumnLayout {
+                                            Layout.fillWidth: true
+                                            spacing: 2
+
+                                            Text {
+                                                text: modelData.endpoint || ""
+                                                color: "#e0e0e0"
+                                                font.pixelSize: 12
+                                                font.bold: true
+                                                elide: Text.ElideRight
+                                                Layout.fillWidth: true
+                                            }
+                                            Text {
+                                                text: (modelData.reason || "")
+                                                      + ((modelData.countryCode || "").length > 0 ? (" • " + modelData.countryCode) : "")
+                                                      + ((modelData.client || "").length > 0 ? (" • " + modelData.client) : "")
+                                                color: "#8ea1b5"
+                                                font.pixelSize: 11
+                                                elide: Text.ElideRight
+                                                Layout.fillWidth: true
+                                            }
+                                        }
+
+                                        DlgButton {
+                                            text: modelData.permanent ? "Unban" : "Active"
+                                            enabled: !!modelData.permanent
+                                            onClicked: {
+                                                var endpoint = String(modelData.endpoint || "")
+                                                root.editTorrentBannedPeers = root.editTorrentBannedPeers.filter(function(v) {
+                                                    return String(v) !== endpoint
+                                                })
+                                            }
+                                        }
+                                    }
+                                }
+
+                                Text {
+                                    anchors.centerIn: parent
+                                    visible: bannedPeersList.count === 0
+                                    text: "No banned peers"
+                                    color: "#666666"
+                                    font.pixelSize: 12
+                                }
+                            }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }

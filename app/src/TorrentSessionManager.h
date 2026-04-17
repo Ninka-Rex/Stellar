@@ -75,6 +75,10 @@ public:
     void setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd = false);
     void forceRecheck(const QString &downloadId);
     void forceReannounce(const QString &downloadId, const QStringList &trackerUrls = {});
+    bool banPeer(const QString &downloadId, const QString &endpoint, int port,
+                 const QString &client = {}, const QString &countryCode = {});
+    bool unbanPeer(const QString &endpoint);
+    QVariantList bannedPeers() const;
     // Returns a flat list of ints, one per piece:
     //   -2 = have (fully downloaded)
     //   -1 = partial (block(s) in flight / write-queue)
@@ -97,9 +101,18 @@ signals:
     void torrentFinished(const QString &downloadId);
     void torrentErrored(const QString &downloadId, const QString &reason);
     void torrentShareLimitReached(const QString &downloadId, int action);
+    void bannedPeersChanged();
 
 private:
 #if defined(STELLAR_HAS_LIBTORRENT)
+    struct BannedPeer {
+        QString endpoint;
+        QString client;
+        QString countryCode;
+        QString reason;
+        bool permanent{false};
+    };
+
     struct TrackerAlertSnapshot {
         QString status;
         QString message;
@@ -119,6 +132,13 @@ private:
     void updateModels(const QString &downloadId, const libtorrent::torrent_handle &handle, bool forceTrackerUpdate = false);
     bool addTorrentInternal(DownloadItem *item, bool startPaused, const QString &torrentFilePath);
     void checkShareLimits(const QString &id, DownloadItem *item, const AppSettings *settings);
+    void refreshPeerBanRules(const AppSettings *settings);
+    void rebuildIpFilter();
+    void setTemporaryPeerBan(const QString &endpoint, const QString &client,
+                             const QString &countryCode, const QString &reason);
+    void clearTemporaryPeerBans();
+    bool matchAutoBanRule(const libtorrent::peer_info &peer, const QString &client,
+                          const QString &countryCode, QString *reason) const;
     void ensureGeoDb();
     void lookupPeerLocation(const QString &endpoint, QString *countryCode,
                             QString *regionCode, QString *regionName, QString *cityName,
@@ -140,6 +160,7 @@ private:
     QHash<QString, QHash<QString, QDateTime>> m_trackerReannounceUntil;
     QHash<QString, QHash<QString, TrackerAlertSnapshot>> m_trackerAlertSnapshots;
     QHash<QString, QString> m_trackerIpCache;
+    QHash<QString, BannedPeer> m_bannedPeers;
     QString m_externalAddress;
     QString m_localCountryCode;
     QString m_localRegionName;
@@ -147,6 +168,12 @@ private:
     double m_localLatitude{0.0};
     double m_localLongitude{0.0};
     bool m_hasLocalCoordinates{false};
+    QSet<QString> m_manualBannedPeers;
+    QSet<QString> m_temporaryBannedPeers;
+    QStringList m_blockedPeerUserAgentTerms;
+    QSet<QString> m_blockedPeerCountries;
+    bool m_autoBanAbusivePeers{false};
+    bool m_autoBanMediaPlayerPeers{false};
     const AppSettings *m_settings{nullptr};
     int m_modelTick{0};
 #endif
@@ -161,6 +188,9 @@ inline bool TorrentSessionManager::renameTorrentFile(const QString &, int, const
 inline bool TorrentSessionManager::setFileWantedByFileIndex(const QString &, int, bool) { return false; }
 inline bool TorrentSessionManager::setFileWantedByPath(const QString &, const QString &, bool) { return false; }
 inline void TorrentSessionManager::setTorrentFlags(const QString &, bool, bool, bool) {}
+inline bool TorrentSessionManager::banPeer(const QString &, const QString &, int, const QString &, const QString &) { return false; }
+inline bool TorrentSessionManager::unbanPeer(const QString &) { return false; }
+inline QVariantList TorrentSessionManager::bannedPeers() const { return {}; }
 inline void TorrentSessionManager::setDetectedExternalAddress(const QString &) {}
 inline void TorrentSessionManager::setDetectedExternalAddress(const QString &, double, double, bool) {}
 inline QVariantMap TorrentSessionManager::geoDatabaseInfo() { return {}; }

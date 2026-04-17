@@ -104,6 +104,11 @@ class AppSettings : public QObject {
     Q_PROPERTY(int     torrentDefaultShareLimitAction READ torrentDefaultShareLimitAction WRITE setTorrentDefaultShareLimitAction NOTIFY torrentSettingsChanged)
     Q_PROPERTY(QString torrentCustomUserAgent READ torrentCustomUserAgent WRITE setTorrentCustomUserAgent NOTIFY torrentSettingsChanged)
     Q_PROPERTY(QString torrentBindInterface READ torrentBindInterface WRITE setTorrentBindInterface NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(QStringList torrentBannedPeers READ torrentBannedPeers WRITE setTorrentBannedPeers NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(QString torrentBlockedPeerUserAgents READ torrentBlockedPeerUserAgents WRITE setTorrentBlockedPeerUserAgents NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(QStringList torrentBlockedPeerCountries READ torrentBlockedPeerCountries WRITE setTorrentBlockedPeerCountries NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool torrentAutoBanAbusivePeers READ torrentAutoBanAbusivePeers WRITE setTorrentAutoBanAbusivePeers NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool torrentAutoBanMediaPlayerPeers READ torrentAutoBanMediaPlayerPeers WRITE setTorrentAutoBanMediaPlayerPeers NOTIFY torrentSettingsChanged)
     // Proxy — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
     // Per-host connection limit — caps concurrent segments to a single server (some ban >4)
     Q_PROPERTY(int     perHostConnectionLimit READ perHostConnectionLimit WRITE setPerHostConnectionLimit NOTIFY perHostConnectionLimitChanged)
@@ -187,6 +192,11 @@ public:
     int     torrentDefaultShareLimitAction() const { return m_torrentDefaultShareLimitAction; }
     QString torrentCustomUserAgent()  const { return m_torrentCustomUserAgent; }
     QString torrentBindInterface()    const { return m_torrentBindInterface; }
+    QStringList torrentBannedPeers() const { return m_torrentBannedPeers; }
+    QString torrentBlockedPeerUserAgents() const { return m_torrentBlockedPeerUserAgents; }
+    QStringList torrentBlockedPeerCountries() const { return m_torrentBlockedPeerCountries; }
+    bool torrentAutoBanAbusivePeers() const { return m_torrentAutoBanAbusivePeers; }
+    bool torrentAutoBanMediaPlayerPeers() const { return m_torrentAutoBanMediaPlayerPeers; }
     int     proxyType()               const { return m_proxyType; }
     QString proxyHost()               const { return m_proxyHost; }
     int     proxyPort()               const { return m_proxyPort; }
@@ -261,6 +271,11 @@ public:
     void setTorrentDefaultShareLimitAction(int v);
     void setTorrentCustomUserAgent(const QString &v);
     void setTorrentBindInterface(const QString &v);
+    void setTorrentBannedPeers(const QStringList &v);
+    void setTorrentBlockedPeerUserAgents(const QString &v);
+    void setTorrentBlockedPeerCountries(const QStringList &v);
+    void setTorrentAutoBanAbusivePeers(bool v);
+    void setTorrentAutoBanMediaPlayerPeers(bool v);
     void setProxyType(int v);
     void setProxyHost(const QString &v);
     void setProxyPort(int v);
@@ -402,6 +417,11 @@ private:
     int         m_torrentDefaultShareLimitAction{1};
     QString     m_torrentCustomUserAgent;
     QString     m_torrentBindInterface;
+    QStringList m_torrentBannedPeers;
+    QString     m_torrentBlockedPeerUserAgents;
+    QStringList m_torrentBlockedPeerCountries;
+    bool        m_torrentAutoBanAbusivePeers{false};
+    bool        m_torrentAutoBanMediaPlayerPeers{false};
     // Proxy — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
     int         m_proxyType{0};
     QString     m_proxyHost;

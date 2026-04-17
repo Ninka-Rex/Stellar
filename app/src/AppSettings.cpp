@@ -226,6 +226,11 @@ void AppSettings::load() {
     m_torrentDefaultShareLimitAction = m_settings.value(QStringLiteral("torrentDefaultShareLimitAction"), 1).toInt();
     m_torrentCustomUserAgent  = m_settings.value(QStringLiteral("torrentCustomUserAgent"), QString()).toString();
     m_torrentBindInterface    = m_settings.value(QStringLiteral("torrentBindInterface"), QString()).toString();
+    m_torrentBannedPeers      = m_settings.value(QStringLiteral("torrentBannedPeers"), QStringList()).toStringList();
+    m_torrentBlockedPeerUserAgents = m_settings.value(QStringLiteral("torrentBlockedPeerUserAgents"), QString()).toString();
+    m_torrentBlockedPeerCountries = m_settings.value(QStringLiteral("torrentBlockedPeerCountries"), QStringList()).toStringList();
+    m_torrentAutoBanAbusivePeers = m_settings.value(QStringLiteral("torrentAutoBanAbusivePeers"), false).toBool();
+    m_torrentAutoBanMediaPlayerPeers = m_settings.value(QStringLiteral("torrentAutoBanMediaPlayerPeers"), false).toBool();
     m_proxyType               = m_settings.value(QStringLiteral("proxyType"), 0).toInt();
     m_proxyHost               = m_settings.value(QStringLiteral("proxyHost"), QString()).toString();
     m_proxyPort               = m_settings.value(QStringLiteral("proxyPort"), 8080).toInt();
@@ -387,6 +392,11 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("torrentDefaultShareLimitAction"), m_torrentDefaultShareLimitAction);
     m_settings.setValue(QStringLiteral("torrentCustomUserAgent"),      m_torrentCustomUserAgent);
     m_settings.setValue(QStringLiteral("torrentBindInterface"),        m_torrentBindInterface);
+    m_settings.setValue(QStringLiteral("torrentBannedPeers"),          m_torrentBannedPeers);
+    m_settings.setValue(QStringLiteral("torrentBlockedPeerUserAgents"), m_torrentBlockedPeerUserAgents);
+    m_settings.setValue(QStringLiteral("torrentBlockedPeerCountries"), m_torrentBlockedPeerCountries);
+    m_settings.setValue(QStringLiteral("torrentAutoBanAbusivePeers"), m_torrentAutoBanAbusivePeers);
+    m_settings.setValue(QStringLiteral("torrentAutoBanMediaPlayerPeers"), m_torrentAutoBanMediaPlayerPeers);
     m_settings.setValue(QStringLiteral("proxyType"),                   m_proxyType);
     m_settings.setValue(QStringLiteral("proxyHost"),                   m_proxyHost);
     m_settings.setValue(QStringLiteral("proxyPort"),                   m_proxyPort);
@@ -571,6 +581,11 @@ void AppSettings::setTorrentDefaultInactiveSeedingTimeMins(int v) { if (m_torren
 void AppSettings::setTorrentDefaultShareLimitAction(int v) { if (m_torrentDefaultShareLimitAction != v) { m_torrentDefaultShareLimitAction = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentCustomUserAgent(const QString &v) { if (m_torrentCustomUserAgent != v) { m_torrentCustomUserAgent = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentBindInterface(const QString &v) { if (m_torrentBindInterface != v) { m_torrentBindInterface = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentBannedPeers(const QStringList &v) { if (m_torrentBannedPeers != v) { m_torrentBannedPeers = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentBlockedPeerUserAgents(const QString &v) { if (m_torrentBlockedPeerUserAgents != v) { m_torrentBlockedPeerUserAgents = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentBlockedPeerCountries(const QStringList &v) { if (m_torrentBlockedPeerCountries != v) { m_torrentBlockedPeerCountries = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentAutoBanAbusivePeers(bool v) { if (m_torrentAutoBanAbusivePeers != v) { m_torrentAutoBanAbusivePeers = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentAutoBanMediaPlayerPeers(bool v) { if (m_torrentAutoBanMediaPlayerPeers != v) { m_torrentAutoBanMediaPlayerPeers = v; emit torrentSettingsChanged(); save(); } }
 
 void AppSettings::setPerHostConnectionLimit(int v) { if (m_perHostConnectionLimit != v) { m_perHostConnectionLimit = v; emit perHostConnectionLimitChanged(); save(); } }
 

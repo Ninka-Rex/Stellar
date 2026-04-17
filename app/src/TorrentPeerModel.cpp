@@ -375,6 +375,24 @@ int TorrentPeerModel::indexOfPeerKey(const QString &key) const {
     return -1;
 }
 
+bool TorrentPeerModel::removePeerByKey(const QString &key) {
+    const int row = indexOfPeerKey(key);
+    if (row < 0)
+        return false;
+    beginRemoveRows(QModelIndex(), row, row);
+    m_missingPeerStreaks.remove(key);
+    m_entries.removeAt(row);
+    endRemoveRows();
+    return true;
+}
+
+bool TorrentPeerModel::removePeer(const QString &endpoint, int port) {
+    Entry entry;
+    entry.endpoint = endpoint;
+    entry.port = port;
+    return removePeerByKey(peerKey(entry));
+}
+
 QVariantMap TorrentPeerModel::breakdownByClient() const {
     QVariantMap out;
     for (const Entry &entry : m_entries) {

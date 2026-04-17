@@ -92,6 +92,7 @@ class AppController : public QObject {
     Q_PROPERTY(bool ytdlpBatchCanResume READ ytdlpBatchCanResume NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QString ytdlpBatchLabel READ ytdlpBatchLabel NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QVariantList ytdlpBatchItems READ ytdlpBatchItems NOTIFY ytdlpBatchChanged)
+    Q_PROPERTY(QVariantList torrentBannedPeers READ torrentBannedPeers NOTIFY torrentBannedPeersChanged)
 
 public:
     explicit AppController(QObject *parent = nullptr);
@@ -139,6 +140,7 @@ public:
     bool ytdlpBatchCanResume() const { return !m_lastYtdlpBatchId.isEmpty(); }
     QString ytdlpBatchLabel() const { return m_activeYtdlpBatchLabel; }
     QVariantList ytdlpBatchItems() const { return m_activeYtdlpBatchItems; }
+    QVariantList torrentBannedPeers() const;
 
     // ── yt-dlp public API ────────────────────────────────────────────────────────
     // Returns true if the URL looks like a site supported by yt-dlp (YouTube, Vimeo, etc.)
@@ -187,7 +189,11 @@ public:
     Q_INVOKABLE QObject *torrentFileModel(const QString &id) const;
     Q_INVOKABLE QObject *torrentPeerModel(const QString &id) const;
     Q_INVOKABLE QObject *torrentTrackerModel(const QString &id) const;
+    Q_INVOKABLE QVariantList torrentCountryOptions() const;
     Q_INVOKABLE QVariantList torrentNetworkAdapters() const;
+    Q_INVOKABLE bool banTorrentPeer(const QString &downloadId, const QString &endpoint, int port,
+                                    const QString &client = {}, const QString &countryCode = {});
+    Q_INVOKABLE bool unbanTorrentPeer(const QString &endpoint);
     Q_INVOKABLE void testTorrentPort();
     Q_INVOKABLE void refreshIpToCityDbInfo();
     Q_INVOKABLE void updateIpToCityDbFromCachedUrl();
@@ -372,6 +378,7 @@ signals:
     void ytdlpClipboardUrlDetected(const QString &url);
     void ytdlpCookieRetryRequested(const QString &downloadId, const QString &reason,
                                    const QString &suggestedBrowser);
+    void torrentBannedPeersChanged();
 
 private:
     QString generateId() const;

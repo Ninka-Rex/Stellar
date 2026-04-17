@@ -814,6 +814,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             deleteDownload(id, 1);
         }
     });
+    connect(m_torrentSession, &TorrentSessionManager::bannedPeersChanged,
+            this, &AppController::torrentBannedPeersChanged);
     connect(m_torrentSession, &TorrentSessionManager::torrentFinished, this, [this](const QString &id) {
         auto *item = m_downloadModel->itemById(id);
         if (!item)
@@ -1545,6 +1547,33 @@ QObject *AppController::torrentTrackerModel(const QString &id) const {
     return m_torrentSession ? m_torrentSession->trackerModel(id) : nullptr;
 }
 
+QVariantList AppController::torrentBannedPeers() const {
+    return m_torrentSession ? m_torrentSession->bannedPeers() : QVariantList{};
+}
+
+QVariantList AppController::torrentCountryOptions() const {
+    QVariantList out;
+    QDir flagsDir(QStringLiteral(":/app/qml/flags"));
+    QStringList codes = flagsDir.entryList(QStringList() << QStringLiteral("*.svg"), QDir::Files, QDir::Name);
+    for (QString code : codes) {
+        code.chop(4);
+        code = code.trimmed().toUpper();
+        if (code.length() != 2)
+            continue;
+        const QLocale::Territory territory = QLocale::codeToTerritory(QStringView{code});
+        QString name;
+        if (territory != QLocale::AnyTerritory)
+            name = QLocale::territoryToString(territory);
+        if (name.isEmpty() || name == QStringLiteral("AnyTerritory"))
+            name = code;
+        QVariantMap row;
+        row.insert(QStringLiteral("code"), code);
+        row.insert(QStringLiteral("name"), name);
+        out.push_back(row);
+    }
+    return out;
+}
+
 QVariantList AppController::torrentNetworkAdapters() const {
     QVariantList adapters;
 
@@ -1591,6 +1620,35 @@ QVariantList AppController::torrentNetworkAdapters() const {
     }
 
     return adapters;
+}
+
+bool AppController::banTorrentPeer(const QString &downloadId, const QString &endpoint, int port,
+                                   const QString &client, const QString &countryCode) {
+    if (!m_torrentSession || !m_settings)
+        return false;
+    QHostAddress host(endpoint.trimmed());
+    const QString normalized = host.toString();
+    if (normalized.isEmpty())
+        return false;
+    QStringList bans = m_settings->torrentBannedPeers();
+    if (!bans.contains(normalized))
+        bans.push_back(normalized);
+    bans.removeDuplicates();
+    m_settings->setTorrentBannedPeers(bans);
+    return m_torrentSession->banPeer(downloadId, normalized, port, client, countryCode);
+}
+
+bool AppController::unbanTorrentPeer(const QString &endpoint) {
+    if (!m_torrentSession || !m_settings)
+        return false;
+    QHostAddress host(endpoint.trimmed());
+    const QString normalized = host.toString();
+    if (normalized.isEmpty())
+        return false;
+    QStringList bans = m_settings->torrentBannedPeers();
+    bans.removeAll(normalized);
+    m_settings->setTorrentBannedPeers(bans);
+    return m_torrentSession->unbanPeer(normalized);
 }
 
 void AppController::testTorrentPort() {

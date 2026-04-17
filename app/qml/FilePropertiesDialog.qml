@@ -2943,6 +2943,61 @@ Window {
                                 color: "#666"; font.pixelSize: 12
                             }
 
+                            Popup {
+                                id: peerCtxMenu
+                                parent: Overlay.overlay
+                                modal: false
+                                width: 180
+                                height: 34
+                                padding: 0
+                                closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+                                property string endpoint: ""
+                                property int port: 0
+                                property string client: ""
+                                property string countryCode: ""
+
+                                background: Rectangle {
+                                    color: "#252525"
+                                    border.color: "#3a3a3a"
+                                    radius: 4
+                                }
+
+                                contentItem: Rectangle {
+                                    implicitWidth: 180
+                                    implicitHeight: 34
+                                    color: peerBanHover.containsMouse ? "#303030" : "transparent"
+
+                                    Row {
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        anchors.left: parent.left
+                                        anchors.leftMargin: 10
+                                        spacing: 8
+
+                                        Text {
+                                            text: "Ban peer"
+                                            color: (!!root.item && peerCtxMenu.endpoint.length > 0) ? "#e0e0e0" : "#777777"
+                                            font.pixelSize: 12
+                                        }
+                                    }
+
+                                    MouseArea {
+                                        id: peerBanHover
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        enabled: !!root.item && peerCtxMenu.endpoint.length > 0
+                                        onClicked: {
+                                            if (root.item) {
+                                                if (root.torrentPeerModel)
+                                                    root.torrentPeerModel.removePeer(peerCtxMenu.endpoint, peerCtxMenu.port)
+                                                App.banTorrentPeer(root.item.id, peerCtxMenu.endpoint, peerCtxMenu.port,
+                                                                   peerCtxMenu.client, peerCtxMenu.countryCode)
+                                            }
+                                            peerCtxMenu.close()
+                                        }
+                                    }
+                                }
+                            }
+
                             delegate: Rectangle {
                                 id: pd
                                 required property int    index
@@ -2971,6 +3026,7 @@ Window {
 
                                 MouseArea {
                                     id: peerRowMa; anchors.fill: parent; hoverEnabled: true
+                                    acceptedButtons: Qt.LeftButton
                                     ToolTip.visible: containsMouse
                                     ToolTip.text: {
                                         var cc = safeStr(pd.countryCode)
@@ -3120,6 +3176,25 @@ Window {
                                                 }
                                             }
                                         }
+                                    }
+                                }
+
+                                // Match the working file-list pattern: keep the context-menu
+                                // MouseArea on the topmost row layer so it receives right-clicks.
+                                MouseArea {
+                                    anchors.fill: parent
+                                    acceptedButtons: Qt.RightButton
+                                    onClicked: function(mouse) {
+                                        if (mouse.button !== Qt.RightButton)
+                                            return
+                                        peerCtxMenu.endpoint = pd.endpoint
+                                        peerCtxMenu.port = pd.port
+                                        peerCtxMenu.client = pd.client
+                                        peerCtxMenu.countryCode = pd.countryCode
+                                        var pos = mapToItem(Overlay.overlay, mouse.x, mouse.y)
+                                        peerCtxMenu.x = pos.x
+                                        peerCtxMenu.y = pos.y
+                                        peerCtxMenu.open()
                                     }
                                 }
                             }

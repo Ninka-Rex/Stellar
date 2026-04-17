@@ -100,6 +100,8 @@ public:
     Q_INVOKABLE void sortBy(const QString &key, bool ascending);
     Q_INVOKABLE QString peerKeyAt(int row) const;
     Q_INVOKABLE int indexOfPeerKey(const QString &key) const;
+    Q_INVOKABLE bool removePeerByKey(const QString &key);
+    Q_INVOKABLE bool removePeer(const QString &endpoint, int port);
     Q_INVOKABLE QVariantMap breakdownByClient() const;
     Q_INVOKABLE QVariantMap breakdownByCountry() const;
     Q_INVOKABLE void setLiveUpdatesEnabled(bool enabled);

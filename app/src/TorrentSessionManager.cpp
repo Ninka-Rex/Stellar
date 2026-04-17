@@ -33,6 +33,7 @@
 #include <QNetworkInterface>
 #include <QNetworkProxy>
 #include <QNetworkProxyFactory>
+#include <QRegularExpression>
 #include <QUrl>
 #include <QFile>
 #include <QStandardPaths>
@@ -50,6 +51,8 @@
 #include <libtorrent/settings_pack.hpp>
 #include <libtorrent/hex.hpp>
 #include <libtorrent/announce_entry.hpp>
+#include <libtorrent/address.hpp>
+#include <libtorrent/ip_filter.hpp>
 #include <libtorrent/torrent_flags.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_status.hpp>
@@ -226,6 +229,81 @@ QString defaultTorrentUserAgent(const AppSettings *settings) {
     return QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION));
 }
 
+QString normalizePeerEndpoint(const QString &endpoint) {
+    return QHostAddress(endpoint.trimmed()).toString();
+}
+
+QStringList normalizedLines(const QString &text) {
+    QStringList out;
+    const QStringList lines = text.split(QRegularExpression(QStringLiteral("[\\r\\n]+")),
+                                         Qt::SkipEmptyParts);
+    for (const QString &raw : lines) {
+        const QString trimmed = raw.trimmed();
+        if (!trimmed.isEmpty())
+            out.push_back(trimmed);
+    }
+    out.removeDuplicates();
+    return out;
+}
+
+QStringList normalizedCountryCodes(const QStringList &values) {
+    QStringList out;
+    for (const QString &raw : values) {
+        const QString code = raw.trimmed().toUpper();
+        if (code.length() == 2)
+            out.push_back(code);
+    }
+    out.removeDuplicates();
+    std::sort(out.begin(), out.end());
+    return out;
+}
+
+bool containsSubstringRule(const QStringList &needles, const QString &haystack) {
+    const QString lower = haystack.toLower();
+    for (const QString &rule : needles) {
+        if (!rule.isEmpty() && lower.contains(rule.toLower()))
+            return true;
+    }
+    return false;
+}
+
+QString peerIdPrefix(const libtorrent::peer_info &peer) {
+    return QString::fromLatin1(peer.pid.data(), 8);
+}
+
+bool matchesAbusivePeerPreset(const libtorrent::peer_info &peer, const QString &client,
+                              const QString &countryCode) {
+    static const QRegularExpression pidFilter(QStringLiteral("-(XL|XF|QD|BN|DL)(\\d+)-"));
+    static const QRegularExpression consumeFilter(
+        QStringLiteral("((dt|hp|xm)/torrent|Gopeed dev|Rain 0.0.0|(Taipei-torrent( dev)?))"),
+        QRegularExpression::CaseInsensitiveOption);
+    static const QRegularExpression fakeOfflineId(QStringLiteral("-LT(1220|2070)-"));
+
+    const QString pid = peerIdPrefix(peer);
+    const QString cc = countryCode.trimmed().toUpper();
+    if (pidFilter.match(pid).hasMatch())
+        return true;
+    if (cc == QStringLiteral("CN") && consumeFilter.match(client).hasMatch())
+        return true;
+
+    const unsigned short port = peer.ip.port();
+    const bool fakeTransmission = port >= 65000
+        && cc == QStringLiteral("CN")
+        && client.contains(QStringLiteral("Transmission"), Qt::CaseInsensitive);
+    const bool fakeLibtorrent = (cc == QStringLiteral("NL") || cc == QStringLiteral("CN"))
+        && fakeOfflineId.match(pid).hasMatch();
+    return fakeTransmission || fakeLibtorrent;
+}
+
+bool matchesMediaPlayerPreset(const libtorrent::peer_info &peer, const QString &client) {
+    if (client.contains(QStringLiteral("StellarPlayer"), Qt::CaseInsensitive)
+        || client.contains(QStringLiteral("Elementum"), Qt::CaseInsensitive)) {
+        return true;
+    }
+    static const QRegularExpression playerFilter(QStringLiteral("-(UW\\w{4}|SP(([0-2]\\d{3})|(3[0-5]\\d{2})))-"));
+    return playerFilter.match(peerIdPrefix(peer)).hasMatch();
+}
+
 #if defined(STELLAR_HAS_MAXMINDDB)
 QString mmdbString(MMDB_entry_s *entry, const char *const *path) {
     MMDB_entry_data_s data;
@@ -313,10 +391,32 @@ bool TorrentSessionManager::isTorrentUri(const QString &value) const {
         || isBareTorrentInfoHash(trimmed);
 }
 
+QVariantList TorrentSessionManager::bannedPeers() const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    QVariantList out;
+    QStringList keys = m_bannedPeers.keys();
+    std::sort(keys.begin(), keys.end());
+    for (const QString &key : keys) {
+        const BannedPeer &entry = m_bannedPeers[key];
+        QVariantMap row;
+        row.insert(QStringLiteral("endpoint"), entry.endpoint);
+        row.insert(QStringLiteral("client"), entry.client);
+        row.insert(QStringLiteral("countryCode"), entry.countryCode);
+        row.insert(QStringLiteral("reason"), entry.reason);
+        row.insert(QStringLiteral("permanent"), entry.permanent);
+        out.push_back(row);
+    }
+    return out;
+#else
+    return {};
+#endif
+}
+
 void TorrentSessionManager::applySettings(const AppSettings *settings) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     m_settings = settings;
     ensureSession();
+    refreshPeerBanRules(settings);
     configureSession(settings);
     if (!m_alertTimer.isActive())
         m_alertTimer.start();
@@ -382,6 +482,54 @@ void TorrentSessionManager::pause(const QString &downloadId) {
         peerModel->setEntries({});
 #else
     Q_UNUSED(downloadId);
+#endif
+}
+
+bool TorrentSessionManager::banPeer(const QString &downloadId, const QString &endpoint, int port,
+                                    const QString &client, const QString &countryCode) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    Q_UNUSED(downloadId);
+    Q_UNUSED(port);
+    const QString normalized = normalizePeerEndpoint(endpoint);
+    if (normalized.isEmpty())
+        return false;
+    m_manualBannedPeers.insert(normalized);
+    BannedPeer entry;
+    entry.endpoint = normalized;
+    entry.client = client;
+    entry.countryCode = countryCode.trimmed().toUpper();
+    entry.reason = QStringLiteral("Manually banned");
+    entry.permanent = true;
+    m_bannedPeers.insert(normalized, entry);
+    rebuildIpFilter();
+    emit bannedPeersChanged();
+    return true;
+#else
+    Q_UNUSED(downloadId);
+    Q_UNUSED(endpoint);
+    Q_UNUSED(port);
+    Q_UNUSED(client);
+    Q_UNUSED(countryCode);
+    return false;
+#endif
+}
+
+bool TorrentSessionManager::unbanPeer(const QString &endpoint) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const QString normalized = normalizePeerEndpoint(endpoint);
+    if (normalized.isEmpty())
+        return false;
+    const bool removedManual = m_manualBannedPeers.remove(normalized);
+    const bool removedTemp = m_temporaryBannedPeers.remove(normalized);
+    const bool removedEntry = m_bannedPeers.remove(normalized) > 0;
+    if (!removedManual && !removedTemp && !removedEntry)
+        return false;
+    rebuildIpFilter();
+    emit bannedPeersChanged();
+    return true;
+#else
+    Q_UNUSED(endpoint);
+    return false;
 #endif
 }
 
@@ -584,6 +732,118 @@ bool TorrentSessionManager::removeTracker(const QString &downloadId, const QStri
 void TorrentSessionManager::ensureSession() {
     if (!m_session)
         m_session = std::make_unique<libtorrent::session>();
+}
+
+void TorrentSessionManager::refreshPeerBanRules(const AppSettings *settings) {
+    const QSet<QString> previousTemporary = m_temporaryBannedPeers;
+    if (settings) {
+        m_manualBannedPeers.clear();
+        for (const QString &raw : settings->torrentBannedPeers()) {
+            const QString normalized = normalizePeerEndpoint(raw);
+            if (!normalized.isEmpty())
+                m_manualBannedPeers.insert(normalized);
+        }
+        m_blockedPeerUserAgentTerms = normalizedLines(settings->torrentBlockedPeerUserAgents());
+        const QStringList countryCodes = normalizedCountryCodes(settings->torrentBlockedPeerCountries());
+        m_blockedPeerCountries = QSet<QString>(countryCodes.begin(), countryCodes.end());
+        m_autoBanAbusivePeers = settings->torrentAutoBanAbusivePeers();
+        m_autoBanMediaPlayerPeers = settings->torrentAutoBanMediaPlayerPeers();
+    } else {
+        m_manualBannedPeers.clear();
+        m_blockedPeerUserAgentTerms.clear();
+        m_blockedPeerCountries.clear();
+        m_autoBanAbusivePeers = false;
+        m_autoBanMediaPlayerPeers = false;
+    }
+
+    QStringList removeKeys;
+    for (auto it = m_bannedPeers.cbegin(); it != m_bannedPeers.cend(); ++it) {
+        if (it.value().permanent && !m_manualBannedPeers.contains(it.key()))
+            removeKeys.push_back(it.key());
+    }
+    for (const QString &key : removeKeys)
+        m_bannedPeers.remove(key);
+
+    clearTemporaryPeerBans();
+    rebuildIpFilter();
+    if (previousTemporary != m_temporaryBannedPeers || !removeKeys.isEmpty())
+        emit bannedPeersChanged();
+}
+
+void TorrentSessionManager::rebuildIpFilter() {
+    if (!m_session)
+        return;
+    libtorrent::ip_filter filter;
+    QSet<QString> allBans = m_manualBannedPeers;
+    for (const QString &endpoint : m_temporaryBannedPeers)
+        allBans.insert(endpoint);
+    for (const QString &endpoint : allBans) {
+        libtorrent::error_code ec;
+        libtorrent::address addr = libtorrent::make_address(endpoint.toStdString(), ec);
+        if (ec)
+            continue;
+        filter.add_rule(addr, addr, libtorrent::ip_filter::blocked);
+    }
+    m_session->set_ip_filter(std::move(filter));
+}
+
+void TorrentSessionManager::setTemporaryPeerBan(const QString &endpoint, const QString &client,
+                                                const QString &countryCode, const QString &reason) {
+    const QString normalized = normalizePeerEndpoint(endpoint);
+    if (normalized.isEmpty())
+        return;
+    if (!m_temporaryBannedPeers.contains(normalized)) {
+        m_temporaryBannedPeers.insert(normalized);
+        rebuildIpFilter();
+    }
+    BannedPeer entry;
+    entry.endpoint = normalized;
+    entry.client = client;
+    entry.countryCode = countryCode.trimmed().toUpper();
+    entry.reason = reason;
+    entry.permanent = false;
+    m_bannedPeers.insert(normalized, entry);
+}
+
+void TorrentSessionManager::clearTemporaryPeerBans() {
+    if (m_temporaryBannedPeers.isEmpty()) {
+        for (auto it = m_bannedPeers.begin(); it != m_bannedPeers.end(); ) {
+            if (!it.value().permanent)
+                it = m_bannedPeers.erase(it);
+            else
+                ++it;
+        }
+        return;
+    }
+    m_temporaryBannedPeers.clear();
+    for (auto it = m_bannedPeers.begin(); it != m_bannedPeers.end(); ) {
+        if (!it.value().permanent)
+            it = m_bannedPeers.erase(it);
+        else
+            ++it;
+    }
+}
+
+bool TorrentSessionManager::matchAutoBanRule(const libtorrent::peer_info &peer, const QString &client,
+                                             const QString &countryCode, QString *reason) const {
+    if (!countryCode.trimmed().isEmpty()
+        && m_blockedPeerCountries.contains(countryCode.trimmed().toUpper())) {
+        if (reason) *reason = QStringLiteral("Blocked country");
+        return true;
+    }
+    if (containsSubstringRule(m_blockedPeerUserAgentTerms, client)) {
+        if (reason) *reason = QStringLiteral("Blocked user agent");
+        return true;
+    }
+    if (m_autoBanAbusivePeers && matchesAbusivePeerPreset(peer, client, countryCode)) {
+        if (reason) *reason = QStringLiteral("Auto-banned abusive peer client");
+        return true;
+    }
+    if (m_autoBanMediaPlayerPeers && matchesMediaPlayerPreset(peer, client)) {
+        if (reason) *reason = QStringLiteral("Auto-banned media player peer");
+        return true;
+    }
+    return false;
 }
 
 void TorrentSessionManager::configureSession(const AppSettings *settings) {
@@ -1076,11 +1336,19 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
     int pexSeederCount = 0;
     int lsdPeerCount = 0;
     int lsdSeederCount = 0;
-    if (peerModel) {
-        std::vector<libtorrent::peer_info> peerInfos;
+    const bool shouldInspectPeers = peerModel
+        || !m_manualBannedPeers.isEmpty()
+        || !m_blockedPeerUserAgentTerms.isEmpty()
+        || !m_blockedPeerCountries.isEmpty()
+        || m_autoBanAbusivePeers
+        || m_autoBanMediaPlayerPeers;
+    std::vector<libtorrent::peer_info> peerInfos;
+    if (shouldInspectPeers)
         handle.get_peer_info(peerInfos);
+    if (shouldInspectPeers) {
         QVector<TorrentPeerModel::Entry> entries;
         entries.reserve(int(peerInfos.size()));
+        bool anyBanChanged = false;
         for (const auto &peer : peerInfos) {
             TorrentPeerModel::Entry entry;
             entry.endpoint = QString::fromStdString(peer.ip.address().to_string());
@@ -1143,6 +1411,32 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                 entry.source = QStringLiteral("Peer");
             lookupPeerLocation(entry.endpoint, &entry.countryCode, &entry.regionCode, &entry.regionName,
                                &entry.cityName, &entry.latitude, &entry.longitude);
+
+            entry.endpoint = normalizePeerEndpoint(entry.endpoint);
+            const QString normalizedCountry = entry.countryCode.trimmed().toUpper();
+            entry.countryCode = normalizedCountry;
+
+            if (!entry.endpoint.isEmpty() && m_manualBannedPeers.contains(entry.endpoint)) {
+                if (!m_bannedPeers.contains(entry.endpoint) || !m_bannedPeers.value(entry.endpoint).permanent) {
+                    BannedPeer banned;
+                    banned.endpoint = entry.endpoint;
+                    banned.client = entry.client;
+                    banned.countryCode = normalizedCountry;
+                    banned.reason = QStringLiteral("Manually banned");
+                    banned.permanent = true;
+                    m_bannedPeers.insert(entry.endpoint, banned);
+                    anyBanChanged = true;
+                }
+                continue;
+            }
+
+            QString autoBanReason;
+            if (matchAutoBanRule(peer, entry.client, normalizedCountry, &autoBanReason)) {
+                setTemporaryPeerBan(entry.endpoint, entry.client, normalizedCountry, autoBanReason);
+                anyBanChanged = true;
+                continue;
+            }
+
             entries.push_back(entry);
             if ((peer.source & libtorrent::peer_info::dht) != libtorrent::peer_source_flags_t{}) {
                 ++dhtPeerCount;
@@ -1160,11 +1454,12 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                     ++lsdSeederCount;
             }
         }
-        peerModel->setEntries(entries);
+        if (peerModel)
+            peerModel->setEntries(entries);
 
         DownloadItem *modelItem = m_items.value(downloadId, nullptr).data();
         if (modelItem && !modelItem->torrentHasMetadata()) {
-            const int connectedPeerCount = int(peerInfos.size());
+            const int connectedPeerCount = int(entries.size());
             const int metadataPeerCount = std::max({connectedPeerCount,
                                                     dhtPeerCount,
                                                     pexPeerCount,
@@ -1173,6 +1468,8 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
                                                     modelItem->torrentListPeers()});
             modelItem->setTorrentPeers(metadataPeerCount);
         }
+        if (anyBanChanged)
+            emit bannedPeersChanged();
     }
 
     // Tracker models are notably heavier because they also resolve and
