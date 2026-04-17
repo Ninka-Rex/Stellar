@@ -148,6 +148,14 @@ public:
     // Called from QML as App.setWindowIcon(root, ":/path/to/icon.ico").
     Q_INVOKABLE void setWindowIcon(QObject *window, const QString &iconPath);
 
+    // Dispatch a raw IPC JSON payload (same object the IPC socket receives).
+    // If QML is not yet ready the payload is buffered and replayed on setQmlReady().
+    void handleIpcPayload(const QByteArray &json);
+
+    // Called from QML's root Component.onCompleted once all signal Connections
+    // are wired.  Drains any IPC payloads that arrived before QML was ready.
+    Q_INVOKABLE void setQmlReady();
+
     Q_INVOKABLE bool isLikelyYtdlpUrl(const QString &url) const;
 
     // Asynchronously probe the URL with "yt-dlp --dump-json".
@@ -400,6 +408,8 @@ private:
     QTimer                 *m_saveTimer{nullptr};
     QTimer                 *m_tooltipTimer{nullptr};
     QLocalServer           *m_ipcServer{nullptr};
+    bool                    m_qmlReady{false};
+    QList<QByteArray>       m_pendingIpcPayloads; // buffered until QML is ready
     QSet<QString>           m_dirtyIds;
     QMap<QString, int>      m_cancelCounts;
     QMap<QString, int>      m_interceptRejectCounts;

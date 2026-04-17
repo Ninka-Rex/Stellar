@@ -37,7 +37,9 @@
 #include <QNetworkRequest>
 #include <QUrlQuery>
 #include <QDebug>
+#include <memory>
 #include "AppSettings.h"
+#include <utility>
 #include "DownloadQueue.h"
 #include "DownloadTableModel.h"
 #include "CategoryModel.h"
@@ -513,6 +515,54 @@ void AppController::setWindowIcon(QObject *window, const QString &iconPath) {
         qw->setIcon(QIcon(iconPath));
 }
 
+void AppController::handleIpcPayload(const QByteArray &json) {
+    // Buffer payloads that arrive before QML has wired its signal Connections.
+    // Without this, interceptedDownloadRequested (and showWindowRequested) fire
+    // into the void and the download is silently lost.
+    if (!m_qmlReady) {
+        m_pendingIpcPayloads.append(json);
+        return;
+    }
+
+    const QJsonObject obj = QJsonDocument::fromJson(json).object();
+    if (obj.isEmpty()) return;
+    const QString type = obj.value(QStringLiteral("type")).toString();
+    if (type == QStringLiteral("download")) {
+        const QString url      = obj.value(QStringLiteral("url")).toString();
+        const QString name     = obj.value(QStringLiteral("filename")).toString();
+        const QString cookies  = obj.value(QStringLiteral("cookies")).toString();
+        const QString referrer = obj.value(QStringLiteral("referrer")).toString();
+        const QString pageUrl  = obj.value(QStringLiteral("pageUrl")).toString();
+        if (isTorrentUri(url)) {
+            beginTorrentMetadataDownload(url, m_settings->defaultSavePath(),
+                                         QString(), QString(), true);
+        } else if (isLikelyYtdlpUrl(url)) {
+            if (!cookies.isEmpty())  m_pendingCookies[url]   = cookies;
+            if (!referrer.isEmpty()) m_pendingReferrers[url] = referrer;
+            if (!pageUrl.isEmpty())  m_pendingPageUrls[url]  = pageUrl;
+            emit interceptedDownloadRequested(url, name);
+        } else if (m_settings->startImmediately()) {
+            addUrl(url, {}, {}, {}, true, cookies, referrer, pageUrl);
+        } else {
+            if (!cookies.isEmpty())  m_pendingCookies[url]   = cookies;
+            if (!referrer.isEmpty()) m_pendingReferrers[url] = referrer;
+            if (!pageUrl.isEmpty())  m_pendingPageUrls[url]  = pageUrl;
+            emit interceptedDownloadRequested(url, name);
+        }
+    } else if (type == QStringLiteral("focus")) {
+        emit showWindowRequested();
+    }
+}
+
+void AppController::setQmlReady() {
+    if (m_qmlReady) return;
+    m_qmlReady = true;
+    // Drain any IPC payloads that arrived before QML was wired.
+    const QList<QByteArray> pending = std::exchange(m_pendingIpcPayloads, {});
+    for (const QByteArray &p : pending)
+        handleIpcPayload(p);
+}
+
 void AppController::checkUrl(const QString &url, QJSValue callback) {
     QNetworkRequest request(QUrl::fromUserInput(url));
     const QString customUserAgent = m_settings ? m_settings->customUserAgent().trimmed() : QString();
@@ -673,43 +723,23 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_ipcServer, &QLocalServer::newConnection, this, [this]() {
         QLocalSocket *sock = m_ipcServer->nextPendingConnection();
         if (!sock) return;
-        connect(sock, &QLocalSocket::readyRead, this, [this, sock]() {
-            const QByteArray data = sock->readAll();
-            const QJsonObject obj = QJsonDocument::fromJson(data).object();
-            if (obj.isEmpty()) return;
-            const QString type = obj.value(QStringLiteral("type")).toString();
-            if (type == QStringLiteral("download")) {
-                const QString url       = obj.value(QStringLiteral("url")).toString();
-                const QString name      = obj.value(QStringLiteral("filename")).toString();
-                const QString cookies   = obj.value(QStringLiteral("cookies")).toString();
-                const QString referrer  = obj.value(QStringLiteral("referrer")).toString();
-                const QString pageUrl   = obj.value(QStringLiteral("pageUrl")).toString();
-                if (isTorrentUri(url)) {
-                    beginTorrentMetadataDownload(url,
-                                                 m_settings->defaultSavePath(),
-                                                 QString(),
-                                                 QString(),
-                                                 true);
-                } else if (isLikelyYtdlpUrl(url)) {
-                    if (!cookies.isEmpty()) m_pendingCookies[url] = cookies;
-                    if (!referrer.isEmpty()) m_pendingReferrers[url] = referrer;
-                    if (!pageUrl.isEmpty()) m_pendingPageUrls[url] = pageUrl;
-                    emit interceptedDownloadRequested(url, name);
-                } else if (m_settings->startImmediately()) {
-                    addUrl(url, {}, {}, {}, true, cookies, referrer, pageUrl);
-                } else {
-                    if (!cookies.isEmpty()) m_pendingCookies[url] = cookies;
-                    if (!referrer.isEmpty()) m_pendingReferrers[url] = referrer;
-                    if (!pageUrl.isEmpty()) m_pendingPageUrls[url] = pageUrl;
-                    emit interceptedDownloadRequested(url, name);
-                }
-                sock->deleteLater();
-            } else if (type == QStringLiteral("focus")) {
-                emit showWindowRequested();
-                sock->deleteLater();
-            }
+        auto payload = std::make_shared<QByteArray>();
+        connect(sock, &QLocalSocket::readyRead, this, [sock, payload]() {
+            payload->append(sock->readAll());
         });
-        connect(sock, &QLocalSocket::disconnected, sock, &QLocalSocket::deleteLater);
+        // Also drain in disconnected: when the native host writes and immediately
+        // exits, disconnected can fire before readyRead on Windows. QLocalSocket
+        // is a byte stream, so readyRead can also surface partial JSON chunks.
+        // Accumulate the payload for the lifetime of the connection and parse it
+        // once the sender disconnects so we never consume and lose a partial
+        // message during cold-start delivery.
+        connect(sock, &QLocalSocket::disconnected, this, [this, sock, payload]() {
+            if (sock->bytesAvailable() > 0)
+                payload->append(sock->readAll());
+            if (!payload->isEmpty())
+                handleIpcPayload(*payload);
+            sock->deleteLater();
+        });
     });
 
     // ── 3. Data & Setup ────────────────────────────────────────────────────────

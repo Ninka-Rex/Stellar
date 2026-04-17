@@ -15,6 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <QGuiApplication>
+#include <QTimer>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QIcon>
@@ -28,6 +29,8 @@
 #include <QProcess>
 #include <QThread>
 #include <QFile>
+#include <QDir>
+#include <QStandardPaths>
 #include <QLibraryInfo>
 #include "AppController.h"
 #include "FileIconImageProvider.h"
@@ -125,6 +128,16 @@ static void writeNativeMsg(const QByteArray &json)
     nmWrite(json.constData(), len);
 }
 
+// Path to the "pending download" drop file.  The native messaging host writes
+// the raw IPC JSON here before launching the GUI so the GUI can replay it even
+// if the IPC retry window expires before the app is ready to accept connections.
+static QString pendingDownloadFilePath()
+{
+    // Use the system temp directory so it survives across process invocations
+    // and doesn't require any special permissions.
+    return QDir::tempPath() + QStringLiteral("/stellar_pending_download.json");
+}
+
 // ── Native-messaging host mode ────────────────────────────────────────────────
 // Firefox spawns Stellar.exe for each sendNativeMessage call with stdin/stdout
 // piped.  We read one length-prefixed JSON message, respond, and exit.
@@ -176,8 +189,24 @@ static int runNativeMessagingHost(int argc, char *argv[])
         QLocalSocket sock;
         sock.connectToServer(QStringLiteral("StellarDownloadManager"));
         if (!sock.waitForConnected(500)) {
-            // Main app isn't running, we need to start it.
-            nmLog(QStringLiteral("Main app not running, launching it now..."));
+            const bool isDownload = (type == QStringLiteral("download"));
+            // Main app isn't running. For downloads, persist the payload to the
+            // drop file and let the GUI replay it on startup.
+            //
+            // IMPORTANT: do not "optimize" cold-start downloads back to socket
+            // delivery here. On Windows, the native host can connect and write
+            // before the GUI event loop is actually servicing IPC, so treating
+            // that write as success and deleting the drop file causes the New
+            // Download dialog to vanish on first launch after interception.
+            nmLog(isDownload
+                      ? QStringLiteral("Main app not running, writing pending download file and launching GUI...")
+                      : QStringLiteral("Main app not running, launching GUI..."));
+            if (isDownload) {
+                QFile dropFile(pendingDownloadFilePath());
+                if (dropFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+                    dropFile.write(payload);
+            }
+
             QString program = QCoreApplication::applicationFilePath();
 #if defined(Q_OS_WIN)
             // Firefox places native messaging hosts inside a Windows Job Object
@@ -204,27 +233,31 @@ static int runNativeMessagingHost(int argc, char *argv[])
 #else
             QProcess::startDetached(program, {QStringLiteral("--gui")});
 #endif
-              
-              // Give it some time to start the IPC server
-            bool connected = false;
-            for (int i = 0; i < 10; ++i) {
-                QThread::msleep(300);
-                sock.connectToServer(QStringLiteral("StellarDownloadManager"));
-                if (sock.waitForConnected(500)) {
-                    connected = true;
-                    break;
+            if (isDownload) {
+                nmLog(QStringLiteral("Cold-start download will be replayed from drop file on startup"));
+            } else {
+                // Focus-only requests don't need durable replay. Best-effort retry
+                // is enough once the GUI has had a moment to finish starting.
+                bool connected = false;
+                for (int i = 0; i < 40; ++i) {
+                    QThread::msleep(500);
+                    sock.connectToServer(QStringLiteral("StellarDownloadManager"));
+                    if (sock.waitForConnected(500)) {
+                        connected = true;
+                        break;
+                    }
+                }
+                if (!connected) {
+                    nmLog(QStringLiteral("Focus IPC retry window expired"));
                 }
             }
-            if (!connected) {
-                nmLog(QStringLiteral("Failed to connect to newly launched app"));
-            }
         }
-        
+
         if (sock.state() == QLocalSocket::ConnectedState) {
             sock.write(payload);
             sock.flush();
             sock.waitForBytesWritten(3000);
-            nmLog(QStringLiteral("Successfully forwarded payload to main app"));
+            nmLog(QStringLiteral("Successfully forwarded payload to main app via IPC"));
         }
         
         // Always ack so the extension Promise resolves cleanly.
@@ -368,6 +401,33 @@ int main(int argc, char *argv[])
     nmLog(QStringLiteral("Loading QML..."));
     engine.load(url);
     nmLog(QStringLiteral("QML loaded. Executing app."));
+
+    // Schedule a zero-delay timer to fire on the FIRST event loop iteration after
+    // app.exec() starts.  By that time:
+    //   1. All pending QLocalSocket signals (newConnection → readyRead) have been
+    //      queued by the OS and will be processed before or alongside this timer.
+    //   2. The drop file (written by the native host when it couldn't reach IPC)
+    //      is read here, so the payload is fed in exactly once regardless of
+    //      whether the native host also delivered it via IPC.
+    //
+    // setQmlReady() is called inside the timer, not from Component.onCompleted,
+    // because Component.onCompleted fires during engine.load() — before app.exec()
+    // starts the event loop — so any IPC socket data buffered in the OS wouldn't
+    // have been processed yet, and the drain would be a no-op.
+    QTimer::singleShot(0, &controller, [&controller]() {
+        const QString dropPath = pendingDownloadFilePath();
+        QFile dropFile(dropPath);
+        if (dropFile.exists() && dropFile.open(QIODevice::ReadOnly)) {
+            QByteArray pending = dropFile.readAll();
+            dropFile.close();
+            QFile::remove(dropPath);
+            if (!pending.isEmpty()) {
+                nmLog(QStringLiteral("Replaying pending download from drop file (via zero-timer)"));
+                controller.handleIpcPayload(pending);
+            }
+        }
+        controller.setQmlReady();
+    });
 
     return app.exec();
 }
