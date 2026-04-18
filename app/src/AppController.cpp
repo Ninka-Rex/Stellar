@@ -58,6 +58,18 @@
 #  include <windows.h>
 #  include <shellapi.h>
 #endif
+
+namespace {
+QJsonArray chromeNativeMessagingOrigins()
+{
+    return QJsonArray{
+        QStringLiteral("chrome-extension://kncomdlgkcaamlaaoloncdafbijdfcjo/"),
+        QStringLiteral("chrome-extension://hcoidhcbahcmmejbalinbnkgdkghkokb/"),
+        QStringLiteral("chrome-extension://ppijnklecgbkkjhchiaagamdhgnpjpdh/"),
+        QStringLiteral("chrome-extension://pppelmimeffdigknplngfmhefcbhfcbd/")
+    };
+}
+}
 #include <QUrl>
 #include <QFile>
 #include <QFileInfo>
@@ -2267,7 +2279,7 @@ QString AppController::registerNativeHost() const {
     manifest[QStringLiteral("path")]        = hostExePath;
     manifest[QStringLiteral("type")]        = QStringLiteral("stdio");
     manifest[QStringLiteral("allowed_extensions")] = QJsonArray{ QStringLiteral("stellar@stellar.moe") };
-    manifest[QStringLiteral("allowed_origins")] = QJsonArray{ QStringLiteral("chrome-extension://kncomdlgkcaamlaaoloncdafbijdfcjo/") };
+    manifest[QStringLiteral("allowed_origins")] = chromeNativeMessagingOrigins();
 
     const QByteArray json = QJsonDocument(manifest).toJson(QJsonDocument::Indented);
 
@@ -2299,7 +2311,7 @@ QString AppController::registerNativeHost() const {
     chromeManifest[QStringLiteral("description")] = QStringLiteral("Stellar Download Manager native messaging host");
     chromeManifest[QStringLiteral("path")]        = exePath;
     chromeManifest[QStringLiteral("type")]        = QStringLiteral("stdio");
-    chromeManifest[QStringLiteral("allowed_origins")] = QJsonArray{ QStringLiteral("chrome-extension://kncomdlgkcaamlaaoloncdafbijdfcjo/") };
+    chromeManifest[QStringLiteral("allowed_origins")] = chromeNativeMessagingOrigins();
 
     const QByteArray firefoxJson = QJsonDocument(firefoxManifest).toJson(QJsonDocument::Indented);
     const QByteArray chromeJson  = QJsonDocument(chromeManifest).toJson(QJsonDocument::Indented);

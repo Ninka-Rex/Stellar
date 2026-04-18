@@ -477,6 +477,16 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         })();
         return true;
     }
+    if (message.type === "focus") {
+        browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "focus" }, (response) => {
+            if (browser.runtime.lastError) {
+                sendResponse({ ok: false, error: browser.runtime.lastError.message });
+            } else {
+                sendResponse({ ok: true, response });
+            }
+        });
+        return true;
+    }
     if (message.type === "setEnabled") {
         browser.storage.local.set({ enabled: !!message.value });
         cachedSettings = null;

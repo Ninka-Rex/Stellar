@@ -4,7 +4,10 @@
   "path": "Stellar.exe",
   "type": "stdio",
   "allowed_origins": [
-    "chrome-extension://kncomdlgkcaamlaaoloncdafbijdfcjo/"
+    "chrome-extension://kncomdlgkcaamlaaoloncdafbijdfcjo/",
+    "chrome-extension://hcoidhcbahcmmejbalinbnkgdkghkokb/",
+    "chrome-extension://ppijnklecgbkkjhchiaagamdhgnpjpdh/",
+    "chrome-extension://pppelmimeffdigknplngfmhefcbhfcbd/"
   ],
   "allowed_extensions": [
     "stellar@stellar.moe"

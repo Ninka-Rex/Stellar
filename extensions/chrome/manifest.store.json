@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Stellar Download Manager",
-  "version": "0.1.0",
+  "name": "SDM Integration Module",
+  "version": "0.1.6",
   "description": "Intercepts browser downloads and sends them to the Stellar download manager.",
   "icons": {
     "16":  "icons/milky-way.png",
@@ -29,6 +29,12 @@
   ],
   "host_permissions": [
     "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["page-bridge.js"],
+      "matches": ["<all_urls>"]
+    }
   ],
   "content_scripts": [
     {

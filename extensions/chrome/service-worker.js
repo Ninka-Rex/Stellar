@@ -40,10 +40,15 @@ async function refreshIcon() {
 }
 
 async function updateConnectionState() {
-    const alive = await ping();
-    await refreshIcon();
-    if (!alive) {
-        console.warn("[Stellar] Native host not responding during icon refresh.");
+    try {
+        const alive = await ping();
+        await refreshIcon();
+        if (!alive) {
+            console.warn("[Stellar] Native host replied, but not with a ready response.");
+        }
+    } catch (err) {
+        await refreshIcon();
+        console.warn("[Stellar] Native host ping failed during icon refresh:", err?.message ?? err);
     }
 }
 
@@ -120,6 +125,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "interceptLinkClick") {
         (async () => {
             try {
+                const alive = await ping();
+                if (!alive) {
+                    sendResponse({ ok: false, reason: "native-host-unavailable" });
+                    return;
+                }
                 const url = message.url || "";
                 const filename = message.filename || "";
                 const explicitIntent = !!message.explicitIntent;

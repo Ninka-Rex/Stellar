@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Stellar Download Manager",
-  "version": "0.1.5",
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAudo7fO5G8MpfibREwuPm1YFJMnKOXgMI0OA93+kDkQtyi5jO7LqRrYSyNixG3/8d8XQvcnF3IRMZ6dyXe+SLBYcfJr3Jjczy4yXf3m+iHGfQCy6o33mvKs34Cg1xdbT8M3pQ6LcXKzj3sXIySG40ylnMSfk/Lym3opAneluTT16oC+vFyPaSp8jPdXq+QiiZMmH6m/x0sWKK5JMjARZ5ET27PR5/vdhyEf4U10oyjp0w55ltzNlJ9+RgZGeyweawzRw/elhQvzL2Bad0WzPR0oAh6aaSbpjGKjIRcUiGiVJx/ranl5bu7SgfUrh159ba+rjWDeba5cNzxFE7ypzFlQIDAQAB",
+  "name": "SDM Integration Module",
+  "version": "0.1.6",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxHj5WR9p0P92LfSpyd7MaD4TdufsVODawcC5J4ZzvgS8t0o6/QVMk9NfJEZRmSR5QcpJiLM3B+pmPeqQRsuswMTbQGZtdAP0YvoT3yfBNhbIUvdV4UPfHqu9NmQPZIaU6hSzd8XOcP989+YttkUZTkGLclK4MiHAbFc8Tf4N0DoSR5r83OsiT8jLpuVNnT+JX7Wf6Mm6W18c+TahXs9XwA5IfXriuoPGicMu70nFyQcYtmMp83TxN5Kf7vshRQhyddPauAAcqmHs9PoWTriXINtXbhk4uTi8S1zPHTyeZ1J15BctbQAIq6lwUh3SV50ISdLBY4YNicK03tQmspYZwwIDAQAB",
   "description": "Intercepts browser downloads and sends them to the Stellar download manager.",
   "icons": {
     "16":  "icons/milky-way.png",
@@ -30,6 +30,12 @@
   ],
   "host_permissions": [
     "<all_urls>"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["page-bridge.js"],
+      "matches": ["<all_urls>"]
+    }
   ],
   "content_scripts": [
     {
