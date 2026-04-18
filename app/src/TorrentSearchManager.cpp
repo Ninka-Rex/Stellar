@@ -16,6 +16,7 @@
 
 #include "TorrentSearchManager.h"
 
+#include "AppVersion.h"
 #include "TorrentSearchPluginModel.h"
 #include "TorrentSearchResultModel.h"
 
@@ -35,8 +36,11 @@
 #include <QSet>
 
 namespace {
-QString desktopPluginDir() {
-    return QDir(QCoreApplication::applicationDirPath()).filePath(QStringLiteral("search_plugins"));
+QString userPluginDir() {
+    // AppDataLocation is writable on all platforms (including Linux installs
+    // where applicationDirPath() is read-only under /usr/local/bin).
+    const QString base = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    return QDir(base).filePath(QStringLiteral("search_plugins"));
 }
 
 QString parseTag(const QString &content, const QString &name) {
@@ -77,17 +81,13 @@ TorrentSearchManager::TorrentSearchManager(QNetworkAccessManager *nam, QObject *
       m_pluginModel(new TorrentSearchPluginModel(this)),
       m_resultModel(new TorrentSearchResultModel(this))
 {
-    // Only install bundled plugins if the directory doesn't already exist.
-    // If it exists (even empty), the user manages it — don't overwrite or
-    // repopulate. This prevents respawning files after the user deletes them.
-    if (!QDir(pluginDirectory()).exists())
-        ensureBundledPluginsInstalled();
+    ensureBundledPluginsInstalled();
     refreshPlugins();
     refreshRuntimeState();
 }
 
 QString TorrentSearchManager::pluginDirectory() const {
-    return desktopPluginDir();
+    return userPluginDir();
 }
 
 QString TorrentSearchManager::disabledPluginsKey() const {
@@ -134,6 +134,16 @@ void TorrentSearchManager::ensureBundledPluginsInstalled() {
         QStringLiteral("torrentscsv.py")
     };
 
+    // Only (re)install bundled plugins when the app version changes — i.e. on
+    // first run or after an upgrade/reinstall. This ensures fresh installs get
+    // all plugins while respecting the user's decision to delete individual
+    // files between upgrades (deleted files are not reinstated mid-version).
+    QSettings settings;
+    const QString currentVersion = QStringLiteral(STELLAR_VERSION);
+    const QString installedVersion = settings.value(QStringLiteral("searchPluginsInstalledVersion")).toString();
+    if (installedVersion == currentVersion)
+        return;
+
     QDir().mkpath(pluginDirectory());
     for (const QString &fileName : bundledPlugins) {
         const QString resourcePath = bundledPluginResourcePath(fileName);
@@ -151,6 +161,8 @@ void TorrentSearchManager::ensureBundledPluginsInstalled() {
             continue;
         target.write(source.readAll());
     }
+
+    settings.setValue(QStringLiteral("searchPluginsInstalledVersion"), currentVersion);
 }
 
 QString TorrentSearchManager::detectPython() const {

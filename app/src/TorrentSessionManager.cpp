@@ -936,6 +936,9 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
         pack.set_int(libtorrent::settings_pack::proxy_port, 0);
         pack.set_str(libtorrent::settings_pack::proxy_username, std::string());
         pack.set_str(libtorrent::settings_pack::proxy_password, std::string());
+        pack.set_bool(libtorrent::settings_pack::proxy_peer_connections,   false);
+        pack.set_bool(libtorrent::settings_pack::proxy_tracker_connections,  false);
+        pack.set_bool(libtorrent::settings_pack::proxy_hostnames,          false);
     } else if (proxyType == 1) {
         // System proxy — query Qt for the resolved proxy and forward it.
         const QNetworkProxyQuery q(QUrl(QStringLiteral("http://example.com")));
@@ -961,6 +964,13 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
                          sys.user().toStdString());
             pack.set_str(libtorrent::settings_pack::proxy_password,
                          sys.password().toStdString());
+            pack.set_bool(libtorrent::settings_pack::proxy_peer_connections,  true);
+            pack.set_bool(libtorrent::settings_pack::proxy_tracker_connections, true);
+            pack.set_bool(libtorrent::settings_pack::proxy_hostnames,         true);
+        } else {
+            pack.set_bool(libtorrent::settings_pack::proxy_peer_connections,  false);
+            pack.set_bool(libtorrent::settings_pack::proxy_tracker_connections, false);
+            pack.set_bool(libtorrent::settings_pack::proxy_hostnames,         false);
         }
     } else {
         // Manual HTTP or SOCKS5 proxy.
@@ -980,6 +990,13 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
                      settings->proxyUsername().toStdString());
         pack.set_str(libtorrent::settings_pack::proxy_password,
                      settings->proxyPassword().toStdString());
+        // Route ALL libtorrent traffic through the proxy — peer connections,
+        // tracker announces, and DNS lookups. Without these three flags,
+        // libtorrent makes direct connections for most traffic even when a
+        // proxy is configured, bypassing VPNs and leaking the real IP.
+        pack.set_bool(libtorrent::settings_pack::proxy_peer_connections,  true);
+        pack.set_bool(libtorrent::settings_pack::proxy_tracker_connections, true);
+        pack.set_bool(libtorrent::settings_pack::proxy_hostnames,         true);
     }
 
     // Encryption mode: 0=Prefer (try encrypted, fall back to plaintext),
