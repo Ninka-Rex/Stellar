@@ -36,8 +36,7 @@
 
 namespace {
 QString desktopPluginDir() {
-    const QString desktop = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
-    return QDir(desktop).filePath(QStringLiteral("search_plugins"));
+    return QDir(QCoreApplication::applicationDirPath()).filePath(QStringLiteral("search_plugins"));
 }
 
 QString parseTag(const QString &content, const QString &name) {
@@ -78,8 +77,11 @@ TorrentSearchManager::TorrentSearchManager(QNetworkAccessManager *nam, QObject *
       m_pluginModel(new TorrentSearchPluginModel(this)),
       m_resultModel(new TorrentSearchResultModel(this))
 {
-    ensureBundledPluginsInstalled();
-    QDir().mkpath(pluginDirectory());
+    // Only install bundled plugins if the directory doesn't already exist.
+    // If it exists (even empty), the user manages it — don't overwrite or
+    // repopulate. This prevents respawning files after the user deletes them.
+    if (!QDir(pluginDirectory()).exists())
+        ensureBundledPluginsInstalled();
     refreshPlugins();
     refreshRuntimeState();
 }
