@@ -202,6 +202,111 @@ QStringList interfaceBindAddresses(const QNetworkInterface &iface) {
     return addresses;
 }
 
+bool interfaceLooksLikeVpn(const QNetworkInterface &iface) {
+    if (!iface.isValid())
+        return false;
+
+    const QString name = iface.name().trimmed().toLower();
+    const QString human = iface.humanReadableName().trimmed().toLower();
+
+    const QStringList strongTokens{
+        QStringLiteral("tun"),
+        QStringLiteral("tap"),
+        QStringLiteral("wg"),
+        QStringLiteral("wireguard"),
+        QStringLiteral("ppp"),
+        QStringLiteral("ipsec"),
+        QStringLiteral("openvpn"),
+        QStringLiteral("protonvpn"),
+        QStringLiteral("nord"),
+        QStringLiteral("mullvad"),
+        QStringLiteral("surfshark"),
+        QStringLiteral("expressvpn"),
+        QStringLiteral("windscribe"),
+        QStringLiteral("ivpn"),
+        QStringLiteral("zerotier"),
+        QStringLiteral("tailscale")
+    };
+
+    for (const QString &token : strongTokens) {
+        if (name.contains(token) || human.contains(token))
+            return true;
+    }
+
+    return false;
+}
+
+QNetworkInterface findPreferredVpnInterface() {
+    const QList<QNetworkInterface> interfaces = QNetworkInterface::allInterfaces();
+
+    QNetworkInterface bestCandidate;
+    int bestScore = -1;
+
+    for (const QNetworkInterface &iface : interfaces) {
+        const QStringList bindAddresses = interfaceBindAddresses(iface);
+        if (bindAddresses.isEmpty())
+            continue;
+
+        int score = -1;
+        const QString name = iface.name().trimmed().toLower();
+        const QString human = iface.humanReadableName().trimmed().toLower();
+
+        if (name.startsWith(QStringLiteral("wg")) || human.contains(QStringLiteral("wireguard"))) {
+            score = 400;
+        } else if (name.startsWith(QStringLiteral("tun")) || name.startsWith(QStringLiteral("tap"))
+                   || human.contains(QStringLiteral("openvpn"))) {
+            score = 300;
+        } else if (name.startsWith(QStringLiteral("ppp")) || human.contains(QStringLiteral("ppp"))
+                   || human.contains(QStringLiteral("ipsec"))) {
+            score = 200;
+        } else if (interfaceLooksLikeVpn(iface)) {
+            score = 100;
+        }
+
+        if (score < 0)
+            continue;
+
+        const bool hasIpv4 = std::any_of(bindAddresses.cbegin(), bindAddresses.cend(),
+                                         [](const QString &addressText) {
+                                             return QHostAddress(addressText).protocol()
+                                                 == QAbstractSocket::IPv4Protocol;
+                                         });
+        if (hasIpv4)
+            score += 10;
+
+        if (score > bestScore) {
+            bestScore = score;
+            bestCandidate = iface;
+        }
+    }
+
+    return bestCandidate;
+}
+
+void applyInterfaceBinding(libtorrent::settings_pack &pack, const QStringList &bindAddresses, int listenPort) {
+    if (!bindAddresses.isEmpty()) {
+        QStringList listenInterfaces;
+        for (const QString &addressText : bindAddresses) {
+            const QHostAddress address(addressText);
+            if (address.isNull())
+                continue;
+            listenInterfaces.push_back(formatListenInterface(address, listenPort));
+        }
+
+        if (!listenInterfaces.isEmpty()) {
+            pack.set_str(libtorrent::settings_pack::listen_interfaces,
+                         listenInterfaces.join(QStringLiteral(",")).toStdString());
+            pack.set_str(libtorrent::settings_pack::outgoing_interfaces,
+                         bindAddresses.join(QStringLiteral(",")).toStdString());
+            return;
+        }
+    }
+
+    pack.set_str(libtorrent::settings_pack::listen_interfaces,
+                 QStringLiteral("0.0.0.0:%1,[::]:%1").arg(listenPort).toStdString());
+    pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
+}
+
 QStringList geoDbCandidates() {
     const QString appDir = QCoreApplication::applicationDirPath();
     QString writableDataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
@@ -891,39 +996,10 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     const QString bindTarget = settings->torrentBindInterface().trimmed();
     if (!bindTarget.isEmpty()) {
         const QNetworkInterface iface = findNetworkInterfaceForBinding(bindTarget);
-        const QStringList bindAddresses = interfaceBindAddresses(iface);
-        if (!bindAddresses.isEmpty()) {
-            QStringList listenInterfaces;
-            for (const QString &addressText : bindAddresses) {
-                const QHostAddress address(addressText);
-                if (address.isNull())
-                    continue;
-                listenInterfaces.push_back(formatListenInterface(address, settings->torrentListenPort()));
-            }
-
-            if (!listenInterfaces.isEmpty()) {
-                pack.set_str(libtorrent::settings_pack::listen_interfaces,
-                             listenInterfaces.join(QStringLiteral(",")).toStdString());
-                pack.set_str(libtorrent::settings_pack::outgoing_interfaces,
-                             bindAddresses.join(QStringLiteral(",")).toStdString());
-            } else {
-                pack.set_str(libtorrent::settings_pack::listen_interfaces,
-                             QStringLiteral("0.0.0.0:%1,[::]:%1")
-                                 .arg(settings->torrentListenPort())
-                                 .toStdString());
-                pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
-            }
-        } else {
-            pack.set_str(libtorrent::settings_pack::listen_interfaces,
-                         QStringLiteral("0.0.0.0:%1,[::]:%1")
-                             .arg(settings->torrentListenPort())
-                             .toStdString());
-            pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
-        }
+        applyInterfaceBinding(pack, interfaceBindAddresses(iface), settings->torrentListenPort());
     } else {
-        pack.set_str(libtorrent::settings_pack::listen_interfaces,
-                     QStringLiteral("0.0.0.0:%1,[::]:%1").arg(settings->torrentListenPort()).toStdString());
-        pack.set_str(libtorrent::settings_pack::outgoing_interfaces, std::string());
+        const QNetworkInterface vpnIface = findPreferredVpnInterface();
+        applyInterfaceBinding(pack, interfaceBindAddresses(vpnIface), settings->torrentListenPort());
     }
     // Apply proxy settings so tracker announces and peer connections are routed
     // through the same proxy the rest of the app uses.
