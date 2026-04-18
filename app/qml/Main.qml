@@ -2118,9 +2118,23 @@ ApplicationWindow {
                         progressDialog.raise()
                         return
                     }
-                    filePropertiesDialog.item = item
-                    filePropertiesDialog.show()
-                    filePropertiesDialog.raise()
+                    var changingType = filePropertiesDialog.visible
+                        && (!!filePropertiesDialog.item && !!filePropertiesDialog.item.isTorrent) !== !!item.isTorrent
+                    if (changingType) {
+                        // Close the window so Qt destroys the old layout state, then
+                        // reopen next frame with the new item already set.
+                        filePropertiesDialog.close()
+                        var pendingItem = item
+                        Qt.callLater(function() {
+                            filePropertiesDialog.item = pendingItem
+                            filePropertiesDialog.show()
+                            filePropertiesDialog.raise()
+                        })
+                    } else {
+                        filePropertiesDialog.item = item
+                        filePropertiesDialog.show()
+                        filePropertiesDialog.raise()
+                    }
                 }
                 onOpenColumnsSettingsRequested: {
                     columnsDialog.columnDefs = downloadTable.columnDefs.slice()

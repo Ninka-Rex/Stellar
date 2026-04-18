@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(Stellar VERSION 0.5.8 LANGUAGES C CXX)
+project(Stellar VERSION 0.5.9 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -393,8 +393,8 @@ endif()
 add_custom_command(TARGET Stellar POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:Stellar>/extensions/firefox"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${CMAKE_SOURCE_DIR}/extensions/firefox/stellar-firefox-0.1.5.xpi"
-        "$<TARGET_FILE_DIR:Stellar>/extensions/firefox/stellar-firefox-0.1.5.xpi"
+        "${CMAKE_SOURCE_DIR}/extensions/firefox/stellar-firefox-0.1.6.xpi"
+        "$<TARGET_FILE_DIR:Stellar>/extensions/firefox/stellar-firefox-0.1.6.xpi"
     COMMENT "Copying stellar-firefox-0.1.5.xpi to build output")
 
 # ── Copy tips.txt to build output (dev convenience) ──────────────────────────

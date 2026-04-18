@@ -324,7 +324,10 @@ Window {
 
     // ── Window sizing ────────────────────────────────────────────────────────
     function _applySize() {
-        if (_isTorrent) {
+        var torrent = !!(root.item && root.item.isTorrent)
+        minimumWidth  = 0
+        minimumHeight = 0
+        if (torrent) {
             minimumWidth  = 820
             minimumHeight = 700
             width  = 820
@@ -348,6 +351,25 @@ Window {
         y = Math.round((Screen.height - height) / 2)
     }
 
+    // Works around a Qt layout invalidation bug when the Loader swaps between
+    // regularLayout and torrentLayout.  The new component is created and sized
+    // within the same event-loop tick as the old one is destroyed, but Qt
+    // coalesces the relayout into that same frame — before the new component's
+    // implicit sizes have fully propagated through the ColumnLayout chain.
+    // Result: the footer buttons overlap the content or disappear entirely.
+    // A zero-delay timer fires on the *next* tick and nudges the window width
+    // by +1/-1, which is the same thing a manual drag does: it forces a clean,
+    // full layout pass with the new content already in the tree.
+    Timer {
+        id: layoutNudgeTimer
+        interval: 0
+        repeat: false
+        onTriggered: {
+            root.width = root.width + 1
+            root.width = root.width - 1
+        }
+    }
+
     onItemChanged:  {
         currentTab = 0
         showTrackerAdd = false
@@ -359,9 +381,6 @@ Window {
         if (root.item && root.item.isTorrent)
             refreshSpeedHistory()
         root.loadSwarmStatsForCurrent()
-        root._applySize()
-        if (visible)
-            root._centerOnOwner()
     }
     onVisibleChanged: {
         if (visible) {
@@ -1412,7 +1431,7 @@ Window {
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 0
-        spacing: _isTorrent ? 8 : 6
+        spacing: 0
 
         Loader {
             id: propertiesLoader
@@ -1423,15 +1442,22 @@ Window {
                 root._applySize()
                 if (root.visible)
                     root._centerOnOwner()
+                // Nudge the window size in a later event-loop tick to force
+                // Qt to run a full layout pass with the new Loader content.
+                // The Loader swap invalidates geometry but Qt coalesces the
+                // relayout into the current frame — which runs before the new
+                // component's implicit sizes have fully propagated. A deferred
+                // +1/-1 nudge triggers a second, clean layout pass.
+                layoutNudgeTimer.restart()
             }
         }
 
-        // Bottom button bar
         RowLayout {
             Layout.fillWidth: true
             Layout.leftMargin: 12
             Layout.rightMargin: 12
             Layout.bottomMargin: 8
+            Layout.topMargin: 8
             spacing: 6
             DlgButton {
                 visible: root._isTorrent
@@ -1445,21 +1471,19 @@ Window {
                 }
             }
             Item { Layout.fillWidth: true }
-            RowLayout {
+            DlgButton {
                 visible: root._isTorrent
-                spacing: 6
-                DlgButton {
-                    text: "Start"
-                    enabled: !!root.item && safeStr(root.item.status) === "Paused"
-                    onClicked: { if (root.item) App.resumeDownload(root.item.id) }
-                }
-                DlgButton {
-                    text: "Stop"
-                    enabled: !!root.item
-                             && safeStr(root.item.status) !== "Paused"
-                             && safeStr(root.item.status) !== "Error"
-                    onClicked: { if (root.item) App.pauseDownload(root.item.id) }
-                }
+                text: "Start"
+                enabled: !!root.item && safeStr(root.item.status) === "Paused"
+                onClicked: { if (root.item) App.resumeDownload(root.item.id) }
+            }
+            DlgButton {
+                visible: root._isTorrent
+                text: "Stop"
+                enabled: !!root.item
+                         && safeStr(root.item.status) !== "Paused"
+                         && safeStr(root.item.status) !== "Error"
+                onClicked: { if (root.item) App.pauseDownload(root.item.id) }
             }
             Item {
                 visible: root._isTorrent
@@ -1472,14 +1496,7 @@ Window {
             }
             DlgButton {
                 text: "Open file"
-                enabled: {
-                    if (!root.item) return false
-                    if (!_isTorrent) return true
-                    // For torrents: enabled when we know it's a single-file torrent.
-                    // torrentIsSingleFile defaults true until metadata shows multiple files,
-                    // so stopped single-file torrents also get the button.
-                    return !!root.item.torrentIsSingleFile
-                }
+                enabled: !!root.item && (!root._isTorrent || !!root.item.torrentIsSingleFile)
                 onClicked: { if (root.item) App.openFile(root.item.id) }
             }
             DlgButton { text: "Close"; primary: true; onClicked: root.close() }
@@ -1643,7 +1660,7 @@ Window {
         }
     }
 
-    // ═══════════════════════════════════════════════════════════════════════════
+    //═══════════════════════════════════════════════════════════════════════════
     // Torrent layout
     // ═══════════════════════════════════════════════════════════════════════════
     Component {
@@ -2031,7 +2048,7 @@ Window {
                             }
                         }
 
-                        // — Description —
+                        // bottom margin
                     }
                 }
 
