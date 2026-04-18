@@ -49,24 +49,7 @@ QString peerKey(const TorrentPeerModel::Entry &entry) {
 
 QString normalizeClientName(const QString &client) {
     const QString raw = client.trimmed();
-    QString out = raw;
-    if (out.isEmpty())
-        return QStringLiteral("Unknown");
-    const QString lower = out.toLower();
-    if (lower.contains(QStringLiteral("deluge")))
-        return QStringLiteral("Deluge");
-    if (lower.contains(QStringLiteral("qbittorrent")))
-        return QStringLiteral("qBittorrent");
-    if (lower.contains(QStringLiteral("transmission")))
-        return QStringLiteral("Transmission");
-    if (lower.contains(QStringLiteral("utorrent")) || lower.contains(QStringLiteral("microtorrent")))
-        return QStringLiteral("uTorrent");
-    if (lower.contains(QStringLiteral("libtorrent")) || lower.contains(QStringLiteral("rasterbar")))
-        return QStringLiteral("libtorrent");
-    out.replace(QRegularExpression(QStringLiteral("\\s*[/ ]\\d+(?:\\.\\d+)*\\s*$")), QString());
-    out.replace(QRegularExpression(QStringLiteral("\\s+v\\d+(?:\\.\\d+)*\\s*$"), QRegularExpression::CaseInsensitiveOption), QString());
-    out = out.trimmed();
-    return out.isEmpty() ? QStringLiteral("Unknown") : out;
+    return raw.isEmpty() ? QStringLiteral("Unknown") : raw;
 }
 
 int compareIdentity(const TorrentPeerModel::Entry &a, const TorrentPeerModel::Entry &b) {

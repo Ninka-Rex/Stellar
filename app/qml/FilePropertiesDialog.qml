@@ -4194,7 +4194,7 @@ Window {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                 }
                                                 Text {
-                                                    text: root.baseClientName(root.peerMapHoverClient)
+                                                    text: root.peerMapHoverClient
                                                     color: "#c5d2de"
                                                     font.pixelSize: 12
                                                     elide: Text.ElideRight
