@@ -1573,7 +1573,7 @@ Window {
             // Details card
             Rectangle {
                 Layout.fillWidth: true; Layout.fillHeight: true
-                color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 3
+                color: "#1e1e1e"; border.width: 0; radius: 3
 
                 ColumnLayout {
                     anchors { fill: parent; margins: 8 }
