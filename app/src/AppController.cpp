@@ -5223,7 +5223,28 @@ void AppController::finalizeYtdlpDownload(const QString &url,
     auto *item = new DownloadItem(id, qurl);
 
     item->setSavePath(saveDir);
-    item->setFilename(QString());
+
+    // Set a provisional filename immediately so the download row shows a
+    // meaningful name and the correct file-type icon from the moment the
+    // user clicks Download — instead of a blank entry with a folder icon.
+    //
+    // We already know the video title from the --dump-json probe that
+    // populated YtdlpDialog, and we know the requested container format.
+    // Combining them gives a best-guess name that is correct in the common
+    // case.  The rare divergences (filesystem sanitization, collision
+    // suffixes, format fallback) are corrected within the first second of
+    // the download when YtdlpTransfer parses the "[download] Destination:"
+    // line and calls setFilename() with the real path yt-dlp chose.
+    //
+    // Playlist mode is excluded: each item's title isn't known until
+    // yt-dlp announces it, so there is no useful guess to make upfront.
+    if (!playlistMode && !videoTitle.isEmpty()) {
+        const QString ext = containerFormat.isEmpty()
+                                ? QStringLiteral("mp4")
+                                : containerFormat.toLower();
+        item->setFilename(videoTitle + QLatin1Char('.') + ext);
+    }
+
     item->setIsYtdlp(true);
     item->setYtdlpPlaylistMode(playlistMode);
 
