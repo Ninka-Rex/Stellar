@@ -36,6 +36,7 @@
 #include "FileIconImageProvider.h"
 #include "FileDragDropHelper.h"
 #include "FileIconImageProvider.h"
+#include "StellarPaths.h"
 #include "TorrentSearchManager.h"
 #include "TorrentSearchPluginModel.h"
 #include "TorrentSearchResultModel.h"
@@ -268,9 +269,9 @@ static int runNativeMessagingHost(int argc, char *argv[])
     }
 
     if (type == QStringLiteral("getSettings")) {
-        // Read settings directly from QSettings — no need for the running app.
+        // Read settings directly from the INI file — no need for the running app.
         // This means changes saved by the app are immediately visible to the extension.
-        QSettings s(QStringLiteral("StellarDownloadManager"), QStringLiteral("StellarDownloadManager"));
+        QSettings s(StellarPaths::settingsFile(), QSettings::IniFormat);
 
         auto toJsonArray = [&](const QString &key, const QStringList &defaultVal) -> QJsonArray {
             QVariant v = s.value(key);
@@ -335,10 +336,25 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     nmLog(QStringLiteral("QGuiApplication constructed."));
     
-    app.setApplicationName(QStringLiteral("StellarDownloadManager"));
+    app.setApplicationName(QStringLiteral("Stellar"));
     app.setApplicationVersion(QStringLiteral("0.1.0"));
-    app.setOrganizationName(QStringLiteral("StellarDownloadManager"));
+    app.setOrganizationName(QStringLiteral("Stellar"));
     app.setWindowIcon(QIcon(QStringLiteral("qrc:/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")));
+
+    // Qt writes several caches under QStandardPaths::CacheLocation, which
+    // defaults to %LOCALAPPDATA%\<Org>\<App>\cache\.  Redirect both the QML
+    // bytecode cache and the RHI shader pipeline cache into our unified data
+    // root so everything stays under %LOCALAPPDATA%\Stellar\cache\ with no
+    // double-nesting.  Both env vars must be set before the QML engine and
+    // QQuickWindow are constructed.
+    const QByteArray cacheDir = StellarPaths::cacheDir().toUtf8();
+    qputenv("QML_DISK_CACHE_PATH",        cacheDir); // QML bytecode cache
+    qputenv("QSG_RHI_PIPELINE_CACHE_DIR", cacheDir); // RHI pipeline cache (Qt 6.5+)
+
+    // One-time migration from the legacy data layout to the unified Stellar/
+    // directory structure.  Must run before any component opens a database or
+    // settings file so that all subsequent opens find data in the new location.
+    StellarPaths::migrateIfNeeded();
 
     // Single-instance guard: try to reach an already-running instance first.
     // Only remove stale server entries when connect is explicitly refused.

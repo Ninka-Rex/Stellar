@@ -15,7 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "QueueDatabase.h"
-#include <QStandardPaths>
+#include "StellarPaths.h"
 #include <QDir>
 #include <QFile>
 #include <QJsonDocument>
@@ -26,9 +26,7 @@
 QueueDatabase::QueueDatabase(QObject *parent) : QObject(parent) {}
 
 bool QueueDatabase::open() {
-    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir().mkpath(dataDir);
-    m_filePath = dataDir + QStringLiteral("/queues.json");
+    m_filePath = StellarPaths::queuesFile();
     return true;
 }
 

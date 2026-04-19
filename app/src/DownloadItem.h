@@ -253,6 +253,11 @@ signals:
     void passwordChanged();
     void lastTryAtChanged();
     void torrentChanged();
+    // Fired only when the raw resume-data blob is updated. Intentionally
+    // separate from torrentChanged so that AppController::watchItem does not
+    // schedule a downloads.json write on every libtorrent resume-data flush —
+    // the blob is written directly to its own .resume file in DownloadDatabase.
+    void torrentResumeDataChanged();
     void torrentStatsChanged();
     void torrentLimitsChanged();
     void torrentFlagsChanged();

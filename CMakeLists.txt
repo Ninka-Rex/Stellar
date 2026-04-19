@@ -114,6 +114,7 @@ set(BACKEND_SOURCES
     app/src/CategoryModel.cpp
     app/src/DownloadTableModel.cpp
     app/src/AppSettings.cpp
+    app/src/StellarPaths.cpp
     app/src/SystemTrayIcon.cpp
     app/src/DownloadDatabase.cpp
     app/src/GrabberCrawler.cpp
@@ -143,6 +144,7 @@ set(BACKEND_HEADERS
     app/src/CategoryModel.h
     app/src/DownloadTableModel.h
     app/src/AppSettings.h
+    app/src/StellarPaths.h
     app/src/SystemTrayIcon.h
     app/src/DownloadDatabase.h
     app/src/GrabberCrawler.h

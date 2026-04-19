@@ -406,6 +406,7 @@ private:
     class QueueDatabase    *m_queueDb{nullptr};
     class QueueModel       *m_queueModel{nullptr};
     QTimer                 *m_saveTimer{nullptr};
+    QTimer                 *m_torrentStatsFlushTimer{nullptr};
     QTimer                 *m_tooltipTimer{nullptr};
     QLocalServer           *m_ipcServer{nullptr};
     bool                    m_qmlReady{false};
@@ -413,8 +414,12 @@ private:
     QSet<QString>           m_dirtyIds;
     QMap<QString, int>      m_cancelCounts;
     QMap<QString, int>      m_interceptRejectCounts;
-    QMap<QString, qint64>   m_lastProgressPersistBytes;
+    QMap<QString, qint64>    m_lastProgressPersistBytes;
     QMap<QString, QDateTime> m_lastProgressPersistAt;
+    // Throttle state for torrent upload/download counters (see watchItem).
+    // Saves only when counters move ≥ 1 MB or 60 s have elapsed.
+    QMap<QString, qint64>    m_lastTorrentPersistUploaded;
+    QMap<QString, qint64>    m_lastTorrentPersistDownloaded;
     bool                    m_restoring{false};
     // IDs of torrents that were already seeding/complete when restored from the
     // database. Completion alerts for these IDs are suppressed — they are not
@@ -437,6 +442,7 @@ private:
     void watchItem(DownloadItem *item);
     void scheduleSave(const QString &id);
     void flushDirty();
+    void flushTorrentStats();
     bool canStartDownloadItem(DownloadItem *item) const;
     qint64 queueTransferredBytesInWindow(const QString &queueId, int hours) const;
     void recordQueueTransferSample(const QString &queueId, qint64 bytes);

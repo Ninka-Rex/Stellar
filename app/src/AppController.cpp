@@ -15,6 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AppController.h"
+#include "StellarPaths.h"
 #include <QQuickWindow>
 #include <QIcon>
 #include "DownloadItem.h"
@@ -108,13 +109,7 @@ QString effectiveTemporaryDirectory(const AppSettings *settings) {
 }
 
 QString writableRuntimeRoot() {
-    QString dir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    if (dir.isEmpty())
-        dir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    if (dir.isEmpty())
-        dir = QCoreApplication::applicationDirPath();
-    QDir().mkpath(dir);
-    return dir;
+    return StellarPaths::root();
 }
 
 QString writableRuntimeDataDir() {
@@ -645,6 +640,14 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_saveTimer->setSingleShot(true);
     m_saveTimer->setInterval(500);
     connect(m_saveTimer, &QTimer::timeout, this, &AppController::flushDirty);
+
+    // Flush persistable torrent stats (uploaded, downloaded, ratio) every
+    // 2 minutes. These counters change continuously while seeding so they
+    // cannot be saved on every torrentStatsChanged tick without hammering disk.
+    m_torrentStatsFlushTimer = new QTimer(this);
+    m_torrentStatsFlushTimer->setInterval(2 * 60 * 1000);
+    connect(m_torrentStatsFlushTimer, &QTimer::timeout, this, &AppController::flushTorrentStats);
+    m_torrentStatsFlushTimer->start();
     m_recentErrorTimer = new QTimer(this);
     m_recentErrorTimer->setInterval(30000);
     connect(m_recentErrorTimer, &QTimer::timeout, this, &AppController::pruneRecentErrorDownloads);
@@ -2168,10 +2171,8 @@ void AppController::openExtensionFolder() const {
 QString AppController::nativeHostManifestPath() const {
 #if defined(STELLAR_LINUX)
     // On Linux the app dir may be read-only (e.g. Flatpak /app/bin/).
-    // Use a writable user-data directory instead.
-    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    QDir().mkpath(dataDir);
-    return dataDir + QStringLiteral("/com.stellar.downloadmanager.json");
+    // Use the writable data root instead.
+    return StellarPaths::root() + QStringLiteral("/com.stellar.downloadmanager.json");
 #else
     // Windows: return the Firefox manifest path for diagnostics/UI.
     return QDir::toNativeSeparators(
@@ -2251,10 +2252,9 @@ QString AppController::registerNativeHost() const {
     QString hostExePath;  // path Firefox will put in the manifest
 
     if (isFlatpak) {
-        // Write a wrapper script: ~/.local/share/<AppName>/stellar-nm-wrapper.sh
-        const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-        QDir().mkpath(dataDir);
-        const QString wrapperPath = dataDir + QStringLiteral("/stellar-nm-wrapper.sh");
+        // Write a wrapper script into the unified data root so it sits
+        // alongside the native messaging manifest.
+        const QString wrapperPath = StellarPaths::root() + QStringLiteral("/stellar-nm-wrapper.sh");
 
         QFile wrapper(wrapperPath);
         if (!wrapper.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
@@ -3815,18 +3815,46 @@ QString AppController::generateId() const {
 }
 
 void AppController::watchItem(DownloadItem *item) {
-    // Schedule a debounced save on any meaningful state change
+    // Schedule a debounced save on any meaningful persistent state change.
+    //
+    // Deliberately NOT connected here:
+    //   doneBytesChanged  — handled by the throttled lambda below (HTTP) and
+    //                       flushTorrentStats timer (torrents). Connecting it
+    //                       directly would cause a write every libtorrent tick
+    //                       (~1 s) even for idle seeding torrents.
+    //   totalBytesChanged — libtorrent re-reports total_wanted every tick;
+    //                       size is already saved on statusChanged / torrentChanged.
+    //   torrentStatsChanged — ephemeral (seeders, peers, speeds, active-time
+    //                         counters); handled by flushTorrentStats timer.
     const QString id = item->id();
     auto sched = [this, id]() { scheduleSave(id); };
-    connect(item, &DownloadItem::statusChanged,    this, sched);
-    connect(item, &DownloadItem::statusChanged,    this, &AppController::activeDownloadsChanged);
-    connect(item, &DownloadItem::totalBytesChanged, this, sched);
-    connect(item, &DownloadItem::doneBytesChanged,  this, sched);
+    connect(item, &DownloadItem::statusChanged,        this, sched);
+    connect(item, &DownloadItem::statusChanged,        this, &AppController::activeDownloadsChanged);
     connect(item, &DownloadItem::resumeCapableChanged, this, sched);
-    connect(item, &DownloadItem::savePathChanged,   this, sched);
-    connect(item, &DownloadItem::filenameChanged,   this, sched);
-    connect(item, &DownloadItem::torrentChanged,    this, sched);
-    connect(item, &DownloadItem::torrentStatsChanged, this, sched);
+    connect(item, &DownloadItem::savePathChanged,      this, sched);
+    connect(item, &DownloadItem::filenameChanged,      this, sched);
+    connect(item, &DownloadItem::torrentChanged,       this, sched);
+
+    // Resume-data blobs are written directly to their own .resume file without
+    // touching downloads.json. Crucially this must NOT call scheduleSave or
+    // flushDirty — both of those call TorrentSessionManager::saveResumeData()
+    // which would request a new blob from libtorrent, causing a feedback loop
+    // that writes to disk every second.
+    connect(item, &DownloadItem::torrentResumeDataChanged, this, [item]() {
+        if (!item || item->torrentResumeData().isEmpty())
+            return;
+        const QByteArray blob = QByteArray::fromBase64(item->torrentResumeData().toLatin1());
+        QSaveFile f(StellarPaths::resumeFile(item->id()));
+        if (f.open(QIODevice::WriteOnly))
+            f.write(blob), f.commit();
+    });
+
+    // torrentStatsChanged fires every libtorrent alert tick (~1 s) for active
+    // torrents. Seeder/peer counts, speeds, and piece progress are ephemeral
+    // and not persisted, so connecting this signal to scheduleSave would cause
+    // a disk write every second. Instead, persistable torrent counters
+    // (uploaded, downloaded, ratio) are flushed by m_torrentStatsFlushTimer on
+    // a 2-minute cadence — see the timer setup in the constructor.
     connect(item, &DownloadItem::doneBytesChanged, this, [this, item]() {
         if (item && !item->queueId().isEmpty())
             enforceQueueDownloadLimits(item->queueId());
@@ -3896,12 +3924,38 @@ void AppController::flushDirty() {
     const auto items = m_queue->items();
     for (DownloadItem *item : items) {
         if (m_dirtyIds.contains(item->id())) {
-            if (item->isTorrent())
-                m_torrentSession->saveResumeData(item->id());
+            // Resume data is written by the torrentResumeDataChanged connection
+            // in watchItem — do NOT call saveResumeData() here or it creates a
+            // feedback loop: save → saveResumeData → new blob → torrentChanged
+            // → scheduleSave → save again, repeating every second.
             m_db->save(item);
         }
     }
     m_dirtyIds.clear();
+}
+
+void AppController::flushTorrentStats() {
+    // Save persistable torrent counters (uploaded, downloaded, ratio) for any
+    // torrent whose values have changed since the last flush. Called every 2
+    // minutes by m_torrentStatsFlushTimer so seeding torrents don't cause
+    // continuous disk writes.
+    for (DownloadItem *item : m_queue->items()) {
+        if (!item || !item->isTorrent())
+            continue;
+
+        const QString  id         = item->id();
+        const qint64   uploaded   = item->torrentUploaded();
+        const qint64   downloaded = item->torrentDownloaded();
+        const qint64   lastUp     = m_lastTorrentPersistUploaded.value(id, -1);
+        const qint64   lastDown   = m_lastTorrentPersistDownloaded.value(id, -1);
+
+        if (lastUp == uploaded && lastDown == downloaded)
+            continue; // nothing changed — skip the write
+
+        m_db->save(item);
+        m_lastTorrentPersistUploaded[id]   = uploaded;
+        m_lastTorrentPersistDownloaded[id] = downloaded;
+    }
 }
 
 void AppController::cleanupTemporaryDirectory()

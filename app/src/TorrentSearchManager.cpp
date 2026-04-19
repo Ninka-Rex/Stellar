@@ -27,20 +27,18 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include "StellarPaths.h"
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QProcessEnvironment>
 #include <QSettings>
-#include <QStandardPaths>
 #include <QRegularExpression>
 #include <QSet>
+#include <QStandardPaths>
 
 namespace {
 QString userPluginDir() {
-    // AppDataLocation is writable on all platforms (including Linux installs
-    // where applicationDirPath() is read-only under /usr/local/bin).
-    const QString base = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    return QDir(base).filePath(QStringLiteral("search_plugins"));
+    return StellarPaths::searchPluginsDir();
 }
 
 QString parseTag(const QString &content, const QString &name) {
@@ -95,9 +93,7 @@ QString TorrentSearchManager::disabledPluginsKey() const {
 }
 
 QString TorrentSearchManager::runnerScriptPath() {
-    const QString cacheDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir().mkpath(cacheDir);
-    const QString outPath = QDir(cacheDir).filePath(QStringLiteral("torrent_search_runner.py"));
+    const QString outPath = StellarPaths::searchRunnerFile();
     QFile outFile(outPath);
     QFile resourceFile(QStringLiteral(":/qt/qml/com/stellar/app/app/scripts/torrent_search_runner.py"));
     if (!resourceFile.exists())
@@ -135,7 +131,7 @@ void TorrentSearchManager::ensureBundledPluginsInstalled() {
     // first run or after an upgrade/reinstall. This ensures fresh installs get
     // all plugins while respecting the user's decision to delete individual
     // files between upgrades (deleted files are not reinstated mid-version).
-    QSettings settings;
+    QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
     const QString currentVersion = QStringLiteral(STELLAR_VERSION);
     const QString installedVersion = settings.value(QStringLiteral("searchPluginsInstalledVersion")).toString();
     if (installedVersion == currentVersion)
@@ -229,7 +225,7 @@ void TorrentSearchManager::refreshRuntimeState() {
 }
 
 QVector<TorrentSearchManager::PluginInfo> TorrentSearchManager::scanPlugins() const {
-    QSettings settings(QStringLiteral("StellarDownloadManager"), QStringLiteral("StellarDownloadManager"));
+    QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
     const QStringList disabledList = settings.value(disabledPluginsKey()).toStringList();
     const QSet<QString> disabled(disabledList.begin(), disabledList.end());
     QDir dir(pluginDirectory());
@@ -448,7 +444,7 @@ QString TorrentSearchManager::resolveResultLink(int row, bool preferMagnet) {
 }
 
 void TorrentSearchManager::setPluginEnabled(const QString &fileName, bool enabled) {
-    QSettings settings(QStringLiteral("StellarDownloadManager"), QStringLiteral("StellarDownloadManager"));
+    QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
     QStringList disabled = settings.value(disabledPluginsKey()).toStringList();
     disabled.removeAll(fileName);
     if (!enabled)
@@ -491,6 +487,8 @@ bool TorrentSearchManager::uninstallPlugin(const QString &fileName) {
         return false;
 
     const QDir pluginDir(pluginDirectory());
+    // QDir::cleanPath always uses forward slashes, so use '/' as the separator
+    // when building the prefix — not QDir::separator() which is '\' on Windows.
     const QString pluginRoot = QDir::cleanPath(pluginDir.absolutePath());
     const QString candidatePath = QDir::cleanPath(pluginDir.absoluteFilePath(trimmed));
     const Qt::CaseSensitivity cs =
@@ -499,7 +497,7 @@ bool TorrentSearchManager::uninstallPlugin(const QString &fileName) {
 #else
         Qt::CaseSensitive;
 #endif
-    const QString rootPrefix = pluginRoot + QDir::separator();
+    const QString rootPrefix = pluginRoot + QLatin1Char('/');
     if (candidatePath.compare(pluginRoot, cs) != 0
         && !candidatePath.startsWith(rootPrefix, cs)) {
         return false;

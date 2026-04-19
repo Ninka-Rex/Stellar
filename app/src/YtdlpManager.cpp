@@ -15,6 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "YtdlpManager.h"
+#include "StellarPaths.h"
 #include <QCoreApplication>
 #include <QCryptographicHash>
 #include <QFile>
@@ -26,15 +27,9 @@
 #include <QDebug>
 
 namespace {
+// The unified bin/ directory that holds yt-dlp, ffmpeg, and ffprobe.
 QString writableToolRoot() {
-    QString dir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    if (dir.isEmpty())
-        dir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    if (dir.isEmpty())
-        dir = QCoreApplication::applicationDirPath();
-    dir += QLatin1String("/tools");
-    QDir().mkpath(dir);
-    return dir;
+    return StellarPaths::binDir();
 }
 }
 

@@ -15,7 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DownloadDatabase.h"
-#include <QStandardPaths>
+#include "StellarPaths.h"
 #include <QDir>
 #include <QFile>
 #include <QJsonDocument>
@@ -69,9 +69,7 @@ DownloadDatabase::DownloadDatabase(QObject *parent) : QObject(parent) {
 }
 
 bool DownloadDatabase::open() {
-    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir().mkpath(dataDir);
-    m_filePath = dataDir + QStringLiteral("/downloads.json");
+    m_filePath = StellarPaths::downloadsFile();
     return true;
 }
 
@@ -142,7 +140,19 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setTorrentDisableDht(obj[QLatin1String("torrentDisableDht")].toBool(false));
         item->setTorrentDisablePex(obj[QLatin1String("torrentDisablePex")].toBool(false));
         item->setTorrentDisableLsd(obj[QLatin1String("torrentDisableLsd")].toBool(false));
-        item->setTorrentResumeData(obj[QLatin1String("torrentResumeData")].toString());
+        // Resume data is stored in a dedicated per-torrent file rather than
+        // inline in the JSON array.  Fall back to any inline blob that may
+        // exist in a migrated record so a downgrade to the old build still
+        // loads cleanly (the inline field is simply left absent on new saves).
+        {
+            const QString resumePath = StellarPaths::resumeFile(id);
+            QFile rf(resumePath);
+            if (rf.exists() && rf.open(QIODevice::ReadOnly)) {
+                item->setTorrentResumeData(QString::fromLatin1(rf.readAll().toBase64()));
+            } else {
+                item->setTorrentResumeData(obj[QLatin1String("torrentResumeData")].toString());
+            }
+        }
         item->setPerTorrentDownLimitKBps(obj[QLatin1String("perTorrentDownLimitKBps")].toInt(0));
         item->setPerTorrentUpLimitKBps(obj[QLatin1String("perTorrentUpLimitKBps")].toInt(0));
         item->setTorrentShareRatioLimit(obj[QLatin1String("torrentShareRatioLimit")].toDouble(-1.0));
@@ -172,6 +182,7 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
 
 void DownloadDatabase::save(DownloadItem *item) {
     if (!item) return;
+
 
     QVariantMap m;
     m[QStringLiteral("id")]             = item->id();
@@ -219,7 +230,11 @@ void DownloadDatabase::save(DownloadItem *item) {
         m[QStringLiteral("torrentDisableDht")]   = item->torrentDisableDht();
         m[QStringLiteral("torrentDisablePex")]   = item->torrentDisablePex();
         m[QStringLiteral("torrentDisableLsd")]   = item->torrentDisableLsd();
-        m[QStringLiteral("torrentResumeData")] = item->torrentResumeData();
+        // The resume blob is written to its own .resume file exclusively by
+        // the torrentResumeDataChanged connection in AppController::watchItem.
+        // Writing it here too would duplicate I/O and — more importantly —
+        // would re-enter the feedback loop where save() → saveResumeData() →
+        // new blob → setTorrentResumeData() → save() again.
         m[QStringLiteral("perTorrentDownLimitKBps")] = item->perTorrentDownLimitKBps();
         m[QStringLiteral("perTorrentUpLimitKBps")]   = item->perTorrentUpLimitKBps();
         m[QStringLiteral("torrentShareRatioLimit")]  = item->torrentShareRatioLimit();
@@ -233,8 +248,12 @@ void DownloadDatabase::save(DownloadItem *item) {
 }
 
 void DownloadDatabase::remove(const QString &id) {
-    if (m_entries.remove(id))
+    if (m_entries.remove(id)) {
+        // Remove the associated torrent resume file so stale blobs don't
+        // accumulate in the resume/ directory after downloads are deleted.
+        QFile::remove(StellarPaths::resumeFile(id));
         scheduleDiskWrite();
+    }
 }
 
 void DownloadDatabase::flush() {

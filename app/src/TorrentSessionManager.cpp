@@ -19,6 +19,7 @@
 #include "AppSettings.h"
 #include "AppVersion.h"
 #include "DownloadItem.h"
+#include "StellarPaths.h"
 #include "TorrentFileModel.h"
 #include "TorrentPeerModel.h"
 #include "TorrentTrackerModel.h"
@@ -309,19 +310,15 @@ void applyInterfaceBinding(libtorrent::settings_pack &pack, const QStringList &b
 
 QStringList geoDbCandidates() {
     const QString appDir = QCoreApplication::applicationDirPath();
-    QString writableDataDir = QStandardPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
-    if (writableDataDir.isEmpty())
-        writableDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    writableDataDir = writableDataDir.isEmpty()
-        ? QString()
-        : QDir::cleanPath(writableDataDir + QStringLiteral("/data"));
+    // Primary: the unified geo/ directory under the Stellar data root.
+    // Fallbacks cover side-by-side installs and Flatpak bundle layouts.
     return {
-        writableDataDir + QStringLiteral("/dbip-city-lite-2026-04.mmdb"),
+        StellarPaths::geoDir() + QStringLiteral("/dbip-city-lite-2026-04.mmdb"),
         appDir + QStringLiteral("/data/dbip-city-lite-2026-04.mmdb"),
         appDir + QStringLiteral("/dbip-city-lite-2026-04.mmdb"),
         appDir + QStringLiteral("/../data/dbip-city-lite-2026-04.mmdb"),
-        QDir::cleanPath(QCoreApplication::applicationDirPath() + QStringLiteral("/../../app/data/dbip-city-lite-2026-04.mmdb")),
-        QDir::cleanPath(QCoreApplication::applicationDirPath() + QStringLiteral("/../../../app/data/dbip-city-lite-2026-04.mmdb"))
+        QDir::cleanPath(appDir + QStringLiteral("/../../app/data/dbip-city-lite-2026-04.mmdb")),
+        QDir::cleanPath(appDir + QStringLiteral("/../../../app/data/dbip-city-lite-2026-04.mmdb"))
     };
 }
 

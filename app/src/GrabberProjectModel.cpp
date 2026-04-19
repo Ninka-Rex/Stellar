@@ -15,12 +15,12 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "GrabberProjectModel.h"
+#include "StellarPaths.h"
 
 #include <QDir>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QStandardPaths>
 #include <QUuid>
 
 GrabberProjectModel::GrabberProjectModel(QObject *parent)
@@ -177,9 +177,7 @@ void GrabberProjectModel::updateProjectRunState(const QString &id,
 
 QString GrabberProjectModel::projectsFilePath() const
 {
-    const QString dir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    QDir().mkpath(dir);
-    return dir + QDir::separator() + QStringLiteral("grabber_projects.json");
+    return StellarPaths::grabberProjectsFile();
 }
 
 void GrabberProjectModel::loadFromDisk()

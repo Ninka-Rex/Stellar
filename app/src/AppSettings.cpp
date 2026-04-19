@@ -16,12 +16,14 @@
 
 #include "AppSettings.h"
 #include "AppVersion.h"
+#include "StellarPaths.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
 #ifdef Q_OS_WIN
 #include <QSettings>
+#include <QStandardPaths>
 #endif
 
 QStringList AppSettings::defaultMonitoredExtensions() {
@@ -135,7 +137,10 @@ QStringList AppSettings::defaultExcludedAddresses() {
 
 AppSettings::AppSettings(QObject *parent)
     : QObject(parent),
-      m_settings(QStringLiteral("StellarDownloadManager"), QStringLiteral("StellarDownloadManager"))
+      // Store settings in a plain INI file inside the unified data root rather
+      // than the Windows registry or a platform-default location.  This makes
+      // the file easy to inspect, back up, and transfer between machines.
+      m_settings(StellarPaths::settingsFile(), QSettings::IniFormat)
 {
     m_defaultSavePath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     m_temporaryDirectory = QStandardPaths::writableLocation(QStandardPaths::TempLocation)

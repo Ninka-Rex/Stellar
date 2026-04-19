@@ -163,7 +163,7 @@ void DownloadItem::setTorrentUploaded(qint64 v)         { if (m_torrentUploaded 
 void DownloadItem::setTorrentDownloaded(qint64 v)       { if (m_torrentDownloaded != v) { m_torrentDownloaded = v; emit torrentStatsChanged(); } }
 void DownloadItem::setTorrentUploadSpeed(qint64 v)      { if (m_torrentUploadSpeed != v) { m_torrentUploadSpeed = v; emit torrentStatsChanged(); } }
 void DownloadItem::setTorrentHasMetadata(bool v)        { if (m_torrentHasMetadata != v) { m_torrentHasMetadata = v; emit torrentChanged(); } }
-void DownloadItem::setTorrentResumeData(const QString &v) { if (m_torrentResumeData != v) { m_torrentResumeData = v; emit torrentChanged(); } }
+void DownloadItem::setTorrentResumeData(const QString &v) { if (m_torrentResumeData != v) { m_torrentResumeData = v; emit torrentResumeDataChanged(); } }
 
 void DownloadItem::clearTorrentStats() {
     bool changed = false;
