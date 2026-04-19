@@ -37,10 +37,10 @@ Window {
                              var extraOptions)
 
     // ── Window ────────────────────────────────────────────────────────────────
-    width:       660
-    height:      640
-    minimumWidth:  540
-    minimumHeight: 480
+    width:       620
+    height:      520
+    minimumWidth:  520
+    minimumHeight: 400
     title:       "Video Download"
     color:       "#1e1e1e"
     modality:    Qt.ApplicationModal
@@ -83,8 +83,13 @@ Window {
 
     // ── Lifecycle ─────────────────────────────────────────────────────────────
     onVisibleChanged: {
-        if (visible) { raise(); requestActivate(); if (pendingUrl.length > 0) _startProbe() }
-        else _reset()
+        if (visible) {
+            App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.ico")
+            raise(); requestActivate()
+            if (pendingUrl.length > 0) _startProbe()
+        } else {
+            _reset()
+        }
     }
     onPendingUrlChanged: { if (visible && pendingUrl.length > 0 && !_accepted) _startProbe() }
 
@@ -307,13 +312,13 @@ Window {
         // ── Header ────────────────────────────────────────────────────────────
         Rectangle {
             Layout.fillWidth: true
-            implicitHeight: 54
+            implicitHeight: 48
             color: "#222228"
 
             // Use a plain Row + anchors — no RowLayout so text width is simply
             // "total width minus icon minus spacing minus margins".
             Item {
-                anchors { fill: parent; leftMargin: 16; rightMargin: 16; topMargin: 9; bottomMargin: 9 }
+                anchors { fill: parent; leftMargin: 16; rightMargin: 16; topMargin: 7; bottomMargin: 7 }
 
                 Image {
                     id: headerIcon
@@ -486,8 +491,8 @@ Window {
 
             // Format picker — fills the whole body, options scroll is capped below it
             ColumnLayout {
-                anchors { fill: parent; topMargin: 12; leftMargin: 16; rightMargin: 16; bottomMargin: 0 }
-                spacing: 5
+                anchors { fill: parent; topMargin: 10; leftMargin: 16; rightMargin: 16; bottomMargin: 0 }
+                spacing: 4
                 visible: !root._probing && root._probeError.length === 0 && root._formats.length > 0
 
                 Text { text: "Select quality:"; color: "#888888"; font.pixelSize: 11 }
@@ -506,7 +511,7 @@ Window {
 
                     delegate: Rectangle {
                         id: fd
-                        width: formatList.width; height: 32
+                        width: formatList.width; height: 28
                         readonly property bool sel: formatList.currentIndex === index
                         readonly property bool hov: fmMouse.containsMouse
                         color: sel ? "#1a3a6a" : (hov ? "#232333" : "transparent")
@@ -552,10 +557,25 @@ Window {
 
                             Item { Layout.fillWidth: true }
 
+                            // File size — only available for pre-muxed streams (360p and
+                            // below, audio-only).  Split video+audio streams (1080p/720p/
+                            // 480p) require two separate downloads that yt-dlp merges with
+                            // ffmpeg, and their combined size isn't reported by the probe.
                             Text {
-                                text: root._formatSize(modelData.filesize)
-                                color: fd.sel ? "#8aaddd" : "#6a8aaa"; font.pixelSize: 11
-                                visible: (modelData.filesize || 0) > 0
+                                readonly property bool hasSize: (modelData.filesize || 0) > 0
+                                readonly property bool isSplit: (modelData.height || 0) >= 480
+                                                                && modelData.id !== "best"
+                                                                && modelData.id !== "bv*+ba/b"
+
+                                text:    hasSize ? root._formatSize(modelData.filesize) : (isSplit ? "" : "")
+                                color:   fd.sel ? "#8aaddd" : "#6a8aaa"
+                                font.pixelSize: 11
+                                visible: hasSize
+
+                                HoverHandler { id: _szHover }
+                                ToolTip.visible:  !hasSize && isSplit && _szHover.hovered
+                                ToolTip.delay:    500
+                                ToolTip.text:     "Size unavailable — this quality uses separate video\nand audio streams merged by ffmpeg after download."
                             }
                         }
 
@@ -568,11 +588,11 @@ Window {
             ScrollView {
                 id: optScroll
                 Layout.fillWidth: true
-                Layout.preferredHeight: Math.min(optCol.implicitHeight + 2, 280)
-                Layout.maximumHeight: 280
+                Layout.preferredHeight: Math.min(optCol.implicitHeight + 2, 220)
+                Layout.maximumHeight: 220
                 Layout.leftMargin: 0
                 Layout.rightMargin: 0
-                Layout.topMargin: 6
+                Layout.topMargin: 4
                 clip: true
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AsNeeded
@@ -581,7 +601,7 @@ Window {
                 id: optCol
                 // ScrollView's content width equals the viewport width set by ScrollBar.horizontal.policy=AlwaysOff
                 width: optScroll.availableWidth
-                spacing: 6
+                spacing: 5
 
                 // ── Channel / playlist ─────────────────────────────────────────
                 Rectangle {
@@ -694,15 +714,15 @@ Window {
                 // ── Subtitles ──────────────────────────────────────────────────
                 Rectangle {
                     Layout.fillWidth: true
-                    implicitHeight: subsInner.implicitHeight + 16
+                    implicitHeight: subsInner.implicitHeight + 12
                     radius: 3
                     color: "#181e18"
                     border.color: subsCheck.checked ? "#336633" : "#2a2a2a"
 
                     ColumnLayout {
                         id: subsInner
-                        anchors { fill: parent; margins: 8 }
-                        spacing: 6
+                        anchors { fill: parent; margins: 6 }
+                        spacing: 5
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 10
@@ -749,12 +769,12 @@ Window {
                 // ── Post-processing ────────────────────────────────────────────
                 Rectangle {
                     Layout.fillWidth: true
-                    implicitHeight: ppRow.implicitHeight + 14
+                    implicitHeight: ppRow.implicitHeight + 12
                     radius: 3; color: "#1a1a22"; border.color: "#2a2a2a"
 
                     RowLayout {
                         id: ppRow
-                        anchors { fill: parent; margins: 8 }
+                        anchors { fill: parent; margins: 6 }
                         spacing: 16
                         InlineCheck { id: embedThumbCheck;  label: "Embed thumbnail"; tip: "Embed cover art thumbnail into the video file (requires ffmpeg)" }
                         InlineCheck { id: embedMetaCheck;   label: "Embed metadata";  tip: "Write title, uploader, chapters etc. into the container metadata" }
@@ -904,13 +924,10 @@ Window {
                     }
                 }
 
-                // ── Divider before save/cat/format ─────────────────────────────
-                Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
                 // ── Save location ──────────────────────────────────────────────
                 RowLayout {
                     Layout.fillWidth: true; spacing: 8
-                    Text { text: "Save to:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 62 }
+                    Text { text: "Save to:"; color: "#888888"; font.pixelSize: 11; Layout.preferredWidth: 58 }
                     TextField {
                         id: savePathField
                         Layout.fillWidth: true; font.pixelSize: 12; color: "#d0d0d0"
@@ -924,7 +941,7 @@ Window {
                 // ── Category + Container on same row ───────────────────────────
                 RowLayout {
                     Layout.fillWidth: true; spacing: 8
-                    Text { text: "Category:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 62 }
+                    Text { text: "Category:"; color: "#888888"; font.pixelSize: 11; Layout.preferredWidth: 58 }
                     ComboBox {
                         id: catCombo; Layout.fillWidth: true; font.pixelSize: 12; model: root.categoryLabels
                         contentItem: Text { leftPadding: 8; text: catCombo.displayText; color: "#d0d0d0"; font: catCombo.font; verticalAlignment: Text.AlignVCenter }
@@ -943,7 +960,7 @@ Window {
                         onCurrentIndexChanged: root._updateSavePath(currentIndex)
                     }
 
-                    Text { text: "Format:"; color: "#aaaaaa"; font.pixelSize: 12 }
+                    Text { text: "Format:"; color: "#888888"; font.pixelSize: 11 }
                     ComboBox {
                         id: containerCombo; implicitWidth: 90; font.pixelSize: 12
                         property bool _audioOnly: { var f = root._formats[formatList.currentIndex]; return f ? (f.height === 0) : false }
@@ -966,18 +983,16 @@ Window {
                     }
                 }
 
-                Item { implicitHeight: 4 }
+                Item { implicitHeight: 2 }
             }       // closes optCol ColumnLayout
             }       // closes optScroll ScrollView
             }       // closes format picker ColumnLayout
         }           // closes body Item
 
-        // ── Divider + buttons ─────────────────────────────────────────────────
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
+        // ── Buttons ───────────────────────────────────────────────────────────
         RowLayout {
             Layout.fillWidth: true
-            Layout.topMargin: 10; Layout.bottomMargin: 12
+            Layout.topMargin: 8; Layout.bottomMargin: 10
             Layout.leftMargin: 16; Layout.rightMargin: 16
             spacing: 8
 
