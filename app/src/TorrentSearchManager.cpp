@@ -125,11 +125,8 @@ QString TorrentSearchManager::bundledPluginResourcePath(const QString &fileName)
 void TorrentSearchManager::ensureBundledPluginsInstalled() {
     static const QStringList bundledPlugins = {
         QStringLiteral("bitsearch.py"),
-        QStringLiteral("btdig.py"),
-        QStringLiteral("eztv.py"),
         QStringLiteral("limetorrents.py"),
         QStringLiteral("piratebay.py"),
-        QStringLiteral("torlock.py"),
         QStringLiteral("torrentproject.py"),
         QStringLiteral("torrentscsv.py")
     };

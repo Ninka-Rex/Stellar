@@ -257,13 +257,11 @@ qt_add_qml_module(Stellar
         app/qml/icons/move_file.ico
         app/qml/icons/milky-way.png
         app/qml/icons/milky-way.ico
+        app/qml/icons/milky-way.gif
         app/scripts/torrent_search_runner.py
         app/search_plugins/bitsearch.py
-        app/search_plugins/btdig.py
-        app/search_plugins/eztv.py
         app/search_plugins/limetorrents.py
         app/search_plugins/piratebay.py
-        app/search_plugins/torlock.py
         app/search_plugins/torrentproject.py
         app/search_plugins/torrentscsv.py
         app/qml/icons/torrent-client-logos/biglybt.png

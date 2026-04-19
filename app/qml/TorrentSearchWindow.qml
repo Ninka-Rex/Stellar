@@ -513,6 +513,21 @@ Window {
 
         RowLayout {
             Layout.fillWidth: true
+
+            // Animated galaxy icon — visible only while a search is in progress.
+            // AnimatedImage handles GIF playback natively; playing is gated on
+            // visibility so the animation resets cleanly between searches.
+            AnimatedImage {
+                source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/milky-way.gif"
+                Layout.preferredWidth:  24
+                Layout.preferredHeight: 24
+                fillMode: Image.PreserveAspectFit
+                playing: App.torrentSearchManager.searchInProgress
+                visible: App.torrentSearchManager.searchInProgress
+                smooth: true
+                Layout.alignment: Qt.AlignVCenter
+            }
+
             Item { Layout.fillWidth: true }
             DlgButton { text: "Search Plugins"; onClicked: { pluginsDialog.show(); pluginsDialog.raise(); pluginsDialog.requestActivate() } }
         }
