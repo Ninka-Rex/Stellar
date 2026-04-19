@@ -664,35 +664,68 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_queue, &DownloadQueue::activeCountChanged,
             this,    &AppController::activeDownloadsChanged);
 
-    // Update tray tooltip every 2 seconds with live download stats.
-    // Done in C++ rather than QML so the tray always reflects current state
-    // even when no QML binding has re-evaluated recently.
+    // Update live speed properties and tray tooltip on a 5-second cadence.
+    // 5 s is long enough that the tooltip stays visible when the user hovers —
+    // Windows hides and re-shows the tooltip on every setToolTip() call, so
+    // calling it too frequently feels jittery. The tooltip text is diffed and
+    // only pushed when something actually changed.
     m_tooltipTimer = new QTimer(this);
-    m_tooltipTimer->setInterval(2000);
+    m_tooltipTimer->setInterval(5000);
     connect(m_tooltipTimer, &QTimer::timeout, this, [this] {
-        qint64 totalDownSpeed = 0;
-        qint64 totalUpSpeed = 0;
+        // ── Recompute aggregate speeds and seeding count ──────────────────────
+        qint64 downSpeed = 0;
+        qint64 upSpeed   = 0;
+        int    seeding   = 0;
         for (DownloadItem *item : m_downloadModel->allItems()) {
-            totalDownSpeed += item->speed();
-            if (item->isTorrent())
-                totalUpSpeed += item->torrentUploadSpeed();
+            downSpeed += item->speed();
+            if (item->isTorrent()) {
+                upSpeed += item->torrentUploadSpeed();
+                if (item->statusEnum() == DownloadItem::Status::Seeding)
+                    ++seeding;
+            }
         }
 
-        const int total  = m_downloadModel->allItems().size();
-        const int active = m_queue->activeCount();
+        // Publish to QML so StatusBar and title bar can bind directly.
+        if (m_totalDownSpeed != downSpeed || m_totalUpSpeed != upSpeed) {
+            m_totalDownSpeed = downSpeed;
+            m_totalUpSpeed   = upSpeed;
+            emit totalSpeedChanged();
+        }
+        if (m_seedingCount != seeding) {
+            m_seedingCount = seeding;
+            emit seedingCountChanged();
+        }
+
+        if (!m_tray)
+            return;
+
+        // ── Build tooltip string ──────────────────────────────────────────────
+        auto fmtSpeed = [](qint64 bps) -> QString {
+            if (bps >= 1024LL * 1024)
+                return QStringLiteral("%1 MB/s").arg(double(bps) / (1024.0 * 1024.0), 0, 'f', 1);
+            return QStringLiteral("%1 KB/s").arg(double(bps) / 1024.0, 0, 'f', 0);
+        };
+
+        const int active     = m_queue->activeCount();
+        const int total      = m_downloadModel->allItems().size();
 
         QString tip = QStringLiteral("Stellar Download Manager v") + appVersion();
-        if (active > 0) {
-            auto formatSpeedLine = [](qint64 bytesPerSecond) {
-                if (bytesPerSecond >= 1024LL * 1024)
-                    return QStringLiteral("%1 MB/s").arg(double(bytesPerSecond) / (1024.0 * 1024.0), 0, 'f', 1);
-                return QStringLiteral("%1 KB/s").arg(double(bytesPerSecond) / 1024.0, 0, 'f', 0);
-            };
-            tip += QStringLiteral("\nDown: %1").arg(formatSpeedLine(totalDownSpeed));
-            tip += QStringLiteral("\nUp: %1").arg(formatSpeedLine(totalUpSpeed));
+
+        // Speed line — only shown when enabled and there is actual transfer activity.
+        if (m_settings->speedInTrayTooltip() && (active > 0 || upSpeed > 0))
+            tip += QStringLiteral("\nDown: %1  Up: %2").arg(fmtSpeed(downSpeed), fmtSpeed(upSpeed));
+
+        tip += QStringLiteral("\nDownloading: %1").arg(active);
+        if (seeding > 0)
+            tip += QStringLiteral("  Seeding: %1").arg(seeding);
+        tip += QStringLiteral("  Total: %1").arg(total);
+
+        // Only call setToolTip when the text has changed — calling it while the
+        // user is hovering causes Windows to dismiss and re-show the tooltip.
+        if (tip != m_lastTrayTooltip) {
+            m_lastTrayTooltip = tip;
+            m_tray->setToolTip(tip);
         }
-        tip += QStringLiteral("\nDownloads: %1   Running: %2").arg(total).arg(active);
-        if (m_tray) m_tray->setToolTip(tip);
     });
     m_tooltipTimer->start();
 
@@ -4495,7 +4528,10 @@ void AppController::startQueue(const QString &queueId)
 }
 
 void AppController::setTrayTooltip(const QString &tip) {
-    if (m_tray) m_tray->setToolTip(tip);
+    if (m_tray && tip != m_lastTrayTooltip) {
+        m_lastTrayTooltip = tip;
+        m_tray->setToolTip(tip);
+    }
 }
 
 void AppController::stopQueue(const QString &queueId)

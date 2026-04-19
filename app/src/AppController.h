@@ -57,6 +57,9 @@ class AppController : public QObject {
     Q_PROPERTY(class QueueModel   *queueModel    READ queueModel    CONSTANT)
     Q_PROPERTY(AppSettings        *settings      READ settings      CONSTANT)
     Q_PROPERTY(int     activeDownloads    READ activeDownloads    NOTIFY activeDownloadsChanged)
+    Q_PROPERTY(qint64  totalDownSpeed     READ totalDownSpeed     NOTIFY totalSpeedChanged)
+    Q_PROPERTY(qint64  totalUpSpeed       READ totalUpSpeed       NOTIFY totalSpeedChanged)
+    Q_PROPERTY(int     seedingCount       READ seedingCount       NOTIFY seedingCountChanged)
     Q_PROPERTY(QString selectedCategory  READ selectedCategory   WRITE setSelectedCategory NOTIFY selectedCategoryChanged)
     Q_PROPERTY(QString selectedQueue     READ selectedQueue      WRITE setSelectedQueue    NOTIFY selectedQueueChanged)
     Q_PROPERTY(QString appVersion   READ appVersion   CONSTANT)
@@ -104,7 +107,10 @@ public:
     GrabberResultModel *grabberResultModel() const { return m_grabberResultModel; }
     class QueueModel   *queueModel()    const { return m_queueModel; }
     AppSettings        *settings()      const { return m_settings; }
-    int  activeDownloads() const;
+    int    activeDownloads() const;
+    qint64 totalDownSpeed()  const { return m_totalDownSpeed; }
+    qint64 totalUpSpeed()    const { return m_totalUpSpeed; }
+    int    seedingCount()    const { return m_seedingCount; }
     QString selectedCategory() const { return m_selectedCategory; }
     QString selectedQueue() const    { return m_selectedQueue; }
     void setSelectedCategory(const QString &v);
@@ -333,6 +339,8 @@ public:
 
 signals:
     void activeDownloadsChanged();
+    void totalSpeedChanged();
+    void seedingCountChanged();
     void selectedCategoryChanged();
     void selectedQueueChanged();
     void errorOccurred(const QString &message);
@@ -408,6 +416,10 @@ private:
     QTimer                 *m_saveTimer{nullptr};
     QTimer                 *m_torrentStatsFlushTimer{nullptr};
     QTimer                 *m_tooltipTimer{nullptr};
+    qint64                  m_totalDownSpeed{0};
+    qint64                  m_totalUpSpeed{0};
+    int                     m_seedingCount{0};
+    QString                 m_lastTrayTooltip;
     QLocalServer           *m_ipcServer{nullptr};
     bool                    m_qmlReady{false};
     QList<QByteArray>       m_pendingIpcPayloads; // buffered until QML is ready

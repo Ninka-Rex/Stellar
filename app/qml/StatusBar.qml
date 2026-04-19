@@ -89,6 +89,22 @@ Rectangle {
 
         Item { Layout.fillWidth: true }
 
+        // Live speed indicator — right-aligned, only shown when enabled.
+        Text {
+            visible: App.settings.speedInStatusBar
+            text: {
+                function fmt(bps) {
+                    if (bps >= 1024 * 1024)
+                        return (bps / (1024 * 1024)).toFixed(1) + " MB/s"
+                    return Math.round(bps / 1024) + " KB/s"
+                }
+                return "↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed)
+            }
+            color: "#b0b0b0"
+            font.pixelSize: 11
+            verticalAlignment: Text.AlignVCenter
+        }
+
         RowLayout {
             visible: App.settings.showTips && tipsArray.length > 0
             spacing: 8

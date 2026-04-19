@@ -28,7 +28,16 @@ ApplicationWindow {
     height: Math.max(minimumHeight, App.settings.mainWindowHeight > 0 ? App.settings.mainWindowHeight : 680)
     minimumWidth: 800
     minimumHeight: 500
-    title: "Stellar Download Manager " + App.appVersion
+    title: {
+        if (!App.settings.speedInTitleBar)
+            return "Stellar Download Manager " + App.appVersion
+        function fmt(bps) {
+            if (bps >= 1024 * 1024)
+                return (bps / (1024 * 1024)).toFixed(1) + " MB/s"
+            return Math.round(bps / 1024) + " KB/s"
+        }
+        return "Stellar  ↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed)
+    }
 
     Material.theme: Material.Dark
     Material.background: "#1c1c1c"

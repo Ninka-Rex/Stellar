@@ -60,6 +60,9 @@ Window {
     property bool   editShowCompletionNotification: true
     property bool   editShowErrorNotification: true
     property bool   editShowFinishedCount:     true
+    property bool   editSpeedInTrayTooltip:    true
+    property bool   editSpeedInTitleBar:       false
+    property bool   editSpeedInStatusBar:      false
     property bool   editStartDownloadWhileFileInfo: true
     property bool   editShowQueueSelectionOnDownloadLater: true
     property bool   editShowQueueSelectionOnBatchDownload: true
@@ -327,6 +330,9 @@ Window {
         editShowCompletionNotification !== App.settings.showCompletionNotification ||
         editShowErrorNotification !== App.settings.showErrorNotification ||
         editShowFinishedCount     !== App.settings.showFinishedCount ||
+        editSpeedInTrayTooltip    !== App.settings.speedInTrayTooltip ||
+        editSpeedInTitleBar       !== App.settings.speedInTitleBar ||
+        editSpeedInStatusBar      !== App.settings.speedInStatusBar ||
         editLaunchOnStartup       !== App.settings.launchOnStartup ||
         editClipboardMonitorEnabled !== App.settings.clipboardMonitorEnabled ||
         editDoubleClickAction     !== App.settings.doubleClickAction ||
@@ -503,6 +509,9 @@ Window {
         App.settings.showCompletionNotification = editShowCompletionNotification
         App.settings.showErrorNotification  = editShowErrorNotification
         App.settings.showFinishedCount      = editShowFinishedCount
+        App.settings.speedInTrayTooltip     = editSpeedInTrayTooltip
+        App.settings.speedInTitleBar        = editSpeedInTitleBar
+        App.settings.speedInStatusBar       = editSpeedInStatusBar
         App.settings.launchOnStartup        = editLaunchOnStartup
         App.settings.clipboardMonitorEnabled = editClipboardMonitorEnabled
         App.settings.doubleClickAction      = editDoubleClickAction
@@ -567,6 +576,9 @@ Window {
         editShowCompletionNotification = App.settings.showCompletionNotification
         editShowErrorNotification = App.settings.showErrorNotification
         editShowFinishedCount     = App.settings.showFinishedCount
+        editSpeedInTrayTooltip    = App.settings.speedInTrayTooltip
+        editSpeedInTitleBar       = App.settings.speedInTitleBar
+        editSpeedInStatusBar      = App.settings.speedInStatusBar
         editLaunchOnStartup       = App.settings.launchOnStartup
         editClipboardMonitorEnabled = App.settings.clipboardMonitorEnabled
         editDoubleClickAction     = App.settings.doubleClickAction
@@ -2123,6 +2135,13 @@ Window {
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
+                            text: "Launch Stellar on startup"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editLaunchOnStartup
+                            onCheckedChanged: root.editLaunchOnStartup = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
                             text: "Show tips in bottom bar"
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowTips
@@ -2137,11 +2156,28 @@ Window {
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                        Text { text: "Speed Display"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+
                         CheckBox {
-                            text: "Launch Stellar on startup"
+                            text: "Show speed in tray icon tooltip"
                             topPadding: 0; bottomPadding: 0
-                            checked: root.editLaunchOnStartup
-                            onCheckedChanged: root.editLaunchOnStartup = checked
+                            checked: root.editSpeedInTrayTooltip
+                            onCheckedChanged: root.editSpeedInTrayTooltip = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: "Show speed in title bar"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editSpeedInTitleBar
+                            onCheckedChanged: root.editSpeedInTitleBar = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: "Show speed in status bar"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editSpeedInStatusBar
+                            onCheckedChanged: root.editSpeedInStatusBar = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 

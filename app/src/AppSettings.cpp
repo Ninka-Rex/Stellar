@@ -186,6 +186,9 @@ void AppSettings::load() {
     m_showCompletionNotification = m_settings.value(QStringLiteral("showCompletionNotification"), true).toBool();
     m_showErrorNotification   = m_settings.value(QStringLiteral("showErrorNotification"), true).toBool();
     m_showFinishedCount       = m_settings.value(QStringLiteral("showFinishedCount"), true).toBool();
+    m_speedInTrayTooltip      = m_settings.value(QStringLiteral("speedInTrayTooltip"), true).toBool();
+    m_speedInTitleBar         = m_settings.value(QStringLiteral("speedInTitleBar"), false).toBool();
+    m_speedInStatusBar        = m_settings.value(QStringLiteral("speedInStatusBar"), false).toBool();
     m_startDownloadWhileFileInfo = m_settings.value(QStringLiteral("startDownloadWhileFileInfo"), true).toBool();
     m_showQueueSelectionOnDownloadLater = m_settings.value(QStringLiteral("showQueueSelectionOnDownloadLater"), true).toBool();
     m_showQueueSelectionOnBatchDownload  = m_settings.value(QStringLiteral("showQueueSelectionOnBatchDownload"), true).toBool();
@@ -286,6 +289,9 @@ void AppSettings::load() {
     emit showCompletionNotificationChanged();
     emit showErrorNotificationChanged();
     emit showFinishedCountChanged();
+    emit speedInTrayTooltipChanged();
+    emit speedInTitleBarChanged();
+    emit speedInStatusBarChanged();
     emit startDownloadWhileFileInfoChanged();
     emit showQueueSelectionOnDownloadLaterChanged();
     emit showQueueSelectionOnBatchDownloadChanged();
@@ -355,6 +361,9 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("showCompletionNotification"),  m_showCompletionNotification);
     m_settings.setValue(QStringLiteral("showErrorNotification"),       m_showErrorNotification);
     m_settings.setValue(QStringLiteral("showFinishedCount"),           m_showFinishedCount);
+    m_settings.setValue(QStringLiteral("speedInTrayTooltip"),          m_speedInTrayTooltip);
+    m_settings.setValue(QStringLiteral("speedInTitleBar"),             m_speedInTitleBar);
+    m_settings.setValue(QStringLiteral("speedInStatusBar"),            m_speedInStatusBar);
     m_settings.setValue(QStringLiteral("startDownloadWhileFileInfo"),  m_startDownloadWhileFileInfo);
     m_settings.setValue(QStringLiteral("showQueueSelectionOnDownloadLater"), m_showQueueSelectionOnDownloadLater);
     m_settings.setValue(QStringLiteral("showQueueSelectionOnBatchDownload"),  m_showQueueSelectionOnBatchDownload);
@@ -439,6 +448,9 @@ void AppSettings::setShowDownloadComplete(bool v)   { if (m_showDownloadComplete
 void AppSettings::setShowCompletionNotification(bool v) { if (m_showCompletionNotification != v) { m_showCompletionNotification = v; emit showCompletionNotificationChanged(); save(); } }
 void AppSettings::setShowErrorNotification(bool v) { if (m_showErrorNotification != v) { m_showErrorNotification = v; emit showErrorNotificationChanged(); save(); } }
 void AppSettings::setShowFinishedCount(bool v)      { if (m_showFinishedCount      != v) { m_showFinishedCount      = v; emit showFinishedCountChanged();      save(); } }
+void AppSettings::setSpeedInTrayTooltip(bool v)     { if (m_speedInTrayTooltip     != v) { m_speedInTrayTooltip     = v; emit speedInTrayTooltipChanged();     save(); } }
+void AppSettings::setSpeedInTitleBar(bool v)        { if (m_speedInTitleBar        != v) { m_speedInTitleBar        = v; emit speedInTitleBarChanged();        save(); } }
+void AppSettings::setSpeedInStatusBar(bool v)       { if (m_speedInStatusBar       != v) { m_speedInStatusBar       = v; emit speedInStatusBarChanged();       save(); } }
 void AppSettings::setStartDownloadWhileFileInfo(bool v) { if (m_startDownloadWhileFileInfo != v) { m_startDownloadWhileFileInfo = v; emit startDownloadWhileFileInfoChanged(); save(); } }
 void AppSettings::setShowQueueSelectionOnDownloadLater(bool v) { if (m_showQueueSelectionOnDownloadLater != v) { m_showQueueSelectionOnDownloadLater = v; emit showQueueSelectionOnDownloadLaterChanged(); save(); } }
 void AppSettings::setShowQueueSelectionOnBatchDownload(bool v) { if (m_showQueueSelectionOnBatchDownload != v) { m_showQueueSelectionOnBatchDownload = v; emit showQueueSelectionOnBatchDownloadChanged(); save(); } }

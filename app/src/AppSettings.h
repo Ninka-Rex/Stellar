@@ -45,6 +45,9 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool showCompletionNotification READ showCompletionNotification WRITE setShowCompletionNotification NOTIFY showCompletionNotificationChanged)
     Q_PROPERTY(bool showErrorNotification READ showErrorNotification WRITE setShowErrorNotification NOTIFY showErrorNotificationChanged)
     Q_PROPERTY(bool showFinishedCount   READ showFinishedCount   WRITE setShowFinishedCount   NOTIFY showFinishedCountChanged)
+    Q_PROPERTY(bool speedInTrayTooltip  READ speedInTrayTooltip  WRITE setSpeedInTrayTooltip  NOTIFY speedInTrayTooltipChanged)
+    Q_PROPERTY(bool speedInTitleBar     READ speedInTitleBar     WRITE setSpeedInTitleBar     NOTIFY speedInTitleBarChanged)
+    Q_PROPERTY(bool speedInStatusBar    READ speedInStatusBar    WRITE setSpeedInStatusBar    NOTIFY speedInStatusBarChanged)
     Q_PROPERTY(bool startDownloadWhileFileInfo READ startDownloadWhileFileInfo WRITE setStartDownloadWhileFileInfo NOTIFY startDownloadWhileFileInfoChanged)
     Q_PROPERTY(bool showQueueSelectionOnDownloadLater READ showQueueSelectionOnDownloadLater WRITE setShowQueueSelectionOnDownloadLater NOTIFY showQueueSelectionOnDownloadLaterChanged)
     Q_PROPERTY(bool showQueueSelectionOnBatchDownload READ showQueueSelectionOnBatchDownload WRITE setShowQueueSelectionOnBatchDownload NOTIFY showQueueSelectionOnBatchDownloadChanged)
@@ -148,6 +151,9 @@ public:
     bool showCompletionNotification() const { return m_showCompletionNotification; }
     bool showErrorNotification() const { return m_showErrorNotification; }
     bool showFinishedCount()      const { return m_showFinishedCount; }
+    bool speedInTrayTooltip()     const { return m_speedInTrayTooltip; }
+    bool speedInTitleBar()        const { return m_speedInTitleBar; }
+    bool speedInStatusBar()       const { return m_speedInStatusBar; }
     bool startDownloadWhileFileInfo() const { return m_startDownloadWhileFileInfo; }
     bool showQueueSelectionOnDownloadLater() const { return m_showQueueSelectionOnDownloadLater; }
     bool showQueueSelectionOnBatchDownload() const { return m_showQueueSelectionOnBatchDownload; }
@@ -228,6 +234,9 @@ public:
     void setShowCompletionNotification(bool v);
     void setShowErrorNotification(bool v);
     void setShowFinishedCount(bool v);
+    void setSpeedInTrayTooltip(bool v);
+    void setSpeedInTitleBar(bool v);
+    void setSpeedInStatusBar(bool v);
     void setStartDownloadWhileFileInfo(bool v);
     void setShowQueueSelectionOnDownloadLater(bool v);
     void setShowQueueSelectionOnBatchDownload(bool v);
@@ -316,6 +325,9 @@ signals:
     void showCompletionNotificationChanged();
     void showErrorNotificationChanged();
     void showFinishedCountChanged();
+    void speedInTrayTooltipChanged();
+    void speedInTitleBarChanged();
+    void speedInStatusBarChanged();
     void startDownloadWhileFileInfoChanged();
     void showQueueSelectionOnDownloadLaterChanged();
     void showQueueSelectionOnBatchDownloadChanged();
@@ -378,6 +390,9 @@ private:
     bool        m_showCompletionNotification{true};
     bool        m_showErrorNotification{true};
     bool        m_showFinishedCount{true};
+    bool        m_speedInTrayTooltip{true};
+    bool        m_speedInTitleBar{false};
+    bool        m_speedInStatusBar{false};
     bool        m_startDownloadWhileFileInfo{true};
     bool        m_showQueueSelectionOnDownloadLater{true};
     bool        m_showQueueSelectionOnBatchDownload{true};
