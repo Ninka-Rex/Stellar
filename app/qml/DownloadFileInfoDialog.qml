@@ -111,8 +111,10 @@ Window {
     function _updateSavePath(catIdx) {
         var dir = savePathForIndex(catIdx)
         if (!dir || dir.length === 0) dir = pendingSavePath
-        dir = dir.replace(/\//g, "\\")
-        if (!dir.endsWith("\\")) dir += "\\"
+        // Normalise to forward slashes internally; Windows displays them fine
+        // and on Linux backslashes are treated as literal filename characters.
+        dir = dir.replace(/\\/g, "/")
+        if (!dir.endsWith("/")) dir += "/"
         saveAsField.editText = dir + pendingFilename
     }
 
