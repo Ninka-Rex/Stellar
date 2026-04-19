@@ -43,6 +43,7 @@
 #include "GrabberResultModel.h"
 #include "QueueDatabase.h"
 #include "QueueModel.h"
+#include "RssManager.h"
 #include "TorrentSearchManager.h"
 #include "YtdlpManager.h"
 #include "YtdlpTransfer.h"
@@ -89,6 +90,7 @@ class AppController : public QObject {
     // yt-dlp integration — exposes YtdlpManager to QML for binary status/download UI
     Q_PROPERTY(YtdlpManager *ytdlpManager READ ytdlpManager CONSTANT)
     Q_PROPERTY(TorrentSearchManager *torrentSearchManager READ torrentSearchManager CONSTANT)
+    Q_PROPERTY(RssManager *rssManager READ rssManager CONSTANT)
     // True when a custom proxy (HTTP or SOCKS5) is currently active
     Q_PROPERTY(bool proxyActive READ proxyActive NOTIFY proxyActiveChanged)
     Q_PROPERTY(bool ytdlpBatchActive READ ytdlpBatchActive NOTIFY ytdlpBatchChanged)
@@ -141,6 +143,7 @@ public:
     QString ffmpegUpdateStatus() const { return m_ffmpegUpdateStatus; }
     YtdlpManager *ytdlpManager() const { return m_ytdlpManager; }
     TorrentSearchManager *torrentSearchManager() const { return m_torrentSearchManager; }
+    RssManager *rssManager() const { return m_rssManager; }
     bool proxyActive() const { return m_proxyActive; }
     bool ytdlpBatchActive() const { return !m_activeYtdlpBatchId.isEmpty(); }
     bool ytdlpBatchCanResume() const { return !m_lastYtdlpBatchId.isEmpty(); }
@@ -522,6 +525,7 @@ private:
     // ── yt-dlp ───────────────────────────────────────────────────────────────────
     YtdlpManager                    *m_ytdlpManager{nullptr};
     TorrentSearchManager           *m_torrentSearchManager{nullptr};
+    RssManager                     *m_rssManager{nullptr};
     TorrentSessionManager          *m_torrentSession{nullptr};
     // Active YtdlpTransfer workers keyed by download item ID
     QMap<QString, YtdlpTransfer *>   m_ytdlpWorkers;

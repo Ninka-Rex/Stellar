@@ -138,6 +138,11 @@ QString grabberProjectsFile()
     return dataDir() + QStringLiteral("/grabber_projects.json");
 }
 
+QString rssFeedsFile()
+{
+    return dataDir() + QStringLiteral("/rss_feeds.json");
+}
+
 QString searchRunnerFile()
 {
     return pluginsDir() + QStringLiteral("/torrent_search_runner.py");
@@ -240,6 +245,7 @@ void migrateIfNeeded()
     migrateFile(legacyBase + QStringLiteral("/categories.json"),
                 dataDir()  + QStringLiteral("/categories.json"));
     migrateFile(legacyBase + QStringLiteral("/grabber_projects.json"), grabberProjectsFile());
+    migrateFile(legacyBase + QStringLiteral("/rss_feeds.json"), rssFeedsFile());
 
     // ── Torrent search runner + plugins ───────────────────────────────────────
     migrateFile(legacyBase + QStringLiteral("/torrent_search_runner.py"), searchRunnerFile());

@@ -106,6 +106,9 @@ QString queuesFile();
 // <root>/data/grabber_projects.json
 QString grabberProjectsFile();
 
+// <root>/data/rss_feeds.json
+QString rssFeedsFile();
+
 // <root>/plugins/torrent_search_runner.py
 QString searchRunnerFile();
 

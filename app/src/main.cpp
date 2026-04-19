@@ -37,6 +37,9 @@
 #include "FileDragDropHelper.h"
 #include "FileIconImageProvider.h"
 #include "StellarPaths.h"
+#include "RssArticleModel.h"
+#include "RssFeedModel.h"
+#include "RssManager.h"
 #include "TorrentSearchManager.h"
 #include "TorrentSearchPluginModel.h"
 #include "TorrentSearchResultModel.h"
@@ -399,6 +402,12 @@ int main(int argc, char *argv[])
         QStringLiteral("Use App.torrentSearchManager.pluginModel"));
     qmlRegisterUncreatableType<TorrentSearchResultModel>("com.stellar.app", 1, 0, "TorrentSearchResultModel",
         QStringLiteral("Use App.torrentSearchManager.resultModel"));
+    qmlRegisterUncreatableType<RssManager>("com.stellar.app", 1, 0, "RssManager",
+        QStringLiteral("Use App.rssManager"));
+    qmlRegisterUncreatableType<RssFeedModel>("com.stellar.app", 1, 0, "RssFeedModel",
+        QStringLiteral("Use App.rssManager.feedModel"));
+    qmlRegisterUncreatableType<RssArticleModel>("com.stellar.app", 1, 0, "RssArticleModel",
+        QStringLiteral("Use App.rssManager.articleModel"));
     qmlRegisterType<FileDragDropHelper>("com.stellar.app", 1, 0, "FileDragDropHelper");
 
     nmLog(QStringLiteral("Instantiating AppController..."));

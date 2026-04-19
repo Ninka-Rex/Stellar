@@ -616,6 +616,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_queueModel    = new QueueModel(this);
     m_ytdlpManager  = new YtdlpManager(m_nam, this);
     m_torrentSearchManager = new TorrentSearchManager(m_nam, this);
+    m_rssManager = new RssManager(m_nam, this);
     m_torrentSession = new TorrentSessionManager(this);
     refreshIpToCityDbInfo();
 

@@ -125,6 +125,9 @@ set(BACKEND_SOURCES
     app/src/Queue.cpp
     app/src/QueueDatabase.cpp
     app/src/QueueModel.cpp
+    app/src/RssArticleModel.cpp
+    app/src/RssFeedModel.cpp
+    app/src/RssManager.cpp
     app/src/FileDragDropHelper.cpp
     app/src/TorrentSessionManager.cpp
     app/src/TorrentFileModel.cpp
@@ -155,6 +158,9 @@ set(BACKEND_HEADERS
     app/src/Queue.h
     app/src/QueueDatabase.h
     app/src/QueueModel.h
+    app/src/RssArticleModel.h
+    app/src/RssFeedModel.h
+    app/src/RssManager.h
     app/src/FileDragDropHelper.h
     app/src/FileIconImageProvider.h
     app/src/TorrentSessionManager.h
@@ -213,6 +219,7 @@ qt_add_qml_module(Stellar
         app/qml/TorrentMetadataDialog.qml
         app/qml/TorrentSpeedLimitDialog.qml
         app/qml/DlgButton.qml
+        app/qml/RssWindow.qml
         app/qml/TorrentSearchWindow.qml
         app/qml/TorrentSearchPluginsDialog.qml
         app/qml/TorrentSearchInstallDialog.qml
@@ -252,6 +259,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/add.ico
         app/qml/icons/wand.ico
         app/qml/icons/search.ico
+        app/qml/icons/rss.png
         app/qml/icons/cancel.ico
         app/qml/icons/copy.ico
         app/qml/icons/paste.ico

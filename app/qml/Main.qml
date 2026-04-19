@@ -85,6 +85,12 @@ ApplicationWindow {
         torrentSearchWindow.requestActivate()
     }
 
+    function showRssWindow() {
+        rssWindow.show()
+        rssWindow.raise()
+        rssWindow.requestActivate()
+    }
+
     function normalizeTorrentInput(value) {
         var trimmed = (value || "").trim()
         if (/^[0-9a-fA-F]{40}$/.test(trimmed))
@@ -1117,6 +1123,11 @@ ApplicationWindow {
         transientParent: root
     }
 
+    RssWindow {
+        id: rssWindow
+        transientParent: root
+    }
+
     // React to ytdlp clipboard detection from AppController
     Connections {
         target: App
@@ -1801,6 +1812,15 @@ ApplicationWindow {
             }
         }
         Menu {
+            title: qsTr("RSS")
+            delegate: CompactMenuItem
+            implicitWidth: 210
+            topPadding: 0; bottomPadding: 0
+            Action { text: qsTr("Open RSS Reader"); onTriggered: root.showRssWindow() }
+            Action { text: qsTr("Refresh All Feeds"); onTriggered: App.rssManager.refreshAll() }
+            Action { text: qsTr("Mark All Items Read"); onTriggered: App.rssManager.markAllRead() }
+        }
+        Menu {
             title: qsTr("Help")
             delegate: CompactMenuItem
             implicitWidth: 200
@@ -1887,6 +1907,9 @@ ApplicationWindow {
             }
             onSearchEngineClicked: {
                 root.showTorrentSearchWindow()
+            }
+            onRssClicked: {
+                root.showRssWindow()
             }
         }
 

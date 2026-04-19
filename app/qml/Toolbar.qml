@@ -45,6 +45,7 @@ Rectangle {
     signal stopQueueRequested(string queueId)
     signal grabberClicked()
     signal searchEngineClicked()
+    signal rssClicked()
 
     // bottom border
     Rectangle {
@@ -98,5 +99,6 @@ Rectangle {
 
         ToolbarBtn { label: "Grabber";        iconSrc: "icons/wand.ico";   onClicked: root.grabberClicked() }
         ToolbarBtn { label: "Search Engine";  iconSrc: "icons/search.ico"; onClicked: root.searchEngineClicked() }
+        ToolbarBtn { label: "RSS";            iconSrc: "icons/rss.png";    onClicked: root.rssClicked() }
     }
 }
