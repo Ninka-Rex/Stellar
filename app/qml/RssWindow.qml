@@ -434,142 +434,135 @@ Window {
                     Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
                 }
 
-                ScrollView {
+                ListView {
+                    id: feedList
                     anchors { top: catHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
                     clip: true
+                    model: App.rssManager.feedModel
+                    boundsBehavior: Flickable.StopAtBounds
+                    ScrollBar.vertical: ScrollBar {}
 
-                    Column {
-                        width: parent.width
-                        spacing: 0
+                    delegate: Item {
+                        id: feedDelegate
+                        required property string title
+                        required property string url
+                        required property string errorText
+                        required property int unreadCount
+                        required property int totalCount
+                        required property string feedId
+                        required property int index
+                        readonly property int rowIndex: index
+                        width: feedList.width
+                        height: 28
 
-                        Repeater {
-                            model: App.rssManager.feedModel
+                        Rectangle {
+                            visible: root._feedDragging
+                                  && root._feedDropTarget === feedDelegate.rowIndex
+                                  && root._feedDragFrom !== root._feedDropTarget
+                                  && root._feedDragFrom !== root._feedDropTarget - 1
+                            anchors { top: parent.top; left: parent.left; right: parent.right }
+                            height: 2
+                            color: "#4488dd"
+                            z: 10
+                        }
 
-                            delegate: Item {
-                                id: feedDelegate
-                                required property string title
-                                required property string url
-                                required property string errorText
-                                required property int unreadCount
-                                required property int totalCount
-                                required property string feedId
-                                required property int index
-                                readonly property int rowIndex: index
-                                width: parent.width
-                                height: 28
+                        Rectangle {
+                            anchors.fill: parent
+                            color: root.selectedFeedRow === rowIndex ? "#1e3a6e"
+                                 : (feedMouse.containsMouse && !root._feedDragging ? "#2a2a3a" : "transparent")
+                            border.color: root.selectedFeedRow === rowIndex ? "#4488dd" : "transparent"
+                            border.width: 1
+                            opacity: (root._feedDragging && root._feedDragFrom === rowIndex) ? 0.4 : 1.0
 
-                                Rectangle {
-                                    visible: root._feedDragging
-                                          && root._feedDropTarget === feedDelegate.rowIndex
-                                          && root._feedDragFrom !== root._feedDropTarget
-                                          && root._feedDragFrom !== root._feedDropTarget - 1
-                                    anchors { top: parent.top; left: parent.left; right: parent.right }
-                                    height: 2
-                                    color: "#4488dd"
-                                    z: 10
+                            Row {
+                                anchors { fill: parent; leftMargin: 10; rightMargin: 8 }
+                                spacing: 6
+
+                                Text {
+                                    width: 150
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: title || url
+                                    color: root.selectedFeedRow === rowIndex ? "#88bbff" : "#cccccc"
+                                    font.pixelSize: 12
+                                    font.bold: root.selectedFeedRow === rowIndex || unreadCount > 0
+                                    elide: Text.ElideRight
                                 }
-
-                                Rectangle {
-                                    anchors.fill: parent
-                                    color: root.selectedFeedRow === rowIndex ? "#1e3a6e"
-                                         : (feedMouse.containsMouse && !root._feedDragging ? "#2a2a3a" : "transparent")
-                                    border.color: root.selectedFeedRow === rowIndex ? "#4488dd" : "transparent"
-                                    border.width: 1
-                                    opacity: (root._feedDragging && root._feedDragFrom === rowIndex) ? 0.4 : 1.0
-
-                                    Row {
-                                        anchors { fill: parent; leftMargin: 10; rightMargin: 8 }
-                                        spacing: 6
-
-                                        Text {
-                                            width: 150
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            text: title || url
-                                            color: root.selectedFeedRow === rowIndex ? "#88bbff" : "#cccccc"
-                                            font.pixelSize: 12
-                                            font.bold: root.selectedFeedRow === rowIndex || unreadCount > 0
-                                            elide: Text.ElideRight
-                                        }
-                                        Text {
-                                            width: 30
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            text: unreadCount > 0 ? unreadCount : ""
-                                            color: "#88bbff"
-                                            font.pixelSize: 11
-                                            horizontalAlignment: Text.AlignRight
-                                        }
-                                        Text {
-                                            width: 36
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            text: totalCount
-                                            color: "#999999"
-                                            font.pixelSize: 11
-                                            horizontalAlignment: Text.AlignRight
-                                        }
-                                    }
+                                Text {
+                                    width: 30
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: unreadCount > 0 ? unreadCount : ""
+                                    color: "#88bbff"
+                                    font.pixelSize: 11
+                                    horizontalAlignment: Text.AlignRight
                                 }
+                                Text {
+                                    width: 36
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: totalCount
+                                    color: "#999999"
+                                    font.pixelSize: 11
+                                    horizontalAlignment: Text.AlignRight
+                                }
+                            }
+                        }
 
-                                MouseArea {
-                                    id: feedMouse
-                                    anchors.fill: parent
-                                    acceptedButtons: Qt.LeftButton | Qt.RightButton
-                                    hoverEnabled: true
-                                    preventStealing: true
-                                    property real _pressY: 0
-                                    property bool _didDrag: false
+                        MouseArea {
+                            id: feedMouse
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton | Qt.RightButton
+                            hoverEnabled: true
+                            preventStealing: true
+                            property real _pressY: 0
+                            property bool _didDrag: false
 
-                                    onPressed: { _pressY = mouseY; _didDrag = false }
+                            onPressed: { _pressY = mouseY; _didDrag = false }
 
-                                    onPositionChanged: {
-                                        if (!(pressedButtons & Qt.LeftButton))
-                                            return
-                                        if (!root._feedDragging && Math.abs(mouseY - _pressY) > 6) {
-                                            root._feedDragFrom = rowIndex
-                                            root._feedDragging = true
-                                            _didDrag = true
-                                        }
-                                        if (root._feedDragging) {
-                                            var cursorY = feedMouse.mapToItem(parent.parent, mouseX, mouseY).y
-                                            var target = App.rssManager.feedCount
-                                            for (var r = 0; r < App.rssManager.feedCount; ++r) {
-                                                var del = parent.children[r]
-                                                if (!del || del.height === 0)
-                                                    continue
-                                                if (cursorY < del.y + del.height / 2) {
-                                                    target = r
-                                                    break
-                                                }
-                                            }
-                                            root._feedDropTarget = target
-                                        }
-                                    }
-
-                                    onReleased: {
-                                        var dragFrom = root._feedDragFrom
-                                        var dragging = root._feedDragging
-                                        var dropTarget = root._feedDropTarget
-                                        Qt.callLater(function() {
-                                            if (dragging && dragFrom === rowIndex && dropTarget >= 0)
-                                                root.applyFeedReorder()
-                                            root._feedDragging = false
-                                            root._feedDragFrom = -1
-                                            root._feedDropTarget = -1
-                                        })
-                                    }
-
-                                    onClicked: function(mouse) {
-                                        if (_didDrag) {
-                                            _didDrag = false
-                                            return
-                                        }
-                                        if (mouse.button === Qt.RightButton) {
-                                            root.selectedFeedRow = rowIndex
-                                            feedContextMenu.row = rowIndex
-                                            feedContextMenu.popup()
-                                        } else {
-                                            root.selectFeed(rowIndex)
+                            onPositionChanged: {
+                                if (!(pressedButtons & Qt.LeftButton))
+                                    return
+                                if (!root._feedDragging && Math.abs(mouseY - _pressY) > 6) {
+                                    root._feedDragFrom = rowIndex
+                                    root._feedDragging = true
+                                    _didDrag = true
+                                }
+                                if (root._feedDragging) {
+                                    // All items are fixed 28px height; compute drop target arithmetically
+                                    var cursorY = feedMouse.mapToItem(feedList.contentItem, mouseX, mouseY).y
+                                    var target = App.rssManager.feedCount
+                                    for (var r = 0; r < App.rssManager.feedCount; ++r) {
+                                        if (cursorY < r * 28 + 14) {
+                                            target = r
+                                            break
                                         }
                                     }
+                                    root._feedDropTarget = target
+                                }
+                            }
+
+                            onReleased: {
+                                var dragFrom = root._feedDragFrom
+                                var dragging = root._feedDragging
+                                var dropTarget = root._feedDropTarget
+                                Qt.callLater(function() {
+                                    if (dragging && dragFrom === rowIndex && dropTarget >= 0)
+                                        root.applyFeedReorder()
+                                    root._feedDragging = false
+                                    root._feedDragFrom = -1
+                                    root._feedDropTarget = -1
+                                })
+                            }
+
+                            onClicked: function(mouse) {
+                                if (_didDrag) {
+                                    _didDrag = false
+                                    return
+                                }
+                                if (mouse.button === Qt.RightButton) {
+                                    root.selectedFeedRow = rowIndex
+                                    feedContextMenu.row = rowIndex
+                                    feedContextMenu.popup()
+                                } else {
+                                    root.selectFeed(rowIndex)
                                 }
                             }
                         }

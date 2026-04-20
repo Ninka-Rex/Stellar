@@ -87,6 +87,16 @@ void RssFeedModel::updateFeed(const Feed &feed)
     emit dataChanged(this->index(index), this->index(index));
 }
 
+void RssFeedModel::setFeedUpdating(const QString &feedId, bool updating)
+{
+    const int i = indexOfFeed(feedId);
+    if (i < 0 || m_feeds[i].updating == updating)
+        return;
+    m_feeds[i].updating = updating;
+    const QModelIndex idx = index(i);
+    emit dataChanged(idx, idx, {UpdatingRole});
+}
+
 void RssFeedModel::removeFeed(const QString &feedId)
 {
     const int index = indexOfFeed(feedId);

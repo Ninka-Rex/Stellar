@@ -61,6 +61,7 @@ public:
 
     void setFeeds(const QVector<Feed> &feeds);
     void updateFeed(const Feed &feed);
+    void setFeedUpdating(const QString &feedId, bool updating);
     void removeFeed(const QString &feedId);
     Q_INVOKABLE QVariantMap feedData(int row) const;
 

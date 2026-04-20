@@ -413,7 +413,10 @@ void RssManager::setFeedUpdating(const QString &feedId, bool updating)
     if (index < 0 || m_feeds[index].updating == updating)
         return;
     m_feeds[index].updating = updating;
-    rebuildModels();
+    // Only update the single changed field — a full rebuildModels() here would fire
+    // beginResetModel/endResetModel on every fetch start/finish, which caused the
+    // "first <= rowCount(parent)" assert in Qt's delegate model under concurrent refreshes.
+    m_feedModel->setFeedUpdating(feedId, updating);
 }
 
 int RssManager::feedIndex(const QString &feedId) const
