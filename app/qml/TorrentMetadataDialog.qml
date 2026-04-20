@@ -629,8 +629,8 @@ Window {
                             text: root.formatBytes(size)
                             color: wanted ? "#b0b0b0" : "#555"
                             font.pixelSize: 11
-                            horizontalAlignment: Text.AlignRight
-                            elide: Text.ElideLeft
+                            horizontalAlignment: Text.AlignLeft
+                            elide: Text.ElideRight
                         }
 
                         Item {

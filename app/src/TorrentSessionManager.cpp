@@ -1198,6 +1198,13 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     item->setIsTorrent(true);
     item->setStatus(startPaused ? DownloadItem::Status::Paused : DownloadItem::Status::Checking);
     updateItemFromStatus(item, handle);
+
+    // For .torrent files the metadata is already present — populate the file
+    // model immediately so the metadata dialog shows files without waiting for
+    // the first alert tick (which previously made it appear to "ping the swarm").
+    if (!torrentFilePath.isEmpty())
+        updateModels(item->id(), handle, false);
+
     return true;
 }
 
