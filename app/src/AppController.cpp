@@ -2975,6 +2975,12 @@ void AppController::openFolderSelectFile(const QString &id) {
 #endif
 }
 
+void AppController::setDownloadFilename(const QString &id, const QString &filename) {
+    const QString trimmed = filename.trimmed();
+    auto *item = m_downloadModel->itemById(id);
+    if (item && !trimmed.isEmpty()) { item->setFilename(trimmed); scheduleSave(id); }
+}
+
 void AppController::setDownloadUsername(const QString &id, const QString &username) {
     auto *item = m_downloadModel->itemById(id);
     if (item) { item->setUsername(username); scheduleSave(id); }
@@ -3049,11 +3055,27 @@ void AppController::disableSpeedLimiter() {
     m_settings->setGlobalSpeedLimitKBps(0);
 }
 
+QString AppController::torrentCurrentRootName(const QString &downloadId) const {
+    if (!m_torrentSession)
+        return {};
+    return m_torrentSession->torrentCurrentRootName(downloadId);
+}
+
 void AppController::copyDownloadFilename(const QString &id) {
     auto *item = m_downloadModel->itemById(id);
-    if (item) {
-        copyToClipboard(item->filename());
+    if (!item)
+        return;
+    // For torrents, derive the name from the live libtorrent file_storage so
+    // it reflects any renames done after the download was added. item->filename()
+    // is only set at add-time and isn't updated on subsequent renames.
+    if (item->isTorrent() && m_torrentSession) {
+        const QString root = m_torrentSession->torrentCurrentRootName(id);
+        if (!root.isEmpty()) {
+            copyToClipboard(root);
+            return;
+        }
     }
+    copyToClipboard(item->filename());
 }
 
 QVariantList AppController::torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds, int maxPoints) const {

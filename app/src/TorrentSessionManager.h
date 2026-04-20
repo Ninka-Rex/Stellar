@@ -71,6 +71,9 @@ public:
     bool moveStorage(const QString &downloadId, const QString &newSavePath);
     bool renameTorrentFile(const QString &downloadId, int fileIndex, const QString &newName);
     bool renameTorrentPath(const QString &downloadId, const QString &currentPath, const QString &newName);
+    // Returns the current on-disk root name (top-level folder or single file name)
+    // by reading the live file_storage paths from libtorrent. Empty if unavailable.
+    QString torrentCurrentRootName(const QString &downloadId) const;
     bool exportTorrentFile(const QString &downloadId, const QString &outputPath) const;
     void setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd = false);
     void forceRecheck(const QString &downloadId);
@@ -185,6 +188,7 @@ private:
 #if !defined(STELLAR_HAS_LIBTORRENT)
 inline bool TorrentSessionManager::moveStorage(const QString &, const QString &) { return false; }
 inline bool TorrentSessionManager::renameTorrentFile(const QString &, int, const QString &) { return false; }
+inline QString TorrentSessionManager::torrentCurrentRootName(const QString &) const { return {}; }
 inline bool TorrentSessionManager::setFileWantedByFileIndex(const QString &, int, bool) { return false; }
 inline bool TorrentSessionManager::setFileWantedByPath(const QString &, const QString &, bool) { return false; }
 inline void TorrentSessionManager::setTorrentFlags(const QString &, bool, bool, bool) {}

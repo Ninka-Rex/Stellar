@@ -275,6 +275,7 @@ public:
     Q_INVOKABLE void copyDownloadFilename(const QString &id);
     Q_INVOKABLE QString downloadShareLink(const QString &id) const;
     Q_INVOKABLE bool exportTorrentFilesToDirectory(const QStringList &downloadIds, const QString &directoryPath);
+    Q_INVOKABLE QString      torrentCurrentRootName(const QString &downloadId) const;
     Q_INVOKABLE QVariantList torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds = 0, int maxPoints = 0) const;
     Q_INVOKABLE QVariantList torrentPieceMap(const QString &downloadId) const;
     Q_INVOKABLE void clearTorrentSpeedHistory(const QString &downloadId);
@@ -300,6 +301,7 @@ public:
     Q_INVOKABLE void setTorrentShareLimits(const QString &downloadId, double ratio, int seedTimeMins, int inactiveTimeMins, int action);
     Q_INVOKABLE void forceRecheckTorrent(const QString &downloadId);
     Q_INVOKABLE void forceReannounceTorrent(const QString &downloadId, const QStringList &trackerUrls = {});
+    Q_INVOKABLE void     setDownloadFilename(const QString &downloadId, const QString &filename);
     Q_INVOKABLE void     setDownloadUsername(const QString &downloadId, const QString &username);
     Q_INVOKABLE void     setDownloadPassword(const QString &downloadId, const QString &password);
     Q_INVOKABLE void     setDownloadDescription(const QString &downloadId, const QString &description);

@@ -2137,6 +2137,25 @@ bool TorrentSessionManager::exportTorrentFile(const QString &downloadId, const Q
 #endif
 }
 
+QString TorrentSessionManager::torrentCurrentRootName(const QString &downloadId) const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid() || !handle.torrent_file())
+        return {};
+    const auto &files = handle.torrent_file()->files();
+    if (files.num_files() == 0)
+        return {};
+    // The root is the first path component of the first file path.
+    QString path = QString::fromStdString(files.file_path(libtorrent::file_index_t{0}));
+    path.replace(QLatin1Char('\\'), QLatin1Char('/'));
+    const int sep = path.indexOf(QLatin1Char('/'));
+    return sep > 0 ? path.left(sep) : path;
+#else
+    Q_UNUSED(downloadId);
+    return {};
+#endif
+}
+
 void TorrentSessionManager::setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const auto handle = m_handles.value(downloadId);

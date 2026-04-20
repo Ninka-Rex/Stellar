@@ -251,6 +251,66 @@ Rectangle {
         }
     }
 
+    // ── Rename torrent root dialog ────────────────────────────────────────────
+    Window {
+        id: renameTorrentRootDialog
+        property var targetItem: null
+        property string currentName: ""
+
+        title: "Rename"
+        width: 360; height: 110
+        minimumWidth: 280; minimumHeight: 110; maximumHeight: 110
+        color: "#1e1e1e"
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+
+        function openFor(item) {
+            targetItem = item
+            currentName = item ? item.filename : ""
+            nameInput.text = currentName
+            show(); raise(); requestActivate()
+            nameInput.forceActiveFocus()
+            nameInput.selectAll()
+        }
+
+        ColumnLayout {
+            anchors { fill: parent; margins: 12 }
+            spacing: 10
+
+            TextField {
+                id: nameInput
+                Layout.fillWidth: true
+                implicitHeight: 28
+                color: "#e0e0e0"; font.pixelSize: 12
+                background: Rectangle { color: "#1b1b1b"; border.color: nameInput.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
+                leftPadding: 6; topPadding: 0; bottomPadding: 0
+                Keys.onReturnPressed: confirmBtn.clicked()
+                Keys.onEnterPressed:  confirmBtn.clicked()
+                Keys.onEscapePressed: renameTorrentRootDialog.close()
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 6
+                Item { Layout.fillWidth: true }
+                DlgButton {
+                    text: "Cancel"
+                    onClicked: renameTorrentRootDialog.close()
+                }
+                DlgButton {
+                    id: confirmBtn
+                    text: "Rename"; primary: true
+                    enabled: nameInput.text.trim().length > 0 && nameInput.text.trim() !== renameTorrentRootDialog.currentName
+                    onClicked: {
+                        var newName = nameInput.text.trim()
+                        if (newName.length > 0 && renameTorrentRootDialog.targetItem)
+                            App.setDownloadFilename(renameTorrentRootDialog.targetItem.id, newName)
+                        renameTorrentRootDialog.close()
+                    }
+                }
+            }
+        }
+    }
+
     // The item that was right-clicked — set by the row MouseArea before showing the
     // shared context menu. Avoids creating one Menu+Repeater per delegate row.
     property var _ctxItem: null
@@ -267,6 +327,13 @@ Rectangle {
         Action { text: "Open File";   onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
         Action { text: "Open Folder"; onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
         MenuSeparator {}
+        Repeater {
+            model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
+            delegate: MenuItem {
+                text: "Rename..."
+                onTriggered: { if (root._ctxItem) renameTorrentRootDialog.openFor(root._ctxItem) }
+            }
+        }
         Action { text: "Copy Filename"; onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
         Action {
             text: root._ctxItem && root._ctxItem.isTorrent ? "Copy Magnet Link" : "Copy URL"
