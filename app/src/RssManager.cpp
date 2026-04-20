@@ -554,6 +554,7 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
                     } else if (name == QStringLiteral("entry")) {
                         StoredArticle article;
                         QString enclosureUrl;
+                        QString enclosureMimeType;
                         while (!(xml.isEndElement() && xml.name() == QStringLiteral("entry")) && !xml.atEnd()) {
                             xml.readNext();
                             if (!xml.isStartElement())
@@ -579,10 +580,12 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
                             } else if (childName == QStringLiteral("link")) {
                                 const QString rel = xml.attributes().value(QStringLiteral("rel")).toString();
                                 const QString href = resolveUrl(xml.attributes().value(QStringLiteral("href")).toString());
-                                if (rel == QStringLiteral("enclosure"))
+                                if (rel == QStringLiteral("enclosure")) {
                                     enclosureUrl = href;
-                                else if (rel.isEmpty() || rel == QStringLiteral("alternate"))
+                                    enclosureMimeType = xml.attributes().value(QStringLiteral("type")).toString();
+                                } else if (rel.isEmpty() || rel == QStringLiteral("alternate")) {
                                     article.link = href;
+                                }
                                 if (!xml.isEndElement())
                                     xml.skipCurrentElement();
                             } else {
@@ -590,7 +593,7 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
                             }
                         }
                         article.guid = stableGuid(article.guid, article.link, article.title);
-                        article.downloadUrl = pickDownloadUrl(article.link, enclosureUrl, &article.isTorrent);
+                        article.downloadUrl = pickDownloadUrl(article.link, enclosureUrl, enclosureMimeType, &article.isTorrent);
                         if (!article.title.isEmpty())
                             parsed.articles.append(article);
                     } else {
@@ -616,6 +619,7 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
                 } else if (name == QStringLiteral("item")) {
                     StoredArticle article;
                     QString enclosureUrl;
+                    QString enclosureMimeType;
                     while (!(xml.isEndElement() && elementIs(u"item")) && !xml.atEnd()) {
                         xml.readNext();
                         if (!xml.isStartElement())
@@ -643,6 +647,7 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
                             article.published = parseDateTime(xml.readElementText(QXmlStreamReader::IncludeChildElements));
                         } else if (childName == QStringLiteral("enclosure")) {
                             enclosureUrl = resolveUrl(xml.attributes().value(QStringLiteral("url")).toString());
+                            enclosureMimeType = xml.attributes().value(QStringLiteral("type")).toString();
                             if (!xml.isEndElement())
                                 xml.skipCurrentElement();
                         } else {
@@ -650,7 +655,7 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
                         }
                     }
                     article.guid = stableGuid(article.guid, article.link, article.title);
-                    article.downloadUrl = pickDownloadUrl(article.link, enclosureUrl, &article.isTorrent);
+                    article.downloadUrl = pickDownloadUrl(article.link, enclosureUrl, enclosureMimeType, &article.isTorrent);
                     if (!article.title.isEmpty())
                         parsed.articles.append(article);
                 } else {
@@ -672,15 +677,34 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
 bool RssManager::looksLikeTorrentUrl(const QString &value)
 {
     const QString trimmed = value.trimmed().toLower();
-    return trimmed.startsWith(QStringLiteral("magnet:?"))
-        || trimmed.endsWith(QStringLiteral(".torrent"))
-        || trimmed.contains(QStringLiteral("xt=urn:btih:"));
+    if (trimmed.startsWith(QStringLiteral("magnet:?"))
+            || trimmed.endsWith(QStringLiteral(".torrent"))
+            || trimmed.contains(QStringLiteral("xt=urn:btih:")))
+        return true;
+    // Common torrent-site download path patterns that don't carry a .torrent extension
+    // (e.g. https://yts.bz/torrent/download/<hash>)
+    const QUrl url(trimmed);
+    const QString path = url.path().toLower();
+    if (path.contains(QStringLiteral("/torrent/download/"))
+            || path.contains(QStringLiteral("/torrents/download/"))
+            || path.contains(QStringLiteral("/download/torrent/")))
+        return true;
+    return false;
 }
 
-QString RssManager::pickDownloadUrl(const QString &link, const QString &enclosureUrl, bool *isTorrent)
+bool RssManager::looksLikeTorrentMimeType(const QString &mimeType)
+{
+    const QString lower = mimeType.trimmed().toLower();
+    return lower == QStringLiteral("application/x-bittorrent")
+        || lower == QStringLiteral("application/x-torrent");
+}
+
+QString RssManager::pickDownloadUrl(const QString &link, const QString &enclosureUrl, const QString &enclosureMimeType, bool *isTorrent)
 {
     const QString preferred = !enclosureUrl.trimmed().isEmpty() ? enclosureUrl.trimmed() : link.trimmed();
-    const bool torrent = looksLikeTorrentUrl(enclosureUrl) || looksLikeTorrentUrl(link);
+    const bool torrent = looksLikeTorrentMimeType(enclosureMimeType)
+                      || looksLikeTorrentUrl(enclosureUrl)
+                      || looksLikeTorrentUrl(link);
     if (isTorrent)
         *isTorrent = torrent;
     if (torrent)

@@ -36,7 +36,7 @@ Window {
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
 
-    property int    initialPage: 0   // set to 5 to jump to About
+    property int    initialPage: 0   // Tab indices: 0=Connection,1=Categories,2=Downloads,3=Browser,4=Speed Limiter,5=Notifications,6=General,7=Media,8=Torrents,9=RSS,10=About
     signal whatsNewRequested()
 
     // Plain var properties — no live binding to App.settings so that
@@ -108,6 +108,14 @@ Window {
     property string editProxyUsername: ""
     property string editProxyPassword: ""
     property var    ipToCityDbInfo:    ({})
+    // RSS settings
+    property bool   editRssEnabled:             true
+    property int    editRssRefreshIntervalMins:  30
+    property int    editRssSameHostDelayMs:      2000
+    property int    editRssMaxArticlesPerFeed:   50
+    property bool   editRssAutoDownloadEnabled:  false
+    property bool   editRssSmartFilterRepack:    true
+    property string editRssSmartFiltersJson:     "[]"
 
     readonly property string defaultUserAgent: "Stellar/" + App.appVersion
     readonly property string displayedUserAgent: editUseCustomUserAgent
@@ -363,7 +371,14 @@ Window {
         editProxyHost             !== App.settings.proxyHost             ||
         editProxyPort             !== App.settings.proxyPort             ||
         editProxyUsername         !== App.settings.proxyUsername         ||
-        editProxyPassword         !== App.settings.proxyPassword
+        editProxyPassword         !== App.settings.proxyPassword ||
+        editRssEnabled                !== App.settings.rssEnabled              ||
+        editRssRefreshIntervalMins    !== App.settings.rssRefreshIntervalMins  ||
+        editRssSameHostDelayMs        !== App.settings.rssSameHostDelayMs      ||
+        editRssMaxArticlesPerFeed     !== App.settings.rssMaxArticlesPerFeed   ||
+        editRssAutoDownloadEnabled    !== App.settings.rssAutoDownloadEnabled  ||
+        editRssSmartFilterRepack      !== App.settings.rssSmartFilterRepack    ||
+        editRssSmartFiltersJson       !== App.settings.rssSmartFiltersJson
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
@@ -402,6 +417,10 @@ Window {
         }
         return out
     })()
+
+    RssDownloadRulesDialog {
+        id: rssDownloadRulesDialog
+    }
 
     FolderDialog {
         id: saveFolderDlg
@@ -543,6 +562,13 @@ Window {
         App.settings.proxyPort              = editProxyPort
         App.settings.proxyUsername          = editProxyUsername
         App.settings.proxyPassword          = editProxyPassword
+        App.settings.rssEnabled             = editRssEnabled
+        App.settings.rssRefreshIntervalMins = editRssRefreshIntervalMins
+        App.settings.rssSameHostDelayMs     = editRssSameHostDelayMs
+        App.settings.rssMaxArticlesPerFeed  = editRssMaxArticlesPerFeed
+        App.settings.rssAutoDownloadEnabled = editRssAutoDownloadEnabled
+        App.settings.rssSmartFilterRepack   = editRssSmartFilterRepack
+        App.settings.rssSmartFiltersJson    = editRssSmartFiltersJson
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
@@ -611,6 +637,13 @@ Window {
         editProxyPort             = App.settings.proxyPort
         editProxyUsername         = App.settings.proxyUsername
         editProxyPassword         = App.settings.proxyPassword
+        editRssEnabled             = App.settings.rssEnabled
+        editRssRefreshIntervalMins = App.settings.rssRefreshIntervalMins
+        editRssSameHostDelayMs     = App.settings.rssSameHostDelayMs
+        editRssMaxArticlesPerFeed  = App.settings.rssMaxArticlesPerFeed
+        editRssAutoDownloadEnabled = App.settings.rssAutoDownloadEnabled
+        editRssSmartFilterRepack   = App.settings.rssSmartFilterRepack
+        editRssSmartFiltersJson    = App.settings.rssSmartFiltersJson || "[]"
         // Reset dirty flags so Apply button is disabled until user actually changes something
         catDirty = false
     }
@@ -634,7 +667,7 @@ Window {
                     id: catList
                     anchors.fill: parent
                     anchors.topMargin: 8
-                    model: ["Connection", "Categories", "Downloads", "Browser", "Speed Limiter", "Notifications", "General", "Media", "Torrents", "About"]
+                    model: ["Connection", "Categories", "Downloads", "Browser", "Speed Limiter", "Notifications", "General", "Media", "Torrents", "RSS", "About"]
                     currentIndex: root.initialPage
 
                     delegate: Rectangle {
@@ -3273,6 +3306,256 @@ Window {
                         Item { height: 12 }
                     }
                     } // ScrollView
+                }
+
+                // RSS
+                Item {
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                        ColumnLayout {
+                            width: parent.width
+                            spacing: 0
+
+                            ColumnLayout {
+                                Layout.fillWidth: true
+                                Layout.margins: 14
+                                spacing: 10
+
+                                Text { text: "RSS"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+
+                                // ── Feed fetching ─────────────────────────────────────────────────
+                                Rectangle {
+                                    Layout.fillWidth: true
+                                    color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
+                                    implicitHeight: rssFetchCol.implicitHeight + 20
+
+                                    ColumnLayout {
+                                        id: rssFetchCol
+                                        anchors { fill: parent; margins: 10 }
+                                        spacing: 10
+
+                                        Text { text: "FEED FETCHING"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+
+                                        // Enable RSS
+                                        RowLayout {
+                                            spacing: 8
+                                            CheckBox {
+                                                id: rssEnabledCheck
+                                                checked: root.editRssEnabled
+                                                onToggled: root.editRssEnabled = checked
+                                                contentItem: Item {}
+                                                indicator: Rectangle {
+                                                    implicitWidth: 16; implicitHeight: 16; radius: 3
+                                                    color: rssEnabledCheck.checked ? "#4488dd" : "#1b1b1b"
+                                                    border.color: rssEnabledCheck.checked ? "#4488dd" : "#3a3a3a"
+                                                    Text {
+                                                        visible: rssEnabledCheck.checked
+                                                        anchors.centerIn: parent
+                                                        text: "✓"; color: "#fff"; font.pixelSize: 11; font.bold: true
+                                                    }
+                                                }
+                                            }
+                                            Text { text: "Enable fetching RSS feeds"; color: "#c0c0c0"; font.pixelSize: 12 }
+                                        }
+
+                                        GridLayout {
+                                            Layout.fillWidth: true
+                                            columns: 3
+                                            columnSpacing: 10
+                                            rowSpacing: 8
+                                            enabled: root.editRssEnabled
+
+                                            Text { text: "Feeds refresh interval:"; color: "#8899aa"; font.pixelSize: 12 }
+                                            TextField {
+                                                Layout.preferredWidth: 80
+                                                text: String(root.editRssRefreshIntervalMins)
+                                                validator: IntValidator { bottom: 1; top: 1440 }
+                                                color: "#d0d0d0"; font.pixelSize: 12
+                                                leftPadding: 6; rightPadding: 6; selectByMouse: true
+                                                background: Rectangle {
+                                                    color: "#1b1b1b"
+                                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                                }
+                                                onTextChanged: {
+                                                    var n = parseInt(text, 10)
+                                                    if (!isNaN(n) && n >= 1) root.editRssRefreshIntervalMins = n
+                                                }
+                                            }
+                                            Text { text: "minutes"; color: "#666"; font.pixelSize: 12 }
+
+                                            Text { text: "Same host request delay:"; color: "#8899aa"; font.pixelSize: 12 }
+                                            TextField {
+                                                Layout.preferredWidth: 80
+                                                text: String(Math.round(root.editRssSameHostDelayMs / 1000))
+                                                validator: IntValidator { bottom: 0; top: 60 }
+                                                color: "#d0d0d0"; font.pixelSize: 12
+                                                leftPadding: 6; rightPadding: 6; selectByMouse: true
+                                                background: Rectangle {
+                                                    color: "#1b1b1b"
+                                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                                }
+                                                onTextChanged: {
+                                                    var n = parseInt(text, 10)
+                                                    if (!isNaN(n) && n >= 0) root.editRssSameHostDelayMs = n * 1000
+                                                }
+                                            }
+                                            Text { text: "seconds"; color: "#666"; font.pixelSize: 12 }
+
+                                            Text { text: "Maximum articles per feed:"; color: "#8899aa"; font.pixelSize: 12 }
+                                            TextField {
+                                                Layout.preferredWidth: 80
+                                                text: String(root.editRssMaxArticlesPerFeed)
+                                                validator: IntValidator { bottom: 1; top: 10000 }
+                                                color: "#d0d0d0"; font.pixelSize: 12
+                                                leftPadding: 6; rightPadding: 6; selectByMouse: true
+                                                background: Rectangle {
+                                                    color: "#1b1b1b"
+                                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
+                                                }
+                                                onTextChanged: {
+                                                    var n = parseInt(text, 10)
+                                                    if (!isNaN(n) && n >= 1) root.editRssMaxArticlesPerFeed = n
+                                                }
+                                            }
+                                            Item {}
+                                        }
+                                    }
+                                }
+
+                                // ── Auto downloader ───────────────────────────────────────────────
+                                Rectangle {
+                                    Layout.fillWidth: true
+                                    color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
+                                    implicitHeight: rssAutoCol.implicitHeight + 20
+
+                                    ColumnLayout {
+                                        id: rssAutoCol
+                                        anchors { fill: parent; margins: 10 }
+                                        spacing: 10
+
+                                        Text { text: "RSS TORRENT AUTO DOWNLOADER"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+
+                                        RowLayout {
+                                            spacing: 8
+                                            CheckBox {
+                                                id: rssAutoDownCheck
+                                                checked: root.editRssAutoDownloadEnabled
+                                                onToggled: root.editRssAutoDownloadEnabled = checked
+                                                contentItem: Item {}
+                                                indicator: Rectangle {
+                                                    implicitWidth: 16; implicitHeight: 16; radius: 3
+                                                    color: rssAutoDownCheck.checked ? "#4488dd" : "#1b1b1b"
+                                                    border.color: rssAutoDownCheck.checked ? "#4488dd" : "#3a3a3a"
+                                                    Text {
+                                                        visible: rssAutoDownCheck.checked
+                                                        anchors.centerIn: parent
+                                                        text: "✓"; color: "#fff"; font.pixelSize: 11; font.bold: true
+                                                    }
+                                                }
+                                            }
+                                            Text { text: "Enable auto downloading of RSS torrents"; color: "#c0c0c0"; font.pixelSize: 12 }
+                                        }
+
+                                        DlgButton {
+                                            text: "Edit Auto Downloading Rules..."
+                                            onClicked: {
+                                                rssDownloadRulesDialog.show()
+                                                rssDownloadRulesDialog.raise()
+                                                rssDownloadRulesDialog.requestActivate()
+                                            }
+                                        }
+                                    }
+                                }
+
+                                // ── Smart episode filter ──────────────────────────────────────────
+                                Rectangle {
+                                    Layout.fillWidth: true
+                                    color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
+                                    implicitHeight: rssSmartCol.implicitHeight + 20
+
+                                    ColumnLayout {
+                                        id: rssSmartCol
+                                        anchors { fill: parent; margins: 10 }
+                                        spacing: 10
+
+                                        Text { text: "RSS SMART EPISODE FILTER"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+
+                                        RowLayout {
+                                            spacing: 8
+                                            CheckBox {
+                                                id: rssRepackCheck
+                                                checked: root.editRssSmartFilterRepack
+                                                onToggled: root.editRssSmartFilterRepack = checked
+                                                contentItem: Item {}
+                                                indicator: Rectangle {
+                                                    implicitWidth: 16; implicitHeight: 16; radius: 3
+                                                    color: rssRepackCheck.checked ? "#4488dd" : "#1b1b1b"
+                                                    border.color: rssRepackCheck.checked ? "#4488dd" : "#3a3a3a"
+                                                    Text {
+                                                        visible: rssRepackCheck.checked
+                                                        anchors.centerIn: parent
+                                                        text: "✓"; color: "#fff"; font.pixelSize: 11; font.bold: true
+                                                    }
+                                                }
+                                            }
+                                            Text { text: "Download REPACK/PROPER episodes"; color: "#c0c0c0"; font.pixelSize: 12 }
+                                        }
+
+                                        Text {
+                                            text: "Episode detection patterns (one per line):"
+                                            color: "#8899aa"; font.pixelSize: 12
+                                        }
+
+                                        Rectangle {
+                                            Layout.fillWidth: true
+                                            height: 110
+                                            color: "#1b1b1b"
+                                            border.color: rssFiltersArea.activeFocus ? "#4488dd" : "#3a3a3a"
+                                            radius: 2
+
+                                            ScrollView {
+                                                anchors.fill: parent
+                                                anchors.margins: 4
+                                                clip: true
+                                                ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                                                TextArea {
+                                                    id: rssFiltersArea
+                                                    font.pixelSize: 12
+                                                    font.family: "Consolas, monospace"
+                                                    color: "#d0d0d0"
+                                                    background: null
+                                                    wrapMode: TextEdit.NoWrap
+                                                    selectByMouse: true
+                                                    text: {
+                                                        try {
+                                                            var arr = JSON.parse(root.editRssSmartFiltersJson || "[]")
+                                                            return Array.isArray(arr) ? arr.join("\n") : ""
+                                                        } catch(e) { return "" }
+                                                    }
+                                                    onTextChanged: {
+                                                        var lines = text.split("\n").map(function(s) { return s.trim() }).filter(function(s) { return s.length > 0 })
+                                                        root.editRssSmartFiltersJson = JSON.stringify(lines)
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        Text {
+                                            text: "These regular expressions are used to extract season/episode numbers for smart duplicate detection."
+                                            color: "#7f8a94"; font.pixelSize: 10
+                                            wrapMode: Text.WordWrap; Layout.fillWidth: true
+                                        }
+                                    }
+                                }
+
+                                Item { height: 4 }
+                            }
+                        }
+                    }
                 }
 
                 // About

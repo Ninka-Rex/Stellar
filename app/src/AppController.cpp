@@ -1963,12 +1963,65 @@ QString AppController::beginTorrentMetadataDownload(const QString &source, const
         return {};
     }
 
-    QString downloadId;
-    if (isTorrentUri(trimmed))
-        downloadId = addMagnetLink(trimmed, savePath, category, description, false, {});
-    else
-        return {};
+    // Magnet link or bare info-hash — hand directly to libtorrent
+    if (isTorrentUri(trimmed)) {
+        const QString downloadId = addMagnetLink(trimmed, savePath, category, description, false, {});
+        if (!downloadId.isEmpty())
+            emit torrentMetadataRequested(downloadId, startWhenReady);
+        return downloadId;
+    }
 
+    // HTTP/HTTPS URL that serves a .torrent file — fetch it, save to a temp file,
+    // then open in the metadata dialog exactly as a local .torrent would be.
+    const QUrl url(trimmed);
+    if (url.scheme().startsWith(QStringLiteral("http"), Qt::CaseInsensitive)) {
+        QNetworkRequest req(url);
+        req.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                         QNetworkRequest::NoLessSafeRedirectPolicy);
+        req.setRawHeader("User-Agent", QStringLiteral("Stellar/%1").arg(appVersion()).toUtf8());
+        req.setTransferTimeout(30'000);
+
+        // Capture by value so the lambda owns its context after this function returns
+        const QString sp = savePath;
+        const QString cat = category;
+        const QString desc = description;
+        const bool startNow = startWhenReady;
+
+        QNetworkReply *reply = m_nam->get(req);
+        connect(reply, &QNetworkReply::finished, this, [this, reply, sp, cat, desc, startNow]() {
+            reply->deleteLater();
+            if (reply->error() != QNetworkReply::NoError) {
+                emit errorOccurred(QStringLiteral("Failed to fetch torrent: %1").arg(reply->errorString()));
+                return;
+            }
+            const QByteArray data = reply->readAll();
+            if (data.isEmpty()) {
+                emit errorOccurred(QStringLiteral("Empty response fetching torrent file."));
+                return;
+            }
+            // Write to a temp file in the Stellar temp dir so addTorrentFile can read it
+            const QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation)
+                                  + QStringLiteral("/Stellar");
+            QDir().mkpath(tempDir);
+            const QString tempPath = tempDir + QStringLiteral("/rss_%1.torrent")
+                                     .arg(QDateTime::currentMSecsSinceEpoch());
+            QFile f(tempPath);
+            if (!f.open(QIODevice::WriteOnly) || f.write(data) != data.size()) {
+                emit errorOccurred(QStringLiteral("Failed to write temp torrent file."));
+                return;
+            }
+            f.close();
+
+            const QString downloadId = addTorrentFile(tempPath, sp, cat, desc, false, {});
+            if (!downloadId.isEmpty())
+                emit torrentMetadataRequested(downloadId, startNow);
+        });
+        // Return empty — the ID will be assigned asynchronously
+        return {};
+    }
+
+    // Local .torrent file path
+    const QString downloadId = addTorrentFile(trimmed, savePath, category, description, false, {});
     if (!downloadId.isEmpty())
         emit torrentMetadataRequested(downloadId, startWhenReady);
     return downloadId;

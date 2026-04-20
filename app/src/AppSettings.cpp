@@ -248,6 +248,15 @@ void AppSettings::load() {
     m_proxyUsername           = m_settings.value(QStringLiteral("proxyUsername"), QString()).toString();
     m_proxyPassword           = m_settings.value(QStringLiteral("proxyPassword"), QString()).toString();
     m_perHostConnectionLimit  = m_settings.value(QStringLiteral("perHostConnectionLimit"), 8).toInt();
+    m_rssEnabled              = m_settings.value(QStringLiteral("rssEnabled"), true).toBool();
+    m_rssRefreshIntervalMins  = m_settings.value(QStringLiteral("rssRefreshIntervalMins"), 30).toInt();
+    m_rssSameHostDelayMs      = m_settings.value(QStringLiteral("rssSameHostDelayMs"), 2000).toInt();
+    m_rssMaxArticlesPerFeed   = m_settings.value(QStringLiteral("rssMaxArticlesPerFeed"), 50).toInt();
+    m_rssAutoDownloadEnabled  = m_settings.value(QStringLiteral("rssAutoDownloadEnabled"), false).toBool();
+    m_rssSmartFilterRepack    = m_settings.value(QStringLiteral("rssSmartFilterRepack"), true).toBool();
+    m_rssSmartFiltersJson     = m_settings.value(QStringLiteral("rssSmartFiltersJson"),
+        QStringLiteral("[\"s(\\\\d+)e(\\\\d+)\",\"(\\\\d+)x(\\\\d+)\",\"(\\\\d{4}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{1,2})\",\"(\\\\d{1,2}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{4})\"]")).toString();
+    m_rssDownloadRulesJson    = m_settings.value(QStringLiteral("rssDownloadRulesJson"), QStringLiteral("[]")).toString();
     const QStringList defaultOrder{QStringLiteral("downloads"), QStringLiteral("unfinished"),
                                    QStringLiteral("finished"), QStringLiteral("grabber"),
                                    QStringLiteral("queues"), QStringLiteral("torrents")};
@@ -330,6 +339,14 @@ void AppSettings::load() {
     emit proxyUsernameChanged();
     emit proxyPasswordChanged();
     emit perHostConnectionLimitChanged();
+    emit rssEnabledChanged();
+    emit rssRefreshIntervalMinsChanged();
+    emit rssSameHostDelayMsChanged();
+    emit rssMaxArticlesPerFeedChanged();
+    emit rssAutoDownloadEnabledChanged();
+    emit rssSmartFilterRepackChanged();
+    emit rssSmartFiltersJsonChanged();
+    emit rssDownloadRulesJsonChanged();
 
     // Reconcile OS startup entry with the stored setting.  Without this, the
     // registry key (Windows) or .desktop file (Linux) may be absent even though
@@ -423,6 +440,14 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("proxyUsername"),               m_proxyUsername);
     m_settings.setValue(QStringLiteral("proxyPassword"),               m_proxyPassword);
     m_settings.setValue(QStringLiteral("perHostConnectionLimit"),     m_perHostConnectionLimit);
+    m_settings.setValue(QStringLiteral("rssEnabled"),               m_rssEnabled);
+    m_settings.setValue(QStringLiteral("rssRefreshIntervalMins"),   m_rssRefreshIntervalMins);
+    m_settings.setValue(QStringLiteral("rssSameHostDelayMs"),       m_rssSameHostDelayMs);
+    m_settings.setValue(QStringLiteral("rssMaxArticlesPerFeed"),    m_rssMaxArticlesPerFeed);
+    m_settings.setValue(QStringLiteral("rssAutoDownloadEnabled"),   m_rssAutoDownloadEnabled);
+    m_settings.setValue(QStringLiteral("rssSmartFilterRepack"),     m_rssSmartFilterRepack);
+    m_settings.setValue(QStringLiteral("rssSmartFiltersJson"),      m_rssSmartFiltersJson);
+    m_settings.setValue(QStringLiteral("rssDownloadRulesJson"),     m_rssDownloadRulesJson);
     m_settings.sync();
 }
 
@@ -630,6 +655,14 @@ void AppSettings::setProxyHost(const QString &v) { if (m_proxyHost     != v) { m
 void AppSettings::setProxyPort(int v)            { if (m_proxyPort     != v) { m_proxyPort     = v; emit proxyPortChanged();     save(); } }
 void AppSettings::setProxyUsername(const QString &v) { if (m_proxyUsername != v) { m_proxyUsername = v; emit proxyUsernameChanged(); save(); } }
 void AppSettings::setProxyPassword(const QString &v) { if (m_proxyPassword != v) { m_proxyPassword = v; emit proxyPasswordChanged(); save(); } }
+void AppSettings::setRssEnabled(bool v)              { if (m_rssEnabled != v)              { m_rssEnabled = v;              emit rssEnabledChanged();              save(); } }
+void AppSettings::setRssRefreshIntervalMins(int v)   { if (m_rssRefreshIntervalMins != v)  { m_rssRefreshIntervalMins = v;  emit rssRefreshIntervalMinsChanged();  save(); } }
+void AppSettings::setRssSameHostDelayMs(int v)       { if (m_rssSameHostDelayMs != v)      { m_rssSameHostDelayMs = v;      emit rssSameHostDelayMsChanged();      save(); } }
+void AppSettings::setRssMaxArticlesPerFeed(int v)    { if (m_rssMaxArticlesPerFeed != v)   { m_rssMaxArticlesPerFeed = v;   emit rssMaxArticlesPerFeedChanged();   save(); } }
+void AppSettings::setRssAutoDownloadEnabled(bool v)  { if (m_rssAutoDownloadEnabled != v)  { m_rssAutoDownloadEnabled = v;  emit rssAutoDownloadEnabledChanged();  save(); } }
+void AppSettings::setRssSmartFilterRepack(bool v)    { if (m_rssSmartFilterRepack != v)    { m_rssSmartFilterRepack = v;    emit rssSmartFilterRepackChanged();    save(); } }
+void AppSettings::setRssSmartFiltersJson(const QString &v) { if (m_rssSmartFiltersJson != v) { m_rssSmartFiltersJson = v; emit rssSmartFiltersJsonChanged(); save(); } }
+void AppSettings::setRssDownloadRulesJson(const QString &v) { if (m_rssDownloadRulesJson != v) { m_rssDownloadRulesJson = v; emit rssDownloadRulesJsonChanged(); save(); } }
 
 void AppSettings::applyStartupRegistration(bool enable) const {
 #ifdef Q_OS_WIN

@@ -121,6 +121,15 @@ class AppSettings : public QObject {
     Q_PROPERTY(int     proxyPort     READ proxyPort     WRITE setProxyPort     NOTIFY proxyPortChanged)
     Q_PROPERTY(QString proxyUsername READ proxyUsername WRITE setProxyUsername NOTIFY proxyUsernameChanged)
     Q_PROPERTY(QString proxyPassword READ proxyPassword WRITE setProxyPassword NOTIFY proxyPasswordChanged)
+    // RSS settings
+    Q_PROPERTY(bool    rssEnabled           READ rssEnabled           WRITE setRssEnabled           NOTIFY rssEnabledChanged)
+    Q_PROPERTY(int     rssRefreshIntervalMins READ rssRefreshIntervalMins WRITE setRssRefreshIntervalMins NOTIFY rssRefreshIntervalMinsChanged)
+    Q_PROPERTY(int     rssSameHostDelayMs   READ rssSameHostDelayMs   WRITE setRssSameHostDelayMs   NOTIFY rssSameHostDelayMsChanged)
+    Q_PROPERTY(int     rssMaxArticlesPerFeed READ rssMaxArticlesPerFeed WRITE setRssMaxArticlesPerFeed NOTIFY rssMaxArticlesPerFeedChanged)
+    Q_PROPERTY(bool    rssAutoDownloadEnabled READ rssAutoDownloadEnabled WRITE setRssAutoDownloadEnabled NOTIFY rssAutoDownloadEnabledChanged)
+    Q_PROPERTY(bool    rssSmartFilterRepack READ rssSmartFilterRepack WRITE setRssSmartFilterRepack NOTIFY rssSmartFilterRepackChanged)
+    Q_PROPERTY(QString rssSmartFiltersJson  READ rssSmartFiltersJson  WRITE setRssSmartFiltersJson  NOTIFY rssSmartFiltersJsonChanged)
+    Q_PROPERTY(QString rssDownloadRulesJson READ rssDownloadRulesJson WRITE setRssDownloadRulesJson NOTIFY rssDownloadRulesJsonChanged)
 
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -211,6 +220,14 @@ public:
     QString proxyUsername()           const { return m_proxyUsername; }
     QString proxyPassword()           const { return m_proxyPassword; }
     int     perHostConnectionLimit()  const { return m_perHostConnectionLimit; }
+    bool    rssEnabled()              const { return m_rssEnabled; }
+    int     rssRefreshIntervalMins()  const { return m_rssRefreshIntervalMins; }
+    int     rssSameHostDelayMs()      const { return m_rssSameHostDelayMs; }
+    int     rssMaxArticlesPerFeed()   const { return m_rssMaxArticlesPerFeed; }
+    bool    rssAutoDownloadEnabled()  const { return m_rssAutoDownloadEnabled; }
+    bool    rssSmartFilterRepack()    const { return m_rssSmartFilterRepack; }
+    QString rssSmartFiltersJson()     const { return m_rssSmartFiltersJson; }
+    QString rssDownloadRulesJson()    const { return m_rssDownloadRulesJson; }
 
     void setMaxConcurrent(int v);
     void setSegmentsPerDownload(int v);
@@ -298,6 +315,14 @@ public:
     void setProxyUsername(const QString &v);
     void setPerHostConnectionLimit(int v);
     void setProxyPassword(const QString &v);
+    void setRssEnabled(bool v);
+    void setRssRefreshIntervalMins(int v);
+    void setRssSameHostDelayMs(int v);
+    void setRssMaxArticlesPerFeed(int v);
+    void setRssAutoDownloadEnabled(bool v);
+    void setRssSmartFilterRepack(bool v);
+    void setRssSmartFiltersJson(const QString &v);
+    void setRssDownloadRulesJson(const QString &v);
 
     Q_INVOKABLE void save();
     Q_INVOKABLE void load();
@@ -366,6 +391,14 @@ signals:
     void proxyUsernameChanged();
     void perHostConnectionLimitChanged();
     void proxyPasswordChanged();
+    void rssEnabledChanged();
+    void rssRefreshIntervalMinsChanged();
+    void rssSameHostDelayMsChanged();
+    void rssMaxArticlesPerFeedChanged();
+    void rssAutoDownloadEnabledChanged();
+    void rssSmartFilterRepackChanged();
+    void rssSmartFiltersJsonChanged();
+    void rssDownloadRulesJsonChanged();
 
 private:
     int     m_maxConcurrent{3};
@@ -455,6 +488,14 @@ private:
     QString     m_proxyUsername;
     int         m_perHostConnectionLimit{8};
     QString     m_proxyPassword;
+    bool        m_rssEnabled{true};
+    int         m_rssRefreshIntervalMins{30};
+    int         m_rssSameHostDelayMs{2000};
+    int         m_rssMaxArticlesPerFeed{50};
+    bool        m_rssAutoDownloadEnabled{false};
+    bool        m_rssSmartFilterRepack{true};
+    QString     m_rssSmartFiltersJson{QStringLiteral("[\"s(\\\\d+)e(\\\\d+)\",\"(\\\\d+)x(\\\\d+)\",\"(\\\\d{4}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{1,2})\",\"(\\\\d{1,2}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{4})\"]")};
+    QString     m_rssDownloadRulesJson{QStringLiteral("[]")};
 
     // Apply or remove OS startup entry depending on v
     void applyStartupRegistration(bool v) const;

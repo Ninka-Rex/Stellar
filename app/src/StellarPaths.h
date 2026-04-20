@@ -109,6 +109,9 @@ QString grabberProjectsFile();
 // <root>/data/rss_feeds.json
 QString rssFeedsFile();
 
+// <root>/data/rss_rules.json
+QString rssRulesFile();
+
 // <root>/plugins/torrent_search_runner.py
 QString searchRunnerFile();
 

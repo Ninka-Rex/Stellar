@@ -32,6 +32,7 @@ Window {
     property int selectedFeedRow: -1
     property int selectedArticleRow: -1
     property real leftPaneWidth: 255
+    property real previewPaneHeight: 220
     property string editingFeedId: ""
     property string articleSortKey: "published"
     property bool articleSortAscending: false
@@ -81,9 +82,8 @@ Window {
         return items
     }
     readonly property var selectedArticle: (selectedArticleRow >= 0 && selectedArticleRow < sortedArticles.length) ? sortedArticles[selectedArticleRow] : ({})
-    readonly property bool selectedArticleHasDownload: !!selectedArticle.downloadUrl
-        || (!!selectedArticle.link && ((selectedArticle.link + "").toLowerCase().indexOf("magnet:") === 0
-        || (selectedArticle.link + "").toLowerCase().indexOf(".torrent") >= 0))
+    readonly property bool selectedArticleHasDownload: !!selectedArticle.isTorrent
+        || !!selectedArticle.downloadUrl
     readonly property string selectedArticleImageUrl: {
         if (selectedArticle.imageUrl && selectedArticle.imageUrl.length > 0)
             return selectedArticle.imageUrl
@@ -218,7 +218,7 @@ Window {
             return openSelectedArticle()
         var url = selectedArticle.downloadUrl && selectedArticle.downloadUrl.length > 0 ? selectedArticle.downloadUrl : selectedArticle.link
         markSelectedArticleRead(true)
-        if ((url + "").toLowerCase().indexOf("magnet:") === 0 || (url + "").toLowerCase().indexOf(".torrent") >= 0) {
+        if (selectedArticle.isTorrent) {
             App.beginTorrentMetadataDownload(url, App.settings.defaultSavePath, "", selectedArticle.title || "", true)
         } else {
             App.addUrl(url, App.settings.defaultSavePath, "", selectedArticle.title || "", true)
@@ -294,6 +294,7 @@ Window {
     Settings {
         category: "RssWindow"
         property alias leftPaneWidth: root.leftPaneWidth
+        property alias previewPaneHeight: root.previewPaneHeight
     }
 
     Menu {
@@ -326,6 +327,10 @@ Window {
                 root.ensureArticleSelection()
             }
         }
+    }
+
+    RssDownloadRulesDialog {
+        id: rssRulesDialog
     }
 
     Window {
@@ -393,6 +398,14 @@ Window {
             DlgButton { text: "Add"; primary: true; enabled: addFeedField.text.trim().length > 0; onClicked: root.addSubscription() }
             DlgButton { text: App.rssManager.refreshInProgress ? "Refreshing..." : "Refresh"; enabled: !App.rssManager.refreshInProgress; onClicked: root.refreshCurrentFeed() }
             DlgButton { text: "Remove"; enabled: !!selectedFeed.feedId; onClicked: root.removeCurrentFeed() }
+            DlgButton {
+                text: "Download Rules"
+                onClicked: {
+                    rssRulesDialog.show()
+                    rssRulesDialog.raise()
+                    rssRulesDialog.requestActivate()
+                }
+            }
         }
 
         SplitView {
@@ -440,6 +453,7 @@ Window {
                                 required property int unreadCount
                                 required property int totalCount
                                 required property string feedId
+                                required property int index
                                 readonly property int rowIndex: index
                                 width: parent.width
                                 height: 28
@@ -730,152 +744,253 @@ Window {
                     Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
                 }
 
-                ListView {
-                    id: articleList
-                    anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: previewPane.top }
-                    model: root.sortedArticles
+                SplitView {
+                    id: articleSplitView
+                    anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+                    orientation: Qt.Vertical
                     clip: true
-                    boundsBehavior: Flickable.StopAtBounds
 
-                    delegate: Rectangle {
-                        property var itemData: modelData
-                        width: articleList.width
-                        height: 24
-                        color: root.selectedArticleRow === index ? "#1e3a6e" : (articleMouse.containsMouse ? "#2a2a3a" : "transparent")
-
-                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#262626" }
-
-                        MouseArea {
-                            id: articleMouse
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            onClicked: root.selectedArticleRow = index
-                            onDoubleClicked: {
-                                root.selectedArticleRow = index
-                                if (root.selectedArticleHasDownload)
-                                    root.triggerSelectedDownload()
-                                else
-                                    root.openSelectedArticle()
-                            }
+                    handle: Rectangle {
+                        implicitHeight: 5
+                        color: SplitHandle.hovered || SplitHandle.pressed ? "#3a5a8a" : "#2a2a2a"
+                        Rectangle {
+                            anchors.centerIn: parent
+                            width: 32
+                            height: 1
+                            color: SplitHandle.hovered || SplitHandle.pressed ? "#88bbff" : "#3a3a3a"
                         }
+                    }
 
-                        Row {
-                            anchors.fill: parent
-                            spacing: 0
+                    ListView {
+                        id: articleList
+                        SplitView.fillWidth: true
+                        SplitView.fillHeight: true
+                        SplitView.minimumHeight: 80
+                        model: root.sortedArticles
+                        clip: true
+                        boundsBehavior: Flickable.StopAtBounds
 
-                            Repeater {
-                                model: root.visibleCols
-                                delegate: Item {
-                                    width: root.colWidth(modelData.key)
-                                    height: parent.height
+                        delegate: Rectangle {
+                            id: articleDelegate
+                            required property var modelData
+                            required property int index
+                            width: articleList.width
+                            height: 24
+                            color: root.selectedArticleRow === index ? "#1e3a6e" : (articleMouse.containsMouse ? "#2a2a3a" : "transparent")
 
-                                    Text {
-                                        anchors { fill: parent; leftMargin: 6; rightMargin: 6; verticalCenter: parent.verticalCenter }
-                                        text: {
-                                            if (modelData.key === "feed") return itemData.feedTitle || ""
-                                            if (modelData.key === "published") return itemData.publishedDisplay || ""
-                                            return itemData.title || "Untitled item"
-                                        }
-                                        color: modelData.key === "title" && itemData.unread ? "#ffffff" : "#d0d0d0"
-                                        font.pixelSize: 10
-                                        font.bold: modelData.key === "title" && !!itemData.unread
-                                        elide: Text.ElideRight
-                                        verticalAlignment: Text.AlignVCenter
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#262626" }
+
+                            MouseArea {
+                                id: articleMouse
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                onClicked: root.selectedArticleRow = articleDelegate.index
+                                onDoubleClicked: {
+                                    root.selectedArticleRow = articleDelegate.index
+                                    if (root.selectedArticleHasDownload)
+                                        root.triggerSelectedDownload()
+                                    else
+                                        root.openSelectedArticle()
+                                }
+                            }
+
+                            // Hardcoded columns instead of nested Repeater to avoid QQmlContext overhead
+                            Item {
+                                id: col0
+                                x: 0
+                                width: root.colWidth(root.visibleCols.length > 0 ? root.visibleCols[0].key : "title")
+                                height: parent.height
+                                visible: root.visibleCols.length > 0
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: {
+                                        if (!root.visibleCols.length) return ""
+                                        var k = root.visibleCols[0].key
+                                        if (k === "feed") return articleDelegate.modelData.feedTitle || ""
+                                        if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
+                                        return articleDelegate.modelData.title || "Untitled item"
                                     }
+                                    color: root.visibleCols.length > 0 && root.visibleCols[0].key === "title" && !!articleDelegate.modelData.unread ? "#ffffff" : "#d0d0d0"
+                                    font.pixelSize: 10
+                                    font.bold: root.visibleCols.length > 0 && root.visibleCols[0].key === "title" && !!articleDelegate.modelData.unread
+                                    elide: Text.ElideRight
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+                            Item {
+                                id: col1
+                                x: col0.width
+                                width: root.visibleCols.length > 1 ? root.colWidth(root.visibleCols[1].key) : 0
+                                height: parent.height
+                                visible: root.visibleCols.length > 1
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: {
+                                        if (root.visibleCols.length < 2) return ""
+                                        var k = root.visibleCols[1].key
+                                        if (k === "feed") return articleDelegate.modelData.feedTitle || ""
+                                        if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
+                                        return articleDelegate.modelData.title || "Untitled item"
+                                    }
+                                    color: root.visibleCols.length > 1 && root.visibleCols[1].key === "title" && !!articleDelegate.modelData.unread ? "#ffffff" : "#d0d0d0"
+                                    font.pixelSize: 10
+                                    font.bold: root.visibleCols.length > 1 && root.visibleCols[1].key === "title" && !!articleDelegate.modelData.unread
+                                    elide: Text.ElideRight
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+                            Item {
+                                id: col2
+                                x: col0.width + col1.width
+                                width: root.visibleCols.length > 2 ? root.colWidth(root.visibleCols[2].key) : 0
+                                height: parent.height
+                                visible: root.visibleCols.length > 2
+                                Text {
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    text: {
+                                        if (root.visibleCols.length < 3) return ""
+                                        var k = root.visibleCols[2].key
+                                        if (k === "feed") return articleDelegate.modelData.feedTitle || ""
+                                        if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
+                                        return articleDelegate.modelData.title || "Untitled item"
+                                    }
+                                    color: root.visibleCols.length > 2 && root.visibleCols[2].key === "title" && !!articleDelegate.modelData.unread ? "#ffffff" : "#d0d0d0"
+                                    font.pixelSize: 10
+                                    font.bold: root.visibleCols.length > 2 && root.visibleCols[2].key === "title" && !!articleDelegate.modelData.unread
+                                    elide: Text.ElideRight
+                                    verticalAlignment: Text.AlignVCenter
                                 }
                             }
                         }
                     }
-                }
 
-                Rectangle {
-                    id: previewPane
-                    anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
-                    height: 220
-                    color: "#141414"
-                    border.color: "#2b2b2b"
+                    // Preview / description pane
+                    Rectangle {
+                        id: previewPane
+                        SplitView.preferredHeight: root.previewPaneHeight
+                        SplitView.minimumHeight: 100
+                        SplitView.maximumHeight: root.height * 0.65
+                        onHeightChanged: root.previewPaneHeight = height
+                        color: "#141414"
+                        border.color: "#2b2b2b"
 
-                    ColumnLayout {
-                        anchors.fill: parent
-                        anchors.margins: 8
-                        spacing: 6
+                        ColumnLayout {
+                            anchors.fill: parent
+                            anchors.margins: 8
+                            spacing: 4
 
-                        RowLayout {
-                            Layout.fillWidth: true
-                            spacing: 6
-                            Text {
+                            // Title + action buttons row
+                            RowLayout {
                                 Layout.fillWidth: true
-                                text: selectedArticle.title || "Select an item"
-                                color: "#f0f0f0"
-                                font.pixelSize: 14
-                                font.bold: true
-                                elide: Text.ElideRight
-                            }
-                            DlgButton { text: "Open"; enabled: !!selectedArticle.link; onClicked: root.openSelectedArticle() }
-                            DlgButton { text: root.selectedArticleHasDownload ? "Download" : "Open"; primary: root.selectedArticleHasDownload; enabled: selectedArticleRow >= 0; onClicked: root.triggerSelectedDownload() }
-                            DlgButton { text: selectedArticle.unread ? "Mark Read" : "Mark Unread"; enabled: selectedArticleRow >= 0; onClicked: root.markSelectedArticleRead(!!selectedArticle.unread) }
-                            DlgButton { text: "Copy Link"; enabled: selectedArticleRow >= 0; onClicked: root.copySelectedLink() }
-                        }
+                                spacing: 6
 
-                        Text {
-                            Layout.fillWidth: true
-                            text: selectedArticle.feedTitle
-                                ? selectedArticle.feedTitle + "  •  " + (selectedArticle.publishedDisplay || "Unknown date")
-                                : "Choose an item to view its details."
-                            color: "#8fa0b3"
-                            font.pixelSize: 10
-                            elide: Text.ElideRight
-                        }
-
-                        SplitView {
-                            Layout.fillWidth: true
-                            Layout.fillHeight: true
-                            orientation: Qt.Horizontal
-
-                            Rectangle {
-                                SplitView.preferredWidth: root.selectedArticleImageUrl ? 180 : 0
-                                SplitView.minimumWidth: root.selectedArticleImageUrl ? 130 : 0
-                                visible: !!root.selectedArticleImageUrl
-                                color: "#101010"
-                                border.color: "#252525"
-
-                                Image {
-                                    anchors.fill: parent
-                                    anchors.margins: 4
-                                    source: root.selectedArticleImageUrl || ""
-                                    fillMode: Image.PreserveAspectFit
-                                    asynchronous: true
-                                    cache: true
+                                Text {
+                                    Layout.fillWidth: true
+                                    text: selectedArticle.title || "Select an item"
+                                    color: "#f0f0f0"
+                                    font.pixelSize: 13
+                                    font.bold: true
+                                    elide: Text.ElideRight
+                                }
+                                DlgButton {
+                                    text: "Open in Browser"
+                                    enabled: !!selectedArticle.link
+                                    onClicked: root.openSelectedArticle()
+                                }
+                                DlgButton {
+                                    text: root.selectedArticleHasDownload ? "Download" : "Open"
+                                    primary: root.selectedArticleHasDownload
+                                    enabled: selectedArticleRow >= 0
+                                    onClicked: root.triggerSelectedDownload()
+                                }
+                                DlgButton {
+                                    text: selectedArticle.unread ? "Mark Read" : "Mark Unread"
+                                    enabled: selectedArticleRow >= 0
+                                    onClicked: root.markSelectedArticleRead(!!selectedArticle.unread)
+                                }
+                                DlgButton {
+                                    text: "Copy Link"
+                                    enabled: selectedArticleRow >= 0
+                                    onClicked: root.copySelectedLink()
                                 }
                             }
 
-                            ScrollView {
-                                SplitView.fillWidth: true
-                                SplitView.fillHeight: true
-                                clip: true
+                            // Feed name + date subtitle
+                            Text {
+                                Layout.fillWidth: true
+                                text: selectedArticle.feedTitle
+                                    ? selectedArticle.feedTitle + "  •  " + (selectedArticle.publishedDisplay || "Unknown date")
+                                    : "Choose an item to view its details."
+                                color: "#8fa0b3"
+                                font.pixelSize: 10
+                                elide: Text.ElideRight
+                            }
 
-                                Column {
-                                    width: Math.max(260, parent.width - 14)
-                                    spacing: 8
+                            // Divider
+                            Rectangle {
+                                Layout.fillWidth: true
+                                height: 1
+                                color: "#2a2a2a"
+                            }
 
-                                    Text {
-                                        width: parent.width
-                                        text: selectedArticle.summary && selectedArticle.summary.length > 0 ? selectedArticle.summary : "No summary available."
-                                        color: "#d5d5d5"
-                                        font.pixelSize: 11
-                                        wrapMode: Text.WordWrap
+                            // Article body area: optional thumbnail + scrollable text
+                            RowLayout {
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                spacing: 8
+
+                                // Thumbnail (only when image is available)
+                                Rectangle {
+                                    visible: !!root.selectedArticleImageUrl
+                                    width: visible ? 160 : 0
+                                    Layout.preferredWidth: 160
+                                    Layout.fillHeight: true
+                                    color: "#101010"
+                                    border.color: "#252525"
+                                    radius: 2
+
+                                    Image {
+                                        anchors.fill: parent
+                                        anchors.margins: 4
+                                        source: root.selectedArticleImageUrl || ""
+                                        fillMode: Image.PreserveAspectFit
+                                        asynchronous: true
+                                        cache: true
                                     }
+                                }
 
-                                    Text {
-                                        width: parent.width
-                                        visible: selectedArticle.descriptionHtml && selectedArticle.descriptionHtml.length > 0
-                                        text: selectedArticle.descriptionHtml || ""
-                                        textFormat: Text.RichText
-                                        color: "#d0d0d0"
-                                        linkColor: "#7fb4ff"
-                                        font.pixelSize: 11
-                                        wrapMode: Text.WordWrap
-                                        onLinkActivated: function(link) { Qt.openUrlExternally(link) }
+                                ScrollView {
+                                    Layout.fillWidth: true
+                                    Layout.fillHeight: true
+                                    clip: true
+                                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                                    Column {
+                                        width: Math.max(260, parent.width - 14)
+                                        spacing: 6
+
+                                        Text {
+                                            width: parent.width
+                                            text: selectedArticle.summary && selectedArticle.summary.length > 0
+                                                ? selectedArticle.summary
+                                                : ((!selectedArticle.descriptionHtml || selectedArticle.descriptionHtml.length === 0) ? "No summary available." : "")
+                                            color: "#c8c8c8"
+                                            font.pixelSize: 11
+                                            wrapMode: Text.WordWrap
+                                            visible: text.length > 0
+                                        }
+
+                                        Text {
+                                            width: parent.width
+                                            visible: selectedArticle.descriptionHtml && selectedArticle.descriptionHtml.length > 0
+                                            text: selectedArticle.descriptionHtml || ""
+                                            textFormat: Text.RichText
+                                            color: "#c8c8c8"
+                                            linkColor: "#7fb4ff"
+                                            font.pixelSize: 11
+                                            wrapMode: Text.WordWrap
+                                            onLinkActivated: function(link) { Qt.openUrlExternally(link) }
+                                        }
                                     }
                                 }
                             }

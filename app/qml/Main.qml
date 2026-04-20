@@ -370,7 +370,7 @@ ApplicationWindow {
             TrayMenuItem { label: "Add URL…";     onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: "GitHub";        onClicked: { trayMenu.visible = false; Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") } }
-            TrayMenuItem { label: "About Stellar"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(9) } }
+            TrayMenuItem { label: "About Stellar"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(10) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + "Speed Limiter: Turn On";  onClicked: { trayMenu.visible = false; App.enableSpeedLimiter() } }
             TrayMenuItem { label: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "") + "Speed Limiter: Turn Off"; onClicked: { trayMenu.visible = false; App.disableSpeedLimiter() } }
@@ -429,7 +429,7 @@ ApplicationWindow {
         }
         function onTrayAboutRequested() {
             root.show(); root.raise()
-            root.showSettingsPage(9)
+            root.showSettingsPage(10)
         }
         function onTraySpeedLimiterRequested() {
             root.show(); root.raise()
@@ -1827,7 +1827,7 @@ ApplicationWindow {
             topPadding: 0; bottomPadding: 0
             Action { text: qsTr("Check for Updates"); onTriggered: App.checkForUpdates(true) }
             MenuSeparator {}
-            Action { text: qsTr("About Stellar"); onTriggered: root.showSettingsPage(9) }
+            Action { text: qsTr("About Stellar"); onTriggered: root.showSettingsPage(10) }
             MenuSeparator {}
             Menu {
                 title: qsTr("Browser Integration")

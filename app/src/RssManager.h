@@ -118,7 +118,8 @@ private:
     void handleReplyFinished(const QString &feedId, QNetworkReply *reply);
     ParsedFeed parseFeedXml(const QByteArray &xml, const QUrl &sourceUrl, QString *errorText) const;
     static bool looksLikeTorrentUrl(const QString &value);
-    static QString pickDownloadUrl(const QString &link, const QString &enclosureUrl, bool *isTorrent);
+    static bool looksLikeTorrentMimeType(const QString &mimeType);
+    static QString pickDownloadUrl(const QString &link, const QString &enclosureUrl, const QString &enclosureMimeType, bool *isTorrent);
     static QString simplifyText(const QString &value);
     static QString extractImageUrl(const QString &html, const QUrl &sourceUrl);
     static QDateTime parseDateTime(const QString &value);

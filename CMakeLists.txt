@@ -220,6 +220,7 @@ qt_add_qml_module(Stellar
         app/qml/TorrentSpeedLimitDialog.qml
         app/qml/DlgButton.qml
         app/qml/RssWindow.qml
+        app/qml/RssDownloadRulesDialog.qml
         app/qml/TorrentSearchWindow.qml
         app/qml/TorrentSearchPluginsDialog.qml
         app/qml/TorrentSearchInstallDialog.qml

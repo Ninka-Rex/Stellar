@@ -143,6 +143,11 @@ QString rssFeedsFile()
     return dataDir() + QStringLiteral("/rss_feeds.json");
 }
 
+QString rssRulesFile()
+{
+    return dataDir() + QStringLiteral("/rss_rules.json");
+}
+
 QString searchRunnerFile()
 {
     return pluginsDir() + QStringLiteral("/torrent_search_runner.py");
