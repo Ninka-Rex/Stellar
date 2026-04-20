@@ -20,11 +20,9 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
-#include <QTextStream>
-#ifdef Q_OS_WIN
 #include <QSettings>
 #include <QStandardPaths>
-#endif
+#include <QTextStream>
 
 QStringList AppSettings::defaultMonitoredExtensions() {
     return {
