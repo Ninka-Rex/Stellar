@@ -743,8 +743,9 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         if (seeding > 0)
             tip += active > 0 ? QStringLiteral("  Seeding: %1").arg(seeding)
                               : QStringLiteral("\nSeeding: %1").arg(seeding);
-        tip += (active > 0 || seeding > 0) ? QStringLiteral("  Total: %1").arg(total)
-                                           : QStringLiteral("\nTotal: %1").arg(total);
+        if (total > 0)
+            tip += (active > 0 || seeding > 0) ? QStringLiteral("  Total: %1").arg(total)
+                                               : QStringLiteral("\nTotal: %1").arg(total);
 
         // Only call setToolTip when the text has changed — calling it while the
         // user is hovering causes Windows to dismiss and re-show the tooltip.
