@@ -273,6 +273,7 @@ qt_add_qml_module(Stellar
         app/search_plugins/bitsearch.py
         app/search_plugins/limetorrents.py
         app/search_plugins/piratebay.py
+        app/search_plugins/linuxtracker.py
         app/search_plugins/torrentproject.py
         app/search_plugins/torrentscsv.py
         app/qml/icons/torrent-client-logos/biglybt.png

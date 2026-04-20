@@ -123,6 +123,7 @@ void TorrentSearchManager::ensureBundledPluginsInstalled() {
         QStringLiteral("bitsearch.py"),
         QStringLiteral("limetorrents.py"),
         QStringLiteral("piratebay.py"),
+        QStringLiteral("linuxtracker.py"),
         QStringLiteral("torrentproject.py"),
         QStringLiteral("torrentscsv.py")
     };
