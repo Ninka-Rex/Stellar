@@ -583,7 +583,7 @@ Window {
                         Text {
                             width: Math.max(40, root.fileColName - Math.max(0, depth) * 14 - 16 - 22 - 16)
                             anchors.verticalCenter: parent.verticalCenter
-                            text: depth > 0 ? path : name
+                            text: name
                             color: !wanted ? "#555" : (isFolder ? "#e0e0e0" : "#d0d0d0")
                             font.pixelSize: 12
                             font.bold: isFolder
