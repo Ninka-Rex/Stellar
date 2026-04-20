@@ -83,6 +83,8 @@ class AppSettings : public QObject {
     Q_PROPERTY(int lastTryDateStyle READ lastTryDateStyle WRITE setLastTryDateStyle NOTIFY lastTryDateStyleChanged)
     Q_PROPERTY(bool lastTryUse24Hour READ lastTryUse24Hour WRITE setLastTryUse24Hour NOTIFY lastTryUse24HourChanged)
     Q_PROPERTY(bool lastTryShowSeconds READ lastTryShowSeconds WRITE setLastTryShowSeconds NOTIFY lastTryShowSecondsChanged)
+    Q_PROPERTY(int mainWindowX      READ mainWindowX      WRITE setMainWindowX      NOTIFY mainWindowXChanged)
+    Q_PROPERTY(int mainWindowY      READ mainWindowY      WRITE setMainWindowY      NOTIFY mainWindowYChanged)
     Q_PROPERTY(int mainWindowWidth READ mainWindowWidth WRITE setMainWindowWidth NOTIFY mainWindowWidthChanged)
     Q_PROPERTY(int mainWindowHeight READ mainWindowHeight WRITE setMainWindowHeight NOTIFY mainWindowHeightChanged)
     // yt-dlp integration
@@ -188,6 +190,8 @@ public:
     int  lastTryDateStyle()           const { return m_lastTryDateStyle; }
     bool lastTryUse24Hour()           const { return m_lastTryUse24Hour; }
     bool lastTryShowSeconds()         const { return m_lastTryShowSeconds; }
+    int  mainWindowX()                const { return m_mainWindowX; }
+    int  mainWindowY()                const { return m_mainWindowY; }
     int  mainWindowWidth()            const { return m_mainWindowWidth; }
     int  mainWindowHeight()           const { return m_mainWindowHeight; }
     QString ytdlpCustomBinaryPath()   const { return m_ytdlpCustomBinaryPath; }
@@ -279,6 +283,8 @@ public:
     void setLastTryDateStyle(int v);
     void setLastTryUse24Hour(bool v);
     void setLastTryShowSeconds(bool v);
+    void setMainWindowX(int v);
+    void setMainWindowY(int v);
     void setMainWindowWidth(int v);
     void setMainWindowHeight(int v);
     void setYtdlpCustomBinaryPath(const QString &v);
@@ -378,6 +384,8 @@ signals:
     void lastTryDateStyleChanged();
     void lastTryUse24HourChanged();
     void lastTryShowSecondsChanged();
+    void mainWindowXChanged();
+    void mainWindowYChanged();
     void mainWindowWidthChanged();
     void mainWindowHeightChanged();
     void ytdlpCustomBinaryPathChanged();
@@ -452,6 +460,8 @@ private:
     int         m_lastTryDateStyle{0};    // 0=Apr 10 2026, 1=4/10/2026, 2=10/4/2026, 3=2026-04-10
     bool        m_lastTryUse24Hour{true};
     bool        m_lastTryShowSeconds{true};
+    int         m_mainWindowX{-1};      // -1 = not set, let the OS decide on first run
+    int         m_mainWindowY{-1};
     int         m_mainWindowWidth{1100};
     int         m_mainWindowHeight{680};
     QString     m_ytdlpCustomBinaryPath;   // empty = auto-detect

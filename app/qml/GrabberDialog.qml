@@ -15,6 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 import QtQuick
+import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
@@ -446,6 +447,17 @@ Window {
         root.resultsRequested(root.projectId)
     }
 
+    function _centerOnOwner() {
+        var owner = root.transientParent
+        if (owner) {
+            x = owner.x + Math.round((owner.width  - width)  / 2)
+            y = owner.y + Math.round((owner.height - height) / 2)
+            return
+        }
+        x = Math.round((Screen.width  - width)  / 2)
+        y = Math.round((Screen.height - height) / 2)
+    }
+
     Component.onCompleted: {
         App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.ico")
         refreshRecentProjects()
@@ -456,6 +468,7 @@ Window {
 
     onVisibleChanged: {
         if (visible) {
+            _centerOnOwner()
             refreshRecentProjects()
             loadProject(root.projectId.length > 0
                 ? App.grabberProjectData(root.projectId)

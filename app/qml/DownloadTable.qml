@@ -241,6 +241,7 @@ Rectangle {
     // ── Delete confirmation dialog ────────────────────────────────────────────
     DeleteConfirmDialog {
         id: deleteDialog
+        transientParent: root.Window.window
         property var downloadIds: []
         onConfirmed: (mode) => {
             if (downloadIds && downloadIds.length > 1) {
@@ -256,6 +257,7 @@ Rectangle {
         id: renameTorrentRootDialog
         property var targetItem: null
         property string currentName: ""
+        transientParent: root.Window.window
 
         title: "Rename"
         width: 360; height: 110
@@ -267,6 +269,11 @@ Rectangle {
             targetItem = item
             currentName = item ? item.filename : ""
             nameInput.text = currentName
+            var owner = renameTorrentRootDialog.transientParent
+            if (owner) {
+                renameTorrentRootDialog.x = owner.x + Math.round((owner.width  - renameTorrentRootDialog.width)  / 2)
+                renameTorrentRootDialog.y = owner.y + Math.round((owner.height - renameTorrentRootDialog.height) / 2)
+            }
             show(); raise(); requestActivate()
             nameInput.forceActiveFocus()
             nameInput.selectAll()

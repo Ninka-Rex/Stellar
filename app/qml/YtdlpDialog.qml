@@ -81,9 +81,21 @@ Window {
         return c === "mp4" || c === "mkv" || c === "webm"
     }
 
+    function _centerOnOwner() {
+        var owner = root.transientParent
+        if (owner) {
+            x = owner.x + Math.round((owner.width  - width)  / 2)
+            y = owner.y + Math.round((owner.height - height) / 2)
+            return
+        }
+        x = Math.round((Screen.width  - width)  / 2)
+        y = Math.round((Screen.height - height) / 2)
+    }
+
     // ── Lifecycle ─────────────────────────────────────────────────────────────
     onVisibleChanged: {
         if (visible) {
+            _centerOnOwner()
             App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.ico")
             raise(); requestActivate()
             if (pendingUrl.length > 0) _startProbe()

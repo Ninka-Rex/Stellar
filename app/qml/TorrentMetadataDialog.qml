@@ -61,12 +61,26 @@ Window {
         return Math.max(180, viewport - reserved)
     }
 
+    function _centerOnOwner() {
+        var owner = root.transientParent
+        if (owner) {
+            x = owner.x + Math.round((owner.width  - width)  / 2)
+            y = owner.y + Math.round((owner.height - height) / 2)
+            return
+        }
+        x = Math.round((Screen.width  - width)  / 2)
+        y = Math.round((Screen.height - height) / 2)
+    }
+
     onVisibleChanged: {
-        if (visible && item) {
-            savePath = item.savePath || App.settings.defaultSavePath
-            category = item.category || ""
-            description = item.description || ""
-            refreshCategories()
+        if (visible) {
+            _centerOnOwner()
+            if (item) {
+                savePath = item.savePath || App.settings.defaultSavePath
+                category = item.category || ""
+                description = item.description || ""
+                refreshCategories()
+            }
         }
     }
 

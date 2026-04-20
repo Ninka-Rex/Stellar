@@ -214,6 +214,8 @@ void AppSettings::load() {
     m_lastTryDateStyle        = m_settings.value(QStringLiteral("lastTryDateStyle"), 0).toInt();
     m_lastTryUse24Hour        = m_settings.value(QStringLiteral("lastTryUse24Hour"), true).toBool();
     m_lastTryShowSeconds      = m_settings.value(QStringLiteral("lastTryShowSeconds"), true).toBool();
+    m_mainWindowX             = m_settings.value(QStringLiteral("mainWindowX"), -1).toInt();
+    m_mainWindowY             = m_settings.value(QStringLiteral("mainWindowY"), -1).toInt();
     m_mainWindowWidth         = m_settings.value(QStringLiteral("mainWindowWidth"), 1100).toInt();
     m_mainWindowHeight        = m_settings.value(QStringLiteral("mainWindowHeight"), 680).toInt();
     m_ytdlpCustomBinaryPath   = m_settings.value(QStringLiteral("ytdlpCustomBinaryPath"), QString()).toString();
@@ -326,6 +328,8 @@ void AppSettings::load() {
     emit lastTryDateStyleChanged();
     emit lastTryUse24HourChanged();
     emit lastTryShowSecondsChanged();
+    emit mainWindowXChanged();
+    emit mainWindowYChanged();
     emit mainWindowWidthChanged();
     emit mainWindowHeightChanged();
     emit ytdlpCustomBinaryPathChanged();
@@ -406,6 +410,8 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("lastTryDateStyle"),            m_lastTryDateStyle);
     m_settings.setValue(QStringLiteral("lastTryUse24Hour"),            m_lastTryUse24Hour);
     m_settings.setValue(QStringLiteral("lastTryShowSeconds"),          m_lastTryShowSeconds);
+    m_settings.setValue(QStringLiteral("mainWindowX"),                 m_mainWindowX);
+    m_settings.setValue(QStringLiteral("mainWindowY"),                 m_mainWindowY);
     m_settings.setValue(QStringLiteral("mainWindowWidth"),             m_mainWindowWidth);
     m_settings.setValue(QStringLiteral("mainWindowHeight"),            m_mainWindowHeight);
     m_settings.setValue(QStringLiteral("ytdlpCustomBinaryPath"),       m_ytdlpCustomBinaryPath);
@@ -570,6 +576,22 @@ void AppSettings::setLastTryShowSeconds(bool v) {
     if (m_lastTryShowSeconds != v) {
         m_lastTryShowSeconds = v;
         emit lastTryShowSecondsChanged();
+        save();
+    }
+}
+
+void AppSettings::setMainWindowX(int v) {
+    if (m_mainWindowX != v) {
+        m_mainWindowX = v;
+        emit mainWindowXChanged();
+        save();
+    }
+}
+
+void AppSettings::setMainWindowY(int v) {
+    if (m_mainWindowY != v) {
+        m_mainWindowY = v;
+        emit mainWindowYChanged();
         save();
     }
 }

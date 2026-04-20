@@ -44,7 +44,18 @@ Window {
         localDefs = (columnDefs && columnDefs.slice) ? columnDefs.slice() : []
     }
 
-    onVisibleChanged: if (visible) syncLocal()
+    function _centerOnOwner() {
+        var owner = root.transientParent
+        if (owner) {
+            x = owner.x + Math.round((owner.width  - width)  / 2)
+            y = owner.y + Math.round((owner.height - height) / 2)
+            return
+        }
+        x = Math.round((Screen.width  - width)  / 2)
+        y = Math.round((Screen.height - height) / 2)
+    }
+
+    onVisibleChanged: if (visible) { _centerOnOwner(); syncLocal() }
     onColumnDefsChanged: syncLocal()
 
     function swap(i, j) {

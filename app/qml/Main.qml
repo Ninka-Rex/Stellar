@@ -26,6 +26,9 @@ ApplicationWindow {
     visible: true
     width: Math.max(minimumWidth, App.settings.mainWindowWidth > 0 ? App.settings.mainWindowWidth : 1100)
     height: Math.max(minimumHeight, App.settings.mainWindowHeight > 0 ? App.settings.mainWindowHeight : 680)
+    // Restore saved position; -1 means first run — let the OS centre the window naturally.
+    x: App.settings.mainWindowX >= 0 ? App.settings.mainWindowX : x
+    y: App.settings.mainWindowY >= 0 ? App.settings.mainWindowY : y
     minimumWidth: 800
     minimumHeight: 500
     title: {
@@ -43,6 +46,10 @@ ApplicationWindow {
     Material.background: "#1c1c1c"
     Material.primary: "#2d2d2d"
     Material.accent: "#5588cc"
+
+    // Set to true after the window has been shown at least once so that early
+    // geometry signals during window creation don't overwrite saved position.
+    property bool _geometrySaveReady: false
 
     // ── Minimize to tray on close ─────────────────────────────────────────────
     property bool isQuitting:    false
@@ -140,6 +147,7 @@ ApplicationWindow {
 
     Window {
         id: ytdlpCookieRetryDialog
+        transientParent: root
         width: 480
         minimumWidth: 420
         height: 260
@@ -171,7 +179,10 @@ ApplicationWindow {
         }
 
         onVisibleChanged: {
-            if (!visible) {
+            if (visible) {
+                x = root.x + Math.round((root.width  - width)  / 2)
+                y = root.y + Math.round((root.height - height) / 2)
+            } else {
                 downloadId = ""
                 errorReason = ""
                 cookieBrowserCombo.currentIndex = 0
@@ -309,6 +320,16 @@ ApplicationWindow {
         function onYtdlpCookieRetryRequested(downloadId, reason, suggestedBrowser) {
             ytdlpCookieRetryDialog._openFor(downloadId, reason, suggestedBrowser)
         }
+    }
+
+    onXChanged: {
+        if (_geometrySaveReady && visibility === Window.Windowed)
+            App.settings.mainWindowX = x
+    }
+
+    onYChanged: {
+        if (_geometrySaveReady && visibility === Window.Windowed)
+            App.settings.mainWindowY = y
     }
 
     onWidthChanged: {
@@ -940,6 +961,7 @@ ApplicationWindow {
 
     Window {
         id: ytdlpBatchWindow
+        transientParent: root
         width: 760
         height: 520
         minimumWidth: 620
@@ -951,7 +973,10 @@ ApplicationWindow {
         visible: false
 
         onVisibleChanged: {
-            if (!visible && App.ytdlpBatchActive) {
+            if (visible) {
+                x = root.x + Math.round((root.width  - width)  / 2)
+                y = root.y + Math.round((root.height - height) / 2)
+            } else if (!visible && App.ytdlpBatchActive) {
                 // keep it dockable; user can close while it continues in background
             }
         }
@@ -1152,6 +1177,13 @@ ApplicationWindow {
         Material.background: "#1e1e1e"
         Material.accent: "#4488dd"
 
+        onVisibleChanged: {
+            if (visible) {
+                x = root.x + Math.round((root.width  - width)  / 2)
+                y = root.y + Math.round((root.height - height) / 2)
+            }
+        }
+
         onClosing: {
             root._afterDownloadLaterWarning = null
         }
@@ -1199,14 +1231,15 @@ ApplicationWindow {
     }
 
     // ── Download Progress Dialog ──────────────────────────────────────────────
-    DownloadProgressDialog { id: progressDialog }
+    DownloadProgressDialog { id: progressDialog; transientParent: root }
 
     // ── Download Complete Dialog ──────────────────────────────────────────────
-    DownloadCompleteDialog { id: completeDialog }
+    DownloadCompleteDialog { id: completeDialog; transientParent: root }
 
     // ── Settings / About Dialog ───────────────────────────────────────────────
     SettingsDialog {
         id: settingsDialog
+        transientParent: root
         onWhatsNewRequested: {
             // Fetch changelog if we don't have it yet, then open the window
             if (!App.updateChangelog || App.updateChangelog.length === 0)
@@ -1228,6 +1261,13 @@ ApplicationWindow {
         modality: Qt.ApplicationModal
         color: "#1e1e1e"
         property string messageText: ""
+
+        onVisibleChanged: {
+            if (visible) {
+                x = root.x + Math.round((root.width  - width)  / 2)
+                y = root.y + Math.round((root.height - height) / 2)
+            }
+        }
 
         ColumnLayout {
             anchors.fill: parent
@@ -1266,6 +1306,13 @@ ApplicationWindow {
         modality: Qt.ApplicationModal
         color: "#1e1e1e"
         property bool dismissOnClose: true
+
+        onVisibleChanged: {
+            if (visible) {
+                x = root.x + Math.round((root.width  - width)  / 2)
+                y = root.y + Math.round((root.height - height) / 2)
+            }
+        }
 
         onClosing: {
             if (dismissOnClose)
@@ -1348,6 +1395,13 @@ ApplicationWindow {
         modality: Qt.ApplicationModal
         color: "#1e1e1e"
 
+        onVisibleChanged: {
+            if (visible) {
+                x = root.x + Math.round((root.width  - width)  / 2)
+                y = root.y + Math.round((root.height - height) / 2)
+            }
+        }
+
         ColumnLayout {
             anchors.fill: parent
             anchors.margins: 16
@@ -1392,11 +1446,12 @@ ApplicationWindow {
     }
 
     // ── Scheduler Dialog ───────────────────────────────────────────────────────
-    SchedulerDialog { id: schedulerDialog }
+    SchedulerDialog { id: schedulerDialog; transientParent: root }
 
     // ── Batch Download Dialogs ────────────────────────────────────────────────
-    BatchDownloadDialog { 
-        id: batchDownloadDialog 
+    BatchDownloadDialog {
+        id: batchDownloadDialog
+        transientParent: root
         onAccepted: (files) => {
             var urlList = files.split('\n')
             var fileObjs = []
@@ -1409,8 +1464,9 @@ ApplicationWindow {
             batchDownloadListDialog.raise()
         }
     }
-    BatchDownloadListDialog { 
-        id: batchDownloadListDialog 
+    BatchDownloadListDialog {
+        id: batchDownloadListDialog
+        transientParent: root
         onBatchAccepted: (files) => {
             if (App.settings.showQueueSelectionOnBatchDownload) {
                 queueSelectionDialog.initialQueueId = ""
@@ -1433,6 +1489,7 @@ ApplicationWindow {
 
     QueueSelectionDialog {
         id: queueSelectionDialog
+        transientParent: root
         onAccepted: (queueId, startProcessing, askAgain) => {
             // After confirming a grabber queue selection, close the results dialog
             // and bring the main download list to the front so the user can see the
@@ -1458,6 +1515,7 @@ ApplicationWindow {
 
     GrabberDialog {
         id: grabberDialog
+        transientParent: root
         onResultsRequested: (projectId) => {
             grabberResultsDialog.projectId = projectId
             grabberResultsDialog.show()
@@ -1468,6 +1526,7 @@ ApplicationWindow {
 
     GrabberResultsDialog {
         id: grabberResultsDialog
+        transientParent: root
         onFilesAddedToDownloadList: {
             grabberResultsDialog.close()
             root.show()
@@ -1508,29 +1567,31 @@ ApplicationWindow {
         }
     }
 
-    GrabberScheduleDialog { id: grabberScheduleDialog }
+    GrabberScheduleDialog { id: grabberScheduleDialog; transientParent: root }
 
-    GrabberStatisticsDialog { id: grabberStatisticsDialog }
+    GrabberStatisticsDialog { id: grabberStatisticsDialog; transientParent: root }
 
     // ── Browser Integration Dialog ────────────────────────────────────────────
-    BrowserIntegrationDialog { id: browserIntegrationDialog }
+    BrowserIntegrationDialog { id: browserIntegrationDialog; transientParent: root }
 
 
     // ── Add Exception Dialog ──────────────────────────────────────────────────
-    AddExceptionDialog { id: addExceptionDialog }
+    AddExceptionDialog { id: addExceptionDialog; transientParent: root }
 
     // ── Delete Done Confirm Dialog ────────────────────────────────────────────
     DeleteDoneConfirmDialog {
         id: deleteDoneConfirmDialog
+        transientParent: root
         onConfirmed: (includeSeedingTorrents) => App.deleteAllCompleted(0, includeSeedingTorrents)
     }
 
     // ── File Properties Dialog ────────────────────────────────────────────────
-    FilePropertiesDialog { id: filePropertiesDialog }
+    FilePropertiesDialog { id: filePropertiesDialog; transientParent: root }
 
 // ── Columns Dialog ────────────────────────────────────────────────────────
     ColumnsDialog {
         id: columnsDialog
+        transientParent: root
         onColumnsChanged: (defs) => {
             if (defs === null) {
                 downloadTable.resetColumns()
@@ -1563,6 +1624,9 @@ ApplicationWindow {
         if (typeof StartMinimized !== "undefined" && StartMinimized) {
             root.visible = false
         }
+        // Allow the window manager to finish placement before we start saving
+        // geometry so early xChanged/yChanged signals don't overwrite saved pos.
+        Qt.callLater(function() { root._geometrySaveReady = true })
     }
 
     function loadTips() {
