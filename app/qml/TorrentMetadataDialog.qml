@@ -491,9 +491,10 @@ Window {
                         clip: true
                         spacing: 0
                         model: root.fileModel
-                        contentWidth: width
+                        contentWidth: root.fileTableWidth()
+                        flickableDirection: Flickable.HorizontalAndVerticalFlick
                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
-                        ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOff }
+                        ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOn }
 
                         Text {
                             anchors.centerIn: parent
@@ -516,7 +517,7 @@ Window {
                     required property bool   expanded
                     required property int    fileIndex
 
-                    width: ListView.view.width
+                    width: Math.max(ListView.view.width, metaFileList.contentWidth)
                     height: 26
                     color: isFolder ? "#1f1f1f" : (index % 2 === 0 ? "#1c1c1c" : "#222222")
 
@@ -648,7 +649,7 @@ Window {
                         }
 
                         Item {
-                            width: Math.max(0, metaFileList.width - root.fileTableWidth() - 14)
+                            width: Math.max(0, metaFileList.contentWidth - root.fileTableWidth())
                             height: parent.height
                         }
                     }

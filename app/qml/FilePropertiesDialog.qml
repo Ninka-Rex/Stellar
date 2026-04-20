@@ -72,6 +72,7 @@ Window {
 
     property bool _peerViewportRestorePending: false
     property bool _peerViewportRestoreByAnchor: false
+    property real _peerLiveReorderY: 0
 
     // Column order (persisted as JSON key arrays)
     property string peerColOrderJson: '["country","endpoint","port","client","progress","down","up","downloaded","uploaded","type"]'
@@ -2395,8 +2396,9 @@ Window {
                             Layout.fillWidth: true; Layout.fillHeight: true
                             clip: true; model: root.torrentFileModel; spacing: 0
                             contentWidth: root.fileColName + root.fileColProgress + root.fileColSize
+                            flickableDirection: Flickable.HorizontalAndVerticalFlick
                             ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
-                            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
+                            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOn }
 
                             Text {
                                 anchors.centerIn: parent
@@ -2964,11 +2966,17 @@ Window {
                                     if (root._peerViewportRestorePending)
                                         root.restorePeerListViewport()
                                 }
-                                // layoutChanged fires on every live re-sort (speed columns update
-                                // every ~1 s). QML ListView already maintains scroll position
-                                // correctly across layoutChanged — our restore code would fight it
-                                // and cause the visible jump-to-top. Only modelReset needs a
-                                // restore (that's a full data replacement where QML loses position).
+                                // Save contentY before a live reorder (layoutChanged from
+                                // setEntries) and restore it immediately after. QML's ListView
+                                // does not preserve scroll position across layoutChanged when
+                                // rows shift — without this the view jumps to the top every
+                                // time a new peer enters a speed-sorted list.
+                                function onLiveReorderAboutToHappen() {
+                                    root._peerLiveReorderY = peerListView.contentY
+                                }
+                                function onLiveReorderHappened() {
+                                    peerListView.contentY = root._peerLiveReorderY
+                                }
                             }
 
                             Text {
@@ -4767,8 +4775,9 @@ Window {
                             id: trackerList
                             Layout.fillWidth: true; Layout.fillHeight: true
                             clip: true; model: root.activeTrackerListModel; spacing: 0
+                            flickableDirection: Flickable.HorizontalAndVerticalFlick
                             ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
-                            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
+                            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOn }
                             contentWidth: root.trkColTracker + root.trkColStatus + root.trkColSource + root.trkColSeeders + root.trkColPeers + root.trkColMessage
 
                             Text {

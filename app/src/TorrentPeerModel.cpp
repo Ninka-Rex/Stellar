@@ -312,13 +312,17 @@ void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
         return;
     }
 
-    // Structural change: peers were added or removed. Sort the target list and
-    // apply minimal row inserts/removes, then reorder if needed.
-    std::stable_sort(sorted.begin(), sorted.end(), [&](const Entry &a, const Entry &b) {
-        return peerLess(a, b, m_sortKey, m_sortAscending);
-    });
-    const QStringList targetKeys = keysFor(sorted);
+    // Structural change: peers were added or removed.
+    //
+    // Strategy to avoid ListView scroll-position jumps:
+    //   1. Remove departed peers (back-to-front to keep indices stable).
+    //   2. Update data values for surviving peers in-place.
+    //   3. Append any new peers at the END of the list (never at row 0 or
+    //      some sorted position — inserting at the top resets ListView scroll).
+    //   4. Re-sort the whole list once using layoutAboutToBeChanged +
+    //      changePersistentIndexList so Qt can preserve scroll position.
 
+    // Step 1: remove peers that are gone.
     for (int i = m_entries.size() - 1; i >= 0; --i) {
         if (!sortedByKey.contains(peerKey(m_entries.at(i)))) {
             beginRemoveRows(QModelIndex(), i, i);
@@ -327,20 +331,7 @@ void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
         }
     }
 
-    currentKeys = keysFor(m_entries);
-    for (int i = 0; i < sorted.size(); ++i) {
-        const QString key = targetKeys.at(i);
-        if (i < currentKeys.size() && currentKeys.at(i) == key)
-            continue;
-        if (!currentKeys.contains(key)) {
-            beginInsertRows(QModelIndex(), i, i);
-            m_entries.insert(i, sorted.at(i));
-            endInsertRows();
-            currentKeys.insert(i, key);
-        }
-    }
-
-    // Update data values for surviving peers at their new positions.
+    // Step 2: update data values for surviving peers in-place.
     for (int i = 0; i < m_entries.size(); ++i) {
         const auto it = sortedByKey.constFind(peerKey(m_entries.at(i)));
         if (it == sortedByKey.constEnd())
@@ -352,10 +343,60 @@ void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
         }
     }
 
+    // Step 3: append new peers at the tail — never insert mid-list, which
+    // would jump the ListView to the insertion point.
+    {
+        QSet<QString> existing;
+        existing.reserve(m_entries.size());
+        for (const auto &e : std::as_const(m_entries))
+            existing.insert(peerKey(e));
+
+        QVector<Entry> newPeers;
+        for (const auto &e : std::as_const(sorted)) {
+            if (!existing.contains(peerKey(e)))
+                newPeers.append(e);
+        }
+        if (!newPeers.isEmpty()) {
+            const int first = m_entries.size();
+            const int last  = first + newPeers.size() - 1;
+            beginInsertRows(QModelIndex(), first, last);
+            for (const auto &e : std::as_const(newPeers))
+                m_entries.append(e);
+            endInsertRows();
+        }
+    }
+
+    // Step 4: sort the combined list, mapping persistent indices so the
+    // ListView view-port does not reset to row 0.
+    std::stable_sort(sorted.begin(), sorted.end(), [&](const Entry &a, const Entry &b) {
+        return peerLess(a, b, m_sortKey, m_sortAscending);
+    });
+    const QStringList targetKeys = keysFor(sorted);
+
     if (keysFor(m_entries) != targetKeys) {
+        const QStringList oldKeys = keysFor(m_entries);
+        QHash<QString, int> newIndexByKey;
+        newIndexByKey.reserve(sorted.size());
+        for (int i = 0; i < sorted.size(); ++i)
+            newIndexByKey.insert(peerKey(sorted.at(i)), i);
+
+        emit liveReorderAboutToHappen();
+
         emit layoutAboutToBeChanged();
+
+        const QModelIndexList oldPersistent = persistentIndexList();
+        QModelIndexList newPersistent;
+        newPersistent.reserve(oldPersistent.size());
+        for (const QModelIndex &oldIdx : oldPersistent) {
+            const int newRow = newIndexByKey.value(oldKeys.value(oldIdx.row()), -1);
+            newPersistent.append(newRow >= 0 ? createIndex(newRow, 0) : QModelIndex{});
+        }
+        changePersistentIndexList(oldPersistent, newPersistent);
+
         m_entries = sorted;
         emit layoutChanged();
+
+        emit liveReorderHappened();
     }
 }
 

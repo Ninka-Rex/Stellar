@@ -111,6 +111,10 @@ public:
 
 signals:
     void localLocationChanged();
+    // Emitted around live-update reorders (not user-initiated sorts) so QML
+    // can save/restore contentY and prevent the ListView jumping to the top.
+    void liveReorderAboutToHappen();
+    void liveReorderHappened();
 
 private:
     QVector<Entry> m_entries;
