@@ -69,7 +69,7 @@ Window {
     property real _peerSavedContentX: 0
     property string _peerSavedTopKey: ""
     property var  _peerListViewRef: null
-    property bool _suppressPeerViewportRestore: false
+
     property bool _peerViewportRestorePending: false
     property bool _peerViewportRestoreByAnchor: false
 
@@ -328,10 +328,10 @@ Window {
         minimumWidth  = 0
         minimumHeight = 0
         if (torrent) {
-            minimumWidth  = 820
-            minimumHeight = 700
-            width  = 820
-            height = 700
+            minimumWidth  = 800
+            minimumHeight = 600
+            width  = 800
+            height = 600
         } else {
             minimumWidth  = 470
             minimumHeight = 420
@@ -1026,7 +1026,6 @@ Window {
 
     function sortPeers(key) {
         if (!torrentPeerModel) return
-        _suppressPeerViewportRestore = true
         if (peerSortKey === key)
             peerSortAscending = !peerSortAscending
         else {
@@ -1827,228 +1826,154 @@ Window {
 
                 // ── General ───────────────────────────────────────────────────
                 Item {
-                    ColumnLayout {
-                        anchors { fill: parent; margins: 10 }
-                        spacing: 8
+                    Rectangle {
+                        anchors { fill: parent; margins: 8 }
+                        color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
 
-                        // — Torrent info card —
-                        Rectangle {
-                            Layout.fillWidth: true
-                            color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 3
-                            implicitHeight: infoCol.implicitHeight + 16
+                        GridLayout {
+                            anchors { fill: parent; margins: 10 }
+                            columns: 3
+                            columnSpacing: 8
+                            rowSpacing: 5
+                            property real labelW: 76
 
-                            ColumnLayout {
-                                id: infoCol
-                                anchors { fill: parent; margins: 10 }
-                                spacing: 6
+                            // — Source —
+                            Text { text: "Source"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            ReadOnlyField {
+                                Layout.fillWidth: true; Layout.columnSpan: 2
+                                fieldText: root.item ? safeStr(root.item.torrentSource) : ""
+                                textColor: "#b0c0d0"
+                            }
 
+                            // — Info hash —
+                            Text { text: "Info hash"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            ReadOnlyField {
+                                Layout.fillWidth: true
+                                fieldText: root.item ? safeStr(root.item.torrentInfoHash) : ""
+                            }
+                            DlgButton {
+                                text: "Copy"
+                                enabled: !!root.item && safeStr(root.item.torrentInfoHash).length > 0
+                                onClicked: { var h = safeStr(root.item.torrentInfoHash); if (h.length > 0) App.copyToClipboard(h) }
+                            }
+
+                            // — Metadata —
+                            Text { text: "Metadata"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            Text {
+                                readonly property bool hasMetadata: !!root.item && root.item.torrentHasMetadata
+                                text: hasMetadata ? "Available" : "Fetching from swarm..."
+                                color: hasMetadata ? "#5eaa6e" : "#c09a50"
+                                font.pixelSize: 11; Layout.columnSpan: 2
+                            }
+
+                            // — Divider —
+                            Rectangle { Layout.fillWidth: true; Layout.columnSpan: 3; height: 1; color: "#2a2a2a"; Layout.topMargin: 2; Layout.bottomMargin: 2 }
+
+                            // — Save to —
+                            Text { text: "Save to"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.savePath) : "" }
+                            DlgButton {
+                                text: "Move"
+                                enabled: !!root.item && !root._torrentIsMoving
+                                onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() }
+                            }
+
+                            // — Note —
+                            Text { text: "Note"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            TextField {
+                                Layout.fillWidth: true; Layout.columnSpan: 2; implicitHeight: 24
+                                text: root.item ? safeStr(root.item.description) : ""
+                                color: "#d0d0d0"; font.pixelSize: 11
+                                background: Rectangle { color: "#141414"; border.color: parent.activeFocus ? "#4488dd" : "#2e2e2e"; radius: 2 }
+                                leftPadding: 6; topPadding: 0; bottomPadding: 0
+                                onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
+                            }
+
+                            // — Divider —
+                            Rectangle { Layout.fillWidth: true; Layout.columnSpan: 3; height: 1; color: "#2a2a2a"; Layout.topMargin: 2; Layout.bottomMargin: 2 }
+
+                            // — Transfer stats: 3-column layout (6 grid cols: lbl|val · lbl|val · lbl|val) —
+                            GridLayout {
+                                Layout.fillWidth: true; Layout.columnSpan: 3
+                                columns: 6
+                                columnSpacing: 6
+                                rowSpacing: 5
+                                property real lw: 76  // label preferred width
+
+                                Text { text: "Downloaded";  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "—";  color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
+                                Text { text: "Uploaded";    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "—";    color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
+                                Text { text: "Wasted";      color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text {
-                                    text: "TORRENT INFO"
-                                    color: "#8899aa"; font.pixelSize: 10; font.bold: true
+                                    text: { if (!root.item) return "—"; var w = root.item.torrentWastedBytes; return (w > 0) ? root.compactBytes(w) : "—" }
+                                    color: (root.item && root.item.torrentWastedBytes > 0) ? "#b8924a" : "#c0c8d0"
+                                    font.pixelSize: 11; Layout.fillWidth: true
                                 }
 
-                                RowLayout {
-                                    Layout.fillWidth: true; spacing: 8
-                                    Text { text: "Source"; color: "#8899aa"; font.pixelSize: 12; Layout.preferredWidth: 70 }
-                                    ReadOnlyField {
-                                        Layout.fillWidth: true
-                                        fieldText: root.item ? safeStr(root.item.torrentSource) : ""
-                                        textColor: "#b9c8d7"
+                                Text { text: "Down speed";  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "—"; color: "#4ea2ff"; font.pixelSize: 11; Layout.fillWidth: true }
+                                Text { text: "Up speed";    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—";   color: "#4cc87a"; font.pixelSize: 11; Layout.fillWidth: true }
+                                Text { text: "Connections"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? String(root.item.torrentConnections | 0) : "—"; color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
+
+                                Text { text: "Share ratio"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text {
+                                    text: root.item ? root.ratioText(root.item.torrentRatio) : "—"
+                                    color: { if (!root.item) return "#c0c8d0"; var r = Number(root.item.torrentRatio); return r >= 1.0 ? "#5eaa6e" : r >= 0.5 ? "#c09a50" : "#c0c8d0" }
+                                    font.pixelSize: 11; Layout.fillWidth: true
+                                }
+                                Text { text: "Pieces";      color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text {
+                                    text: {
+                                        if (!root.item) return "—"
+                                        var done = root.item.torrentPiecesDone | 0
+                                        var total = root.item.torrentPiecesTotal | 0
+                                        if (total <= 0) return done > 0 ? String(done) : "—"
+                                        return done + " / " + total + " (" + Math.round(done / total * 100) + "%)"
                                     }
+                                    color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true
+                                }
+                                Text { text: "Availability"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text {
+                                    text: { if (!root.item) return "—"; var av = root.item.torrentAvailability; return (typeof av === "number" && av > 0) ? av.toFixed(2) : "—" }
+                                    color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true
                                 }
 
-                                RowLayout {
-                                    Layout.fillWidth: true; spacing: 8
-                                    Text { text: "Info hash"; color: "#8899aa"; font.pixelSize: 12; Layout.preferredWidth: 70 }
-                                    ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.torrentInfoHash) : "" }
-                                    DlgButton {
-                                        text: "Copy"
-                                        enabled: !!root.item && safeStr(root.item.torrentInfoHash).length > 0
-                                        onClicked: {
-                                            var h = safeStr(root.item.torrentInfoHash)
-                                            if (h.length > 0) App.copyToClipboard(h)
-                                        }
-                                    }
+                                Text { text: "Active time"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "—";   color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
+                                Text { text: "Seed time";   color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "—"; color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
+                                // Speed limit — spans last pair, only shown when a limit is active
+                                Text {
+                                    text: "Speed limit"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw
+                                    visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
                                 }
-
-                                RowLayout {
-                                    Layout.fillWidth: true; spacing: 8
-                                    Text { text: "Metadata"; color: "#8899aa"; font.pixelSize: 12; Layout.preferredWidth: 70 }
-                                    Text {
-                                        readonly property bool hasMetadata: !!root.item && root.item.torrentHasMetadata
-                                        text: hasMetadata ? "Available" : "Fetching from swarm..."
-                                        color: hasMetadata ? "#67bb7a" : "#d2b26f"
-                                        font.pixelSize: 11
-                                        font.bold: true
+                                Text {
+                                    text: {
+                                        if (!root.item) return ""
+                                        var d = root.item.perTorrentDownLimitKBps | 0
+                                        var u = root.item.perTorrentUpLimitKBps   | 0
+                                        var parts = []
+                                        if (d > 0) parts.push("↓ " + d + " KB/s")
+                                        if (u > 0) parts.push("↑ " + u + " KB/s")
+                                        return parts.join("  ·  ")
                                     }
-                                }
-                            }
-                        }
-
-                        // — Save location + Transfer stats (merged) —
-                        Rectangle {
-                            Layout.fillWidth: true
-                            color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 3
-                            implicitHeight: saveStatsCol.implicitHeight + 16
-
-                            ColumnLayout {
-                                id: saveStatsCol
-                                anchors { fill: parent; margins: 10 }
-                                spacing: 8
-
-                                // Save location
-                                ColumnLayout {
-                                    Layout.fillWidth: true; spacing: 4
-                                    Text {
-                                        text: "SAVE LOCATION"
-                                        color: "#8899aa"; font.pixelSize: 10; font.bold: true
-                                    }
-                                    RowLayout {
-                                        Layout.fillWidth: true; spacing: 6
-                                        ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.savePath) : "" }
-                                        DlgButton { text: "Move"; enabled: !!root.item && !root._torrentIsMoving; onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() } }
-                                    }
-                                }
-
-                                Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
-                                // Transfer stats
-                                ColumnLayout {
-                                    Layout.fillWidth: true; spacing: 8
-                                    RowLayout {
-                                        Layout.fillWidth: true
-                                        spacing: 8
-
-                                        Text {
-                                            text: "TRANSFER STATS"
-                                            color: "#8899aa"; font.pixelSize: 10; font.bold: true
-                                        }
-                                        Item { Layout.fillWidth: true }
-                                        DlgButton {
-                                            text: "Verify Local Data"
-                                            enabled: !!root.item && !root._torrentIsMoving
-                                            onClicked: {
-                                                if (root.item) App.forceRecheckTorrent(root.item.id)
-                                            }
-                                        }
-                                    }
-
-                                    GridLayout {
-                                        Layout.fillWidth: true
-                                        columns: 4; columnSpacing: 8; rowSpacing: 4
-
-                                        // Progress section
-                                        Text { text: "Pieces"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: {
-                                                if (!root.item) return "—"
-                                                var done = root.item.torrentPiecesDone | 0
-                                                var total = root.item.torrentPiecesTotal | 0
-                                                if (total <= 0) return done > 0 ? String(done) : "—"
-                                                return done + " / " + total + "  (" + Math.round(done / total * 100) + "%)"
-                                            }
-                                            color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-                                        Text { text: "Availability"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: {
-                                                if (!root.item) return "—"
-                                                var av = root.item.torrentAvailability
-                                                return (typeof av === "number" && av > 0) ? av.toFixed(2) + " copies" : "—"
-                                            }
-                                            color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-
-                                        // Speed section
-                                        Text { text: "Download speed"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "—"
-                                            color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-                                        Text { text: "Upload speed"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—"
-                                            color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-
-                                        // Activity section
-                                        Text { text: "Connections"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: root.item ? String(root.item.torrentConnections | 0) : "—"
-                                            color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-                                        Text { text: "Active"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "—"
-                                            color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-
-                                        // Seeding section
-                                        Text { text: "Seeding"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "—"
-                                            color: "#c8c8c8"; font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-                                        Text { text: "Wasted"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: {
-                                                if (!root.item) return "—"
-                                                var w = root.item.torrentWastedBytes
-                                                return (w > 0) ? root.compactBytes(w) : "None"
-                                            }
-                                            color: (root.item && root.item.torrentWastedBytes > 0) ? "#c0a54a" : "#c8c8c8"
-                                            font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-
-                                        // Share ratio
-                                        Text { text: "Share ratio"; color: "#8899aa"; font.pixelSize: 11 }
-                                        Text {
-                                            text: root.item ? root.ratioText(root.item.torrentRatio) : "—"
-                                            color: {
-                                                if (!root.item) return "#c8c8c8"
-                                                var r = Number(root.item.torrentRatio)
-                                                if (r >= 1.0) return "#6aaa6a"
-                                                if (r >= 0.5) return "#c0a54a"
-                                                return "#c8c8c8"
-                                            }
-                                            font.pixelSize: 11; Layout.fillWidth: true
-                                        }
-                                        Text { text: "Speed limit"; color: "#8899aa"; font.pixelSize: 11; visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0) }
-                                        Text {
-                                            text: {
-                                                if (!root.item) return ""
-                                                var d = root.item.perTorrentDownLimitKBps | 0
-                                                var u = root.item.perTorrentUpLimitKBps   | 0
-                                                var parts = []
-                                                if (d > 0) parts.push("↓ " + d + " KB/s")
-                                                if (u > 0) parts.push("↑ " + u + " KB/s")
-                                                return parts.join("  •  ")
-                                            }
-                                            color: "#e8a040"; font.pixelSize: 11; Layout.fillWidth: true
-                                            visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
-                                        }
-                                    }
-
-                                    Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
-                                    ColumnLayout {
-                                        Layout.fillWidth: true; spacing: 4
-                                        Text { text: "DESCRIPTION"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
-                                        TextField {
-                                            Layout.fillWidth: true; implicitHeight: 26
-                                            text: root.item ? safeStr(root.item.description) : ""
-                                            color: "#d0d0d0"; font.pixelSize: 12
-                                            background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2 }
-                                            leftPadding: 6; topPadding: 0; bottomPadding: 0
-                                            onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
-                                        }
-                                    }
-
+                                    color: "#d09040"; font.pixelSize: 11; Layout.fillWidth: true
+                                    visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
                                 }
                             }
-                        }
 
-                        // bottom margin
+                            // — Verify local data — bottom-right aligned
+                            Item { Layout.fillWidth: true; Layout.columnSpan: 2; Layout.fillHeight: true }
+                            DlgButton {
+                                text: "Verify local data"
+                                enabled: !!root.item && !root._torrentIsMoving
+                                Layout.alignment: Qt.AlignRight | Qt.AlignBottom
+                                onClicked: { if (root.item) App.forceRecheckTorrent(root.item.id) }
+                            }
+                        }
                     }
                 }
 
@@ -2058,24 +1983,12 @@ Window {
                         anchors { fill: parent; margins: 10 }
                         spacing: 8
 
-                        RowLayout {
-                            Layout.fillWidth: true
-                            spacing: 10
-                            Text { text: "Time span"; color: "#a0a0a0"; font.pixelSize: 12 }
-                            ComboBox {
-                                Layout.preferredWidth: 118
-                                model: root.speedSpanOptions.map(function(o){ return o.label })
-                                currentIndex: root.speedSpanIndex
-                                onActivated: root.speedSpanIndex = currentIndex
-                            }
-                            Item { Layout.fillWidth: true }
-                        }
-
+                        // Graph card — fills remaining space
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
-                            color: "#171717"
-                            border.color: "#2d2d2d"
+                            color: "#161616"
+                            border.color: "#2a2a2a"
                             radius: 3
                             clip: true
 
@@ -2099,10 +2012,10 @@ Window {
                                     if (w < 40 || h < 40)
                                         return
 
-                                    var topPad = 10
-                                    var rightPad = 56
-                                    var bottomPad = 22
-                                    var leftPad = 6
+                                    var topPad = 8
+                                    var rightPad = 58
+                                    var bottomPad = 20
+                                    var leftPad = 4
                                     var plotX = leftPad
                                     var plotY = topPad
                                     var plotW = Math.max(10, w - leftPad - rightPad)
@@ -2135,19 +2048,17 @@ Window {
                                     }
 
                                     // Background
-                                    ctx.fillStyle = "#0e1014"
+                                    ctx.fillStyle = "#0d0f12"
                                     ctx.fillRect(0, 0, w, h)
 
-                                    // Subtle grid
-                                    ctx.strokeStyle = "#1c2028"
+                                    // Horizontal grid lines only — vertical lines add noise without value
+                                    var gridLines = 4
                                     ctx.lineWidth = 1
-                                    for (var gy = 0; gy <= 4; ++gy) {
-                                        var gy2 = Math.round(plotY + plotH * gy / 4) + 0.5
+                                    for (var gy = 0; gy <= gridLines; ++gy) {
+                                        var gy2 = Math.round(plotY + plotH * gy / gridLines) + 0.5
+                                        // Highlight the zero line
+                                        ctx.strokeStyle = (gy === gridLines) ? "#222830" : "#181c22"
                                         ctx.beginPath(); ctx.moveTo(plotX, gy2); ctx.lineTo(plotX + plotW, gy2); ctx.stroke()
-                                    }
-                                    for (var gx = 0; gx <= 6; ++gx) {
-                                        var gx2 = Math.round(plotX + plotW * gx / 6) + 0.5
-                                        ctx.beginPath(); ctx.moveTo(gx2, plotY); ctx.lineTo(gx2, plotY + plotH); ctx.stroke()
                                     }
 
                                     // Catmull-Rom spline area+line series.
@@ -2158,7 +2069,7 @@ Window {
                                     // Conversion to canvas cubicBezierTo control points:
                                     //   cp1 = P[i]   + (P[i+1] - P[i-1]) / 6
                                     //   cp2 = P[i+1] - (P[i+2] - P[i])   / 6
-                                    function drawSmoothedSeries(key, stroke, fillColor) {
+                                    function drawSmoothedSeries(key, stroke, fillTop, fillBottom) {
                                         var n = samples.length
                                         if (n === 0) return
 
@@ -2172,62 +2083,61 @@ Window {
                                         var baseY  = plotY + plotH
                                         var firstX = xs[0]
 
-                                        // Build the filled area path.
-                                        ctx.beginPath()
-                                        ctx.moveTo(xs[0], ys[0])
-                                        if (n === 1) {
-                                            ctx.lineTo(xs[0], ys[0])
-                                        } else {
-                                            for (var ci = 0; ci < n - 1; ++ci) {
-                                                // Clamp neighbour indices to array bounds.
-                                                var im1 = Math.max(0, ci - 1)
-                                                var ip2 = Math.min(n - 1, ci + 2)
-                                                var cp1x = xs[ci]     + (xs[ci + 1] - xs[im1])     / 6
-                                                var cp1y = ys[ci]     + (ys[ci + 1] - ys[im1])     / 6
-                                                var cp2x = xs[ci + 1] - (xs[ip2]    - xs[ci])      / 6
-                                                var cp2y = ys[ci + 1] - (ys[ip2]    - ys[ci])      / 6
-                                                ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, xs[ci + 1], ys[ci + 1])
+                                        // Helper: build the cubic spline path (reused for fill + stroke)
+                                        function buildSplinePath() {
+                                            ctx.moveTo(xs[0], ys[0])
+                                            if (n === 1) {
+                                                ctx.lineTo(xs[0], ys[0])
+                                            } else {
+                                                for (var ci = 0; ci < n - 1; ++ci) {
+                                                    var im1 = Math.max(0, ci - 1)
+                                                    var ip2 = Math.min(n - 1, ci + 2)
+                                                    var cp1x = xs[ci]     + (xs[ci + 1] - xs[im1]) / 6
+                                                    var cp1y = ys[ci]     + (ys[ci + 1] - ys[im1]) / 6
+                                                    var cp2x = xs[ci + 1] - (xs[ip2]    - xs[ci])  / 6
+                                                    var cp2y = ys[ci + 1] - (ys[ip2]    - ys[ci])  / 6
+                                                    ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, xs[ci + 1], ys[ci + 1])
+                                                }
                                             }
                                         }
+
+                                        // Gradient fill
+                                        var grad = ctx.createLinearGradient(0, plotY, 0, baseY)
+                                        grad.addColorStop(0, fillTop)
+                                        grad.addColorStop(1, fillBottom)
+                                        ctx.beginPath()
+                                        buildSplinePath()
                                         ctx.lineTo(xs[n - 1], baseY)
                                         ctx.lineTo(firstX, baseY)
                                         ctx.closePath()
-                                        ctx.fillStyle = fillColor; ctx.fill()
+                                        ctx.fillStyle = grad
+                                        ctx.fill()
 
-                                        // Stroke the same spline on top of the fill.
+                                        // Stroke line on top
                                         ctx.beginPath()
-                                        ctx.moveTo(xs[0], ys[0])
-                                        if (n === 1) {
-                                            ctx.lineTo(xs[0], ys[0])
-                                        } else {
-                                            for (var si = 0; si < n - 1; ++si) {
-                                                var sm1 = Math.max(0, si - 1)
-                                                var sp2 = Math.min(n - 1, si + 2)
-                                                var sc1x = xs[si]     + (xs[si + 1] - xs[sm1])     / 6
-                                                var sc1y = ys[si]     + (ys[si + 1] - ys[sm1])     / 6
-                                                var sc2x = xs[si + 1] - (xs[sp2]    - xs[si])      / 6
-                                                var sc2y = ys[si + 1] - (ys[sp2]    - ys[si])      / 6
-                                                ctx.bezierCurveTo(sc1x, sc1y, sc2x, sc2y, xs[si + 1], ys[si + 1])
-                                            }
-                                        }
-                                        ctx.strokeStyle = stroke; ctx.lineWidth = 2; ctx.stroke()
+                                        buildSplinePath()
+                                        ctx.strokeStyle = stroke
+                                        ctx.lineWidth = 1.5
+                                        ctx.stroke()
                                     }
 
-                                    drawSmoothedSeries("up",   "#4cc87a", "rgba(76,200,122,0.14)")
-                                    drawSmoothedSeries("down", "#4ea2ff", "rgba(78,162,255,0.22)")
+                                    // Draw upload behind download so download is on top
+                                    drawSmoothedSeries("up",   "#3dba6a", "rgba(61,186,106,0.20)", "rgba(61,186,106,0.02)")
+                                    drawSmoothedSeries("down", "#4490e8", "rgba(68,144,232,0.28)", "rgba(68,144,232,0.03)")
 
-                                    // Y-axis labels
-                                    ctx.fillStyle = "#667788"
+                                    // Y-axis labels — right side
+                                    ctx.fillStyle = "#4a5a6a"
                                     ctx.font = "10px sans-serif"
                                     ctx.textAlign = "left"
                                     ctx.textBaseline = "middle"
-                                    for (var ly = 0; ly <= 4; ++ly) {
-                                        var val = axisTop * (1 - ly / 4)
-                                        var ty = plotY + plotH * ly / 4
+                                    for (var ly = 0; ly <= gridLines; ++ly) {
+                                        var val = axisTop * (1 - ly / gridLines)
+                                        var ty = plotY + plotH * ly / gridLines
                                         ctx.fillText(root.speedAxisLabel(val), plotX + plotW + 5, ty)
                                     }
 
-                                    // X-axis time labels — show hours for long spans
+                                    // X-axis time labels
+                                    ctx.fillStyle = "#3a4a56"
                                     ctx.textAlign = "center"
                                     ctx.textBaseline = "top"
                                     for (var lx = 0; lx <= 6; ++lx) {
@@ -2236,18 +2146,20 @@ Window {
                                         var timeLabel = secAgo >= 3600
                                             ? (Math.floor(secAgo / 3600) + "h")
                                             : (secAgo >= 60 ? (Math.round(secAgo / 60) + "m") : (secAgo + "s"))
-                                        ctx.fillText("-" + timeLabel, tx, plotY + plotH + 4)
+                                        ctx.fillText("-" + timeLabel, tx, plotY + plotH + 3)
                                     }
 
                                     // Hover crosshair
                                     if (root.speedHoverActive) {
                                         var hx = Math.max(plotX, Math.min(plotX + plotW, root.speedHoverX))
-                                        ctx.strokeStyle = "rgba(200,220,255,0.25)"
+                                        ctx.strokeStyle = "rgba(180,200,230,0.18)"
                                         ctx.lineWidth = 1
+                                        ctx.setLineDash([3, 3])
                                         ctx.beginPath()
                                         ctx.moveTo(hx + 0.5, plotY)
                                         ctx.lineTo(hx + 0.5, plotY + plotH)
                                         ctx.stroke()
+                                        ctx.setLineDash([])
                                     }
                                 }
                             }
@@ -2317,46 +2229,78 @@ Window {
                                         font.pixelSize: 10
                                     }
                                     Text {
-                                        text: speedHoverTip._point ? ("Down " + root.compactSpeed(speedHoverTip._point.down)) : ""
-                                        color: "#8fc0f2"
+                                        text: speedHoverTip._point ? ("↓ " + root.compactSpeed(speedHoverTip._point.down)) : ""
+                                        color: "#7ab8f5"
                                         font.pixelSize: 11
                                     }
                                     Text {
-                                        text: speedHoverTip._point ? ("Up   " + root.compactSpeed(speedHoverTip._point.up)) : ""
-                                        color: "#97ddb3"
+                                        text: speedHoverTip._point ? ("↑ " + root.compactSpeed(speedHoverTip._point.up)) : ""
+                                        color: "#82d4a0"
                                         font.pixelSize: 11
                                     }
                                 }
                             }
                         }
 
-                        GridLayout {
-                            id: speedStatsCard
+                        // Stats row + time span selector at the bottom
+                        RowLayout {
                             Layout.fillWidth: true
-                            Layout.topMargin: 4
-                            columns: 8
-                            columnSpacing: 12
-                            rowSpacing: 4
+                            spacing: 0
 
-                            readonly property var _samples: root.speedVisibleSamples()
-                            readonly property var _down: root.speedStats(_samples, "down")
-                            readonly property var _up: root.speedStats(_samples, "up")
+                            // Stats grid on the left
+                            GridLayout {
+                                id: speedStatsCard
+                                columns: 6
+                                columnSpacing: 14
+                                rowSpacing: 3
 
-                            Text { text: "Down now"; color: "#7e8b99"; font.pixelSize: 11 }
-                            Text { text: root.compactSpeed(speedStatsCard._down.current); color: "#4ea2ff"; font.bold: true; font.pixelSize: 12 }
-                            Text { text: "Down avg"; color: "#7e8b99"; font.pixelSize: 11 }
-                            Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#9fc3ea"; font.pixelSize: 12 }
-                            Text { text: "Up now"; color: "#7e8b99"; font.pixelSize: 11 }
-                            Text { text: root.compactSpeed(speedStatsCard._up.current); color: "#58cc88"; font.bold: true; font.pixelSize: 12 }
-                            Text { text: "Up avg"; color: "#7e8b99"; font.pixelSize: 11 }
-                            Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#a8dfbf"; font.pixelSize: 12 }
+                                readonly property var _samples: root.speedVisibleSamples()
+                                readonly property var _down: root.speedStats(_samples, "down")
+                                readonly property var _up: root.speedStats(_samples, "up")
 
-                            Text { text: "Down peak"; color: "#7e8b99"; font.pixelSize: 11 }
-                            Text { text: root.compactSpeed(speedStatsCard._down.max); color: "#6f7d8b"; font.pixelSize: 11 }
-                            Text { text: ""; Layout.columnSpan: 2 }
-                            Text { text: "Up peak"; color: "#7e8b99"; font.pixelSize: 11 }
-                            Text { text: root.compactSpeed(speedStatsCard._up.max); color: "#6f7d8b"; font.pixelSize: 11 }
-                            Text { text: ""; Layout.columnSpan: 2 }
+                                // Legend dots
+                                Rectangle { width: 8; height: 8; radius: 4; color: "#4490e8" }
+                                Text { text: "Down"; color: "#5a6a7a"; font.pixelSize: 11 }
+                                Text { text: root.compactSpeed(speedStatsCard._down.current); color: "#4ea2ff"; font.bold: true; font.pixelSize: 12 }
+                                Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 }
+                                Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#7ba8d0"; font.pixelSize: 11 }
+                                Text { text: "peak " + root.compactSpeed(speedStatsCard._down.max); color: "#445566"; font.pixelSize: 10 }
+
+                                Rectangle { width: 8; height: 8; radius: 4; color: "#3dba6a" }
+                                Text { text: "Up"; color: "#5a6a7a"; font.pixelSize: 11 }
+                                Text { text: root.compactSpeed(speedStatsCard._up.current); color: "#4cc87a"; font.bold: true; font.pixelSize: 12 }
+                                Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 }
+                                Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#7abf9a"; font.pixelSize: 11 }
+                                Text { text: "peak " + root.compactSpeed(speedStatsCard._up.max); color: "#445566"; font.pixelSize: 10 }
+                            }
+
+                            Item { Layout.fillWidth: true }
+
+                            // Time span selector — compact, bottom-right
+                            RowLayout {
+                                spacing: 6
+                                Text { text: "Span"; color: "#4a5a6a"; font.pixelSize: 11 }
+                                ComboBox {
+                                    implicitWidth: 90
+                                    implicitHeight: 24
+                                    model: root.speedSpanOptions.map(function(o){ return o.label })
+                                    currentIndex: root.speedSpanIndex
+                                    onActivated: root.speedSpanIndex = currentIndex
+                                    font.pixelSize: 11
+                                    contentItem: Text {
+                                        leftPadding: 8
+                                        text: parent.displayText
+                                        font: parent.font
+                                        color: "#c0c0c0"
+                                        verticalAlignment: Text.AlignVCenter
+                                    }
+                                    background: Rectangle {
+                                        color: "#1e1e1e"
+                                        border.color: parent.activeFocus ? "#4488dd" : "#333333"
+                                        radius: 2
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -3020,17 +2964,11 @@ Window {
                                     if (root._peerViewportRestorePending)
                                         root.restorePeerListViewport()
                                 }
-                                function onLayoutAboutToBeChanged() {
-                                    root.savePeerListViewport()
-                                }
-                                function onLayoutChanged() {
-                                    if (root._suppressPeerViewportRestore) {
-                                        root._suppressPeerViewportRestore = false
-                                        return
-                                    }
-                                    if (root._peerViewportRestorePending)
-                                        root.restorePeerListViewport()
-                                }
+                                // layoutChanged fires on every live re-sort (speed columns update
+                                // every ~1 s). QML ListView already maintains scroll position
+                                // correctly across layoutChanged — our restore code would fight it
+                                // and cause the visible jump-to-top. Only modelReset needs a
+                                // restore (that's a full data replacement where QML loses position).
                             }
 
                             Text {

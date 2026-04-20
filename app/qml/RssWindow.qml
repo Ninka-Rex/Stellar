@@ -24,22 +24,22 @@ Window {
     width: 980
     height: 620
     minimumWidth: 860
-    minimumHeight: 520
-    title: "RSS Reader"
+    minimumHeight: 480
+    title: "RSS Feeds"
     color: "#1b1b1b"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
     property int selectedFeedRow: -1
     property int selectedArticleRow: -1
-    property real leftPaneWidth: 255
-    property real previewPaneHeight: 220
+    property real leftPaneWidth: 220
+    property real previewPaneHeight: 210
     property string editingFeedId: ""
     property string articleSortKey: "published"
     property bool articleSortAscending: false
     property var columnDefs: [
-        { title: "Title", key: "title", widthPx: 420, visible: true },
-        { title: "Feed", key: "feed", widthPx: 150, visible: true },
-        { title: "Date", key: "published", widthPx: 120, visible: true }
+        { title: "Title",  key: "title",     widthPx: 420, visible: true },
+        { title: "Feed",   key: "feed",      widthPx: 150, visible: true },
+        { title: "Date",   key: "published", widthPx: 120, visible: true }
     ]
     property bool _colDragging: false
     property string _colDragFromKey: ""
@@ -60,8 +60,7 @@ Window {
     readonly property var sortedArticles: {
         var items = allArticles.slice()
         items.sort(function(a, b) {
-            var av = ""
-            var bv = ""
+            var av, bv
             if (root.articleSortKey === "feed") {
                 av = (a.feedTitle || "").toLowerCase()
                 bv = (b.feedTitle || "").toLowerCase()
@@ -81,9 +80,9 @@ Window {
         })
         return items
     }
-    readonly property var selectedArticle: (selectedArticleRow >= 0 && selectedArticleRow < sortedArticles.length) ? sortedArticles[selectedArticleRow] : ({})
-    readonly property bool selectedArticleHasDownload: !!selectedArticle.isTorrent
-        || !!selectedArticle.downloadUrl
+    readonly property var selectedArticle: (selectedArticleRow >= 0 && selectedArticleRow < sortedArticles.length)
+        ? sortedArticles[selectedArticleRow] : ({})
+    readonly property bool selectedArticleHasDownload: !!selectedArticle.isTorrent || !!selectedArticle.downloadUrl
     readonly property string selectedArticleImageUrl: {
         if (selectedArticle.imageUrl && selectedArticle.imageUrl.length > 0)
             return selectedArticle.imageUrl
@@ -94,8 +93,7 @@ Window {
     readonly property var visibleCols: {
         var cols = []
         for (var i = 0; i < columnDefs.length; ++i)
-            if (columnDefs[i].visible)
-                cols.push(columnDefs[i])
+            if (columnDefs[i].visible) cols.push(columnDefs[i])
         return cols
     }
     readonly property real visibleContentWidth: {
@@ -107,55 +105,38 @@ Window {
 
     function syncFeedSelection() {
         var currentFeedId = App.rssManager.currentFeedId || ""
-        if (currentFeedId.length === 0) {
-            selectedFeedRow = -1
-            return
-        }
+        if (currentFeedId.length === 0) { selectedFeedRow = -1; return }
         for (var i = 0; i < App.rssManager.feedCount; ++i) {
             var feed = App.rssManager.feedModel.feedData(i)
-            if (feed.feedId === currentFeedId) {
-                selectedFeedRow = i
-                return
-            }
+            if (feed.feedId === currentFeedId) { selectedFeedRow = i; return }
         }
         selectedFeedRow = -1
     }
 
     function ensureArticleSelection() {
-        if (sortedArticles.length <= 0)
-            selectedArticleRow = -1
+        if (sortedArticles.length <= 0) selectedArticleRow = -1
         else if (selectedArticleRow < 0 || selectedArticleRow >= sortedArticles.length)
             selectedArticleRow = 0
     }
 
     function colWidth(key) {
-        if (_resizingColumnKey === key)
-            return _resizingColumnWidth
-        for (var i = 0; i < columnDefs.length; ++i) {
-            if (columnDefs[i].key === key)
-                return columnDefs[i].widthPx || 100
-        }
+        if (_resizingColumnKey === key) return _resizingColumnWidth
+        for (var i = 0; i < columnDefs.length; ++i)
+            if (columnDefs[i].key === key) return columnDefs[i].widthPx || 100
         return 100
     }
 
     function applyArticleSort(key) {
-        if (articleSortKey === key)
-            articleSortAscending = !articleSortAscending
-        else {
-            articleSortKey = key
-            articleSortAscending = key === "feed"
-        }
+        if (articleSortKey === key) articleSortAscending = !articleSortAscending
+        else { articleSortKey = key; articleSortAscending = key === "feed" }
         ensureArticleSelection()
     }
 
     function addSubscription() {
         var url = addFeedField.text.trim()
-        if (url.length === 0)
-            return
-        if (App.rssManager.addSubscription(url))
-            addFeedField.clear()
-        syncFeedSelection()
-        ensureArticleSelection()
+        if (url.length === 0) return
+        if (App.rssManager.addSubscription(url)) addFeedField.clear()
+        syncFeedSelection(); ensureArticleSelection()
     }
 
     function selectFeed(row) {
@@ -166,204 +147,222 @@ Window {
     }
 
     function refreshCurrentFeed() {
-        if (selectedFeed.feedId)
-            App.rssManager.refreshFeed(selectedFeed.feedId)
-        else
-            App.rssManager.refreshAll()
+        if (selectedFeed.feedId) App.rssManager.refreshFeed(selectedFeed.feedId)
+        else App.rssManager.refreshAll()
     }
 
     function removeCurrentFeed() {
-        if (!selectedFeed.feedId)
-            return
+        if (!selectedFeed.feedId) return
         App.rssManager.removeSubscription(selectedFeed.feedId)
-        syncFeedSelection()
-        ensureArticleSelection()
+        syncFeedSelection(); ensureArticleSelection()
     }
 
     function editCurrentFeed() {
-        if (!selectedFeed.feedId)
-            return
+        if (!selectedFeed.feedId) return
         editingFeedId = selectedFeed.feedId
         editFeedNameField.text = selectedFeed.customTitle || ""
-        editFeedUrlField.text = selectedFeed.url || ""
-        editFeedDialog.show()
-        editFeedDialog.raise()
-        editFeedDialog.requestActivate()
+        editFeedUrlField.text  = selectedFeed.url || ""
+        editFeedDialog.show(); editFeedDialog.raise(); editFeedDialog.requestActivate()
     }
 
     function saveEditedFeed() {
-        if (!editingFeedId)
-            return
+        if (!editingFeedId) return
         if (App.rssManager.updateSubscription(editingFeedId, editFeedUrlField.text, editFeedNameField.text)) {
-            editFeedDialog.close()
-            syncFeedSelection()
+            editFeedDialog.close(); syncFeedSelection()
         }
     }
 
     function markSelectedArticleRead(read) {
-        if (!selectedArticle.feedId || !selectedArticle.guid)
-            return
+        if (!selectedArticle.feedId || !selectedArticle.guid) return
         App.rssManager.markArticleReadByGuid(selectedArticle.feedId, selectedArticle.guid, read)
     }
 
     function openSelectedArticle() {
-        if (!selectedArticle.link)
-            return
+        if (!selectedArticle.link) return
         markSelectedArticleRead(true)
         Qt.openUrlExternally(selectedArticle.link)
     }
 
     function triggerSelectedDownload() {
-        if (!selectedArticleHasDownload)
-            return openSelectedArticle()
-        var url = selectedArticle.downloadUrl && selectedArticle.downloadUrl.length > 0 ? selectedArticle.downloadUrl : selectedArticle.link
+        if (!selectedArticleHasDownload) return openSelectedArticle()
+        var url = selectedArticle.downloadUrl && selectedArticle.downloadUrl.length > 0
+            ? selectedArticle.downloadUrl : selectedArticle.link
         markSelectedArticleRead(true)
-        if (selectedArticle.isTorrent) {
+        if (selectedArticle.isTorrent)
             App.beginTorrentMetadataDownload(url, App.settings.defaultSavePath, "", selectedArticle.title || "", true)
-        } else {
+        else
             App.addUrl(url, App.settings.defaultSavePath, "", selectedArticle.title || "", true)
-        }
     }
 
     function copySelectedLink() {
         var url = selectedArticle.downloadUrl || selectedArticle.link || ""
-        if (url.length > 0)
-            App.copyToClipboard(url)
+        if (url.length > 0) App.copyToClipboard(url)
     }
 
     function applyColReorder() {
-        if (!_colDragFromKey)
-            return
+        if (!_colDragFromKey) return
         var defs = columnDefs.slice()
         var fromIdx = -1
-        for (var i = 0; i < defs.length; ++i) {
-            if (defs[i].key === _colDragFromKey) {
-                fromIdx = i
-                break
-            }
-        }
-        if (fromIdx < 0)
-            return
+        for (var i = 0; i < defs.length; ++i) { if (defs[i].key === _colDragFromKey) { fromIdx = i; break } }
+        if (fromIdx < 0) return
         var toIdx = defs.length
         if (_colDragInsertBeforeKey !== "__end__") {
-            for (var j = 0; j < defs.length; ++j) {
-                if (defs[j].key === _colDragInsertBeforeKey) {
-                    toIdx = j
-                    break
-                }
-            }
+            for (var j = 0; j < defs.length; ++j) { if (defs[j].key === _colDragInsertBeforeKey) { toIdx = j; break } }
         }
-        if (toIdx === fromIdx)
-            return
+        if (toIdx === fromIdx) return
         var moved = defs.splice(fromIdx, 1)[0]
-        if (toIdx > fromIdx)
-            toIdx--
+        if (toIdx > fromIdx) toIdx--
         defs.splice(toIdx, 0, moved)
         columnDefs = defs
     }
 
     function applyFeedReorder() {
-        if (!_feedDragging || _feedDragFrom < 0 || _feedDropTarget < 0)
-            return
-        if (_feedDragFrom === _feedDropTarget)
-            return
+        if (!_feedDragging || _feedDragFrom < 0 || _feedDropTarget < 0) return
+        if (_feedDragFrom === _feedDropTarget) return
         var to = (_feedDragFrom < _feedDropTarget) ? _feedDropTarget - 1 : _feedDropTarget
-        if (to === _feedDragFrom)
-            return
+        if (to === _feedDragFrom) return
         App.rssManager.moveSubscription(_feedDragFrom, to)
         syncFeedSelection()
     }
 
     Component.onCompleted: {
         App.setWindowIcon(root, "qrc:/qt/qml/com/stellar/app/app/qml/icons/rss.png")
-        syncFeedSelection()
-        ensureArticleSelection()
+        syncFeedSelection(); ensureArticleSelection()
     }
 
     Connections {
         target: App.rssManager
-        function onCurrentFeedIdChanged() {
-            root.syncFeedSelection()
-            root.ensureArticleSelection()
-        }
-        function onArticleModelChanged() {
-            root.ensureArticleSelection()
-        }
+        function onCurrentFeedIdChanged() { root.syncFeedSelection(); root.ensureArticleSelection() }
+        function onArticleModelChanged()  { root.ensureArticleSelection() }
     }
 
     Settings {
         category: "RssWindow"
-        property alias leftPaneWidth: root.leftPaneWidth
+        property alias leftPaneWidth:    root.leftPaneWidth
         property alias previewPaneHeight: root.previewPaneHeight
     }
 
+    // ── Feed context menu ────────────────────────────────────────────────────
     Menu {
         id: feedContextMenu
         property int row: -1
-        Action { text: "Open Feed"; onTriggered: if (feedContextMenu.row >= 0) root.selectFeed(feedContextMenu.row) }
+        delegate: MenuItem {
+            implicitWidth: 180
+            implicitHeight: 24
+            leftPadding: 12
+            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; verticalAlignment: Text.AlignVCenter }
+            background: Rectangle { color: parent.highlighted ? "#2a3f6a" : "transparent" }
+        }
+        implicitWidth: 180
+        topPadding: 0; bottomPadding: 0
+        Action {
+            text: "Open Feed"
+            onTriggered: if (feedContextMenu.row >= 0) root.selectFeed(feedContextMenu.row)
+        }
         Action {
             text: "Refresh"
             onTriggered: {
                 var feed = App.rssManager.feedModel.feedData(feedContextMenu.row)
-                if (feed.feedId)
-                    App.rssManager.refreshFeed(feed.feedId)
+                if (feed.feedId) App.rssManager.refreshFeed(feed.feedId)
             }
         }
         MenuSeparator {}
         Action {
             text: "Rename / Edit..."
-            onTriggered: {
-                root.selectedFeedRow = feedContextMenu.row
-                root.editCurrentFeed()
-            }
+            onTriggered: { root.selectedFeedRow = feedContextMenu.row; root.editCurrentFeed() }
         }
         Action {
             text: "Remove Subscription"
             onTriggered: {
                 var feed = App.rssManager.feedModel.feedData(feedContextMenu.row)
-                if (feed.feedId)
-                    App.rssManager.removeSubscription(feed.feedId)
-                root.syncFeedSelection()
-                root.ensureArticleSelection()
+                if (feed.feedId) App.rssManager.removeSubscription(feed.feedId)
+                root.syncFeedSelection(); root.ensureArticleSelection()
             }
         }
     }
 
-    RssDownloadRulesDialog {
-        id: rssRulesDialog
+    // ── Article context menu ─────────────────────────────────────────────────
+    Menu {
+        id: articleContextMenu
+        delegate: MenuItem {
+            implicitWidth: 190
+            implicitHeight: 24
+            leftPadding: 12
+            contentItem: Text { text: parent.text; color: parent.enabled ? "#d0d0d0" : "#555"; font.pixelSize: 12; verticalAlignment: Text.AlignVCenter }
+            background: Rectangle { color: parent.highlighted ? "#2a3f6a" : "transparent" }
+        }
+        implicitWidth: 190
+        topPadding: 0; bottomPadding: 0
+        Action {
+            text: selectedArticle.isTorrent ? "Download Torrent" : "Download"
+            enabled: root.selectedArticleHasDownload
+            onTriggered: root.triggerSelectedDownload()
+        }
+        Action {
+            text: "Open in Browser"
+            enabled: !!root.selectedArticle.link
+            onTriggered: root.openSelectedArticle()
+        }
+        Action {
+            text: "Copy Link"
+            enabled: root.selectedArticleRow >= 0
+            onTriggered: root.copySelectedLink()
+        }
+        MenuSeparator {}
+        Action {
+            text: root.selectedArticle.unread ? "Mark as Read" : "Mark as Unread"
+            enabled: root.selectedArticleRow >= 0
+            onTriggered: root.markSelectedArticleRead(!!root.selectedArticle.unread)
+        }
+        Action {
+            text: "Mark All Read"
+            onTriggered: App.rssManager.markAllRead(root.selectedFeed.feedId || "")
+        }
     }
 
+    // ── Edit subscription dialog ─────────────────────────────────────────────
     Window {
         id: editFeedDialog
-        width: 430
-        height: 180
-        minimumWidth: 410
-        minimumHeight: 170
+        width: 440
+        height: 170
+        minimumWidth: 400
+        minimumHeight: 160
         title: "Edit Subscription"
-        color: "#1b1b1b"
+        color: "#1e1e1e"
         modality: Qt.ApplicationModal
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
         ColumnLayout {
             anchors.fill: parent
-            anchors.margins: 12
-            spacing: 8
+            anchors.margins: 14
+            spacing: 10
 
-            TextField {
-                id: editFeedNameField
+            GridLayout {
+                columns: 2
+                columnSpacing: 10
+                rowSpacing: 8
                 Layout.fillWidth: true
-                placeholderText: "Custom name (optional)"
-                color: "#d0d0d0"
-                background: Rectangle { color: "#101010"; border.color: "#383838" }
-            }
 
-            TextField {
-                id: editFeedUrlField
-                Layout.fillWidth: true
-                placeholderText: "Feed URL"
-                color: "#d0d0d0"
-                onAccepted: root.saveEditedFeed()
-                background: Rectangle { color: "#101010"; border.color: "#383838" }
+                Text { text: "Name"; color: "#a0a0a0"; font.pixelSize: 12 }
+                TextField {
+                    id: editFeedNameField
+                    Layout.fillWidth: true
+                    placeholderText: "Custom name (optional)"
+                    font.pixelSize: 12
+                    color: "#d0d0d0"
+                    background: Rectangle { color: "#2d2d2d"; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
+                }
+
+                Text { text: "URL"; color: "#a0a0a0"; font.pixelSize: 12 }
+                TextField {
+                    id: editFeedUrlField
+                    Layout.fillWidth: true
+                    placeholderText: "https://..."
+                    font.pixelSize: 12
+                    color: "#d0d0d0"
+                    onAccepted: root.saveEditedFeed()
+                    background: Rectangle { color: "#2d2d2d"; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
+                }
             }
 
             Item { Layout.fillHeight: true }
@@ -372,617 +371,736 @@ Window {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
                 DlgButton { text: "Cancel"; onClicked: editFeedDialog.close() }
-                DlgButton { text: "Save"; primary: true; enabled: editFeedUrlField.text.trim().length > 0; onClicked: root.saveEditedFeed() }
+                DlgButton {
+                    text: "Save"
+                    primary: true
+                    enabled: editFeedUrlField.text.trim().length > 0
+                    onClicked: root.saveEditedFeed()
+                }
             }
         }
     }
 
+    // ── Main layout ──────────────────────────────────────────────────────────
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 8
-        spacing: 6
+        spacing: 0
 
-        RowLayout {
+        // Toolbar strip
+        Rectangle {
             Layout.fillWidth: true
-            spacing: 6
+            height: 42
+            color: "#252525"
 
-            TextField {
-                id: addFeedField
-                Layout.fillWidth: true
-                placeholderText: "Add RSS / Atom feed URL"
-                color: "#d0d0d0"
-                onAccepted: root.addSubscription()
-                background: Rectangle { color: "#101010"; border.color: "#383838" }
-            }
+            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333333" }
 
-            DlgButton { text: "Add"; primary: true; enabled: addFeedField.text.trim().length > 0; onClicked: root.addSubscription() }
-            DlgButton { text: App.rssManager.refreshInProgress ? "Refreshing..." : "Refresh"; enabled: !App.rssManager.refreshInProgress; onClicked: root.refreshCurrentFeed() }
-            DlgButton { text: "Remove"; enabled: !!selectedFeed.feedId; onClicked: root.removeCurrentFeed() }
-            DlgButton {
-                text: "Download Rules"
-                onClicked: {
-                    rssRulesDialog.show()
-                    rssRulesDialog.raise()
-                    rssRulesDialog.requestActivate()
+            RowLayout {
+                anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
+                spacing: 4
+
+                // URL input
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 26
+                    color: "#2d2d2d"
+                    border.color: addFeedField.activeFocus ? "#4488dd" : "#4a4a4a"
+                    radius: 3
+
+                    TextInput {
+                        id: addFeedField
+                        anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
+                        verticalAlignment: Text.AlignVCenter
+                        font.pixelSize: 12
+                        color: "#d0d0d0"
+                        clip: true
+                        onAccepted: root.addSubscription()
+
+                        Text {
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: "Add RSS or Atom feed URL..."
+                            color: "#555"
+                            font.pixelSize: 12
+                            visible: !parent.text && !parent.activeFocus
+                        }
+                    }
+                }
+
+                DlgButton {
+                    text: "Add"
+                    primary: true
+                    enabled: addFeedField.text.trim().length > 0
+                    onClicked: root.addSubscription()
+                }
+
+                // Separator
+                Rectangle { width: 1; height: 22; color: "#383838" }
+
+                DlgButton {
+                    text: App.rssManager.refreshInProgress ? "Refreshing…" : "Refresh"
+                    enabled: !App.rssManager.refreshInProgress
+                    onClicked: root.refreshCurrentFeed()
+                }
+                DlgButton {
+                    text: "Edit"
+                    enabled: !!selectedFeed.feedId
+                    onClicked: root.editCurrentFeed()
+                }
+                DlgButton {
+                    text: "Remove"
+                    enabled: !!selectedFeed.feedId
+                    onClicked: root.removeCurrentFeed()
+                }
+
+                // Separator
+                Rectangle { width: 1; height: 22; color: "#383838" }
+
+                DlgButton {
+                    text: "Download Rules"
+                    onClicked: {
+                        rssRulesDialog.show(); rssRulesDialog.raise(); rssRulesDialog.requestActivate()
+                    }
                 }
             }
         }
 
+        // Body: feed list + article area
         SplitView {
             Layout.fillWidth: true
             Layout.fillHeight: true
             orientation: Qt.Horizontal
 
+            handle: Rectangle {
+                implicitWidth: 4
+                color: SplitHandle.hovered || SplitHandle.pressed ? "#3a5a8a" : "#2a2a2a"
+            }
+
+            // ── Left: feed list ──────────────────────────────────────────────
             Rectangle {
                 SplitView.preferredWidth: root.leftPaneWidth
-                SplitView.minimumWidth: 210
+                SplitView.minimumWidth: 170
                 color: "#1f1f1f"
 
-                Rectangle {
-                    id: catHeader
-                    anchors { top: parent.top; left: parent.left; right: parent.right }
-                    height: 26
-                    color: "#2d2d2d"
-                    Rectangle { width: 3; height: parent.height; color: "#5588cc" }
-                    Text {
-                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
-                        text: "Subscriptions"
-                        color: "#d0d0d0"
-                        font.pixelSize: 12
-                        font.bold: true
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 0
+
+                    // Header
+                    Rectangle {
+                        Layout.fillWidth: true
+                        height: 26
+                        color: "#2d2d2d"
+
+                        Rectangle { width: 3; height: parent.height; color: "#5588cc" }
+                        Text {
+                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                            text: "Subscriptions"
+                            color: "#d0d0d0"
+                            font.pixelSize: 12
+                            font.bold: true
+                        }
+                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
                     }
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
-                }
 
-                ListView {
-                    id: feedList
-                    anchors { top: catHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-                    clip: true
-                    model: App.rssManager.feedModel
-                    boundsBehavior: Flickable.StopAtBounds
-                    ScrollBar.vertical: ScrollBar {}
+                    // Feed list
+                    ListView {
+                        id: feedList
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        clip: true
+                        model: App.rssManager.feedModel
+                        boundsBehavior: Flickable.StopAtBounds
+                        ScrollBar.vertical: ScrollBar {}
 
-                    delegate: Item {
-                        id: feedDelegate
-                        required property string title
-                        required property string url
-                        required property string errorText
-                        required property int unreadCount
-                        required property int totalCount
-                        required property string feedId
-                        required property int index
-                        readonly property int rowIndex: index
-                        width: feedList.width
-                        height: 28
-
-                        Rectangle {
-                            visible: root._feedDragging
-                                  && root._feedDropTarget === feedDelegate.rowIndex
-                                  && root._feedDragFrom !== root._feedDropTarget
-                                  && root._feedDragFrom !== root._feedDropTarget - 1
-                            anchors { top: parent.top; left: parent.left; right: parent.right }
+                        // Drop indicator at the end of the list
+                        footer: Item {
+                            width: feedList.width
                             height: 2
-                            color: "#4488dd"
-                            z: 10
+                            visible: root._feedDragging
+                                  && root._feedDropTarget === App.rssManager.feedCount
+                                  && root._feedDragFrom !== App.rssManager.feedCount - 1
+                            Rectangle { anchors.fill: parent; color: "#4488dd" }
                         }
 
-                        Rectangle {
-                            anchors.fill: parent
-                            color: root.selectedFeedRow === rowIndex ? "#1e3a6e"
-                                 : (feedMouse.containsMouse && !root._feedDragging ? "#2a2a3a" : "transparent")
-                            border.color: root.selectedFeedRow === rowIndex ? "#4488dd" : "transparent"
-                            border.width: 1
-                            opacity: (root._feedDragging && root._feedDragFrom === rowIndex) ? 0.4 : 1.0
+                        delegate: Item {
+                            id: feedDelegate
+                            required property string title
+                            required property string url
+                            required property string errorText
+                            required property int unreadCount
+                            required property int totalCount
+                            required property string feedId
+                            required property bool updating
+                            required property int index
+                            readonly property int rowIndex: index
+                            width: feedList.width
+                            height: 28
 
-                            Row {
-                                anchors { fill: parent; leftMargin: 10; rightMargin: 8 }
-                                spacing: 6
-
-                                Text {
-                                    width: 150
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    text: title || url
-                                    color: root.selectedFeedRow === rowIndex ? "#88bbff" : "#cccccc"
-                                    font.pixelSize: 12
-                                    font.bold: root.selectedFeedRow === rowIndex || unreadCount > 0
-                                    elide: Text.ElideRight
-                                }
-                                Text {
-                                    width: 30
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    text: unreadCount > 0 ? unreadCount : ""
-                                    color: "#88bbff"
-                                    font.pixelSize: 11
-                                    horizontalAlignment: Text.AlignRight
-                                }
-                                Text {
-                                    width: 36
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    text: totalCount
-                                    color: "#999999"
-                                    font.pixelSize: 11
-                                    horizontalAlignment: Text.AlignRight
-                                }
+                            // Drag insert line
+                            Rectangle {
+                                visible: root._feedDragging
+                                      && root._feedDropTarget === feedDelegate.rowIndex
+                                      && root._feedDragFrom !== root._feedDropTarget
+                                      && root._feedDragFrom !== root._feedDropTarget - 1
+                                anchors { top: parent.top; left: parent.left; right: parent.right }
+                                height: 2; color: "#4488dd"; z: 10
                             }
-                        }
 
-                        MouseArea {
-                            id: feedMouse
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton | Qt.RightButton
-                            hoverEnabled: true
-                            preventStealing: true
-                            property real _pressY: 0
-                            property bool _didDrag: false
+                            Rectangle {
+                                anchors.fill: parent
+                                color: root.selectedFeedRow === rowIndex ? "#1e3a6e"
+                                     : (feedMouse.containsMouse && !root._feedDragging ? "#2a2a3a" : "transparent")
+                                border.color: root.selectedFeedRow === rowIndex ? "#4488dd" : "transparent"
+                                border.width: 1
+                                opacity: (root._feedDragging && root._feedDragFrom === rowIndex) ? 0.4 : 1.0
 
-                            onPressed: { _pressY = mouseY; _didDrag = false }
+                                RowLayout {
+                                    anchors { fill: parent; leftMargin: 10; rightMargin: 6 }
+                                    spacing: 0
 
-                            onPositionChanged: {
-                                if (!(pressedButtons & Qt.LeftButton))
-                                    return
-                                if (!root._feedDragging && Math.abs(mouseY - _pressY) > 6) {
-                                    root._feedDragFrom = rowIndex
-                                    root._feedDragging = true
-                                    _didDrag = true
-                                }
-                                if (root._feedDragging) {
-                                    // All items are fixed 28px height; compute drop target arithmetically
-                                    var cursorY = feedMouse.mapToItem(feedList.contentItem, mouseX, mouseY).y
-                                    var target = App.rssManager.feedCount
-                                    for (var r = 0; r < App.rssManager.feedCount; ++r) {
-                                        if (cursorY < r * 28 + 14) {
-                                            target = r
-                                            break
+                                    // Feed name — fills available space
+                                    Text {
+                                        Layout.fillWidth: true
+                                        text: title || url
+                                        color: root.selectedFeedRow === rowIndex ? "#88bbff" : "#cccccc"
+                                        font.pixelSize: 12
+                                        font.bold: unreadCount > 0
+                                        elide: Text.ElideRight
+                                    }
+
+                                    // Updating spinner placeholder
+                                    Text {
+                                        visible: feedDelegate.updating
+                                        text: "↻"
+                                        color: "#5588cc"
+                                        font.pixelSize: 12
+                                    }
+
+                                    // Unread badge
+                                    Rectangle {
+                                        visible: unreadCount > 0 && !feedDelegate.updating
+                                        width: unreadLabel.implicitWidth + 8
+                                        height: 16
+                                        radius: 8
+                                        color: root.selectedFeedRow === rowIndex ? "#2a4a8a" : "#1a3060"
+                                        border.color: root.selectedFeedRow === rowIndex ? "#5588cc" : "#3a5080"
+
+                                        Text {
+                                            id: unreadLabel
+                                            anchors.centerIn: parent
+                                            text: unreadCount
+                                            color: "#88bbff"
+                                            font.pixelSize: 10
+                                            font.bold: true
                                         }
                                     }
-                                    root._feedDropTarget = target
+
+                                    Item { width: 2 }
                                 }
                             }
 
-                            onReleased: {
-                                var dragFrom = root._feedDragFrom
-                                var dragging = root._feedDragging
-                                var dropTarget = root._feedDropTarget
-                                Qt.callLater(function() {
-                                    if (dragging && dragFrom === rowIndex && dropTarget >= 0)
-                                        root.applyFeedReorder()
-                                    root._feedDragging = false
-                                    root._feedDragFrom = -1
-                                    root._feedDropTarget = -1
-                                })
+                            // Error indicator line at bottom
+                            Rectangle {
+                                visible: feedDelegate.errorText.length > 0
+                                anchors { bottom: parent.bottom; left: parent.left; right: parent.right }
+                                height: 2
+                                color: "#883333"
                             }
 
-                            onClicked: function(mouse) {
-                                if (_didDrag) {
-                                    _didDrag = false
-                                    return
+                            MouseArea {
+                                id: feedMouse
+                                anchors.fill: parent
+                                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                hoverEnabled: true
+                                preventStealing: true
+                                property real _pressY: 0
+                                property bool _didDrag: false
+
+                                onPressed: { _pressY = mouseY; _didDrag = false }
+
+                                onPositionChanged: {
+                                    if (!(pressedButtons & Qt.LeftButton)) return
+                                    if (!root._feedDragging && Math.abs(mouseY - _pressY) > 6) {
+                                        root._feedDragFrom = rowIndex
+                                        root._feedDragging = true
+                                        _didDrag = true
+                                    }
+                                    if (root._feedDragging) {
+                                        var cursorY = feedMouse.mapToItem(feedList.contentItem, mouseX, mouseY).y
+                                        var target = App.rssManager.feedCount
+                                        for (var r = 0; r < App.rssManager.feedCount; ++r) {
+                                            if (cursorY < r * 28 + 14) { target = r; break }
+                                        }
+                                        root._feedDropTarget = target
+                                    }
                                 }
-                                if (mouse.button === Qt.RightButton) {
-                                    root.selectedFeedRow = rowIndex
-                                    feedContextMenu.row = rowIndex
-                                    feedContextMenu.popup()
-                                } else {
-                                    root.selectFeed(rowIndex)
+
+                                onReleased: {
+                                    var dragFrom  = root._feedDragFrom
+                                    var dragging  = root._feedDragging
+                                    var dropTarget = root._feedDropTarget
+                                    Qt.callLater(function() {
+                                        if (dragging && dragFrom === rowIndex && dropTarget >= 0)
+                                            root.applyFeedReorder()
+                                        root._feedDragging = false
+                                        root._feedDragFrom = -1
+                                        root._feedDropTarget = -1
+                                    })
                                 }
+
+                                onClicked: function(mouse) {
+                                    if (_didDrag) { _didDrag = false; return }
+                                    if (mouse.button === Qt.RightButton) {
+                                        root.selectedFeedRow = rowIndex
+                                        feedContextMenu.row = rowIndex
+                                        feedContextMenu.popup()
+                                    } else {
+                                        root.selectFeed(rowIndex)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // Mark all read button at the bottom of the feed pane
+                    Rectangle {
+                        Layout.fillWidth: true
+                        height: 30
+                        color: "#252525"
+                        Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#333333" }
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: "Mark All Read"
+                            color: markAllReadMouse.containsMouse ? "#88bbff" : "#7a8a9a"
+                            font.pixelSize: 11
+
+                            MouseArea {
+                                id: markAllReadMouse
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: App.rssManager.markAllRead(root.selectedFeed.feedId || "")
                             }
                         }
                     }
                 }
             }
 
+            // ── Right: article list + preview ────────────────────────────────
             Rectangle {
                 SplitView.fillWidth: true
                 color: "#1c1c1c"
 
-                Rectangle {
-                    id: header
-                    anchors { top: parent.top; left: parent.left; right: parent.right }
-                    height: 26
-                    color: "#2d2d2d"
-                    clip: true
+                ColumnLayout {
+                    anchors.fill: parent
+                    spacing: 0
 
-                    Row {
-                        id: headerRow
-                        width: root.visibleContentWidth
-                        height: parent.height
+                    // Column header
+                    Rectangle {
+                        Layout.fillWidth: true
+                        height: 26
+                        color: "#2d2d2d"
+                        clip: true
 
-                        Repeater {
-                            id: headerCellRepeater
-                            model: root.visibleCols
+                        Row {
+                            id: headerRow
+                            width: root.visibleContentWidth
+                            height: parent.height
+
+                            Repeater {
+                                id: headerCellRepeater
+                                model: root.visibleCols
+                                delegate: Rectangle {
+                                    id: headerCell
+                                    width: root.colWidth(modelData.key)
+                                    height: parent.height
+                                    readonly property bool isActive: root.articleSortKey === modelData.key
+                                    color: headerCellMouse.containsMouse && !root._colDragging ? "#383838" : "transparent"
+                                    opacity: (root._colDragging && root._colDragFromKey === modelData.key) ? 0.5 : 1.0
+
+                                    Rectangle {
+                                        visible: root._colDragging && root._colDragInsertBeforeKey === modelData.key
+                                        width: 2; height: parent.height; anchors.left: parent.left
+                                        color: "#4488dd"; z: 20
+                                    }
+                                    Rectangle {
+                                        visible: root._colDragging && root._colDragInsertBeforeKey === "__end__"
+                                              && index === headerCellRepeater.count - 1
+                                        width: 2; height: parent.height; anchors.right: parent.right
+                                        color: "#4488dd"; z: 20
+                                    }
+
+                                    Text {
+                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: sortInd.left; rightMargin: 4 }
+                                        text: modelData.title
+                                        color: headerCell.isActive ? "#88bbff" : "#b0b0b0"
+                                        font.pixelSize: 12; font.bold: true
+                                        elide: Text.ElideRight
+                                    }
+                                    Text {
+                                        id: sortInd
+                                        anchors { verticalCenter: parent.verticalCenter; right: resizeHandle.left; rightMargin: 4 }
+                                        text: root.articleSortAscending ? "▲" : "▼"
+                                        color: "#88bbff"; font.pixelSize: 9
+                                        visible: headerCell.isActive
+                                    }
+
+                                    MouseArea {
+                                        id: headerCellMouse
+                                        anchors { fill: parent; rightMargin: 10 }
+                                        hoverEnabled: true; preventStealing: true
+                                        property real _pressX: 0
+                                        property bool _didDrag: false
+                                        onPressed: { _pressX = mouseX; _didDrag = false }
+                                        onPositionChanged: {
+                                            if (!(pressedButtons & Qt.LeftButton)) return
+                                            if (!root._colDragging && Math.abs(mouseX - _pressX) > 8) {
+                                                root._colDragFromKey = modelData.key
+                                                root._colDragging = true; _didDrag = true
+                                            }
+                                            if (root._colDragging && root._colDragFromKey === modelData.key) {
+                                                var cursorX = headerCellMouse.mapToItem(headerRow, mouseX, 0).x
+                                                var insertBefore = "__end__"
+                                                var xAcc = 0
+                                                for (var i = 0; i < root.visibleCols.length; ++i) {
+                                                    var w = root.colWidth(root.visibleCols[i].key)
+                                                    if (cursorX < xAcc + w / 2) { insertBefore = root.visibleCols[i].key; break }
+                                                    xAcc += w
+                                                }
+                                                root._colDragInsertBeforeKey = insertBefore
+                                            }
+                                        }
+                                        onReleased: {
+                                            var didDrag = _didDrag
+                                            Qt.callLater(function() {
+                                                if (didDrag) root.applyColReorder()
+                                                root._colDragging = false
+                                                root._colDragFromKey = ""
+                                                root._colDragInsertBeforeKey = ""
+                                            })
+                                            _didDrag = false
+                                        }
+                                        onClicked: { if (!_didDrag) root.applyArticleSort(modelData.key) }
+                                    }
+
+                                    Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
+
+                                    Item {
+                                        id: resizeHandle
+                                        width: 10; height: parent.height
+                                        anchors.right: parent.right; z: 10
+                                        property real _startWidthPx: 0
+                                        HoverHandler { cursorShape: Qt.SizeHorCursor }
+                                        DragHandler {
+                                            target: null; xAxis.enabled: true; yAxis.enabled: false
+                                            cursorShape: Qt.SizeHorCursor
+                                            onActiveChanged: {
+                                                if (active) {
+                                                    resizeHandle._startWidthPx = modelData.widthPx || 100
+                                                    root._resizingColumnKey = modelData.key
+                                                    root._resizingColumnWidth = resizeHandle._startWidthPx
+                                                    return
+                                                }
+                                                if (root._resizingColumnKey === modelData.key) {
+                                                    var defs = root.columnDefs.slice()
+                                                    for (var j = 0; j < defs.length; ++j) {
+                                                        if (defs[j].key === modelData.key) {
+                                                            defs[j] = Object.assign({}, defs[j], { widthPx: root._resizingColumnWidth })
+                                                            break
+                                                        }
+                                                    }
+                                                    root._resizingColumnKey = ""; root._resizingColumnWidth = 0
+                                                    root.columnDefs = defs
+                                                }
+                                            }
+                                            onTranslationChanged: {
+                                                if (!active) return
+                                                root._resizingColumnWidth = Math.max(60, Math.round(resizeHandle._startWidthPx + translation.x))
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                    }
+
+                    // Article list + preview split
+                    SplitView {
+                        id: articleSplitView
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
+                        orientation: Qt.Vertical
+                        clip: true
+
+                        handle: Rectangle {
+                            implicitHeight: 4
+                            color: SplitHandle.hovered || SplitHandle.pressed ? "#3a5a8a" : "#252525"
+                            Rectangle {
+                                anchors.centerIn: parent
+                                width: 28; height: 1
+                                color: SplitHandle.hovered || SplitHandle.pressed ? "#88bbff" : "#383838"
+                            }
+                        }
+
+                        ListView {
+                            id: articleList
+                            SplitView.fillWidth: true
+                            SplitView.fillHeight: true
+                            SplitView.minimumHeight: 60
+                            model: root.sortedArticles
+                            clip: true
+                            boundsBehavior: Flickable.StopAtBounds
+                            ScrollBar.vertical: ScrollBar {}
+
                             delegate: Rectangle {
-                                id: headerCell
-                                width: root.colWidth(modelData.key)
-                                height: parent.height
-                                readonly property bool isActive: root.articleSortKey === modelData.key
-                                color: headerCellMouse.containsMouse && !root._colDragging ? "#383838" : "transparent"
-                                opacity: (root._colDragging && root._colDragFromKey === modelData.key) ? 0.5 : 1.0
+                                id: articleDelegate
+                                required property var modelData
+                                required property int index
+                                width: articleList.width
+                                height: 26
+                                color: root.selectedArticleRow === index
+                                     ? "#1e3a6e"
+                                     : (articleMouse.containsMouse ? "#242434" : (index % 2 === 0 ? "#1c1c1c" : "#1e1e1e"))
 
+                                // Unread indicator bar on the left edge
                                 Rectangle {
-                                    visible: root._colDragging && root._colDragInsertBeforeKey === modelData.key
-                                    width: 2
-                                    height: parent.height
-                                    anchors.left: parent.left
-                                    color: "#4488dd"
-                                    z: 20
-                                }
-                                Rectangle {
-                                    visible: root._colDragging && root._colDragInsertBeforeKey === "__end__" && index === headerCellRepeater.count - 1
-                                    width: 2
-                                    height: parent.height
-                                    anchors.right: parent.right
-                                    color: "#4488dd"
-                                    z: 20
+                                    visible: !!articleDelegate.modelData.unread
+                                    width: 2; height: parent.height
+                                    color: root.selectedArticleRow === index ? "#88bbff" : "#4488dd"
                                 }
 
-                                Text {
-                                    anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: sortIndicator.left; rightMargin: 4 }
-                                    text: modelData.title
-                                    color: headerCell.isActive ? "#88bbff" : "#b0b0b0"
-                                    font.pixelSize: 12
-                                    font.bold: true
-                                    elide: Text.ElideRight
-                                }
+                                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#262626" }
 
-                                Text {
-                                    id: sortIndicator
-                                    anchors { verticalCenter: parent.verticalCenter; right: resizeHandle.left; rightMargin: 4 }
-                                    text: root.articleSortAscending ? "▲" : "▼"
-                                    color: "#88bbff"
-                                    font.pixelSize: 9
-                                    visible: headerCell.isActive
+                                // Columns — hardcoded to avoid Repeater/QQmlContext overhead
+                                Item {
+                                    id: col0
+                                    x: 0
+                                    width: root.visibleCols.length > 0 ? root.colWidth(root.visibleCols[0].key) : 0
+                                    height: parent.height
+                                    visible: root.visibleCols.length > 0
+                                    Text {
+                                        anchors { fill: parent; leftMargin: 8; rightMargin: 6 }
+                                        verticalAlignment: Text.AlignVCenter
+                                        text: {
+                                            if (!root.visibleCols.length) return ""
+                                            var k = root.visibleCols[0].key
+                                            if (k === "feed")      return articleDelegate.modelData.feedTitle || ""
+                                            if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
+                                            return articleDelegate.modelData.title || "Untitled"
+                                        }
+                                        color: {
+                                            if (root.visibleCols.length > 0 && root.visibleCols[0].key === "title") {
+                                                if (root.selectedArticleRow === index) return "#ffffff"
+                                                return !!articleDelegate.modelData.unread ? "#e8e8e8" : "#b0b0b0"
+                                            }
+                                            return root.selectedArticleRow === index ? "#ffffff" : "#c0c0c0"
+                                        }
+                                        font.pixelSize: 12
+                                        font.bold: root.visibleCols.length > 0 && root.visibleCols[0].key === "title"
+                                               && !!articleDelegate.modelData.unread
+                                        elide: Text.ElideRight
+                                    }
+                                }
+                                Item {
+                                    id: col1
+                                    x: col0.width
+                                    width: root.visibleCols.length > 1 ? root.colWidth(root.visibleCols[1].key) : 0
+                                    height: parent.height
+                                    visible: root.visibleCols.length > 1
+                                    Text {
+                                        anchors { fill: parent; leftMargin: 8; rightMargin: 6 }
+                                        verticalAlignment: Text.AlignVCenter
+                                        text: {
+                                            if (root.visibleCols.length < 2) return ""
+                                            var k = root.visibleCols[1].key
+                                            if (k === "feed")      return articleDelegate.modelData.feedTitle || ""
+                                            if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
+                                            return articleDelegate.modelData.title || "Untitled"
+                                        }
+                                        color: {
+                                            if (root.visibleCols.length > 1 && root.visibleCols[1].key === "title") {
+                                                if (root.selectedArticleRow === index) return "#ffffff"
+                                                return !!articleDelegate.modelData.unread ? "#e8e8e8" : "#b0b0b0"
+                                            }
+                                            return root.selectedArticleRow === index ? "#ffffff" : "#888888"
+                                        }
+                                        font.pixelSize: 12
+                                        font.bold: root.visibleCols.length > 1 && root.visibleCols[1].key === "title"
+                                               && !!articleDelegate.modelData.unread
+                                        elide: Text.ElideRight
+                                    }
+                                }
+                                Item {
+                                    id: col2
+                                    x: col0.width + col1.width
+                                    width: root.visibleCols.length > 2 ? root.colWidth(root.visibleCols[2].key) : 0
+                                    height: parent.height
+                                    visible: root.visibleCols.length > 2
+                                    Text {
+                                        anchors { fill: parent; leftMargin: 8; rightMargin: 6 }
+                                        verticalAlignment: Text.AlignVCenter
+                                        text: {
+                                            if (root.visibleCols.length < 3) return ""
+                                            var k = root.visibleCols[2].key
+                                            if (k === "feed")      return articleDelegate.modelData.feedTitle || ""
+                                            if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
+                                            return articleDelegate.modelData.title || "Untitled"
+                                        }
+                                        color: {
+                                            if (root.visibleCols.length > 2 && root.visibleCols[2].key === "title") {
+                                                if (root.selectedArticleRow === index) return "#ffffff"
+                                                return !!articleDelegate.modelData.unread ? "#e8e8e8" : "#b0b0b0"
+                                            }
+                                            return root.selectedArticleRow === index ? "#ffffff" : "#888888"
+                                        }
+                                        font.pixelSize: 12
+                                        font.bold: root.visibleCols.length > 2 && root.visibleCols[2].key === "title"
+                                               && !!articleDelegate.modelData.unread
+                                        elide: Text.ElideRight
+                                    }
                                 }
 
                                 MouseArea {
-                                    id: headerCellMouse
-                                    anchors { fill: parent; rightMargin: 10 }
+                                    id: articleMouse
+                                    anchors.fill: parent
                                     hoverEnabled: true
-                                    preventStealing: true
-                                    property real _pressX: 0
-                                    property bool _didDrag: false
-
-                                    onPressed: { _pressX = mouseX; _didDrag = false }
-
-                                    onPositionChanged: {
-                                        if (!(pressedButtons & Qt.LeftButton))
-                                            return
-                                        if (!root._colDragging && Math.abs(mouseX - _pressX) > 8) {
-                                            root._colDragFromKey = modelData.key
-                                            root._colDragging = true
-                                            _didDrag = true
-                                        }
-                                        if (root._colDragging && root._colDragFromKey === modelData.key) {
-                                            var cursorX = headerCellMouse.mapToItem(headerRow, mouseX, 0).x
-                                            var insertBefore = "__end__"
-                                            var xAcc = 0
-                                            for (var i = 0; i < root.visibleCols.length; ++i) {
-                                                var w = root.colWidth(root.visibleCols[i].key)
-                                                if (cursorX < xAcc + w / 2) {
-                                                    insertBefore = root.visibleCols[i].key
-                                                    break
-                                                }
-                                                xAcc += w
-                                            }
-                                            root._colDragInsertBeforeKey = insertBefore
-                                        }
+                                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+                                    onClicked: function(mouse) {
+                                        root.selectedArticleRow = articleDelegate.index
+                                        if (mouse.button === Qt.RightButton)
+                                            articleContextMenu.popup()
                                     }
-
-                                    onReleased: {
-                                        var didDrag = _didDrag
-                                        Qt.callLater(function() {
-                                            if (didDrag)
-                                                root.applyColReorder()
-                                            root._colDragging = false
-                                            root._colDragFromKey = ""
-                                            root._colDragInsertBeforeKey = ""
-                                        })
-                                        _didDrag = false
-                                    }
-
-                                    onClicked: {
-                                        if (!_didDrag)
-                                            root.applyArticleSort(modelData.key)
-                                    }
-                                }
-
-                                Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
-
-                                Item {
-                                    id: resizeHandle
-                                    width: 10
-                                    height: parent.height
-                                    anchors.right: parent.right
-                                    z: 10
-                                    property real _startWidthPx: 0
-
-                                    HoverHandler { id: resizeHover; cursorShape: Qt.SizeHorCursor }
-                                    DragHandler {
-                                        id: resizeDrag
-                                        target: null
-                                        xAxis.enabled: true
-                                        yAxis.enabled: false
-                                        cursorShape: Qt.SizeHorCursor
-
-                                        onActiveChanged: {
-                                            if (active) {
-                                                resizeHandle._startWidthPx = modelData.widthPx || 100
-                                                root._resizingColumnKey = modelData.key
-                                                root._resizingColumnWidth = resizeHandle._startWidthPx
-                                                return
-                                            }
-                                            if (root._resizingColumnKey === modelData.key) {
-                                                var defs = root.columnDefs.slice()
-                                                for (var j = 0; j < defs.length; ++j) {
-                                                    if (defs[j].key === modelData.key) {
-                                                        defs[j] = Object.assign({}, defs[j], { widthPx: root._resizingColumnWidth })
-                                                        break
-                                                    }
-                                                }
-                                                root._resizingColumnKey = ""
-                                                root._resizingColumnWidth = 0
-                                                root.columnDefs = defs
-                                            }
-                                        }
-
-                                        onTranslationChanged: {
-                                            if (!active)
-                                                return
-                                            root._resizingColumnWidth = Math.max(60, Math.round(resizeHandle._startWidthPx + translation.x))
-                                        }
+                                    onDoubleClicked: {
+                                        root.selectedArticleRow = articleDelegate.index
+                                        if (root.selectedArticleHasDownload) root.triggerSelectedDownload()
+                                        else root.openSelectedArticle()
                                     }
                                 }
                             }
                         }
-                    }
 
-                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
-                }
-
-                SplitView {
-                    id: articleSplitView
-                    anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-                    orientation: Qt.Vertical
-                    clip: true
-
-                    handle: Rectangle {
-                        implicitHeight: 5
-                        color: SplitHandle.hovered || SplitHandle.pressed ? "#3a5a8a" : "#2a2a2a"
+                        // ── Preview pane ─────────────────────────────────────
                         Rectangle {
-                            anchors.centerIn: parent
-                            width: 32
-                            height: 1
-                            color: SplitHandle.hovered || SplitHandle.pressed ? "#88bbff" : "#3a3a3a"
-                        }
-                    }
+                            SplitView.preferredHeight: root.previewPaneHeight
+                            SplitView.minimumHeight: 90
+                            SplitView.maximumHeight: root.height * 0.6
+                            onHeightChanged: root.previewPaneHeight = height
+                            color: "#191919"
 
-                    ListView {
-                        id: articleList
-                        SplitView.fillWidth: true
-                        SplitView.fillHeight: true
-                        SplitView.minimumHeight: 80
-                        model: root.sortedArticles
-                        clip: true
-                        boundsBehavior: Flickable.StopAtBounds
+                            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#2e2e2e" }
 
-                        delegate: Rectangle {
-                            id: articleDelegate
-                            required property var modelData
-                            required property int index
-                            width: articleList.width
-                            height: 24
-                            color: root.selectedArticleRow === index ? "#1e3a6e" : (articleMouse.containsMouse ? "#2a2a3a" : "transparent")
-
-                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#262626" }
-
-                            MouseArea {
-                                id: articleMouse
+                            ColumnLayout {
                                 anchors.fill: parent
-                                hoverEnabled: true
-                                onClicked: root.selectedArticleRow = articleDelegate.index
-                                onDoubleClicked: {
-                                    root.selectedArticleRow = articleDelegate.index
-                                    if (root.selectedArticleHasDownload)
-                                        root.triggerSelectedDownload()
-                                    else
-                                        root.openSelectedArticle()
-                                }
-                            }
-
-                            // Hardcoded columns instead of nested Repeater to avoid QQmlContext overhead
-                            Item {
-                                id: col0
-                                x: 0
-                                width: root.colWidth(root.visibleCols.length > 0 ? root.visibleCols[0].key : "title")
-                                height: parent.height
-                                visible: root.visibleCols.length > 0
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                    text: {
-                                        if (!root.visibleCols.length) return ""
-                                        var k = root.visibleCols[0].key
-                                        if (k === "feed") return articleDelegate.modelData.feedTitle || ""
-                                        if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
-                                        return articleDelegate.modelData.title || "Untitled item"
-                                    }
-                                    color: root.visibleCols.length > 0 && root.visibleCols[0].key === "title" && !!articleDelegate.modelData.unread ? "#ffffff" : "#d0d0d0"
-                                    font.pixelSize: 10
-                                    font.bold: root.visibleCols.length > 0 && root.visibleCols[0].key === "title" && !!articleDelegate.modelData.unread
-                                    elide: Text.ElideRight
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                            }
-                            Item {
-                                id: col1
-                                x: col0.width
-                                width: root.visibleCols.length > 1 ? root.colWidth(root.visibleCols[1].key) : 0
-                                height: parent.height
-                                visible: root.visibleCols.length > 1
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                    text: {
-                                        if (root.visibleCols.length < 2) return ""
-                                        var k = root.visibleCols[1].key
-                                        if (k === "feed") return articleDelegate.modelData.feedTitle || ""
-                                        if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
-                                        return articleDelegate.modelData.title || "Untitled item"
-                                    }
-                                    color: root.visibleCols.length > 1 && root.visibleCols[1].key === "title" && !!articleDelegate.modelData.unread ? "#ffffff" : "#d0d0d0"
-                                    font.pixelSize: 10
-                                    font.bold: root.visibleCols.length > 1 && root.visibleCols[1].key === "title" && !!articleDelegate.modelData.unread
-                                    elide: Text.ElideRight
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                            }
-                            Item {
-                                id: col2
-                                x: col0.width + col1.width
-                                width: root.visibleCols.length > 2 ? root.colWidth(root.visibleCols[2].key) : 0
-                                height: parent.height
-                                visible: root.visibleCols.length > 2
-                                Text {
-                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
-                                    text: {
-                                        if (root.visibleCols.length < 3) return ""
-                                        var k = root.visibleCols[2].key
-                                        if (k === "feed") return articleDelegate.modelData.feedTitle || ""
-                                        if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
-                                        return articleDelegate.modelData.title || "Untitled item"
-                                    }
-                                    color: root.visibleCols.length > 2 && root.visibleCols[2].key === "title" && !!articleDelegate.modelData.unread ? "#ffffff" : "#d0d0d0"
-                                    font.pixelSize: 10
-                                    font.bold: root.visibleCols.length > 2 && root.visibleCols[2].key === "title" && !!articleDelegate.modelData.unread
-                                    elide: Text.ElideRight
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                            }
-                        }
-                    }
-
-                    // Preview / description pane
-                    Rectangle {
-                        id: previewPane
-                        SplitView.preferredHeight: root.previewPaneHeight
-                        SplitView.minimumHeight: 100
-                        SplitView.maximumHeight: root.height * 0.65
-                        onHeightChanged: root.previewPaneHeight = height
-                        color: "#141414"
-                        border.color: "#2b2b2b"
-
-                        ColumnLayout {
-                            anchors.fill: parent
-                            anchors.margins: 8
-                            spacing: 4
-
-                            // Title + action buttons row
-                            RowLayout {
-                                Layout.fillWidth: true
+                                anchors.margins: 10
                                 spacing: 6
 
-                                Text {
+                                // Title row + action buttons
+                                RowLayout {
                                     Layout.fillWidth: true
-                                    text: selectedArticle.title || "Select an item"
-                                    color: "#f0f0f0"
-                                    font.pixelSize: 13
-                                    font.bold: true
-                                    elide: Text.ElideRight
-                                }
-                                DlgButton {
-                                    text: "Open in Browser"
-                                    enabled: !!selectedArticle.link
-                                    onClicked: root.openSelectedArticle()
-                                }
-                                DlgButton {
-                                    text: root.selectedArticleHasDownload ? "Download" : "Open"
-                                    primary: root.selectedArticleHasDownload
-                                    enabled: selectedArticleRow >= 0
-                                    onClicked: root.triggerSelectedDownload()
-                                }
-                                DlgButton {
-                                    text: selectedArticle.unread ? "Mark Read" : "Mark Unread"
-                                    enabled: selectedArticleRow >= 0
-                                    onClicked: root.markSelectedArticleRead(!!selectedArticle.unread)
-                                }
-                                DlgButton {
-                                    text: "Copy Link"
-                                    enabled: selectedArticleRow >= 0
-                                    onClicked: root.copySelectedLink()
-                                }
-                            }
+                                    spacing: 6
 
-                            // Feed name + date subtitle
-                            Text {
-                                Layout.fillWidth: true
-                                text: selectedArticle.feedTitle
-                                    ? selectedArticle.feedTitle + "  •  " + (selectedArticle.publishedDisplay || "Unknown date")
-                                    : "Choose an item to view its details."
-                                color: "#8fa0b3"
-                                font.pixelSize: 10
-                                elide: Text.ElideRight
-                            }
+                                    Text {
+                                        Layout.fillWidth: true
+                                        text: selectedArticle.title || "Select an article"
+                                        color: selectedArticle.title ? "#f0f0f0" : "#555"
+                                        font.pixelSize: 13
+                                        font.bold: true
+                                        elide: Text.ElideRight
+                                    }
 
-                            // Divider
-                            Rectangle {
-                                Layout.fillWidth: true
-                                height: 1
-                                color: "#2a2a2a"
-                            }
-
-                            // Article body area: optional thumbnail + scrollable text
-                            RowLayout {
-                                Layout.fillWidth: true
-                                Layout.fillHeight: true
-                                spacing: 8
-
-                                // Thumbnail (only when image is available)
-                                Rectangle {
-                                    visible: !!root.selectedArticleImageUrl
-                                    width: visible ? 160 : 0
-                                    Layout.preferredWidth: 160
-                                    Layout.fillHeight: true
-                                    color: "#101010"
-                                    border.color: "#252525"
-                                    radius: 2
-
-                                    Image {
-                                        anchors.fill: parent
-                                        anchors.margins: 4
-                                        source: root.selectedArticleImageUrl || ""
-                                        fillMode: Image.PreserveAspectFit
-                                        asynchronous: true
-                                        cache: true
+                                    DlgButton {
+                                        text: "Open in Browser"
+                                        enabled: !!selectedArticle.link
+                                        onClicked: root.openSelectedArticle()
+                                    }
+                                    DlgButton {
+                                        text: root.selectedArticleHasDownload ? "Download" : "Open"
+                                        primary: root.selectedArticleHasDownload
+                                        enabled: selectedArticleRow >= 0
+                                        onClicked: root.triggerSelectedDownload()
+                                    }
+                                    DlgButton {
+                                        text: selectedArticle.unread ? "Mark Read" : "Mark Unread"
+                                        enabled: selectedArticleRow >= 0
+                                        onClicked: root.markSelectedArticleRead(!!selectedArticle.unread)
+                                    }
+                                    DlgButton {
+                                        text: "Copy Link"
+                                        enabled: selectedArticleRow >= 0
+                                        onClicked: root.copySelectedLink()
                                     }
                                 }
 
-                                ScrollView {
+                                // Feed • date meta line
+                                Text {
+                                    Layout.fillWidth: true
+                                    text: selectedArticle.feedTitle
+                                        ? selectedArticle.feedTitle + "  ·  " + (selectedArticle.publishedDisplay || "")
+                                        : "Choose an article to view its summary."
+                                    color: "#5f7080"
+                                    font.pixelSize: 11
+                                    elide: Text.ElideRight
+                                }
+
+                                Rectangle { Layout.fillWidth: true; height: 1; color: "#272727" }
+
+                                // Body: thumbnail + text
+                                RowLayout {
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
-                                    clip: true
-                                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                                    spacing: 10
 
-                                    Column {
-                                        width: Math.max(260, parent.width - 14)
-                                        spacing: 6
+                                    Rectangle {
+                                        visible: !!root.selectedArticleImageUrl
+                                        Layout.preferredWidth: 150
+                                        Layout.fillHeight: true
+                                        color: "#111"
+                                        border.color: "#2a2a2a"
+                                        radius: 2
 
-                                        Text {
-                                            width: parent.width
-                                            text: selectedArticle.summary && selectedArticle.summary.length > 0
-                                                ? selectedArticle.summary
-                                                : ((!selectedArticle.descriptionHtml || selectedArticle.descriptionHtml.length === 0) ? "No summary available." : "")
-                                            color: "#c8c8c8"
-                                            font.pixelSize: 11
-                                            wrapMode: Text.WordWrap
-                                            visible: text.length > 0
+                                        Image {
+                                            anchors.fill: parent; anchors.margins: 4
+                                            source: root.selectedArticleImageUrl || ""
+                                            fillMode: Image.PreserveAspectFit
+                                            asynchronous: true; cache: true
                                         }
+                                    }
 
-                                        Text {
-                                            width: parent.width
-                                            visible: selectedArticle.descriptionHtml && selectedArticle.descriptionHtml.length > 0
-                                            text: selectedArticle.descriptionHtml || ""
-                                            textFormat: Text.RichText
-                                            color: "#c8c8c8"
-                                            linkColor: "#7fb4ff"
-                                            font.pixelSize: 11
-                                            wrapMode: Text.WordWrap
-                                            onLinkActivated: function(link) { Qt.openUrlExternally(link) }
+                                    ScrollView {
+                                        Layout.fillWidth: true
+                                        Layout.fillHeight: true
+                                        clip: true
+                                        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                                        Column {
+                                            width: Math.max(200, parent.width - 14)
+                                            spacing: 4
+
+                                            Text {
+                                                width: parent.width
+                                                text: selectedArticle.summary && selectedArticle.summary.length > 0
+                                                    ? selectedArticle.summary
+                                                    : ((!selectedArticle.descriptionHtml || selectedArticle.descriptionHtml.length === 0)
+                                                       ? (selectedArticle.title ? "No summary available." : "") : "")
+                                                color: "#c0c0c0"
+                                                font.pixelSize: 11
+                                                wrapMode: Text.WordWrap
+                                                visible: text.length > 0
+                                            }
+
+                                            Text {
+                                                width: parent.width
+                                                visible: !!selectedArticle.descriptionHtml && selectedArticle.descriptionHtml.length > 0
+                                                text: selectedArticle.descriptionHtml || ""
+                                                textFormat: Text.RichText
+                                                color: "#c0c0c0"
+                                                linkColor: "#7fb4ff"
+                                                font.pixelSize: 11
+                                                wrapMode: Text.WordWrap
+                                                onLinkActivated: function(link) { Qt.openUrlExternally(link) }
+                                            }
                                         }
                                     }
                                 }
@@ -992,5 +1110,50 @@ Window {
                 }
             }
         }
+
+        // ── Status bar ───────────────────────────────────────────────────────
+        Rectangle {
+            Layout.fillWidth: true
+            height: 22
+            color: "#222222"
+            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#2e2e2e" }
+
+            RowLayout {
+                anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
+                spacing: 10
+
+                Text {
+                    text: App.rssManager.statusText || ""
+                    color: "#6a7a8a"
+                    font.pixelSize: 11
+                    elide: Text.ElideRight
+                    Layout.fillWidth: true
+                }
+
+                Text {
+                    visible: App.rssManager.refreshInProgress
+                    text: "Refreshing…"
+                    color: "#5588cc"
+                    font.pixelSize: 11
+                }
+
+                Text {
+                    text: {
+                        var total   = App.rssManager.articleCount
+                        var unread  = 0
+                        for (var i = 0; i < App.rssManager.feedCount; ++i) {
+                            var f = App.rssManager.feedModel.feedData(i)
+                            unread += f.unreadCount || 0
+                        }
+                        if (total === 0) return ""
+                        return unread > 0 ? unread + " unread  ·  " + total + " items" : total + " items"
+                    }
+                    color: "#4a5a6a"
+                    font.pixelSize: 11
+                }
+            }
+        }
     }
+
+    RssDownloadRulesDialog { id: rssRulesDialog }
 }

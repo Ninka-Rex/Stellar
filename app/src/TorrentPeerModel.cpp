@@ -248,21 +248,33 @@ void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
         }
     }
 
-    std::stable_sort(sorted.begin(), sorted.end(), [&](const Entry &a, const Entry &b) {
-        return peerLess(a, b, m_sortKey, m_sortAscending);
-    });
+    // Build a lookup of incoming data by key for in-place updates.
+    QHash<QString, Entry> sortedByKey;
+    sortedByKey.reserve(sorted.size());
+    for (const auto &entry : sorted)
+        sortedByKey.insert(peerKey(entry), entry);
+
+    // Determine whether the peer set has structurally changed (peers added/removed).
+    QStringList currentKeys = keysFor(m_entries);
+    QStringList incomingKeys;
+    incomingKeys.reserve(sorted.size());
+    for (const auto &entry : sorted)
+        incomingKeys.append(peerKey(entry));
+    const bool structuralChange = QSet<QString>(currentKeys.begin(), currentKeys.end())
+                                  != QSet<QString>(incomingKeys.begin(), incomingKeys.end());
 
     if (m_structuralUpdatesDeferred && !m_entries.isEmpty()) {
+        // While the user is scrolling, always defer structural changes and
+        // only push data updates in place. Store full sorted snapshot for later.
+        std::stable_sort(sorted.begin(), sorted.end(), [&](const Entry &a, const Entry &b) {
+            return peerLess(a, b, m_sortKey, m_sortAscending);
+        });
         m_pendingEntries = sorted;
-        QHash<QString, Entry> incomingByKey;
-        incomingByKey.reserve(sorted.size());
-        for (const auto &entry : sorted)
-            incomingByKey.insert(peerKey(entry), entry);
 
         for (int i = 0; i < m_entries.size(); ++i) {
             const QString key = peerKey(m_entries.at(i));
-            const auto it = incomingByKey.constFind(key);
-            if (it == incomingByKey.constEnd())
+            const auto it = sortedByKey.constFind(key);
+            if (it == sortedByKey.constEnd())
                 continue;
             const QVector<int> changed = changedRolesFor(m_entries.at(i), it.value());
             if (!changed.isEmpty()) {
@@ -274,34 +286,41 @@ void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
     }
 
     if (m_entries.isEmpty() || sorted.isEmpty()) {
+        std::stable_sort(sorted.begin(), sorted.end(), [&](const Entry &a, const Entry &b) {
+            return peerLess(a, b, m_sortKey, m_sortAscending);
+        });
         beginResetModel();
         m_entries = sorted;
         endResetModel();
         return;
     }
 
-    QStringList currentKeys = keysFor(m_entries);
-    const QStringList targetKeys = keysFor(sorted);
-    if (currentKeys == targetKeys) {
-        for (int i = 0; i < sorted.size(); ++i) {
-            const QVector<int> changed = changedRolesFor(m_entries.at(i), sorted.at(i));
-            if (!changed.isEmpty())
+    if (!structuralChange) {
+        // Same set of peers — update values in-place without changing row order.
+        // This avoids layoutChanged on every live tick when a sort column is active,
+        // which caused the ListView to jump back to the top continuously.
+        for (int i = 0; i < m_entries.size(); ++i) {
+            const auto it = sortedByKey.constFind(peerKey(m_entries.at(i)));
+            if (it == sortedByKey.constEnd())
+                continue;
+            const QVector<int> changed = changedRolesFor(m_entries.at(i), it.value());
+            if (!changed.isEmpty()) {
+                m_entries[i] = it.value();
                 emit dataChanged(index(i, 0), index(i, 0), changed);
+            }
         }
-        m_entries = sorted;
         return;
     }
 
-    const QHash<QString, Entry> targetByKey = [&sorted]() {
-        QHash<QString, Entry> map;
-        map.reserve(sorted.size());
-        for (const auto &entry : sorted)
-            map.insert(peerKey(entry), entry);
-        return map;
-    }();
+    // Structural change: peers were added or removed. Sort the target list and
+    // apply minimal row inserts/removes, then reorder if needed.
+    std::stable_sort(sorted.begin(), sorted.end(), [&](const Entry &a, const Entry &b) {
+        return peerLess(a, b, m_sortKey, m_sortAscending);
+    });
+    const QStringList targetKeys = keysFor(sorted);
 
     for (int i = m_entries.size() - 1; i >= 0; --i) {
-        if (!targetByKey.contains(peerKey(m_entries.at(i)))) {
+        if (!sortedByKey.contains(peerKey(m_entries.at(i)))) {
             beginRemoveRows(QModelIndex(), i, i);
             m_entries.removeAt(i);
             endRemoveRows();
@@ -321,14 +340,22 @@ void TorrentPeerModel::setEntries(const QVector<Entry> &entries) {
         }
     }
 
+    // Update data values for surviving peers at their new positions.
+    for (int i = 0; i < m_entries.size(); ++i) {
+        const auto it = sortedByKey.constFind(peerKey(m_entries.at(i)));
+        if (it == sortedByKey.constEnd())
+            continue;
+        const QVector<int> changed = changedRolesFor(m_entries.at(i), it.value());
+        if (!changed.isEmpty()) {
+            m_entries[i] = it.value();
+            emit dataChanged(index(i, 0), index(i, 0), changed);
+        }
+    }
+
     if (keysFor(m_entries) != targetKeys) {
         emit layoutAboutToBeChanged();
         m_entries = sorted;
         emit layoutChanged();
-    } else {
-        m_entries = sorted;
-        if (!m_entries.isEmpty())
-            emit dataChanged(index(0, 0), index(m_entries.size() - 1, 0));
     }
 }
 
