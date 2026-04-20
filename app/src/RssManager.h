@@ -82,6 +82,9 @@ public:
     int articleCount() const { return m_articleModel ? m_articleModel->rowCount() : 0; }
     void setCurrentFeedId(const QString &feedId);
 
+    // Sets the background refresh interval. Pass 0 to disable.
+    void setRefreshInterval(int minutes);
+
     Q_INVOKABLE bool addSubscription(const QString &url);
     Q_INVOKABLE void removeSubscription(const QString &feedId);
     Q_INVOKABLE bool moveSubscription(int from, int to);
@@ -142,4 +145,5 @@ private:
     QString m_currentFeedId;
     bool m_refreshInProgress{false};
     QTimer m_saveTimer;
+    QTimer m_refreshTimer;
 };

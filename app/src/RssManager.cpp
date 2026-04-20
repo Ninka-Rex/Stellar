@@ -85,8 +85,23 @@ RssManager::RssManager(QNetworkAccessManager *nam, QObject *parent)
     m_saveTimer.setSingleShot(true);
     m_saveTimer.setInterval(150);
     connect(&m_saveTimer, &QTimer::timeout, this, &RssManager::save);
+
+    connect(&m_refreshTimer, &QTimer::timeout, this, &RssManager::refreshAll);
+
     load();
     rebuildModels();
+}
+
+void RssManager::setRefreshInterval(int minutes)
+{
+    if (minutes <= 0) {
+        m_refreshTimer.stop();
+        return;
+    }
+    const int ms = minutes * 60 * 1000;
+    m_refreshTimer.setInterval(ms);
+    if (!m_refreshTimer.isActive())
+        m_refreshTimer.start();
 }
 
 void RssManager::setCurrentFeedId(const QString &feedId)

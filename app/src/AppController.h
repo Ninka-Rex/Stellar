@@ -232,6 +232,9 @@ public:
     Q_INVOKABLE QString beginTorrentMetadataDownload(const QString &source, const QString &savePath = {},
                                                      const QString &category = {}, const QString &description = {},
                                                      bool startWhenReady = true);
+    void silentlyAddTorrent(const QString &source, const QString &savePath = {},
+                            const QString &category = {}, const QString &description = {},
+                            const QString &queueId = {});
     Q_INVOKABLE bool confirmTorrentDownload(const QString &downloadId, const QString &savePath = {},
                                             const QString &category = {}, const QString &description = {},
                                             bool startNow = true, const QString &queueId = {});

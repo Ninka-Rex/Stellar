@@ -621,13 +621,24 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             [this](const QString &url, const QString &savePath,
                    const QString &category, const QString &queueId, bool isTorrent) {
         if (isTorrent) {
-            beginTorrentMetadataDownload(url, savePath, category,
-                                         QStringLiteral("RSS auto-download"), true);
+            // Silent add: stage then immediately confirm so no dialog is shown.
+            silentlyAddTorrent(url, savePath, category,
+                               QStringLiteral("RSS auto-download"), queueId);
         } else {
             addUrl(url, savePath, category, QStringLiteral("RSS auto-download"),
                    true, {}, {}, {}, {}, {}, {}, queueId);
         }
     });
+
+    // Start the background RSS refresh timer using the configured interval.
+    // Re-arm it whenever the user changes the setting.
+    auto applyRssRefreshInterval = [this]() {
+        const int mins = m_settings->rssEnabled() ? m_settings->rssRefreshIntervalMins() : 0;
+        m_rssManager->setRefreshInterval(mins);
+    };
+    applyRssRefreshInterval();
+    connect(m_settings, &AppSettings::rssRefreshIntervalMinsChanged, this, applyRssRefreshInterval);
+    connect(m_settings, &AppSettings::rssEnabledChanged,             this, applyRssRefreshInterval);
     m_torrentSession = new TorrentSessionManager(this);
     refreshIpToCityDbInfo();
 
@@ -2039,6 +2050,73 @@ QString AppController::beginTorrentMetadataDownload(const QString &source, const
     if (!downloadId.isEmpty())
         emit torrentMetadataRequested(downloadId, startWhenReady);
     return downloadId;
+}
+
+// Adds a torrent/magnet silently (no metadata dialog). Used by RSS auto-download.
+// For magnet links the download starts immediately; for HTTP .torrent URLs the file
+// is fetched first, then confirmed. In both cases confirmTorrentDownload is called
+// so the item goes straight to the queue without user interaction.
+void AppController::silentlyAddTorrent(const QString &source, const QString &savePath,
+                                       const QString &category, const QString &description,
+                                       const QString &queueId)
+{
+    if (!m_torrentSession || !m_torrentSession->available())
+        return;
+
+    const QString trimmed = source.trimmed();
+    if (trimmed.isEmpty())
+        return;
+
+    // Magnet or bare info-hash — add directly and confirm immediately.
+    if (isTorrentUri(trimmed)) {
+        const QString id = addMagnetLink(trimmed, savePath, category, description, false, {});
+        if (!id.isEmpty())
+            confirmTorrentDownload(id, savePath, category, description, true, queueId);
+        return;
+    }
+
+    // HTTP/HTTPS URL serving a .torrent file — fetch it first.
+    if (QUrl(trimmed).scheme().startsWith(QStringLiteral("http"), Qt::CaseInsensitive)) {
+        QUrl torrentUrl(trimmed);
+        QNetworkRequest torrentReq(torrentUrl);
+        torrentReq.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
+                                QNetworkRequest::NoLessSafeRedirectPolicy);
+        torrentReq.setRawHeader("User-Agent", QStringLiteral("Stellar/%1").arg(appVersion()).toUtf8());
+        torrentReq.setTransferTimeout(30'000);
+
+        const QString sp   = savePath;
+        const QString cat  = category;
+        const QString desc = description;
+        const QString qid  = queueId;
+
+        QNetworkReply *reply = m_nam->get(torrentReq);
+        connect(reply, &QNetworkReply::finished, this, [this, reply, sp, cat, desc, qid]() {
+            reply->deleteLater();
+            if (reply->error() != QNetworkReply::NoError)
+                return; // Silently drop — auto-downloads are best-effort.
+            const QByteArray data = reply->readAll();
+            if (data.isEmpty())
+                return;
+            const QString tempDir = QStandardPaths::writableLocation(QStandardPaths::TempLocation)
+                                  + QStringLiteral("/Stellar");
+            QDir().mkpath(tempDir);
+            const QString tempPath = tempDir + QStringLiteral("/rss_%1.torrent")
+                                     .arg(QDateTime::currentMSecsSinceEpoch());
+            QFile f(tempPath);
+            if (!f.open(QIODevice::WriteOnly) || f.write(data) != data.size())
+                return;
+            f.close();
+            const QString id = addTorrentFile(tempPath, sp, cat, desc, false, {});
+            if (!id.isEmpty())
+                confirmTorrentDownload(id, sp, cat, desc, true, qid);
+        });
+        return;
+    }
+
+    // Local .torrent file path.
+    const QString id = addTorrentFile(trimmed, savePath, category, description, false, {});
+    if (!id.isEmpty())
+        confirmTorrentDownload(id, savePath, category, description, true, queueId);
 }
 
 bool AppController::confirmTorrentDownload(const QString &downloadId, const QString &savePath,
