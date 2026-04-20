@@ -128,6 +128,8 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setIsTorrent(obj[QLatin1String("isTorrent")].toBool(false));
         item->setTorrentSource(obj[QLatin1String("torrentSource")].toString());
         item->setTorrentTrackers(obj[QLatin1String("torrentTrackers")].toVariant().toStringList());
+        item->setTorrentUrlSeeds(obj[QLatin1String("torrentUrlSeeds")].toVariant().toStringList());
+        item->setTorrentHttpSeeds(obj[QLatin1String("torrentHttpSeeds")].toVariant().toStringList());
         item->setTorrentInfoHash(obj[QLatin1String("torrentInfoHash")].toString());
         item->setTorrentSeeders(obj[QLatin1String("torrentSeeders")].toInt());
         item->setTorrentPeers(obj[QLatin1String("torrentPeers")].toInt());
@@ -217,7 +219,11 @@ void DownloadDatabase::save(DownloadItem *item) {
     if (item->isTorrent()) {
         m[QStringLiteral("isTorrent")] = true;
         m[QStringLiteral("torrentSource")] = item->torrentSource();
-        m[QStringLiteral("torrentTrackers")] = item->torrentTrackers();
+        m[QStringLiteral("torrentTrackers")]  = item->torrentTrackers();
+        if (!item->torrentUrlSeeds().isEmpty())
+            m[QStringLiteral("torrentUrlSeeds")]  = item->torrentUrlSeeds();
+        if (!item->torrentHttpSeeds().isEmpty())
+            m[QStringLiteral("torrentHttpSeeds")] = item->torrentHttpSeeds();
         m[QStringLiteral("torrentInfoHash")] = item->torrentInfoHash();
         m[QStringLiteral("torrentSeeders")] = item->torrentSeeders();
         m[QStringLiteral("torrentPeers")] = item->torrentPeers();

@@ -51,7 +51,9 @@ class DownloadItem : public QObject {
     Q_PROPERTY(QString  lastTryDateStr READ lastTryDateStr NOTIFY lastTryAtChanged)
     Q_PROPERTY(bool     isTorrent     READ isTorrent      NOTIFY torrentChanged)
     Q_PROPERTY(QString  torrentSource READ torrentSource  NOTIFY torrentChanged)
-    Q_PROPERTY(QStringList torrentTrackers READ torrentTrackers NOTIFY torrentChanged)
+    Q_PROPERTY(QStringList torrentTrackers  READ torrentTrackers  NOTIFY torrentChanged)
+    Q_PROPERTY(QStringList torrentUrlSeeds  READ torrentUrlSeeds  NOTIFY torrentChanged)
+    Q_PROPERTY(QStringList torrentHttpSeeds READ torrentHttpSeeds NOTIFY torrentChanged)
     Q_PROPERTY(QString  torrentInfoHash READ torrentInfoHash NOTIFY torrentChanged)
     Q_PROPERTY(int      torrentSeeders     READ torrentSeeders     NOTIFY torrentStatsChanged)
     Q_PROPERTY(int      torrentListSeeders READ torrentListSeeders NOTIFY torrentStatsChanged)
@@ -151,7 +153,9 @@ public:
 
     bool isTorrent() const { return m_isTorrent; }
     QString torrentSource() const { return m_torrentSource; }
-    QStringList torrentTrackers() const { return m_torrentTrackers; }
+    QStringList torrentTrackers()  const { return m_torrentTrackers; }
+    QStringList torrentUrlSeeds()  const { return m_torrentUrlSeeds; }
+    QStringList torrentHttpSeeds() const { return m_torrentHttpSeeds; }
     QString torrentInfoHash() const { return m_torrentInfoHash; }
     int torrentSeeders()     const { return m_torrentSeeders; }
     int torrentListSeeders() const { return m_torrentListSeeders; }
@@ -177,7 +181,9 @@ public:
     QString torrentResumeData() const { return m_torrentResumeData; }
     void setIsTorrent(bool v);
     void setTorrentSource(const QString &v);
-    void setTorrentTrackers(const QStringList &v) { if (m_torrentTrackers != v) { m_torrentTrackers = v; emit torrentChanged(); } }
+    void setTorrentTrackers(const QStringList &v)  { if (m_torrentTrackers  != v) { m_torrentTrackers  = v; emit torrentChanged(); } }
+    void setTorrentUrlSeeds(const QStringList &v)  { if (m_torrentUrlSeeds  != v) { m_torrentUrlSeeds  = v; emit torrentChanged(); } }
+    void setTorrentHttpSeeds(const QStringList &v) { if (m_torrentHttpSeeds != v) { m_torrentHttpSeeds = v; emit torrentChanged(); } }
     void setTorrentInfoHash(const QString &v);
     void setTorrentSeeders(int v);
     void setTorrentListSeeders(int v) { if (m_torrentListSeeders != v) { m_torrentListSeeders = v; emit torrentStatsChanged(); } }
@@ -293,6 +299,8 @@ private:
     bool         m_isTorrent{false};
     QString      m_torrentSource;
     QStringList  m_torrentTrackers;
+    QStringList  m_torrentUrlSeeds;
+    QStringList  m_torrentHttpSeeds;
     QString      m_torrentInfoHash;
     int          m_torrentSeeders{0};
     int          m_torrentListSeeders{0};

@@ -220,6 +220,8 @@ public:
     Q_INVOKABLE bool setTorrentFileWantedByPath(const QString &downloadId, const QString &path, bool wanted);
     Q_INVOKABLE bool addTorrentTracker(const QString &downloadId, const QString &url);
     Q_INVOKABLE bool removeTorrentTracker(const QString &downloadId, const QString &url);
+    Q_INVOKABLE bool addTorrentWebSeed(const QString &downloadId, const QString &url);
+    Q_INVOKABLE bool removeTorrentWebSeed(const QString &downloadId, const QString &url);
     Q_INVOKABLE bool renameTorrentFile(const QString &downloadId, int fileIndex, const QString &newName);
     Q_INVOKABLE bool renameTorrentPath(const QString &downloadId, const QString &currentPath, const QString &newName);
     Q_INVOKABLE void setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd = false);

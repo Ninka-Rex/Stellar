@@ -65,6 +65,8 @@ public:
     bool setFileWantedByPath(const QString &downloadId, const QString &path, bool wanted);
     bool addTracker(const QString &downloadId, const QString &url);
     bool removeTracker(const QString &downloadId, const QString &url);
+    bool addWebSeed(const QString &downloadId, const QString &url);
+    bool removeWebSeed(const QString &downloadId, const QString &url);
     QStringList trackerUrls(const QString &downloadId) const;
     void setPerTorrentDownloadLimit(const QString &downloadId, int kbps);
     void setPerTorrentUploadLimit(const QString &downloadId, int kbps);

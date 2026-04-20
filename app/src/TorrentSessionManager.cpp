@@ -830,6 +830,56 @@ bool TorrentSessionManager::removeTracker(const QString &downloadId, const QStri
 #endif
 }
 
+bool TorrentSessionManager::addWebSeed(const QString &downloadId, const QString &url) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid() || url.trimmed().isEmpty())
+        return false;
+    // libtorrent distinguishes BEP-19 url_seeds from BEP-17 http_seeds;
+    // add_url_seed covers the common case (BEP-19 GetRight-style).
+    handle.add_url_seed(url.trimmed().toStdString());
+    if (DownloadItem *item = m_items.value(downloadId, nullptr).data()) {
+        QStringList seeds = item->torrentUrlSeeds();
+        if (!seeds.contains(url.trimmed())) {
+            seeds.append(url.trimmed());
+            item->setTorrentUrlSeeds(seeds);
+        }
+    }
+    saveResumeData(downloadId);
+    return true;
+#else
+    Q_UNUSED(downloadId);
+    Q_UNUSED(url);
+    return false;
+#endif
+}
+
+bool TorrentSessionManager::removeWebSeed(const QString &downloadId, const QString &url) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid() || url.trimmed().isEmpty())
+        return false;
+    const std::string u = url.trimmed().toStdString();
+    // Try url_seed (BEP-19) first, then http_seed (BEP-17)
+    handle.remove_url_seed(u);
+    handle.remove_http_seed(u);
+    if (DownloadItem *item = m_items.value(downloadId, nullptr).data()) {
+        QStringList urlSeeds  = item->torrentUrlSeeds();
+        QStringList httpSeeds = item->torrentHttpSeeds();
+        urlSeeds.removeAll(url.trimmed());
+        httpSeeds.removeAll(url.trimmed());
+        item->setTorrentUrlSeeds(urlSeeds);
+        item->setTorrentHttpSeeds(httpSeeds);
+    }
+    saveResumeData(downloadId);
+    return true;
+#else
+    Q_UNUSED(downloadId);
+    Q_UNUSED(url);
+    return false;
+#endif
+}
+
 #if defined(STELLAR_HAS_LIBTORRENT)
 void TorrentSessionManager::ensureSession() {
     if (!m_session)
@@ -1195,6 +1245,19 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     }
 
     item->setTorrentTrackers(trackerUrls(item->id()));
+
+    // Re-apply persisted web seeds so they survive an app restart
+    for (const QString &seedUrl : item->torrentUrlSeeds()) {
+        const QString u = seedUrl.trimmed();
+        if (!u.isEmpty())
+            handle.add_url_seed(u.toStdString());
+    }
+    for (const QString &seedUrl : item->torrentHttpSeeds()) {
+        const QString u = seedUrl.trimmed();
+        if (!u.isEmpty())
+            handle.add_http_seed(u.toStdString());
+    }
+
     item->setIsTorrent(true);
     item->setStatus(startPaused ? DownloadItem::Status::Paused : DownloadItem::Status::Checking);
     updateItemFromStatus(item, handle);
@@ -1961,6 +2024,17 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     item->setTorrentSeedingTimeSecs(static_cast<qint64>(st.seeding_duration.count()));
     item->setTorrentWastedBytes(st.total_failed_bytes + st.total_redundant_bytes);
     item->setTorrentConnections(st.num_connections);
+
+    // Populate web seeds (url_seeds = BEP-19 GetRight, http_seeds = BEP-17 Hoffman)
+    {
+        QStringList urlSeeds, httpSeeds;
+        for (const auto &seed : handle.url_seeds())
+            urlSeeds.push_back(QString::fromStdString(seed));
+        for (const auto &seed : handle.http_seeds())
+            httpSeeds.push_back(QString::fromStdString(seed));
+        item->setTorrentUrlSeeds(urlSeeds);
+        item->setTorrentHttpSeeds(httpSeeds);
+    }
 
     const QString id = item->id();
     if (m_movingIds.contains(id)) {

@@ -42,7 +42,8 @@ Window {
     readonly property bool peerListActive: visible && _isTorrent && currentTab === 3
     readonly property bool peerMapActive: visible && _isTorrent && currentTab === 4
     readonly property bool peerUpdatesActive: visible && _isTorrent && (currentTab === 3 || currentTab === 4)
-    readonly property bool trackerTabActive: visible && _isTorrent && currentTab === 5
+    readonly property bool trackerTabActive:  visible && _isTorrent && currentTab === 5
+    readonly property bool webSeedsTabActive: visible && _isTorrent && currentTab === 6
     readonly property var activePeerListModel: peerListActive ? torrentPeerModel : null
     readonly property var activePeerMapModel: peerMapActive ? torrentPeerModel : null
     readonly property var activeTrackerListModel: trackerTabActive ? torrentTrackerModel : null
@@ -274,7 +275,8 @@ Window {
     property string peerMapTrackerHoverUrl: ""
 
     // Tracker add panel visibility
-    property bool showTrackerAdd: false
+    property bool showTrackerAdd:  false
+    property bool showWebSeedAdd:  false
 
     // Speed history state (torrent Speed tab)
     readonly property var speedSpanOptions: [
@@ -374,6 +376,7 @@ Window {
     onItemChanged:  {
         currentTab = 0
         showTrackerAdd = false
+        showWebSeedAdd = false
         speedSamples = []
         speedHoverActive = false
         editPerTorrentDownLimitKBps = (root.item && root.item.isTorrent) ? (root.item.perTorrentDownLimitKBps | 0) : 0
@@ -1793,7 +1796,7 @@ Window {
                 Row {
                     anchors.fill: parent; spacing: 0
                     Repeater {
-                        model: ["General", "Speed", "Files", "Peers", "Swarm Map", "Trackers", "Piece Map"]
+                        model: ["General", "Speed", "Files", "Peers", "Swarm Map", "Trackers", "Web Seeds", "Piece Map"]
                         delegate: Rectangle {
                             width: tabLbl.implicitWidth + 28; height: parent.height
                             color: root.currentTab === index
@@ -4900,11 +4903,274 @@ Window {
                     }
                 }
 
+                // ── Web Seeds ─────────────────────────────────────────────────
+                Item {
+                    id: webSeedsTab
+
+                    // Build a flat ListModel from the two seed lists whenever either changes.
+                    // Each entry has: url (string), seedType (string: "URL Seed" or "HTTP Seed")
+                    ListModel { id: webSeedModel }
+
+                    function _rebuildModel() {
+                        webSeedModel.clear()
+                        if (!root.item) return
+                        var urlSeeds  = root.item.torrentUrlSeeds  || []
+                        var httpSeeds = root.item.torrentHttpSeeds || []
+                        for (var i = 0; i < urlSeeds.length; ++i)
+                            webSeedModel.append({ url: urlSeeds[i],  seedType: "URL Seed" })
+                        for (var j = 0; j < httpSeeds.length; ++j)
+                            webSeedModel.append({ url: httpSeeds[j], seedType: "HTTP Seed" })
+                    }
+
+                    Connections {
+                        target: root
+                        function onItemChanged() { webSeedsTab._rebuildModel() }
+                    }
+
+                    Connections {
+                        target: root.item
+                        enabled: !!root.item
+                        function onTorrentChanged() {
+                            if (root.webSeedsTabActive) webSeedsTab._rebuildModel()
+                        }
+                    }
+
+                    onVisibleChanged: {
+                        if (visible && root.webSeedsTabActive) _rebuildModel()
+                    }
+
+                    ColumnLayout {
+                        anchors.fill: parent; spacing: 0
+
+                        // Toolbar
+                        Rectangle {
+                            Layout.fillWidth: true; height: 34
+                            color: "#252525"
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#111" }
+
+                            RowLayout {
+                                anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
+                                Text {
+                                    text: "Web Seeds"
+                                    color: "#e0e0e0"; font.pixelSize: 12; font.bold: true
+                                }
+                                Text {
+                                    text: webSeedModel.count + (webSeedModel.count === 1 ? " seed" : " seeds")
+                                    color: "#666"; font.pixelSize: 11
+                                    leftPadding: 8
+                                }
+                                Item { Layout.fillWidth: true }
+                                DlgButton {
+                                    text: root.showWebSeedAdd ? "Cancel" : "Add seed…"
+                                    primary: !root.showWebSeedAdd
+                                    onClicked: {
+                                        root.showWebSeedAdd = !root.showWebSeedAdd
+                                        if (root.showWebSeedAdd) webSeedInput.forceActiveFocus()
+                                    }
+                                }
+                            }
+                        }
+
+                        // Add web seed panel (collapsible)
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.preferredHeight: root.showWebSeedAdd ? 130 : 0
+                            color: "#1d2030"; border.color: "#2a3050"
+                            clip: true
+                            visible: root.showWebSeedAdd
+
+                            Behavior on Layout.preferredHeight { NumberAnimation { duration: 120 } }
+
+                            ColumnLayout {
+                                anchors { fill: parent; margins: 10 }
+                                spacing: 6
+
+                                Text {
+                                    text: "Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted."
+                                    color: "#8899bb"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                                    Layout.fillWidth: true
+                                }
+
+                                Rectangle {
+                                    Layout.fillWidth: true; Layout.fillHeight: true
+                                    color: "#1b1b1b"
+                                    border.color: webSeedInput.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2; clip: true
+
+                                    ScrollView {
+                                        anchors.fill: parent
+                                        TextArea {
+                                            id: webSeedInput
+                                            placeholderText: "https://example.com/files/\nhttps://mirror.example.org/files/"
+                                            color: "#d0d0d0"; placeholderTextColor: "#444"
+                                            font.pixelSize: 11; wrapMode: TextArea.NoWrap
+                                            selectByMouse: true; background: null; padding: 6
+                                        }
+                                    }
+                                }
+
+                                RowLayout {
+                                    Layout.fillWidth: true; spacing: 6
+                                    Text {
+                                        id: webSeedAddStatusTxt; text: ""
+                                        color: "#6aaa6a"; font.pixelSize: 11
+                                    }
+                                    Item { Layout.fillWidth: true }
+                                    DlgButton {
+                                        text: "Add"
+                                        primary: true
+                                        enabled: !!root.item && webSeedInput.text.trim().length > 0
+                                        onClicked: {
+                                            if (!root.item) return
+                                            var lines = webSeedInput.text.split(/\r?\n/)
+                                            var added = 0
+                                            for (var i = 0; i < lines.length; ++i) {
+                                                var u = lines[i].trim()
+                                                if (!u || u[0] === "#") continue
+                                                App.addTorrentWebSeed(root.item.id, u)
+                                                added++
+                                            }
+                                            if (added > 0) {
+                                                webSeedInput.clear()
+                                                webSeedAddStatusTxt.text = added + " added"
+                                                webSeedAddStatusTxt.color = "#6aaa6a"
+                                                root.showWebSeedAdd = false
+                                                webSeedsTab._rebuildModel()
+                                            }
+                                            webSeedAddStatusClearTimer.restart()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // List header
+                        Rectangle {
+                            Layout.fillWidth: true; height: 26
+                            color: "#2d2d2d"; clip: true
+                            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                            Row {
+                                anchors { fill: parent; leftMargin: 8 }
+                                Text {
+                                    width: webSeedList.width * 0.72
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: "URL"; color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                }
+                                Text {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: "Type"; color: "#b0b0b0"; font.pixelSize: 12; font.bold: true
+                                }
+                            }
+                        }
+
+                        // Seed rows
+                        ListView {
+                            id: webSeedList
+                            Layout.fillWidth: true; Layout.fillHeight: true
+                            clip: true
+                            model: webSeedModel
+                            spacing: 0
+                            flickableDirection: Flickable.HorizontalAndVerticalFlick
+                            contentWidth: Math.max(width, 680)
+                            ScrollBar.vertical:   ScrollBar { policy: ScrollBar.AsNeeded }
+                            ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AlwaysOn }
+
+                            Text {
+                                anchors.centerIn: parent
+                                visible: webSeedList.count === 0
+                                text: "No web seeds"
+                                color: "#666"; font.pixelSize: 12
+                            }
+
+                            delegate: Rectangle {
+                                id: wsd
+                                required property int    index
+                                required property string url
+                                required property string seedType
+
+                                width: Math.max(ListView.view.width, webSeedList.contentWidth); height: 28
+                                color: wsMa.containsMouse ? "#2a2a2a" : (index % 2 === 0 ? "#1c1c1c" : "#222222")
+
+                                MouseArea {
+                                    id: wsMa; anchors.fill: parent; hoverEnabled: true
+                                    acceptedButtons: Qt.RightButton
+                                    onClicked: {
+                                        webSeedCtxMenu.seedUrl  = wsd.url
+                                        webSeedCtxMenu.seedType = wsd.seedType
+                                        webSeedCtxMenu.popup()
+                                    }
+                                }
+
+                                Row {
+                                    anchors { fill: parent; leftMargin: 8 }
+                                    spacing: 0
+                                    Item {
+                                        width: webSeedList.width * 0.72
+                                        height: parent.height; clip: true
+                                        Text {
+                                            anchors { fill: parent }
+                                            verticalAlignment: Text.AlignVCenter
+                                            text: wsd.url
+                                            color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight
+                                        }
+                                    }
+                                    Item {
+                                        width: webSeedList.width * 0.28
+                                        height: parent.height; clip: true
+                                        Text {
+                                            anchors { fill: parent }
+                                            verticalAlignment: Text.AlignVCenter
+                                            text: wsd.seedType
+                                            color: wsd.seedType === "URL Seed" ? "#6aaa6a" : "#c0a54a"
+                                            font.pixelSize: 12
+                                        }
+                                    }
+                                }
+                            }
+
+                            Menu {
+                                id: webSeedCtxMenu
+                                property string seedUrl:  ""
+                                property string seedType: ""
+
+                                Action {
+                                    text: "Copy URL"
+                                    onTriggered: {
+                                        if (webSeedCtxMenu.seedUrl.length > 0)
+                                            App.copyToClipboard(webSeedCtxMenu.seedUrl)
+                                    }
+                                }
+                                Action {
+                                    text: "Open in browser"
+                                    onTriggered: {
+                                        if (webSeedCtxMenu.seedUrl.length > 0)
+                                            Qt.openUrlExternally(webSeedCtxMenu.seedUrl)
+                                    }
+                                }
+                                MenuSeparator {}
+                                Action {
+                                    text: "Remove seed"
+                                    onTriggered: {
+                                        if (root.item && webSeedCtxMenu.seedUrl.length > 0) {
+                                            App.removeTorrentWebSeed(root.item.id, webSeedCtxMenu.seedUrl)
+                                            webSeedsTab._rebuildModel()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Timer {
+                        id: webSeedAddStatusClearTimer; interval: 4000
+                        onTriggered: webSeedAddStatusTxt.text = ""
+                    }
+                }
+
                 // ── Piece Map ─────────────────────────────────────────────────
                 Item {
                     id: pieceMapTab
 
-                    readonly property bool isActive: visible && root._isTorrent && root.currentTab === 6
+                    readonly property bool isActive: visible && root._isTorrent && root.currentTab === 7
                     property var pieceData: []
                     // maxRarity is the highest peer-count seen; used to scale the rarity gradient.
                     property int maxRarity: 1

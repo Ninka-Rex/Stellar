@@ -1872,6 +1872,18 @@ bool AppController::removeTorrentTracker(const QString &downloadId, const QStrin
     return true;
 }
 
+bool AppController::addTorrentWebSeed(const QString &downloadId, const QString &url) {
+    if (!m_torrentSession)
+        return false;
+    return m_torrentSession->addWebSeed(downloadId, url);
+}
+
+bool AppController::removeTorrentWebSeed(const QString &downloadId, const QString &url) {
+    if (!m_torrentSession)
+        return false;
+    return m_torrentSession->removeWebSeed(downloadId, url);
+}
+
 // Returns true only if name is a single legal filename component — no path
 // separators, not a dot-only relative navigation segment.  Callers must pass
 // the already-trimmed user input; the check is intentionally strict so that
