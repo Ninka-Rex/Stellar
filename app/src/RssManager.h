@@ -19,6 +19,7 @@
 #include <QObject>
 #include <QDateTime>
 #include <QHash>
+#include <QSet>
 #include <QTimer>
 #include <QVector>
 
@@ -98,6 +99,11 @@ signals:
     void statusTextChanged();
     void refreshInProgressChanged();
     void currentFeedIdChanged();
+    // Emitted for each article that matches an auto-download rule.
+    // savePath/category/queueId may be empty (caller uses defaults).
+    void downloadTriggered(const QString &url, const QString &savePath,
+                           const QString &category, const QString &queueId,
+                           bool isTorrent);
 
 private:
     struct ParsedFeed {
@@ -116,6 +122,8 @@ private:
     int feedIndex(const QString &feedId) const;
     void startFetch(int index);
     void handleReplyFinished(const QString &feedId, QNetworkReply *reply);
+    void applyAutoDownloadRules(const QString &feedId, const QVector<StoredArticle> &newArticles);
+    static bool ruleMatchesArticle(const QJsonObject &rule, const QString &title);
     ParsedFeed parseFeedXml(const QByteArray &xml, const QUrl &sourceUrl, QString *errorText) const;
     static bool looksLikeTorrentUrl(const QString &value);
     static bool looksLikeTorrentMimeType(const QString &mimeType);
@@ -129,6 +137,7 @@ private:
     RssArticleModel *m_articleModel{nullptr};
     QVector<FeedState> m_feeds;
     QHash<QNetworkReply *, QString> m_replyToFeed;
+    QSet<QString> m_autoDownloadedGuids; // GUIDs already triggered, persisted in save file
     QString m_statusText;
     QString m_currentFeedId;
     bool m_refreshInProgress{false};

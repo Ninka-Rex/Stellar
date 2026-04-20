@@ -617,6 +617,17 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_ytdlpManager  = new YtdlpManager(m_nam, this);
     m_torrentSearchManager = new TorrentSearchManager(m_nam, this);
     m_rssManager = new RssManager(m_nam, this);
+    connect(m_rssManager, &RssManager::downloadTriggered, this,
+            [this](const QString &url, const QString &savePath,
+                   const QString &category, const QString &queueId, bool isTorrent) {
+        if (isTorrent) {
+            beginTorrentMetadataDownload(url, savePath, category,
+                                         QStringLiteral("RSS auto-download"), true);
+        } else {
+            addUrl(url, savePath, category, QStringLiteral("RSS auto-download"),
+                   true, {}, {}, {}, {}, {}, {}, queueId);
+        }
+    });
     m_torrentSession = new TorrentSessionManager(this);
     refreshIpToCityDbInfo();
 

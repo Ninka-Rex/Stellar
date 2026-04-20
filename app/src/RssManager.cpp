@@ -19,6 +19,7 @@
 #include "StellarPaths.h"
 
 #include <QCryptographicHash>
+#include <QSettings>
 #include <QFile>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -304,6 +305,14 @@ void RssManager::load()
     }
     if (!m_feeds.isEmpty())
         m_currentFeedId = m_feeds.first().id;
+
+    // Load auto-downloaded GUIDs so we don't re-trigger on restart.
+    QFile guidFile(StellarPaths::dataDir() + QStringLiteral("/rss_autodownloaded.json"));
+    if (guidFile.exists() && guidFile.open(QIODevice::ReadOnly)) {
+        const QJsonArray guidArray = QJsonDocument::fromJson(guidFile.readAll()).array();
+        for (const QJsonValue &v : guidArray)
+            m_autoDownloadedGuids.insert(v.toString());
+    }
 }
 
 void RssManager::save() const
@@ -333,6 +342,117 @@ void RssManager::save() const
         return;
     file.write(QJsonDocument(array).toJson(QJsonDocument::Indented));
     file.commit();
+
+    // Persist auto-downloaded GUIDs. Cap at 2000 entries to avoid unbounded growth
+    // (oldest feeds cycle out of the article list anyway).
+    QJsonArray guidArray;
+    int skip = m_autoDownloadedGuids.size() > 2000 ? m_autoDownloadedGuids.size() - 2000 : 0;
+    for (const QString &guid : m_autoDownloadedGuids) {
+        if (skip-- > 0) continue;
+        guidArray.append(guid);
+    }
+    QSaveFile guidFile(StellarPaths::dataDir() + QStringLiteral("/rss_autodownloaded.json"));
+    if (guidFile.open(QIODevice::WriteOnly)) {
+        guidFile.write(QJsonDocument(guidArray).toJson(QJsonDocument::Compact));
+        guidFile.commit();
+    }
+}
+
+// Returns true if the article title satisfies the rule's filter criteria.
+bool RssManager::ruleMatchesArticle(const QJsonObject &rule, const QString &title)
+{
+    const bool useRegex = rule.value(QStringLiteral("useRegex")).toBool(false);
+    const QString mustContain    = rule.value(QStringLiteral("mustContain")).toString().trimmed();
+    const QString mustNotContain = rule.value(QStringLiteral("mustNotContain")).toString().trimmed();
+
+    if (!mustContain.isEmpty()) {
+        if (useRegex) {
+            QRegularExpression re(mustContain, QRegularExpression::CaseInsensitiveOption);
+            if (!re.match(title).hasMatch())
+                return false;
+        } else {
+            // Space-separated tokens joined by implicit AND; "|" between tokens = OR group.
+            // e.g. "foo bar | baz" → (foo AND bar) OR (baz)
+            const QStringList orGroups = mustContain.split(QLatin1Char('|'));
+            bool anyGroupMatched = false;
+            for (const QString &group : orGroups) {
+                const QStringList tokens = group.simplified().split(QLatin1Char(' '), Qt::SkipEmptyParts);
+                bool allMatch = true;
+                for (const QString &tok : tokens) {
+                    if (!title.contains(tok, Qt::CaseInsensitive)) { allMatch = false; break; }
+                }
+                if (allMatch) { anyGroupMatched = true; break; }
+            }
+            if (!anyGroupMatched)
+                return false;
+        }
+    }
+
+    if (!mustNotContain.isEmpty()) {
+        if (useRegex) {
+            QRegularExpression re(mustNotContain, QRegularExpression::CaseInsensitiveOption);
+            if (re.match(title).hasMatch())
+                return false;
+        } else {
+            const QStringList tokens = mustNotContain.simplified().split(QLatin1Char(' '), Qt::SkipEmptyParts);
+            for (const QString &tok : tokens) {
+                if (title.contains(tok, Qt::CaseInsensitive))
+                    return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+void RssManager::applyAutoDownloadRules(const QString &feedId, const QVector<StoredArticle> &newArticles)
+{
+    Q_UNUSED(feedId)
+
+    // Read settings fresh each call — rules can change while the app is running.
+    QSettings qs(StellarPaths::settingsFile(), QSettings::IniFormat);
+    if (!qs.value(QStringLiteral("rssAutoDownloadEnabled"), false).toBool())
+        return;
+
+    const QJsonArray rules = QJsonDocument::fromJson(
+        qs.value(QStringLiteral("rssDownloadRulesJson"), QStringLiteral("[]"))
+            .toString().toUtf8()).array();
+
+    if (rules.isEmpty())
+        return;
+
+    for (const StoredArticle &article : newArticles) {
+        // Skip articles we've already triggered a download for.
+        if (m_autoDownloadedGuids.contains(article.guid))
+            continue;
+
+        const QString url = article.downloadUrl.isEmpty() ? article.link : article.downloadUrl;
+        if (url.isEmpty())
+            continue;
+
+        for (const QJsonValue &ruleVal : rules) {
+            const QJsonObject rule = ruleVal.toObject();
+            if (!rule.value(QStringLiteral("enabled")).toBool(true))
+                continue;
+
+            if (!ruleMatchesArticle(rule, article.title))
+                continue;
+
+            // Ignore days: skip if we triggered a download within N days
+            const int ignoreDays = rule.value(QStringLiteral("ignoreDays")).toInt(0);
+            if (ignoreDays > 0) {
+                // Not yet implemented per-rule history — skip for now, just use the guid set
+            }
+
+            const QString savePath = rule.value(QStringLiteral("savePath")).toString();
+            const QString category = rule.value(QStringLiteral("category")).toString();
+            const QString queueId  = rule.value(QStringLiteral("queue")).toString();
+
+            m_autoDownloadedGuids.insert(article.guid);
+            emit downloadTriggered(url, savePath, category, queueId, article.isTorrent);
+            break; // First matching rule wins per article
+        }
+    }
 }
 
 void RssManager::rebuildModels()
@@ -494,12 +614,24 @@ void RssManager::handleReplyFinished(const QString &feedId, QNetworkReply *reply
                 feed.etag = QString::fromUtf8(reply->rawHeader("ETag"));
                 feed.lastModified = QString::fromUtf8(reply->rawHeader("Last-Modified"));
                 feed.articles.clear();
+
+                // Collect only articles we haven't seen before for auto-download matching.
+                // An article is "new" if its GUID was not in the previous article set.
+                // On the very first fetch (unreadByGuid is empty) we do NOT auto-download
+                // everything — that would flood the queue on first subscription.
+                const bool isFirstFetch = unreadByGuid.isEmpty();
+                QVector<StoredArticle> newArticles;
                 for (StoredArticle article : parsed.articles) {
                     if (unreadByGuid.contains(article.guid))
                         article.unread = unreadByGuid.value(article.guid);
+                    else if (!isFirstFetch)
+                        newArticles.append(article);
                     feed.articles.append(article);
                 }
                 setStatusText(QStringLiteral("Updated \"%1\".").arg(feed.title));
+
+                if (!newArticles.isEmpty())
+                    applyAutoDownloadRules(feed.id, newArticles);
             }
         }
     } else {
