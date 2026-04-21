@@ -647,6 +647,7 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
 
         if (httpStatus == 200 && m_segments.size() > 1) {
             qDebug() << "[ST] segment" << index << "got 200 instead of 206 — server ignores Range; falling back to single segment";
+            seg.lastByteTime = 0;
             fallbackToSingleSegment();
             return;
         }
