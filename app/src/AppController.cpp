@@ -564,7 +564,10 @@ void AppController::handleIpcPayload(const QByteArray &json) {
 void AppController::setQmlReady() {
     if (m_qmlReady) return;
     m_qmlReady = true;
-    // Drain any IPC payloads that arrived before QML was wired.
+    // Don't drain IPC payloads yet if the download list is still being restored
+    // from the database — duplicate detection would miss existing items and show
+    // the wrong dialog. Draining is deferred to the restore-complete callback.
+    if (m_restoring) return;
     const QList<QByteArray> pending = std::exchange(m_pendingIpcPayloads, {});
     for (const QByteArray &p : pending)
         handleIpcPayload(p);
@@ -1417,6 +1420,14 @@ AppController::AppController(QObject *parent) : QObject(parent) {
               if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
                       && m_settings->savedSpeedLimitKBps() > 0) {
                   m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+              }
+              // Drain IPC payloads that arrived during restore. QML may have
+              // already called setQmlReady() and deferred draining — do it now
+              // that the full download list is in memory so duplicate detection works.
+              if (m_qmlReady && !m_pendingIpcPayloads.isEmpty()) {
+                  const QList<QByteArray> pending = std::exchange(m_pendingIpcPayloads, {});
+                  for (const QByteArray &p : pending)
+                      handleIpcPayload(p);
               }
         });
     } else {
