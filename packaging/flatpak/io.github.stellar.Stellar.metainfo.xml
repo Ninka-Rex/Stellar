@@ -16,7 +16,10 @@
   <url type="vcs-browser">https://github.com/Ninka-Rex/Stellar</url>
   <launchable type="desktop-id">io.github.stellar.Stellar.desktop</launchable>
   <releases>
-                                                            <release version="0.6.2" date="2026-04-20">
+                                                                <release version="0.6.3" date="2026-04-20">
+      <description><p>Release 0.6.3.</p></description>
+    </release>
+    <release version="0.6.2" date="2026-04-20">
       <description><p>Release 0.6.2.</p></description>
     </release>
     <release version="0.6.0" date="2026-04-20">
