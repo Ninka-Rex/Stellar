@@ -19,6 +19,7 @@
 #include <QQuickAsyncImageProvider>
 #include <QFileIconProvider>
 #include <QHash>
+#include <QList>
 #include <QPixmap>
 #include <QIcon>
 #include <QDir>
@@ -35,9 +36,14 @@
 
 // Shared icon cache — accessed by worker threads, protected by mutex.
 // Keyed by full path (for existing files) or "__ext__<ext>" (for extension fallback).
+// Full-path entries are LRU-capped at kMaxPathEntries to prevent unbounded growth on
+// large queues (each thumbnail entry can be ~16 KB).
 struct IconCache {
+    static constexpr int kMaxPathEntries = 500;
+
     QMutex mutex;
     QHash<QString, QPixmap> cache;
+    QList<QString> lruPathKeys; // insertion-order list of full-path keys only
     QFileIconProvider iconProvider;
 
     static IconCache &instance() {
@@ -162,7 +168,7 @@ struct IconCache {
             }
             {
                 QMutexLocker locker(&mutex);
-                cache.insert(cleanId, px);
+                insertPathLocked(cleanId, px);
             }
             return scaled(px, sz);
         }
@@ -192,6 +198,19 @@ struct IconCache {
 
 private:
     IconCache() = default;
+
+    // Insert a full-path entry, evicting the oldest when the cap is reached.
+    // Must be called with mutex held.
+    void insertPathLocked(const QString &key, const QPixmap &px) {
+        if (!cache.contains(key)) {
+            if (lruPathKeys.size() >= kMaxPathEntries) {
+                const QString evict = lruPathKeys.takeFirst();
+                cache.remove(evict);
+            }
+            lruPathKeys.append(key);
+        }
+        cache.insert(key, px);
+    }
 
     static QPixmap scaled(const QPixmap &src, int sz) {
         if (sz == 32 || src.isNull()) return src;
