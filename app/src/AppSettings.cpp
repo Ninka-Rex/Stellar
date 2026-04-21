@@ -17,6 +17,7 @@
 #include "AppSettings.h"
 #include "AppVersion.h"
 #include "StellarPaths.h"
+#include "DownloadDatabase.h"
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
@@ -245,8 +246,8 @@ void AppSettings::load() {
     m_proxyType               = m_settings.value(QStringLiteral("proxyType"), 0).toInt();
     m_proxyHost               = m_settings.value(QStringLiteral("proxyHost"), QString()).toString();
     m_proxyPort               = m_settings.value(QStringLiteral("proxyPort"), 8080).toInt();
-    m_proxyUsername           = m_settings.value(QStringLiteral("proxyUsername"), QString()).toString();
-    m_proxyPassword           = m_settings.value(QStringLiteral("proxyPassword"), QString()).toString();
+    m_proxyUsername           = deobfuscateCred(m_settings.value(QStringLiteral("proxyUsername"), QString()).toString());
+    m_proxyPassword           = deobfuscateCred(m_settings.value(QStringLiteral("proxyPassword"), QString()).toString());
     m_perHostConnectionLimit  = m_settings.value(QStringLiteral("perHostConnectionLimit"), 8).toInt();
     m_rssEnabled              = m_settings.value(QStringLiteral("rssEnabled"), true).toBool();
     m_rssRefreshIntervalMins  = m_settings.value(QStringLiteral("rssRefreshIntervalMins"), 30).toInt();
@@ -441,8 +442,8 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("proxyType"),                   m_proxyType);
     m_settings.setValue(QStringLiteral("proxyHost"),                   m_proxyHost);
     m_settings.setValue(QStringLiteral("proxyPort"),                   m_proxyPort);
-    m_settings.setValue(QStringLiteral("proxyUsername"),               m_proxyUsername);
-    m_settings.setValue(QStringLiteral("proxyPassword"),               m_proxyPassword);
+    m_settings.setValue(QStringLiteral("proxyUsername"),               obfuscateCred(m_proxyUsername));
+    m_settings.setValue(QStringLiteral("proxyPassword"),               obfuscateCred(m_proxyPassword));
     m_settings.setValue(QStringLiteral("perHostConnectionLimit"),     m_perHostConnectionLimit);
     m_settings.setValue(QStringLiteral("rssEnabled"),               m_rssEnabled);
     m_settings.setValue(QStringLiteral("rssRefreshIntervalMins"),   m_rssRefreshIntervalMins);

@@ -24,8 +24,6 @@
 #include <QSaveFile>
 #include <QDebug>
 
-namespace {
-
 // Simple obfuscation (NOT encryption) for stored HTTP credentials.
 // Goal: prevent casual exposure via cloud backups, log grepping, or shoulder
 // surfing.  A motivated attacker with access to the binary can trivially
@@ -59,8 +57,6 @@ QString deobfuscateCred(const QString &stored)
         data[i] = static_cast<char>(static_cast<unsigned char>(data[i]) ^ static_cast<unsigned char>(kCredKey[i % keyLen]));
     return QString::fromUtf8(data);
 }
-
-} // namespace
 
 DownloadDatabase::DownloadDatabase(QObject *parent) : QObject(parent) {
     m_writeTimer.setSingleShot(true);

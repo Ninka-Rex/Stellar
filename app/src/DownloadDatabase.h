@@ -22,6 +22,10 @@
 #include <QTimer>
 #include "DownloadItem.h"
 
+// Shared XOR-obfuscation helpers — used by DownloadDatabase and AppSettings.
+QString obfuscateCred(const QString &plain);
+QString deobfuscateCred(const QString &stored);
+
 // Persists download history to a JSON file.
 // File location: QStandardPaths::AppDataLocation / "downloads.json"
 class DownloadDatabase : public QObject {
