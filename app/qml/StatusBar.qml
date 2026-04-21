@@ -37,7 +37,7 @@ Rectangle {
 
     RowLayout {
         anchors { fill: parent; leftMargin: 8; rightMargin: 8; topMargin: 1 }
-        spacing: 20
+        spacing: 8
 
         Text {
             text: {
