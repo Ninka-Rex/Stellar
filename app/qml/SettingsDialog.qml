@@ -2394,7 +2394,7 @@ Window {
                         // Info box explaining what to do
                         Rectangle {
                             Layout.fillWidth: true
-                            height: ffmpegNote.implicitHeight + 16
+                            implicitHeight: ffmpegNote.height + 16
                             radius: 4
                             color: "#1a2030"
                             border.color: "#2a3050"
@@ -2402,7 +2402,7 @@ Window {
 
                             Text {
                                 id: ffmpegNote
-                                anchors { fill: parent; margins: 8 }
+                                anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 8; rightMargin: 8; topMargin: 8 }
                                 text: "ffmpeg is required to merge separate video and audio streams into MP4/MKV. " +
                                       "Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).\n\n" +
                                       "To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), " +
@@ -2484,7 +2484,7 @@ Window {
                         // Info box shown when no runtime is detected
                         Rectangle {
                             Layout.fillWidth: true
-                            height: jsRuntimeNote.implicitHeight + 16
+                            implicitHeight: jsRuntimeNote.height + 16
                             radius: 4
                             color: "#1a2030"
                             border.color: "#2a3050"
@@ -2492,7 +2492,7 @@ Window {
 
                             Text {
                                 id: jsRuntimeNote
-                                anchors { fill: parent; margins: 8 }
+                                anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 8; rightMargin: 8; topMargin: 8 }
                                 text: "yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). " +
                                       "Without it, YouTube downloads may fail or return only low-quality storyboard formats.\n\n" +
                                       "Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. " +
