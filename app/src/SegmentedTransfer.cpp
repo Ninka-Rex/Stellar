@@ -79,6 +79,11 @@ QString sanitizeFilename(const QString &in) {
             out.append(c);
     }
 
+    // Collapse path-traversal sequences — "." and ".." are never valid filename
+    // components and could escape the save directory on unusual path-join paths.
+    if (out == QLatin1String(".") || out == QLatin1String(".."))
+        out = QStringLiteral("download");
+
     // Windows silently strips trailing spaces/dots; doing it ourselves
     // keeps the on-disk name consistent with what we think it is, which
     // matters for the part-file→output-file rename path.
