@@ -99,6 +99,10 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool    torrentEnableNatPmp READ torrentEnableNatPmp WRITE setTorrentEnableNatPmp NOTIFY torrentSettingsChanged)
     Q_PROPERTY(int     torrentListenPort READ torrentListenPort WRITE setTorrentListenPort NOTIFY torrentSettingsChanged)
     Q_PROPERTY(int     torrentConnectionsLimit READ torrentConnectionsLimit WRITE setTorrentConnectionsLimit NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentConnectionsLimitPerTorrent READ torrentConnectionsLimitPerTorrent WRITE setTorrentConnectionsLimitPerTorrent NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentUploadSlotsLimit READ torrentUploadSlotsLimit WRITE setTorrentUploadSlotsLimit NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentUploadSlotsLimitPerTorrent READ torrentUploadSlotsLimitPerTorrent WRITE setTorrentUploadSlotsLimitPerTorrent NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(int     torrentProtocol READ torrentProtocol WRITE setTorrentProtocol NOTIFY torrentSettingsChanged)
     Q_PROPERTY(int     torrentDownloadLimitKBps READ torrentDownloadLimitKBps WRITE setTorrentDownloadLimitKBps NOTIFY torrentSettingsChanged)
     Q_PROPERTY(int     torrentUploadLimitKBps READ torrentUploadLimitKBps WRITE setTorrentUploadLimitKBps NOTIFY torrentSettingsChanged)
     Q_PROPERTY(int     globalUploadLimitKBps READ globalUploadLimitKBps WRITE setGlobalUploadLimitKBps NOTIFY globalUploadLimitKBpsChanged)
@@ -203,6 +207,10 @@ public:
     bool    torrentEnableNatPmp()     const { return m_torrentEnableNatPmp; }
     int     torrentListenPort()       const { return m_torrentListenPort; }
     int     torrentConnectionsLimit() const { return m_torrentConnectionsLimit; }
+    int     torrentConnectionsLimitPerTorrent() const { return m_torrentConnectionsLimitPerTorrent; }
+    int     torrentUploadSlotsLimit() const { return m_torrentUploadSlotsLimit; }
+    int     torrentUploadSlotsLimitPerTorrent() const { return m_torrentUploadSlotsLimitPerTorrent; }
+    int     torrentProtocol() const { return m_torrentProtocol; }
     int     torrentDownloadLimitKBps() const { return m_torrentDownloadLimitKBps; }
     int     torrentUploadLimitKBps()  const { return m_torrentUploadLimitKBps; }
     int     globalUploadLimitKBps()   const { return m_globalUploadLimitKBps; }
@@ -296,6 +304,10 @@ public:
     void setTorrentEnableNatPmp(bool v);
     void setTorrentListenPort(int v);
     void setTorrentConnectionsLimit(int v);
+    void setTorrentConnectionsLimitPerTorrent(int v);
+    void setTorrentUploadSlotsLimit(int v);
+    void setTorrentUploadSlotsLimitPerTorrent(int v);
+    void setTorrentProtocol(int v);
     void setTorrentDownloadLimitKBps(int v);
     void setTorrentUploadLimitKBps(int v);
     void setGlobalUploadLimitKBps(int v);
@@ -472,7 +484,11 @@ private:
     bool        m_torrentEnableUpnp{true};
     bool        m_torrentEnableNatPmp{true};
     int         m_torrentListenPort{6881};
-    int         m_torrentConnectionsLimit{200};
+    int         m_torrentConnectionsLimit{200};            // libtorrent default: 200
+    int         m_torrentConnectionsLimitPerTorrent{0};   // 0 = use libtorrent default (-1 = unlimited)
+    int         m_torrentUploadSlotsLimit{8};             // libtorrent default: 8
+    int         m_torrentUploadSlotsLimitPerTorrent{0};   // 0 = use libtorrent default (-1 = unlimited)
+    int         m_torrentProtocol{0};                     // 0=TCP+μTP, 1=μTP only, 2=TCP only
     int         m_torrentDownloadLimitKBps{0};
     int         m_torrentUploadLimitKBps{0};
     int         m_globalUploadLimitKBps{0};

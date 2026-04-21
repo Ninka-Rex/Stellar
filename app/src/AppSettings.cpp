@@ -226,6 +226,10 @@ void AppSettings::load() {
     m_torrentEnableNatPmp     = m_settings.value(QStringLiteral("torrentEnableNatPmp"), true).toBool();
     m_torrentListenPort       = m_settings.value(QStringLiteral("torrentListenPort"), 6881).toInt();
     m_torrentConnectionsLimit = m_settings.value(QStringLiteral("torrentConnectionsLimit"), 200).toInt();
+    m_torrentConnectionsLimitPerTorrent = m_settings.value(QStringLiteral("torrentConnectionsLimitPerTorrent"), 0).toInt();
+    m_torrentUploadSlotsLimit = m_settings.value(QStringLiteral("torrentUploadSlotsLimit"), 8).toInt();
+    m_torrentUploadSlotsLimitPerTorrent = m_settings.value(QStringLiteral("torrentUploadSlotsLimitPerTorrent"), 0).toInt();
+    m_torrentProtocol = m_settings.value(QStringLiteral("torrentProtocol"), 0).toInt();
     m_torrentDownloadLimitKBps = m_settings.value(QStringLiteral("torrentDownloadLimitKBps"), 0).toInt();
     m_torrentUploadLimitKBps  = m_settings.value(QStringLiteral("torrentUploadLimitKBps"), 0).toInt();
     m_globalUploadLimitKBps   = m_settings.value(QStringLiteral("globalUploadLimitKBps"), 0).toInt();
@@ -422,6 +426,10 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("torrentEnableNatPmp"),         m_torrentEnableNatPmp);
     m_settings.setValue(QStringLiteral("torrentListenPort"),           m_torrentListenPort);
     m_settings.setValue(QStringLiteral("torrentConnectionsLimit"),     m_torrentConnectionsLimit);
+    m_settings.setValue(QStringLiteral("torrentConnectionsLimitPerTorrent"), m_torrentConnectionsLimitPerTorrent);
+    m_settings.setValue(QStringLiteral("torrentUploadSlotsLimit"),     m_torrentUploadSlotsLimit);
+    m_settings.setValue(QStringLiteral("torrentUploadSlotsLimitPerTorrent"), m_torrentUploadSlotsLimitPerTorrent);
+    m_settings.setValue(QStringLiteral("torrentProtocol"),             m_torrentProtocol);
     m_settings.setValue(QStringLiteral("torrentDownloadLimitKBps"),    m_torrentDownloadLimitKBps);
     m_settings.setValue(QStringLiteral("torrentUploadLimitKBps"),      m_torrentUploadLimitKBps);
     m_settings.setValue(QStringLiteral("globalUploadLimitKBps"),       m_globalUploadLimitKBps);
@@ -640,8 +648,12 @@ void AppSettings::setTorrentEnableLsd(bool v)             { if (m_torrentEnableL
 void AppSettings::setTorrentEnableUpnp(bool v)            { if (m_torrentEnableUpnp != v) { m_torrentEnableUpnp = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentEnableNatPmp(bool v)          { if (m_torrentEnableNatPmp != v) { m_torrentEnableNatPmp = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentListenPort(int v)             { if (m_torrentListenPort != v) { m_torrentListenPort = v; emit torrentSettingsChanged(); save(); } }
-void AppSettings::setTorrentConnectionsLimit(int v)       { if (m_torrentConnectionsLimit != v) { m_torrentConnectionsLimit = v; emit torrentSettingsChanged(); save(); } }
-void AppSettings::setTorrentDownloadLimitKBps(int v)      { if (m_torrentDownloadLimitKBps != v) { m_torrentDownloadLimitKBps = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentConnectionsLimit(int v)              { if (m_torrentConnectionsLimit != v) { m_torrentConnectionsLimit = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentConnectionsLimitPerTorrent(int v)    { if (m_torrentConnectionsLimitPerTorrent != v) { m_torrentConnectionsLimitPerTorrent = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentUploadSlotsLimit(int v)              { if (m_torrentUploadSlotsLimit != v) { m_torrentUploadSlotsLimit = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentUploadSlotsLimitPerTorrent(int v)    { if (m_torrentUploadSlotsLimitPerTorrent != v) { m_torrentUploadSlotsLimitPerTorrent = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentProtocol(int v)                      { if (m_torrentProtocol != v) { m_torrentProtocol = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentDownloadLimitKBps(int v)             { if (m_torrentDownloadLimitKBps != v) { m_torrentDownloadLimitKBps = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentUploadLimitKBps(int v)        { if (m_torrentUploadLimitKBps != v) { m_torrentUploadLimitKBps = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setGlobalUploadLimitKBps(int v)         { if (m_globalUploadLimitKBps != v) { m_globalUploadLimitKBps = v; emit globalUploadLimitKBpsChanged(); save(); } }
 void AppSettings::setTorrentDefaultShareRatio(double v)   { if (m_torrentDefaultShareRatio != v) { m_torrentDefaultShareRatio = v; emit torrentSettingsChanged(); save(); } }

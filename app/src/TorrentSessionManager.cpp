@@ -1019,7 +1019,33 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     pack.set_bool(libtorrent::settings_pack::enable_lsd, settings->torrentEnableLsd());
     pack.set_bool(libtorrent::settings_pack::enable_upnp, settings->torrentEnableUpnp());
     pack.set_bool(libtorrent::settings_pack::enable_natpmp, settings->torrentEnableNatPmp());
-    pack.set_int(libtorrent::settings_pack::connections_limit, settings->torrentConnectionsLimit());
+    // Global connection and upload slot limits
+    pack.set_int(libtorrent::settings_pack::connections_limit,
+                 settings->torrentConnectionsLimit());
+    pack.set_int(libtorrent::settings_pack::unchoke_slots_limit,
+                 settings->torrentUploadSlotsLimit() > 0
+                     ? settings->torrentUploadSlotsLimit() : -1);
+    // Protocol: 0=TCP+μTP (default), 1=μTP only, 2=TCP only
+    switch (settings->torrentProtocol()) {
+    case 1: // μTP only
+        pack.set_bool(libtorrent::settings_pack::enable_outgoing_tcp, false);
+        pack.set_bool(libtorrent::settings_pack::enable_incoming_tcp, false);
+        pack.set_bool(libtorrent::settings_pack::enable_outgoing_utp, true);
+        pack.set_bool(libtorrent::settings_pack::enable_incoming_utp, true);
+        break;
+    case 2: // TCP only
+        pack.set_bool(libtorrent::settings_pack::enable_outgoing_tcp, true);
+        pack.set_bool(libtorrent::settings_pack::enable_incoming_tcp, true);
+        pack.set_bool(libtorrent::settings_pack::enable_outgoing_utp, false);
+        pack.set_bool(libtorrent::settings_pack::enable_incoming_utp, false);
+        break;
+    default: // TCP + μTP
+        pack.set_bool(libtorrent::settings_pack::enable_outgoing_tcp, true);
+        pack.set_bool(libtorrent::settings_pack::enable_incoming_tcp, true);
+        pack.set_bool(libtorrent::settings_pack::enable_outgoing_utp, true);
+        pack.set_bool(libtorrent::settings_pack::enable_incoming_utp, true);
+        break;
+    }
     const int effectiveDownloadLimitKBps = settings->globalSpeedLimitKBps() > 0
         ? settings->globalSpeedLimitKBps()
         : 0;
@@ -1139,6 +1165,19 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     }
 
     m_session->apply_settings(pack);
+
+    // Per-torrent limits are not in settings_pack — apply to all existing handles.
+    // 0 = unlimited (-1 in libtorrent API).
+    const int maxConnsPerTorrent  = settings->torrentConnectionsLimitPerTorrent() > 0
+                                        ? settings->torrentConnectionsLimitPerTorrent() : -1;
+    const int maxUploadsPerTorrent = settings->torrentUploadSlotsLimitPerTorrent() > 0
+                                        ? settings->torrentUploadSlotsLimitPerTorrent() : -1;
+    for (auto &handle : m_handles) {
+        if (handle.is_valid()) {
+            handle.set_max_connections(maxConnsPerTorrent);
+            handle.set_max_uploads(maxUploadsPerTorrent);
+        }
+    }
 }
 
 QString TorrentSessionManager::idForHandle(const libtorrent::torrent_handle &handle) const {
@@ -1206,6 +1245,16 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     if (ec || !handle.is_valid()) {
         emit torrentErrored(item->id(), ec ? QString::fromStdString(ec.message()) : QStringLiteral("Failed to add torrent"));
         return false;
+    }
+
+    // Apply per-torrent connection and upload-slot limits from settings.
+    if (m_settings) {
+        const int maxConns = m_settings->torrentConnectionsLimitPerTorrent() > 0
+                                 ? m_settings->torrentConnectionsLimitPerTorrent() : -1;
+        const int maxUploads = m_settings->torrentUploadSlotsLimitPerTorrent() > 0
+                                   ? m_settings->torrentUploadSlotsLimitPerTorrent() : -1;
+        handle.set_max_connections(maxConns);
+        handle.set_max_uploads(maxUploads);
     }
 
     // Apply stored per-torrent flags before registering the handle.

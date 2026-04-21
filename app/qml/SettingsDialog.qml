@@ -89,6 +89,10 @@ Window {
     property bool   editTorrentEnableNatPmp:   true
     property int    editTorrentListenPort:     6881
     property int    editTorrentConnectionsLimit: 200
+    property int    editTorrentConnectionsLimitPerTorrent: 0
+    property int    editTorrentUploadSlotsLimit: 8
+    property int    editTorrentUploadSlotsLimitPerTorrent: 0
+    property int    editTorrentProtocol: 0
     property string editTorrentCustomUserAgent: ""
     property string editTorrentBindInterface:  ""
     property string editTorrentBlockedPeerUserAgents: ""
@@ -371,6 +375,10 @@ Window {
         editTorrentEnableNatPmp   !== App.settings.torrentEnableNatPmp   ||
         editTorrentListenPort     !== App.settings.torrentListenPort     ||
         editTorrentConnectionsLimit !== App.settings.torrentConnectionsLimit ||
+        editTorrentConnectionsLimitPerTorrent !== App.settings.torrentConnectionsLimitPerTorrent ||
+        editTorrentUploadSlotsLimit !== App.settings.torrentUploadSlotsLimit ||
+        editTorrentUploadSlotsLimitPerTorrent !== App.settings.torrentUploadSlotsLimitPerTorrent ||
+        editTorrentProtocol !== App.settings.torrentProtocol ||
         editTorrentCustomUserAgent !== App.settings.torrentCustomUserAgent ||
         editTorrentBindInterface  !== App.settings.torrentBindInterface  ||
         editTorrentBlockedPeerUserAgents !== App.settings.torrentBlockedPeerUserAgents ||
@@ -561,6 +569,10 @@ Window {
         App.settings.torrentEnableNatPmp    = editTorrentEnableNatPmp
         App.settings.torrentListenPort      = editTorrentListenPort
         App.settings.torrentConnectionsLimit = editTorrentConnectionsLimit
+        App.settings.torrentConnectionsLimitPerTorrent = editTorrentConnectionsLimitPerTorrent
+        App.settings.torrentUploadSlotsLimit = editTorrentUploadSlotsLimit
+        App.settings.torrentUploadSlotsLimitPerTorrent = editTorrentUploadSlotsLimitPerTorrent
+        App.settings.torrentProtocol = editTorrentProtocol
         App.settings.torrentCustomUserAgent = editTorrentCustomUserAgent
         App.settings.torrentBindInterface   = editTorrentBindInterface
         App.settings.torrentBlockedPeerUserAgents = editTorrentBlockedPeerUserAgents
@@ -635,6 +647,10 @@ Window {
         editTorrentEnableNatPmp   = App.settings.torrentEnableNatPmp
         editTorrentListenPort     = App.settings.torrentListenPort
         editTorrentConnectionsLimit = App.settings.torrentConnectionsLimit
+        editTorrentConnectionsLimitPerTorrent = App.settings.torrentConnectionsLimitPerTorrent
+        editTorrentUploadSlotsLimit = App.settings.torrentUploadSlotsLimit
+        editTorrentUploadSlotsLimitPerTorrent = App.settings.torrentUploadSlotsLimitPerTorrent
+        editTorrentProtocol = App.settings.torrentProtocol
         editTorrentCustomUserAgent = App.settings.torrentCustomUserAgent
         editTorrentBindInterface  = App.settings.torrentBindInterface
         editTorrentBlockedPeerUserAgents = App.settings.torrentBlockedPeerUserAgents
@@ -2603,26 +2619,78 @@ Window {
                                 text: String(root.editTorrentListenPort)
                                 validator: IntValidator { bottom: 1; top: 65535 }
                                 color: "#d0d0d0"
-                                background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"
-                                    radius: 3
-                                }
-                                onTextEdited: {
-                                    var parsed = parseInt(text, 10)
-                                    if (!isNaN(parsed))
-                                        root.editTorrentListenPort = parsed
-                                }
+                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n)) root.editTorrentListenPort = n }
                             }
 
-                            Text { text: "Connection limit"; color: "#c0c0c0"; font.pixelSize: 12 }
-                            SpinBox {
-                                from: 10; to: 2000
-                                value: root.editTorrentConnectionsLimit
-                                editable: true
-                                onValueChanged: root.editTorrentConnectionsLimit = value
+                            Text { text: "Global max connections"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            TextField {
+                                Layout.preferredWidth: 120
+                                text: String(root.editTorrentConnectionsLimit)
+                                validator: IntValidator { bottom: 1; top: 100000 }
+                                color: "#d0d0d0"
+                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 1) root.editTorrentConnectionsLimit = n }
                             }
 
+                            Text { text: "Max connections per torrent"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            TextField {
+                                Layout.preferredWidth: 120
+                                text: String(root.editTorrentConnectionsLimitPerTorrent)
+                                validator: IntValidator { bottom: 0; top: 100000 }
+                                color: "#d0d0d0"
+                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentConnectionsLimitPerTorrent = n }
+                            }
+
+                            Text { text: "Global max upload slots"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            TextField {
+                                Layout.preferredWidth: 120
+                                text: String(root.editTorrentUploadSlotsLimit)
+                                validator: IntValidator { bottom: 0; top: 100000 }
+                                color: "#d0d0d0"
+                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentUploadSlotsLimit = n }
+                            }
+
+                            Text { text: "Max upload slots per torrent"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            TextField {
+                                Layout.preferredWidth: 120
+                                text: String(root.editTorrentUploadSlotsLimitPerTorrent)
+                                validator: IntValidator { bottom: 0; top: 100000 }
+                                color: "#d0d0d0"
+                                background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentUploadSlotsLimitPerTorrent = n }
+                            }
+
+                            Item {}
+                            Text { text: "0 = unlimited (per-torrent fields and global upload slots)"; color: "#666666"; font.pixelSize: 10 }
+
+                            Text { text: "Protocol"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            ComboBox {
+                                id: torrentProtocolCombo
+                                Layout.preferredWidth: 160
+                                model: ["TCP and μTP", "μTP only", "TCP only"]
+                                currentIndex: root.editTorrentProtocol
+                                font.pixelSize: 12
+                                background: Rectangle { color: "#2d2d2d"; border.color: torrentProtocolCombo.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    text: torrentProtocolCombo.displayText
+                                    color: "#d0d0d0"; font: torrentProtocolCombo.font
+                                    verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
+                                }
+                                onActivated: root.editTorrentProtocol = currentIndex
+                            }
+                        }
+
+                        CheckBox {
+                            text: "Enable NAT-PMP"
+                            topPadding: 0
+                            bottomPadding: 0
+                            checked: root.editTorrentEnableNatPmp
+                            onCheckedChanged: root.editTorrentEnableNatPmp = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
@@ -2690,14 +2758,6 @@ Window {
                             bottomPadding: 0
                             checked: root.editTorrentEnableUpnp
                             onCheckedChanged: root.editTorrentEnableUpnp = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
-                        }
-                        CheckBox {
-                            text: "Enable NAT-PMP"
-                            topPadding: 0
-                            bottomPadding: 0
-                            checked: root.editTorrentEnableNatPmp
-                            onCheckedChanged: root.editTorrentEnableNatPmp = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
