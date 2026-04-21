@@ -982,7 +982,8 @@ void SegmentedTransfer::onProgressTick() {
         m_item->setEtaSpeed(etaSpeedBps);
     }
 
-    updateSegmentDataOnItem();
+    if (delta > 0)
+        updateSegmentDataOnItem();
 
     // Checkpoint the meta file every ~5 s so an ungraceful exit loses at
     // most 5 s of progress instead of the entire download.  loadMeta()
