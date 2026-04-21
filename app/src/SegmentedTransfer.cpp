@@ -857,6 +857,7 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         }
     }
 
+    seg.retryCount = 0;
     seg.done = true;
     if (seg.file) seg.file->close();
 
