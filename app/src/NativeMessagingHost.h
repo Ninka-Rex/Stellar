@@ -51,5 +51,5 @@ private:
     void writeMessage(const QByteArray &json);
     void handleMessage(const QByteArray &json);
 
-    // TODO: wire QSocketNotifier on stdin fd in Phase 3
+    QSocketNotifier *m_stdinNotifier{nullptr};
 };

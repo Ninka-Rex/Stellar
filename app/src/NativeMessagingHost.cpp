@@ -19,6 +19,12 @@
 #include <QJsonObject>
 #include <QDataStream>
 #include <QFile>
+#ifdef Q_OS_WIN
+#  include <io.h>
+#  include <fcntl.h>
+#else
+#  include <unistd.h>
+#endif
 
 // Chrome and Firefox both cap native messages at 1 MB.
 // Enforced in readMessage() before any buffer allocation.
@@ -27,27 +33,50 @@ static constexpr quint32 kMaxNativeMessageSize = 1024u * 1024u;
 NativeMessagingHost::NativeMessagingHost(QObject *parent) : QObject(parent) {}
 
 void NativeMessagingHost::start() {
-    // Phase 3: attach QSocketNotifier(STDIN_FILENO, QSocketNotifier::Read)
-    // and connect its activated() to readMessage()
+#ifdef Q_OS_WIN
+    // Switch stdin/stdout to binary mode so the 4-byte length header is not
+    // mangled by CR/LF translation on Windows.
+    _setmode(_fileno(stdin),  _O_BINARY);
+    _setmode(_fileno(stdout), _O_BINARY);
+    const int stdinFd = _fileno(stdin);
+#else
+    const int stdinFd = STDIN_FILENO;
+#endif
+    m_stdinNotifier = new QSocketNotifier(stdinFd, QSocketNotifier::Read, this);
+    connect(m_stdinNotifier, &QSocketNotifier::activated, this, &NativeMessagingHost::readMessage);
 }
 
 void NativeMessagingHost::readMessage() {
-    // Phase 3:
-    // 1. Read 4-byte little-endian length from stdin
-    // 2. Read that many bytes as UTF-8 JSON
-    // 3. Call handleMessage()
-    //
-    // SECURITY: CWE-789 — enforce the 1 MB message cap mandated by the Chrome
-    // and Firefox Native Messaging specs before allocating the message buffer.
-    // Without this, a malicious or misbehaving extension (or any process that
-    // can write to stdin) could send len = 0xFFFFFFFF and trigger a 4 GB
-    // allocation, crashing the process or exhausting system memory.
-    //
-    //   quint32 len = /* read 4 bytes LE from stdin */;
-    //   if (len == 0 || len > kMaxNativeMessageSize) { /* close / log / return */ }
-    //   QByteArray json(len, Qt::Uninitialized);
-    //   /* read len bytes */
-    //   handleMessage(json);
+    // Temporarily disable the notifier while we do blocking reads so it
+    // doesn't re-fire before we've consumed the current message.
+    m_stdinNotifier->setEnabled(false);
+
+    quint32 len = 0;
+    QFile in;
+    in.open(stdin, QIODevice::ReadOnly);
+
+    if (in.read(reinterpret_cast<char *>(&len), 4) != 4) {
+        // stdin closed — browser exited; stop the event loop gracefully.
+        m_stdinNotifier->setEnabled(false);
+        return;
+    }
+
+    // SECURITY: CWE-789 — Chrome and Firefox cap native messages at 1 MB.
+    // Reject oversized lengths before allocating to prevent a 4 GB allocation
+    // from a malicious or misbehaving caller.
+    if (len == 0 || len > kMaxNativeMessageSize) {
+        m_stdinNotifier->setEnabled(false);
+        return;
+    }
+
+    QByteArray json(static_cast<int>(len), Qt::Uninitialized);
+    if (in.read(json.data(), len) != static_cast<qint64>(len)) {
+        m_stdinNotifier->setEnabled(false);
+        return;
+    }
+
+    m_stdinNotifier->setEnabled(true);
+    handleMessage(json);
 }
 
 void NativeMessagingHost::handleMessage(const QByteArray &json) {
