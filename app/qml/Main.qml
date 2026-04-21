@@ -322,25 +322,27 @@ ApplicationWindow {
         }
     }
 
-    onXChanged: {
-        if (_geometrySaveReady && visibility === Window.Windowed)
-            App.settings.mainWindowX = x
+    // Debounce geometry saves — writing QSettings on every pixel of a drag
+    // causes a disk write per event and makes resizing feel laggy.
+    Timer {
+        id: geometrySaveTimer
+        interval: 500
+        repeat: false
+        onTriggered: {
+            if (!root._geometrySaveReady) return
+            if (root.visibility === Window.Windowed) {
+                App.settings.mainWindowX      = root.x
+                App.settings.mainWindowY      = root.y
+                App.settings.mainWindowWidth  = root.width
+                App.settings.mainWindowHeight = root.height
+            }
+        }
     }
 
-    onYChanged: {
-        if (_geometrySaveReady && visibility === Window.Windowed)
-            App.settings.mainWindowY = y
-    }
-
-    onWidthChanged: {
-        if (visibility !== Window.Minimized && width >= minimumWidth)
-            App.settings.mainWindowWidth = width
-    }
-
-    onHeightChanged: {
-        if (visibility !== Window.Minimized && height >= minimumHeight)
-            App.settings.mainWindowHeight = height
-    }
+    onXChanged:      { if (_geometrySaveReady && visibility === Window.Windowed)  geometrySaveTimer.restart() }
+    onYChanged:      { if (_geometrySaveReady && visibility === Window.Windowed)  geometrySaveTimer.restart() }
+    onWidthChanged:  { if (_geometrySaveReady && visibility !== Window.Minimized) geometrySaveTimer.restart() }
+    onHeightChanged: { if (_geometrySaveReady && visibility !== Window.Minimized) geometrySaveTimer.restart() }
 
     onClosing: (close) => {
         if (!isQuitting && App.settings.closeToTray) {
