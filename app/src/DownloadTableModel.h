@@ -61,6 +61,7 @@ public:
 
 private slots:
     void onItemChanged();
+    void onItemProgressChanged();
     void rebuildVisible();
 
 private:

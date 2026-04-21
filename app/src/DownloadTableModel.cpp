@@ -76,14 +76,15 @@ void DownloadTableModel::addItem(DownloadItem *item) {
     m_items.append(item);
     
     // Relay item change signals to model updates
-    connect(item, &DownloadItem::filenameChanged,  this, &DownloadTableModel::onItemChanged);
-    connect(item, &DownloadItem::totalBytesChanged,this, &DownloadTableModel::onItemChanged);
-    connect(item, &DownloadItem::doneBytesChanged, this, &DownloadTableModel::onItemChanged);
-    connect(item, &DownloadItem::speedChanged,     this, &DownloadTableModel::onItemChanged);
-    connect(item, &DownloadItem::statusChanged,     this, &DownloadTableModel::onItemChanged);
-    connect(item, &DownloadItem::errorStringChanged,this, &DownloadTableModel::onItemChanged);
-    connect(item, &DownloadItem::torrentStatsChanged, this, &DownloadTableModel::onItemChanged);
-    connect(item, &DownloadItem::torrentChanged, this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::filenameChanged,   this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::totalBytesChanged, this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::statusChanged,      this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::errorStringChanged, this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::torrentChanged,     this, &DownloadTableModel::onItemChanged);
+    // High-frequency tick signals — only progress/speed/ETA columns change.
+    connect(item, &DownloadItem::doneBytesChanged,    this, &DownloadTableModel::onItemProgressChanged);
+    connect(item, &DownloadItem::speedChanged,        this, &DownloadTableModel::onItemProgressChanged);
+    connect(item, &DownloadItem::torrentStatsChanged, this, &DownloadTableModel::onItemProgressChanged);
 
     // Add to visible if it matches current filter
     if (matchesFilter(item)) {
@@ -364,6 +365,14 @@ void DownloadTableModel::onItemChanged() {
             emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
         }
     }
+}
+
+void DownloadTableModel::onItemProgressChanged() {
+    auto *item = qobject_cast<DownloadItem *>(sender());
+    if (!item) return;
+    const int visRow = m_visible.indexOf(item);
+    if (visRow < 0) return;
+    emit dataChanged(index(visRow, ColProgress), index(visRow, ColTimeLeft));
 }
 
 int DownloadTableModel::statusSortKey(const QString &status) {
