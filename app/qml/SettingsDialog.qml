@@ -2293,7 +2293,8 @@ Window {
 
                         Item { Layout.fillHeight: true }
                     }
-                }
+                    } // ScrollView
+                } // General
 
                 // Media (video/audio downloader)
                 Item {
@@ -2599,9 +2600,8 @@ Window {
 
                         Item { height: 12 }
                     }
-                    } // ColumnLayout
                     } // ScrollView
-                } // General
+                } // Media
 
                 // Torrents
                 Item {

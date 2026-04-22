@@ -217,6 +217,7 @@ qt_add_qml_module(Stellar
         app/qml/QueueSelectionDialog.qml
         app/qml/YtdlpDialog.qml
         app/qml/TorrentMetadataDialog.qml
+        app/qml/TorrentDuplicateDialog.qml
         app/qml/TorrentSpeedLimitDialog.qml
         app/qml/DlgButton.qml
         app/qml/RssWindow.qml
@@ -317,6 +318,8 @@ qt_add_qml_module(Stellar
         app/qml/icons/custom_queue.png
         app/qml/icons/synch_queue.png
         app/qml/icons/globe.png
+        app/qml/icons/information.png
+        app/qml/icons/link.png
         app/qml/icons/file_no_longer_available.png
         app/qml/icons/world-map.svg
         app/qml/icons/page.ico

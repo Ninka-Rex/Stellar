@@ -129,12 +129,14 @@ ApplicationWindow {
         torrentMetadataDialog.category = category || ""
         torrentMetadataDialog.description = description || ""
         torrentMetadataDialog.startWhenReady = startWhenReady
-        torrentMetadataDialog.show()
-        torrentMetadataDialog.raise()
-        torrentMetadataDialog.requestActivate()
         Qt.callLater(function() {
             var torrentFileId = App.addTorrentFile(torrentFilePath, saveDir, category || "", description || "", false, "")
+            if (!torrentFileId || torrentFileId.length === 0)
+                return // duplicate — torrentDuplicateDetected signal already fired
             torrentMetadataDialog.downloadId = torrentFileId
+            torrentMetadataDialog.show()
+            torrentMetadataDialog.raise()
+            torrentMetadataDialog.requestActivate()
         })
     }
 
@@ -489,6 +491,9 @@ ApplicationWindow {
             addExceptionDialog.show()
             addExceptionDialog.raise()
         }
+        function onTorrentDuplicateDetected(existingId, newTrackers) {
+            torrentDuplicateDialog.open(existingId, newTrackers)
+        }
         function onInterceptedDownloadRequested(url, filename) {
             if (App.isTorrentUri(url)) {
                 var magnetId = App.addMagnetLink(url, App.settings.defaultSavePath, "", "", false, "")
@@ -725,23 +730,24 @@ ApplicationWindow {
             // Store auth credentials for step 2
             root._pendingUsername = useAuth ? username : ""
             root._pendingPassword = useAuth ? password : ""
-            var existing = App.findDuplicateUrl(normalizedUrl)
-            if (existing) {
-                var action = App.settings.duplicateAction
-                if (action === 0) {
-                    // Ask the user
-                    duplicateDialog.existingItem = existing
-                    duplicateDialog._pendingUrl  = normalizedUrl
-                    duplicateDialog.show()
-                    duplicateDialog.raise()
-                } else {
-                    _handleDuplicateAction(action, false, existing, normalizedUrl)
-                }
+            if (App.isTorrentUri(normalizedUrl)) {
+                // Torrent duplicate detection is done by info hash inside addMagnetLink;
+                // it emits torrentDuplicateDetected and returns {} on duplicate.
+                var torrentId = App.addMagnetLink(normalizedUrl, App.settings.defaultSavePath, "", "", false, "")
+                if (torrentId && torrentId.length > 0)
+                    root.showTorrentMetadataDialog(torrentId, true)
             } else {
-                if (App.isTorrentUri(normalizedUrl)) {
-                    var torrentId = App.addMagnetLink(normalizedUrl, App.settings.defaultSavePath, "", "", false, "")
-                    if (torrentId && torrentId.length > 0)
-                        root.showTorrentMetadataDialog(torrentId, true)
+                var existing = App.findDuplicateUrl(normalizedUrl)
+                if (existing) {
+                    var action = App.settings.duplicateAction
+                    if (action === 0) {
+                        duplicateDialog.existingItem = existing
+                        duplicateDialog._pendingUrl  = normalizedUrl
+                        duplicateDialog.show()
+                        duplicateDialog.raise()
+                    } else {
+                        _handleDuplicateAction(action, false, existing, normalizedUrl)
+                    }
                 } else {
                     _showFileInfoDialog(normalizedUrl, "")
                 }
@@ -1158,6 +1164,14 @@ ApplicationWindow {
             } else {
                 App.confirmTorrentDownload(downloadId, savePath, category, description, false, "")
             }
+        }
+    }
+
+    TorrentDuplicateDialog {
+        id: torrentDuplicateDialog
+        transientParent: root
+        onMergeRequested: (downloadId, trackers) => {
+            App.mergeTrackersInto(downloadId, trackers)
         }
     }
 

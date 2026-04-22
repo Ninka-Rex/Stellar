@@ -801,6 +801,67 @@ bool TorrentSessionManager::addTracker(const QString &downloadId, const QString 
 #endif
 }
 
+void TorrentSessionManager::mergeTrackers(const QString &downloadId, const QStringList &trackers) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid() || trackers.isEmpty())
+        return;
+    // Collect existing tracker URLs to avoid duplicates
+    QSet<QString> existing;
+    for (const auto &ae : handle.trackers())
+        existing.insert(QString::fromStdString(ae.url));
+    bool added = false;
+    for (const QString &url : trackers) {
+        const QString t = url.trimmed();
+        if (t.isEmpty() || existing.contains(t))
+            continue;
+        handle.add_tracker(libtorrent::announce_entry(t.toStdString()));
+        added = true;
+    }
+    if (added) {
+        handle.post_trackers();
+        if (DownloadItem *item = m_items.value(downloadId, nullptr).data())
+            item->setTorrentTrackers(trackerUrls(downloadId));
+        saveResumeData(downloadId);
+    }
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(trackers);
+#endif
+}
+
+QString TorrentSessionManager::infoHashFromSource(const QString &source) const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const QString s = source.trimmed();
+    // Magnet URI: extract xt=urn:btih:<hash>
+    if (s.startsWith(QStringLiteral("magnet:"), Qt::CaseInsensitive)) {
+        const QUrl url(s);
+        const QString query = url.query();
+        static const QString kBtih = QStringLiteral("xt=urn:btih:");
+        int idx = query.indexOf(kBtih, 0, Qt::CaseInsensitive);
+        if (idx >= 0) {
+            QString hash = query.mid(idx + kBtih.length());
+            int end = hash.indexOf(QLatin1Char('&'));
+            if (end >= 0)
+                hash = hash.left(end);
+            // Base32 → hex: libtorrent parse_magnet_uri handles this,
+            // but for comparison just normalise to lowercase.
+            return hash.toLower().trimmed();
+        }
+        return {};
+    }
+    // .torrent file: parse with libtorrent
+    libtorrent::error_code ec;
+    auto ti = std::make_shared<libtorrent::torrent_info>(s.toStdString(), ec);
+    if (!ec && ti->is_valid()) {
+        const auto bestHash = ti->info_hashes().get_best();
+        return toHexString(bestHash.to_string());
+    }
+#else
+    Q_UNUSED(source);
+#endif
+    return {};
+}
+
 bool TorrentSessionManager::removeTracker(const QString &downloadId, const QString &url) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const auto handle = m_handles.value(downloadId);

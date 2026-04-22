@@ -2212,7 +2212,30 @@ QString AppController::addMagnetLink(const QString &uri, const QString &savePath
         emit errorOccurred(QStringLiteral("Torrent support is unavailable in this build."));
         return {};
     }
-    auto *item = createTorrentItem(normalizeTorrentSource(uri), savePath, category, description, true, queueId, false, true);
+    // Duplicate detection: check by info hash before creating any item
+    const QString normalized = normalizeTorrentSource(uri);
+    const QString hash = m_torrentSession->infoHashFromSource(normalized);
+    if (!hash.isEmpty()) {
+        if (auto *existing = qobject_cast<DownloadItem *>(findDownloadByInfoHash(hash))) {
+            // Use live tracker URLs from the session (not the cached item property,
+            // which may be empty before the first announce fires)
+            const QStringList liveTrackers = m_torrentSession->trackerUrls(existing->id());
+            const QSet<QString> existingTrackers(liveTrackers.cbegin(), liveTrackers.cend());
+            QStringList newTrackers;
+            const QUrl magnetUrl(normalized);
+            const QUrlQuery q(magnetUrl.query());
+            for (const auto &pair : q.queryItems()) {
+                if (pair.first.compare(QStringLiteral("tr"), Qt::CaseInsensitive) == 0) {
+                    const QString t = QUrl::fromPercentEncoding(pair.second.toUtf8()).trimmed();
+                    if (!t.isEmpty() && !existingTrackers.contains(t))
+                        newTrackers << t;
+                }
+            }
+            emit torrentDuplicateDetected(existing->id(), newTrackers);
+            return {};
+        }
+    }
+    auto *item = createTorrentItem(normalized, savePath, category, description, true, queueId, false, true);
     if (!item)
         return {};
     if (!m_torrentSession->addMagnet(item, false)) {
@@ -2232,6 +2255,14 @@ QString AppController::addTorrentFile(const QString &filePath, const QString &sa
     if (!m_torrentSession || !m_torrentSession->available()) {
         emit errorOccurred(QStringLiteral("Torrent support is unavailable in this build."));
         return {};
+    }
+    // Duplicate detection by info hash
+    const QString hash = m_torrentSession->infoHashFromSource(filePath);
+    if (!hash.isEmpty()) {
+        if (auto *existing = qobject_cast<DownloadItem *>(findDownloadByInfoHash(hash))) {
+            emit torrentDuplicateDetected(existing->id(), {});
+            return {};
+        }
     }
     auto *item = createTorrentItem(filePath, savePath, category, description, true, queueId, false, true);
     if (!item)
@@ -2568,6 +2599,23 @@ void AppController::discardPendingDownload(const QString &downloadId) {
 QObject *AppController::findDuplicateUrl(const QString &url) const {
     const QUrl qurl = QUrl::fromUserInput(url);
     return m_downloadModel->itemByUrl(qurl);
+}
+
+QObject *AppController::findDownloadByInfoHash(const QString &infoHash) const {
+    const QString needle = infoHash.toLower().trimmed();
+    if (needle.isEmpty())
+        return nullptr;
+    for (auto *item : m_queue->items()) {
+        if (item->torrentInfoHash().toLower() == needle)
+            return item;
+    }
+    return nullptr;
+}
+
+void AppController::mergeTrackersInto(const QString &downloadId, const QStringList &trackers) {
+    if (!m_torrentSession || trackers.isEmpty())
+        return;
+    m_torrentSession->mergeTrackers(downloadId, trackers);
 }
 
 QString AppController::generateNumberedFilename(const QString &filename) const {

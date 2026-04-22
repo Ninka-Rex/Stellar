@@ -295,6 +295,8 @@ public:
     Q_INVOKABLE void moveUpInQueue(const QString &downloadId);
     Q_INVOKABLE void moveDownInQueue(const QString &downloadId);
     Q_INVOKABLE QObject *findDuplicateUrl(const QString &url) const;
+    Q_INVOKABLE QObject *findDownloadByInfoHash(const QString &infoHash) const;
+    Q_INVOKABLE void     mergeTrackersInto(const QString &downloadId, const QStringList &trackers);
     Q_INVOKABLE QString  generateNumberedFilename(const QString &filename) const;
     Q_INVOKABLE bool     fileExists(const QString &path) const;
     Q_INVOKABLE QString  normalizeTorrentSaveDirectory(const QString &path) const;
@@ -361,6 +363,7 @@ signals:
     void errorOccurred(const QString &message);
     void showWindowRequested();
     void torrentMetadataRequested(const QString &downloadId, bool startWhenReady);
+    void torrentDuplicateDetected(const QString &existingId, const QStringList &newTrackers);
     void downloadAdded(QObject *item);
     void downloadCompleted(QObject *item);
     void trayGithubRequested();

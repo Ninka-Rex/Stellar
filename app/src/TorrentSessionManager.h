@@ -64,6 +64,8 @@ public:
     bool setFileWantedByFileIndex(const QString &downloadId, int fileIndex, bool wanted);
     bool setFileWantedByPath(const QString &downloadId, const QString &path, bool wanted);
     bool addTracker(const QString &downloadId, const QString &url);
+    void mergeTrackers(const QString &downloadId, const QStringList &trackers);
+    QString infoHashFromSource(const QString &source) const;
     bool removeTracker(const QString &downloadId, const QString &url);
     bool addWebSeed(const QString &downloadId, const QString &url);
     bool removeWebSeed(const QString &downloadId, const QString &url);
