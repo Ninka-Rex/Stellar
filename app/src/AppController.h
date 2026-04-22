@@ -430,6 +430,7 @@ private:
     QTimer                 *m_saveTimer{nullptr};
     QTimer                 *m_torrentStatsFlushTimer{nullptr};
     QTimer                 *m_tooltipTimer{nullptr};
+    QTimer                 *m_speedTimer{nullptr};
     qint64                  m_totalDownSpeed{0};
     qint64                  m_totalUpSpeed{0};
     int                     m_seedingCount{0};

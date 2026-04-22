@@ -690,15 +690,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_queue, &DownloadQueue::activeCountChanged,
             this,    &AppController::activeDownloadsChanged);
 
-    // Update live speed properties and tray tooltip on a 5-second cadence.
-    // 5 s is long enough that the tooltip stays visible when the user hovers —
-    // Windows hides and re-shows the tooltip on every setToolTip() call, so
-    // calling it too frequently feels jittery. The tooltip text is diffed and
-    // only pushed when something actually changed.
-    m_tooltipTimer = new QTimer(this);
-    m_tooltipTimer->setInterval(5000);
-    connect(m_tooltipTimer, &QTimer::timeout, this, [this] {
-        // ── Recompute aggregate speeds and seeding count ──────────────────────
+    // Update aggregate speeds and seeding count at 1-second cadence so the
+    // status bar feels live. Kept separate from the tooltip timer because the
+    // tooltip must not be pushed more than once every 5 s (Windows dismisses
+    // and re-shows the tooltip on every setToolTip() call).
+    m_speedTimer = new QTimer(this);
+    m_speedTimer->setInterval(1000);
+    connect(m_speedTimer, &QTimer::timeout, this, [this] {
         qint64 downSpeed = 0;
         qint64 upSpeed   = 0;
         int    seeding   = 0;
@@ -710,8 +708,6 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                     ++seeding;
             }
         }
-
-        // Publish to QML so StatusBar and title bar can bind directly.
         if (m_totalDownSpeed != downSpeed || m_totalUpSpeed != upSpeed) {
             m_totalDownSpeed = downSpeed;
             m_totalUpSpeed   = upSpeed;
@@ -721,9 +717,19 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_seedingCount = seeding;
             emit seedingCountChanged();
         }
+    });
+    m_speedTimer->start();
 
+    // Update the tray tooltip on a 5-second cadence — see comment above.
+    m_tooltipTimer = new QTimer(this);
+    m_tooltipTimer->setInterval(5000);
+    connect(m_tooltipTimer, &QTimer::timeout, this, [this] {
         if (!m_tray)
             return;
+
+        const qint64 downSpeed = m_totalDownSpeed;
+        const qint64 upSpeed   = m_totalUpSpeed;
+        const int    seeding   = m_seedingCount;
 
         // ── Build tooltip string ──────────────────────────────────────────────
         auto fmtSpeed = [](qint64 bps) -> QString {
