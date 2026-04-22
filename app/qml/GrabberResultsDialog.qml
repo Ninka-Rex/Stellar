@@ -107,7 +107,6 @@ Window {
     }
     function allRowsChecked() {
         // O(1): compare maintained counters instead of iterating every row.
-        // checkedCount and totalCount are both updated incrementally on model changes.
         return totalCount > 0 && checkedCount === totalCount
     }
     function toggleAllChecked(checked) { App.setAllGrabberResultsChecked(checked) }
@@ -428,8 +427,8 @@ Window {
             // ── Menu bar ──────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 30
-                color: "#252525"
+                height: 28
+                color: "#222228"
 
                 Menu {
                     id: mbProjectMenu
@@ -452,7 +451,7 @@ Window {
                         delegate: Rectangle {
                             required property var modelData
                             width: mbLabel.implicitWidth + 20
-                            height: 30
+                            height: 28
                             color: mbMa.containsMouse || modelData.menu.visible ? "#1e3a6e" : "transparent"
 
                             Text {
@@ -460,7 +459,7 @@ Window {
                                 anchors.centerIn: parent
                                 text: modelData.label
                                 color: "#d0d0d0"
-                                font.pixelSize: 13
+                                font.pixelSize: 12
                             }
                             MouseArea {
                                 id: mbMa
@@ -472,98 +471,147 @@ Window {
                     }
                 }
 
-                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
+                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333333" }
             }
 
-            // ── Project info ──────────────────────────────────────────────────
-            Item {
+            // ── Project info / status strip ───────────────────────────────────
+            Rectangle {
                 Layout.fillWidth: true
-                height: 54
+                height: 46
+                color: "#222222"
 
+                // Left accent bar
                 Rectangle {
-                    anchors.fill: parent
-                    color: "#222222"
-                }
-                Rectangle {
-                    anchors.bottom: parent.bottom
-                    width: parent.width
-                    height: 1
-                    color: "#333333"
+                    anchors { top: parent.top; bottom: parent.bottom; left: parent.left }
+                    width: 3
+                    color: "#4488dd"
                 }
 
-                Row {
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 12
-                    anchors.right: progressIndicator.left
-                    anchors.rightMargin: 12
-                    spacing: 0
+                RowLayout {
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left; leftMargin: 14
+                        right: parent.right; rightMargin: 12
+                    }
+                    spacing: 16
 
+                    // Project name + status
                     Column {
-                        spacing: 4
+                        spacing: 3
+                        Layout.fillWidth: true
+
                         Text {
                             text: projectName
-                            color: "#d0d0d0"
-                            font.pixelSize: 14
+                            color: "#e0e0e0"
+                            font.pixelSize: 13
                             font.bold: true
                         }
+
                         Row {
-                            spacing: 14
-                            Text {
-                                text: App.grabberBusy ? "● Running" : "● Idle"
-                                color: App.grabberBusy ? "#55cc88" : "#666666"
-                                font.pixelSize: 11
-                                font.bold: true
+                            spacing: 12
+
+                            // Animated status dot
+                            Row {
+                                spacing: 5
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                Rectangle {
+                                    id: statusDot
+                                    width: 7; height: 7; radius: 4
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    color: App.grabberBusy ? "#55cc88" : "#444455"
+
+                                    SequentialAnimation on opacity {
+                                        id: dotAnim
+                                        running: App.grabberBusy
+                                        loops: Animation.Infinite
+                                        NumberAnimation { to: 0.35; duration: 600; easing.type: Easing.InOutSine }
+                                        NumberAnimation { to: 1.0;  duration: 600; easing.type: Easing.InOutSine }
+                                        onRunningChanged: if (!running) statusDot.opacity = 1.0
+                                    }
+                                }
+
+                                Text {
+                                    text: App.grabberBusy ? "Running" : "Idle"
+                                    color: App.grabberBusy ? "#55cc88" : "#555566"
+                                    font.pixelSize: 11
+                                    anchors.verticalCenter: parent.verticalCenter
+                                }
                             }
+
+                            // Divider
+                            Rectangle { width: 1; height: 12; color: "#363636"; anchors.verticalCenter: parent.verticalCenter }
+
                             Text {
                                 text: totalCount + " files found"
-                                color: "#888888"
+                                color: "#777788"
                                 font.pixelSize: 11
+                                anchors.verticalCenter: parent.verticalCenter
                             }
+
+                            Rectangle { width: 1; height: 12; color: "#363636"; anchors.verticalCenter: parent.verticalCenter }
+
                             Text {
                                 text: checkedCount + " checked"
-                                color: checkedCount > 0 ? "#88bbff" : "#888888"
+                                color: checkedCount > 0 ? "#88bbff" : "#555566"
                                 font.pixelSize: 11
+                                anchors.verticalCenter: parent.verticalCenter
                             }
+
                             Text {
                                 visible: App.grabberStatusText.length > 0
-                                text: App.grabberStatusText
-                                color: "#777777"
+                                text: "— " + App.grabberStatusText
+                                color: "#556677"
                                 font.pixelSize: 11
                                 elide: Text.ElideRight
+                                anchors.verticalCenter: parent.verticalCenter
                             }
                         }
                     }
+
+                    // Slim progress bar, only visible while crawling
+                    Rectangle {
+                        visible: App.grabberBusy
+                        width: 160; height: 4; radius: 2
+                        color: "#2a2a3a"
+                        Layout.alignment: Qt.AlignVCenter
+
+                        Rectangle {
+                            id: progressPulse
+                            height: parent.height; radius: parent.radius
+                            color: "#4488dd"
+
+                            SequentialAnimation on x {
+                                running: App.grabberBusy
+                                loops: Animation.Infinite
+                                NumberAnimation { from: -60; to: 160; duration: 1100; easing.type: Easing.InOutSine }
+                            }
+                            width: 60
+                            clip: false
+
+                            layer.enabled: true
+                            layer.effect: null
+                        }
+
+                        // Clip the moving bar inside the track
+                        clip: true
+                    }
                 }
 
-                ProgressBar {
-                    id: progressIndicator
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.right: parent.right
-                    anchors.rightMargin: 12
-                    width: 180
-                    height: 6
-                    visible: App.grabberBusy
-                    indeterminate: true
-                }
+                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2d2d2d" }
             }
 
             // ── Toolbar ───────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 70
+                height: 64
                 color: "#252525"
 
-                Rectangle {
-                    anchors.bottom: parent.bottom
-                    width: parent.width
-                    height: 1
-                    color: "#333333"
-                }
+                Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2d2d2d" }
 
                 Flickable {
                     anchors.fill: parent
-                    anchors.margins: 2
+                    anchors.topMargin: 2; anchors.bottomMargin: 2
                     clip: true
                     contentWidth: toolbarRow.implicitWidth
                     contentHeight: toolbarRow.implicitHeight
@@ -572,7 +620,7 @@ Window {
 
                     Row {
                         id: toolbarRow
-                        spacing: 2
+                        spacing: 1
                         Repeater {
                             model: [
                                 { label: "Start\nExploring",   action: "start",         icon: "resume.png",         btnWidth: 88 },
@@ -586,9 +634,9 @@ Window {
                             delegate: ToolbarBtn {
                                 label: modelData.label
                                 iconSrc: "icons/" + modelData.icon
-                                iconSize: 28
+                                iconSize: 26
                                 width: modelData.btnWidth
-                                height: 62
+                                height: 60
                                 enabled: {
                                     if (modelData.action === "stop") return App.grabberBusy
                                     if (modelData.action === "schedule" || modelData.action === "stats" || modelData.action === "update")
@@ -596,8 +644,19 @@ Window {
                                     return true
                                 }
                                 background: Rectangle {
-                                    color: parent.pressed ? "#3a3a4a" : (parent.hovered ? "#2d2d3d" : "transparent")
-                                    radius: 0
+                                    color: parent.pressed ? "#1e3a6e"
+                                         : parent.hovered ? "#2a2a3a"
+                                         : "transparent"
+                                    radius: 2
+                                    // Bottom accent line on hover
+                                    Rectangle {
+                                        visible: parent.parent.hovered || parent.parent.pressed
+                                        anchors.bottom: parent.bottom
+                                        anchors.left: parent.left; anchors.right: parent.right
+                                        height: 2
+                                        color: parent.parent.pressed ? "#4488dd" : "#334466"
+                                        radius: 0
+                                    }
                                 }
                                 onClicked: {
                                     var project = root.projectData()
@@ -632,31 +691,33 @@ Window {
 
                 // ── Sidebar ───────────────────────────────────────────────────
                 Rectangle {
-                    Layout.preferredWidth: 200
+                    Layout.preferredWidth: 198
                     Layout.fillHeight: true
-                    color: "#1f1f1f"
+                    color: "#1b1b1b"
 
-                    // "Categories" header bar — matches Sidebar.qml catHeader exactly
+                    // "Categories" header bar
                     Rectangle {
                         id: sideHeader
                         anchors { top: parent.top; left: parent.left; right: parent.right }
                         height: 26
-                        color: "#2d2d2d"
+                        color: "#252525"
 
-                        Rectangle { width: 3; height: parent.height; color: "#5588cc" }
+                        // Left accent
+                        Rectangle { width: 3; height: parent.height; color: "#4488dd" }
+
                         Text {
-                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
+                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
                             text: "Categories"
-                            color: "#d0d0d0"
-                            font.pixelSize: 12
+                            color: "#c8c8c8"
+                            font.pixelSize: 11
                             font.bold: true
                         }
-                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
+                        Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333333" }
                     }
 
                     Rectangle {
                         anchors { top: sideHeader.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
-                        color: "#1f1f1f"
+                        color: "#1b1b1b"
 
                         ScrollView {
                             anchors.fill: parent
@@ -666,39 +727,37 @@ Window {
 
                             Column {
                                 id: sidebarColumn
-                                width: 200
+                                width: 198
                                 spacing: 0
 
                                 // ── All Files ─────────────────────────────────
                                 Rectangle {
                                     width: sidebarColumn.width
                                     height: 26
-                                    color: sideMode === "all" ? "#1e3a6e" : (allFilesHover.containsMouse ? "#2a2a3a" : "transparent")
-                                    border.color: sideMode === "all" ? "#4488dd" : "transparent"
-                                    border.width: 1
+                                    color: sideMode === "all" ? "#1e3a6e" : (allFilesHover.containsMouse ? "#232330" : "transparent")
+
+                                    // Selected left indicator
+                                    Rectangle {
+                                        visible: sideMode === "all"
+                                        anchors { top: parent.top; bottom: parent.bottom; left: parent.left }
+                                        width: 2; color: "#4488dd"
+                                    }
 
                                     Row {
-                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 4 }
-                                        spacing: 2
-                                        Text {
-                                            text: "▼"
-                                            color: "#999"
-                                            font.pixelSize: 12
-                                            width: 16
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            visible: false  // spacer to match indent of items below
-                                        }
+                                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
+                                        spacing: 5
+
                                         Image {
                                             source: "icons/downloads.ico"
-                                            width: 16; height: 16
-                                            sourceSize.width: 16; sourceSize.height: 16
+                                            width: 14; height: 14
+                                            sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
                                             smooth: true; mipmap: true
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Text {
                                             text: "All Files"
-                                            color: sideMode === "all" ? "#88bbff" : "#cccccc"
+                                            color: sideMode === "all" ? "#88bbff" : "#b8b8b8"
                                             font.pixelSize: 12
                                             font.bold: sideMode === "all"
                                             anchors.verticalCenter: parent.verticalCenter
@@ -715,28 +774,31 @@ Window {
                                 // ── Link View section header ──────────────────
                                 Rectangle {
                                     width: sidebarColumn.width
-                                    height: 26
-                                    color: "#1f1f1f"
+                                    height: 24
+                                    color: "#212126"
 
                                     Row {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
-                                        spacing: 4
+                                        spacing: 5
                                         Text {
-                                            text: isSectionExpanded("link") ? "▼" : "▶"
-                                            color: "#999"; font.pixelSize: 12; width: 16
+                                            text: isSectionExpanded("link") ? "▾" : "▸"
+                                            color: "#6677aa"; font.pixelSize: 11; width: 12
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
                                             source: "icons/cloud_copylink.ico"
-                                            width: 16; height: 16
-                                            sourceSize.width: 16; sourceSize.height: 16
+                                            width: 14; height: 14
+                                            sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
                                             smooth: true; mipmap: true
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Text {
                                             text: "Link View"
-                                            color: "#d0d0d0"; font.pixelSize: 12; font.bold: true
+                                            color: "#8899aa"
+                                            font.pixelSize: 10
+                                            font.bold: true
+                                            font.capitalization: Font.AllUppercase
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -747,6 +809,7 @@ Window {
                                             root.rebuildSidebarTrees()
                                         }
                                     }
+                                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2a2a2a" }
                                 }
 
                                 // ── Link View items ───────────────────────────
@@ -756,38 +819,41 @@ Window {
                                         required property var modelData
                                         property bool isSelected: sideMode === "link" && sideFilterValue === modelData.id
                                         width: sidebarColumn.width
-                                        height: 26
-                                        color: isSelected ? "#1e3a6e" : (linkItemHover.containsMouse ? "#2a2a3a" : "transparent")
-                                        border.color: isSelected ? "#4488dd" : "transparent"
-                                        border.width: 1
+                                        height: 25
+                                        color: isSelected ? "#1e3a6e" : (linkItemHover.containsMouse ? "#232330" : "transparent")
+
+                                        Rectangle {
+                                            visible: isSelected
+                                            anchors { top: parent.top; bottom: parent.bottom; left: parent.left }
+                                            width: 2; color: "#4488dd"
+                                        }
 
                                         Row {
-                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 16 + modelData.depth * 16 }
-                                            spacing: 2
+                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 + modelData.depth * 14 }
+                                            spacing: 4
                                             Text {
-                                                width: 16
+                                                width: 12
                                                 text: modelData.isDomain && modelData.hasChildren
-                                                      ? (modelData.isExpanded ? "▼" : "▶") : ""
-                                                color: "#999"; font.pixelSize: 12
+                                                      ? (modelData.isExpanded ? "▾" : "▸") : ""
+                                                color: "#6677aa"; font.pixelSize: 11
                                                 horizontalAlignment: Text.AlignHCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
                                                 source: modelData.isDomain ? "icons/globe.png" : "icons/page.ico"
-                                                width: 16; height: 16
-                                                sourceSize.width: 16; sourceSize.height: 16
+                                                width: 14; height: 14
+                                                sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit
                                                 smooth: true; mipmap: true
                                                 anchors.verticalCenter: parent.verticalCenter
-                                                // Fallback: if icons don't exist the Image shows nothing — acceptable
                                             }
                                             Text {
                                                 text: modelData.label
-                                                color: isSelected ? "#88bbff" : "#cccccc"
-                                                font.pixelSize: 12
+                                                color: isSelected ? "#88bbff" : "#b0b8c4"
+                                                font.pixelSize: 11
                                                 font.bold: modelData.isDomain
                                                 elide: Text.ElideRight
-                                                width: sidebarColumn.width - (16 + modelData.depth * 16 + 16 + 16 + 6)
+                                                width: sidebarColumn.width - (10 + modelData.depth * 14 + 12 + 14 + 12)
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                         }
@@ -812,28 +878,31 @@ Window {
                                 // ── Folder View section header ─────────────────
                                 Rectangle {
                                     width: sidebarColumn.width
-                                    height: 26
-                                    color: "#1f1f1f"
+                                    height: 24
+                                    color: "#212126"
 
                                     Row {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
-                                        spacing: 4
+                                        spacing: 5
                                         Text {
-                                            text: isSectionExpanded("folder") ? "▼" : "▶"
-                                            color: "#999"; font.pixelSize: 12; width: 16
+                                            text: isSectionExpanded("folder") ? "▾" : "▸"
+                                            color: "#6677aa"; font.pixelSize: 11; width: 12
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Image {
                                             source: "icons/folder_view.ico"
-                                            width: 16; height: 16
-                                            sourceSize.width: 16; sourceSize.height: 16
+                                            width: 14; height: 14
+                                            sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
                                             smooth: true; mipmap: true
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Text {
                                             text: "Folder View"
-                                            color: "#d0d0d0"; font.pixelSize: 12; font.bold: true
+                                            color: "#8899aa"
+                                            font.pixelSize: 10
+                                            font.bold: true
+                                            font.capitalization: Font.AllUppercase
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                     }
@@ -844,6 +913,7 @@ Window {
                                             root.rebuildSidebarTrees()
                                         }
                                     }
+                                    Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2a2a2a" }
                                 }
 
                                 // ── Folder View items ─────────────────────────
@@ -853,37 +923,41 @@ Window {
                                         required property var modelData
                                         property bool isSelected: sideMode === "folder" && sideFilterValue === modelData.id
                                         width: sidebarColumn.width
-                                        height: 26
-                                        color: isSelected ? "#1e3a6e" : (folderItemHover.containsMouse ? "#2a2a3a" : "transparent")
-                                        border.color: isSelected ? "#4488dd" : "transparent"
-                                        border.width: 1
+                                        height: 25
+                                        color: isSelected ? "#1e3a6e" : (folderItemHover.containsMouse ? "#232330" : "transparent")
+
+                                        Rectangle {
+                                            visible: isSelected
+                                            anchors { top: parent.top; bottom: parent.bottom; left: parent.left }
+                                            width: 2; color: "#4488dd"
+                                        }
 
                                         Row {
-                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 16 + modelData.depth * 16 }
-                                            spacing: 2
+                                            anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 + modelData.depth * 14 }
+                                            spacing: 4
                                             Text {
-                                                width: 16
+                                                width: 12
                                                 text: modelData.hasChildren
-                                                      ? (root.isFolderExpanded(modelData.id) ? "▼" : "▶") : ""
-                                                color: "#999"; font.pixelSize: 12
+                                                      ? (root.isFolderExpanded(modelData.id) ? "▾" : "▸") : ""
+                                                color: "#6677aa"; font.pixelSize: 11
                                                 horizontalAlignment: Text.AlignHCenter
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
                                                 source: "icons/folder.ico"
-                                                width: 16; height: 16
-                                                sourceSize.width: 16; sourceSize.height: 16
+                                                width: 14; height: 14
+                                                sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit
                                                 smooth: true; mipmap: true
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Text {
                                                 text: modelData.label
-                                                color: isSelected ? "#88bbff" : "#cccccc"
-                                                font.pixelSize: 12
+                                                color: isSelected ? "#88bbff" : "#b0b8c4"
+                                                font.pixelSize: 11
                                                 font.bold: modelData.depth === 0
                                                 elide: Text.ElideRight
-                                                width: sidebarColumn.width - (16 + modelData.depth * 16 + 16 + 16 + 6)
+                                                width: sidebarColumn.width - (10 + modelData.depth * 14 + 12 + 14 + 12)
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                         }
@@ -912,7 +986,7 @@ Window {
                     Rectangle {
                         anchors { top: parent.top; bottom: parent.bottom; right: parent.right }
                         width: 1
-                        color: "#333333"
+                        color: "#2d2d2d"
                     }
                 }
 
@@ -955,7 +1029,7 @@ Window {
                                         width: root.columnWidth(modelData.key)
                                         height: parent.height
                                         readonly property bool isSortable: modelData.key !== "check"
-                                        color: (isSortable && headerCellMouse.containsMouse) ? "#2d2d2d" : "transparent"
+                                        color: (isSortable && headerCellMouse.containsMouse) ? "#2a2a36" : "transparent"
 
                                         Item {
                                             anchors.fill: parent
@@ -973,7 +1047,7 @@ Window {
                                             anchors.left: parent.left; anchors.leftMargin: 8
                                             visible: modelData.key !== "check"
                                             text: modelData.title + root.sortIndicator(modelData.key)
-                                            color: root.sortColumn === modelData.key ? "#88bbff" : "#909090"
+                                            color: root.sortColumn === modelData.key ? "#6699cc" : "#888899"
                                             font.bold: true; font.pixelSize: 11
                                         }
 
@@ -991,7 +1065,7 @@ Window {
                                             anchors.top: parent.top; anchors.bottom: parent.bottom; anchors.right: parent.right
                                             width: 1
                                             color: resizeHover.hovered || resizeDrag.active || root.resizingColumnKey === modelData.key
-                                                   ? "#4488dd" : "#333333"
+                                                   ? "#4488dd" : "#323232"
                                         }
 
                                         HoverHandler { id: resizeHover; cursorShape: modelData.key === "check" ? Qt.ArrowCursor : Qt.SizeHorCursor }
@@ -1046,11 +1120,16 @@ Window {
                                 width: tableFlick.contentWidth
                                 height: rowVisible ? 26 : 0
                                 visible: height > 0
-                                color: root.isRowSelected(index) ? "#1e3a6e"
-                                     : rowMouse.containsMouse ? "#2a2a3a"
-                                     : index % 2 === 0 ? "#1e1e1e" : "#212127"
-                                border.color: root.isRowSelected(index) ? "#4488dd" : "transparent"
-                                border.width: 1
+                                color: root.isRowSelected(index) ? "#1e3250"
+                                     : rowMouse.containsMouse ? "#222230"
+                                     : index % 2 === 0 ? "#1c1c1c" : "#202024"
+
+                                // Selected left indicator
+                                Rectangle {
+                                    visible: root.isRowSelected(index)
+                                    anchors { top: parent.top; bottom: parent.bottom; left: parent.left }
+                                    width: 2; color: "#4488dd"
+                                }
 
                                 // rowMouse is declared before Row so it has lower z-order.
                                 // This allows the CheckBox and other Row children (higher z)
@@ -1090,47 +1169,45 @@ Window {
                                             onToggled: App.setGrabberResultChecked(index, checked)
                                         }
                                     }
-                                    Text { width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: root.isRowSelected(index) ? "#ffffff" : "#d0d0d0"; elide: Text.ElideRight; font.pixelSize: 12 }
-                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? "#ddddff" : "#888888"; elide: Text.ElideRight; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? "#ffffff" : "#999999"; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("filename"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: filename; color: root.isRowSelected(index) ? "#e8e8ff" : "#d0d0d0"; elide: Text.ElideRight; font.pixelSize: 12 }
+                                    Text { width: root.columnWidth("filetype"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: fileTypeLabel(filename, url); color: root.isRowSelected(index) ? "#aabbcc" : "#6e7a88"; elide: Text.ElideRight; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("size"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: sizeText; color: root.isRowSelected(index) ? "#c8d8e8" : "#7a8898"; font.pixelSize: 11 }
                                     Text {
                                         width: root.columnWidth("status"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter
                                         property string statusVal: computeStatus(url)
                                         text: statusVal
-                                        color: root.isRowSelected(index) ? "#ffffff"
-                                             : statusVal === "Ready" ? "#77cc77"
-                                             : statusVal === "Already in list" ? "#ccaa55" : "#888888"
+                                        color: root.isRowSelected(index) ? "#e0e8ff"
+                                             : statusVal === "Ready" ? "#55bb77"
+                                             : statusVal === "Already in list" ? "#bb9944" : "#667788"
                                         elide: Text.ElideRight; font.pixelSize: 11
                                     }
-                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? "#ffffff" : "#888888"; elide: Text.ElideRight; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#aaddff" : "#5588cc"; elide: Text.ElideMiddle; font.pixelSize: 11 }
-                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? "#ffffff" : "#777777"; elide: Text.ElideMiddle; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("linktext"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: baseHost(sourcePage.length > 0 ? sourcePage : url); color: root.isRowSelected(index) ? "#aabbcc" : "#6e7a88"; elide: Text.ElideRight; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("downloadfrom"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: url; color: root.isRowSelected(index) ? "#88aadd" : "#445577"; elide: Text.ElideMiddle; font.pixelSize: 11 }
+                                    Text { width: root.columnWidth("saveto"); height: parent.height; leftPadding: 8; verticalAlignment: Text.AlignVCenter; text: saveToText(filename); color: root.isRowSelected(index) ? "#aabbcc" : "#556677"; elide: Text.ElideMiddle; font.pixelSize: 11 }
                                 }
 
                                 Rectangle {
-                                    anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#2a2a2a"
+                                    anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#252525"
                                 }
                             }
                         }
 
                         // ── Empty state ───────────────────────────────────────
-                        // Anchored to the Flickable's visible viewport (width/height)
-                        // rather than the scrollable contentWidth, so it stays centered
-                        // when the window is narrower than the total column width.
                         Column {
                             x: (tableFlick.width - width) / 2
                             y: headerRow.height + (tableFlick.height - headerRow.height - height) / 2
-                            spacing: 8
+                            spacing: 6
                             visible: root.totalCount === 0
+
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 text: "No files found yet"
-                                color: "#555555"; font.pixelSize: 14
+                                color: "#4a4a5a"; font.pixelSize: 14; font.bold: true
                             }
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 text: App.grabberBusy ? "Exploring…" : "Press Start Exploring to scan the URL."
-                                color: "#444444"; font.pixelSize: 11
+                                color: "#3a3a4a"; font.pixelSize: 11
                             }
                         }
                     }
@@ -1140,30 +1217,41 @@ Window {
             // ── Bottom bar ────────────────────────────────────────────────────
             Rectangle {
                 Layout.fillWidth: true
-                height: 44
-                color: "#252525"
+                height: 42
+                color: "#222228"
 
-                Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#333333" }
+                Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#2d2d36" }
 
                 RowLayout {
                     anchors.fill: parent
-                    anchors.leftMargin: 8
-                    anchors.rightMargin: 8
+                    anchors.leftMargin: 10
+                    anchors.rightMargin: 10
                     spacing: 8
 
                     DlgButton {
-                        text: "< Back"
+                        text: "← Back"
                         onClicked: root.editProjectRequested(root.projectId)
                     }
 
-                    Text {
-                        color: "#555566"; font.pixelSize: 11
-                        text: {
-                            if (totalCount === 0) return ""
-                            var visible = visibleRowCount()
-                            return visible === totalCount
-                                ? totalCount + " files"
-                                : visible + " of " + totalCount + " files (filtered)"
+                    // Subtle file count pill
+                    Rectangle {
+                        visible: totalCount > 0
+                        height: 18; radius: 3
+                        color: "#1a1a28"
+                        border.color: "#2a2a40"
+                        width: countLabel.implicitWidth + 14
+
+                        Text {
+                            id: countLabel
+                            anchors.centerIn: parent
+                            color: "#556677"
+                            font.pixelSize: 10
+                            text: {
+                                var visible = visibleRowCount()
+                                return visible === totalCount
+                                    ? totalCount + " files"
+                                    : visible + " / " + totalCount + " (filtered)"
+                            }
                         }
                     }
 
@@ -1171,6 +1259,7 @@ Window {
 
                     DlgButton {
                         text: "Add checked to download list"
+                        enabled: checkedCount > 0
                         onClicked: root.queueAssignmentRequested(root.projectId)
                     }
                     DlgButton {
