@@ -22,8 +22,8 @@ import QtCore
 
 Window {
     id: root
-    width: 860
-    height: 620
+    width: 760
+    height: 500
     minimumWidth: 760
     minimumHeight: 500
     title: "Torrent Search Engine"
