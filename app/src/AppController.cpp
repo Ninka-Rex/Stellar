@@ -944,6 +944,20 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_seedingCount = seeding;
             emit seedingCountChanged();
         }
+        const qint64 estimatedOnlineUsers =
+            m_torrentSession ? m_torrentSession->dhtGlobalNodesEstimate() : -1;
+        const int warmupPercent =
+            m_torrentSession ? m_torrentSession->dhtEstimateWarmupPercent() : 0;
+        const QString debugText =
+            m_torrentSession ? m_torrentSession->dhtEstimateDebugText() : QString();
+        if (m_estimatedOnlineUsers != estimatedOnlineUsers
+            || m_estimatedOnlineUsersWarmupPercent != warmupPercent
+            || m_estimatedOnlineUsersDebugText != debugText) {
+            m_estimatedOnlineUsers = estimatedOnlineUsers;
+            m_estimatedOnlineUsersWarmupPercent = warmupPercent;
+            m_estimatedOnlineUsersDebugText = debugText;
+            emit estimatedOnlineUsersChanged();
+        }
         // Recompute all-time ratio on the same cadence
         const auto stats = torrentAllTimeStats();
         const double ratio = stats[QStringLiteral("ratio")].toDouble();
@@ -3473,6 +3487,19 @@ QVariantList AppController::torrentPieceMap(const QString &downloadId) const {
 
 void AppController::clearTorrentSpeedHistory(const QString &downloadId) {
     m_torrentSpeedHistory.remove(downloadId);
+}
+
+void AppController::clearDhtEstimatorCache() {
+    if (m_torrentSession)
+        m_torrentSession->clearDhtEstimatorCache();
+    if (m_estimatedOnlineUsers != -1
+        || m_estimatedOnlineUsersWarmupPercent != 0
+        || !m_estimatedOnlineUsersDebugText.isEmpty()) {
+        m_estimatedOnlineUsers = -1;
+        m_estimatedOnlineUsersWarmupPercent = 0;
+        m_estimatedOnlineUsersDebugText.clear();
+        emit estimatedOnlineUsersChanged();
+    }
 }
 
 QVariantMap AppController::torrentAllTimeStats() const {

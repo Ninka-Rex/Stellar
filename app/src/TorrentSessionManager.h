@@ -24,6 +24,9 @@
 #include <QTimer>
 #include <QVariantMap>
 #include <QStringList>
+#include <QElapsedTimer>
+#include <QByteArray>
+#include <QVector>
 #include <memory>
 
 class AppSettings;
@@ -103,6 +106,10 @@ public:
     void setDetectedExternalAddress(const QString &ipAddress, double latitude, double longitude, bool hasCoordinates);
     QVariantMap geoDatabaseInfo();
     void releaseGeoDatabaseForUpdate();
+    qint64 dhtGlobalNodesEstimate();
+    int dhtEstimateWarmupPercent() const;
+    QString dhtEstimateDebugText() const;
+    void clearDhtEstimatorCache();
 
 signals:
     void torrentFinished(const QString &downloadId);
@@ -150,6 +157,8 @@ private:
     void lookupPeerLocation(const QString &endpoint, QString *countryCode,
                             QString *regionCode, QString *regionName, QString *cityName,
                             double *latitude, double *longitude);
+    void loadDhtEstimatorCache();
+    void saveDhtEstimatorCache(bool force = false);
 
     std::unique_ptr<libtorrent::session> m_session;
     std::unique_ptr<GeoDbState> m_geoDb;
@@ -183,6 +192,22 @@ private:
     bool m_autoBanMediaPlayerPeers{false};
     const AppSettings *m_settings{nullptr};
     int m_modelTick{0};
+    int m_dhtNodesMetricIndex{-1};
+    qint64 m_lastDhtNodes{-1};
+    qint64 m_lastDhtGlobalNodes{-1};
+    qint64 m_cachedDhtGlobalEstimate{-1};
+    int m_lastDhtWarmupPercent{0};
+    int m_lastDhtConfidencePercent{0};
+    int m_lastDhtPivotCount{0};
+    int m_lastDhtClosestSampleCount{0};
+    int m_lastDhtKUsed{0};
+    QVector<qint64> m_recentPublishedDhtEstimates;
+    QElapsedTimer m_lastSessionStatsRequest;
+    QElapsedTimer m_lastDhtLiveNodesRequest;
+    QElapsedTimer m_lastDhtLiveNodesUpdate;
+    QElapsedTimer m_lastDhtCacheSave;
+    QByteArray m_lastDhtNodeId;
+    QHash<QByteArray, QDateTime> m_recentDhtNodeIds;
 #endif
     QTimer m_alertTimer;
 };
@@ -203,4 +228,8 @@ inline void TorrentSessionManager::setDetectedExternalAddress(const QString &) {
 inline void TorrentSessionManager::setDetectedExternalAddress(const QString &, double, double, bool) {}
 inline QVariantMap TorrentSessionManager::geoDatabaseInfo() { return {}; }
 inline void TorrentSessionManager::releaseGeoDatabaseForUpdate() {}
+inline qint64 TorrentSessionManager::dhtGlobalNodesEstimate() { return -1; }
+inline int TorrentSessionManager::dhtEstimateWarmupPercent() const { return 0; }
+inline QString TorrentSessionManager::dhtEstimateDebugText() const { return {}; }
+inline void TorrentSessionManager::clearDhtEstimatorCache() {}
 #endif

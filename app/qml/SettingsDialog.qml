@@ -63,6 +63,7 @@ Window {
     property bool   editSpeedInTrayTooltip:    true
     property bool   editSpeedInTitleBar:       false
     property bool   editSpeedInStatusBar:      false
+    property bool   editEstimatedOnlineUsersInStatusBar: false
     property bool   editRatioInStatusBar:      false
     property bool   editStartDownloadWhileFileInfo: true
     property bool   editShowQueueSelectionOnDownloadLater: true
@@ -358,6 +359,7 @@ Window {
         editSpeedInTrayTooltip    !== App.settings.speedInTrayTooltip ||
         editSpeedInTitleBar       !== App.settings.speedInTitleBar ||
         editSpeedInStatusBar      !== App.settings.speedInStatusBar ||
+        editEstimatedOnlineUsersInStatusBar !== App.settings.estimatedOnlineUsersInStatusBar ||
         editRatioInStatusBar      !== App.settings.ratioInStatusBar ||
         editLaunchOnStartup       !== App.settings.launchOnStartup ||
         editClipboardMonitorEnabled !== App.settings.clipboardMonitorEnabled ||
@@ -553,6 +555,7 @@ Window {
         App.settings.speedInTrayTooltip     = editSpeedInTrayTooltip
         App.settings.speedInTitleBar        = editSpeedInTitleBar
         App.settings.speedInStatusBar       = editSpeedInStatusBar
+        App.settings.estimatedOnlineUsersInStatusBar = editEstimatedOnlineUsersInStatusBar
         App.settings.ratioInStatusBar       = editRatioInStatusBar
         App.settings.launchOnStartup        = editLaunchOnStartup
         App.settings.clipboardMonitorEnabled = editClipboardMonitorEnabled
@@ -632,6 +635,7 @@ Window {
         editSpeedInTrayTooltip    = App.settings.speedInTrayTooltip
         editSpeedInTitleBar       = App.settings.speedInTitleBar
         editSpeedInStatusBar      = App.settings.speedInStatusBar
+        editEstimatedOnlineUsersInStatusBar = App.settings.estimatedOnlineUsersInStatusBar
         editRatioInStatusBar      = App.settings.ratioInStatusBar
         editLaunchOnStartup       = App.settings.launchOnStartup
         editClipboardMonitorEnabled = App.settings.clipboardMonitorEnabled
@@ -2252,6 +2256,26 @@ Window {
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
+                            text: "Show estimated online users in status bar"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editEstimatedOnlineUsersInStatusBar
+                            onCheckedChanged: root.editEstimatedOnlineUsersInStatusBar = checked
+                            contentItem: Text {
+                                text: parent.text
+                                color: "#d0d0d0"
+                                font.pixelSize: 13
+                                leftPadding: parent.indicator.width + 4
+                            }
+                        }
+                        Text {
+                            text: "Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence."
+                            color: "#7a7a7a"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                            visible: root.editEstimatedOnlineUsersInStatusBar
+                        }
+                        CheckBox {
                             text: "Show ratio in status bar"
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRatioInStatusBar
@@ -2777,6 +2801,22 @@ Window {
                             checked: root.editTorrentEnableUpnp
                             onCheckedChanged: root.editTorrentEnableUpnp = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 10
+                            DlgButton {
+                                text: "Clear Online-User Cache"
+                                onClicked: App.clearDhtEstimatorCache()
+                            }
+                            Text {
+                                Layout.fillWidth: true
+                                text: "Clears cached DHT node IDs used by the online-user estimator. Useful after network/VPN changes or for a clean recalibration."
+                                color: "#666666"
+                                font.pixelSize: 11
+                                wrapMode: Text.WordWrap
+                            }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }

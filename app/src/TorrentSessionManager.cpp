@@ -26,6 +26,7 @@
 
 #include <QByteArray>
 #include <QCoreApplication>
+#include <QCryptographicHash>
 #include <QDateTime>
 #include <QDir>
 #include <QFileInfo>
@@ -38,7 +39,15 @@
 #include <QUrl>
 #include <QFile>
 #include <QStandardPaths>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QSaveFile>
 #include <algorithm>
+#include <cmath>
+#include <cstdint>
+#include <limits>
+#include <utility>
 
 #if defined(STELLAR_HAS_LIBTORRENT)
 #include <libtorrent/add_torrent_params.hpp>
@@ -49,6 +58,7 @@
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/session.hpp>
+#include <libtorrent/session_stats.hpp>
 #include <libtorrent/settings_pack.hpp>
 #include <libtorrent/hex.hpp>
 #include <libtorrent/announce_entry.hpp>
@@ -360,6 +370,82 @@ QStringList normalizedCountryCodes(const QStringList &values) {
     return out;
 }
 
+long double log2DistanceBytes(const QByteArray &bytes) {
+    if (bytes.size() != 20)
+        return -std::numeric_limits<long double>::infinity();
+
+    int firstNonZero = -1;
+    for (int i = 0; i < bytes.size(); ++i) {
+        if (static_cast<unsigned char>(bytes[i]) != 0) {
+            firstNonZero = i;
+            break;
+        }
+    }
+    if (firstNonZero < 0)
+        return -std::numeric_limits<long double>::infinity();
+
+    const int remainingBytes = bytes.size() - firstNonZero;
+    const int take = std::min(8, remainingBytes);
+    std::uint64_t top = 0;
+    for (int i = 0; i < take; ++i)
+        top = (top << 8) | static_cast<unsigned char>(bytes[firstNonZero + i]);
+
+    int msb = 63;
+    while (msb > 0 && ((top >> msb) & 1ULL) == 0ULL)
+        --msb;
+
+    const int bitsTop = take * 8;
+    const int leadingExtra = bitsTop - (msb + 1);
+    const int bitlen = remainingBytes * 8 - leadingExtra;
+    const long double normalized =
+        static_cast<long double>(top) / std::ldexp(static_cast<long double>(1.0), bitsTop - 1);
+    return static_cast<long double>(bitlen - 1) + std::log2(normalized);
+}
+
+bool distanceLess(const QByteArray &lhs, const QByteArray &rhs) {
+    return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end(),
+        [](char l, char r) {
+            return static_cast<unsigned char>(l) < static_cast<unsigned char>(r);
+        });
+}
+
+QByteArray localPivotIdForRound(const QByteArray &localNodeId, std::uint64_t roundSeed, int pivotIndex) {
+    QByteArray pivot = localNodeId;
+    if (pivot.size() != 20)
+        return {};
+
+    QByteArray seed;
+    seed.reserve(localNodeId.size() + int(sizeof(roundSeed)) + int(sizeof(pivotIndex)));
+    seed.append(localNodeId);
+    seed.append(reinterpret_cast<const char *>(&roundSeed), int(sizeof(roundSeed)));
+    seed.append(reinterpret_cast<const char *>(&pivotIndex), int(sizeof(pivotIndex)));
+    const QByteArray noise = QCryptographicHash::hash(seed, QCryptographicHash::Sha1);
+
+    // Keep pivots near the local node-ID neighborhood by perturbing only the
+    // low-order bytes instead of jumping to distant random keyspace regions.
+    constexpr int kMixedBytes = 3;
+    for (int i = 0; i < kMixedBytes; ++i) {
+        const int pos = pivot.size() - 1 - i;
+        pivot[pos] = char(static_cast<unsigned char>(pivot[pos])
+                          ^ static_cast<unsigned char>(noise[i]));
+    }
+    return pivot;
+}
+
+QString confidenceLabelForPercent(int percent) {
+    if (percent >= 85)
+        return QStringLiteral("Very High");
+    if (percent >= 70)
+        return QStringLiteral("High");
+    if (percent >= 50)
+        return QStringLiteral("Medium");
+    return QStringLiteral("Low");
+}
+
+QString dhtEstimatorCacheFilePath() {
+    return StellarPaths::dataDir() + QStringLiteral("/dht_estimator_cache.json");
+}
+
 bool containsSubstringRule(const QStringList &needles, const QString &haystack) {
     const QString lower = haystack.toLower();
     for (const QString &rule : needles) {
@@ -442,6 +528,9 @@ struct TorrentSessionManager::GeoDbState {
 
 TorrentSessionManager::TorrentSessionManager(QObject *parent)
     : QObject(parent) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    loadDhtEstimatorCache();
+#endif
     m_alertTimer.setInterval(2000);
     connect(&m_alertTimer, &QTimer::timeout, this, [this]() {
 #if defined(STELLAR_HAS_LIBTORRENT)
@@ -449,6 +538,11 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
         processAlerts();
         if (m_session) {
             m_session->post_torrent_updates();
+            if (!m_lastSessionStatsRequest.isValid() || m_lastSessionStatsRequest.elapsed() >= 5000) {
+                m_session->post_session_stats();
+                m_session->post_dht_stats();
+                m_lastSessionStatsRequest.restart();
+            }
 
             // For magnets waiting on metadata, post_torrent_updates() only
             // fires state_update_alert when the torrent's state actually changes.
@@ -473,6 +567,9 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
 }
 
 TorrentSessionManager::~TorrentSessionManager() {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    saveDhtEstimatorCache(true);
+#endif
 #if defined(STELLAR_HAS_LIBTORRENT) && defined(STELLAR_HAS_MAXMINDDB)
     if (m_geoDb && m_geoDb->open)
         MMDB_close(&m_geoDb->db);
@@ -524,6 +621,144 @@ void TorrentSessionManager::applySettings(const AppSettings *settings) {
         m_alertTimer.start();
 #else
     Q_UNUSED(settings);
+#endif
+}
+
+void TorrentSessionManager::clearDhtEstimatorCache() {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    m_recentDhtNodeIds.clear();
+    m_recentPublishedDhtEstimates.clear();
+    m_lastDhtNodeId.clear();
+    m_cachedDhtGlobalEstimate = -1;
+    m_lastDhtGlobalNodes = -1;
+    m_lastDhtWarmupPercent = 0;
+    m_lastDhtConfidencePercent = 0;
+    m_lastDhtClosestSampleCount = 0;
+    m_lastDhtPivotCount = 0;
+    m_lastDhtKUsed = 0;
+    m_lastDhtNodes = -1;
+    m_lastDhtLiveNodesUpdate.invalidate();
+    saveDhtEstimatorCache(true);
+#endif
+}
+
+void TorrentSessionManager::loadDhtEstimatorCache() {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    m_recentDhtNodeIds.clear();
+    m_recentPublishedDhtEstimates.clear();
+
+    QFile file(dhtEstimatorCacheFilePath());
+    if (!file.exists() || !file.open(QIODevice::ReadOnly))
+        return;
+
+    const QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+    if (!doc.isObject())
+        return;
+    const QJsonObject root = doc.object();
+    const QDateTime now = QDateTime::currentDateTimeUtc();
+    const QDateTime cutoff = now.addSecs(-(60 * 60));
+
+    const QJsonArray nodes = root.value(QStringLiteral("recentNodeIds")).toArray();
+    for (const QJsonValue &value : nodes) {
+        const QJsonObject obj = value.toObject();
+        const QByteArray nodeId = QByteArray::fromHex(obj.value(QStringLiteral("idHex")).toString().toLatin1());
+        const QDateTime seenAt = QDateTime::fromString(obj.value(QStringLiteral("seenAtUtc")).toString(), Qt::ISODate);
+        if (nodeId.size() != 20 || !seenAt.isValid() || seenAt < cutoff)
+            continue;
+        m_recentDhtNodeIds.insert(nodeId, seenAt);
+    }
+
+    const QJsonArray estimates = root.value(QStringLiteral("recentPublishedRawEstimates")).toArray();
+    for (const QJsonValue &value : estimates) {
+        const qint64 n = static_cast<qint64>(value.toDouble(-1));
+        if (n > 0)
+            m_recentPublishedDhtEstimates.push_back(n);
+    }
+    constexpr int kMaxPublishedHistory = 40;
+    if (m_recentPublishedDhtEstimates.size() > kMaxPublishedHistory)
+        m_recentPublishedDhtEstimates.remove(0, m_recentPublishedDhtEstimates.size() - kMaxPublishedHistory);
+#endif
+}
+
+void TorrentSessionManager::saveDhtEstimatorCache(bool force) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (!force) {
+        const int saveIntervalMs = (m_cachedDhtGlobalEstimate > 0) ? (2 * 60 * 1000) : 15000;
+        if (m_lastDhtCacheSave.isValid() && m_lastDhtCacheSave.elapsed() < saveIntervalMs)
+            return;
+    }
+
+    QJsonObject root;
+    QJsonArray nodes;
+    for (auto it = m_recentDhtNodeIds.constBegin(); it != m_recentDhtNodeIds.constEnd(); ++it) {
+        if (it.key().size() != 20 || !it.value().isValid())
+            continue;
+        QJsonObject obj;
+        obj.insert(QStringLiteral("idHex"), QString::fromLatin1(it.key().toHex()));
+        obj.insert(QStringLiteral("seenAtUtc"), it.value().toString(Qt::ISODate));
+        nodes.push_back(obj);
+    }
+    root.insert(QStringLiteral("recentNodeIds"), nodes);
+
+    QJsonArray estimates;
+    for (qint64 n : m_recentPublishedDhtEstimates)
+        estimates.push_back(static_cast<double>(n));
+    root.insert(QStringLiteral("recentPublishedRawEstimates"), estimates);
+    root.insert(QStringLiteral("savedAtUtc"), QDateTime::currentDateTimeUtc().toString(Qt::ISODate));
+
+    QSaveFile out(dhtEstimatorCacheFilePath());
+    if (out.open(QIODevice::WriteOnly)) {
+        out.write(QJsonDocument(root).toJson(QJsonDocument::Compact));
+        out.commit();
+    }
+    if (!m_lastDhtCacheSave.isValid())
+        m_lastDhtCacheSave.start();
+    else
+        m_lastDhtCacheSave.restart();
+#endif
+}
+
+qint64 TorrentSessionManager::dhtGlobalNodesEstimate() {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (!m_session || !m_settings || !m_settings->torrentEnableDht())
+        return -1;
+    if (!m_lastDhtLiveNodesUpdate.isValid() || m_lastDhtLiveNodesUpdate.elapsed() > 60000)
+        return -1;
+    if (m_lastDhtConfidencePercent < 30)
+        return -1;
+    return m_cachedDhtGlobalEstimate > 0 ? m_cachedDhtGlobalEstimate : -1;
+#else
+    return -1;
+#endif
+}
+
+int TorrentSessionManager::dhtEstimateWarmupPercent() const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (!m_settings || !m_settings->torrentEnableDht())
+        return 0;
+    return std::clamp(m_lastDhtWarmupPercent, 0, 100);
+#else
+    return 0;
+#endif
+}
+
+QString TorrentSessionManager::dhtEstimateDebugText() const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (!m_settings || !m_settings->torrentEnableDht())
+        return QStringLiteral("Confidence: DHT Off\nLive nodes: 0\nClosest samples: 0\nUnique node IDs: 0");
+    if (m_cachedDhtGlobalEstimate <= 0)
+        return QStringLiteral("Confidence: Estimating\nLive nodes: %1\nClosest samples: %2\nUnique node IDs: %3")
+            .arg(std::max<qint64>(0, m_lastDhtNodes))
+            .arg(std::max(0, m_lastDhtClosestSampleCount))
+            .arg(m_recentDhtNodeIds.size());
+    const int confidencePercent = std::clamp(m_lastDhtConfidencePercent, 0, 100);
+    return QStringLiteral("Confidence: %1\nLive nodes: %2\nClosest samples: %3\nUnique node IDs: %4")
+        .arg(confidenceLabelForPercent(confidencePercent))
+        .arg(std::max<qint64>(0, m_lastDhtNodes))
+        .arg(std::max(0, m_lastDhtClosestSampleCount))
+        .arg(m_recentDhtNodeIds.size());
+#else
+    return QStringLiteral("DHT unavailable (libtorrent not built)");
 #endif
 }
 
@@ -1070,9 +1305,10 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     // alert_category::error only — without status the metadata dialog never
     // receives metadata_received_alert or state_update_alert.
     const auto alertMask = libtorrent::alert_category::error
-                         | libtorrent::alert_category::status
-                         | libtorrent::alert_category::storage
-                         | libtorrent::alert_category::tracker;
+        | libtorrent::alert_category::status
+        | libtorrent::alert_category::storage
+        | libtorrent::alert_category::tracker
+        | libtorrent::alert_category::dht;
     pack.set_int(libtorrent::settings_pack::alert_mask,
                  static_cast<int>(static_cast<std::uint32_t>(alertMask)));
 
@@ -1393,6 +1629,260 @@ void TorrentSessionManager::processAlerts() {
 void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
     if (!alert)
         return;
+
+    if (auto *stats = libtorrent::alert_cast<libtorrent::session_stats_alert>(alert)) {
+        if (m_dhtNodesMetricIndex < 0)
+            m_dhtNodesMetricIndex = libtorrent::find_metric_idx("dht.dht_nodes");
+
+        const auto counters = stats->counters();
+        const int counterCount = static_cast<int>(counters.size());
+        if (m_dhtNodesMetricIndex >= 0 && m_dhtNodesMetricIndex < counterCount)
+            m_lastDhtNodes = static_cast<qint64>(counters[std::size_t(m_dhtNodesMetricIndex)]);
+        return;
+    }
+
+    if (auto *dhtStats = libtorrent::alert_cast<libtorrent::dht_stats_alert>(alert)) {
+        const QDateTime now = QDateTime::currentDateTimeUtc();
+        m_lastDhtNodeId = QByteArray(dhtStats->nid.data(), int(dhtStats->nid.size()));
+        if (m_lastDhtNodeId.size() == 20)
+            m_recentDhtNodeIds.insert(m_lastDhtNodeId, now);
+        qint64 totalNodes = 0;
+        for (const auto &bucket : dhtStats->routing_table)
+            totalNodes += bucket.num_nodes;
+        if (totalNodes > 0)
+            m_lastDhtNodes = totalNodes;
+        if (m_session && m_lastDhtNodeId.size() == 20
+            && (!m_lastDhtLiveNodesRequest.isValid() || m_lastDhtLiveNodesRequest.elapsed() >= 5000)) {
+            m_session->dht_live_nodes(dhtStats->nid);
+            if (!m_lastDhtLiveNodesRequest.isValid())
+                m_lastDhtLiveNodesRequest.start();
+            else
+                m_lastDhtLiveNodesRequest.restart();
+        }
+        return;
+    }
+
+    if (auto *live = libtorrent::alert_cast<libtorrent::dht_live_nodes_alert>(alert)) {
+        if (m_lastDhtNodeId.size() != 20)
+            return;
+        auto persistCache = [this]() { saveDhtEstimatorCache(false); };
+        const QDateTime now = QDateTime::currentDateTimeUtc();
+        if (!m_lastDhtLiveNodesUpdate.isValid())
+            m_lastDhtLiveNodesUpdate.start();
+        else
+            m_lastDhtLiveNodesUpdate.restart();
+
+        const auto nodes = live->nodes();
+        for (const auto &entry : nodes)
+            m_recentDhtNodeIds.insert(QByteArray(entry.first.data(), int(entry.first.size())), now);
+
+        // Keep a longer rolling memory for restart/warmup, but estimate from a
+        // short recency window. A long union of rotating node IDs causes
+        // one-way upward drift in density-based estimates.
+        const int retentionSecs = 60 * 60;
+        const int activeWindowSecs = 3 * 60;
+        const QDateTime retentionCutoff = now.addSecs(-retentionSecs);
+        const QDateTime activeCutoff = now.addSecs(-activeWindowSecs);
+
+        for (auto it = m_recentDhtNodeIds.begin(); it != m_recentDhtNodeIds.end();) {
+            if (!it.value().isValid() || it.value() < retentionCutoff)
+                it = m_recentDhtNodeIds.erase(it);
+            else
+                ++it;
+        }
+
+        std::vector<std::pair<QByteArray, QDateTime>> activeCandidates;
+        activeCandidates.reserve(std::size_t(m_recentDhtNodeIds.size()));
+        for (auto it = m_recentDhtNodeIds.constBegin(); it != m_recentDhtNodeIds.constEnd(); ++it) {
+            const QByteArray &nodeId = it.key();
+            if (nodeId.size() != 20 || nodeId == m_lastDhtNodeId || it.value() < activeCutoff)
+                continue;
+            activeCandidates.push_back({nodeId, it.value()});
+        }
+        std::sort(activeCandidates.begin(), activeCandidates.end(),
+            [](const auto &a, const auto &b) { return a.second > b.second; });
+
+        // Bound estimator sample size to prevent long-session ID churn from
+        // pushing the estimate steadily upward.
+        const int activeCap = std::clamp(int(nodes.size()) * 3, 240, 960);
+        if (static_cast<int>(activeCandidates.size()) > activeCap)
+            activeCandidates.resize(std::size_t(activeCap));
+
+        std::vector<QByteArray> activeNodeIds;
+        activeNodeIds.reserve(activeCandidates.size());
+        for (const auto &entry : activeCandidates)
+            activeNodeIds.push_back(entry.first);
+        if (m_recentDhtNodeIds.size() > 2000) {
+            std::vector<std::pair<QByteArray, QDateTime>> allSeen;
+            allSeen.reserve(std::size_t(m_recentDhtNodeIds.size()));
+            for (auto it = m_recentDhtNodeIds.constBegin(); it != m_recentDhtNodeIds.constEnd(); ++it)
+                allSeen.push_back({it.key(), it.value()});
+            std::sort(allSeen.begin(), allSeen.end(),
+                [](const auto &a, const auto &b) { return a.second > b.second; });
+            for (int i = 2000; i < static_cast<int>(allSeen.size()); ++i)
+                m_recentDhtNodeIds.remove(allSeen[std::size_t(i)].first);
+        }
+        const int closestSamples = static_cast<int>(activeNodeIds.size());
+        m_lastDhtClosestSampleCount = closestSamples;
+        const double warmLiveProgress = std::clamp(double(std::max<qint64>(0, m_lastDhtNodes)) / 500.0, 0.0, 1.0);
+        const double warmClosestProgress = std::clamp(double(closestSamples) / 720.0, 0.0, 1.0);
+        const double warmUniqueProgress = std::clamp(double(m_recentDhtNodeIds.size()) / 720.0, 0.0, 1.0);
+        m_lastDhtWarmupPercent = std::clamp(int(std::llround(
+            (warmLiveProgress * 0.25 + warmClosestProgress * 0.40 + warmUniqueProgress * 0.35) * 100.0)), 0, 100);
+        if (closestSamples < 2) {
+            m_lastDhtKUsed = 0;
+            m_lastDhtPivotCount = 0;
+            m_cachedDhtGlobalEstimate = -1;
+            m_lastDhtConfidencePercent = 0;
+            persistCache();
+            return;
+        }
+
+        const int kMaxDynamicK = std::clamp(closestSamples / 16, 8, 24);
+        m_lastDhtKUsed = kMaxDynamicK;
+
+        int targetPivotCount = std::clamp(closestSamples / 30, 8, 24);
+        const std::uint64_t roundSeed = std::uint64_t(now.toSecsSinceEpoch() / 90);
+        std::vector<QByteArray> pivotIds;
+        pivotIds.reserve(std::size_t(targetPivotCount));
+        pivotIds.push_back(m_lastDhtNodeId);
+        for (int i = 0; static_cast<int>(pivotIds.size()) < targetPivotCount && i < targetPivotCount * 3; ++i) {
+            QByteArray pivot = localPivotIdForRound(m_lastDhtNodeId, roundSeed, i);
+            if (pivot.size() != 20 || pivot == m_lastDhtNodeId)
+                continue;
+            bool duplicate = false;
+            for (const QByteArray &existing : pivotIds) {
+                if (existing == pivot) {
+                    duplicate = true;
+                    break;
+                }
+            }
+            if (!duplicate)
+                pivotIds.push_back(pivot);
+        }
+
+        std::vector<long double> pivotLogEstimates;
+        pivotLogEstimates.reserve(pivotIds.size());
+        for (const QByteArray &pivot : pivotIds) {
+            std::vector<QByteArray> distances;
+            distances.reserve(activeNodeIds.size());
+            for (const QByteArray &nodeId : activeNodeIds) {
+                if (nodeId.size() != 20 || nodeId == pivot)
+                    continue;
+                QByteArray dist(20, '\0');
+                for (int i = 0; i < 20; ++i) {
+                    dist[i] = char(static_cast<unsigned char>(pivot[i])
+                                   ^ static_cast<unsigned char>(nodeId[i]));
+                }
+                distances.push_back(dist);
+            }
+            const int k = std::min(kMaxDynamicK, static_cast<int>(distances.size()));
+            if (k < 2)
+                continue;
+            std::nth_element(distances.begin(), distances.begin() + (k - 1), distances.end(), distanceLess);
+            const long double log2Distance = log2DistanceBytes(distances[std::size_t(k - 1)]);
+            if (!std::isfinite(log2Distance))
+                continue;
+            const long double log2Estimate = std::log2(static_cast<long double>(k - 1))
+                + 160.0L - log2Distance;
+            if (!std::isfinite(log2Estimate))
+                continue;
+            pivotLogEstimates.push_back(log2Estimate);
+        }
+        m_lastDhtPivotCount = static_cast<int>(pivotLogEstimates.size());
+        if (pivotLogEstimates.empty()) {
+            m_cachedDhtGlobalEstimate = -1;
+            m_lastDhtConfidencePercent = 0;
+            persistCache();
+            return;
+        }
+
+        std::sort(pivotLogEstimates.begin(), pivotLogEstimates.end());
+        const int trimCount = pivotLogEstimates.size() >= 10
+            ? static_cast<int>(pivotLogEstimates.size() / 6)
+            : 0;
+        const int begin = trimCount;
+        const int end = static_cast<int>(pivotLogEstimates.size()) - trimCount;
+        const int used = std::max(1, end - begin);
+
+        long double meanLog2 = 0.0L;
+        for (int i = begin; i < end; ++i)
+            meanLog2 += pivotLogEstimates[std::size_t(i)];
+        meanLog2 /= static_cast<long double>(used);
+
+        long double variance = 0.0L;
+        for (int i = begin; i < end; ++i) {
+            const long double delta = pivotLogEstimates[std::size_t(i)] - meanLog2;
+            variance += delta * delta;
+        }
+        if (used > 1)
+            variance /= static_cast<long double>(used - 1);
+        else
+            variance = 0.0L;
+        const long double stddevLog2 = std::sqrt(std::max<long double>(0.0L, variance));
+
+        long double rawEstimated = std::exp2(meanLog2);
+        qint64 rawEstimate = -1;
+        if (std::isfinite(rawEstimated) && rawEstimated > 0.0L) {
+            if (rawEstimated > static_cast<long double>(std::numeric_limits<qint64>::max()))
+                rawEstimated = static_cast<long double>(std::numeric_limits<qint64>::max());
+            rawEstimate = static_cast<qint64>(std::llround(rawEstimated));
+        }
+
+        const double liveProgress = std::clamp(double(std::max<qint64>(0, m_lastDhtNodes)) / 450.0, 0.0, 1.0);
+        const double closestProgress = std::clamp(double(closestSamples) / 720.0, 0.0, 1.0);
+        const double uniqueProgress = std::clamp(double(m_recentDhtNodeIds.size()) / 720.0, 0.0, 1.0);
+        const double pivotProgress = std::clamp(double(m_lastDhtPivotCount) / 14.0, 0.0, 1.0);
+        const double stability = std::clamp(1.0 - (double(stddevLog2) / 1.1), 0.0, 1.0);
+        const double score = liveProgress * 0.22
+            + closestProgress * 0.30
+            + uniqueProgress * 0.28
+            + pivotProgress * 0.12
+            + stability * 0.08;
+        const int computedConfidence = std::clamp(int(std::llround(score * 100.0)), 0, 100);
+
+        // Keep "estimating..." for longer and only publish once we have enough
+        // independent pivots and a meaningful active sample size.
+        const bool warmedEnough = closestSamples >= 260
+            && m_recentDhtNodeIds.size() >= 700
+            && m_lastDhtPivotCount >= 10;
+
+        qint64 adaptiveFloor = -1;
+        if (m_recentPublishedDhtEstimates.size() >= 8) {
+            QVector<qint64> sorted = m_recentPublishedDhtEstimates;
+            std::sort(sorted.begin(), sorted.end());
+            const int sortedCount = static_cast<int>(sorted.size());
+            const int p10Index = std::clamp((sortedCount - 1) / 10, 0, sortedCount - 1);
+            const qint64 p10 = sorted[p10Index];
+            adaptiveFloor = std::max<qint64>(200000, static_cast<qint64>(std::llround(double(p10) * 0.35)));
+        }
+        const bool saneRaw = rawEstimate > 0 && (adaptiveFloor <= 0 || rawEstimate >= adaptiveFloor);
+        if (!warmedEnough || !saneRaw) {
+            m_cachedDhtGlobalEstimate = -1;
+            m_lastDhtConfidencePercent = 0;
+        } else {
+            long double finalLog2 = meanLog2;
+            if (m_cachedDhtGlobalEstimate > 0) {
+                const long double prevLog2 = std::log2(static_cast<long double>(m_cachedDhtGlobalEstimate));
+                const long double alpha = std::clamp(
+                    0.24L + 0.26L * std::clamp(static_cast<long double>(closestSamples) / 720.0L, 0.0L, 1.0L),
+                    0.24L, 0.50L);
+                finalLog2 = prevLog2 * (1.0L - alpha) + finalLog2 * alpha;
+            }
+            long double finalEstimated = std::exp2(finalLog2);
+            if (finalEstimated > static_cast<long double>(std::numeric_limits<qint64>::max()))
+                finalEstimated = static_cast<long double>(std::numeric_limits<qint64>::max());
+            m_lastDhtGlobalNodes = static_cast<qint64>(std::llround(finalEstimated));
+            m_cachedDhtGlobalEstimate = m_lastDhtGlobalNodes;
+            m_lastDhtConfidencePercent = computedConfidence;
+            m_recentPublishedDhtEstimates.push_back(rawEstimate);
+            constexpr int kMaxPublishedHistory = 40;
+            if (m_recentPublishedDhtEstimates.size() > kMaxPublishedHistory)
+                m_recentPublishedDhtEstimates.remove(0, m_recentPublishedDhtEstimates.size() - kMaxPublishedHistory);
+        }
+        persistCache();
+        return;
+    }
 
     if (auto *externalIp = libtorrent::alert_cast<libtorrent::external_ip_alert>(alert)) {
         setDetectedExternalAddress(QString::fromStdString(externalIp->external_address.to_string()));

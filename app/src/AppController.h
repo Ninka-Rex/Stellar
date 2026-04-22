@@ -60,6 +60,9 @@ class AppController : public QObject {
     Q_PROPERTY(int     activeDownloads    READ activeDownloads    NOTIFY activeDownloadsChanged)
     Q_PROPERTY(qint64  totalDownSpeed     READ totalDownSpeed     NOTIFY totalSpeedChanged)
     Q_PROPERTY(qint64  totalUpSpeed       READ totalUpSpeed       NOTIFY totalSpeedChanged)
+    Q_PROPERTY(qint64  estimatedOnlineUsers READ estimatedOnlineUsers NOTIFY estimatedOnlineUsersChanged)
+    Q_PROPERTY(int estimatedOnlineUsersWarmupPercent READ estimatedOnlineUsersWarmupPercent NOTIFY estimatedOnlineUsersChanged)
+    Q_PROPERTY(QString estimatedOnlineUsersDebugText READ estimatedOnlineUsersDebugText NOTIFY estimatedOnlineUsersChanged)
     Q_PROPERTY(int     seedingCount       READ seedingCount       NOTIFY seedingCountChanged)
     Q_PROPERTY(double  allTimeRatio       READ allTimeRatio       NOTIFY allTimeRatioChanged)
     Q_PROPERTY(QString selectedCategory  READ selectedCategory   WRITE setSelectedCategory NOTIFY selectedCategoryChanged)
@@ -113,6 +116,9 @@ public:
     int    activeDownloads() const;
     qint64 totalDownSpeed()  const { return m_totalDownSpeed; }
     qint64 totalUpSpeed()    const { return m_totalUpSpeed; }
+    qint64 estimatedOnlineUsers() const { return m_estimatedOnlineUsers; }
+    int estimatedOnlineUsersWarmupPercent() const { return m_estimatedOnlineUsersWarmupPercent; }
+    QString estimatedOnlineUsersDebugText() const { return m_estimatedOnlineUsersDebugText; }
     int    seedingCount()    const { return m_seedingCount; }
     double allTimeRatio()    const { return m_allTimeRatio; }
     QString selectedCategory() const { return m_selectedCategory; }
@@ -285,6 +291,7 @@ public:
     Q_INVOKABLE QVariantList torrentSpeedHistory(const QString &downloadId, int maxAgeSeconds = 0, int maxPoints = 0) const;
     Q_INVOKABLE QVariantList torrentPieceMap(const QString &downloadId) const;
     Q_INVOKABLE void clearTorrentSpeedHistory(const QString &downloadId);
+    Q_INVOKABLE void clearDhtEstimatorCache();
     Q_INVOKABLE QVariantMap torrentAllTimeStats() const;
     Q_INVOKABLE void resetTorrentAllTimeStats();
     Q_INVOKABLE QString clipboardUrl() const;
@@ -356,6 +363,7 @@ public:
 signals:
     void activeDownloadsChanged();
     void totalSpeedChanged();
+    void estimatedOnlineUsersChanged();
     void seedingCountChanged();
     void allTimeRatioChanged();
     void selectedCategoryChanged();
@@ -441,6 +449,9 @@ private:
     QTimer                 *m_speedTimer{nullptr};
     qint64                  m_totalDownSpeed{0};
     qint64                  m_totalUpSpeed{0};
+    qint64                  m_estimatedOnlineUsers{-1};
+    int                     m_estimatedOnlineUsersWarmupPercent{0};
+    QString                 m_estimatedOnlineUsersDebugText;
     int                     m_seedingCount{0};
     double                  m_allTimeRatio{0.0};
     QString                 m_lastTrayTooltip;

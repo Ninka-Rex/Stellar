@@ -16,6 +16,7 @@
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls
 
 Rectangle {
     id: root
@@ -94,6 +95,37 @@ Rectangle {
         }
 
         Item { Layout.fillWidth: true }
+
+        Text {
+            visible: App.settings.estimatedOnlineUsersInStatusBar
+            text: {
+                function fmtUsers(value) {
+                    if (value >= 1000000000)
+                        return "~" + (value / 1000000000).toFixed(value >= 10000000000 ? 0 : 1) + "B"
+                    if (value >= 1000000)
+                        return "~" + (value / 1000000).toFixed(value >= 10000000 ? 0 : 1) + "M"
+                    if (value >= 1000)
+                        return "~" + (value / 1000).toFixed(value >= 10000 ? 0 : 1) + "K"
+                    return "~" + Math.round(value)
+                }
+                if (!App.settings.torrentEnableDht)
+                    return "🔴 DHT off"
+                if (App.estimatedOnlineUsers > 0) {
+                    const lowConfidence = App.estimatedOnlineUsersWarmupPercent < 70
+                    return "🟢 " + fmtUsers(App.estimatedOnlineUsers) + " online" + (lowConfidence ? "*" : "")
+                }
+                return "🟡 estimating... (" + App.estimatedOnlineUsersWarmupPercent + "%)"
+            }
+            color: "#b0b0b0"
+            font.pixelSize: 11
+            verticalAlignment: Text.AlignVCenter
+
+            HoverHandler { id: onlineUsersHover }
+            ToolTip.visible: onlineUsersHover.hovered
+            ToolTip.delay: 250
+            ToolTip.timeout: 10000
+            ToolTip.text: App.estimatedOnlineUsersDebugText
+        }
 
         // All-time torrent ratio — right-aligned, left of speed.
         Text {
