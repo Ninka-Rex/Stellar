@@ -33,6 +33,12 @@ Rectangle {
     signal nextTip()
     signal closeTips()
 
+    function formatKBps(kbps) {
+        if (kbps >= 1024)
+            return (kbps / 1024).toFixed(kbps >= 10240 ? 0 : 1) + " MB/s"
+        return kbps + " KB/s"
+    }
+
     Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: "#3a3a3a" }
 
     RowLayout {
@@ -62,9 +68,9 @@ Rectangle {
                 if (App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) {
                     var limitParts = []
                     if (App.settings.globalSpeedLimitKBps > 0)
-                        limitParts.push("↓ " + App.settings.globalSpeedLimitKBps + " KB/s")
+                        limitParts.push("↓ " + formatKBps(App.settings.globalSpeedLimitKBps))
                     if (App.settings.globalUploadLimitKBps > 0)
-                        limitParts.push("↑ " + App.settings.globalUploadLimitKBps + " KB/s")
+                        limitParts.push("↑ " + formatKBps(App.settings.globalUploadLimitKBps))
                     parts.push("🛑 Speed limiter " + limitParts.join(" / "))
                 }
 
