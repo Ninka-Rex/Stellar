@@ -95,6 +95,15 @@ Rectangle {
 
         Item { Layout.fillWidth: true }
 
+        // All-time torrent ratio — right-aligned, left of speed.
+        Text {
+            visible: App.settings.ratioInStatusBar
+            text: "☯ " + App.allTimeRatio.toFixed(3)
+            color: "#b0b0b0"
+            font.pixelSize: 11
+            verticalAlignment: Text.AlignVCenter
+        }
+
         // Live speed indicator — right-aligned, only shown when enabled.
         Text {
             visible: App.settings.speedInStatusBar

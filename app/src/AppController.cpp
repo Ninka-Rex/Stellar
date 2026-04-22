@@ -944,6 +944,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_seedingCount = seeding;
             emit seedingCountChanged();
         }
+        // Recompute all-time ratio on the same cadence
+        const auto stats = torrentAllTimeStats();
+        const double ratio = stats[QStringLiteral("ratio")].toDouble();
+        if (qAbs(m_allTimeRatio - ratio) > 0.001) {
+            m_allTimeRatio = ratio;
+            emit allTimeRatioChanged();
+        }
     });
     m_speedTimer->start();
 

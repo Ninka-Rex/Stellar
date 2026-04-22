@@ -48,6 +48,7 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool speedInTrayTooltip  READ speedInTrayTooltip  WRITE setSpeedInTrayTooltip  NOTIFY speedInTrayTooltipChanged)
     Q_PROPERTY(bool speedInTitleBar     READ speedInTitleBar     WRITE setSpeedInTitleBar     NOTIFY speedInTitleBarChanged)
     Q_PROPERTY(bool speedInStatusBar    READ speedInStatusBar    WRITE setSpeedInStatusBar    NOTIFY speedInStatusBarChanged)
+    Q_PROPERTY(bool ratioInStatusBar    READ ratioInStatusBar    WRITE setRatioInStatusBar    NOTIFY ratioInStatusBarChanged)
     Q_PROPERTY(bool startDownloadWhileFileInfo READ startDownloadWhileFileInfo WRITE setStartDownloadWhileFileInfo NOTIFY startDownloadWhileFileInfoChanged)
     Q_PROPERTY(bool showQueueSelectionOnDownloadLater READ showQueueSelectionOnDownloadLater WRITE setShowQueueSelectionOnDownloadLater NOTIFY showQueueSelectionOnDownloadLaterChanged)
     Q_PROPERTY(bool showQueueSelectionOnBatchDownload READ showQueueSelectionOnBatchDownload WRITE setShowQueueSelectionOnBatchDownload NOTIFY showQueueSelectionOnBatchDownloadChanged)
@@ -169,6 +170,7 @@ public:
     bool speedInTrayTooltip()     const { return m_speedInTrayTooltip; }
     bool speedInTitleBar()        const { return m_speedInTitleBar; }
     bool speedInStatusBar()       const { return m_speedInStatusBar; }
+    bool ratioInStatusBar()       const { return m_ratioInStatusBar; }
     bool startDownloadWhileFileInfo() const { return m_startDownloadWhileFileInfo; }
     bool showQueueSelectionOnDownloadLater() const { return m_showQueueSelectionOnDownloadLater; }
     bool showQueueSelectionOnBatchDownload() const { return m_showQueueSelectionOnBatchDownload; }
@@ -266,6 +268,7 @@ public:
     void setSpeedInTrayTooltip(bool v);
     void setSpeedInTitleBar(bool v);
     void setSpeedInStatusBar(bool v);
+    void setRatioInStatusBar(bool v);
     void setStartDownloadWhileFileInfo(bool v);
     void setShowQueueSelectionOnDownloadLater(bool v);
     void setShowQueueSelectionOnBatchDownload(bool v);
@@ -371,6 +374,7 @@ signals:
     void speedInTrayTooltipChanged();
     void speedInTitleBarChanged();
     void speedInStatusBarChanged();
+    void ratioInStatusBarChanged();
     void startDownloadWhileFileInfoChanged();
     void showQueueSelectionOnDownloadLaterChanged();
     void showQueueSelectionOnBatchDownloadChanged();
@@ -446,6 +450,7 @@ private:
     bool        m_speedInTrayTooltip{true};
     bool        m_speedInTitleBar{false};
     bool        m_speedInStatusBar{false};
+    bool        m_ratioInStatusBar{false};
     bool        m_startDownloadWhileFileInfo{true};
     bool        m_showQueueSelectionOnDownloadLater{true};
     bool        m_showQueueSelectionOnBatchDownload{true};

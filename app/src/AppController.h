@@ -61,6 +61,7 @@ class AppController : public QObject {
     Q_PROPERTY(qint64  totalDownSpeed     READ totalDownSpeed     NOTIFY totalSpeedChanged)
     Q_PROPERTY(qint64  totalUpSpeed       READ totalUpSpeed       NOTIFY totalSpeedChanged)
     Q_PROPERTY(int     seedingCount       READ seedingCount       NOTIFY seedingCountChanged)
+    Q_PROPERTY(double  allTimeRatio       READ allTimeRatio       NOTIFY allTimeRatioChanged)
     Q_PROPERTY(QString selectedCategory  READ selectedCategory   WRITE setSelectedCategory NOTIFY selectedCategoryChanged)
     Q_PROPERTY(QString selectedQueue     READ selectedQueue      WRITE setSelectedQueue    NOTIFY selectedQueueChanged)
     Q_PROPERTY(QString appVersion   READ appVersion   CONSTANT)
@@ -113,6 +114,7 @@ public:
     qint64 totalDownSpeed()  const { return m_totalDownSpeed; }
     qint64 totalUpSpeed()    const { return m_totalUpSpeed; }
     int    seedingCount()    const { return m_seedingCount; }
+    double allTimeRatio()    const { return m_allTimeRatio; }
     QString selectedCategory() const { return m_selectedCategory; }
     QString selectedQueue() const    { return m_selectedQueue; }
     void setSelectedCategory(const QString &v);
@@ -353,6 +355,7 @@ signals:
     void activeDownloadsChanged();
     void totalSpeedChanged();
     void seedingCountChanged();
+    void allTimeRatioChanged();
     void selectedCategoryChanged();
     void selectedQueueChanged();
     void errorOccurred(const QString &message);
@@ -436,6 +439,7 @@ private:
     qint64                  m_totalDownSpeed{0};
     qint64                  m_totalUpSpeed{0};
     int                     m_seedingCount{0};
+    double                  m_allTimeRatio{0.0};
     QString                 m_lastTrayTooltip;
     QLocalServer           *m_ipcServer{nullptr};
     bool                    m_qmlReady{false};

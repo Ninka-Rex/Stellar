@@ -63,6 +63,7 @@ Window {
     property bool   editSpeedInTrayTooltip:    true
     property bool   editSpeedInTitleBar:       false
     property bool   editSpeedInStatusBar:      false
+    property bool   editRatioInStatusBar:      false
     property bool   editStartDownloadWhileFileInfo: true
     property bool   editShowQueueSelectionOnDownloadLater: true
     property bool   editShowQueueSelectionOnBatchDownload: true
@@ -357,6 +358,7 @@ Window {
         editSpeedInTrayTooltip    !== App.settings.speedInTrayTooltip ||
         editSpeedInTitleBar       !== App.settings.speedInTitleBar ||
         editSpeedInStatusBar      !== App.settings.speedInStatusBar ||
+        editRatioInStatusBar      !== App.settings.ratioInStatusBar ||
         editLaunchOnStartup       !== App.settings.launchOnStartup ||
         editClipboardMonitorEnabled !== App.settings.clipboardMonitorEnabled ||
         editDoubleClickAction     !== App.settings.doubleClickAction ||
@@ -551,6 +553,7 @@ Window {
         App.settings.speedInTrayTooltip     = editSpeedInTrayTooltip
         App.settings.speedInTitleBar        = editSpeedInTitleBar
         App.settings.speedInStatusBar       = editSpeedInStatusBar
+        App.settings.ratioInStatusBar       = editRatioInStatusBar
         App.settings.launchOnStartup        = editLaunchOnStartup
         App.settings.clipboardMonitorEnabled = editClipboardMonitorEnabled
         App.settings.doubleClickAction      = editDoubleClickAction
@@ -629,6 +632,7 @@ Window {
         editSpeedInTrayTooltip    = App.settings.speedInTrayTooltip
         editSpeedInTitleBar       = App.settings.speedInTitleBar
         editSpeedInStatusBar      = App.settings.speedInStatusBar
+        editRatioInStatusBar      = App.settings.ratioInStatusBar
         editLaunchOnStartup       = App.settings.launchOnStartup
         editClipboardMonitorEnabled = App.settings.clipboardMonitorEnabled
         editDoubleClickAction     = App.settings.doubleClickAction
@@ -2174,8 +2178,14 @@ Window {
 
                 // General
                 Item {
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        clip: true
+
                     ColumnLayout {
-                        anchors { fill: parent; margins: 12 }
+                        width: parent.width
+                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
                         Text { text: "General"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
@@ -2239,6 +2249,13 @@ Window {
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInStatusBar
                             onCheckedChanged: root.editSpeedInStatusBar = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: "Show ratio in status bar"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editRatioInStatusBar
+                            onCheckedChanged: root.editRatioInStatusBar = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
@@ -2582,8 +2599,9 @@ Window {
 
                         Item { height: 12 }
                     }
+                    } // ColumnLayout
                     } // ScrollView
-                }
+                } // General
 
                 // Torrents
                 Item {
