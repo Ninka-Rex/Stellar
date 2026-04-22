@@ -263,6 +263,18 @@ void DownloadQueue::scheduleNext() {
         connect(worker, &SegmentedTransfer::failed, this, [this, id](const QString &reason) {
             onWorkerFailed(id, reason);
         });
+        connect(worker, &SegmentedTransfer::fileDeletedWarning, this, [this, id]() {
+            auto *w = m_workers.take(id);
+            if (w) w->deleteLater();
+            for (auto *itm : m_items) {
+                if (itm->id() == id) {
+                    emit itemFileDeleted(itm);
+                    break;
+                }
+            }
+            emit activeCountChanged();
+            scheduleNext();
+        });
 
         worker->start();
         ++current;

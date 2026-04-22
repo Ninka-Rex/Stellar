@@ -1337,6 +1337,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             m_tray->showNotification(QStringLiteral("Download Failed"), QStringLiteral("%1\n%2").arg(name, details));
         }
     });
+    connect(m_queue, &DownloadQueue::itemFileDeleted, this, [this](DownloadItem *item) {
+        if (!item) return;
+        m_db->save(item);
+        m_dirtyIds.remove(item->id());
+        const QString filename = item->filename().isEmpty() ? item->url().fileName() : item->filename();
+        emit fileDeletedWarningDetected(item->id(), filename);
+    });
     connect(m_nativeHost, &NativeMessagingHost::downloadRequested, this, [this](const QString &url, const QString &filename, const QString &referrer, const QString &cookies, int modifierKey) {
         Q_UNUSED(filename);
         // Skip interception if bypass modifier key is active and matches user's configured key

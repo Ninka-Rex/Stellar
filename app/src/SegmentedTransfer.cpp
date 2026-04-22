@@ -1079,7 +1079,7 @@ void SegmentedTransfer::mergeAndFinish() {
     auto *watcher = new QFutureWatcher<QString>(this);
 
     connect(watcher, &QFutureWatcher<QString>::finished, this,
-            [this, watcher]() {
+            [this, watcher, outPath]() {
         watcher->deleteLater();
         const QString err = watcher->result();
         if (!err.isEmpty()) {
@@ -1089,6 +1089,31 @@ void SegmentedTransfer::mergeAndFinish() {
         }
         cleanupPartFiles();
         deleteMetaFile();
+
+        // Detect hosts that delete the file between HEAD and GET: the assembled
+        // output will be a tiny HTML error page instead of the expected content.
+        // Threshold: file smaller than 50 KB and content sniffs as HTML.
+        static constexpr qint64 kHtmlSniffThreshold = 50 * 1024;
+        QFileInfo fi(outPath);
+        if (fi.size() > 0 && fi.size() < kHtmlSniffThreshold) {
+            QFile f(outPath);
+            if (f.open(QIODevice::ReadOnly)) {
+                const QByteArray head = f.read(512).trimmed();
+                f.close();
+                bool looksLikeHtml = head.startsWith('<')
+                    && (head.contains("html") || head.contains("HTML")
+                        || head.contains("<!DOCTYPE") || head.contains("<!doctype"));
+                if (looksLikeHtml) {
+                    // Remove the useless HTML file — the download is effectively failed.
+                    QFile::remove(outPath);
+                    m_item->setStatus(DownloadItem::Status::Error);
+                    m_item->setErrorString(QStringLiteral("The file no longer exists on the server."));
+                    emit fileDeletedWarning();
+                    return;
+                }
+            }
+        }
+
         m_item->setStatus(DownloadItem::Status::Completed);
         emit finished();
     });

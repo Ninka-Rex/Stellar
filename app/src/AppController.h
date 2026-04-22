@@ -391,6 +391,10 @@ signals:
     // url is the full URL string; the QML side shows the Add URL dialog.
     void clipboardUrlDetected(const QString &url);
 
+    // Emitted when a download finishes but the file turns out to be a tiny HTML
+    // error page — the host deleted the file between HEAD and GET.
+    void fileDeletedWarningDetected(const QString &downloadId, const QString &filename);
+
     // ── yt-dlp signals ───────────────────────────────────────────────────────────
     // Emitted when a --dump-json probe completes successfully.
     // probeId matches the return value from beginYtdlpInfo().

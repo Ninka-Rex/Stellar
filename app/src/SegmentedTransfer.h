@@ -60,6 +60,9 @@ signals:
     void progressChanged(qint64 done, qint64 total, qint64 speedBps);
     void finished();
     void failed(const QString &reason);
+    // Emitted when the downloaded file appears to be a small HTML error/expiry page
+    // instead of the expected content — typical of hosts that delete files on HEAD.
+    void fileDeletedWarning();
 
 private:
     struct Segment {

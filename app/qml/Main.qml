@@ -320,6 +320,12 @@ ApplicationWindow {
         function onYtdlpCookieRetryRequested(downloadId, reason, suggestedBrowser) {
             ytdlpCookieRetryDialog._openFor(downloadId, reason, suggestedBrowser)
         }
+        function onFileDeletedWarningDetected(downloadId, filename) {
+            fileDeletedWarningDialog._filename = filename
+            fileDeletedWarningDialog.show()
+            fileDeletedWarningDialog.raise()
+            fileDeletedWarningDialog.requestActivate()
+        }
     }
 
     // Debounce geometry saves — writing QSettings on every pixel of a drag
@@ -1217,6 +1223,113 @@ ApplicationWindow {
                             root._afterDownloadLaterWarning()
                         root._afterDownloadLaterWarning = null
                     }
+                }
+            }
+        }
+    }
+
+    // ── File Deleted Warning Dialog ───────────────────────────────────────────
+    Window {
+        id: fileDeletedWarningDialog
+        property string _filename: ""
+        title: "File No Longer Available"
+        transientParent: root
+        width: 460
+        height: 240
+        minimumWidth: 400
+        minimumHeight: 220
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+        modality: Qt.ApplicationModal
+        color: "#1e1e1e"
+
+        Material.theme: Material.Dark
+        Material.background: "#1e1e1e"
+        Material.accent: "#4488dd"
+
+        onVisibleChanged: {
+            if (visible) {
+                x = root.x + Math.round((root.width  - width)  / 2)
+                y = root.y + Math.round((root.height - height) / 2)
+            }
+        }
+
+        ColumnLayout {
+            anchors { fill: parent; margins: 16 }
+            spacing: 10
+
+            // Icon + title row
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 12
+
+                Image {
+                    source: "icons/file_no_longer_available.png"
+                    width: 36; height: 36
+                    fillMode: Image.PreserveAspectFit
+                    Layout.alignment: Qt.AlignTop
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    spacing: 4
+
+                    Text {
+                        Layout.fillWidth: true
+                        text: "The file \u201c" + fileDeletedWarningDialog._filename + "\u201d could not be downloaded."
+                        color: "#e0e0e0"
+                        font.pixelSize: 12
+                        font.bold: true
+                        wrapMode: Text.WordWrap
+                    }
+
+                    Text {
+                        Layout.fillWidth: true
+                        text: "The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata."
+                        color: "#c8c8c8"
+                        font.pixelSize: 11
+                        wrapMode: Text.WordWrap
+                        lineHeight: 1.3
+                    }
+                }
+            }
+
+            Rectangle {
+                Layout.fillWidth: true
+                implicitHeight: fdwInfoText.implicitHeight + 16
+                color: "#1a2030"
+                border.color: "#2a3050"
+                radius: 3
+
+                Text {
+                    id: fdwInfoText
+                    anchors { fill: parent; margins: 8 }
+                    text: "To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:\nStellar Options \u2192 Browser \u2192 Bypass Download Interception"
+                    color: "#8899bb"
+                    font.pixelSize: 11
+                    wrapMode: Text.WordWrap
+                    lineHeight: 1.3
+                }
+            }
+
+            Item { Layout.fillHeight: true }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Item { Layout.fillWidth: true }
+                DlgButton {
+                    text: "Open Browser Settings"
+                    onClicked: {
+                        fileDeletedWarningDialog.close()
+                        settingsDialog.initialPage = 3  // Browser tab
+                        settingsDialog.show()
+                        settingsDialog.raise()
+                        settingsDialog.requestActivate()
+                    }
+                }
+                DlgButton {
+                    text: "OK"
+                    primary: true
+                    onClicked: fileDeletedWarningDialog.close()
                 }
             }
         }

@@ -72,6 +72,7 @@ signals:
     void itemRemoved(const QString &id);
     void itemCompleted(DownloadItem *item);
     void itemFailed(DownloadItem *item, const QString &reason);
+    void itemFileDeleted(DownloadItem *item);
     void queueChanged();
 
 private:

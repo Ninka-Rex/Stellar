@@ -317,6 +317,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/custom_queue.png
         app/qml/icons/synch_queue.png
         app/qml/icons/globe.png
+        app/qml/icons/file_no_longer_available.png
         app/qml/icons/world-map.svg
         app/qml/icons/page.ico
         app/qml/icons/cloud_copylink.ico
