@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Stellar Integration Module",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw91qfA9miR9HzC1qR9V4TzmmM4ZyI2VokaliPpDUGMfMeQNcgtB1tEX4Od8dZgaFFUCuy7ArA/fhTb4SP437m+FU9J3fOFnmm/OZ3UzEgyOnoczRNeFnyoHUOzNhl6F/KVspDP2KwgkXkAodC0X1YXwMOs9+ouGG6zhMhk7+sNEo6mAVJma0skAs+2dK2/4tAUkQi0MVRzGb3r9AfNgZEmEKV1LjKvxP5FbDML6anw8IzPZpKWf2VxNHhstxQfCY5TanvBKuEzh2Pe9uuhK4GIYFWlrtsadbwK8s1N0Nr/iUMFdTY1Bam4rRXXZL8I9amPzBmwXV9DYq1v6ZE3HH+wIDAQAB",
   "description": "Intercepts browser downloads and sends them to Stellar Download Manager.",
   "icons": {

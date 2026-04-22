@@ -116,7 +116,13 @@ function wildcardToRegex(pattern) {
 }
 
 function matchesSitePattern(host, pattern) {
-    return wildcardToRegex(pattern).test(host);
+    if (wildcardToRegex(pattern).test(host)) return true;
+    // A bare domain pattern (no wildcard, no leading dot) should also match subdomains.
+    // e.g. "8mb.video" should match "transcode-209ead.8mb.video".
+    if (!pattern.includes("*") && !pattern.startsWith(".")) {
+        return host === pattern.toLowerCase() || host.endsWith("." + pattern.toLowerCase());
+    }
+    return false;
 }
 
 function matchesAddressPattern(url, pattern) {

@@ -161,7 +161,7 @@ Window {
 
     function _normalizedExcludedSitesText() {
         return excludedSitesArea
-            ? excludedSitesArea.text.split(/\s+/).map(function(s) {
+            ? excludedSitesArea.text.split(/[\s,]+/).map(function(s) {
                 return s.trim()
             }).filter(function(s) { return s.length > 0 }).join("|")
             : App.settings.excludedSites.join("|")
@@ -512,7 +512,7 @@ Window {
             }).filter(function(s) { return s.length > 0 })
             App.settings.monitoredExtensions = monExts
 
-            var excSites = excludedSitesArea.text.split(/\s+/).filter(function(s) { return s.length > 0 })
+            var excSites = excludedSitesArea.text.split(/[\s,]+/).filter(function(s) { return s.length > 0 })
             App.settings.excludedSites = excSites
 
             var excAddrs = excludedAddrsArea.text.split("\n").map(function(s) {

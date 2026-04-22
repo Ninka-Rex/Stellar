@@ -78,6 +78,22 @@ let liveSettings = {
     enabled: true,
 };
 
+// Stale-while-revalidate: webRequest.onHeadersReceived is synchronous and uses
+// liveSettings directly. Without periodic resync, user edits to exclusion lists
+// in the Stellar app don't take effect until Firefox restarts. Track the last
+// sync time and kick off a background refresh (non-blocking) when stale.
+let lastLiveSyncTime = 0;
+let liveSyncInFlight = false;
+const LIVE_SYNC_TTL_MS = 10000;
+function maybeRefreshLiveSettings() {
+    const now = Date.now();
+    if (liveSyncInFlight) return;
+    if (now - lastLiveSyncTime < LIVE_SYNC_TTL_MS) return;
+    liveSyncInFlight = true;
+    lastLiveSyncTime = now;
+    syncSettingsFromApp().finally(() => { liveSyncInFlight = false; });
+}
+
 async function getSettings() {
     const now = Date.now();
     if (cachedSettings && (now - cachedSettingsTime) < SETTINGS_CACHE_TTL_MS) return cachedSettings;
@@ -110,12 +126,9 @@ browser.storage.onChanged.addListener(() => {
 
 async function syncSettingsFromApp() {
     try {
-        const response = await new Promise((resolve, reject) => {
-            browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "getSettings" }, (resp) => {
-                if (browser.runtime.lastError) reject(new Error(browser.runtime.lastError.message));
-                else resolve(resp);
-            });
-        });
+        // Firefox's browser.runtime.sendNativeMessage is Promise-based; the callback
+        // form is Chrome-only. Using the Promise directly so responses aren't lost.
+        const response = await browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "getSettings" });
         if (response?.type === "settings") {
             const update = {};
             // Allow empty arrays — the user may have cleared all entries in the app.
@@ -131,7 +144,7 @@ async function syncSettingsFromApp() {
             }
         }
     } catch (err) {
-        console.info("[Stellar] Could not sync settings from app:", err.message);
+        console.info("[Stellar] Could not sync settings from app:", err?.message);
     } finally {
         await reloadLiveSettings();
     }
@@ -143,7 +156,13 @@ function wildcardToRegex(pattern) {
 }
 
 function matchesSitePattern(host, pattern) {
-    return wildcardToRegex(pattern).test(host);
+    if (wildcardToRegex(pattern).test(host)) return true;
+    // A bare domain pattern (no wildcard, no leading dot) should also match subdomains.
+    // e.g. "8mb.video" should match "transcode-209ead.8mb.video".
+    if (!pattern.includes("*") && !pattern.startsWith(".")) {
+        return host === pattern.toLowerCase() || host.endsWith("." + pattern.toLowerCase());
+    }
+    return false;
 }
 
 function matchesAddressPattern(url, pattern) {
@@ -345,12 +364,7 @@ async function requestDownload(details) {
 
 async function ping() {
     try {
-        const resp = await new Promise((resolve, reject) => {
-            browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "ping" }, (r) => {
-                if (browser.runtime.lastError) reject(new Error(browser.runtime.lastError.message));
-                else resolve(r);
-            });
-        });
+        const resp = await browser.runtime.sendNativeMessage(NATIVE_HOST_ID, { type: "ping" });
         return resp?.type === "ready";
     } catch {
         return false;
@@ -388,6 +402,9 @@ browser.webRequest.onHeadersReceived.addListener(
         // beacons, pings, websockets, and CSP reports are never user-initiated downloads.
         const NON_DOWNLOAD_TYPES = new Set(["xmlhttprequest","beacon","ping","csp_report","websocket"]);
         if (NON_DOWNLOAD_TYPES.has(details.type)) return {};
+
+        // Ensure liveSettings isn't stale — triggers a background refresh when TTL expires.
+        maybeRefreshLiveSettings();
 
         const modifierKey = getAndClearModifierKey();
         if (modifierKey > 0) return {};

@@ -30,6 +30,7 @@
 #include <QThread>
 #include <QFile>
 #include <QDir>
+#include <QTextStream>
 #include <QStandardPaths>
 #include <QLibraryInfo>
 #include "AppController.h"
@@ -188,6 +189,12 @@ static int runNativeMessagingHost(int argc, char *argv[])
     // getSettings reads QSettings directly — no socket needed, always up-to-date.
     // QCoreApplication is required for QLocalSocket and QSettings.
     QCoreApplication coreApp(argc, argv);
+    // Org/app names MUST match the GUI app — StellarPaths::root() derives the
+    // settings directory from QStandardPaths::AppLocalDataLocation, which uses
+    // these names. Without them, the native host reads a different INI file
+    // (or none at all) and returns defaults instead of user-configured lists.
+    QCoreApplication::setApplicationName(QStringLiteral("Stellar"));
+    QCoreApplication::setOrganizationName(QStringLiteral("Stellar"));
 
     if (type == QStringLiteral("download") || type == QStringLiteral("focus")) {
         QLocalSocket sock;
@@ -277,8 +284,19 @@ static int runNativeMessagingHost(int argc, char *argv[])
         QSettings s(StellarPaths::settingsFile(), QSettings::IniFormat);
 
         auto toJsonArray = [&](const QString &key, const QStringList &defaultVal) -> QJsonArray {
-            QVariant v = s.value(key);
+            const QVariant v = s.value(key);
             QStringList list = v.isValid() ? v.toStringList() : defaultVal;
+            // Legacy entries may have been stored as a single comma-joined QString
+            // rather than a QStringList. Detect that and split on commas.
+            if (list.size() == 1 && list.first().contains(QLatin1Char(','))) {
+                const QStringList parts = list.first().split(QLatin1Char(','), Qt::SkipEmptyParts);
+                list.clear();
+                for (const QString &p : parts) {
+                    const QString t = p.trimmed();
+                    if (!t.isEmpty()) list << t;
+                }
+            }
+            if (list.isEmpty()) list = defaultVal;
             QJsonArray arr;
             for (const QString &item : list) arr.append(item);
             return arr;
