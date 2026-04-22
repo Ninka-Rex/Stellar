@@ -357,6 +357,8 @@ void SegmentedTransfer::onHeadFinished(QNetworkReply *reply) {
     QString contentType = reply->header(QNetworkRequest::ContentTypeHeader).toString().toLower();
     QString acceptRanges = reply->rawHeader("Accept-Ranges");
 
+    m_item->setContentType(contentType);
+
     // Google Drive may return text/html (virus-scan confirmation page).
     // Fall back to single GET so we can detect and handle the HTML in onSegmentReadyRead.
     bool needsHtmlIntercept = isConfirmPageUrl(m_item->url()) && contentType.contains(QStringLiteral("text/html"));

@@ -520,12 +520,17 @@ ApplicationWindow {
             // Firefox passes the full local save path as filename — extract basename only.
             var name = (filename.length > 0 ? filename.split(/[/\\]/).pop() : "") ||
                        url.split("/").pop().split("?")[0] || "download"
+            var _cookies  = App.takePendingCookies(url)
+            var _referrer = App.takePendingReferrer(url)
+            var _pageUrl  = App.takePendingPageUrl(url)
             fileInfoDialog.pendingUrl      = url
             fileInfoDialog.pendingFilename = name
             fileInfoDialog.pendingSize     = ""
             fileInfoDialog.pendingSavePath = App.settings.defaultSavePath
+            fileInfoDialog.pendingCookies  = _cookies
+            fileInfoDialog.pendingReferrer = _referrer
             fileInfoDialog.pendingDownloadId = App.settings.startDownloadWhileFileInfo
-                ? App.beginPendingDownload(url, name, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), "", "")
+                ? App.beginPendingDownload(url, name, _cookies, _referrer, _pageUrl, "", "")
                 : ""
             fileInfoDialog.isIntercepted   = true
             showAndActivate(fileInfoDialog)
@@ -800,13 +805,18 @@ ApplicationWindow {
             : (App.isTorrentUri(url)
                 ? "Magnetized Transfer"
                 : (url.split("/").pop().split("?")[0] || "download"))
+        var _cookies2  = App.takePendingCookies(url)
+        var _referrer2 = App.takePendingReferrer(url)
+        var _pageUrl2  = App.takePendingPageUrl(url)
         fileInfoDialog.pendingUrl      = url
         fileInfoDialog.pendingFilename = filename
         fileInfoDialog.pendingSize     = ""
         fileInfoDialog.pendingSavePath = App.settings.defaultSavePath
         fileInfoDialog.filenameOverride = filenameOverride
+        fileInfoDialog.pendingCookies  = _cookies2
+        fileInfoDialog.pendingReferrer = _referrer2
         fileInfoDialog.pendingDownloadId = App.settings.startDownloadWhileFileInfo
-            ? App.beginPendingDownload(url, filename, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword)
+            ? App.beginPendingDownload(url, filename, _cookies2, _referrer2, _pageUrl2, root._pendingUsername, root._pendingPassword)
             : ""
         fileInfoDialog.show()
         fileInfoDialog.raise()

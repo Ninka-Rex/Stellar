@@ -30,8 +30,11 @@ Window {
     property string pendingSavePath: ""
     property string filenameOverride: ""
     property string pendingDownloadId: ""
+    property string pendingCookies:  ""
+    property string pendingReferrer: ""
     property bool   isIntercepted:   false
     property bool   _accepted:       false
+    property bool   _probing:        false
 
     width:  700
     height: 325
@@ -118,6 +121,92 @@ Window {
         catCombo.currentIndex = idx
         _updateSavePath(idx)
         descField.text = ""
+        _probing = false
+        if (pendingUrl.length > 0)
+            _probeMetadata()
+    }
+
+    // ── Metadata probe ─────────────────────────────────────────────────────────
+    function _probeMetadata() {
+        _probing = true
+        var url      = pendingUrl
+        var cookies  = pendingCookies
+        var referrer = pendingReferrer
+        App.probeFileInfo(url, cookies, referrer, function(info) {
+            _probing = false
+            if (!info.ok) return
+            var desc = _buildDescription(info)
+            if (desc.length > 0 && descField.text.length === 0)
+                descField.text = desc
+            if (info.contentLength > 0 && root.pendingSize.length === 0)
+                root.pendingSize = _formatSize(info.contentLength)
+        })
+    }
+
+    function _formatSize(bytes) {
+        if (bytes <= 0) return ""
+        if (bytes < 1024) return bytes + " B"
+        if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB"
+        if (bytes < 1073741824) return (bytes / 1048576).toFixed(1) + " MB"
+        return (bytes / 1073741824).toFixed(2) + " GB"
+    }
+
+function _buildDescription(info) {
+        var ct   = (info.contentType || "").toLowerCase()
+        var name = root.pendingFilename.toLowerCase()
+        var parts = []
+
+        var isAudio = ct.indexOf("audio/") === 0 || ct.indexOf("mpeg") >= 0
+            || ct.indexOf("flac") >= 0 || ct.indexOf("ogg") >= 0 || ct.indexOf("opus") >= 0
+            || /\.(mp3|flac|ogg|opus|wav|aac|m4a|wma|alac|ape|aiff|mka)$/.test(name)
+
+        if (!isAudio) return ""
+
+        // Format label
+        var fmt = ""
+        if      (ct.indexOf("flac") >= 0 || name.endsWith(".flac")) fmt = "FLAC"
+        else if (ct.indexOf("ogg")  >= 0 || name.endsWith(".ogg"))  fmt = "OGG Vorbis"
+        else if (ct.indexOf("opus") >= 0 || name.endsWith(".opus")) fmt = "Opus"
+        else if (ct.indexOf("mpeg") >= 0 || name.endsWith(".mp3"))  fmt = "MP3"
+        else if (name.endsWith(".aac"))  fmt = "AAC"
+        else if (name.endsWith(".m4a"))  fmt = "M4A"
+        else if (name.endsWith(".wav"))  fmt = "WAV"
+        else if (name.endsWith(".wma"))  fmt = "WMA"
+        else if (name.endsWith(".alac")) fmt = "ALAC"
+        else if (name.endsWith(".aiff")) fmt = "AIFF"
+        if (fmt.length > 0) parts.push(fmt)
+
+        // Bitrate
+        var kbps = parseInt(info.audioBitrateKbps)
+        if (kbps > 0) parts.push(kbps + " kbps")
+
+        // Sample rate
+        var sr = parseInt(info.audioSampleRate)
+        if (sr > 0) {
+            var srStr = (sr % 1000 === 0) ? (sr / 1000) + " kHz"
+                      : (sr / 1000).toFixed(1) + " kHz"
+            parts.push(srStr)
+        }
+
+        // Channels
+        var ch = parseInt(info.audioChannels)
+        if (ch === 1) parts.push("Mono")
+        else if (ch === 2) parts.push("Stereo")
+        else if (ch > 2) parts.push(ch + " ch")
+
+        // Bit depth (FLAC)
+        var bps = parseInt(info.audioBitsPerSample)
+        if (bps > 0 && bps !== 16) parts.push(bps + "-bit")
+
+        // Duration
+        var dur = parseInt(info.audioDurationSec)
+        if (dur > 0) {
+            var m = Math.floor(dur / 60), s = dur % 60
+            parts.push(m + " min " + (s > 0 ? s + " sec" : "").trim())
+        }
+
+        // Only return something if we have at least one real metric beyond just the format name
+        return parts.length > 1 ? parts.join(", ") : ""
     }
 
     function _updateSavePath(catIdx) {

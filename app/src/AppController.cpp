@@ -15,6 +15,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AppController.h"
+#include <QJSEngine>
 #include "StellarPaths.h"
 #include <QQuickWindow>
 #include <QIcon>
@@ -590,6 +591,232 @@ void AppController::checkUrl(const QString &url, QJSValue callback) {
             callback.call(args);
         }
         reply->deleteLater();
+    });
+}
+
+// ── Audio/video metadata parsers ─────────────────────────────────────────────
+
+// Returns {bitrate_kbps, sample_rate_hz, channels} or zeros on failure.
+// Scans up to 256 KB looking for a valid MPEG frame sync.
+struct Mp3Info { int bitrate{0}; int sampleRate{0}; int channels{0}; };
+static Mp3Info parseMp3Frame(const QByteArray &data) {
+    // Skip ID3v2 header if present
+    int offset = 0;
+    if (data.size() >= 10 && data.startsWith("ID3")) {
+        int sz = ((quint8)data[6] << 21) | ((quint8)data[7] << 14)
+               | ((quint8)data[8] << 7)  |  (quint8)data[9];
+        offset = 10 + sz;
+        if (data.size() > offset + 3 && data[offset] == 0x00)
+            offset++; // unsync padding
+    }
+    static const int bitrateTableV1L3[] = {0,32,40,48,56,64,80,96,112,128,160,192,224,256,320,0};
+    static const int bitrateTableV2L3[] = {0, 8,16,24,32,40,48,56, 64, 80,96, 112,128,144,160,0};
+    static const int srTable[]          = {44100,48000,32000,0};
+    static const int srTableV2[]        = {22050,24000,16000,0};
+    static const int srTableV25[]       = {11025,12000, 8000,0};
+
+    for (int i = offset; i + 3 < data.size(); ++i) {
+        quint8 b0 = (quint8)data[i], b1 = (quint8)data[i+1];
+        if (b0 != 0xFF || (b1 & 0xE0) != 0xE0) continue;
+        quint8 b2 = (quint8)data[i+2], b3 = (quint8)data[i+3];
+        int version = (b1 >> 3) & 0x3;   // 3=V1, 2=V2, 0=V2.5
+        int layer   = (b1 >> 1) & 0x3;   // 1=L3
+        if (layer != 1) continue;         // only Layer III (MP3)
+        int brIdx   = (b2 >> 4) & 0xF;
+        int srIdx   = (b2 >> 2) & 0x3;
+        int chMode  = (b3 >> 6) & 0x3;   // 3=mono, others=stereo variants
+        if (brIdx == 0 || brIdx == 15 || srIdx == 3) continue;
+        int bitrate = (version == 3) ? bitrateTableV1L3[brIdx]
+                                     : bitrateTableV2L3[brIdx];
+        int sr = (version == 3) ? srTable[srIdx]
+               : (version == 2) ? srTableV2[srIdx]
+                                : srTableV25[srIdx];
+        int ch = (chMode == 3) ? 1 : 2;
+        if (bitrate > 0 && sr > 0) return {bitrate, sr, ch};
+    }
+    return {};
+}
+
+struct FlacInfo { int sampleRate{0}; int channels{0}; int bitsPerSample{0}; qint64 totalSamples{0}; };
+static FlacInfo parseFlac(const QByteArray &data) {
+    // fLaC marker + STREAMINFO block
+    if (data.size() < 42 || !data.startsWith("fLaC")) return {};
+    // Block header: 1 byte type|last, 3 bytes length
+    if ((quint8)data[4] & 0x7F) return {}; // not STREAMINFO
+    // STREAMINFO: offset 8, packed fields
+    const quint8 *s = (const quint8 *)data.constData() + 8;
+    int sr       = (s[10] << 12) | (s[11] << 4) | (s[12] >> 4);
+    int ch       = ((s[12] >> 1) & 0x7) + 1;
+    int bps      = (((s[12] & 0x1) << 4) | (s[13] >> 4)) + 1;
+    qint64 total = ((qint64)(s[13] & 0xF) << 32) | ((qint64)s[14] << 24)
+                 | ((qint64)s[15] << 16) | ((qint64)s[16] << 8) | s[17];
+    return {sr, ch, bps, total};
+}
+
+struct OggInfo { int sampleRate{0}; int channels{0}; int bitrateNominal{0}; };
+static OggInfo parseOggVorbis(const QByteArray &data) {
+    // Find Ogg page capture pattern and vorbis identification header
+    int idx = data.indexOf("OggS");
+    while (idx >= 0 && idx + 27 < data.size()) {
+        // Look for vorbis ident header: \x01vorbis
+        int p = data.indexOf("\x01vorbis", idx);
+        if (p < 0) break;
+        if (p + 30 >= data.size()) break;
+        const quint8 *v = (const quint8 *)data.constData() + p + 7;
+        // version(4) channels(1) sample_rate(4) bitrate_max(4) bitrate_nom(4)
+        int version = v[0]|(v[1]<<8)|(v[2]<<16)|(v[3]<<24);
+        if (version != 0) { idx = data.indexOf("OggS", idx + 1); continue; }
+        int ch = v[4];
+        int sr = v[5]|(v[6]<<8)|(v[7]<<16)|(v[8]<<24);
+        int bn = v[13]|(v[14]<<8)|(v[15]<<16)|(v[16]<<24);
+        return {sr, ch, bn / 1000};
+    }
+    return {};
+}
+
+struct OpusInfo { int sampleRate{0}; int channels{0}; };
+static OpusInfo parseOpus(const QByteArray &data) {
+    int idx = data.indexOf("OpusHead");
+    if (idx < 0 || idx + 11 >= data.size()) return {};
+    const quint8 *v = (const quint8 *)data.constData() + idx + 9;
+    int ch = v[0];
+    int sr = v[4]|(v[5]<<8)|(v[6]<<16)|(v[7]<<24);
+    if (sr == 0) sr = 48000; // Opus always decodes at 48 kHz
+    return {sr, ch};
+}
+
+// ── probeFileInfo ────────────────────────────────────────────────────────────
+
+static void fireProbeCallback(AppController *ctrl, QJSValue callback, QVariantMap info) {
+    if (!callback.isCallable()) return;
+    QJSEngine *engine = qjsEngine(ctrl);
+    if (!engine) return;
+    QJSValueList args;
+    args << engine->toScriptValue(info);
+    callback.call(args);
+}
+
+void AppController::probeFileInfo(const QString &url, const QString &cookies,
+                                  const QString &referrer, QJSValue callback) {
+    const QString ua = (m_settings && m_settings->useCustomUserAgent()
+                        && !m_settings->customUserAgent().trimmed().isEmpty())
+        ? m_settings->customUserAgent().trimmed()
+        : QStringLiteral("Stellar/%1").arg(QStringLiteral(STELLAR_VERSION));
+
+    // Capture by value — these strings must outlive the async HEAD reply callback.
+    auto makeRequest = [ua, cookies, referrer](const QString &u) {
+        QNetworkRequest r(QUrl::fromUserInput(u));
+        r.setHeader(QNetworkRequest::UserAgentHeader, ua);
+        r.setRawHeader("Accept-Encoding", "identity");
+        if (!cookies.isEmpty())  r.setRawHeader("Cookie",  cookies.toUtf8());
+        if (!referrer.isEmpty()) r.setRawHeader("Referer", referrer.toUtf8());
+        r.setTransferTimeout(12'000);
+        return r;
+    };
+
+    QNetworkReply *head = m_nam->head(makeRequest(url));
+    connect(head, &QNetworkReply::finished, this, [this, head, url, makeRequest, callback]() mutable {
+        QVariantMap info;
+        if (head->error() != QNetworkReply::NoError) {
+            info[QStringLiteral("ok")] = false;
+            fireProbeCallback(this, callback, info);
+            head->deleteLater();
+            return;
+        }
+
+        QString ct = head->header(QNetworkRequest::ContentTypeHeader).toString().toLower();
+        qint64  cl = head->header(QNetworkRequest::ContentLengthHeader).toLongLong();
+        bool acceptsRanges = QString::fromUtf8(head->rawHeader("Accept-Ranges"))
+                                 .trimmed().toLower() != QStringLiteral("none");
+        head->deleteLater();
+
+        info[QStringLiteral("ok")]            = true;
+        info[QStringLiteral("contentType")]   = ct;
+        info[QStringLiteral("contentLength")] = cl;
+
+        // Only range-probe audio files — video containers are too large to parse usefully
+        bool isAudio = ct.startsWith(QStringLiteral("audio/"))
+            || ct.contains(QStringLiteral("mpeg"))
+            || ct.contains(QStringLiteral("flac"))
+            || ct.contains(QStringLiteral("ogg"))
+            || ct.contains(QStringLiteral("opus"));
+        if (!isAudio) {
+            // Fallback: check by filename extension in URL
+            QString path = QUrl(url).path().toLower();
+            isAudio = path.endsWith(QStringLiteral(".mp3"))
+                   || path.endsWith(QStringLiteral(".flac"))
+                   || path.endsWith(QStringLiteral(".ogg"))
+                   || path.endsWith(QStringLiteral(".opus"))
+                   || path.endsWith(QStringLiteral(".m4a"))
+                   || path.endsWith(QStringLiteral(".aac"))
+                   || path.endsWith(QStringLiteral(".wav"))
+                   || path.endsWith(QStringLiteral(".wma"))
+                   || path.endsWith(QStringLiteral(".mka"));
+        }
+
+        if (!isAudio || !acceptsRanges) {
+            fireProbeCallback(this, callback, info);
+            return;
+        }
+
+        // Fetch first 64 KB to parse audio frame headers
+        QNetworkRequest rangeReq = makeRequest(url);
+        rangeReq.setRawHeader("Range", "bytes=0-65535");
+        QNetworkReply *get = m_nam->get(rangeReq);
+        connect(get, &QNetworkReply::finished, this, [this, get, ct, url, info, callback]() mutable {
+            if (get->error() == QNetworkReply::NoError ||
+                get->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt() == 206) {
+                QByteArray data = get->readAll();
+                QString path = QUrl(url).path().toLower();
+
+                if (ct.contains(QStringLiteral("flac")) || path.endsWith(QStringLiteral(".flac"))) {
+                    auto fi = parseFlac(data);
+                    if (fi.sampleRate > 0) {
+                        info[QStringLiteral("audioSampleRate")] = fi.sampleRate;
+                        info[QStringLiteral("audioChannels")]   = fi.channels;
+                        info[QStringLiteral("audioBitsPerSample")] = fi.bitsPerSample;
+                        // Estimate bitrate from file size and duration
+                        qint64 cl2 = info[QStringLiteral("contentLength")].toLongLong();
+                        if (cl2 > 0 && fi.totalSamples > 0 && fi.sampleRate > 0) {
+                            double durationSec = (double)fi.totalSamples / fi.sampleRate;
+                            info[QStringLiteral("audioDurationSec")] = (int)durationSec;
+                            int estimatedKbps = (int)((double)cl2 * 8 / durationSec / 1000);
+                            info[QStringLiteral("audioBitrateKbps")] = estimatedKbps;
+                        }
+                    }
+                } else if (ct.contains(QStringLiteral("ogg")) || path.endsWith(QStringLiteral(".ogg"))) {
+                    auto oi = parseOggVorbis(data);
+                    if (oi.sampleRate > 0) {
+                        info[QStringLiteral("audioSampleRate")] = oi.sampleRate;
+                        info[QStringLiteral("audioChannels")]   = oi.channels;
+                        if (oi.bitrateNominal > 0)
+                            info[QStringLiteral("audioBitrateKbps")] = oi.bitrateNominal;
+                    }
+                } else if (ct.contains(QStringLiteral("opus")) || path.endsWith(QStringLiteral(".opus"))) {
+                    auto op = parseOpus(data);
+                    if (op.sampleRate > 0) {
+                        info[QStringLiteral("audioSampleRate")] = op.sampleRate;
+                        info[QStringLiteral("audioChannels")]   = op.channels;
+                    }
+                } else {
+                    // Try MP3 frame scan for mp3/aac/unknown audio
+                    auto mi = parseMp3Frame(data);
+                    if (mi.bitrate > 0) {
+                        info[QStringLiteral("audioBitrateKbps")] = mi.bitrate;
+                        info[QStringLiteral("audioSampleRate")]  = mi.sampleRate;
+                        info[QStringLiteral("audioChannels")]    = mi.channels;
+                    }
+                    // Estimate duration from file size and bitrate
+                    qint64 cl2 = info[QStringLiteral("contentLength")].toLongLong();
+                    if (cl2 > 0 && mi.bitrate > 0) {
+                        int durationSec = (int)((double)cl2 * 8 / (mi.bitrate * 1000));
+                        info[QStringLiteral("audioDurationSec")] = durationSec;
+                    }
+                }
+            }
+            fireProbeCallback(this, callback, info);
+            get->deleteLater();
+        });
     });
 }
 

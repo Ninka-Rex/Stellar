@@ -243,6 +243,8 @@ public:
     Q_INVOKABLE void discardTorrentDownload(const QString &downloadId);
 
     Q_INVOKABLE void checkUrl(const QString &url, QJSValue callback);
+    Q_INVOKABLE void probeFileInfo(const QString &url, const QString &cookies,
+                                   const QString &referrer, QJSValue callback);
     Q_INVOKABLE void addUrl(const QString &url, const QString &savePath = {},
                             const QString &category = {}, const QString &description = {},
                             bool startNow = true, const QString &cookies = {},

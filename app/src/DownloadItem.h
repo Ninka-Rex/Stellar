@@ -39,6 +39,7 @@ class DownloadItem : public QObject {
     Q_PROPERTY(bool     resumeCapable  READ resumeCapable  NOTIFY resumeCapableChanged)
     Q_PROPERTY(QVariantList segmentData READ segmentData   NOTIFY segmentDataChanged)
     Q_PROPERTY(QString  description    READ description    NOTIFY descriptionChanged)
+    Q_PROPERTY(QString  contentType    READ contentType    NOTIFY contentTypeChanged)
     Q_PROPERTY(int      speedLimitKBps READ speedLimitKBps WRITE setSpeedLimitKBps NOTIFY speedLimitKBpsChanged)
     Q_PROPERTY(QString  errorString    READ errorString    NOTIFY errorStringChanged)
     Q_PROPERTY(QString  queueId        READ queueId        WRITE setQueueId NOTIFY queueIdChanged)
@@ -113,6 +114,7 @@ public:
     bool         resumeCapable() const { return m_resumeCapable; }
     QVariantList segmentData()   const { return m_segmentData; }
     QString      description()   const { return m_description; }
+    QString      contentType()   const { return m_contentType; }
     int          speedLimitKBps() const { return m_speedLimitKBps; }
     QString      errorString()    const { return m_errorString; }
     QString      referrer()       const { return m_referrer; }
@@ -135,6 +137,7 @@ public:
     void setResumeCapable(bool v);
     void setSegmentData(const QVariantList &v);
     void setDescription(const QString &v);
+    void setContentType(const QString &v) { if (m_contentType != v) { m_contentType = v; emit contentTypeChanged(); } }
     void setSpeedLimitKBps(int v);
     void setErrorString(const QString &v) { if (m_errorString != v) { m_errorString = v; emit errorStringChanged(); } }
     QString queueId() const { return m_queueId; }
@@ -250,6 +253,7 @@ signals:
     void resumeCapableChanged();
     void segmentDataChanged();
     void descriptionChanged();
+    void contentTypeChanged();
     void speedLimitKBpsChanged(int newLimit);
     void errorStringChanged();
     void queueIdChanged();
@@ -287,6 +291,7 @@ private:
     bool         m_filenameManuallySet{false};
     QVariantList m_segmentData;
     QString      m_description;
+    QString      m_contentType;
     int          m_speedLimitKBps{0};
     QString      m_errorString;
     QString      m_queueId;
