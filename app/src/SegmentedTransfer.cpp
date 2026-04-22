@@ -1212,7 +1212,10 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
     QString filename = parseContentDispositionFilename(
         reply->rawHeader("Content-Disposition"));
 
-    if (filename.isEmpty()) {
+    // Only fall back to the URL path when we have no filename yet — if the item
+    // already has one (e.g. a redownload), a server-side redirect to an error/
+    // deletion page would otherwise overwrite it with something like "already-downloaded".
+    if (filename.isEmpty() && m_item->filename().isEmpty()) {
         QUrl finalUrl = reply->url();
         QString pathName = QFileInfo(finalUrl.path()).fileName();
         if (!pathName.isEmpty() && pathName != QStringLiteral("download"))
