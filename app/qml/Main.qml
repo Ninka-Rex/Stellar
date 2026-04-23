@@ -2397,6 +2397,8 @@ ApplicationWindow {
             tipsArray:      root.tipsArray
             currentTipIndex: root.currentTipIndex
             showTips:       App.settings.showTips
+            motdText:       App.motd
+            motdVisible:    App.motdVisible
             onNextTip: {
                 if (root.tipsArray.length > 0) {
                     root.currentTipIndex = (root.currentTipIndex + 1) % root.tipsArray.length
@@ -2404,6 +2406,9 @@ ApplicationWindow {
             }
             onCloseTips: {
                 App.settings.showTips = false
+            }
+            onDismissMotd: {
+                App.dismissMotd()
             }
             onStatisticsRequested: {
                 statisticsDialog.show()

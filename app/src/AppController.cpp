@@ -94,6 +94,8 @@ QJsonArray chromeNativeMessagingOrigins()
 namespace {
 constexpr int kMinimumUpdateCheckIndicatorMs = 3000;
 constexpr qint64 kTorrentSpeedHistoryRetentionMs = 24LL * 60LL * 60LL * 1000LL;
+constexpr int kMaxMotdLengthChars = 280;
+constexpr qint64 kMotdDismissDurationMs = 7LL * 24LL * 60LL * 60LL * 1000LL;
 
 QString cleanedYtdlpError(const QString &reason) {
     QString text = reason;
@@ -3713,6 +3715,7 @@ int AppController::compareVersionStrings(const QString &lhs, const QString &rhs)
 }
 
 void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
+    applyMotdFromMetadata(map);
     const QString version = map.value(QStringLiteral("version")).toString().trimmed();
     cacheIpToCityDbUpdateUrl(map);
     cacheFfmpegUpdateMetadata(map);
@@ -3814,6 +3817,7 @@ void AppController::checkForUpdates(bool manual) {
         }
 
         QVariantMap metadata = doc.object().toVariantMap();
+        applyMotdFromMetadata(metadata);
         cacheIpToCityDbUpdateUrl(metadata);
         cacheFfmpegUpdateMetadata(metadata);
         const QString version = metadata.value(QStringLiteral("version")).toString().trimmed();
@@ -4018,6 +4022,70 @@ void AppController::fetchChangelog() {
 void AppController::dismissAvailableUpdate() {
     if (!m_updateVersion.isEmpty())
         m_settings->setSkippedUpdateVersion(m_updateVersion);
+}
+
+QString AppController::normalizeMotdText(const QString &rawText) {
+    if (rawText.trimmed().isEmpty())
+        return {};
+
+    QString out;
+    const qsizetype reserveLen = rawText.size() < qsizetype(kMaxMotdLengthChars)
+        ? rawText.size()
+        : qsizetype(kMaxMotdLengthChars);
+    out.reserve(reserveLen);
+    bool lastWasSpace = false;
+    for (const QChar ch : rawText) {
+        if (out.size() >= kMaxMotdLengthChars)
+            break;
+        const bool isControlChar = ch.category() == QChar::Other_Control;
+        if (ch.isNull() || (isControlChar && ch != QChar::fromLatin1('\n') && ch != QChar::fromLatin1('\t') && ch != QChar::fromLatin1(' ')))
+            continue;
+        const bool isSpaceLike = ch.isSpace() || ch == QChar::fromLatin1('\n') || ch == QChar::fromLatin1('\t');
+        if (isSpaceLike) {
+            if (!out.isEmpty() && !lastWasSpace) {
+                out.append(QChar::fromLatin1(' '));
+                lastWasSpace = true;
+            }
+            continue;
+        }
+        out.append(ch);
+        lastWasSpace = false;
+    }
+    out = out.trimmed();
+    return out;
+}
+
+void AppController::applyMotdFromMetadata(const QVariantMap &map) {
+    const QString normalizedMotd = normalizeMotdText(map.value(QStringLiteral("motd")).toString());
+    QString visibleMotd = normalizedMotd;
+    if (!normalizedMotd.isEmpty()) {
+        const qint64 nowUtcMs = QDateTime::currentMSecsSinceEpoch();
+        const QString dismissedHash = m_settings->motdDismissedHash();
+        const qint64 dismissedUntil = m_settings->motdDismissedUntilUtcMs();
+        if (dismissedHash.isEmpty() || dismissedUntil <= nowUtcMs) {
+            m_settings->clearMotdDismissal();
+        } else {
+            const QString motdHash = QString::fromLatin1(
+                QCryptographicHash::hash(normalizedMotd.toUtf8(), QCryptographicHash::Sha256).toHex());
+            if (motdHash.compare(dismissedHash, Qt::CaseInsensitive) == 0)
+                visibleMotd.clear();
+        }
+    }
+    if (m_motd == visibleMotd)
+        return;
+    m_motd = visibleMotd;
+    emit motdChanged();
+}
+
+void AppController::dismissMotd() {
+    if (m_motd.isEmpty())
+        return;
+    const QString motdHash = QString::fromLatin1(
+        QCryptographicHash::hash(m_motd.toUtf8(), QCryptographicHash::Sha256).toHex());
+    const qint64 untilUtcMs = QDateTime::currentMSecsSinceEpoch() + kMotdDismissDurationMs;
+    m_settings->setMotdDismissal(motdHash, untilUtcMs);
+    m_motd.clear();
+    emit motdChanged();
 }
 
 bool AppController::startUpdateInstall() {

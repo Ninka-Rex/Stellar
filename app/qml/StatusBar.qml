@@ -29,10 +29,13 @@ Rectangle {
     property var tipsArray: []
     property int currentTipIndex: 0
     property bool showTips: true
+    property string motdText: ""
+    property bool motdVisible: false
     property int errorCount: App.recentErrorDownloads
 
     signal nextTip()
     signal closeTips()
+    signal dismissMotd()
     signal statisticsRequested()
 
     function formatKBps(kbps) {
@@ -174,7 +177,35 @@ Rectangle {
         }
 
         RowLayout {
-            visible: App.settings.showTips && tipsArray.length > 0
+            visible: motdVisible && motdText.length > 0
+            spacing: 8
+
+            Text {
+                text: motdText
+                color: "#b0b0b0"
+                font.pixelSize: 11
+                wrapMode: Text.NoWrap
+                elide: Text.ElideRight
+                horizontalAlignment: Text.AlignRight
+            }
+
+            Text {
+                text: "✕"
+                color: "#888888"
+                font.pixelSize: 12
+                MouseArea {
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    hoverEnabled: true
+                    onClicked: root.dismissMotd()
+                    onEntered: parent.color = "#b0b0b0"
+                    onExited: parent.color = "#888888"
+                }
+            }
+        }
+
+        RowLayout {
+            visible: !motdVisible && App.settings.showTips && tipsArray.length > 0
             spacing: 8
 
             Text {
@@ -218,7 +249,7 @@ Rectangle {
         }
 
         Text {
-            visible: !App.settings.showTips || tipsArray.length === 0
+            visible: !motdVisible && (!App.settings.showTips || tipsArray.length === 0)
             text: App.minutesUntilNextQueue === 1
                 ? "🟧 Queue runs in 1 minute"
                 : (App.minutesUntilNextQueue > 0 ? "🟧 Queue runs in %1 minutes".arg(App.minutesUntilNextQueue) : "")

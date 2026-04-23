@@ -24,6 +24,7 @@
 #include <QSettings>
 #include <QStandardPaths>
 #include <QTextStream>
+#include <QDateTime>
 
 QStringList AppSettings::defaultMonitoredExtensions() {
     return {
@@ -279,6 +280,16 @@ void AppSettings::load() {
     m_rssSmartFiltersJson     = m_settings.value(QStringLiteral("rssSmartFiltersJson"),
         QStringLiteral("[\"s(\\\\d+)e(\\\\d+)\",\"(\\\\d+)x(\\\\d+)\",\"(\\\\d{4}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{1,2})\",\"(\\\\d{1,2}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{4})\"]")).toString();
     m_rssDownloadRulesJson    = m_settings.value(QStringLiteral("rssDownloadRulesJson"), QStringLiteral("[]")).toString();
+    m_motdDismissedHash = m_settings.value(QStringLiteral("motdDismissedHash"), QString()).toString().trimmed();
+    m_motdDismissedUntilUtcMs = m_settings.value(QStringLiteral("motdDismissedUntilUtcMs"), 0LL).toLongLong();
+    const qint64 nowUtcMs = QDateTime::currentMSecsSinceEpoch();
+    if (m_motdDismissedHash.isEmpty() || m_motdDismissedUntilUtcMs <= nowUtcMs) {
+        m_motdDismissedHash.clear();
+        m_motdDismissedUntilUtcMs = 0;
+        m_settings.remove(QStringLiteral("motdDismissedHash"));
+        m_settings.remove(QStringLiteral("motdDismissedUntilUtcMs"));
+        m_settings.sync();
+    }
     const QStringList defaultOrder{QStringLiteral("downloads"), QStringLiteral("unfinished"),
                                    QStringLiteral("finished"), QStringLiteral("grabber"),
                                    QStringLiteral("queues"), QStringLiteral("torrents")};
@@ -486,6 +497,13 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("rssSmartFilterRepack"),     m_rssSmartFilterRepack);
     m_settings.setValue(QStringLiteral("rssSmartFiltersJson"),      m_rssSmartFiltersJson);
     m_settings.setValue(QStringLiteral("rssDownloadRulesJson"),     m_rssDownloadRulesJson);
+    if (!m_motdDismissedHash.isEmpty() && m_motdDismissedUntilUtcMs > QDateTime::currentMSecsSinceEpoch()) {
+        m_settings.setValue(QStringLiteral("motdDismissedHash"), m_motdDismissedHash);
+        m_settings.setValue(QStringLiteral("motdDismissedUntilUtcMs"), m_motdDismissedUntilUtcMs);
+    } else {
+        m_settings.remove(QStringLiteral("motdDismissedHash"));
+        m_settings.remove(QStringLiteral("motdDismissedUntilUtcMs"));
+    }
     m_settings.sync();
 }
 
@@ -735,6 +753,26 @@ void AppSettings::setRssAutoDownloadEnabled(bool v)  { if (m_rssAutoDownloadEnab
 void AppSettings::setRssSmartFilterRepack(bool v)    { if (m_rssSmartFilterRepack != v)    { m_rssSmartFilterRepack = v;    emit rssSmartFilterRepackChanged();    save(); } }
 void AppSettings::setRssSmartFiltersJson(const QString &v) { if (m_rssSmartFiltersJson != v) { m_rssSmartFiltersJson = v; emit rssSmartFiltersJsonChanged(); save(); } }
 void AppSettings::setRssDownloadRulesJson(const QString &v) { if (m_rssDownloadRulesJson != v) { m_rssDownloadRulesJson = v; emit rssDownloadRulesJsonChanged(); save(); } }
+void AppSettings::setMotdDismissal(const QString &hash, qint64 untilUtcMs) {
+    const QString trimmedHash = hash.trimmed();
+    if (trimmedHash.isEmpty() || untilUtcMs <= QDateTime::currentMSecsSinceEpoch()) {
+        clearMotdDismissal();
+        return;
+    }
+    if (m_motdDismissedHash == trimmedHash && m_motdDismissedUntilUtcMs == untilUtcMs)
+        return;
+    m_motdDismissedHash = trimmedHash;
+    m_motdDismissedUntilUtcMs = untilUtcMs;
+    save();
+}
+
+void AppSettings::clearMotdDismissal() {
+    if (m_motdDismissedHash.isEmpty() && m_motdDismissedUntilUtcMs == 0)
+        return;
+    m_motdDismissedHash.clear();
+    m_motdDismissedUntilUtcMs = 0;
+    save();
+}
 
 void AppSettings::applyStartupRegistration(bool enable) const {
 #ifdef Q_OS_WIN

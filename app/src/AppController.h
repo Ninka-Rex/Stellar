@@ -80,6 +80,8 @@ class AppController : public QObject {
     Q_PROPERTY(QString updateVersion READ updateVersion NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateChangelog READ updateChangelog NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateStatusText READ updateStatusText NOTIFY updateStatusTextChanged)
+    Q_PROPERTY(QString motd READ motd NOTIFY motdChanged)
+    Q_PROPERTY(bool motdVisible READ motdVisible NOTIFY motdChanged)
     Q_PROPERTY(bool checkingForUpdates READ checkingForUpdates NOTIFY checkingForUpdatesChanged)
     Q_PROPERTY(QString torrentBindingStatusText READ torrentBindingStatusText NOTIFY torrentBindingStatusTextChanged)
     Q_PROPERTY(bool torrentPortTestInProgress READ torrentPortTestInProgress NOTIFY torrentPortTestChanged)
@@ -138,6 +140,8 @@ public:
     QString updateVersion() const { return m_updateVersion; }
     QString updateChangelog() const { return m_updateChangelog; }
     QString updateStatusText() const { return m_updateStatusText; }
+    QString motd() const { return m_motd; }
+    bool motdVisible() const { return !m_motd.isEmpty(); }
     bool checkingForUpdates() const { return m_checkingForUpdates; }
     QString torrentBindingStatusText() const;
     bool torrentPortTestInProgress() const { return m_torrentPortTestInProgress; }
@@ -360,6 +364,7 @@ public:
     Q_INVOKABLE void testProxy();
     Q_INVOKABLE void fetchChangelog();
     Q_INVOKABLE void dismissAvailableUpdate();
+    Q_INVOKABLE void dismissMotd();
     Q_INVOKABLE bool startUpdateInstall();
 
 signals:
@@ -391,6 +396,7 @@ signals:
     void recentErrorDownloadsChanged();
     void updateAvailableChanged();
     void updateStatusTextChanged();
+    void motdChanged();
     void checkingForUpdatesChanged();
     void updateDialogRequested();
     void updateUpToDate();
@@ -508,6 +514,8 @@ private:
     void setTorrentPortTestState(bool inProgress, const QString &status, const QString &message);
     void cacheIpToCityDbUpdateUrl(const QVariantMap &map);
     void cacheFfmpegUpdateMetadata(const QVariantMap &map);
+    void applyMotdFromMetadata(const QVariantMap &map);
+    static QString normalizeMotdText(const QString &rawText);
     static int compareVersionStrings(const QString &lhs, const QString &rhs);
     void applyUpdateMetadata(const QVariantMap &map, bool manual);
     static QString updateMetadataUrl();
@@ -547,6 +555,7 @@ private:
     QString                 m_ffmpegUpdateUrl;
     QString                 m_updateChangelog;
     QString                 m_updateStatusText;
+    QString                 m_motd;
     bool                    m_checkingForUpdates{false};
     bool                    m_updateCheckManual{false};
     QDateTime               m_updateCheckStartedAt;

@@ -245,6 +245,8 @@ public:
     bool    rssSmartFilterRepack()    const { return m_rssSmartFilterRepack; }
     QString rssSmartFiltersJson()     const { return m_rssSmartFiltersJson; }
     QString rssDownloadRulesJson()    const { return m_rssDownloadRulesJson; }
+    QString motdDismissedHash() const { return m_motdDismissedHash; }
+    qint64 motdDismissedUntilUtcMs() const { return m_motdDismissedUntilUtcMs; }
 
     void setMaxConcurrent(int v);
     void setSegmentsPerDownload(int v);
@@ -357,6 +359,8 @@ public:
     void setRssSmartFilterRepack(bool v);
     void setRssSmartFiltersJson(const QString &v);
     void setRssDownloadRulesJson(const QString &v);
+    void setMotdDismissal(const QString &hash, qint64 untilUtcMs);
+    void clearMotdDismissal();
 
     Q_INVOKABLE void save();
     Q_INVOKABLE void load();
@@ -548,6 +552,8 @@ private:
     bool        m_rssSmartFilterRepack{true};
     QString     m_rssSmartFiltersJson{QStringLiteral("[\"s(\\\\d+)e(\\\\d+)\",\"(\\\\d+)x(\\\\d+)\",\"(\\\\d{4}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{1,2})\",\"(\\\\d{1,2}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{4})\"]")};
     QString     m_rssDownloadRulesJson{QStringLiteral("[]")};
+    QString     m_motdDismissedHash;
+    qint64      m_motdDismissedUntilUtcMs{0};
 
     // Apply or remove OS startup entry depending on v
     void applyStartupRegistration(bool v) const;

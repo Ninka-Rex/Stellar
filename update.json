@@ -4,6 +4,7 @@
   "sha256": "191002B4357DB47895578C4400368E03B38D9A20922D11666E39DDCA1C0B0B76",
   "linuxInstallerUrl": "https://github.com/Ninka-Rex/Stellar/releases/download/beta/Stellar-0.3.6-linux-amd64.deb",
   "linuxSha256": "191002B4357DB47895578C4400368E03B38D9A20922D11666E39DDCA1C0B0B76",
+  "motd": "📢 Test MOTD",
   "ffmpegWindowsUrl": "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
   "ffmpegLinuxUrl": "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz",
   "IPtoCityDB": "https://download.db-ip.com/free/dbip-city-lite-2026-04.mmdb.gz"
