@@ -294,6 +294,8 @@ public:
     Q_INVOKABLE void startDhtCrawlNow();
     Q_INVOKABLE QVariantMap torrentAllTimeStats() const;
     Q_INVOKABLE void resetTorrentAllTimeStats();
+    // Returns combined app + torrent statistics for the Statistics dialog.
+    Q_INVOKABLE QVariantMap appStatistics() const;
     Q_INVOKABLE QString clipboardUrl() const;
     Q_INVOKABLE void setDownloadCategory(const QString &downloadId, const QString &categoryId);
     Q_INVOKABLE void setDownloadQueue(const QString &downloadId, const QString &queueId);
@@ -582,6 +584,12 @@ private:
     };
     QMap<QString, YtdlpProbe>        m_ytdlpProbes;
 
+    // Tracks how long this session has been running; used to accumulate total uptime.
+    QElapsedTimer m_sessionTimer;
+    // Baseline torrent transfer bytes snapshotted after DB restore completes.
+    // Session transfer = current live sum minus this baseline.
+    qint64 m_sessionBaselineUploaded{0};
+    qint64 m_sessionBaselineDownloaded{0};
     bool m_proxyActive{false};
     bool m_torrentPortTestInProgress{false};
     QString m_torrentPortTestStatus;

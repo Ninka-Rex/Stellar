@@ -159,6 +159,11 @@ QString resumeFile(const QString &downloadId)
     return resumeDir() + QLatin1Char('/') + downloadId + QStringLiteral(".resume");
 }
 
+QString statisticsFile()
+{
+    return dataDir() + QStringLiteral("/statistics.json");
+}
+
 // ── Migration ─────────────────────────────────────────────────────────────────
 
 namespace {

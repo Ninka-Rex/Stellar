@@ -1710,6 +1710,9 @@ ApplicationWindow {
 
     GrabberStatisticsDialog { id: grabberStatisticsDialog; transientParent: root }
 
+    // ── Statistics Dialog ─────────────────────────────────────────────────────
+    StatisticsDialog { id: statisticsDialog; transientParent: root }
+
     // ── Browser Integration Dialog ────────────────────────────────────────────
     BrowserIntegrationDialog { id: browserIntegrationDialog; transientParent: root }
 
@@ -1974,6 +1977,11 @@ ApplicationWindow {
             Action {
                 text: (sidebar && sidebar.visible) ? qsTr("Hide Categories") : qsTr("Show Categories")
                 onTriggered: if (sidebar) sidebar.visible = !sidebar.visible
+            }
+            MenuSeparator {}
+            Action {
+                text: qsTr("Statistics…")
+                onTriggered: { statisticsDialog.show(); statisticsDialog.raise(); statisticsDialog.requestActivate() }
             }
             MenuSeparator {}
             Menu {
@@ -2396,6 +2404,11 @@ ApplicationWindow {
             }
             onCloseTips: {
                 App.settings.showTips = false
+            }
+            onStatisticsRequested: {
+                statisticsDialog.show()
+                statisticsDialog.raise()
+                statisticsDialog.requestActivate()
             }
         }
     }

@@ -118,6 +118,9 @@ QString searchRunnerFile();
 // <root>/resume/<id>.resume  — fast-resume blob for one torrent download
 QString resumeFile(const QString &downloadId);
 
+// <root>/data/statistics.json  — persistent app-level statistics (install date, uptime)
+QString statisticsFile();
+
 // ── Migration ─────────────────────────────────────────────────────────────────
 
 // Silently migrates data from the legacy layout to the current one.

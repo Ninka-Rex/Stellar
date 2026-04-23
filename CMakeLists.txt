@@ -225,6 +225,7 @@ qt_add_qml_module(Stellar
         app/qml/TorrentSearchWindow.qml
         app/qml/TorrentSearchPluginsDialog.qml
         app/qml/TorrentSearchInstallDialog.qml
+        app/qml/StatisticsDialog.qml
     RESOURCES
         app/qml/icons/add.svg
         app/qml/icons/resume.svg

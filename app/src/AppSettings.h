@@ -19,6 +19,7 @@
 #include <QString>
 #include <QStringList>
 #include <QSettings>
+#include <QDate>
 
 class AppSettings : public QObject {
     Q_OBJECT
@@ -333,6 +334,15 @@ public:
     qint64 torrentHistoricalDownloadedBytes() const { return m_torrentHistoricalDownloadedBytes; }
     void accumulateTorrentStats(qint64 uploadedBytes, qint64 downloadedBytes);
     void resetTorrentHistoricalStats();
+
+    // Install date — set once on the first run, never changed again.
+    QDate installDate() const { return m_installDate; }
+    // Total accumulated uptime in seconds across all sessions.
+    qint64 totalUptimeSecs() const { return m_totalUptimeSecs; }
+    // Call on app exit with the number of seconds elapsed in this session.
+    void accumulateUptimeSecs(qint64 secs);
+    // Number of times the app has been launched (incremented once per run on load).
+    int totalStartups() const { return m_totalStartups; }
     void setProxyType(int v);
     void setProxyHost(const QString &v);
     void setProxyPort(int v);
@@ -517,6 +527,12 @@ private:
     // All-time torrent transfer accumulators — incremented when a torrent item is deleted
     qint64      m_torrentHistoricalUploadedBytes{0};
     qint64      m_torrentHistoricalDownloadedBytes{0};
+    // First-run date (recorded once and never overwritten).
+    QDate       m_installDate;
+    // Total cumulative app uptime in seconds (accumulated across sessions).
+    qint64      m_totalUptimeSecs{0};
+    // Incremented on every load() call (i.e. each app launch).
+    int         m_totalStartups{0};
     // Proxy — 0=None, 1=System, 2=HTTP/HTTPS, 3=SOCKS5
     int         m_proxyType{0};
     QString     m_proxyHost;

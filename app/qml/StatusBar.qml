@@ -33,6 +33,7 @@ Rectangle {
 
     signal nextTip()
     signal closeTips()
+    signal statisticsRequested()
 
     function formatKBps(kbps) {
         if (kbps >= 1024)
@@ -134,13 +135,26 @@ Rectangle {
             }
         }
 
-        // All-time torrent ratio — right-aligned, left of speed.
+        // All-time torrent ratio — clickable; opens Statistics dialog.
         Text {
+            id: ratioText
             visible: App.settings.ratioInStatusBar
             text: "☯ " + App.allTimeRatio.toFixed(3)
-            color: "#b0b0b0"
+            color: ratioHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11
             verticalAlignment: Text.AlignVCenter
+
+            HoverHandler { id: ratioHover }
+            ToolTip.visible: ratioHover.hovered
+            ToolTip.delay: 250
+            ToolTip.timeout: 6000
+            ToolTip.text: "All-time share ratio\nClick to open Statistics"
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: root.statisticsRequested()
+            }
         }
 
         // Live speed indicator — right-aligned, only shown when enabled.

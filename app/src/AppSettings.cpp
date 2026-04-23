@@ -250,6 +250,20 @@ void AppSettings::load() {
     m_torrentEncryptionMode = m_settings.value(QStringLiteral("torrentEncryptionMode"), 0).toInt();
     m_torrentHistoricalUploadedBytes   = m_settings.value(QStringLiteral("torrentHistoricalUploadedBytes"), 0LL).toLongLong();
     m_torrentHistoricalDownloadedBytes = m_settings.value(QStringLiteral("torrentHistoricalDownloadedBytes"), 0LL).toLongLong();
+    // Install date — recorded once on the very first run and never overwritten.
+    const QString storedDate = m_settings.value(QStringLiteral("installDate")).toString();
+    if (storedDate.isEmpty()) {
+        m_installDate = QDate::currentDate();
+        m_settings.setValue(QStringLiteral("installDate"), m_installDate.toString(Qt::ISODate));
+        m_settings.sync();
+    } else {
+        m_installDate = QDate::fromString(storedDate, Qt::ISODate);
+    }
+    m_totalUptimeSecs = m_settings.value(QStringLiteral("totalUptimeSecs"), 0LL).toLongLong();
+    // Increment and persist the launch counter every time settings are loaded (= every app start).
+    m_totalStartups = m_settings.value(QStringLiteral("totalStartups"), 0).toInt() + 1;
+    m_settings.setValue(QStringLiteral("totalStartups"), m_totalStartups);
+    m_settings.sync();
     m_proxyType               = m_settings.value(QStringLiteral("proxyType"), 0).toInt();
     m_proxyHost               = m_settings.value(QStringLiteral("proxyHost"), QString()).toString();
     m_proxyPort               = m_settings.value(QStringLiteral("proxyPort"), 8080).toInt();
@@ -455,6 +469,9 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("torrentEncryptionMode"),          m_torrentEncryptionMode);
     m_settings.setValue(QStringLiteral("torrentHistoricalUploadedBytes"),   m_torrentHistoricalUploadedBytes);
     m_settings.setValue(QStringLiteral("torrentHistoricalDownloadedBytes"), m_torrentHistoricalDownloadedBytes);
+    // installDate is set once in load() and never overwritten by save().
+    m_settings.setValue(QStringLiteral("totalUptimeSecs"), m_totalUptimeSecs);
+    m_settings.setValue(QStringLiteral("totalStartups"),   m_totalStartups);
     m_settings.setValue(QStringLiteral("proxyType"),                   m_proxyType);
     m_settings.setValue(QStringLiteral("proxyHost"),                   m_proxyHost);
     m_settings.setValue(QStringLiteral("proxyPort"),                   m_proxyPort);
@@ -698,6 +715,12 @@ void AppSettings::resetTorrentHistoricalStats() {
 }
 
 void AppSettings::setPerHostConnectionLimit(int v) { if (m_perHostConnectionLimit != v) { m_perHostConnectionLimit = v; emit perHostConnectionLimitChanged(); save(); } }
+
+void AppSettings::accumulateUptimeSecs(qint64 secs) {
+    if (secs <= 0) return;
+    m_totalUptimeSecs += secs;
+    save();
+}
 
 void AppSettings::setProxyType(int v)            { if (m_proxyType     != v) { m_proxyType     = v; emit proxyTypeChanged();     save(); } }
 void AppSettings::setProxyHost(const QString &v) { if (m_proxyHost     != v) { m_proxyHost     = v; emit proxyHostChanged();     save(); } }

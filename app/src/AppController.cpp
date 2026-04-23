@@ -821,6 +821,11 @@ void AppController::probeFileInfo(const QString &url, const QString &cookies,
 }
 
 AppController::~AppController() {
+    // Persist this session's uptime before the object is destroyed.
+    if (m_settings && m_sessionTimer.isValid()) {
+        const qint64 secs = m_sessionTimer.elapsed() / 1000;
+        m_settings->accumulateUptimeSecs(secs);
+    }
     // Flush any pending debounced DB write before the object is destroyed.
     if (m_db) m_db->flush();
 }
@@ -829,6 +834,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // ── 1. Components ────────────────────────────────────────────────────────────
     m_nam           = new QNetworkAccessManager(this);
     m_settings      = new AppSettings(this);
+    // Start the session uptime clock — elapsed time is flushed to settings on destruction.
+    m_sessionTimer.start();
     DownloadItem::configureDateTimeFormat(
         m_settings->lastTryDateStyle(),
         m_settings->lastTryUse24Hour(),
@@ -1659,6 +1666,13 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         const int itemCount = static_cast<int>(items.size());
         QTimer::singleShot(itemCount * 16 + 50, this, [this, itemCount]() {
             m_restoring = false;
+            // Snapshot restored torrent byte totals so appStatistics() can
+            // subtract them to produce a true session-only transfer figure.
+            for (auto *item : m_downloadModel->allItems()) {
+                if (!item || !item->isTorrent()) continue;
+                m_sessionBaselineUploaded   += item->torrentUploaded();
+                m_sessionBaselineDownloaded += item->torrentDownloaded();
+            }
             // libtorrent alert polling runs every 1 s; give it 12 s after all
             // items are enqueued to deliver any deferred torrent_finished_alert
             // before we stop suppressing completions for restored seeding IDs.
@@ -3521,6 +3535,41 @@ void AppController::resetTorrentAllTimeStats() {
     // and cannot be reset from here, so we zero the accumulator that persists them
     // across sessions — next call to torrentAllTimeStats() will only reflect live data.
     m_settings->resetTorrentHistoricalStats();
+}
+
+QVariantMap AppController::appStatistics() const {
+    // ── All-time torrent totals (live items + historical accumulator) ────────────
+    const QVariantMap torrent = torrentAllTimeStats();
+
+    // ── Session-only transfer bytes ──────────────────────────────────────────────
+    // torrentUploaded/Downloaded are cumulative and persisted across sessions, so
+    // we subtract the baseline (snapshotted after DB restore) to get this-session-only bytes.
+    qint64 liveUploaded   = 0;
+    qint64 liveDownloaded = 0;
+    const auto items = m_downloadModel->allItems();
+    for (auto *item : items) {
+        if (!item || !item->isTorrent()) continue;
+        liveUploaded   += item->torrentUploaded();
+        liveDownloaded += item->torrentDownloaded();
+    }
+    const qint64 sessionUploaded   = qMax(0LL, liveUploaded   - m_sessionBaselineUploaded);
+    const qint64 sessionDownloaded = qMax(0LL, liveDownloaded - m_sessionBaselineDownloaded);
+
+    // ── Uptime ──────────────────────────────────────────────────────────────────
+    const qint64 sessionSecs = m_sessionTimer.isValid() ? (m_sessionTimer.elapsed() / 1000) : 0;
+    const qint64 totalSecs   = m_settings->totalUptimeSecs() + sessionSecs;
+
+    QVariantMap result;
+    result[QStringLiteral("uploadedBytes")]      = torrent[QStringLiteral("uploadedBytes")];
+    result[QStringLiteral("downloadedBytes")]    = torrent[QStringLiteral("downloadedBytes")];
+    result[QStringLiteral("ratio")]              = torrent[QStringLiteral("ratio")];
+    result[QStringLiteral("installDate")]        = m_settings->installDate().toString(Qt::ISODate);
+    result[QStringLiteral("totalUptimeSecs")]    = QVariant::fromValue(totalSecs);
+    result[QStringLiteral("sessionUptimeSecs")]  = QVariant::fromValue(sessionSecs);
+    result[QStringLiteral("sessionUploaded")]    = QVariant::fromValue(sessionUploaded);
+    result[QStringLiteral("sessionDownloaded")]  = QVariant::fromValue(sessionDownloaded);
+    result[QStringLiteral("totalStartups")]      = m_settings->totalStartups();
+    return result;
 }
 
 QString AppController::downloadShareLink(const QString &id) const {
