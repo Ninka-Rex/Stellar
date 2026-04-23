@@ -1395,8 +1395,10 @@ Rectangle {
 
             // Progress bar strip at the bottom of each active row
             Rectangle {
-                anchors { bottom: parent.bottom; left: parent.left; bottomMargin: 1 }
-                width: rowRect.item ? rowRect.item.progress * rowRect.width : 0
+                anchors { bottom: parent.bottom; bottomMargin: 1 }
+                x: tableView.contentX
+                readonly property real _viewportWidth: Math.max(0, Math.min(tableView.width, rowRect.width - tableView.contentX))
+                width: rowRect.item ? rowRect.item.progress * _viewportWidth : 0
                 height: 3
                 color: "#4488dd"
                 visible: rowRect.item && rowRect.item.status === "Downloading"
