@@ -109,7 +109,7 @@ public:
     qint64 dhtGlobalNodesEstimate();
     int dhtEstimateWarmupPercent() const;
     QString dhtEstimateDebugText() const;
-    void clearDhtEstimatorCache();
+    void startDhtCrawlNow();
 
 signals:
     void torrentFinished(const QString &downloadId);
@@ -135,6 +135,12 @@ private:
         QDateTime updatedAt;
     };
 
+    struct DhtCrawlNode {
+        QByteArray id;
+        QString host;
+        int port{0};
+    };
+
     struct PeerLocation;
     struct GeoDbState;
     void ensureSession();
@@ -157,8 +163,10 @@ private:
     void lookupPeerLocation(const QString &endpoint, QString *countryCode,
                             QString *regionCode, QString *regionName, QString *cityName,
                             double *latitude, double *longitude);
-    void loadDhtEstimatorCache();
-    void saveDhtEstimatorCache(bool force = false);
+    void enqueueDhtCrawlNode(const QByteArray &nodeId, const QString &host, int port);
+    void pumpDhtEstimatorCrawler();
+    void handleDhtDirectResponse(const libtorrent::dht_direct_response_alert *alert);
+    void maybePublishDhtMeasurementEpoch(const QDateTime &now);
 
     std::unique_ptr<libtorrent::session> m_session;
     std::unique_ptr<GeoDbState> m_geoDb;
@@ -197,17 +205,27 @@ private:
     qint64 m_lastDhtGlobalNodes{-1};
     qint64 m_cachedDhtGlobalEstimate{-1};
     int m_lastDhtWarmupPercent{0};
-    int m_lastDhtConfidencePercent{0};
-    int m_lastDhtPivotCount{0};
-    int m_lastDhtClosestSampleCount{0};
-    int m_lastDhtKUsed{0};
     QVector<qint64> m_recentPublishedDhtEstimates;
+    QVector<DhtCrawlNode> m_dhtCrawlQueue;
+    QSet<QByteArray> m_enqueuedDhtNodeIds;
+    QHash<QString, QDateTime> m_pendingDhtRequests;
+    QHash<QByteArray, QDateTime> m_dhtMeasurementZoneNodes;
+    QDateTime m_dhtMeasurementStartedAt;
+    QDateTime m_dhtMeasurementLastPublishedAt;
+    bool m_dhtMeasurementPublished{false};
     QElapsedTimer m_lastSessionStatsRequest;
     QElapsedTimer m_lastDhtLiveNodesRequest;
     QElapsedTimer m_lastDhtLiveNodesUpdate;
-    QElapsedTimer m_lastDhtCacheSave;
     QByteArray m_lastDhtNodeId;
     QHash<QByteArray, QDateTime> m_recentDhtNodeIds;
+    // Last published zone-node count — preserved across epoch rollovers so
+    // the tooltip doesn't flash "Closest samples: 0" while the next crawl
+    // is warming up.
+    int m_lastPublishedZoneCount{0};
+    // Dedicated high-frequency pump timer (100ms) that runs only while a
+    // measurement window is active, so dht_direct_request queries saturate
+    // the 5–10s crawl instead of trickling out at the 2s alert-timer rate.
+    QTimer m_dhtFastPumpTimer;
 #endif
     QTimer m_alertTimer;
 };
@@ -231,5 +249,5 @@ inline void TorrentSessionManager::releaseGeoDatabaseForUpdate() {}
 inline qint64 TorrentSessionManager::dhtGlobalNodesEstimate() { return -1; }
 inline int TorrentSessionManager::dhtEstimateWarmupPercent() const { return 0; }
 inline QString TorrentSessionManager::dhtEstimateDebugText() const { return {}; }
-inline void TorrentSessionManager::clearDhtEstimatorCache() {}
+inline void TorrentSessionManager::startDhtCrawlNow() {}
 #endif

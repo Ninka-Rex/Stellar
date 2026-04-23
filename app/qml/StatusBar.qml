@@ -97,6 +97,7 @@ Rectangle {
         Item { Layout.fillWidth: true }
 
         Text {
+            id: onlineUsersText
             visible: App.settings.estimatedOnlineUsersInStatusBar
             text: {
                 function fmtUsers(value) {
@@ -110,13 +111,11 @@ Rectangle {
                 }
                 if (!App.settings.torrentEnableDht)
                     return "🔴 DHT off"
-                if (App.estimatedOnlineUsers > 0) {
-                    const lowConfidence = App.estimatedOnlineUsersWarmupPercent < 70
-                    return "🟢 " + fmtUsers(App.estimatedOnlineUsers) + " online" + (lowConfidence ? "*" : "")
-                }
-                return "🟡 estimating... (" + App.estimatedOnlineUsersWarmupPercent + "%)"
+                if (App.estimatedOnlineUsers > 0)
+                    return "🟢 " + fmtUsers(App.estimatedOnlineUsers) + " online"
+                return "🟡 Estimating… (" + App.estimatedOnlineUsersWarmupPercent + "%)"
             }
-            color: "#b0b0b0"
+            color: onlineUsersHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11
             verticalAlignment: Text.AlignVCenter
 
@@ -125,6 +124,14 @@ Rectangle {
             ToolTip.delay: 250
             ToolTip.timeout: 10000
             ToolTip.text: App.estimatedOnlineUsersDebugText
+                + (App.estimatedOnlineUsersWarmupPercent > 0 && App.estimatedOnlineUsersWarmupPercent < 100
+                   ? "" : "\n\nClick to recrawl now.")
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: App.startDhtCrawlNow()
+            }
         }
 
         // All-time torrent ratio — right-aligned, left of speed.
@@ -205,4 +212,5 @@ Rectangle {
             font.pixelSize: 11
         }
     }
+
 }

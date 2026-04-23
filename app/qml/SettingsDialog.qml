@@ -2807,12 +2807,12 @@ Window {
                             Layout.fillWidth: true
                             spacing: 10
                             DlgButton {
-                                text: "Clear Online-User Cache"
-                                onClicked: App.clearDhtEstimatorCache()
+                                text: "Crawl Again"
+                                onClicked: App.startDhtCrawlNow()
                             }
                             Text {
                                 Layout.fillWidth: true
-                                text: "Clears cached DHT node IDs used by the online-user estimator. Useful after network/VPN changes or for a clean recalibration."
+                                text: "Immediately triggers a fresh 5-second DHT crawl for the online-user estimator. The last published estimate remains displayed while the new crawl runs."
                                 color: "#666666"
                                 font.pixelSize: 11
                                 wrapMode: Text.WordWrap

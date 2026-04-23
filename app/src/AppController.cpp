@@ -3489,17 +3489,11 @@ void AppController::clearTorrentSpeedHistory(const QString &downloadId) {
     m_torrentSpeedHistory.remove(downloadId);
 }
 
-void AppController::clearDhtEstimatorCache() {
+void AppController::startDhtCrawlNow() {
     if (m_torrentSession)
-        m_torrentSession->clearDhtEstimatorCache();
-    if (m_estimatedOnlineUsers != -1
-        || m_estimatedOnlineUsersWarmupPercent != 0
-        || !m_estimatedOnlineUsersDebugText.isEmpty()) {
-        m_estimatedOnlineUsers = -1;
-        m_estimatedOnlineUsersWarmupPercent = 0;
-        m_estimatedOnlineUsersDebugText.clear();
-        emit estimatedOnlineUsersChanged();
-    }
+        m_torrentSession->startDhtCrawlNow();
+    // Leave the last published estimate in place so the status bar keeps
+    // showing it while the fresh crawl runs.
 }
 
 QVariantMap AppController::torrentAllTimeStats() const {
