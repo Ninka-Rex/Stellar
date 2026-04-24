@@ -30,6 +30,7 @@
 #include <QThread>
 #include <QFile>
 #include <QDir>
+#include <QUrl>
 #include <QTextStream>
 #include <QStandardPaths>
 #include <QLibraryInfo>
@@ -143,13 +144,33 @@ static QString pendingDownloadFilePath()
     return QDir::tempPath() + QStringLiteral("/stellar_pending_download.json");
 }
 
-static bool isTorrentFileArgument(const QString &arg)
+static QString localTorrentFileFromArgument(const QString &arg)
 {
     if (arg.trimmed().isEmpty() || arg.startsWith(QStringLiteral("--")))
-        return false;
-    const QFileInfo info(QDir::fromNativeSeparators(arg));
-    return info.exists() && info.isFile()
-        && info.fileName().endsWith(QStringLiteral(".torrent"), Qt::CaseInsensitive);
+        return {};
+
+    QString candidate = arg.trimmed();
+    const QUrl maybeUrl = QUrl::fromUserInput(candidate);
+    if (maybeUrl.isLocalFile())
+        candidate = maybeUrl.toLocalFile();
+
+    const QFileInfo info(QDir::fromNativeSeparators(candidate));
+    if (!info.exists() || !info.isFile()
+        || !info.fileName().endsWith(QStringLiteral(".torrent"), Qt::CaseInsensitive)) {
+        return {};
+    }
+    return info.absoluteFilePath();
+}
+
+static QString magnetUriFromArgument(const QString &arg)
+{
+    const QString trimmed = arg.trimmed();
+    if (trimmed.isEmpty() || trimmed.startsWith(QStringLiteral("--")))
+        return {};
+
+    return trimmed.startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive)
+        ? trimmed
+        : QString();
 }
 
 static QByteArray makeTorrentOpenPayload(const QString &filePath)
@@ -158,6 +179,15 @@ static QByteArray makeTorrentOpenPayload(const QString &filePath)
         {QStringLiteral("type"), QStringLiteral("download")},
         {QStringLiteral("url"), QDir::toNativeSeparators(QFileInfo(filePath).absoluteFilePath())},
         {QStringLiteral("filename"), QFileInfo(filePath).fileName()}
+    }).toJson(QJsonDocument::Compact);
+}
+
+static QByteArray makeMagnetOpenPayload(const QString &magnetUri)
+{
+    return QJsonDocument(QJsonObject{
+        {QStringLiteral("type"), QStringLiteral("download")},
+        {QStringLiteral("url"), magnetUri},
+        {QStringLiteral("filename"), QStringLiteral("Magnetized transfer")}
     }).toJson(QJsonDocument::Compact);
 }
 
@@ -348,12 +378,14 @@ int main(int argc, char *argv[])
 {
     QString argsStr;
     QString launchTorrentFile;
+    QString launchMagnetUri;
     for (int i = 0; i < argc; ++i) {
         argsStr += QString::fromUtf8(argv[i]) + " ";
-        if (i > 0 && launchTorrentFile.isEmpty()) {
+        if (i > 0 && launchTorrentFile.isEmpty() && launchMagnetUri.isEmpty()) {
             const QString arg = QString::fromLocal8Bit(argv[i]);
-            if (isTorrentFileArgument(arg))
-                launchTorrentFile = QFileInfo(QDir::fromNativeSeparators(arg)).absoluteFilePath();
+            launchTorrentFile = localTorrentFileFromArgument(arg);
+            if (launchTorrentFile.isEmpty())
+                launchMagnetUri = magnetUriFromArgument(arg);
         }
     }
     nmLog(QStringLiteral("App started with args: ") + argsStr);
@@ -410,17 +442,20 @@ int main(int argc, char *argv[])
         sock.connectToServer(kServerName);
         if (sock.waitForConnected(500)) {
             const bool shouldOpenTorrent = !launchTorrentFile.isEmpty();
-            nmLog(shouldOpenTorrent
+            const bool shouldOpenMagnet = !launchMagnetUri.isEmpty();
+            nmLog((shouldOpenTorrent || shouldOpenMagnet)
                       ? QStringLiteral("Existing instance found, sending torrent-open message...")
                       : QStringLiteral("Existing instance found, sending focus message..."));
             const QByteArray msg = shouldOpenTorrent
                 ? makeTorrentOpenPayload(launchTorrentFile)
+                : shouldOpenMagnet
+                    ? makeMagnetOpenPayload(launchMagnetUri)
                 : QJsonDocument(QJsonObject{{QStringLiteral("type"), QStringLiteral("focus")}})
                       .toJson(QJsonDocument::Compact);
             sock.write(msg);
             sock.flush();
             sock.waitForBytesWritten(1000);
-            nmLog(shouldOpenTorrent
+            nmLog((shouldOpenTorrent || shouldOpenMagnet)
                       ? QStringLiteral("Torrent-open message sent, exiting.")
                       : QStringLiteral("Focus message sent, exiting."));
             return 0;
@@ -486,7 +521,7 @@ int main(int argc, char *argv[])
     // because Component.onCompleted fires during engine.load() — before app.exec()
     // starts the event loop — so any IPC socket data buffered in the OS wouldn't
     // have been processed yet, and the drain would be a no-op.
-    QTimer::singleShot(0, &controller, [&controller, launchTorrentFile]() {
+    QTimer::singleShot(0, &controller, [&controller, launchTorrentFile, launchMagnetUri]() {
         const QString dropPath = pendingDownloadFilePath();
         QFile dropFile(dropPath);
         if (dropFile.exists() && dropFile.open(QIODevice::ReadOnly)) {
@@ -501,6 +536,9 @@ int main(int argc, char *argv[])
         if (!launchTorrentFile.isEmpty()) {
             nmLog(QStringLiteral("Replaying startup torrent-open payload from command line"));
             controller.handleIpcPayload(makeTorrentOpenPayload(launchTorrentFile));
+        } else if (!launchMagnetUri.isEmpty()) {
+            nmLog(QStringLiteral("Replaying startup magnet-open payload from command line"));
+            controller.handleIpcPayload(makeMagnetOpenPayload(launchMagnetUri));
         }
         controller.setQmlReady();
     });

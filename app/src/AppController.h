@@ -337,6 +337,10 @@ public:
     Q_INVOKABLE QString  registerNativeHost() const;
     Q_INVOKABLE QString  nativeHostManifestPath() const;
     Q_INVOKABLE QString  nativeHostDiagnostics() const;
+    Q_INVOKABLE bool     isTorrentFileAssociationDefault() const;
+    Q_INVOKABLE bool     isMagnetAssociationDefault() const;
+    Q_INVOKABLE QString  setTorrentFileAssociationDefault() const;
+    Q_INVOKABLE QString  setMagnetAssociationDefault() const;
     Q_INVOKABLE void createQueue(const QString &name);
     Q_INVOKABLE void deleteQueue(const QString &queueId);
     Q_INVOKABLE void saveQueues();

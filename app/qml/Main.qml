@@ -51,6 +51,9 @@ ApplicationWindow {
     // geometry signals during window creation don't overwrite saved position.
     property bool _geometrySaveReady: false
     property bool _torrentFileDragActive: false
+    readonly property int settingsPageBrowser: 3
+    readonly property int settingsPageSpeedLimiter: 4
+    readonly property int settingsPageAbout: 11
 
     // ── Minimize to tray on close ─────────────────────────────────────────────
     property bool isQuitting:    false
@@ -453,11 +456,11 @@ ApplicationWindow {
             TrayMenuItem { label: "Add URL…";     onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: "GitHub";        onClicked: { trayMenu.visible = false; Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") } }
-            TrayMenuItem { label: "About Stellar"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(10) } }
+            TrayMenuItem { label: "About Stellar"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + "Speed Limiter: Turn On";  onClicked: { trayMenu.visible = false; App.enableSpeedLimiter() } }
             TrayMenuItem { label: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "") + "Speed Limiter: Turn Off"; onClicked: { trayMenu.visible = false; App.disableSpeedLimiter() } }
-            TrayMenuItem { label: "Speed Limiter Settings…"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(4) } }
+            TrayMenuItem { label: "Speed Limiter Settings…"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
             TrayMenuItem { label: "Exit Stellar";  onClicked: { trayMenu.visible = false; root.quitApp() } }
         }
@@ -512,11 +515,11 @@ ApplicationWindow {
         }
         function onTrayAboutRequested() {
             root.show(); root.raise()
-            root.showSettingsPage(10)
+            root.showSettingsPage(root.settingsPageAbout)
         }
         function onTraySpeedLimiterRequested() {
             root.show(); root.raise()
-            root.showSettingsPage(4)
+            root.showSettingsPage(root.settingsPageSpeedLimiter)
         }
         function onContextMenuRequested(x, y) {
             trayMenu.popup(x, y)
@@ -1396,7 +1399,7 @@ ApplicationWindow {
                     text: "Open Browser Settings"
                     onClicked: {
                         fileDeletedWarningDialog.close()
-                        settingsDialog.initialPage = 3  // Browser tab
+                settingsDialog.initialPage = root.settingsPageBrowser
                         settingsDialog.show()
                         settingsDialog.raise()
                         settingsDialog.requestActivate()
@@ -2023,7 +2026,7 @@ ApplicationWindow {
                 Action { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
                 Action { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
                 MenuSeparator {}
-                Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = 4; settingsDialog.show() } }
+            Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
             }
             MenuSeparator {}
             Action { text: qsTr("Options…"); shortcut: "Ctrl+,"; onTriggered: settingsDialog.show() }
@@ -2078,7 +2081,7 @@ ApplicationWindow {
                 Action { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
                 Action { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
                 MenuSeparator {}
-                Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = 4; settingsDialog.show() } }
+            Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
             }
         }
         Menu {
@@ -2097,7 +2100,7 @@ ApplicationWindow {
             topPadding: 0; bottomPadding: 0
             Action { text: qsTr("Check for Updates"); onTriggered: App.checkForUpdates(true) }
             MenuSeparator {}
-            Action { text: qsTr("About Stellar"); onTriggered: root.showSettingsPage(10) }
+            Action { text: qsTr("About Stellar"); onTriggered: root.showSettingsPage(root.settingsPageAbout) }
             MenuSeparator {}
             Menu {
                 title: qsTr("Browser Integration")
@@ -2106,7 +2109,7 @@ ApplicationWindow {
                 Action { text: qsTr("Firefox Extension…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise() } }
                 MenuSeparator {}
                 Action { text: qsTr("Open Extension Folder"); onTriggered: App.openExtensionFolder() }
-                Action { text: qsTr("Browser Settings…"); onTriggered: root.showSettingsPage(3) }
+                Action { text: qsTr("Browser Settings…"); onTriggered: root.showSettingsPage(root.settingsPageBrowser) }
             }
         }
     }

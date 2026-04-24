@@ -36,7 +36,12 @@ Window {
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
 
-    property int    initialPage: 0   // Tab indices: 0=Connection,1=Categories,2=Downloads,3=Browser,4=Speed Limiter,5=Notifications,6=General,7=Media,8=Torrents,9=RSS,10=About
+    property int    initialPage: 0   // Tab indices: 0=Connection,1=Categories,2=Downloads,3=Browser,4=Speed Limiter,5=Notifications,6=General,7=Media,8=Torrents,9=RSS,10=Associations,11=About
+    readonly property int pageAssociations: 10
+    readonly property int pageAbout: 11
+    property bool   torrentAssociationDefault: false
+    property bool   magnetAssociationDefault: false
+    property string associationStatusText: ""
     signal whatsNewRequested()
 
     // Plain var properties — no live binding to App.settings so that
@@ -283,6 +288,7 @@ Window {
         refreshTorrentNetworkAdapters()
         refreshTorrentCountryOptions()
         refreshIpToCityDbInfo()
+        refreshAssociationStatus()
         resetEdits()
         catList.currentIndex = root.initialPage
     }
@@ -301,12 +307,23 @@ Window {
         y = Math.round((Screen.height - height) / 2)
     }
 
+    function refreshAssociationStatus() {
+        torrentAssociationDefault = App.isTorrentFileAssociationDefault()
+        magnetAssociationDefault = App.isMagnetAssociationDefault()
+    }
+
+    function showAssociationResult(message, successText) {
+        associationStatusText = (message && message.length > 0) ? message : successText
+        refreshAssociationStatus()
+    }
+
     onVisibleChanged: {
         if (visible) {
             _centerOnOwner()
             refreshTorrentNetworkAdapters()
             refreshTorrentCountryOptions()
             refreshIpToCityDbInfo()
+            refreshAssociationStatus()
             resetEdits()
             catList.currentIndex = root.initialPage
         }
@@ -703,7 +720,7 @@ Window {
                     id: catList
                     anchors.fill: parent
                     anchors.topMargin: 8
-                    model: ["Connection", "Categories", "Downloads", "Browser", "Speed Limiter", "Notifications", "General", "Media", "Torrents", "RSS", "About"]
+                    model: ["Connection", "Categories", "Downloads", "Browser", "Speed Limiter", "Notifications", "General", "Media", "Torrents", "RSS", "Associations", "About"]
                     currentIndex: root.initialPage
 
                     delegate: Rectangle {
@@ -2803,22 +2820,6 @@ Window {
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
-                        RowLayout {
-                            Layout.fillWidth: true
-                            spacing: 10
-                            DlgButton {
-                                text: "Crawl Again"
-                                onClicked: App.startDhtCrawlNow()
-                            }
-                            Text {
-                                Layout.fillWidth: true
-                                text: "Immediately triggers a fresh 5-second DHT crawl for the online-user estimator. The last published estimate remains displayed while the new crawl runs."
-                                color: "#666666"
-                                font.pixelSize: 11
-                                wrapMode: Text.WordWrap
-                            }
-                        }
-
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
                         Text { text: "Advanced"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
@@ -3608,6 +3609,120 @@ Window {
                             Layout.fillWidth: true
                             text: "These regular expressions are used to extract season/episode numbers for smart duplicate detection."
                             color: "#666666"; font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Item { Layout.fillHeight: true }
+                    }
+                    }
+                }
+
+                // Associations
+                Item {
+                    ScrollView {
+                        anchors.fill: parent
+                        contentWidth: availableWidth
+                        clip: true
+
+                    ColumnLayout {
+                        width: parent.width
+                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+                        spacing: 10
+
+                        Text { text: "Associations"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: "Make Stellar the default app for .torrent files and magnet links. These buttons apply the OS association directly for the current user."
+                            color: "#909090"
+                            font.pixelSize: 12
+                            wrapMode: Text.WordWrap
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        GridLayout {
+                            Layout.fillWidth: true
+                            columns: 2
+                            columnSpacing: 16
+                            rowSpacing: 8
+
+                            Text { text: ".torrent files"; color: "#c0c0c0"; font.pixelSize: 13 }
+                            Text {
+                                Layout.fillWidth: true
+                                text: root.torrentAssociationDefault ? "Currently handled by Stellar" : "Stellar is not the current default"
+                                color: root.torrentAssociationDefault ? "#7bd88f" : "#d8a65f"
+                                font.pixelSize: 12
+                                wrapMode: Text.WordWrap
+                            }
+
+                            Item { Layout.columnSpan: 2; Layout.fillWidth: true; implicitHeight: torrentAssocButtons.implicitHeight
+                                RowLayout {
+                                    id: torrentAssocButtons
+                                    anchors.left: parent.left
+                                    spacing: 8
+                                    DlgButton {
+                                        text: "Set .torrent Default"
+                                        onClicked: root.showAssociationResult(App.setTorrentFileAssociationDefault(), "Stellar is now the default app for .torrent files.")
+                                    }
+                                    DlgButton {
+                                        text: "Refresh Status"
+                                        onClicked: {
+                                            root.associationStatusText = ""
+                                            root.refreshAssociationStatus()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        GridLayout {
+                            Layout.fillWidth: true
+                            columns: 2
+                            columnSpacing: 16
+                            rowSpacing: 8
+
+                            Text { text: "magnet: links"; color: "#c0c0c0"; font.pixelSize: 13 }
+                            Text {
+                                Layout.fillWidth: true
+                                text: root.magnetAssociationDefault ? "Currently handled by Stellar" : "Stellar is not the current default"
+                                color: root.magnetAssociationDefault ? "#7bd88f" : "#d8a65f"
+                                font.pixelSize: 12
+                                wrapMode: Text.WordWrap
+                            }
+
+                            Item { Layout.columnSpan: 2; Layout.fillWidth: true; implicitHeight: magnetAssocButtons.implicitHeight
+                                RowLayout {
+                                    id: magnetAssocButtons
+                                    anchors.left: parent.left
+                                    spacing: 8
+                                    DlgButton {
+                                        text: "Set Magnet Default"
+                                        onClicked: root.showAssociationResult(App.setMagnetAssociationDefault(), "Stellar is now the default app for magnet links.")
+                                    }
+                                    DlgButton {
+                                        text: "Refresh Status"
+                                        onClicked: {
+                                            root.associationStatusText = ""
+                                            root.refreshAssociationStatus()
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+
+                        Text {
+                            Layout.fillWidth: true
+                            text: root.associationStatusText.length > 0
+                                ? root.associationStatusText
+                                : "If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change."
+                            color: root.associationStatusText.length > 0 && root.associationStatusText.indexOf("Failed") === 0 ? "#ff8a80" : "#808080"
+                            font.pixelSize: 11
                             wrapMode: Text.WordWrap
                         }
 

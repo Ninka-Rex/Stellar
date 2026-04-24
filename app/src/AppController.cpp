@@ -59,6 +59,7 @@
 #if defined(STELLAR_WINDOWS)
 #  include <windows.h>
 #  include <shellapi.h>
+#  include <shlobj.h>
 #endif
 
 namespace {
@@ -89,6 +90,7 @@ QJsonArray chromeNativeMessagingOrigins()
 #include <QTemporaryDir>
 #include <QDirIterator>
 #include <QFileDevice>
+#include <QTextStream>
 #include <Queue.h>
 
 namespace {
@@ -120,6 +122,217 @@ QString writableRuntimeDataDir() {
     QDir().mkpath(dir);
     return dir;
 }
+
+QString normalizedNativePath(const QString &path) {
+    return QDir::toNativeSeparators(QFileInfo(path).absoluteFilePath());
+}
+
+bool commandReferencesExecutable(const QString &command, const QString &exePath) {
+    const QString normalizedCommand = QDir::toNativeSeparators(command).trimmed();
+    const QString normalizedExe = normalizedNativePath(exePath);
+    return !normalizedCommand.isEmpty()
+        && normalizedCommand.contains(normalizedExe, Qt::CaseInsensitive);
+}
+
+QString desktopAssociationFileName() {
+    return QStringLiteral("stellar.desktop");
+}
+
+QString desktopAssociationId() {
+    return QFileInfo(desktopAssociationFileName()).fileName();
+}
+
+QString windowsAssociationCapabilitiesPath() {
+    return QStringLiteral("Software\\Stellar\\Capabilities");
+}
+
+QString windowsAssociationRegisteredAppName() {
+    return QStringLiteral("Stellar Download Manager");
+}
+
+QString windowsDefaultAppsSettingsUrl() {
+    return QStringLiteral("ms-settings:defaultapps?registeredAppUser=%1")
+        .arg(QString::fromLatin1(QUrl::toPercentEncoding(windowsAssociationRegisteredAppName())));
+}
+
+QString desktopAssociationExec() {
+    const QString flatpakId = QString::fromLocal8Bit(qgetenv("FLATPAK_ID")).trimmed();
+    if (!flatpakId.isEmpty())
+        return QStringLiteral("flatpak run %1 %u").arg(flatpakId);
+    return QStringLiteral("\"%1\" %u").arg(QCoreApplication::applicationFilePath());
+}
+
+QString linuxDesktopEntryContents() {
+    return QStringLiteral(
+        "[Desktop Entry]\n"
+        "Version=1.0\n"
+        "Type=Application\n"
+        "Name=Stellar Download Manager\n"
+        "Comment=Manage, accelerate, and schedule downloads\n"
+        "Exec=%1\n"
+        "Terminal=false\n"
+        "Categories=Network;FileTransfer;\n"
+        "MimeType=application/x-bittorrent;x-scheme-handler/magnet;\n"
+        "StartupNotify=true\n"
+        "StartupWMClass=Stellar\n")
+        .arg(desktopAssociationExec());
+}
+
+QString linuxApplicationsDir() {
+    const QString appsDir =
+        QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
+        + QStringLiteral("/applications");
+    QDir().mkpath(appsDir);
+    return appsDir;
+}
+
+QString linuxDesktopEntryPath() {
+    return linuxApplicationsDir() + QLatin1Char('/') + desktopAssociationFileName();
+}
+
+bool writeLinuxDesktopEntry(QString *errorText) {
+    QFile file(linuxDesktopEntryPath());
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
+        if (errorText)
+            *errorText = QStringLiteral("Could not write desktop entry: %1\nError: %2")
+                .arg(file.fileName(), file.errorString());
+        return false;
+    }
+    QTextStream stream(&file);
+    stream << linuxDesktopEntryContents();
+    file.close();
+    if (file.error() != QFile::NoError) {
+        if (errorText)
+            *errorText = QStringLiteral("Could not write desktop entry: %1\nError: %2")
+                .arg(file.fileName(), file.errorString());
+        return false;
+    }
+    file.setPermissions(QFileDevice::ReadOwner | QFileDevice::WriteOwner |
+                        QFileDevice::ReadGroup | QFileDevice::ReadOther);
+    return true;
+}
+
+QString runProcessCapture(const QString &program, const QStringList &arguments, int timeoutMs = 10000) {
+    QProcess process;
+    process.start(program, arguments);
+    if (!process.waitForStarted(timeoutMs))
+        return {};
+    if (!process.waitForFinished(timeoutMs)) {
+        process.kill();
+        process.waitForFinished(2000);
+        return {};
+    }
+    return QString::fromLocal8Bit(process.readAllStandardOutput()).trimmed();
+}
+
+bool runProcessOk(const QString &program, const QStringList &arguments, QString *errorText = nullptr, int timeoutMs = 15000) {
+    QProcess process;
+    process.start(program, arguments);
+    if (!process.waitForStarted(timeoutMs)) {
+        if (errorText)
+            *errorText = QStringLiteral("Failed to start %1.").arg(program);
+        return false;
+    }
+    if (!process.waitForFinished(timeoutMs)) {
+        process.kill();
+        process.waitForFinished(2000);
+        if (errorText)
+            *errorText = QStringLiteral("%1 did not finish in time.").arg(program);
+        return false;
+    }
+    if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0) {
+        if (errorText) {
+            QString detail = QString::fromLocal8Bit(process.readAllStandardError()).trimmed();
+            if (detail.isEmpty())
+                detail = QString::fromLocal8Bit(process.readAllStandardOutput()).trimmed();
+            *errorText = detail.isEmpty()
+                ? QStringLiteral("%1 exited with code %2.").arg(program).arg(process.exitCode())
+                : detail;
+        }
+        return false;
+    }
+    return true;
+}
+
+#if defined(STELLAR_WINDOWS)
+bool writeRegistryStringValue(HKEY root, const QString &subKey, const wchar_t *valueName,
+                              const QString &value, QString *errorText = nullptr) {
+    HKEY key = nullptr;
+    const LONG createRes = RegCreateKeyExW(
+        root,
+        reinterpret_cast<LPCWSTR>(subKey.utf16()),
+        0, nullptr, REG_OPTION_NON_VOLATILE, KEY_SET_VALUE, nullptr,
+        &key, nullptr);
+    if (createRes != ERROR_SUCCESS || !key) {
+        if (errorText)
+            *errorText = QStringLiteral("Failed to create registry key %1 (error %2).")
+                .arg(subKey, QString::number(createRes));
+        return false;
+    }
+
+    const std::wstring wideValue = value.toStdWString();
+    const LONG setRes = RegSetValueExW(
+        key, valueName, 0, REG_SZ,
+        reinterpret_cast<const BYTE *>(wideValue.c_str()),
+        static_cast<DWORD>((wideValue.size() + 1) * sizeof(wchar_t)));
+    RegCloseKey(key);
+    if (setRes != ERROR_SUCCESS) {
+        if (errorText)
+            *errorText = QStringLiteral("Failed to write registry value %1 (error %2).")
+                .arg(subKey, QString::number(setRes));
+        return false;
+    }
+    return true;
+}
+
+QString readRegistryDefaultValue(HKEY root, const QString &subKey) {
+    wchar_t buffer[2048] = {};
+    DWORD size = sizeof(buffer);
+    const LONG res = RegGetValueW(root,
+                                  reinterpret_cast<LPCWSTR>(subKey.utf16()),
+                                  nullptr, RRF_RT_REG_SZ,
+                                  nullptr, reinterpret_cast<LPBYTE>(buffer), &size);
+    return res == ERROR_SUCCESS ? QString::fromWCharArray(buffer) : QString();
+}
+
+QString readRegistryNamedValue(HKEY root, const QString &subKey, const wchar_t *valueName) {
+    wchar_t buffer[2048] = {};
+    DWORD size = sizeof(buffer);
+    const LONG res = RegGetValueW(root,
+                                  reinterpret_cast<LPCWSTR>(subKey.utf16()),
+                                  valueName, RRF_RT_REG_SZ,
+                                  nullptr, reinterpret_cast<LPBYTE>(buffer), &size);
+    return res == ERROR_SUCCESS ? QString::fromWCharArray(buffer) : QString();
+}
+
+bool registerWindowsAssociationCapabilities(const QString &exePath, QString *errorText = nullptr) {
+    const QString capabilities = windowsAssociationCapabilitiesPath();
+    const QString appName = windowsAssociationRegisteredAppName();
+    const QString iconSpec = QStringLiteral("%1,0").arg(exePath);
+
+    return writeRegistryStringValue(HKEY_CURRENT_USER, capabilities,
+                                    L"ApplicationName", appName, errorText)
+        && writeRegistryStringValue(HKEY_CURRENT_USER, capabilities,
+                                    L"ApplicationDescription",
+                                    QStringLiteral("Stellar Download Manager"), errorText)
+        && writeRegistryStringValue(HKEY_CURRENT_USER, capabilities,
+                                    L"ApplicationIcon", iconSpec, errorText)
+        && writeRegistryStringValue(HKEY_CURRENT_USER,
+                                    capabilities + QStringLiteral("\\FileAssociations"),
+                                    L".torrent", QStringLiteral("Stellar.torrent"), errorText)
+        && writeRegistryStringValue(HKEY_CURRENT_USER,
+                                    capabilities + QStringLiteral("\\UrlAssociations"),
+                                    L"magnet", QStringLiteral("Stellar.magnet"), errorText)
+        && writeRegistryStringValue(HKEY_CURRENT_USER,
+                                    QStringLiteral("Software\\RegisteredApplications"),
+                                    reinterpret_cast<const wchar_t *>(appName.utf16()),
+                                    capabilities, errorText);
+}
+
+void openWindowsDefaultAppsForStellar() {
+    QDesktopServices::openUrl(QUrl(windowsDefaultAppsSettingsUrl()));
+}
+#endif
 
 QString writableRuntimeToolsDir() {
     const QString dir = writableRuntimeRoot() + QStringLiteral("/tools");
@@ -2772,6 +2985,193 @@ QString AppController::nativeHostDiagnostics() const {
 #endif
 
     return lines.join(QLatin1Char('\n'));
+}
+
+bool AppController::isTorrentFileAssociationDefault() const {
+#if defined(Q_OS_WIN)
+    const QString userChoice = readRegistryNamedValue(
+        HKEY_CURRENT_USER,
+        QStringLiteral("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.torrent\\UserChoice"),
+        L"ProgId").trimmed();
+    if (!userChoice.isEmpty())
+        return userChoice.compare(QStringLiteral("Stellar.torrent"), Qt::CaseInsensitive) == 0;
+
+    const QString progId = readRegistryDefaultValue(HKEY_CURRENT_USER,
+                                                    QStringLiteral("Software\\Classes\\.torrent")).trimmed();
+    return progId.compare(QStringLiteral("Stellar.torrent"), Qt::CaseInsensitive) == 0
+        && commandReferencesExecutable(
+            readRegistryDefaultValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.torrent\\shell\\open\\command")),
+            QCoreApplication::applicationFilePath());
+#elif defined(Q_OS_LINUX)
+    const QString desktopId = desktopAssociationId();
+    const QString xdgDefault =
+        runProcessCapture(QStringLiteral("xdg-mime"),
+                          { QStringLiteral("query"), QStringLiteral("default"),
+                            QStringLiteral("application/x-bittorrent") });
+    return xdgDefault.compare(desktopId, Qt::CaseInsensitive) == 0;
+#else
+    return false;
+#endif
+}
+
+bool AppController::isMagnetAssociationDefault() const {
+#if defined(Q_OS_WIN)
+    const QString userChoice = readRegistryNamedValue(
+        HKEY_CURRENT_USER,
+        QStringLiteral("Software\\Microsoft\\Windows\\Shell\\Associations\\UrlAssociations\\magnet\\UserChoice"),
+        L"ProgId").trimmed();
+    if (!userChoice.isEmpty())
+        return userChoice.compare(QStringLiteral("Stellar.magnet"), Qt::CaseInsensitive) == 0;
+
+    const QString aliasProgId = readRegistryDefaultValue(HKEY_CURRENT_USER,
+                                                         QStringLiteral("Software\\Classes\\magnet")).trimmed();
+    const QString effectiveProgId = aliasProgId.isEmpty() ? QStringLiteral("magnet") : aliasProgId;
+    return effectiveProgId.compare(QStringLiteral("Stellar.magnet"), Qt::CaseInsensitive) == 0
+        && commandReferencesExecutable(
+            readRegistryDefaultValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.magnet\\shell\\open\\command")),
+            QCoreApplication::applicationFilePath());
+#elif defined(Q_OS_LINUX)
+    const QString desktopId = desktopAssociationId();
+    const QString xdgSettings =
+        runProcessCapture(QStringLiteral("xdg-settings"),
+                          { QStringLiteral("get"),
+                            QStringLiteral("default-url-scheme-handler"),
+                            QStringLiteral("magnet") });
+    if (xdgSettings.compare(desktopId, Qt::CaseInsensitive) == 0)
+        return true;
+    const QString xdgMime =
+        runProcessCapture(QStringLiteral("xdg-mime"),
+                          { QStringLiteral("query"), QStringLiteral("default"),
+                            QStringLiteral("x-scheme-handler/magnet") });
+    return xdgMime.compare(desktopId, Qt::CaseInsensitive) == 0;
+#else
+    return false;
+#endif
+}
+
+QString AppController::setTorrentFileAssociationDefault() const {
+#if defined(Q_OS_WIN)
+    const QString exePath = normalizedNativePath(QCoreApplication::applicationFilePath());
+    const QString quotedExe = QStringLiteral("\"%1\"").arg(exePath);
+    QString error;
+    if (!registerWindowsAssociationCapabilities(exePath, &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                  QStringLiteral("Software\\Classes\\Applications\\Stellar.exe"),
+                                  L"FriendlyAppName",
+                                  QStringLiteral("Stellar Download Manager"), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Applications\\Stellar.exe\\shell\\open\\command"),
+                                     nullptr,
+                                     QStringLiteral("%1 \"%2\"").arg(quotedExe, QStringLiteral("%1")), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.torrent"),
+                                     nullptr,
+                                     QStringLiteral("Stellar Torrent"), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.torrent"),
+                                     L"FriendlyTypeName",
+                                     QStringLiteral("Stellar Torrent"), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.torrent\\DefaultIcon"),
+                                     nullptr,
+                                     QStringLiteral("%1,0").arg(exePath), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.torrent\\shell\\open\\command"),
+                                     nullptr,
+                                     QStringLiteral("%1 \"%2\"").arg(quotedExe, QStringLiteral("%1")), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\.torrent"),
+                                     nullptr,
+                                     QStringLiteral("Stellar.torrent"), &error)) {
+        return error;
+    }
+
+#if defined(STELLAR_WINDOWS)
+    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
+#endif
+    if (isTorrentFileAssociationDefault())
+        return QString();
+    openWindowsDefaultAppsForStellar();
+    return QStringLiteral("Stellar was registered as a .torrent handler. Windows still requires you to confirm the default app in Settings.");
+#elif defined(Q_OS_LINUX)
+    QString error;
+    if (!writeLinuxDesktopEntry(&error))
+        return error;
+    if (!runProcessOk(QStringLiteral("xdg-mime"),
+                      { QStringLiteral("default"), desktopAssociationId(),
+                        QStringLiteral("application/x-bittorrent") }, &error)) {
+        return QStringLiteral("Failed to set the default app for .torrent files.\n%1").arg(error);
+    }
+    runProcessOk(QStringLiteral("update-desktop-database"), { linuxApplicationsDir() }, nullptr, 5000);
+    return isTorrentFileAssociationDefault()
+        ? QString()
+        : QStringLiteral("The desktop entry was installed, but the current desktop environment did not confirm the new .torrent association.");
+#else
+    return QStringLiteral("Automatic .torrent association is not supported on this platform.");
+#endif
+}
+
+QString AppController::setMagnetAssociationDefault() const {
+#if defined(Q_OS_WIN)
+    const QString exePath = normalizedNativePath(QCoreApplication::applicationFilePath());
+    const QString quotedExe = QStringLiteral("\"%1\"").arg(exePath);
+    QString error;
+    if (!registerWindowsAssociationCapabilities(exePath, &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                  QStringLiteral("Software\\Classes\\Stellar.magnet"),
+                                  nullptr,
+                                  QStringLiteral("URL:Magnet Protocol"), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.magnet"),
+                                     L"URL Protocol",
+                                     QStringLiteral("magnet"), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.magnet\\DefaultIcon"),
+                                     nullptr,
+                                     QStringLiteral("%1,0").arg(exePath), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.magnet\\shell\\open\\command"),
+                                     nullptr,
+                                     QStringLiteral("%1 \"%2\"").arg(quotedExe, QStringLiteral("%1")), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\magnet"),
+                                     nullptr,
+                                     QStringLiteral("Stellar.magnet"), &error)
+        || !writeRegistryStringValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\magnet"),
+                                     L"URL Protocol",
+                                     QStringLiteral("magnet"), &error)) {
+        return error;
+    }
+
+#if defined(STELLAR_WINDOWS)
+    SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
+#endif
+    if (isMagnetAssociationDefault())
+        return QString();
+    openWindowsDefaultAppsForStellar();
+    return QStringLiteral("Stellar was registered as a magnet handler. Windows still requires you to confirm the default app in Settings.");
+#elif defined(Q_OS_LINUX)
+    QString error;
+    if (!writeLinuxDesktopEntry(&error))
+        return error;
+    if (!runProcessOk(QStringLiteral("xdg-mime"),
+                      { QStringLiteral("default"), desktopAssociationId(),
+                        QStringLiteral("x-scheme-handler/magnet") }, &error)) {
+        return QStringLiteral("Failed to set the default app for magnet links.\n%1").arg(error);
+    }
+    runProcessOk(QStringLiteral("xdg-settings"),
+                 { QStringLiteral("set"), QStringLiteral("default-url-scheme-handler"),
+                   QStringLiteral("magnet"), desktopAssociationId() }, nullptr, 5000);
+    runProcessOk(QStringLiteral("update-desktop-database"), { linuxApplicationsDir() }, nullptr, 5000);
+    return isMagnetAssociationDefault()
+        ? QString()
+        : QStringLiteral("The desktop entry was installed, but the current desktop environment did not confirm the magnet association.");
+#else
+    return QStringLiteral("Automatic magnet association is not supported on this platform.");
+#endif
 }
 
 QString AppController::registerNativeHost() const {
