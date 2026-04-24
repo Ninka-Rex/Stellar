@@ -26,8 +26,8 @@ Window {
     width: 500
     height: 400
     minimumWidth: 420
-    minimumHeight: 400
-    title: "Browser Extension Setup"
+    minimumHeight: 360
+    title: "Browser Extensions"
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
@@ -38,6 +38,11 @@ Window {
     property string regState:    "idle"
     property string regError:    ""
     property string manifestPath: ""
+
+    // These are populated from update.json once the app fetches it;
+    // fall back to known stable store URLs so the dialog is never empty.
+    readonly property string chromeUrl:  App.chromeExtensionUrl  || "https://chromewebstore.google.com/detail/stellar-download-manager/TODO"
+    readonly property string firefoxUrl: App.firefoxExtensionUrl || "https://addons.mozilla.org/firefox/addon/stellar-download-manager/"
 
     function runRegister() {
         regState     = "idle"
@@ -62,102 +67,27 @@ Window {
         if (visible) { _centerOnOwner(); runRegister() }
     }
 
-    component StepBox: Rectangle {
-        id: sb
-        property int    num:     1
-        property string heading: ""
-        default property alias content: sbContent.data
+    // ── Install button ─────────────────────────────────────────────────────────
+    component InstallButton: Rectangle {
+        id: ib
+        property string label: ""
+        property string url:   ""
 
-        Layout.fillWidth: true
-        implicitHeight: sbCol.implicitHeight + 14
-        height: implicitHeight
-        color: "#222"
-        border.color: "#333"
-        radius: 4
-
-        ColumnLayout {
-            id: sbCol
-            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
-            spacing: 6
-
-            RowLayout {
-                spacing: 8
-                Rectangle {
-                    width: 22; height: 22; radius: 11; color: "#2255aa"
-                    Text { anchors.centerIn: parent; text: sb.num; color: "#fff"; font.pixelSize: 11; font.bold: true }
-                }
-                Text { text: sb.heading; color: "#fff"; font.pixelSize: 13; font.bold: true }
-            }
-
-            ColumnLayout {
-                id: sbContent
-                Layout.fillWidth: true
-                Layout.leftMargin: 26
-                spacing: 6
-            }
-        }
-    }
-
-    component CopyRow: Rectangle {
-        id: cr
-        property string value: ""
-        property bool   wrap:  false
-
-        Layout.fillWidth: true
-        height: wrap ? (codeText.implicitHeight + 16) : 28
-        color: "#141420"
-        border.color: "#2e2e4a"
-        radius: 3
+        width: 160; height: 28; radius: 3
+        color: ibMa.containsMouse ? "#3a5a9a" : "#2a4a7a"
 
         Text {
-            id: codeText
-            anchors {
-                verticalCenter: wrap ? undefined : parent.verticalCenter
-                top:            wrap ? parent.top : undefined
-                topMargin:      wrap ? 8 : 0
-                left: parent.left; leftMargin: 8
-                right: copyBtn.left; rightMargin: 6
-            }
-            text: cr.value
-            color: "#88bbff"
+            anchors.centerIn: parent
+            text: ib.label
+            color: "#fff"
             font.pixelSize: 11
-            font.family: "monospace"
-            wrapMode: cr.wrap ? Text.WrapAnywhere : Text.NoWrap
-            elide:    cr.wrap ? Text.ElideNone    : Text.ElideRight
         }
-
-        Rectangle {
-            id: copyBtn
-            anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
-            width: 46; height: 20; radius: 3
-            color: copyMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
-
-            Text {
-                id: copyBtnLabel
-                anchors.centerIn: parent
-                text: "Copy"
-                color: "#88bbff"
-                font.pixelSize: 10
-            }
-
-            MouseArea {
-                id: copyMa
-                anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onClicked: {
-                    App.copyToClipboard(cr.value)
-                    copyBtnLabel.text = "Copied"
-                    copyBtnLabel.color = "#55cc55"
-                    copyResetTimer.restart()
-                }
-            }
-
-            Timer {
-                id: copyResetTimer
-                interval: 1500
-                onTriggered: { copyBtnLabel.text = "Copy"; copyBtnLabel.color = "#88bbff" }
-            }
+        MouseArea {
+            id: ibMa
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.PointingHandCursor
+            onClicked: Qt.openUrlExternally(ib.url)
         }
     }
 
@@ -169,10 +99,10 @@ Window {
         ColumnLayout {
             width: parent.width
             anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
-            spacing: 6
+            spacing: 10
 
             Text {
-                text: "Firefox Extension Setup"
+                text: "Browser Extensions"
                 color: "#ffffff"
                 font.pixelSize: 15
                 font.bold: true
@@ -181,167 +111,227 @@ Window {
 
             Text {
                 Layout.fillWidth: true
-                text: "The Stellar Firefox extension intercepts browser downloads and routes them to Stellar. Follow the three steps below."
+                text: "Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically."
                 color: "#b0b0b0"
                 font.pixelSize: 12
                 wrapMode: Text.WordWrap
             }
 
-            // Step 1 — Get the extension file
-            StepBox {
-                num: 1
-                heading: "Get the extension file"
+            // ── Chrome ────────────────────────────────────────────────────────
+            Rectangle {
+                Layout.fillWidth: true
+                implicitHeight: chromeCol.implicitHeight + 16
+                color: "#222"
+                border.color: "#333"
+                radius: 4
 
-                Text {
-                    Layout.fillWidth: true
-                    text: "Open the extension folder — it contains <b>stellar-firefox.xpi</b>."
-                    color: "#999"
-                    font.pixelSize: 12
-                    wrapMode: Text.WordWrap
-                    textFormat: Text.StyledText
-                }
+                ColumnLayout {
+                    id: chromeCol
+                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
+                    spacing: 6
 
-                Rectangle {
-                    width: 160; height: 26; radius: 3
-                    color: openFolderMa.containsMouse ? "#3a5a9a" : "#2a4a7a"
-                    Text { anchors.centerIn: parent; text: "Open Extension Folder"; color: "#fff"; font.pixelSize: 11 }
-                    MouseArea {
-                        id: openFolderMa
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: App.openExtensionFolder()
+                    RowLayout {
+                        spacing: 8
+                        Text { text: "Chrome / Edge / Brave"; color: "#fff"; font.pixelSize: 13; font.bold: true }
+                    }
+                    Text {
+                        Layout.fillWidth: true
+                        text: "Install directly from the Chrome Web Store — no manual steps required."
+                        color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
+                    }
+                    InstallButton {
+                        label: "Open Chrome Web Store"
+                        url: root.chromeUrl
                     }
                 }
             }
 
-            // Step 2 — Install in Firefox
-            StepBox {
-                num: 2
-                heading: "Install the extension"
+            // ── Firefox ───────────────────────────────────────────────────────
+            Rectangle {
+                Layout.fillWidth: true
+                implicitHeight: firefoxCol.implicitHeight + 16
+                color: "#222"
+                border.color: "#333"
+                radius: 4
 
-                Text {
-                    Layout.fillWidth: true
-                    text: "Open Firefox Add-ons Manager, click the gear icon ⚙, choose <b>Install Add-on From File…</b>, and select the .xpi file."
-                    color: "#999"
-                    font.pixelSize: 12
-                    wrapMode: Text.WordWrap
-                    textFormat: Text.StyledText
-                }
+                ColumnLayout {
+                    id: firefoxCol
+                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
+                    spacing: 6
 
-                RowLayout {
-                    spacing: 8
-
-                    CopyRow {
-                        value: "about:addons"
-                        Layout.preferredWidth: 180
-                    }
-
+                    Text { text: "Firefox"; color: "#fff"; font.pixelSize: 13; font.bold: true }
                     Text {
-                        text: "paste in the Firefox address bar"
-                        color: "#666"
-                        font.pixelSize: 11
+                        Layout.fillWidth: true
+                        text: "Install from Mozilla Add-ons (AMO) — one click, automatic updates."
+                        color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
+                    }
+                    InstallButton {
+                        label: "Open Firefox Add-ons"
+                        url: root.firefoxUrl
                     }
                 }
             }
 
-            // Step 3 — Native messaging host
-            StepBox {
-                num: 3
-                heading: "Register native messaging host"
+            // ── Native messaging host ─────────────────────────────────────────
+            Rectangle {
+                Layout.fillWidth: true
+                implicitHeight: hostCol.implicitHeight + 16
+                color: "#222"
+                border.color: "#333"
+                radius: 4
 
-                Text {
-                    Layout.fillWidth: true
-                    text: "Stellar registers itself automatically so the extension can communicate with it."
-                    color: "#999"
-                    font.pixelSize: 12
-                    wrapMode: Text.WordWrap
-                }
+                ColumnLayout {
+                    id: hostCol
+                    anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
+                    spacing: 6
 
-                RowLayout {
-                    spacing: 8
-
-                    Rectangle {
-                        width: 10; height: 10; radius: 5
-                        color: root.regState === "ok"    ? "#44cc44"
-                             : root.regState === "error" ? "#cc4444"
-                             : "#888"
-                    }
-
+                    Text { text: "Native Messaging Host"; color: "#fff"; font.pixelSize: 13; font.bold: true }
                     Text {
-                        text: root.regState === "ok"    ? "Registered successfully."
-                            : root.regState === "error" ? "Registration failed — see details below."
-                            : "Registering…"
-                        color: root.regState === "ok"    ? "#55cc55"
-                             : root.regState === "error" ? "#cc5555"
-                             : "#888"
-                        font.pixelSize: 12
+                        Layout.fillWidth: true
+                        text: "Stellar registers itself automatically so the extension can communicate with it."
+                        color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
                     }
 
-                    Rectangle {
-                        visible: root.regState !== "idle"
-                        width: 68; height: 22; radius: 3
-                        color: retryMa.containsMouse ? "#2a4a2a" : "#1e3a1e"
-                        Text { anchors.centerIn: parent; text: "Try again"; color: "#77cc77"; font.pixelSize: 10 }
-                        MouseArea {
-                            id: retryMa
-                            anchors.fill: parent
-                            hoverEnabled: true
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: root.runRegister()
+                    RowLayout {
+                        spacing: 8
+
+                        Rectangle {
+                            width: 10; height: 10; radius: 5
+                            color: root.regState === "ok"    ? "#44cc44"
+                                 : root.regState === "error" ? "#cc4444"
+                                 : "#888"
+                        }
+
+                        Text {
+                            text: root.regState === "ok"    ? "Registered successfully."
+                                : root.regState === "error" ? "Registration failed — see details below."
+                                : "Registering…"
+                            color: root.regState === "ok"    ? "#55cc55"
+                                 : root.regState === "error" ? "#cc5555"
+                                 : "#888"
+                            font.pixelSize: 12
+                        }
+
+                        Rectangle {
+                            visible: root.regState !== "idle"
+                            width: 68; height: 22; radius: 3
+                            color: retryMa.containsMouse ? "#2a4a2a" : "#1e3a1e"
+                            Text { anchors.centerIn: parent; text: "Try again"; color: "#77cc77"; font.pixelSize: 10 }
+                            MouseArea {
+                                id: retryMa
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: root.runRegister()
+                            }
                         }
                     }
-                }
 
-                // Error detail + manual fallback (only shown on error)
-                Rectangle {
-                    visible: root.regState === "error"
-                    Layout.fillWidth: true
-                    height: errText.implicitHeight + 12
-                    color: "#2a1515"
-                    border.color: "#5a2222"
-                    radius: 3
+                    // Error detail + manual fallback
+                    Rectangle {
+                        visible: root.regState === "error"
+                        Layout.fillWidth: true
+                        height: errText.implicitHeight + 12
+                        color: "#2a1515"
+                        border.color: "#5a2222"
+                        radius: 3
+
+                        Text {
+                            id: errText
+                            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 6 }
+                            text: root.regError
+                            color: "#dd8888"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                        }
+                    }
 
                     Text {
-                        id: errText
-                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 6 }
-                        text: root.regError
-                        color: "#dd8888"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                        visible: root.regState === "error"
+                        text: "Manual installation:"
+                        color: "#888"; font.pixelSize: 11; font.bold: true
                     }
-                }
 
-                Text {
-                    visible: root.regState === "error"
-                    text: "Manual installation:"
-                    color: "#888"; font.pixelSize: 11; font.bold: true
-                }
+                    Text {
+                        visible: root.regState === "error" && Qt.platform.os === "windows"
+                        Layout.fillWidth: true
+                        text: "Run in Command Prompt (no admin required):"
+                        color: "#888"; font.pixelSize: 11
+                    }
 
-                Text {
-                    visible: root.regState === "error" && Qt.platform.os === "windows"
-                    Layout.fillWidth: true
-                    text: "Run in Command Prompt (no admin required):"
-                    color: "#888"; font.pixelSize: 11
-                }
-                CopyRow {
-                    visible: root.regState === "error" && Qt.platform.os === "windows"
-                    wrap: true
-                    value: "reg add \"HKCU\\Software\\Mozilla\\NativeMessagingHosts\\com.stellar.downloadmanager\" /ve /t REG_SZ /d \"" + root.manifestPath + "\" /f"
-                }
+                    // Inline copy row — reused twice; extracted as component here
+                    // to avoid importing the CopyRow from the old dialog.
+                    Rectangle {
+                        visible: root.regState === "error" && Qt.platform.os === "windows"
+                        Layout.fillWidth: true
+                        height: crWinText.implicitHeight + 16
+                        color: "#141420"; border.color: "#2e2e4a"; radius: 3
 
-                Text {
-                    visible: root.regState === "error" && Qt.platform.os !== "windows"
-                    Layout.fillWidth: true
-                    text: "Run in a terminal:"
-                    color: "#888"; font.pixelSize: 11
-                }
-                CopyRow {
-                    visible: root.regState === "error" && Qt.platform.os !== "windows"
-                    value: "mkdir -p ~/.mozilla/native-messaging-hosts"
-                }
-                CopyRow {
-                    visible: root.regState === "error" && Qt.platform.os !== "windows"
-                    wrap: true
-                    value: "cp \"" + root.manifestPath + "\" ~/.mozilla/native-messaging-hosts/com.stellar.downloadmanager.json"
+                        Text {
+                            id: crWinText
+                            anchors { top: parent.top; topMargin: 8; left: parent.left; leftMargin: 8; right: crWinBtn.left; rightMargin: 6 }
+                            text: "reg add \"HKCU\\Software\\Mozilla\\NativeMessagingHosts\\com.stellar.downloadmanager\" /ve /t REG_SZ /d \"" + root.manifestPath + "\" /f"
+                            color: "#88bbff"; font.pixelSize: 11; font.family: "monospace"; wrapMode: Text.WrapAnywhere
+                        }
+                        Rectangle {
+                            id: crWinBtn
+                            anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
+                            width: 46; height: 20; radius: 3
+                            color: crWinMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
+                            Text { id: crWinLabel; anchors.centerIn: parent; text: "Copy"; color: "#88bbff"; font.pixelSize: 10 }
+                            MouseArea {
+                                id: crWinMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
+                                onClicked: { App.copyToClipboard(crWinText.text); crWinLabel.text = "Copied"; crWinLabel.color = "#55cc55"; crWinReset.restart() }
+                            }
+                            Timer { id: crWinReset; interval: 1500; onTriggered: { crWinLabel.text = "Copy"; crWinLabel.color = "#88bbff" } }
+                        }
+                    }
+
+                    Text {
+                        visible: root.regState === "error" && Qt.platform.os !== "windows"
+                        Layout.fillWidth: true
+                        text: "Run in a terminal:"
+                        color: "#888"; font.pixelSize: 11
+                    }
+
+                    Rectangle {
+                        visible: root.regState === "error" && Qt.platform.os !== "windows"
+                        Layout.fillWidth: true; height: 28; color: "#141420"; border.color: "#2e2e4a"; radius: 3
+                        Text { anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8; right: crMkBtn.left; rightMargin: 6 }
+                               text: "mkdir -p ~/.mozilla/native-messaging-hosts"; color: "#88bbff"; font.pixelSize: 11; font.family: "monospace"; elide: Text.ElideRight }
+                        Rectangle {
+                            id: crMkBtn; anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
+                            width: 46; height: 20; radius: 3; color: crMkMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
+                            Text { id: crMkLabel; anchors.centerIn: parent; text: "Copy"; color: "#88bbff"; font.pixelSize: 10 }
+                            MouseArea { id: crMkMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
+                                onClicked: { App.copyToClipboard("mkdir -p ~/.mozilla/native-messaging-hosts"); crMkLabel.text = "Copied"; crMkLabel.color = "#55cc55"; crMkReset.restart() } }
+                            Timer { id: crMkReset; interval: 1500; onTriggered: { crMkLabel.text = "Copy"; crMkLabel.color = "#88bbff" } }
+                        }
+                    }
+
+                    Rectangle {
+                        visible: root.regState === "error" && Qt.platform.os !== "windows"
+                        Layout.fillWidth: true
+                        height: crCpText.implicitHeight + 16
+                        color: "#141420"; border.color: "#2e2e4a"; radius: 3
+
+                        Text {
+                            id: crCpText
+                            anchors { top: parent.top; topMargin: 8; left: parent.left; leftMargin: 8; right: crCpBtn.left; rightMargin: 6 }
+                            text: "cp \"" + root.manifestPath + "\" ~/.mozilla/native-messaging-hosts/com.stellar.downloadmanager.json"
+                            color: "#88bbff"; font.pixelSize: 11; font.family: "monospace"; wrapMode: Text.WrapAnywhere
+                        }
+                        Rectangle {
+                            id: crCpBtn
+                            anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
+                            width: 46; height: 20; radius: 3
+                            color: crCpMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
+                            Text { id: crCpLabel; anchors.centerIn: parent; text: "Copy"; color: "#88bbff"; font.pixelSize: 10 }
+                            MouseArea {
+                                id: crCpMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
+                                onClicked: { App.copyToClipboard(crCpText.text); crCpLabel.text = "Copied"; crCpLabel.color = "#55cc55"; crCpReset.restart() }
+                            }
+                            Timer { id: crCpReset; interval: 1500; onTriggered: { crCpLabel.text = "Copy"; crCpLabel.color = "#88bbff" } }
+                        }
+                    }
                 }
             }
 

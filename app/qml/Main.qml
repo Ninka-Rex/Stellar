@@ -2107,9 +2107,8 @@ ApplicationWindow {
                 title: qsTr("Browser Integration")
                 delegate: CompactMenuItem
                 implicitWidth: 200
-                Action { text: qsTr("Firefox Extension…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise() } }
+                Action { text: qsTr("Browser Extensions…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise(); browserIntegrationDialog.requestActivate() } }
                 MenuSeparator {}
-                Action { text: qsTr("Open Extension Folder"); onTriggered: App.openExtensionFolder() }
                 Action { text: qsTr("Browser Settings…"); onTriggered: root.showSettingsPage(root.settingsPageBrowser) }
             }
         }

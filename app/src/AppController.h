@@ -80,6 +80,8 @@ class AppController : public QObject {
     Q_PROPERTY(QString updateVersion READ updateVersion NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateChangelog READ updateChangelog NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateStatusText READ updateStatusText NOTIFY updateStatusTextChanged)
+    Q_PROPERTY(QString chromeExtensionUrl  READ chromeExtensionUrl  NOTIFY extensionUrlsChanged)
+    Q_PROPERTY(QString firefoxExtensionUrl READ firefoxExtensionUrl NOTIFY extensionUrlsChanged)
     Q_PROPERTY(QString motd READ motd NOTIFY motdChanged)
     Q_PROPERTY(bool motdVisible READ motdVisible NOTIFY motdChanged)
     Q_PROPERTY(bool checkingForUpdates READ checkingForUpdates NOTIFY checkingForUpdatesChanged)
@@ -140,6 +142,8 @@ public:
     QString updateVersion() const { return m_updateVersion; }
     QString updateChangelog() const { return m_updateChangelog; }
     QString updateStatusText() const { return m_updateStatusText; }
+    QString chromeExtensionUrl()  const { return m_chromeExtensionUrl; }
+    QString firefoxExtensionUrl() const { return m_firefoxExtensionUrl; }
     QString motd() const { return m_motd; }
     bool motdVisible() const { return !m_motd.isEmpty(); }
     bool checkingForUpdates() const { return m_checkingForUpdates; }
@@ -400,6 +404,7 @@ signals:
     void recentErrorDownloadsChanged();
     void updateAvailableChanged();
     void updateStatusTextChanged();
+    void extensionUrlsChanged();
     void motdChanged();
     void checkingForUpdatesChanged();
     void updateDialogRequested();
@@ -559,6 +564,8 @@ private:
     QString                 m_ffmpegUpdateUrl;
     QString                 m_updateChangelog;
     QString                 m_updateStatusText;
+    QString                 m_chromeExtensionUrl;
+    QString                 m_firefoxExtensionUrl;
     QString                 m_motd;
     bool                    m_checkingForUpdates{false};
     bool                    m_updateCheckManual{false};

@@ -4147,6 +4147,14 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
     const QString version = map.value(QStringLiteral("version")).toString().trimmed();
     cacheIpToCityDbUpdateUrl(map);
     cacheFfmpegUpdateMetadata(map);
+
+    const QString chromeUrl  = map.value(QStringLiteral("chromeExtensionUrl")).toString().trimmed();
+    const QString firefoxUrl = map.value(QStringLiteral("firefoxExtensionUrl")).toString().trimmed();
+    if (chromeUrl != m_chromeExtensionUrl || firefoxUrl != m_firefoxExtensionUrl) {
+        m_chromeExtensionUrl  = chromeUrl;
+        m_firefoxExtensionUrl = firefoxUrl;
+        emit extensionUrlsChanged();
+    }
     if (version.isEmpty()) {
         return;
     }

@@ -397,21 +397,6 @@ if(EXISTS "${_dialogs_src}" AND NOT EXISTS "${_dialogs_dst}/qmldir")
     file(COPY "${_dialogs_src}/" DESTINATION "${_dialogs_dst}")
 endif()
 
-# ── Copy extensions to build output (dev convenience) ─────────────────────────
-set(_ext_src "${CMAKE_SOURCE_DIR}/extensions")
-set(_ext_dst "${CMAKE_BINARY_DIR}/extensions")
-if(EXISTS "${_ext_src}")
-    file(COPY "${_ext_src}/" DESTINATION "${_ext_dst}")
-endif()
-
-# Ensure the latest Firefox XPI is always copied on every build (not only on configure).
-add_custom_command(TARGET Stellar POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:Stellar>/extensions/firefox"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${CMAKE_SOURCE_DIR}/extensions/firefox/stellar-firefox-0.1.6.xpi"
-        "$<TARGET_FILE_DIR:Stellar>/extensions/firefox/stellar-firefox-0.1.6.xpi"
-    COMMENT "Copying stellar-firefox-0.1.5.xpi to build output")
-
 # ── Copy tips.txt to build output (dev convenience) ──────────────────────────
 file(COPY "${CMAKE_SOURCE_DIR}/tips.txt"
     DESTINATION "${CMAKE_BINARY_DIR}"
@@ -430,7 +415,4 @@ install(FILES "${CMAKE_SOURCE_DIR}/tips.txt"
 )
 install(FILES "${CMAKE_SOURCE_DIR}/app/data/dbip-city-lite-2026-04.mmdb"
     DESTINATION "${CMAKE_INSTALL_BINDIR}/data"
-)
-install(DIRECTORY "${CMAKE_SOURCE_DIR}/extensions/"
-    DESTINATION "extensions"
 )
