@@ -50,6 +50,7 @@ Window {
     property int    editSegmentsPerDownload:   0
     property string editDefaultSavePath:       ""
     property string editTemporaryDirectory:    ""
+    property string editTorrentCustomSavePath: ""
     property int    editGlobalSpeedLimitKBps:  0
     property bool   editMinimizeToTray:        false
     property bool   editCloseToTray:           false
@@ -352,6 +353,7 @@ Window {
         editSegmentsPerDownload   !== App.settings.segmentsPerDownload  ||
         editDefaultSavePath       !== App.settings.defaultSavePath      ||
         editTemporaryDirectory    !== App.settings.temporaryDirectory   ||
+        editTorrentCustomSavePath !== App.settings.torrentCustomSavePath ||
         editGlobalSpeedLimitKBps  !== App.settings.globalSpeedLimitKBps ||
         editMinimizeToTray        !== App.settings.minimizeToTray       ||
         editCloseToTray           !== App.settings.closeToTray          ||
@@ -485,6 +487,17 @@ Window {
         }
     }
 
+    FolderDialog {
+        id: torrentCustomSaveFolderDlg
+        currentFolder: root.editTorrentCustomSavePath.length > 0
+                       ? ("file:///" + root.editTorrentCustomSavePath.replace(/\\/g, "/")) : ""
+        onAccepted: {
+            var path = selectedFolder.toString()
+                           .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            root.editTorrentCustomSavePath = path
+        }
+    }
+
     // File picker for a custom yt-dlp binary location
     FileDialog {
         id: ytdlpFileDlg
@@ -548,6 +561,7 @@ Window {
         App.settings.segmentsPerDownload   = editSegmentsPerDownload
         App.settings.defaultSavePath       = editDefaultSavePath
         App.settings.temporaryDirectory    = editTemporaryDirectory
+        App.settings.torrentCustomSavePath = editTorrentCustomSavePath
         App.settings.globalSpeedLimitKBps  = editGlobalSpeedLimitKBps
         App.settings.minimizeToTray        = editMinimizeToTray
         App.settings.closeToTray           = editCloseToTray
@@ -627,6 +641,7 @@ Window {
         editSegmentsPerDownload   = App.settings.segmentsPerDownload
         editDefaultSavePath       = App.settings.defaultSavePath
         editTemporaryDirectory    = App.settings.temporaryDirectory
+        editTorrentCustomSavePath = App.settings.torrentCustomSavePath
         editGlobalSpeedLimitKBps  = App.settings.globalSpeedLimitKBps
         editMinimizeToTray        = App.settings.minimizeToTray
         editCloseToTray           = App.settings.closeToTray
@@ -1360,6 +1375,32 @@ Window {
                                 contentItem: Text { text: parent.text; color: "#d0d0d0"; font: parent.font; horizontalAlignment: Text.AlignHCenter }
                                 onClicked: saveFolderDlg.open()
                             }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
+
+                        Text { text: "Custom save folder for torrents:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        RowLayout {
+                            Layout.fillWidth: true
+                            spacing: 8
+                            TextField {
+                                Layout.fillWidth: true
+                                text: root.editTorrentCustomSavePath
+                                onTextChanged: root.editTorrentCustomSavePath = text
+                                color: "#d0d0d0"; font.pixelSize: 13
+                                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
+                            }
+                            DlgButton {
+                                text: "Browse"
+                                onClicked: torrentCustomSaveFolderDlg.open()
+                            }
+                        }
+
+                        Text {
+                            text: "This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default."
+                            color: "#7a7a7a"; font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }

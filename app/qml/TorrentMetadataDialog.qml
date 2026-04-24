@@ -43,6 +43,8 @@ Window {
     property string savePath: ""
     property string category: ""
     property string description: ""
+    property bool useCustomSavePath: false
+    property bool rememberCustomSavePath: false
     property var categoryIds: []
     property var categoryLabels: []
     property real fileColName: 300
@@ -72,14 +74,76 @@ Window {
         y = Math.round((Screen.height - height) / 2)
     }
 
+    function defaultSavePathForCategory(categoryId) {
+        var catId = safeStr(categoryId)
+        var path = catId.length > 0 ? safeStr(App.categoryModel.savePathForCategory(catId)) : ""
+        if (path.length === 0)
+            path = safeStr(App.settings.defaultSavePath)
+        if (path.length === 0)
+            return ""
+        return safeStr(App.normalizeTorrentSaveDirectory(path))
+    }
+
+    function refreshSavePathMode() {
+        var currentPath = safeStr(savePath).trim()
+        var categoryPath = defaultSavePathForCategory(category)
+        useCustomSavePath = currentPath.length > 0
+            && categoryPath.length > 0
+            && currentPath !== categoryPath
+    }
+
+    function applyCategorySavePath(force) {
+        if (!force && useCustomSavePath)
+            return
+        var categoryPath = defaultSavePathForCategory(category)
+        if (categoryPath.length > 0)
+            savePath = categoryPath
+    }
+
+    function rememberedCustomSavePath() {
+        return safeStr(App.normalizeTorrentSaveDirectory(App.settings.torrentCustomSavePath))
+    }
+
+    function setCustomSavePath(path) {
+        var normalized = safeStr(App.normalizeTorrentSaveDirectory(path))
+        if (normalized.length === 0)
+            return
+        savePath = normalized
+        useCustomSavePath = true
+        App.settings.torrentUseCustomSavePathByDefault = true
+    }
+
+    function syncPersistentCustomSaveState() {
+        App.settings.torrentUseCustomSavePathByDefault = useCustomSavePath
+    }
+
+    function persistRememberedSavePathIfNeeded() {
+        if (!rememberCustomSavePath || !useCustomSavePath)
+            return
+        var normalized = safeStr(App.normalizeTorrentSaveDirectory(savePath))
+        if (normalized.length > 0)
+            App.settings.torrentCustomSavePath = normalized
+    }
+
     onVisibleChanged: {
         if (visible) {
             _centerOnOwner()
             if (item) {
-                savePath = item.savePath || App.settings.defaultSavePath
                 category = item.category || ""
                 description = item.description || ""
+                rememberCustomSavePath = false
+                useCustomSavePath = App.settings.torrentUseCustomSavePathByDefault
                 refreshCategories()
+                if (useCustomSavePath) {
+                    var rememberedPath = rememberedCustomSavePath()
+                    savePath = rememberedPath.length > 0 ? rememberedPath : (item.savePath || App.settings.defaultSavePath)
+                } else {
+                    savePath = item.savePath || App.settings.defaultSavePath
+                    applyCategorySavePath(true)
+                }
+                refreshSavePathMode()
+                if (App.settings.torrentUseCustomSavePathByDefault)
+                    useCustomSavePath = true
             }
         }
     }
@@ -165,6 +229,8 @@ Window {
         target: App.categoryModel
         function onCategoriesChanged() {
             root.refreshCategories()
+            if (!root.useCustomSavePath)
+                root.applyCategorySavePath(true)
         }
     }
 
@@ -177,7 +243,7 @@ Window {
             var path = selectedFolder.toString()
                 .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
             if (path.length > 0)
-                root.savePath = path
+                root.setCustomSavePath(path)
         }
     }
 
@@ -218,22 +284,109 @@ Window {
             rowSpacing: 8
 
             Text { text: "Save to"; color: "#a5a5a5"; font.pixelSize: 12 }
-            RowLayout {
+            ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 8
 
-                TextField {
+                RowLayout {
                     Layout.fillWidth: true
-                    text: root.savePath
-                    color: "#d7d7d7"
-                    background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 4 }
-                    leftPadding: 8
-                    onTextChanged: root.savePath = text
+                    spacing: 8
+
+                    TextField {
+                        id: savePathField
+                        Layout.fillWidth: true
+                        text: root.savePath
+                        color: "#d7d7d7"
+                        background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 4 }
+                        leftPadding: 8
+                        onTextChanged: {
+                            root.savePath = text
+                            root.refreshSavePathMode()
+                            root.syncPersistentCustomSaveState()
+                        }
+                    }
+
+                    DlgButton {
+                        text: "Save As..."
+                        onClicked: saveFolderDialog.open()
+                    }
                 }
 
-                DlgButton {
-                    text: "Save As..."
-                    onClicked: saveFolderDialog.open()
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+
+                    CheckBox {
+                        id: customSavePathCheck
+                        text: "Use custom save folder for this torrent"
+                        checked: root.useCustomSavePath
+                        topPadding: 0
+                        bottomPadding: 0
+                        onToggled: {
+                            root.useCustomSavePath = checked
+                            root.syncPersistentCustomSaveState()
+                            if (!checked)
+                                root.applyCategorySavePath(true)
+                            else {
+                                var rememberedPath = root.rememberedCustomSavePath()
+                                if (rememberedPath.length > 0)
+                                    root.savePath = rememberedPath
+                            }
+                        }
+                        contentItem: Text {
+                            text: parent.text
+                            color: "#d0d0d0"
+                            font.pixelSize: 12
+                            leftPadding: parent.indicator.width + 4
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    CheckBox {
+                        text: "Remember"
+                        checked: root.rememberCustomSavePath
+                        enabled: root.useCustomSavePath
+                        topPadding: 0
+                        bottomPadding: 0
+                        onToggled: root.rememberCustomSavePath = checked
+                        contentItem: Text {
+                            text: parent.text
+                            color: parent.enabled ? "#d0d0d0" : "#6f6f6f"
+                            font.pixelSize: 12
+                            leftPadding: parent.indicator.width + 4
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    Item { Layout.fillWidth: true }
+
+                    Text {
+                        text: "Use category folder"
+                        color: root.useCustomSavePath ? "#66aaff" : "#5f5f5f"
+                        font.pixelSize: 12
+                        font.underline: root.useCustomSavePath
+                        visible: true
+                        MouseArea {
+                            anchors.fill: parent
+                            enabled: root.useCustomSavePath
+                            cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
+                            onClicked: {
+                                root.useCustomSavePath = false
+                                root.syncPersistentCustomSaveState()
+                                root.applyCategorySavePath(true)
+                            }
+                        }
+                    }
+                }
+
+                Text {
+                    Layout.fillWidth: true
+                    text: root.useCustomSavePath
+                        ? "This torrent will stay in the custom folder even if you change category."
+                        : "This torrent currently follows the selected category's default save folder."
+                    color: "#7f7f7f"
+                    font.pixelSize: 11
+                    wrapMode: Text.WordWrap
                 }
             }
 
@@ -245,6 +398,7 @@ Window {
                 currentIndex: root.categoryIndex()
                 onActivated: {
                     root.category = root.categoryIds[currentIndex] || "all"
+                    root.applyCategorySavePath(false)
                 }
                 contentItem: Text {
                     text: categoryCombo.displayText
@@ -301,6 +455,7 @@ Window {
                 text: "Download Later"
                 enabled: !!root.item && root.item.status !== "Error"
                 onClicked: {
+                    root.persistRememberedSavePathIfNeeded()
                     if (root.downloadId.length > 0)
                         root.downloadLaterRequested(root.downloadId, root.savePath, root.category, root.description)
                     root.close()
@@ -312,6 +467,7 @@ Window {
                 primary: true
                 enabled: !!root.item && root.item.status !== "Error"
                 onClicked: {
+                    root.persistRememberedSavePathIfNeeded()
                     if (root.downloadId.length > 0)
                         root.downloadNowRequested(root.downloadId, root.savePath, root.category, root.description)
                     root.close()

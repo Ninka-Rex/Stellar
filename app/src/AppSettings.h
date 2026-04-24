@@ -27,6 +27,8 @@ class AppSettings : public QObject {
     Q_PROPERTY(int     segmentsPerDownload  READ segmentsPerDownload  WRITE setSegmentsPerDownload  NOTIFY segmentsPerDownloadChanged)
     Q_PROPERTY(QString defaultSavePath      READ defaultSavePath      WRITE setDefaultSavePath      NOTIFY defaultSavePathChanged)
     Q_PROPERTY(QString temporaryDirectory   READ temporaryDirectory   WRITE setTemporaryDirectory   NOTIFY temporaryDirectoryChanged)
+    Q_PROPERTY(QString torrentCustomSavePath READ torrentCustomSavePath WRITE setTorrentCustomSavePath NOTIFY torrentCustomSavePathChanged)
+    Q_PROPERTY(bool torrentUseCustomSavePathByDefault READ torrentUseCustomSavePathByDefault WRITE setTorrentUseCustomSavePathByDefault NOTIFY torrentCustomSavePathByDefaultChanged)
     Q_PROPERTY(int     globalSpeedLimitKBps READ globalSpeedLimitKBps WRITE setGlobalSpeedLimitKBps NOTIFY globalSpeedLimitKBpsChanged)
     Q_PROPERTY(bool    minimizeToTray       READ minimizeToTray       WRITE setMinimizeToTray       NOTIFY minimizeToTrayChanged)
     Q_PROPERTY(bool    closeToTray          READ closeToTray          WRITE setCloseToTray          NOTIFY closeToTrayChanged)
@@ -151,6 +153,8 @@ public:
     int     segmentsPerDownload()  const { return m_segmentsPerDownload; }
     QString defaultSavePath()      const { return m_defaultSavePath; }
     QString temporaryDirectory()   const { return m_temporaryDirectory; }
+    QString torrentCustomSavePath() const { return m_torrentCustomSavePath; }
+    bool torrentUseCustomSavePathByDefault() const { return m_torrentUseCustomSavePathByDefault; }
     int     globalSpeedLimitKBps() const { return m_globalSpeedLimitKBps; }
     bool    minimizeToTray()       const { return m_minimizeToTray; }
     bool    closeToTray()          const { return m_closeToTray; }
@@ -252,6 +256,8 @@ public:
     void setSegmentsPerDownload(int v);
     void setDefaultSavePath(const QString &v);
     void setTemporaryDirectory(const QString &v);
+    void setTorrentCustomSavePath(const QString &v);
+    void setTorrentUseCustomSavePathByDefault(bool v);
     void setGlobalSpeedLimitKBps(int v);
     void setMinimizeToTray(bool v);
     void setCloseToTray(bool v);
@@ -370,6 +376,8 @@ signals:
     void segmentsPerDownloadChanged();
     void defaultSavePathChanged();
     void temporaryDirectoryChanged();
+    void torrentCustomSavePathChanged();
+    void torrentCustomSavePathByDefaultChanged();
     void globalSpeedLimitKBpsChanged();
     void minimizeToTrayChanged();
     void closeToTrayChanged();
@@ -447,6 +455,8 @@ private:
     int     m_segmentsPerDownload{8};
     QString m_defaultSavePath;
     QString m_temporaryDirectory;
+    QString m_torrentCustomSavePath;
+    bool    m_torrentUseCustomSavePathByDefault{false};
     int     m_globalSpeedLimitKBps{0};
     bool    m_minimizeToTray{true};
     bool    m_closeToTray{true};

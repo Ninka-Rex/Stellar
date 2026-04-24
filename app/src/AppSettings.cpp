@@ -145,6 +145,7 @@ AppSettings::AppSettings(QObject *parent)
     m_defaultSavePath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     m_temporaryDirectory = QStandardPaths::writableLocation(QStandardPaths::TempLocation)
         + QStringLiteral("/Stellar");
+    m_torrentCustomSavePath = m_defaultSavePath;
     m_monitoredExtensions = defaultMonitoredExtensions();
     m_excludedSites = defaultExcludedSites();
     m_excludedAddresses = defaultExcludedAddresses();
@@ -155,10 +156,12 @@ void AppSettings::load() {
     m_maxConcurrent        = m_settings.value(QStringLiteral("maxConcurrent"),        3).toInt();
     m_segmentsPerDownload  = m_settings.value(QStringLiteral("segmentsPerDownload"),  8).toInt();
     m_defaultSavePath      = m_settings.value(QStringLiteral("defaultSavePath"),
-                                 QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)).toString();
+                             QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)).toString();
     m_temporaryDirectory   = m_settings.value(
         QStringLiteral("temporaryDirectory"),
         QStandardPaths::writableLocation(QStandardPaths::TempLocation) + QStringLiteral("/Stellar")).toString();
+    m_torrentCustomSavePath = m_settings.value(QStringLiteral("torrentCustomSavePath"), m_defaultSavePath).toString();
+    m_torrentUseCustomSavePathByDefault = m_settings.value(QStringLiteral("torrentUseCustomSavePathByDefault"), false).toBool();
     m_globalSpeedLimitKBps = m_settings.value(QStringLiteral("globalSpeedLimitKBps"), 0).toInt();
     m_minimizeToTray       = m_settings.value(QStringLiteral("minimizeToTray"),       true).toBool();
     m_closeToTray          = m_settings.value(QStringLiteral("closeToTray"),          true).toBool();
@@ -313,6 +316,8 @@ void AppSettings::load() {
     emit segmentsPerDownloadChanged();
     emit defaultSavePathChanged();
     emit temporaryDirectoryChanged();
+    emit torrentCustomSavePathChanged();
+    emit torrentCustomSavePathByDefaultChanged();
     emit globalSpeedLimitKBpsChanged();
     emit minimizeToTrayChanged();
     emit closeToTrayChanged();
@@ -397,6 +402,8 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("segmentsPerDownload"),   m_segmentsPerDownload);
     m_settings.setValue(QStringLiteral("defaultSavePath"),       m_defaultSavePath);
     m_settings.setValue(QStringLiteral("temporaryDirectory"),    m_temporaryDirectory);
+    m_settings.setValue(QStringLiteral("torrentCustomSavePath"), m_torrentCustomSavePath);
+    m_settings.setValue(QStringLiteral("torrentUseCustomSavePathByDefault"), m_torrentUseCustomSavePathByDefault);
     m_settings.setValue(QStringLiteral("globalSpeedLimitKBps"),  m_globalSpeedLimitKBps);
     m_settings.setValue(QStringLiteral("minimizeToTray"),        m_minimizeToTray);
     m_settings.setValue(QStringLiteral("closeToTray"),           m_closeToTray);
@@ -511,6 +518,8 @@ void AppSettings::setMaxConcurrent(int v)         { if (m_maxConcurrent        !
 void AppSettings::setSegmentsPerDownload(int v)   { if (m_segmentsPerDownload  != v) { m_segmentsPerDownload  = v; emit segmentsPerDownloadChanged();  save(); } }
 void AppSettings::setDefaultSavePath(const QString &v) { if (m_defaultSavePath != v) { m_defaultSavePath      = v; emit defaultSavePathChanged();      save(); } }
 void AppSettings::setTemporaryDirectory(const QString &v) { if (m_temporaryDirectory != v) { m_temporaryDirectory = v; emit temporaryDirectoryChanged(); save(); } }
+void AppSettings::setTorrentCustomSavePath(const QString &v) { if (m_torrentCustomSavePath != v) { m_torrentCustomSavePath = v; emit torrentCustomSavePathChanged(); save(); } }
+void AppSettings::setTorrentUseCustomSavePathByDefault(bool v) { if (m_torrentUseCustomSavePathByDefault != v) { m_torrentUseCustomSavePathByDefault = v; emit torrentCustomSavePathByDefaultChanged(); save(); } }
 void AppSettings::setGlobalSpeedLimitKBps(int v)  { if (m_globalSpeedLimitKBps != v) { m_globalSpeedLimitKBps = v; emit globalSpeedLimitKBpsChanged(); save(); } }
 void AppSettings::setMinimizeToTray(bool v)        { if (m_minimizeToTray      != v) { m_minimizeToTray       = v; emit minimizeToTrayChanged();       save(); } }
 void AppSettings::setCloseToTray(bool v)           { if (m_closeToTray         != v) { m_closeToTray          = v; emit closeToTrayChanged();          save(); } }
