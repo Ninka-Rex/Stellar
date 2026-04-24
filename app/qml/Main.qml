@@ -490,6 +490,7 @@ ApplicationWindow {
             progressDialog.downloadId = item.id
             progressDialog.show()
             progressDialog.raise()
+            progressDialog.requestActivate()
         }
         function onDownloadCompleted(item) {
             if (progressDialog.visible && progressDialog.item === item)
@@ -1425,7 +1426,7 @@ ApplicationWindow {
     }
 
     // ── Download Progress Dialog ──────────────────────────────────────────────
-    DownloadProgressDialog { id: progressDialog; transientParent: root }
+    DownloadProgressDialog { id: progressDialog }
 
     // ── Download Complete Dialog ──────────────────────────────────────────────
     DownloadCompleteDialog { id: completeDialog; transientParent: root }
@@ -2448,6 +2449,7 @@ ApplicationWindow {
                     progressDialog.downloadId = item ? item.id : ""
                     progressDialog.show()
                     progressDialog.raise()
+                    progressDialog.requestActivate()
                 }
                 onOpenPropertiesRequested: (item) => {
                     if (!item)
@@ -2457,6 +2459,7 @@ ApplicationWindow {
                         progressDialog.downloadId = item.id
                         progressDialog.show()
                         progressDialog.raise()
+                        progressDialog.requestActivate()
                         return
                     }
                     var changingType = filePropertiesDialog.visible

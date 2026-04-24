@@ -23,6 +23,8 @@ import QtQuick.Layouts
 Window {
     id: root
 
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint
+
     property string downloadId: ""
     property var    item: null
     property bool   detailsVisible: true
