@@ -1,0 +1,37 @@
+#include <winver.h>
+
+IDI_ICON1 ICON "@CMAKE_SOURCE_DIR@/app/qml/icons/milky-way.ico"
+
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION     @PROJECT_VERSION_MAJOR@,@PROJECT_VERSION_MINOR@,@PROJECT_VERSION_PATCH@,0
+    PRODUCTVERSION  @PROJECT_VERSION_MAJOR@,@PROJECT_VERSION_MINOR@,@PROJECT_VERSION_PATCH@,0
+    FILEFLAGSMASK   VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+    FILEFLAGS       VS_FF_DEBUG
+#else
+    FILEFLAGS       0
+#endif
+    FILEOS          VOS_NT_WINDOWS32
+    FILETYPE        VFT_APP
+    FILESUBTYPE     VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName",      "Ninka_\0"
+            VALUE "FileDescription",  "Manage, accelerate, and schedule downloads.\0"
+            VALUE "FileVersion",      "@PROJECT_VERSION@.0\0"
+            VALUE "InternalName",     "Stellar\0"
+            VALUE "LegalCopyright",   "Copyright \251 2026 Ninka_\0"
+            VALUE "OriginalFilename", "Stellar.exe\0"
+            VALUE "ProductName",      "Stellar Download Manager\0"
+            VALUE "ProductVersion",   "@PROJECT_VERSION@\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        // English (United States), Unicode
+        VALUE "Translation", 0x0409, 0x04B0
+    END
+END

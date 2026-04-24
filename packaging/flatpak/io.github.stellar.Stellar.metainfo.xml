@@ -2,14 +2,11 @@
 <component type="desktop-application">
   <id>io.github.stellar.Stellar</id>
   <name>Stellar Download Manager</name>
-  <summary>Fast, segmented, IDM-style download manager</summary>
+  <summary>Manage, accelerate, and schedule downloads</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
   <description>
-    <p>Stellar is a cross-platform download manager written in Qt6/C++ featuring
-    segmented (multi-connection) transfers, resume support, browser integration
-    via native messaging (Chrome and Firefox), a category-based download queue,
-    scheduler, speed limiter, and Google Drive support.</p>
+    <p>Stellar is a cross-platform download manager written in Qt6/C++.</p>
   </description>
   <url type="homepage">https://stellar.moe/</url>
   <url type="bugtracker">https://github.com/Ninka-Rex/Stellar/issues</url>

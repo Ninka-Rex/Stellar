@@ -92,6 +92,13 @@ configure_file(app/src/AppVersion.h.in
                ${CMAKE_BINARY_DIR}/AppVersion.h
                @ONLY)
 
+# ── Windows version resource (configure time) ─────────────────────────────────
+if(WIN32)
+    configure_file(app/stellar.rc.in
+                   ${CMAKE_BINARY_DIR}/stellar.rc
+                   @ONLY)
+endif()
+
 # ── Build timestamp (regenerated every build, not just every configure) ────────
 # cmake -P runs GenerateBuildTime.cmake as a PRE_BUILD step so the date in the
 # About page always matches the actual compile date, not the last cmake run.
@@ -174,7 +181,7 @@ set(BACKEND_HEADERS
 
 # ── QML Resources ──────────────────────────────────────────────────────────────
 if(WIN32)
-    list(APPEND BACKEND_SOURCES app/stellar.rc)
+    list(APPEND BACKEND_SOURCES ${CMAKE_BINARY_DIR}/stellar.rc)
 endif()
 
 qt_add_executable(Stellar ${BACKEND_SOURCES} ${BACKEND_HEADERS})
@@ -384,6 +391,13 @@ if(WIN32)
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)
     target_compile_definitions(Stellar PRIVATE STELLAR_LINUX)
+    # Feed CPack / packaging tools with human-readable metadata.
+    set(CPACK_PACKAGE_NAME        "stellar-download-manager")
+    set(CPACK_PACKAGE_VENDOR      "Ninka_")
+    set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Fast, segmented, IDM-style download manager")
+    set(CPACK_PACKAGE_VERSION     "${PROJECT_VERSION}")
+    set(CPACK_PACKAGE_CONTACT     "https://github.com/Ninka-Rex/Stellar")
+    set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
 endif()
 
 # ── Deploy QtQuick.Dialogs QML plugin to build output ─────────────────────────
