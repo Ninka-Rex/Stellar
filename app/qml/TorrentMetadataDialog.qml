@@ -149,6 +149,13 @@ Window {
     }
 
     // Update window title as soon as the torrent name is known.
+    onItemChanged: {
+        // Reset to default first so a stale name from a previous torrent never persists.
+        root.title = "Torrent Metadata"
+        if (root.item && root.item.filename && root.item.filename.length > 0)
+            root.title = root.item.filename
+    }
+
     Connections {
         target: root.item
         function onFilenameChanged() {
