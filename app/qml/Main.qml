@@ -1592,11 +1592,18 @@ ApplicationWindow {
         id: batchDownloadDialog
         transientParent: root
         onAccepted: (files) => {
-            var urlList = files.split('\n')
+            var urlList = []
+            if (Array.isArray(files)) {
+                urlList = files
+            } else {
+                var textPayload = (files === undefined || files === null) ? "" : String(files)
+                urlList = textPayload.split('\n')
+            }
             var fileObjs = []
             for(var i=0; i<urlList.length; i++) {
-                if(urlList[i].length > 0)
-                    fileObjs.push({ name: urlList[i].split('/').pop(), url: urlList[i] })
+                var rawUrl = (urlList[i] === undefined || urlList[i] === null) ? "" : String(urlList[i]).trim()
+                if(rawUrl.length > 0)
+                    fileObjs.push({ name: rawUrl.split('/').pop(), url: rawUrl })
             }
             batchDownloadListDialog.files = fileObjs
             batchDownloadListDialog.show()

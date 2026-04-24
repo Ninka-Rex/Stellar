@@ -3271,6 +3271,24 @@ void AppController::deleteDownload(const QString &id, int mode) {
 void AppController::openFile(const QString &id) {
     auto *item = m_downloadModel->itemById(id);
     if (!item) return;
+    if (item->isTorrent() && !item->torrentIsSingleFile()) {
+        QString rootPath = item->savePath();
+        if (m_torrentSession) {
+            const QString rootName = m_torrentSession->torrentCurrentRootName(id).trimmed();
+            if (!rootName.isEmpty())
+                rootPath = QDir(item->savePath()).filePath(rootName);
+        } else if (!item->filename().trimmed().isEmpty()) {
+            rootPath = QDir(item->savePath()).filePath(item->filename().trimmed());
+        }
+
+        if (QFileInfo::exists(rootPath)) {
+            QDesktopServices::openUrl(QUrl::fromLocalFile(rootPath));
+            return;
+        }
+
+        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        return;
+    }
     if (item->filename().isEmpty()) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
         return;

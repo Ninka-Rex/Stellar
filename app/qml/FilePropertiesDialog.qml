@@ -1499,7 +1499,7 @@ Window {
             }
             DlgButton {
                 text: "Open file"
-                enabled: !!root.item && (!root._isTorrent || !!root.item.torrentIsSingleFile)
+                enabled: !!root.item
                 onClicked: { if (root.item) App.openFile(root.item.id) }
             }
             DlgButton { text: "Close"; primary: true; onClicked: root.close() }
