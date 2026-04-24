@@ -1104,6 +1104,16 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     m_torrentSession = new TorrentSessionManager(this);
     refreshIpToCityDbInfo();
 
+    // Clean up any orphaned rss_*.torrent temp files left by previous runs
+    // (e.g. crash or power loss before the delete in the network reply lambda).
+    {
+        const QString tempDir = effectiveTemporaryDirectory(m_settings);
+        const QFileInfoList stale = QDir(tempDir).entryInfoList(
+            {QStringLiteral("rss_*.torrent")}, QDir::Files);
+        for (const QFileInfo &fi : stale)
+            QFile::remove(fi.absoluteFilePath());
+    }
+
     // Public IP is fetched after applyProxy() so the request is routed through
     // the configured proxy. fetchPublicIp() is also called from applyProxy() so
     // the map location updates whenever the user switches proxies.
@@ -2593,6 +2603,7 @@ QString AppController::beginTorrentMetadataDownload(const QString &source, const
             f.close();
 
             const QString downloadId = addTorrentFile(tempPath, sp, cat, desc, false, {});
+            QFile::remove(tempPath);
             if (!downloadId.isEmpty())
                 emit torrentMetadataRequested(downloadId, startNow);
         });
@@ -2662,6 +2673,7 @@ void AppController::silentlyAddTorrent(const QString &source, const QString &sav
                 return;
             f.close();
             const QString id = addTorrentFile(tempPath, sp, cat, desc, false, {});
+            QFile::remove(tempPath);
             if (!id.isEmpty())
                 confirmTorrentDownload(id, sp, cat, desc, true, qid);
         });
