@@ -143,6 +143,24 @@ static QString pendingDownloadFilePath()
     return QDir::tempPath() + QStringLiteral("/stellar_pending_download.json");
 }
 
+static bool isTorrentFileArgument(const QString &arg)
+{
+    if (arg.trimmed().isEmpty() || arg.startsWith(QStringLiteral("--")))
+        return false;
+    const QFileInfo info(QDir::fromNativeSeparators(arg));
+    return info.exists() && info.isFile()
+        && info.fileName().endsWith(QStringLiteral(".torrent"), Qt::CaseInsensitive);
+}
+
+static QByteArray makeTorrentOpenPayload(const QString &filePath)
+{
+    return QJsonDocument(QJsonObject{
+        {QStringLiteral("type"), QStringLiteral("download")},
+        {QStringLiteral("url"), QDir::toNativeSeparators(QFileInfo(filePath).absoluteFilePath())},
+        {QStringLiteral("filename"), QFileInfo(filePath).fileName()}
+    }).toJson(QJsonDocument::Compact);
+}
+
 // ── Native-messaging host mode ────────────────────────────────────────────────
 // Firefox spawns Stellar.exe for each sendNativeMessage call with stdin/stdout
 // piped.  We read one length-prefixed JSON message, respond, and exit.
@@ -329,8 +347,14 @@ static int runNativeMessagingHost(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
     QString argsStr;
+    QString launchTorrentFile;
     for (int i = 0; i < argc; ++i) {
         argsStr += QString::fromUtf8(argv[i]) + " ";
+        if (i > 0 && launchTorrentFile.isEmpty()) {
+            const QString arg = QString::fromLocal8Bit(argv[i]);
+            if (isTorrentFileArgument(arg))
+                launchTorrentFile = QFileInfo(QDir::fromNativeSeparators(arg)).absoluteFilePath();
+        }
     }
     nmLog(QStringLiteral("App started with args: ") + argsStr);
 
@@ -385,15 +409,20 @@ int main(int argc, char *argv[])
         QLocalSocket sock;
         sock.connectToServer(kServerName);
         if (sock.waitForConnected(500)) {
-            nmLog(QStringLiteral("Existing instance found, sending focus message..."));
-            // Another instance is running — tell it to raise its window and exit.
-            const QByteArray msg = QJsonDocument(
-                QJsonObject{{QStringLiteral("type"), QStringLiteral("focus")}}
-            ).toJson(QJsonDocument::Compact);
+            const bool shouldOpenTorrent = !launchTorrentFile.isEmpty();
+            nmLog(shouldOpenTorrent
+                      ? QStringLiteral("Existing instance found, sending torrent-open message...")
+                      : QStringLiteral("Existing instance found, sending focus message..."));
+            const QByteArray msg = shouldOpenTorrent
+                ? makeTorrentOpenPayload(launchTorrentFile)
+                : QJsonDocument(QJsonObject{{QStringLiteral("type"), QStringLiteral("focus")}})
+                      .toJson(QJsonDocument::Compact);
             sock.write(msg);
             sock.flush();
             sock.waitForBytesWritten(1000);
-            nmLog(QStringLiteral("Focus message sent, exiting."));
+            nmLog(shouldOpenTorrent
+                      ? QStringLiteral("Torrent-open message sent, exiting.")
+                      : QStringLiteral("Focus message sent, exiting."));
             return 0;
         }
 
@@ -457,7 +486,7 @@ int main(int argc, char *argv[])
     // because Component.onCompleted fires during engine.load() — before app.exec()
     // starts the event loop — so any IPC socket data buffered in the OS wouldn't
     // have been processed yet, and the drain would be a no-op.
-    QTimer::singleShot(0, &controller, [&controller]() {
+    QTimer::singleShot(0, &controller, [&controller, launchTorrentFile]() {
         const QString dropPath = pendingDownloadFilePath();
         QFile dropFile(dropPath);
         if (dropFile.exists() && dropFile.open(QIODevice::ReadOnly)) {
@@ -468,6 +497,10 @@ int main(int argc, char *argv[])
                 nmLog(QStringLiteral("Replaying pending download from drop file (via zero-timer)"));
                 controller.handleIpcPayload(pending);
             }
+        }
+        if (!launchTorrentFile.isEmpty()) {
+            nmLog(QStringLiteral("Replaying startup torrent-open payload from command line"));
+            controller.handleIpcPayload(makeTorrentOpenPayload(launchTorrentFile));
         }
         controller.setQmlReady();
     });

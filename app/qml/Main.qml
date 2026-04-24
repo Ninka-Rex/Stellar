@@ -50,6 +50,7 @@ ApplicationWindow {
     // Set to true after the window has been shown at least once so that early
     // geometry signals during window creation don't overwrite saved position.
     property bool _geometrySaveReady: false
+    property bool _torrentFileDragActive: false
 
     // ── Minimize to tray on close ─────────────────────────────────────────────
     property bool isQuitting:    false
@@ -138,6 +139,57 @@ ApplicationWindow {
             torrentMetadataDialog.raise()
             torrentMetadataDialog.requestActivate()
         })
+    }
+
+    function localPathFromDroppedUrl(urlValue) {
+        var text = (urlValue || "").toString()
+        if (text.length === 0 || !/^file:/i.test(text))
+            return ""
+
+        var isUncPath = /^file:\/\/[^/]/i.test(text)
+        var path = decodeURIComponent(text).replace(/^file:\/\//i, "")
+        if (isUncPath)
+            path = "//" + path
+        else if (Qt.platform.os === "windows" && /^\/[A-Za-z]:/.test(path))
+            path = path.substring(1)
+        return path
+    }
+
+    function isTorrentFilePath(path) {
+        return /\.torrent$/i.test((path || "").trim())
+    }
+
+    function firstDroppedTorrentPath(drop) {
+        if (!drop)
+            return ""
+        if (drop.source)
+            return ""
+
+        var urls = drop.urls || []
+        for (var i = 0; i < urls.length; ++i) {
+            var localPath = root.localPathFromDroppedUrl(urls[i])
+            if (root.isTorrentFilePath(localPath))
+                return localPath
+        }
+
+        var textPath = root.localPathFromDroppedUrl(drop.text || "")
+        if (root.isTorrentFilePath(textPath))
+            return textPath
+        return ""
+    }
+
+    function updateTorrentDropState(drag) {
+        root._torrentFileDragActive = root.firstDroppedTorrentPath(drag).length > 0
+    }
+
+    function handleTorrentFileDrop(drop) {
+        var torrentPath = root.firstDroppedTorrentPath(drop)
+        root._torrentFileDragActive = false
+        if (torrentPath.length === 0)
+            return
+        root.showTorrentMetadataDialogForFile(torrentPath, root.torrentSaveDirFromInputPath(App.settings.defaultSavePath), "", "", true)
+        if (drop.acceptProposedAction)
+            drop.acceptProposedAction()
     }
 
     MessageDialog {
@@ -2098,6 +2150,42 @@ ApplicationWindow {
     }
 
     // ── Root layout ───────────────────────────────────────────────────────────
+    DropArea {
+        anchors.fill: parent
+        z: 9997
+        onEntered: function(drag) {
+            root.updateTorrentDropState(drag)
+            if (root._torrentFileDragActive && drag.acceptProposedAction)
+                drag.acceptProposedAction()
+        }
+        onPositionChanged: function(drag) {
+            root.updateTorrentDropState(drag)
+            if (root._torrentFileDragActive && drag.acceptProposedAction)
+                drag.acceptProposedAction()
+        }
+        onExited: root._torrentFileDragActive = false
+        onDropped: function(drop) {
+            root.handleTorrentFileDrop(drop)
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            visible: root._torrentFileDragActive
+            color: "#102744"
+            opacity: 0.72
+            border.color: "#6aa0ff"
+            border.width: 2
+
+            Text {
+                anchors.centerIn: parent
+                text: "Drop .torrent file to open torrent metadata"
+                color: "#f0f6ff"
+                font.pixelSize: 18
+                font.weight: Font.Medium
+            }
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 0

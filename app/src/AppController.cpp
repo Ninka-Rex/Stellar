@@ -229,6 +229,16 @@ QString normalizeTorrentSource(const QString &source) {
     return trimmed;
 }
 
+bool isLocalTorrentFileSource(const QString &source) {
+    const QString trimmed = source.trimmed();
+    if (trimmed.isEmpty())
+        return false;
+
+    const QFileInfo info(QDir::fromNativeSeparators(trimmed));
+    return info.exists() && info.isFile()
+        && info.fileName().endsWith(QStringLiteral(".torrent"), Qt::CaseInsensitive);
+}
+
 QString extractDbVersionFromName(const QString &name) {
     static const QRegularExpression re(QStringLiteral("dbip-city-lite-(\\d{4}-\\d{2})\\.mmdb(?:\\.gz)?"),
                                        QRegularExpression::CaseInsensitiveOption);
@@ -543,7 +553,7 @@ void AppController::handleIpcPayload(const QByteArray &json) {
         const QString cookies  = obj.value(QStringLiteral("cookies")).toString();
         const QString referrer = obj.value(QStringLiteral("referrer")).toString();
         const QString pageUrl  = obj.value(QStringLiteral("pageUrl")).toString();
-        if (isTorrentUri(url)) {
+        if (isTorrentUri(url) || isLocalTorrentFileSource(url)) {
             beginTorrentMetadataDownload(url, m_settings->defaultSavePath(),
                                          QString(), QString(), true);
         } else if (isLikelyYtdlpUrl(url)) {
