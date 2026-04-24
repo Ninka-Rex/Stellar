@@ -136,11 +136,11 @@ Window {
                     }
                     Text {
                         Layout.fillWidth: true
-                        text: "Install directly from the Chrome Web Store — no manual steps required."
+                        text: "Install directly from the Chrome Web Store"
                         color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
                     }
                     InstallButton {
-                        label: "Open Chrome Web Store"
+                        label: "Open Link"
                         url: root.chromeUrl
                     }
                 }
@@ -162,11 +162,11 @@ Window {
                     Text { text: "Firefox"; color: "#fff"; font.pixelSize: 13; font.bold: true }
                     Text {
                         Layout.fillWidth: true
-                        text: "Install from Mozilla Add-ons (AMO) — one click, automatic updates."
+                        text: "Install Firefox XPI, no automatic updates"
                         color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
                     }
                     InstallButton {
-                        label: "Open Firefox Add-ons"
+                        label: "Open Link"
                         url: root.firefoxUrl
                     }
                 }
