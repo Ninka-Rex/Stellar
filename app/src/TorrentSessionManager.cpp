@@ -374,9 +374,9 @@ QStringList normalizedCountryCodes(const QStringList &values) {
 constexpr int kDhtZoneBits = 12;
 constexpr qint64 kDhtZoneMultiplier = qint64(1) << kDhtZoneBits;
 constexpr int kDhtMeasurementIntervalSecs = 1800;
-constexpr int kDhtMeasurementWindowSecs = 60;
+constexpr int kDhtMeasurementWindowSecs = 120;
 constexpr int kDhtMinPaperZoneNodes = 128;
-constexpr double kDhtPaperCoverageProbability = 0.25;
+constexpr double kDhtPaperCoverageProbability = 0.87;
 constexpr double kDhtPaperCorrectionFactor = 1.0 / kDhtPaperCoverageProbability;
 
 bool isNodeInSameDhtZone(const QByteArray &localId, const QByteArray &candidateId) {
@@ -437,6 +437,30 @@ bool parseCompactDhtNodes(libtorrent::string_view compactNodes, QVector<QPair<QB
             | quint32(quint8(record[23]));
         const int port = (int(quint8(record[24])) << 8) | int(quint8(record[25]));
         const QString host = QHostAddress(ipv4).toString();
+        if (nodeId.size() == 20 && !host.isEmpty() && port > 0)
+            out->push_back(qMakePair(nodeId, qMakePair(host, port)));
+    }
+    return !out->isEmpty();
+}
+
+// nodes6 compact format: 20-byte node ID + 16-byte IPv6 + 2-byte port = 38 bytes per record.
+bool parseCompactDhtNodes6(libtorrent::string_view compactNodes6, QVector<QPair<QByteArray, QPair<QString, int>>> *out) {
+    if (!out)
+        return false;
+    constexpr int kNodeRecordBytes = 38;
+    if (compactNodes6.size() <= 0 || (compactNodes6.size() % kNodeRecordBytes) != 0)
+        return false;
+
+    const char *data = compactNodes6.data();
+    const int count = int(compactNodes6.size() / kNodeRecordBytes);
+    out->reserve(out->size() + count);
+    for (int i = 0; i < count; ++i) {
+        const char *record = data + i * kNodeRecordBytes;
+        const QByteArray nodeId(record, 20);
+        Q_IPV6ADDR addr6;
+        std::memcpy(addr6.c, record + 20, 16);
+        const int port = (int(quint8(record[36])) << 8) | int(quint8(record[37]));
+        const QString host = QHostAddress(addr6).toString();
         if (nodeId.size() == 20 && !host.isEmpty() && port > 0)
             out->push_back(qMakePair(nodeId, qMakePair(host, port)));
     }
@@ -572,7 +596,7 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
     // Fast pump drives dht_direct_request dispatches at 100ms cadence while
     // a measurement window is active. The alert timer (2s) is too slow to
     // saturate the 12-bit zone crawl in the paper's 5-second target window.
-    m_dhtFastPumpTimer.setInterval(100);
+    m_dhtFastPumpTimer.setInterval(20);
     m_dhtFastPumpTimer.setSingleShot(false);
     connect(&m_dhtFastPumpTimer, &QTimer::timeout, this, [this]() {
         if (!m_dhtMeasurementStartedAt.isValid()) {
@@ -591,7 +615,7 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
         // If the BFS queue has drained and we still haven't saturated the zone,
         // re-seed from libtorrent's routing table so the crawl doesn't stall.
         if (m_session && m_lastDhtNodeId.size() == 20
-            && m_dhtCrawlQueue.isEmpty() && m_pendingDhtRequests.isEmpty()) {
+            && (m_dhtCrawlQueue.isEmpty() || m_dhtCrawlQueue.size() < 10)) {
             libtorrent::sha1_hash nid(m_lastDhtNodeId.constData());
             m_session->dht_live_nodes(nid);
         }
@@ -755,7 +779,7 @@ void TorrentSessionManager::pumpDhtEstimatorCrawler() {
     // find_node queries rather than a trickle of 8.
     constexpr int kMaxOutstandingRequests = 256;
     constexpr int kMaxRequestsPerPump = 64;
-    constexpr int kPendingRequestTimeoutSecs = 15;
+    constexpr int kPendingRequestTimeoutSecs = 5;
     for (auto it = m_pendingDhtRequests.begin(); it != m_pendingDhtRequests.end();) {
         if (!it.value().isValid() || it.value().secsTo(now) >= kPendingRequestTimeoutSecs)
             it = m_pendingDhtRequests.erase(it);
@@ -772,19 +796,47 @@ void TorrentSessionManager::pumpDhtEstimatorCrawler() {
         m_enqueuedDhtNodeIds.remove(node.id);
 
         const bool inZone = isNodeInSameDhtZone(m_lastDhtNodeId, node.id);
-        QVector<QByteArray> targets;
+
+        // For in-zone nodes: send 4 XOR-perturbed find_node probes to 4 *different*
+        // zone nodes (if available) so each gets a distinct routing table view.
+        // For non-zone nodes: always query toward our own ID to converge on the zone.
+        // The 2000-node cap was removed — capping BFS fan-out at ~50% saturation was
+        // the primary cause of premature crawl termination.
+        struct ZoneProbe { QByteArray target; QString host; int port; };
+        QVector<ZoneProbe> probes;
         if (inZone) {
-            targets.push_back(node.id);
-            for (quint64 i = 1; i <= 4; ++i)
-                targets.push_back(xorSuffixMask(node.id, (quint64(1) << (i * 3)) - 1));
-        } else if (m_dhtMeasurementZoneNodes.size() < 2000) {
-            targets.push_back(m_lastDhtNodeId);
+            probes.push_back({node.id, node.host, node.port});
+            // Collect up to 4 other in-zone nodes to fan probes across.
+            QVector<QByteArray> zoneKeys = m_dhtMeasurementZoneNodes.keys();
+            int probeIdx = 0;
+            for (quint64 i = 1; i <= 4; ++i) {
+                const QByteArray perturbedTarget = xorSuffixMask(node.id, (quint64(1) << (i * 3)) - 1);
+                if (perturbedTarget.size() != 20)
+                    continue;
+                // Find a different zone node to send this probe to.
+                QString probeHost = node.host;
+                int probePort = node.port;
+                while (probeIdx < zoneKeys.size()) {
+                    const QByteArray &zk = zoneKeys[probeIdx++];
+                    if (zk == node.id)
+                        continue;
+                    // Look up host/port for this zone node from the crawl queue or
+                    // fall back to the current node — zone node lookup is best-effort.
+                    for (const DhtCrawlNode &qn : m_dhtCrawlQueue) {
+                        if (qn.id == zk) { probeHost = qn.host; probePort = qn.port; break; }
+                    }
+                    break;
+                }
+                probes.push_back({perturbedTarget, probeHost, probePort});
+            }
+        } else {
+            probes.push_back({m_lastDhtNodeId, node.host, node.port});
         }
 
-        for (const QByteArray &target : targets) {
-            if (target.size() != 20)
+        for (const ZoneProbe &probe : probes) {
+            if (probe.target.size() != 20)
                 continue;
-            const QString requestKey = dhtRequestKey(node.host, node.port, target);
+            const QString requestKey = dhtRequestKey(probe.host, probe.port, probe.target);
             if (m_pendingDhtRequests.contains(requestKey))
                 continue;
 
@@ -794,15 +846,25 @@ void TorrentSessionManager::pumpDhtEstimatorCrawler() {
             args[QStringLiteral("id").toStdString()] =
                 std::string(m_lastDhtNodeId.constData(), std::size_t(m_lastDhtNodeId.size()));
             args[QStringLiteral("target").toStdString()] =
-                std::string(target.constData(), std::size_t(target.size()));
+                std::string(probe.target.constData(), std::size_t(probe.target.size()));
             request[QStringLiteral("a").toStdString()] = args;
 
-            const QHostAddress address(node.host);
-            if (address.protocol() != QAbstractSocket::IPv4Protocol)
+            const QHostAddress address(probe.host);
+            const auto proto = address.protocol();
+            if (proto == QAbstractSocket::IPv4Protocol) {
+                m_session->dht_direct_request(
+                    libtorrent::udp::endpoint(libtorrent::make_address_v4(address.toIPv4Address()), std::uint16_t(probe.port)),
+                    request);
+            } else if (proto == QAbstractSocket::IPv6Protocol) {
+                Q_IPV6ADDR raw6 = address.toIPv6Address();
+                boost::asio::ip::address_v6::bytes_type bytes6;
+                std::memcpy(bytes6.data(), raw6.c, 16);
+                m_session->dht_direct_request(
+                    libtorrent::udp::endpoint(libtorrent::make_address_v6(bytes6), std::uint16_t(probe.port)),
+                    request);
+            } else {
                 continue;
-            m_session->dht_direct_request(
-                libtorrent::udp::endpoint(libtorrent::make_address_v4(address.toIPv4Address()), std::uint16_t(node.port)),
-                request);
+            }
             m_pendingDhtRequests.insert(requestKey, now);
             ++sent;
             if (sent >= kMaxRequestsPerPump || m_pendingDhtRequests.size() >= kMaxOutstandingRequests)
@@ -836,6 +898,7 @@ void TorrentSessionManager::handleDhtDirectResponse(const libtorrent::dht_direct
 
     QVector<QPair<QByteArray, QPair<QString, int>>> discovered;
     parseCompactDhtNodes(reply.dict_find_string_value("nodes"), &discovered);
+    parseCompactDhtNodes6(reply.dict_find_string_value("nodes6"), &discovered);
     for (const auto &entry : discovered) {
         m_recentDhtNodeIds.insert(entry.first, QDateTime::currentDateTimeUtc());
         enqueueDhtCrawlNode(entry.first, entry.second.first, entry.second.second);
