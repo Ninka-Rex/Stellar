@@ -3675,7 +3675,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Make Stellar the default app for .torrent files and magnet links. These buttons apply the OS association directly for the current user."
+                            text: "Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens."
                             color: "#909090"
                             font.pixelSize: 12
                             wrapMode: Text.WordWrap

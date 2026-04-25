@@ -60,6 +60,7 @@
 #  include <windows.h>
 #  include <shellapi.h>
 #  include <shlobj.h>
+#  include <shobjidl.h>
 #endif
 
 namespace {
@@ -3056,16 +3057,43 @@ bool AppController::isTorrentFileAssociationDefault() const {
         HKEY_CURRENT_USER,
         QStringLiteral("Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\FileExts\\.torrent\\UserChoice"),
         L"ProgId").trimmed();
-    if (!userChoice.isEmpty())
-        return userChoice.compare(QStringLiteral("Stellar.torrent"), Qt::CaseInsensitive) == 0;
+    // Check if Stellar's own handler is properly registered with a working command
+    const auto stellarCommandOk = [&]() {
+        return commandReferencesExecutable(
+            readRegistryDefaultValue(HKEY_CURRENT_USER,
+                                     QStringLiteral("Software\\Classes\\Stellar.torrent\\shell\\open\\command")),
+            QCoreApplication::applicationFilePath());
+    };
+
+    if (!userChoice.isEmpty()) {
+        if (userChoice.compare(QStringLiteral("Stellar.torrent"), Qt::CaseInsensitive) == 0)
+            return true;
+        // Windows writes "Applications\Stellar.exe" when the user picks via "Open With"
+        if (userChoice.compare(QStringLiteral("Applications\\Stellar.exe"), Qt::CaseInsensitive) == 0) {
+            return commandReferencesExecutable(
+                readRegistryDefaultValue(HKEY_LOCAL_MACHINE,
+                                         QStringLiteral("SOFTWARE\\Classes\\Applications\\Stellar.exe\\shell\\open\\command")),
+                QCoreApplication::applicationFilePath())
+                || commandReferencesExecutable(
+                    readRegistryDefaultValue(HKEY_CURRENT_USER,
+                                             QStringLiteral("Software\\Classes\\Applications\\Stellar.exe\\shell\\open\\command")),
+                    QCoreApplication::applicationFilePath());
+        }
+        // UserChoice may be stale (Windows caches it); if HKCU\Classes\.torrent points to
+        // Stellar.torrent AND Windows Default Apps shows Stellar (detectable by the progId
+        // being registered under HKCU\Classes\Stellar.torrent with our exe), treat it as default.
+        const QString hkcuProgId = readRegistryDefaultValue(HKEY_CURRENT_USER,
+                                                            QStringLiteral("Software\\Classes\\.torrent")).trimmed();
+        if (hkcuProgId.compare(QStringLiteral("Stellar.torrent"), Qt::CaseInsensitive) == 0
+                && stellarCommandOk())
+            return true;
+        return false;
+    }
 
     const QString progId = readRegistryDefaultValue(HKEY_CURRENT_USER,
                                                     QStringLiteral("Software\\Classes\\.torrent")).trimmed();
     return progId.compare(QStringLiteral("Stellar.torrent"), Qt::CaseInsensitive) == 0
-        && commandReferencesExecutable(
-            readRegistryDefaultValue(HKEY_CURRENT_USER,
-                                     QStringLiteral("Software\\Classes\\Stellar.torrent\\shell\\open\\command")),
-            QCoreApplication::applicationFilePath());
+        && stellarCommandOk();
 #elif defined(Q_OS_LINUX)
     const QString desktopId = desktopAssociationId();
     const QString xdgDefault =
@@ -3114,6 +3142,38 @@ bool AppController::isMagnetAssociationDefault() const {
 #endif
 }
 
+#if defined(STELLAR_WINDOWS)
+// Attempt to set the default app using the IApplicationAssociationRegistration COM API,
+// which is the only method that correctly updates UserChoice on Windows 8+.
+// Returns true on success, false if the COM call fails (e.g. access denied on Win10/11
+// where the API is blocked for non-elevated callers; caller should fall back to the
+// Windows Default Apps settings UI in that case).
+static bool setDefaultViaComApi(const QString &progId, const QString &assocType, const QString &assoc)
+{
+    HRESULT hr = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
+    bool coInit = SUCCEEDED(hr) || hr == S_FALSE;
+
+    IApplicationAssociationRegistration *pAAR = nullptr;
+    hr = CoCreateInstance(CLSID_ApplicationAssociationRegistration,
+                          nullptr, CLSCTX_INPROC_SERVER,
+                          IID_IApplicationAssociationRegistration,
+                          reinterpret_cast<void **>(&pAAR));
+    if (FAILED(hr)) {
+        if (coInit) CoUninitialize();
+        return false;
+    }
+
+    // AT_FILEEXTENSION or AT_URLPROTOCOL
+    ASSOCIATIONTYPE at = assocType == QStringLiteral("ext") ? AT_FILEEXTENSION : AT_URLPROTOCOL;
+    hr = pAAR->SetAppAsDefault(reinterpret_cast<LPCWSTR>(progId.utf16()),
+                               reinterpret_cast<LPCWSTR>(assoc.utf16()),
+                               at);
+    pAAR->Release();
+    if (coInit) CoUninitialize();
+    return SUCCEEDED(hr);
+}
+#endif
+
 QString AppController::setTorrentFileAssociationDefault() const {
 #if defined(Q_OS_WIN)
     const QString exePath = normalizedNativePath(QCoreApplication::applicationFilePath());
@@ -3152,12 +3212,13 @@ QString AppController::setTorrentFileAssociationDefault() const {
     }
 
 #if defined(STELLAR_WINDOWS)
+    setDefaultViaComApi(windowsAssociationRegisteredAppName(), QStringLiteral("ext"), QStringLiteral(".torrent"));
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
 #endif
     if (isTorrentFileAssociationDefault())
         return QString();
     openWindowsDefaultAppsForStellar();
-    return QStringLiteral("Stellar was registered as a .torrent handler. Windows still requires you to confirm the default app in Settings.");
+    return QStringLiteral("Stellar was registered as a .torrent handler. Windows still requires you to confirm the change in the Default Apps settings page that opened.");
 #elif defined(Q_OS_LINUX)
     QString error;
     if (!writeLinuxDesktopEntry(&error))
@@ -3210,12 +3271,13 @@ QString AppController::setMagnetAssociationDefault() const {
     }
 
 #if defined(STELLAR_WINDOWS)
+    setDefaultViaComApi(windowsAssociationRegisteredAppName(), QStringLiteral("url"), QStringLiteral("magnet"));
     SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nullptr, nullptr);
 #endif
     if (isMagnetAssociationDefault())
         return QString();
     openWindowsDefaultAppsForStellar();
-    return QStringLiteral("Stellar was registered as a magnet handler. Windows still requires you to confirm the default app in Settings.");
+    return QStringLiteral("Stellar was registered as a magnet handler. Windows still requires you to confirm the change in the Default Apps settings page that opened.");
 #elif defined(Q_OS_LINUX)
     QString error;
     if (!writeLinuxDesktopEntry(&error))
