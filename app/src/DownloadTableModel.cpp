@@ -370,6 +370,15 @@ void DownloadTableModel::onItemChanged() {
 void DownloadTableModel::onItemProgressChanged() {
     auto *item = qobject_cast<DownloadItem *>(sender());
     if (!item) return;
+
+    // Speed-based filters (torrent_active / torrent_inactive) must re-evaluate
+    // membership on every speed tick, not just on statusChanged.
+    if (m_filterCategory == QStringLiteral("torrent_active")
+        || m_filterCategory == QStringLiteral("torrent_inactive")) {
+        onItemChanged();
+        return;
+    }
+
     const int visRow = m_visible.indexOf(item);
     if (visRow < 0) return;
     emit dataChanged(index(visRow, ColProgress), index(visRow, ColTimeLeft));
