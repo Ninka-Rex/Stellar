@@ -17,7 +17,39 @@
 #include "DownloadTableModel.h"
 #include <algorithm>
 #include <QSet>
-#include <QTimer>
+
+// ─── Live re-sort invariant ───────────────────────────────────────────────────
+//
+// `m_visible` is kept sorted at all times under the active sort column. When
+// a row's data changes (status transition or per-tick stat update), the
+// handlers below preserve that invariant by *moving exactly one row* to its
+// new sorted position via beginMoveRows/endMoveRows — never by re-sorting the
+// whole list with layoutChanged or beginResetModel.
+//
+// This matters because of how QML ListView reacts to each kind of model
+// notification:
+//
+//   • beginResetModel → ListView tears down all delegates and scrolls to the
+//     top. The user loses scroll position and any partially-rendered state.
+//
+//   • layoutAboutToBeChanged/layoutChanged → ListView re-anchors the viewport
+//     to its currentIndex's delegate (or some other heuristic if currentIndex
+//     is unset). When a row's rank shifts dramatically (e.g. a torrent's
+//     upload speed jumps from 0 to 1 MB/s and it's the new #1 sorted by
+//     upspeed), this re-anchor drags the viewport with it — producing a
+//     visible "list jumps to the bottom for one frame, then back" flash even
+//     when the user wasn't focused on the row that moved.
+//
+//   • beginMoveRows/endMoveRows → ListView animates that single delegate
+//     from row A to row B. No re-anchor. Scroll position is untouched.
+//
+// Because each handler can only be entered after the previous one finished
+// (Qt signals are direct-connected and synchronous within a single thread),
+// the "list was sorted before this change" precondition holds: the only
+// possibly-out-of-order row after a single value change is the row whose
+// value changed. Bubble-walking that one row to its correct slot is O(d)
+// where d is how far it shifted, and emits exactly one move notification.
+// ─────────────────────────────────────────────────────────────────────────────
 
 DownloadTableModel::DownloadTableModel(QObject *parent)
     : QAbstractTableModel(parent) {}
@@ -348,19 +380,27 @@ void DownloadTableModel::onItemChanged() {
         m_visible.removeAt(visRow);
         endRemoveRows();
     } else if (shouldBeVisible && visRow >= 0) {
-        // Check if the sort order is violated and a re-sort is needed
-        bool needsResort = false;
-        if (visRow > 0 && compareItems(m_visible[visRow - 1], item, m_sortColumn, m_sortAscending) > 0)
-            needsResort = true;
-        else if (visRow < m_visible.size() - 1 && compareItems(item, m_visible[visRow + 1], m_sortColumn, m_sortAscending) > 0)
-            needsResort = true;
+        // Bubble the changed row to its correct sorted position using
+        // move semantics — see the matching block in onItemProgressChanged
+        // for the rationale (avoid layoutChanged-induced scroll snaps).
+        int targetRow = visRow;
+        while (targetRow > 0
+               && compareItems(m_visible[targetRow - 1], item, m_sortColumn, m_sortAscending) > 0) {
+            --targetRow;
+        }
+        while (targetRow < m_visible.size() - 1
+               && compareItems(item, m_visible[targetRow + 1], m_sortColumn, m_sortAscending) > 0) {
+            ++targetRow;
+        }
 
-        if (needsResort) {
-            beginResetModel();
-            std::sort(m_visible.begin(), m_visible.end(), [&](DownloadItem *a, DownloadItem *b) {
-                return compareItems(a, b, m_sortColumn, m_sortAscending) < 0;
-            });
-            endResetModel();
+        if (targetRow != visRow) {
+            const int destinationChild = (targetRow > visRow) ? targetRow + 1 : targetRow;
+            beginMoveRows(QModelIndex(), visRow, visRow,
+                          QModelIndex(), destinationChild);
+            DownloadItem *moved = m_visible.takeAt(visRow);
+            m_visible.insert(targetRow, moved);
+            endMoveRows();
+            emit dataChanged(index(targetRow, 0), index(targetRow, ColCount - 1));
         } else {
             emit dataChanged(index(visRow, 0), index(visRow, ColCount - 1));
         }
@@ -381,6 +421,68 @@ void DownloadTableModel::onItemProgressChanged() {
 
     const int visRow = m_visible.indexOf(item);
     if (visRow < 0) return;
+
+    // When the active sort column tracks a value that changes per progress
+    // tick (downspeed, upspeed, progress, ratio, uploaded, downloaded,
+    // timeleft), a value change can violate the sort order — the row needs to
+    // move, not just refresh in place. Without this, sorting by Up Speed once
+    // freezes the row order: items stay where they were ranked at click time
+    // even though their speeds have since shifted, producing the apparently
+    // mis-sorted column the user reported.
+    static const QSet<QString> kVolatileSortCols = {
+        QStringLiteral("downspeed"), QStringLiteral("speed"),
+        QStringLiteral("upspeed"),   QStringLiteral("progress"),
+        QStringLiteral("timeleft"),  QStringLiteral("ratio"),
+        QStringLiteral("uploaded"),  QStringLiteral("downloaded"),
+        QStringLiteral("seeders"),   QStringLiteral("peers")
+    };
+    if (kVolatileSortCols.contains(m_sortColumn)) {
+        // When a single row's value crosses one of its neighbours' values,
+        // move just that row to its correct sorted position — using
+        // beginMoveRows/endMoveRows rather than a full layoutChanged.
+        //
+        // Why move semantics: layoutChanged is a "everything potentially
+        // permuted" notification, and ListView responds by re-anchoring the
+        // viewport based on currentIndex — which produces a visible
+        // scroll-jump even when only one row actually moved. Move semantics
+        // tell the view "exactly this row went from A to B" so the view
+        // slides that single delegate without disturbing scroll position.
+        //
+        // We don't sort the entire visible list here; we just bubble the
+        // changed row into its correct slot. The caller's invariant is
+        // that the list was sorted before this stat change, so the only
+        // mis-ordered row is the one that just changed.
+        int targetRow = visRow;
+        // Bubble up while the row above us should now sort *after* us.
+        while (targetRow > 0
+               && compareItems(m_visible[targetRow - 1], item, m_sortColumn, m_sortAscending) > 0) {
+            --targetRow;
+        }
+        // Bubble down while the row below us should now sort *before* us.
+        while (targetRow < m_visible.size() - 1
+               && compareItems(item, m_visible[targetRow + 1], m_sortColumn, m_sortAscending) > 0) {
+            ++targetRow;
+        }
+
+        if (targetRow != visRow) {
+            // Qt's beginMoveRows uses a slightly counter-intuitive
+            // destination convention: when moving down, the destination is
+            // the row index *after* the target slot (i.e. one past where
+            // the row will end up). Moving up is the natural index.
+            const int destinationChild = (targetRow > visRow) ? targetRow + 1 : targetRow;
+            beginMoveRows(QModelIndex(), visRow, visRow,
+                          QModelIndex(), destinationChild);
+            DownloadItem *moved = m_visible.takeAt(visRow);
+            m_visible.insert(targetRow, moved);
+            endMoveRows();
+            // Refresh the row's data at its new position so any displayed
+            // values that just changed (the very change that triggered the
+            // re-sort) actually render.
+            emit dataChanged(index(targetRow, 0), index(targetRow, ColCount - 1));
+            return;
+        }
+    }
+
     emit dataChanged(index(visRow, ColProgress), index(visRow, ColTimeLeft));
 }
 

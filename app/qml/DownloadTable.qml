@@ -978,6 +978,22 @@ Rectangle {
         interactive: true
         focus: true
 
+        // Scroll-position preservation across model layout changes.
+        //
+        // ListView, in response to layoutChanged, re-anchors the scroll
+        // position to whichever delegate corresponds to currentIndex (if any)
+        // or to the first visible row's underlying item. Either heuristic
+        // can produce a visible "snap to bottom" frame when a row's rank
+        // shifts dramatically — what the user sees as "list jumps to bottom
+        // for one frame, then back to top."
+        //
+        // The fix: pin the scroll to the *item* that was at the top of the
+        // viewport before the layout change rather than to a row index.
+        // After the sort, find that same item's new row and use
+        // positionViewAtIndex(... ListView.Beginning) to anchor it back to
+        // the top. This bypasses ListView's own re-anchor heuristic entirely
+        // because we set contentY explicitly via positionViewAtIndex, which
+        // takes effect after the view has finished its internal re-layout.
         // Ctrl+A: select all rows currently visible in the model.
         // We build the selection set in one pass rather than calling _toggleRow
         // repeatedly to avoid emitting _selectionVersion for every row.
