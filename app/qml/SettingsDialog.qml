@@ -3934,7 +3934,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3 or later."
+                            text: "Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3."
                             color: "#808080"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
