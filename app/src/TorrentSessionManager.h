@@ -109,6 +109,7 @@ public:
     qint64 dhtGlobalNodesEstimate();
     int dhtEstimateWarmupPercent() const;
     QString dhtEstimateDebugText() const;
+    bool dhtCrawlInProgress() const;
     void startDhtCrawlNow();
 
 signals:
@@ -249,5 +250,6 @@ inline void TorrentSessionManager::releaseGeoDatabaseForUpdate() {}
 inline qint64 TorrentSessionManager::dhtGlobalNodesEstimate() { return -1; }
 inline int TorrentSessionManager::dhtEstimateWarmupPercent() const { return 0; }
 inline QString TorrentSessionManager::dhtEstimateDebugText() const { return {}; }
+inline bool TorrentSessionManager::dhtCrawlInProgress() const { return false; }
 inline void TorrentSessionManager::startDhtCrawlNow() {}
 #endif

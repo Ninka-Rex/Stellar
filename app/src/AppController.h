@@ -63,6 +63,7 @@ class AppController : public QObject {
     Q_PROPERTY(qint64  estimatedOnlineUsers READ estimatedOnlineUsers NOTIFY estimatedOnlineUsersChanged)
     Q_PROPERTY(int estimatedOnlineUsersWarmupPercent READ estimatedOnlineUsersWarmupPercent NOTIFY estimatedOnlineUsersChanged)
     Q_PROPERTY(QString estimatedOnlineUsersDebugText READ estimatedOnlineUsersDebugText NOTIFY estimatedOnlineUsersChanged)
+    Q_PROPERTY(bool dhtCrawlInProgress READ dhtCrawlInProgress NOTIFY estimatedOnlineUsersChanged)
     Q_PROPERTY(int     seedingCount       READ seedingCount       NOTIFY seedingCountChanged)
     Q_PROPERTY(double  allTimeRatio       READ allTimeRatio       NOTIFY allTimeRatioChanged)
     Q_PROPERTY(QString selectedCategory  READ selectedCategory   WRITE setSelectedCategory NOTIFY selectedCategoryChanged)
@@ -123,6 +124,7 @@ public:
     qint64 estimatedOnlineUsers() const { return m_estimatedOnlineUsers; }
     int estimatedOnlineUsersWarmupPercent() const { return m_estimatedOnlineUsersWarmupPercent; }
     QString estimatedOnlineUsersDebugText() const { return m_estimatedOnlineUsersDebugText; }
+    bool dhtCrawlInProgress() const { return m_torrentSession && m_torrentSession->dhtCrawlInProgress(); }
     int    seedingCount()    const { return m_seedingCount; }
     double allTimeRatio()    const { return m_allTimeRatio; }
     QString selectedCategory() const { return m_selectedCategory; }

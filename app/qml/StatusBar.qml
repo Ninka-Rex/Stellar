@@ -128,12 +128,12 @@ Rectangle {
             ToolTip.delay: 250
             ToolTip.timeout: 10000
             ToolTip.text: App.estimatedOnlineUsersDebugText
-                + (App.estimatedOnlineUsersWarmupPercent > 0 && App.estimatedOnlineUsersWarmupPercent < 100
-                   ? "" : "\n\nClick to recrawl now.")
+                + (App.dhtCrawlInProgress ? "" : "\n\nClick to recrawl now.")
 
             MouseArea {
                 anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
+                enabled: !App.dhtCrawlInProgress
+                cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
                 onClicked: App.startDhtCrawlNow()
             }
         }

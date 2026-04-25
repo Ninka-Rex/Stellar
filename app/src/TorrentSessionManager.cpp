@@ -373,10 +373,10 @@ QStringList normalizedCountryCodes(const QStringList &values) {
 
 constexpr int kDhtZoneBits = 12;
 constexpr qint64 kDhtZoneMultiplier = qint64(1) << kDhtZoneBits;
-constexpr int kDhtMeasurementIntervalSecs = 3000;
+constexpr int kDhtMeasurementIntervalSecs = 1800;
 constexpr int kDhtMeasurementWindowSecs = 60;
 constexpr int kDhtMinPaperZoneNodes = 128;
-constexpr double kDhtPaperCoverageProbability = 0.8372;
+constexpr double kDhtPaperCoverageProbability = 0.25;
 constexpr double kDhtPaperCorrectionFactor = 1.0 / kDhtPaperCoverageProbability;
 
 bool isNodeInSameDhtZone(const QByteArray &localId, const QByteArray &candidateId) {
@@ -936,6 +936,15 @@ int TorrentSessionManager::dhtEstimateWarmupPercent() const {
     return std::clamp(m_lastDhtWarmupPercent, 0, 100);
 #else
     return 0;
+#endif
+}
+
+bool TorrentSessionManager::dhtCrawlInProgress() const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    return m_dhtMeasurementStartedAt.isValid()
+        && m_dhtMeasurementStartedAt.secsTo(QDateTime::currentDateTimeUtc()) < kDhtMeasurementWindowSecs;
+#else
+    return false;
 #endif
 }
 

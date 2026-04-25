@@ -3946,7 +3946,7 @@ void AppController::clearTorrentSpeedHistory(const QString &downloadId) {
 }
 
 void AppController::startDhtCrawlNow() {
-    if (m_torrentSession)
+    if (m_torrentSession && !m_torrentSession->dhtCrawlInProgress())
         m_torrentSession->startDhtCrawlNow();
     // Leave the last published estimate in place so the status bar keeps
     // showing it while the fresh crawl runs.
