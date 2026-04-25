@@ -76,6 +76,14 @@ class AppController : public QObject {
     Q_PROPERTY(QString grabberStatusText READ grabberStatusText NOTIFY grabberStatusTextChanged)
     Q_PROPERTY(int minutesUntilNextQueue READ minutesUntilNextQueue NOTIFY minutesUntilNextQueueChanged)
     Q_PROPERTY(int completedDownloads READ completedDownloads NOTIFY completedDownloadsChanged)
+    // Cold-start restore state. While the database is draining into the
+    // in-memory model, restoreInProgress is true and restoreTotalCount holds
+    // the size of the backlog. QML swaps the empty-state "Click Add URL to
+    // start" message for "Loading N downloads…" during this window so the
+    // user sees something happening during the brief gap between the window
+    // painting and the model populating.
+    Q_PROPERTY(bool restoreInProgress READ restoreInProgress NOTIFY restoreProgressChanged)
+    Q_PROPERTY(int restoreTotalCount READ restoreTotalCount NOTIFY restoreProgressChanged)
     Q_PROPERTY(int recentErrorDownloads READ recentErrorDownloads NOTIFY recentErrorDownloadsChanged)
     Q_PROPERTY(bool updateAvailable READ updateAvailable NOTIFY updateAvailableChanged)
     Q_PROPERTY(QString updateVersion READ updateVersion NOTIFY updateAvailableChanged)
@@ -139,6 +147,8 @@ public:
     QString grabberStatusText() const { return m_grabberStatusText; }
     int minutesUntilNextQueue() const;
     int completedDownloads() const { return m_completedCount; }
+    bool restoreInProgress() const { return m_restoring; }
+    int restoreTotalCount() const { return m_restoreTotalCount; }
     int recentErrorDownloads() const;
     bool updateAvailable() const { return m_updateAvailable; }
     QString updateVersion() const { return m_updateVersion; }
@@ -403,6 +413,7 @@ signals:
     void grabberError(const QString &message);
     void minutesUntilNextQueueChanged();
     void completedDownloadsChanged();
+    void restoreProgressChanged();
     void recentErrorDownloadsChanged();
     void updateAvailableChanged();
     void updateStatusTextChanged();
@@ -487,6 +498,7 @@ private:
     QMap<QString, qint64>    m_lastTorrentPersistUploaded;
     QMap<QString, qint64>    m_lastTorrentPersistDownloaded;
     bool                    m_restoring{false};
+    int                     m_restoreTotalCount{0};
     // IDs of torrents that were already seeding/complete when restored from the
     // database. Completion alerts for these IDs are suppressed — they are not
     // new downloads finishing, just libtorrent re-emitting state on reconnect.

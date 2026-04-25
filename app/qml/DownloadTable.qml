@@ -1532,8 +1532,20 @@ Rectangle {
                                     root.filterLinks, root.filterMatchCase, root.filterMatchWhole)
                 : tableView.count
             visible: filteredCount === 0
-            text: searchActive ? "No matching downloads."
-                               : "No downloads yet.\nClick  Add URL  to start."
+            // While the cold-start restore is still draining the database into
+            // the in-memory model, replace the "click Add URL" hint with a
+            // live progress count so the user sees something happening during
+            // the brief delay between the window painting and the model
+            // populating. AppController emits restoreProgressChanged on every
+            // per-item restore so this label ticks roughly once per event-loop
+            // pass during startup.
+            text: {
+                if (App.restoreInProgress && App.restoreTotalCount > 0)
+                    return "Loading " + App.restoreTotalCount + " downloads…"
+                if (searchActive)
+                    return "No matching downloads."
+                return "No downloads yet.\nClick  Add URL  to start."
+            }
             horizontalAlignment: Text.AlignHCenter
             color: "#444444"
             font.pixelSize: 14

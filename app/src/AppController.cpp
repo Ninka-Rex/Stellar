@@ -1857,6 +1857,16 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_tray, &SystemTrayIcon::contextMenuRequested,  this, &AppController::contextMenuRequested);
     
     connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this, [this]() {
+        // Surface a shutdown indicator on the tray tooltip so the user knows
+        // the app hasn't hung when the window has closed but the process is
+        // still running (saving resume data for many torrents can take a
+        // moment). The tooltip-timer is no longer running by the time
+        // aboutToQuit fires, so set the tooltip directly.
+        if (m_tray) {
+            const QString tip = QStringLiteral("Stellar is shutting down…");
+            m_lastTrayTooltip = tip;
+            m_tray->setToolTip(tip);
+        }
         const auto items = m_downloadModel->allItems();
         for (DownloadItem *item : items) {
             if (item && item->isTorrent())
@@ -1875,6 +1885,18 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     if (err.isEmpty()) qDebug() << "[NativeHost] registered OK";
     else qDebug() << "[NativeHost] registration FAILED:" << err;
 
+    // Show a "starting up" tooltip immediately. The tooltip-timer (5 s
+    // cadence) won't tick for several seconds, and the cold-start restore
+    // loop below dispatches its work asynchronously — without this, a user
+    // who hovers the tray icon during startup would see whatever stale
+    // tooltip the OS still had cached. m_lastTrayTooltip is set in lockstep
+    // so the dedup guard in the tooltip timer correctly recognises the
+    // string change on the first real tick.
+    {
+        const QString tip = QStringLiteral("Stellar is starting up…");
+        m_lastTrayTooltip = tip;
+        m_tray->setToolTip(tip);
+    }
     m_tray->show();
 
     if (m_db->open()) {
@@ -1890,6 +1912,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         // than the per-item version). The ordering of dispatch is preserved
         // by the singleShot queue.
         const int itemCount = static_cast<int>(items.size());
+        m_restoreTotalCount = itemCount;
+        // Emit immediately so the QML empty-state can show "Loading N
+        // downloads…" the moment the window paints, rather than briefly
+        // showing "Click Add URL to start" before the first per-item restore
+        // lambda fires.
+        emit restoreProgressChanged();
         for (int i = 0; i < itemCount; ++i) {
             QTimer::singleShot(0, this, [this, item = items.at(i)]() {
                 m_queue->enqueueRestored(item);
@@ -1913,6 +1941,17 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         // shot here lands strictly after the last item's restore lambda.
         QTimer::singleShot(0, this, [this]() {
             m_restoring = false;
+            // Final notify so QML sees restoreInProgress flip to false and
+            // the empty-state reverts to its normal "Click Add URL" message
+            // (which by this point will only be visible if the database was
+            // genuinely empty).
+            emit restoreProgressChanged();
+            // Clear the cached "starting up" tooltip so the next 5 s tooltip-
+            // timer tick replaces it with the live download stats. We don't
+            // setToolTip("") here — that would briefly blank the tooltip
+            // until the timer fires; instead we just invalidate the dedup
+            // guard so the next regularly-scheduled update writes through.
+            m_lastTrayTooltip.clear();
             // Snapshot restored torrent byte totals so appStatistics() can
             // subtract them to produce a true session-only transfer figure.
             for (auto *item : m_downloadModel->allItems()) {
