@@ -138,17 +138,23 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setTorrentDisableDht(obj[QLatin1String("torrentDisableDht")].toBool(false));
         item->setTorrentDisablePex(obj[QLatin1String("torrentDisablePex")].toBool(false));
         item->setTorrentDisableLsd(obj[QLatin1String("torrentDisableLsd")].toBool(false));
-        // Resume data is stored in a dedicated per-torrent file rather than
-        // inline in the JSON array.  Fall back to any inline blob that may
-        // exist in a migrated record so a downgrade to the old build still
-        // loads cleanly (the inline field is simply left absent on new saves).
+        // Resume blobs are intentionally NOT preloaded here. They live in
+        // separate per-torrent .resume files (StellarPaths::resumeFile(id))
+        // and are only needed when TorrentSessionManager::restoreTorrent()
+        // actually re-adds the torrent to libtorrent — at which point that
+        // code reads the file directly. Preloading dozens of blobs (each up
+        // to several hundred KB, formerly Base64-bloated to ~1.4× the size
+        // and stored in a UTF-16 QString) on the synchronous startup path
+        // before the QML window could paint was a major contributor to the
+        // cold-start freeze. Only the legacy inline-JSON fallback remains,
+        // and only for migrated records that haven't been re-saved yet.
         {
-            const QString resumePath = StellarPaths::resumeFile(id);
-            QFile rf(resumePath);
-            if (rf.exists() && rf.open(QIODevice::ReadOnly)) {
-                item->setTorrentResumeData(QString::fromLatin1(rf.readAll().toBase64()));
-            } else {
-                item->setTorrentResumeData(obj[QLatin1String("torrentResumeData")].toString());
+            const QString legacyInline = obj[QLatin1String("torrentResumeData")].toString();
+            if (!legacyInline.isEmpty()) {
+                // Legacy records stored the blob Base64-encoded in JSON; new
+                // records do not. Decode once at load so the in-memory field
+                // is always raw bytes.
+                item->setTorrentResumeData(QByteArray::fromBase64(legacyInline.toLatin1()));
             }
         }
         item->setPerTorrentDownLimitKBps(obj[QLatin1String("perTorrentDownLimitKBps")].toInt(0));

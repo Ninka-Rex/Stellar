@@ -74,7 +74,11 @@ class DownloadItem : public QObject {
     Q_PROPERTY(bool     torrentHasMetadata  READ torrentHasMetadata  NOTIFY torrentChanged)
     Q_PROPERTY(bool     torrentIsSingleFile READ torrentIsSingleFile NOTIFY torrentChanged)
     Q_PROPERTY(bool     torrentIsPrivate    READ torrentIsPrivate    NOTIFY torrentChanged)
-    Q_PROPERTY(QString  torrentResumeData   READ torrentResumeData   NOTIFY torrentChanged)
+    // torrentResumeData is intentionally NOT exposed as a Q_PROPERTY: it's an
+    // opaque libtorrent blob (typically tens to hundreds of KB), only ever
+    // round-tripped between AppController and TorrentSessionManager, never
+    // displayed in QML. Exposing it would invite QML bindings that pay the
+    // QString-conversion cost on every torrentChanged tick.
     Q_PROPERTY(bool torrentDisableDht READ torrentDisableDht WRITE setTorrentDisableDht NOTIFY torrentFlagsChanged)
     Q_PROPERTY(bool torrentDisablePex READ torrentDisablePex WRITE setTorrentDisablePex NOTIFY torrentFlagsChanged)
     Q_PROPERTY(bool torrentDisableLsd READ torrentDisableLsd WRITE setTorrentDisableLsd NOTIFY torrentFlagsChanged)
@@ -181,7 +185,7 @@ public:
     bool torrentDisableDht()   const { return m_torrentDisableDht; }
     bool torrentDisablePex()   const { return m_torrentDisablePex; }
     bool torrentDisableLsd()   const { return m_torrentDisableLsd; }
-    QString torrentResumeData() const { return m_torrentResumeData; }
+    QByteArray torrentResumeData() const { return m_torrentResumeData; }
     void setIsTorrent(bool v);
     void setTorrentSource(const QString &v);
     void setTorrentTrackers(const QStringList &v)  { if (m_torrentTrackers  != v) { m_torrentTrackers  = v; emit torrentChanged(); } }
@@ -209,7 +213,7 @@ public:
     void setTorrentDisableDht(bool v)   { if (m_torrentDisableDht   != v) { m_torrentDisableDht   = v; emit torrentFlagsChanged(); } }
     void setTorrentDisablePex(bool v)   { if (m_torrentDisablePex   != v) { m_torrentDisablePex   = v; emit torrentFlagsChanged(); } }
     void setTorrentDisableLsd(bool v)   { if (m_torrentDisableLsd   != v) { m_torrentDisableLsd   = v; emit torrentFlagsChanged(); } }
-    void setTorrentResumeData(const QString &v);
+    void setTorrentResumeData(const QByteArray &v);
     void clearTorrentStats();
 
     // Per-torrent limits
@@ -328,7 +332,7 @@ private:
     bool         m_torrentDisableDht{false};
     bool         m_torrentDisablePex{false};
     bool         m_torrentDisableLsd{false};
-    QString      m_torrentResumeData;
+    QByteArray   m_torrentResumeData;
     int          m_perTorrentDownLimitKBps{0};
     int          m_perTorrentUpLimitKBps{0};
     double       m_torrentShareRatioLimit{-1.0};

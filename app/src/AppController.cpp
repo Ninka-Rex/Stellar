@@ -1880,8 +1880,18 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     if (m_db->open()) {
         m_restoring = true;
         const auto items = m_db->loadAll();
-        for (int i = 0; i < items.size(); ++i) {
-            QTimer::singleShot(i * 16, this, [this, item = items.at(i)]() {
+        // Each restored item is queued onto the event loop with a zero-delay
+        // singleShot. This gives Qt the chance to interleave paint events,
+        // QML setup and IPC drain between items naturally — without the
+        // artificial wall-clock floor that a fixed-millisecond stagger
+        // imposes (a 16 ms-per-item floor scales linearly with list size,
+        // and a "batch N synchronously per tick" variant blocks the event
+        // loop while the batch runs, which is what made first-paint slower
+        // than the per-item version). The ordering of dispatch is preserved
+        // by the singleShot queue.
+        const int itemCount = static_cast<int>(items.size());
+        for (int i = 0; i < itemCount; ++i) {
+            QTimer::singleShot(0, this, [this, item = items.at(i)]() {
                 m_queue->enqueueRestored(item);
                 watchItem(item);
                 if (item->isTorrent()) {
@@ -1898,8 +1908,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 }
             });
         }
-        const int itemCount = static_cast<int>(items.size());
-        QTimer::singleShot(itemCount * 16 + 50, this, [this, itemCount]() {
+        // Finalization runs after every per-item singleShot has fired. Since
+        // singleShot(0) preserves dispatch order, posting one more zero-delay
+        // shot here lands strictly after the last item's restore lambda.
+        QTimer::singleShot(0, this, [this]() {
             m_restoring = false;
             // Snapshot restored torrent byte totals so appStatistics() can
             // subtract them to produce a true session-only transfer figure.
@@ -1911,7 +1923,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             // libtorrent alert polling runs every 1 s; give it 12 s after all
             // items are enqueued to deliver any deferred torrent_finished_alert
             // before we stop suppressing completions for restored seeding IDs.
-            QTimer::singleShot(itemCount * 16 + 12000, this, [this]() {
+            QTimer::singleShot(12000, this, [this]() {
                 m_restoredSeedingIds.clear();
             });
             // Count completed downloads from the restored items
@@ -4947,12 +4959,19 @@ void AppController::watchItem(DownloadItem *item) {
     // which would request a new blob from libtorrent, causing a feedback loop
     // that writes to disk every second.
     connect(item, &DownloadItem::torrentResumeDataChanged, this, [item]() {
-        if (!item || item->torrentResumeData().isEmpty())
+        if (!item)
             return;
-        const QByteArray blob = QByteArray::fromBase64(item->torrentResumeData().toLatin1());
+        const QByteArray blob = item->torrentResumeData();
+        if (blob.isEmpty())
+            return;
+        // Resume blob is now stored as raw bytes — see the matching writer in
+        // TorrentSessionManager::processAlerts(save_resume_data_alert) where
+        // the redundant Base64 round-trip was removed.
         QSaveFile f(StellarPaths::resumeFile(item->id()));
-        if (f.open(QIODevice::WriteOnly))
-            f.write(blob), f.commit();
+        if (f.open(QIODevice::WriteOnly)) {
+            f.write(blob);
+            f.commit();
+        }
     });
 
     // torrentStatsChanged fires every libtorrent alert tick (~1 s) for active

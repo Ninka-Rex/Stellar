@@ -42,6 +42,14 @@ Window {
     readonly property bool peerListActive: visible && _isTorrent && currentTab === 3
     readonly property bool peerMapActive: visible && _isTorrent && currentTab === 4
     readonly property bool peerUpdatesActive: visible && _isTorrent && (currentTab === 3 || currentTab === 4)
+    // Tab 2 = Files. Gate the per-tick file_progress() walk in libtorrent on
+    // whether the user can actually see the file list — when hidden, skip the
+    // expensive piece-granularity scan entirely.
+    readonly property bool fileUpdatesActive: visible && _isTorrent && currentTab === 2
+    onFileUpdatesActiveChanged: {
+        if (torrentFileModel)
+            torrentFileModel.setLiveUpdatesEnabled(fileUpdatesActive)
+    }
     readonly property bool trackerTabActive:  visible && _isTorrent && currentTab === 5
     readonly property bool webSeedsTabActive: visible && _isTorrent && currentTab === 6
     readonly property var activePeerListModel: peerListActive ? torrentPeerModel : null

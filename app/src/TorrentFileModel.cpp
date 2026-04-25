@@ -16,7 +16,7 @@
 
 #include "TorrentFileModel.h"
 
-#include <functional>
+#include <QHash>
 #include <QSet>
 #include <QStringList>
 
@@ -115,30 +115,93 @@ void TorrentFileModel::updateProgress(const QVector<qint64> &downloadedBytes) {
     if (m_fileEntries.isEmpty())
         return;
 
+    // Skip the entire update path when no view is observing this model. The
+    // alert pump in TorrentSessionManager fires every 2 s for every torrent,
+    // so suppressing here avoids both the recursive tree walk and the QML
+    // notification storm whenever the properties/metadata dialog is hidden.
+    if (!m_liveUpdatesEnabled)
+        return;
+
     const int limit = qMin(m_fileEntries.size(), downloadedBytes.size());
     for (int i = 0; i < limit; ++i)
         m_fileEntries[i].downloaded = downloadedBytes[i];
 
-    std::function<void(Node *)> updateNode = [&](Node *node) {
+    // Walk the tree iteratively (not via std::function recursion) so we avoid
+    // the per-call std::function allocation on every tick and only update
+    // nodes whose downloaded counter actually changed. Folder aggregates are
+    // recomputed bottom-up using a post-order traversal driven by an explicit
+    // stack — equivalent to the previous recursion but without heap traffic.
+    QVector<Node *> postOrder;
+    postOrder.reserve(m_visibleRows.size() + 8);
+    {
+        QVector<Node *> stack;
+        stack.reserve(m_visibleRows.size() + 8);
+        stack.push_back(m_root);
+        while (!stack.isEmpty()) {
+            Node *n = stack.takeLast();
+            if (!n)
+                continue;
+            postOrder.push_back(n);
+            for (Node *c : n->children)
+                stack.push_back(c);
+        }
+    }
+
+    // Track which visible rows changed so we can emit narrow dataChanged
+    // ranges instead of one giant range that re-evaluates every binding.
+    QVector<bool> visibleDirty(m_visibleRows.size(), false);
+    QHash<Node *, int> rowOf;
+    rowOf.reserve(m_visibleRows.size() * 2);
+    for (int i = 0; i < m_visibleRows.size(); ++i)
+        rowOf.insert(m_visibleRows.at(i), i);
+
+    auto markDirty = [&](Node *n) {
+        const auto it = rowOf.constFind(n);
+        if (it != rowOf.constEnd())
+            visibleDirty[it.value()] = true;
+    };
+
+    // Process post-order: children first, then their parent so the folder
+    // aggregate sees up-to-date child counters.
+    for (int i = postOrder.size() - 1; i >= 0; --i) {
+        Node *node = postOrder.at(i);
         if (!node)
-            return;
-        if (!node->isFolder && node->fileIndex >= 0 && node->fileIndex < downloadedBytes.size())
-            node->downloaded = downloadedBytes[node->fileIndex];
-        for (Node *child : node->children)
-            updateNode(child);
-        if (node->isFolder) {
-            node->size = 0;
-            node->downloaded = 0;
-            for (Node *child : node->children) {
-                node->size += child->size;
-                node->downloaded += child->downloaded;
+            continue;
+        if (!node->isFolder) {
+            if (node->fileIndex >= 0 && node->fileIndex < downloadedBytes.size()) {
+                const qint64 nv = downloadedBytes.at(node->fileIndex);
+                if (nv != node->downloaded) {
+                    node->downloaded = nv;
+                    markDirty(node);
+                }
+            }
+        } else {
+            qint64 sumDl = 0;
+            for (Node *child : node->children)
+                sumDl += child->downloaded;
+            if (sumDl != node->downloaded) {
+                node->downloaded = sumDl;
+                markDirty(node);
             }
         }
-    };
-    updateNode(m_root);
+    }
 
-    if (!m_visibleRows.isEmpty())
-        emit dataChanged(index(0), index(m_visibleRows.size() - 1), { ProgressRole, SizeRole });
+    // Emit dataChanged in contiguous runs. Only ProgressRole is sent — sizes
+    // are static after setEntries() (file sizes are torrent-metadata constants
+    // and folder aggregates derive from those), so re-evaluating SizeRole
+    // bindings every 2 s is pure waste.
+    int runStart = -1;
+    for (int row = 0; row < visibleDirty.size(); ++row) {
+        if (visibleDirty.at(row)) {
+            if (runStart < 0)
+                runStart = row;
+        } else if (runStart >= 0) {
+            emit dataChanged(index(runStart), index(row - 1), { ProgressRole });
+            runStart = -1;
+        }
+    }
+    if (runStart >= 0)
+        emit dataChanged(index(runStart), index(visibleDirty.size() - 1), { ProgressRole });
 }
 
 bool TorrentFileModel::setWanted(int row, bool wanted) {

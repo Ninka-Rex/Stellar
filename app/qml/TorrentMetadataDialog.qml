@@ -39,6 +39,14 @@ Window {
     property bool startWhenReady: true
     readonly property var item: downloadId.length > 0 ? App.downloadById(downloadId) : null
     readonly property var fileModel: downloadId.length > 0 ? App.torrentFileModel(downloadId) : null
+    // Suppress per-tick file_progress() walks while this dialog is hidden.
+    // FilePropertiesDialog also gates on its Files tab; here the entire dialog
+    // is a file picker so visibility alone is the right signal.
+    readonly property bool fileUpdatesActive: visible && fileModel !== null
+    onFileUpdatesActiveChanged: {
+        if (fileModel)
+            fileModel.setLiveUpdatesEnabled(fileUpdatesActive)
+    }
     property string pendingSourceLabel: ""
     property string savePath: ""
     property string category: ""

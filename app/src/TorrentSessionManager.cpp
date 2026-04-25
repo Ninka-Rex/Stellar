@@ -43,6 +43,7 @@
 #include <QJsonObject>
 #include <QRandomGenerator>
 #include <QSaveFile>
+#include <QTextStream>
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -371,12 +372,77 @@ QStringList normalizedCountryCodes(const QStringList &values) {
     return out;
 }
 
-constexpr int kDhtZoneBits = 12;
+constexpr int kDhtZoneBits = 12; // scan a 12 bit zone...
 constexpr qint64 kDhtZoneMultiplier = qint64(1) << kDhtZoneBits;
-constexpr int kDhtMeasurementIntervalSecs = 1800;
-constexpr int kDhtMeasurementWindowSecs = 60;
+constexpr int kDhtMeasurementIntervalSecs = 300;
+// Hard ceiling on how long the active crawl runs. With the bootstrap-walk
+// added in pumpDhtEstimatorCrawler() this typically saturates in 15–25 s on
+// a healthy network; the cap is the pessimistic upper bound for when the
+// routing table is small or the network is dropping packets.
+constexpr int kDhtMeasurementWindowSecs = 45;
+// Initial routing-table bootstrap: at the start of every crawl, fan out
+// find_node queries to *every* live node in our routing table targeting
+// random IDs in our zone. Each reply yields up to 8 zone-candidate nodes,
+// turning a 372-entry routing table into ~3000 zone-candidate replies in
+// the first second of the crawl. Without this the BFS only re-queries the
+// ~9% of the routing table that happens to already be in-zone.
+constexpr int kDhtBootstrapWalkSecs = 5;
+// Re-pull dht_live_nodes every N pump ticks during the bootstrap window.
+// At the 20 ms pump cadence this is once per ~100 ms during bootstrap.
+constexpr int kDhtBootstrapLivePullEveryTicks = 5;
+// Sliding-window length for "currently live" zone membership. A zone node is
+// counted toward the live population only if we've heard from it within the
+// last kZoneFreshnessSecs. With insert() overwriting prior timestamps on
+// re-observation, this naturally tracks the *instantaneous* zone population
+// instead of accumulating churn across the entire crawl. Picking too short
+// a value undercounts live nodes that haven't responded to a recent probe;
+// too long lets churn leak in. ~12 s lines up roughly with the median DHT
+// response RTT plus retry, which empirically tracks population well.
+constexpr int kZoneFreshnessSecs = 45;
+// Convergence detection: if the live zone count grows by less than this
+// fraction over the last kPlateauWindowSecs of crawling AND the in-zone
+// discovery rate has dropped below kPlateauNewIdsThresholdPerSec, we declare
+// the estimate stable and publish early. The previous 5%/4 s threshold was
+// far too easy to trip — empirically the BFS would plateau because it had
+// run out of routing-table seed material, not because it had saturated the
+// 4096-node zone. Tightened to 1%/8 s plus a discovery-rate gate.
+constexpr double kPlateauGrowthThreshold = 0.01;
+constexpr int kPlateauWindowSecs = 8;
+constexpr int kPlateauNewIdsThresholdPerSec = 2;
+// Minimum wall-clock time before plateau detection is allowed to fire. Stops
+// the early-exit from triggering during the initial burst when the BFS hasn't
+// even reached the zone yet. Bumped from 6 → 12 s now that we aggressively
+// seed the BFS from the full routing table (see seedDhtCrawlFromRoutingTable
+// in pumpDhtEstimatorCrawler) — the seeding burst lasts ~5 s and we want the
+// plateau detector to wait until well after that finishes.
+constexpr int kPlateauMinSampleSecs = 12;
 constexpr int kDhtMinPaperZoneNodes = 128;
-constexpr double kDhtPaperCoverageProbability = 0.425; // assume we only see 42.5% of nodes
+// Hard ceilings on the long-lived DHT bookkeeping hashes. Without these the
+// crawler accumulates every node it has ever seen across the entire session
+// (m_recentDhtNodeIds), which after several hours of uptime balloons memory
+// into the gigabytes and starves the main thread, manifesting as the window
+// reporting "(Not responding)" while Windows pages the working set.
+constexpr int kDhtRecentNodeIdsCap = 32 * 1024;
+// Per-window cap on the BFS zone-node set. The estimator only needs a
+// statistically meaningful zone count; once we are well past the publish
+// threshold, additional inserts only inflate the cost of pumpDhtEstimatorCrawler
+// (which calls m_dhtMeasurementZoneNodes.keys() on every in-zone pump).
+constexpr int kDhtZoneNodesCap = 8 * 1024;
+// Coverage correction from the published BitTorrent DHT crawler papers
+// (Wolchok/Halderman, Wang/Kangasharju). Both ran controlled ground-truth
+// tests by injecting their own nodes and observed that a zone scanner only
+// picks up ~87% of nodes that are actually live and reachable in its zone.
+// The remaining ~13% are missed because of NAT timeouts, asymmetric/CGNAT
+// firewalls dropping inbound UDP, ISP-level rate limits, and ordinary
+// packet loss — none of which our sliding-window methodology changes.
+//
+// This correction is orthogonal to whether we count cumulatively or via a
+// sliding freshness window: NAT'd nodes get missed under either approach,
+// because the failure is at the network layer before any methodology kicks
+// in. Keep the correction so the published estimate matches the count of
+// nodes that are actually online, not the (smaller) count we were able to
+// elicit responses from.
+constexpr double kDhtPaperCoverageProbability = 0.87;
 constexpr double kDhtPaperCorrectionFactor = 1.0 / kDhtPaperCoverageProbability;
 
 bool isNodeInSameDhtZone(const QByteArray &localId, const QByteArray &candidateId) {
@@ -386,6 +452,109 @@ bool isNodeInSameDhtZone(const QByteArray &localId, const QByteArray &candidateI
     const unsigned char xor0 = static_cast<unsigned char>(localId[0]) ^ static_cast<unsigned char>(candidateId[0]);
     const unsigned char xor1 = static_cast<unsigned char>(localId[1]) ^ static_cast<unsigned char>(candidateId[1]);
     return xor0 == 0 && (xor1 & 0xF0U) == 0;
+}
+
+// Counts entries in a {nodeId → lastSeen} hash whose timestamp falls within
+// the sliding freshness window ending at `now`. This is the time-bounded
+// "currently live" zone population — distinct from hash size, which would
+// include every node ever observed during the crawl (cumulative counting was
+// the bug that made longer crawls produce monotonically larger estimates).
+//
+// O(N) over the hash. The hash is capped at kDhtZoneNodesCap (8 K), and
+// pruneStaleZoneNodes() below shrinks it on every pump tick, so N stays
+// bounded in practice.
+int countLiveZoneNodes(const QHash<QByteArray, QDateTime> &table, const QDateTime &now, int freshnessSecs) {
+    if (!now.isValid() || freshnessSecs <= 0)
+        return table.size();
+    int live = 0;
+    for (auto it = table.constBegin(); it != table.constEnd(); ++it) {
+        if (it.value().isValid() && it.value().secsTo(now) < freshnessSecs)
+            ++live;
+    }
+    return live;
+}
+
+// Drops entries whose timestamps are older than the freshness window.
+// Called from the pump so stale entries don't accumulate to the cap during
+// a long active window — without this, a sparse-response network would
+// eventually fill the 8 K cap with zombie entries and starve fresh inserts.
+void pruneStaleZoneNodes(QHash<QByteArray, QDateTime> &table, const QDateTime &now, int freshnessSecs) {
+    if (!now.isValid() || freshnessSecs <= 0)
+        return;
+    for (auto it = table.begin(); it != table.end();) {
+        if (!it.value().isValid() || it.value().secsTo(now) >= freshnessSecs)
+            it = table.erase(it);
+        else
+            ++it;
+    }
+}
+
+// Appends one row of crawl results to <StellarRoot>/dht_crawl_log.csv. Called
+// from the publish path in maybePublishDhtMeasurementEpoch(), so each row
+// corresponds to exactly one completed crawl. The file is opened in append
+// mode and a header row is written if the file did not previously exist.
+//
+// Schema (one row per crawl):
+//   iso_utc          ISO-8601 timestamp at publish time (UTC)
+//   epoch_ms         Unix epoch milliseconds
+//   wall_secs        Wall-clock seconds the crawl ran before publish
+//   trigger          "plateau" if the rate-plateau early-exit fired,
+//                    otherwise "window" if the hard time cap was reached
+//   live_zone_count  Zone nodes seen within the freshness window
+//   raw_hash_size    Total entries in the zone hash (live + just-stale)
+//   estimate         Published global-population estimate
+//   correction       The 1/coverage factor applied (currently 1/0.87)
+//   freshness_secs   Sliding-window length used for "live" counting
+//   buckets          Routing-table bucket count from libtorrent
+//   routing_nodes    Total nodes across all routing-table buckets
+//   local_node_id    Hex-encoded local DHT node id at crawl time
+//
+// CSV is unquoted because every field is plain ASCII (no commas, no quotes).
+// If you ever add a string field that could contain a comma, quote it.
+void appendDhtCrawlLogRow(const QDateTime &publishedAt,
+                          qint64 wallSecs,
+                          const char *trigger,
+                          int liveZoneCount,
+                          int rawHashSize,
+                          qint64 estimate,
+                          double correctionFactor,
+                          int freshnessSecs,
+                          int buckets,
+                          qint64 routingNodes,
+                          const QByteArray &localNodeId,
+                          int probesSent,
+                          int responsesReceived,
+                          int peakLiveZone) {
+    const QString path = StellarPaths::root() + QStringLiteral("/dht_crawl_log.csv");
+    QFileInfo info(path);
+    QDir().mkpath(info.absolutePath());
+    const bool needsHeader = !info.exists() || info.size() == 0;
+
+    QFile f(path);
+    if (!f.open(QIODevice::Append | QIODevice::Text))
+        return; // Logging is best-effort; never let it disturb the crawl.
+
+    QTextStream out(&f);
+    if (needsHeader) {
+        out << "iso_utc,epoch_ms,wall_secs,trigger,live_zone_count,raw_hash_size,"
+               "estimate,correction,freshness_secs,buckets,routing_nodes,local_node_id,"
+               "probes_sent,responses_received,peak_live_zone\n";
+    }
+    out << publishedAt.toString(Qt::ISODateWithMs) << ','
+        << publishedAt.toMSecsSinceEpoch() << ','
+        << wallSecs << ','
+        << trigger << ','
+        << liveZoneCount << ','
+        << rawHashSize << ','
+        << estimate << ','
+        << QString::number(correctionFactor, 'f', 4) << ','
+        << freshnessSecs << ','
+        << buckets << ','
+        << routingNodes << ','
+        << QString::fromLatin1(localNodeId.toHex()) << ','
+        << probesSent << ','
+        << responsesReceived << ','
+        << peakLiveZone << '\n';
 }
 
 qint64 estimateCorrectedGlobalDhtNodesFromZoneCount(int zoneNodeCount) {
@@ -399,6 +568,33 @@ qint64 estimateCorrectedGlobalDhtNodesFromZoneCount(int zoneNodeCount) {
     if (estimated >= static_cast<long double>(std::numeric_limits<qint64>::max()))
         return std::numeric_limits<qint64>::max();
     return static_cast<qint64>(std::llround(estimated));
+}
+
+// Trims a {nodeId → timestamp} hash to at most `cap` entries by removing the
+// oldest 25% whenever the cap is exceeded. Called from each insert site so
+// the hash cannot grow without bound across a long-running session. The 25%
+// drop amortises the cost: the next 25% × cap inserts run with no pruning.
+void enforceDhtIdCap(QHash<QByteArray, QDateTime> &table, int cap) {
+    if (cap <= 0 || table.size() <= cap)
+        return;
+    const int target = std::max(1, cap * 3 / 4);
+    QVector<QDateTime> stamps;
+    stamps.reserve(table.size());
+    for (auto it = table.constBegin(); it != table.constEnd(); ++it)
+        stamps.push_back(it.value());
+    // nth_element gives us the cutoff timestamp in O(N) without a full sort.
+    const int dropCount = table.size() - target;
+    if (dropCount <= 0)
+        return;
+    auto pivot = stamps.begin() + dropCount;
+    std::nth_element(stamps.begin(), pivot, stamps.end());
+    const QDateTime cutoff = *(pivot - 1);
+    for (auto it = table.begin(); it != table.end();) {
+        if (it.value() <= cutoff && (table.size() > target))
+            it = table.erase(it);
+        else
+            ++it;
+    }
 }
 
 QByteArray xorSuffixMask(const QByteArray &nodeId, quint64 mask) {
@@ -612,12 +808,34 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
         // Drive epoch/warmup state forward even when no responses are arriving,
         // otherwise the tooltip sticks at 0% when the BFS queue is dry.
         maybePublishDhtMeasurementEpoch(now);
-        // If the BFS queue has drained and we still haven't saturated the zone,
-        // re-seed from libtorrent's routing table so the crawl doesn't stall.
-        if (m_session && m_lastDhtNodeId.size() == 20
-            && (m_dhtCrawlQueue.isEmpty() || m_dhtCrawlQueue.size() < 10)) {
-            libtorrent::sha1_hash nid(m_lastDhtNodeId.constData());
-            m_session->dht_live_nodes(nid);
+        // Plateau detection inside maybePublishDhtMeasurementEpoch may have
+        // published the estimate early. Once published, there's nothing left
+        // to do until the next epoch rotation — stop the 50 Hz pump so we
+        // don't burn CPU and UDP bandwidth for the rest of the window.
+        if (m_dhtMeasurementPublished) {
+            m_dhtFastPumpTimer.stop();
+            return;
+        }
+        // Bootstrap walk: during the first kDhtBootstrapWalkSecs of the
+        // measurement window, repeatedly pull dht_live_nodes from libtorrent
+        // every kDhtBootstrapLivePullEveryTicks ticks. Each pull yields up
+        // to N (typically 16–64) routing-table entries that get fed into
+        // the BFS queue; we also re-pull frequently because libtorrent's
+        // dht_live_nodes selection rotates between calls.
+        //
+        // After bootstrap, fall back to the previous "only re-seed on near-
+        // empty queue" behavior so we don't keep hammering the routing table
+        // once the BFS is self-sustaining on follow-up nodes.
+        ++m_dhtBootstrapTickCount;
+        if (m_session && m_lastDhtNodeId.size() == 20) {
+            const bool inBootstrap = elapsed < kDhtBootstrapWalkSecs;
+            const bool queueLow = m_dhtCrawlQueue.isEmpty() || m_dhtCrawlQueue.size() < 10;
+            const bool bootstrapTick =
+                inBootstrap && (m_dhtBootstrapTickCount % kDhtBootstrapLivePullEveryTicks == 0);
+            if (bootstrapTick || queueLow) {
+                libtorrent::sha1_hash nid(m_lastDhtNodeId.constData());
+                m_session->dht_live_nodes(nid);
+            }
         }
         pumpDhtEstimatorCrawler();
     });
@@ -719,6 +937,18 @@ void TorrentSessionManager::applySettings(const AppSettings *settings) {
 
 void TorrentSessionManager::startDhtCrawlNow() {
 #if defined(STELLAR_HAS_LIBTORRENT)
+    // Drain any DHT-related alerts that are already queued in libtorrent
+    // before resetting state. Without this drain, dht_live_nodes_alert and
+    // dht_direct_response_alert messages produced by the *previous* crawl
+    // (or by the auto-crawl trigger that fires on first dht_stats arrival)
+    // can flow into the alert handlers AFTER the reset below, injecting
+    // their nodes into the new measurement and causing the visible "count
+    // jumps mid-crawl" symptom. processAlerts() consumes pending alerts;
+    // running it once here flushes the in-flight backlog so only post-reset
+    // alerts contribute to the new measurement.
+    if (m_session)
+        processAlerts();
+
     // Reset all per-epoch state so the next measurement window starts clean,
     // then immediately kick a dht_live_nodes request to seed the BFS queue.
     m_dhtMeasurementZoneNodes.clear();
@@ -727,6 +957,11 @@ void TorrentSessionManager::startDhtCrawlNow() {
     m_pendingDhtRequests.clear();
     m_dhtCrawlQueue.clear();
     m_enqueuedDhtNodeIds.clear();
+    m_zoneCountHistory.clear();
+    m_dhtBootstrapTickCount = 0;
+    m_dhtCrawlProbesSent = 0;
+    m_dhtCrawlResponsesReceived = 0;
+    m_dhtCrawlPeakLiveZone = 0;
     m_lastDhtWarmupPercent = 0;
 
     if (m_session && m_lastDhtNodeId.size() == 20) {
@@ -766,17 +1001,15 @@ void TorrentSessionManager::pumpDhtEstimatorCrawler() {
 #if defined(STELLAR_HAS_LIBTORRENT)
     if (!m_session || m_lastDhtNodeId.size() != 20)
         return;
-    if (!m_dhtMeasurementStartedAt.isValid())
-        return;
     const QDateTime now = QDateTime::currentDateTimeUtc();
-    const qint64 sampleAgeSecs = std::max<qint64>(0, m_dhtMeasurementStartedAt.secsTo(now));
-    if (sampleAgeSecs >= kDhtMeasurementWindowSecs)
-        return;
 
-    // Paper targets a 5-second crawl; to saturate the 12-bit zone in that
-    // window we need aggressive fan-out. Raise outstanding + per-pump limits
-    // so each dht_direct_response triggers a larger batch of follow-up
-    // find_node queries rather than a trickle of 8.
+    // Prune timed-out pending requests up front, regardless of window state.
+    // The previous version bailed before this loop when the window had ended,
+    // leaving any requests that never received a response sitting in the hash
+    // until the next 30-minute window rotation. They were eventually cleared
+    // on rotate, so this was not a long-term leak — but with bursts of dead
+    // peers the hash could carry hundreds of stale entries between windows
+    // for no good reason.
     constexpr int kMaxOutstandingRequests = 256;
     constexpr int kMaxRequestsPerPump = 64;
     constexpr int kPendingRequestTimeoutSecs = 5;
@@ -787,13 +1020,42 @@ void TorrentSessionManager::pumpDhtEstimatorCrawler() {
             ++it;
     }
 
+    if (!m_dhtMeasurementStartedAt.isValid())
+        return;
+    const qint64 sampleAgeSecs = std::max<qint64>(0, m_dhtMeasurementStartedAt.secsTo(now));
+    if (sampleAgeSecs >= kDhtMeasurementWindowSecs)
+        return;
+
+    // Drop stale zone entries every pump so the cap is occupied by *currently
+    // live* nodes only. Without this, on a long active window the cap fills
+    // with zombie entries and fresh inserts get rejected at line ~970, which
+    // would freeze the live count at the cap value regardless of true
+    // population.
+    pruneStaleZoneNodes(m_dhtMeasurementZoneNodes, now, kZoneFreshnessSecs);
+
+    // Precompute a {nodeId → (host, port)} lookup for the current crawl queue
+    // so the in-zone probe-fanout below can resolve a peer host/port in O(1)
+    // instead of scanning the entire queue per probe. With a queue of several
+    // thousand entries and up to 256 probes per pump, the original linear scan
+    // produced visible single-core CPU spikes (and stalled paint events) every
+    // pump tick during the 60 s active measurement window.
+    QHash<QByteArray, QPair<QString, int>> queueLookup;
+    queueLookup.reserve(m_dhtCrawlQueue.size() * 2);
+    for (const DhtCrawlNode &qn : m_dhtCrawlQueue)
+        queueLookup.insert(qn.id, qMakePair(qn.host, qn.port));
+
     int sent = 0;
     while (!m_dhtCrawlQueue.isEmpty()
            && sent < kMaxRequestsPerPump
            && m_pendingDhtRequests.size() < kMaxOutstandingRequests) {
         const DhtCrawlNode node = m_dhtCrawlQueue.front();
         m_dhtCrawlQueue.pop_front();
-        m_enqueuedDhtNodeIds.remove(node.id);
+        // Intentionally do NOT remove node.id from m_enqueuedDhtNodeIds here.
+        // The set is the per-window dedup guard for enqueueDhtCrawlNode(); it
+        // is cleared on window rotation in maybePublishDhtMeasurementEpoch().
+        // Removing it mid-window allowed a freshly discovered duplicate to be
+        // re-enqueued and re-probed immediately, looping the same node back
+        // through the crawl repeatedly while inflating m_pendingDhtRequests.
 
         const bool inZone = isNodeInSameDhtZone(m_lastDhtNodeId, node.id);
 
@@ -820,10 +1082,12 @@ void TorrentSessionManager::pumpDhtEstimatorCrawler() {
                     const QByteArray &zk = zoneKeys[probeIdx++];
                     if (zk == node.id)
                         continue;
-                    // Look up host/port for this zone node from the crawl queue or
-                    // fall back to the current node — zone node lookup is best-effort.
-                    for (const DhtCrawlNode &qn : m_dhtCrawlQueue) {
-                        if (qn.id == zk) { probeHost = qn.host; probePort = qn.port; break; }
+                    // Look up host/port for this zone node via the precomputed
+                    // lookup hash — was an O(|queue|) linear scan per probe.
+                    const auto it = queueLookup.constFind(zk);
+                    if (it != queueLookup.constEnd()) {
+                        probeHost = it.value().first;
+                        probePort = it.value().second;
                     }
                     break;
                 }
@@ -867,6 +1131,7 @@ void TorrentSessionManager::pumpDhtEstimatorCrawler() {
             }
             m_pendingDhtRequests.insert(requestKey, now);
             ++sent;
+            ++m_dhtCrawlProbesSent;
             if (sent >= kMaxRequestsPerPump || m_pendingDhtRequests.size() >= kMaxOutstandingRequests)
                 break;
         }
@@ -895,21 +1160,28 @@ void TorrentSessionManager::handleDhtDirectResponse(const libtorrent::dht_direct
     const libtorrent::bdecode_node reply = response.dict_find_dict("r");
     if (reply.type() != libtorrent::bdecode_node::dict_t)
         return;
+    // Count any structurally-valid response — even an empty "r" dict means a
+    // node responded, which distinguishes "we sent X probes and Y came back"
+    // from "we sent X probes and Y of them returned nodes." Both numbers are
+    // useful for diagnosing why the BFS isn't growing.
+    ++m_dhtCrawlResponsesReceived;
 
     QVector<QPair<QByteArray, QPair<QString, int>>> discovered;
     parseCompactDhtNodes(reply.dict_find_string_value("nodes"), &discovered);
     parseCompactDhtNodes6(reply.dict_find_string_value("nodes6"), &discovered);
+    const QDateTime nowStamp = QDateTime::currentDateTimeUtc();
     for (const auto &entry : discovered) {
-        m_recentDhtNodeIds.insert(entry.first, QDateTime::currentDateTimeUtc());
+        m_recentDhtNodeIds.insert(entry.first, nowStamp);
         enqueueDhtCrawlNode(entry.first, entry.second.first, entry.second.second);
     }
+    enforceDhtIdCap(m_recentDhtNodeIds, kDhtRecentNodeIdsCap);
     if (!discovered.isEmpty()) {
-        const QDateTime now = QDateTime::currentDateTimeUtc();
         for (const auto &entry : discovered) {
-            if (isNodeInSameDhtZone(m_lastDhtNodeId, entry.first))
-                m_dhtMeasurementZoneNodes.insert(entry.first, now);
+            if (isNodeInSameDhtZone(m_lastDhtNodeId, entry.first)
+                && m_dhtMeasurementZoneNodes.size() < kDhtZoneNodesCap)
+                m_dhtMeasurementZoneNodes.insert(entry.first, nowStamp);
         }
-        maybePublishDhtMeasurementEpoch(now);
+        maybePublishDhtMeasurementEpoch(nowStamp);
         pumpDhtEstimatorCrawler();
     }
 #else
@@ -937,36 +1209,166 @@ void TorrentSessionManager::maybePublishDhtMeasurementEpoch(const QDateTime &now
         m_pendingDhtRequests.clear();
         m_dhtCrawlQueue.clear();
         m_enqueuedDhtNodeIds.clear();
+        m_zoneCountHistory.clear();
+        m_dhtBootstrapTickCount = 0;
+        m_dhtCrawlProbesSent = 0;
+        m_dhtCrawlResponsesReceived = 0;
+        m_dhtCrawlPeakLiveZone = 0;
         if (!m_dhtFastPumpTimer.isActive())
             m_dhtFastPumpTimer.start();
     }
 
     const qint64 activeSampleSecs = std::max<qint64>(0, m_dhtMeasurementStartedAt.secsTo(now));
-    const int zoneCount = m_dhtMeasurementZoneNodes.size();
+
+    // Count only zone nodes seen within the sliding freshness window. This
+    // turns the estimate from a cumulative count of every node observed
+    // during the crawl (which grew monotonically with window length —
+    // double the window, double the number) into an estimate of the
+    // *current* live zone population.
+    const int zoneCount = countLiveZoneNodes(m_dhtMeasurementZoneNodes, now, kZoneFreshnessSecs);
+    if (zoneCount > m_dhtCrawlPeakLiveZone)
+        m_dhtCrawlPeakLiveZone = zoneCount;
     const qint64 correctedEstimate = estimateCorrectedGlobalDhtNodesFromZoneCount(zoneCount);
 
-    const double progress = std::clamp(double(activeSampleSecs) / double(kDhtMeasurementWindowSecs), 0.0, 1.0);
-    m_lastDhtWarmupPercent = std::clamp(int(std::llround(progress * 100.0)), 0, 100);
+    // Plateau-based early-exit: track the recent history of live counts and
+    // declare convergence when the count has stopped meaningfully growing.
+    // Without this the crawl ran for the full kDhtMeasurementWindowSecs even
+    // after the zone was fully saturated.
+    //
+    // Sample at most once per second. The fast pump fires at 50 Hz, so an
+    // unconditional push would inflate the history to hundreds of entries
+    // and make growth comparisons sensitive to per-tick jitter rather than
+    // real-second-over-second movement.
+    if (m_zoneCountHistory.isEmpty()
+        || m_zoneCountHistory.last().takenAt.msecsTo(now) >= 1000) {
+        ZoneSample sample;
+        sample.takenAt = now;
+        sample.liveCount = zoneCount;
+        m_zoneCountHistory.push_back(sample);
+        const QDateTime trimCutoff = now.addSecs(-(kPlateauWindowSecs * 2));
+        while (!m_zoneCountHistory.isEmpty() && m_zoneCountHistory.front().takenAt < trimCutoff)
+            m_zoneCountHistory.pop_front();
+    }
 
-    if (activeSampleSecs < kDhtMeasurementWindowSecs)
+    bool plateauReached = false;
+    if (activeSampleSecs >= kPlateauMinSampleSecs && zoneCount >= kDhtMinPaperZoneNodes) {
+        // Find the oldest sample within the plateau window so we can compare
+        // current count against count from kPlateauWindowSecs ago.
+        const QDateTime plateauStart = now.addSecs(-kPlateauWindowSecs);
+        int referenceCount = -1;
+        for (const ZoneSample &s : m_zoneCountHistory) {
+            if (s.takenAt >= plateauStart) {
+                referenceCount = s.liveCount;
+                break;
+            }
+        }
+
+        // Recent-discovery rate: count zone-hash entries whose timestamp is
+        // within the last second. This is the rate of *fresh observations*
+        // per second; if the BFS were genuinely saturating it would still be
+        // re-observing the same zone members at >0 rate. A drop to near zero
+        // says "we are not seeing new in-zone responses anymore" which is a
+        // stronger signal than count-stopped-growing alone.
+        int recentObservations = 0;
+        for (auto it = m_dhtMeasurementZoneNodes.constBegin();
+             it != m_dhtMeasurementZoneNodes.constEnd(); ++it) {
+            if (it.value().isValid() && it.value().msecsTo(now) <= 1000)
+                ++recentObservations;
+        }
+
+        if (referenceCount > 0) {
+            const double growth = double(zoneCount - referenceCount) / double(referenceCount);
+            // Both gates must trigger: count flat AND discovery rate dead.
+            // Either alone produces false positives — count can be flat
+            // because nodes are aging out at the same rate as new ones come
+            // in, and discovery rate can briefly dip during a routing-table
+            // re-pull.
+            if (growth < kPlateauGrowthThreshold
+                && recentObservations < kPlateauNewIdsThresholdPerSec) {
+                plateauReached = true;
+            }
+        }
+    }
+
+    // Warmup percent reflects whichever finish condition is closest.
+    const double timeProgress = std::clamp(double(activeSampleSecs) / double(kDhtMeasurementWindowSecs), 0.0, 1.0);
+    m_lastDhtWarmupPercent = std::clamp(int(std::llround(timeProgress * 100.0)), 0, 100);
+    if (plateauReached)
+        m_lastDhtWarmupPercent = 100;
+
+    if (!plateauReached && activeSampleSecs < kDhtMeasurementWindowSecs)
         return;
 
-    if (zoneCount < kDhtMinPaperZoneNodes || correctedEstimate <= 0)
+    // Publish the *peak* live-zone count seen during the crawl rather than
+    // the final live count. Empirically (see CSV diagnostic rows from
+    // 2026-04-25) the BFS hits its true zone coverage somewhere mid-crawl,
+    // then the count *declines* as nodes age out of the freshness window
+    // faster than they are re-confirmed — by the time the plateau detector
+    // fires we've lost ~30–40 % of the population we already observed.
+    // The peak corresponds to the moment of maximum coverage, which is
+    // closer to the snapshot quantity the paper's correction factor was
+    // calibrated against.
+    const int publishedZoneCount = std::max(zoneCount, m_dhtCrawlPeakLiveZone);
+    const qint64 publishedEstimate = estimateCorrectedGlobalDhtNodesFromZoneCount(publishedZoneCount);
+
+    if (publishedZoneCount < kDhtMinPaperZoneNodes || publishedEstimate <= 0)
         return;
 
     if (m_dhtMeasurementPublished)
         return;
 
-    m_cachedDhtGlobalEstimate = correctedEstimate;
-    m_lastDhtGlobalNodes = correctedEstimate;
-    m_dhtMeasurementPublished = true;
-    m_dhtMeasurementLastPublishedAt = now;
-    m_lastPublishedZoneCount = zoneCount;
-    m_recentPublishedDhtEstimates.push_back(correctedEstimate);
+    // Append the raw estimate to the rolling history, then publish the median
+    // of the last few crawls rather than the just-completed one. Successive
+    // crawls hit slightly different parts of the zone (different BFS seed
+    // material, churn, packet loss), so a single crawl's number can wobble
+    // ±10–15 % between back-to-back runs even when the true population is
+    // constant. The median of the last 5 crawls smooths that wobble out
+    // without lagging behind real population changes (a single outlier can't
+    // sway the median, but a sustained shift in 3 of 5 most recent values
+    // does).
+    m_recentPublishedDhtEstimates.push_back(publishedEstimate);
     constexpr int kMaxPublishedHistory = 64;
     if (m_recentPublishedDhtEstimates.size() > kMaxPublishedHistory)
         m_recentPublishedDhtEstimates.remove(0,
             m_recentPublishedDhtEstimates.size() - kMaxPublishedHistory);
+
+    constexpr int kSmoothingWindow = 5;
+    qint64 displayedEstimate = publishedEstimate;
+    if (m_recentPublishedDhtEstimates.size() >= 2) {
+        QVector<qint64> recent;
+        const int take = std::min(kSmoothingWindow, int(m_recentPublishedDhtEstimates.size()));
+        for (int i = m_recentPublishedDhtEstimates.size() - take;
+             i < m_recentPublishedDhtEstimates.size(); ++i) {
+            recent.push_back(m_recentPublishedDhtEstimates.at(i));
+        }
+        std::sort(recent.begin(), recent.end());
+        displayedEstimate = recent.at(recent.size() / 2);
+    }
+
+    m_cachedDhtGlobalEstimate = displayedEstimate;
+    m_lastDhtGlobalNodes = displayedEstimate;
+    m_dhtMeasurementPublished = true;
+    m_dhtMeasurementLastPublishedAt = now;
+    m_lastPublishedZoneCount = publishedZoneCount;
+
+    // Persist one CSV row per completed crawl so the user can compare
+    // estimates across runs, look for diurnal patterns, and check
+    // self-consistency of back-to-back crawls. Best-effort: log failure
+    // never interrupts the estimator.
+    appendDhtCrawlLogRow(now,
+                         activeSampleSecs,
+                         plateauReached ? "plateau" : "window",
+                         publishedZoneCount,
+                         m_dhtMeasurementZoneNodes.size(),
+                         publishedEstimate,
+                         kDhtPaperCorrectionFactor,
+                         kZoneFreshnessSecs,
+                         m_lastDhtBucketCount,
+                         std::max<qint64>(0, m_lastDhtNodes),
+                         m_lastDhtNodeId,
+                         m_dhtCrawlProbesSent,
+                         m_dhtCrawlResponsesReceived,
+                         m_dhtCrawlPeakLiveZone);
 
 #else
     Q_UNUSED(now);
@@ -1783,7 +2185,17 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
     libtorrent::error_code ec;
     libtorrent::add_torrent_params params;
 
-    const QByteArray resumeBlob = QByteArray::fromBase64(item->torrentResumeData().toLatin1());
+    // Resume blob is stored on disk under StellarPaths::resumeFile() rather
+    // than preloaded into the DownloadItem at startup. Read it here, on the
+    // hot path where we actually need the bytes — DownloadDatabase::loadAll
+    // used to preload + Base64 every blob synchronously before the QML window
+    // could even paint.
+    QByteArray resumeBlob = item->torrentResumeData();
+    if (resumeBlob.isEmpty()) {
+        QFile rf(StellarPaths::resumeFile(item->id()));
+        if (rf.exists() && rf.open(QIODevice::ReadOnly))
+            resumeBlob = rf.readAll();
+    }
     if (!resumeBlob.isEmpty()) {
         params = libtorrent::read_resume_data(asSpan(resumeBlob), ec);
         if (ec)
@@ -1945,6 +2357,11 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             m_enqueuedDhtNodeIds.clear();
             m_pendingDhtRequests.clear();
             m_dhtMeasurementZoneNodes.clear();
+            m_zoneCountHistory.clear();
+            m_dhtBootstrapTickCount = 0;
+            m_dhtCrawlProbesSent = 0;
+            m_dhtCrawlResponsesReceived = 0;
+            m_dhtCrawlPeakLiveZone = 0;
             m_dhtMeasurementStartedAt = {};
             m_dhtMeasurementPublished = false;
         }
@@ -1962,16 +2379,20 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             totalNodes += bucket.num_nodes;
         if (totalNodes > 0)
             m_lastDhtNodes = totalNodes;
+        // Capture bucket count separately so the crawl-log row can record both
+        // the number of routing-table buckets and the total nodes within them.
+        m_lastDhtBucketCount = static_cast<int>(dhtStats->routing_table.size());
 
-        if (m_session && m_lastDhtNodeId.size() == 20
-            && (!m_lastDhtLiveNodesRequest.isValid()
-                || m_lastDhtLiveNodesRequest.elapsed() >= (kDhtMeasurementIntervalSecs * 1000))) {
-            m_session->dht_live_nodes(dhtStats->nid);
-            if (!m_lastDhtLiveNodesRequest.isValid())
-                m_lastDhtLiveNodesRequest.start();
-            else
-                m_lastDhtLiveNodesRequest.restart();
-        }
+        // Intentionally do NOT issue dht_live_nodes() from this alert handler.
+        // An older revision did so on a kDhtMeasurementIntervalSecs cadence
+        // here as a secondary "auto-crawl" trigger, but the measurement state
+        // machine in maybePublishDhtMeasurementEpoch() and the fast-pump timer
+        // already drive their own dht_live_nodes() calls (in startDhtCrawlNow,
+        // and in the bootstrap walk inside the fast-pump lambda). Keeping a
+        // second uncoordinated trigger here meant extra dht_live_nodes results
+        // could land mid-crawl and inject nodes into the active measurement —
+        // visible to the user as the live-zone count jumping forward partway
+        // through a manual crawl.
         return;
     }
 
@@ -1988,18 +2409,27 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         const auto nodes = live->nodes();
 
         // Feed the bounded paper-style sample window and the active crawl queue
-        // from the latest live-node snapshot.
+        // from the latest live-node snapshot. Both hashes are explicitly bounded
+        // — without caps, m_recentDhtNodeIds grew without limit across a long
+        // session (it was inserted-to but never read or pruned), accumulating
+        // millions of entries and triggering "Not responding" on the GUI thread
+        // as Windows paged the working set.
         for (const auto &entry : nodes) {
             const QByteArray nodeId(entry.first.data(), int(entry.first.size()));
             m_recentDhtNodeIds.insert(nodeId, now);
-            if (isNodeInSameDhtZone(m_lastDhtNodeId, nodeId))
+            if (isNodeInSameDhtZone(m_lastDhtNodeId, nodeId)
+                && m_dhtMeasurementZoneNodes.size() < kDhtZoneNodesCap)
                 m_dhtMeasurementZoneNodes.insert(nodeId, now);
 
-            if (entry.second.address().is_v4()) {
-                const QString host = QString::fromStdString(entry.second.address().to_string());
-                enqueueDhtCrawlNode(nodeId, host, entry.second.port());
-            }
+            // Queue both v4 and v6 endpoints — pumpDhtEstimatorCrawler() has
+            // a v6 dispatch branch in the dht_direct_request call, so feeding
+            // v6 nodes lets us probe the IPv6 side of the zone too. Without
+            // this, a routing table that's mostly v6 (some ISPs) would leave
+            // most of the BFS material on the floor.
+            const QString host = QString::fromStdString(entry.second.address().to_string());
+            enqueueDhtCrawlNode(nodeId, host, entry.second.port());
         }
+        enforceDhtIdCap(m_recentDhtNodeIds, kDhtRecentNodeIdsCap);
         maybePublishDhtMeasurementEpoch(now);
         pumpDhtEstimatorCrawler();
         return;
@@ -2053,9 +2483,15 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         const QString id = idForHandle(resume->handle);
         DownloadItem *item = m_items.value(id, nullptr).data();
         if (item) {
+            // Store the raw libtorrent buffer directly. Previously the blob
+            // was Base64-encoded into a QString here, then Base64-decoded again
+            // on the AppController side before write — and Base64-encoded once
+            // more on startup load before being decoded a final time. Two full
+            // round-trips of redundant Base64 (plus QString's UTF-16 doubling)
+            // for an opaque blob the QML layer never sees.
             const auto buf = libtorrent::write_resume_data_buf(resume->params);
-            const QByteArray encoded(buf.data(), static_cast<qsizetype>(buf.size()));
-            item->setTorrentResumeData(QString::fromLatin1(encoded.toBase64()));
+            QByteArray raw(buf.data(), static_cast<qsizetype>(buf.size()));
+            item->setTorrentResumeData(std::move(raw));
         }
         return;
     }
@@ -2201,12 +2637,18 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             fileModel->setEntries(entries);
         }
 
-        const std::vector<std::int64_t> progress = handle.file_progress(libtorrent::torrent_handle::piece_granularity);
-        QVector<qint64> downloaded;
-        downloaded.reserve(int(progress.size()));
-        for (std::int64_t value : progress)
-            downloaded.push_back(value);
-        fileModel->updateProgress(downloaded);
+        // file_progress() iterates every piece for every file inside libtorrent
+        // — non-trivial CPU on large torrents — so skip the call entirely when
+        // no view is observing the model. The dialog re-enables live updates
+        // and triggers a refresh on the next alert tick when it becomes visible.
+        if (fileModel->liveUpdatesEnabled()) {
+            const std::vector<std::int64_t> progress = handle.file_progress(libtorrent::torrent_handle::piece_granularity);
+            QVector<qint64> downloaded;
+            downloaded.reserve(int(progress.size()));
+            for (std::int64_t value : progress)
+                downloaded.push_back(value);
+            fileModel->updateProgress(downloaded);
+        }
     }
 
     if (m_pausedIds.contains(downloadId)

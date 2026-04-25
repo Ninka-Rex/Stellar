@@ -203,6 +203,7 @@ private:
     int m_modelTick{0};
     int m_dhtNodesMetricIndex{-1};
     qint64 m_lastDhtNodes{-1};
+    int m_lastDhtBucketCount{0};
     qint64 m_lastDhtGlobalNodes{-1};
     qint64 m_cachedDhtGlobalEstimate{-1};
     int m_lastDhtWarmupPercent{0};
@@ -223,6 +224,25 @@ private:
     // the tooltip doesn't flash "Closest samples: 0" while the next crawl
     // is warming up.
     int m_lastPublishedZoneCount{0};
+    // Sliding-window history of live zone-node counts, used by the plateau
+    // detector in maybePublishDhtMeasurementEpoch() to publish early once
+    // the BFS has saturated and the count has stopped meaningfully growing.
+    // Trimmed to ~2 × kPlateauWindowSecs of samples; tiny in practice.
+    struct ZoneSample {
+        QDateTime takenAt;
+        int liveCount{0};
+    };
+    QList<ZoneSample> m_zoneCountHistory;
+    // Counts pump-timer ticks since the current measurement started, used to
+    // pace bootstrap-walk re-pulls of dht_live_nodes inside pumpDhtEstimator-
+    // Crawler(). Reset when a new epoch begins.
+    int m_dhtBootstrapTickCount{0};
+    // Per-crawl diagnostic counters, reset on epoch start, written to the CSV
+    // log so we can tell whether undersaturation is caused by sending too few
+    // probes or by the network simply not yielding more in-zone nodes.
+    int m_dhtCrawlProbesSent{0};
+    int m_dhtCrawlResponsesReceived{0};
+    int m_dhtCrawlPeakLiveZone{0};
     // Dedicated high-frequency pump timer (100ms) that runs only while a
     // measurement window is active, so dht_direct_request queries saturate
     // the 5–10s crawl instead of trickling out at the 2s alert-timer rate.
