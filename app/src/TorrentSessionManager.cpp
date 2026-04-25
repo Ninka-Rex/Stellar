@@ -374,9 +374,9 @@ QStringList normalizedCountryCodes(const QStringList &values) {
 constexpr int kDhtZoneBits = 12;
 constexpr qint64 kDhtZoneMultiplier = qint64(1) << kDhtZoneBits;
 constexpr int kDhtMeasurementIntervalSecs = 1800;
-constexpr int kDhtMeasurementWindowSecs = 120;
+constexpr int kDhtMeasurementWindowSecs = 60;
 constexpr int kDhtMinPaperZoneNodes = 128;
-constexpr double kDhtPaperCoverageProbability = 0.87;
+constexpr double kDhtPaperCoverageProbability = 0.425; // assume we only see 42.5% of nodes
 constexpr double kDhtPaperCorrectionFactor = 1.0 / kDhtPaperCoverageProbability;
 
 bool isNodeInSameDhtZone(const QByteArray &localId, const QByteArray &candidateId) {
