@@ -175,7 +175,9 @@ QString formatListenInterface(const QHostAddress &address, int port) {
 }
 
 QNetworkInterface findNetworkInterfaceForBinding(const QString &bindTarget) {
-    const QString trimmed = bindTarget.trimmed();
+    // Cap to a sane length — real interface names are well under 64 chars on
+    // any platform; anything longer cannot match a real interface.
+    const QString trimmed = bindTarget.trimmed().left(64);
     if (trimmed.isEmpty())
         return {};
 
@@ -342,7 +344,7 @@ QStringList geoDbCandidates() {
 
 QString defaultTorrentUserAgent(const AppSettings *settings) {
     if (settings) {
-        const QString custom = settings->torrentCustomUserAgent().trimmed();
+        const QString custom = settings->torrentCustomUserAgent().trimmed().left(512);
         if (!custom.isEmpty())
             return custom;
     }
