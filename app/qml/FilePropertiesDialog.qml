@@ -2559,7 +2559,7 @@ Window {
 
                                         Text {
                                             id: progPctLbl
-                                            anchors { left: parent.left; leftMargin: 6; verticalCenter: parent.verticalCenter }
+                                            anchors { left: parent.left; verticalCenter: parent.verticalCenter }
                                             text: Math.round(root.clampPct(fd.progress) * 100) + "%"
                                             color: fd.wanted ? "#b0b0b0" : "#555"
                                             font.pixelSize: 11
@@ -2587,7 +2587,7 @@ Window {
                                         width: root.fileColSize; anchors.verticalCenter: parent.verticalCenter
                                         text: root.compactBytes(fd.size)
                                         color: fd.wanted ? "#b0b0b0" : "#555"
-                                        font.pixelSize: 12; horizontalAlignment: Text.AlignRight
+                                        font.pixelSize: 12; horizontalAlignment: Text.AlignLeft
                                     }
                                 }
 
