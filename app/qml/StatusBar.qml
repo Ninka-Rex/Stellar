@@ -95,6 +95,7 @@ Rectangle {
             }
             color: "#a0a0a0"
             font.pixelSize: 11
+            Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
         }
 
@@ -127,6 +128,7 @@ Rectangle {
             }
             color: onlineUsersHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11
+            Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
 
             HoverHandler { id: onlineUsersHover }
@@ -152,6 +154,7 @@ Rectangle {
             text: "☯ " + App.allTimeRatio.toFixed(3)
             color: ratioHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11
+            Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
 
             HoverHandler { id: ratioHover }
@@ -201,6 +204,7 @@ Rectangle {
             }
             color: ipHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11
+            Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
 
             HoverHandler {
@@ -259,6 +263,7 @@ Rectangle {
             }
             color: "#b0b0b0"
             font.pixelSize: 11
+            Layout.fillHeight: true
             verticalAlignment: Text.AlignVCenter
         }
 
