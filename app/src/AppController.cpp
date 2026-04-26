@@ -3922,20 +3922,16 @@ void AppController::openFolderSelectFile(const QString &id) {
     if (!item) return;
 
 #if defined(STELLAR_WINDOWS)
-    // Multi-file torrents are folder targets; selecting "savePath/filename" is often
-    // invalid while downloading and can point to a non-existent path.
-    if (item->isTorrent() && !item->torrentIsSingleFile()) {
-        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
-        return;
-    }
-
     // If the filename is unknown (e.g. yt-dlp item where metadata wasn't captured),
     // just open the directory so the user isn't sent to the wrong place.
     if (item->filename().isEmpty()) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
         return;
     }
-    const QString filePath   = item->savePath() + QLatin1Char('/') + item->filename();
+    // For multi-file torrents the "filename" is the torrent's root folder name;
+    // selecting it inside savePath highlights the folder in Explorer, which is
+    // what the user expects from "Open folder".
+    const QString filePath = item->savePath() + QLatin1Char('/') + item->filename();
     if (!QFileInfo::exists(filePath)) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
         return;
@@ -3952,6 +3948,30 @@ void AppController::openFolderSelectFile(const QString &id) {
     if (item->filename().isEmpty()) {
         QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
         return;
+    }
+    const QString filePath = item->savePath() + QLatin1Char('/') + item->filename();
+    if (!QFileInfo::exists(filePath)) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
+        return;
+    }
+    // Try common Linux file managers' "select" syntax. Falls back to plain
+    // open-the-directory if none are available, matching prior behavior.
+    auto tryRun = [](const QString &program, const QStringList &args) -> bool {
+        return QProcess::startDetached(program, args);
+    };
+    // Nautilus / Nemo / Caja accept the URI directly and select the target.
+    if (tryRun(QStringLiteral("xdg-mime"),
+               {QStringLiteral("query"), QStringLiteral("default"),
+                QStringLiteral("inode/directory")})) {
+        // Best-effort: try the major file managers in order. Ignore failures.
+        if (tryRun(QStringLiteral("nautilus"),
+                   {QStringLiteral("--select"), filePath}))
+            return;
+        if (tryRun(QStringLiteral("nemo"), {filePath}))
+            return;
+        if (tryRun(QStringLiteral("dolphin"),
+                   {QStringLiteral("--select"), filePath}))
+            return;
     }
     QDesktopServices::openUrl(QUrl::fromLocalFile(item->savePath()));
 #endif
