@@ -1062,7 +1062,7 @@ void TorrentSessionManager::startDhtCrawlNow() {
 
 void TorrentSessionManager::enqueueDhtCrawlNode(const QByteArray &nodeId, const QString &host, int port) {
 #if defined(STELLAR_HAS_LIBTORRENT)
-    if (nodeId.size() != 20 || host.trimmed().isEmpty() || port <= 0 || nodeId == m_lastDhtNodeId)
+    if (nodeId.size() != 20 || host.trimmed().isEmpty() || port <= 0 || port > 65535 || nodeId == m_lastDhtNodeId)
         return;
     if (m_enqueuedDhtNodeIds.contains(nodeId))
         return;
