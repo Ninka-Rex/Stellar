@@ -78,6 +78,17 @@ private:
         bool networkDone{false}; // reply finished but pending not yet flushed
         int    retryCount{0};    // number of retries attempted for this segment
         qint64 lastByteTime{0};  // QDateTime::currentMSecsSinceEpoch() of last received byte
+        // True after maybeStealWork() has shortened this segment's endOffset
+        // and handed the second half to a new dynamic segment. Used by the UI
+        // to flag the slot as "stolen from" (red marker on the progress bar)
+        // instead of mistakenly displaying it as Complete once the shortened
+        // range fills.
+        bool   stolenFrom{false};
+        // UI slot this segment should appear in. The connections-list dialog
+        // shows m_segmentCount fixed rows; dynamic segments inherit the slot
+        // of the segment they were spawned from, so the row "recycles" to the
+        // newer connection rather than accumulating completed/stolen rows.
+        int    uiSlot{-1};
     };
 
     void sendHeadRequest(const QUrl &overrideUrl = QUrl());
@@ -106,7 +117,7 @@ private:
     void applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const;
     void retrySegment(int index, int extraDelayMs = 0);
     void fallbackToSingleSegment();
-    void maybeStealWork();
+    bool maybeStealWork(int freedUiSlot = -1);
     void startNextPendingSegment();
     void seedCookieJar();
 

@@ -1596,7 +1596,7 @@ Rectangle {
                 && !root.filterMatchCase
                 && !root.filterMatchWhole
                 && App.restoreTotalCount > 0
-                && (App.restoreInProgress || root.modelRowCount < App.restoreTotalCount)
+                && App.restoreInProgress
             visible: restoreOverlayVisible
 
             Text {

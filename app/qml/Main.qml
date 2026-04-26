@@ -90,6 +90,14 @@ ApplicationWindow {
         })
     }
 
+    function showDownloadProgressForItem(item) {
+        if (!item)
+            return
+        progressDialog.item = item
+        progressDialog.downloadId = item.id || ""
+        showAndActivate(progressDialog)
+    }
+
     function showTorrentSearchWindow() {
         torrentSearchWindow.show()
         torrentSearchWindow.raise()
@@ -486,11 +494,13 @@ ApplicationWindow {
             if (item.isYtdlp && item.ytdlpPlaylistMode) return
             if (item.queueId && item.queueId.length > 0) return
             if (item.category && App.isGrabberProjectId(item.category)) return
-            progressDialog.item       = item
-            progressDialog.downloadId = item.id
-            progressDialog.show()
-            progressDialog.raise()
-            progressDialog.requestActivate()
+            // Defer show() by one event-loop cycle so any dialog that triggered
+            // the download (e.g. DownloadFileInfoDialog) finishes closing first.
+            // Without this, Windows brings the main window to the front when the
+            // triggering dialog closes, pushing progressDialog behind it.
+            Qt.callLater(function() {
+                root.showDownloadProgressForItem(item)
+            })
         }
         function onDownloadCompleted(item) {
             if (progressDialog.visible && progressDialog.item === item)
@@ -945,12 +955,22 @@ ApplicationWindow {
                 return
             }
             if (downloadId && downloadId.length > 0) {
-                App.finalizePendingDownload(downloadId, savePath, category, desc, true, "")
+                if (App.finalizePendingDownload(downloadId, savePath, category, desc, true, "")) {
+                    // Pending file-info downloads can still briefly report
+                    // "Paused" when the UI signal arrives; open the progress
+                    // window directly for the item the user just started.
+                    Qt.callLater(function() {
+                        root.showDownloadProgressForItem(App.downloadById(downloadId))
+                    })
+                }
             } else {
                 var sep = Math.max(savePath.lastIndexOf("/"), savePath.lastIndexOf("\\"))
                 var dir   = sep >= 0 ? savePath.substring(0, sep) : savePath
                 var fname = sep >= 0 ? savePath.substring(sep + 1) : fileInfoDialog.filenameOverride
                 App.addUrl(url, dir, category, desc, true, App.takePendingCookies(url), App.takePendingReferrer(url), App.takePendingPageUrl(url), root._pendingUsername, root._pendingPassword, fname)
+                Qt.callLater(function() {
+                    root.showDownloadProgressForItem(App.findDuplicateUrl(url))
+                })
             }
             fileInfoDialog.pendingDownloadId = ""
         }
@@ -1426,7 +1446,7 @@ ApplicationWindow {
     }
 
     // ── Download Progress Dialog ──────────────────────────────────────────────
-    DownloadProgressDialog { id: progressDialog }
+    DownloadProgressDialog { id: progressDialog; transientParent: root }
 
     // ── Download Complete Dialog ──────────────────────────────────────────────
     DownloadCompleteDialog { id: completeDialog; transientParent: root }
@@ -2493,21 +2513,13 @@ ApplicationWindow {
                         exportTorrentFolderDialog.open()
                 }
                 onOpenProgressRequested: (item) => {
-                    progressDialog.item       = item
-                    progressDialog.downloadId = item ? item.id : ""
-                    progressDialog.show()
-                    progressDialog.raise()
-                    progressDialog.requestActivate()
+                    root.showDownloadProgressForItem(item)
                 }
                 onOpenPropertiesRequested: (item) => {
                     if (!item)
                         return
                     if (!item.isTorrent && (item.status === "Downloading" || item.status === "Assembling")) {
-                        progressDialog.item       = item
-                        progressDialog.downloadId = item.id
-                        progressDialog.show()
-                        progressDialog.raise()
-                        progressDialog.requestActivate()
+                        root.showDownloadProgressForItem(item)
                         return
                     }
                     var changingType = filePropertiesDialog.visible

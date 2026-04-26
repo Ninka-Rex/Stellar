@@ -33,6 +33,7 @@ Window {
     property bool   shutdownWhenDone: false
     property bool   completionHandled: false
     property var    _pendingSegmentData: null
+    property int    segmentRowLimit: Math.max(1, App.settings ? App.settings.perHostConnectionLimit : 8)
 
     width: 620
     height: 520
@@ -56,8 +57,15 @@ Window {
         return data ? data : []
     }
 
+    function _segmentRows(data) {
+        var rows = _normalizeSegmentData(data)
+        if (rows.length <= segmentRowLimit)
+            return rows
+        return rows.slice(rows.length - segmentRowLimit)
+    }
+
     function syncSegmentList(data) {
-        var next = _normalizeSegmentData(data)
+        var next = _segmentRows(data)
         var oldCount = segmentListModel.count
         var newCount = next.length
         var shared = Math.min(oldCount, newCount)
@@ -510,7 +518,9 @@ Window {
                                     readonly property real total: (item && item.totalBytes > 0) ? item.totalBytes : 1
                                     readonly property real segW:  (seg.endByte - seg.startByte + 1) / total * parent.width
                                     readonly property real segX:  seg.startByte / total * parent.width
-                                    readonly property real fillW: seg.received / Math.max(1, seg.endByte - seg.startByte + 1) * segW
+                                    readonly property real fillW: seg.info === "Complete"
+                                                                  ? segW
+                                                                  : seg.received / Math.max(1, seg.endByte - seg.startByte + 1) * segW
 
                                     x: segX
                                     width: Math.max(1, segW)
@@ -591,9 +601,9 @@ Window {
                                         Row {
                                             anchors { fill: parent; leftMargin: 8 }
                                             spacing: 0
-                                            Text { width: 34;  text: (index + 1) + ".";               color: "#999"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                            Text { width: 34;  text: (index + 1) + ".";       color: "#999";    font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                             Text { width: 110; text: root.fmtBytes(received); color: "#cccccc"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
-                                            Text {             text: info ?? "";                 color: "#e0e0e0"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                            Text {             text: info ?? "";              color: "#e0e0e0"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         }
                                     }
                                 }

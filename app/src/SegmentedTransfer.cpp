@@ -420,6 +420,7 @@ void SegmentedTransfer::setupSegments(qint64 totalBytes, bool resumeCapable) {
         seg.endOffset   = -1; // unknown
         seg.received    = 0;
         seg.partPath    = partPath(0);
+        seg.uiSlot      = 0;
         m_segments.append(seg);
     } else {
         qint64 segSize = totalBytes / segCount;
@@ -430,9 +431,15 @@ void SegmentedTransfer::setupSegments(qint64 totalBytes, bool resumeCapable) {
             seg.endOffset   = (i == segCount - 1) ? totalBytes - 1 : (i + 1) * segSize - 1;
             seg.received    = 0;
             seg.partPath    = partPath(i);
+            seg.uiSlot      = i;
             m_segments.append(seg);
         }
     }
+
+    // Publish the freshly-built layout to the UI immediately so the
+    // connections list / progress visualizer renders all slots up front
+    // instead of waiting for the first byte-tick to populate them.
+    updateSegmentDataOnItem();
 }
 
 void SegmentedTransfer::startAllSegments() {
@@ -869,9 +876,9 @@ void SegmentedTransfer::onSegmentFinished(int index) {
     seg.done = true;
     if (seg.file) seg.file->close();
 
-    // Dynamic segmentation: we have a free connection — try to steal work
-    // from the slowest remaining segment.  This is the key IDM behavior.
-    maybeStealWork();
+    // Completed segments keep their own UI slot so the dialog can continue
+    // showing them as fully filled even if a replacement connection starts.
+    maybeStealWork(-1);
 
     // If there are segments waiting due to per-host connection cap, start one.
     startNextPendingSegment();
@@ -1000,14 +1007,26 @@ void SegmentedTransfer::onProgressTick() {
 }
 
 void SegmentedTransfer::updateSegmentDataOnItem() {
-    QVariantList list;
+    // Keep enough UI slots to show every connection that has existed so far.
+    // Completed ranges should stay visible as fully-filled blue bars instead of
+    // being recycled back to gray when a new connection steals more work later.
+    int slotCount = m_segmentCount > 0 ? m_segmentCount : 1;
     for (const auto &seg : m_segments) {
-        // Dynamic segments (index >= m_segmentCount) are implementation details —
-        // they steal work from existing slots and should not add new rows to the UI.
-        // The victim segment's row still reflects its own progress; the new segment's
-        // bytes contribute to the overall progress bar but don't need their own row.
-        if (seg.index >= m_segmentCount) continue;
-
+        if (seg.uiSlot >= 0)
+            slotCount = qMax(slotCount, seg.uiSlot + 1);
+    }
+    QVariantList list;
+    list.reserve(qsizetype(slotCount));
+    for (int i = 0; i < slotCount; ++i) {
+        QVariantMap m;
+        m[QStringLiteral("startByte")] = qint64(0);
+        m[QStringLiteral("endByte")]   = qint64(-1);
+        m[QStringLiteral("received")]  = qint64(0);
+        m[QStringLiteral("info")]      = QStringLiteral("Waiting...");
+        list.append(m);
+    }
+    for (const auto &seg : m_segments) {
+        if (seg.uiSlot < 0 || seg.uiSlot >= slotCount) continue;
         QVariantMap m;
         m[QStringLiteral("startByte")] = seg.startOffset;
         m[QStringLiteral("endByte")]   = seg.endOffset;
@@ -1018,7 +1037,7 @@ void SegmentedTransfer::updateSegmentDataOnItem() {
             m[QStringLiteral("info")] = QStringLiteral("Receiving data...");
         else
             m[QStringLiteral("info")] = QStringLiteral("Waiting...");
-        list.append(m);
+        list[seg.uiSlot] = m;
     }
     m_item->setSegmentData(list);
 }
@@ -1654,16 +1673,17 @@ void SegmentedTransfer::retrySegment(int index, int extraDelayMs) {
 //
 // Only safe on range-capable servers, and only if we haven't already
 // exploded into an absurd number of segments.
-void SegmentedTransfer::maybeStealWork() {
-    if (m_cancelled || m_paused) return;
-    if (!m_resumeCapable) return;
-    if (m_segments.size() >= kMaxDynamicSegments) return;
+bool SegmentedTransfer::maybeStealWork(int freedUiSlot) {
+    Q_UNUSED(freedUiSlot);
+    if (m_cancelled || m_paused) return false;
+    if (!m_resumeCapable) return false;
+    if (m_segments.size() >= kMaxDynamicSegments) return false;
 
     // Count currently active connections — don't exceed the per-host cap.
     int activeCount = 0;
     for (const auto &seg : m_segments)
         if (!seg.done && seg.reply) ++activeCount;
-    if (activeCount >= m_maxConnectionsPerHost) return;
+    if (activeCount >= m_maxConnectionsPerHost) return false;
 
     // Pick the segment with the most bytes still to fetch.
     int victimIdx = -1;
@@ -1678,7 +1698,7 @@ void SegmentedTransfer::maybeStealWork() {
             victimIdx = i;
         }
     }
-    if (victimIdx < 0 || victimRemaining < kStealThresholdBytes) return;
+    if (victimIdx < 0 || victimRemaining < kStealThresholdBytes) return false;
 
     auto &victim = m_segments[victimIdx];
     qint64 pos     = victim.startOffset + victim.received;
@@ -1696,18 +1716,24 @@ void SegmentedTransfer::maybeStealWork() {
     victim.reply = nullptr;
     if (victim.file && victim.file->isOpen()) victim.file->close();
 
-    // Shrink the victim to the first half.
+    // Shrink the victim to the first half. The victim keeps its own UI slot —
+    // it's still actively downloading (just a smaller range now).
     victim.endOffset  = mid - 1;
     victim.retryCount = 0;   // fresh retry budget for the shortened range
     victim.lastByteTime = 0;
 
-    // Create a new segment for the second half.
+    // Create a new segment for the second half. Give it a fresh UI slot so
+    // completed connections remain visible instead of being recycled away.
     Segment ns;
     ns.index       = m_segments.size();
     ns.startOffset = mid;
     ns.endOffset   = oldEnd;
     ns.received    = 0;
     ns.partPath    = partPath(ns.index);
+    int nextUiSlot = 0;
+    for (const auto &seg : m_segments)
+        nextUiSlot = qMax(nextUiSlot, seg.uiSlot + 1);
+    ns.uiSlot = nextUiSlot;
     m_segments.append(ns);
 
     // Persist the new layout BEFORE any network I/O happens, so a crash
@@ -1717,6 +1743,7 @@ void SegmentedTransfer::maybeStealWork() {
     // Restart the victim and fire up the new connection.
     startSegment(m_segments[victimIdx]);
     startSegment(m_segments.last());
+    return true;
 }
 
 // Called when a server ignores our Range header and returns 200 for every segment.
@@ -1857,6 +1884,12 @@ bool SegmentedTransfer::loadMeta() {
         seg.startOffset = s[QStringLiteral("startOffset")].toVariant().toLongLong();
         seg.endOffset   = s[QStringLiteral("endOffset")].toVariant().toLongLong();
         seg.partPath    = partPath(i);
+        // Persisted metas predate the uiSlot field; assign one based on the
+        // segment's index so the connections-list UI shows a row for every
+        // restored segment instead of leaving them all as "Waiting…".
+        // Dynamic-stolen segments (i >= m_segmentCount) inherit -1 and only
+        // re-acquire a slot if maybeStealWork() spawns them again.
+        seg.uiSlot      = (i < m_segmentCount) ? i : -1;
         if (seg.startOffset < 0)
             return false;
         if (seg.endOffset >= 0 && seg.endOffset < seg.startOffset)
@@ -1891,6 +1924,11 @@ bool SegmentedTransfer::loadMeta() {
     m_item->setDoneBytes(done);
 
     saveMeta();
+
+    // Surface the restored segment layout immediately so the progress dialog
+    // shows real bytes/per-connection rows instead of placeholder "Waiting…"
+    // entries while the first byte-tick is still pending.
+    updateSegmentDataOnItem();
 
     return true;
 }
