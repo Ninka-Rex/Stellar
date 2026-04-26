@@ -18,7 +18,7 @@
 #   dist\Stellar-<Version>-source.7z
 
 param(
-    [string]$Version       = "0.2.4",
+    [string]$Version       = "",
     [string]$QtDir         = "",          # e.g. C:\Qt\6.8.3\msvc2022_64
     [switch]$SkipBuild,
     [switch]$SkipInstaller,
@@ -33,6 +33,23 @@ $Root       = $PSScriptRoot
 $BuildDir   = "$Root\build\windows-release"
 $DistDir    = "$Root\dist"
 $WinDistDir = "$DistDir\windows"
+$CMakeLists = Join-Path $Root "CMakeLists.txt"
+
+function Get-ProjectVersion([string]$cmakeFile) {
+    if (-not (Test-Path $cmakeFile)) {
+        Write-Error "CMakeLists.txt not found at $cmakeFile"
+    }
+    $cmakeText = Get-Content $cmakeFile -Raw
+    if ($cmakeText -notmatch 'project\(Stellar VERSION (\d+\.\d+\.\d+)') {
+        Write-Error "Could not determine Stellar version from $cmakeFile"
+    }
+    return $Matches[1]
+}
+
+if ([string]::IsNullOrWhiteSpace($Version)) {
+    $Version = Get-ProjectVersion $CMakeLists
+}
+Write-Host "[release] Version: $Version" -ForegroundColor Cyan
 
 # ── Resolve Qt ──────────────────────────────────────────────────────────────
 if ($QtDir -eq "") {
@@ -189,11 +206,33 @@ $InstallerExe = "$InstallerOut\StellarSetup-$Version.exe"
 if (-not $SkipInstaller) {
     Write-Host "`n[release] Building installer..." -ForegroundColor Yellow
     New-Item -ItemType Directory -Force -Path $InstallerOut | Out-Null
+    $InstallerStageRoot = Join-Path $env:TEMP ("stellar-iscc-" + [guid]::NewGuid().ToString("N"))
+    $InstallerStageBase = "StellarSetup-$Version-staged"
+    $InstallerStageExe  = Join-Path $InstallerStageRoot ($InstallerStageBase + ".exe")
+    New-Item -ItemType Directory -Force -Path $InstallerStageRoot | Out-Null
+
+    if (Test-Path $InstallerExe) {
+        try {
+            Remove-Item -LiteralPath $InstallerExe -Force -ErrorAction Stop
+        } catch {
+            $backupName = "StellarSetup-$Version.preexisting-" + (Get-Date -Format "yyyyMMdd-HHmmss") + ".exe"
+            $backupPath = Join-Path $InstallerOut $backupName
+            Move-Item -LiteralPath $InstallerExe -Destination $backupPath -Force
+        }
+    }
 
     & $ISCC `
         "/DAppVersion=$Version" `
+        "/DOutputDirOverride=$InstallerStageRoot" `
+        "/DOutputBaseFilenameOverride=$InstallerStageBase" `
         "$InstallerDir\installer.iss"
     if ($LASTEXITCODE -ne 0) { Write-Error "Inno Setup build failed" }
+
+    if (-not (Test-Path $InstallerStageExe)) {
+        Write-Error "Inno Setup reported success, but no installer was produced at $InstallerStageExe"
+    }
+    Copy-Item -LiteralPath $InstallerStageExe -Destination $InstallerExe -Force
+    Remove-Item -LiteralPath $InstallerStageRoot -Recurse -Force -ErrorAction SilentlyContinue
 
     Write-Host "[release] Installer: $InstallerExe" -ForegroundColor Green
 } else {

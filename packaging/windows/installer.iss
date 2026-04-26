@@ -13,6 +13,12 @@
 ; Path relative to this .iss file (packaging/windows/)
 #define BuildDir     "..\..\build\windows-release"
 #define IconFile     "..\..\app\qml\icons\milky-way.ico"
+#ifndef OutputDirOverride
+  #define OutputDirOverride "output"
+#endif
+#ifndef OutputBaseFilenameOverride
+  #define OutputBaseFilenameOverride "StellarSetup-{#AppVersion}"
+#endif
 
 [Setup]
 AppId={{B3F2A1D0-4E7C-4F2A-9B1D-1234567890AB}
@@ -26,14 +32,18 @@ AppUpdatesURL={#AppURL}
 ; Install to %LOCALAPPDATA%\StellarDownloadManager — no UAC, no admin required
 DefaultDirName={localappdata}\StellarDownloadManager
 DefaultGroupName=StellarDownloadManager
-; Output goes to packaging/windows/output/
-OutputDir=output
-OutputBaseFilename=StellarSetup-{#AppVersion}
+; Output goes to packaging/windows/output/ by default, but release.ps1 can
+; override this to stage the build in a fresh temp directory first.
+OutputDir={#OutputDirOverride}
+OutputBaseFilename={#OutputBaseFilenameOverride}
 SetupIconFile={#IconFile}
 UninstallDisplayIcon={app}\{#AppExeName}
-Compression=lzma2/ultra64
-SolidCompression=yes
-LZMANumBlockThreads=4
+; The release payload is large (~1+ GB with Qt, yt-dlp, and FFmpeg), and
+; ultra64 + fully solid compression can push ISCC into multi-GB RAM usage.
+; Use a still-strong but safer profile so release.ps1 can build reliably.
+Compression=lzma2/max
+SolidCompression=no
+LZMANumBlockThreads=2
 ArchitecturesInstallIn64BitMode=x64compatible
 WizardStyle=modern
 ; No admin required — installs to %LOCALAPPDATA%
@@ -73,9 +83,6 @@ Source: "{#BuildDir}\styles\*";                 DestDir: "{app}\styles";        
 Source: "{#BuildDir}\tls\*";                    DestDir: "{app}\tls";                  Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
 ; QML imports (windeployqt copies these)
 Source: "{#BuildDir}\qml\*";                    DestDir: "{app}\qml";                  Flags: ignoreversion recursesubdirs createallsubdirs
-
-; Firefox extension package
-Source: "{#BuildDir}\extensions\firefox\stellar-firefox.xpi"; DestDir: "{app}\extensions\firefox"; Flags: ignoreversion skipifsourcedoesntexist
 
 ; App content files
 Source: "{#BuildDir}\tips.txt";                  DestDir: "{app}";                      Flags: ignoreversion skipifsourcedoesntexist
@@ -134,11 +141,21 @@ Type: filesandordirs; Name: "{localappdata}\Stellar\logs"
 
 [Code]
 function ShouldAutoRestartStellar(): Boolean;
+var
+  I: Integer;
+  Arg: String;
 begin
   // Auto-updates run the installer with /VERYSILENT, which suppresses the
   // normal postinstall [Run] entry above. Use an explicit custom switch so
   // only the in-app updater restarts Stellar after installation.
-  Result := FindCmdLineSwitch('RESTARTSTELLAR', True);
+  Result := False;
+  for I := 1 to ParamCount do begin
+    Arg := Uppercase(ParamStr(I));
+    if (Arg = '/RESTARTSTELLAR') or (Arg = '-RESTARTSTELLAR') then begin
+      Result := True;
+      Exit;
+    end;
+  end;
 end;
 
 function PrepareToInstall(var NeedsRestart: Boolean): String;
