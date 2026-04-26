@@ -21,7 +21,6 @@ cmake_install.cmake
 .DS_Store
 Thumbs.db
 backup.ps1
-CLAUDE.md
 AGENTS.md
 *.mmdb
 app/data/*.mmdb
