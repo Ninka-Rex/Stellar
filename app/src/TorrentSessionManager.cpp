@@ -102,6 +102,12 @@ QString normalizeTorrentUri(const QString &value) {
     const QString trimmed = value.trimmed();
     if (isBareTorrentInfoHash(trimmed))
         return QStringLiteral("magnet:?xt=urn:btih:%1").arg(trimmed.toLower());
+    // Cap magnet URIs to a sane length before handing to libtorrent.
+    // Real-world magnet links with many trackers are well under 4096 chars;
+    // anything longer is either malformed or a DoS attempt.
+    static constexpr int kMaxMagnetLen = 4096;
+    if (trimmed.size() > kMaxMagnetLen)
+        return trimmed.left(kMaxMagnetLen);
     return trimmed;
 }
 
@@ -1792,9 +1798,11 @@ bool TorrentSessionManager::setFileWantedByPath(const QString &downloadId, const
 bool TorrentSessionManager::addTracker(const QString &downloadId, const QString &url) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const auto handle = m_handles.value(downloadId);
-    if (!handle.is_valid() || url.trimmed().isEmpty())
+    static constexpr int kMaxTrackerUrlLen = 2048;
+    const QString trimmedUrl = url.trimmed().left(kMaxTrackerUrlLen);
+    if (!handle.is_valid() || trimmedUrl.isEmpty())
         return false;
-    handle.add_tracker(libtorrent::announce_entry(url.trimmed().toStdString()));
+    handle.add_tracker(libtorrent::announce_entry(trimmedUrl.toStdString()));
     handle.post_trackers();
     if (DownloadItem *item = m_items.value(downloadId, nullptr).data())
         item->setTorrentTrackers(trackerUrls(downloadId));
