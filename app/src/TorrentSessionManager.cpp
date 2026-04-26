@@ -2606,7 +2606,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             snapshot.status = QStringLiteral("Announcing");
             snapshot.message = QStringLiteral("Announce sent");
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
-            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(announce->tracker_url()))] = snapshot;
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(announce->tracker_url()).left(1024))] = snapshot;
             updateModels(id, announce->handle);
         }
         return;
@@ -2620,7 +2620,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             snapshot.message = QStringLiteral("Tracker replied (%1 peers)").arg(reply->num_peers);
             snapshot.peers = std::max(0, reply->num_peers);
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
-            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(reply->tracker_url()))] = snapshot;
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(reply->tracker_url()).left(1024))] = snapshot;
             updateModels(id, reply->handle);
         }
         return;
@@ -2631,9 +2631,9 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         if (!id.isEmpty()) {
             TrackerAlertSnapshot snapshot;
             snapshot.status = QStringLiteral("Warning");
-            snapshot.message = QString::fromUtf8(warning->warning_message());
+            snapshot.message = QString::fromUtf8(warning->warning_message()).left(512);
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
-            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(warning->tracker_url()))] = snapshot;
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(warning->tracker_url()).left(1024))] = snapshot;
             updateModels(id, warning->handle);
         }
         return;
@@ -2644,12 +2644,12 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         if (!id.isEmpty()) {
             TrackerAlertSnapshot snapshot;
             snapshot.status = QStringLiteral("Error");
-            const QString reason = QString::fromUtf8(trackerError->failure_reason());
+            const QString reason = QString::fromUtf8(trackerError->failure_reason()).left(512);
             snapshot.message = reason.isEmpty()
-                ? QString::fromStdString(trackerError->error.message())
+                ? QString::fromStdString(trackerError->error.message()).left(512)
                 : reason;
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
-            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(trackerError->tracker_url()))] = snapshot;
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(trackerError->tracker_url()).left(1024))] = snapshot;
             updateModels(id, trackerError->handle);
         }
         return;
@@ -2664,7 +2664,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
             snapshot.seeders = std::max(0, scrapeReply->complete);
             snapshot.peers = std::max(0, scrapeReply->incomplete);
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
-            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(scrapeReply->tracker_url()))] = snapshot;
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(scrapeReply->tracker_url()).left(1024))] = snapshot;
             updateModels(id, scrapeReply->handle);
         }
         return;
@@ -2675,12 +2675,12 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         if (!id.isEmpty()) {
             TrackerAlertSnapshot snapshot;
             snapshot.status = QStringLiteral("Error");
-            const QString reason = QString::fromUtf8(scrapeFailed->error_message());
+            const QString reason = QString::fromUtf8(scrapeFailed->error_message()).left(512);
             snapshot.message = reason.isEmpty()
-                ? QString::fromStdString(scrapeFailed->error.message())
+                ? QString::fromStdString(scrapeFailed->error.message()).left(512)
                 : reason;
             snapshot.updatedAt = QDateTime::currentDateTimeUtc();
-            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(scrapeFailed->tracker_url()))] = snapshot;
+            m_trackerAlertSnapshots[id][trackerStatusKey(QString::fromUtf8(scrapeFailed->tracker_url()).left(1024))] = snapshot;
             updateModels(id, scrapeFailed->handle);
         }
         return;
