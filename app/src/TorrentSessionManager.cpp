@@ -44,7 +44,7 @@
 #include <QRandomGenerator>
 #include <QSaveFile>
 #include <QTextStream>
-#include <QtConcurrent/QtConcurrentRun>
+#include <QThreadPool>
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -473,8 +473,11 @@ bool isNodeInSameDhtZone(const QByteArray &localId, const QByteArray &candidateI
 // pruneStaleZoneNodes() below shrinks it on every pump tick, so N stays
 // bounded in practice.
 int countLiveZoneNodes(const QHash<QByteArray, QDateTime> &table, const QDateTime &now, int freshnessSecs) {
+    // Return 0 on invalid clock rather than table.size(): a broken clock should
+    // produce an underestimate (safe) not an overestimate that bypasses the
+    // freshness window and counts every stale entry as live.
     if (!now.isValid() || freshnessSecs <= 0)
-        return table.size();
+        return 0;
     int live = 0;
     for (auto it = table.constBegin(); it != table.constEnd(); ++it) {
         if (it.value().isValid() && it.value().secsTo(now) < freshnessSecs)
@@ -488,6 +491,8 @@ int countLiveZoneNodes(const QHash<QByteArray, QDateTime> &table, const QDateTim
 // a long active window — without this, a sparse-response network would
 // eventually fill the 8 K cap with zombie entries and starve fresh inserts.
 void pruneStaleZoneNodes(QHash<QByteArray, QDateTime> &table, const QDateTime &now, int freshnessSecs) {
+    // Skip pruning on invalid clock — same conservative stance as countLiveZoneNodes.
+    // Better to keep stale entries than to erase valid ones due to a broken clock.
     if (!now.isValid() || freshnessSecs <= 0)
         return;
     for (auto it = table.begin(); it != table.end();) {
@@ -554,7 +559,7 @@ void appendDhtCrawlLogRow(const QDateTime &publishedAt,
           << freshnessSecs << ','
           << buckets << ','
           << routingNodes << ','
-          << QString::fromLatin1(localNodeId.toHex()) << ','
+          << QString::fromLatin1(localNodeId.toHex()).left(8) << ','
           << probesSent << ','
           << responsesReceived << ','
           << peakLiveZone << '\n';
@@ -567,7 +572,7 @@ void appendDhtCrawlLogRow(const QDateTime &publishedAt,
     // background lambda doesn't retain a QDateTime.
     const qint64 publishedMs = publishedAt.toMSecsSinceEpoch();
 
-    QtConcurrent::run([path, newRow, publishedMs]() {
+    QThreadPool::globalInstance()->start([path, newRow, publishedMs]() {
         // Hard row cap: keep at most 500 data rows regardless of timestamps.
         // At one crawl per 30 minutes that is ~10 days of history. This is
         // the primary defence against unbounded growth from clock skew — a
@@ -680,9 +685,15 @@ void enforceDhtIdCap(QHash<QByteArray, QDateTime> &table, int cap) {
         return;
     auto pivot = stamps.begin() + dropCount;
     std::nth_element(stamps.begin(), pivot, stamps.end());
-    const QDateTime cutoff = *(pivot - 1);
-    for (auto it = table.begin(); it != table.end();) {
-        if (it.value() <= cutoff && (table.size() > target))
+    // Use the value *at* the pivot position (not pivot-1) as the cutoff so
+    // entries with timestamps equal to the boundary are kept rather than all
+    // being erased. When many entries share the same millisecond timestamp
+    // (common during a bulk dht_live_nodes_alert batch) the pivot-1 approach
+    // could drop far more than the intended 25%, emptying the table entirely.
+    // The explicit size guard below stops erasure exactly at target.
+    const QDateTime cutoff = *pivot;
+    for (auto it = table.begin(); it != table.end() && table.size() > target;) {
+        if (it.value() < cutoff)
             it = table.erase(it);
         else
             ++it;
@@ -706,6 +717,29 @@ QString dhtRequestKey(const QString &host, int port, const QByteArray &target) {
         .arg(host, QString::number(port), QString::fromLatin1(target.toHex()));
 }
 
+// Returns true for addresses that should never appear in a public DHT crawl:
+// loopback, link-local, private RFC-1918/RFC-4193, and multicast ranges.
+// Injecting these into the BFS queue causes the crawler to probe devices on
+// the user's LAN or loopback interface, which is unexpected network scanning.
+static bool isDhtAddressPrivateOrLocal(const QHostAddress &addr) {
+    if (addr.isLoopback() || addr.isLinkLocal() || addr.isMulticast())
+        return true;
+    // QHostAddress::isPrivate() requires Qt 6.6+; check RFC-1918 / RFC-4193
+    // ranges manually so the build works on any Qt 6.x.
+    if (addr.protocol() == QAbstractSocket::IPv4Protocol) {
+        const quint32 ip = addr.toIPv4Address();
+        return ((ip & 0xFF000000u) == 0x0A000000u)   // 10.0.0.0/8
+            || ((ip & 0xFFF00000u) == 0xAC100000u)   // 172.16.0.0/12
+            || ((ip & 0xFFFF0000u) == 0xC0A80000u);  // 192.168.0.0/16
+    }
+    if (addr.protocol() == QAbstractSocket::IPv6Protocol) {
+        // fc00::/7 — unique local addresses (RFC 4193)
+        const Q_IPV6ADDR raw = addr.toIPv6Address();
+        return (raw[0] & 0xFEu) == 0xFCu;
+    }
+    return false;
+}
+
 bool parseCompactDhtNodes(libtorrent::string_view compactNodes, QVector<QPair<QByteArray, QPair<QString, int>>> *out) {
     if (!out)
         return false;
@@ -724,9 +758,9 @@ bool parseCompactDhtNodes(libtorrent::string_view compactNodes, QVector<QPair<QB
             | (quint32(quint8(record[22])) << 8)
             | quint32(quint8(record[23]));
         const int port = (int(quint8(record[24])) << 8) | int(quint8(record[25]));
-        const QString host = QHostAddress(ipv4).toString();
-        if (nodeId.size() == 20 && !host.isEmpty() && port > 0)
-            out->push_back(qMakePair(nodeId, qMakePair(host, port)));
+        const QHostAddress addr(ipv4);
+        if (nodeId.size() == 20 && port > 0 && !isDhtAddressPrivateOrLocal(addr))
+            out->push_back(qMakePair(nodeId, qMakePair(addr.toString(), port)));
     }
     return !out->isEmpty();
 }
@@ -748,9 +782,9 @@ bool parseCompactDhtNodes6(libtorrent::string_view compactNodes6, QVector<QPair<
         Q_IPV6ADDR addr6;
         std::memcpy(addr6.c, record + 20, 16);
         const int port = (int(quint8(record[36])) << 8) | int(quint8(record[37]));
-        const QString host = QHostAddress(addr6).toString();
-        if (nodeId.size() == 20 && !host.isEmpty() && port > 0)
-            out->push_back(qMakePair(nodeId, qMakePair(host, port)));
+        const QHostAddress addr(addr6);
+        if (nodeId.size() == 20 && port > 0 && !isDhtAddressPrivateOrLocal(addr))
+            out->push_back(qMakePair(nodeId, qMakePair(addr.toString(), port)));
     }
     return !out->isEmpty();
 }
@@ -1276,9 +1310,29 @@ void TorrentSessionManager::handleDhtDirectResponse(const libtorrent::dht_direct
 
     const QString host = QString::fromStdString(alert->endpoint.address().to_string());
     const int port = alert->endpoint.port();
+    // Match the full key (host:port:targetHex) so that a single response from
+    // a node probed with multiple XOR-perturbed targets only retires the one
+    // outstanding request it actually answers. The previous prefix match
+    // (host:port:) cleared all pending requests to that endpoint, which silently
+    // discarded in-flight probes for the other targets and under-counted replies.
+    const QString responsePrefix = QStringLiteral("%1:%2:").arg(host, QString::number(port));
+    const libtorrent::bdecode_node earlyResponse = alert->response();
+    QString matchedKey;
+    if (earlyResponse.type() == libtorrent::bdecode_node::dict_t) {
+        const libtorrent::bdecode_node earlyReply = earlyResponse.dict_find_dict("r");
+        if (earlyReply.type() == libtorrent::bdecode_node::dict_t) {
+            const libtorrent::string_view sv = earlyReply.dict_find_string_value("target");
+            if (sv.size() == 20) {
+                const QByteArray targetId(sv.data(), 20);
+                matchedKey = dhtRequestKey(host, port, targetId);
+            }
+        }
+    }
     for (auto it = m_pendingDhtRequests.begin(); it != m_pendingDhtRequests.end();) {
-        const QString prefix = QStringLiteral("%1:%2:").arg(host, QString::number(port));
-        if (it.key().startsWith(prefix))
+        // Prefer exact key match; fall back to prefix if target wasn't echoed.
+        const bool remove = (!matchedKey.isEmpty() && it.key() == matchedKey)
+                         || (matchedKey.isEmpty() && it.key().startsWith(responsePrefix));
+        if (remove)
             it = m_pendingDhtRequests.erase(it);
         else
             ++it;
