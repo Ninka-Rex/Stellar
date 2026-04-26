@@ -183,8 +183,19 @@ Window {
         App.rssManager.markArticleReadByGuid(selectedArticle.feedId, selectedArticle.guid, read)
     }
 
+    function isSafeWebUrl(url) {
+        return typeof url === "string"
+            && (url.startsWith("https://") || url.startsWith("http://"))
+    }
+
+    function isSafeDownloadUrl(url) {
+        return typeof url === "string"
+            && (url.startsWith("https://") || url.startsWith("http://")
+                || url.startsWith("magnet:?"))
+    }
+
     function openSelectedArticle() {
-        if (!selectedArticle.link) return
+        if (!isSafeWebUrl(selectedArticle.link)) return
         markSelectedArticleRead(true)
         Qt.openUrlExternally(selectedArticle.link)
     }
@@ -193,6 +204,7 @@ Window {
         if (!selectedArticleHasDownload) return openSelectedArticle()
         var url = selectedArticle.downloadUrl && selectedArticle.downloadUrl.length > 0
             ? selectedArticle.downloadUrl : selectedArticle.link
+        if (!isSafeDownloadUrl(url)) return
         markSelectedArticleRead(true)
         if (selectedArticle.isTorrent)
             App.beginTorrentMetadataDownload(url, App.settings.defaultSavePath, "", selectedArticle.title || "", true)
