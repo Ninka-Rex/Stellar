@@ -48,7 +48,26 @@ YtdlpTransfer::YtdlpTransfer(DownloadItem *item,
     , m_ffmpegPath(ffmpegPath)
     , m_speedLimitKBps(speedLimitKBps)
     , m_resume(resume)
-    , m_outputTemplate(outputTemplate.isEmpty() ? QStringLiteral("%(title)s.%(ext)s") : outputTemplate)
+    , m_outputTemplate([&outputTemplate]() -> QString {
+        const QString tmpl = outputTemplate.trimmed().isEmpty()
+            ? QStringLiteral("%(title)s.%(ext)s")
+            : outputTemplate.trimmed();
+        // Reject templates that contain literal path separators or parent-directory
+        // references outside of yt-dlp variable expansions (e.g. %(playlist_index)s).
+        // The check strips all %(...)s tokens first so only the literal skeleton
+        // of the template is inspected — yt-dlp sanitizes variable values itself.
+        static const QRegularExpression kVarToken(QStringLiteral("%\\([^)]*\\)[diouxefgcrsa]?s?"));
+        QString skeleton = tmpl;
+        skeleton.remove(kVarToken);
+        const bool hasSeparator = skeleton.contains(QLatin1Char('/'))
+                               || skeleton.contains(QLatin1Char('\\'));
+        const bool hasParentRef = skeleton.contains(QStringLiteral(".."));
+        if (hasSeparator || hasParentRef) {
+            qWarning() << "[YtdlpTransfer] Output template contains path traversal; using default.";
+            return QStringLiteral("%(title)s.%(ext)s");
+        }
+        return tmpl;
+    }())
     , m_proxyUrl(proxyUrl)
     , m_playlistMode(playlistMode)
     , m_maxItems(maxItems)
