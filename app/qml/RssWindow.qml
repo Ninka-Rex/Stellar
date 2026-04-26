@@ -985,8 +985,20 @@ Window {
                                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                                     onClicked: function(mouse) {
                                         root.selectedArticleRow = articleDelegate.index
-                                        if (mouse.button === Qt.RightButton)
+                                        if (mouse.button === Qt.RightButton) {
                                             articleContextMenu.popup()
+                                        } else if (articleDelegate.modelData
+                                                   && articleDelegate.modelData.unread
+                                                   && articleDelegate.modelData.feedId
+                                                   && articleDelegate.modelData.guid) {
+                                            // Mark read on left-click. Use the delegate's own row data
+                                            // rather than `selectedArticle` because that derived
+                                            // property hasn't re-evaluated yet within this handler.
+                                            App.rssManager.markArticleReadByGuid(
+                                                articleDelegate.modelData.feedId,
+                                                articleDelegate.modelData.guid,
+                                                true)
+                                        }
                                     }
                                     onDoubleClicked: {
                                         root.selectedArticleRow = articleDelegate.index
