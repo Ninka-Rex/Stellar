@@ -795,6 +795,10 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
     m_dhtFastPumpTimer.setInterval(20);
     m_dhtFastPumpTimer.setSingleShot(false);
     connect(&m_dhtFastPumpTimer, &QTimer::timeout, this, [this]() {
+        if (!m_dhtEstimatorEnabled) {
+            m_dhtFastPumpTimer.stop();
+            return;
+        }
         if (!m_dhtMeasurementStartedAt.isValid()) {
             m_dhtFastPumpTimer.stop();
             return;
@@ -847,7 +851,7 @@ TorrentSessionManager::TorrentSessionManager(QObject *parent)
         processAlerts();
         // Keep the DHT estimator epoch/warmup ticking even when no DHT responses
         // are arriving (silent crawler stalls would otherwise freeze warmup at 0%).
-        if (m_lastDhtNodeId.size() == 20)
+        if (m_dhtEstimatorEnabled && m_lastDhtNodeId.size() == 20)
             maybePublishDhtMeasurementEpoch(QDateTime::currentDateTimeUtc());
         pumpDhtEstimatorCrawler();
         if (m_session) {
@@ -935,8 +939,38 @@ void TorrentSessionManager::applySettings(const AppSettings *settings) {
 #endif
 }
 
+void TorrentSessionManager::setDhtEstimatorEnabled(bool enabled) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (m_dhtEstimatorEnabled == enabled)
+        return;
+    m_dhtEstimatorEnabled = enabled;
+    if (!enabled) {
+        // Stop the fast probe pump and wipe in-flight crawl state so no
+        // further dht_live_nodes() / dht_direct_request() calls fire from
+        // any remaining timer ticks. Routing-table stats keep flowing on the
+        // 2-second alert tick — only the user-count estimator is paused.
+        m_dhtFastPumpTimer.stop();
+        m_dhtCrawlQueue.clear();
+        m_enqueuedDhtNodeIds.clear();
+        m_pendingDhtRequests.clear();
+        m_dhtMeasurementZoneNodes.clear();
+        m_zoneCountHistory.clear();
+        m_dhtMeasurementStartedAt = {};
+        m_dhtMeasurementPublished = false;
+        m_dhtBootstrapTickCount = 0;
+        m_dhtCrawlProbesSent = 0;
+        m_dhtCrawlResponsesReceived = 0;
+        m_dhtCrawlPeakLiveZone = 0;
+    }
+#else
+    Q_UNUSED(enabled);
+#endif
+}
+
 void TorrentSessionManager::startDhtCrawlNow() {
 #if defined(STELLAR_HAS_LIBTORRENT)
+    if (!m_dhtEstimatorEnabled)
+        return;
     // Drain any DHT-related alerts that are already queued in libtorrent
     // before resetting state. Without this drain, dht_live_nodes_alert and
     // dht_direct_response_alert messages produced by the *previous* crawl
@@ -999,6 +1033,8 @@ void TorrentSessionManager::enqueueDhtCrawlNode(const QByteArray &nodeId, const 
 
 void TorrentSessionManager::pumpDhtEstimatorCrawler() {
 #if defined(STELLAR_HAS_LIBTORRENT)
+    if (!m_dhtEstimatorEnabled)
+        return;
     if (!m_session || m_lastDhtNodeId.size() != 20)
         return;
     const QDateTime now = QDateTime::currentDateTimeUtc();
@@ -2382,7 +2418,7 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         }
         if (m_lastDhtNodeId.size() == 20)
             m_recentDhtNodeIds.insert(m_lastDhtNodeId, now);
-        if (m_lastDhtNodeId.size() == 20 && !m_dhtMeasurementStartedAt.isValid()) {
+        if (m_dhtEstimatorEnabled && m_lastDhtNodeId.size() == 20 && !m_dhtMeasurementStartedAt.isValid()) {
             m_dhtMeasurementStartedAt = now;
             m_dhtMeasurementPublished = false;
             if (!m_dhtFastPumpTimer.isActive())

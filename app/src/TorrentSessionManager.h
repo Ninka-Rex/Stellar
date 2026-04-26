@@ -113,6 +113,10 @@ public:
     QString dhtEstimateDebugText() const;
     bool dhtCrawlInProgress() const;
     void startDhtCrawlNow();
+    // When false, the DHT user-count crawler stops issuing dht_live_nodes
+    // probes and the fast-pump timer is held idle. Existing routing-table
+    // statistics still update — only the active estimator crawl is gated.
+    void setDhtEstimatorEnabled(bool enabled);
 
 signals:
     void externalAddressChanged();
@@ -254,6 +258,7 @@ private:
     // measurement window is active, so dht_direct_request queries saturate
     // the 5–10s crawl instead of trickling out at the 2s alert-timer rate.
     QTimer m_dhtFastPumpTimer;
+    bool m_dhtEstimatorEnabled{true};
 #endif
     QTimer m_alertTimer;
 };
@@ -279,4 +284,5 @@ inline int TorrentSessionManager::dhtEstimateWarmupPercent() const { return 0; }
 inline QString TorrentSessionManager::dhtEstimateDebugText() const { return {}; }
 inline bool TorrentSessionManager::dhtCrawlInProgress() const { return false; }
 inline void TorrentSessionManager::startDhtCrawlNow() {}
+inline void TorrentSessionManager::setDhtEstimatorEnabled(bool) {}
 #endif

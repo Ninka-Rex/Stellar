@@ -1402,8 +1402,12 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         m_queue->setMaxConnectionsPerHost(m_settings->perHostConnectionLimit());
     });
     m_torrentSession->applySettings(m_settings);
+    m_torrentSession->setDhtEstimatorEnabled(m_settings->estimatedOnlineUsersInStatusBar());
     connect(m_settings, &AppSettings::torrentSettingsChanged, this, [this]() {
         m_torrentSession->applySettings(m_settings);
+    });
+    connect(m_settings, &AppSettings::estimatedOnlineUsersInStatusBarChanged, this, [this]() {
+        m_torrentSession->setDhtEstimatorEnabled(m_settings->estimatedOnlineUsersInStatusBar());
     });
     connect(m_settings, &AppSettings::torrentSettingsChanged, this, &AppController::torrentBindingStatusTextChanged);
     connect(m_settings, &AppSettings::globalSpeedLimitKBpsChanged, this, [this]() {
