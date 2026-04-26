@@ -27,6 +27,12 @@ Rectangle {
     signal openColumnsSettingsRequested()
     signal exportTorrentsRequested(var downloadIds)
 
+    property int modelRowCount: 0
+
+    function refreshModelRowCount() {
+        modelRowCount = App.downloadModel ? App.downloadModel.rowCount() : 0
+    }
+
     // Window-level drag proxy injected from Main.qml
     property var categoryDragProxy: null
 
@@ -94,6 +100,14 @@ Rectangle {
         return count
     }
     readonly property bool anyTorrentSelected: selectedTorrentCountValue > 0
+
+    Connections {
+        target: App.downloadModel
+        function onRowsInserted() { root.refreshModelRowCount() }
+        function onRowsRemoved() { root.refreshModelRowCount() }
+        function onModelReset() { root.refreshModelRowCount() }
+        function onLayoutChanged() { root.refreshModelRowCount() }
+    }
 
     // Reactive properties for toolbar enabled-states.
     // As readonly property bindings (not functions) QML emits a change signal when
@@ -604,6 +618,7 @@ Rectangle {
     }
 
     Component.onCompleted: {
+        refreshModelRowCount()
         _suppressColumnDefsSave = false
         // Keep model ordering in sync with the visible sort indicator at startup.
         App.downloadModel.sortBy(sortKey, sortAscending)
@@ -1540,32 +1555,58 @@ Rectangle {
         }
 
         // empty state
-        Text {
+        Column {
             anchors.centerIn: parent
+            spacing: 12
             readonly property bool searchActive: root.filterText.length > 0
             readonly property int filteredCount: searchActive
                 ? root.countMatches(root.filterText, root.filterName, root.filterDesc,
                                     root.filterLinks, root.filterMatchCase, root.filterMatchWhole)
-                : tableView.count
-            visible: filteredCount === 0
-            // While the cold-start restore is still draining the database into
-            // the in-memory model, replace the "click Add URL" hint with a
-            // live progress count so the user sees something happening during
-            // the brief delay between the window painting and the model
-            // populating. AppController emits restoreProgressChanged on every
-            // per-item restore so this label ticks roughly once per event-loop
-            // pass during startup.
-            text: {
-                if (App.restoreInProgress && App.restoreTotalCount > 0)
-                    return "Loading " + App.restoreTotalCount + " downloads…"
-                if (searchActive)
-                    return "No matching downloads."
-                return "No downloads yet.\nClick  Add URL  to start."
+                : root.modelRowCount
+            visible: filteredCount === 0 && !restoreOverlay.restoreOverlayVisible
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: {
+                    if (parent.searchActive)
+                        return "No matching downloads."
+                    return "No downloads yet.\nClick  Add URL  to start."
+                }
+                horizontalAlignment: Text.AlignHCenter
+                color: "#444444"
+                font.pixelSize: 14
+                lineHeight: 1.6
             }
-            horizontalAlignment: Text.AlignHCenter
-            color: "#444444"
-            font.pixelSize: 14
-            lineHeight: 1.6
+        }
+
+        // Keep the startup restore indicator separate from the empty-state UI
+        // so it remains visible after the first restored rows appear.
+        Column {
+            id: restoreOverlay
+            anchors.centerIn: parent
+            spacing: 12
+            z: 2
+            readonly property bool restoreOverlayVisible:
+                App.selectedCategory === "all"
+                && (!App.selectedQueue || App.selectedQueue.length === 0)
+                && !root.filterText.length
+                && root.filterName
+                && !root.filterDesc
+                && !root.filterLinks
+                && !root.filterMatchCase
+                && !root.filterMatchWhole
+                && App.restoreTotalCount > 0
+                && (App.restoreInProgress || root.modelRowCount < App.restoreTotalCount)
+            visible: restoreOverlayVisible
+
+            Text {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: "Loading " + App.restoreTotalCount + " downloads…"
+                horizontalAlignment: Text.AlignHCenter
+                color: "#444444"
+                font.pixelSize: 14
+                lineHeight: 1.6
+            }
         }
     }
 }

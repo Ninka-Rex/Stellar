@@ -231,6 +231,7 @@ void AppSettings::load() {
     m_torrentEnableLsd        = m_settings.value(QStringLiteral("torrentEnableLsd"), true).toBool();
     m_torrentEnableUpnp       = m_settings.value(QStringLiteral("torrentEnableUpnp"), true).toBool();
     m_torrentEnableNatPmp     = m_settings.value(QStringLiteral("torrentEnableNatPmp"), true).toBool();
+    m_torrentEnablePex        = m_settings.value(QStringLiteral("torrentEnablePex"), true).toBool();
     m_torrentListenPort       = m_settings.value(QStringLiteral("torrentListenPort"), 6881).toInt();
     m_torrentConnectionsLimit = m_settings.value(QStringLiteral("torrentConnectionsLimit"), 200).toInt();
     m_torrentConnectionsLimitPerTorrent = m_settings.value(QStringLiteral("torrentConnectionsLimitPerTorrent"), 0).toInt();
@@ -464,6 +465,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("torrentEnableLsd"),            m_torrentEnableLsd);
     m_settings.setValue(QStringLiteral("torrentEnableUpnp"),           m_torrentEnableUpnp);
     m_settings.setValue(QStringLiteral("torrentEnableNatPmp"),         m_torrentEnableNatPmp);
+    m_settings.setValue(QStringLiteral("torrentEnablePex"),            m_torrentEnablePex);
     m_settings.setValue(QStringLiteral("torrentListenPort"),           m_torrentListenPort);
     m_settings.setValue(QStringLiteral("torrentConnectionsLimit"),     m_torrentConnectionsLimit);
     m_settings.setValue(QStringLiteral("torrentConnectionsLimitPerTorrent"), m_torrentConnectionsLimitPerTorrent);
@@ -707,6 +709,7 @@ void AppSettings::setTorrentEnableDht(bool v)             { if (m_torrentEnableD
 void AppSettings::setTorrentEnableLsd(bool v)             { if (m_torrentEnableLsd != v) { m_torrentEnableLsd = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentEnableUpnp(bool v)            { if (m_torrentEnableUpnp != v) { m_torrentEnableUpnp = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentEnableNatPmp(bool v)          { if (m_torrentEnableNatPmp != v) { m_torrentEnableNatPmp = v; emit torrentSettingsChanged(); save(); } }
+void AppSettings::setTorrentEnablePex(bool v)             { if (m_torrentEnablePex != v) { m_torrentEnablePex = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentListenPort(int v)             { if (m_torrentListenPort != v) { m_torrentListenPort = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentConnectionsLimit(int v)              { if (m_torrentConnectionsLimit != v) { m_torrentConnectionsLimit = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentConnectionsLimitPerTorrent(int v)    { if (m_torrentConnectionsLimitPerTorrent != v) { m_torrentConnectionsLimitPerTorrent = v; emit torrentSettingsChanged(); save(); } }

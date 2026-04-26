@@ -102,6 +102,7 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool    torrentEnableLsd READ torrentEnableLsd WRITE setTorrentEnableLsd NOTIFY torrentSettingsChanged)
     Q_PROPERTY(bool    torrentEnableUpnp READ torrentEnableUpnp WRITE setTorrentEnableUpnp NOTIFY torrentSettingsChanged)
     Q_PROPERTY(bool    torrentEnableNatPmp READ torrentEnableNatPmp WRITE setTorrentEnableNatPmp NOTIFY torrentSettingsChanged)
+    Q_PROPERTY(bool    torrentEnablePex READ torrentEnablePex WRITE setTorrentEnablePex NOTIFY torrentSettingsChanged)
     Q_PROPERTY(int     torrentListenPort READ torrentListenPort WRITE setTorrentListenPort NOTIFY torrentSettingsChanged)
     Q_PROPERTY(int     torrentConnectionsLimit READ torrentConnectionsLimit WRITE setTorrentConnectionsLimit NOTIFY torrentSettingsChanged)
     Q_PROPERTY(int     torrentConnectionsLimitPerTorrent READ torrentConnectionsLimitPerTorrent WRITE setTorrentConnectionsLimitPerTorrent NOTIFY torrentSettingsChanged)
@@ -214,6 +215,7 @@ public:
     bool    torrentEnableLsd()        const { return m_torrentEnableLsd; }
     bool    torrentEnableUpnp()       const { return m_torrentEnableUpnp; }
     bool    torrentEnableNatPmp()     const { return m_torrentEnableNatPmp; }
+    bool    torrentEnablePex()        const { return m_torrentEnablePex; }
     int     torrentListenPort()       const { return m_torrentListenPort; }
     int     torrentConnectionsLimit() const { return m_torrentConnectionsLimit; }
     int     torrentConnectionsLimitPerTorrent() const { return m_torrentConnectionsLimitPerTorrent; }
@@ -317,6 +319,7 @@ public:
     void setTorrentEnableLsd(bool v);
     void setTorrentEnableUpnp(bool v);
     void setTorrentEnableNatPmp(bool v);
+    void setTorrentEnablePex(bool v);
     void setTorrentListenPort(int v);
     void setTorrentConnectionsLimit(int v);
     void setTorrentConnectionsLimitPerTorrent(int v);
@@ -517,6 +520,7 @@ private:
     bool        m_torrentEnableLsd{true};
     bool        m_torrentEnableUpnp{true};
     bool        m_torrentEnableNatPmp{true};
+    bool        m_torrentEnablePex{true};
     int         m_torrentListenPort{6881};
     int         m_torrentConnectionsLimit{200};            // libtorrent default: 200
     int         m_torrentConnectionsLimitPerTorrent{0};   // 0 = use libtorrent default (-1 = unlimited)

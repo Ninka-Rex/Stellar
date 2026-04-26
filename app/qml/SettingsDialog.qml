@@ -95,6 +95,7 @@ Window {
     property bool   editTorrentEnableLsd:      true
     property bool   editTorrentEnableUpnp:     true
     property bool   editTorrentEnableNatPmp:   true
+    property bool   editTorrentEnablePex:      true
     property int    editTorrentListenPort:     6881
     property int    editTorrentConnectionsLimit: 200
     property int    editTorrentConnectionsLimitPerTorrent: 0
@@ -396,6 +397,7 @@ Window {
         editTorrentEnableLsd      !== App.settings.torrentEnableLsd      ||
         editTorrentEnableUpnp     !== App.settings.torrentEnableUpnp     ||
         editTorrentEnableNatPmp   !== App.settings.torrentEnableNatPmp   ||
+        editTorrentEnablePex      !== App.settings.torrentEnablePex      ||
         editTorrentListenPort     !== App.settings.torrentListenPort     ||
         editTorrentConnectionsLimit !== App.settings.torrentConnectionsLimit ||
         editTorrentConnectionsLimitPerTorrent !== App.settings.torrentConnectionsLimitPerTorrent ||
@@ -604,6 +606,7 @@ Window {
         App.settings.torrentEnableLsd       = editTorrentEnableLsd
         App.settings.torrentEnableUpnp      = editTorrentEnableUpnp
         App.settings.torrentEnableNatPmp    = editTorrentEnableNatPmp
+        App.settings.torrentEnablePex       = editTorrentEnablePex
         App.settings.torrentListenPort      = editTorrentListenPort
         App.settings.torrentConnectionsLimit = editTorrentConnectionsLimit
         App.settings.torrentConnectionsLimitPerTorrent = editTorrentConnectionsLimitPerTorrent
@@ -685,6 +688,7 @@ Window {
         editTorrentEnableLsd      = App.settings.torrentEnableLsd
         editTorrentEnableUpnp     = App.settings.torrentEnableUpnp
         editTorrentEnableNatPmp   = App.settings.torrentEnableNatPmp
+        editTorrentEnablePex      = App.settings.torrentEnablePex
         editTorrentListenPort     = App.settings.torrentListenPort
         editTorrentConnectionsLimit = App.settings.torrentConnectionsLimit
         editTorrentConnectionsLimitPerTorrent = App.settings.torrentConnectionsLimitPerTorrent
@@ -2784,15 +2788,6 @@ Window {
                             }
                         }
 
-                        CheckBox {
-                            text: "Enable NAT-PMP"
-                            topPadding: 0
-                            bottomPadding: 0
-                            checked: root.editTorrentEnableNatPmp
-                            onCheckedChanged: root.editTorrentEnableNatPmp = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
-                        }
-
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
                         Text { text: "Port Test"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
@@ -2836,29 +2831,60 @@ Window {
 
                         Text { text: "Networking"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
-                        CheckBox {
-                            text: "Enable DHT"
-                            topPadding: 0
-                            bottomPadding: 0
-                            checked: root.editTorrentEnableDht
-                            onCheckedChanged: root.editTorrentEnableDht = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        component NetCheckRow: RowLayout {
+                            property alias cbChecked: cb.checked
+                            property alias label: labelText.text
+                            property alias description: descText.text
+                            signal toggled(bool checked)
+                            spacing: 8
+                            CheckBox {
+                                id: cb
+                                topPadding: 0; bottomPadding: 0
+                                Layout.alignment: Qt.AlignTop
+                                onCheckedChanged: parent.toggled(checked)
+                            }
+                            ColumnLayout {
+                                spacing: 1
+                                Layout.fillWidth: true
+                                Text { id: labelText; color: "#d0d0d0"; font.pixelSize: 13 }
+                                Text {
+                                    id: descText
+                                    color: "#777777"; font.pixelSize: 11
+                                    Layout.fillWidth: true
+                                    wrapMode: Text.WordWrap
+                                }
+                            }
                         }
-                        CheckBox {
-                            text: "Enable local service discovery"
-                            topPadding: 0
-                            bottomPadding: 0
-                            checked: root.editTorrentEnableLsd
-                            onCheckedChanged: root.editTorrentEnableLsd = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+
+                        NetCheckRow {
+                            label: "DHT"
+                            description: "Find peers without a tracker using a distributed hash table."
+                            cbChecked: root.editTorrentEnableDht
+                            onToggled: (v) => root.editTorrentEnableDht = v
                         }
-                        CheckBox {
-                            text: "Enable UPnP"
-                            topPadding: 0
-                            bottomPadding: 0
-                            checked: root.editTorrentEnableUpnp
-                            onCheckedChanged: root.editTorrentEnableUpnp = checked
-                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        NetCheckRow {
+                            label: "LSD"
+                            description: "Discover peers on your local network without going through the internet."
+                            cbChecked: root.editTorrentEnableLsd
+                            onToggled: (v) => root.editTorrentEnableLsd = v
+                        }
+                        NetCheckRow {
+                            label: "UPnP"
+                            description: "Automatically open a port on your router so peers can connect to you."
+                            cbChecked: root.editTorrentEnableUpnp
+                            onToggled: (v) => root.editTorrentEnableUpnp = v
+                        }
+                        NetCheckRow {
+                            label: "NAT-PMP"
+                            description: "Like UPnP but for Apple routers - enable both and whichever your router supports will be used."
+                            cbChecked: root.editTorrentEnableNatPmp
+                            onToggled: (v) => root.editTorrentEnableNatPmp = v
+                        }
+                        NetCheckRow {
+                            label: "PeX (Peer Exchange)"
+                            description: "Share peer lists between connected peers so you find more sources without hitting the tracker."
+                            cbChecked: root.editTorrentEnablePex
+                            onToggled: (v) => root.editTorrentEnablePex = v
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }

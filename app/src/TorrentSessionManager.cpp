@@ -2005,6 +2005,17 @@ void TorrentSessionManager::configureSession(const AppSettings *settings) {
     pack.set_bool(libtorrent::settings_pack::enable_lsd, settings->torrentEnableLsd());
     pack.set_bool(libtorrent::settings_pack::enable_upnp, settings->torrentEnableUpnp());
     pack.set_bool(libtorrent::settings_pack::enable_natpmp, settings->torrentEnableNatPmp());
+
+    // PeX has no session-level settings_pack key; propagate to all existing handles.
+    for (auto &h : m_session->get_torrents()) {
+        if (h.is_valid()) {
+            if (settings->torrentEnablePex())
+                h.unset_flags(libtorrent::torrent_flags::disable_pex);
+            else
+                h.set_flags(libtorrent::torrent_flags::disable_pex);
+        }
+    }
+
     // Global connection and upload slot limits
     pack.set_int(libtorrent::settings_pack::connections_limit,
                  settings->torrentConnectionsLimit());
@@ -2210,6 +2221,10 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
         params.flags |= libtorrent::torrent_flags::paused;
     else
         params.flags &= ~libtorrent::torrent_flags::paused;
+    if (m_settings && !m_settings->torrentEnablePex())
+        params.flags |= libtorrent::torrent_flags::disable_pex;
+    else
+        params.flags &= ~libtorrent::torrent_flags::disable_pex;
 
     if (torrentFilePath.isEmpty()) {
         const QString magnetSource = normalizeTorrentUri(item->torrentSource());

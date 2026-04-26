@@ -1919,7 +1919,82 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         // showing "Click Add URL to start" before the first per-item restore
         // lambda fires.
         emit restoreProgressChanged();
-        for (int i = 0; i < itemCount; ++i) {
+        auto finalizeRestore = [this]() {
+            m_restoring = false;
+            emit restoreProgressChanged();
+            // Clear the cached "starting up" tooltip so the next 5 s tooltip-
+            // timer tick replaces it with the live download stats. We don't
+            // setToolTip("") here â€” that would briefly blank the tooltip
+            // until the timer fires; instead we just invalidate the dedup
+            // guard so the next regularly-scheduled update writes through.
+            m_lastTrayTooltip.clear();
+            // Snapshot restored torrent byte totals so appStatistics() can
+            // subtract them to produce a true session-only transfer figure.
+            for (auto *item : m_downloadModel->allItems()) {
+                if (!item || !item->isTorrent()) continue;
+                m_sessionBaselineUploaded   += item->torrentUploaded();
+                m_sessionBaselineDownloaded += item->torrentDownloaded();
+            }
+            // libtorrent alert polling runs every 1 s; give it 12 s after all
+            // items are enqueued to deliver any deferred torrent_finished_alert
+            // before we stop suppressing completions for restored seeding IDs.
+            QTimer::singleShot(12000, this, [this]() {
+                m_restoredSeedingIds.clear();
+            });
+            // Count completed downloads from the restored items
+            m_completedCount = 0;
+              for (auto *item : m_downloadModel->allItems())
+                  if (item->statusEnum() == DownloadItem::Status::Completed)
+                      m_completedCount++;
+              emit completedDownloadsChanged();
+              checkQueueSchedules();
+              for (int i = 0; i < m_queueModel->rowCount(); ++i) {
+                  Queue *queue = m_queueModel->queueAt(i);
+                  if (queue && queue->startOnIDMStartup() && queue->id() != QStringLiteral("download-limits"))
+                      startQueue(queue->id());
+              }
+              cleanupTemporaryDirectory();
+              if (m_settings->speedLimiterOnStartup() && m_settings->globalSpeedLimitKBps() == 0
+                      && m_settings->savedSpeedLimitKBps() > 0) {
+                  m_settings->setGlobalSpeedLimitKBps(m_settings->savedSpeedLimitKBps());
+              }
+              if (m_qmlReady && !m_pendingIpcPayloads.isEmpty()) {
+                  const QList<QByteArray> pending = std::exchange(m_pendingIpcPayloads, {});
+                  for (const QByteArray &p : pending)
+                      handleIpcPayload(p);
+              }
+        };
+        if (itemCount == 0) {
+            QTimer::singleShot(0, this, finalizeRestore);
+        } else {
+            auto *restoreTimer = new QTimer(this);
+            restoreTimer->setInterval(1);
+            int restoreIndex = 0;
+            connect(restoreTimer, &QTimer::timeout, this, [this, items, itemCount, restoreTimer, restoreIndex, finalizeRestore]() mutable {
+                constexpr int kRestoreBatchSize = 128;
+                for (int batchCount = 0; batchCount < kRestoreBatchSize && restoreIndex < itemCount; ++batchCount, ++restoreIndex) {
+                    DownloadItem *item = items.at(restoreIndex);
+                    m_queue->enqueueRestored(item);
+                    watchItem(item);
+                    if (item->isTorrent()) {
+                        const auto s = item->statusEnum();
+                        if (s == DownloadItem::Status::Seeding
+                                || s == DownloadItem::Status::Completed)
+                            m_restoredSeedingIds.insert(item->id());
+                        m_torrentSession->restoreTorrent(item);
+                        applyPerTorrentSpeedLimits(m_torrentSession, item);
+                    }
+                }
+                emit restoreProgressChanged();
+                if (restoreIndex < itemCount)
+                    return;
+                restoreTimer->stop();
+                restoreTimer->deleteLater();
+                finalizeRestore();
+            });
+            restoreTimer->start();
+        }
+        if (false) for (int i = 0; i < itemCount; ++i) {
             QTimer::singleShot(0, this, [this, item = items.at(i)]() {
                 m_queue->enqueueRestored(item);
                 watchItem(item);
@@ -1940,12 +2015,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         // Finalization runs after every per-item singleShot has fired. Since
         // singleShot(0) preserves dispatch order, posting one more zero-delay
         // shot here lands strictly after the last item's restore lambda.
-        QTimer::singleShot(0, this, [this]() {
+        if (false) QTimer::singleShot(0, this, [this]() {
             m_restoring = false;
-            // Final notify so QML sees restoreInProgress flip to false and
-            // the empty-state reverts to its normal "Click Add URL" message
-            // (which by this point will only be visible if the database was
-            // genuinely empty).
             emit restoreProgressChanged();
             // Clear the cached "starting up" tooltip so the next 5 s tooltip-
             // timer tick replaces it with the live download stats. We don't
