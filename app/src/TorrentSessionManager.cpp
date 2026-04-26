@@ -2456,6 +2456,8 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
     }
 
     if (auto *update = libtorrent::alert_cast<libtorrent::state_update_alert>(alert)) {
+        m_hasIncomingPending = false;
+        m_didInspectPeersThisTick = false;
         for (const auto &status : update->status) {
             const QString id = idForHandle(status.handle);
             DownloadItem *item = m_items.value(id, nullptr).data();
@@ -2463,6 +2465,10 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
                 updateItemFromStatus(item, status.handle);
                 updateModels(id, status.handle);
             }
+        }
+        if (m_didInspectPeersThisTick && m_hasIncomingPending != m_hasIncomingConnection) {
+            m_hasIncomingConnection = m_hasIncomingPending;
+            emit hasIncomingConnectionChanged();
         }
         return;
     }
@@ -2710,6 +2716,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
     if (shouldInspectPeers)
         handle.get_peer_info(peerInfos);
     if (shouldInspectPeers) {
+        m_didInspectPeersThisTick = true;
         QVector<TorrentPeerModel::Entry> entries;
         entries.reserve(int(peerInfos.size()));
         bool anyBanChanged = false;
@@ -2730,10 +2737,12 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             {
                 QStringList fl;
                 // Connection direction
-                if ((peer.flags & libtorrent::peer_info::local_connection) != libtorrent::peer_flags_t{})
+                if ((peer.flags & libtorrent::peer_info::local_connection) != libtorrent::peer_flags_t{}) {
                     fl << QStringLiteral("OUT");
-                else
+                } else {
                     fl << QStringLiteral("IN");
+                    m_hasIncomingPending = true;
+                }
                 // Sources
                 if ((peer.source & libtorrent::peer_info::tracker) != libtorrent::peer_source_flags_t{})
                     fl << QStringLiteral("TRK");
@@ -3622,6 +3631,7 @@ void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress)
                                     defaultTorrentUserAgent(m_settings));
         }
     }
+    emit externalAddressChanged();
 #else
     Q_UNUSED(ipAddress);
 #endif
@@ -3663,6 +3673,7 @@ void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress,
                                     defaultTorrentUserAgent(m_settings));
         }
     }
+    emit externalAddressChanged();
 #else
     Q_UNUSED(ipAddress); Q_UNUSED(latitude); Q_UNUSED(longitude); Q_UNUSED(hasCoordinates);
 #endif

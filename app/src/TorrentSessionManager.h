@@ -102,6 +102,7 @@ public:
         return {};
 #endif
     }
+    bool hasIncomingConnection() const { return m_hasIncomingConnection; }
     void setDetectedExternalAddress(const QString &ipAddress);
     void setDetectedExternalAddress(const QString &ipAddress, double latitude, double longitude, bool hasCoordinates);
     QVariantMap geoDatabaseInfo();
@@ -113,6 +114,8 @@ public:
     void startDhtCrawlNow();
 
 signals:
+    void externalAddressChanged();
+    void hasIncomingConnectionChanged();
     void torrentFinished(const QString &downloadId);
     void torrentErrored(const QString &downloadId, const QString &reason);
     void torrentShareLimitReached(const QString &downloadId, int action);
@@ -187,6 +190,9 @@ private:
     QHash<QString, QString> m_trackerIpCache;
     QHash<QString, BannedPeer> m_bannedPeers;
     QString m_externalAddress;
+    bool    m_hasIncomingConnection{false};
+    bool    m_hasIncomingPending{false};
+    bool    m_didInspectPeersThisTick{false};
     QString m_localCountryCode;
     QString m_localRegionName;
     QString m_localCityName;

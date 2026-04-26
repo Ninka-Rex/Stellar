@@ -1103,6 +1103,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_settings, &AppSettings::rssRefreshIntervalMinsChanged, this, applyRssRefreshInterval);
     connect(m_settings, &AppSettings::rssEnabledChanged,             this, applyRssRefreshInterval);
     m_torrentSession = new TorrentSessionManager(this);
+    m_networkInfo = new NetworkInfo(this);
+    connect(m_torrentSession, &TorrentSessionManager::externalAddressChanged,
+            this, &AppController::publicIpChanged);
+    connect(m_torrentSession, &TorrentSessionManager::hasIncomingConnectionChanged,
+            this, &AppController::hasIncomingConnectionsChanged);
     refreshIpToCityDbInfo();
 
     // Clean up any orphaned rss_*.torrent temp files left by previous runs

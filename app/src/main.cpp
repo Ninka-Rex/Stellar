@@ -40,6 +40,7 @@
 #include "FileIconImageProvider.h"
 #include "StellarPaths.h"
 #include "RssArticleModel.h"
+#include "NetworkInfo.h"
 #include "RssFeedModel.h"
 #include "RssManager.h"
 #include "TorrentSearchManager.h"
@@ -491,6 +492,8 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<RssArticleModel>("com.stellar.app", 1, 0, "RssArticleModel",
         QStringLiteral("Use App.rssManager.articleModel"));
     qmlRegisterType<FileDragDropHelper>("com.stellar.app", 1, 0, "FileDragDropHelper");
+    qmlRegisterUncreatableType<NetworkInfo>("com.stellar.app", 1, 0, "NetworkInfo",
+        QStringLiteral("Use App.networkInfo"));
 
     nmLog(QStringLiteral("Instantiating AppController..."));
     AppController controller;

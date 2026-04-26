@@ -160,6 +160,90 @@ Rectangle {
             }
         }
 
+        // Public IP / network indicator. Click to copy IP.
+        // Tooltip is built lazily via Q_INVOKABLE on hover so the per-tick
+        // status-bar refresh stays cheap.
+        Text {
+            id: publicIpText
+            visible: App.settings.showPublicIpInStatusBar
+            // Cached interface type / WiFi info — refreshed on hover only.
+            property int    _ifaceType: 0           // 0=None 1=Wifi 2=Ethernet 3=Other
+            property string _wifiSsid:  ""
+            property int    _wifiPct:   0
+            property int    _wifiRssi:  0
+            property bool   _wifiOk:    false
+
+            function _refreshTooltipData() {
+                _ifaceType = App.networkInfo.activeInterfaceType()
+                if (_ifaceType === 1) {
+                    var w = App.networkInfo.queryActiveWifi()
+                    _wifiOk   = !!w.available
+                    _wifiSsid = _wifiOk ? (w.ssid || "(unknown SSID)") : ""
+                    _wifiPct  = _wifiOk ? (w.signalPercent | 0) : 0
+                    _wifiRssi = _wifiOk ? (w.rssiDbm | 0) : 0
+                } else {
+                    _wifiOk = false
+                }
+            }
+
+            text: {
+                if (!App.settings.showPublicIpInStatusBar) return ""
+                var ip = App.publicIp
+                var prefix
+                if (!App.hasIncomingConnections)
+                    prefix = "❗"
+                else {
+                    // Use cached type if known; fall back to a neutral globe so the
+                    // indicator never looks broken before the first hover.
+                    var t = publicIpText._ifaceType
+                    if (t === 0) t = App.networkInfo.activeInterfaceType()
+                    prefix = (t === 1) ? "📶" : (t === 2 ? "🔌" : "🌐")
+                }
+                return prefix + " " + (ip && ip.length > 0 ? ip : "—")
+            }
+            color: ipHover.hovered ? "#ffffff" : "#b0b0b0"
+            font.pixelSize: 11
+            verticalAlignment: Text.AlignVCenter
+
+            HoverHandler {
+                id: ipHover
+                onHoveredChanged: if (hovered) publicIpText._refreshTooltipData()
+            }
+            ToolTip.visible: ipHover.hovered
+            ToolTip.delay: 250
+            ToolTip.timeout: 10000
+            ToolTip.text: {
+                var lines = []
+                var ip = App.publicIp
+                lines.push("Public IP: " + (ip && ip.length > 0 ? ip : "(detecting…)"))
+                if (!App.hasIncomingConnections) {
+                    lines.push("")
+                    lines.push("❗ No incoming connections, network may be misconfigured")
+                }
+                if (publicIpText._ifaceType === 1 && publicIpText._wifiOk) {
+                    lines.push("")
+                    lines.push("WiFi: " + publicIpText._wifiSsid)
+                    lines.push("Signal: " + publicIpText._wifiPct + "%  ("
+                               + publicIpText._wifiRssi + " dBm)")
+                } else if (publicIpText._ifaceType === 2) {
+                    lines.push("")
+                    lines.push("Connection: Ethernet")
+                }
+                lines.push("")
+                lines.push("Click to copy IP")
+                return lines.join("\n")
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    if (App.publicIp && App.publicIp.length > 0)
+                        App.copyToClipboard(App.publicIp)
+                }
+            }
+        }
+
         // Live speed indicator — right-aligned, only shown when enabled.
         Text {
             visible: App.settings.speedInStatusBar

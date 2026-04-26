@@ -48,6 +48,7 @@
 #include "YtdlpManager.h"
 #include "YtdlpTransfer.h"
 #include "TorrentSessionManager.h"
+#include "NetworkInfo.h"
 
 class AppController : public QObject {
     Q_OBJECT
@@ -115,6 +116,9 @@ class AppController : public QObject {
     Q_PROPERTY(QString ytdlpBatchLabel READ ytdlpBatchLabel NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QVariantList ytdlpBatchItems READ ytdlpBatchItems NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QVariantList torrentBannedPeers READ torrentBannedPeers NOTIFY torrentBannedPeersChanged)
+    Q_PROPERTY(QString publicIp READ publicIp NOTIFY publicIpChanged)
+    Q_PROPERTY(bool hasIncomingConnections READ hasIncomingConnections NOTIFY hasIncomingConnectionsChanged)
+    Q_PROPERTY(NetworkInfo *networkInfo READ networkInfo CONSTANT)
 
 public:
     explicit AppController(QObject *parent = nullptr);
@@ -178,6 +182,9 @@ public:
     QString ytdlpBatchLabel() const { return m_activeYtdlpBatchLabel; }
     QVariantList ytdlpBatchItems() const { return m_activeYtdlpBatchItems; }
     QVariantList torrentBannedPeers() const;
+    QString publicIp() const { return m_torrentSession ? m_torrentSession->detectedExternalAddress() : QString(); }
+    bool hasIncomingConnections() const { return m_torrentSession && m_torrentSession->hasIncomingConnection(); }
+    NetworkInfo *networkInfo() const { return m_networkInfo; }
 
     // ── yt-dlp public API ────────────────────────────────────────────────────────
     // Returns true if the URL looks like a site supported by yt-dlp (YouTube, Vimeo, etc.)
@@ -457,6 +464,8 @@ signals:
     void ytdlpCookieRetryRequested(const QString &downloadId, const QString &reason,
                                    const QString &suggestedBrowser);
     void torrentBannedPeersChanged();
+    void publicIpChanged();
+    void hasIncomingConnectionsChanged();
 
 private:
     QString generateId() const;
@@ -595,6 +604,7 @@ private:
     TorrentSearchManager           *m_torrentSearchManager{nullptr};
     RssManager                     *m_rssManager{nullptr};
     TorrentSessionManager          *m_torrentSession{nullptr};
+    NetworkInfo                    *m_networkInfo{nullptr};
     // Active YtdlpTransfer workers keyed by download item ID
     QMap<QString, YtdlpTransfer *>   m_ytdlpWorkers;
     QString                           m_activeYtdlpBatchId;

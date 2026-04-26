@@ -71,6 +71,7 @@ Window {
     property bool   editSpeedInStatusBar:      false
     property bool   editEstimatedOnlineUsersInStatusBar: false
     property bool   editRatioInStatusBar:      false
+    property bool   editShowPublicIpInStatusBar: false
     property bool   editStartDownloadWhileFileInfo: true
     property bool   editShowQueueSelectionOnDownloadLater: true
     property bool   editShowQueueSelectionOnBatchDownload: true
@@ -381,6 +382,7 @@ Window {
         editSpeedInStatusBar      !== App.settings.speedInStatusBar ||
         editEstimatedOnlineUsersInStatusBar !== App.settings.estimatedOnlineUsersInStatusBar ||
         editRatioInStatusBar      !== App.settings.ratioInStatusBar ||
+        editShowPublicIpInStatusBar !== App.settings.showPublicIpInStatusBar ||
         editLaunchOnStartup       !== App.settings.launchOnStartup ||
         editClipboardMonitorEnabled !== App.settings.clipboardMonitorEnabled ||
         editDoubleClickAction     !== App.settings.doubleClickAction ||
@@ -590,6 +592,7 @@ Window {
         App.settings.speedInStatusBar       = editSpeedInStatusBar
         App.settings.estimatedOnlineUsersInStatusBar = editEstimatedOnlineUsersInStatusBar
         App.settings.ratioInStatusBar       = editRatioInStatusBar
+        App.settings.showPublicIpInStatusBar = editShowPublicIpInStatusBar
         App.settings.launchOnStartup        = editLaunchOnStartup
         App.settings.clipboardMonitorEnabled = editClipboardMonitorEnabled
         App.settings.doubleClickAction      = editDoubleClickAction
@@ -672,6 +675,7 @@ Window {
         editSpeedInStatusBar      = App.settings.speedInStatusBar
         editEstimatedOnlineUsersInStatusBar = App.settings.estimatedOnlineUsersInStatusBar
         editRatioInStatusBar      = App.settings.ratioInStatusBar
+        editShowPublicIpInStatusBar = App.settings.showPublicIpInStatusBar
         editLaunchOnStartup       = App.settings.launchOnStartup
         editClipboardMonitorEnabled = App.settings.clipboardMonitorEnabled
         editDoubleClickAction     = App.settings.doubleClickAction
@@ -2294,7 +2298,7 @@ Window {
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
-                        Text { text: "Speed Display"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: "Utilities"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         CheckBox {
                             text: "Show speed in tray icon tooltip"
@@ -2343,6 +2347,21 @@ Window {
                             checked: root.editRatioInStatusBar
                             onCheckedChanged: root.editRatioInStatusBar = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        CheckBox {
+                            text: "Show Public IP in Status Bar"
+                            topPadding: 0; bottomPadding: 0
+                            checked: root.editShowPublicIpInStatusBar
+                            onCheckedChanged: root.editShowPublicIpInStatusBar = checked
+                            contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+                        Text {
+                            text: "Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections."
+                            color: "#7a7a7a"
+                            font.pixelSize: 11
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                            visible: root.editShowPublicIpInStatusBar
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }

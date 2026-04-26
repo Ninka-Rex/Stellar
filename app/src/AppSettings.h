@@ -53,6 +53,7 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool speedInStatusBar    READ speedInStatusBar    WRITE setSpeedInStatusBar    NOTIFY speedInStatusBarChanged)
     Q_PROPERTY(bool estimatedOnlineUsersInStatusBar READ estimatedOnlineUsersInStatusBar WRITE setEstimatedOnlineUsersInStatusBar NOTIFY estimatedOnlineUsersInStatusBarChanged)
     Q_PROPERTY(bool ratioInStatusBar    READ ratioInStatusBar    WRITE setRatioInStatusBar    NOTIFY ratioInStatusBarChanged)
+    Q_PROPERTY(bool showPublicIpInStatusBar READ showPublicIpInStatusBar WRITE setShowPublicIpInStatusBar NOTIFY showPublicIpInStatusBarChanged)
     Q_PROPERTY(bool startDownloadWhileFileInfo READ startDownloadWhileFileInfo WRITE setStartDownloadWhileFileInfo NOTIFY startDownloadWhileFileInfoChanged)
     Q_PROPERTY(bool showQueueSelectionOnDownloadLater READ showQueueSelectionOnDownloadLater WRITE setShowQueueSelectionOnDownloadLater NOTIFY showQueueSelectionOnDownloadLaterChanged)
     Q_PROPERTY(bool showQueueSelectionOnBatchDownload READ showQueueSelectionOnBatchDownload WRITE setShowQueueSelectionOnBatchDownload NOTIFY showQueueSelectionOnBatchDownloadChanged)
@@ -179,6 +180,7 @@ public:
     bool speedInStatusBar()       const { return m_speedInStatusBar; }
     bool estimatedOnlineUsersInStatusBar() const { return m_estimatedOnlineUsersInStatusBar; }
     bool ratioInStatusBar()       const { return m_ratioInStatusBar; }
+    bool showPublicIpInStatusBar() const { return m_showPublicIpInStatusBar; }
     bool startDownloadWhileFileInfo() const { return m_startDownloadWhileFileInfo; }
     bool showQueueSelectionOnDownloadLater() const { return m_showQueueSelectionOnDownloadLater; }
     bool showQueueSelectionOnBatchDownload() const { return m_showQueueSelectionOnBatchDownload; }
@@ -283,6 +285,7 @@ public:
     void setSpeedInStatusBar(bool v);
     void setEstimatedOnlineUsersInStatusBar(bool v);
     void setRatioInStatusBar(bool v);
+    void setShowPublicIpInStatusBar(bool v);
     void setStartDownloadWhileFileInfo(bool v);
     void setShowQueueSelectionOnDownloadLater(bool v);
     void setShowQueueSelectionOnBatchDownload(bool v);
@@ -404,6 +407,7 @@ signals:
     void speedInStatusBarChanged();
     void estimatedOnlineUsersInStatusBarChanged();
     void ratioInStatusBarChanged();
+    void showPublicIpInStatusBarChanged();
     void startDownloadWhileFileInfoChanged();
     void showQueueSelectionOnDownloadLaterChanged();
     void showQueueSelectionOnBatchDownloadChanged();
@@ -483,6 +487,7 @@ private:
     bool        m_speedInStatusBar{false};
     bool        m_estimatedOnlineUsersInStatusBar{false};
     bool        m_ratioInStatusBar{false};
+    bool        m_showPublicIpInStatusBar{false};
     bool        m_startDownloadWhileFileInfo{true};
     bool        m_showQueueSelectionOnDownloadLater{true};
     bool        m_showQueueSelectionOnBatchDownload{true};

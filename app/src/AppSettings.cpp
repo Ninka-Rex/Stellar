@@ -195,6 +195,7 @@ void AppSettings::load() {
     m_estimatedOnlineUsersInStatusBar =
         m_settings.value(QStringLiteral("estimatedOnlineUsersInStatusBar"), false).toBool();
     m_ratioInStatusBar        = m_settings.value(QStringLiteral("ratioInStatusBar"), false).toBool();
+    m_showPublicIpInStatusBar = m_settings.value(QStringLiteral("showPublicIpInStatusBar"), false).toBool();
     m_startDownloadWhileFileInfo = m_settings.value(QStringLiteral("startDownloadWhileFileInfo"), true).toBool();
     m_showQueueSelectionOnDownloadLater = m_settings.value(QStringLiteral("showQueueSelectionOnDownloadLater"), true).toBool();
     m_showQueueSelectionOnBatchDownload  = m_settings.value(QStringLiteral("showQueueSelectionOnBatchDownload"), true).toBool();
@@ -342,6 +343,7 @@ void AppSettings::load() {
     emit speedInStatusBarChanged();
     emit estimatedOnlineUsersInStatusBarChanged();
     emit ratioInStatusBarChanged();
+    emit showPublicIpInStatusBarChanged();
     emit startDownloadWhileFileInfoChanged();
     emit showQueueSelectionOnDownloadLaterChanged();
     emit showQueueSelectionOnBatchDownloadChanged();
@@ -429,6 +431,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("estimatedOnlineUsersInStatusBar"),
                         m_estimatedOnlineUsersInStatusBar);
     m_settings.setValue(QStringLiteral("ratioInStatusBar"),            m_ratioInStatusBar);
+    m_settings.setValue(QStringLiteral("showPublicIpInStatusBar"),     m_showPublicIpInStatusBar);
     m_settings.setValue(QStringLiteral("startDownloadWhileFileInfo"),  m_startDownloadWhileFileInfo);
     m_settings.setValue(QStringLiteral("showQueueSelectionOnDownloadLater"), m_showQueueSelectionOnDownloadLater);
     m_settings.setValue(QStringLiteral("showQueueSelectionOnBatchDownload"),  m_showQueueSelectionOnBatchDownload);
@@ -551,6 +554,7 @@ void AppSettings::setEstimatedOnlineUsersInStatusBar(bool v) {
     }
 }
 void AppSettings::setRatioInStatusBar(bool v)       { if (m_ratioInStatusBar       != v) { m_ratioInStatusBar       = v; emit ratioInStatusBarChanged();       save(); } }
+void AppSettings::setShowPublicIpInStatusBar(bool v) { if (m_showPublicIpInStatusBar != v) { m_showPublicIpInStatusBar = v; emit showPublicIpInStatusBarChanged(); save(); } }
 void AppSettings::setStartDownloadWhileFileInfo(bool v) { if (m_startDownloadWhileFileInfo != v) { m_startDownloadWhileFileInfo = v; emit startDownloadWhileFileInfoChanged(); save(); } }
 void AppSettings::setShowQueueSelectionOnDownloadLater(bool v) { if (m_showQueueSelectionOnDownloadLater != v) { m_showQueueSelectionOnDownloadLater = v; emit showQueueSelectionOnDownloadLaterChanged(); save(); } }
 void AppSettings::setShowQueueSelectionOnBatchDownload(bool v) { if (m_showQueueSelectionOnBatchDownload != v) { m_showQueueSelectionOnBatchDownload = v; emit showQueueSelectionOnBatchDownloadChanged(); save(); } }

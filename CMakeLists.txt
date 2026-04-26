@@ -143,6 +143,7 @@ set(BACKEND_SOURCES
     app/src/TorrentSearchPluginModel.cpp
     app/src/TorrentSearchResultModel.cpp
     app/src/TorrentSearchManager.cpp
+    app/src/NetworkInfo.cpp
 )
 
 set(BACKEND_HEADERS
@@ -177,6 +178,7 @@ set(BACKEND_HEADERS
     app/src/TorrentSearchPluginModel.h
     app/src/TorrentSearchResultModel.h
     app/src/TorrentSearchManager.h
+    app/src/NetworkInfo.h
 )
 
 # ── QML Resources ──────────────────────────────────────────────────────────────
@@ -365,6 +367,10 @@ target_link_libraries(Stellar PRIVATE
     Qt6::Widgets
     Qt6::Concurrent
 )
+
+if(WIN32)
+    target_link_libraries(Stellar PRIVATE wlanapi)
+endif()
 
 if(ENABLE_LIBTORRENT AND LibtorrentRasterbar_FOUND)
     target_link_libraries(Stellar PRIVATE LibtorrentRasterbar::torrent-rasterbar)
