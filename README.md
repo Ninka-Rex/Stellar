@@ -2,7 +2,9 @@
 
 An open source download manager for Windows and Linux, inspired by IDM. Built with Qt 6 and QML
 
-![Screenshot](screenshots/preview.webp)
+![Screenshot](screenshots/ui.png)
+![Screenshot](screenshots/http-download.png)
+![Screenshot](screenshots/torrent-swarm-map.png)
 
 ## What it does
 
