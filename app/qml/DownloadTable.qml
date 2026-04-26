@@ -1259,6 +1259,8 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: {
                             if (!rowRect.item || !rowRect.item.isTorrent) return ""
+                            var st = rowRect.item.status
+                            if (st === "Paused" || st === "Stopped") return ""
                             return rowRect.item.torrentSeeders + " (" + rowRect.item.torrentListSeeders + ")"
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
@@ -1277,6 +1279,8 @@ Rectangle {
                         verticalAlignment: Text.AlignVCenter
                         text: {
                             if (!rowRect.item || !rowRect.item.isTorrent) return ""
+                            var st = rowRect.item.status
+                            if (st === "Paused" || st === "Stopped") return ""
                             return rowRect.item.torrentPeers + " (" + rowRect.item.torrentListPeers + ")"
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
