@@ -1339,8 +1339,9 @@ QString SegmentedTransfer::parseContentDispositionFilename(const QByteArray &hea
     int semi = val.indexOf(';');
     if (semi >= 0) val = val.left(semi);
     val = val.trimmed();
-    // Strip quotes
-    if (val.startsWith('"') && val.endsWith('"'))
+    // Strip surrounding quotes only when both are present and the string is
+    // long enough to contain content between them.
+    if (val.size() >= 2 && val.startsWith('"') && val.endsWith('"'))
         val = val.mid(1, val.size() - 2);
     return QString::fromUtf8(val);
 }
