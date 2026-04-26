@@ -865,6 +865,12 @@ void SegmentedTransfer::onSegmentFinished(int index) {
     // otherwise the server closed early and we'd silently produce a truncated
     // file.  Retry instead of marking done.
     if (seg.endOffset >= 0) {
+        if (seg.endOffset < seg.startOffset) {
+            qDebug() << "[ST] segment" << index << "invalid range (endOffset < startOffset) — aborting";
+            m_item->setStatus(DownloadItem::Status::Error);
+            emit failed(QStringLiteral("Internal error: degenerate segment range"));
+            return;
+        }
         qint64 expected = seg.endOffset - seg.startOffset + 1;
         if (seg.received < expected) {
             qDebug() << "[ST] segment" << index << "short:"
@@ -1516,7 +1522,7 @@ void SegmentedTransfer::pause() {
             seg.reply = nullptr;
         }
         // Mark done only if all bytes are truly on disk
-        if (seg.networkDone && !seg.done && seg.endOffset >= 0 &&
+        if (seg.networkDone && !seg.done && seg.endOffset >= seg.startOffset &&
             seg.received >= (seg.endOffset - seg.startOffset + 1)) {
             seg.done = true;
         }
