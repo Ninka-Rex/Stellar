@@ -2156,6 +2156,11 @@ ApplicationWindow {
     DropArea {
         anchors.fill: parent
         z: 9997
+        // Only accept external file drops (URLs/files from OS). Without this,
+        // the unfiltered DropArea intercepts in-app drags too (text/downloadId
+        // from the category drag proxy), breaking drop into sidebar categories
+        // and queues.
+        keys: ["text/uri-list"]
         onEntered: function(drag) {
             root.updateTorrentDropState(drag)
             if (root._torrentFileDragActive && drag.acceptProposedAction)

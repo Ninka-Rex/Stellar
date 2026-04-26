@@ -261,6 +261,23 @@ Rectangle {
                                     root.allDownloadsExpanded = !root.allDownloadsExpanded
                                 }
                             }
+
+                            // Drop on "All Downloads" header → clear the item's
+                            // user-assigned category (sets it back to "all").
+                            DropArea {
+                                anchors.fill: parent; keys: ["text/downloadId"]
+                                onDropped: (drop) => {
+                                    if (drop.source) {
+                                        var ids = drop.source.dragDownloadIds && drop.source.dragDownloadIds.length > 0
+                                                ? drop.source.dragDownloadIds
+                                                : (drop.source.dragDownloadId ? [drop.source.dragDownloadId] : [])
+                                        for (var i = 0; i < ids.length; i++) {
+                                            App.setDownloadCategory(ids[i], "all")
+                                        }
+                                        if (ids.length > 0) drop.accept()
+                                    }
+                                }
+                            }
                         }
 
                         // User categories (skip "all" placeholder at row 0)

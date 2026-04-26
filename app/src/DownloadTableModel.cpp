@@ -113,6 +113,8 @@ void DownloadTableModel::addItem(DownloadItem *item) {
     connect(item, &DownloadItem::statusChanged,      this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::errorStringChanged, this, &DownloadTableModel::onItemChanged);
     connect(item, &DownloadItem::torrentChanged,     this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::categoryChanged,    this, &DownloadTableModel::onItemChanged);
+    connect(item, &DownloadItem::queueIdChanged,     this, &DownloadTableModel::onItemChanged);
     // High-frequency tick signals — only progress/speed/ETA columns change.
     connect(item, &DownloadItem::doneBytesChanged,    this, &DownloadTableModel::onItemProgressChanged);
     connect(item, &DownloadItem::speedChanged,        this, &DownloadTableModel::onItemProgressChanged);

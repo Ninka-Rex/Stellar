@@ -1841,9 +1841,10 @@ Window {
                     Rectangle {
                         anchors { fill: parent; margins: 8 }
                         color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
+                        clip: true
 
                         GridLayout {
-                            anchors { fill: parent; margins: 10 }
+                            anchors { fill: parent; margins: 10; bottomMargin: 52 }
                             columns: 3
                             columnSpacing: 8
                             rowSpacing: 5
@@ -1888,6 +1889,46 @@ Window {
                                 text: "Move"
                                 enabled: !!root.item && !root._torrentIsMoving
                                 onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() }
+                            }
+
+                            // — Category —
+                            Text { text: "Category"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            ComboBox {
+                                id: categoryCombo
+                                Layout.fillWidth: true; Layout.columnSpan: 2
+                                implicitHeight: 26
+                                model: App.categoryModel
+                                textRole: "categoryLabel"
+                                valueRole: "categoryId"
+                                font.pixelSize: 11
+                                // Track the item's current category and reflect it in the combo.
+                                // Suppress the activated handler while we programmatically sync,
+                                // otherwise selecting an item would instantly re-fire setCategory.
+                                property bool _syncing: false
+                                function _syncFromItem() {
+                                    if (!root.item) return
+                                    _syncing = true
+                                    var idx = indexOfValue(root.item.category)
+                                    currentIndex = idx >= 0 ? idx : 0
+                                    _syncing = false
+                                }
+                                Component.onCompleted: _syncFromItem()
+                                Connections {
+                                    target: root
+                                    function onItemChanged() { categoryCombo._syncFromItem() }
+                                }
+                                Connections {
+                                    target: root.item
+                                    ignoreUnknownSignals: true
+                                    function onCategoryChanged() { categoryCombo._syncFromItem() }
+                                }
+                                onActivated: {
+                                    if (_syncing || !root.item) return
+                                    var newId = currentValue
+                                    if (!newId) return
+                                    if (newId !== root.item.category)
+                                        App.setDownloadCategory(root.item.id, newId)
+                                }
                             }
 
                             // — Note —
@@ -1975,16 +2016,22 @@ Window {
                                     color: "#d09040"; font.pixelSize: 11; Layout.fillWidth: true
                                     visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
                                 }
-                            }
 
-                            // — Verify local data — bottom-right aligned
-                            Item { Layout.fillWidth: true; Layout.columnSpan: 2; Layout.fillHeight: true }
-                            DlgButton {
-                                text: "Verify local data"
-                                enabled: !!root.item && !root._torrentIsMoving
-                                Layout.alignment: Qt.AlignRight | Qt.AlignBottom
-                                onClicked: { if (root.item) App.forceRecheckTorrent(root.item.id) }
                             }
+                        }
+
+                        // — Verify local data — anchored to the inner Rectangle's
+                        // bottom-right so it's always inside the box even when the
+                        // window is at its minimum width (avoids depending on the
+                        // GridLayout's column-distribution behavior at narrow sizes).
+                        DlgButton {
+                            text: "Verify local data"
+                            enabled: !!root.item && !root._torrentIsMoving
+                            anchors {
+                                right: parent.right; rightMargin: 12
+                                bottom: parent.bottom; bottomMargin: 1
+                            }
+                            onClicked: { if (root.item) App.forceRecheckTorrent(root.item.id) }
                         }
                     }
                 }
