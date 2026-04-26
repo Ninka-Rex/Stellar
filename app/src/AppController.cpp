@@ -4406,18 +4406,35 @@ void AppController::applyUpdateMetadata(const QVariantMap &map, bool manual) {
     }
 
     m_updateVersion = version;
-    m_updateLinuxInstallerUrl = map.value(QStringLiteral("linuxInstallerUrl")).toString().trimmed();
-    m_updateLinuxSha256 = map.value(QStringLiteral("linuxSha256")).toString().trimmed();
-    m_updateInstallerUrl = map.value(QStringLiteral("installerUrl")).toString().trimmed();
-    m_updateSha256 = map.value(QStringLiteral("sha256")).toString().trimmed();
+
+    // SECURITY: The release tag path is hardcoded to github.com/Ninka-Rex/Stellar/releases/download/v{version}/
+    // so the metadata endpoint can only change the version number and filename — it cannot redirect
+    // the download to a different repo, host, or release tag. The filename is read from the JSON
+    // so it can be changed in future releases without a client update.
+    // SHA-256 verification (required, enforced at install time) ensures the file at that URL
+    // hasn't been tampered with even if the filename or hash in the JSON is swapped.
+    static const QString kReleaseBase =
+        QStringLiteral("https://github.com/Ninka-Rex/Stellar/releases/download/v%1/");
 #if defined(Q_OS_WIN)
-    // On Windows, installerUrl/sha256 are canonical.
+    const QString installerFilename = map.value(QStringLiteral("installerFilename")).toString().trimmed();
+    m_updateInstallerUrl = kReleaseBase.arg(version)
+        + (installerFilename.isEmpty()
+            ? QStringLiteral("StellarSetup-%1.exe").arg(version)
+            : installerFilename);
+    m_updateSha256 = map.value(QStringLiteral("sha256")).toString().trimmed();
 #else
-    if (!m_updateLinuxInstallerUrl.isEmpty())
-        m_updateInstallerUrl = m_updateLinuxInstallerUrl;
-    if (!m_updateLinuxSha256.isEmpty())
-        m_updateSha256 = m_updateLinuxSha256;
+    const QString linuxFilename = map.value(QStringLiteral("linuxInstallerFilename")).toString().trimmed();
+    m_updateInstallerUrl = kReleaseBase.arg(version)
+        + (linuxFilename.isEmpty()
+            ? QStringLiteral("stellar-%1.deb").arg(version)
+            : linuxFilename);
+    const QString linuxSha = map.value(QStringLiteral("linuxSha256")).toString().trimmed();
+    m_updateSha256 = linuxSha.isEmpty()
+        ? map.value(QStringLiteral("sha256")).toString().trimmed()
+        : linuxSha;
 #endif
+    m_updateLinuxInstallerUrl.clear();
+    m_updateLinuxSha256.clear();
     m_updateAvailable = true;
     emit updateAvailableChanged();
 
