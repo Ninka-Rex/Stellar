@@ -122,8 +122,11 @@ Rectangle {
                 }
                 if (!App.settings.torrentEnableDht)
                     return "🔴 DHT off"
-                if (App.estimatedOnlineUsers > 0)
+                if (App.estimatedOnlineUsers > 0) {
+                    if (App.estimatedOnlineUsers > 25000000)
+                        return "🟡 " + fmtUsers(App.estimatedOnlineUsers) + " online (low confidence)"
                     return "🟢 " + fmtUsers(App.estimatedOnlineUsers) + " online"
+                }
                 return "🟡 Estimating… (" + App.estimatedOnlineUsersWarmupPercent + "%)"
             }
             color: onlineUsersHover.hovered ? "#ffffff" : "#b0b0b0"
