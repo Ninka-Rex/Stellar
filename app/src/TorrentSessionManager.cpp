@@ -374,12 +374,12 @@ QStringList normalizedCountryCodes(const QStringList &values) {
 
 constexpr int kDhtZoneBits = 12; // scan a 12 bit zone...
 constexpr qint64 kDhtZoneMultiplier = qint64(1) << kDhtZoneBits;
-constexpr int kDhtMeasurementIntervalSecs = 300;
+constexpr int kDhtMeasurementIntervalSecs = 1800; // every 30 minutes...
 // Hard ceiling on how long the active crawl runs. With the bootstrap-walk
 // added in pumpDhtEstimatorCrawler() this typically saturates in 15–25 s on
 // a healthy network; the cap is the pessimistic upper bound for when the
 // routing table is small or the network is dropping packets.
-constexpr int kDhtMeasurementWindowSecs = 45;
+constexpr int kDhtMeasurementWindowSecs = 45; // for 45 seconds...
 // Initial routing-table bootstrap: at the start of every crawl, fan out
 // find_node queries to *every* live node in our routing table targeting
 // random IDs in our zone. Each reply yields up to 8 zone-candidate nodes,
