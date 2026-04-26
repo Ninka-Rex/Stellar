@@ -959,8 +959,13 @@ ApplicationWindow {
                     // Pending file-info downloads can still briefly report
                     // "Paused" when the UI signal arrives; open the progress
                     // window directly for the item the user just started.
+                    // Skip the progress dialog if the download already finished
+                    // while the user was reviewing the file info dialog — the
+                    // complete dialog will have been (or will be) shown instead.
                     Qt.callLater(function() {
-                        root.showDownloadProgressForItem(App.downloadById(downloadId))
+                        var dlItem = App.downloadById(downloadId)
+                        if (dlItem && dlItem.status !== "Completed")
+                            root.showDownloadProgressForItem(dlItem)
                     })
                 }
             } else {
