@@ -44,6 +44,7 @@
 #include <QRandomGenerator>
 #include <QSaveFile>
 #include <QTextStream>
+#include <QtConcurrent/QtConcurrentRun>
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -534,79 +535,118 @@ void appendDhtCrawlLogRow(const QDateTime &publishedAt,
                           int responsesReceived,
                           int peakLiveZone) {
     const QString path = StellarPaths::root() + QStringLiteral("/dht_crawl_log.csv");
-    QFileInfo info(path);
-    QDir().mkpath(info.absolutePath());
-    const bool needsHeader = !info.exists() || info.size() == 0;
+    QDir().mkpath(QFileInfo(path).absolutePath());
 
-    QFile f(path);
-    if (!f.open(QIODevice::Append | QIODevice::Text))
-        return; // Logging is best-effort; never let it disturb the crawl.
-
-    QTextStream out(&f);
-    if (needsHeader) {
-        out << "iso_utc,epoch_ms,wall_secs,trigger,live_zone_count,raw_hash_size,"
-               "estimate,correction,freshness_secs,buckets,routing_nodes,local_node_id,"
-               "probes_sent,responses_received,peak_live_zone\n";
+    // Build the new row on the calling thread before handing off to the
+    // background task, so publishedAt/localNodeId don't need to be captured
+    // by value into the lambda with their full storage cost.
+    QByteArray newRow;
+    {
+        QTextStream s(&newRow);
+        s << publishedAt.toString(Qt::ISODateWithMs) << ','
+          << publishedAt.toMSecsSinceEpoch() << ','
+          << wallSecs << ','
+          << trigger << ','
+          << liveZoneCount << ','
+          << rawHashSize << ','
+          << estimate << ','
+          << QString::number(correctionFactor, 'f', 4) << ','
+          << freshnessSecs << ','
+          << buckets << ','
+          << routingNodes << ','
+          << QString::fromLatin1(localNodeId.toHex()) << ','
+          << probesSent << ','
+          << responsesReceived << ','
+          << peakLiveZone << '\n';
     }
-    out << publishedAt.toString(Qt::ISODateWithMs) << ','
-        << publishedAt.toMSecsSinceEpoch() << ','
-        << wallSecs << ','
-        << trigger << ','
-        << liveZoneCount << ','
-        << rawHashSize << ','
-        << estimate << ','
-        << QString::number(correctionFactor, 'f', 4) << ','
-        << freshnessSecs << ','
-        << buckets << ','
-        << routingNodes << ','
-        << QString::fromLatin1(localNodeId.toHex()) << ','
-        << probesSent << ','
-        << responsesReceived << ','
-        << peakLiveZone << '\n';
-    out.flush();
-    f.close();
 
-    // Prune rows older than 7 days. The estimator publishes at most every ~30
-    // minutes, so a week is ~336 rows — cheap to rewrite in full each append.
-    // The cutoff is taken from the row we just wrote (the latest known time)
-    // so a wrong system clock can't accidentally wipe everything.
-    constexpr qint64 kRetentionMs = qint64{7} * 24 * 60 * 60 * 1000;
-    const qint64 cutoffMs = publishedAt.toMSecsSinceEpoch() - kRetentionMs;
+    // Capture everything the background task needs by value. The rewrite
+    // (read → filter → truncate-write) is the expensive part; running it on
+    // a thread pool thread keeps it off the main/alert thread entirely.
+    // publishedAt.toMSecsSinceEpoch() is captured as a plain qint64 so the
+    // background lambda doesn't retain a QDateTime.
+    const qint64 publishedMs = publishedAt.toMSecsSinceEpoch();
 
-    QFile in(path);
-    if (!in.open(QIODevice::ReadOnly | QIODevice::Text))
-        return;
-    QByteArray header;
-    QByteArrayList kept;
-    bool isFirstLine = true;
-    while (!in.atEnd()) {
-        const QByteArray line = in.readLine();
-        if (isFirstLine) {
-            header = line;
-            isFirstLine = false;
-            continue;
+    QtConcurrent::run([path, newRow, publishedMs]() {
+        // Hard row cap: keep at most 500 data rows regardless of timestamps.
+        // At one crawl per 30 minutes that is ~10 days of history. This is
+        // the primary defence against unbounded growth from clock skew — a
+        // backward-clock scenario makes the time-based cutoff useless, but
+        // the row cap always fires.
+        constexpr int kMaxRows = 500;
+
+        // Time-based cutoff: drop rows older than 7 days relative to the
+        // timestamp we just wrote. Using the just-written row's time (not
+        // QDateTime::currentDateTimeUtc()) means a stale system clock only
+        // makes us retain old rows longer — it can never wipe recent data.
+        constexpr qint64 kRetentionMs = qint64{7} * 24 * 60 * 60 * 1000;
+        const qint64 cutoffMs = publishedMs - kRetentionMs;
+
+        // Append the new row first (fast path). If the file doesn't exist yet
+        // write the header too.
+        {
+            const bool needsHeader = !QFileInfo::exists(path)
+                                  || QFileInfo(path).size() == 0;
+            QFile f(path);
+            if (!f.open(QIODevice::Append | QIODevice::Text))
+                return;
+            QTextStream out(&f);
+            if (needsHeader) {
+                out << "iso_utc,epoch_ms,wall_secs,trigger,live_zone_count,raw_hash_size,"
+                       "estimate,correction,freshness_secs,buckets,routing_nodes,local_node_id,"
+                       "probes_sent,responses_received,peak_live_zone\n";
+            }
+            out << newRow;
         }
-        // epoch_ms is the second column. Parse it; if anything's off, keep the
-        // row rather than dropping data we can't classify.
-        const int firstComma = line.indexOf(',');
-        if (firstComma < 0) { kept.append(line); continue; }
-        const int secondComma = line.indexOf(',', firstComma + 1);
-        if (secondComma < 0) { kept.append(line); continue; }
-        bool ok = false;
-        const qint64 rowMs = line.mid(firstComma + 1, secondComma - firstComma - 1).toLongLong(&ok);
-        if (!ok || rowMs >= cutoffMs)
-            kept.append(line);
-    }
-    in.close();
 
-    QFile rewrite(path);
-    if (!rewrite.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
-        return;
-    if (!header.isEmpty())
-        rewrite.write(header);
-    for (const QByteArray &line : kept)
-        rewrite.write(line);
-    rewrite.close();
+        // Read the file back and apply both the time-based and row-count
+        // filters. Only rewrite if something actually needs to be dropped —
+        // avoids a pointless truncate+write on every append when the file is
+        // young and small.
+        QFile in(path);
+        if (!in.open(QIODevice::ReadOnly | QIODevice::Text))
+            return;
+        QByteArray header;
+        QByteArrayList rows;
+        bool isFirstLine = true;
+        while (!in.atEnd()) {
+            const QByteArray line = in.readLine();
+            if (line.trimmed().isEmpty())
+                continue;
+            if (isFirstLine) {
+                header = line;
+                isFirstLine = false;
+                continue;
+            }
+            // epoch_ms is the second column. On any parse failure keep the row
+            // rather than silently dropping data we can't classify.
+            const int c1 = line.indexOf(',');
+            const int c2 = c1 >= 0 ? line.indexOf(',', c1 + 1) : -1;
+            if (c1 < 0 || c2 < 0) { rows.append(line); continue; }
+            bool ok = false;
+            const qint64 rowMs = line.mid(c1 + 1, c2 - c1 - 1).toLongLong(&ok);
+            if (!ok || rowMs >= cutoffMs)
+                rows.append(line);
+        }
+        in.close();
+
+        // Apply hard row cap: keep only the most recent kMaxRows rows.
+        const bool overRowCap = rows.size() > kMaxRows;
+        if (overRowCap)
+            rows = rows.mid(rows.size() - kMaxRows);
+
+        // Skip the rewrite if nothing was pruned.
+        if (!overRowCap && cutoffMs <= 0)
+            return;
+
+        QFile rewrite(path);
+        if (!rewrite.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
+            return;
+        if (!header.isEmpty())
+            rewrite.write(header);
+        for (const QByteArray &line : std::as_const(rows))
+            rewrite.write(line);
+    });
 }
 
 qint64 estimateCorrectedGlobalDhtNodesFromZoneCount(int zoneNodeCount) {
