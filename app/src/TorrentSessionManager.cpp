@@ -3214,13 +3214,17 @@ void TorrentSessionManager::lookupPeerLocation(const QString &endpoint, QString 
         MMDB_entry_data_s coordData;
         if (MMDB_aget_value(&entry, &coordData, latitudePath) == MMDB_SUCCESS && coordData.has_data
             && (coordData.type == MMDB_DATA_TYPE_DOUBLE || coordData.type == MMDB_DATA_TYPE_FLOAT)) {
-            resolved.latitude = coordData.type == MMDB_DATA_TYPE_DOUBLE ? coordData.double_value : coordData.float_value;
-            resolved.hasCoordinates = true;
+            const double lat = coordData.type == MMDB_DATA_TYPE_DOUBLE ? coordData.double_value : coordData.float_value;
+            if (lat >= -90.0 && lat <= 90.0) {
+                resolved.latitude = lat;
+                resolved.hasCoordinates = true;
+            }
         }
         if (MMDB_aget_value(&entry, &coordData, longitudePath) == MMDB_SUCCESS && coordData.has_data
             && (coordData.type == MMDB_DATA_TYPE_DOUBLE || coordData.type == MMDB_DATA_TYPE_FLOAT)) {
-            resolved.longitude = coordData.type == MMDB_DATA_TYPE_DOUBLE ? coordData.double_value : coordData.float_value;
-            resolved.hasCoordinates = resolved.hasCoordinates || true;
+            const double lon = coordData.type == MMDB_DATA_TYPE_DOUBLE ? coordData.double_value : coordData.float_value;
+            if (lon >= -180.0 && lon <= 180.0)
+                resolved.longitude = lon;
         }
     }
 
