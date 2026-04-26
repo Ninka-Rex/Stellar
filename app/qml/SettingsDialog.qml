@@ -1053,7 +1053,7 @@ Window {
                         onAccepted: {
                             var path = selectedFolder.toString()
                                 .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
-                                .replace(/\//g, "\\")
+                                .replace(/\\/g, "/")
                             catEditPath.text = path
                         }
                     }
@@ -1099,7 +1099,7 @@ Window {
                                             catEditName.text  = d.label || ""
                                             catEditExts.text  = (d.extensions || []).join(", ")
                                             catEditSites.text = (d.sitePatterns || []).join(" ")
-                                            catEditPath.text  = d.savePath || ""
+                                            catEditPath.text  = (d.savePath || "").replace(/\\/g, "/")
                                             catPage.catEditBuiltIn = !!d.builtIn
                                             catPage.catEditId = d.id || ""
                                             root.loadingCategory = false
@@ -1121,7 +1121,7 @@ Window {
                                             catEditName.text  = d.label || ""
                                             catEditExts.text  = (d.extensions || []).join(", ")
                                             catEditSites.text = (d.sitePatterns || []).join(" ")
-                                            catEditPath.text  = d.savePath || ""
+                                            catEditPath.text  = (d.savePath || "").replace(/\\/g, "/")
                                             catPage.catEditBuiltIn = !!d.builtIn
                                             catPage.catEditId = d.id || ""
                                             root.loadingCategory = false
