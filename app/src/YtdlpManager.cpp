@@ -103,6 +103,20 @@ void YtdlpManager::setCustomJsRuntimePath(const QString &path) {
     detectJsRuntime();
 }
 
+// Resolve, canonicalize, and validate a candidate JS runtime path.
+// Returns the canonical native path if the file exists and is executable,
+// otherwise returns an empty string.  canonicalFilePath() resolves symlinks
+// and relative components, so a path like "../../../evil" or a symlink
+// pointing outside trusted directories becomes its real on-disk path before
+// any caller inspects it.
+static QString resolveExecutable(const QString &raw) {
+    if (raw.trimmed().isEmpty()) return {};
+    const QFileInfo fi(QDir::cleanPath(raw.trimmed()));
+    if (!fi.exists() || !fi.isFile() || !fi.isExecutable()) return {};
+    const QString canonical = fi.canonicalFilePath();
+    return canonical.isEmpty() ? QString() : QDir::toNativeSeparators(canonical);
+}
+
 // Search for a JS runtime binary in the given directory.
 // Fills outPath and outName on success; returns true.
 static bool findRuntimeInDir(const QString &dir,
@@ -128,9 +142,10 @@ static bool findRuntimeInDir(const QString &dir,
     };
 #endif
     for (int i = 0; kCandidates[i].exe; ++i) {
-        const QString p = dir + QLatin1Char('/') + QLatin1String(kCandidates[i].exe);
-        if (QFile::exists(p)) {
-            outPath = QDir::toNativeSeparators(p);
+        const QString resolved = resolveExecutable(
+            dir + QLatin1Char('/') + QLatin1String(kCandidates[i].exe));
+        if (!resolved.isEmpty()) {
+            outPath = resolved;
             outName = QLatin1String(kCandidates[i].name);
             return true;
         }
@@ -143,16 +158,16 @@ void YtdlpManager::detectJsRuntime() {
 
     // 1. User-supplied override takes absolute precedence.
     if (!m_customJsRuntimePath.trimmed().isEmpty()) {
-        const QFileInfo fi(m_customJsRuntimePath.trimmed());
-        if (fi.exists() && fi.isFile()) {
+        const QString resolved = resolveExecutable(m_customJsRuntimePath);
+        if (!resolved.isEmpty()) {
             // Derive the runtime name from the binary filename.
-            const QString base = fi.baseName().toLower();
+            const QString base = QFileInfo(resolved).baseName().toLower();
             if (base.startsWith(QLatin1String("deno")))         name = QStringLiteral("deno");
             else if (base.startsWith(QLatin1String("node")))    name = QStringLiteral("node");
             else if (base.startsWith(QLatin1String("bun")))     name = QStringLiteral("bun");
             else if (base.startsWith(QLatin1String("qjs")))     name = QStringLiteral("quickjs");
             else                                                 name = base;
-            path = QDir::toNativeSeparators(m_customJsRuntimePath.trimmed());
+            path = resolved;
         }
         // Custom path set but invalid — don't fall back to auto-detection; the user
         // explicitly configured something, so surface the "not found" state.
@@ -171,7 +186,8 @@ void YtdlpManager::detectJsRuntime() {
     // 4. Writable tool root (where we also download yt-dlp itself).
     if (findRuntimeInDir(writableToolRoot(), path, name)) goto done;
 
-    // 5. System PATH — try each candidate name.
+    // 5. System PATH — QStandardPaths::findExecutable already resolves against
+    //    PATH entries; canonicalize the result the same way as other candidates.
     {
         static const struct { const char *exe; const char *rname; } kPathNames[] = {
             { "deno",   "deno"    },
@@ -185,8 +201,9 @@ void YtdlpManager::detectJsRuntime() {
         };
         for (int i = 0; kPathNames[i].exe; ++i) {
             const QString found = QStandardPaths::findExecutable(QLatin1String(kPathNames[i].exe));
-            if (!found.isEmpty()) {
-                path = found;
+            const QString resolved = resolveExecutable(found);
+            if (!resolved.isEmpty()) {
+                path = resolved;
                 name = QLatin1String(kPathNames[i].rname);
                 goto done;
             }
