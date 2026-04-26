@@ -2806,7 +2806,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
             TorrentPeerModel::Entry entry;
             entry.endpoint = QString::fromStdString(peer.ip.address().to_string());
             entry.port = peer.ip.port();
-            entry.client = QString::fromStdString(peer.client);
+            entry.client = QString::fromStdString(peer.client).left(200);
             entry.progress = peer.progress;
             entry.downSpeed = peer.payload_down_speed;
             entry.upSpeed = peer.payload_up_speed;
