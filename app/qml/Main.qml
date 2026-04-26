@@ -1874,6 +1874,7 @@ ApplicationWindow {
 
     // ── Menu bar ──────────────────────────────────────────────────────────────
     menuBar: MenuBar {
+        id: appMenuBar
         background: Rectangle {
             color: "#252525"
             Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#383838" }
@@ -2101,15 +2102,41 @@ ApplicationWindow {
             Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
             }
         }
+        // The RSS menu is added/removed from the MenuBar via addMenu/removeMenu
+        // rather than `visible:` because toggling `Menu.visible` while the menu
+        // bar is in active-navigation mode (which it enters after the user
+        // clicks an item in another menu) causes Qt to immediately pop the
+        // newly-visible menu open. Adding it on a deferred tick avoids that.
         Menu {
+            id: rssMenuBarMenu
             title: qsTr("RSS")
-            visible: App.settings.showRssReader
             delegate: CompactMenuItem
             implicitWidth: 210
             topPadding: 0; bottomPadding: 0
             Action { text: qsTr("Open RSS Reader"); onTriggered: root.showRssWindow() }
             Action { text: qsTr("Refresh All Feeds"); onTriggered: App.rssManager.refreshAll() }
             Action { text: qsTr("Mark All Items Read"); onTriggered: App.rssManager.markAllRead() }
+
+            // Track membership ourselves so we know whether to add or remove.
+            property bool _inMenuBar: true
+        }
+        Connections {
+            target: App.settings
+            function onShowRssReaderChanged() {
+                if (App.settings.showRssReader && !rssMenuBarMenu._inMenuBar) {
+                    appMenuBar.addMenu(rssMenuBarMenu)
+                    rssMenuBarMenu._inMenuBar = true
+                } else if (!App.settings.showRssReader && rssMenuBarMenu._inMenuBar) {
+                    appMenuBar.removeMenu(rssMenuBarMenu)
+                    rssMenuBarMenu._inMenuBar = false
+                }
+            }
+        }
+        Component.onCompleted: {
+            if (!App.settings.showRssReader && rssMenuBarMenu._inMenuBar) {
+                appMenuBar.removeMenu(rssMenuBarMenu)
+                rssMenuBarMenu._inMenuBar = false
+            }
         }
         Menu {
             title: qsTr("Help")
