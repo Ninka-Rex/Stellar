@@ -103,6 +103,7 @@ public:
 #endif
     }
     bool hasIncomingConnection() const { return m_hasIncomingConnection; }
+    int listenPort() const;
     void setDetectedExternalAddress(const QString &ipAddress);
     void setDetectedExternalAddress(const QString &ipAddress, double latitude, double longitude, bool hasCoordinates);
     QVariantMap geoDatabaseInfo();

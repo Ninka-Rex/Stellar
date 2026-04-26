@@ -91,7 +91,7 @@ Rectangle {
                 if (App.torrentBindingStatusText && App.torrentBindingStatusText.length > 0)
                     parts.push(App.torrentBindingStatusText)
 
-                return parts.join("  | ")
+                return parts.join("     ")
             }
             color: "#a0a0a0"
             font.pixelSize: 11
@@ -100,8 +100,14 @@ Rectangle {
 
         Item { Layout.fillWidth: true }
 
+        // Right-side cluster — separators ("  | ") are inserted between visible
+        // items so the spacing matches the left side. Each item is preceded by
+        // a separator binding that checks whether anything visible appears
+        // before it, so toggling individual settings doesn't leave dangling
+        // bars.
         Text {
             id: onlineUsersText
+            Layout.leftMargin: 12
             visible: App.settings.estimatedOnlineUsersInStatusBar
             text: {
                 function fmtUsers(value) {
@@ -141,6 +147,7 @@ Rectangle {
         // All-time torrent ratio — clickable; opens Statistics dialog.
         Text {
             id: ratioText
+            Layout.leftMargin: 12
             visible: App.settings.ratioInStatusBar
             text: "☯ " + App.allTimeRatio.toFixed(3)
             color: ratioHover.hovered ? "#ffffff" : "#b0b0b0"
@@ -165,6 +172,7 @@ Rectangle {
         // status-bar refresh stays cheap.
         Text {
             id: publicIpText
+            Layout.leftMargin: 12
             visible: App.settings.showPublicIpInStatusBar
             // Cached interface type / WiFi info — refreshed on hover only.
             property int    _ifaceType: 0           // 0=None 1=Wifi 2=Ethernet 3=Other
@@ -189,17 +197,7 @@ Rectangle {
             text: {
                 if (!App.settings.showPublicIpInStatusBar) return ""
                 var ip = App.publicIp
-                var prefix
-                if (!App.hasIncomingConnections)
-                    prefix = "❗"
-                else {
-                    // Use cached type if known; fall back to a neutral globe so the
-                    // indicator never looks broken before the first hover.
-                    var t = publicIpText._ifaceType
-                    if (t === 0) t = App.networkInfo.activeInterfaceType()
-                    prefix = (t === 1) ? "📶" : (t === 2 ? "🔌" : "🌐")
-                }
-                return prefix + " " + (ip && ip.length > 0 ? ip : "—")
+                return (ip && ip.length > 0) ? ip : "—"
             }
             color: ipHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11
@@ -216,9 +214,11 @@ Rectangle {
                 var lines = []
                 var ip = App.publicIp
                 lines.push("Public IP: " + (ip && ip.length > 0 ? ip : "(detecting…)"))
+                if (App.publicIpListenPort > 0)
+                    lines.push("Listening port: " + App.publicIpListenPort)
                 if (!App.hasIncomingConnections) {
                     lines.push("")
-                    lines.push("❗ No incoming connections, network may be misconfigured")
+                    lines.push("No incoming connections, network may be misconfigured")
                 }
                 if (publicIpText._ifaceType === 1 && publicIpText._wifiOk) {
                     lines.push("")
@@ -246,6 +246,8 @@ Rectangle {
 
         // Live speed indicator — right-aligned, only shown when enabled.
         Text {
+            id: speedText
+            Layout.leftMargin: 12
             visible: App.settings.speedInStatusBar
             text: {
                 function fmt(bps) {

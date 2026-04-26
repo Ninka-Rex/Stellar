@@ -117,6 +117,7 @@ class AppController : public QObject {
     Q_PROPERTY(QVariantList ytdlpBatchItems READ ytdlpBatchItems NOTIFY ytdlpBatchChanged)
     Q_PROPERTY(QVariantList torrentBannedPeers READ torrentBannedPeers NOTIFY torrentBannedPeersChanged)
     Q_PROPERTY(QString publicIp READ publicIp NOTIFY publicIpChanged)
+    Q_PROPERTY(int publicIpListenPort READ publicIpListenPort NOTIFY publicIpChanged)
     Q_PROPERTY(bool hasIncomingConnections READ hasIncomingConnections NOTIFY hasIncomingConnectionsChanged)
     Q_PROPERTY(NetworkInfo *networkInfo READ networkInfo CONSTANT)
 
@@ -183,6 +184,7 @@ public:
     QVariantList ytdlpBatchItems() const { return m_activeYtdlpBatchItems; }
     QVariantList torrentBannedPeers() const;
     QString publicIp() const { return m_torrentSession ? m_torrentSession->detectedExternalAddress() : QString(); }
+    int publicIpListenPort() const { return m_torrentSession ? m_torrentSession->listenPort() : 0; }
     bool hasIncomingConnections() const { return m_torrentSession && m_torrentSession->hasIncomingConnection(); }
     NetworkInfo *networkInfo() const { return m_networkInfo; }
 

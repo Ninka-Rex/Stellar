@@ -3602,6 +3602,14 @@ QVariantList TorrentSessionManager::torrentPieceMap(const QString &downloadId) c
 #endif
 }
 
+int TorrentSessionManager::listenPort() const {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    return m_session ? m_session->listen_port() : 0;
+#else
+    return 0;
+#endif
+}
+
 void TorrentSessionManager::setDetectedExternalAddress(const QString &ipAddress) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const QString ip = QHostAddress(ipAddress.trimmed()).toString();

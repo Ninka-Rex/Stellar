@@ -154,53 +154,115 @@ QVariantMap NetworkInfo::queryActiveWifi() const {
     QVariantMap result;
     result[QStringLiteral("available")] = false;
 
-    // Find the first wireless interface by walking /proc/net/wireless.
-    // Format (after two header lines):
-    //   <iface>: status link level noise ...
-    QFile wireless(QStringLiteral("/proc/net/wireless"));
-    if (!wireless.open(QIODevice::ReadOnly | QIODevice::Text))
-        return result;
-
+    // Step 1: find the active wireless interface name.
+    // /proc/net/wireless lists every wireless iface with current stats. Format
+    // (after two header lines):
+    //   <iface>: status link.    level.   noise.   ...
+    // Trailing dots on numeric fields are *part* of the field (a quirk of the
+    // format); strip them with a regex that grabs the integer prefix.
     QString iface;
     int signalPct = 0;
     int rssi = 0;
-    int lineNo = 0;
-    while (!wireless.atEnd()) {
-        const QString line = QString::fromUtf8(wireless.readLine()).trimmed();
-        if (++lineNo <= 2) continue; // skip headers
+    {
+        QFile wireless(QStringLiteral("/proc/net/wireless"));
+        if (wireless.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            int lineNo = 0;
+            while (!wireless.atEnd()) {
+                const QString line = QString::fromUtf8(wireless.readLine()).trimmed();
+                if (++lineNo <= 2) continue;
+                const int colon = line.indexOf(QLatin1Char(':'));
+                if (colon <= 0) continue;
+                iface = line.left(colon).trimmed();
 
-        const int colon = line.indexOf(QLatin1Char(':'));
-        if (colon <= 0) continue;
-        iface = line.left(colon).trimmed();
-        const QString rest = line.mid(colon + 1).trimmed();
-        // Columns: status, link quality, signal level (dBm), noise level
-        const QStringList cols = rest.split(QRegularExpression(QStringLiteral("\\s+")),
-                                            Qt::SkipEmptyParts);
-        if (cols.size() >= 3) {
-            const double link = cols.value(1).remove(QLatin1Char('.')).toDouble();
-            // /proc/net/wireless reports link quality on a 0–70 scale.
-            signalPct = qBound(0, static_cast<int>((link / 70.0) * 100.0), 100);
-            rssi = cols.value(2).remove(QLatin1Char('.')).toInt();
+                static const QRegularExpression numRe(QStringLiteral("-?\\d+"));
+                const QString rest = line.mid(colon + 1);
+                const QStringList cols = rest.split(QRegularExpression(QStringLiteral("\\s+")),
+                                                    Qt::SkipEmptyParts);
+                // Columns: status, link quality, signal level (dBm), noise level, ...
+                if (cols.size() >= 3) {
+                    const auto linkM = numRe.match(cols.value(1));
+                    const auto rssiM = numRe.match(cols.value(2));
+                    if (linkM.hasMatch()) {
+                        // /proc/net/wireless link quality is on a 0–70 scale.
+                        const int link = linkM.captured(0).toInt();
+                        signalPct = qBound(0, static_cast<int>((link / 70.0) * 100.0), 100);
+                    }
+                    if (rssiM.hasMatch())
+                        rssi = rssiM.captured(0).toInt();
+                }
+                break;
+            }
         }
-        break;
     }
-    wireless.close();
 
+    // Fallback for systems where /proc/net/wireless is empty/missing: pick the
+    // first interface name that looks wireless.
+    if (iface.isEmpty()) {
+        for (const QNetworkInterface &i : QNetworkInterface::allInterfaces()) {
+            if (!i.flags().testFlag(QNetworkInterface::IsUp)
+                || !i.flags().testFlag(QNetworkInterface::IsRunning)
+                || i.flags().testFlag(QNetworkInterface::IsLoopBack))
+                continue;
+            if (nameSuggestsWireless(i.name(), i.humanReadableName())) {
+                iface = i.name();
+                break;
+            }
+        }
+    }
     if (iface.isEmpty())
         return result;
 
-    // SSID via `iw dev <iface> link`. iw is the modern userspace tool that
-    // ships with wireless-tools on virtually every desktop distro.
-    QProcess p;
-    p.start(QStringLiteral("iw"), {QStringLiteral("dev"), iface, QStringLiteral("link")});
-    if (p.waitForFinished(800)) {
-        const QString out = QString::fromUtf8(p.readAllStandardOutput());
-        const QRegularExpression ssidRe(QStringLiteral("SSID:\\s*(.+)"));
-        const auto m = ssidRe.match(out);
-        if (m.hasMatch())
-            result[QStringLiteral("ssid")] = m.captured(1).trimmed();
+    // Step 2: extract SSID, and if the /proc parse missed signal info, also
+    // grab dBm from `iw dev <iface> link`. iw output looks like:
+    //   Connected to xx:xx:... (on wlan0)
+    //     SSID: MyNetwork
+    //     freq: 5180
+    //     signal: -45 dBm
+    //     ...
+    // Falls back to `iwconfig` on legacy systems where iw isn't installed.
+    QString ssid;
+    auto runProcess = [](const QString &program, const QStringList &args) -> QString {
+        QProcess p;
+        p.start(program, args);
+        if (!p.waitForFinished(800))
+            return {};
+        return QString::fromUtf8(p.readAllStandardOutput());
+    };
+
+    QString out = runProcess(QStringLiteral("iw"), {QStringLiteral("dev"), iface, QStringLiteral("link")});
+    if (out.isEmpty()) {
+        // Some environments (Flatpak sandbox without --talk-name) block iw;
+        // try iwgetid as a lighter alternative for the SSID at minimum.
+        ssid = runProcess(QStringLiteral("iwgetid"),
+                          {QStringLiteral("-r"), iface}).trimmed();
+    } else {
+        static const QRegularExpression ssidRe(QStringLiteral("(?m)^\\s*SSID:\\s*(.+)$"));
+        static const QRegularExpression sigRe(QStringLiteral("(?m)signal:\\s*(-?\\d+)\\s*dBm"));
+        const auto sm = ssidRe.match(out);
+        if (sm.hasMatch())
+            ssid = sm.captured(1).trimmed();
+        if (rssi == 0) {
+            const auto rm = sigRe.match(out);
+            if (rm.hasMatch()) {
+                rssi = rm.captured(1).toInt();
+                // Linear conversion matching the Windows wlan_signal_quality
+                // mapping: -100 dBm → 0%, -50 dBm or better → 100%.
+                if (signalPct == 0)
+                    signalPct = qBound(0, 2 * (rssi + 100), 100);
+            }
+        }
     }
 
+    if (ssid.isEmpty()) {
+        // Last-ditch fallback for SSID — iwconfig, present on older distros.
+        const QString iwc = runProcess(QStringLiteral("iwconfig"), {iface});
+        static const QRegularExpression iwcSsidRe(QStringLiteral("ESSID:\"([^\"]*)\""));
+        const auto m = iwcSsidRe.match(iwc);
+        if (m.hasMatch())
+            ssid = m.captured(1);
+    }
+
+    result[QStringLiteral("ssid")]          = ssid;
     result[QStringLiteral("signalPercent")] = signalPct;
     result[QStringLiteral("rssiDbm")]       = rssi;
     result[QStringLiteral("available")]     = true;
