@@ -98,7 +98,15 @@ Rectangle {
         }
 
         ToolbarBtn { label: "Grabber";        iconSrc: "icons/wand.ico";   onClicked: root.grabberClicked() }
-        ToolbarBtn { label: "Search Engine";  iconSrc: "icons/search.ico"; onClicked: root.searchEngineClicked() }
-        ToolbarBtn { label: "RSS";            iconSrc: "icons/rss.png";    onClicked: root.rssClicked() }
+        ToolbarBtn {
+            label: "Search Engine"; iconSrc: "icons/search.ico"
+            visible: App.settings.showSearchEngine
+            onClicked: root.searchEngineClicked()
+        }
+        ToolbarBtn {
+            label: "RSS"; iconSrc: "icons/rss.png"
+            visible: App.settings.showRssReader
+            onClicked: root.rssClicked()
+        }
     }
 }

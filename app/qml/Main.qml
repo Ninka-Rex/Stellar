@@ -2043,6 +2043,22 @@ ApplicationWindow {
             }
             MenuSeparator {}
             Action {
+                text: (App.settings.showSearchEngine ? "✓ " : "    ") + qsTr("Show Search Engine")
+                // Defer the toggle so the View menu fully dismisses before the
+                // menu-bar layout changes; otherwise the menu-bar focus chain
+                // can jump to a newly-revealed neighbor and open it.
+                onTriggered: Qt.callLater(function() {
+                    App.settings.showSearchEngine = !App.settings.showSearchEngine
+                })
+            }
+            Action {
+                text: (App.settings.showRssReader ? "✓ " : "    ") + qsTr("Show RSS Reader")
+                onTriggered: Qt.callLater(function() {
+                    App.settings.showRssReader = !App.settings.showRssReader
+                })
+            }
+            MenuSeparator {}
+            Action {
                 text: qsTr("Statistics…")
                 onTriggered: { statisticsDialog.show(); statisticsDialog.raise(); statisticsDialog.requestActivate() }
             }
@@ -2087,6 +2103,7 @@ ApplicationWindow {
         }
         Menu {
             title: qsTr("RSS")
+            visible: App.settings.showRssReader
             delegate: CompactMenuItem
             implicitWidth: 210
             topPadding: 0; bottomPadding: 0
