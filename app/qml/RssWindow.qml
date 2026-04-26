@@ -1132,7 +1132,10 @@ Window {
                                                 linkColor: "#7fb4ff"
                                                 font.pixelSize: 11
                                                 wrapMode: Text.WordWrap
-                                                onLinkActivated: function(link) { Qt.openUrlExternally(link) }
+                                                onLinkActivated: function(link) {
+                                    if (link.startsWith("https://") || link.startsWith("http://"))
+                                        Qt.openUrlExternally(link)
+                                }
                                             }
                                         }
                                     }

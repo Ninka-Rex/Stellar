@@ -717,7 +717,7 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
                             } else if (childName == QStringLiteral("summary") || childName == QStringLiteral("content")) {
                                 const QString html = xml.readElementText(QXmlStreamReader::IncludeChildElements);
                                 if (article.descriptionHtml.isEmpty())
-                                    article.descriptionHtml = html.trimmed();
+                                    article.descriptionHtml = sanitizeHtml(html.trimmed());
                                 if (article.summary.isEmpty())
                                     article.summary = simplifyText(html);
                                 if (article.imageUrl.isEmpty())
@@ -786,7 +786,7 @@ RssManager::ParsedFeed RssManager::parseFeedXml(const QByteArray &xmlBytes, cons
                                    || childName == QStringLiteral("encoded")) {
                             const QString html = xml.readElementText(QXmlStreamReader::IncludeChildElements);
                             if (article.descriptionHtml.isEmpty())
-                                article.descriptionHtml = html.trimmed();
+                                article.descriptionHtml = sanitizeHtml(html.trimmed());
                             if (article.summary.isEmpty())
                                 article.summary = simplifyText(html);
                             if (article.imageUrl.isEmpty())
@@ -869,6 +869,96 @@ QString RssManager::simplifyText(const QString &value)
     text.replace(QStringLiteral("&nbsp;"), QStringLiteral(" "));
     text.replace(QRegularExpression(QStringLiteral("\\s+")), QStringLiteral(" "));
     return text.trimmed();
+}
+
+// Strips HTML down to a safe display subset for the preview pane.
+// Allowed tags: <b>, <i>, <em>, <strong>, <u>, <s>, <br>, <p>, <ul>, <ol>, <li>, <blockquote>.
+// <a href> is kept only when href is an http/https URL.
+// All other tags, and all attributes not explicitly allowed, are removed.
+// This prevents Qt's RichText renderer from issuing network requests for
+// <img src="file:...">, <img src="\\unc\..."> etc., and blocks javascript:/file:
+// hrefs from reaching Qt.openUrlExternally().
+QString RssManager::sanitizeHtml(const QString &html)
+{
+    // Fast path: nothing to do for empty input.
+    if (html.trimmed().isEmpty())
+        return {};
+
+    // Allowlist of void/inline/block tags that carry no network or script risk.
+    static const QSet<QString> kSafeTags = {
+        QStringLiteral("b"),  QStringLiteral("i"),    QStringLiteral("em"),
+        QStringLiteral("strong"), QStringLiteral("u"), QStringLiteral("s"),
+        QStringLiteral("br"), QStringLiteral("p"),     QStringLiteral("ul"),
+        QStringLiteral("ol"), QStringLiteral("li"),    QStringLiteral("blockquote"),
+    };
+
+    QString out;
+    out.reserve(html.size());
+    int i = 0;
+    const int len = html.size();
+
+    while (i < len) {
+        if (html[i] != QLatin1Char('<')) {
+            out += html[i++];
+            continue;
+        }
+
+        // Find the end of this tag.
+        const int tagStart = i;
+        int tagEnd = html.indexOf(QLatin1Char('>'), tagStart + 1);
+        if (tagEnd < 0) {
+            // Unclosed '<' — emit as literal and stop trying to parse.
+            out += QLatin1String("&lt;");
+            ++i;
+            continue;
+        }
+
+        const QString tagBody = html.mid(tagStart + 1, tagEnd - tagStart - 1).trimmed();
+        i = tagEnd + 1;
+
+        // Closing tag?
+        if (tagBody.startsWith(QLatin1Char('/'))) {
+            const QString name = tagBody.mid(1).trimmed().toLower();
+            if (kSafeTags.contains(name))
+                out += QStringLiteral("</") + name + QLatin1Char('>');
+            continue;
+        }
+
+        // Self-closing or opening tag — extract tag name.
+        int spacePos = 0;
+        while (spacePos < tagBody.size() && !tagBody[spacePos].isSpace()) ++spacePos;
+        QString name = tagBody.left(spacePos).toLower();
+        if (name.endsWith(QLatin1Char('/')))
+            name.chop(1); // handle <br/>
+
+        if (!kSafeTags.contains(name)) {
+            // Drop the tag entirely (including <img>, <script>, <iframe>, etc.)
+            continue;
+        }
+
+        // For <a>, only keep it when href is an http/https URL; drop all other attributes.
+        if (name == QStringLiteral("a")) {
+            static const QRegularExpression hrefRe(
+                QStringLiteral("\\bhref\\s*=\\s*(?:'([^']*)'|\"([^\"]*)\"|(\\S+))"),
+                QRegularExpression::CaseInsensitiveOption);
+            const QRegularExpressionMatch m = hrefRe.match(tagBody);
+            if (m.hasMatch()) {
+                const QString href = (m.captured(1) + m.captured(2) + m.captured(3)).trimmed();
+                if (href.startsWith(QStringLiteral("https://"), Qt::CaseInsensitive)
+                        || href.startsWith(QStringLiteral("http://"), Qt::CaseInsensitive)) {
+                    out += QStringLiteral("<a href=\"") + href.toHtmlEscaped() + QStringLiteral("\">");
+                    continue;
+                }
+            }
+            // No safe href — drop the tag but keep text content.
+            continue;
+        }
+
+        // Safe tag with no attributes needed.
+        out += QLatin1Char('<') + name + QLatin1Char('>');
+    }
+
+    return out;
 }
 
 QString RssManager::extractImageUrl(const QString &html, const QUrl &sourceUrl)

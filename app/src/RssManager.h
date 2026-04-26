@@ -132,6 +132,7 @@ private:
     static bool looksLikeTorrentMimeType(const QString &mimeType);
     static QString pickDownloadUrl(const QString &link, const QString &enclosureUrl, const QString &enclosureMimeType, bool *isTorrent);
     static QString simplifyText(const QString &value);
+    static QString sanitizeHtml(const QString &html);
     static QString extractImageUrl(const QString &html, const QUrl &sourceUrl);
     static QDateTime parseDateTime(const QString &value);
 
