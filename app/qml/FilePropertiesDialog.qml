@@ -1749,6 +1749,15 @@ Window {
                             color: "#ffffff"; font.pixelSize: 12; font.bold: true
                             Layout.preferredWidth: 38
                         }
+                        // Have / total bytes (e.g. "123 MB / 3.2 GB"). Hidden until
+                        // metadata arrives (totalBytes <= 0 for magnets in fetch).
+                        Text {
+                            visible: root.item && root.item.totalBytes > 0
+                            text: root.item
+                                ? root.compactBytes(root.item.doneBytes) + " / " + root.compactBytes(root.item.totalBytes)
+                                : ""
+                            color: "#ffffff"; font.pixelSize: 11
+                        }
                         Rectangle {
                             Layout.fillWidth: true; height: 5; radius: 2
                             color: "#232323"; border.color: "#2d2d2d"
