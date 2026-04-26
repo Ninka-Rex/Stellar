@@ -1685,7 +1685,11 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                         QStringLiteral("/NOCANCEL"),
                         QStringLiteral("/CLOSEAPPLICATIONS"),
                         QStringLiteral("/FORCECLOSEAPPLICATIONS"),
-                        QStringLiteral("/RESTARTAPPLICATIONS")
+                        QStringLiteral("/RESTARTAPPLICATIONS"),
+                        // Inno's normal postinstall launch entry is skipped in
+                        // silent mode, so pass an explicit switch for the
+                        // auto-update path to relaunch Stellar after install.
+                        QStringLiteral("/RESTARTSTELLAR")
                     };
                     if (QProcess::startDetached(installerPath, args))
                         QCoreApplication::quit();

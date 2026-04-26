@@ -133,6 +133,14 @@ Filename: "taskkill.exe"; Parameters: "/f /im {#AppExeName}"; Flags: runhidden; 
 Type: filesandordirs; Name: "{localappdata}\Stellar\logs"
 
 [Code]
+function ShouldAutoRestartStellar(): Boolean;
+begin
+  // Auto-updates run the installer with /VERYSILENT, which suppresses the
+  // normal postinstall [Run] entry above. Use an explicit custom switch so
+  // only the in-app updater restarts Stellar after installation.
+  Result := FindCmdLineSwitch('RESTARTSTELLAR', True);
+end;
+
 function PrepareToInstall(var NeedsRestart: Boolean): String;
 var
   ResultCode: Integer;
@@ -140,4 +148,14 @@ begin
   Exec(ExpandConstant('{sys}\taskkill.exe'), '/f /im {#AppExeName}', '', SW_HIDE,
     ewWaitUntilTerminated, ResultCode);
   Result := '';
+end;
+
+procedure CurStepChanged(CurStep: TSetupStep);
+var
+  ResultCode: Integer;
+begin
+  if (CurStep = ssPostInstall) and ShouldAutoRestartStellar() then begin
+    Exec(ExpandConstant('{app}\{#AppExeName}'), '', ExpandConstant('{app}'),
+      SW_SHOWNORMAL, ewNoWait, ResultCode);
+  end;
 end;
