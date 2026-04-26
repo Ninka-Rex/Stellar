@@ -33,6 +33,7 @@ QVariant TorrentSearchPluginModel::data(const QModelIndex &index, int role) cons
     case VersionRole: return entry.version;
     case UrlRole: return entry.url;
     case EnabledRole: return entry.enabled;
+    case QuarantinedRole: return entry.quarantined;
     case Qt::DisplayRole: return entry.displayName.isEmpty() ? entry.fileName : entry.displayName;
     default: return {};
     }
@@ -44,7 +45,8 @@ QHash<int, QByteArray> TorrentSearchPluginModel::roleNames() const {
         { DisplayNameRole, "displayName" },
         { VersionRole, "version" },
         { UrlRole, "url" },
-        { EnabledRole, "pluginEnabled" }
+        { EnabledRole, "pluginEnabled" },
+        { QuarantinedRole, "quarantined" }
     };
 }
 
@@ -63,7 +65,8 @@ QVariantMap TorrentSearchPluginModel::pluginData(int row) const {
         { QStringLiteral("displayName"), entry.displayName },
         { QStringLiteral("version"), entry.version },
         { QStringLiteral("url"), entry.url },
-        { QStringLiteral("enabled"), entry.enabled }
+        { QStringLiteral("enabled"), entry.enabled },
+        { QStringLiteral("quarantined"), entry.quarantined }
     };
 }
 

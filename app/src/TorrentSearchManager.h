@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include <QMap>
 #include <QObject>
 #include <QPointer>
 #include <QProcess>
@@ -70,9 +71,18 @@ private:
         QString version;
         QString url;
         bool enabled{true};
+        bool quarantined{false};
     };
 
     QString disabledPluginsKey() const;
+    QString approvedPluginsKey() const;
+    // Returns hex SHA-256 of the file at path, or empty on error.
+    static QString hashPluginFile(const QString &path);
+    // Load filename->sha256 approved map from settings.
+    QMap<QString, QString> loadApprovedPlugins() const;
+    // Approve a plugin by recording its current hash in settings.
+    void approvePlugin(const QString &fileName, const QString &sha256);
+
     QString runnerScriptPath();
     void ensureBundledPluginsInstalled();
     QString bundledPluginResourcePath(const QString &fileName) const;

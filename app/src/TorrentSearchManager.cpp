@@ -21,6 +21,7 @@
 #include "TorrentSearchResultModel.h"
 
 #include <QCoreApplication>
+#include <QCryptographicHash>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -92,6 +93,45 @@ QString TorrentSearchManager::disabledPluginsKey() const {
     return QStringLiteral("torrentSearchDisabledPlugins");
 }
 
+QString TorrentSearchManager::approvedPluginsKey() const {
+    return QStringLiteral("torrentSearchApprovedPlugins");
+}
+
+QString TorrentSearchManager::hashPluginFile(const QString &path) {
+    QFile f(path);
+    if (!f.open(QIODevice::ReadOnly))
+        return {};
+    QCryptographicHash h(QCryptographicHash::Sha256);
+    if (!h.addData(&f))
+        return {};
+    return QString::fromLatin1(h.result().toHex());
+}
+
+QMap<QString, QString> TorrentSearchManager::loadApprovedPlugins() const {
+    QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
+    // Stored as a list of "filename:sha256hex" strings.
+    const QStringList raw = settings.value(approvedPluginsKey()).toStringList();
+    QMap<QString, QString> approved;
+    for (const QString &entry : raw) {
+        const int colon = entry.indexOf(QLatin1Char(':'));
+        if (colon > 0)
+            approved.insert(entry.left(colon), entry.mid(colon + 1));
+    }
+    return approved;
+}
+
+void TorrentSearchManager::approvePlugin(const QString &fileName, const QString &sha256) {
+    QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
+    QMap<QString, QString> approved = loadApprovedPlugins();
+    approved.insert(fileName, sha256);
+    QStringList raw;
+    raw.reserve(approved.size());
+    for (auto it = approved.cbegin(); it != approved.cend(); ++it)
+        raw << (it.key() + QLatin1Char(':') + it.value());
+    settings.setValue(approvedPluginsKey(), raw);
+    settings.sync();
+}
+
 QString TorrentSearchManager::runnerScriptPath() {
     const QString outPath = StellarPaths::searchRunnerFile();
     QFile outFile(outPath);
@@ -150,10 +190,16 @@ void TorrentSearchManager::ensureBundledPluginsInstalled() {
         QFile source(resourcePath);
         if (!source.open(QIODevice::ReadOnly))
             continue;
+        const QByteArray content = source.readAll();
         QFile target(targetPath);
         if (!target.open(QIODevice::WriteOnly | QIODevice::Truncate))
             continue;
-        target.write(source.readAll());
+        target.write(content);
+        target.close();
+        // Approve bundled plugins automatically — they ship with the app.
+        const QString hash = QString::fromLatin1(
+            QCryptographicHash::hash(content, QCryptographicHash::Sha256).toHex());
+        approvePlugin(fileName, hash);
     }
 
     settings.setValue(QStringLiteral("searchPluginsInstalledVersion"), currentVersion);
@@ -229,6 +275,7 @@ QVector<TorrentSearchManager::PluginInfo> TorrentSearchManager::scanPlugins() co
     QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
     const QStringList disabledList = settings.value(disabledPluginsKey()).toStringList();
     const QSet<QString> disabled(disabledList.begin(), disabledList.end());
+    const QMap<QString, QString> approved = loadApprovedPlugins();
     QDir dir(pluginDirectory());
     const QFileInfoList files = dir.entryInfoList({ QStringLiteral("*.py") }, QDir::Files, QDir::Name);
     QVector<PluginInfo> plugins;
@@ -237,13 +284,29 @@ QVector<TorrentSearchManager::PluginInfo> TorrentSearchManager::scanPlugins() co
         QFile file(info.absoluteFilePath());
         if (!file.open(QIODevice::ReadOnly))
             continue;
-        const QString content = QString::fromUtf8(file.readAll());
+        const QByteArray rawContent = file.readAll();
+        const QString content = QString::fromUtf8(rawContent);
         PluginInfo plugin;
         plugin.fileName = info.fileName();
         plugin.version = parseTag(content, QStringLiteral("VERSION"));
         plugin.displayName = parseStaticString(content, QStringLiteral("name"));
         plugin.url = parseStaticString(content, QStringLiteral("url"));
-        plugin.enabled = !disabled.contains(plugin.fileName);
+
+        // A plugin is quarantined if it has never been approved by the user, or
+        // if its content changed since it was approved (hash mismatch). Quarantined
+        // plugins are always treated as disabled regardless of the disabled list so
+        // a file dropped into the plugin directory by a malicious download cannot
+        // execute Python code without the user explicitly enabling it first.
+        const QString approvedHash = approved.value(plugin.fileName);
+        if (!approvedHash.isEmpty()) {
+            const QString actualHash = QString::fromLatin1(
+                QCryptographicHash::hash(rawContent, QCryptographicHash::Sha256).toHex());
+            plugin.quarantined = (actualHash != approvedHash);
+        } else {
+            plugin.quarantined = true;
+        }
+
+        plugin.enabled = !plugin.quarantined && !disabled.contains(plugin.fileName);
         plugins.push_back(plugin);
     }
     return plugins;
@@ -260,6 +323,7 @@ void TorrentSearchManager::refreshPlugins() {
         entry.version = plugin.version;
         entry.url = plugin.url;
         entry.enabled = plugin.enabled;
+        entry.quarantined = plugin.quarantined;
         entries.push_back(entry);
     }
     m_pluginModel->setEntries(entries);
@@ -445,6 +509,15 @@ QString TorrentSearchManager::resolveResultLink(int row, bool preferMagnet) {
 }
 
 void TorrentSearchManager::setPluginEnabled(const QString &fileName, bool enabled) {
+    if (enabled) {
+        // Enabling a quarantined plugin approves it — the user is consciously
+        // granting trust. Record the current hash so future content changes
+        // are still detected.
+        const QString path = QDir(pluginDirectory()).filePath(fileName);
+        const QString hash = hashPluginFile(path);
+        if (!hash.isEmpty())
+            approvePlugin(fileName, hash);
+    }
     QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
     QStringList disabled = settings.value(disabledPluginsKey()).toStringList();
     disabled.removeAll(fileName);
@@ -506,6 +579,20 @@ bool TorrentSearchManager::uninstallPlugin(const QString &fileName) {
 
     const QString path = candidatePath;
     const bool ok = QFile::remove(path);
+    if (ok) {
+        // Remove the approval entry so a re-dropped file with the same name
+        // doesn't inherit the old approval.
+        QMap<QString, QString> approved = loadApprovedPlugins();
+        if (approved.remove(trimmed) > 0) {
+            QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
+            QStringList raw;
+            raw.reserve(approved.size());
+            for (auto it = approved.cbegin(); it != approved.cend(); ++it)
+                raw << (it.key() + QLatin1Char(':') + it.value());
+            settings.setValue(approvedPluginsKey(), raw);
+            settings.sync();
+        }
+    }
     refreshPlugins();
     return ok;
 }
@@ -520,6 +607,12 @@ bool TorrentSearchManager::installPluginFromFile(const QString &filePath) {
     const QString target = QDir(pluginDirectory()).filePath(info.fileName());
     QFile::remove(target);
     const bool ok = QFile::copy(filePath, target);
+    if (ok) {
+        // User explicitly installed this file — approve it immediately.
+        const QString hash = hashPluginFile(target);
+        if (!hash.isEmpty())
+            approvePlugin(info.fileName(), hash);
+    }
     refreshPlugins();
     emit pluginInstallFinished(ok, ok ? QStringLiteral("Installed %1.").arg(info.fileName())
                                       : QStringLiteral("Failed to install %1.").arg(info.fileName()));
@@ -556,6 +649,10 @@ void TorrentSearchManager::installPluginFromUrl(const QString &url) {
         }
         file.write(payload);
         file.close();
+        // User explicitly installed this URL — approve it immediately.
+        const QString hash = QString::fromLatin1(
+            QCryptographicHash::hash(payload, QCryptographicHash::Sha256).toHex());
+        approvePlugin(fileName, hash);
         refreshPlugins();
         emit pluginInstallFinished(true, QStringLiteral("Installed %1.").arg(fileName));
     });

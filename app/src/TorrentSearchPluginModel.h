@@ -30,7 +30,8 @@ public:
         DisplayNameRole,
         VersionRole,
         UrlRole,
-        EnabledRole
+        EnabledRole,
+        QuarantinedRole
     };
 
     struct Entry {
@@ -39,6 +40,7 @@ public:
         QString version;
         QString url;
         bool enabled{true};
+        bool quarantined{false}; // true = found on disk but not approved by the user
     };
 
     explicit TorrentSearchPluginModel(QObject *parent = nullptr);
