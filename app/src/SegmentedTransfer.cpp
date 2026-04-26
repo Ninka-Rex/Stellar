@@ -1669,7 +1669,13 @@ void SegmentedTransfer::retrySegment(int index, int extraDelayMs) {
     m_item->setDescription(QStringLiteral("Segment %1 retrying (attempt %2)…").arg(index + 1).arg(seg.retryCount));
 
     QTimer::singleShot(delayMs, this, [this, index]() {
-        if (m_cancelled || m_paused || index >= m_segments.size()) return;
+        if (m_cancelled || m_paused) return;
+        if (index < 0 || index >= m_segments.size()) return;
+        // The segment list may have been rebuilt (e.g. fallback to single segment)
+        // between scheduling and firing — skip if this slot is already done or
+        // has an active reply (restarted by another path).
+        const auto &seg = m_segments[index];
+        if (seg.done || seg.reply) return;
         m_item->setDescription({});
         startSegment(m_segments[index]);
     });
