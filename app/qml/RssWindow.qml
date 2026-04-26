@@ -85,11 +85,16 @@ Window {
         ? sortedArticles[selectedArticleRow] : ({})
     readonly property bool selectedArticleHasDownload: !!selectedArticle.isTorrent || !!selectedArticle.downloadUrl
     readonly property string selectedArticleImageUrl: {
-        if (selectedArticle.imageUrl && selectedArticle.imageUrl.length > 0)
+        function isSafeImageUrl(url) {
+            return typeof url === "string"
+                && (url.startsWith("https://") || url.startsWith("http://"))
+        }
+        if (isSafeImageUrl(selectedArticle.imageUrl))
             return selectedArticle.imageUrl
-        var html = selectedArticle.descriptionHtml || ""
-        var match = /<img\b[^>]*\bsrc\s*=\s*['"]([^'"]+)['"][^>]*>/i.exec(html)
-        return match ? match[1] : ""
+        // Do not re-parse descriptionHtml here — the backend already extracts
+        // imageUrl via extractImageUrl(). Falling back to raw HTML regex would
+        // bypass this scheme check and reintroduce the file:/UNC load vector.
+        return ""
     }
     readonly property var visibleCols: {
         var cols = []
