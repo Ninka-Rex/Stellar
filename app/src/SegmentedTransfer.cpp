@@ -673,7 +673,10 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
                 int slash = cr.lastIndexOf('/');
                 int dash  = cr.indexOf('-');
                 int space = cr.indexOf(' ');
-                if (space > 0 && dash > space && slash > dash) {
+                // Require at least one digit between each delimiter to prevent
+                // malformed headers (e.g. "bytes 100-50/1000") from yielding
+                // a zero-length mid() that silently parses as 0.
+                if (space > 0 && dash > space + 1 && slash > dash + 1) {
                     bool okStart = false, okTotal = false;
                     qint64 start = cr.mid(space + 1, dash - space - 1).trimmed().toLongLong(&okStart);
                     QByteArray totalBa = cr.mid(slash + 1).trimmed();
