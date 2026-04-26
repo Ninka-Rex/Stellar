@@ -3224,6 +3224,15 @@ void TorrentSessionManager::lookupPeerLocation(const QString &endpoint, QString 
         }
     }
 
+    // Evict oldest quarter of entries when the cache reaches its limit so a
+    // swarm with thousands of unique peers cannot grow it without bound.
+    constexpr int kGeoCacheMaxEntries = 8192;
+    if (m_geoDb->cache.size() >= kGeoCacheMaxEntries) {
+        int toRemove = kGeoCacheMaxEntries / 4;
+        auto it = m_geoDb->cache.begin();
+        while (it != m_geoDb->cache.end() && toRemove-- > 0)
+            it = m_geoDb->cache.erase(it);
+    }
     m_geoDb->cache.insert(ip, resolved);
     if (countryCode)
         *countryCode = resolved.countryCode;
