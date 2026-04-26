@@ -3326,6 +3326,10 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     } else if (st.state == libtorrent::torrent_status::checking_resume_data
                || st.state == libtorrent::torrent_status::checking_files) {
         item->setStatus(DownloadItem::Status::Checking);
+        // st.progress is the authoritative check progress (0..1); override the
+        // doneBytes value set above so the generic progress() formula reflects it.
+        if (st.total_wanted > 0)
+            item->setDoneBytes(static_cast<qint64>(st.progress * st.total_wanted));
     } else {
         item->setStatus(DownloadItem::Status::Downloading);
     }

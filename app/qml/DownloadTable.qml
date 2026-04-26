@@ -1171,6 +1171,8 @@ Rectangle {
                                 return (rowRect.item.progress * 100).toFixed(1) + "%"
                             if (rowRect.item.status === "Paused" && rowRect.item.progress > 0)
                                 return (rowRect.item.progress * 100).toFixed(1) + "% (Stopped)"
+                            if (rowRect.item.status === "Checking" && rowRect.item.progress > 0)
+                                return "Checking (" + (rowRect.item.progress * 100).toFixed(1) + "%)"
                             return rowRect.item.status
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
