@@ -4806,13 +4806,21 @@ bool AppController::startUpdateInstall() {
         : m_settings->temporaryDirectory();
     QDir().mkpath(tempDir);
 
-    const QString filename = QFileInfo(QUrl(m_updateInstallerUrl).path()).fileName().isEmpty()
+    // Extract the filename from the URL path, then strip any directory components
+    // a malicious URL might have smuggled in (e.g. ?path=../../evil or encoded
+    // separators in the filename segment).  After that, enforce a strict allowlist
+    // so only safe installer filenames can reach QProcess::startDetached.
+    QString filename = QFileInfo(installerQUrl.path()).fileName();
+    if (filename.isEmpty()) {
 #if defined(Q_OS_WIN)
-        ? QStringLiteral("StellarSetup-%1.exe").arg(m_updateVersion)
+        filename = QStringLiteral("StellarSetup-%1.exe").arg(m_updateVersion);
 #else
-        ? QStringLiteral("stellar-%1.deb").arg(m_updateVersion)
+        filename = QStringLiteral("stellar-%1.deb").arg(m_updateVersion);
 #endif
-        : QFileInfo(QUrl(m_updateInstallerUrl).path()).fileName();
+    }
+    // Strip any remaining directory components — defence against encoded separators
+    // or path traversal sequences (e.g. "../../evil.exe") in the filename segment.
+    filename = QFileInfo(filename).fileName();
 
     DownloadItem *item = createDownloadItem(
         m_updateInstallerUrl,
