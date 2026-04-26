@@ -340,9 +340,9 @@ Window {
         minimumHeight = 0
         if (torrent) {
             minimumWidth  = 800
-            minimumHeight = 600
+            minimumHeight = 500
             width  = 800
-            height = 600
+            height = 500
         } else {
             minimumWidth  = 470
             minimumHeight = 420
@@ -1680,115 +1680,102 @@ Window {
             spacing: 8
 
             // ── Summary header ────────────────────────────────────────────────
+            // Compact two-row layout: icon + title/status + ETA on row 1; progress
+            // bar with percent + down/up speed + seeders/peers on row 2. The full
+            // stats grid lives on the General tab.
             Rectangle {
-                Layout.fillWidth: true; Layout.preferredHeight: 170
+                Layout.fillWidth: true
+                Layout.preferredHeight: contentCol.implicitHeight + 8
                 color: "#222228"; border.width: 0; radius: 0
 
                 ColumnLayout {
-                    anchors { fill: parent; leftMargin: 22; rightMargin: 22; topMargin: 14; bottomMargin: 26 }
-                    spacing: 10
+                    id: contentCol
+                    anchors { fill: parent; leftMargin: 14; rightMargin: 14; topMargin: 4; bottomMargin: 4 }
+                    spacing: 4
 
                     RowLayout {
                         Layout.fillWidth: true
-                        Layout.bottomMargin: 10
-                        spacing: 10
+                        spacing: 8
 
                         Image {
-                            Layout.preferredWidth: 30
-                            Layout.preferredHeight: 30
-                            Layout.rightMargin: 6
+                            Layout.preferredWidth: 22
+                            Layout.preferredHeight: 22
                             source: {
                                 if (!root.item) return ""
                                 var p = safeStr(root.item.savePath).replace(/\\/g, "/")
                                 var f = safeStr(root.item.filename)
                                 return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
                             }
-                            sourceSize: Qt.size(30, 30)
+                            sourceSize: Qt.size(22, 22)
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
                         }
 
-                        ColumnLayout {
-                            Layout.fillWidth: true; spacing: 4
-                            Text {
-                                text: root.item ? safeStr(root.item.filename) : ""
-                                color: "#ffffff"; font.pixelSize: 18; font.bold: true
-                                elide: Text.ElideMiddle; Layout.fillWidth: true
-                            }
-                            Text {
-                                text: {
-                                    if (!root.item) return ""
-                                    var h = safeStr(root.item.torrentInfoHash)
-                                    return h ? ("Hash: " + h) : "Waiting for metadata…"
-                                }
-                                color: "#8ea1b5"; font.pixelSize: 11
-                                elide: Text.ElideMiddle; Layout.fillWidth: true
-                            }
-                            RowLayout {
-                                Layout.fillWidth: true
-                                spacing: 8
-                                Text {
-                                    text: root.torrentStatusLabel()
-                                    color: root.torrentStatusAccent()
-                                    font.pixelSize: 11
-                                    font.bold: true
-                                }
+                        Text {
+                            text: root.item ? safeStr(root.item.filename) : ""
+                            color: "#ffffff"; font.pixelSize: 13; font.bold: true
+                            elide: Text.ElideMiddle; Layout.fillWidth: true
+                        }
 
-                                Text {
-                                    text: root.item ? ("ETA: " + (safeStr(root.item.timeLeft).length > 0 ? safeStr(root.item.timeLeft) : "--")) : "ETA: --"
-                                    color: "#8f98a1"
-                                    font.pixelSize: 11
-                                    elide: Text.ElideRight
-                                    Layout.fillWidth: true
-                                }
+                        Text {
+                            text: root.torrentStatusLabel()
+                            color: "#ffffff"
+                            font.pixelSize: 11
+                            font.bold: true
+                        }
+
+                        // Hide ETA once the download is complete (no remaining time
+                        // to show).
+                        Text {
+                            readonly property string _eta: root.item ? safeStr(root.item.timeLeft) : ""
+                            readonly property bool _isCompleteState: {
+                                if (!root.item) return false
+                                var s = safeStr(root.item.status)
+                                return s === "Completed" || s === "Seeding"
                             }
+                            visible: !_isCompleteState && _eta.length > 0
+                            text: "ETA: " + _eta
+                            color: "#8f98a1"
+                            font.pixelSize: 11
+                            elide: Text.ElideRight
                         }
                     }
 
-                    // Progress bar
+                    // Progress bar + live transfer + swarm stats
                     RowLayout {
                         Layout.fillWidth: true; spacing: 8
                         Text {
                             text: root.item ? Math.round(root.clampPct(root.item.progress) * 100) + "%" : "0%"
-                            color: "#ffffff"; font.pixelSize: 15; font.bold: true
-                            Layout.preferredWidth: 46
+                            color: "#ffffff"; font.pixelSize: 12; font.bold: true
+                            Layout.preferredWidth: 38
                         }
                         Rectangle {
-                            Layout.fillWidth: true; height: 6; radius: 3
+                            Layout.fillWidth: true; height: 5; radius: 2
                             color: "#232323"; border.color: "#2d2d2d"
                             Rectangle {
                                 width: Math.max(0, parent.width * (root.item ? root.clampPct(root.item.progress) : 0))
                                 height: parent.height; radius: parent.radius; color: "#4488dd"
                             }
                         }
+                        // ↓ down speed
                         Text {
-                            text: root.item ? root.compactSpeed(root.item.speed) : "0 B/s"
-                            color: "#c8c8c8"; font.pixelSize: 12
-                            horizontalAlignment: Text.AlignRight
+                            text: "↓ " + (root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "0 B/s")
+                            color: "#ffffff"; font.pixelSize: 11
                         }
-                    }
-
-                    // Stats strip
-                    Row {
-                        Layout.fillWidth: true; spacing: 0
-                        Repeater {
-                            model: [
-                                { l: "Downloaded", v: root.item ? root.compactBytes(root.item.torrentDownloaded) : "--" },
-                                { l: "Uploaded",   v: root.item ? root.compactBytes(root.item.torrentUploaded)   : "--" },
-                                { l: "Ratio",      v: root.item ? root.ratioText(root.item.torrentRatio)         : "0.00" },
-                                { l: "Seeders",    v: root.item ? String(root.item.torrentSeeders | 0)           : "0" },
-                                { l: "Peers",      v: root.item ? String(root.item.torrentPeers   | 0)           : "0" },
-                                { l: "ETA",        v: root.item ? (safeStr(root.item.timeLeft).length > 0 ? safeStr(root.item.timeLeft) : "--") : "--" },
-                                { l: "Size",       v: root.item ? root.compactBytes(root.item.totalBytes)        : "--" }
-                            ]
-                            delegate: Item {
-                                width: parent.width / 7; height: 36
-                                Column {
-                                    anchors.verticalCenter: parent.verticalCenter; spacing: 1
-                                    Text { text: modelData.l; color: "#7e8791"; font.pixelSize: 10 }
-                                    Text { text: modelData.v; color: "#e0e0e0"; font.pixelSize: 12; font.bold: true }
-                                }
-                            }
+                        // ↑ up speed
+                        Text {
+                            text: "↑ " + (root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "0 B/s")
+                            color: "#ffffff"; font.pixelSize: 11
+                        }
+                        // Seeders: connected (total)
+                        Text {
+                            text: root.item ? ("Seeds: " + (root.item.torrentSeeders | 0) + " (" + (root.item.torrentListSeeders | 0) + ")") : "Seeds: 0 (0)"
+                            color: "#c8c8c8"; font.pixelSize: 11
+                        }
+                        // Peers: connected (total)
+                        Text {
+                            text: root.item ? ("Peers: " + (root.item.torrentPeers | 0) + " (" + (root.item.torrentListPeers | 0) + ")") : "Peers: 0 (0)"
+                            color: "#c8c8c8"; font.pixelSize: 11
                         }
                     }
                 }
@@ -3682,7 +3669,7 @@ Window {
                                             anchors { left: parent.left; leftMargin: 4; verticalCenter: parent.verticalCenter }
                                             spacing: 2
                                             Repeater {
-                                                model: pd.flags ? pd.flags.split(" ").filter(function(f){ return f.length > 0 && f !== "OUT" }) : []
+                                                model: pd.flags ? pd.flags.split(" ").filter(function(f){ return f.length > 0 }) : []
                                                 delegate: Rectangle {
                                                     required property string modelData
                                                     height: 14; width: badgeLbl.implicitWidth + 6
@@ -3757,24 +3744,25 @@ Window {
 
                             Text {
                                 text: "Legend:"
-                                color: "#6a8099"
+                                color: "#ffffff"
                                 font.pixelSize: 10
                                 anchors.verticalCenter: parent.verticalCenter
                             }
 
                             Repeater {
                                 model: [
+                                    { flag: "IN",   tip: "Incoming: they connected to you" },
                                     { flag: "OUT",  tip: "Outgoing: you connected to them" },
                                     { flag: "TRK",  tip: "Found via tracker" },
                                     { flag: "DHT",  tip: "Found via DHT (no tracker needed)" },
-                                    { flag: "PEX",  tip: "Peer Exchange: another peer referred them" },
-                                    { flag: "LSD",  tip: "Local network discovery" },
+                                    { flag: "PEX",  tip: "Found through another peer you're connected to" },
+                                    { flag: "LSD",  tip: "Found on your local network (same Wi-Fi or LAN)" },
                                     { flag: "UTP",  tip: "Uses uTP, a protocol that avoids congesting your network" },
                                     { flag: "ENC",  tip: "Traffic is encrypted" },
-                                    { flag: "SNB",  tip: "Snubbed: they stopped sending data, probably moving on" },
-                                    { flag: "UPO",  tip: "Upload only: they have the full file and are not downloading" },
-                                    { flag: "OPT",  tip: "Optimistic unchoke: given a free upload slot to discover better peers" },
-                                    { flag: "HPX",  tip: "Holepunched: bypassed a firewall or NAT to connect directly" }
+                                    { flag: "SNB",  tip: "Stalled: they haven't sent any data in a while" },
+                                    { flag: "UPO",  tip: "They already have the whole file and are only uploading" },
+                                    { flag: "OPT",  tip: "Given a trial upload slot to see if they're worth keeping" },
+                                    { flag: "HPX",  tip: "Connected through a firewall using another peer's help" }
                                 ]
                                 delegate: Rectangle {
                                     required property var modelData
@@ -3993,6 +3981,7 @@ Window {
                                             required property int upSpeed
                                             required property bool isSeed
                                             required property string source
+                                            required property string flags
                                             required property double progress   // fraction 0–1; was missing, causing all peers to show 0%
 
                                             readonly property bool hasCoordinates: isFinite(latitude) && isFinite(longitude) && !(latitude === 0 && longitude === 0)
@@ -4239,11 +4228,9 @@ Window {
                                                 width: parent.width
                                                 spacing: 2
                                                 Repeater {
-                                                    model: {
-                                                        var base = root.peerMapHoverIsSeed ? ["Seed"] : ["Peer"]
-                                                        var fl = root.peerMapHoverFlags ? root.peerMapHoverFlags.split(" ").filter(function(f){ return f.length > 0 }) : []
-                                                        return base.concat(fl)
-                                                    }
+                                                    model: root.peerMapHoverFlags
+                                                        ? root.peerMapHoverFlags.split(" ").filter(function(f){ return f.length > 0 })
+                                                        : []
                                                     delegate: Rectangle {
                                                         required property string modelData
                                                         height: 14
@@ -4273,7 +4260,7 @@ Window {
 
                                             // Speed row
                                             Text {
-                                                text: "↓ " + root.compactSpeed(root.peerMapHoverDownSpeed) + "  → " + root.compactSpeed(root.peerMapHoverUpSpeed)
+                                                text: "↓ " + root.compactSpeed(root.peerMapHoverDownSpeed) + "  ↑ " + root.compactSpeed(root.peerMapHoverUpSpeed)
                                                 color: "#9fb6c8"
                                                 font.pixelSize: 11
                                                 width: parent.width
