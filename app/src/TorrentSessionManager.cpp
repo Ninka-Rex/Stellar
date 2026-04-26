@@ -555,6 +555,50 @@ void appendDhtCrawlLogRow(const QDateTime &publishedAt,
         << probesSent << ','
         << responsesReceived << ','
         << peakLiveZone << '\n';
+    out.flush();
+    f.close();
+
+    // Prune rows older than 7 days. The estimator publishes at most every ~30
+    // minutes, so a week is ~336 rows — cheap to rewrite in full each append.
+    // The cutoff is taken from the row we just wrote (the latest known time)
+    // so a wrong system clock can't accidentally wipe everything.
+    constexpr qint64 kRetentionMs = qint64{7} * 24 * 60 * 60 * 1000;
+    const qint64 cutoffMs = publishedAt.toMSecsSinceEpoch() - kRetentionMs;
+
+    QFile in(path);
+    if (!in.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    QByteArray header;
+    QByteArrayList kept;
+    bool isFirstLine = true;
+    while (!in.atEnd()) {
+        const QByteArray line = in.readLine();
+        if (isFirstLine) {
+            header = line;
+            isFirstLine = false;
+            continue;
+        }
+        // epoch_ms is the second column. Parse it; if anything's off, keep the
+        // row rather than dropping data we can't classify.
+        const int firstComma = line.indexOf(',');
+        if (firstComma < 0) { kept.append(line); continue; }
+        const int secondComma = line.indexOf(',', firstComma + 1);
+        if (secondComma < 0) { kept.append(line); continue; }
+        bool ok = false;
+        const qint64 rowMs = line.mid(firstComma + 1, secondComma - firstComma - 1).toLongLong(&ok);
+        if (!ok || rowMs >= cutoffMs)
+            kept.append(line);
+    }
+    in.close();
+
+    QFile rewrite(path);
+    if (!rewrite.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
+        return;
+    if (!header.isEmpty())
+        rewrite.write(header);
+    for (const QByteArray &line : kept)
+        rewrite.write(line);
+    rewrite.close();
 }
 
 qint64 estimateCorrectedGlobalDhtNodesFromZoneCount(int zoneNodeCount) {
