@@ -3316,6 +3316,11 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
     } else if (m_pausedIds.contains(id)
         || (handle.flags() & libtorrent::torrent_flags::paused) != libtorrent::torrent_flags_t{}) {
         item->setStatus(DownloadItem::Status::Paused);
+        // libtorrent can report stale nonzero rates on the tick immediately
+        // after pausing; zero them explicitly so the torrent doesn't appear
+        // in the Active category filter.
+        item->setSpeed(0);
+        item->setTorrentUploadSpeed(0);
     } else if (st.is_seeding || st.state == libtorrent::torrent_status::finished) {
         item->setStatus(DownloadItem::Status::Seeding);
         if (!m_seedingStartTimes.contains(id)) {
