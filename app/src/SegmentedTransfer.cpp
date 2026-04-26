@@ -1706,7 +1706,17 @@ bool SegmentedTransfer::maybeStealWork(int freedUiSlot) {
     auto &victim = m_segments[victimIdx];
     qint64 pos     = victim.startOffset + victim.received;
     qint64 oldEnd  = victim.endOffset;
-    qint64 mid     = pos + victimRemaining / 2;
+
+    // Recompute remaining from live fields rather than the loop's snapshot to
+    // guard against corrupt resume metadata where endOffset drifted since the
+    // loop ran.  If the range is degenerate, bail out — do not create an
+    // invalid segment.
+    qint64 liveRemaining = oldEnd - pos + 1;
+    if (liveRemaining < kStealThresholdBytes) return false;
+
+    qint64 mid = pos + liveRemaining / 2;
+    // Clamp: mid must leave at least one byte in each half.
+    mid = qBound(pos + 1, mid, oldEnd - 1);
 
     qDebug() << "[ST] stealing: splitting segment" << victimIdx
              << "range" << pos << "-" << oldEnd << "at" << mid
