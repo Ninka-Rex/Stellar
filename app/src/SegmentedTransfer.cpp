@@ -1918,6 +1918,7 @@ bool SegmentedTransfer::loadMeta() {
 
     QJsonArray segs = root[QStringLiteral("segments")].toArray();
     if (segs.isEmpty()) return false;
+    if (segs.size() > kMaxDynamicSegments) return false;
 
     m_segments.clear();
     qint64 done = 0;
