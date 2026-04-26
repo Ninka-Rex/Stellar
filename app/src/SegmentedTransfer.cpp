@@ -552,8 +552,26 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
         // GDrive auth check above, so we only reach here for non-auth responses.
         qDebug() << "[HTMLIntercept] readyRead, replyHost=" << seg.reply->url().host() << "bufSize=" << m_htmlInterceptBuf.size();
 
-        QByteArray data = seg.reply->readAll();
-        m_htmlInterceptBuf.append(data);
+        // Cap the sniff buffer: confirmation pages are at most a few KB.
+        // Stop reading once we have enough to decide, and abort if a server
+        // keeps sending past the limit (OOM guard against a malicious host).
+        static constexpr qint64 kHtmlInterceptMaxBytes = 64 * 1024; // 64 KB
+        if (m_htmlInterceptBuf.size() < kHtmlInterceptMaxBytes) {
+            QByteArray data = seg.reply->readAll();
+            m_htmlInterceptBuf.append(data);
+        }
+        if (m_htmlInterceptBuf.size() >= kHtmlInterceptMaxBytes) {
+            qDebug() << "[HTMLIntercept] buffer limit reached — treating as real file";
+            m_htmlIntercepting = false;
+            m_htmlInterceptBuf.clear();
+            seg.reply->disconnect(this);
+            seg.reply->abort();
+            seg.reply->deleteLater();
+            seg.reply = nullptr;
+            if (seg.file) { seg.file->close(); QFile::remove(seg.partPath); delete seg.file; seg.file = nullptr; }
+            fallbackToSingleSegment();
+            return;
+        }
 
         // Check Content-Disposition header — if present, it's the real file
         QByteArray cd = seg.reply->rawHeader("Content-Disposition");
