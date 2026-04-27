@@ -1869,6 +1869,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_tray, &SystemTrayIcon::aboutRequested,        this, &AppController::trayAboutRequested);
     connect(m_tray, &SystemTrayIcon::speedLimiterRequested, this, &AppController::traySpeedLimiterRequested);
     connect(m_tray, &SystemTrayIcon::contextMenuRequested,  this, &AppController::contextMenuRequested);
+    connect(m_tray, &SystemTrayIcon::downloadsContextMenuRequested, this, &AppController::downloadsContextMenuRequested);
+    connect(m_tray, &SystemTrayIcon::downloadsShowAllRequested,     this, &AppController::downloadsShowAllRequested);
     
     connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this, [this]() {
         // Surface a shutdown indicator on the tray tooltip so the user knows
@@ -5905,6 +5907,18 @@ void AppController::setTrayTooltip(const QString &tip) {
         m_lastTrayTooltip = tip;
         m_tray->setToolTip(tip);
     }
+}
+
+void AppController::showDownloadsTray() {
+    if (m_tray) m_tray->showDownloadsTray();
+}
+
+void AppController::hideDownloadsTray() {
+    if (m_tray) m_tray->hideDownloadsTray();
+}
+
+void AppController::setDownloadsTrayToolTip(const QString &tip) {
+    if (m_tray) m_tray->setDownloadsTrayToolTip(tip);
 }
 
 void AppController::stopQueue(const QString &queueId)

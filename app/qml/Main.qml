@@ -90,12 +90,57 @@ ApplicationWindow {
         })
     }
 
+    // Map of downloadId → DownloadProgressDialog instances
+    property var _progressDialogs: ({})
+
+    function _getOrCreateProgressDialog(item) {
+        if (!item) return null
+        var id = item.id || ""
+        if (_progressDialogs[id]) return _progressDialogs[id]
+        var dlg = progressDialogComponent.createObject(root, { downloadId: id, item: item })
+        dlg.minimizedToTray.connect(function(dlgId) {
+            _updateDownloadsTray()
+        })
+        dlg.closing.connect(function(close) {
+            // Closing (X button) destroys and removes from map
+            Qt.callLater(function() {
+                if (_progressDialogs[id]) {
+                    _progressDialogs[id].destroy()
+                    delete _progressDialogs[id]
+                    _progressDialogs = _progressDialogs  // trigger binding refresh
+                    _updateDownloadsTray()
+                }
+            })
+        })
+        _progressDialogs[id] = dlg
+        _progressDialogs = _progressDialogs
+        return dlg
+    }
+
     function showDownloadProgressForItem(item) {
-        if (!item)
-            return
-        progressDialog.item = item
-        progressDialog.downloadId = item.id || ""
-        showAndActivate(progressDialog)
+        if (!item) return
+        var dlg = _getOrCreateProgressDialog(item)
+        if (dlg) {
+            dlg.item = item
+            showAndActivate(dlg)
+            _updateDownloadsTray()
+        }
+    }
+
+    function _updateDownloadsTray() {
+        var ids = Object.keys(_progressDialogs)
+        var anyMinimized = false
+        for (var i = 0; i < ids.length; i++) {
+            var d = _progressDialogs[ids[i]]
+            if (d && !d.visible) { anyMinimized = true; break }
+        }
+        if (anyMinimized) {
+            App.showDownloadsTray()
+            App.setDownloadsTrayToolTip("SDM downloads")
+        } else {
+            App.hideDownloadsTray()
+        }
+        downloadsTrayMenu.updateEntries()
     }
 
     function showTorrentSearchWindow() {
@@ -474,6 +519,91 @@ ApplicationWindow {
         }
     }
 
+    // ── Downloads tray context menu ───────────────────────────────────────────
+    Window {
+        id: downloadsTrayMenu
+        transientParent: null
+        flags: Qt.Tool | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint
+        width: 220
+        height: downloadsTrayCol.implicitHeight + 2
+        color: "#2b2b2b"
+        visible: false
+
+        function popup(screenX, screenY) {
+            updateEntries()
+            x = screenX
+            y = screenY - height
+            visible = true
+            raise()
+            requestActivate()
+        }
+
+        function updateEntries() {
+            var ids = Object.keys(root._progressDialogs)
+            // Rebuild the per-download repeater model
+            perDownloadModel.clear()
+            for (var i = 0; i < ids.length; i++) {
+                var d = root._progressDialogs[ids[i]]
+                if (d && d.item) {
+                    perDownloadModel.append({ dlId: ids[i], dlName: d.item.filename })
+                }
+            }
+        }
+
+        onActiveChanged: {
+            if (!active && visible) visible = false
+        }
+
+        Rectangle {
+            anchors.fill: parent
+            color: "transparent"
+            border.color: "#555"
+            border.width: 1
+        }
+
+        Column {
+            id: downloadsTrayCol
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 1 }
+
+            TrayMenuItem {
+                label: "Restore all download windows"
+                bold: true
+                onClicked: {
+                    downloadsTrayMenu.visible = false
+                    var ids = Object.keys(root._progressDialogs)
+                    for (var i = 0; i < ids.length; i++) {
+                        var d = root._progressDialogs[ids[i]]
+                        if (d) { d.show(); d.raise(); d.requestActivate() }
+                    }
+                    root._updateDownloadsTray()
+                }
+            }
+
+            Rectangle { width: parent.width; height: 1; color: "#444" }
+
+            ListModel { id: perDownloadModel }
+
+            Repeater {
+                model: perDownloadModel
+                delegate: TrayMenuItem {
+                    label: dlName
+                    onClicked: {
+                        downloadsTrayMenu.visible = false
+                        var d = root._progressDialogs[dlId]
+                        if (d) { d.show(); d.raise(); d.requestActivate() }
+                        root._updateDownloadsTray()
+                    }
+                }
+            }
+        }
+    }
+
+    // ── Component for creating per-download progress dialogs ──────────────────
+    Component {
+        id: progressDialogComponent
+        DownloadProgressDialog {}
+    }
+
     // ── Controller signals ────────────────────────────────────────────────────
     Connections {
         target: App
@@ -503,8 +633,10 @@ ApplicationWindow {
             })
         }
         function onDownloadCompleted(item) {
-            if (progressDialog.visible && progressDialog.item === item)
-                progressDialog.hide()
+            if (item) {
+                var dlg = root._progressDialogs[item.id]
+                if (dlg && dlg.visible) dlg.hide()
+            }
             // Torrents go Completed → Seeding; never show the complete dialog for them.
             if (!item || item.isTorrent)
                 return
@@ -534,6 +666,17 @@ ApplicationWindow {
         }
         function onContextMenuRequested(x, y) {
             trayMenu.popup(x, y)
+        }
+        function onDownloadsContextMenuRequested(x, y) {
+            downloadsTrayMenu.popup(x, y)
+        }
+        function onDownloadsShowAllRequested() {
+            var ids = Object.keys(root._progressDialogs)
+            for (var i = 0; i < ids.length; i++) {
+                var d = root._progressDialogs[ids[i]]
+                if (d) { d.show(); d.raise(); d.requestActivate() }
+            }
+            root._updateDownloadsTray()
         }
         function onUpdateDialogRequested() {
             updateAvailableDialog.show()
@@ -1458,9 +1601,6 @@ ApplicationWindow {
             _handleDuplicateAction(action, remember, existingItem, _pendingUrl)
         }
     }
-
-    // ── Download Progress Dialog ──────────────────────────────────────────────
-    DownloadProgressDialog { id: progressDialog; transientParent: root }
 
     // ── Download Complete Dialog ──────────────────────────────────────────────
     DownloadCompleteDialog { id: completeDialog; transientParent: root }

@@ -55,6 +55,25 @@ static QString psQuoted(const QString &value)
     return QStringLiteral("'") + escaped + QStringLiteral("'");
 }
 
+static QIcon createDownloadsTrayIcon() {
+    const QIcon icon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/arrow_down.png"));
+    if (!icon.isNull())
+        return icon;
+    // Fallback: simple down-arrow drawn pixmap
+    QPixmap pm(16, 16);
+    pm.fill(Qt::transparent);
+    QPainter p(&pm);
+    p.setRenderHint(QPainter::Antialiasing, true);
+    p.setBrush(QColor(0x44, 0x88, 0xdd));
+    p.setPen(Qt::NoPen);
+    // Arrow shape: triangle pointing down
+    QPolygon arrow;
+    arrow << QPoint(2, 5) << QPoint(14, 5) << QPoint(8, 13);
+    p.drawPolygon(arrow);
+    p.end();
+    return QIcon(pm);
+}
+
 SystemTrayIcon::SystemTrayIcon(QObject *parent)
     : QObject(parent)
 {
@@ -67,17 +86,36 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
             [this](QSystemTrayIcon::ActivationReason reason) {
         switch (reason) {
         case QSystemTrayIcon::DoubleClick:
-            // Double-click opens the main window.
             emit showRequested();
             break;
         case QSystemTrayIcon::Trigger:
-            // Single left-click opens the main window.
             emit showRequested();
             break;
         case QSystemTrayIcon::Context: {
-            // Right-click shows the context menu.
             const QPoint pos = QCursor::pos();
             emit contextMenuRequested(pos.x(), pos.y());
+            break;
+        }
+        default:
+            break;
+        }
+    });
+
+    // Downloads tray icon
+    m_downloadsTray = new QSystemTrayIcon(this);
+    m_downloadsTray->setIcon(createDownloadsTrayIcon());
+    m_downloadsTray->setToolTip(QStringLiteral("SDM downloads"));
+
+    connect(m_downloadsTray, &QSystemTrayIcon::activated, this,
+            [this](QSystemTrayIcon::ActivationReason reason) {
+        switch (reason) {
+        case QSystemTrayIcon::DoubleClick:
+        case QSystemTrayIcon::Trigger:
+            emit downloadsShowAllRequested();
+            break;
+        case QSystemTrayIcon::Context: {
+            const QPoint pos = QCursor::pos();
+            emit downloadsContextMenuRequested(pos.x(), pos.y());
             break;
         }
         default:
@@ -92,6 +130,10 @@ void SystemTrayIcon::setup(const QString &iconPath) {
 
 void SystemTrayIcon::show()  { m_tray->show(); }
 void SystemTrayIcon::hide()  { m_tray->hide(); }
+
+void SystemTrayIcon::showDownloadsTray()  { m_downloadsTray->show(); }
+void SystemTrayIcon::hideDownloadsTray()  { m_downloadsTray->hide(); }
+void SystemTrayIcon::setDownloadsTrayToolTip(const QString &tip) { m_downloadsTray->setToolTip(tip); }
 
 void SystemTrayIcon::setToolTip(const QString &tip) {
     m_tray->setToolTip(tip);

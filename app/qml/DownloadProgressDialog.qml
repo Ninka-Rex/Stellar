@@ -23,7 +23,9 @@ import QtQuick.Layouts
 Window {
     id: root
 
-    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.WindowMinimizeButtonHint
+
+    signal minimizedToTray(string downloadId)
 
     property string downloadId: ""
     property var    item: null
@@ -82,12 +84,6 @@ Window {
     }
 
     function _centerOnOwner() {
-        var owner = root.transientParent
-        if (owner) {
-            x = owner.x + Math.round((owner.width  - width)  / 2)
-            y = owner.y + Math.round((owner.height - height) / 2)
-            return
-        }
         x = Math.round((Screen.width  - width)  / 2)
         y = Math.round((Screen.height - height) / 2)
     }
@@ -223,7 +219,7 @@ Window {
             }
 
             Row {
-                anchors.fill: parent
+                anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
                 spacing: 0
 
                 Repeater {
@@ -257,6 +253,43 @@ Window {
                             cursorShape: Qt.PointingHandCursor
                             onClicked: tabStack.currentIndex = index
                         }
+                    }
+                }
+            }
+
+            // Minimize-to-tray button — flat, right-aligned in the tab bar
+            Item {
+                anchors { right: parent.right; top: parent.top; bottom: parent.bottom; rightMargin: 6 }
+                width: minTrayLbl.implicitWidth + 20
+
+                Text {
+                    id: minTrayLbl
+                    anchors.centerIn: parent
+                    text: ">>  Send to Tray"
+                    color: minTrayMa.containsMouse ? "#cccccc" : "#888888"
+                    font.pixelSize: 12
+                }
+
+                // Active underline matching tab style
+                Rectangle {
+                    anchors.bottom: parent.bottom
+                    width: parent.width; height: 2
+                    color: minTrayMa.containsMouse ? "#4488dd" : "transparent"
+                }
+
+                ToolTip.visible: minTrayMa.containsMouse
+                ToolTip.text: "Minimize to system tray"
+                ToolTip.delay: 400
+
+                MouseArea {
+                    id: minTrayMa
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        root.hide()
+                        // Emit after hide so _updateDownloadsTray sees visible === false
+                        Qt.callLater(function() { root.minimizedToTray(root.downloadId) })
                     }
                 }
             }

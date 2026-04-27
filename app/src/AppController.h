@@ -374,6 +374,9 @@ public:
     Q_INVOKABLE void stopQueue(const QString &queueId);
     Q_INVOKABLE bool shutdownComputer() const;
     Q_INVOKABLE void setTrayTooltip(const QString &tip);
+    Q_INVOKABLE void showDownloadsTray();
+    Q_INVOKABLE void hideDownloadsTray();
+    Q_INVOKABLE void setDownloadsTrayToolTip(const QString &tip);
     Q_INVOKABLE QVariantMap grabberProjectData(const QString &projectId) const;
     Q_INVOKABLE bool isGrabberProjectId(const QString &projectId) const;
     Q_INVOKABLE QString saveGrabberProject(const QVariantMap &projectMap);
@@ -415,6 +418,8 @@ signals:
     void trayAboutRequested();
     void traySpeedLimiterRequested();
     void contextMenuRequested(int x, int y);
+    void downloadsContextMenuRequested(int x, int y);
+    void downloadsShowAllRequested();
     void exceptionDialogRequested(const QString &url);
     void interceptedDownloadRequested(const QString &url, const QString &filename);
     void grabberBusyChanged();

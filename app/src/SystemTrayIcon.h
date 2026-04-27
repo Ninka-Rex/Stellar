@@ -33,6 +33,11 @@ public:
     void setToolTip(const QString &tip);
     void showNotification(const QString &title, const QString &msg);
 
+    // Downloads tray icon (second icon — "SDM downloads")
+    void showDownloadsTray();
+    void hideDownloadsTray();
+    void setDownloadsTrayToolTip(const QString &tip);
+
 signals:
     void showRequested();
     void addUrlRequested();
@@ -42,6 +47,10 @@ signals:
     void aboutRequested();
     void speedLimiterRequested();
 
+    void downloadsContextMenuRequested(int x, int y);
+    void downloadsShowAllRequested();
+
 private:
     QSystemTrayIcon *m_tray{nullptr};
+    QSystemTrayIcon *m_downloadsTray{nullptr};
 };
