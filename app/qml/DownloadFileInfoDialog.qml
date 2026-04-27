@@ -64,6 +64,22 @@ Window {
         y = Math.round((Screen.height - height) / 2)
     }
 
+    function fileUrlFromPath(path) {
+        var p = String(path || "").trim().replace(/\\/g, "/")
+        if (p.length === 0 || p.indexOf("file://") === 0)
+            return p
+        return Qt.platform.os === "windows"
+            ? ("file:///" + p)
+            : (p.startsWith("/") ? ("file://" + p) : ("file:///" + p))
+    }
+
+    function pathFromFileUrl(url) {
+        var p = String(url || "")
+        if (Qt.platform.os === "windows")
+            return p.replace(/^file:\/\/\//, "")
+        return p.replace(/^file:\/\//, "")
+    }
+
     onVisibleChanged: {
         if (visible) {
             _centerOnOwner()
@@ -246,8 +262,7 @@ function _buildDescription(info) {
             return parts.length > 1 ? parts[parts.length - 1] : ""
         }
         onAccepted: {
-            var path = selectedFile.toString()
-                .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            var path = pathFromFileUrl(selectedFile)
             if (path.length > 0) {
                 saveAsField.editText = path
             }
@@ -453,8 +468,8 @@ function _buildDescription(info) {
                     }
                     onClicked: {
                         var currentPath = saveAsField.editText || (savePathForIndex(catCombo.currentIndex) + pendingFilename)
-                        saveAsDlg.currentFolder = "file:///" + currentPath.replace(/[\/\\][^\/\\]*$/, "").replace(/\\/g, "/")
-                        saveAsDlg.selectedFile = "file:///" + currentPath.replace(/\\/g, "/")
+                        saveAsDlg.currentFolder = fileUrlFromPath(currentPath.replace(/[\/\\][^\/\\]*$/, ""))
+                        saveAsDlg.selectedFile = fileUrlFromPath(currentPath)
                         saveAsDlg.open()
                     }
                 }

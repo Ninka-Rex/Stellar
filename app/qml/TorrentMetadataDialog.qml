@@ -82,6 +82,22 @@ Window {
         y = Math.round((Screen.height - height) / 2)
     }
 
+    function fileUrlFromPath(path) {
+        var p = String(path || "").trim().replace(/\\/g, "/")
+        if (p.length === 0 || p.indexOf("file://") === 0)
+            return p
+        return Qt.platform.os === "windows"
+            ? ("file:///" + p)
+            : (p.startsWith("/") ? ("file://" + p) : ("file:///" + p))
+    }
+
+    function pathFromFileUrl(url) {
+        var p = String(url || "")
+        if (Qt.platform.os === "windows")
+            return p.replace(/^file:\/\/\//, "")
+        return p.replace(/^file:\/\//, "")
+    }
+
     function defaultSavePathForCategory(categoryId) {
         var catId = safeStr(categoryId)
         var path = catId.length > 0 ? safeStr(App.categoryModel.savePathForCategory(catId)) : ""
@@ -252,11 +268,10 @@ Window {
     FolderDialog {
         id: saveFolderDialog
         currentFolder: root.savePath.length > 0
-                       ? ("file:///" + root.savePath.replace(/\\/g, "/"))
+                       ? fileUrlFromPath(root.savePath)
                        : ""
         onAccepted: {
-            var path = selectedFolder.toString()
-                .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            var path = pathFromFileUrl(selectedFolder)
             if (path.length > 0)
                 root.setCustomSavePath(path)
         }

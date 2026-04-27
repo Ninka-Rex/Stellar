@@ -128,6 +128,34 @@ QString normalizedNativePath(const QString &path) {
     return QDir::toNativeSeparators(QFileInfo(path).absoluteFilePath());
 }
 
+QString normalizeUserSavePath(QString path) {
+    QString raw = QDir::fromNativeSeparators(path.trimmed());
+    if (raw.isEmpty())
+        return raw;
+
+#if defined(Q_OS_UNIX)
+    // Folder dialogs can hand back malformed file URLs that drop the leading
+    // slash from absolute mount paths such as /media/...; repair those here so
+    // the backend never redirects removable-drive downloads into $HOME.
+    static const QStringList likelyAbsolutePrefixes = {
+        QStringLiteral("media/"),
+        QStringLiteral("mnt/"),
+        QStringLiteral("run/media/")
+    };
+    for (const QString &prefix : likelyAbsolutePrefixes) {
+        if (raw.startsWith(prefix, Qt::CaseInsensitive)) {
+            raw.prepend(QLatin1Char('/'));
+            break;
+        }
+    }
+#endif
+
+    while (raw.length() > 1 && raw.endsWith(QLatin1Char('/')))
+        raw.chop(1);
+
+    return QDir::cleanPath(raw);
+}
+
 bool commandReferencesExecutable(const QString &command, const QString &exePath) {
     const QString normalizedCommand = QDir::toNativeSeparators(command).trimmed();
     const QString normalizedExe = normalizedNativePath(exePath);
@@ -2200,11 +2228,11 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
         item->setQueueId(queueId);
 
     if (!savePath.isEmpty()) {
-        item->setSavePath(savePath);
+        item->setSavePath(normalizeUserSavePath(savePath));
     } else if (m_settings->defaultSavePath().isEmpty()) {
-        item->setSavePath(m_categoryModel->savePathForCategory(resolvedCategory));
+        item->setSavePath(normalizeUserSavePath(m_categoryModel->savePathForCategory(resolvedCategory)));
     } else {
-        item->setSavePath(m_settings->defaultSavePath());
+        item->setSavePath(normalizeUserSavePath(m_settings->defaultSavePath()));
     }
 
     if (startNow)
@@ -2251,7 +2279,7 @@ DownloadItem *AppController::createTorrentItem(const QString &source, const QStr
             ? QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)
             : m_settings->defaultSavePath())
         : savePath;
-    item->setSavePath(resolvedSavePath);
+    item->setSavePath(normalizeUserSavePath(resolvedSavePath));
     item->setStatus((staged || !startNow) ? DownloadItem::Status::Paused
                                           : DownloadItem::Status::Downloading);
 
@@ -2887,11 +2915,9 @@ bool AppController::confirmTorrentDownload(const QString &downloadId, const QStr
 }
 
 QString AppController::normalizeTorrentSaveDirectory(const QString &path) const {
-    QString raw = QDir::fromNativeSeparators(path.trimmed());
+    QString raw = normalizeUserSavePath(path);
     if (raw.isEmpty())
         return raw;
-    while (raw.length() > 1 && raw.endsWith(QLatin1Char('/')))
-        raw.chop(1);
 
     QFileInfo info(raw);
     if (info.exists()) {

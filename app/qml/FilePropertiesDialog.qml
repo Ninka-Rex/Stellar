@@ -59,6 +59,22 @@ Window {
     readonly property string _torrentStatusText: item ? safeStr(item.status) : ""
     readonly property bool _torrentIsMoving: _torrentStatusText === "Moving"
 
+    function fileUrlFromPath(path) {
+        var p = String(path || "").trim().replace(/\\/g, "/")
+        if (p.length === 0 || p.indexOf("file://") === 0)
+            return p
+        return Qt.platform.os === "windows"
+            ? ("file:///" + p)
+            : (p.startsWith("/") ? ("file://" + p) : ("file:///" + p))
+    }
+
+    function pathFromFileUrl(url) {
+        var p = String(url || "")
+        if (Qt.platform.os === "windows")
+            return p.replace(/^file:\/\/\//, "")
+        return p.replace(/^file:\/\//, "")
+    }
+
     // Peer column widths (resizable)
     property real peerColCountry:   82
     property real peerColPeer:     180
@@ -1410,17 +1426,17 @@ Window {
         currentFolder: {
             if (!root.item) return ""
             var p = safeStr(root.item.savePath).replace(/\\/g, "/")
-            return p ? ("file:///" + p) : ""
+            return p ? fileUrlFromPath(p) : ""
         }
         currentFile: {
             if (!root.item) return ""
             var p = safeStr(root.item.savePath).replace(/\\/g, "/")
             var f = safeStr(root.item.filename)
-            return (p && f) ? ("file:///" + p + "/" + f) : ""
+            return (p && f) ? fileUrlFromPath(p + "/" + f) : ""
         }
         onAccepted: {
             if (!root.item) return
-            var newPath = selectedFile.toString().replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            var newPath = pathFromFileUrl(selectedFile)
             if (newPath.length > 0) App.moveDownloadFile(root.item.id, newPath)
         }
     }
@@ -1429,11 +1445,11 @@ Window {
         currentFolder: {
             if (!root.item) return ""
             var p = safeStr(root.item.savePath).replace(/\\/g, "/")
-            return p ? ("file:///" + p) : ""
+            return p ? fileUrlFromPath(p) : ""
         }
         onAccepted: {
             if (!root.item) return
-            var newPath = selectedFolder.toString().replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            var newPath = pathFromFileUrl(selectedFolder)
             if (newPath.length > 0) App.moveDownloadFile(root.item.id, newPath)
         }
     }

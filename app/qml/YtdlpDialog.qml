@@ -76,6 +76,22 @@ Window {
         return u.indexOf("/@") >= 0 || u.indexOf("/channel/") >= 0
             || u.indexOf("/c/") >= 0 || u.indexOf("/user/") >= 0
     }
+
+    function fileUrlFromPath(path) {
+        var p = String(path || "").trim().replace(/\\/g, "/")
+        if (p.length === 0 || p.indexOf("file://") === 0)
+            return p
+        return Qt.platform.os === "windows"
+            ? ("file:///" + p)
+            : (p.startsWith("/") ? ("file://" + p) : ("file:///" + p))
+    }
+
+    function pathFromFileUrl(url) {
+        var p = String(url || "")
+        if (Qt.platform.os === "windows")
+            return p.replace(/^file:\/\/\//, "")
+        return p.replace(/^file:\/\//, "")
+    }
     readonly property bool _containerSupportsSubs: {
         var c = containerCombo.currentText
         return c === "mp4" || c === "mkv" || c === "webm"
@@ -305,10 +321,10 @@ Window {
     FolderDialog {
         id: saveFolderDialog
         currentFolder: savePathField.text.trim().length > 0
-                       ? ("file:///" + savePathField.text.trim().replace(/\\/g, "/"))
-                       : ("file:///" + App.settings.defaultSavePath.replace(/\\/g, "/"))
+                       ? fileUrlFromPath(savePathField.text.trim())
+                       : fileUrlFromPath(App.settings.defaultSavePath)
         onAccepted: {
-            var p = selectedFolder.toString().replace(/^file:\/\/\//,"").replace(/^file:\/\//,"")
+            var p = pathFromFileUrl(selectedFolder)
             p = p.replace(/\//g,"\\")
             if (p.length > 0 && !p.endsWith("\\")) p += "\\"
             savePathField.text = p

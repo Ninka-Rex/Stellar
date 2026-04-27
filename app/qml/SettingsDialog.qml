@@ -44,6 +44,22 @@ Window {
     property string associationStatusText: ""
     signal whatsNewRequested()
 
+    function fileUrlFromPath(path) {
+        var p = String(path || "").trim().replace(/\\/g, "/")
+        if (p.length === 0 || p.indexOf("file://") === 0)
+            return p
+        return Qt.platform.os === "windows"
+            ? ("file:///" + p)
+            : (p.startsWith("/") ? ("file://" + p) : ("file:///" + p))
+    }
+
+    function pathFromFileUrl(url) {
+        var p = String(url || "")
+        if (Qt.platform.os === "windows")
+            return p.replace(/^file:\/\/\//, "")
+        return p.replace(/^file:\/\//, "")
+    }
+
     // Plain var properties — no live binding to App.settings so that
     // settingsChanged can detect when the user has made changes.
     property int    editMaxConcurrent:         0
@@ -472,10 +488,9 @@ Window {
     FolderDialog {
         id: saveFolderDlg
         currentFolder: root.editDefaultSavePath.length > 0
-                       ? ("file:///" + root.editDefaultSavePath.replace(/\\/g, "/")) : ""
+                       ? fileUrlFromPath(root.editDefaultSavePath) : ""
         onAccepted: {
-            var path = selectedFolder.toString()
-                           .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            var path = pathFromFileUrl(selectedFolder)
             root.editDefaultSavePath = path
         }
     }
@@ -483,10 +498,9 @@ Window {
     FolderDialog {
         id: tempFolderDlg
         currentFolder: root.editTemporaryDirectory.length > 0
-                       ? ("file:///" + root.editTemporaryDirectory.replace(/\\/g, "/")) : ""
+                       ? fileUrlFromPath(root.editTemporaryDirectory) : ""
         onAccepted: {
-            var path = selectedFolder.toString()
-                           .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            var path = pathFromFileUrl(selectedFolder)
             root.editTemporaryDirectory = path
         }
     }
@@ -494,10 +508,9 @@ Window {
     FolderDialog {
         id: torrentCustomSaveFolderDlg
         currentFolder: root.editTorrentCustomSavePath.length > 0
-                       ? ("file:///" + root.editTorrentCustomSavePath.replace(/\\/g, "/")) : ""
+                       ? fileUrlFromPath(root.editTorrentCustomSavePath) : ""
         onAccepted: {
-            var path = selectedFolder.toString()
-                           .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
+            var path = pathFromFileUrl(selectedFolder)
             root.editTorrentCustomSavePath = path
         }
     }
@@ -1055,9 +1068,7 @@ Window {
                     FolderDialog {
                         id: catSaveFolderDlg
                         onAccepted: {
-                            var path = selectedFolder.toString()
-                                .replace(/^file:\/\/\//, "").replace(/^file:\/\//, "")
-                                .replace(/\\/g, "/")
+                            var path = pathFromFileUrl(selectedFolder).replace(/\\/g, "/")
                             catEditPath.text = path
                         }
                     }

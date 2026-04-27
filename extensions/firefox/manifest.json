@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SDM Integration Module",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Intercepts browser downloads and routes them to the Stellar download manager.",
 
   "icons": {
