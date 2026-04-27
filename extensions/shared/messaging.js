@@ -222,6 +222,24 @@ export async function shouldIntercept(url, mimeType, filenameHint, explicitInten
     // Skip internal API/RPC traffic unless the user explicitly initiated it as a download.
     if (!explicitIntent && isApiRpcRequest(url, filenameHint, mimeType)) return false;
 
+    // Skip signed media-CDN playback URLs (CloudFront/AWS-style). These carry an
+    // Expires + Signature pair and serve the in-page video player, not user-
+    // initiated downloads. Streamable's cdn-cf-east.streamable.com is the
+    // canonical case — the path ends with .mp4 but the URL is short-lived and
+    // not meant to be saved. Even with explicit intent (a page-rigged download
+    // button) intercepting these breaks playback or saves a soon-to-expire URL.
+    try {
+        const u = new URL(url);
+        const sp = u.searchParams;
+        const isSignedMediaCdn = sp.has("Expires") && sp.has("Signature")
+            && (sp.has("Key-Pair-Id") || sp.has("KeyPair-Id") || sp.has("AWSAccessKeyId"));
+        if (isSignedMediaCdn) {
+            const path = u.pathname.toLowerCase();
+            const MEDIA_EXT_RE = /\.(mp4|m4v|mkv|webm|mov|avi|wmv|flv|mp3|m4a|aac|ogg|wav|flac|m3u8|ts)$/;
+            if (MEDIA_EXT_RE.test(path)) return false;
+        }
+    } catch { /* fall through */ }
+
     const settings = await getSettings();
     if (!settings.enabled) return false;
 

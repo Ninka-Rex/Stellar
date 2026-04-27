@@ -278,10 +278,27 @@ function forceIntercept(url) {
     } catch { return false; }
 }
 
+function isSignedMediaCdnPlaybackUrl(url) {
+    // CloudFront/AWS-style signed playback URLs (e.g. Streamable's
+    // cdn-cf-east.streamable.com/.../*.mp4?Expires=&Signature=&Key-Pair-Id=).
+    // The path looks like a media file but the URL is a short-lived playback
+    // token, not a real download — capturing it breaks playback or saves a
+    // soon-to-expire URL.
+    try {
+        const u = new URL(url);
+        const sp = u.searchParams;
+        const signed = sp.has("Expires") && sp.has("Signature")
+            && (sp.has("Key-Pair-Id") || sp.has("KeyPair-Id") || sp.has("AWSAccessKeyId"));
+        if (!signed) return false;
+        return /\.(mp4|m4v|mkv|webm|mov|avi|wmv|flv|mp3|m4a|aac|ogg|wav|flac|m3u8|ts)$/i.test(u.pathname);
+    } catch { return false; }
+}
+
 function shouldInterceptSync(url, mimeType, filenameHint, explicitIntent = false) {
     if (!url || url.startsWith("data:") || url.startsWith("blob:")) return false;
     if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("ftp://")) return false;
     if (isApiRpcRequest(url, filenameHint, mimeType)) return false;
+    if (isSignedMediaCdnPlaybackUrl(url)) return false;
     if (!liveSettings.enabled) return false;
     const host = getUrlHost(url);
     for (const pattern of liveSettings.excludedSites) if (matchesSitePattern(host, pattern)) return false;
@@ -315,6 +332,7 @@ async function shouldIntercept(url, mimeType, filenameHint, explicitIntent = fal
     if (!url || url.startsWith("data:") || url.startsWith("blob:")) return false;
     if (!url.startsWith("http://") && !url.startsWith("https://") && !url.startsWith("ftp://")) return false;
     if (isApiRpcRequest(url, filenameHint, mimeType)) return false;
+    if (isSignedMediaCdnPlaybackUrl(url)) return false;
     const settings = await getSettings();
     if (!settings.enabled) return false;
     const host = getUrlHost(url);
