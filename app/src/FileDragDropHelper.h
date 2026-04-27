@@ -26,7 +26,9 @@ public:
     explicit FileDragDropHelper(QObject *parent = nullptr);
 
     Q_INVOKABLE void startDrag(const QString &filePath);
+    Q_INVOKABLE void startMove(const QString &filePath);
 
 signals:
     void dragCompleted(bool success);
+    void moveCompleted(bool success);
 };

@@ -4014,6 +4014,24 @@ void AppController::openFolderSelectFile(const QString &id) {
 #endif
 }
 
+void AppController::openFileWith(const QString &id) {
+    auto *item = m_downloadModel->itemById(id);
+    if (!item || item->filename().isEmpty()) return;
+    const QString filePath = item->savePath() + QLatin1Char('/') + item->filename();
+    if (!QFileInfo::exists(filePath)) return;
+
+#if defined(STELLAR_WINDOWS)
+    // Invoke the Windows shell "Open With" dialog. OpenAs_RunDLL expects a
+    // single native path token; ShellExecuteW handles spaces correctly.
+    const std::wstring nativePath = QDir::toNativeSeparators(filePath).toStdWString();
+    const std::wstring params = L"shell32.dll,OpenAs_RunDLL " + nativePath;
+    ShellExecuteW(nullptr, L"open", L"rundll32.exe", params.c_str(), nullptr, SW_SHOWNORMAL);
+#else
+    // No portable "Open With" picker on Linux; fall back to default open.
+    QDesktopServices::openUrl(QUrl::fromLocalFile(filePath));
+#endif
+}
+
 void AppController::setDownloadFilename(const QString &id, const QString &filename) {
     const QString trimmed = filename.trimmed();
     auto *item = m_downloadModel->itemById(id);

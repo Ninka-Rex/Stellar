@@ -25,30 +25,25 @@ Window {
     id: root
 
     property var item: null
+    property bool fileMoved: false
 
     FileDragDropHelper {
         id: dragDropHelper
-        onDragCompleted: (success) => {
-            if (success) {
-                fileBoxMoved = true
-            }
+        onMoveCompleted: (success) => {
+            // Trust the C++ side: it emits true whenever a drop target accepted
+            // the drag (either Qt returned a non-Ignore action, or drag->target()
+            // is non-null which catches Windows Explorer's OLE drop handler).
+            root.fileMoved = success
         }
     }
 
-    property bool fileBoxMoved: false
+    onItemChanged: fileMoved = false
 
-    onItemChanged: {
-        fileBoxMoved = false
-    }
-
-    width: 480
-    height: 240
-    minimumWidth: 420
-    minimumHeight: 240
-    maximumWidth: 700
-    maximumHeight: 400
+    width: 460
+    height: mainCol.implicitHeight + 24
     color: "#1e1e1e"
-    title: "Download Complete"
+    title: "Download complete"
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
     Material.theme: Material.Dark
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
@@ -70,205 +65,131 @@ Window {
 
     function fmtBytes(b) {
         if (!b || b < 0) return "--"
-        if (b < 1048576)    return (b / 1024).toFixed(1) + " KB"
+        if (b < 1048576)    return (b / 1024).toFixed(2) + " KB"
         if (b < 1073741824) return (b / 1048576).toFixed(2) + " MB"
         return (b / 1073741824).toFixed(2) + " GB"
     }
 
     ColumnLayout {
-        anchors { fill: parent; margins: 20 }
+        id: mainCol
+        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
         spacing: 8
 
-        // Icon + title row
+        // Header: icon + "Download complete" + size summary
         RowLayout {
+            Layout.fillWidth: true
             spacing: 10
 
-            // Checkmark icon
             Image {
-                width: 24
-                height: 24
-                sourceSize.width: 24
-                sourceSize.height: 24
+                Layout.preferredWidth: 28
+                Layout.preferredHeight: 28
+                sourceSize.width: 28
+                sourceSize.height: 28
                 source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/checkmark.png"
                 fillMode: Image.PreserveAspectFit
                 smooth: true
             }
 
             ColumnLayout {
-                spacing: 0
+                Layout.fillWidth: true
+                spacing: 1
                 Text {
-                    text: "Download Complete"
-                    color: "#44bb44"
-                    font.pixelSize: 14
+                    text: "Download complete"
+                    color: "#e0e0e0"
+                    font.pixelSize: 13
                     font.bold: true
                 }
                 Text {
-                    text: item ? item.filename : ""
-                    color: "#d0d0d0"
-                    font.pixelSize: 12
-                    width: 300
-                    elide: Text.ElideMiddle
-                    Layout.maximumWidth: 300
+                    text: item ? ("Downloaded " + root.fmtBytes(item.totalBytes) +
+                                  " (" + (item.totalBytes || 0) + " Bytes)") : ""
+                    color: "#aaaaaa"
+                    font.pixelSize: 11
                 }
             }
         }
 
-        // Draggable file preview box with drag-drop support
-        Rectangle {
-            id: fileBox
+        // Address (URL) field
+        ColumnLayout {
             Layout.fillWidth: true
-            Layout.preferredHeight: 60
-            color: fileBoxMoved ? "#1a1a1a" : "#252525"
-            border.color: fileBoxMoved ? "#555555" : (fileDragArea.pressed ? "#88bbff" : fileDragArea.containsMouse ? "#4488dd" : "#3a3a3a")
-            border.width: 2
-            radius: 4
-            opacity: fileBoxMoved ? 0.6 : 1.0
-
-            ColumnLayout {
-                anchors { fill: parent; margins: 8 }
-                spacing: 4
-
-                Row {
-                    spacing: 8
-                    Image {
-                        id: fileIcon
-                        width: 24; height: 24
-                        source: !fileBoxMoved && item ? "image://fileicon/" + (item.savePath + "/" + item.filename).replace(/\\/g, "/") : ""
-                        sourceSize: Qt.size(24, 24)
-                        fillMode: Image.PreserveAspectFit
-                        smooth: true
-                        visible: !fileBoxMoved
-                    }
-                    Text {
-                        text: "✓"
-                        font.pixelSize: 24
-                        color: "#88aa88"
-                        visible: fileBoxMoved
-                    }
-                    ColumnLayout {
-                        spacing: 0
-                        Text {
-                            text: fileBoxMoved ? "(File copied)" : ((item ? item.filename : "") + " (Drag to copy)")
-                            color: fileBoxMoved ? "#888888" : (fileDragArea.pressed ? "#88bbff" : fileDragArea.containsMouse ? "#88bbff" : "#d0d0d0")
-                            font.pixelSize: 11
-                            font.bold: true
-                            elide: Text.ElideRight
-                            Layout.maximumWidth: 350
-                        }
-                        Text {
-                            text: fileBoxMoved ? "" : ("Size: " + root.fmtBytes(item ? item.totalBytes : 0) + " | Location: " + (item ? item.savePath : ""))
-                            color: "#888"
-                            font.pixelSize: 10
-                            elide: Text.ElideRight
-                            Layout.maximumWidth: 350
-                            visible: !fileBoxMoved
-                        }
-                    }
-                }
-            }
-
-            MouseArea {
-                id: fileDragArea
-                anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: fileBoxMoved ? Qt.ArrowCursor : Qt.OpenHandCursor
-                enabled: !fileBoxMoved
-
-                property bool dragStarted: false
-                property real pressX: 0
-                property real pressY: 0
-
-                onPressed: {
-                    if (item && !fileBoxMoved) {
-                        dragProxy.visible = true
-                        dragProxy.opacity = 0.9
-                        dragStarted = false
-                        pressX = mouseX
-                        pressY = mouseY
-                    }
-                }
-
-                onPositionChanged: {
-                    if (item && pressed && !dragStarted && !fileBoxMoved && (Math.abs(mouseX - pressX) > 5 || Math.abs(mouseY - pressY) > 5)) {
-                        // User has dragged far enough — initiate native drag
-                        dragStarted = true
-                        const filePath = item.savePath + "/" + item.filename
-                        dragDropHelper.startDrag(filePath)
-                        dragProxy.visible = false
-                    }
-                }
-
-                onReleased: {
-                    dragProxy.visible = false
-                    dragStarted = false
-                }
-            }
-
-            // Visual drag proxy
+            spacing: 2
+            Text { text: "Address"; color: "#aaaaaa"; font.pixelSize: 11 }
             Rectangle {
-                id: dragProxy
-                visible: false
-                width: 220
-                height: 40
-                radius: 4
-                color: "#4488dd"
-                z: 1000
-
-                Row {
-                    anchors { fill: parent; margins: 8 }
-                    spacing: 8
-                    Text {
-                        text: "📦"
-                        font.pixelSize: 18
-                    }
-                    ColumnLayout {
-                        spacing: 0
-                        Text {
-                            text: item ? item.filename : ""
-                            color: "#ffffff"
-                            font.pixelSize: 11
-                            elide: Text.ElideRight
-                            font.bold: true
-                        }
-                        Text {
-                            text: "Release to copy"
-                            color: "#ccddff"
-                            font.pixelSize: 9
-                        }
-                    }
+                Layout.fillWidth: true
+                Layout.preferredHeight: 22
+                color: "#1b1b1b"
+                border.color: addressField.activeFocus ? "#4488dd" : "#3a3a3a"
+                border.width: 1
+                radius: 2
+                TextInput {
+                    id: addressField
+                    anchors.fill: parent
+                    anchors.leftMargin: 5
+                    anchors.rightMargin: 5
+                    verticalAlignment: TextInput.AlignVCenter
+                    color: "#d0d0d0"
+                    font.pixelSize: 11
+                    readOnly: true
+                    selectByMouse: true
+                    clip: true
+                    text: item ? item.url.toString() : ""
                 }
             }
         }
 
-        // Info grid
-        GridLayout {
-            columns: 2
-            columnSpacing: 10
-            rowSpacing: 2
+        // The file saved as field (or "moved" message)
+        ColumnLayout {
             Layout.fillWidth: true
-            Layout.topMargin: 0
-
-            Text { text: "Completed:";  color: "#808080"; font.pixelSize: 11 }
-            Text {
-                text: Qt.formatDateTime(new Date(), "MM/dd/yyyy hh:mm:ss AP")
-                color: "#c0c0c0"; font.pixelSize: 11
+            spacing: 2
+            Text { text: "The file saved as"; color: "#aaaaaa"; font.pixelSize: 11 }
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 22
+                color: "#1b1b1b"
+                border.color: pathField.activeFocus ? "#4488dd" : "#3a3a3a"
+                border.width: 1
+                radius: 2
+                TextInput {
+                    id: pathField
+                    anchors.fill: parent
+                    anchors.leftMargin: 5
+                    anchors.rightMargin: 5
+                    verticalAlignment: TextInput.AlignVCenter
+                    color: root.fileMoved ? "#888888" : "#d0d0d0"
+                    font.pixelSize: 11
+                    font.italic: root.fileMoved
+                    readOnly: true
+                    selectByMouse: !root.fileMoved
+                    clip: true
+                    text: root.fileMoved
+                          ? "The file has been moved."
+                          : (item ? (item.savePath + "/" + item.filename).replace(/\//g, "\\") : "")
+                }
             }
         }
 
-        // Buttons (no spacer - minimize dialog height)
+        // Buttons row
         RowLayout {
             Layout.fillWidth: true
-            spacing: 8
+            Layout.topMargin: 2
+            spacing: 6
 
             DlgButton {
-                text: "Open File"
+                text: "Open"
                 primary: true
+                implicitWidth: 80
+                enabled: !root.fileMoved
                 onClicked: { if (item) App.openFile(item.id); root.close() }
             }
-
             DlgButton {
-                text: "Show in Folder"
-                implicitWidth: 130
+                text: "Open with..."
+                implicitWidth: 92
+                visible: Qt.platform.os === "windows"
+                enabled: !root.fileMoved
+                onClicked: { if (item) App.openFileWith(item.id); root.close() }
+            }
+            DlgButton {
+                text: "Open folder"
+                implicitWidth: 92
                 onClicked: { if (item) App.openFolderSelectFile(item.id); root.close() }
             }
 
@@ -276,8 +197,91 @@ Window {
 
             DlgButton {
                 text: "Close"
+                implicitWidth: 80
                 onClicked: root.close()
             }
+        }
+
+        // Footer: "Don't show again" left, drag-out icon right
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.topMargin: 2
+            spacing: 6
+
+            CheckBox {
+                id: dontShowAgain
+                text: "Don't show this dialog again"
+                topPadding: 0; bottomPadding: 0
+                contentItem: Text {
+                    text: parent.text
+                    color: "#c0c0c0"
+                    font.pixelSize: 11
+                    leftPadding: parent.indicator.width + 4
+                    verticalAlignment: Text.AlignVCenter
+                }
+                ToolTip.visible: hovered
+                ToolTip.delay: 600
+                ToolTip.text: "You can re-enable this in Settings → General → Show download complete dialog"
+            }
+
+            Item { Layout.fillWidth: true }
+
+            // Drag-to-move icon (IDM-style)
+            Rectangle {
+                id: dragHandle
+                Layout.preferredWidth: 28
+                Layout.preferredHeight: 24
+                radius: 3
+                color: !dragArea.enabled ? "#1a1a1a"
+                       : dragArea.containsMouse ? "#2d3a4a" : "#252525"
+                border.color: !dragArea.enabled ? "#2a2a2a"
+                            : dragArea.pressed ? "#88bbff"
+                            : dragArea.containsMouse ? "#4488dd" : "#3a3a3a"
+                border.width: 1
+                opacity: dragArea.enabled ? 1.0 : 0.4
+
+                Image {
+                    anchors.centerIn: parent
+                    width: 16; height: 16
+                    sourceSize.width: 16; sourceSize.height: 16
+                    source: item ? "image://fileicon/" + (item.savePath + "/" + item.filename).replace(/\\/g, "/") : ""
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                }
+
+                MouseArea {
+                    id: dragArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: enabled ? Qt.OpenHandCursor : Qt.ArrowCursor
+                    enabled: item !== null && !root.fileMoved
+
+                    property bool dragStarted: false
+                    property real pressX: 0
+                    property real pressY: 0
+
+                    onPressed: { dragStarted = false; pressX = mouseX; pressY = mouseY }
+                    onPositionChanged: {
+                        if (item && pressed && !dragStarted &&
+                            (Math.abs(mouseX - pressX) > 4 || Math.abs(mouseY - pressY) > 4)) {
+                            dragStarted = true
+                            const filePath = item.savePath + "/" + item.filename
+                            dragDropHelper.startMove(filePath)
+                        }
+                    }
+                    onReleased: dragStarted = false
+
+                    ToolTip.visible: containsMouse && !pressed && enabled
+                    ToolTip.delay: 600
+                    ToolTip.text: "Drag the file to move it elsewhere"
+                }
+            }
+        }
+    }
+
+    onClosing: {
+        if (dontShowAgain.checked) {
+            App.settings.showDownloadComplete = false
         }
     }
 }

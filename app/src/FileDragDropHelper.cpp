@@ -23,6 +23,7 @@
 #include <QDebug>
 #include <QPixmap>
 #include <QFile>
+#include <QThread>
 
 FileDragDropHelper::FileDragDropHelper(QObject *parent)
     : QObject(parent) {
@@ -80,4 +81,58 @@ void FileDragDropHelper::startDrag(const QString &filePath) {
     const bool success = (dropAction == Qt::CopyAction);
     qDebug() << (success ? "File drag-drop completed: Copy action" : "File drag-drop cancelled or rejected");
     emit dragCompleted(success);
+}
+
+void FileDragDropHelper::startMove(const QString &filePath) {
+    QFile file(filePath);
+    if (!file.exists()) {
+        emit moveCompleted(false);
+        return;
+    }
+
+    QMimeData *mimeData = new QMimeData();
+    QList<QUrl> urls;
+    urls.append(QUrl::fromLocalFile(filePath));
+    mimeData->setUrls(urls);
+
+    QObject *dragParent = QGuiApplication::focusWindow()
+                          ? static_cast<QObject *>(QGuiApplication::focusWindow())
+                          : this;
+    QDrag *drag = new QDrag(dragParent);
+    drag->setMimeData(mimeData);
+
+    QPixmap pixmap(32, 32);
+    pixmap.fill(Qt::transparent);
+    drag->setPixmap(pixmap);
+
+    // Offer MoveAction so the receiving file manager actually moves the file.
+    // We default to MoveAction; the user can hold Ctrl to fall back to Copy.
+    // Offer both Copy and Move; Windows Explorer's drop handler performs its
+    // own copy regardless of which action we request, so we can't rely on the
+    // returned DropAction to tell us whether the user actually dropped on a
+    // valid target. Instead, we check drag->target() — if it's non-null, the
+    // drop was accepted by *some* OLE drop target (Explorer, another app)
+    // and the file has been copied. We then delete the source to complete
+    // the move.
+    Qt::DropAction dropAction = drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::MoveAction);
+    QObject *dropTarget = drag->target();
+    qDebug() << "startMove: action=" << dropAction << " target=" << dropTarget;
+
+    // A drop was "accepted" if Qt reports a non-Ignore action OR drag->target()
+    // is non-null (Windows Explorer often returns IgnoreAction even after a
+    // successful copy because its OLE drop handler bypasses Qt's mechanism).
+    const bool accepted = (dropAction != Qt::IgnoreAction) || (dropTarget != nullptr);
+
+    if (accepted) {
+        // The receiver (e.g. Explorer) has already copied the file to its
+        // destination. Try to remove the source to complete the move. If the
+        // file is briefly locked by the receiver, retry a few times. Whether
+        // or not the delete eventually succeeds, signal success so the UI
+        // reflects that the user's move gesture was accepted.
+        for (int i = 0; i < 5; ++i) {
+            if (QFile::remove(filePath)) break;
+            QThread::msleep(50);
+        }
+    }
+    emit moveCompleted(accepted);
 }
