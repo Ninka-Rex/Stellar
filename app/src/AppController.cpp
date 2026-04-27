@@ -2962,8 +2962,35 @@ bool AppController::finalizePendingDownload(const QString &downloadId,
         if (!moveDownloadFile(downloadId, fullSavePath))
             return false;
     } else {
+        // Snapshot the current path before relocateDownload mutates item->savePath().
+        const QString preMoveFilePath = item->savePath() + QStringLiteral("/") + item->filename();
         if (!m_queue->relocateDownload(downloadId, newSaveDir, newFilename))
             return false;
+        // The download may have completed while the user was reading the warning
+        // dialog. relocateOutput only moves part files; if assembly already ran
+        // the finished file is at the pre-relocation path and must be moved now.
+        // item->savePath() has already been updated by relocateOutput, so we
+        // cannot use moveDownloadFile (it would construct the wrong source path).
+        if (item->statusEnum() == DownloadItem::Status::Completed
+                && QFile::exists(preMoveFilePath)) {
+            QDir().mkpath(newSaveDir);
+            if (!QFile::rename(preMoveFilePath, fullSavePath)) {
+                QFile src(preMoveFilePath);
+                QFile dst(fullSavePath);
+                if (!src.open(QIODevice::ReadOnly) || !dst.open(QIODevice::WriteOnly))
+                    return false;
+                const qint64 kChunk = 1024 * 1024;
+                while (!src.atEnd()) {
+                    const QByteArray chunk = src.read(kChunk);
+                    if (chunk.isEmpty() && src.error() != QFile::NoError) return false;
+                    if (dst.write(chunk) != chunk.size()) return false;
+                }
+                src.close(); dst.close();
+                QFile::remove(preMoveFilePath);
+            }
+            item->setSavePath(newSaveDir);
+            item->setFilename(newFilename);
+        }
     }
 
     item->setFilenameManuallySet(true);
@@ -2981,7 +3008,13 @@ bool AppController::finalizePendingDownload(const QString &downloadId,
         else
             emit downloadAdded(item);
     } else {
-        if (item->statusEnum() == DownloadItem::Status::Downloading
+        if (item->statusEnum() == DownloadItem::Status::Completed) {
+            // Download finished in the background while the file-info dialog was open
+            // and the user chose "Download Later". The file has already been moved to
+            // the chosen path above; release the pending hold and surface the completion.
+            m_pendingFileInfoDownloads.remove(downloadId);
+            emit downloadCompleted(item);
+        } else if (item->statusEnum() == DownloadItem::Status::Downloading
             || item->statusEnum() == DownloadItem::Status::Queued
             || item->statusEnum() == DownloadItem::Status::Assembling) {
             m_queue->pause(downloadId);

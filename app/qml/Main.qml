@@ -877,6 +877,14 @@ ApplicationWindow {
             : (App.isTorrentUri(url)
                 ? "Magnetized Transfer"
                 : (url.split("/").pop().split("?")[0] || "download"))
+        // Discard any pre-fetch that was started by a previous _showFileInfoDialog
+        // call for this same URL (e.g. when the user picks "Add Numbered" after a
+        // duplicate warning — we'd otherwise leak a running download in temp).
+        if (fileInfoDialog.pendingDownloadId.length > 0) {
+            App.discardPendingDownload(fileInfoDialog.pendingDownloadId)
+            fileInfoDialog.pendingDownloadId = ""
+        }
+
         var _cookies2  = App.takePendingCookies(url)
         var _referrer2 = App.takePendingReferrer(url)
         var _pageUrl2  = App.takePendingPageUrl(url)
@@ -1297,9 +1305,10 @@ ApplicationWindow {
             }
         }
 
-        onClosing: {
-            root._afterDownloadLaterWarning = null
-        }
+        // Note: do NOT null out _afterDownloadLaterWarning here. The OK button
+        // handler calls close() *before* invoking the callback; clearing it on
+        // close would destroy the callback before it ever runs (the user's
+        // "Download Later" choice would silently no-op).
 
         ColumnLayout {
             anchors { fill: parent; margins: 20 }
