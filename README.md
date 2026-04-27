@@ -10,21 +10,22 @@ An open source download manager for Windows and Linux, inspired by IDM. Built wi
 
 Currently work in progress
 
-## 
+## Simple Guide to AI coding grievances 
 
 ```
-**Did the AI write bad code?**
-├── No → Chill out
-└── Yes
-    └── **Can YOU fix it?**
-        ├── Yes → submit a PR
-        └── No
-            └── **Will someone else fix it?**
-                ├── Yes → open an issue and wait
-                └── No
-                    └── **Is there a human-written alternative?**
-                        ├── Yes → migrate and move on
-                        └── No → someone is trying their best, be grateful
+**I don't like that this project used AI coding tools**
+└── **Did you actually review the code?**
+    ├── No → go do that first
+    └── Yes, and it's bad
+        └── **Can YOU fix it?**
+            ├── Yes → submit a PR
+            └── No
+                └── **Will someone else fix it?**
+                    ├── Yes → open an issue and wait
+                    └── No
+                        └── **Is there a human-written alternative?**
+                            ├── Yes → migrate and move on
+                            └── No → someone is trying their best, be grateful
 ```
 
 ## License
