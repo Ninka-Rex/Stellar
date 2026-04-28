@@ -24,9 +24,9 @@ import QtQuick.Dialogs
 Window {
     id: root
     width: 780
-    height: 560
-    minimumWidth: 760
-    minimumHeight: 520
+    height: 520
+    minimumWidth: 720
+    minimumHeight: 460
     title: "Torrent Metadata"
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -151,6 +151,11 @@ Window {
 
     onVisibleChanged: {
         if (visible) {
+            App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")
+            root._userInteracted = false
+            root.metaMapZoom = 1.0
+            root.metaMapPanX = 0
+            root.metaMapPanY = 0
             _centerOnOwner()
             if (item) {
                 category = item.category || ""
@@ -212,6 +217,174 @@ Window {
             if (categoryIds[i] === category)
                 return i
         return 0
+    }
+
+    // ── Swarm map properties (mirrored from FilePropertiesDialog peer map) ──
+    readonly property var metaPeerModel: downloadId.length > 0 ? App.torrentPeerModel(downloadId) : null
+    readonly property bool metaMapActive: visible && !!(item) && !item.torrentHasMetadata && metaPeerModel !== null
+
+    // Pan drag state helpers
+    property real _metaLastPanX: 0
+    property real _metaLastPanY: 0
+
+    // Auto-fit: animate zoom+pan to bound all plotted peers
+    property bool _userInteracted: false   // set true when user manually zooms/pans; suppresses auto-fit
+
+    // Query peer model rows directly for coordinates — avoids depending on
+    // Repeater delegate instantiation timing (itemAt() is unreliable during
+    // the Loader/Component lifecycle).
+    function metaAutoFit(mapW, mapH) {
+        var pm = root.metaPeerModel
+        if (!pm || mapW <= 0 || mapH <= 0) return
+
+        var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity
+        var found = false
+
+        // Include the local "You" dot if available
+        if (pm.hasLocalLocation) {
+            var lpx = root.metaMapX(pm.localLongitude, mapW)
+            var lpy = root.metaMapY(pm.localLatitude, mapW, mapH)
+            minX = lpx; maxX = lpx; minY = lpy; maxY = lpy
+            found = true
+        }
+
+        var count = pm.rowCount()
+        for (var i = 0; i < count; i++) {
+            var lat = pm.data(pm.index(i, 0), 271)   // LatitudeRole  = Qt::UserRole+15
+            var lon = pm.data(pm.index(i, 0), 272)   // LongitudeRole = Qt::UserRole+16
+            var flat = Number(lat), flon = Number(lon)
+            if (!isFinite(flat) || !isFinite(flon) || (flat === 0 && flon === 0)) continue
+            var px = root.metaMapX(flon, mapW)
+            var py = root.metaMapY(flat, mapW, mapH)
+            if (px < minX) minX = px
+            if (px > maxX) maxX = px
+            if (py < minY) minY = py
+            if (py > maxY) maxY = py
+            found = true
+        }
+        if (!found) return
+
+        var pad = 64
+        var spanX = Math.max(1, maxX - minX) + pad * 2
+        var spanY = Math.max(1, maxY - minY) + pad * 2
+        var fitZoom = Math.min(mapW / spanX, mapH / spanY)
+        fitZoom = Math.max(1.0, Math.min(6.0, fitZoom))
+
+        var cx = (minX + maxX) / 2
+        var cy = (minY + maxY) / 2
+        root.metaMapZoom = fitZoom
+        root.metaMapPanX = mapW / 2 - cx * fitZoom
+        root.metaMapPanY = mapH / 2 - cy * fitZoom
+    }
+
+    function compactSpeed(bps) {
+        var n = Number(bps) || 0
+        if (n <= 0) return "0 B/s"
+        if (n >= 1024 * 1024 * 1024) return (n / (1024 * 1024 * 1024)).toFixed(2) + " GB/s"
+        if (n >= 1024 * 1024) return (n / (1024 * 1024)).toFixed(1) + " MB/s"
+        if (n >= 1024) return (n / 1024).toFixed(1) + " KB/s"
+        return Math.round(n) + " B/s"
+    }
+
+    property real   metaMapZoom: 1.0
+    property real   metaMapPanX: 0
+    property real   metaMapPanY: 0
+
+    Behavior on metaMapZoom { enabled: !root._userInteracted; NumberAnimation { duration: 1400; easing.type: Easing.InOutQuart } }
+    Behavior on metaMapPanX { enabled: !root._userInteracted; NumberAnimation { duration: 1400; easing.type: Easing.InOutQuart } }
+    Behavior on metaMapPanY { enabled: !root._userInteracted; NumberAnimation { duration: 1400; easing.type: Easing.InOutQuart } }
+    property real   metaMapLonOffset: 0.5
+    property real   metaMapLatOffset: 4.5
+    readonly property real metaMapSvgMinX: 1.0
+    readonly property real metaMapSvgMaxX: 799.0
+    readonly property real metaMapSvgMinY: 1.0
+    readonly property real metaMapSvgMaxY: 385.91
+
+    property bool   metaMapHoverVisible: false
+    property real   metaMapHoverX: 0
+    property real   metaMapHoverY: 0
+    property string metaMapHoverEndpoint: ""
+    property int    metaMapHoverPort: 0
+    property string metaMapHoverClient: ""
+    property string metaMapHoverCountryCode: ""
+    property string metaMapHoverRegionCode: ""
+    property string metaMapHoverRegionName: ""
+    property string metaMapHoverCityName: ""
+    property int    metaMapHoverRtt: 0
+    property int    metaMapHoverDownSpeed: 0
+    property int    metaMapHoverUpSpeed: 0
+    property bool   metaMapHoverIsSeed: false
+    property string metaMapHoverSource: ""
+    property string metaMapHoverFlags: ""
+    property real   metaMapHoverProgress: 0.0
+
+    function metaMapX(longitude, mapWidth) {
+        var lon = Number(longitude) + metaMapLonOffset
+        if (!isFinite(lon)) lon = 0
+        var normalized = (lon + 180.0) / 360.0
+        var drawableWidth = metaMapSvgMaxX - metaMapSvgMinX
+        return ((metaMapSvgMinX + normalized * drawableWidth) / 800.0) * mapWidth
+    }
+    function metaMapY(latitude, mapWidth, mapHeight) {
+        var lat = Number(latitude) + metaMapLatOffset
+        if (!isFinite(lat)) lat = 0
+        lat = Math.max(-90, Math.min(90, lat))
+        var normalized = (90 - lat) / 180
+        var drawableHeight = metaMapSvgMaxY - metaMapSvgMinY
+        return ((metaMapSvgMinY + normalized * drawableHeight) / 387.0) * mapHeight
+    }
+    function metaPeerMapColor(isSeed) {
+        return isSeed ? "#4caf7d" : "#5f93c9"
+    }
+    function metaPeerPlaceText(countryCode, regionCode, regionName, cityName) {
+        var cc = safeStr(countryCode)
+        var city = safeStr(cityName)
+        var region = safeStr(regionCode)
+        var rname = safeStr(regionName)
+        var parts = []
+        if (city) parts.push(city)
+        if (region && (cc === "US" || cc === "CA")) parts.push(region)
+        else if (rname) parts.push(rname)
+        if (cc) parts.push(cc)
+        return parts.join(", ")
+    }
+    function metaFlagColor(flag) {
+        switch (flag) {
+        case "IN":  return "#e8c84a"
+        case "OUT": return "#7a8899"
+        case "TRK": return "#5f93c9"
+        case "DHT": return "#4db8ff"
+        case "PEX": return "#a06de8"
+        case "LSD": return "#4caf7d"
+        case "UTP": return "#5ecfe8"
+        case "ENC": return "#7dd87d"
+        case "SNB": return "#e86a5c"
+        case "UPO": return "#c97de8"
+        case "OPT": return "#e8a35c"
+        case "HPX": return "#ff8ab4"
+        case "I2P": return "#a8ff78"
+        default:    return "#708396"
+        }
+    }
+    function metaShowPeerHover(peer, x, y) {
+        metaMapHoverVisible = !!peer
+        if (!peer) return
+        metaMapHoverEndpoint = safeStr(peer.endpoint)
+        metaMapHoverPort = peer.port | 0
+        metaMapHoverClient = safeStr(peer.client)
+        metaMapHoverCountryCode = safeStr(peer.countryCode)
+        metaMapHoverRegionCode = safeStr(peer.regionCode)
+        metaMapHoverRegionName = safeStr(peer.regionName)
+        metaMapHoverCityName = safeStr(peer.cityName)
+        metaMapHoverRtt = peer.rtt | 0
+        metaMapHoverDownSpeed = peer.downSpeed | 0
+        metaMapHoverUpSpeed = peer.upSpeed | 0
+        metaMapHoverIsSeed = !!peer.isSeed
+        metaMapHoverSource = safeStr(peer.source)
+        metaMapHoverFlags = safeStr(peer.flags)
+        metaMapHoverProgress = Number(peer.progress) || 0
+        metaMapHoverX = Number(x) || 0
+        metaMapHoverY = Number(y) || 0
     }
 
     function metadataPeerCount() {
@@ -279,151 +452,84 @@ Window {
 
     ColumnLayout {
         anchors.fill: parent
-        anchors.margins: 16
-        spacing: 10
+        anchors.margins: 12
+        spacing: 6
 
-        Text {
-            text: root.item && root.item.filename && root.item.filename.length > 0
-                  ? root.item.filename
-                  : (root.pendingSourceLabel.length > 0 ? root.pendingSourceLabel : "")
-            color: "#ffffff"
-            font.pixelSize: 18
-            font.bold: true
+        // Title + status on one line
+        RowLayout {
             Layout.fillWidth: true
-            elide: Text.ElideRight
+            spacing: 8
+
+            Image {
+                source: "icons/magnet.png"
+                width: 12; height: 12
+                sourceSize.width: 24; sourceSize.height: 24
+                fillMode: Image.PreserveAspectFit
+                smooth: true
+                Layout.alignment: Qt.AlignVCenter
+            }
+
+            Text {
+                text: root.item && root.item.filename && root.item.filename.length > 0
+                      ? root.item.filename
+                      : (root.pendingSourceLabel.length > 0 ? root.pendingSourceLabel : "Torrent Metadata")
+                color: "#ffffff"
+                font.pixelSize: 15
+                font.bold: true
+                Layout.fillWidth: true
+                elide: Text.ElideRight
+            }
+
+            Text {
+                visible: !!root.item && root.item.status === "Error"
+                text: root.item ? root.item.errorString : ""
+                color: "#e07b7b"
+                font.pixelSize: 12
+                elide: Text.ElideRight
+                Layout.maximumWidth: 260
+            }
         }
 
-        Text {
-            text: root.item && root.item.status === "Error"
-                  ? root.item.errorString
-                  : (root.item && root.item.torrentHasMetadata
-                     ? "Choose the files you want before adding the torrent."
-                     : root.metadataPeerStatusText())
-            color: root.item && root.item.status === "Error" ? "#e07b7b" : "#8e8e8e"
-            font.pixelSize: 12
-            wrapMode: Text.WordWrap
+        // Compact form: save path + category + description on two rows
+        RowLayout {
             Layout.fillWidth: true
-        }
-
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
-
-        GridLayout {
-            Layout.fillWidth: true
-            columns: 2
-            columnSpacing: 10
-            rowSpacing: 8
+            spacing: 6
 
             Text { text: "Save to"; color: "#a5a5a5"; font.pixelSize: 12 }
-            ColumnLayout {
+
+            TextField {
+                id: savePathField
                 Layout.fillWidth: true
-                spacing: 8
-
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 8
-
-                    TextField {
-                        id: savePathField
-                        Layout.fillWidth: true
-                        text: root.savePath
-                        color: "#d7d7d7"
-                        background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 4 }
-                        leftPadding: 8
-                        onTextChanged: {
-                            root.savePath = text
-                            root.refreshSavePathMode()
-                            root.syncPersistentCustomSaveState()
-                        }
-                    }
-
-                    DlgButton {
-                        text: "Save As..."
-                        onClicked: saveFolderDialog.open()
-                    }
-                }
-
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 8
-
-                    CheckBox {
-                        id: customSavePathCheck
-                        text: "Use custom save folder for this torrent"
-                        checked: root.useCustomSavePath
-                        topPadding: 0
-                        bottomPadding: 0
-                        onToggled: {
-                            root.useCustomSavePath = checked
-                            root.syncPersistentCustomSaveState()
-                            if (!checked)
-                                root.applyCategorySavePath(true)
-                            else {
-                                var rememberedPath = root.rememberedCustomSavePath()
-                                if (rememberedPath.length > 0)
-                                    root.savePath = rememberedPath
-                            }
-                        }
-                        contentItem: Text {
-                            text: parent.text
-                            color: "#d0d0d0"
-                            font.pixelSize: 12
-                            leftPadding: parent.indicator.width + 4
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-
-                    CheckBox {
-                        text: "Remember"
-                        checked: root.rememberCustomSavePath
-                        enabled: root.useCustomSavePath
-                        topPadding: 0
-                        bottomPadding: 0
-                        onToggled: root.rememberCustomSavePath = checked
-                        contentItem: Text {
-                            text: parent.text
-                            color: parent.enabled ? "#d0d0d0" : "#6f6f6f"
-                            font.pixelSize: 12
-                            leftPadding: parent.indicator.width + 4
-                            verticalAlignment: Text.AlignVCenter
-                        }
-                    }
-
-                    Item { Layout.fillWidth: true }
-
-                    Text {
-                        text: "Use category folder"
-                        color: root.useCustomSavePath ? "#66aaff" : "#5f5f5f"
-                        font.pixelSize: 12
-                        font.underline: root.useCustomSavePath
-                        visible: true
-                        MouseArea {
-                            anchors.fill: parent
-                            enabled: root.useCustomSavePath
-                            cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
-                            onClicked: {
-                                root.useCustomSavePath = false
-                                root.syncPersistentCustomSaveState()
-                                root.applyCategorySavePath(true)
-                            }
-                        }
-                    }
-                }
-
-                Text {
-                    Layout.fillWidth: true
-                    text: root.useCustomSavePath
-                        ? "This torrent will stay in the custom folder even if you change category."
-                        : "This torrent currently follows the selected category's default save folder."
-                    color: "#7f7f7f"
-                    font.pixelSize: 11
-                    wrapMode: Text.WordWrap
+                Layout.preferredHeight: 32
+                text: root.savePath
+                color: "#d7d7d7"
+                background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 3 }
+                leftPadding: 6
+                rightPadding: 6
+                topPadding: 0; bottomPadding: 0
+                verticalAlignment: TextInput.AlignVCenter
+                onTextChanged: {
+                    root.savePath = text
+                    root.refreshSavePathMode()
+                    root.syncPersistentCustomSaveState()
                 }
             }
 
+            DlgButton {
+                text: "Save As..."
+                Layout.preferredHeight: 32
+                onClicked: saveFolderDialog.open()
+            }
+
+            // Separator
+            Rectangle { width: 1; height: 22; color: "#343434" }
+
             Text { text: "Category"; color: "#a5a5a5"; font.pixelSize: 12 }
+
             ComboBox {
                 id: categoryCombo
-                Layout.fillWidth: true
+                implicitWidth: 140
+                implicitHeight: 32
                 model: root.categoryLabels
                 currentIndex: root.categoryIndex()
                 onActivated: {
@@ -434,19 +540,83 @@ Window {
                     text: categoryCombo.displayText
                     color: "#d7d7d7"
                     verticalAlignment: Text.AlignVCenter
-                    leftPadding: 8
+                    leftPadding: 6
                     elide: Text.ElideRight
+                    font.pixelSize: 12
                 }
-                background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 4 }
+                background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 3 }
             }
+        }
+
+        // Second row: checkboxes + description (hidden while waiting for metadata)
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
+            visible: !!root.item && root.item.torrentHasMetadata
+
+            CheckBox {
+                id: customSavePathCheck
+                text: "Custom save folder"
+                checked: root.useCustomSavePath
+                topPadding: 0; bottomPadding: 0
+                onToggled: {
+                    root.useCustomSavePath = checked
+                    root.syncPersistentCustomSaveState()
+                    if (!checked)
+                        root.applyCategorySavePath(true)
+                    else {
+                        var rememberedPath = root.rememberedCustomSavePath()
+                        if (rememberedPath.length > 0)
+                            root.savePath = rememberedPath
+                    }
+                }
+                contentItem: Text {
+                    text: parent.text; color: "#d0d0d0"; font.pixelSize: 12
+                    leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
+                }
+            }
+
+            CheckBox {
+                text: "Remember"
+                checked: root.rememberCustomSavePath
+                enabled: root.useCustomSavePath
+                topPadding: 0; bottomPadding: 0
+                onToggled: root.rememberCustomSavePath = checked
+                contentItem: Text {
+                    text: parent.text
+                    color: parent.enabled ? "#d0d0d0" : "#6f6f6f"; font.pixelSize: 12
+                    leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter
+                }
+            }
+
+            Text {
+                text: "Use category folder"
+                color: root.useCustomSavePath ? "#66aaff" : "#5f5f5f"
+                font.pixelSize: 12; font.underline: root.useCustomSavePath
+                MouseArea {
+                    anchors.fill: parent
+                    enabled: root.useCustomSavePath
+                    cursorShape: enabled ? Qt.PointingHandCursor : Qt.ArrowCursor
+                    onClicked: {
+                        root.useCustomSavePath = false
+                        root.syncPersistentCustomSaveState()
+                        root.applyCategorySavePath(true)
+                    }
+                }
+            }
+
+            Rectangle { width: 1; height: 18; color: "#343434" }
 
             Text { text: "Description"; color: "#a5a5a5"; font.pixelSize: 12 }
             TextField {
                 Layout.fillWidth: true
+                implicitHeight: 26
                 text: root.description
                 color: "#d7d7d7"
-                background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 4 }
-                leftPadding: 8
+                background: Rectangle { color: "#171717"; border.color: "#303030"; radius: 3 }
+                leftPadding: 6; rightPadding: 6; topPadding: 0; bottomPadding: 0
+                verticalAlignment: TextInput.AlignVCenter
+                font.pixelSize: 12
                 onTextChanged: root.description = text
             }
         }
@@ -460,7 +630,8 @@ Window {
             clip: true
 
             Loader {
-                anchors { fill: parent; margins: 12 }
+                id: contentLoader
+                anchors.fill: parent
                 active: !!root.item
                 sourceComponent: root.item && root.item.torrentHasMetadata ? filesView : waitingView
             }
@@ -509,37 +680,412 @@ Window {
     Component {
         id: waitingView
 
-        ColumnLayout {
-            anchors.centerIn: parent
-            spacing: 14
+        Item {
+            anchors.fill: parent
 
-            BusyIndicator {
-                running: true
-                width: 42
-                height: 42
-                Layout.alignment: Qt.AlignHCenter
-            }
+            // ── World swarm map ───────────────────────────────────────────────
+            Rectangle {
+                anchors.fill: parent
+                color: "#0d141c"
+                radius: 3
+                clip: true
 
-            Text {
-                text: root.item ? "Waiting for torrent metadata" : "Opening torrent"
-                color: "#d8d8d8"
-                font.pixelSize: 14
-                font.bold: true
-                Layout.alignment: Qt.AlignHCenter
-            }
+                // Overlay status row at the top
+                Rectangle {
+                    id: metaStatusBar
+                    anchors { top: parent.top; left: parent.left; right: parent.right }
+                    height: 34
+                    color: "#111923"
+                    z: 10
 
-            Text {
-                text: {
-                    if (!root.item)
-                        return "Reading the torrent file and preparing the metadata view."
-                    return root.metadataPeerStatusText() + "."
+                    Row {
+                        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+                        spacing: 10
+
+                        BusyIndicator {
+                            running: true
+                            width: 18
+                            height: 18
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        Text {
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: root.item ? root.metadataPeerStatusText() : "Opening torrent..."
+                            color: "#8ea1b5"
+                            font.pixelSize: 12
+                        }
+                    }
+
+                    // Peer/seed legend top-right
+                    Row {
+                        anchors { verticalCenter: parent.verticalCenter; right: parent.right; rightMargin: 10 }
+                        spacing: 10
+
+                        Rectangle { width: 10; height: 10; radius: 5; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: "Peer"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                        Rectangle { width: 10; height: 10; radius: 5; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: "Seed"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                        Rectangle { width: 10; height: 10; radius: 5; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: "You"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                    }
                 }
-                color: "#8e8e8e"
-                font.pixelSize: 11
-                wrapMode: Text.WordWrap
-                horizontalAlignment: Text.AlignHCenter
-                Layout.alignment: Qt.AlignHCenter
-                Layout.maximumWidth: 420
+
+                // Map area
+                Item {
+                    id: metaMapRoot
+                    anchors { top: metaStatusBar.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+                    anchors.margins: 8
+                    clip: true
+
+                    // Auto-fit state
+                    property bool _hasFitOnce: false
+                    property bool _pendingFit: false
+
+                    function tryFit() {
+                        if (root._userInteracted) return
+                        if (metaMapRoot.width <= 0 || metaMapRoot.height <= 0) {
+                            metaMapRoot._pendingFit = true
+                            return
+                        }
+                        var pm = root.metaPeerModel
+                        if (!pm || pm.rowCount() === 0) {
+                            metaMapRoot._pendingFit = true
+                            return
+                        }
+                        // Check at least one peer has real geo coordinates
+                        var hasAny = false
+                        var n = pm.rowCount()
+                        for (var i = 0; i < n; i++) {
+                            var lat = Number(pm.data(pm.index(i, 0), 271))
+                            var lon = Number(pm.data(pm.index(i, 0), 272))
+                            if (isFinite(lat) && isFinite(lon) && !(lat === 0 && lon === 0)) {
+                                hasAny = true; break
+                            }
+                        }
+                        if (!hasAny) {
+                            metaMapRoot._pendingFit = true
+                            return
+                        }
+                        metaMapRoot._pendingFit = false
+                        metaMapRoot._hasFitOnce = true
+                        root.metaAutoFit(metaMapRoot.width, metaMapRoot.height)
+                    }
+
+                    // Fire pending fit once we have real dimensions
+                    onWidthChanged:  { if (metaMapRoot._pendingFit && width  > 0) metaMapRoot.tryFit() }
+                    onHeightChanged: { if (metaMapRoot._pendingFit && height > 0) metaMapRoot.tryFit() }
+
+                    // Short delay on first-peer fit so delegates finish constructing
+                    // before metaAutoFit iterates itemAt() for coordinates.
+                    Timer {
+                        id: metaFirstFitTimer
+                        interval: 50
+                        repeat: false
+                        onTriggered: metaMapRoot.tryFit()
+                    }
+
+                    // Debounce timer for subsequent peer changes (2s)
+                    Timer {
+                        id: metaFitTimer
+                        interval: 2000
+                        repeat: false
+                        onTriggered: {
+                            if (!root._userInteracted)
+                                root.metaAutoFit(metaMapRoot.width, metaMapRoot.height)
+                        }
+                    }
+
+                    Connections {
+                        target: root.metaPeerModel
+                        function onRowsInserted() {
+                            if (root._userInteracted) return
+                            if (!metaMapRoot._hasFitOnce) {
+                                if (!metaFirstFitTimer.running)
+                                    metaFirstFitTimer.start()
+                            } else {
+                                metaFitTimer.restart()
+                            }
+                        }
+                        // Geo-IP resolves asynchronously: peer is inserted with lat/lon=0,
+                        // then dataChanged fires once the coordinates are populated.
+                        function onDataChanged() {
+                            if (root._userInteracted) return
+                            if (!metaMapRoot._hasFitOnce && !metaFirstFitTimer.running)
+                                metaFirstFitTimer.start()
+                        }
+                        function onRowsRemoved() { metaFitTimer.restart() }
+                        function onModelReset()  {
+                            metaMapRoot._hasFitOnce = false
+                            metaMapRoot._pendingFit = false
+                            metaFirstFitTimer.stop()
+                            metaFitTimer.stop()
+                        }
+                    }
+
+                    // Zoom/pan gestures — suppress auto-fit once user interacts
+                    WheelHandler {
+                        target: null
+                        onWheel: function(event) {
+                            root._userInteracted = true
+                            var factor = event.angleDelta.y > 0 ? 1.15 : (1.0 / 1.15)
+                            var newZoom = Math.max(1.0, Math.min(8.0, root.metaMapZoom * factor))
+                            var mouseX = event.x - root.metaMapPanX
+                            var mouseY = event.y - root.metaMapPanY
+                            root.metaMapPanX = event.x - mouseX * (newZoom / root.metaMapZoom)
+                            root.metaMapPanY = event.y - mouseY * (newZoom / root.metaMapZoom)
+                            root.metaMapZoom = newZoom
+                        }
+                    }
+
+                    DragHandler {
+                        id: metaMapPanDrag
+                        target: null
+                        onTranslationChanged: {
+                            root._userInteracted = true
+                            root.metaMapPanX += translation.x - (root._metaLastPanX || 0)
+                            root.metaMapPanY += translation.y - (root._metaLastPanY || 0)
+                            root._metaLastPanX = translation.x
+                            root._metaLastPanY = translation.y
+                        }
+                        onActiveChanged: {
+                            if (!active) { root._metaLastPanX = 0; root._metaLastPanY = 0 }
+                        }
+                        acceptedButtons: Qt.LeftButton
+                    }
+
+                    Item {
+                        id: metaMapCanvas
+                        x: root.metaMapPanX
+                        y: root.metaMapPanY
+                        width: metaMapRoot.width
+                        height: metaMapRoot.height
+                        scale: root.metaMapZoom
+                        transformOrigin: Item.TopLeft
+
+                        readonly property real mapX: metaWorldImg.x + (metaWorldImg.width - metaWorldImg.paintedWidth) / 2
+                        readonly property real mapY: metaWorldImg.y + (metaWorldImg.height - metaWorldImg.paintedHeight) / 2
+                        readonly property real mapWidth: metaWorldImg.paintedWidth
+                        readonly property real mapHeight: metaWorldImg.paintedHeight
+
+                        Image {
+                            id: metaWorldImg
+                            anchors.fill: parent
+                            source: "icons/world-map.svg"
+                            fillMode: Image.PreserveAspectFit
+                            smooth: true
+                            sourceSize.width: 2400
+                            sourceSize.height: 1161
+                        }
+
+                        // Peer dots with pop-in animation
+                        Repeater {
+                            id: metaPeerRepeater
+                            model: root.metaMapActive ? root.metaPeerModel : null
+                            Component.onCompleted: {
+                                if (!metaMapRoot._hasFitOnce && !root._userInteracted)
+                                    metaFirstFitTimer.restart()
+                            }
+
+                            delegate: Item {
+                                required property string endpoint
+                                required property int    port
+                                required property string client
+                                required property string countryCode
+                                required property string regionCode
+                                required property string regionName
+                                required property string cityName
+                                required property double latitude
+                                required property double longitude
+                                required property int    rtt
+                                required property int    downSpeed
+                                required property int    upSpeed
+                                required property bool   isSeed
+                                required property string source
+                                required property string flags
+                                required property double progress
+
+                                readonly property bool hasCoordinates: isFinite(latitude) && isFinite(longitude) && !(latitude === 0 && longitude === 0)
+
+                                visible: hasCoordinates
+                                x: metaMapCanvas.mapX + root.metaMapX(longitude, metaMapCanvas.mapWidth) - width / 2
+                                y: metaMapCanvas.mapY + root.metaMapY(latitude, metaMapCanvas.mapWidth, metaMapCanvas.mapHeight) - height / 2
+                                width: 16
+                                height: 16
+                                scale: 1.0 / root.metaMapZoom
+                                transformOrigin: Item.Center
+
+                                // Peer is actively helping fetch metadata
+                                readonly property bool isActive: downSpeed > 0 || upSpeed > 0
+
+                                // Pop-in when first plotted
+                                Component.onCompleted: {
+                                    if (hasCoordinates) dotScale.restart()
+                                }
+
+                                ScaleAnimator {
+                                    id: dotScale
+                                    target: dotCircle
+                                    from: 0
+                                    to: 1
+                                    duration: 350
+                                    easing.type: Easing.OutBack
+                                }
+
+                                // Ripple only on peers actively sending data
+                                SequentialAnimation {
+                                    running: hasCoordinates && isActive
+                                    loops: Animation.Infinite
+                                    NumberAnimation { target: dotRipple; property: "scale"; from: 0.8; to: 2.4; duration: 1000; easing.type: Easing.OutQuad }
+                                    NumberAnimation { target: dotRipple; property: "opacity"; from: 0.6; to: 0; duration: 350 }
+                                    PropertyAction  { target: dotRipple; property: "scale"; value: 0.8 }
+                                    PropertyAction  { target: dotRipple; property: "opacity"; value: 0.6 }
+                                }
+
+                                // Ripple ring (hidden when peer is idle)
+                                Rectangle {
+                                    id: dotRipple
+                                    anchors.centerIn: parent
+                                    width: 10; height: 10
+                                    radius: 5
+                                    color: "transparent"
+                                    border.color: isSeed ? "#4caf7d" : "#5f93c9"
+                                    border.width: 1.5
+                                    transformOrigin: Item.Center
+                                    opacity: 0
+                                    visible: parent.isActive
+                                }
+
+                                Rectangle {
+                                    id: dotCircle
+                                    anchors.centerIn: parent
+                                    width: 10; height: 10; radius: 5
+                                    color: root.metaPeerMapColor(isSeed)
+                                    border.color: metaMarkerMouse.containsMouse ? "#edf3f8" : "#081018"
+                                    border.width: 1
+                                    transformOrigin: Item.Center
+                                }
+
+                                MouseArea {
+                                    id: metaMarkerMouse
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    acceptedButtons: Qt.NoButton
+                                    onEntered: {
+                                        var p = parent.mapToItem(metaMapRoot, parent.width / 2, 0)
+                                        root.metaShowPeerHover(parent, p.x, p.y)
+                                    }
+                                    onPositionChanged: {
+                                        var p = parent.mapToItem(metaMapRoot, parent.width / 2, 0)
+                                        root.metaShowPeerHover(parent, p.x, p.y)
+                                    }
+                                    onExited: root.metaMapHoverVisible = false
+                                }
+                            }
+                        }
+
+                        // "You" dot
+                        Item {
+                            id: metaYouDot
+                            visible: !!root.metaPeerModel && root.metaPeerModel.hasLocalLocation
+                            x: metaMapCanvas.mapX + root.metaMapX(root.metaPeerModel ? root.metaPeerModel.localLongitude : 0, metaMapCanvas.mapWidth) - width / 2
+                            y: metaMapCanvas.mapY + root.metaMapY(root.metaPeerModel ? root.metaPeerModel.localLatitude : 0, metaMapCanvas.mapWidth, metaMapCanvas.mapHeight) - height / 2
+                            width: 16; height: 16
+                            scale: 1.0 / root.metaMapZoom
+                            transformOrigin: Item.Center
+
+                            Rectangle {
+                                anchors.centerIn: parent
+                                width: 10; height: 10; radius: 5
+                                color: "#9959e6"
+                                border.color: "#081018"; border.width: 1
+                            }
+                        }
+                    }
+
+                    // Hover tooltip
+                    Rectangle {
+                        visible: root.metaMapHoverVisible
+                        x: Math.max(10, Math.min(metaMapRoot.width - width - 10, root.metaMapHoverX + 14))
+                        y: Math.max(10, Math.min(metaMapRoot.height - height - 10, root.metaMapHoverY - height / 2))
+                        width: 200
+                        implicitHeight: metaTooltipCol.implicitHeight + 10
+                        color: "#101821"
+                        border.color: "#314252"
+                        radius: 4
+                        z: 20
+
+                        Column {
+                            id: metaTooltipCol
+                            anchors.fill: parent
+                            anchors.margins: 7
+                            spacing: 4
+
+                            Row {
+                                spacing: 5; width: parent.width
+                                Text {
+                                    text: root.metaMapHoverEndpoint
+                                    color: "#f0f5fb"; font.pixelSize: 13; font.bold: true
+                                    elide: Text.ElideRight
+                                    width: Math.min(implicitWidth, parent.width - metaTipPort.implicitWidth - 5)
+                                }
+                                Text {
+                                    id: metaTipPort
+                                    text: root.metaMapHoverPort
+                                    color: "#6a8099"; font.pixelSize: 13; font.bold: true
+                                    anchors.baseline: parent.children[0].baseline
+                                }
+                            }
+
+                            Text {
+                                visible: root.metaMapHoverClient.length > 0
+                                text: root.metaMapHoverClient
+                                color: "#c5d2de"; font.pixelSize: 12
+                                elide: Text.ElideRight; width: parent.width
+                            }
+
+                            Text {
+                                visible: root.metaMapHoverCountryCode.length > 0
+                                text: root.metaPeerPlaceText(root.metaMapHoverCountryCode, root.metaMapHoverRegionCode, root.metaMapHoverRegionName, root.metaMapHoverCityName)
+                                color: "#95a9bb"; font.pixelSize: 11
+                                elide: Text.ElideRight; width: parent.width
+                            }
+
+                            // Flags
+                            Flow {
+                                width: parent.width; spacing: 2
+                                Repeater {
+                                    model: root.metaMapHoverFlags
+                                        ? root.metaMapHoverFlags.split(" ").filter(function(f){ return f.length > 0 })
+                                        : []
+                                    delegate: Rectangle {
+                                        required property string modelData
+                                        height: 14; width: tipBadge.implicitWidth + 6
+                                        radius: 2; color: Qt.rgba(0, 0, 0, 0.3)
+                                        border.color: root.metaFlagColor(modelData); border.width: 1
+                                        Text {
+                                            id: tipBadge
+                                            anchors.centerIn: parent
+                                            text: modelData; color: "white"
+                                            font.pixelSize: 9; font.bold: true
+                                        }
+                                    }
+                                }
+                            }
+
+                            Text {
+                                text: "↓ " + root.compactSpeed(root.metaMapHoverDownSpeed) + "  ↑ " + root.compactSpeed(root.metaMapHoverUpSpeed)
+                                color: "#9fb6c8"; font.pixelSize: 11; width: parent.width
+                            }
+
+                            Text {
+                                text: "RTT " + (root.metaMapHoverRtt > 0 ? (root.metaMapHoverRtt + " ms") : "—")
+                                    + "  " + Math.round(root.metaMapHoverProgress * 100) + "% done"
+                                color: "#9fb6c8"; font.pixelSize: 11; width: parent.width
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -549,11 +1095,15 @@ Window {
 
         ColumnLayout {
             anchors.fill: parent
-            spacing: 8
+            spacing: 0
 
+            // Header row with explicit left/right padding
             RowLayout {
                 Layout.fillWidth: true
-                Layout.rightMargin: 6
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
+                Layout.topMargin: 8
+                Layout.bottomMargin: 4
                 Text { text: "Files"; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
                 Item { Layout.fillWidth: true }
                 Text {
@@ -563,12 +1113,21 @@ Window {
                 }
             }
 
-            Rectangle { Layout.fillWidth: true; height: 1; color: "#2d2d2d" }
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
+                height: 1
+                color: "#2d2d2d"
+            }
 
             Item {
                 id: metaFileViewport
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                Layout.leftMargin: 10
+                Layout.rightMargin: 10
+                Layout.bottomMargin: 8
                 clip: true
 
                 ColumnLayout {
@@ -794,7 +1353,7 @@ Window {
                         Item {
                             width: Math.max(60, root.fileColProgress)
                             height: parent.height
-                            readonly property bool showProgress: !!root.item && (root.item.doneBytes > 0 || root.item.status === "Downloading" || root.item.status === "Seeding")
+                            readonly property bool showProgress: !!root.item && (root.item.status === "Seeding" || root.item.status === "Completed" || (root.item.status === "Downloading" && root.item.doneBytes > 0))
 
                             Text {
                                 anchors { left: parent.left; leftMargin: 6; verticalCenter: parent.verticalCenter }
