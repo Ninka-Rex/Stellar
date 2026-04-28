@@ -2614,15 +2614,25 @@ ApplicationWindow {
             }
         }
 
-        RowLayout {
+        Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            spacing: 0
 
+            // Tracks whether the user is actively dragging the divider so we
+            // can apply a highlight without flickering on mouse-move.
+            property bool _dividerDragging: false
+
+            // Clamp helper used by both drag updates and context-menu resets.
+            function _clampSidebarWidth(w) {
+                return Math.max(140, Math.min(w, parent.width - 300))
+            }
+
+            // Sidebar placed absolutely so it can appear on either side.
             Sidebar {
                 id: sidebar
-                Layout.fillHeight: true
-                Layout.preferredWidth: 188
+                height: parent.height
+                x: App.settings.sidebarOnRight ? parent.width - width : 0
+                width: App.settings.sidebarWidth
                 onCategorySelected: (catId) => {
                     App.selectedCategory = catId
                     // Clear selection so toolbar enabled-states re-evaluate against
@@ -2656,10 +2666,82 @@ ApplicationWindow {
                 }
             }
 
+            // Drag handle between sidebar and table.
+            Rectangle {
+                id: sidebarDivider
+                width: 4
+                height: parent.height
+                // On the right side of the sidebar when sidebar is on the left,
+                // on the left side when sidebar is on the right.
+                x: App.settings.sidebarOnRight
+                   ? parent.width - App.settings.sidebarWidth - width
+                   : App.settings.sidebarWidth
+                color: dividerDragArea.containsMouse || parent._dividerDragging
+                       ? "#4488dd" : "#2a2a2a"
+
+                Behavior on color { ColorAnimation { duration: 80 } }
+
+                MouseArea {
+                    id: dividerDragArea
+                    anchors.fill: parent
+                    // Extra hit area so the 4px handle is easy to grab.
+                    anchors.leftMargin: -3
+                    anchors.rightMargin: -3
+                    hoverEnabled: true
+                    cursorShape: Qt.SplitHCursor
+                    acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                    property int _startX: 0
+                    property int _startWidth: 0
+
+                    onPressed: (mouse) => {
+                        if (mouse.button === Qt.RightButton) return
+                        _startX     = mouse.x + sidebarDivider.x
+                        _startWidth = App.settings.sidebarWidth
+                        sidebarDivider.parent._dividerDragging = true
+                    }
+                    onReleased: (mouse) => {
+                        if (mouse.button === Qt.RightButton) return
+                        sidebarDivider.parent._dividerDragging = false
+                    }
+                    onPositionChanged: (mouse) => {
+                        if (!pressed || pressedButtons & Qt.RightButton) return
+                        var globalX  = mouse.x + sidebarDivider.x
+                        var delta    = globalX - _startX
+                        var newWidth = App.settings.sidebarOnRight
+                                       ? _startWidth - delta
+                                       : _startWidth + delta
+                        App.settings.sidebarWidth = sidebarDivider.parent._clampSidebarWidth(newWidth)
+                    }
+                    onClicked: (mouse) => {
+                        if (mouse.button !== Qt.RightButton) return
+                        sidebarPositionMenu.popup()
+                    }
+
+                    Menu {
+                        id: sidebarPositionMenu
+                        implicitWidth: 200
+                        topPadding: 0
+                        bottomPadding: 0
+                        delegate: CompactMenuItem {}
+
+                        MenuItem {
+                            text: App.settings.sidebarOnRight ? "Move sidebar to left" : "Move sidebar to right"
+                            onTriggered: App.settings.sidebarOnRight = !App.settings.sidebarOnRight
+                        }
+                        MenuItem {
+                            text: "Reset sidebar width"
+                            onTriggered: App.settings.sidebarWidth = sidebarDivider.parent._clampSidebarWidth(188)
+                        }
+                    }
+                }
+            }
+
             DownloadTable {
                 id: downloadTable
-                Layout.fillWidth: true
-                Layout.fillHeight: true
+                height: parent.height
+                x: App.settings.sidebarOnRight ? 0 : App.settings.sidebarWidth + sidebarDivider.width
+                width: parent.width - App.settings.sidebarWidth - sidebarDivider.width
                 categoryDragProxy: dragProxy
                 onExportTorrentsRequested: (downloadIds) => {
                     root.pendingTorrentExportIds = downloadIds

@@ -19,6 +19,7 @@
 #include <QString>
 #include <QStringList>
 #include <QSettings>
+#include <QTimer>
 #include <QDate>
 
 class AppSettings : public QObject {
@@ -95,6 +96,8 @@ class AppSettings : public QObject {
     Q_PROPERTY(int mainWindowY      READ mainWindowY      WRITE setMainWindowY      NOTIFY mainWindowYChanged)
     Q_PROPERTY(int mainWindowWidth READ mainWindowWidth WRITE setMainWindowWidth NOTIFY mainWindowWidthChanged)
     Q_PROPERTY(int mainWindowHeight READ mainWindowHeight WRITE setMainWindowHeight NOTIFY mainWindowHeightChanged)
+    Q_PROPERTY(int  sidebarWidth    READ sidebarWidth    WRITE setSidebarWidth    NOTIFY sidebarWidthChanged)
+    Q_PROPERTY(bool sidebarOnRight  READ sidebarOnRight  WRITE setSidebarOnRight  NOTIFY sidebarOnRightChanged)
     // yt-dlp integration
     Q_PROPERTY(QString ytdlpCustomBinaryPath READ ytdlpCustomBinaryPath WRITE setYtdlpCustomBinaryPath NOTIFY ytdlpCustomBinaryPathChanged)
     Q_PROPERTY(bool    ytdlpAutoUpdate       READ ytdlpAutoUpdate       WRITE setYtdlpAutoUpdate       NOTIFY ytdlpAutoUpdateChanged)
@@ -214,6 +217,8 @@ public:
     int  mainWindowY()                const { return m_mainWindowY; }
     int  mainWindowWidth()            const { return m_mainWindowWidth; }
     int  mainWindowHeight()           const { return m_mainWindowHeight; }
+    int  sidebarWidth()               const { return m_sidebarWidth; }
+    bool sidebarOnRight()             const { return m_sidebarOnRight; }
     QString ytdlpCustomBinaryPath()   const { return m_ytdlpCustomBinaryPath; }
     bool    ytdlpAutoUpdate()         const { return m_ytdlpAutoUpdate; }
     QString ytdlpJsRuntimePath()      const { return m_ytdlpJsRuntimePath; }
@@ -321,6 +326,8 @@ public:
     void setMainWindowY(int v);
     void setMainWindowWidth(int v);
     void setMainWindowHeight(int v);
+    void setSidebarWidth(int v);
+    void setSidebarOnRight(bool v);
     void setYtdlpCustomBinaryPath(const QString &v);
     void setYtdlpAutoUpdate(bool v);
     void setYtdlpJsRuntimePath(const QString &v);
@@ -445,6 +452,8 @@ signals:
     void mainWindowYChanged();
     void mainWindowWidthChanged();
     void mainWindowHeightChanged();
+    void sidebarWidthChanged();
+    void sidebarOnRightChanged();
     void ytdlpCustomBinaryPathChanged();
     void ytdlpAutoUpdateChanged();
     void ytdlpJsRuntimePathChanged();
@@ -528,6 +537,8 @@ private:
     int         m_mainWindowY{-1};
     int         m_mainWindowWidth{1100};
     int         m_mainWindowHeight{680};
+    int         m_sidebarWidth{188};
+    bool        m_sidebarOnRight{false};
     QString     m_ytdlpCustomBinaryPath;   // empty = auto-detect
     bool        m_ytdlpAutoUpdate{false};  // check for yt-dlp updates on startup
     QString     m_ytdlpJsRuntimePath;      // empty = auto-detect from PATH/app dir
@@ -587,6 +598,9 @@ private:
     // Apply or remove OS startup entry depending on v
     void applyStartupRegistration(bool v) const;
 
+    void scheduleSave();
+
     QSettings m_settings;
+    QTimer    m_saveTimer;
 
 };

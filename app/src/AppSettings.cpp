@@ -142,6 +142,9 @@ AppSettings::AppSettings(QObject *parent)
       // the file easy to inspect, back up, and transfer between machines.
       m_settings(StellarPaths::settingsFile(), QSettings::IniFormat)
 {
+    m_saveTimer.setSingleShot(true);
+    m_saveTimer.setInterval(500);
+    connect(&m_saveTimer, &QTimer::timeout, this, &AppSettings::save);
     m_defaultSavePath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     m_temporaryDirectory = QStandardPaths::writableLocation(QStandardPaths::TempLocation)
         + QStringLiteral("/Stellar");
@@ -227,6 +230,8 @@ void AppSettings::load() {
     m_mainWindowY             = m_settings.value(QStringLiteral("mainWindowY"), -1).toInt();
     m_mainWindowWidth         = m_settings.value(QStringLiteral("mainWindowWidth"), 1100).toInt();
     m_mainWindowHeight        = m_settings.value(QStringLiteral("mainWindowHeight"), 680).toInt();
+    m_sidebarWidth            = m_settings.value(QStringLiteral("sidebarWidth"), 188).toInt();
+    m_sidebarOnRight          = m_settings.value(QStringLiteral("sidebarOnRight"), false).toBool();
     m_ytdlpCustomBinaryPath   = m_settings.value(QStringLiteral("ytdlpCustomBinaryPath"), QString()).toString();
     m_ytdlpAutoUpdate         = m_settings.value(QStringLiteral("ytdlpAutoUpdate"), false).toBool();
     m_ytdlpJsRuntimePath      = m_settings.value(QStringLiteral("ytdlpJsRuntimePath"), QString()).toString();
@@ -377,6 +382,8 @@ void AppSettings::load() {
     emit mainWindowYChanged();
     emit mainWindowWidthChanged();
     emit mainWindowHeightChanged();
+    emit sidebarWidthChanged();
+    emit sidebarOnRightChanged();
     emit ytdlpCustomBinaryPathChanged();
     emit ytdlpAutoUpdateChanged();
     emit ytdlpJsRuntimePathChanged();
@@ -467,6 +474,8 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("mainWindowY"),                 m_mainWindowY);
     m_settings.setValue(QStringLiteral("mainWindowWidth"),             m_mainWindowWidth);
     m_settings.setValue(QStringLiteral("mainWindowHeight"),            m_mainWindowHeight);
+    m_settings.setValue(QStringLiteral("sidebarWidth"),                m_sidebarWidth);
+    m_settings.setValue(QStringLiteral("sidebarOnRight"),              m_sidebarOnRight);
     m_settings.setValue(QStringLiteral("ytdlpCustomBinaryPath"),       m_ytdlpCustomBinaryPath);
     m_settings.setValue(QStringLiteral("ytdlpAutoUpdate"),             m_ytdlpAutoUpdate);
     m_settings.setValue(QStringLiteral("ytdlpJsRuntimePath"),          m_ytdlpJsRuntimePath);
@@ -690,6 +699,26 @@ void AppSettings::setMainWindowHeight(int v) {
         m_mainWindowHeight = v;
         emit mainWindowHeightChanged();
         save();
+    }
+}
+
+void AppSettings::scheduleSave() {
+    m_saveTimer.start(); // restarts if already running
+}
+
+void AppSettings::setSidebarWidth(int v) {
+    if (m_sidebarWidth != v) {
+        m_sidebarWidth = v;
+        emit sidebarWidthChanged();
+        scheduleSave();
+    }
+}
+
+void AppSettings::setSidebarOnRight(bool v) {
+    if (m_sidebarOnRight != v) {
+        m_sidebarOnRight = v;
+        emit sidebarOnRightChanged();
+        scheduleSave();
     }
 }
 
