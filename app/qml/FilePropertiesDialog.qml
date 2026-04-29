@@ -1784,7 +1784,7 @@ Window {
                         }
                         // ↓ down speed
                         Text {
-                            text: "↓ " + (root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "0 B/s")
+                            text: "↓ " + (root.item ? root.compactSpeed(root.item.speed) : "0 B/s")
                             color: "#ffffff"; font.pixelSize: 11
                         }
                         // ↑ up speed
@@ -1977,7 +1977,7 @@ Window {
                                 }
 
                                 Text { text: "Down speed";  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
-                                Text { text: root.item ? root.compactSpeed(root.item.torrentDownloadSpeed) : "—"; color: "#4ea2ff"; font.pixelSize: 11; Layout.fillWidth: true }
+                                Text { text: root.item ? root.compactSpeed(root.item.speed) : "—"; color: "#4ea2ff"; font.pixelSize: 11; Layout.fillWidth: true }
                                 Text { text: "Up speed";    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—";   color: "#4cc87a"; font.pixelSize: 11; Layout.fillWidth: true }
                                 Text { text: "Connections"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
