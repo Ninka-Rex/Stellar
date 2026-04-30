@@ -24,10 +24,6 @@
 #include <QProcess>
 #include <QStandardPaths>
 
-#if defined(STELLAR_WINDOWS)
-#  include <windows.h>
-#endif
-
 static QIcon createDefaultIcon() {
     QPixmap pm(16, 16);
     pm.fill(Qt::transparent);
@@ -145,27 +141,14 @@ void SystemTrayIcon::showNotification(const QString &title, const QString &msg) 
         : title.trimmed();
     const QString safeMsg = msg.trimmed();
 
-#if defined(STELLAR_WINDOWS)
-    const QString script = QStringLiteral(
-        "Add-Type -AssemblyName System.Windows.Forms; "
-        "Add-Type -AssemblyName System.Drawing; "
-        "$n = New-Object System.Windows.Forms.NotifyIcon; "
-        "$n.Icon = [System.Drawing.SystemIcons]::Information; "
-        "$n.BalloonTipIcon = [System.Windows.Forms.ToolTipIcon]::Info; "
-        "$n.BalloonTipTitle = %1; "
-        "$n.BalloonTipText = %2; "
-        "$n.Visible = $true; "
-        "$n.ShowBalloonTip(4000); "
-        "Start-Sleep -Milliseconds 4500; "
-        "$n.Dispose();")
-        .arg(psQuoted(safeTitle), psQuoted(safeMsg));
-    QProcess::startDetached(QStringLiteral("powershell"), {
-        QStringLiteral("-NoProfile"),
-        QStringLiteral("-NonInteractive"),
-        QStringLiteral("-WindowStyle"), QStringLiteral("Hidden"),
-        QStringLiteral("-Command"), script
-    });
-#elif defined(STELLAR_LINUX)
+    if (m_tray && m_tray->isVisible()
+            && QSystemTrayIcon::supportsMessages()) {
+        m_tray->showMessage(safeTitle, safeMsg,
+                            QSystemTrayIcon::NoIcon, 4000);
+        return;
+    }
+
+#if defined(STELLAR_LINUX)
     const QString notifySend = QStandardPaths::findExecutable(QStringLiteral("notify-send"));
     if (!notifySend.isEmpty()) {
         QProcess::startDetached(notifySend, {
@@ -173,23 +156,23 @@ void SystemTrayIcon::showNotification(const QString &title, const QString &msg) 
             safeTitle,
             safeMsg
         });
-    } else {
-        const QString kdialog = QStandardPaths::findExecutable(QStringLiteral("kdialog"));
-        if (!kdialog.isEmpty()) {
-            QProcess::startDetached(kdialog, {
-                QStringLiteral("--title"), safeTitle,
-                QStringLiteral("--passivepopup"), safeMsg,
-                QStringLiteral("4")
-            });
-        } else {
-            const QString zenity = QStandardPaths::findExecutable(QStringLiteral("zenity"));
-            if (!zenity.isEmpty()) {
-                QProcess::startDetached(zenity, {
-                    QStringLiteral("--notification"),
-                    QStringLiteral("--text=%1").arg(QStringLiteral("%1\n%2").arg(safeTitle, safeMsg))
-                });
-            }
-        }
+        return;
+    }
+    const QString kdialog = QStandardPaths::findExecutable(QStringLiteral("kdialog"));
+    if (!kdialog.isEmpty()) {
+        QProcess::startDetached(kdialog, {
+            QStringLiteral("--title"), safeTitle,
+            QStringLiteral("--passivepopup"), safeMsg,
+            QStringLiteral("4")
+        });
+        return;
+    }
+    const QString zenity = QStandardPaths::findExecutable(QStringLiteral("zenity"));
+    if (!zenity.isEmpty()) {
+        QProcess::startDetached(zenity, {
+            QStringLiteral("--notification"),
+            QStringLiteral("--text=%1").arg(QStringLiteral("%1\n%2").arg(safeTitle, safeMsg))
+        });
     }
 #else
     Q_UNUSED(safeTitle);

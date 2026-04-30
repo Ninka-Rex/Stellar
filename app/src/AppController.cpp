@@ -1475,8 +1475,15 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                                        && !m_restoring
                                        && !m_restoredSeedingIds.contains(id);
         m_restoredSeedingIds.remove(id); // consume — only suppress once per ID
-        if (isFreshCompletion)
+        if (isFreshCompletion) {
+            if (m_settings->showCompletionNotification() && m_tray) {
+                const QString name = item->filename().isEmpty()
+                    ? item->url().fileName()
+                    : item->filename();
+                m_tray->showNotification(QStringLiteral("Download Complete"), name);
+            }
             emit downloadCompleted(item);
+        }
         emit activeDownloadsChanged();
     });
     connect(m_torrentSession, &TorrentSessionManager::torrentErrored, this, [this](const QString &id, const QString &reason) {

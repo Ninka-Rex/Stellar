@@ -2673,9 +2673,17 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         const QString id = idForHandle(finished->handle);
         DownloadItem *item = m_items.value(id, nullptr).data();
         if (item) {
+            // If already Seeding or Completed, this alert is from a recheck
+            // completing (Checking → Seeding), not a genuine new download finish.
+            // Don't re-emit torrentFinished in that case to avoid a spurious
+            // "Download Complete" notification.
+            const bool wasAlreadyDone = item->statusEnum() == DownloadItem::Status::Seeding
+                                     || item->statusEnum() == DownloadItem::Status::Completed;
             item->setStatus(DownloadItem::Status::Seeding);
             updateItemFromStatus(item, finished->handle);
             updateModels(id, finished->handle);
+            if (wasAlreadyDone)
+                return;
         }
         emit torrentFinished(id);
         return;

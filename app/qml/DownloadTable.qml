@@ -1026,18 +1026,32 @@ Rectangle {
             }
         }
 
-        ScrollBar.vertical: ScrollBar {}
-        ScrollBar.horizontal: ScrollBar {}
+        ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+        ScrollBar.horizontal: ScrollBar { policy: ScrollBar.AsNeeded }
 
+        // Handle wheel scrolling. Vertical handled here (not by ListView natively)
+        // because the row MouseArea with preventStealing:true intercepts all events
+        // including wheel; we must handle both axes explicitly.
+        // grabPermissions: take over from child MouseAreas so thumb/tilt wheel works.
         WheelHandler {
+            orientation: Qt.Vertical
             acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
             onWheel: function(e) {
-                if (e.angleDelta.x !== 0) {
-                    tableView.contentX = Math.max(0,
-                        Math.min(tableView.contentX - e.angleDelta.x / 8 * 3,
-                                 tableView.contentWidth - tableView.width))
-                    e.accepted = true
-                }
+                tableView.contentY = Math.max(0,
+                    Math.min(tableView.contentY - e.angleDelta.y / 2,
+                             Math.max(0, tableView.contentHeight - tableView.height)))
+                e.accepted = true
+            }
+        }
+
+        WheelHandler {
+            orientation: Qt.Horizontal
+            acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
+            onWheel: function(e) {
+                tableView.contentX = Math.max(0,
+                    Math.min(tableView.contentX - e.angleDelta.x / 2,
+                             Math.max(0, tableView.contentWidth - tableView.width)))
+                e.accepted = true
             }
         }
 
