@@ -22,11 +22,10 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    width: 420
-    height: authCheck.checked ? 230 : 160
-    minimumWidth: 360
+    width: 460
+    height: mainCol.implicitHeight + 24
     color: "#1e1e1e"
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
     modality: Qt.ApplicationModal
 
     Material.theme: Material.Dark
@@ -37,10 +36,8 @@ Window {
     property alias username: usernameField.text
     property alias password: passwordField.text
     property alias useAuth:  authCheck.checked
-    // Optional override for the window title (e.g. clipboard monitoring prompt)
     property string titleOverride: ""
 
-    // Expose the effective title as a binding so the Window title updates reactively
     title: titleOverride.length > 0 ? titleOverride : "Add Download"
 
     signal accepted()
@@ -59,8 +56,6 @@ Window {
     onVisibleChanged: {
         if (visible) {
             _centerOnOwner()
-            // If opened from the clipboard monitor, the URL is already pre-filled
-            // and titleOverride is set — skip the normal clipboard auto-fill.
             if (titleOverride.length === 0) {
                 var clip = App.clipboardUrl()
                 urlField.text = clip ? clip : ""
@@ -68,8 +63,6 @@ Window {
             }
             urlField.forceActiveFocus()
         } else {
-            // Reset the override title when the dialog is closed so the next
-            // normal open doesn't show the clipboard prompt title.
             titleOverride = ""
         }
     }
@@ -84,23 +77,35 @@ Window {
     }
 
     ColumnLayout {
-        anchors { fill: parent; margins: 16 }
-        spacing: 10
+        id: mainCol
+        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+        spacing: 8
 
         // URL row
-        RowLayout {
+        ColumnLayout {
             Layout.fillWidth: true
-            spacing: 8
-            Label { text: "URL:"; color: "#c0c0c0"; font.pixelSize: 12; Layout.preferredWidth: 70 }
-            TextField {
-                id: urlField
+            spacing: 2
+            Text { text: "URL"; color: "#aaaaaa"; font.pixelSize: 11 }
+            Rectangle {
                 Layout.fillWidth: true
-                selectByMouse: true
-                font.pixelSize: 12
-                background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
-                color: "#d0d0d0"
-                Keys.onReturnPressed: root._submit()
-                Keys.onEnterPressed:  root._submit()
+                Layout.preferredHeight: 22
+                color: "#1b1b1b"
+                border.color: urlField.activeFocus ? "#4488dd" : "#3a3a3a"
+                border.width: 1
+                radius: 2
+                TextInput {
+                    id: urlField
+                    anchors.fill: parent
+                    anchors.leftMargin: 5
+                    anchors.rightMargin: 5
+                    verticalAlignment: TextInput.AlignVCenter
+                    color: "#d0d0d0"
+                    font.pixelSize: 11
+                    selectByMouse: true
+                    clip: true
+                    Keys.onReturnPressed: root._submit()
+                    Keys.onEnterPressed:  root._submit()
+                }
             }
         }
 
@@ -110,59 +115,79 @@ Window {
             text: "Use Authorization"
             topPadding: 0; bottomPadding: 0
             contentItem: Text {
-                text: parent.text; color: "#d0d0d0"; font.pixelSize: 12
+                text: parent.text; color: "#c0c0c0"; font.pixelSize: 11
                 leftPadding: parent.indicator.width + 4
                 verticalAlignment: Text.AlignVCenter
             }
         }
 
-        // Auth fields (only when auth is checked)
+        // Auth fields
         ColumnLayout {
             visible: authCheck.checked
             Layout.fillWidth: true
             spacing: 6
 
-            RowLayout {
+            ColumnLayout {
                 Layout.fillWidth: true
-                spacing: 8
-                Label { text: "Login:"; color: "#c0c0c0"; font.pixelSize: 12; Layout.preferredWidth: 70 }
-                TextField {
-                    id: usernameField
+                spacing: 2
+                Text { text: "Login"; color: "#aaaaaa"; font.pixelSize: 11 }
+                Rectangle {
                     Layout.fillWidth: true
-                    placeholderText: "Username"
-                    selectByMouse: true
-                    font.pixelSize: 12
-                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
-                    color: "#d0d0d0"
-                    Keys.onReturnPressed: root._submit()
-                    Keys.onEnterPressed:  root._submit()
+                    Layout.preferredHeight: 22
+                    color: "#1b1b1b"
+                    border.color: usernameField.activeFocus ? "#4488dd" : "#3a3a3a"
+                    border.width: 1
+                    radius: 2
+                    TextInput {
+                        id: usernameField
+                        anchors.fill: parent
+                        anchors.leftMargin: 5
+                        anchors.rightMargin: 5
+                        verticalAlignment: TextInput.AlignVCenter
+                        color: "#d0d0d0"
+                        font.pixelSize: 11
+                        selectByMouse: true
+                        clip: true
+                        Keys.onReturnPressed: root._submit()
+                        Keys.onEnterPressed:  root._submit()
+                    }
                 }
             }
 
-            RowLayout {
+            ColumnLayout {
                 Layout.fillWidth: true
-                spacing: 8
-                Label { text: "Password:"; color: "#c0c0c0"; font.pixelSize: 12; Layout.preferredWidth: 70 }
-                TextField {
-                    id: passwordField
+                spacing: 2
+                Text { text: "Password"; color: "#aaaaaa"; font.pixelSize: 11 }
+                Rectangle {
                     Layout.fillWidth: true
-                    placeholderText: "Password"
-                    echoMode: TextInput.Password
-                    selectByMouse: true
-                    font.pixelSize: 12
-                    background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
-                    color: "#d0d0d0"
-                    Keys.onReturnPressed: root._submit()
-                    Keys.onEnterPressed:  root._submit()
+                    Layout.preferredHeight: 22
+                    color: "#1b1b1b"
+                    border.color: passwordField.activeFocus ? "#4488dd" : "#3a3a3a"
+                    border.width: 1
+                    radius: 2
+                    TextInput {
+                        id: passwordField
+                        anchors.fill: parent
+                        anchors.leftMargin: 5
+                        anchors.rightMargin: 5
+                        verticalAlignment: TextInput.AlignVCenter
+                        color: "#d0d0d0"
+                        font.pixelSize: 11
+                        echoMode: TextInput.Password
+                        selectByMouse: true
+                        clip: true
+                        Keys.onReturnPressed: root._submit()
+                        Keys.onEnterPressed:  root._submit()
+                    }
                 }
             }
         }
 
-        Item { Layout.fillHeight: true }
-
+        // Buttons
         RowLayout {
             Layout.fillWidth: true
-            spacing: 8
+            Layout.topMargin: 2
+            spacing: 6
             Item { Layout.fillWidth: true }
             DlgButton { text: "Cancel"; onClicked: root.close() }
             DlgButton { text: "OK"; primary: true; onClicked: root._submit() }

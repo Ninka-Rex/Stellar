@@ -43,7 +43,7 @@ Window {
     height: mainCol.implicitHeight + 24
     color: "#1e1e1e"
     title: "Download complete"
-    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint
+    flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint | Qt.WindowStaysOnTopHint
     Material.theme: Material.Dark
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
@@ -60,7 +60,11 @@ Window {
     }
 
     onVisibleChanged: {
-        if (visible) _centerOnOwner()
+        if (visible) {
+            _centerOnOwner()
+            raise()
+            requestActivate()
+        }
     }
 
     function fmtBytes(b) {

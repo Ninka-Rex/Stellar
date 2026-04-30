@@ -24,29 +24,28 @@ import QtQuick.Dialogs
 Window {
     id: root
 
-    property string pendingUrl:      ""
-    property string pendingFilename: ""
-    property string pendingSize:     ""
-    property string pendingSavePath: ""
-    property string filenameOverride: ""
+    property string pendingUrl:        ""
+    property string pendingFilename:   ""
+    property string pendingSize:       ""
+    property string pendingSavePath:   ""
+    property string filenameOverride:  ""
     property string pendingDownloadId: ""
-    property string pendingCookies:  ""
-    property string pendingReferrer: ""
-    property bool   isIntercepted:   false
-    property bool   _accepted:       false
-    property bool   _probing:        false
+    property string pendingCookies:    ""
+    property string pendingReferrer:   ""
+    property bool   isIntercepted:     false
+    property bool   _accepted:         false
+    property bool   _probing:          false
 
-    width:  700
-    height: 325
-    minimumWidth: 460
-    minimumHeight: 325
-    title: "New Download"
-    color: "#1a1a1a"
+    width:  560
+    height: mainCol.implicitHeight + 24
+    minimumWidth: 480
+    title: "Download File Info"
+    color: "#1e1e1e"
     modality: Qt.ApplicationModal
-    flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
+    flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
 
     Material.theme: Material.Dark
-    Material.background: "#1a1a1a"
+    Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
 
     signal downloadNow(string downloadId, string url, string savePath, string category, string description)
@@ -66,8 +65,7 @@ Window {
 
     function fileUrlFromPath(path) {
         var p = String(path || "").trim().replace(/\\/g, "/")
-        if (p.length === 0 || p.indexOf("file://") === 0)
-            return p
+        if (p.length === 0 || p.indexOf("file://") === 0) return p
         return Qt.platform.os === "windows"
             ? ("file:///" + p)
             : (p.startsWith("/") ? ("file://" + p) : ("file:///" + p))
@@ -75,8 +73,7 @@ Window {
 
     function pathFromFileUrl(url) {
         var p = String(url || "")
-        if (Qt.platform.os === "windows")
-            return p.replace(/^file:\/\/\//, "")
+        if (Qt.platform.os === "windows") return p.replace(/^file:\/\/\//, "")
         return p.replace(/^file:\/\//, "")
     }
 
@@ -142,7 +139,6 @@ Window {
             _probeMetadata()
     }
 
-    // ── Metadata probe ─────────────────────────────────────────────────────────
     function _probeMetadata() {
         _probing = true
         var url      = pendingUrl
@@ -167,18 +163,14 @@ Window {
         return (bytes / 1073741824).toFixed(2) + " GB"
     }
 
-function _buildDescription(info) {
+    function _buildDescription(info) {
         var ct   = (info.contentType || "").toLowerCase()
         var name = root.pendingFilename.toLowerCase()
         var parts = []
-
         var isAudio = ct.indexOf("audio/") === 0 || ct.indexOf("mpeg") >= 0
             || ct.indexOf("flac") >= 0 || ct.indexOf("ogg") >= 0 || ct.indexOf("opus") >= 0
             || /\.(mp3|flac|ogg|opus|wav|aac|m4a|wma|alac|ape|aiff|mka)$/.test(name)
-
         if (!isAudio) return ""
-
-        // Format label
         var fmt = ""
         if      (ct.indexOf("flac") >= 0 || name.endsWith(".flac")) fmt = "FLAC"
         else if (ct.indexOf("ogg")  >= 0 || name.endsWith(".ogg"))  fmt = "OGG Vorbis"
@@ -191,72 +183,39 @@ function _buildDescription(info) {
         else if (name.endsWith(".alac")) fmt = "ALAC"
         else if (name.endsWith(".aiff")) fmt = "AIFF"
         if (fmt.length > 0) parts.push(fmt)
-
-        // Bitrate
         var kbps = parseInt(info.audioBitrateKbps)
         if (kbps > 0) parts.push(kbps + " kbps")
-
-        // Sample rate
         var sr = parseInt(info.audioSampleRate)
         if (sr > 0) {
-            var srStr = (sr % 1000 === 0) ? (sr / 1000) + " kHz"
-                      : (sr / 1000).toFixed(1) + " kHz"
+            var srStr = (sr % 1000 === 0) ? (sr / 1000) + " kHz" : (sr / 1000).toFixed(1) + " kHz"
             parts.push(srStr)
         }
-
-        // Channels
         var ch = parseInt(info.audioChannels)
         if (ch === 1) parts.push("Mono")
         else if (ch === 2) parts.push("Stereo")
-        else if (ch > 2) parts.push(ch + " ch")
-
-        // Bit depth (FLAC)
+        else if (ch > 2)   parts.push(ch + " ch")
         var bps = parseInt(info.audioBitsPerSample)
         if (bps > 0 && bps !== 16) parts.push(bps + "-bit")
-
-        // Duration
         var dur = parseInt(info.audioDurationSec)
         if (dur > 0) {
             var m = Math.floor(dur / 60), s = dur % 60
             parts.push(m + " min " + (s > 0 ? s + " sec" : "").trim())
         }
-
-        // Only return something if we have at least one real metric beyond just the format name
         return parts.length > 1 ? parts.join(", ") : ""
     }
 
     function _updateSavePath(catIdx) {
         var dir = savePathForIndex(catIdx)
         if (!dir || dir.length === 0) dir = pendingSavePath
-        // Normalise to forward slashes internally; Windows displays them fine
-        // and on Linux backslashes are treated as literal filename characters.
         dir = dir.replace(/\\/g, "/")
         if (!dir.endsWith("/")) dir += "/"
-        saveAsField.editText = dir + pendingFilename
-    }
-
-    function _iconColor() {
-        var n = root.pendingFilename.toLowerCase()
-        if (/\.(mp4|mkv|avi|mov|wmv|flv|webm|m4v|3gp|mpeg|mpg)$/.test(n)) return "#c04040"
-        if (/\.(mp3|flac|wav|aac|ogg|m4a|wma)$/.test(n))                   return "#3a96b8"
-        if (/\.(zip|rar|7z|tar|gz|bz2|xz)$/.test(n))                       return "#c09030"
-        if (/\.(exe|msi|apk)$/.test(n))                                     return "#5858b8"
-        if (/\.(pdf|doc|docx|epub)$/.test(n))                               return "#b85030"
-        if (/\.(safetensors|gguf)$/.test(n))                                return "#7a38a0"
-        if (/\.(iso|img|bin)$/.test(n))                                     return "#3a7a3a"
-        return "#4a4a5a"
-    }
-
-    function _iconExt() {
-        var ext = root.pendingFilename.split('.').pop().toUpperCase()
-        return ext.length <= 4 ? ext : ext.substring(0, 4)
+        saveAsField.text = dir + pendingFilename
+        dirOnlyField.text = dir
     }
 
     FileDialog {
         id: saveAsDlg
         fileMode: FileDialog.SaveFile
-        // Ensure the OS dialog appends the original file extension when the user
-        // doesn't type one — otherwise files are saved without an extension.
         defaultSuffix: {
             var parts = root.pendingFilename.split('.')
             return parts.length > 1 ? parts[parts.length - 1] : ""
@@ -264,306 +223,477 @@ function _buildDescription(info) {
         onAccepted: {
             var path = pathFromFileUrl(selectedFile)
             if (path.length > 0) {
-                saveAsField.editText = path
+                saveAsField.text = path
+                var sep = Math.max(path.lastIndexOf("/"), path.lastIndexOf("\\"))
+                dirOnlyField.text = sep >= 0 ? path.substring(0, sep + 1) : path
             }
         }
     }
 
-    Popup {
-        id: addCatPopup
-        width: 240; height: 88
-        modal: false
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
-        background: Rectangle { color: "#262626"; border.color: "#404040"; border.width: 1; radius: 4 }
-        x: addCatBtn.mapToItem(root.contentItem, 0, 0).x
-        y: addCatBtn.mapToItem(root.contentItem, 0, 0).y + addCatBtn.height + 4
+    // ── Add Category dialog ────────────────────────────────────────────────────
+    Window {
+        id: addCatDialog
+        width: 460
+        height: addCatCol.implicitHeight + 24
+        title: "Adding a category to Stellar categories list"
+        color: "#1e1e1e"
+        modality: Qt.ApplicationModal
+        transientParent: root
+        flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
 
-        onOpened: { newCatField.text = ""; newCatField.forceActiveFocus() }
+        Material.theme: Material.Dark
+        Material.background: "#1e1e1e"
+        Material.accent: "#4488dd"
+
+        function openNew() {
+            addCatNameField.text = ""
+            addCatExtField.text  = ""
+            addCatSitesChk.checked = false
+            addCatSitesField.text = ""
+            addCatFolderField.text = App.settings.defaultSavePath || ""
+            addCatRememberChk.checked = false
+            _editId = ""
+            var owner = root
+            x = owner.x + Math.round((owner.width  - width)  / 2)
+            y = owner.y + Math.round((owner.height - height) / 2)
+            show(); raise(); requestActivate()
+            Qt.callLater(function() { addCatNameField.forceActiveFocus() })
+        }
+
+        property string _editId: ""
+
+        FolderDialog {
+            id: addCatFolderDlg
+            onAccepted: {
+                var p = String(selectedFolder)
+                if (Qt.platform.os === "windows") p = p.replace(/^file:\/\/\//, "")
+                else p = p.replace(/^file:\/\//, "")
+                addCatFolderField.text = p
+            }
+        }
 
         ColumnLayout {
-            anchors { fill: parent; margins: 10 }
-            spacing: 8
-            Text { text: "New category name:"; color: "#909090"; font.pixelSize: 11 }
+            id: addCatCol
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+            spacing: 10
+
+            // Two-column layout: form on left, OK/Cancel on right
             RowLayout {
-                spacing: 6; Layout.fillWidth: true
-                TextField {
-                    id: newCatField
-                    Layout.fillWidth: true; font.pixelSize: 11; color: "#d0d0d0"
-                    background: Rectangle { color: "#1a1a1a"; border.color: "#404040"; radius: 3 }
-                    leftPadding: 6
-                    Keys.onReturnPressed: _addCategory()
-                    Keys.onEnterPressed:  _addCategory()
+                Layout.fillWidth: true
+                spacing: 10
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+                    spacing: 8
+
+                    // Category name
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 3
+                        Text { text: "Category name"; color: "#aaaaaa"; font.pixelSize: 11 }
+                        Rectangle {
+                            Layout.fillWidth: true; Layout.preferredHeight: 22
+                            color: "#1b1b1b"
+                            border.color: addCatNameField.activeFocus ? "#4488dd" : "#3a3a3a"
+                            border.width: 1; radius: 2
+                            TextInput {
+                                id: addCatNameField
+                                anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
+                                verticalAlignment: TextInput.AlignVCenter
+                                color: "#d0d0d0"; font.pixelSize: 11
+                                selectByMouse: true; clip: true
+                                Keys.onReturnPressed: addCatDialog._doAdd()
+                                Keys.onEnterPressed:  addCatDialog._doAdd()
+                            }
+                        }
+                    }
+
+                    // File types
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 3
+                        Text {
+                            text: "Automatically put in this category the following file types:"
+                            color: "#aaaaaa"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true; Layout.preferredHeight: 22
+                            color: "#1b1b1b"
+                            border.color: addCatExtField.activeFocus ? "#4488dd" : "#3a3a3a"
+                            border.width: 1; radius: 2
+                            TextInput {
+                                id: addCatExtField
+                                anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
+                                verticalAlignment: TextInput.AlignVCenter
+                                color: "#d0d0d0"; font.pixelSize: 11
+                                selectByMouse: true; clip: true
+                            }
+                        }
+                        Text {
+                            text: "Note: type file extensions separated by space (e.g. avi mpg mpeg)"
+                            color: "#666666"; font.pixelSize: 10; wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+                    }
+
+                    // Sites checkbox + field
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 3
+                        CheckBox {
+                            id: addCatSitesChk
+                            topPadding: 0; bottomPadding: 0
+                            text: "Automatically put in this category the files from the following sites only:"
+                            contentItem: Text {
+                                text: parent.text; color: "#aaaaaa"; font.pixelSize: 11
+                                leftPadding: parent.indicator.width + 4
+                                verticalAlignment: Text.AlignVCenter; wrapMode: Text.WordWrap
+                                width: parent.width - parent.indicator.width - 8
+                            }
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true; Layout.preferredHeight: 22
+                            color: addCatSitesChk.checked ? "#1b1b1b" : "#161616"
+                            border.color: addCatSitesField.activeFocus ? "#4488dd" : "#2a2a2a"
+                            border.width: 1; radius: 2
+                            TextInput {
+                                id: addCatSitesField
+                                anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
+                                verticalAlignment: TextInput.AlignVCenter
+                                color: addCatSitesChk.checked ? "#d0d0d0" : "#555555"
+                                font.pixelSize: 11; selectByMouse: true; clip: true
+                                enabled: addCatSitesChk.checked
+                            }
+                        }
+                        Text {
+                            text: "Separate sites by spaces. You may use asterisk as a wildcard pattern"
+                            color: "#666666"; font.pixelSize: 10; wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+                    }
+
+                    // Save folder
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 3
+                        Text {
+                            text: "Save future downloads of this category to the following folder:"
+                            color: "#5a9ad4"; font.pixelSize: 11; wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true; Layout.preferredHeight: 22
+                            color: "#1b1b1b"
+                            border.color: addCatFolderField.activeFocus ? "#4488dd" : "#3a3a3a"
+                            border.width: 1; radius: 2
+                            TextInput {
+                                id: addCatFolderField
+                                anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
+                                verticalAlignment: TextInput.AlignVCenter
+                                color: "#d0d0d0"; font.pixelSize: 11
+                                selectByMouse: true; clip: true
+                            }
+                        }
+                    }
+
+                    // Remember last save path
+                    CheckBox {
+                        id: addCatRememberChk
+                        topPadding: 0; bottomPadding: 0
+                        text: "Remember last save path"
+                        contentItem: Text {
+                            text: parent.text; color: "#aaaaaa"; font.pixelSize: 11
+                            leftPadding: parent.indicator.width + 4
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    // Browse button (right-aligned under folder field)
+                    RowLayout {
+                        Layout.fillWidth: true
+                        Item { Layout.fillWidth: true }
+                        DlgButton {
+                            text: "Browse..."
+                            onClicked: addCatFolderDlg.open()
+                        }
+                    }
                 }
-                Button {
-                    text: "Add"; implicitWidth: 46; implicitHeight: 26; font.pixelSize: 11
-                    background: Rectangle { color: "#1e3a6e"; border.color: "#4488dd"; border.width: 1; radius: 3 }
-                    contentItem: Text { text: parent.text; color: "#fff"; font: parent.font; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
-                    onClicked: _addCategory()
+
+                // OK / Cancel column
+                ColumnLayout {
+                    Layout.alignment: Qt.AlignTop
+                    spacing: 6
+                    Layout.preferredWidth: 80
+
+                    DlgButton {
+                        text: "OK"
+                        primary: true
+                        Layout.fillWidth: true
+                        onClicked: addCatDialog._doAdd()
+                    }
+                    DlgButton {
+                        text: "Cancel"
+                        Layout.fillWidth: true
+                        onClicked: addCatDialog.close()
+                    }
                 }
             }
         }
-        function _addCategory() {
-            var name = newCatField.text.trim()
+
+        function _doAdd() {
+            var name = addCatNameField.text.trim()
             if (name.length === 0) return
-            App.categoryModel.addCategory(name)
-            Qt.callLater(function() {
-                catCombo.currentIndex = root.categoryIds.length - 1
-                root._updateSavePath(catCombo.currentIndex)
-            })
-            addCatPopup.close()
+
+            var exts = addCatExtField.text.trim().split(/\s+/).filter(function(s){ return s.length > 0 })
+            var sites = addCatSitesChk.checked
+                ? addCatSitesField.text.trim().split(/\s+/).filter(function(s){ return s.length > 0 })
+                : []
+            var folder = addCatFolderField.text.trim()
+
+            if (_editId.length > 0) {
+                App.categoryModel.updateCategory(_editId, name, exts, sites, folder)
+            } else {
+                var newId = App.categoryModel.addCategory(name)
+                if (newId.length > 0)
+                    App.categoryModel.updateCategory(newId, name, exts, sites, folder)
+                Qt.callLater(function() {
+                    catCombo.currentIndex = root.categoryIds.length - 1
+                    root._updateSavePath(catCombo.currentIndex)
+                })
+            }
+            addCatDialog.close()
         }
     }
 
     // ── Root layout ────────────────────────────────────────────────────────────
     ColumnLayout {
-        anchors.fill: parent
-        spacing: 0
+        id: mainCol
+        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
+        spacing: 8
 
-        // ── Header ─────────────────────────────────────────────────────────────
-        Rectangle {
+        // Form rows + file icon side-by-side
+        RowLayout {
             Layout.fillWidth: true
-            height: 72
-            color: "#222228"
+            spacing: 10
 
-            RowLayout {
-                anchors { fill: parent; leftMargin: 20; rightMargin: 20; topMargin: 12; bottomMargin: 12 }
-                spacing: 16
-
-                // File type icon (system icon)
-                Image {
-                    width: 48; height: 48
-                    source: root.pendingFilename ? "image://fileicon/" + root.pendingFilename : ""
-                    sourceSize: Qt.size(48, 48)
-                    fillMode: Image.PreserveAspectFit
-                    smooth: true
-                }
-
-                // Filename + URL
-                ColumnLayout {
-                    Layout.fillWidth: true
-                    spacing: 3
-
-                    Text {
-                        Layout.fillWidth: true
-                        // Show the filename portion of the current save-as path so it
-                        // updates live as the user edits the field — not just the original URL filename.
-                        text: {
-                            var p = saveAsField.editText
-                            var sep = Math.max(p.lastIndexOf("/"), p.lastIndexOf("\\"))
-                            return sep >= 0 ? p.substring(sep + 1) : (root.pendingFilename || "download")
-                        }
-                        color: "#e8e8e8"
-                        font.pixelSize: 14
-                        font.weight: Font.Medium
-                        elide: Text.ElideMiddle
-                    }
-
-                    Text {
-                        Layout.fillWidth: true
-                        text: root.pendingUrl
-                        color: "#5a7aaa"
-                        font.pixelSize: 11
-                        elide: Text.ElideMiddle
-                    }
-                }
-
-                // File size
-                Text {
-                    text: root.pendingSize
-                    color: "#707080"
-                    font.pixelSize: 12
-                    visible: root.pendingSize.length > 0
-                    Layout.alignment: Qt.AlignVCenter
-                }
-            }
-        }
-
-        // Divider
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e38" }
-
-        // ── Form body ──────────────────────────────────────────────────────────
-        ColumnLayout {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.margins: 20
-            spacing: 12
-
-            // Category
-            RowLayout {
-                spacing: 10
-                Text {
-                    text: "Category"
-                    color: "#707070"; font.pixelSize: 12
-                    Layout.preferredWidth: 72
-                    horizontalAlignment: Text.AlignRight
-                }
-                ComboBox {
-                    id: catCombo
-                    model: root.categoryLabels
-                    implicitWidth: 170; implicitHeight: 30
-                    font.pixelSize: 12
-                    background: Rectangle { color: "#252525"; border.color: "#3c3c3c"; radius: 4 }
-                    contentItem: Text {
-                        leftPadding: 10; text: catCombo.displayText
-                        color: "#d0d0d0"; font: catCombo.font
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                    onCurrentIndexChanged: root._updateSavePath(currentIndex)
-                }
-                Button {
-                    id: addCatBtn
-                    text: "+"
-                    implicitWidth: 30; implicitHeight: 30
-                    font.pixelSize: 18
-                    background: Rectangle {
-                        color: addCatBtn.pressed ? "#383838" : (addCatBtn.hovered ? "#2e2e2e" : "#252525")
-                        border.color: "#3c3c3c"; radius: 4
-                    }
-                    contentItem: Text {
-                        text: parent.text; color: "#909090"; font: parent.font
-                        horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
-                    }
-                    ToolTip.visible: hovered; ToolTip.text: "Add new category"
-                    onClicked: addCatPopup.open()
-                }
-                Item { Layout.fillWidth: true }
-            }
-
-            // Save As
-            RowLayout {
-                spacing: 10
-                Text {
-                    text: "Save As"
-                    color: "#707070"; font.pixelSize: 12
-                    Layout.preferredWidth: 72
-                    horizontalAlignment: Text.AlignRight
-                }
-                ComboBox {
-                    id: saveAsField
-                    Layout.fillWidth: true
-                    editable: true
-                    model: [editText]
-                    implicitHeight: 30
-                    font.pixelSize: 11
-                    background: Rectangle { color: "#252525"; border.color: "#3c3c3c"; radius: 4 }
-                    contentItem: TextInput {
-                        leftPadding: 10; text: saveAsField.editText; font: saveAsField.font
-                        color: "#d0d0d0"; verticalAlignment: TextInput.AlignVCenter
-                        selectByMouse: true; onTextEdited: saveAsField.editText = text
-                        clip: true
-                    }
-                    property string text: editText
-                }
-                Button {
-                    text: "…"
-                    implicitWidth: 30; implicitHeight: 30
-                    font.pixelSize: 13
-                    background: Rectangle {
-                        color: parent.pressed ? "#383838" : (parent.hovered ? "#2e2e2e" : "#252525")
-                        border.color: "#3c3c3c"; radius: 4
-                    }
-                    contentItem: Text {
-                        text: parent.text; color: "#909090"; font: parent.font
-                        horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter
-                    }
-                    onClicked: {
-                        var currentPath = saveAsField.editText || (savePathForIndex(catCombo.currentIndex) + pendingFilename)
-                        saveAsDlg.currentFolder = fileUrlFromPath(currentPath.replace(/[\/\\][^\/\\]*$/, ""))
-                        saveAsDlg.selectedFile = fileUrlFromPath(currentPath)
-                        saveAsDlg.open()
-                    }
-                }
-            }
-
-            // Remember path
-            RowLayout {
-                spacing: 10
-                Item { Layout.preferredWidth: 72 }
-                CheckBox {
-                    id: rememberPathChk
-                    font.pixelSize: 11
-                    topPadding: 0
-                    bottomPadding: 0
-                    text: "Remember this path for \"" + (root.categoryLabels[catCombo.currentIndex] || "") + "\""
-                    contentItem: Text {
-                        text: rememberPathChk.text; color: "#707070"; font: rememberPathChk.font
-                        leftPadding: rememberPathChk.indicator.width + 6
-                        verticalAlignment: Text.AlignVCenter
-                    }
-                }
-            }
-
-            // Description
-            RowLayout {
-                spacing: 10
-                Text {
-                    text: "Comment"
-                    color: "#707070"; font.pixelSize: 12
-                    Layout.preferredWidth: 72
-                    horizontalAlignment: Text.AlignRight
-                }
-                TextField {
-                    id: descField
-                    Layout.fillWidth: true; implicitHeight: 30
-                    font.pixelSize: 11; color: "#d0d0d0"
-                    placeholderText: "Optional"
-                    background: Rectangle { color: "#252525"; border.color: "#3c3c3c"; radius: 4 }
-                    leftPadding: 10
-                }
-            }
-
-            Item { Layout.fillHeight: true }
-        }
-
-        // Divider
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
-        // ── Button row ─────────────────────────────────────────────────────────
-        Rectangle {
-            Layout.fillWidth: true
-            height: 56
-            color: "#1e1e1e"
-
-            RowLayout {
-                anchors { fill: parent; leftMargin: 20; rightMargin: 20 }
+            // Left: all form rows
+            ColumnLayout {
+                Layout.fillWidth: true
                 spacing: 8
 
-                // Cancel — far left, understated
-                DlgButton {
-                    text: "Cancel"
-                    onClicked: root.close()
-                }
-
-                Item { Layout.fillWidth: true }
-
-                // Download Later
-                DlgButton {
-                    text: "Download Later"
-                    implicitWidth: 130
-                    onClicked: {
-                        root._accepted = true
-                        root.downloadLater(root.pendingDownloadId, root.pendingUrl, saveAsField.editText, _catId(), descField.text)
-                        root.close()
+                // URL
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+                    Text { text: "URL"; color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Rectangle {
+                        Layout.fillWidth: true; Layout.preferredHeight: 22
+                        color: "#1b1b1b"; border.color: urlField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
+                        TextInput {
+                            id: urlField
+                            anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
+                            verticalAlignment: TextInput.AlignVCenter
+                            color: "#d0d0d0"; font.pixelSize: 11
+                            readOnly: true; selectByMouse: true; clip: true
+                            text: root.pendingUrl
+                        }
                     }
                 }
 
-                // Start Download — primary action
-                DlgButton {
-                    text: "Start Download"
-                    primary: true
-                    implicitWidth: 130
-                    onClicked: {
-                        root._accepted = true
-                        root.downloadNow(root.pendingDownloadId, root.pendingUrl, saveAsField.editText, _catId(), descField.text)
-                        root.close()
+                // Category
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+                    Text { text: "Category"; color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Rectangle {
+                        implicitWidth: 160; implicitHeight: 22
+                        color: "#1b1b1b"; border.color: "#3a3a3a"; border.width: 1; radius: 2
+                        ComboBox {
+                            id: catCombo
+                            anchors.fill: parent
+                            model: root.categoryLabels
+                            font.pixelSize: 11
+                            background: Item {}
+                            contentItem: Text {
+                                leftPadding: 6; text: catCombo.displayText
+                                color: "#d0d0d0"; font: catCombo.font
+                                verticalAlignment: Text.AlignVCenter; elide: Text.ElideRight
+                            }
+                            onCurrentIndexChanged: root._updateSavePath(currentIndex)
+                        }
+                    }
+                    Rectangle {
+                        id: addCatBtn
+                        width: 22; height: 22; radius: 2
+                        color: addCatMa.containsMouse ? "#2e2e2e" : "#1b1b1b"
+                        border.color: "#3a3a3a"; border.width: 1
+                        Text { anchors.centerIn: parent; text: "+"; color: "#909090"; font.pixelSize: 15 }
+                        MouseArea {
+                            id: addCatMa; anchors.fill: parent; hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: addCatDialog.openNew()
+                        }
+                    }
+                    Item { Layout.fillWidth: true }
+                }
+
+                // Save As
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+                    Text { text: "Save As"; color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Rectangle {
+                        Layout.fillWidth: true; Layout.preferredHeight: 22
+                        color: "#1b1b1b"; border.color: saveAsField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
+                        TextInput {
+                            id: saveAsField
+                            anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
+                            verticalAlignment: TextInput.AlignVCenter
+                            color: "#d0d0d0"; font.pixelSize: 11
+                            selectByMouse: true; clip: true
+                            onTextEdited: {
+                                var sep = Math.max(text.lastIndexOf("/"), text.lastIndexOf("\\"))
+                                dirOnlyField.text = sep >= 0 ? text.substring(0, sep + 1) : ""
+                            }
+                        }
+                    }
+                    Rectangle {
+                        width: 26; height: 22; radius: 2
+                        color: browseMa.containsMouse ? "#2e2e2e" : "#1b1b1b"
+                        border.color: "#3a3a3a"; border.width: 1
+                        Text { anchors.centerIn: parent; text: "…"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        MouseArea {
+                            id: browseMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                var cur = saveAsField.text || (savePathForIndex(catCombo.currentIndex) + pendingFilename)
+                                saveAsDlg.currentFolder = fileUrlFromPath(cur.replace(/[\/\\][^\/\\]*$/, ""))
+                                saveAsDlg.selectedFile  = fileUrlFromPath(cur)
+                                saveAsDlg.open()
+                            }
+                        }
                     }
                 }
+
+                // Remember checkbox + dir sub-field
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+                    Item { Layout.preferredWidth: 72 }
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 4
+                        CheckBox {
+                            id: rememberPathChk
+                            topPadding: 0; bottomPadding: 0
+                            text: "Remember this path for \"" + (root.categoryLabels[catCombo.currentIndex] || "") + "\" category"
+                            contentItem: Text {
+                                text: parent.text; color: "#707070"; font.pixelSize: 11
+                                leftPadding: parent.indicator.width + 4
+                                verticalAlignment: Text.AlignVCenter
+                            }
+                        }
+                        Rectangle {
+                            Layout.fillWidth: true; Layout.preferredHeight: 22
+                            color: "#161616"; border.color: "#2a2a2a"; border.width: 1; radius: 2
+                            TextInput {
+                                id: dirOnlyField
+                                anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
+                                verticalAlignment: TextInput.AlignVCenter
+                                color: "#666666"; font.pixelSize: 11
+                                readOnly: true; clip: true
+                            }
+                        }
+                    }
+                }
+
+                // Description
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 6
+                    Text { text: "Description"; color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Rectangle {
+                        Layout.fillWidth: true; Layout.preferredHeight: 22
+                        color: "#1b1b1b"; border.color: descField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
+                        TextInput {
+                            id: descField
+                            anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5
+                            verticalAlignment: TextInput.AlignVCenter
+                            color: "#d0d0d0"; font.pixelSize: 11
+                            selectByMouse: true; clip: true
+                        }
+                    }
+                }
+            }
+
+            // Right: file icon + size, vertically centered
+            Item {
+                Layout.preferredWidth: 60
+                Layout.fillHeight: true
+
+                ColumnLayout {
+                    anchors.centerIn: parent
+                    spacing: 4
+
+                    Image {
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.preferredWidth: 40; Layout.preferredHeight: 40
+                        sourceSize.width: 40; sourceSize.height: 40
+                        source: root.pendingFilename ? "image://fileicon/" + root.pendingFilename : ""
+                        fillMode: Image.PreserveAspectFit; smooth: true
+                    }
+                    Text {
+                        Layout.alignment: Qt.AlignHCenter
+                        text: root.pendingSize
+                        color: "#888888"; font.pixelSize: 10
+                        visible: root.pendingSize.length > 0
+                        horizontalAlignment: Text.AlignHCenter
+                    }
+                }
+            }
+        }
+
+        // Button row: Download Later | Start Download | spacer | Cancel
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.topMargin: 2
+            spacing: 6
+
+            DlgButton {
+                text: "Download Later"
+                onClicked: {
+                    root._accepted = true
+                    if (rememberPathChk.checked)
+                        App.categoryModel.setSavePath(_catId(), _savePath())
+                    root.downloadLater(root.pendingDownloadId, root.pendingUrl, saveAsField.text, _catId(), descField.text)
+                    root.close()
+                }
+            }
+
+            DlgButton {
+                text: "Start Download"
+                primary: true
+                onClicked: {
+                    root._accepted = true
+                    if (rememberPathChk.checked)
+                        App.categoryModel.setSavePath(_catId(), _savePath())
+                    root.downloadNow(root.pendingDownloadId, root.pendingUrl, saveAsField.text, _catId(), descField.text)
+                    root.close()
+                }
+            }
+
+            Item { Layout.fillWidth: true }
+
+            DlgButton {
+                text: "Cancel"
+                onClicked: root.close()
             }
         }
     }
 
     function _savePath() {
-        var full = saveAsField.editText
+        var full = saveAsField.text
         var sep = full.lastIndexOf("\\")
         if (sep < 0) sep = full.lastIndexOf("/")
         return sep >= 0 ? full.substring(0, sep) : full
