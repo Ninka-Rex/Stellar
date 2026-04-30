@@ -186,6 +186,7 @@ private:
     QHash<QString, TorrentTrackerModel *> m_trackerModels;
     QSet<QString> m_pausedIds;
     QSet<QString> m_movingIds;
+    QSet<QString> m_firedFinishedIds;
     QHash<QString, QDateTime> m_seedingStartTimes;
     QHash<QString, qint64> m_lastUploadBytesForInactive;
     QHash<QString, QDateTime> m_lastUploadActivityTime;

@@ -1662,7 +1662,18 @@ bool TorrentSessionManager::restoreTorrent(DownloadItem *item) {
         return false;
     if (item->statusEnum() == DownloadItem::Status::Error)
         return true;
-    const bool paused = item->statusEnum() == DownloadItem::Status::Paused;
+    // Pre-mark as already-finished to suppress spurious torrent_finished_alert
+    // re-fires that libtorrent emits during startup resume-data checking.
+    // Cover Seeding/Completed (obvious) and Checking (torrent was mid-recheck
+    // when app closed — it was already fully downloaded). Downloading/Paused
+    // with incomplete data must NOT be pre-inserted so they notify on genuine
+    // completion after resuming.
+    const auto s = item->statusEnum();
+    if (s == DownloadItem::Status::Seeding
+            || s == DownloadItem::Status::Completed
+            || s == DownloadItem::Status::Checking)
+        m_firedFinishedIds.insert(item->id());
+    const bool paused = s == DownloadItem::Status::Paused;
     if (item->torrentSource().startsWith(QStringLiteral("magnet:?"), Qt::CaseInsensitive))
         return addMagnet(item, paused);
     return addTorrentFile(item, item->torrentSource(), paused);
@@ -1765,6 +1776,7 @@ void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) 
     m_items.remove(downloadId);
     m_pausedIds.remove(downloadId);
     m_movingIds.remove(downloadId);
+    m_firedFinishedIds.remove(downloadId);
     m_lastResumeSaveRequest.remove(downloadId);
     m_trackerReannounceUntil.remove(downloadId);
     m_trackerAlertSnapshots.remove(downloadId);
@@ -2673,18 +2685,18 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         const QString id = idForHandle(finished->handle);
         DownloadItem *item = m_items.value(id, nullptr).data();
         if (item) {
-            // If already Seeding or Completed, this alert is from a recheck
-            // completing (Checking → Seeding), not a genuine new download finish.
-            // Don't re-emit torrentFinished in that case to avoid a spurious
-            // "Download Complete" notification.
-            const bool wasAlreadyDone = item->statusEnum() == DownloadItem::Status::Seeding
-                                     || item->statusEnum() == DownloadItem::Status::Completed;
             item->setStatus(DownloadItem::Status::Seeding);
             updateItemFromStatus(item, finished->handle);
             updateModels(id, finished->handle);
-            if (wasAlreadyDone)
-                return;
         }
+        // Only emit torrentFinished once per torrent lifetime. Rechecks
+        // (Checking → Seeding) and startup re-fires are suppressed because
+        // restoreTorrent pre-populates m_firedFinishedIds for already-done torrents.
+        // Status-based detection was unreliable: post_torrent_updates could set
+        // Seeding before the alert arrived, making a genuine completion look like a recheck.
+        if (m_firedFinishedIds.contains(id))
+            return;
+        m_firedFinishedIds.insert(id);
         emit torrentFinished(id);
         return;
     }
