@@ -39,6 +39,9 @@ Window {
     property bool startWhenReady: true
     readonly property var item: downloadId.length > 0 ? App.downloadById(downloadId) : null
     readonly property var fileModel: downloadId.length > 0 ? App.torrentFileModel(downloadId) : null
+    // Latched true once metadata arrives; never flips back. Prevents the Loader
+    // from swapping sourceComponent on every libtorrent tick (which resets scroll).
+    property bool _metadataArrived: false
     // Suppress per-tick file_progress() walks while this dialog is hidden.
     // FilePropertiesDialog also gates on its Files tab; here the entire dialog
     // is a file picker so visibility alone is the right signal.
@@ -153,6 +156,7 @@ Window {
         if (visible) {
             App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/milky-way.png")
             root._userInteracted = false
+            root._metadataArrived = !!(root.item && root.item.torrentHasMetadata)
             root.metaMapZoom = 1.0
             root.metaMapPanX = 0
             root.metaMapPanY = 0
@@ -177,12 +181,14 @@ Window {
         }
     }
 
-    // Update window title as soon as the torrent name is known.
+    // Update window title and latch metadata state when item is assigned.
     onItemChanged: {
         // Reset to default first so a stale name from a previous torrent never persists.
         root.title = "Torrent Metadata"
         if (root.item && root.item.filename && root.item.filename.length > 0)
             root.title = root.item.filename
+        if (root.item && root.item.torrentHasMetadata)
+            root._metadataArrived = true
     }
 
     Connections {
@@ -192,9 +198,11 @@ Window {
                 root.title = root.item.filename
         }
         function onTorrentHasMetadataChanged() {
-            if (root.item && root.item.torrentHasMetadata
-                    && root.item.filename && root.item.filename.length > 0)
-                root.title = root.item.filename
+            if (root.item && root.item.torrentHasMetadata) {
+                if (root.item.filename && root.item.filename.length > 0)
+                    root.title = root.item.filename
+                root._metadataArrived = true
+            }
         }
     }
 
@@ -633,7 +641,7 @@ Window {
                 id: contentLoader
                 anchors.fill: parent
                 active: !!root.item
-                sourceComponent: root.item && root.item.torrentHasMetadata ? filesView : waitingView
+                sourceComponent: root._metadataArrived ? filesView : waitingView
             }
         }
 

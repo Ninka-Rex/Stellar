@@ -68,6 +68,7 @@ public:
     Q_INVOKABLE bool renameEntry(int row, const QString &newName);
     Q_INVOKABLE bool renamePath(const QString &currentPath, const QString &newName);
     QVector<Entry> fileEntries() const { return m_fileEntries; }
+    int fileCount() const { return m_fileEntries.size(); }
 
 private:
     struct Node {

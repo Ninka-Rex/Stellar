@@ -1029,6 +1029,18 @@ Rectangle {
         ScrollBar.vertical: ScrollBar {}
         ScrollBar.horizontal: ScrollBar {}
 
+        WheelHandler {
+            acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
+            onWheel: function(e) {
+                if (e.angleDelta.x !== 0) {
+                    tableView.contentX = Math.max(0,
+                        Math.min(tableView.contentX - e.angleDelta.x / 8 * 3,
+                                 tableView.contentWidth - tableView.width))
+                    e.accepted = true
+                }
+            }
+        }
+
         delegate: Rectangle {
             id: rowRect
             width: root.visibleContentWidth

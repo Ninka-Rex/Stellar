@@ -2827,7 +2827,7 @@ void TorrentSessionManager::updateModels(const QString &downloadId, const libtor
         const auto ti = handle.torrent_file();
         const auto &files = ti->files();
 
-        if (fileModel->rowCount() != files.num_files()) {
+        if (fileModel->fileCount() != files.num_files()) {
             const auto priorities = handle.get_file_priorities();
             QVector<TorrentFileModel::Entry> entries;
             entries.reserve(files.num_files());
