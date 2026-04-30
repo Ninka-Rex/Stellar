@@ -247,7 +247,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/pause_purple.png
         app/qml/icons/resume_purple.png
         app/qml/icons/pause_orange.png
-        app/qml/icons/Tools.ico
+        app/qml/icons/tools.png
         app/qml/icons/x_square.ico
         app/qml/icons/download.ico
         app/qml/icons/resume.ico
@@ -256,7 +256,6 @@ qt_add_qml_module(Stellar
         app/qml/icons/delete.ico
         app/qml/icons/remove.ico
         app/qml/icons/properties.ico
-        app/qml/icons/downloads.ico
         app/qml/icons/scheduler.png
         app/qml/icons/help.ico
         app/qml/icons/update.png
@@ -269,7 +268,9 @@ qt_add_qml_module(Stellar
         app/qml/icons/arrow_left.ico
         app/qml/icons/exit.ico
         app/qml/icons/add.ico
+        app/qml/icons/spider.png
         app/qml/icons/wand.ico
+        app/qml/icons/magnifying_glass.png
         app/qml/icons/search.ico
         app/qml/icons/rss.png
         app/qml/icons/cancel.ico
@@ -308,14 +309,16 @@ qt_add_qml_module(Stellar
         app/qml/icons/torrent-client-logos/utorrent.png
         app/qml/icons/torrent-client-logos/vuze.png
         app/qml/icons/torrent-client-logos/XunLei.png
-        app/qml/icons/folder.ico
+        app/qml/icons/folder.png
         app/qml/icons/arrow_download.ico
         app/qml/icons/scheduler2.ico
-        app/qml/icons/folderdocuments.ico
-        app/qml/icons/foldermusic.ico
-        app/qml/icons/folderpictures.ico
-        app/qml/icons/foldervideos.ico
         app/qml/icons/add_url.png
+        app/qml/icons/categories/all_downloads.png
+        app/qml/icons/categories/compressed.png
+        app/qml/icons/categories/documents.png
+        app/qml/icons/categories/note.png
+        app/qml/icons/categories/programs.png
+        app/qml/icons/categories/video.png
         app/qml/icons/resume.png
         app/qml/icons/pause.png
         app/qml/icons/exit.png
@@ -331,6 +334,7 @@ qt_add_qml_module(Stellar
         app/qml/icons/globe.png
         app/qml/icons/information.png
         app/qml/icons/link.png
+        app/qml/icons/trash.png
         app/qml/icons/file_no_longer_available.png
         app/qml/icons/world-map.svg
         app/qml/icons/page.ico

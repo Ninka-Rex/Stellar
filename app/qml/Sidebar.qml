@@ -187,7 +187,7 @@ Rectangle {
                                     color: "#999"; font.pixelSize: 12; width: 16
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
-                                Image { source: "icons/downloads.ico"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
+                                Image { source: "icons/categories/all_downloads.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                                 Text {
                                     text: "All Downloads"
                                     color: root.selectedIndex === 999 ? "#88bbff" : "#cccccc"
@@ -457,7 +457,7 @@ Rectangle {
                               anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 0 }
                               spacing: 5
                             Item { width: 3; height: 1 }
-                            Image { source: "icons/folder.ico"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
+                            Image { source: "icons/folder.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                             Text { text: "Unfinished"; color: root.selectedIndex === -1 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                         }
                         MouseArea {
@@ -527,7 +527,7 @@ Rectangle {
                               anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 0 }
                               spacing: 5
                             Item { width: 3; height: 1 }
-                            Image { source: "icons/folder.ico"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
+                            Image { source: "icons/folder.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                             Text { text: "Finished"; color: root.selectedIndex === -2 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                         }
                         MouseArea {
@@ -608,7 +608,7 @@ Rectangle {
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                                 Image {
-                                    source: "icons/wand.ico"
+                                    source: "icons/spider.png"
                                     width: 16
                                     height: 16
                                     sourceSize.width: 16
@@ -716,7 +716,7 @@ Rectangle {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 22 }
                                     spacing: 5
                                     Image {
-                                        source: "icons/folder.ico"
+                                        source: "icons/folder.png"
                                         width: 16
                                         height: 16
                                         sourceSize.width: 16
@@ -934,7 +934,7 @@ Rectangle {
                                     case "torrent_inactive":    return "icons/torrent-categories/inactive.png"
                                     case "torrent_checking":    return "icons/torrent-categories/checking.png"
                                     case "torrent_moving":      return "icons/torrent-categories/moving.png"
-                                    default:                    return "icons/folder.ico"
+                                    default:                    return "icons/folder.png"
                                     }
                                 }
                                 // selectedIndex for subcats: -201 .. -207

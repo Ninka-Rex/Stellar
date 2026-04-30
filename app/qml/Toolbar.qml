@@ -59,7 +59,7 @@ Rectangle {
         anchors { fill: parent; topMargin: 4; bottomMargin: 4; leftMargin: 2 }
         spacing: 0
 
-        ToolbarBtn { label: "Add URL";        iconSrc: "icons/new_file.ico";    onClicked: root.addClicked() }
+        ToolbarBtn { label: "Add URL";        iconSrc: "icons/link.png";        onClicked: root.addClicked() }
         // selectedItemStatus is a string Q_PROPERTY on DownloadTable — it emits
         // selectedItemStatusChanged whenever the focused item's status changes,
         // making cross-component enabled bindings reliably reactive.
@@ -76,10 +76,10 @@ Rectangle {
             onClicked: root.stopClicked()
         }
         ToolbarBtn { label: "Stop All"; iconSrc: "icons/pause_orange.png"; enabled: App.activeDownloads > 0;                          onClicked: root.stopAllClicked() }
-        ToolbarBtn { label: "Delete";   iconSrc: "icons/remove.png";       enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
-        ToolbarBtn { label: "Delete Done";    iconSrc: "icons/files_x.png";     onClicked: root.deleteCompletedClicked() }
-        ToolbarBtn { label: "Options";        iconSrc: "icons/Tools.ico";       onClicked: root.optionsClicked() }
-        ToolbarBtn { label: "Scheduler";      iconSrc: "icons/scheduler.png"; onClicked: root.schedulerClicked() }
+        ToolbarBtn { label: "Delete";      iconSrc: "icons/trash.png"; enabled: downloadTable ? downloadTable.hasSelection : false; onClicked: root.deleteClicked() }
+        ToolbarBtn { label: "Delete Done"; iconSrc: "icons/trash.png";      onClicked: root.deleteCompletedClicked() }
+        ToolbarBtn { label: "Options";        iconSrc: "icons/tools.png";     onClicked: root.optionsClicked() }
+        ToolbarBtn { label: "Scheduler";      iconSrc: "icons/clock.png";     onClicked: root.schedulerClicked() }
 
         // Start Queue dropdown
         ToolbarDropdown {
@@ -97,9 +97,9 @@ Rectangle {
             onQueueSelected: (queueId) => root.stopQueueRequested(queueId)
         }
 
-        ToolbarBtn { label: "Grabber";        iconSrc: "icons/wand.ico";   onClicked: root.grabberClicked() }
+        ToolbarBtn { label: "Grabber";        iconSrc: "icons/spider.png";         onClicked: root.grabberClicked() }
         ToolbarBtn {
-            label: "Search Engine"; iconSrc: "icons/search.ico"
+            label: "Search Engine"; iconSrc: "icons/magnifying_glass.png"
             visible: App.settings.showSearchEngine
             onClicked: root.searchEngineClicked()
         }

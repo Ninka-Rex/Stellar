@@ -357,7 +357,7 @@ Window {
     }
 
     Component.onCompleted: {
-        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.ico")
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/spider.png")
     }
 
     onClosing: (close) => {
@@ -748,7 +748,7 @@ Window {
                                         spacing: 5
 
                                         Image {
-                                            source: "icons/downloads.ico"
+                                            source: "icons/categories/all_downloads.png"
                                             width: 14; height: 14
                                             sourceSize.width: 14; sourceSize.height: 14
                                             fillMode: Image.PreserveAspectFit
@@ -944,7 +944,7 @@ Window {
                                                 anchors.verticalCenter: parent.verticalCenter
                                             }
                                             Image {
-                                                source: "icons/folder.ico"
+                                                source: "icons/folder.png"
                                                 width: 14; height: 14
                                                 sourceSize.width: 14; sourceSize.height: 14
                                                 fillMode: Image.PreserveAspectFit

@@ -459,7 +459,7 @@ Window {
     }
 
     Component.onCompleted: {
-        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/wand.ico")
+        App.setWindowIcon(root, ":/qt/qml/com/stellar/app/app/qml/icons/spider.png")
         refreshRecentProjects()
         loadProject(root.projectId.length > 0
             ? App.grabberProjectData(root.projectId)
@@ -695,7 +695,7 @@ Window {
                     spacing: 10
 
                     Image {
-                        source: "icons/wand.ico"
+                        source: "icons/spider.png"
                         width: 20; height: 20
                         sourceSize: Qt.size(20, 20)
                         fillMode: Image.PreserveAspectFit
