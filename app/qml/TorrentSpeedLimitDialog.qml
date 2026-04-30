@@ -20,17 +20,13 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQuick.Layouts
 
-// Per-torrent settings dialog.
-//
-// Set `torrentItem` before showing. Tracks clean/dirty state for speed limits,
-// share limits, and peer-discovery flags so the Apply button reflects all edits.
 Window {
     id: root
 
-    width:         760
-    height:        540
-    minimumWidth:  700
-    minimumHeight: 500
+    width:         560
+    height:        460
+    minimumWidth:  520
+    minimumHeight: 420
     title:         "Torrent Settings"
     color:         "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
@@ -40,15 +36,10 @@ Window {
     Material.background: "#1e1e1e"
     Material.accent:     "#4488dd"
 
-    // ── Public API ────────────────────────────────────────────────────────────
     property var torrentItem: null
 
-    // ── Private edit state — speed limits ─────────────────────────────────────
-    property int _editDown: 0
-    property int _editUp:   0
-
-    // ── Private edit state — share limits ────────────────────────────────────
-    // mode: 0 = Default (use global), 1 = Unlimited, 2 = Set To
+    property int    _editDown: 0
+    property int    _editUp:   0
     property int    _ratioMode:    0
     property string _ratioText:    ""
     property int    _seedMode:     0
@@ -58,14 +49,14 @@ Window {
     property bool   _editDisableDht: false
     property bool   _editDisablePex: false
     property bool   _editDisableLsd: false
+    property bool   _editSequential:      false
+    property bool   _editFirstLastPieces: false
 
-    // ── Dirty tracking ────────────────────────────────────────────────────────
     readonly property bool _speedDirty:
         !!torrentItem && (
             (torrentItem.perTorrentDownLimitKBps | 0) !== _editDown ||
             (torrentItem.perTorrentUpLimitKBps   | 0) !== _editUp
         )
-
     readonly property bool _shareDirty:
         !!torrentItem && (
             _modeFromItem(torrentItem.torrentShareRatioLimit, "ratio")         !== _ratioMode    ||
@@ -75,22 +66,23 @@ Window {
             _modeFromItem(torrentItem.torrentInactiveSeedingTimeLimitMins, "inactive") !== _inactiveMode ||
             (_inactiveMode === 2 && _textFromItem(torrentItem.torrentInactiveSeedingTimeLimitMins, "inactive") !== _inactiveText)
         )
-
     readonly property bool _flagsDirty:
         !!torrentItem && (
             !!torrentItem.torrentDisableDht !== _editDisableDht ||
             !!torrentItem.torrentDisablePex !== _editDisablePex ||
             !!torrentItem.torrentDisableLsd !== _editDisableLsd
         )
+    readonly property bool _modeDirty:
+        !!torrentItem && (
+            !!torrentItem.torrentSequential      !== _editSequential ||
+            !!torrentItem.torrentFirstLastPieces !== _editFirstLastPieces
+        )
+    readonly property bool dirty: _speedDirty || _shareDirty || _flagsDirty || _modeDirty
 
-    readonly property bool dirty: _speedDirty || _shareDirty || _flagsDirty
-
-    // ── Helpers ───────────────────────────────────────────────────────────────
-    // -1 = Default, -2 = Unlimited, >=0 = explicit value
     function _modeFromItem(v, type) {
-        if (v < -1.5) return 1          // -2 = Unlimited
-        if (v < 0)    return 0          // -1 = Default
-        return 2                        // >=0 = Set To
+        if (v < -1.5) return 1
+        if (v < 0)    return 0
+        return 2
     }
     function _textFromItem(v, type) {
         if (v < 0) return ""
@@ -98,101 +90,162 @@ Window {
         return String(Math.round(v))
     }
 
-    // ── Lifecycle ─────────────────────────────────────────────────────────────
     onVisibleChanged:     if (visible) _reset()
     onTorrentItemChanged: _reset()
 
     Connections {
         target: root.torrentItem
         function onTorrentLimitsChanged() { if (!root.dirty) root._reset() }
-        function onTorrentFlagsChanged() { if (!root.dirty) root._reset() }
+        function onTorrentFlagsChanged()  { if (!root.dirty) root._reset() }
     }
 
     function _reset() {
         if (!torrentItem) return
-
-        // Speed limits
         _editDown = torrentItem.perTorrentDownLimitKBps | 0
         _editUp   = torrentItem.perTorrentUpLimitKBps   | 0
         downInput.text = String(_editDown)
         upInput.text   = String(_editUp)
-
-        // Share limits
         _ratioMode    = _modeFromItem(torrentItem.torrentShareRatioLimit, "ratio")
         _ratioText    = _textFromItem(torrentItem.torrentShareRatioLimit, "ratio")
         _seedMode     = _modeFromItem(torrentItem.torrentSeedingTimeLimitMins, "seed")
         _seedText     = _textFromItem(torrentItem.torrentSeedingTimeLimitMins, "seed")
         _inactiveMode = _modeFromItem(torrentItem.torrentInactiveSeedingTimeLimitMins, "inactive")
         _inactiveText = _textFromItem(torrentItem.torrentInactiveSeedingTimeLimitMins, "inactive")
-        _editDisableDht = !!torrentItem.torrentDisableDht
-        _editDisablePex = !!torrentItem.torrentDisablePex
-        _editDisableLsd = !!torrentItem.torrentDisableLsd
-
+        _editDisableDht      = !!torrentItem.torrentDisableDht
+        _editDisablePex      = !!torrentItem.torrentDisablePex
+        _editDisableLsd      = !!torrentItem.torrentDisableLsd
+        _editSequential      = !!torrentItem.torrentSequential
+        _editFirstLastPieces = !!torrentItem.torrentFirstLastPieces
         if (ratioInput)    ratioInput.text    = _ratioText
         if (seedInput)     seedInput.text     = _seedText
         if (inactiveInput) inactiveInput.text = _inactiveText
     }
 
-    // ── UI ────────────────────────────────────────────────────────────────────
+    component InlineCheck: RowLayout {
+        id: chkRoot
+        property alias checked: chk.checked
+        property alias enabled: chk.enabled
+        property string label: ""
+        property string subtext: ""
+        signal toggled()
+        spacing: 7
+        CheckBox {
+            id: chk
+            topPadding: 0; bottomPadding: 0
+            onToggled: chkRoot.toggled()
+            contentItem: Item {}
+            indicator: Rectangle {
+                implicitWidth: 14; implicitHeight: 14; radius: 2
+                color: chk.checked ? "#4488dd" : "#1b1b1b"
+                border.color: chk.checked ? "#4488dd" : (chk.enabled ? "#3a3a3a" : "#2a2a2a")
+                opacity: chk.enabled ? 1.0 : 0.5
+                Text {
+                    visible: chk.checked
+                    anchors.centerIn: parent
+                    text: "✓"; color: "#fff"; font.pixelSize: 9; font.bold: true
+                }
+            }
+        }
+        ColumnLayout {
+            Layout.fillWidth: true; spacing: 0
+            Text { text: chkRoot.label; color: chk.enabled ? "#d0d0d0" : "#666666"; font.pixelSize: 12 }
+            Text {
+                visible: chkRoot.subtext.length > 0
+                text: chkRoot.subtext; color: "#7a8a9a"; font.pixelSize: 10
+            }
+        }
+    }
+
+    // Header strip
     Rectangle {
+        id: headerStrip
         anchors { left: parent.left; right: parent.right; top: parent.top }
-        height: 72
+        height: 44
         color: "#222228"
 
         RowLayout {
-            anchors {
-                fill: parent
-                leftMargin: 20; rightMargin: 20
-                topMargin: 12; bottomMargin: 12
-            }
-            spacing: 14
+            anchors { fill: parent; leftMargin: 12; rightMargin: 12; topMargin: 7; bottomMargin: 7 }
+            spacing: 10
 
-            Item {
-                width: 44
-                height: 44
-
-                Image {
-                    anchors.centerIn: parent
-                    width: 28
-                    height: 28
-                    source: {
-                        if (!root.torrentItem) return ""
-                        var p = String(root.torrentItem.savePath || "").replace(/\\/g, "/")
-                        var f = String(root.torrentItem.filename || "")
-                        return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
-                    }
-                    sourceSize: Qt.size(28, 28)
-                    fillMode: Image.PreserveAspectFit
-                    asynchronous: true
+            Image {
+                Layout.preferredWidth: 26; Layout.preferredHeight: 26
+                source: {
+                    if (!root.torrentItem) return ""
+                    var p = String(root.torrentItem.savePath || "").replace(/\\/g, "/")
+                    var f = String(root.torrentItem.filename || "")
+                    return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
                 }
+                sourceSize: Qt.size(26, 26); fillMode: Image.PreserveAspectFit; asynchronous: true
             }
-
             ColumnLayout {
-                Layout.fillWidth: true
-                spacing: 3
-
+                Layout.fillWidth: true; spacing: 1
                 Text {
                     Layout.fillWidth: true
                     text: root.torrentItem ? root.torrentItem.filename : ""
-                    color: "#e8e8e8"
-                    font.pixelSize: 15
-                    font.weight: Font.Medium
-                    elide: Text.ElideMiddle
+                    color: "#e8e8e8"; font.pixelSize: 13; font.weight: Font.Medium; elide: Text.ElideMiddle
                 }
                 Text {
-                    Layout.fillWidth: true
-                    text: "Per-torrent limits, share rules, and peer discovery"
-                    color: "#8899aa"
-                    font.pixelSize: 11
-                    elide: Text.ElideRight
+                    text: "Per-torrent speed, share limits, peer discovery, and download mode"
+                    color: "#8899aa"; font.pixelSize: 10
                 }
             }
         }
     }
 
+    // Button bar — anchored to bottom so it is never clipped
+    Rectangle {
+        id: buttonBar
+        anchors { left: parent.left; right: parent.right; bottom: parent.bottom }
+        height: 48
+        color: "#1e1e1e"
+
+        Rectangle {
+            anchors { left: parent.left; right: parent.right; top: parent.top }
+            height: 1; color: "#2d2d2d"
+        }
+
+        RowLayout {
+            anchors { fill: parent; leftMargin: 12; rightMargin: 12; topMargin: 8; bottomMargin: 8 }
+            spacing: 8
+            Item { Layout.fillWidth: true }
+            DlgButton {
+                text: "Close"
+                onClicked: root.close()
+            }
+            DlgButton {
+                text: "Apply"
+                primary: true
+                enabled: root.dirty
+                onClicked: {
+                    if (!root.torrentItem) return
+                    App.setTorrentSpeedLimits(root.torrentItem.id,
+                                              Math.max(0, root._editDown),
+                                              Math.max(0, root._editUp))
+                    var ratio     = root._ratioMode === 0 ? -1.0
+                                  : root._ratioMode === 1 ? -2.0
+                                  : Math.max(0, parseFloat(root._ratioText) || 0.0)
+                    var seedMins  = root._seedMode === 0 ? -1
+                                  : root._seedMode === 1 ? -2
+                                  : Math.max(0, parseInt(root._seedText, 10) || 0)
+                    var inactMins = root._inactiveMode === 0 ? -1
+                                  : root._inactiveMode === 1 ? -2
+                                  : Math.max(0, parseInt(root._inactiveText, 10) || 0)
+                    App.setTorrentShareLimits(root.torrentItem.id, ratio, seedMins, inactMins, -1)
+                    App.setTorrentFlags(root.torrentItem.id,
+                                        root._editDisableDht,
+                                        root._editDisablePex,
+                                        root._editDisableLsd)
+                    App.setTorrentDownloadMode(root.torrentItem.id,
+                                               root._editSequential,
+                                               root._editFirstLastPieces)
+                }
+            }
+        }
+    }
+
+    // Scrollable content area — sits between header and button bar
     ScrollView {
-        anchors.fill: parent
-        anchors.topMargin: 72
+        anchors { left: parent.left; right: parent.right; top: headerStrip.bottom; bottom: buttonBar.top }
         contentWidth: availableWidth
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
 
@@ -202,506 +255,254 @@ Window {
 
             ColumnLayout {
                 Layout.fillWidth: true
-                Layout.margins: 14
-                spacing: 10
+                Layout.margins: 10
+                spacing: 8
 
-                // Header — torrent name
-                Rectangle {
-                    visible: false
-                    Layout.fillWidth: true
-                    Layout.leftMargin: -14
-                    Layout.rightMargin: -14
-                    height: 0
-                    color: "#222228"; border.color: "#2d2d2d"; radius: 0
-
-                    RowLayout {
-                        anchors {
-                            fill: parent
-                            leftMargin: 18; rightMargin: 18
-                            topMargin: 12; bottomMargin: 12
-                        }
-                        spacing: 14
-
-                        Rectangle {
-                            visible: false
-                            width: 0; height: 0; radius: 0
-                            color: "#1c2430"; border.color: "#33455a"
-                            Text {
-                                anchors.centerIn: parent
-                                text: "⚙"; font.pixelSize: 16; color: "#4488dd"
-                            }
-                        }
-                        Item {
-                            width: 44
-                            height: 44
-
-                            Image {
-                                anchors.centerIn: parent
-                                width: 28
-                                height: 28
-                                source: {
-                                    if (!root.torrentItem) return ""
-                                    var p = String(root.torrentItem.savePath || "").replace(/\\/g, "/")
-                                    var f = String(root.torrentItem.filename || "")
-                                    return (p && f) ? ("image://fileicon/" + p + "/" + f) : ""
-                                }
-                                sourceSize: Qt.size(28, 28)
-                                fillMode: Image.PreserveAspectFit
-                                asynchronous: true
-                            }
-                        }
-
-                        ColumnLayout {
-                            Layout.fillWidth: true; spacing: 3
-                            Text {
-                                Layout.fillWidth: true
-                                text: root.torrentItem ? root.torrentItem.filename : ""
-                                color: "#e8e8e8"; font.pixelSize: 15; font.weight: Font.Medium
-                                elide: Text.ElideMiddle
-                            }
-                            Text {
-                                Layout.fillWidth: true
-                                text: "Per-torrent limits, share rules, and peer discovery"
-                                color: "#8899aa"; font.pixelSize: 11
-                                elide: Text.ElideRight
-                            }
-                        }
-                    }
-                }
-
-                // ── Speed limits ─────────────────────────────────────────────
+                // ── Bandwidth limits ──────────────────────────────────────────
                 Rectangle {
                     Layout.fillWidth: true
-                    color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
-                    implicitHeight: limitsCol.implicitHeight + 20
+                    color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
+                    implicitHeight: bwCol.implicitHeight + 14
 
                     ColumnLayout {
-                        id: limitsCol
-                        anchors { fill: parent; margins: 10 }
-                        spacing: 10
+                        id: bwCol
+                        anchors { fill: parent; margins: 7 }
+                        spacing: 7
 
-                        Text {
-                            text: "BANDWIDTH LIMITS"
-                            color: "#8899aa"; font.pixelSize: 10; font.bold: true
-                        }
+                        Text { text: "BANDWIDTH LIMITS"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
-                        GridLayout {
-                            Layout.fillWidth: true
-                            columns: 6
-                            columnSpacing: 10
-                            rowSpacing: 8
-
-                            Text { text: "Download"; color: "#8899aa"; font.pixelSize: 12 }
-                            TextField {
-                                id: downInput
-                                Layout.preferredWidth: 110
-                                validator: IntValidator { bottom: 0; top: 1048576 }
-                                text: String(root._editDown)
-                                color: "#d0d0d0"; font.pixelSize: 12
-                                leftPadding: 6; rightPadding: 6; selectByMouse: true
-                                background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
-                                }
-                                onTextChanged: {
-                                    var n = parseInt(text, 10)
-                                    root._editDown = isNaN(n) ? 0 : Math.max(0, n)
+                        RowLayout {
+                            Layout.fillWidth: true; spacing: 8
+                            Text { text: "Download:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 66 }
+                            Rectangle {
+                                Layout.preferredWidth: 86; height: 22; radius: 2
+                                color: "#1b1b1b"; border.color: downInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                TextInput {
+                                    id: downInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    validator: IntValidator { bottom: 0; top: 1048576 }
+                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
+                                    onTextChanged: { var n = parseInt(text, 10); root._editDown = isNaN(n) ? 0 : Math.max(0, n) }
                                 }
                             }
                             Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 }
-                            Text { text: "Upload"; color: "#8899aa"; font.pixelSize: 12 }
-                            TextField {
-                                id: upInput
-                                Layout.preferredWidth: 110
-                                validator: IntValidator { bottom: 0; top: 1048576 }
-                                text: String(root._editUp)
-                                color: "#d0d0d0"; font.pixelSize: 12
-                                leftPadding: 6; rightPadding: 6; selectByMouse: true
-                                background: Rectangle {
-                                    color: "#1b1b1b"
-                                    border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
-                                }
-                                onTextChanged: {
-                                    var n = parseInt(text, 10)
-                                    root._editUp = isNaN(n) ? 0 : Math.max(0, n)
+                            Item { Layout.preferredWidth: 8 }
+                            Text { text: "Upload:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 50 }
+                            Rectangle {
+                                Layout.preferredWidth: 86; height: 22; radius: 2
+                                color: "#1b1b1b"; border.color: upInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                TextInput {
+                                    id: upInput
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    verticalAlignment: TextInput.AlignVCenter
+                                    validator: IntValidator { bottom: 0; top: 1048576 }
+                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
+                                    onTextChanged: { var n = parseInt(text, 10); root._editUp = isNaN(n) ? 0 : Math.max(0, n) }
                                 }
                             }
                             Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 }
-                        }
-
-                        Text {
-                            text: "Set to 0 for no individual limit (global limit still applies)"
-                            color: "#7f8a94"; font.pixelSize: 10
-                            wrapMode: Text.WordWrap; Layout.fillWidth: true
+                            Item { Layout.fillWidth: true }
                         }
                     }
                 }
 
-                // ── Share limits ─────────────────────────────────────────────
-                RowLayout {
-                    Layout.fillWidth: true
-                    spacing: 10
-
+                // ── Share limits ──────────────────────────────────────────────
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredWidth: 1
-                    color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
-                    implicitHeight: shareCol.implicitHeight + 20
+                    color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
+                    implicitHeight: shareCol.implicitHeight + 14
 
                     ColumnLayout {
                         id: shareCol
-                        anchors { fill: parent; margins: 10 }
-                        spacing: 10
+                        anchors { fill: parent; margins: 7 }
+                        spacing: 7
 
-                        Text {
-                            text: "SHARE LIMITS"
-                            color: "#8899aa"; font.pixelSize: 10; font.bold: true
-                        }
+                        Text { text: "SHARE LIMITS"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
-                        // Ratio
-                        ColumnLayout {
+                        RowLayout {
                             Layout.fillWidth: true; spacing: 6
-
-                            Text { text: "Ratio limit"; color: "#c0c0c0"; font.pixelSize: 12 }
-
-                            RowLayout {
-                                Layout.fillWidth: true; spacing: 6
-
-                                Repeater {
-                                    model: ["Default", "Unlimited", "Set to"]
-                                    delegate: Rectangle {
-                                        required property int    index
-                                        required property string modelData
-                                        height: 24
-                                        implicitWidth: modeLabel.implicitWidth + 16
-                                        radius: 3
-                                        color: root._ratioMode === index ? "#1a3a6a" : "#252525"
-                                        border.color: root._ratioMode === index ? "#4488dd" : "#3a3a3a"
-                                        Text {
-                                            id: modeLabel
-                                            anchors.centerIn: parent
-                                            text: modelData
-                                            color: root._ratioMode === index ? "#88aaee" : "#888888"
-                                            font.pixelSize: 11
-                                        }
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            onClicked: root._ratioMode = index
-                                        }
-                                    }
+                            Text { text: "Ratio:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Repeater {
+                                model: ["Default", "Unlimited", "Set to"]
+                                delegate: Rectangle {
+                                    required property int index; required property string modelData
+                                    height: 21; implicitWidth: rl.implicitWidth + 12; radius: 2
+                                    color: root._ratioMode === index ? "#1a3a6a" : "#252525"
+                                    border.color: root._ratioMode === index ? "#4488dd" : "#3a3a3a"
+                                    Text { id: rl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11
+                                           color: root._ratioMode === index ? "#88aaee" : "#888888" }
+                                    MouseArea { anchors.fill: parent; onClicked: root._ratioMode = index }
                                 }
-
-                                TextField {
+                            }
+                            Rectangle {
+                                visible: root._ratioMode === 2
+                                Layout.preferredWidth: 64; height: 21; radius: 2
+                                color: "#1b1b1b"; border.color: ratioInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                TextInput {
                                     id: ratioInput
-                                    visible: root._ratioMode === 2
-                                    Layout.preferredWidth: 80
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    verticalAlignment: TextInput.AlignVCenter
                                     text: root._ratioText
-                                    color: "#d0d0d0"; font.pixelSize: 12
-                                    leftPadding: 6; rightPadding: 6; selectByMouse: true
                                     validator: DoubleValidator { bottom: 0.0; top: 9999.0; decimals: 2; notation: DoubleValidator.StandardNotation }
-                                    background: Rectangle {
-                                        color: "#1b1b1b"
-                                        border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
-                                    }
+                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
                                     onTextChanged: root._ratioText = text
                                 }
-                                Item { Layout.fillWidth: true }
                             }
+                            Item { Layout.fillWidth: true }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
-                        // Seeding time
-                        ColumnLayout {
+                        RowLayout {
                             Layout.fillWidth: true; spacing: 6
-
-                            Text { text: "Seeding time limit"; color: "#c0c0c0"; font.pixelSize: 12 }
-
-                            RowLayout {
-                                Layout.fillWidth: true; spacing: 6
-
-                                Repeater {
-                                    model: ["Default", "Unlimited", "Set to"]
-                                    delegate: Rectangle {
-                                        required property int    index
-                                        required property string modelData
-                                        height: 24
-                                        implicitWidth: seedModeLabel.implicitWidth + 16
-                                        radius: 3
-                                        color: root._seedMode === index ? "#1a3a6a" : "#252525"
-                                        border.color: root._seedMode === index ? "#4488dd" : "#3a3a3a"
-                                        Text {
-                                            id: seedModeLabel
-                                            anchors.centerIn: parent
-                                            text: modelData
-                                            color: root._seedMode === index ? "#88aaee" : "#888888"
-                                            font.pixelSize: 11
-                                        }
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            onClicked: root._seedMode = index
-                                        }
-                                    }
+                            Text { text: "Seeding time:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Repeater {
+                                model: ["Default", "Unlimited", "Set to"]
+                                delegate: Rectangle {
+                                    required property int index; required property string modelData
+                                    height: 21; implicitWidth: sl.implicitWidth + 12; radius: 2
+                                    color: root._seedMode === index ? "#1a3a6a" : "#252525"
+                                    border.color: root._seedMode === index ? "#4488dd" : "#3a3a3a"
+                                    Text { id: sl; anchors.centerIn: parent; text: modelData; font.pixelSize: 11
+                                           color: root._seedMode === index ? "#88aaee" : "#888888" }
+                                    MouseArea { anchors.fill: parent; onClicked: root._seedMode = index }
                                 }
-
-                                TextField {
+                            }
+                            Rectangle {
+                                visible: root._seedMode === 2
+                                Layout.preferredWidth: 64; height: 21; radius: 2
+                                color: "#1b1b1b"; border.color: seedInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                TextInput {
                                     id: seedInput
-                                    visible: root._seedMode === 2
-                                    Layout.preferredWidth: 80
-                                    text: root._seedText
-                                    color: "#d0d0d0"; font.pixelSize: 12
-                                    leftPadding: 6; rightPadding: 6; selectByMouse: true
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    verticalAlignment: TextInput.AlignVCenter; text: root._seedText
                                     validator: IntValidator { bottom: 0; top: 999999 }
-                                    background: Rectangle {
-                                        color: "#1b1b1b"
-                                        border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
-                                    }
+                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
                                     onTextChanged: root._seedText = text
                                 }
-                                Text {
-                                    visible: root._seedMode === 2
-                                    text: "min"; color: "#666"; font.pixelSize: 12
-                                }
-                                Item { Layout.fillWidth: true }
                             }
+                            Text { visible: root._seedMode === 2; text: "min"; color: "#666"; font.pixelSize: 12 }
+                            Item { Layout.fillWidth: true }
                         }
 
-                        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-
-                        // Inactive seeding time
-                        ColumnLayout {
+                        RowLayout {
                             Layout.fillWidth: true; spacing: 6
-
-                            Text { text: "Inactive seeding time limit"; color: "#c0c0c0"; font.pixelSize: 12 }
-
-                            RowLayout {
-                                Layout.fillWidth: true; spacing: 6
-
-                                Repeater {
-                                    model: ["Default", "Unlimited", "Set to"]
-                                    delegate: Rectangle {
-                                        required property int    index
-                                        required property string modelData
-                                        height: 24
-                                        implicitWidth: inactModeLabel.implicitWidth + 16
-                                        radius: 3
-                                        color: root._inactiveMode === index ? "#1a3a6a" : "#252525"
-                                        border.color: root._inactiveMode === index ? "#4488dd" : "#3a3a3a"
-                                        Text {
-                                            id: inactModeLabel
-                                            anchors.centerIn: parent
-                                            text: modelData
-                                            color: root._inactiveMode === index ? "#88aaee" : "#888888"
-                                            font.pixelSize: 11
-                                        }
-                                        MouseArea {
-                                            anchors.fill: parent
-                                            onClicked: root._inactiveMode = index
-                                        }
-                                    }
+                            Text { text: "Inactive time:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Repeater {
+                                model: ["Default", "Unlimited", "Set to"]
+                                delegate: Rectangle {
+                                    required property int index; required property string modelData
+                                    height: 21; implicitWidth: il.implicitWidth + 12; radius: 2
+                                    color: root._inactiveMode === index ? "#1a3a6a" : "#252525"
+                                    border.color: root._inactiveMode === index ? "#4488dd" : "#3a3a3a"
+                                    Text { id: il; anchors.centerIn: parent; text: modelData; font.pixelSize: 11
+                                           color: root._inactiveMode === index ? "#88aaee" : "#888888" }
+                                    MouseArea { anchors.fill: parent; onClicked: root._inactiveMode = index }
                                 }
-
-                                TextField {
+                            }
+                            Rectangle {
+                                visible: root._inactiveMode === 2
+                                Layout.preferredWidth: 64; height: 21; radius: 2
+                                color: "#1b1b1b"; border.color: inactiveInput.activeFocus ? "#4488dd" : "#3a3a3a"
+                                TextInput {
                                     id: inactiveInput
-                                    visible: root._inactiveMode === 2
-                                    Layout.preferredWidth: 80
-                                    text: root._inactiveText
-                                    color: "#d0d0d0"; font.pixelSize: 12
-                                    leftPadding: 6; rightPadding: 6; selectByMouse: true
+                                    anchors { fill: parent; leftMargin: 6; rightMargin: 6 }
+                                    verticalAlignment: TextInput.AlignVCenter; text: root._inactiveText
                                     validator: IntValidator { bottom: 0; top: 999999 }
-                                    background: Rectangle {
-                                        color: "#1b1b1b"
-                                        border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
-                                    }
+                                    color: "#d0d0d0"; font.pixelSize: 12; selectByMouse: true
                                     onTextChanged: root._inactiveText = text
                                 }
-                                Text {
-                                    visible: root._inactiveMode === 2
-                                    text: "min"; color: "#666"; font.pixelSize: 12
-                                }
-                                Item { Layout.fillWidth: true }
                             }
-                        }
-
-                        Text {
-                            text: "\"Default\" uses the global defaults set in Settings → Torrent."
-                            color: "#7f8a94"; font.pixelSize: 10
-                            wrapMode: Text.WordWrap; Layout.fillWidth: true
+                            Text { visible: root._inactiveMode === 2; text: "min"; color: "#666"; font.pixelSize: 12 }
+                            Item { Layout.fillWidth: true }
                         }
                     }
                 }
 
-                // ── Peer discovery flags ──────────────────────────────────────
-                Rectangle {
+                // ── Peer discovery + Download mode (side by side, equal height) ──
+                // Height driven by the taller column; both rects share that height.
+                Item {
                     Layout.fillWidth: true
-                    Layout.preferredWidth: 1
-                    color: "#1e1e1e"; border.color: "#2d2d2d"; radius: 4
-                    implicitHeight: flagsCol.implicitHeight + 20
+                    implicitHeight: Math.max(pdCol.implicitHeight, dmCol.implicitHeight) + 14
 
-                    ColumnLayout {
-                        id: flagsCol
-                        anchors { fill: parent; margins: 10 }
-                        spacing: 8
+                    Rectangle {
+                        anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
+                        width: (parent.width - 8) / 2
+                        color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
 
-                        Text {
-                            text: "PEER DISCOVERY"
-                            color: "#8899aa"; font.pixelSize: 10; font.bold: true
-                        }
+                        ColumnLayout {
+                            id: pdCol
+                            anchors { fill: parent; margins: 7 }
+                            spacing: 7
 
-                        // DHT
-                        RowLayout {
-                            Layout.fillWidth: true; spacing: 8
-                            CheckBox {
-                                id: dhtCheck
+                            Text { text: "PEER DISCOVERY"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+
+                            InlineCheck {
+                                Layout.fillWidth: true
+                                label: "DHT"; subtext: "Distributed Hash Table"
                                 checked: !root._editDisableDht
                                 enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
                                 onToggled: root._editDisableDht = !checked
-                                contentItem: Item {}
-                                indicator: Rectangle {
-                                    implicitWidth: 16; implicitHeight: 16; radius: 3
-                                    color: dhtCheck.checked ? "#4488dd" : "#1b1b1b"
-                                    border.color: dhtCheck.checked ? "#4488dd" : "#3a3a3a"
-                                    Text {
-                                        visible: dhtCheck.checked
-                                        anchors.centerIn: parent
-                                        text: "✓"; color: "#fff"; font.pixelSize: 11; font.bold: true
-                                    }
-                                }
                             }
-                            ColumnLayout {
-                                Layout.fillWidth: true; spacing: 1
-                                Text { text: "DHT (Distributed Hash Table)"; color: "#d0d0d0"; font.pixelSize: 12 }
-                                Text { text: "Find peers via the distributed hash table network"; color: "#7a8a9a"; font.pixelSize: 10 }
-                            }
-                        }
-
-                        // PeX
-                        RowLayout {
-                            Layout.fillWidth: true; spacing: 8
-                            CheckBox {
-                                id: pexCheck
+                            InlineCheck {
+                                Layout.fillWidth: true
+                                label: "PeX"; subtext: "Peer Exchange"
                                 checked: !root._editDisablePex
                                 enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
                                 onToggled: root._editDisablePex = !checked
-                                contentItem: Item {}
-                                indicator: Rectangle {
-                                    implicitWidth: 16; implicitHeight: 16; radius: 3
-                                    color: pexCheck.checked ? "#4488dd" : "#1b1b1b"
-                                    border.color: pexCheck.checked ? "#4488dd" : "#3a3a3a"
-                                    Text {
-                                        visible: pexCheck.checked
-                                        anchors.centerIn: parent
-                                        text: "✓"; color: "#fff"; font.pixelSize: 11; font.bold: true
-                                    }
-                                }
                             }
-                            ColumnLayout {
-                                Layout.fillWidth: true; spacing: 1
-                                Text { text: "PeX (Peer Exchange)"; color: "#d0d0d0"; font.pixelSize: 12 }
-                                Text { text: "Share peer lists with connected peers"; color: "#7a8a9a"; font.pixelSize: 10 }
-                            }
-                        }
-
-                        // LSD
-                        RowLayout {
-                            Layout.fillWidth: true; spacing: 8
-                            CheckBox {
-                                id: lsdCheck
+                            InlineCheck {
+                                Layout.fillWidth: true
+                                label: "LSD"; subtext: "Local Service Discovery"
                                 checked: !root._editDisableLsd
                                 onToggled: root._editDisableLsd = !checked
-                                contentItem: Item {}
-                                indicator: Rectangle {
-                                    implicitWidth: 16; implicitHeight: 16; radius: 3
-                                    color: lsdCheck.checked ? "#4488dd" : "#1b1b1b"
-                                    border.color: lsdCheck.checked ? "#4488dd" : "#3a3a3a"
+                            }
+
+                            Rectangle {
+                                Layout.fillWidth: true
+                                visible: !!root.torrentItem && root.torrentItem.torrentIsPrivate
+                                color: "#1a1208"; border.color: "#6a4a00"; radius: 3
+                                implicitHeight: pvtNote.implicitHeight + 10
+                                ColumnLayout {
+                                    id: pvtNote
+                                    anchors { fill: parent; margins: 6 }
+                                    spacing: 2
+                                    Text { text: "🔒 Private torrent"; color: "#cc9955"; font.pixelSize: 11; font.bold: true }
                                     Text {
-                                        visible: lsdCheck.checked
-                                        anchors.centerIn: parent
-                                        text: "✓"; color: "#fff"; font.pixelSize: 11; font.bold: true
+                                        Layout.fillWidth: true
+                                        text: "DHT and PeX disabled by libtorrent."
+                                        color: "#a08040"; font.pixelSize: 10; wrapMode: Text.WordWrap
                                     }
                                 }
                             }
-                            ColumnLayout {
-                                Layout.fillWidth: true; spacing: 1
-                                Text { text: "LSD (Local Service Discovery)"; color: "#d0d0d0"; font.pixelSize: 12 }
-                                Text { text: "Find peers on your local network"; color: "#7a8a9a"; font.pixelSize: 10 }
-                            }
-                        }
-
-                        // Private torrent notice
-                        Rectangle {
-                            Layout.fillWidth: true
-                            visible: !!root.torrentItem && root.torrentItem.torrentIsPrivate
-                            color: "#1a1208"; border.color: "#6a4a00"; radius: 4
-                            implicitHeight: privateCol.implicitHeight + 12
-
-                            ColumnLayout {
-                                id: privateCol
-                                anchors { fill: parent; margins: 8 }
-                                spacing: 3
-
-                                Text {
-                                    text: "🔒 Private torrent"
-                                    color: "#cc9955"; font.pixelSize: 12; font.bold: true
-                                }
-                                Text {
-                                    Layout.fillWidth: true
-                                    text: "This torrent was created with the private flag set by its tracker. "
-                                        + "DHT and PeX are disabled automatically by libtorrent for private torrents, "
-                                        + "regardless of the checkboxes above. Only the tracker's announced peers are used."
-                                    color: "#a08040"; font.pixelSize: 10
-                                    wrapMode: Text.WordWrap
-                                }
-                            }
                         }
                     }
-                }
 
-                // ── Buttons ───────────────────────────────────────────────────
-                }
-                RowLayout {
-                    Layout.fillWidth: true
-                    Layout.leftMargin: 14
-                    Layout.rightMargin: 14
-                    Layout.bottomMargin: 14
-                    spacing: 8
+                    Rectangle {
+                        anchors { right: parent.right; top: parent.top; bottom: parent.bottom }
+                        width: (parent.width - 8) / 2
+                        color: "#1a1a1a"; border.color: "#2d2d2d"; radius: 3
 
-                    Item { Layout.fillWidth: true }
+                        ColumnLayout {
+                            id: dmCol
+                            anchors { fill: parent; margins: 7 }
+                            spacing: 7
 
-                    DlgButton {
-                        text: "Close"
-                        onClicked: root.close()
-                    }
+                            Text { text: "DOWNLOAD MODE"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
-                    DlgButton {
-                        text: "Apply"
-                        primary: true
-                        enabled: root.dirty
-                        onClicked: {
-                            if (!root.torrentItem) return
-
-                            // Speed limits
-                            App.setTorrentSpeedLimits(root.torrentItem.id,
-                                                      Math.max(0, root._editDown),
-                                                      Math.max(0, root._editUp))
-
-                            // Share limits: convert mode back to storage values
-                            // -1 = Default (inherit global), -2 = Unlimited, >=0 = explicit
-                            var ratio    = root._ratioMode === 0 ? -1.0
-                                         : root._ratioMode === 1 ? -2.0
-                                         : Math.max(0, parseFloat(root._ratioText) || 0.0)
-                            var seedMins = root._seedMode === 0 ? -1
-                                         : root._seedMode === 1 ? -2
-                                         : Math.max(0, parseInt(root._seedText, 10) || 0)
-                            var inactMins = root._inactiveMode === 0 ? -1
-                                          : root._inactiveMode === 1 ? -2
-                                          : Math.max(0, parseInt(root._inactiveText, 10) || 0)
-
-                            App.setTorrentShareLimits(root.torrentItem.id, ratio, seedMins, inactMins, -1)
-                            App.setTorrentFlags(root.torrentItem.id,
-                                                root._editDisableDht,
-                                                root._editDisablePex,
-                                                root._editDisableLsd)
+                            InlineCheck {
+                                Layout.fillWidth: true
+                                label: "Sequential download"
+                                subtext: "Pieces downloaded in order (piece 0 → last)"
+                                checked: root._editSequential
+                                onToggled: root._editSequential = checked
+                            }
+                            InlineCheck {
+                                Layout.fillWidth: true
+                                label: "Prioritize first & last pieces"
+                                subtext: "Front-loads header/footer for early playback"
+                                checked: root._editFirstLastPieces
+                                onToggled: root._editFirstLastPieces = checked
+                            }
                         }
                     }
                 }

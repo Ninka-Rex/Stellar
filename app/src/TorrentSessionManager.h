@@ -83,6 +83,7 @@ public:
     QString torrentCurrentRootName(const QString &downloadId) const;
     bool exportTorrentFile(const QString &downloadId, const QString &outputPath) const;
     void setTorrentFlags(const QString &downloadId, bool disableDht, bool disablePex, bool disableLsd = false);
+    void setTorrentDownloadMode(const QString &downloadId, bool sequential, bool firstLastPieces);
     void forceRecheck(const QString &downloadId);
     void forceReannounce(const QString &downloadId, const QStringList &trackerUrls = {});
     bool banPeer(const QString &downloadId, const QString &endpoint, int port,
@@ -273,6 +274,7 @@ inline QString TorrentSessionManager::torrentCurrentRootName(const QString &) co
 inline bool TorrentSessionManager::setFileWantedByFileIndex(const QString &, int, bool) { return false; }
 inline bool TorrentSessionManager::setFileWantedByPath(const QString &, const QString &, bool) { return false; }
 inline void TorrentSessionManager::setTorrentFlags(const QString &, bool, bool, bool) {}
+inline void TorrentSessionManager::setTorrentDownloadMode(const QString &, bool, bool) {}
 inline bool TorrentSessionManager::banPeer(const QString &, const QString &, int, const QString &, const QString &) { return false; }
 inline bool TorrentSessionManager::unbanPeer(const QString &) { return false; }
 inline QVariantList TorrentSessionManager::bannedPeers() const { return {}; }

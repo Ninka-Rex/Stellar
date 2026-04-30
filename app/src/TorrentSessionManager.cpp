@@ -2473,6 +2473,10 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
         handle.set_flags(libtorrent::torrent_flags::disable_pex);
     if (item->torrentDisableLsd())
         handle.set_flags(libtorrent::torrent_flags::disable_lsd);
+    if (item->torrentSequential())
+        handle.set_flags(libtorrent::torrent_flags::sequential_download);
+    // first/last piece deadline is re-applied via setTorrentDownloadMode after
+    // metadata arrives (piece count is not yet known at add time for magnets).
 
     m_handles[item->id()] = handle;
     m_items[item->id()] = item;
@@ -3404,6 +3408,8 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
         (flags & libtorrent::torrent_flags::disable_pex) != libtorrent::torrent_flags_t{});
     item->setTorrentDisableLsd(
         (flags & libtorrent::torrent_flags::disable_lsd) != libtorrent::torrent_flags_t{});
+    item->setTorrentSequential(
+        (flags & libtorrent::torrent_flags::sequential_download) != libtorrent::torrent_flags_t{});
 
     if (st.errc)
         item->setErrorString(QString::fromStdString(st.errc.message()));
@@ -3675,6 +3681,50 @@ void TorrentSessionManager::setTorrentFlags(const QString &downloadId, bool disa
     saveResumeData(downloadId);
 #else
     Q_UNUSED(downloadId); Q_UNUSED(disableDht); Q_UNUSED(disablePex); Q_UNUSED(disableLsd);
+#endif
+}
+
+void TorrentSessionManager::setTorrentDownloadMode(const QString &downloadId, bool sequential, bool firstLastPieces) {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    const auto handle = m_handles.value(downloadId);
+    if (!handle.is_valid())
+        return;
+
+    if (sequential)
+        handle.set_flags(libtorrent::torrent_flags::sequential_download);
+    else
+        handle.unset_flags(libtorrent::torrent_flags::sequential_download);
+
+    // Clear any previously set piece deadlines before applying new ones.
+    handle.clear_piece_deadlines();
+
+    if (firstLastPieces) {
+        // Prioritize first and last pieces by setting tight deadlines on them.
+        // libtorrent downloads these at highest priority while using normal
+        // rarity-based selection for the rest of the torrent.
+        const auto ti = handle.torrent_file();
+        if (ti) {
+            const int numPieces = ti->num_pieces();
+            if (numPieces > 0) {
+                handle.set_piece_deadline(libtorrent::piece_index_t{0}, 0);
+                if (numPieces > 1)
+                    handle.set_piece_deadline(libtorrent::piece_index_t{numPieces - 1}, 0);
+                // A few extra tail pieces for container footers (e.g. MP4 moov atom).
+                const int tailStart = std::max(1, numPieces - std::max(1, numPieces / 50));
+                for (int i = tailStart; i < numPieces - 1; ++i)
+                    handle.set_piece_deadline(libtorrent::piece_index_t{i}, 0);
+            }
+        }
+    }
+
+    DownloadItem *item = m_items.value(downloadId, nullptr).data();
+    if (item) {
+        item->setTorrentSequential(sequential);
+        item->setTorrentFirstLastPieces(firstLastPieces);
+    }
+    saveResumeData(downloadId);
+#else
+    Q_UNUSED(downloadId); Q_UNUSED(sequential); Q_UNUSED(firstLastPieces);
 #endif
 }
 

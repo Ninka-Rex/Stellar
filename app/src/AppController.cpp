@@ -2640,6 +2640,11 @@ void AppController::setTorrentFlags(const QString &downloadId, bool disableDht, 
         m_torrentSession->setTorrentFlags(downloadId, disableDht, disablePex, disableLsd);
 }
 
+void AppController::setTorrentDownloadMode(const QString &downloadId, bool sequential, bool firstLastPieces) {
+    if (m_torrentSession)
+        m_torrentSession->setTorrentDownloadMode(downloadId, sequential, firstLastPieces);
+}
+
 QString AppController::addMagnetLink(const QString &uri, const QString &savePath,
                                      const QString &category, const QString &description,
                                      bool startNow, const QString &queueId) {

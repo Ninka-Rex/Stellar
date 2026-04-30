@@ -82,6 +82,8 @@ class DownloadItem : public QObject {
     Q_PROPERTY(bool torrentDisableDht READ torrentDisableDht WRITE setTorrentDisableDht NOTIFY torrentFlagsChanged)
     Q_PROPERTY(bool torrentDisablePex READ torrentDisablePex WRITE setTorrentDisablePex NOTIFY torrentFlagsChanged)
     Q_PROPERTY(bool torrentDisableLsd READ torrentDisableLsd WRITE setTorrentDisableLsd NOTIFY torrentFlagsChanged)
+    Q_PROPERTY(bool torrentSequential     READ torrentSequential     WRITE setTorrentSequential     NOTIFY torrentFlagsChanged)
+    Q_PROPERTY(bool torrentFirstLastPieces READ torrentFirstLastPieces WRITE setTorrentFirstLastPieces NOTIFY torrentFlagsChanged)
     // Per-torrent speed and share limits
     Q_PROPERTY(int    perTorrentDownLimitKBps READ perTorrentDownLimitKBps WRITE setPerTorrentDownLimitKBps NOTIFY torrentLimitsChanged)
     Q_PROPERTY(int    perTorrentUpLimitKBps   READ perTorrentUpLimitKBps   WRITE setPerTorrentUpLimitKBps   NOTIFY torrentLimitsChanged)
@@ -182,9 +184,11 @@ public:
     bool torrentHasMetadata()  const { return m_torrentHasMetadata; }
     bool torrentIsSingleFile() const { return m_torrentIsSingleFile; }
     bool torrentIsPrivate()    const { return m_torrentIsPrivate; }
-    bool torrentDisableDht()   const { return m_torrentDisableDht; }
-    bool torrentDisablePex()   const { return m_torrentDisablePex; }
-    bool torrentDisableLsd()   const { return m_torrentDisableLsd; }
+    bool torrentDisableDht()     const { return m_torrentDisableDht; }
+    bool torrentDisablePex()     const { return m_torrentDisablePex; }
+    bool torrentDisableLsd()     const { return m_torrentDisableLsd; }
+    bool torrentSequential()     const { return m_torrentSequential; }
+    bool torrentFirstLastPieces() const { return m_torrentFirstLastPieces; }
     QByteArray torrentResumeData() const { return m_torrentResumeData; }
     void setIsTorrent(bool v);
     void setTorrentSource(const QString &v);
@@ -210,9 +214,11 @@ public:
     void setTorrentHasMetadata(bool v);
     void setTorrentIsSingleFile(bool v) { if (m_torrentIsSingleFile != v) { m_torrentIsSingleFile = v; emit torrentChanged(); } }
     void setTorrentIsPrivate(bool v)    { if (m_torrentIsPrivate    != v) { m_torrentIsPrivate    = v; emit torrentChanged(); } }
-    void setTorrentDisableDht(bool v)   { if (m_torrentDisableDht   != v) { m_torrentDisableDht   = v; emit torrentFlagsChanged(); } }
-    void setTorrentDisablePex(bool v)   { if (m_torrentDisablePex   != v) { m_torrentDisablePex   = v; emit torrentFlagsChanged(); } }
-    void setTorrentDisableLsd(bool v)   { if (m_torrentDisableLsd   != v) { m_torrentDisableLsd   = v; emit torrentFlagsChanged(); } }
+    void setTorrentDisableDht(bool v)      { if (m_torrentDisableDht      != v) { m_torrentDisableDht      = v; emit torrentFlagsChanged(); } }
+    void setTorrentDisablePex(bool v)      { if (m_torrentDisablePex      != v) { m_torrentDisablePex      = v; emit torrentFlagsChanged(); } }
+    void setTorrentDisableLsd(bool v)      { if (m_torrentDisableLsd      != v) { m_torrentDisableLsd      = v; emit torrentFlagsChanged(); } }
+    void setTorrentSequential(bool v)      { if (m_torrentSequential      != v) { m_torrentSequential      = v; emit torrentFlagsChanged(); } }
+    void setTorrentFirstLastPieces(bool v) { if (m_torrentFirstLastPieces != v) { m_torrentFirstLastPieces = v; emit torrentFlagsChanged(); } }
     void setTorrentResumeData(const QByteArray &v);
     void clearTorrentStats();
 
@@ -332,6 +338,8 @@ private:
     bool         m_torrentDisableDht{false};
     bool         m_torrentDisablePex{false};
     bool         m_torrentDisableLsd{false};
+    bool         m_torrentSequential{false};
+    bool         m_torrentFirstLastPieces{false};
     QByteArray   m_torrentResumeData;
     int          m_perTorrentDownLimitKBps{0};
     int          m_perTorrentUpLimitKBps{0};

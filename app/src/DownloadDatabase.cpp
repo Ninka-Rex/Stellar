@@ -138,6 +138,8 @@ QList<DownloadItem *> DownloadDatabase::loadAll() {
         item->setTorrentDisableDht(obj[QLatin1String("torrentDisableDht")].toBool(false));
         item->setTorrentDisablePex(obj[QLatin1String("torrentDisablePex")].toBool(false));
         item->setTorrentDisableLsd(obj[QLatin1String("torrentDisableLsd")].toBool(false));
+        item->setTorrentSequential(obj[QLatin1String("torrentSequential")].toBool(false));
+        item->setTorrentFirstLastPieces(obj[QLatin1String("torrentFirstLastPieces")].toBool(false));
         // Resume blobs are intentionally NOT preloaded here. They live in
         // separate per-torrent .resume files (StellarPaths::resumeFile(id))
         // and are only needed when TorrentSessionManager::restoreTorrent()
@@ -235,9 +237,11 @@ void DownloadDatabase::save(DownloadItem *item) {
         m[QStringLiteral("torrentUploadSpeed")] = item->torrentUploadSpeed();
         m[QStringLiteral("torrentHasMetadata")]  = item->torrentHasMetadata();
         m[QStringLiteral("torrentIsSingleFile")] = item->torrentIsSingleFile();
-        m[QStringLiteral("torrentDisableDht")]   = item->torrentDisableDht();
-        m[QStringLiteral("torrentDisablePex")]   = item->torrentDisablePex();
-        m[QStringLiteral("torrentDisableLsd")]   = item->torrentDisableLsd();
+        m[QStringLiteral("torrentDisableDht")]      = item->torrentDisableDht();
+        m[QStringLiteral("torrentDisablePex")]      = item->torrentDisablePex();
+        m[QStringLiteral("torrentDisableLsd")]      = item->torrentDisableLsd();
+        m[QStringLiteral("torrentSequential")]      = item->torrentSequential();
+        m[QStringLiteral("torrentFirstLastPieces")] = item->torrentFirstLastPieces();
         // The resume blob is written to its own .resume file exclusively by
         // the torrentResumeDataChanged connection in AppController::watchItem.
         // Writing it here too would duplicate I/O and — more importantly —

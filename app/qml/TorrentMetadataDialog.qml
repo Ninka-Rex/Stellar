@@ -649,6 +649,17 @@ Window {
             Layout.fillWidth: true
             spacing: 8
 
+            DlgButton {
+                text: "Torrent Settings..."
+                enabled: !!root.item
+                onClicked: {
+                    metaTorrentSettingsDlg.torrentItem = root.item
+                    metaTorrentSettingsDlg.show()
+                    metaTorrentSettingsDlg.raise()
+                    metaTorrentSettingsDlg.requestActivate()
+                }
+            }
+
             Item { Layout.fillWidth: true }
 
             DlgButton {
@@ -683,6 +694,11 @@ Window {
                 }
             }
         }
+    }
+
+    TorrentSpeedLimitDialog {
+        id: metaTorrentSettingsDlg
+        transientParent: root
     }
 
     Component {
