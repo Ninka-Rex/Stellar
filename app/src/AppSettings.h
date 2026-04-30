@@ -104,6 +104,7 @@ class AppSettings : public QObject {
     // Path to a JS runtime for yt-dlp's EJS YouTube challenge solver (deno/node/bun/qjs).
     // Empty = auto-detect from PATH and app directory.
     Q_PROPERTY(QString ytdlpJsRuntimePath    READ ytdlpJsRuntimePath    WRITE setYtdlpJsRuntimePath    NOTIFY ytdlpJsRuntimePathChanged)
+    Q_PROPERTY(bool    torrentEnabled   READ torrentEnabled   WRITE setTorrentEnabled   NOTIFY torrentEnabledChanged)
     Q_PROPERTY(bool    torrentEnableDht READ torrentEnableDht WRITE setTorrentEnableDht NOTIFY torrentSettingsChanged)
     Q_PROPERTY(bool    torrentEnableLsd READ torrentEnableLsd WRITE setTorrentEnableLsd NOTIFY torrentSettingsChanged)
     Q_PROPERTY(bool    torrentEnableUpnp READ torrentEnableUpnp WRITE setTorrentEnableUpnp NOTIFY torrentSettingsChanged)
@@ -222,6 +223,7 @@ public:
     QString ytdlpCustomBinaryPath()   const { return m_ytdlpCustomBinaryPath; }
     bool    ytdlpAutoUpdate()         const { return m_ytdlpAutoUpdate; }
     QString ytdlpJsRuntimePath()      const { return m_ytdlpJsRuntimePath; }
+    bool    torrentEnabled()           const { return m_torrentEnabled; }
     bool    torrentEnableDht()        const { return m_torrentEnableDht; }
     bool    torrentEnableLsd()        const { return m_torrentEnableLsd; }
     bool    torrentEnableUpnp()       const { return m_torrentEnableUpnp; }
@@ -331,6 +333,7 @@ public:
     void setYtdlpCustomBinaryPath(const QString &v);
     void setYtdlpAutoUpdate(bool v);
     void setYtdlpJsRuntimePath(const QString &v);
+    void setTorrentEnabled(bool v);
     void setTorrentEnableDht(bool v);
     void setTorrentEnableLsd(bool v);
     void setTorrentEnableUpnp(bool v);
@@ -395,6 +398,7 @@ signals:
     void segmentsPerDownloadChanged();
     void defaultSavePathChanged();
     void temporaryDirectoryChanged();
+    void torrentEnabledChanged();
     void torrentCustomSavePathChanged();
     void torrentCustomSavePathByDefaultChanged();
     void globalSpeedLimitKBpsChanged();
@@ -542,6 +546,7 @@ private:
     QString     m_ytdlpCustomBinaryPath;   // empty = auto-detect
     bool        m_ytdlpAutoUpdate{false};  // check for yt-dlp updates on startup
     QString     m_ytdlpJsRuntimePath;      // empty = auto-detect from PATH/app dir
+    bool        m_torrentEnabled{false};
     bool        m_torrentEnableDht{true};
     bool        m_torrentEnableLsd{true};
     bool        m_torrentEnableUpnp{true};

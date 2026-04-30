@@ -1055,6 +1055,18 @@ QVariantList TorrentSessionManager::bannedPeers() const {
 void TorrentSessionManager::applySettings(const AppSettings *settings) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     m_settings = settings;
+    if (!settings->torrentEnabled()) {
+        // Fully shut down the libtorrent session so it makes no network connections.
+        setDhtEstimatorEnabled(false);
+        m_alertTimer.stop();
+        m_session.reset();
+        // Clear stale handle/item maps so re-enable starts with a clean slate.
+        m_handles.clear();
+        m_items.clear();
+        m_pausedIds.clear();
+        m_firedFinishedIds.clear();
+        return;
+    }
     ensureSession();
     refreshPeerBanRules(settings);
     configureSession(settings);
@@ -1659,6 +1671,8 @@ bool TorrentSessionManager::addTorrentFile(DownloadItem *item, const QString &to
 bool TorrentSessionManager::restoreTorrent(DownloadItem *item) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     if (!item || !item->isTorrent())
+        return false;
+    if (!m_session)
         return false;
     if (item->statusEnum() == DownloadItem::Status::Error)
         return true;

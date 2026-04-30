@@ -703,6 +703,10 @@ ApplicationWindow {
         function onTorrentDuplicateDetected(existingId, newTrackers) {
             torrentDuplicateDialog.open(existingId, newTrackers)
         }
+        function onTorrentSupportDisabled(pendingUri) {
+            torrentEnableNotice._pendingUri = pendingUri
+            torrentEnableNotice.open()
+        }
         function onInterceptedDownloadRequested(url, filename) {
             if (App.isTorrentUri(url)) {
                 var magnetId = App.addMagnetLink(url, App.settings.defaultSavePath, "", "", false, "")
@@ -1404,6 +1408,75 @@ ApplicationWindow {
         transientParent: root
         onMergeRequested: (downloadId, trackers) => {
             App.mergeTrackersInto(downloadId, trackers)
+        }
+    }
+
+    // Shown when user tries to add a torrent/magnet with BitTorrent support disabled.
+    Popup {
+        id: torrentEnableNotice
+        property string _pendingUri: ""
+        parent: Overlay.overlay
+        anchors.centerIn: parent
+        width: 480
+        modal: true
+        closePolicy: Popup.NoAutoClose
+        padding: 0
+        background: Rectangle { color: "#1e1e1e"; border.color: "#3a3a3a"; radius: 6 }
+        contentItem: ColumnLayout {
+            spacing: 0
+            ColumnLayout {
+                Layout.fillWidth: true
+                spacing: 12
+                Layout.margins: 20
+                Text {
+                    text: "Enable BitTorrent Support?"
+                    color: "#ffffff"
+                    font.pixelSize: 15
+                    font.bold: true
+                }
+                Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                Text {
+                    Layout.fillWidth: true
+                    wrapMode: Text.WordWrap
+                    color: "#c0c0c0"
+                    font.pixelSize: 12
+                    lineHeight: 1.4
+                    text: "BitTorrent support is currently disabled.\n\nWhen you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure."
+                }
+                Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: 8
+                    Item { Layout.fillWidth: true }
+                    DlgButton {
+                        text: "Cancel"
+                        onClicked: {
+                            torrentEnableNotice._pendingUri = ""
+                            torrentEnableNotice.close()
+                        }
+                    }
+                    DlgButton {
+                        text: "I Understand, Enable"
+                        primary: true
+                        onClicked: {
+                            var uri = torrentEnableNotice._pendingUri
+                            torrentEnableNotice._pendingUri = ""
+                            torrentEnableNotice.close()
+                            App.settings.torrentEnabled = true
+                            // Retry the pending add now that the session is enabled
+                            if (uri.length > 0) {
+                                if (root.isTorrentFilePath(uri)) {
+                                    root.showTorrentMetadataDialogForFile(uri, root.torrentSaveDirFromInputPath(App.settings.defaultSavePath), "", "", true)
+                                } else {
+                                    var id = App.addMagnetLink(uri, App.settings.defaultSavePath, "", "", false, "")
+                                    if (id && id.length > 0)
+                                        root.showTorrentMetadataDialog(id, true)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

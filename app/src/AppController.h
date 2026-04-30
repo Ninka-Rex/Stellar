@@ -413,6 +413,9 @@ signals:
     void showWindowRequested();
     void torrentMetadataRequested(const QString &downloadId, bool startWhenReady);
     void torrentDuplicateDetected(const QString &existingId, const QStringList &newTrackers);
+    // Emitted when a torrent/magnet add is attempted but BitTorrent support is disabled.
+    // pendingUri is the magnet/torrent URI or file path to retry after enabling.
+    void torrentSupportDisabled(const QString &pendingUri);
     void downloadAdded(QObject *item);
     void downloadCompleted(QObject *item);
     void trayGithubRequested();

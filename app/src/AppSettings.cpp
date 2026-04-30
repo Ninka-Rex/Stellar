@@ -235,6 +235,7 @@ void AppSettings::load() {
     m_ytdlpCustomBinaryPath   = m_settings.value(QStringLiteral("ytdlpCustomBinaryPath"), QString()).toString();
     m_ytdlpAutoUpdate         = m_settings.value(QStringLiteral("ytdlpAutoUpdate"), false).toBool();
     m_ytdlpJsRuntimePath      = m_settings.value(QStringLiteral("ytdlpJsRuntimePath"), QString()).toString();
+    m_torrentEnabled          = m_settings.value(QStringLiteral("torrentEnabled"), false).toBool();
     m_torrentEnableDht        = m_settings.value(QStringLiteral("torrentEnableDht"), true).toBool();
     m_torrentEnableLsd        = m_settings.value(QStringLiteral("torrentEnableLsd"), true).toBool();
     m_torrentEnableUpnp       = m_settings.value(QStringLiteral("torrentEnableUpnp"), true).toBool();
@@ -479,6 +480,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("ytdlpCustomBinaryPath"),       m_ytdlpCustomBinaryPath);
     m_settings.setValue(QStringLiteral("ytdlpAutoUpdate"),             m_ytdlpAutoUpdate);
     m_settings.setValue(QStringLiteral("ytdlpJsRuntimePath"),          m_ytdlpJsRuntimePath);
+    m_settings.setValue(QStringLiteral("torrentEnabled"),              m_torrentEnabled);
     m_settings.setValue(QStringLiteral("torrentEnableDht"),            m_torrentEnableDht);
     m_settings.setValue(QStringLiteral("torrentEnableLsd"),            m_torrentEnableLsd);
     m_settings.setValue(QStringLiteral("torrentEnableUpnp"),           m_torrentEnableUpnp);
@@ -746,6 +748,7 @@ void AppSettings::setYtdlpJsRuntimePath(const QString &v) {
     }
 }
 
+void AppSettings::setTorrentEnabled(bool v)               { if (m_torrentEnabled != v) { m_torrentEnabled = v; emit torrentSettingsChanged(); emit torrentEnabledChanged(); save(); } }
 void AppSettings::setTorrentEnableDht(bool v)             { if (m_torrentEnableDht != v) { m_torrentEnableDht = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentEnableLsd(bool v)             { if (m_torrentEnableLsd != v) { m_torrentEnableLsd = v; emit torrentSettingsChanged(); save(); } }
 void AppSettings::setTorrentEnableUpnp(bool v)            { if (m_torrentEnableUpnp != v) { m_torrentEnableUpnp = v; emit torrentSettingsChanged(); save(); } }

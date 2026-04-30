@@ -108,6 +108,7 @@ Window {
     property string editYtdlpCustomBinaryPath: ""
     property bool   editYtdlpAutoUpdate:       false
     property string editYtdlpJsRuntimePath:    ""
+    property bool   editTorrentEnabled:        false
     property bool   editTorrentEnableDht:      true
     property bool   editTorrentEnableLsd:      true
     property bool   editTorrentEnableUpnp:     true
@@ -411,6 +412,7 @@ Window {
         editYtdlpCustomBinaryPath !== App.settings.ytdlpCustomBinaryPath ||
         editYtdlpAutoUpdate       !== App.settings.ytdlpAutoUpdate       ||
         editYtdlpJsRuntimePath    !== App.settings.ytdlpJsRuntimePath    ||
+        editTorrentEnabled        !== App.settings.torrentEnabled        ||
         editTorrentEnableDht      !== App.settings.torrentEnableDht      ||
         editTorrentEnableLsd      !== App.settings.torrentEnableLsd      ||
         editTorrentEnableUpnp     !== App.settings.torrentEnableUpnp     ||
@@ -618,6 +620,7 @@ Window {
         App.settings.ytdlpCustomBinaryPath  = editYtdlpCustomBinaryPath
         App.settings.ytdlpAutoUpdate        = editYtdlpAutoUpdate
         App.settings.ytdlpJsRuntimePath     = editYtdlpJsRuntimePath
+        App.settings.torrentEnabled         = editTorrentEnabled
         App.settings.torrentEnableDht       = editTorrentEnableDht
         App.settings.torrentEnableLsd       = editTorrentEnableLsd
         App.settings.torrentEnableUpnp      = editTorrentEnableUpnp
@@ -701,6 +704,7 @@ Window {
         editYtdlpCustomBinaryPath = App.settings.ytdlpCustomBinaryPath
         editYtdlpAutoUpdate       = App.settings.ytdlpAutoUpdate
         editYtdlpJsRuntimePath    = App.settings.ytdlpJsRuntimePath
+        editTorrentEnabled        = App.settings.torrentEnabled
         editTorrentEnableDht      = App.settings.torrentEnableDht
         editTorrentEnableLsd      = App.settings.torrentEnableLsd
         editTorrentEnableUpnp     = App.settings.torrentEnableUpnp
@@ -2733,6 +2737,86 @@ Window {
 
                         Text { text: "Torrent Downloads"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+                        // Enable BitTorrent support toggle + legal notice
+                        CheckBox {
+                            id: torrentEnabledCheck
+                            text: "Enable BitTorrent support"
+                            checked: root.editTorrentEnabled
+                            topPadding: 0
+                            bottomPadding: 0
+                            onToggled: {
+                                if (checked) {
+                                    torrentLegalNotice.open()
+                                } else {
+                                    root.editTorrentEnabled = false
+                                }
+                            }
+                            contentItem: Text { text: parent.text; color: "#e0e0e0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
+                        }
+
+                        // Legal notice shown when enabling BitTorrent
+                        Popup {
+                            id: torrentLegalNotice
+                            parent: Overlay.overlay
+                            anchors.centerIn: parent
+                            width: 480
+                            modal: true
+                            closePolicy: Popup.NoAutoClose
+                            padding: 0
+                            background: Rectangle { color: "#1e1e1e"; border.color: "#3a3a3a"; radius: 6 }
+                            contentItem: ColumnLayout {
+                                spacing: 0
+                                ColumnLayout {
+                                    Layout.fillWidth: true
+                                    spacing: 12
+                                    Layout.margins: 20
+                                    Text {
+                                        text: "BitTorrent — Legal Notice"
+                                        color: "#ffffff"
+                                        font.pixelSize: 15
+                                        font.bold: true
+                                    }
+                                    Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+                                    Text {
+                                        Layout.fillWidth: true
+                                        wrapMode: Text.WordWrap
+                                        color: "#c0c0c0"
+                                        font.pixelSize: 12
+                                        lineHeight: 1.4
+                                        text: "Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure."
+                                    }
+                                    Rectangle {
+                                        Layout.fillWidth: true
+                                        height: 1
+                                        color: "#3a3a3a"
+                                    }
+                                    RowLayout {
+                                        Layout.fillWidth: true
+                                        spacing: 8
+                                        Item { Layout.fillWidth: true }
+                                        DlgButton {
+                                            text: "Cancel"
+                                            onClicked: {
+                                                torrentLegalNotice.close()
+                                                torrentEnabledCheck.checked = false
+                                            }
+                                        }
+                                        DlgButton {
+                                            text: "I Understand, Enable"
+                                            primary: true
+                                            onClicked: {
+                                                torrentLegalNotice.close()
+                                                root.editTorrentEnabled = true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        // Bind checkbox to editTorrentEnabled (separate from the toggle handler above)
+                        Binding { target: torrentEnabledCheck; property: "checked"; value: root.editTorrentEnabled }
 
                         Text {
                             Layout.fillWidth: true

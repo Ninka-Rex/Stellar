@@ -1434,6 +1434,26 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     connect(m_settings, &AppSettings::torrentSettingsChanged, this, [this]() {
         m_torrentSession->applySettings(m_settings);
     });
+    connect(m_settings, &AppSettings::torrentEnabledChanged, this, [this]() {
+        if (m_settings->torrentEnabled()) {
+            // Session was just created by applySettings — hand all existing torrent
+            // items to libtorrent so they resume without requiring an app restart.
+            for (DownloadItem *item : m_downloadModel->allItems()) {
+                if (item->isTorrent()) {
+                    m_torrentSession->restoreTorrent(item);
+                    applyPerTorrentSpeedLimits(m_torrentSession, item);
+                }
+            }
+        } else {
+            // Session destroyed — zero stale speeds so display doesn't freeze.
+            for (DownloadItem *item : m_downloadModel->allItems()) {
+                if (item->isTorrent()) {
+                    item->setSpeed(0);
+                    item->setTorrentUploadSpeed(0);
+                }
+            }
+        }
+    });
     connect(m_settings, &AppSettings::estimatedOnlineUsersInStatusBarChanged, this, [this]() {
         m_torrentSession->setDhtEstimatorEnabled(m_settings->estimatedOnlineUsersInStatusBar());
     });
@@ -2653,6 +2673,10 @@ QString AppController::addMagnetLink(const QString &uri, const QString &savePath
         emit errorOccurred(QStringLiteral("Torrent support is unavailable in this build."));
         return {};
     }
+    if (!m_settings->torrentEnabled()) {
+        emit torrentSupportDisabled(uri);
+        return {};
+    }
     // Duplicate detection: check by info hash before creating any item
     const QString normalized = normalizeTorrentSource(uri);
     const QString hash = m_torrentSession->infoHashFromSource(normalized);
@@ -2695,6 +2719,10 @@ QString AppController::addTorrentFile(const QString &filePath, const QString &sa
     Q_UNUSED(startNow);
     if (!m_torrentSession || !m_torrentSession->available()) {
         emit errorOccurred(QStringLiteral("Torrent support is unavailable in this build."));
+        return {};
+    }
+    if (!m_settings->torrentEnabled()) {
+        emit torrentSupportDisabled(filePath);
         return {};
     }
     // Duplicate detection by info hash
