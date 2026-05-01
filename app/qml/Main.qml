@@ -101,6 +101,9 @@ ApplicationWindow {
         dlg.minimizedToTray.connect(function(dlgId) {
             _updateDownloadsTray()
         })
+        dlg.openSettingsRequested.connect(function(page) {
+            root.showSettingsPage(page)
+        })
         dlg.closing.connect(function(close) {
             // Closing (X button) destroys and removes from map
             Qt.callLater(function() {

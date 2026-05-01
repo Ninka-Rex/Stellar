@@ -26,6 +26,7 @@ Window {
     flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.WindowMinimizeButtonHint
 
     signal minimizedToTray(string downloadId)
+    signal openSettingsRequested(int page)
 
     property string downloadId: ""
     property var    item: null
@@ -690,6 +691,19 @@ Window {
                         color: App.settings.globalSpeedLimitKBps > 0 ? "#ffcc88" : "#666"
                         font.pixelSize: 11
                         wrapMode: Text.WordWrap
+                    }
+
+                    Text {
+                        text: "Global speed limiter settings…"
+                        color: "#4488dd"
+                        font.pixelSize: 11
+                        font.underline: true
+
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: root.openSettingsRequested(4)  // Speed Limiter tab
+                        }
                     }
 
                     Item { Layout.fillHeight: true }
