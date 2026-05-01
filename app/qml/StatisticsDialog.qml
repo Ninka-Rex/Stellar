@@ -37,6 +37,7 @@ Window {
     function refresh() { stats = App.appStatistics() }
 
     Component.onCompleted: refresh()
+    onVisibleChanged: { if (visible) refresh() }
 
     Timer {
         interval: 2000
