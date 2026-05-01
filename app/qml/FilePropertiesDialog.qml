@@ -402,6 +402,7 @@ Window {
         showTrackerAdd = false
         showWebSeedAdd = false
         speedSamples = []
+        _speedAxisTop = 1
         speedHoverActive = false
         editPerTorrentDownLimitKBps = (root.item && root.item.isTorrent) ? (root.item.perTorrentDownLimitKBps | 0) : 0
         editPerTorrentUpLimitKBps = (root.item && root.item.isTorrent) ? (root.item.perTorrentUpLimitKBps | 0) : 0
@@ -451,7 +452,7 @@ Window {
         if (root.currentTab === 5 && root.swarmClientPieRef) root.swarmClientPieRef.requestPaint()
         if (root.currentTab === 5 && root.swarmCountryPieRef) root.swarmCountryPieRef.requestPaint()
     }
-    onSpeedSpanIndexChanged: if (speedGraphCanvasRef) speedGraphCanvasRef.requestPaint()
+    // onSpeedSpanIndexChanged → onSpeedSpanSecondsChanged → _rebuildDecimatedCache → requestPaint()
 
     Timer {
         id: speedHistoryTimer
@@ -473,14 +474,10 @@ Window {
                 root.editPerTorrentUpLimitKBps   = root.item.perTorrentUpLimitKBps   | 0
             }
         }
-        function onSpeedChanged() {
-            if (root.visible && root._isTorrent && root.currentTab === 1 && speedGraphCanvasRef)
-                speedGraphCanvasRef.requestPaint()
-        }
-        function onTorrentStatsChanged() {
-            if (root.visible && root._isTorrent && root.currentTab === 1 && speedGraphCanvasRef)
-                speedGraphCanvasRef.requestPaint()
-        }
+        // No direct repaint on speed/stats signals — the 2 s speedHistoryTimer
+        // already calls refreshSpeedHistory() which repaints after rebuilding
+        // the decimated cache.  Bypassing that and painting with stale data
+        // caused the graph to flicker on every libtorrent alert tick.
     }
 
     // ── Helpers ──────────────────────────────────────────────────────────────
@@ -654,64 +651,109 @@ Window {
         }
         _speedNowMs = Date.now()
         speedSamples = App.torrentSpeedHistory(item.id, speedSpanSeconds, 1000)
-        if (currentTab === 1 && speedGraphCanvasRef)
-            speedGraphCanvasRef.requestPaint()
+        // requestPaint() is called by _rebuildDecimatedCache (via Qt.callLater)
+        // after the smoothed cache and stable axis ceiling are both ready.
     }
     // Reduce pts to at most maxPts by averaging each bucket.
     // Averaging preserves the real throughput shape — peak-only decimation
     // exaggerates spikes and produces a misleadingly jagged curve on long spans.
+    // Time-aligned bucket decimation.  Bucket boundaries are snapped to multiples
+    // of bucketMs from the Unix epoch, so they are identical across every refresh
+    // call.  Only the rightmost (current) bucket changes as new samples arrive;
+    // all completed buckets are frozen — the line stays still and scrolls left.
     function decimateSamples(pts, maxPts) {
-        if (pts.length <= maxPts) return pts
-        var step = pts.length / maxPts
+        if (pts.length === 0) return pts
+        var spanMs   = root.speedSpanSeconds * 1000
+        var bucketMs = spanMs / maxPts
+        // Snap right edge of grid to the nearest completed bucket boundary at or
+        // before nowMs.  This keeps all bucket edges fixed to absolute time so
+        // completed buckets never shift when new samples arrive.
+        var nowMs      = root._speedNowMs || Date.now()
+        var gridOrigin = Math.floor(nowMs / bucketMs) * bucketMs
+        // gridOrigin is the last bucket boundary <= nowMs; the grid covers
+        // [gridOrigin - spanMs, gridOrigin).  Samples between gridOrigin and
+        // nowMs land in the last (open) bucket which shifts — that's intentional,
+        // only the live bucket changes.
+        var startMs    = gridOrigin - spanMs
         var out = []
-        for (var bi = 0; bi < maxPts; ++bi) {
-            var lo = Math.floor(bi * step)
-            var hi = Math.min(pts.length - 1, Math.floor((bi + 1) * step) - 1)
-            if (lo > hi) hi = lo
+        // maxPts fixed buckets + 1 live (partial) bucket covering [gridOrigin, nowMs)
+        for (var bi = 0; bi <= maxPts; ++bi) {
+            var bucketStart = startMs + bi * bucketMs
+            var bucketEnd   = (bi < maxPts) ? (bucketStart + bucketMs) : (nowMs + 1)
             var sumDown = 0, sumUp = 0, n = 0
-            for (var j = lo; j <= hi; ++j) {
-                sumDown += Number(pts[j].down) || 0
-                sumUp   += Number(pts[j].up)   || 0
-                n++
-            }
-            // Use the midpoint sample's timestamp for accurate time placement.
-            var mid = pts[Math.floor((lo + hi) / 2)]
-            out.push({ t: mid.t, down: sumDown / n, up: sumUp / n })
-        }
-        return out
-    }
-
-    // Cached decimated sample array — rebuilt only when the raw data or the
-    // selected time span changes, NOT on every mouse move or canvas repaint.
-    // The canvas and hover tooltip both read from this property.
-    property var _speedDecimated: []
-    function _rebuildDecimatedCache() {
-        // C++ pre-decimated to ~1000 points. Apply a data-level box-blur pass
-        // to smooth bucket-to-bucket variance that Catmull-Rom can't hide on
-        // long time spans.  Number of passes scales with the selected window:
-        //   < 10 min  ↑ 0 passes (raw data, fine-grained enough)
-        //   10–60 min ↑ 1 pass
-        //   1–3 hr    ↑ 3 passes
-        //   > 3 hr    ↑ 6 passes
-        var rows = speedVisibleSamples()
-        var span = speedSpanSeconds
-        var passes = span < 600 ? 0 : span < 3600 ? 1 : span < 10800 ? 3 : 6
-        for (var p = 0; p < passes; ++p) {
-            var blurred = new Array(rows.length)
-            for (var i = 0; i < rows.length; ++i) {
-                if (i === 0 || i === rows.length - 1) {
-                    blurred[i] = { t: rows[i].t, down: rows[i].down, up: rows[i].up }
-                } else {
-                    blurred[i] = {
-                        t:    rows[i].t,
-                        down: (rows[i-1].down + rows[i].down + rows[i+1].down) / 3,
-                        up:   (rows[i-1].up   + rows[i].up   + rows[i+1].up)   / 3
-                    }
+            for (var pi = 0; pi < pts.length; ++pi) {
+                var t = pts[pi].t
+                if (t >= bucketStart && t < bucketEnd) {
+                    sumDown += Number(pts[pi].down) || 0
+                    sumUp   += Number(pts[pi].up)   || 0
+                    n++
                 }
             }
-            rows = blurred
+            if (n > 0)
+                out.push({ t: bucketStart + (bucketEnd - bucketStart) * 0.5, down: sumDown / n, up: sumUp / n })
         }
+        return out.length > 0 ? out : pts
+    }
+
+    // Cached decimated sample array and stable Y-axis ceiling — rebuilt only
+    // when the raw data or the selected time span changes, NOT on every mouse
+    // move or canvas repaint.  Keeping axisTop stable prevents the Y-axis from
+    // jumping every tick; the canvas and hover tooltip both read from these.
+    property var  _speedDecimated: []
+    property real _speedAxisTop: 1        // stable Y ceiling, pixels don't shift on hover
+    function _rebuildDecimatedCache() {
+        var rows = speedVisibleSamples()
+        var span = speedSpanSeconds
+
+        // Step 1 — decimate to a target point count that scales inversely with
+        // the span.  Shorter spans keep more detail; longer spans merge more
+        // raw samples per bucket so individual spikes are averaged away.
+        // At 1 hour with ~1000 raw points each bucket covers ~13 raw samples
+        // (≈26 s of data), which collapses narrow spikes into their true average.
+        var canvasW   = speedGraphCanvasRef ? speedGraphCanvasRef.width : 600
+        var plotW     = Math.max(60, canvasW - 62)
+        // Base density: 1 pt per 3 px, then halve for each span tier above 10 min.
+        var basePts   = Math.ceil(plotW / 3)
+        var spanScale = span < 600 ? 1.0 : span < 1800 ? 0.6 : span < 3600 ? 0.4 : span < 10800 ? 0.25 : 0.15
+        var targetPts = Math.max(40, Math.ceil(basePts * spanScale))
+        rows = decimateSamples(rows, targetPts)
+
         _speedDecimated = rows
+
+        // Compute and cache the stable Y-axis ceiling from the smoothed data.
+        // Using the previous _speedAxisTop as a floor prevents the axis from
+        // shrinking on every minor dip — it only grows immediately, then
+        // gently decays toward the true max so the scale stays readable.
+        var maxV = 1
+        for (var si = 0; si < rows.length; ++si)
+            maxV = Math.max(maxV, Number(rows[si].down) || 0, Number(rows[si].up) || 0)
+        // Fixed human-friendly speed ladder (bytes/s).  Pick the smallest step
+        // that fits maxV with at least one grid interval of headroom.
+        var speedSteps = [
+            102400,   204800,   512000,             // 100, 200, 500 KB/s
+            1048576,  2097152,  5242880,             // 1, 2, 5 MB/s
+            10485760, 20971520, 52428800,            // 10, 20, 50 MB/s
+            104857600, 209715200, 524288000,         // 100, 200, 500 MB/s
+            1073741824                               // 1 GB/s
+        ]
+        var newTop = speedSteps[speedSteps.length - 1]
+        for (var li = 0; li < speedSteps.length; ++li) {
+            if (speedSteps[li] >= maxV) { newTop = speedSteps[li]; break }
+        }
+        // Allow axis to grow immediately to the next step, but decay slowly so
+        // a brief spike doesn't permanently lock the scale at a high tier.
+        // toward the true ceiling per refresh so axis doesn't thrash up/down.
+        var prev = _speedAxisTop
+        if (newTop >= prev) {
+            _speedAxisTop = newTop
+        } else {
+            // Decay: move 20% of the gap per sample refresh (~2 s interval)
+            _speedAxisTop = Math.max(newTop, prev - (prev - newTop) * 0.20)
+        }
+
+        // Repaint now that both the smoothed data and stable axis ceiling are ready.
+        if (currentTab === 1 && speedGraphCanvasRef)
+            speedGraphCanvasRef.requestPaint()
     }
     onSpeedSamplesChanged:     Qt.callLater(_rebuildDecimatedCache)
     onSpeedSpanSecondsChanged: Qt.callLater(_rebuildDecimatedCache)
@@ -2063,6 +2105,9 @@ Window {
                             radius: 3
                             clip: true
 
+                            // Main graph canvas — only repaints when data/span changes.
+                            // The crosshair lives in a separate overlay canvas so hover
+                            // mouse moves don't trigger a full graph redraw.
                             Canvas {
                                 id: speedGraphCanvasLoader
                                 anchors.fill: parent
@@ -2083,33 +2128,26 @@ Window {
                                     if (w < 40 || h < 40)
                                         return
 
-                                    var topPad = 8
-                                    var rightPad = 58
+                                    var topPad    = 8
+                                    var rightPad  = 58
                                     var bottomPad = 20
-                                    var leftPad = 4
+                                    var leftPad   = 4
                                     var plotX = leftPad
                                     var plotY = topPad
                                     var plotW = Math.max(10, w - leftPad - rightPad)
                                     var plotH = Math.max(10, h - topPad - bottomPad)
-                                    // Anchor the time axis to the last data-refresh timestamp so
-                                    // every repaint (including hover crosshair redraws) uses the
-                                    // same right edge.  Using Date.now() here shifted x-positions
-                                    // by a few ms on every paint, causing visible jitter.
-                                    var nowMs = root._speedNowMs || Date.now()
+
+                                    // Stable time anchor set at data-refresh time; using
+                                    // Date.now() here caused per-repaint x-position jitter.
+                                    var nowMs   = root._speedNowMs || Date.now()
                                     var startMs = nowMs - root.speedSpanSeconds * 1000
-                                    // Use the pre-built decimated cache — avoids re-running the
-                                    // filter + decimation on every hover-crosshair repaint.
+
+                                    // Pre-built decimated+smoothed cache — never recomputed on hover.
                                     var samples = root._speedDecimated
 
-                                    var maxV = 1
-                                    for (var i = 0; i < samples.length; ++i)
-                                        maxV = Math.max(maxV, Number(samples[i].down) || 0, Number(samples[i].up) || 0)
-
-                                    var scale = Math.pow(10, Math.floor(Math.log(maxV) / Math.log(10)))
-                                    var norm = maxV / scale
-                                    var step = (norm <= 1) ? 1 : (norm <= 2 ? 2 : (norm <= 5 ? 5 : 10))
-                                    var axisTop = Math.max(1, step * scale)
-                                    while (axisTop < maxV) axisTop *= 2
+                                    // Stable Y ceiling cached in _speedAxisTop — computed once per
+                                    // data refresh, decays slowly so the scale doesn't thrash.
+                                    var axisTop = Math.max(1, root._speedAxisTop)
 
                                     function pxForTime(t) {
                                         return plotX + ((t - startMs) / (root.speedSpanSeconds * 1000)) * plotW
@@ -2122,29 +2160,24 @@ Window {
                                     ctx.fillStyle = "#0d0f12"
                                     ctx.fillRect(0, 0, w, h)
 
-                                    // Horizontal grid lines only — vertical lines add noise without value
+                                    // Horizontal grid lines only
                                     var gridLines = 4
                                     ctx.lineWidth = 1
                                     for (var gy = 0; gy <= gridLines; ++gy) {
                                         var gy2 = Math.round(plotY + plotH * gy / gridLines) + 0.5
-                                        // Highlight the zero line
                                         ctx.strokeStyle = (gy === gridLines) ? "#222830" : "#181c22"
                                         ctx.beginPath(); ctx.moveTo(plotX, gy2); ctx.lineTo(plotX + plotW, gy2); ctx.stroke()
                                     }
 
                                     // Catmull-Rom spline area+line series.
-                                    // Unlike the midpoint-quadratic approach, Catmull-Rom passes
-                                    // through every data point and derives smooth tangents from
-                                    // neighbouring points, so the curve stays readable on long
-                                    // spans where bucket values vary significantly.
-                                    // Conversion to canvas cubicBezierTo control points:
+                                    // Passes through every data point with smooth tangents derived
+                                    // from neighbours.  Control-point conversion:
                                     //   cp1 = P[i]   + (P[i+1] - P[i-1]) / 6
                                     //   cp2 = P[i+1] - (P[i+2] - P[i])   / 6
                                     function drawSmoothedSeries(key, stroke, fillTop, fillBottom) {
                                         var n = samples.length
                                         if (n === 0) return
 
-                                        // Pre-compute pixel coordinates once.
                                         var xs = new Array(n), ys = new Array(n)
                                         for (var pi = 0; pi < n; ++pi) {
                                             xs[pi] = pxForTime(samples[pi].t)
@@ -2154,7 +2187,6 @@ Window {
                                         var baseY  = plotY + plotH
                                         var firstX = xs[0]
 
-                                        // Helper: build the cubic spline path (reused for fill + stroke)
                                         function buildSplinePath() {
                                             ctx.moveTo(xs[0], ys[0])
                                             if (n === 1) {
@@ -2167,12 +2199,16 @@ Window {
                                                     var cp1y = ys[ci]     + (ys[ci + 1] - ys[im1]) / 6
                                                     var cp2x = xs[ci + 1] - (xs[ip2]    - xs[ci])  / 6
                                                     var cp2y = ys[ci + 1] - (ys[ip2]    - ys[ci])  / 6
+                                                    // Clamp control point Y to plot bounds so Catmull-Rom
+                                                    // overshoot on steep spikes never draws below zero or
+                                                    // above the top of the plot area.
+                                                    cp1y = Math.max(plotY, Math.min(baseY, cp1y))
+                                                    cp2y = Math.max(plotY, Math.min(baseY, cp2y))
                                                     ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, xs[ci + 1], ys[ci + 1])
                                                 }
                                             }
                                         }
 
-                                        // Gradient fill
                                         var grad = ctx.createLinearGradient(0, plotY, 0, baseY)
                                         grad.addColorStop(0, fillTop)
                                         grad.addColorStop(1, fillBottom)
@@ -2184,7 +2220,6 @@ Window {
                                         ctx.fillStyle = grad
                                         ctx.fill()
 
-                                        // Stroke line on top
                                         ctx.beginPath()
                                         buildSplinePath()
                                         ctx.strokeStyle = stroke
@@ -2192,7 +2227,7 @@ Window {
                                         ctx.stroke()
                                     }
 
-                                    // Draw upload behind download so download is on top
+                                    // Upload behind download so download renders on top
                                     drawSmoothedSeries("up",   "#3dba6a", "rgba(61,186,106,0.20)", "rgba(61,186,106,0.02)")
                                     drawSmoothedSeries("down", "#4490e8", "rgba(68,144,232,0.28)", "rgba(68,144,232,0.03)")
 
@@ -2219,19 +2254,40 @@ Window {
                                             : (secAgo >= 60 ? (Math.round(secAgo / 60) + "m") : (secAgo + "s"))
                                         ctx.fillText("-" + timeLabel, tx, plotY + plotH + 3)
                                     }
+                                }
+                            }
 
-                                    // Hover crosshair
-                                    if (root.speedHoverActive) {
-                                        var hx = Math.max(plotX, Math.min(plotX + plotW, root.speedHoverX))
-                                        ctx.strokeStyle = "rgba(180,200,230,0.18)"
-                                        ctx.lineWidth = 1
-                                        ctx.setLineDash([3, 3])
-                                        ctx.beginPath()
-                                        ctx.moveTo(hx + 0.5, plotY)
-                                        ctx.lineTo(hx + 0.5, plotY + plotH)
-                                        ctx.stroke()
-                                        ctx.setLineDash([])
-                                    }
+                            // Crosshair overlay — tiny canvas that only redraws on mouse move.
+                            // Keeping this separate prevents the full graph from repainting on
+                            // every pixel of mouse movement, which was the main source of jitter.
+                            Canvas {
+                                id: speedHoverCanvas
+                                anchors.fill: speedGraphCanvasLoader
+                                antialiasing: false
+                                renderTarget: Canvas.Image
+
+                                onPaint: {
+                                    var ctx = getContext("2d")
+                                    ctx.reset()
+                                    if (!root.speedHoverActive)
+                                        return
+                                    var topPad    = 8
+                                    var rightPad  = 58
+                                    var bottomPad = 20
+                                    var leftPad   = 4
+                                    var plotX = leftPad
+                                    var plotY = topPad
+                                    var plotW = Math.max(10, width - leftPad - rightPad)
+                                    var plotH = Math.max(10, height - topPad - bottomPad)
+                                    var hx = Math.round(Math.max(plotX, Math.min(plotX + plotW, root.speedHoverX))) + 0.5
+                                    ctx.strokeStyle = "rgba(180,200,230,0.22)"
+                                    ctx.lineWidth = 1
+                                    ctx.setLineDash([3, 3])
+                                    ctx.beginPath()
+                                    ctx.moveTo(hx, plotY)
+                                    ctx.lineTo(hx, plotY + plotH)
+                                    ctx.stroke()
+                                    ctx.setLineDash([])
                                 }
                             }
 
@@ -2241,15 +2297,15 @@ Window {
                                 onPositionChanged: function(mouse) {
                                     root.speedHoverActive = true
                                     root.speedHoverX = mouse.x - 10
-                                    speedGraphCanvasLoader.requestPaint()
+                                    speedHoverCanvas.requestPaint()
                                 }
                                 onEntered: {
                                     root.speedHoverActive = true
-                                    speedGraphCanvasLoader.requestPaint()
+                                    speedHoverCanvas.requestPaint()
                                 }
                                 onExited: {
                                     root.speedHoverActive = false
-                                    speedGraphCanvasLoader.requestPaint()
+                                    speedHoverCanvas.requestPaint()
                                 }
                             }
 
@@ -2266,8 +2322,8 @@ Window {
                                 height: tipCol.implicitHeight + 10
 
                                 readonly property var _samples: root._speedDecimated
-                                readonly property real _plotLeft: 8
-                                readonly property real _plotRightPad: 56
+                                readonly property real _plotLeft: 4
+                                readonly property real _plotRightPad: 58
                                 readonly property real _plotWidth: Math.max(1, speedGraphCanvasLoader.width - _plotLeft - _plotRightPad)
                                 readonly property real _ratio: Math.max(0, Math.min(1, (root.speedHoverX - _plotLeft) / _plotWidth))
                                 readonly property real _targetT: (root._speedNowMs || Date.now()) - root.speedSpanSeconds * 1000 + (_ratio * root.speedSpanSeconds * 1000)
