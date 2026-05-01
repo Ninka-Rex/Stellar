@@ -40,6 +40,8 @@ class AppSettings : public QObject {
     Q_PROPERTY(QStringList excludedAddresses  READ excludedAddresses   WRITE setExcludedAddresses   NOTIFY excludedAddressesChanged)
     Q_PROPERTY(bool showExceptionsDialog      READ showExceptionsDialog WRITE setShowExceptionsDialog NOTIFY showExceptionsDialogChanged)
     Q_PROPERTY(bool showTips                  READ showTips             WRITE setShowTips             NOTIFY showTipsChanged)
+    Q_PROPERTY(bool swarmMapShowInactive      READ swarmMapShowInactive  WRITE setSwarmMapShowInactive  NOTIFY swarmMapShowInactiveChanged)
+    Q_PROPERTY(bool swarmMapShowTrackers      READ swarmMapShowTrackers  WRITE setSwarmMapShowTrackers  NOTIFY swarmMapShowTrackersChanged)
     // 0=Ask, 1=AddNumbered, 2=Overwrite, 3=Resume
     Q_PROPERTY(int  duplicateAction  READ duplicateAction  WRITE setDuplicateAction  NOTIFY duplicateActionChanged)
     Q_PROPERTY(bool startImmediately      READ startImmediately      WRITE setStartImmediately      NOTIFY startImmediatelyChanged)
@@ -173,6 +175,8 @@ public:
     QStringList excludedAddresses()   const { return m_excludedAddresses; }
     bool        showExceptionsDialog() const { return m_showExceptionsDialog; }
     bool        showTips()            const { return m_showTips; }
+    bool        swarmMapShowInactive() const { return m_swarmMapShowInactive; }
+    bool        swarmMapShowTrackers() const { return m_swarmMapShowTrackers; }
     int  duplicateAction() const { return m_duplicateAction; }
     bool startImmediately()       const { return m_startImmediately; }
     bool speedLimiterOnStartup()  const { return m_speedLimiterOnStartup; }
@@ -283,6 +287,8 @@ public:
     void setExcludedAddresses(const QStringList &v);
     void setShowExceptionsDialog(bool v);
     void setShowTips(bool v);
+    void setSwarmMapShowInactive(bool v);
+    void setSwarmMapShowTrackers(bool v);
     void setDuplicateAction(int v);
     void setStartImmediately(bool v);
     void setSpeedLimiterOnStartup(bool v);
@@ -411,6 +417,8 @@ signals:
     void excludedAddressesChanged();
     void showExceptionsDialogChanged();
     void showTipsChanged();
+    void swarmMapShowInactiveChanged();
+    void swarmMapShowTrackersChanged();
     void duplicateActionChanged();
     void startImmediatelyChanged();
     void speedLimiterOnStartupChanged();
@@ -495,6 +503,8 @@ private:
     QStringList m_excludedAddresses;
     bool        m_showExceptionsDialog{true};
     bool        m_showTips{true};
+    bool        m_swarmMapShowInactive{true};
+    bool        m_swarmMapShowTrackers{true};
     int         m_duplicateAction{0};
     bool        m_startImmediately{false};
     bool        m_speedLimiterOnStartup{false};

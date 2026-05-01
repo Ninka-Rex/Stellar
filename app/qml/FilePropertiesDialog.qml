@@ -264,8 +264,8 @@ Window {
     property real   peerMapLonOffset: 0.5
     property real   peerMapLatOffset: 4.5
     property bool   peerMapYouHoverVisible: false
-    property bool   peerMapShowTrackers: true
-    property bool   peerMapShowInactive: true
+    property bool   peerMapShowTrackers: App.settings.swarmMapShowTrackers
+    property bool   peerMapShowInactive: App.settings.swarmMapShowInactive
     property real   peerMapHoverProgress: 0.0
     readonly property real peerMapSvgMinX: 1.0
     readonly property real peerMapSvgMaxX: 799.0
@@ -3848,7 +3848,7 @@ Window {
                                     CheckBox {
                                         id: inactiveCheck
                                         checked: root.peerMapShowInactive
-                                        onCheckedChanged: root.peerMapShowInactive = checked
+                                        onCheckedChanged: App.settings.swarmMapShowInactive = checked
                                         implicitHeight: 20
                                         indicator: Rectangle {
                                             width: 14; height: 14; radius: 2
@@ -3868,7 +3868,7 @@ Window {
                                     CheckBox {
                                         id: trackerDotsCheck
                                         checked: root.peerMapShowTrackers
-                                        onCheckedChanged: root.peerMapShowTrackers = checked
+                                        onCheckedChanged: App.settings.swarmMapShowTrackers = checked
                                         implicitHeight: 20
                                         indicator: Rectangle {
                                             width: 14; height: 14; radius: 2
