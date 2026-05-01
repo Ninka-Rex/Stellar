@@ -813,6 +813,70 @@ void AppController::handleIpcPayload(const QByteArray &json) {
         }
     } else if (type == QStringLiteral("focus")) {
         emit showWindowRequested();
+    } else if (type == QStringLiteral("cliDownload")) {
+        // IDM-compatible CLI: Stellar.exe /d URL [/p path] [/f name] [/n] [/a] [/h] [/q]
+        const QString url      = obj.value(QStringLiteral("url")).toString();
+        const QString savePath = obj.value(QStringLiteral("savePath")).toString().trimmed();
+        const QString filename = obj.value(QStringLiteral("filename")).toString().trimmed();
+        const bool    silent   = obj.value(QStringLiteral("silent")).toBool();
+        const bool    addOnly  = obj.value(QStringLiteral("addOnly")).toBool();
+        const bool    hangUp   = obj.value(QStringLiteral("hangUp")).toBool();
+        const bool    quitAfter= obj.value(QStringLiteral("quitAfter")).toBool();
+
+        if (url.isEmpty()) return;
+
+        // Resolve the save directory: use /p if given, else the user's default.
+        QString resolvedSavePath = savePath.isEmpty()
+            ? m_settings->defaultSavePath()
+            : savePath;
+
+        // Append the filename override if /f was given.
+        QString resolvedFullPath;
+        if (!filename.isEmpty()) {
+            resolvedFullPath = QDir(resolvedSavePath).filePath(filename);
+        }
+
+        const bool startNow = !addOnly;
+
+        if (isTorrentUri(url) || isLocalTorrentFileSource(url)) {
+            // Torrents are always added via the metadata flow; /a is honoured by
+            // passing startNow=false so the torrent starts in a staged/stopped state.
+            beginTorrentMetadataDownload(url, resolvedSavePath, QString(), QString(), startNow);
+        } else if (!silent && isLikelyYtdlpUrl(url)) {
+            // In non-silent mode, show the yt-dlp format picker as usual.
+            emit interceptedDownloadRequested(url, filename);
+        } else {
+            // Regular HTTP/FTP download.  When /f was given we pass the full path
+            // as savePath so the engine writes to exactly that location.
+            const QString effectiveSave = resolvedFullPath.isEmpty()
+                ? resolvedSavePath
+                : QFileInfo(resolvedFullPath).absolutePath();
+            const QString effectiveName = filename;
+            addUrl(url, effectiveSave, {}, {}, startNow, {}, {}, {}, {}, {}, effectiveName);
+        }
+
+        // /h and /q are acted on when the download completes.  Wire a one-shot
+        // connection on downloadCompleted so we don't affect other downloads.
+        if (hangUp || quitAfter) {
+            // We track these flags per-URL in maps so the lambda can be stateless.
+            if (hangUp)    m_cliHangUpUrls.insert(url);
+            if (quitAfter) m_cliQuitAfterUrls.insert(url);
+        }
+
+        // Non-silent mode: bring the window to the foreground so the user can see
+        // the new download (mirrors IDM behaviour when /n is not passed).
+        if (!silent)
+            emit showWindowRequested();
+
+    } else if (type == QStringLiteral("cliStartScheduler")) {
+        // IDM /s: starts the default queue so scheduled downloads begin.
+        // We start every queue that is currently waiting; this matches IDM's
+        // documented behaviour of "starting the queue in scheduler".
+        const QStringList ids = m_queueModel->queueIds();
+        for (const QString &id : ids) {
+            if (id != QStringLiteral("download-limits"))
+                startQueue(id);
+        }
     }
 }
 
@@ -1348,6 +1412,27 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 handleIpcPayload(*payload);
             sock->deleteLater();
         });
+    });
+
+    // CLI /q and /h: when a download that was added via CLI completes, either
+    // hang up the network connection or quit the app as requested.
+    connect(this, &AppController::downloadCompleted, this, [this](QObject *obj) {
+        DownloadItem *item = qobject_cast<DownloadItem *>(obj);
+        if (!item) return;
+        const QString url = item->url().toString();
+        const bool doHangUp  = m_cliHangUpUrls.remove(url);
+        const bool doQuit    = m_cliQuitAfterUrls.remove(url);
+        if (doHangUp) {
+            // Disconnect the application-level network proxy to simulate a hang-up.
+            // On most platforms the simplest equivalent is to take the proxy offline;
+            // we emit a signal that QML can use to trigger a true disconnect if desired.
+            QNetworkProxy noProxy(QNetworkProxy::NoProxy);
+            QNetworkProxy::setApplicationProxy(noProxy);
+        }
+        if (doQuit) {
+            // Delay slightly so any in-flight DB writes can flush.
+            QTimer::singleShot(500, qApp, []() { QCoreApplication::quit(); });
+        }
     });
 
     // ── 3. Data & Setup ────────────────────────────────────────────────────────

@@ -373,6 +373,170 @@ static int runNativeMessagingHost(int argc, char *argv[])
     return 0;
 }
 
+// ── IDM-compatible CLI mode ───────────────────────────────────────────────────
+// Stellar.exe /d URL [/p path] [/f filename] [/q] [/h] [/n] [/a]
+// Stellar.exe /s
+//
+// /d URL  - download a file
+// /s      - start the queue in scheduler
+// /p path - local directory to save the file
+// /f name - local filename to save the file
+// /q      - quit Stellar after successful download (first copy only)
+// /h      - hang up connection after successful download
+// /n      - silent mode (no UI prompts)
+// /a      - add to queue but do not start downloading
+
+struct CliArgs {
+    bool        isCli       = false;  // true when any IDM-style switch is present
+    bool        startSched  = false;  // /s
+    QString     downloadUrl;          // /d URL
+    QString     savePath;             // /p path
+    QString     saveFilename;         // /f filename
+    bool        quitAfter   = false;  // /q
+    bool        hangUp      = false;  // /h
+    bool        silent      = false;  // /n
+    bool        addOnly     = false;  // /a (add to queue, don't start)
+};
+
+static CliArgs parseCliArgs(int argc, char *argv[])
+{
+    CliArgs ca;
+    for (int i = 1; i < argc; ++i) {
+        const QString arg = QString::fromLocal8Bit(argv[i]);
+        // Accept both /switch and -switch for robustness.
+        auto isSwitch = [&](const char *s) {
+            return arg.compare(QString::fromLatin1(s),            Qt::CaseInsensitive) == 0
+                || arg.compare(QString::fromLatin1(s).replace(QLatin1Char('/'), QLatin1Char('-')), Qt::CaseInsensitive) == 0;
+        };
+
+        if (isSwitch("/s")) {
+            ca.isCli = true;
+            ca.startSched = true;
+        } else if (isSwitch("/d")) {
+            ca.isCli = true;
+            if (i + 1 < argc)
+                ca.downloadUrl = QString::fromLocal8Bit(argv[++i]);
+        } else if (isSwitch("/p")) {
+            if (i + 1 < argc)
+                ca.savePath = QString::fromLocal8Bit(argv[++i]);
+        } else if (isSwitch("/f")) {
+            if (i + 1 < argc)
+                ca.saveFilename = QString::fromLocal8Bit(argv[++i]);
+        } else if (isSwitch("/q")) {
+            ca.quitAfter = true;
+        } else if (isSwitch("/h")) {
+            ca.hangUp = true;
+        } else if (isSwitch("/n")) {
+            ca.silent = true;
+        } else if (isSwitch("/a")) {
+            ca.addOnly = true;
+        }
+    }
+    return ca;
+}
+
+// Build the IPC JSON payload for a CLI download command.
+static QByteArray makeCliDownloadPayload(const CliArgs &ca)
+{
+    QJsonObject obj;
+    obj[QStringLiteral("type")]     = QStringLiteral("cliDownload");
+    obj[QStringLiteral("url")]      = ca.downloadUrl;
+    obj[QStringLiteral("savePath")] = ca.savePath;
+    obj[QStringLiteral("filename")] = ca.saveFilename;
+    obj[QStringLiteral("silent")]   = ca.silent;
+    obj[QStringLiteral("addOnly")]  = ca.addOnly;
+    obj[QStringLiteral("hangUp")]   = ca.hangUp;
+    obj[QStringLiteral("quitAfter")]= ca.quitAfter;
+    return QJsonDocument(obj).toJson(QJsonDocument::Compact);
+}
+
+// Build the IPC JSON payload for /s (start scheduler / default queue).
+static QByteArray makeCliStartSchedulerPayload()
+{
+    return QJsonDocument(QJsonObject{
+        {QStringLiteral("type"), QStringLiteral("cliStartScheduler")}
+    }).toJson(QJsonDocument::Compact);
+}
+
+// Run CLI mode: forward the command to a running instance via IPC, or launch
+// the GUI with the payload stored in the drop file (same cold-start pattern
+// used by the native messaging host).
+static int runCliMode(int argc, char *argv[], const CliArgs &ca)
+{
+    QCoreApplication coreApp(argc, argv);
+    QCoreApplication::setApplicationName(QStringLiteral("Stellar"));
+    QCoreApplication::setOrganizationName(QStringLiteral("Stellar"));
+
+    const QByteArray payload = ca.startSched
+        ? makeCliStartSchedulerPayload()
+        : makeCliDownloadPayload(ca);
+
+    const QString kServer = QStringLiteral("StellarDownloadManager");
+    QLocalSocket sock;
+    sock.connectToServer(kServer);
+
+    if (sock.waitForConnected(500)) {
+        // Running instance found -- forward the command and exit.
+        sock.write(payload);
+        sock.flush();
+        sock.waitForBytesWritten(3000);
+        return 0;
+    }
+
+    // No running instance.  For download commands, persist the payload so the
+    // GUI can replay it via the same drop-file mechanism the native host uses.
+    if (!ca.startSched) {
+        QFile dropFile(pendingDownloadFilePath());
+        if (dropFile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+            dropFile.write(payload);
+    }
+
+    // Launch the GUI.  On Windows, try to break out of any Job Object first.
+    const QString program = QCoreApplication::applicationFilePath();
+    QStringList guiArgs = {QStringLiteral("--gui")};
+    if (ca.silent)
+        guiArgs << QStringLiteral("--minimized");
+
+#if defined(Q_OS_WIN)
+    {
+        QString cmdLine = QStringLiteral("\"%1\"").arg(program);
+        for (const QString &a : guiArgs)
+            cmdLine += QStringLiteral(" ") + a;
+        std::wstring cmdW = cmdLine.toStdWString();
+        STARTUPINFOW si = {};
+        si.cb = sizeof(si);
+        PROCESS_INFORMATION pi = {};
+        const DWORD flags = CREATE_BREAKAWAY_FROM_JOB | CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS;
+        if (!CreateProcessW(nullptr, cmdW.data(), nullptr, nullptr,
+                            FALSE, flags, nullptr, nullptr, &si, &pi)) {
+            QProcess::startDetached(program, guiArgs);
+        } else {
+            CloseHandle(pi.hProcess);
+            CloseHandle(pi.hThread);
+        }
+    }
+#else
+    QProcess::startDetached(program, guiArgs);
+#endif
+
+    // For /s (scheduler start) with no running instance, try to connect once
+    // the GUI has had time to start.
+    if (ca.startSched) {
+        for (int i = 0; i < 40; ++i) {
+            QThread::msleep(500);
+            sock.connectToServer(kServer);
+            if (sock.waitForConnected(500)) {
+                sock.write(payload);
+                sock.flush();
+                sock.waitForBytesWritten(3000);
+                break;
+            }
+        }
+    }
+
+    return 0;
+}
+
 // ── GUI mode ──────────────────────────────────────────────────────────────────
 
 int main(int argc, char *argv[])
@@ -399,6 +563,12 @@ int main(int argc, char *argv[])
         else if (qstrcmp(argv[i], "--minimized") == 0)
             startMinimized = true;
     }
+
+    // Parse IDM-compatible CLI switches.  If any are present and --gui was not
+    // explicitly requested, run in CLI mode (no GUI window opened by this copy).
+    const CliArgs cliArgs = parseCliArgs(argc, argv);
+    if (cliArgs.isCli && !forceGui)
+        return runCliMode(argc, argv, cliArgs);
     
     nmLog(QStringLiteral("App startup. forceGui=") + (forceGui ? "true" : "false"));
     nmLog(QStringLiteral("Checking for existing instance..."));
