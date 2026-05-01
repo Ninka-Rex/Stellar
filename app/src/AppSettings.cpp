@@ -186,6 +186,7 @@ void AppSettings::load() {
     m_showTips = m_settings.value(QStringLiteral("showTips"), true).toBool();
     m_swarmMapShowInactive = m_settings.value(QStringLiteral("swarmMapShowInactive"), true).toBool();
     m_swarmMapShowTrackers = m_settings.value(QStringLiteral("swarmMapShowTrackers"), true).toBool();
+    m_showSwarmMapWhileFetchingMetadata = m_settings.value(QStringLiteral("showSwarmMapWhileFetchingMetadata"), true).toBool();
     m_duplicateAction = m_settings.value(QStringLiteral("duplicateAction"), 0).toInt();
     m_startImmediately        = m_settings.value(QStringLiteral("startImmediately"), false).toBool();
     m_speedLimiterOnStartup   = m_settings.value(QStringLiteral("speedLimiterOnStartup"), false).toBool();
@@ -433,6 +434,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("showTips"),              m_showTips);
     m_settings.setValue(QStringLiteral("swarmMapShowInactive"),  m_swarmMapShowInactive);
     m_settings.setValue(QStringLiteral("swarmMapShowTrackers"),  m_swarmMapShowTrackers);
+    m_settings.setValue(QStringLiteral("showSwarmMapWhileFetchingMetadata"), m_showSwarmMapWhileFetchingMetadata);
     m_settings.setValue(QStringLiteral("duplicateAction"),       m_duplicateAction);
     m_settings.setValue(QStringLiteral("startImmediately"),           m_startImmediately);
     m_settings.setValue(QStringLiteral("speedLimiterOnStartup"),      m_speedLimiterOnStartup);
@@ -558,6 +560,7 @@ void AppSettings::setShowExceptionsDialog(bool v)              { if (m_showExcep
 void AppSettings::setShowTips(bool v)                          { if (m_showTips            != v) { m_showTips            = v; emit showTipsChanged();            save(); } }
 void AppSettings::setSwarmMapShowInactive(bool v)              { if (m_swarmMapShowInactive != v) { m_swarmMapShowInactive = v; emit swarmMapShowInactiveChanged(); save(); } }
 void AppSettings::setSwarmMapShowTrackers(bool v)              { if (m_swarmMapShowTrackers != v) { m_swarmMapShowTrackers = v; emit swarmMapShowTrackersChanged(); save(); } }
+void AppSettings::setShowSwarmMapWhileFetchingMetadata(bool v) { if (m_showSwarmMapWhileFetchingMetadata != v) { m_showSwarmMapWhileFetchingMetadata = v; emit showSwarmMapWhileFetchingMetadataChanged(); save(); } }
 void AppSettings::setDuplicateAction(int v)                    { if (m_duplicateAction     != v) { m_duplicateAction     = v; emit duplicateActionChanged();     save(); } }
 void AppSettings::setStartImmediately(bool v)       { if (m_startImmediately       != v) { m_startImmediately       = v; emit startImmediatelyChanged();       save(); } }
 void AppSettings::setSpeedLimiterOnStartup(bool v)  { if (m_speedLimiterOnStartup  != v) { m_speedLimiterOnStartup  = v; emit speedLimiterOnStartupChanged();  save(); } }

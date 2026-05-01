@@ -707,12 +707,39 @@ Window {
         Item {
             anchors.fill: parent
 
+            // Simple spinner shown when swarm map is disabled in settings
+            Rectangle {
+                anchors.fill: parent
+                color: "#0d141c"
+                radius: 3
+                visible: !App.settings.showSwarmMapWhileFetchingMetadata
+
+                Column {
+                    anchors.centerIn: parent
+                    spacing: 14
+
+                    BusyIndicator {
+                        running: true
+                        width: 40; height: 40
+                        anchors.horizontalCenter: parent.horizontalCenter
+                    }
+
+                    Text {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        text: root.item ? root.metadataPeerStatusText() : "Opening torrent..."
+                        color: "#8ea1b5"
+                        font.pixelSize: 13
+                    }
+                }
+            }
+
             // ── World swarm map ───────────────────────────────────────────────
             Rectangle {
                 anchors.fill: parent
                 color: "#0d141c"
                 radius: 3
                 clip: true
+                visible: App.settings.showSwarmMapWhileFetchingMetadata
 
                 // Overlay status row at the top
                 Rectangle {
