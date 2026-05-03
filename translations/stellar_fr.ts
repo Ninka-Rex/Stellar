@@ -819,4 +819,167 @@ le projet</translation></message>
     <name>AppController</name>
     <message><source>\xf0\x9f\x9b\xa1 Bound to %1</source><translation>\xf0\x9f\x9b\xa1 Lié à %1</translation></message>
 </context>
+<context>
+    <name>FilePropertiesDialog</name>
+    <message><source>Torrent Properties</source><translation>Proprietes du torrent</translation></message>
+    <message><source>Checking files</source><translation>Verification des fichiers</translation></message>
+</context>
+<context>
+    <name>AddUrlDialog</name>
+    <message><source>Add URL</source><translation>Ajouter une URL</translation></message>
+</context>
+<context>
+    <name>AddExceptionDialog</name>
+    <message><source>Add Address Exception</source><translation>Ajouter une exception d'adresse</translation></message>
+</context>
+<context>
+    <name>BatchDownloadDialog</name>
+    <message><source>Batch Download</source><translation>Telechargement par lot</translation></message>
+</context>
+<context>
+    <name>BatchDownloadListDialog</name>
+    <message><source>Batch download review</source><translation>Revision du telechargement par lot</translation></message>
+</context>
+<context>
+    <name>BrowserIntegrationDialog</name>
+    <message><source>Browser Extensions</source><translation>Extensions du navigateur</translation></message>
+</context>
+<context>
+    <name>ColumnsDialog</name>
+    <message><source>Columns</source><translation>Colonnes</translation></message>
+</context>
+<context>
+    <name>DeleteConfirmDialog</name>
+    <message><source>Confirm Delete</source><translation>Confirmer la suppression</translation></message>
+</context>
+<context>
+    <name>DeleteDoneConfirmDialog</name>
+    <message><source>Delete Completed Downloads</source><translation>Supprimer les telechargements termines</translation></message>
+</context>
+<context>
+    <name>DownloadCompleteDialog</name>
+    <message><source>Download complete</source><translation>Telechargement termine</translation></message>
+</context>
+<context>
+    <name>DownloadFileInfoDialog</name>
+    <message><source>Download File Info</source><translation>Informations sur le fichier a telecharger</translation></message>
+    <message><source>Adding a category to Stellar categories list</source><translation>Ajout d'une categorie a la liste des categories Stellar</translation></message>
+</context>
+<context>
+    <name>DownloadTable</name>
+    <message><source>Rename</source><translation>Renommer</translation></message>
+    <message><source>Move to Queue</source><translation>Deplacer vers la file</translation></message>
+</context>
+<context>
+    <name>DuplicateDownloadDialog</name>
+    <message><source>Duplicate Download Link</source><translation>Lien de telechargement en double</translation></message>
+</context>
+<context>
+    <name>FilePropertiesDialog</name>
+    <message><source>File Properties</source><translation>Proprietes du fichier</translation></message>
+    <message><source>Rename</source><translation>Renommer</translation></message>
+    <message><source>Peer Info</source><translation>Informations sur le pair</translation></message>
+</context>
+<context>
+    <name>FindDialog</name>
+    <message><source>Find</source><translation>Rechercher</translation></message>
+</context>
+<context>
+    <name>GrabberDialog</name>
+    <message><source>Stellar Grabber – Step %1 of %2: %3</source><translation>Stellar Grabber - Etape %1 sur %2 : %3</translation></message>
+    <message><source>Include filters</source><translation>Filtres inclus</translation></message>
+    <message><source>Exclude filters</source><translation>Filtres exclus</translation></message>
+    <message><source>Recent Projects</source><translation>Projets recents</translation></message>
+</context>
+<context>
+    <name>GrabberProjectPickerDialog</name>
+    <message><source>Load Grabber Project</source><translation>Charger un projet Grabber</translation></message>
+</context>
+<context>
+    <name>GrabberResultsDialog</name>
+    <message><source>Stellar Grabber</source><translation>Stellar Grabber</translation></message>
+</context>
+<context>
+    <name>GrabberScheduleDialog</name>
+    <message><source>Schedule the grabber project</source><translation>Planifier le projet Grabber</translation></message>
+</context>
+<context>
+    <name>GrabberSettingsDialog</name>
+    <message><source>Settings of Stellar Grabber</source><translation>Parametres de Stellar Grabber</translation></message>
+</context>
+<context>
+    <name>GrabberStatisticsDialog</name>
+    <message><source>Grabber Statistics</source><translation>Statistiques du Grabber</translation></message>
+</context>
+<context>
+    <name>Main</name>
+    <message><source>Stellar</source><translation>Stellar</translation></message>
+    <message><source>Browser Cookies Required</source><translation>Cookies du navigateur requis</translation></message>
+    <message><source>Add Torrent File</source><translation>Ajouter un fichier torrent</translation></message>
+    <message><source>Export .torrent Files</source><translation>Exporter les fichiers .torrent</translation></message>
+    <message><source>Channel Download Progress</source><translation>Progression du telechargement de la chaine</translation></message>
+    <message><source>Download Later</source><translation>Telecharger plus tard</translation></message>
+    <message><source>File No Longer Available</source><translation>Fichier non disponible</translation></message>
+    <message><source>Quick Update</source><translation>Mise a jour rapide</translation></message>
+    <message><source>New version of Stellar Download Manager is available</source><translation>Une nouvelle version de Stellar Download Manager est disponible</translation></message>
+    <message><source>What's New in Stellar</source><translation>Nouveautes dans Stellar</translation></message>
+</context>
+<context>
+    <name>QueueSelectionDialog</name>
+    <message><source>Queue Selection</source><translation>Selection de la file</translation></message>
+</context>
+<context>
+    <name>RssDownloadRulesDialog</name>
+    <message><source>RSS Auto Download Rules</source><translation>Regles de telechargement automatique RSS</translation></message>
+</context>
+<context>
+    <name>RssWindow</name>
+    <message><source>RSS Feeds</source><translation>Flux RSS</translation></message>
+    <message><source>Edit Subscription</source><translation>Modifier l'abonnement</translation></message>
+</context>
+<context>
+    <name>SchedulerDialog</name>
+    <message><source>Scheduler</source><translation>Planificateur</translation></message>
+    <message><source>New Queue</source><translation>Nouvelle file</translation></message>
+    <message><source>Select file to open when done</source><translation>Selectionner le fichier a ouvrir a la fin</translation></message>
+</context>
+<context>
+    <name>SettingsDialog</name>
+    <message><source>Stellar Preferences</source><translation>Preferences Stellar</translation></message>
+    <message><source>Select yt-dlp binary</source><translation>Selectionner le binaire yt-dlp</translation></message>
+    <message><source>Select JavaScript runtime binary</source><translation>Selectionner le binaire du runtime JavaScript</translation></message>
+</context>
+<context>
+    <name>StatisticsDialog</name>
+    <message><source>Statistics</source><translation>Statistiques</translation></message>
+</context>
+<context>
+    <name>TorrentDuplicateDialog</name>
+    <message><source>Duplicate Torrent</source><translation>Torrent en double</translation></message>
+</context>
+<context>
+    <name>TorrentMetadataDialog</name>
+    <message><source>Torrent Metadata</source><translation>Metadonnees du torrent</translation></message>
+    <message><source>Rename</source><translation>Renommer</translation></message>
+</context>
+<context>
+    <name>TorrentSearchInstallDialog</name>
+    <message><source>Install Search Plugin</source><translation>Installer le plugin de recherche</translation></message>
+</context>
+<context>
+    <name>TorrentSearchPluginsDialog</name>
+    <message><source>Search Plugins</source><translation>Plugins de recherche</translation></message>
+</context>
+<context>
+    <name>TorrentSearchWindow</name>
+    <message><source>Torrent Search Engine</source><translation>Moteur de recherche torrent</translation></message>
+</context>
+<context>
+    <name>TorrentSpeedLimitDialog</name>
+    <message><source>Torrent Settings</source><translation>Parametres du torrent</translation></message>
+</context>
+<context>
+    <name>YtdlpDialog</name>
+    <message><source>Video Download</source><translation>Telechargement video</translation></message>
+</context>
 </TS>

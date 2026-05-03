@@ -121,29 +121,29 @@ Window {
 
     // Static column definitions (never change)
     readonly property var _peerColDefs: [
-        { title: "Country",  key: "country",  sortKey: "country" },
-        { title: "Peer",     key: "endpoint", sortKey: "endpoint" },
-        { title: "Port",     key: "port",     sortKey: "port" },
-        { title: "Client",   key: "client",   sortKey: "client" },
-        { title: "Progress", key: "progress", sortKey: "progress" },
-        { title: "Down",     key: "down",     sortKey: "down" },
-        { title: "Up",       key: "up",       sortKey: "up" },
-        { title: "Downloaded", key: "downloaded", sortKey: "downloaded" },
-        { title: "Uploaded", key: "uploaded", sortKey: "uploaded" },
-        { title: "Flags",    key: "type",     sortKey: "type" }
+        { title: qsTr("Country"),  key: "country",  sortKey: "country" },
+        { title: qsTr("Peer"),     key: "endpoint", sortKey: "endpoint" },
+        { title: qsTr("Port"),     key: "port",     sortKey: "port" },
+        { title: qsTr("Client"),   key: "client",   sortKey: "client" },
+        { title: qsTr("Progress"), key: "progress", sortKey: "progress" },
+        { title: qsTr("Down"),     key: "down",     sortKey: "down" },
+        { title: qsTr("Up"),       key: "up",       sortKey: "up" },
+        { title: qsTr("Downloaded"), key: "downloaded", sortKey: "downloaded" },
+        { title: qsTr("Uploaded"), key: "uploaded", sortKey: "uploaded" },
+        { title: qsTr("Flags"),    key: "type",     sortKey: "type" }
     ]
     readonly property var _trkColDefs: [
-        { title: "Tracker", key: "tracker" },
-        { title: "Status",  key: "status" },
-        { title: "Source",  key: "source" },
-        { title: "Seeders", key: "seeders" },
-        { title: "Peers",   key: "peers" },
-        { title: "Message", key: "message" }
+        { title: qsTr("Tracker"), key: "tracker" },
+        { title: qsTr("Status"),  key: "status" },
+        { title: qsTr("Source"),  key: "source" },
+        { title: qsTr("Seeders"), key: "seeders" },
+        { title: qsTr("Peers"),   key: "peers" },
+        { title: qsTr("Message"), key: "message" }
     ]
     readonly property var _fileColDefs: [
-        { title: "Name",     key: "name" },
-        { title: "Progress", key: "progress" },
-        { title: "Size",     key: "size" }
+        { title: qsTr("Name"),     key: "name" },
+        { title: qsTr("Progress"), key: "progress" },
+        { title: qsTr("Size"),     key: "size" }
     ]
 
     // Ordered column arrays (reactive on JSON order strings)
@@ -484,14 +484,14 @@ Window {
     function safeStr(v) { return (v === undefined || v === null) ? "" : String(v) }
     function torrentStatusLabel() {
         switch (_torrentStatusText) {
-        case "Paused": return "Stopped"
-        case "Checking": return "Checking files"
-        case "Downloading": return "Downloading"
-        case "Moving": return "Moving"
-        case "Seeding": return "Seeding"
-        case "Queued": return "Queued"
-        case "Completed": return "Complete"
-        case "Error": return "Problem"
+        case "Paused": return qsTr("Stopped")
+        case "Checking": return qsTr("Checking files")
+        case "Downloading": return qsTr("Downloading")
+        case "Moving": return qsTr("Moving")
+        case "Seeding": return qsTr("Seeding")
+        case "Queued": return qsTr("Queued")
+        case "Completed": return qsTr("Complete")
+        case "Error": return qsTr("Problem")
         default: return _torrentStatusText.length > 0 ? _torrentStatusText : "--"
         }
     }
@@ -2691,7 +2691,7 @@ Window {
                             minimumHeight: 150
                             maximumHeight: 150
                             visible: false
-                            title: "Rename"
+                            title: qsTr("Rename")
                             color: "#1e1e1e"
                             transientParent: root
                             modality: Qt.NonModal
@@ -3204,7 +3204,7 @@ Window {
                                 minimumHeight: 450
                                 modality: Qt.ApplicationModal
                                 flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
-                                title: "Peer Info"
+                                title: qsTr("Peer Info")
                                 color: "#1e1e1e"
                                 property var peerData: ({})
                                 function blankPeerData() {
@@ -3891,7 +3891,9 @@ Window {
                                 spacing: 12
 
                                 Text {
-                                    text: root.activePeerMapModel ? (root.activePeerMapModel.rowCount() + " known peers") : "0 known peers"
+                                    text: root.activePeerMapModel
+                                        ? qsTr("%1 known peers").arg(root.activePeerMapModel.rowCount())
+                                        : qsTr("0 known peers")
                                     color: "#8ea1b5"
                                     font.pixelSize: 11
                                 }
@@ -4109,9 +4111,9 @@ Window {
                                                     Text { text: endpoint + ":" + port; color: "#f0f5fb"; font.pixelSize: 11; font.bold: true; elide: Text.ElideRight; width: parent.width }
                                                     Text { text: client; color: "#c5d2de"; font.pixelSize: 11; elide: Text.ElideRight; width: parent.width }
                                                     Text { text: root.peerPlaceText(parent.parent); color: "#95a9bb"; font.pixelSize: 10; elide: Text.ElideRight; width: parent.width }
-                                                    Text { text: (isSeed ? "Seed" : "Peer") + " • " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10; width: parent.width }
-                                                    Text { text: "Down " + root.compactSpeed(downSpeed) + "  Up " + root.compactSpeed(upSpeed); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
-                                                    Text { text: "RTT " + (rtt > 0 ? (rtt + " ms") : "--"); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
+                                                    Text { text: (isSeed ? qsTr("Seed") : qsTr("Peer")) + " • " + source; color: isSeed ? "#f6b84c" : "#56d27f"; font.pixelSize: 10; width: parent.width }
+                                                    Text { text: qsTr("Down %1  Up %2").arg(root.compactSpeed(downSpeed)).arg(root.compactSpeed(upSpeed)); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
+                                                    Text { text: qsTr("RTT %1").arg(rtt > 0 ? (rtt + " ms") : "--"); color: "#9fb6c8"; font.pixelSize: 10; width: parent.width }
                                                 }
                                             }
 
@@ -4341,7 +4343,7 @@ Window {
 
                                             // Speed row
                                             Text {
-                                                text: "↓ " + root.compactSpeed(root.peerMapHoverDownSpeed) + "  ↑ " + root.compactSpeed(root.peerMapHoverUpSpeed)
+                                                text: qsTr("↓ %1  ↑ %2").arg(root.compactSpeed(root.peerMapHoverDownSpeed)).arg(root.compactSpeed(root.peerMapHoverUpSpeed))
                                                 color: "#9fb6c8"
                                                 font.pixelSize: 11
                                                 width: parent.width
@@ -4349,7 +4351,7 @@ Window {
 
                                             // Ping + progress row
                                             Text {
-                                                text: "Ping " + (root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "—") + "  " + Math.round(root.peerMapHoverProgress * 100) + "% done"
+                                                text: qsTr("Ping %1  %2% done").arg(root.peerMapHoverRtt > 0 ? (root.peerMapHoverRtt + " ms") : "—").arg(Math.round(root.peerMapHoverProgress * 100))
                                                 color: "#9fb6c8"
                                                 font.pixelSize: 11
                                                 width: parent.width
@@ -4411,7 +4413,7 @@ Window {
                                                 spacing: 4
                                                 Text { text: qsTr("Status"); color: "#6a8099"; font.pixelSize: 11 }
                                                 Text {
-                                                    text: root.peerMapTrackerHoverStatus || "Unknown"
+                                                    text: root.peerMapTrackerHoverStatus || qsTr("Unknown")
                                                     color: {
                                                         var s = root.peerMapTrackerHoverStatus.toLowerCase()
                                                         if (s === "working") return "#4caf7d"
@@ -4671,7 +4673,7 @@ Window {
                                     color: "#e0e0e0"; font.pixelSize: 12; font.bold: true
                                 }
                                 Text {
-                                    text: trackerList.count + (trackerList.count === 1 ? " tracker" : " trackers")
+                                    text: qsTr("%n tracker(s)", "", trackerList.count)
                                     color: "#666"; font.pixelSize: 11
                                     leftPadding: 8
                                 }
@@ -4700,7 +4702,7 @@ Window {
                                     onClicked: {
                                         if (!root.item) return
                                         App.forceReannounceTorrent(root.item.id)
-                                        reannounceStatusTxt.text = "Reannouncing..."
+                                        reannounceStatusTxt.text = qsTr("Reannouncing...")
                                         reannounceStatusTxt.color = "#6aaa6a"
                                         reannounceStatusTxt.opacity = 1
                                         reannounceStatusTimer.restart()
@@ -4716,7 +4718,7 @@ Window {
                                     onRunningChanged: if (running) flashing = true
                                 }
                                 DlgButton {
-                                    text: root.showTrackerAdd ? "Cancel" : "Add trackers…"
+                                    text: root.showTrackerAdd ? qsTr("Cancel") : qsTr("Add trackers…")
                                     primary: !root.showTrackerAdd
                                     onClicked: {
                                         root.showTrackerAdd = !root.showTrackerAdd
@@ -4784,7 +4786,9 @@ Window {
                                                 App.addTorrentTracker(root.item.id, u) ? added++ : failed++
                                             }
                                             if (added > 0) trackerInput.clear()
-                                            addStatusTxt.text = added + " added" + (failed ? ", " + failed + " failed" : "")
+                                            addStatusTxt.text = failed
+                                                ? qsTr("%1 added, %2 failed").arg(added).arg(failed)
+                                                : qsTr("%1 added").arg(added)
                                             addStatusTxt.color = failed > 0 ? "#c0a54a" : "#6aaa6a"
                                             if (added > 0 && failed === 0) root.showTrackerAdd = false
                                             addStatusClearTimer.restart()
@@ -5078,13 +5082,13 @@ Window {
                                     color: "#e0e0e0"; font.pixelSize: 12; font.bold: true
                                 }
                                 Text {
-                                    text: webSeedModel.count + (webSeedModel.count === 1 ? " seed" : " seeds")
+                                    text: qsTr("%n seed(s)", "", webSeedModel.count)
                                     color: "#666"; font.pixelSize: 11
                                     leftPadding: 8
                                 }
                                 Item { Layout.fillWidth: true }
                                 DlgButton {
-                                    text: root.showWebSeedAdd ? "Cancel" : "Add seed…"
+                                    text: root.showWebSeedAdd ? qsTr("Cancel") : qsTr("Add seed…")
                                     primary: !root.showWebSeedAdd
                                     onClicked: {
                                         root.showWebSeedAdd = !root.showWebSeedAdd
@@ -5154,7 +5158,7 @@ Window {
                                             }
                                             if (added > 0) {
                                                 webSeedInput.clear()
-                                                webSeedAddStatusTxt.text = added + " added"
+                                                webSeedAddStatusTxt.text = qsTr("%1 added").arg(added)
                                                 webSeedAddStatusTxt.color = "#6aaa6a"
                                                 root.showWebSeedAdd = false
                                                 webSeedsTab._rebuildModel()

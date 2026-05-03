@@ -139,7 +139,7 @@ ApplicationWindow {
         }
         if (anyMinimized) {
             App.showDownloadsTray()
-            App.setDownloadsTrayToolTip("SDM downloads")
+            App.setDownloadsTrayToolTip(qsTr("SDM downloads"))
         } else {
             App.hideDownloadsTray()
         }
@@ -253,7 +253,7 @@ ApplicationWindow {
 
     MessageDialog {
         id: appErrorDialog
-        title: "Stellar"
+    title: qsTr("Stellar")
         text: ""
         buttons: MessageDialog.Ok
     }
@@ -265,7 +265,7 @@ ApplicationWindow {
         minimumWidth: 420
         height: 260
         minimumHeight: 240
-        title: "Browser Cookies Required"
+        title: qsTr("Browser Cookies Required")
         color: "#1e1e1e"
         modality: Qt.ApplicationModal
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -973,9 +973,9 @@ ApplicationWindow {
 
     FileDialog {
         id: addTorrentFileDialog
-        title: "Add Torrent File"
+        title: qsTr("Add Torrent File")
         fileMode: FileDialog.OpenFile
-        nameFilters: ["Torrent files (*.torrent)", "All files (*)"]
+        nameFilters: [qsTr("Torrent files (*.torrent)"), qsTr("All files (*)")]
         onAccepted: {
             var path = selectedFile.toString()
                 .replace(/^file:\/\/\//, "")
@@ -988,7 +988,7 @@ ApplicationWindow {
 
     FolderDialog {
         id: exportTorrentFolderDialog
-        title: "Export .torrent Files"
+        title: qsTr("Export .torrent Files")
         onAccepted: {
             if (!root.pendingTorrentExportIds || root.pendingTorrentExportIds.length === 0)
                 return
@@ -1229,7 +1229,7 @@ ApplicationWindow {
         height: 520
         minimumWidth: 620
         minimumHeight: 420
-        title: "Channel Download Progress"
+        title: qsTr("Channel Download Progress")
         color: "#1e1e1e"
         modality: Qt.NonModal
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -1503,7 +1503,7 @@ ApplicationWindow {
 
     Window {
         id: downloadLaterWarningDialog
-        title: "Download Later"
+        title: qsTr("Download Later")
         transientParent: root
         width: 480
         height: 220
@@ -1565,7 +1565,7 @@ ApplicationWindow {
     Window {
         id: fileDeletedWarningDialog
         property string _filename: ""
-        title: "File No Longer Available"
+        title: qsTr("File No Longer Available")
         transientParent: root
         width: 460
         height: 240
@@ -1696,7 +1696,7 @@ ApplicationWindow {
     }
     Window {
         id: quickUpdateDialog
-        title: "Quick Update"
+        title: qsTr("Quick Update")
         transientParent: root
         width: 440
         height: 170
@@ -1741,7 +1741,7 @@ ApplicationWindow {
 
     Window {
         id: updateAvailableDialog
-        title: "New version of Stellar Download Manager is available"
+        title: qsTr("New version of Stellar Download Manager is available")
         transientParent: root
         width: 500
         height: 375
@@ -1830,7 +1830,7 @@ ApplicationWindow {
     // ── What's New / Changelog viewer ─────────────────────────────────────────
     Window {
         id: whatsNewDialog
-        title: "What's New in Stellar"
+        title: qsTr("What's New in Stellar")
         transientParent: root
         width: 500
         height: 375

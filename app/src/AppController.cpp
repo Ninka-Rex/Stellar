@@ -1329,20 +1329,20 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         const int active     = m_queue->activeCount();
         const int total      = m_downloadModel->allItems().size();
 
-        QString tip = QStringLiteral("Stellar Download Manager v") + appVersion();
+        QString tip = tr("Stellar Download Manager v") + appVersion();
 
         // Speed line — only shown when enabled and there is actual transfer activity.
         if (m_settings->speedInTrayTooltip() && (active > 0 || upSpeed > 0))
-            tip += QStringLiteral("\nDown: %1  Up: %2").arg(fmtSpeed(downSpeed), fmtSpeed(upSpeed));
+            tip += tr("\nDown: %1  Up: %2").arg(fmtSpeed(downSpeed), fmtSpeed(upSpeed));
 
         if (active > 0)
-            tip += QStringLiteral("\nDownloading: %1").arg(active);
+            tip += tr("\nDownloading: %1").arg(active);
         if (seeding > 0)
-            tip += active > 0 ? QStringLiteral("  Seeding: %1").arg(seeding)
-                              : QStringLiteral("\nSeeding: %1").arg(seeding);
+            tip += active > 0 ? tr("  Seeding: %1").arg(seeding)
+                              : tr("\nSeeding: %1").arg(seeding);
         if (total > 0)
-            tip += (active > 0 || seeding > 0) ? QStringLiteral("  Total: %1").arg(total)
-                                               : QStringLiteral("\nTotal: %1").arg(total);
+            tip += (active > 0 || seeding > 0) ? tr("  Total: %1").arg(total)
+                                               : tr("\nTotal: %1").arg(total);
 
         // Only call setToolTip when the text has changed — calling it while the
         // user is hovering causes Windows to dismiss and re-show the tooltip.
@@ -2019,7 +2019,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         // moment). The tooltip-timer is no longer running by the time
         // aboutToQuit fires, so set the tooltip directly.
         if (m_tray) {
-            const QString tip = QStringLiteral("Stellar is shutting down…");
+            const QString tip = tr("Stellar is shutting down...");
             m_lastTrayTooltip = tip;
             m_tray->setToolTip(tip);
         }
@@ -2049,7 +2049,7 @@ AppController::AppController(QObject *parent) : QObject(parent) {
     // so the dedup guard in the tooltip timer correctly recognises the
     // string change on the first real tick.
     {
-        const QString tip = QStringLiteral("Stellar is starting up…");
+        const QString tip = tr("Stellar is starting up...");
         m_lastTrayTooltip = tip;
         m_tray->setToolTip(tip);
     }

@@ -38,7 +38,7 @@ Window {
     property alias useAuth:  authCheck.checked
     property string titleOverride: ""
 
-    title: titleOverride.length > 0 ? titleOverride : qsTr("Add Download")
+    title: titleOverride.length > 0 ? titleOverride : qsTr("Add URL")
 
     signal accepted()
 

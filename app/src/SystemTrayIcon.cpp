@@ -76,7 +76,7 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     m_tray = new QSystemTrayIcon(this);
     const QIcon appIcon(QStringLiteral(":/qt/qml/com/stellar/app/app/qml/icons/milky-way.ico"));
     m_tray->setIcon(appIcon.isNull() ? createDefaultIcon() : appIcon);
-    m_tray->setToolTip(QStringLiteral("Stellar Download Manager"));
+    m_tray->setToolTip(tr("Stellar Download Manager"));
 
     connect(m_tray, &QSystemTrayIcon::activated, this,
             [this](QSystemTrayIcon::ActivationReason reason) {
@@ -100,7 +100,7 @@ SystemTrayIcon::SystemTrayIcon(QObject *parent)
     // Downloads tray icon
     m_downloadsTray = new QSystemTrayIcon(this);
     m_downloadsTray->setIcon(createDownloadsTrayIcon());
-    m_downloadsTray->setToolTip(QStringLiteral("SDM downloads"));
+    m_downloadsTray->setToolTip(tr("SDM downloads"));
 
     connect(m_downloadsTray, &QSystemTrayIcon::activated, this,
             [this](QSystemTrayIcon::ActivationReason reason) {
@@ -137,7 +137,7 @@ void SystemTrayIcon::setToolTip(const QString &tip) {
 
 void SystemTrayIcon::showNotification(const QString &title, const QString &msg) {
     const QString safeTitle = title.trimmed().isEmpty()
-        ? QStringLiteral("Stellar Download Manager")
+        ? tr("Stellar Download Manager")
         : title.trimmed();
     const QString safeMsg = msg.trimmed();
 
