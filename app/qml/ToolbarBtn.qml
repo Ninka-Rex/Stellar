@@ -25,7 +25,7 @@ AbstractButton {
     property int iconSize: 32
     
     width: 76
-    height: 62
+    height: 72
 
     // Dim the whole button when disabled so the user can see it won't respond.
     // AbstractButton has no built-in disabled appearance; we apply it here.
@@ -39,7 +39,11 @@ AbstractButton {
     }
 
     contentItem: Column {
-        anchors.centerIn: parent
+        anchors {
+            fill: parent
+            topMargin: 2
+            bottomMargin: 6
+        }
         spacing: 4
 
         Image {
@@ -62,9 +66,10 @@ AbstractButton {
             color: root.hovered ? "#ffffff" : "#d0d0d0"
             font.pixelSize: 11
             horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignTop
             wrapMode: Text.WordWrap
-            width: root.width - 4
             maximumLineCount: 2
+            width: root.width - 4
         }
     }
 

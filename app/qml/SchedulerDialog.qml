@@ -1084,7 +1084,7 @@ Window {
 
                 DlgButton {
                     text: qsTr("Start now")
-                    Layout.preferredWidth: 90
+                    Layout.preferredWidth: 130
                     Layout.preferredHeight: 32
                     enabled: root.selectedQueue !== null
                     primary: true

@@ -2262,10 +2262,10 @@ QString AppController::torrentBindingStatusText() const {
         const QString label = iface.humanReadableName().trimmed().isEmpty()
             ? iface.name()
             : iface.humanReadableName().trimmed();
-        return QStringLiteral("🛡️ Bound to %1").arg(label);
+        return tr("🛡️ Bound to %1").arg(label);
     }
 
-    return QStringLiteral("🛡️ Bound to %1").arg(bindTarget);
+    return tr("🛡️ Bound to %1").arg(bindTarget);
 }
 
 void AppController::setTorrentPortTestState(bool inProgress, const QString &status, const QString &message) {

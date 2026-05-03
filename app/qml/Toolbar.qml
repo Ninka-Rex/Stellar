@@ -20,7 +20,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    height: 64
+    height: 72
     color: "#1f1f1f"
 
     property var queueModel: null

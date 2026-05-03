@@ -814,4 +814,9 @@ le projet</translation></message>
     <message><source>Error</source><translation>Erreur</translation></message>
     <message><source>Unknown</source><translation>Inconnu</translation></message>
 </context>
+
+<context>
+    <name>AppController</name>
+    <message><source>\xf0\x9f\x9b\xa1 Bound to %1</source><translation>\xf0\x9f\x9b\xa1 Lié à %1</translation></message>
+</context>
 </TS>
