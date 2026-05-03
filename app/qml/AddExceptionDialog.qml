@@ -27,7 +27,7 @@ Window {
     height: 220
     minimumWidth: 380
     minimumHeight: 180
-    title: "Add Address Exception"
+    title: qsTr("Add Address Exception")
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
@@ -45,7 +45,7 @@ Window {
         spacing: 14
 
         Text {
-            text: "Add to Address Exceptions?"
+            text: qsTr("Add to Address Exceptions?")
             color: "#ffffff"
             font.pixelSize: 15
             font.bold: true
@@ -53,7 +53,7 @@ Window {
 
         Text {
             Layout.fillWidth: true
-            text: "This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?"
+            text: qsTr( "This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?")
             color: "#c0c0c0"
             font.pixelSize: 12
             wrapMode: Text.WordWrap
@@ -84,12 +84,12 @@ Window {
             Item { Layout.fillWidth: true }
 
             DlgButton {
-                text: "No"
+                text: qsTr("No")
                 onClicked: { root.rejected(); root.close() }
             }
 
             DlgButton {
-                text: "Add Exception"
+                text: qsTr("Add Exception")
                 primary: true
                 implicitWidth: 120
                 onClicked: {

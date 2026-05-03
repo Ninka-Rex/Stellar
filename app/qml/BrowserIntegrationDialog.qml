@@ -27,7 +27,7 @@ Window {
     height: 400
     minimumWidth: 420
     minimumHeight: 360
-    title: "Browser Extensions"
+    title: qsTr("Browser Extensions")
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
@@ -102,7 +102,7 @@ Window {
             spacing: 10
 
             Text {
-                text: "Browser Extensions"
+                text: qsTr("Browser Extensions")
                 color: "#ffffff"
                 font.pixelSize: 15
                 font.bold: true
@@ -111,7 +111,7 @@ Window {
 
             Text {
                 Layout.fillWidth: true
-                text: "Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically."
+                text: qsTr("Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.")
                 color: "#b0b0b0"
                 font.pixelSize: 12
                 wrapMode: Text.WordWrap
@@ -132,15 +132,15 @@ Window {
 
                     RowLayout {
                         spacing: 8
-                        Text { text: "Chrome / Edge / Brave"; color: "#fff"; font.pixelSize: 13; font.bold: true }
+                        Text { text: qsTr("Chrome / Edge / Brave"); color: "#fff"; font.pixelSize: 13; font.bold: true }
                     }
                     Text {
                         Layout.fillWidth: true
-                        text: "Install directly from the Chrome Web Store"
+                        text: qsTr("Install directly from the Chrome Web Store")
                         color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
                     }
                     InstallButton {
-                        label: "Open Link"
+                        label: qsTr("Open Link")
                         url: root.chromeUrl
                     }
                 }
@@ -159,14 +159,14 @@ Window {
                     anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
                     spacing: 6
 
-                    Text { text: "Firefox"; color: "#fff"; font.pixelSize: 13; font.bold: true }
+                    Text { text: qsTr("Firefox"); color: "#fff"; font.pixelSize: 13; font.bold: true }
                     Text {
                         Layout.fillWidth: true
-                        text: "Install Firefox XPI, no automatic updates"
+                        text: qsTr("Install Firefox XPI, no automatic updates")
                         color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
                     }
                     InstallButton {
-                        label: "Open Link"
+                        label: qsTr("Open Link")
                         url: root.firefoxUrl
                     }
                 }
@@ -185,10 +185,10 @@ Window {
                     anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
                     spacing: 6
 
-                    Text { text: "Native Messaging Host"; color: "#fff"; font.pixelSize: 13; font.bold: true }
+                    Text { text: qsTr("Native Messaging Host"); color: "#fff"; font.pixelSize: 13; font.bold: true }
                     Text {
                         Layout.fillWidth: true
-                        text: "Stellar registers itself automatically so the extension can communicate with it."
+                        text: qsTr("Stellar registers itself automatically so the extension can communicate with it.")
                         color: "#999"; font.pixelSize: 12; wrapMode: Text.WordWrap
                     }
 
@@ -203,9 +203,9 @@ Window {
                         }
 
                         Text {
-                            text: root.regState === "ok"    ? "Registered successfully."
-                                : root.regState === "error" ? "Registration failed — see details below."
-                                : "Registering…"
+                            text: root.regState === "ok"    ? qsTr("Registered successfully.")
+                                : root.regState === "error" ? qsTr("Registration failed — see details below.")
+                                : qsTr("Registering…")
                             color: root.regState === "ok"    ? "#55cc55"
                                  : root.regState === "error" ? "#cc5555"
                                  : "#888"
@@ -216,7 +216,7 @@ Window {
                             visible: root.regState !== "idle"
                             width: 68; height: 22; radius: 3
                             color: retryMa.containsMouse ? "#2a4a2a" : "#1e3a1e"
-                            Text { anchors.centerIn: parent; text: "Try again"; color: "#77cc77"; font.pixelSize: 10 }
+                            Text { anchors.centerIn: parent; text: qsTr("Try again"); color: "#77cc77"; font.pixelSize: 10 }
                             MouseArea {
                                 id: retryMa
                                 anchors.fill: parent
@@ -246,14 +246,14 @@ Window {
 
                     Text {
                         visible: root.regState === "error"
-                        text: "Manual installation:"
+                        text: qsTr("Manual installation:")
                         color: "#888"; font.pixelSize: 11; font.bold: true
                     }
 
                     Text {
                         visible: root.regState === "error" && Qt.platform.os === "windows"
                         Layout.fillWidth: true
-                        text: "Run in Command Prompt (no admin required):"
+                        text: qsTr("Run in Command Prompt (no admin required):")
                         color: "#888"; font.pixelSize: 11
                     }
 
@@ -276,19 +276,19 @@ Window {
                             anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
                             width: 46; height: 20; radius: 3
                             color: crWinMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
-                            Text { id: crWinLabel; anchors.centerIn: parent; text: "Copy"; color: "#88bbff"; font.pixelSize: 10 }
+                            Text { id: crWinLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 }
                             MouseArea {
                                 id: crWinMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                                onClicked: { App.copyToClipboard(crWinText.text); crWinLabel.text = "Copied"; crWinLabel.color = "#55cc55"; crWinReset.restart() }
+                                onClicked: { App.copyToClipboard(crWinText.text); crWinLabel.text = qsTr("Copied"); crWinLabel.color = "#55cc55"; crWinReset.restart() }
                             }
-                            Timer { id: crWinReset; interval: 1500; onTriggered: { crWinLabel.text = "Copy"; crWinLabel.color = "#88bbff" } }
+                            Timer { id: crWinReset; interval: 1500; onTriggered: { crWinLabel.text = qsTr("Copy"); crWinLabel.color = "#88bbff" } }
                         }
                     }
 
                     Text {
                         visible: root.regState === "error" && Qt.platform.os !== "windows"
                         Layout.fillWidth: true
-                        text: "Run in a terminal:"
+                        text: qsTr("Run in a terminal:")
                         color: "#888"; font.pixelSize: 11
                     }
 
@@ -300,10 +300,10 @@ Window {
                         Rectangle {
                             id: crMkBtn; anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
                             width: 46; height: 20; radius: 3; color: crMkMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
-                            Text { id: crMkLabel; anchors.centerIn: parent; text: "Copy"; color: "#88bbff"; font.pixelSize: 10 }
+                            Text { id: crMkLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 }
                             MouseArea { id: crMkMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                                onClicked: { App.copyToClipboard("mkdir -p ~/.mozilla/native-messaging-hosts"); crMkLabel.text = "Copied"; crMkLabel.color = "#55cc55"; crMkReset.restart() } }
-                            Timer { id: crMkReset; interval: 1500; onTriggered: { crMkLabel.text = "Copy"; crMkLabel.color = "#88bbff" } }
+                                onClicked: { App.copyToClipboard("mkdir -p ~/.mozilla/native-messaging-hosts"); crMkLabel.text = qsTr("Copied"); crMkLabel.color = "#55cc55"; crMkReset.restart() } }
+                            Timer { id: crMkReset; interval: 1500; onTriggered: { crMkLabel.text = qsTr("Copy"); crMkLabel.color = "#88bbff" } }
                         }
                     }
 
@@ -324,12 +324,12 @@ Window {
                             anchors { right: parent.right; rightMargin: 4; verticalCenter: parent.verticalCenter }
                             width: 46; height: 20; radius: 3
                             color: crCpMa.containsMouse ? "#2a4a7a" : "#1e3a5a"
-                            Text { id: crCpLabel; anchors.centerIn: parent; text: "Copy"; color: "#88bbff"; font.pixelSize: 10 }
+                            Text { id: crCpLabel; anchors.centerIn: parent; text: qsTr("Copy"); color: "#88bbff"; font.pixelSize: 10 }
                             MouseArea {
                                 id: crCpMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                                onClicked: { App.copyToClipboard(crCpText.text); crCpLabel.text = "Copied"; crCpLabel.color = "#55cc55"; crCpReset.restart() }
+                                onClicked: { App.copyToClipboard(crCpText.text); crCpLabel.text = qsTr("Copied"); crCpLabel.color = "#55cc55"; crCpReset.restart() }
                             }
-                            Timer { id: crCpReset; interval: 1500; onTriggered: { crCpLabel.text = "Copy"; crCpLabel.color = "#88bbff" } }
+                            Timer { id: crCpReset; interval: 1500; onTriggered: { crCpLabel.text = qsTr("Copy"); crCpLabel.color = "#88bbff" } }
                         }
                     }
                 }

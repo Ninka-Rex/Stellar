@@ -55,20 +55,20 @@ Rectangle {
                 var parts = []
 
                 if (errorCount > 0)
-                    parts.push(errorCount === 1 ? "🟨 1 error" : "🟨 %1 errors".arg(errorCount))
+                    parts.push(errorCount === 1 ? qsTr("🟨 1 error") : qsTr("🟨 %1 errors").arg(errorCount))
                 else if (activeCount > 0)
-                    parts.push(activeCount === 1 ? "🟦 1 active" : "🟦 %1 active".arg(activeCount))
+                    parts.push(activeCount === 1 ? qsTr("🟦 1 active") : qsTr("🟦 %1 active").arg(activeCount))
                 else
-                    parts.push("🟩 Ready")
+                    parts.push(qsTr("🟩 Ready"))
 
                 if (activeCount > 0 && errorCount > 0)
-                    parts.push(activeCount === 1 ? "🟦 1 active" : "🟦 %1 active".arg(activeCount))
+                    parts.push(activeCount === 1 ? qsTr("🟦 1 active") : qsTr("🟦 %1 active").arg(activeCount))
 
                 if (App.settings.showFinishedCount && completedCount > 0)
-                    parts.push(completedCount === 1 ? "📄 1 download" : "📄 %1 downloads".arg(completedCount))
+                    parts.push(completedCount === 1 ? qsTr("📄 1 download") : qsTr("📄 %1 downloads").arg(completedCount))
 
                 if (selectedCount > 0)
-                    parts.push(selectedCount === 1 ? "🔍 1 selected" : "🔍 %1 selected".arg(selectedCount))
+                    parts.push(selectedCount === 1 ? qsTr("🔍 1 selected") : qsTr("🔍 %1 selected").arg(selectedCount))
 
                 if (App.settings.globalSpeedLimitKBps > 0 || App.settings.globalUploadLimitKBps > 0) {
                     var limitParts = []
@@ -76,14 +76,14 @@ Rectangle {
                         limitParts.push("↓ " + formatKBps(App.settings.globalSpeedLimitKBps))
                     if (App.settings.globalUploadLimitKBps > 0)
                         limitParts.push("↑ " + formatKBps(App.settings.globalUploadLimitKBps))
-                    parts.push("🛑 Speed limiter " + limitParts.join(" / "))
+                    parts.push(qsTr("🛑 Speed limiter ") + limitParts.join(" / "))
                 }
 
                 if (App.proxyActive)
-                    parts.push("🌐 Proxy on")
+                    parts.push(qsTr("🌐 Proxy on"))
 
                 if (App.checkingForUpdates)
-                    parts.push("📡 Checking for updates")
+                    parts.push(qsTr("📡 Checking for updates"))
 
                 if (App.updateStatusText && App.updateStatusText.length > 0 && !App.checkingForUpdates)
                     parts.push(App.updateStatusText)
@@ -121,13 +121,13 @@ Rectangle {
                     return "~" + Math.round(value)
                 }
                 if (!App.settings.torrentEnableDht)
-                    return "🔴 DHT off"
+                    return qsTr("🔴 DHT off")
                 if (App.estimatedOnlineUsers > 0) {
                     if (App.estimatedOnlineUsers > 25000000)
-                        return "🟡 " + fmtUsers(App.estimatedOnlineUsers) + " online (low confidence)"
-                    return "🟢 " + fmtUsers(App.estimatedOnlineUsers) + " online"
+                        return "🟡 " + fmtUsers(App.estimatedOnlineUsers) + qsTr(" online (low confidence)")
+                    return "🟢 " + fmtUsers(App.estimatedOnlineUsers) + qsTr(" online")
                 }
-                return "🟡 Estimating… (" + App.estimatedOnlineUsersWarmupPercent + "%)"
+                return qsTr("🟡 Estimating… (%1%)").arg(App.estimatedOnlineUsersWarmupPercent)
             }
             color: onlineUsersHover.hovered ? "#ffffff" : "#b0b0b0"
             font.pixelSize: 11
@@ -164,7 +164,7 @@ Rectangle {
             ToolTip.visible: ratioHover.hovered
             ToolTip.delay: 250
             ToolTip.timeout: 6000
-            ToolTip.text: "All-time share ratio\nClick to open Statistics"
+            ToolTip.text: qsTr("All-time share ratio\nClick to open Statistics")
 
             MouseArea {
                 anchors.fill: parent
@@ -220,24 +220,24 @@ Rectangle {
             ToolTip.text: {
                 var lines = []
                 var ip = App.publicIp
-                lines.push("Public IP: " + (ip && ip.length > 0 ? ip : "(detecting…)"))
+                lines.push(qsTr("Public IP: ") + (ip && ip.length > 0 ? ip : "(detecting…)"))
                 if (App.publicIpListenPort > 0)
-                    lines.push("Listening port: " + App.publicIpListenPort)
+                    lines.push(qsTr("Listening port: ") + App.publicIpListenPort)
                 if (!App.hasIncomingConnections) {
                     lines.push("")
-                    lines.push("No incoming connections, network may be misconfigured")
+                    lines.push(qsTr("No incoming connections, network may be misconfigured"))
                 }
                 if (publicIpText._ifaceType === 1 && publicIpText._wifiOk) {
                     lines.push("")
-                    lines.push("WiFi: " + publicIpText._wifiSsid)
-                    lines.push("Signal: " + publicIpText._wifiPct + "%  ("
+                    lines.push(qsTr("WiFi: ") + publicIpText._wifiSsid)
+                    lines.push(qsTr("Signal: ") + publicIpText._wifiPct + "%  ("
                                + publicIpText._wifiRssi + " dBm)")
                 } else if (publicIpText._ifaceType === 2) {
                     lines.push("")
-                    lines.push("Connection: Ethernet")
+                    lines.push(qsTr("Connection: Ethernet"))
                 }
                 lines.push("")
-                lines.push("Click to copy IP")
+                lines.push(qsTr("Click to copy IP"))
                 return lines.join("\n")
             }
 
@@ -315,7 +315,7 @@ Rectangle {
                 spacing: 6
 
                 Text {
-                    text: "next >>"
+                    text: qsTr("next >>")
                     color: "#5588cc"
                     font.pixelSize: 10
                     font.underline: true
@@ -345,8 +345,8 @@ Rectangle {
         Text {
             visible: !motdVisible && (!App.settings.showTips || tipsArray.length === 0)
             text: App.minutesUntilNextQueue === 1
-                ? "🟧 Queue runs in 1 minute"
-                : (App.minutesUntilNextQueue > 0 ? "🟧 Queue runs in %1 minutes".arg(App.minutesUntilNextQueue) : "")
+                ? qsTr("🟧 Queue runs in 1 minute")
+                : (App.minutesUntilNextQueue > 0 ? qsTr("🟧 Queue runs in %1 minutes").arg(App.minutesUntilNextQueue) : "")
             color: "#a0a0a0"
             font.pixelSize: 11
         }

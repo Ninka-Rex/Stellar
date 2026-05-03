@@ -42,7 +42,7 @@ Window {
     width: 460
     height: mainCol.implicitHeight + 24
     color: "#1e1e1e"
-    title: "Download complete"
+    title: qsTr("Download complete")
     flags: Qt.Window | Qt.WindowCloseButtonHint | Qt.WindowTitleHint | Qt.MSWindowsFixedSizeDialogHint | Qt.WindowStaysOnTopHint
     Material.theme: Material.Dark
     Material.background: "#1e1e1e"
@@ -98,14 +98,13 @@ Window {
                 Layout.fillWidth: true
                 spacing: 1
                 Text {
-                    text: "Download complete"
+                    text: qsTr("Download complete")
                     color: "#e0e0e0"
                     font.pixelSize: 13
                     font.bold: true
                 }
                 Text {
-                    text: item ? ("Downloaded " + root.fmtBytes(item.totalBytes) +
-                                  " (" + (item.totalBytes || 0) + " Bytes)") : ""
+                    text: item ? qsTr("Downloaded %1 (%2 Bytes)").arg(root.fmtBytes(item.totalBytes)).arg(item.totalBytes || 0) : ""
                     color: "#aaaaaa"
                     font.pixelSize: 11
                 }
@@ -116,7 +115,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: "Address"; color: "#aaaaaa"; font.pixelSize: 11 }
+            Text { text: qsTr("Address"); color: "#aaaaaa"; font.pixelSize: 11 }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
@@ -144,7 +143,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: "The file saved as"; color: "#aaaaaa"; font.pixelSize: 11 }
+            Text { text: qsTr("The file saved as"); color: "#aaaaaa"; font.pixelSize: 11 }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
@@ -165,7 +164,7 @@ Window {
                     selectByMouse: !root.fileMoved
                     clip: true
                     text: root.fileMoved
-                          ? "The file has been moved."
+                          ? qsTr("The file has been moved.")
                           : (item ? (item.savePath + "/" + item.filename).replace(/\//g, "\\") : "")
                 }
             }
@@ -178,21 +177,21 @@ Window {
             spacing: 6
 
             DlgButton {
-                text: "Open"
+                text: qsTr("Open")
                 primary: true
                 implicitWidth: 80
                 enabled: !root.fileMoved
                 onClicked: { if (item) App.openFile(item.id); root.close() }
             }
             DlgButton {
-                text: "Open with..."
+                text: qsTr("Open with...")
                 implicitWidth: 92
                 visible: Qt.platform.os === "windows"
                 enabled: !root.fileMoved
                 onClicked: { if (item) App.openFileWith(item.id); root.close() }
             }
             DlgButton {
-                text: "Open folder"
+                text: qsTr("Open folder")
                 implicitWidth: 92
                 onClicked: { if (item) App.openFolderSelectFile(item.id); root.close() }
             }
@@ -200,7 +199,7 @@ Window {
             Item { Layout.fillWidth: true }
 
             DlgButton {
-                text: "Close"
+                text: qsTr("Close")
                 implicitWidth: 80
                 onClicked: root.close()
             }
@@ -214,7 +213,7 @@ Window {
 
             CheckBox {
                 id: dontShowAgain
-                text: "Don't show this dialog again"
+                text: qsTr("Don't show this dialog again")
                 topPadding: 0; bottomPadding: 0
                 contentItem: Text {
                     text: parent.text
@@ -225,7 +224,7 @@ Window {
                 }
                 ToolTip.visible: hovered
                 ToolTip.delay: 600
-                ToolTip.text: "You can re-enable this in Settings → General → Show download complete dialog"
+                ToolTip.text: qsTr("You can re-enable this in Settings → General → Show download complete dialog")
             }
 
             Item { Layout.fillWidth: true }
@@ -277,7 +276,7 @@ Window {
 
                     ToolTip.visible: containsMouse && !pressed && enabled
                     ToolTip.delay: 600
-                    ToolTip.text: "Drag the file to move it elsewhere"
+                    ToolTip.text: qsTr("Drag the file to move it elsewhere")
                 }
             }
         }

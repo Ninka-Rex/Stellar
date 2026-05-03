@@ -38,7 +38,7 @@ Window {
     property alias useAuth:  authCheck.checked
     property string titleOverride: ""
 
-    title: titleOverride.length > 0 ? titleOverride : "Add Download"
+    title: titleOverride.length > 0 ? titleOverride : qsTr("Add Download")
 
     signal accepted()
 
@@ -85,7 +85,7 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 2
-            Text { text: "URL"; color: "#aaaaaa"; font.pixelSize: 11 }
+            Text { text: qsTr("URL"); color: "#aaaaaa"; font.pixelSize: 11 }
             Rectangle {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 22
@@ -112,7 +112,7 @@ Window {
         // Auth checkbox
         CheckBox {
             id: authCheck
-            text: "Use Authorization"
+            text: qsTr("Use Authorization")
             topPadding: 0; bottomPadding: 0
             contentItem: Text {
                 text: parent.text; color: "#c0c0c0"; font.pixelSize: 11
@@ -130,7 +130,7 @@ Window {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
-                Text { text: "Login"; color: "#aaaaaa"; font.pixelSize: 11 }
+                Text { text: qsTr("Login"); color: "#aaaaaa"; font.pixelSize: 11 }
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 22
@@ -157,7 +157,7 @@ Window {
             ColumnLayout {
                 Layout.fillWidth: true
                 spacing: 2
-                Text { text: "Password"; color: "#aaaaaa"; font.pixelSize: 11 }
+                Text { text: qsTr("Password"); color: "#aaaaaa"; font.pixelSize: 11 }
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 22
@@ -189,8 +189,8 @@ Window {
             Layout.topMargin: 2
             spacing: 6
             Item { Layout.fillWidth: true }
-            DlgButton { text: "Cancel"; onClicked: root.close() }
-            DlgButton { text: "OK"; primary: true; onClicked: root._submit() }
+            DlgButton { text: qsTr("Cancel"); onClicked: root.close() }
+            DlgButton { text: qsTr("OK"); primary: true; onClicked: root._submit() }
         }
     }
 }

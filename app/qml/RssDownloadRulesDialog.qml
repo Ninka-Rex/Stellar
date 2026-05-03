@@ -25,7 +25,7 @@ Window {
     height: 600
     minimumWidth: 720
     minimumHeight: 480
-    title: "RSS Auto Download Rules"
+    title: qsTr("RSS Auto Download Rules")
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
@@ -39,7 +39,7 @@ Window {
     property var queueNames: []
 
     function _refreshCategoryModel() {
-        var ids = [""], labels = ["(Default)"]
+        var ids = [""], labels = [qsTr("(Default)")]
         var n = App.categoryModel.rowCount()
         for (var i = 0; i < n; i++) {
             var d = App.categoryModel.categoryData(i)
@@ -52,7 +52,7 @@ Window {
         var ids = App.queueIds()
         var names = App.queueNames()
         var allIds = [""].concat(ids)
-        var allNames = ["(Default)"].concat(names)
+        var allNames = [qsTr("(Default)")].concat(names)
         queueIds = allIds; queueNames = allNames
     }
 
@@ -271,7 +271,7 @@ Window {
                         color: "#252525"
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                            text: "Download Rules"
+                            text: qsTr("Download Rules")
                             color: "#c0c0c0"; font.pixelSize: 11; font.bold: true
                         }
                         Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#333" }
@@ -331,7 +331,7 @@ Window {
                         spacing: 4
 
                         DlgButton {
-                            text: "Add"
+                            text: qsTr("Add")
                             Layout.fillWidth: true
                             onClicked: {
                                 root.commitCurrentRuleToModel()
@@ -343,7 +343,7 @@ Window {
                             }
                         }
                         DlgButton {
-                            text: "Remove"
+                            text: qsTr("Remove")
                             destructive: true
                             enabled: root.hasSelection
                             Layout.fillWidth: true
@@ -383,7 +383,7 @@ Window {
                         visible: !root.hasSelection
                         Text {
                             anchors.centerIn: parent
-                            text: "Click \"Add\" to create a download rule"
+                            text: qsTr("Click \"Add\" to create a download rule")
                             color: "#555"; font.pixelSize: 13
                         }
                     }
@@ -401,7 +401,7 @@ Window {
                             TextField {
                                 id: ruleNameField
                                 Layout.fillWidth: true
-                                placeholderText: "Rule name"
+                                placeholderText: qsTr("Rule name")
                                 color: "#d0d0d0"; font.pixelSize: 13
                                 leftPadding: 8; selectByMouse: true
                                 background: Rectangle {
@@ -411,7 +411,7 @@ Window {
                             }
                             ChkRow {
                                 id: enabledCheck
-                                label: "Enabled"
+                                label: qsTr("Enabled")
                                 checked: true
                             }
                         }
@@ -427,11 +427,11 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: "FILTER RULES"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                                Text { text: qsTr("FILTER RULES"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
                                 ChkRow {
                                     id: useRegexCheck
-                                    label: "Use regular expressions"
+                                    label: qsTr("Use regular expressions")
                                 }
 
                                 GridLayout {
@@ -440,11 +440,11 @@ Window {
                                     columnSpacing: 10
                                     rowSpacing: 8
 
-                                    Text { text: "Must contain:"; color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Must contain:"); color: "#8899aa"; font.pixelSize: 12 }
                                     TextField {
                                         id: mustContainField
                                         Layout.fillWidth: true
-                                        placeholderText: useRegexCheck.checked ? "regex pattern" : "keyword1 keyword2 | keyword3"
+                                        placeholderText: useRegexCheck.checked ? qsTr("regex pattern") : qsTr("keyword1 keyword2 | keyword3")
                                         color: "#d0d0d0"; font.pixelSize: 12
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
@@ -453,11 +453,11 @@ Window {
                                         }
                                     }
 
-                                    Text { text: "Must not contain:"; color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Must not contain:"); color: "#8899aa"; font.pixelSize: 12 }
                                     TextField {
                                         id: mustNotContainField
                                         Layout.fillWidth: true
-                                        placeholderText: useRegexCheck.checked ? "regex pattern" : "keyword1 keyword2"
+                                        placeholderText: useRegexCheck.checked ? qsTr("regex pattern") : qsTr("keyword1 keyword2")
                                         color: "#d0d0d0"; font.pixelSize: 12
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
@@ -466,11 +466,11 @@ Window {
                                         }
                                     }
 
-                                    Text { text: "Episode filter:"; color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Episode filter:"); color: "#8899aa"; font.pixelSize: 12 }
                                     TextField {
                                         id: episodeFilterField
                                         Layout.fillWidth: true
-                                        placeholderText: "e.g. 1x01-1x24  or  2x01;"
+                                        placeholderText: qsTr("e.g. 1x01-1x24  or  2x01;")
                                         color: "#d0d0d0"; font.pixelSize: 12
                                         leftPadding: 6; selectByMouse: true
                                         background: Rectangle {
@@ -482,13 +482,13 @@ Window {
 
                                 ChkRow {
                                     id: smartEpisodeCheck
-                                    label: "Use Smart Episode Filter"
-                                    subLabel: "Skips episodes already matched by previous rule triggers"
+                                    label: qsTr("Use Smart Episode Filter")
+                                    subLabel: qsTr("Skips episodes already matched by previous rule triggers")
                                 }
 
                                 RowLayout {
                                     Layout.fillWidth: true; spacing: 8
-                                    Text { text: "Ignore subsequent matches for"; color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Ignore subsequent matches for"); color: "#8899aa"; font.pixelSize: 12 }
                                     TextField {
                                         id: ignoreDaysField
                                         implicitWidth: 64
@@ -501,7 +501,7 @@ Window {
                                             border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
                                         }
                                     }
-                                    Text { text: "days  (0 = disabled)"; color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("days  (0 = disabled)"); color: "#8899aa"; font.pixelSize: 12 }
                                     Item { Layout.fillWidth: true }
                                 }
                             }
@@ -518,7 +518,7 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: "DOWNLOAD SETTINGS"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                                Text { text: qsTr("DOWNLOAD SETTINGS"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
                                 GridLayout {
                                     Layout.fillWidth: true
@@ -526,13 +526,13 @@ Window {
                                     columnSpacing: 10
                                     rowSpacing: 8
 
-                                    Text { text: "Save at:"; color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Save at:"); color: "#8899aa"; font.pixelSize: 12 }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         TextField {
                                             id: savePathField
                                             Layout.fillWidth: true
-                                            placeholderText: "Leave empty to use default save path"
+                                            placeholderText: qsTr("Leave empty to use default save path")
                                             color: "#d0d0d0"; font.pixelSize: 12
                                             leftPadding: 6; selectByMouse: true
                                             background: Rectangle {
@@ -540,10 +540,10 @@ Window {
                                                 border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
                                             }
                                         }
-                                        DlgButton { text: "Browse..."; onClicked: folderDialog.open() }
+                                        DlgButton { text: qsTr("Browse..."); onClicked: folderDialog.open() }
                                     }
 
-                                    Text { text: "Category:"; color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Category:"); color: "#8899aa"; font.pixelSize: 12 }
                                     ComboBox {
                                         id: catCombo
                                         Layout.fillWidth: true
@@ -577,7 +577,7 @@ Window {
                                         }
                                     }
 
-                                    Text { text: "Queue:"; color: "#8899aa"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Queue:"); color: "#8899aa"; font.pixelSize: 12 }
                                     ComboBox {
                                         id: queueCombo
                                         Layout.fillWidth: true
@@ -625,16 +625,16 @@ Window {
                                 anchors { fill: parent; margins: 10 }
                                 spacing: 10
 
-                                Text { text: "TORRENT SHARE LIMITS"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                                Text { text: qsTr("TORRENT SHARE LIMITS"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
                                 // ── Ratio ─────────────────────────────────────
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: "Ratio"; color: "#c0c0c0"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Ratio"); color: "#c0c0c0"; font.pixelSize: 12 }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
-                                            model: ["Default", "Unlimited", "Set to"]
+                                            model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                             delegate: Rectangle {
                                                 required property int    index
                                                 required property string modelData
@@ -677,11 +677,11 @@ Window {
                                 // ── Seeding time ──────────────────────────────
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: "Seeding time"; color: "#c0c0c0"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Seeding time"); color: "#c0c0c0"; font.pixelSize: 12 }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
-                                            model: ["Default", "Unlimited", "Set to"]
+                                            model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                             delegate: Rectangle {
                                                 required property int    index
                                                 required property string modelData
@@ -715,7 +715,7 @@ Window {
                                                 border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
                                             }
                                         }
-                                        Text { visible: root.seedMode === 2; text: "min"; color: "#666"; font.pixelSize: 12 }
+                                        Text { visible: root.seedMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 }
                                         Item { Layout.fillWidth: true }
                                     }
                                 }
@@ -725,11 +725,11 @@ Window {
                                 // ── Inactive seeding time ─────────────────────
                                 ColumnLayout {
                                     Layout.fillWidth: true; spacing: 6
-                                    Text { text: "Inactive seeding time"; color: "#c0c0c0"; font.pixelSize: 12 }
+                                    Text { text: qsTr("Inactive seeding time"); color: "#c0c0c0"; font.pixelSize: 12 }
                                     RowLayout {
                                         Layout.fillWidth: true; spacing: 6
                                         Repeater {
-                                            model: ["Default", "Unlimited", "Set to"]
+                                            model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                             delegate: Rectangle {
                                                 required property int    index
                                                 required property string modelData
@@ -763,13 +763,13 @@ Window {
                                                 border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 2
                                             }
                                         }
-                                        Text { visible: root.inactMode === 2; text: "min"; color: "#666"; font.pixelSize: 12 }
+                                        Text { visible: root.inactMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 }
                                         Item { Layout.fillWidth: true }
                                     }
                                 }
 
                                 Text {
-                                    text: "\"Default\" uses the global share limits set in Settings → Torrents."
+                                    text: qsTr("\"Default\" uses the global share limits set in Settings → Torrents.")
                                     color: "#7f8a94"; font.pixelSize: 10
                                     wrapMode: Text.WordWrap; Layout.fillWidth: true
                                 }
@@ -792,11 +792,11 @@ Window {
                 anchors { right: parent.right; verticalCenter: parent.verticalCenter; rightMargin: 12 }
                 spacing: 8
                 DlgButton {
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     onClicked: root.close()
                 }
                 DlgButton {
-                    text: "OK"
+                    text: qsTr("OK")
                     primary: true
                     onClicked: { root.save(); root.close() }
                 }

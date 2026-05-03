@@ -21,7 +21,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Load Grabber Project"
+    title: qsTr("Load Grabber Project")
     width: 420
     height: 320
     minimumWidth: 380
@@ -50,7 +50,7 @@ Window {
             anchors.margins: 12
             spacing: 10
 
-            Text { text: "Saved projects"; color: "#f1f4f8"; font.pixelSize: 16; font.bold: true }
+            Text { text: qsTr("Saved projects"); color: "#f1f4f8"; font.pixelSize: 16; font.bold: true }
 
             Rectangle {
                 Layout.fillWidth: true
@@ -103,9 +103,9 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
-                DlgButton { text: "Cancel"; onClicked: root.close() }
+                DlgButton { text: qsTr("Cancel"); onClicked: root.close() }
                 DlgButton {
-                    text: "OK"
+                    text: qsTr("OK")
                     primary: true
                     enabled: root.selectedProjectId.length > 0
                     onClicked: {

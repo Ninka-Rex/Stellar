@@ -296,6 +296,7 @@ void AppSettings::load() {
     m_rssSmartFiltersJson     = m_settings.value(QStringLiteral("rssSmartFiltersJson"),
         QStringLiteral("[\"s(\\\\d+)e(\\\\d+)\",\"(\\\\d+)x(\\\\d+)\",\"(\\\\d{4}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{1,2})\",\"(\\\\d{1,2}[.\\\\-]\\\\d{1,2}[.\\\\-]\\\\d{4})\"]")).toString();
     m_rssDownloadRulesJson    = m_settings.value(QStringLiteral("rssDownloadRulesJson"), QStringLiteral("[]")).toString();
+    m_uiLanguage              = m_settings.value(QStringLiteral("uiLanguage"), QString()).toString();
     m_motdDismissedHash = m_settings.value(QStringLiteral("motdDismissedHash"), QString()).toString().trimmed();
     m_motdDismissedUntilUtcMs = m_settings.value(QStringLiteral("motdDismissedUntilUtcMs"), 0LL).toLongLong();
     const qint64 nowUtcMs = QDateTime::currentMSecsSinceEpoch();
@@ -407,6 +408,7 @@ void AppSettings::load() {
     emit rssSmartFilterRepackChanged();
     emit rssSmartFiltersJsonChanged();
     emit rssDownloadRulesJsonChanged();
+    emit uiLanguageChanged();
 
     // Reconcile OS startup entry with the stored setting.  Without this, the
     // registry key (Windows) or .desktop file (Linux) may be absent even though
@@ -532,6 +534,7 @@ void AppSettings::save() {
     m_settings.setValue(QStringLiteral("rssSmartFilterRepack"),     m_rssSmartFilterRepack);
     m_settings.setValue(QStringLiteral("rssSmartFiltersJson"),      m_rssSmartFiltersJson);
     m_settings.setValue(QStringLiteral("rssDownloadRulesJson"),     m_rssDownloadRulesJson);
+    m_settings.setValue(QStringLiteral("uiLanguage"),               m_uiLanguage);
     if (!m_motdDismissedHash.isEmpty() && m_motdDismissedUntilUtcMs > QDateTime::currentMSecsSinceEpoch()) {
         m_settings.setValue(QStringLiteral("motdDismissedHash"), m_motdDismissedHash);
         m_settings.setValue(QStringLiteral("motdDismissedUntilUtcMs"), m_motdDismissedUntilUtcMs);
@@ -818,6 +821,7 @@ void AppSettings::setRssAutoDownloadEnabled(bool v)  { if (m_rssAutoDownloadEnab
 void AppSettings::setRssSmartFilterRepack(bool v)    { if (m_rssSmartFilterRepack != v)    { m_rssSmartFilterRepack = v;    emit rssSmartFilterRepackChanged();    save(); } }
 void AppSettings::setRssSmartFiltersJson(const QString &v) { if (m_rssSmartFiltersJson != v) { m_rssSmartFiltersJson = v; emit rssSmartFiltersJsonChanged(); save(); } }
 void AppSettings::setRssDownloadRulesJson(const QString &v) { if (m_rssDownloadRulesJson != v) { m_rssDownloadRulesJson = v; emit rssDownloadRulesJsonChanged(); save(); } }
+void AppSettings::setUiLanguage(const QString &v)           { if (m_uiLanguage          != v) { m_uiLanguage          = v; emit uiLanguageChanged();          save(); } }
 void AppSettings::setMotdDismissal(const QString &hash, qint64 untilUtcMs) {
     const QString trimmedHash = hash.trimmed();
     if (trimmedHash.isEmpty() || untilUtcMs <= QDateTime::currentMSecsSinceEpoch()) {

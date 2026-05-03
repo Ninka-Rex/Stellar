@@ -669,6 +669,14 @@ int main(int argc, char *argv[])
     AppController controller;
     nmLog(QStringLiteral("AppController instantiated successfully."));
 
+    // Load saved UI language before the QML engine starts so that qsTr() calls
+    // in QML component construction pick up the correct translator.
+    {
+        const QString savedLocale = controller.settings()->uiLanguage();
+        if (!savedLocale.isEmpty())
+            controller.applyUiLanguage(savedLocale);
+    }
+
     QQmlApplicationEngine engine;
     engine.addImageProvider(QStringLiteral("fileicon"), new FileIconImageProvider);
     engine.rootContext()->setContextProperty(QStringLiteral("App"), &controller);

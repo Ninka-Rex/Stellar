@@ -130,7 +130,7 @@ Window {
     color: "#1a1a1a"
 
     title: {
-        if (!item) return "Download"
+        if (!item) return qsTr("Download")
         var pct = item.progress > 0 ? Math.round(item.progress * 100) + "% " : ""
         return pct + item.filename
     }
@@ -166,12 +166,12 @@ Window {
         if (!item)
             return "--"
         if (item.status === "Downloading")
-            return "Receiving data..."
+            return qsTr("Receiving data...")
         if (item.status === "Assembling")
-            return "Assembling..."
+            return qsTr("Assembling...")
         if (item.status === "Paused" && item.progress > 0)
             return Math.round(item.progress * 100) + "%"
-        return item.status
+        return item.statusText
     }
 
     function handleCompletion() {
@@ -224,7 +224,7 @@ Window {
                 spacing: 0
 
                 Repeater {
-                    model: ["Download status", "Speed Limiter", "Options on completion"]
+                    model: [qsTr("Download status"), qsTr("Speed Limiter"), qsTr("Options on completion")]
                     delegate: Rectangle {
                         width: tabLbl.implicitWidth + 28
                         height: parent.height
@@ -266,7 +266,7 @@ Window {
                 Text {
                     id: minTrayLbl
                     anchors.centerIn: parent
-                    text: ">>  Send to Tray"
+                    text: qsTr(">>  Send to Tray")
                     color: minTrayMa.containsMouse ? "#cccccc" : "#888888"
                     font.pixelSize: 12
                 }
@@ -279,7 +279,7 @@ Window {
                 }
 
                 ToolTip.visible: minTrayMa.containsMouse
-                ToolTip.text: "Minimize to system tray"
+                ToolTip.text: qsTr("Minimize to system tray")
                 ToolTip.delay: 400
 
                 MouseArea {
@@ -343,7 +343,7 @@ Window {
                                 height: 22
 
                                 Text {
-                                    text: "Status"
+                                    text: qsTr("Status")
                                     color: "#666"
                                     font.pixelSize: 12
                                     width: 120
@@ -364,20 +364,20 @@ Window {
                             // Data rows — individual bindings so they react to item changes
                             Row {
                                 spacing: 0; width: parent.width; height: 20
-                                Text { text: "File size";  color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: qsTr("File size");  color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 20
-                                Text { text: "Downloaded"; color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: qsTr("Downloaded"); color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
-                                    text: item ? root.fmtBytes(item.doneBytes) + "  ( " + Math.round(item.progress * 100) + "% )" : "--"
+                                    text: item ? qsTr("%1  ( %2% )").arg(root.fmtBytes(item.doneBytes)).arg(Math.round(item.progress * 100)) : "--"
                                     color: "#c8c8c8"; font.pixelSize: 12
                                 }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 20
-                                Text { text: "Transfer rate"; color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: qsTr("Transfer rate"); color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
                                     text: {
                                         if (!item) return "--"
@@ -388,7 +388,7 @@ Window {
                                         else if (App.settings.globalSpeedLimitKBps > 0)
                                             limit = App.settings.globalSpeedLimitKBps
                                         if (limit > 0)
-                                            speed += " (Limited " + root.fmtSpeed(limit * 1024) + ")"
+                                            speed += " " + qsTr("(Limited %1)").arg(root.fmtSpeed(limit * 1024))
                                         return speed
                                     }
                                     color: "#c8c8c8"
@@ -397,14 +397,14 @@ Window {
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 20
-                                Text { text: "Time left";  color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: qsTr("Time left");  color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text { text: item ? item.timeLeft : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
                             }
                             Row {
                                 spacing: 0; width: parent.width; height: 20
-                                Text { text: "Resume capability"; color: "#666"; font.pixelSize: 12; width: 120 }
+                                Text { text: qsTr("Resume capability"); color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
-                                    text: (item && item.resumeCapable) ? "Yes" : "No"
+                                    text: (item && item.resumeCapable) ? qsTr("Yes") : qsTr("No")
                                     color: (item && item.resumeCapable) ? "#c8c8c8" : "#c8c8c8"
                                     font.pixelSize: 12
                                 }
@@ -414,7 +414,7 @@ Window {
                             Row {
                                 visible: item && item.status === "Error" && item.errorString !== ""
                                 spacing: 0; width: parent.width
-                                Text { text: "Error detail"; color: "#666"; font.pixelSize: 12; width: 120; topPadding: 2 }
+                                Text { text: qsTr("Error detail"); color: "#666"; font.pixelSize: 12; width: 120; topPadding: 2 }
                                 Text {
                                     text: item ? item.errorString : ""
                                     color: "#dd5555"
@@ -453,7 +453,7 @@ Window {
                             text: {
                                 if (!item) return "0%"
                                 var pct = Math.round(item.progress * 100)
-                                if (item.status === "Assembling") return "Assembling... " + pct + "%"
+                                if (item.status === "Assembling") return qsTr("Assembling... %1%").arg(pct)
                                 return pct + "%"
                             }
                             color: "white"
@@ -478,7 +478,7 @@ Window {
                             Text {
                                 id: hideDetailsLabel
                                 anchors.centerIn: parent
-                                text: root.detailsVisible ? "« Hide details" : "» Show details"
+                                text: root.detailsVisible ? qsTr("« Hide details") : qsTr("» Show details")
                                 color: "#aaaaaa"
                                 font.pixelSize: 12
                             }
@@ -496,7 +496,7 @@ Window {
 
                         // Pause / Start
                         DlgButton {
-                            text: (item && item.status === "Paused") ? "Start" : "Pause"
+                            text: (item && item.status === "Paused") ? qsTr("Start") : qsTr("Pause")
                             enabled: item !== null && (item.status === "Downloading" || item.status === "Paused" || item.status === "Queued")
                             opacity: enabled ? 1.0 : 0.4
                             onClicked: {
@@ -508,7 +508,7 @@ Window {
 
                         // Cancel
                         DlgButton {
-                            text: "Cancel"
+                            text: qsTr("Cancel")
                             onClicked: root.close()
                         }
                     }
@@ -530,7 +530,7 @@ Window {
 
                             Text {
                                 anchors.centerIn: parent
-                                text: "Start positions and download progress by connections"
+                                text: qsTr("Start positions and download progress by connections")
                                 color: "#606060"
                                 font.pixelSize: 11
                             }
@@ -606,9 +606,9 @@ Window {
                                     Row {
                                         anchors { fill: parent; leftMargin: 8 }
                                         spacing: 0
-                                        Text { width: 34;  text: "N.";         color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { width: 110; text: "Downloaded"; color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
-                                        Text {             text: "Info";       color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 34;  text: qsTr("N.");         color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { width: 110; text: qsTr("Downloaded"); color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
+                                        Text {             text: qsTr("Info");       color: "#888"; font.pixelSize: 11; font.bold: true; anchors.verticalCenter: parent.verticalCenter }
                                     }
                                 }
 
@@ -654,7 +654,7 @@ Window {
                     spacing: 12
 
                     Text {
-                        text: "Limit transfer rate for this download"
+                        text: qsTr("Limit transfer rate for this download")
                         color: "#cccccc"
                         font.pixelSize: 12
                         font.bold: true
@@ -662,7 +662,7 @@ Window {
 
                     CheckBox {
                         id: limitThisChk
-                        text: "Enable per-download limit"
+                        text: qsTr("Enable per-download limit")
                         enabled: App.settings.globalSpeedLimitKBps === 0
                         onCheckedChanged: root.applyPerDownloadSpeed()
                     }
@@ -670,31 +670,31 @@ Window {
                     RowLayout {
                         spacing: 8
                         opacity: (limitThisChk.checked && limitThisChk.enabled) ? 1.0 : 0.5
-                        Label { text: "Maximum:" }
+                        Label { text: qsTr("Maximum:") }
                         TextField {
                             id: speedInput
-                            placeholderText: "e.g. 100"
+                            placeholderText: qsTr("e.g. 100")
                             implicitWidth: 80
                             enabled: limitThisChk.enabled
                             validator: IntValidator { bottom: 0; top: 999999 }
                             onTextEdited: root.applyPerDownloadSpeed()
                         }
-                        Label { text: "KB/s" }
+                        Label { text: qsTr("KB/s") }
                     }
 
                     Rectangle { Layout.fillWidth: true; height: 1; color: "#303030" }
 
                     Text {
                         text: App.settings.globalSpeedLimitKBps > 0
-                            ? ("Global limit active: " + App.settings.globalSpeedLimitKBps + " KB/s")
-                            : "No global limit set"
+                            ? qsTr("Global limit active: %1 KB/s").arg(App.settings.globalSpeedLimitKBps)
+                            : qsTr("No global limit set")
                         color: App.settings.globalSpeedLimitKBps > 0 ? "#ffcc88" : "#666"
                         font.pixelSize: 11
                         wrapMode: Text.WordWrap
                     }
 
                     Text {
-                        text: "Global speed limiter settings…"
+                        text: qsTr("Global speed limiter settings…")
                         color: "#4488dd"
                         font.pixelSize: 11
                         font.underline: true
@@ -716,27 +716,27 @@ Window {
                     anchors { fill: parent; margins: 16 }
                     spacing: 12
                     Text {
-                        text: "Options On Completion"
+                        text: qsTr("Options On Completion")
                         color: "#cccccc"
                         font.pixelSize: 12
                         font.bold: true
                     }
                     CheckBox {
-                        text: "Open file when done"
+                        text: qsTr("Open file when done")
                         checked: root.openFileWhenDone
                         topPadding: 0
                         bottomPadding: 0
                         onToggled: root.openFileWhenDone = checked
                     }
                     CheckBox {
-                        text: "Open folder when done"
+                        text: qsTr("Open folder when done")
                         checked: root.openFolderWhenDone
                         topPadding: 0
                         bottomPadding: 0
                         onToggled: root.openFolderWhenDone = checked
                     }
                     CheckBox {
-                        text: "Shutdown computer when done"
+                        text: qsTr("Shutdown computer when done")
                         checked: root.shutdownWhenDone
                         topPadding: 0
                         bottomPadding: 0
@@ -744,7 +744,7 @@ Window {
                     }
                     Text {
                         Layout.fillWidth: true
-                        text: "These options are temporary for this download only and start unchecked each time."
+                        text: qsTr("These options are temporary for this download only and start unchecked each time.")
                         color: "#909090"
                         font.pixelSize: 11
                         wrapMode: Text.WordWrap

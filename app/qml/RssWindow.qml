@@ -26,7 +26,7 @@ Window {
     height: 620
     minimumWidth: 860
     minimumHeight: 480
-    title: "RSS Feeds"
+    title: qsTr("RSS Feeds")
     color: "#1b1b1b"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
@@ -42,9 +42,9 @@ Window {
     property string articleSortKey: "published"
     property bool articleSortAscending: false
     property var columnDefs: [
-        { title: "Title",  key: "title",     widthPx: 420, visible: true },
-        { title: "Feed",   key: "feed",      widthPx: 150, visible: true },
-        { title: "Date",   key: "published", widthPx: 120, visible: true }
+        { title: qsTr("Title"),  key: "title",     widthPx: 420, visible: true },
+        { title: qsTr("Feed"),   key: "feed",      widthPx: 150, visible: true },
+        { title: qsTr("Date"),   key: "published", widthPx: 120, visible: true }
     ]
     property bool _colDragging: false
     property string _colDragFromKey: ""
@@ -293,11 +293,11 @@ Window {
         implicitWidth: 180
         topPadding: 0; bottomPadding: 0
         Action {
-            text: "Open Feed"
+            text: qsTr("Open Feed")
             onTriggered: if (feedContextMenu.row >= 0) root.selectFeed(feedContextMenu.row)
         }
         Action {
-            text: "Refresh"
+            text: qsTr("Refresh")
             onTriggered: {
                 var feed = App.rssManager.feedModel.feedData(feedContextMenu.row)
                 if (feed.feedId) App.rssManager.refreshFeed(feed.feedId)
@@ -305,11 +305,11 @@ Window {
         }
         MenuSeparator {}
         Action {
-            text: "Rename / Edit..."
+            text: qsTr("Rename / Edit...")
             onTriggered: { root.selectedFeedRow = feedContextMenu.row; root.editCurrentFeed() }
         }
         Action {
-            text: "Remove Subscription"
+            text: qsTr("Remove Subscription")
             onTriggered: {
                 var feed = App.rssManager.feedModel.feedData(feedContextMenu.row)
                 if (feed.feedId) App.rssManager.removeSubscription(feed.feedId)
@@ -331,28 +331,28 @@ Window {
         implicitWidth: 190
         topPadding: 0; bottomPadding: 0
         Action {
-            text: selectedArticle.isTorrent ? "Download Torrent" : "Download"
+            text: selectedArticle.isTorrent ? qsTr("Download Torrent") : qsTr("Download")
             enabled: root.selectedArticleHasDownload
             onTriggered: root.triggerSelectedDownload()
         }
         Action {
-            text: "Open in Browser"
+            text: qsTr("Open in Browser")
             enabled: !!root.selectedArticle.link
             onTriggered: root.openSelectedArticle()
         }
         Action {
-            text: "Copy Link"
+            text: qsTr("Copy Link")
             enabled: root.selectedArticleRow >= 0
             onTriggered: root.copySelectedLink()
         }
         MenuSeparator {}
         Action {
-            text: root.selectedArticle.unread ? "Mark as Read" : "Mark as Unread"
+            text: root.selectedArticle.unread ? qsTr("Mark as Read") : qsTr("Mark as Unread")
             enabled: root.selectedArticleRow >= 0
             onTriggered: root.markSelectedArticleRead(!!root.selectedArticle.unread)
         }
         Action {
-            text: "Mark All Read"
+            text: qsTr("Mark All Read")
             onTriggered: App.rssManager.markAllRead(root.selectedFeed.feedId || "")
         }
     }
@@ -364,7 +364,7 @@ Window {
         height: 170
         minimumWidth: 400
         minimumHeight: 160
-        title: "Edit Subscription"
+        title: qsTr("Edit Subscription")
         color: "#1e1e1e"
         modality: Qt.ApplicationModal
         flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -380,17 +380,17 @@ Window {
                 rowSpacing: 8
                 Layout.fillWidth: true
 
-                Text { text: "Name"; color: "#a0a0a0"; font.pixelSize: 12 }
+                Text { text: qsTr("Name"); color: "#a0a0a0"; font.pixelSize: 12 }
                 TextField {
                     id: editFeedNameField
                     Layout.fillWidth: true
-                    placeholderText: "Custom name (optional)"
+                    placeholderText: qsTr("Custom name (optional)")
                     font.pixelSize: 12
                     color: "#d0d0d0"
                     background: Rectangle { color: "#2d2d2d"; border.color: activeFocus ? "#4488dd" : "#4a4a4a"; radius: 3 }
                 }
 
-                Text { text: "URL"; color: "#a0a0a0"; font.pixelSize: 12 }
+                Text { text: qsTr("URL"); color: "#a0a0a0"; font.pixelSize: 12 }
                 TextField {
                     id: editFeedUrlField
                     Layout.fillWidth: true
@@ -407,9 +407,9 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
-                DlgButton { text: "Cancel"; onClicked: editFeedDialog.close() }
+                DlgButton { text: qsTr("Cancel"); onClicked: editFeedDialog.close() }
                 DlgButton {
-                    text: "Save"
+                    text: qsTr("Save")
                     primary: true
                     enabled: editFeedUrlField.text.trim().length > 0
                     onClicked: root.saveEditedFeed()
@@ -454,7 +454,7 @@ Window {
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: "Add RSS or Atom feed URL..."
+                            text: qsTr("Add RSS or Atom feed URL...")
                             color: "#555"
                             font.pixelSize: 12
                             visible: !parent.text && !parent.activeFocus
@@ -463,7 +463,7 @@ Window {
                 }
 
                 DlgButton {
-                    text: "Add"
+                    text: qsTr("Add")
                     primary: true
                     enabled: addFeedField.text.trim().length > 0
                     onClicked: root.addSubscription()
@@ -473,17 +473,17 @@ Window {
                 Rectangle { width: 1; height: 22; color: "#383838" }
 
                 DlgButton {
-                    text: App.rssManager.refreshInProgress ? "Refreshing…" : "Refresh"
+                    text: App.rssManager.refreshInProgress ? qsTr("Refreshing…") : qsTr("Refresh")
                     enabled: !App.rssManager.refreshInProgress
                     onClicked: root.refreshCurrentFeed()
                 }
                 DlgButton {
-                    text: "Edit"
+                    text: qsTr("Edit")
                     enabled: !!selectedFeed.feedId
                     onClicked: root.editCurrentFeed()
                 }
                 DlgButton {
-                    text: "Remove"
+                    text: qsTr("Remove")
                     enabled: !!selectedFeed.feedId
                     onClicked: root.removeCurrentFeed()
                 }
@@ -492,7 +492,7 @@ Window {
                 Rectangle { width: 1; height: 22; color: "#383838" }
 
                 DlgButton {
-                    text: "Download Rules"
+                    text: qsTr("Download Rules")
                     onClicked: {
                         rssRulesDialog.show(); rssRulesDialog.raise(); rssRulesDialog.requestActivate()
                     }
@@ -530,7 +530,7 @@ Window {
                         Rectangle { width: 3; height: parent.height; color: "#5588cc" }
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                            text: "Subscriptions"
+                            text: qsTr("Subscriptions")
                             color: "#d0d0d0"
                             font.pixelSize: 12
                             font.bold: true
@@ -707,7 +707,7 @@ Window {
 
                         Text {
                             anchors.centerIn: parent
-                            text: "Mark All Read"
+                            text: qsTr("Mark All Read")
                             color: markAllReadMouse.containsMouse ? "#88bbff" : "#7a8a9a"
                             font.pixelSize: 11
 
@@ -925,7 +925,7 @@ Window {
                                             var k = root.visibleCols[0].key
                                             if (k === "feed")      return articleDelegate.modelData.feedTitle || ""
                                             if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
-                                            return articleDelegate.modelData.title || "Untitled"
+                                            return articleDelegate.modelData.title || qsTr("Untitled")
                                         }
                                         color: {
                                             if (root.visibleCols.length > 0 && root.visibleCols[0].key === "title") {
@@ -954,7 +954,7 @@ Window {
                                             var k = root.visibleCols[1].key
                                             if (k === "feed")      return articleDelegate.modelData.feedTitle || ""
                                             if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
-                                            return articleDelegate.modelData.title || "Untitled"
+                                            return articleDelegate.modelData.title || qsTr("Untitled")
                                         }
                                         color: {
                                             if (root.visibleCols.length > 1 && root.visibleCols[1].key === "title") {
@@ -983,7 +983,7 @@ Window {
                                             var k = root.visibleCols[2].key
                                             if (k === "feed")      return articleDelegate.modelData.feedTitle || ""
                                             if (k === "published") return articleDelegate.modelData.publishedDisplay || ""
-                                            return articleDelegate.modelData.title || "Untitled"
+                                            return articleDelegate.modelData.title || qsTr("Untitled")
                                         }
                                         color: {
                                             if (root.visibleCols.length > 2 && root.visibleCols[2].key === "title") {
@@ -1040,7 +1040,7 @@ Window {
 
                                     Text {
                                         Layout.fillWidth: true
-                                        text: selectedArticle.title || "Select an article"
+                                        text: selectedArticle.title || qsTr("Select an article")
                                         color: selectedArticle.title ? "#f0f0f0" : "#555"
                                         font.pixelSize: 13
                                         font.bold: true
@@ -1048,23 +1048,23 @@ Window {
                                     }
 
                                     DlgButton {
-                                        text: "Open in Browser"
+                                        text: qsTr("Open in Browser")
                                         enabled: !!selectedArticle.link
                                         onClicked: root.openSelectedArticle()
                                     }
                                     DlgButton {
-                                        text: root.selectedArticleHasDownload ? "Download" : "Open"
+                                        text: root.selectedArticleHasDownload ? qsTr("Download") : qsTr("Open")
                                         primary: root.selectedArticleHasDownload
                                         enabled: selectedArticleRow >= 0
                                         onClicked: root.triggerSelectedDownload()
                                     }
                                     DlgButton {
-                                        text: selectedArticle.unread ? "Mark Read" : "Mark Unread"
+                                        text: selectedArticle.unread ? qsTr("Mark Read") : qsTr("Mark Unread")
                                         enabled: selectedArticleRow >= 0
                                         onClicked: root.markSelectedArticleRead(!!selectedArticle.unread)
                                     }
                                     DlgButton {
-                                        text: "Copy Link"
+                                        text: qsTr("Copy Link")
                                         enabled: selectedArticleRow >= 0
                                         onClicked: root.copySelectedLink()
                                     }
@@ -1075,7 +1075,7 @@ Window {
                                     Layout.fillWidth: true
                                     text: selectedArticle.feedTitle
                                         ? selectedArticle.feedTitle + "  ·  " + (selectedArticle.publishedDisplay || "")
-                                        : "Choose an article to view its summary."
+                                        : qsTr("Choose an article to view its summary.")
                                     color: "#5f7080"
                                     font.pixelSize: 11
                                     elide: Text.ElideRight
@@ -1120,7 +1120,7 @@ Window {
                                                 text: selectedArticle.summary && selectedArticle.summary.length > 0
                                                     ? selectedArticle.summary
                                                     : ((!selectedArticle.descriptionHtml || selectedArticle.descriptionHtml.length === 0)
-                                                       ? (selectedArticle.title ? "No summary available." : "") : "")
+                                                       ? (selectedArticle.title ? qsTr("No summary available.") : "") : "")
                                                 color: "#c0c0c0"
                                                 font.pixelSize: 11
                                                 wrapMode: Text.WordWrap
@@ -1172,7 +1172,7 @@ Window {
 
                 Text {
                     visible: App.rssManager.refreshInProgress
-                    text: "Refreshing…"
+                    text: qsTr("Refreshing…")
                     color: "#5588cc"
                     font.pixelSize: 11
                 }
@@ -1186,7 +1186,7 @@ Window {
                             unread += f.unreadCount || 0
                         }
                         if (total === 0) return ""
-                        return unread > 0 ? unread + " unread  ·  " + total + " items" : total + " items"
+                        return unread > 0 ? qsTr("%1 unread  ·  %2 items").arg(unread).arg(total) : qsTr("%1 items").arg(total)
                     }
                     color: "#4a5a6a"
                     font.pixelSize: 11

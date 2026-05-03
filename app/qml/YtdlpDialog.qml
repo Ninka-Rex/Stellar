@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ Window {
     height:      520
     minimumWidth:  520
     minimumHeight: 400
-    title:       "Video Download"
+    title:       qsTr("Video Download")
     color:       "#1e1e1e"
     modality:    Qt.ApplicationModal
     flags:       Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
@@ -369,9 +369,9 @@ Window {
                     Text {
                         width: parent.width
                         text: root._title.length > 0 ? root._title
-                              : (root._probing ? "Fetching video info\u2026"
-                              : (root._probeError.length > 0 ? "Could not fetch video info"
-                              : "Video Download"))
+                              : (root._probing ? qsTr("Fetching video info…")
+                              : (root._probeError.length > 0 ? qsTr("Could not fetch video info")
+                              : qsTr("Video Download")))
                         color: "#e8e8e8"; font.pixelSize: 13; font.weight: Font.Medium
                         elide: Text.ElideRight
                     }
@@ -401,7 +401,7 @@ Window {
                 spacing: 14
                 visible: root._probing
                 BusyIndicator { Layout.alignment: Qt.AlignHCenter; running: root._probing; width: 44; height: 44 }
-                Text { Layout.alignment: Qt.AlignHCenter; text: "Fetching available formats\u2026"; color: "#aaaaaa"; font.pixelSize: 13 }
+                Text { Layout.alignment: Qt.AlignHCenter; text: qsTr("Fetching available formats…"); color: "#aaaaaa"; font.pixelSize: 13 }
             }
 
             // Error
@@ -412,7 +412,7 @@ Window {
                 visible: !root._probing && root._probeError.length > 0
 
                 Text { Layout.alignment: Qt.AlignHCenter; text: "\u26A0"; font.pixelSize: 34; color: "#cc8800" }
-                Text { Layout.alignment: Qt.AlignHCenter; text: "Could not fetch video information"; color: "#e0e0e0"; font.pixelSize: 13; font.weight: Font.Medium }
+                Text { Layout.alignment: Qt.AlignHCenter; text: qsTr("Could not fetch video information"); color: "#e0e0e0"; font.pixelSize: 13; font.weight: Font.Medium }
 
                 Text {
                     Layout.fillWidth: true
@@ -439,29 +439,28 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "YouTube n-challenge solving failed"
+                            text: qsTr("YouTube n-challenge solving failed")
                             color: "#ddaa44"; font.pixelSize: 12; font.bold: true
                             wrapMode: Text.Wrap
                         }
                         Text {
                             Layout.fillWidth: true
-                            text: "yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's " +
-                                  "URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.\n\n" +
+                            text: qsTr("yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.") + "\n\n" +
                                   (!App.ytdlpManager.jsRuntimeAvailable
-                                   ? "No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader."
-                                   : "Runtime detected: " + App.ytdlpManager.jsRuntimeName + " (" + App.ytdlpManager.jsRuntimePath + ")")
+                                   ? qsTr("No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.")
+                                   : qsTr("Runtime detected: %1 (%2)").arg(App.ytdlpManager.jsRuntimeName).arg(App.ytdlpManager.jsRuntimePath))
                             color: "#aa9966"; font.pixelSize: 11
                             wrapMode: Text.Wrap
                         }
                         RowLayout {
                             spacing: 6
                             DlgButton {
-                                text: "Get Deno"
+                                text: qsTr("Get Deno")
                                 visible: !App.ytdlpManager.jsRuntimeAvailable
                                 onClicked: Qt.openUrlExternally("https://deno.com")
                             }
                             DlgButton {
-                                text: "Open Settings"
+                                text: qsTr("Open Settings")
                                 visible: !App.ytdlpManager.jsRuntimeAvailable
                                 onClicked: root.openSettingsRequested(7)  // Media tab
                             }
@@ -481,7 +480,7 @@ Window {
                         anchors.centerIn: parent
                         spacing: 8
 
-                        Text { text: "Cookies from browser:"; color: "#8899bb"; font.pixelSize: 11 }
+                        Text { text: qsTr("Cookies from browser:"); color: "#8899bb"; font.pixelSize: 11 }
 
                         ComboBox {
                             id: errCookieCombo
@@ -509,12 +508,12 @@ Window {
 
                 Text {
                     Layout.alignment: Qt.AlignHCenter
-                    text: "Select a browser to pass its cookies to yt-dlp, then retry."
+                    text: qsTr("Select a browser to pass its cookies to yt-dlp, then retry.")
                     color: "#556677"; font.pixelSize: 10
                     visible: errCookieCombo.currentIndex === 0
                 }
 
-                DlgButton { Layout.alignment: Qt.AlignHCenter; text: "Retry"; onClicked: root._startProbe() }
+                DlgButton { Layout.alignment: Qt.AlignHCenter; text: qsTr("Retry"); onClicked: root._startProbe() }
             }
 
             // Format picker — fills the whole body, options scroll is capped below it
@@ -523,7 +522,7 @@ Window {
                 spacing: 4
                 visible: !root._probing && root._probeError.length === 0 && root._formats.length > 0
 
-                Text { text: "Select quality:"; color: "#888888"; font.pixelSize: 11 }
+                Text { text: qsTr("Select quality:"); color: "#888888"; font.pixelSize: 11 }
 
                 Rectangle {
                     Layout.fillWidth: true
@@ -603,7 +602,7 @@ Window {
                                 HoverHandler { id: _szHover }
                                 ToolTip.visible:  !hasSize && isSplit && _szHover.hovered
                                 ToolTip.delay:    500
-                                ToolTip.text:     "Size unavailable — this quality uses separate video\nand audio streams merged by ffmpeg after download."
+                                ToolTip.text:     qsTr("Size unavailable — this quality uses separate video\nand audio streams merged by ffmpeg after download.")
                             }
                         }
 
@@ -645,13 +644,13 @@ Window {
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 8
-                            Text { text: "Channel / Playlist"; color: "#8899bb"; font.pixelSize: 11; font.weight: Font.Medium }
+                            Text { text: qsTr("Channel / Playlist"); color: "#8899bb"; font.pixelSize: 11; font.weight: Font.Medium }
                             Item { Layout.fillWidth: true }
 
                             RowLayout {
                                 spacing: 4
                                 Repeater {
-                                    model: [{id:"allV",t:"All videos"},{id:"latN",t:"Latest"}]
+                                    model: [{id:"allV",t:qsTr("All videos")},{id:"latN",t:qsTr("Latest")}]
                                     RadioButton {
                                         id: _rb
                                         required property var modelData
@@ -678,7 +677,7 @@ Window {
                                     width: 44; height: 20; radius: 2; color: "#1b1b1b"
                                     Layout.alignment: Qt.AlignVCenter
                                     border.color: latestNField.activeFocus ? "#4488dd" : "#3a3a3a"
-                                    property bool latestMode: !allVideosGroup.checkedButton || allVideosGroup.checkedButton.text !== "All videos"
+                                    property bool latestMode: !allVideosGroup.checkedButton || allVideosGroup.checkedButton.text !== qsTr("All videos")
                                     opacity: latestMode ? 1.0 : 0.38
                                     TextInput {
                                         id: latestNField
@@ -692,15 +691,15 @@ Window {
                                         onActiveFocusChanged: if (activeFocus) selectAll()
                                     }
                                 }
-                                Text { text: "videos"; color: "#667788"; font.pixelSize: 11; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("videos"); color: "#667788"; font.pixelSize: 11; Layout.alignment: Qt.AlignVCenter }
                             }
                         }
 
                         Text {
                             Layout.fillWidth: true
                             text: root._isYoutubeChannelRootUrl
-                                  ? "YouTube channel URLs include all uploads by default. Use Scope to target one tab."
-                                  : "Videos will be saved in a subfolder named after the channel."
+                                  ? qsTr("YouTube channel URLs include all uploads by default. Use Scope to target one tab.")
+                                  : qsTr("Videos will be saved in a subfolder named after the channel.")
                             color: "#5a6a8a"; font.pixelSize: 10; wrapMode: Text.WordWrap
                         }
 
@@ -714,10 +713,10 @@ Window {
                                 id: scopeRow
                                 anchors { fill: parent; margins: 6 }
                                 spacing: 6
-                                Text { text: "Scope:"; color: "#89a6d4"; font.pixelSize: 11; font.weight: Font.Medium }
+                                Text { text: qsTr("Scope:"); color: "#89a6d4"; font.pixelSize: 11; font.weight: Font.Medium }
                                 ButtonGroup { id: scopeGroup }
                                 Repeater {
-                                    model: [{id:"scopeAll",t:"All uploads",chk:true},{id:"scopeVid",t:"Videos"},{id:"scopeSho",t:"Shorts"},{id:"scopeLiv",t:"Live"}]
+                                    model: [{id:"scopeAll",t:qsTr("All uploads"),chk:true},{id:"scopeVid",t:qsTr("Videos")},{id:"scopeSho",t:qsTr("Shorts")},{id:"scopeLiv",t:qsTr("Live")}]
                                     RadioButton {
                                         required property var modelData
                                         id: scopeRb
@@ -756,14 +755,14 @@ Window {
                             Layout.fillWidth: true; spacing: 10
                             InlineCheck {
                                 id: subsCheck
-                                label: "Subtitles"
+                                label: qsTr("Subtitles")
                                 accentColor: "#55cc55"; accentBg: "#1a3a1a"
-                                tip: "Download subtitle files alongside the video"
+                                tip: qsTr("Download subtitle files alongside the video")
                             }
                             Item { Layout.fillWidth: true }
                             RowLayout {
                                 visible: subsCheck.checked; spacing: 5
-                                Text { text: "Language:"; color: "#778877"; font.pixelSize: 11; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Language:"); color: "#778877"; font.pixelSize: 11; Layout.alignment: Qt.AlignVCenter }
                                 Rectangle {
                                     width: 68; height: 20; radius: 2; color: "#1b1b1b"
                                     border.color: subLangsField.activeFocus ? "#4488dd" : "#3a3a3a"
@@ -774,7 +773,7 @@ Window {
                                         text: "en"; color: "#d0d0d0"; font.pixelSize: 11
                                         verticalAlignment: Text.AlignVCenter; selectByMouse: true
                                         ToolTip.visible: activeFocus; ToolTip.delay: 600
-                                        ToolTip.text: "Language code(s), e.g. en  ·  en.*,ja  ·  all"
+                                        ToolTip.text: qsTr("Language code(s), e.g. en  ·  en.*,ja  ·  all")
                                     }
                                 }
                             }
@@ -783,11 +782,11 @@ Window {
                         RowLayout {
                             visible: subsCheck.checked
                             Layout.fillWidth: true; spacing: 18
-                            InlineCheck { id: autoSubsCheck; label: "Auto-generated"; tip: "Include auto-generated captions when available" }
+                            InlineCheck { id: autoSubsCheck; label: qsTr("Auto-generated"); tip: qsTr("Include auto-generated captions when available") }
                             InlineCheck {
-                                id: embedSubsCheck; label: "Embed in video"
+                                id: embedSubsCheck; label: qsTr("Embed in video")
                                 enabled_: root._containerSupportsSubs
-                                tip: root._containerSupportsSubs ? "Embed subtitles into the video container" : "Embedding requires mp4, mkv, or webm"
+                                tip: root._containerSupportsSubs ? qsTr("Embed subtitles into the video container") : qsTr("Embedding requires mp4, mkv, or webm")
                             }
                             Item { Layout.fillWidth: true }
                         }
@@ -804,12 +803,12 @@ Window {
                         id: ppRow
                         anchors { fill: parent; margins: 6 }
                         spacing: 16
-                        InlineCheck { id: embedThumbCheck;  label: "Embed thumbnail"; tip: "Embed cover art thumbnail into the video file (requires ffmpeg)" }
-                        InlineCheck { id: embedMetaCheck;   label: "Embed metadata";  tip: "Write title, uploader, chapters etc. into the container metadata" }
+                        InlineCheck { id: embedThumbCheck;  label: qsTr("Embed thumbnail"); tip: qsTr("Embed cover art thumbnail into the video file (requires ffmpeg)") }
+                        InlineCheck { id: embedMetaCheck;   label: qsTr("Embed metadata");  tip: qsTr("Write title, uploader, chapters etc. into the container metadata") }
                         InlineCheck {
-                            id: sponsorBlockCheck; label: "SponsorBlock"
+                            id: sponsorBlockCheck; label: qsTr("SponsorBlock")
                             accentColor: "#aa77ee"; accentBg: "#2a1a40"
-                            tip: "Remove sponsored segments, intros, outros and self-promotion\n(YouTube only · requires ffmpeg)"
+                            tip: qsTr("Remove sponsored segments, intros, outros and self-promotion\n(YouTube only · requires ffmpeg)")
                         }
                         Item { Layout.fillWidth: true }
                     }
@@ -843,21 +842,21 @@ Window {
                             anchors { fill: parent; leftMargin: 9; rightMargin: 9 }
                             spacing: 6
                             Text { text: root.advancedExpanded ? "▼" : "▶"; color: "#6677aa"; font.pixelSize: 9; Layout.alignment: Qt.AlignVCenter }
-                            Text { text: "Advanced"; color: "#8899bb"; font.pixelSize: 11; font.weight: Font.Medium; Layout.alignment: Qt.AlignVCenter }
+                            Text { text: qsTr("Advanced"); color: "#8899bb"; font.pixelSize: 11; font.weight: Font.Medium; Layout.alignment: Qt.AlignVCenter }
                             Item { Layout.fillWidth: true }
                             Text {
                                 visible: !root.advancedExpanded
                                 property string s: {
                                     var p = []
-                                    if (dateAfterField.text.trim().length > 0) p.push("date filter")
-                                    if (cookiesBrowserCombo.currentIndex > 0) p.push("cookies")
-                                    if (useArchiveCheck.checked)               p.push("archive")
-                                    if (splitChaptersCheck.checked)            p.push("split chapters")
-                                    if (sectionsField.text.trim().length > 0)  p.push("time range")
-                                    if (writeDescCheck.checked || writeThumbnailCheck.checked) p.push("extra files")
-                                    if (playlistRandomCheck.checked)           p.push("random")
-                                    if (liveFromStartCheck.checked)            p.push("live start")
-                                    if (rateLimitField.text.trim().length > 0) p.push("rate limit")
+                                    if (dateAfterField.text.trim().length > 0) p.push(qsTr("date filter"))
+                                    if (cookiesBrowserCombo.currentIndex > 0) p.push(qsTr("cookies"))
+                                    if (useArchiveCheck.checked)               p.push(qsTr("archive"))
+                                    if (splitChaptersCheck.checked)            p.push(qsTr("split chapters"))
+                                    if (sectionsField.text.trim().length > 0)  p.push(qsTr("time range"))
+                                    if (writeDescCheck.checked || writeThumbnailCheck.checked) p.push(qsTr("extra files"))
+                                    if (playlistRandomCheck.checked)           p.push(qsTr("random"))
+                                    if (liveFromStartCheck.checked)            p.push(qsTr("live start"))
+                                    if (rateLimitField.text.trim().length > 0) p.push(qsTr("rate limit"))
                                     return p.join(" · ")
                                 }
                                 text: s; color: "#445577"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter
@@ -877,16 +876,16 @@ Window {
                             anchors { fill: parent; margins: 10 }
                             columns: 2; rowSpacing: 8; columnSpacing: 10
 
-                            Text { text: "After date:"; color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("After date:"); color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 Rectangle { width: 100; height: 20; radius: 2; color: "#1b1b1b"; border.color: dateAfterField.activeFocus ? "#4488dd" : "#3a3a3a"
                                     Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "YYYY-MM-DD"; color: "#383848"; font.pixelSize: 11; visible: dateAfterField.text.length === 0 }
                                     TextInput { id: dateAfterField; anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5; color: "#d0d0d0"; font.pixelSize: 11; verticalAlignment: Text.AlignVCenter; selectByMouse: true }
                                 }
-                                Text { text: "Only videos uploaded on or after this date"; color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Only videos uploaded on or after this date"); color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
                             }
 
-                            Text { text: "Cookies:"; color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("Cookies:"); color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 ComboBox {
                                     id: cookiesBrowserCombo; implicitWidth: 100; implicitHeight: 24; font.pixelSize: 11; currentIndex: 0
@@ -905,10 +904,10 @@ Window {
                                         contentItem: ListView { implicitHeight: contentHeight; clip: true; model: cookiesBrowserCombo.delegateModel }
                                     }
                                 }
-                                Text { text: "Load cookies for members-only / age-restricted content"; color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Load cookies for members-only / age-restricted content"); color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
                             }
 
-                            Text { text: "Rate limit:"; color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("Rate limit:"); color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 Rectangle { width: 68; height: 20; radius: 2; color: "#1b1b1b"; border.color: rateLimitField.activeFocus ? "#4488dd" : "#3a3a3a"
                                     TextInput {
@@ -920,33 +919,33 @@ Window {
                                         onActiveFocusChanged: if (activeFocus) selectAll()
                                     }
                                 }
-                                Text { text: "KB/s  (blank = use global speed limit)"; color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("KB/s  (blank = use global speed limit)"); color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
                             }
 
-                            Text { text: "Time range:"; color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            Text { text: qsTr("Time range:"); color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
                             RowLayout { spacing: 6
                                 Rectangle { width: 128; height: 20; radius: 2; color: "#1b1b1b"; border.color: sectionsField.activeFocus ? "#4488dd" : "#3a3a3a"
                                     Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "*00:30-02:45"; color: "#383848"; font.pixelSize: 11; visible: sectionsField.text.length === 0 }
                                     TextInput { id: sectionsField; anchors.fill: parent; anchors.leftMargin: 5; anchors.rightMargin: 5; color: "#d0d0d0"; font.pixelSize: 11; verticalAlignment: Text.AlignVCenter; selectByMouse: true }
                                 }
-                                Text { text: "Download only this section, e.g. *01:30-03:00"; color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
+                                Text { text: qsTr("Download only this section, e.g. *01:30-03:00"); color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
                             }
 
                             Item { Layout.columnSpan: 2; implicitHeight: 2 }
                             Item {}
                             RowLayout { spacing: 18
-                                InlineCheck { id: useArchiveCheck;    label: "Skip already downloaded"; tip: "Keep a yt-dlp-archive.txt in the save folder; future runs skip already-downloaded videos" }
-                                InlineCheck { id: splitChaptersCheck; label: "Split by chapters";       tip: "Create one file per chapter marker (requires ffmpeg)" }
+                                InlineCheck { id: useArchiveCheck;    label: qsTr("Skip already downloaded"); tip: "Keep a yt-dlp-archive.txt in the save folder; future runs skip already-downloaded videos" }
+                                InlineCheck { id: splitChaptersCheck; label: qsTr("Split by chapters");       tip: "Create one file per chapter marker (requires ffmpeg)" }
                             }
                             Item {}
                             RowLayout { spacing: 18
-                                InlineCheck { id: writeDescCheck;      label: "Save description"; tip: "Write a .description text file alongside the video" }
-                                InlineCheck { id: writeThumbnailCheck; label: "Save thumbnail";   tip: "Write the thumbnail as a separate image file" }
+                                InlineCheck { id: writeDescCheck;      label: qsTr("Save description"); tip: "Write a .description text file alongside the video" }
+                                InlineCheck { id: writeThumbnailCheck; label: qsTr("Save thumbnail");   tip: "Write the thumbnail as a separate image file" }
                             }
                             Item {}
                             RowLayout { spacing: 18
-                                InlineCheck { id: playlistRandomCheck; label: "Shuffle playlist"; enabled_: root._isChannelUrl; tip: "Download playlist in random order" }
-                                InlineCheck { id: liveFromStartCheck;  label: "Live: from start"; tip: "Download a livestream from the beginning (YouTube, Twitch)" }
+                                InlineCheck { id: playlistRandomCheck; label: qsTr("Shuffle playlist"); enabled_: root._isChannelUrl; tip: "Download playlist in random order" }
+                                InlineCheck { id: liveFromStartCheck;  label: qsTr("Live: from start"); tip: "Download a livestream from the beginning (YouTube, Twitch)" }
                             }
                         }
                     }
@@ -955,7 +954,7 @@ Window {
                 // ── Save location ──────────────────────────────────────────────
                 RowLayout {
                     Layout.fillWidth: true; spacing: 8
-                    Text { text: "Save to:"; color: "#888888"; font.pixelSize: 11; Layout.preferredWidth: 58 }
+                    Text { text: qsTr("Save to:"); color: "#888888"; font.pixelSize: 11; Layout.preferredWidth: 58 }
                     TextField {
                         id: savePathField
                         Layout.fillWidth: true; font.pixelSize: 12; color: "#d0d0d0"
@@ -969,7 +968,7 @@ Window {
                 // ── Category + Container on same row ───────────────────────────
                 RowLayout {
                     Layout.fillWidth: true; spacing: 8
-                    Text { text: "Category:"; color: "#888888"; font.pixelSize: 11; Layout.preferredWidth: 58 }
+                    Text { text: qsTr("Category:"); color: "#888888"; font.pixelSize: 11; Layout.preferredWidth: 58 }
                     ComboBox {
                         id: catCombo; Layout.fillWidth: true; font.pixelSize: 12; model: root.categoryLabels
                         contentItem: Text { leftPadding: 8; text: catCombo.displayText; color: "#d0d0d0"; font: catCombo.font; verticalAlignment: Text.AlignVCenter }
@@ -988,7 +987,7 @@ Window {
                         onCurrentIndexChanged: root._updateSavePath(currentIndex)
                     }
 
-                    Text { text: "Format:"; color: "#888888"; font.pixelSize: 11 }
+                    Text { text: qsTr("Format:"); color: "#888888"; font.pixelSize: 11 }
                     ComboBox {
                         id: containerCombo; implicitWidth: 90; font.pixelSize: 12
                         property bool _audioOnly: { var f = root._formats[formatList.currentIndex]; return f ? (f.height === 0) : false }
@@ -1028,10 +1027,10 @@ Window {
 
             Item { Layout.fillWidth: true }
 
-            DlgButton { text: "Cancel"; onClicked: root.close() }
+            DlgButton { text: qsTr("Cancel"); onClicked: root.close() }
 
             DlgButton {
-                text: root._isChannelUrl ? "Download Channel" : "Download"
+                text: root._isChannelUrl ? qsTr("Download Channel") : qsTr("Download")
                 primary: true
                 enabled: !root._probing && root._probeError.length === 0
                          && root._formats.length > 0 && savePathField.text.trim().length > 0
@@ -1047,7 +1046,7 @@ Window {
                     while (savePath.endsWith("/") || savePath.endsWith("\\")) savePath = savePath.slice(0, -1)
                     var catId    = root.categoryIds[catCombo.currentIndex] || ""
                     var isPl     = root._isChannelUrl
-                    var nItems   = (isPl && allVideosGroup.checkedButton && allVideosGroup.checkedButton.text !== "All videos")
+                    var nItems   = (isPl && allVideosGroup.checkedButton && allVideosGroup.checkedButton.text !== qsTr("All videos"))
                                    ? (parseInt(latestNField.text) || 10) : 0
                     var scope    = "all"
                     if (root._isYoutubeChannelRootUrl && scopeGroup.checkedButton) {

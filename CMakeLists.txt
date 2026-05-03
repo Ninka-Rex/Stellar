@@ -39,6 +39,7 @@ find_package(Qt6 REQUIRED COMPONENTS
     Widgets
     Concurrent
 )
+find_package(Qt6 OPTIONAL_COMPONENTS LinguistTools)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
@@ -360,6 +361,18 @@ qt_add_resources(Stellar "flags"
 )
 
 
+# ── Translations ───────────────────────────────────────────────────────────────
+# Run lupdate manually to regenerate .ts files after adding new qsTr() strings:
+#   lupdate app/src app/qml -ts translations/stellar_fr.ts
+# Run lrelease (or just build) to compile .ts → .qm before shipping.
+if(Qt6LinguistTools_FOUND)
+    qt_add_translations(Stellar
+        TS_FILES
+            translations/stellar_fr.ts
+        RESOURCE_PREFIX /i18n
+    )
+endif()
+
 add_dependencies(Stellar StellarBuildTime)
 target_include_directories(Stellar PRIVATE app/src ${CMAKE_BINARY_DIR})
 
@@ -397,7 +410,7 @@ qt_add_resources(Stellar "conf"
 # ── Platform-specific ─────────────────────────────────────────────────────────
 if(WIN32)
     set_target_properties(Stellar PROPERTIES
-        WIN32_EXECUTABLE TRUE
+        WIN32_EXECUTABLE FALSE
     )
     target_compile_definitions(Stellar PRIVATE STELLAR_WINDOWS)
 elseif(UNIX AND NOT APPLE)

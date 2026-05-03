@@ -31,7 +31,7 @@ Window {
     height: 300
     minimumWidth: 480
     minimumHeight: 300
-    title: "Duplicate Download Link"
+    title: qsTr("Duplicate Download Link")
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     modality: Qt.ApplicationModal
@@ -57,7 +57,7 @@ Window {
         spacing: 0
 
         Text {
-            text: "This file already exists in your download list."
+            text: qsTr("This file already exists in your download list.")
             color: "#e0e0e0"; font.pixelSize: 13; font.bold: true
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
@@ -75,7 +75,7 @@ Window {
         Item { Layout.preferredHeight: 8 }
 
         Text {
-            text: "You may choose one of the following options, or press Cancel to skip the download."
+            text: qsTr("You may choose one of the following options, or press Cancel to skip the download.")
             color: "#a0a0a0"; font.pixelSize: 11
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
@@ -85,7 +85,7 @@ Window {
         OptionRow {
             Layout.fillWidth: true
             selected: root.selectedAction === 1
-            label: "Add the duplicate with a numbered file name"
+            label: qsTr("Add the duplicate with a numbered file name")
             onChosen: root.selectedAction = 1
         }
 
@@ -94,7 +94,7 @@ Window {
         OptionRow {
             Layout.fillWidth: true
             selected: root.selectedAction === 2
-            label: "Add the duplicate and overwrite the existing file"
+            label: qsTr("Add the duplicate and overwrite the existing file")
             onChosen: root.selectedAction = 2
         }
 
@@ -104,8 +104,8 @@ Window {
             Layout.fillWidth: true
             selected: root.selectedAction === 3
             label: (root.existingItem && root.existingItem.status === "Completed")
-                       ? "The existing file is complete - show the download complete dialog"
-                       : "Resume the existing download"
+                       ? qsTr("The existing file is complete - show the download complete dialog")
+                       : qsTr("Resume the existing download")
             onChosen: root.selectedAction = 3
         }
 
@@ -115,7 +115,7 @@ Window {
 
         CheckBox {
             id: rememberChk
-            text: "Remember my selection and don't show this dialog again.\nYou may change it in Options → Downloads at a later time."
+            text: qsTr("Remember my selection and don't show this dialog again.\nYou may change it in Options → Downloads at a later time.")
             font.pixelSize: 11
             contentItem: Text {
                 text: rememberChk.text; color: "#909090"; font: rememberChk.font
@@ -131,12 +131,12 @@ Window {
             Item { Layout.fillWidth: true }
 
             DlgButton {
-                text: "Cancel"
+                text: qsTr("Cancel")
                 onClicked: root.close()
             }
 
             DlgButton {
-                text: "OK"
+                text: qsTr("OK")
                 primary: true
                 onClicked: {
                     root.resolved(root.selectedAction, rememberChk.checked)

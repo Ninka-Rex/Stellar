@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Batch download review"
+    title: qsTr("Batch download review")
     width: 980
     height: 620
     minimumWidth: 820
@@ -51,9 +51,9 @@ Window {
     property var columnDefs: [
         { title: "", key: "check", widthPx: 36, minWidth: 36, sortable: false, resizable: false, reorderable: false },
         { title: "", key: "icon", widthPx: 34, minWidth: 30, sortable: false, resizable: true, reorderable: true },
-        { title: "File name", key: "name", widthPx: 250, minWidth: 120, sortable: true, resizable: true, reorderable: true },
-        { title: "Size", key: "size", widthPx: 110, minWidth: 80, sortable: true, resizable: true, reorderable: true },
-        { title: "Status", key: "status", widthPx: 110, minWidth: 90, sortable: true, resizable: true, reorderable: true },
+        { title: qsTr("File name"), key: "name", widthPx: 250, minWidth: 120, sortable: true, resizable: true, reorderable: true },
+        { title: qsTr("Size"), key: "size", widthPx: 110, minWidth: 80, sortable: true, resizable: true, reorderable: true },
+        { title: qsTr("Status"), key: "status", widthPx: 110, minWidth: 90, sortable: true, resizable: true, reorderable: true },
         { title: "URL", key: "url", widthPx: 520, minWidth: 180, sortable: true, resizable: true, reorderable: true }
     ]
 
@@ -383,9 +383,9 @@ Window {
         ColumnLayout {
             Layout.fillWidth: true
             spacing: 4
-            Text { text: "Batch download review"; color: "#f0f0f0"; font.pixelSize: 16; font.bold: true }
+            Text { text: qsTr("Batch download review"); color: "#f0f0f0"; font.pixelSize: 16; font.bold: true }
             Text {
-                text: "Review links before adding them. Columns can be sorted, resized, and dragged to reorder."
+                text: qsTr("Review links before adding them. Columns can be sorted, resized, and dragged to reorder.")
                 color: "#aeb7c0"
                 font.pixelSize: 11
                 wrapMode: Text.WordWrap
@@ -406,7 +406,7 @@ Window {
                 spacing: 6
 
                 Text {
-                    text: "Replace filenames with wildcard pattern (*)"
+                    text: qsTr("Replace filenames with wildcard pattern (*)")
                     color: "#d0d0d0"
                     font.pixelSize: 11
                     font.weight: Font.Medium
@@ -430,10 +430,10 @@ Window {
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            Text { text: "Files"; color: "#d0d0d0"; font.pixelSize: 12; font.bold: true }
+            Text { text: qsTr("Files"); color: "#d0d0d0"; font.pixelSize: 12; font.bold: true }
             Item { Layout.fillWidth: true }
-            DlgButton { text: "Check all"; onClicked: setAllSelected(true) }
-            DlgButton { text: "Uncheck all"; onClicked: setAllSelected(false) }
+            DlgButton { text: qsTr("Check all"); onClicked: setAllSelected(true) }
+            DlgButton { text: qsTr("Uncheck all"); onClicked: setAllSelected(false) }
         }
 
         Rectangle {
@@ -755,13 +755,13 @@ Window {
             spacing: 8
             Text {
                 Layout.fillWidth: true
-                text: "Only links marked Found are selectable. Queue assignment still happens after OK."
+                text: qsTr("Only links marked Found are selectable. Queue assignment still happens after OK.")
                 color: "#8899bb"
                 font.pixelSize: 10
                 wrapMode: Text.WordWrap
             }
-            DlgButton { text: "Cancel"; onClicked: root.close() }
-            DlgButton { text: "OK"; primary: true; onClicked: root.acceptRows() }
+            DlgButton { text: qsTr("Cancel"); onClicked: root.close() }
+            DlgButton { text: qsTr("OK"); primary: true; onClicked: root.acceptRows() }
         }
     }
 }

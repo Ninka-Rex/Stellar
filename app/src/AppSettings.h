@@ -152,6 +152,8 @@ class AppSettings : public QObject {
     Q_PROPERTY(bool    rssSmartFilterRepack READ rssSmartFilterRepack WRITE setRssSmartFilterRepack NOTIFY rssSmartFilterRepackChanged)
     Q_PROPERTY(QString rssSmartFiltersJson  READ rssSmartFiltersJson  WRITE setRssSmartFiltersJson  NOTIFY rssSmartFiltersJsonChanged)
     Q_PROPERTY(QString rssDownloadRulesJson READ rssDownloadRulesJson WRITE setRssDownloadRulesJson NOTIFY rssDownloadRulesJsonChanged)
+    // UI language locale code — empty string means "use system locale (English fallback)"
+    Q_PROPERTY(QString uiLanguage READ uiLanguage WRITE setUiLanguage NOTIFY uiLanguageChanged)
 
 public:
     explicit AppSettings(QObject *parent = nullptr);
@@ -270,6 +272,7 @@ public:
     bool    rssSmartFilterRepack()    const { return m_rssSmartFilterRepack; }
     QString rssSmartFiltersJson()     const { return m_rssSmartFiltersJson; }
     QString rssDownloadRulesJson()    const { return m_rssDownloadRulesJson; }
+    QString uiLanguage()              const { return m_uiLanguage; }
     QString motdDismissedHash() const { return m_motdDismissedHash; }
     qint64 motdDismissedUntilUtcMs() const { return m_motdDismissedUntilUtcMs; }
 
@@ -396,6 +399,7 @@ public:
     void setRssSmartFilterRepack(bool v);
     void setRssSmartFiltersJson(const QString &v);
     void setRssDownloadRulesJson(const QString &v);
+    void setUiLanguage(const QString &v);
     void setMotdDismissal(const QString &hash, qint64 untilUtcMs);
     void clearMotdDismissal();
 
@@ -489,6 +493,7 @@ signals:
     void rssSmartFilterRepackChanged();
     void rssSmartFiltersJsonChanged();
     void rssDownloadRulesJsonChanged();
+    void uiLanguageChanged();
 
 private:
     int     m_maxConcurrent{3};
@@ -614,6 +619,8 @@ private:
     QString     m_rssDownloadRulesJson{QStringLiteral("[]")};
     QString     m_motdDismissedHash;
     qint64      m_motdDismissedUntilUtcMs{0};
+    // Empty = system default (English fallback), otherwise a locale code like "fr"
+    QString     m_uiLanguage;
 
     // Apply or remove OS startup entry depending on v
     void applyStartupRegistration(bool v) const;

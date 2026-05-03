@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Stellar Grabber – Step " + (stepIndex + 1) + " of " + stepTitles.length + ": " + stepTitles[stepIndex]
+    title: qsTr("Stellar Grabber – Step %1 of %2: %3").arg(stepIndex + 1).arg(stepTitles.length).arg(stepTitles[stepIndex])
     width: 700
     height: 540
     minimumWidth: 700
@@ -42,7 +42,7 @@ Window {
     property bool fileAdvancedVisible: true
     property string selectedTemplateProjectId: ""
     property var recentProjectRows: []
-    readonly property var stepTitles: ["Set start page", "Save files to", "Set explorer filters", "Set file filters"]
+    readonly property var stepTitles: [qsTr("Set start page"), qsTr("Save files to"), qsTr("Set explorer filters"), qsTr("Set file filters")]
     readonly property var templateValues: ["custom", "images", "video", "audio", "website"]
     readonly property var saveModeValues: ["byCategory", "selectedCategory", "directory"]
     readonly property int stepOneContentWidth: 700
@@ -237,11 +237,11 @@ Window {
 
     function templateOptions() {
         var options = [
-            { text: "Custom settings", value: "custom", templateId: "" },
-            { text: "All images from a web site", value: "images", templateId: "" },
-            { text: "All video from a web site", value: "video", templateId: "" },
-            { text: "All audio from a web site", value: "audio", templateId: "" },
-            { text: "Complete web site", value: "website", templateId: "" }
+            { text: qsTr("Custom settings"), value: "custom", templateId: "" },
+            { text: qsTr("All images from a web site"), value: "images", templateId: "" },
+            { text: qsTr("All video from a web site"), value: "video", templateId: "" },
+            { text: qsTr("All audio from a web site"), value: "audio", templateId: "" },
+            { text: qsTr("Complete web site"), value: "website", templateId: "" }
         ]
         for (var i = 0; i < App.grabberProjectModel.rowCount(); ++i) {
             var project = App.grabberProjectModel.projectData(i)
@@ -426,18 +426,18 @@ Window {
     function saveProjectOnly() {
         var map = projectMap()
         if (map.name.length === 0 || map.startUrl.length === 0) {
-            errorLabel.text = "Project name and start page are required."
+            errorLabel.text = qsTr("Project name and start page are required.")
             return false
         }
         root.projectId = App.saveGrabberProject(map)
-        errorLabel.text = "Project saved."
+        errorLabel.text = qsTr("Project saved.")
         return true
     }
 
     function runProject() {
         var map = projectMap()
         if (map.name.length === 0 || map.startUrl.length === 0) {
-            errorLabel.text = "Project name and start page are required."
+            errorLabel.text = qsTr("Project name and start page are required.")
             return
         }
         root.projectId = App.saveGrabberProject(map)
@@ -511,7 +511,7 @@ Window {
     GrabberSettingsDialog { id: grabberSettingsDialog }
     GrabberIncludeFiltersDialog {
         id: includeFiltersDialog
-        dialogTitle: "Include filters"
+        dialogTitle: qsTr("Include filters")
         builtInFilters: root.builtInIncludeFilters
         customFiltersJson: App.settings.grabberIncludeFiltersJson
         categoryEnabled: true
@@ -525,7 +525,7 @@ Window {
     }
     GrabberIncludeFiltersDialog {
         id: excludeFiltersDialog
-        dialogTitle: "Exclude filters"
+        dialogTitle: qsTr("Exclude filters")
         builtInFilters: root.builtInExcludeFilters
         customFiltersJson: App.settings.grabberExcludeFiltersJson
         categoryEnabled: false
@@ -552,14 +552,14 @@ Window {
             anchors.fill: parent
             anchors.margins: 12
             spacing: 10
-            Text { text: "Template name"; color: "#f1f4f8"; font.pixelSize: 14; font.bold: true }
+            Text { text: qsTr("Template name"); color: "#f1f4f8"; font.pixelSize: 14; font.bold: true }
             WizardTextField { id: templateNameField; Layout.fillWidth: true }
             RowLayout {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
-                DlgButton { text: "Cancel"; onClicked: saveTemplatePopup.close() }
+                DlgButton { text: qsTr("Cancel"); onClicked: saveTemplatePopup.close() }
                 DlgButton {
-                    text: "Save"
+                    text: qsTr("Save")
                     primary: true
                     onClicked: {
                         var map = projectMap()
@@ -602,26 +602,26 @@ Window {
                 Menu {
                     id: projectMenu
                     Action {
-                        text: "New"
+                        text: qsTr("New")
                         onTriggered: {
                             root.projectId = ""
                             loadProject({ savePath: App.settings.defaultSavePath, ignorePopupWindows: true, exploreThisLevels: 2, hideDuplicateFiles: true })
                         }
                     }
                     Action {
-                        text: "Load"
+                        text: qsTr("Load")
                         onTriggered: {
                             projectPickerDialog.selectedProjectId = ""
                             projectPickerDialog.show()
                             projectPickerDialog.raise()
                         }
                     }
-                    Action { text: "Save"; onTriggered: saveProjectOnly() }
-                    Action { text: "Save current settings as a template"; onTriggered: saveTemplatePopup.open() }
+                    Action { text: qsTr("Save"); onTriggered: saveProjectOnly() }
+                    Action { text: qsTr("Save current settings as a template"); onTriggered: saveTemplatePopup.open() }
                     MenuSeparator {}
                     Menu {
                         id: recentProjectsMenu
-                        title: "Recent Projects"
+                        title: qsTr("Recent Projects")
                         Instantiator {
                             model: root.recentProjectRows
                             delegate: MenuItem {
@@ -633,13 +633,13 @@ Window {
                         }
                     }
                     MenuSeparator {}
-                    Action { text: "Close"; onTriggered: root.close() }
+                    Action { text: qsTr("Close"); onTriggered: root.close() }
                 }
 
                 Menu {
                     id: optionsMenu
                     Action {
-                        text: "Grabber settings"
+                        text: qsTr("Grabber settings")
                         onTriggered: { grabberSettingsDialog.show(); grabberSettingsDialog.raise() }
                     }
                 }
@@ -650,8 +650,8 @@ Window {
 
                     Repeater {
                         model: [
-                            { label: "Project", menu: projectMenu },
-                            { label: "Options", menu: optionsMenu }
+                            { label: qsTr("Project"), menu: projectMenu },
+                            { label: qsTr("Options"), menu: optionsMenu }
                         ]
                         delegate: Rectangle {
                             width: mbLabel.implicitWidth + 20
@@ -823,16 +823,16 @@ Window {
                                 width: Math.min(stepOneContentWidth, Math.max(0, stepOneScroll.availableWidth - 8))
                                 spacing: 10
 
-                                StepLabel { text: "Grabber Project Name"; font.bold: true }
+                                StepLabel { text: qsTr("Grabber Project Name"); font.bold: true }
                                 WizardTextField { id: projectNameField; Layout.fillWidth: true }
 
-                                StepLabel { text: "Start page/address"; font.bold: true }
+                                StepLabel { text: qsTr("Start page/address"); font.bold: true }
                                 WizardTextField {
                                     id: startUrlField
                                     Layout.fillWidth: true
                                 }
 
-                                StepLabel { text: "Project template"; font.bold: true }
+                                StepLabel { text: qsTr("Project template"); font.bold: true }
                                 WizardCombo {
                                     id: templateCombo
                                     Layout.fillWidth: true
@@ -850,7 +850,7 @@ Window {
 
                                 HintText {
                                     Layout.fillWidth: true
-                                    text: "If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually."
+                                    text: qsTr("If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.")
                                 }
 
                                 Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
@@ -858,10 +858,10 @@ Window {
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 10
-                                    WizardCheckBox { id: useAuthorizationChk; text: "Use authorization" }
+                                    WizardCheckBox { id: useAuthorizationChk; text: qsTr("Use authorization") }
                                     Item { Layout.fillWidth: true }
                                     DlgButton {
-                                        text: startAdvancedVisible ? "Advanced <<" : "Advanced >>"
+                                        text: startAdvancedVisible ? qsTr("Advanced <<") : qsTr("Advanced >>")
                                         implicitWidth: 124
                                         onClicked: startAdvancedVisible = !startAdvancedVisible
                                     }
@@ -874,14 +874,14 @@ Window {
                                     columnSpacing: 12
                                     rowSpacing: 8
 
-                                    StepLabel { text: "Login" }
+                                    StepLabel { text: qsTr("Login") }
                                     WizardTextField {
                                         id: usernameField
                                         Layout.fillWidth: true
                                         enabled: useAuthorizationChk.checked
                                     }
 
-                                    StepLabel { text: "Password" }
+                                    StepLabel { text: qsTr("Password") }
                                     WizardTextField {
                                         id: passwordField
                                         Layout.fillWidth: true
@@ -892,7 +892,7 @@ Window {
 
                                 HintText {
                                     Layout.fillWidth: true
-                                    text: "Press Advanced to enable manual login or to disable a logout page."
+                                    text: qsTr("Press Advanced to enable manual login or to disable a logout page.")
                                 }
 
                                 Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
@@ -904,7 +904,7 @@ Window {
 
                                     WizardCheckBox {
                                         id: manualLoginChk
-                                        text: "Enter login and password manually at the following web page:"
+                                        text: qsTr("Enter login and password manually at the following web page:")
                                     }
                                     WizardTextField {
                                         id: loginUrlField
@@ -914,7 +914,7 @@ Window {
 
                                     WizardCheckBox {
                                         id: dontOpenLogoutChk
-                                        text: "Don't open the logout page:"
+                                        text: qsTr("Don't open the logout page:")
                                     }
                                     WizardTextArea {
                                         id: logoutField
@@ -925,7 +925,7 @@ Window {
 
                                     HintText {
                                         Layout.fillWidth: true
-                                        text: "Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages."
+                                        text: qsTr("Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.")
                                     }
                                 }
                             }
@@ -939,17 +939,17 @@ Window {
                                 width: Math.min(laterStepContentWidth, Math.max(0, stepTwoScroll.availableWidth - 8))
                                 spacing: 10
 
-                                StepLabel { text: "Save To"; font.bold: true }
+                                StepLabel { text: qsTr("Save To"); font.bold: true }
                                 WizardRadioButton {
                                     id: saveByCategoryRadio
                                     checked: saveModeCombo.currentIndex === 0
-                                    text: "Every file to a folder according to Stellar category of the file"
+                                    text: qsTr("Every file to a folder according to Stellar category of the file")
                                     onClicked: saveModeCombo.currentIndex = 0
                                 }
                                 WizardRadioButton {
                                     id: saveSelectedCategoryRadio
                                     checked: saveModeCombo.currentIndex === 1
-                                    text: "All files to the folder associated with the following Stellar category:"
+                                    text: qsTr("All files to the folder associated with the following Stellar category:")
                                     onClicked: saveModeCombo.currentIndex = 1
                                 }
                                 WizardCombo {
@@ -962,7 +962,7 @@ Window {
                                 WizardRadioButton {
                                     id: saveSpecificFolderRadio
                                     checked: saveModeCombo.currentIndex === 2
-                                    text: "All files to the following folder"
+                                    text: qsTr("All files to the following folder")
                                     onClicked: saveModeCombo.currentIndex = 2
                                 }
                                 WizardTextField {
@@ -974,7 +974,7 @@ Window {
                                 WizardCheckBox {
                                     id: useRelativeFolders
                                     Layout.leftMargin: 24
-                                    text: "Use original relative subfolders"
+                                    text: qsTr("Use original relative subfolders")
                                     enabled: saveSpecificFolderRadio.checked || saveSelectedCategoryRadio.checked
                                 }
 
@@ -982,15 +982,15 @@ Window {
                                     id: saveModeCombo
                                     visible: false
                                     model: [
-                                        { text: "Save Each File By Category", value: "byCategory" },
-                                        { text: "Save All Files To Selected Category", value: "selectedCategory" },
-                                        { text: "Save All Files To This Folder", value: "directory" }
+                                        { text: qsTr("Save Each File By Category"), value: "byCategory" },
+                                        { text: qsTr("Save All Files To Selected Category"), value: "selectedCategory" },
+                                        { text: qsTr("Save All Files To This Folder"), value: "directory" }
                                     ]
                                 }
 
-                                WizardCheckBox { id: convertLinksChk; text: "Convert the links in downloaded html files to local files for offline browsing" }
-                                WizardCheckBox { id: overwriteExistingChk; text: "Overwrite existing files" }
-                                WizardCheckBox { id: addCheckedFilesChk; text: "Add checked files to Stellar main list and download queue on closing the grabber" }
+                                WizardCheckBox { id: convertLinksChk; text: qsTr("Convert the links in downloaded html files to local files for offline browsing") }
+                                WizardCheckBox { id: overwriteExistingChk; text: qsTr("Overwrite existing files") }
+                                WizardCheckBox { id: addCheckedFilesChk; text: qsTr("Add checked files to Stellar main list and download queue on closing the grabber") }
                             }
                         }
 
@@ -1004,12 +1004,12 @@ Window {
 
                                 HintText {
                                     Layout.fillWidth: true
-                                    text: "At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters."
+                                    text: qsTr("At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.")
                                 }
 
                                 WizardRadioButton {
                                     id: exploreWholeSiteRadio
-                                    text: "Explore the whole site"
+                                    text: qsTr("Explore the whole site")
                                     ButtonGroup.group: exploreModeGroup
                                 }
                                 ColumnLayout {
@@ -1017,7 +1017,7 @@ Window {
                                     spacing: 6
                                     WizardRadioButton {
                                         id: exploreLevelsRadio
-                                        text: "Explore the specified number of link levels:"
+                                        text: qsTr("Explore the specified number of link levels:")
                                         ButtonGroup.group: exploreModeGroup
                                         checked: !exploreWholeSiteRadio.checked
                                         onClicked: exploreWholeSiteRadio.checked = false
@@ -1033,7 +1033,7 @@ Window {
                                             spacing: 8
                                             SpinBox { id: thisSiteSpin; from: 0; to: 20; value: 2; editable: true; enabled: exploreLevelsRadio.checked }
                                             Text {
-                                                text: "levels within the base site"
+                                                text: qsTr("levels within the base site")
                                                 color: "#d4d4d4"
                                                 font.pixelSize: 12
                                                 wrapMode: Text.WordWrap
@@ -1044,7 +1044,7 @@ Window {
                                             spacing: 8
                                             SpinBox { id: otherSitesSpin; from: 0; to: 20; value: 0; editable: true; enabled: exploreLevelsRadio.checked }
                                             Text {
-                                                text: "levels on other sites"
+                                                text: qsTr("levels on other sites")
                                                 color: "#d4d4d4"
                                                 font.pixelSize: 12
                                                 wrapMode: Text.WordWrap
@@ -1054,13 +1054,13 @@ Window {
                                     }
                                 }
 
-                                Text { text: "What is the number of link levels?"; color: "#b0b0b0"; font.pixelSize: 12 }
-                                WizardCheckBox { id: ignorePopupChk; text: "Ignore popup windows"; checked: true }
-                                WizardCheckBox { id: dontExploreParentsChk; text: "Don't explore parent directories" }
-                                WizardCheckBox { id: exploreMainDomainChk; text: "Explore all sites within the main domain" }
-                                WizardCheckBox { id: processJsChk; text: "Process JavaScript" }
+                                Text { text: qsTr("What is the number of link levels?"); color: "#b0b0b0"; font.pixelSize: 12 }
+                                WizardCheckBox { id: ignorePopupChk; text: qsTr("Ignore popup windows"); checked: true }
+                                WizardCheckBox { id: dontExploreParentsChk; text: qsTr("Don't explore parent directories") }
+                                WizardCheckBox { id: exploreMainDomainChk; text: qsTr("Explore all sites within the main domain") }
+                                WizardCheckBox { id: processJsChk; text: qsTr("Process JavaScript") }
                                 DlgButton {
-                                    text: explorerAdvancedVisible ? "Advanced <<" : "Advanced >>"
+                                    text: explorerAdvancedVisible ? qsTr("Advanced <<") : qsTr("Advanced >>")
                                     implicitWidth: 124
                                     onClicked: explorerAdvancedVisible = !explorerAdvancedVisible
                                 }
@@ -1069,10 +1069,10 @@ Window {
                                     Layout.fillWidth: true
                                     visible: explorerAdvancedVisible
                                     spacing: 8
-                                    WizardCheckBox { id: includeExploreChk; text: "Explore web pages within the following paths/domains only:" }
+                                    WizardCheckBox { id: includeExploreChk; text: qsTr("Explore web pages within the following paths/domains only:") }
                                     HintText {
                                         Layout.fillWidth: true
-                                        text: "Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery"
+                                        text: qsTr("Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery")
                                     }
                                     WizardTextArea {
                                         id: exploreIncludeField
@@ -1080,10 +1080,10 @@ Window {
                                         Layout.preferredHeight: 92
                                         enabled: includeExploreChk.checked
                                     }
-                                    WizardCheckBox { id: excludeExploreChk; text: "Don't explore web pages within the following paths/domains:" }
+                                    WizardCheckBox { id: excludeExploreChk; text: qsTr("Don't explore web pages within the following paths/domains:") }
                                     HintText {
                                         Layout.fillWidth: true
-                                        text: "Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private"
+                                        text: qsTr("Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private")
                                     }
                                     WizardTextArea {
                                         id: exploreExcludeField
@@ -1103,7 +1103,7 @@ Window {
                                 width: Math.min(laterStepContentWidth, Math.max(0, stepFourScroll.availableWidth - 8))
                                 spacing: 10
 
-                                StepLabel { text: "Download the following files (file types)"; font.bold: true }
+                                StepLabel { text: qsTr("Download the following files (file types)"); font.bold: true }
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
@@ -1128,7 +1128,7 @@ Window {
                                         }
                                     }
                                     DlgButton {
-                                        text: "Include Filters..."
+                                        text: qsTr("Include Filters...")
                                         onClicked: {
                                             includeFiltersDialog.show()
                                             includeFiltersDialog.raise()
@@ -1142,7 +1142,7 @@ Window {
                                     Layout.preferredHeight: 88
                                 }
 
-                                StepLabel { text: "Don't download the following files (file types)"; font.bold: true }
+                                StepLabel { text: qsTr("Don't download the following files (file types)"); font.bold: true }
                                 RowLayout {
                                     Layout.fillWidth: true
                                     spacing: 8
@@ -1167,7 +1167,7 @@ Window {
                                         }
                                     }
                                     DlgButton {
-                                        text: "Exclude Filters..."
+                                        text: qsTr("Exclude Filters...")
                                         onClicked: {
                                             excludeFiltersDialog.show()
                                             excludeFiltersDialog.raise()
@@ -1181,12 +1181,12 @@ Window {
                                     Layout.preferredHeight: 72
                                 }
 
-                                WizardCheckBox { id: searchThisSiteOnlyChk; text: "Search files on this site only" }
-                                WizardCheckBox { id: hideDuplicateChk; text: "Hide duplicate files found in different locations"; checked: true }
-                                WizardCheckBox { id: startNowChk; text: "Start downloading all matched files at once" }
+                                WizardCheckBox { id: searchThisSiteOnlyChk; text: qsTr("Search files on this site only") }
+                                WizardCheckBox { id: hideDuplicateChk; text: qsTr("Hide duplicate files found in different locations"); checked: true }
+                                WizardCheckBox { id: startNowChk; text: qsTr("Start downloading all matched files at once") }
 
                                 DlgButton {
-                                    text: fileAdvancedVisible ? "Advanced <<" : "Advanced >>"
+                                    text: fileAdvancedVisible ? qsTr("Advanced <<") : qsTr("Advanced >>")
                                     implicitWidth: 124
                                     onClicked: fileAdvancedVisible = !fileAdvancedVisible
                                 }
@@ -1196,18 +1196,18 @@ Window {
                                     visible: fileAdvancedVisible
                                     spacing: 10
 
-                                    StepLabel { text: "Download if file size is"; font.bold: true }
+                                    StepLabel { text: qsTr("Download if file size is"); font.bold: true }
                                     RowLayout {
                                         spacing: 8
-                                        WizardCheckBox { id: minSizeEnabled; text: "Not less than" }
+                                        WizardCheckBox { id: minSizeEnabled; text: qsTr("Not less than") }
                                         WizardTextField { id: minSizeField; Layout.preferredWidth: 76; enabled: minSizeEnabled.checked; text: "1" }
-                                        StepLabel { text: "Bytes" }
+                                        StepLabel { text: qsTr("Bytes") }
                                     }
                                     RowLayout {
                                         spacing: 8
-                                        WizardCheckBox { id: maxSizeEnabled; text: "Not more than" }
+                                        WizardCheckBox { id: maxSizeEnabled; text: qsTr("Not more than") }
                                         WizardTextField { id: maxSizeField; Layout.preferredWidth: 76; enabled: maxSizeEnabled.checked; text: "10" }
-                                        StepLabel { text: "Bytes" }
+                                        StepLabel { text: qsTr("Bytes") }
                                     }
 
                                     Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
@@ -1215,10 +1215,10 @@ Window {
                                     ColumnLayout {
                                         Layout.fillWidth: true
                                         spacing: 8
-                                        WizardCheckBox { id: includeFilePathChk; text: "Download the files located within the following paths/domains only:" }
+                                        WizardCheckBox { id: includeFilePathChk; text: qsTr("Download the files located within the following paths/domains only:") }
                                         HintText {
                                             Layout.fillWidth: true
-                                            text: "Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*"
+                                            text: qsTr("Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*")
                                         }
                                         WizardTextArea {
                                             id: filePathIncludeField
@@ -1226,10 +1226,10 @@ Window {
                                             Layout.preferredHeight: 86
                                             enabled: includeFilePathChk.checked
                                         }
-                                        WizardCheckBox { id: excludeFilePathChk; text: "Don't download the files located within the following paths/domains:" }
+                                        WizardCheckBox { id: excludeFilePathChk; text: qsTr("Don't download the files located within the following paths/domains:") }
                                         HintText {
                                             Layout.fillWidth: true
-                                            text: "Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking"
+                                            text: qsTr("Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking")
                                         }
                                         WizardTextArea {
                                             id: filePathExcludeField
@@ -1240,7 +1240,7 @@ Window {
                                     }
                                 }
 
-                                StepLabel { text: "Comment"; font.bold: true }
+                                StepLabel { text: qsTr("Comment"); font.bold: true }
                                 WizardTextField { id: commentField; Layout.fillWidth: true }
                             }
                         }
@@ -1281,13 +1281,13 @@ Window {
                     }
 
                     DlgButton {
-                        text: "Save Project"
+                        text: qsTr("Save Project")
                         enabled: !App.grabberBusy
                         onClicked: saveProjectOnly()
                     }
                     DlgButton {
                         visible: root.projectId.length > 0
-                        text: "Delete Project"
+                        text: qsTr("Delete Project")
                         enabled: !App.grabberBusy
                         onClicked: {
                             App.deleteGrabberProject(root.projectId)
@@ -1295,7 +1295,7 @@ Window {
                         }
                     }
                     DlgButton {
-                        text: stepIndex > 0 ? "< Back" : "Close"
+                        text: stepIndex > 0 ? qsTr("< Back") : qsTr("Close")
                         enabled: !App.grabberBusy
                         onClicked: {
                             if (stepIndex > 0)
@@ -1305,7 +1305,7 @@ Window {
                         }
                     }
                     DlgButton {
-                        text: stepIndex < 3 ? "Next >" : "Start Exploring"
+                        text: stepIndex < 3 ? qsTr("Next >") : qsTr("Start Exploring")
                         primary: true
                         enabled: !App.grabberBusy
                         onClicked: {

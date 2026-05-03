@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Grabber Statistics"
+    title: qsTr("Grabber Statistics")
     width: 320
     height: 260
     minimumWidth: 300
@@ -73,7 +73,7 @@ Window {
             spacing: 10
 
             Text {
-                text: "Status: " + (stats.status || "Idle")
+                text: qsTr("Status: %1").arg(stats.status || qsTr("Idle"))
                 color: "#eef2f7"
                 font.pixelSize: 14
                 font.bold: true
@@ -81,31 +81,31 @@ Window {
             }
             Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
 
-            Text { text: "Web pages processed"; color: "#aab3c2"; font.pixelSize: 12; font.bold: true }
+            Text { text: qsTr("Web pages processed"); color: "#aab3c2"; font.pixelSize: 12; font.bold: true }
             GridLayout {
                 columns: 2
                 columnSpacing: 20
                 rowSpacing: 6
-                Text { text: "Simple"; color: "#dce2eb"; font.pixelSize: 12 }
+                Text { text: qsTr("Simple"); color: "#dce2eb"; font.pixelSize: 12 }
                 Text { text: String(stats.webPagesProcessed || 0); color: "#f4f7fb"; font.pixelSize: 12 }
-                Text { text: "Advanced"; color: "#dce2eb"; font.pixelSize: 12 }
+                Text { text: qsTr("Advanced"); color: "#dce2eb"; font.pixelSize: 12 }
                 Text { text: String(stats.advancedPagesProcessed || 0); color: "#f4f7fb"; font.pixelSize: 12 }
             }
 
             Rectangle { Layout.fillWidth: true; height: 1; color: "#343434" }
 
-            Text { text: "Files"; color: "#aab3c2"; font.pixelSize: 12; font.bold: true }
+            Text { text: qsTr("Files"); color: "#aab3c2"; font.pixelSize: 12; font.bold: true }
             GridLayout {
                 columns: 2
                 columnSpacing: 20
                 rowSpacing: 6
-                Text { text: "Total"; color: "#dce2eb"; font.pixelSize: 12 }
+                Text { text: qsTr("Total"); color: "#dce2eb"; font.pixelSize: 12 }
                 Text { text: String(stats.filesTotal || 0); color: "#f4f7fb"; font.pixelSize: 12 }
-                Text { text: "Explored"; color: "#dce2eb"; font.pixelSize: 12 }
+                Text { text: qsTr("Explored"); color: "#dce2eb"; font.pixelSize: 12 }
                 Text { text: String(stats.filesExplored || 0); color: "#f4f7fb"; font.pixelSize: 12 }
-                Text { text: "Matched"; color: "#dce2eb"; font.pixelSize: 12 }
+                Text { text: qsTr("Matched"); color: "#dce2eb"; font.pixelSize: 12 }
                 Text { text: String(stats.filesMatched || 0); color: "#f4f7fb"; font.pixelSize: 12 }
-                Text { text: "Downloaded"; color: "#dce2eb"; font.pixelSize: 12 }
+                Text { text: qsTr("Downloaded"); color: "#dce2eb"; font.pixelSize: 12 }
                 Text { text: String(stats.filesDownloaded || 0); color: "#f4f7fb"; font.pixelSize: 12 }
             }
 
@@ -114,7 +114,7 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
-                DlgButton { text: "Close"; primary: true; onClicked: root.close() }
+                DlgButton { text: qsTr("Close"); primary: true; onClicked: root.close() }
             }
         }
     }

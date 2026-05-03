@@ -39,7 +39,7 @@ Window {
     width:  560
     height: mainCol.implicitHeight + 24
     minimumWidth: 480
-    title: "Download File Info"
+    title: qsTr("Download File Info")
     color: "#1e1e1e"
     modality: Qt.ApplicationModal
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
@@ -235,7 +235,7 @@ Window {
         id: addCatDialog
         width: 460
         height: addCatCol.implicitHeight + 24
-        title: "Adding a category to Stellar categories list"
+        title: qsTr("Adding a category to Stellar categories list")
         color: "#1e1e1e"
         modality: Qt.ApplicationModal
         transientParent: root
@@ -291,7 +291,7 @@ Window {
                     ColumnLayout {
                         Layout.fillWidth: true
                         spacing: 3
-                        Text { text: "Category name"; color: "#aaaaaa"; font.pixelSize: 11 }
+                        Text { text: qsTr("Category name"); color: "#aaaaaa"; font.pixelSize: 11 }
                         Rectangle {
                             Layout.fillWidth: true; Layout.preferredHeight: 22
                             color: "#1b1b1b"
@@ -314,7 +314,7 @@ Window {
                         Layout.fillWidth: true
                         spacing: 3
                         Text {
-                            text: "Automatically put in this category the following file types:"
+                            text: qsTr("Automatically put in this category the following file types:")
                             color: "#aaaaaa"; font.pixelSize: 11; wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
@@ -332,7 +332,7 @@ Window {
                             }
                         }
                         Text {
-                            text: "Note: type file extensions separated by space (e.g. avi mpg mpeg)"
+                            text: qsTr("Note: type file extensions separated by space (e.g. avi mpg mpeg)")
                             color: "#666666"; font.pixelSize: 10; wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
@@ -345,7 +345,7 @@ Window {
                         CheckBox {
                             id: addCatSitesChk
                             topPadding: 0; bottomPadding: 0
-                            text: "Automatically put in this category the files from the following sites only:"
+                            text: qsTr("Automatically put in this category the files from the following sites only:")
                             contentItem: Text {
                                 text: parent.text; color: "#aaaaaa"; font.pixelSize: 11
                                 leftPadding: parent.indicator.width + 4
@@ -368,7 +368,7 @@ Window {
                             }
                         }
                         Text {
-                            text: "Separate sites by spaces. You may use asterisk as a wildcard pattern"
+                            text: qsTr("Separate sites by spaces. You may use asterisk as a wildcard pattern")
                             color: "#666666"; font.pixelSize: 10; wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
@@ -379,7 +379,7 @@ Window {
                         Layout.fillWidth: true
                         spacing: 3
                         Text {
-                            text: "Save future downloads of this category to the following folder:"
+                            text: qsTr("Save future downloads of this category to the following folder:")
                             color: "#5a9ad4"; font.pixelSize: 11; wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
@@ -402,7 +402,7 @@ Window {
                     CheckBox {
                         id: addCatRememberChk
                         topPadding: 0; bottomPadding: 0
-                        text: "Remember last save path"
+                        text: qsTr("Remember last save path")
                         contentItem: Text {
                             text: parent.text; color: "#aaaaaa"; font.pixelSize: 11
                             leftPadding: parent.indicator.width + 4
@@ -415,7 +415,7 @@ Window {
                         Layout.fillWidth: true
                         Item { Layout.fillWidth: true }
                         DlgButton {
-                            text: "Browse..."
+                            text: qsTr("Browse...")
                             onClicked: addCatFolderDlg.open()
                         }
                     }
@@ -428,13 +428,13 @@ Window {
                     Layout.preferredWidth: 80
 
                     DlgButton {
-                        text: "OK"
+                        text: qsTr("OK")
                         primary: true
                         Layout.fillWidth: true
                         onClicked: addCatDialog._doAdd()
                     }
                     DlgButton {
-                        text: "Cancel"
+                        text: qsTr("Cancel")
                         Layout.fillWidth: true
                         onClicked: addCatDialog.close()
                     }
@@ -487,7 +487,7 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    Text { text: "URL"; color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Text { text: qsTr("URL"); color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
                     Rectangle {
                         Layout.fillWidth: true; Layout.preferredHeight: 22
                         color: "#1b1b1b"; border.color: urlField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
@@ -506,7 +506,7 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    Text { text: "Category"; color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Text { text: qsTr("Category"); color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
                     Rectangle {
                         implicitWidth: 160; implicitHeight: 22
                         color: "#1b1b1b"; border.color: "#3a3a3a"; border.width: 1; radius: 2
@@ -543,7 +543,7 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    Text { text: "Save As"; color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Text { text: qsTr("Save As"); color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
                     Rectangle {
                         Layout.fillWidth: true; Layout.preferredHeight: 22
                         color: "#1b1b1b"; border.color: saveAsField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
@@ -587,7 +587,7 @@ Window {
                         CheckBox {
                             id: rememberPathChk
                             topPadding: 0; bottomPadding: 0
-                            text: "Remember this path for \"" + (root.categoryLabels[catCombo.currentIndex] || "") + "\" category"
+                            text: qsTr("Remember this path for \"%1\" category").arg(root.categoryLabels[catCombo.currentIndex] || "")
                             contentItem: Text {
                                 text: parent.text; color: "#707070"; font.pixelSize: 11
                                 leftPadding: parent.indicator.width + 4
@@ -612,7 +612,7 @@ Window {
                 RowLayout {
                     Layout.fillWidth: true
                     spacing: 6
-                    Text { text: "Description"; color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
+                    Text { text: qsTr("Description"); color: "#aaaaaa"; font.pixelSize: 11; Layout.preferredWidth: 72; horizontalAlignment: Text.AlignRight }
                     Rectangle {
                         Layout.fillWidth: true; Layout.preferredHeight: 22
                         color: "#1b1b1b"; border.color: descField.activeFocus ? "#4488dd" : "#3a3a3a"; border.width: 1; radius: 2
@@ -661,7 +661,7 @@ Window {
             spacing: 6
 
             DlgButton {
-                text: "Download Later"
+                text: qsTr("Download Later")
                 onClicked: {
                     root._accepted = true
                     if (rememberPathChk.checked)
@@ -672,7 +672,7 @@ Window {
             }
 
             DlgButton {
-                text: "Start Download"
+                text: qsTr("Start Download")
                 primary: true
                 onClicked: {
                     root._accepted = true
@@ -686,7 +686,7 @@ Window {
             Item { Layout.fillWidth: true }
 
             DlgButton {
-                text: "Cancel"
+                text: qsTr("Cancel")
                 onClicked: root.close()
             }
         }

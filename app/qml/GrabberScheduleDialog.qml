@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Schedule the grabber project"
+    title: qsTr("Schedule the grabber project")
     width: 780
     height: 490
     minimumWidth: 740
@@ -280,12 +280,12 @@ Window {
             Column {
                 spacing: 2
                 anchors.verticalCenter: parent.verticalCenter
-                Text { text: "Project:"; color: "#888888"; font.pixelSize: 11 }
+                Text { text: qsTr("Project:"); color: "#888888"; font.pixelSize: 11 }
                 Text { text: projectName; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
             }
         }
 
-        SCheck { id: enabledChk; text: "Enable project schedule" }
+        SCheck { id: enabledChk; text: qsTr("Enable project schedule") }
 
         // ── Two-panel main area ───────────────────────────────────────────────
         RowLayout {
@@ -305,27 +305,27 @@ Window {
                     anchors { fill: parent; margins: 12 }
                     spacing: 0
 
-                    SLabel { text: "Step 1.  Select type"; font.bold: true; bottomPadding: 4 }
+                    SLabel { text: qsTr("Step 1.  Select type"); font.bold: true; bottomPadding: 4 }
 
                     ButtonGroup { id: exploringModeGroup }
-                    SRadio { id: onceTimeRadio;  text: "One-time exploring/downloading"; checked: true; ButtonGroup.group: exploringModeGroup }
-                    SRadio { id: periodicRadio;  text: "Periodic synchronization"; ButtonGroup.group: exploringModeGroup }
+                    SRadio { id: onceTimeRadio;  text: qsTr("One-time exploring/downloading"); checked: true; ButtonGroup.group: exploringModeGroup }
+                    SRadio { id: periodicRadio;  text: qsTr("Periodic synchronization"); ButtonGroup.group: exploringModeGroup }
 
                     Rectangle { Layout.fillWidth: true; height: 1; color: "#333333"; Layout.topMargin: 8; Layout.bottomMargin: 8 }
 
-                    SLabel { text: "Step 2.  Select action"; font.bold: true; bottomPadding: 4 }
+                    SLabel { text: qsTr("Step 2.  Select action"); font.bold: true; bottomPadding: 4 }
 
                     ButtonGroup { id: actionGroup }
-                    SRadio { id: actionExploreRadio;         text: "Explore only"; checked: true; ButtonGroup.group: actionGroup }
-                    SRadio { id: actionExploreDownloadRadio; text: "Explore site and download matched files"; ButtonGroup.group: actionGroup }
-                    SRadio { id: actionDownloadCheckedRadio; text: "Download checked files"; ButtonGroup.group: actionGroup }
+                    SRadio { id: actionExploreRadio;         text: qsTr("Explore only"); checked: true; ButtonGroup.group: actionGroup }
+                    SRadio { id: actionExploreDownloadRadio; text: qsTr("Explore site and download matched files"); ButtonGroup.group: actionGroup }
+                    SRadio { id: actionDownloadCheckedRadio; text: qsTr("Download checked files"); ButtonGroup.group: actionGroup }
 
                     Rectangle { Layout.fillWidth: true; height: 1; color: "#333333"; Layout.topMargin: 8; Layout.bottomMargin: 8 }
 
-                    SLabel { text: "After completion"; font.bold: true; bottomPadding: 4 }
+                    SLabel { text: qsTr("After completion"); font.bold: true; bottomPadding: 4 }
 
-                    SCheck { id: exitAppChk;  text: "Exit Stellar when done" }
-                    SCheck { id: turnOffChk;  text: "Turn off computer when done" }
+                    SCheck { id: exitAppChk;  text: qsTr("Exit Stellar when done") }
+                    SCheck { id: turnOffChk;  text: qsTr("Turn off computer when done") }
 
                     RowLayout {
                         Layout.leftMargin: 22
@@ -333,7 +333,7 @@ Window {
                         spacing: 6
                         DarkCombo {
                             id: shutdownCombo
-                            model: ["Shut down", "Restart", "Sleep", "Hibernate"]
+                            model: [qsTr("Shut down"), qsTr("Restart"), qsTr("Sleep"), qsTr("Hibernate")]
                             implicitWidth: 140
                         }
                     }
@@ -342,7 +342,7 @@ Window {
                         id: forceChk
                         Layout.leftMargin: 22
                         visible: turnOffChk.checked
-                        text: "Force processes to terminate"
+                        text: qsTr("Force processes to terminate")
                         enabled: false
                     }
 
@@ -362,12 +362,12 @@ Window {
                     anchors { fill: parent; margins: 12 }
                     spacing: 8
 
-                    SLabel { text: "Step 3.  Schedule"; font.bold: true }
+                    SLabel { text: qsTr("Step 3.  Schedule"); font.bold: true }
 
                     // ── Start time ────────────────────────────────────────────
                     RowLayout {
                         spacing: 6
-                        SCheck { id: startAtChk; text: "Start download at"; checked: true }
+                        SCheck { id: startAtChk; text: qsTr("Start download at"); checked: true }
                         Item { Layout.fillWidth: true }
                         Row {
                             spacing: 2
@@ -396,7 +396,7 @@ Window {
                             Layout.fillWidth: true
                             SRadio {
                                 id: onceDateRadio
-                                text: "Once at"
+                                text: qsTr("Once at")
                                 checked: true
                                 ButtonGroup.group: schedModeGroup
                             }
@@ -414,8 +414,8 @@ Window {
                                 Text { text: ","; color: "#888"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                                 DarkCombo {
                                     id: onceDateMonthCombo
-                                    model: ["January","February","March","April","May","June",
-                                            "July","August","September","October","November","December"]
+                                    model: [qsTr("January"),qsTr("February"),qsTr("March"),qsTr("April"),qsTr("May"),qsTr("June"),
+                                            qsTr("July"),qsTr("August"),qsTr("September"),qsTr("October"),qsTr("November"),qsTr("December")]
                                     currentIndex: new Date().getMonth()
                                     implicitWidth: 96
                                 }
@@ -437,7 +437,7 @@ Window {
 
                         // Daily row
                         RowLayout {
-                            SRadio { id: dailyRadio; text: "Daily"; ButtonGroup.group: schedModeGroup }
+                            SRadio { id: dailyRadio; text: qsTr("Daily"); ButtonGroup.group: schedModeGroup }
                         }
                         GridLayout {
                             visible: dailyRadio.checked
@@ -447,13 +447,13 @@ Window {
                             rowSpacing: 0
                             Layout.leftMargin: 24
 
-                            SCheck { id: sundayChk;    text: "Sunday" }
-                            SCheck { id: thursdayChk;  text: "Thursday" }
-                            SCheck { id: mondayChk;    text: "Monday" }
-                            SCheck { id: fridayChk;    text: "Friday" }
-                            SCheck { id: tuesdayChk;   text: "Tuesday" }
-                            SCheck { id: saturdayChk;  text: "Saturday" }
-                            SCheck { id: wednesdayChk; text: "Wednesday" }
+                            SCheck { id: sundayChk;    text: qsTr("Sunday") }
+                            SCheck { id: thursdayChk;  text: qsTr("Thursday") }
+                            SCheck { id: mondayChk;    text: qsTr("Monday") }
+                            SCheck { id: fridayChk;    text: qsTr("Friday") }
+                            SCheck { id: tuesdayChk;   text: qsTr("Tuesday") }
+                            SCheck { id: saturdayChk;  text: qsTr("Saturday") }
+                            SCheck { id: wednesdayChk; text: qsTr("Wednesday") }
                         }
                     }
 
@@ -461,7 +461,7 @@ Window {
                     RowLayout {
                         visible: periodicRadio.checked
                         spacing: 8
-                        SLabel { text: "Repeat every" }
+                        SLabel { text: qsTr("Repeat every") }
                         TextField {
                             id: everyHoursField
                             implicitWidth: 52; implicitHeight: 26
@@ -469,7 +469,7 @@ Window {
                             validator: IntValidator { bottom: 0; top: 999 }
                             background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
                         }
-                        SLabel { text: "hours" }
+                        SLabel { text: qsTr("hours") }
                         TextField {
                             id: everyMinutesField
                             implicitWidth: 52; implicitHeight: 26
@@ -477,13 +477,13 @@ Window {
                             validator: IntValidator { bottom: 0; top: 59 }
                             background: Rectangle { color: "#1b1b1b"; border.color: "#3a3a3a"; radius: 2 }
                         }
-                        SLabel { text: "minutes" }
+                        SLabel { text: qsTr("minutes") }
                     }
 
                     // ── Stop time ─────────────────────────────────────────────
                     RowLayout {
                         spacing: 6
-                        SCheck { id: stopEnabledChk; text: "Stop download at" }
+                        SCheck { id: stopEnabledChk; text: qsTr("Stop download at") }
                         Item { Layout.fillWidth: true }
                         Row {
                             spacing: 2
@@ -507,7 +507,7 @@ Window {
                         Text {
                             id: noteText
                             anchors { fill: parent; margins: 8 }
-                            text: "Note: Stellar should be running in the system tray at the specified time to start a scheduled project."
+                            text: qsTr("Note: Stellar should be running in the system tray at the specified time to start a scheduled project.")
                             color: "#8899bb"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -524,11 +524,11 @@ Window {
             Layout.fillWidth: true
             Item { Layout.fillWidth: true }
             DlgButton {
-                text: "Cancel"
+                text: qsTr("Cancel")
                 onClicked: root.close()
             }
             DlgButton {
-                text: "OK"
+                text: qsTr("OK")
                 primary: true
                 onClicked: { saveSchedule(); root.close() }
             }

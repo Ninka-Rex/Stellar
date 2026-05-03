@@ -21,7 +21,7 @@ import QtQuick.Controls.Material
 
 Window {
     id: root
-    title: "Statistics"
+    title: qsTr("Statistics")
     // Height is driven by content — no filler space.
     width: 280
     height: mainCol.implicitHeight + 16
@@ -107,7 +107,7 @@ Window {
         spacing: 6
 
         Text {
-            text: "Stellar Statistics"
+            text: qsTr("Stellar Statistics")
             color: "#d0d0d0"
             font.pixelSize: 13
             font.bold: true
@@ -128,20 +128,20 @@ Window {
                 anchors { fill: parent; margins: 6 }
                 spacing: 2
 
-                Text { text: "ALL TIME"; color: "#445566"; font.pixelSize: 9; font.bold: true; font.letterSpacing: 1 }
+                Text { text: qsTr("ALL TIME"); color: "#445566"; font.pixelSize: 9; font.bold: true; font.letterSpacing: 1 }
 
-                StatRow { label: "Downloaded";   value: root.formatBytes(root.stats.downloadedBytes) }
-                StatRow { label: "Uploaded";     value: root.formatBytes(root.stats.uploadedBytes) }
-                StatRow { label: "Share Ratio";  value: (root.stats.ratio || 0).toFixed(3); valueColor: root.ratioColor(root.stats.ratio || 0); valueBold: true }
-                StatRow { label: "Uptime";       value: root.formatUptime(root.stats.totalUptimeSecs) }
+                StatRow { label: qsTr("Downloaded");   value: root.formatBytes(root.stats.downloadedBytes) }
+                StatRow { label: qsTr("Uploaded");     value: root.formatBytes(root.stats.uploadedBytes) }
+                StatRow { label: qsTr("Share Ratio");  value: (root.stats.ratio || 0).toFixed(3); valueColor: root.ratioColor(root.stats.ratio || 0); valueBold: true }
+                StatRow { label: qsTr("Uptime");       value: root.formatUptime(root.stats.totalUptimeSecs) }
                 StatRow {
-                    label: "Install Date"
+                    label: qsTr("Install Date")
                     value: {
                         var d = root.stats.installDate || ""
                         return d ? new Date(d).toLocaleDateString(Qt.locale(), "MMM d, yyyy") : "—"
                     }
                 }
-                StatRow { label: "Startups";     value: (root.stats.totalStartups || 0).toString() }
+                StatRow { label: qsTr("Startups");     value: (root.stats.totalStartups || 0).toString() }
             }
         }
 
@@ -158,18 +158,18 @@ Window {
                 anchors { fill: parent; margins: 6 }
                 spacing: 2
 
-                Text { text: "THIS SESSION"; color: "#445566"; font.pixelSize: 9; font.bold: true; font.letterSpacing: 1 }
+                Text { text: qsTr("THIS SESSION"); color: "#445566"; font.pixelSize: 9; font.bold: true; font.letterSpacing: 1 }
 
-                StatRow { label: "Downloaded";  value: root.formatBytes(root.stats.sessionDownloaded) }
-                StatRow { label: "Uploaded";    value: root.formatBytes(root.stats.sessionUploaded) }
-                StatRow { label: "Uptime";      value: root.formatUptime(root.stats.sessionUptimeSecs) }
+                StatRow { label: qsTr("Downloaded");  value: root.formatBytes(root.stats.sessionDownloaded) }
+                StatRow { label: qsTr("Uploaded");    value: root.formatBytes(root.stats.sessionUploaded) }
+                StatRow { label: qsTr("Uptime");      value: root.formatUptime(root.stats.sessionUptimeSecs) }
             }
         }
 
         RowLayout {
             Layout.fillWidth: true
             Item { Layout.fillWidth: true }
-            DlgButton { text: "Close"; onClicked: root.close() }
+            DlgButton { text: qsTr("Close"); onClicked: root.close() }
         }
 
         // Bottom breathing room so Close button isn't flush against the edge.

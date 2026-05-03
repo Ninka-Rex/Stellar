@@ -21,7 +21,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Settings of Stellar Grabber"
+    title: qsTr("Settings of Stellar Grabber")
     width: 520
     height: 320
     minimumWidth: 500
@@ -45,18 +45,18 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 SpinBox { id: exploreSpin; from: 1; to: 10; value: App.settings.grabberFilesToExploreAtOnce; editable: true }
-                Text { text: "files to explore at the same time (1 to 10)"; color: "#eef2f7"; font.pixelSize: 12 }
+                Text { text: qsTr("files to explore at the same time (1 to 10)"); color: "#eef2f7"; font.pixelSize: 12 }
             }
 
             RowLayout {
                 Layout.fillWidth: true
                 SpinBox { id: downloadSpin; from: 1; to: 10; value: App.settings.grabberFilesToDownloadAtOnce; editable: true }
-                Text { text: "files to download at the same time (1 to 10)"; color: "#eef2f7"; font.pixelSize: 12 }
+                Text { text: qsTr("files to download at the same time (1 to 10)"); color: "#eef2f7"; font.pixelSize: 12 }
             }
 
             Text {
                 Layout.fillWidth: true
-                text: "Please note that a web server may reject requests if you set a large number of files to explore or download at the same time."
+                text: qsTr("Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.")
                 color: "#a4adbb"
                 font.pixelSize: 11
                 wrapMode: Text.WordWrap
@@ -66,7 +66,7 @@ Window {
 
             CheckBox {
                 id: descriptionChk
-                text: "Use link texts as download descriptions when adding files to Stellar main list"
+                text: qsTr("Use link texts as download descriptions when adding files to Stellar main list")
                 checked: App.settings.grabberUseLinkTextAsDescription
                 topPadding: 0
                 bottomPadding: 0
@@ -77,9 +77,9 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
-                DlgButton { text: "Cancel"; onClicked: root.close() }
+                DlgButton { text: qsTr("Cancel"); onClicked: root.close() }
                 DlgButton {
-                    text: "OK"
+                    text: qsTr("OK")
                     primary: true
                     onClicked: {
                         App.settings.grabberFilesToExploreAtOnce = exploreSpin.value

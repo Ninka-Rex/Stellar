@@ -24,7 +24,7 @@ Window {
     height: 380
     minimumWidth: 500
     minimumHeight: 320
-    title: "Search Plugins"
+    title: qsTr("Search Plugins")
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
@@ -39,18 +39,18 @@ Window {
             if (targetRow < 0)
                 return
             var plugin = App.torrentSearchManager.pluginData(targetRow)
-            disableToggle.text = plugin.enabled ? "Disable Plugin" : "Enable Plugin"
+            disableToggle.text = plugin.enabled ? qsTr("Disable Plugin") : qsTr("Enable Plugin")
         }
         Action {
             id: disableToggle
-            text: "Disable Plugin"
+            text: qsTr("Disable Plugin")
             onTriggered: {
                 if (root.ctxRow >= 0)
                     App.torrentSearchManager.togglePluginEnabled(root.ctxRow)
             }
         }
         Action {
-            text: "Uninstall"
+            text: qsTr("Uninstall")
             onTriggered: {
                 var plugin = App.torrentSearchManager.pluginData(root.ctxRow)
                 if (plugin.fileName)
@@ -66,9 +66,9 @@ Window {
 
         RowLayout {
             Layout.fillWidth: true
-            Text { text: "Installed Search Plugins"; color: "#fff"; font.pixelSize: 16; font.bold: true }
+            Text { text: qsTr("Installed Search Plugins"); color: "#fff"; font.pixelSize: 16; font.bold: true }
             Item { Layout.fillWidth: true }
-            DlgButton { text: "Refresh"; onClicked: App.torrentSearchManager.refreshPlugins() }
+            DlgButton { text: qsTr("Refresh"); onClicked: App.torrentSearchManager.refreshPlugins() }
         }
 
         Rectangle {
@@ -101,9 +101,9 @@ Window {
                         anchors.rightMargin: 10
                         spacing: 10
                         Text { text: fileName; color: pluginEnabled ? "#f0f0f0" : "#7f7f7f"; Layout.preferredWidth: 150; elide: Text.ElideRight; font.pixelSize: 12 }
-                        Text { text: version.length > 0 ? version : "Unknown"; color: "#b9c3cd"; Layout.preferredWidth: 70; font.pixelSize: 12 }
-                        Text { text: url.length > 0 ? url : "Unknown"; color: "#8ea1b5"; Layout.fillWidth: true; elide: Text.ElideRight; font.pixelSize: 12 }
-                        Text { text: pluginEnabled ? "Enabled" : "Disabled"; color: pluginEnabled ? "#67bb7a" : "#c6a56d"; font.pixelSize: 12; font.bold: true }
+                        Text { text: version.length > 0 ? version : qsTr("Unknown"); color: "#b9c3cd"; Layout.preferredWidth: 70; font.pixelSize: 12 }
+                        Text { text: url.length > 0 ? url : qsTr("Unknown"); color: "#8ea1b5"; Layout.fillWidth: true; elide: Text.ElideRight; font.pixelSize: 12 }
+                        Text { text: pluginEnabled ? qsTr("Enabled") : qsTr("Disabled"); color: pluginEnabled ? "#67bb7a" : "#c6a56d"; font.pixelSize: 12; font.bold: true }
                     }
 
                     MouseArea {
@@ -121,9 +121,9 @@ Window {
 
         RowLayout {
             Layout.fillWidth: true
-            DlgButton { text: "Install a New One"; primary: true; onClicked: installDialog.show() }
+            DlgButton { text: qsTr("Install a New One"); primary: true; onClicked: installDialog.show() }
             Item { Layout.fillWidth: true }
-            DlgButton { text: "Close"; onClicked: root.close() }
+            DlgButton { text: qsTr("Close"); onClicked: root.close() }
         }
     }
 }

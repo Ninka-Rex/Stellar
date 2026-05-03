@@ -24,7 +24,7 @@ import QtCore
 
 Window {
     id: root
-    title: _isTorrent ? "Torrent Properties" : "File Properties"
+    title: _isTorrent ? qsTr("Torrent Properties") : qsTr("File Properties")
     // Sizes are enforced via onItemChanged/onVisibleChanged so the window
     // always fits the content type, even when the user switches items.
     color: "#1e1e1e"
@@ -1530,7 +1530,7 @@ Window {
             spacing: 6
             DlgButton {
                 visible: root._isTorrent
-                text: "Torrent Settings..."
+                text: qsTr("Torrent Settings...")
                 enabled: !!root.item
                 onClicked: {
                     speedLimitDialog.torrentItem = root.item
@@ -1542,13 +1542,13 @@ Window {
             Item { Layout.fillWidth: true }
             DlgButton {
                 visible: root._isTorrent
-                text: "Start"
+                text: qsTr("Start")
                 enabled: !!root.item && safeStr(root.item.status) === "Paused"
                 onClicked: { if (root.item) App.resumeDownload(root.item.id) }
             }
             DlgButton {
                 visible: root._isTorrent
-                text: "Stop"
+                text: qsTr("Stop")
                 enabled: !!root.item
                          && safeStr(root.item.status) !== "Paused"
                          && safeStr(root.item.status) !== "Error"
@@ -1559,16 +1559,16 @@ Window {
                 Layout.preferredWidth: 10
             }
             DlgButton {
-                text: "Open folder"
+                text: qsTr("Open folder")
                 enabled: !!root.item
                 onClicked: { if (root.item) App.openFolderSelectFile(root.item.id) }
             }
             DlgButton {
-                text: "Open file"
+                text: qsTr("Open file")
                 enabled: !!root.item
                 onClicked: { if (root.item) App.openFile(root.item.id) }
             }
-            DlgButton { text: "Close"; primary: true; onClicked: root.close() }
+            DlgButton { text: qsTr("Close"); primary: true; onClicked: root.close() }
         }
     }
 
@@ -1620,7 +1620,7 @@ Window {
                             Layout.fillWidth: true
                             spacing: 8
                             Text {
-                                text: root.item ? safeStr(root.item.status) : "--"
+                                text: root.item ? safeStr(root.item.statusText) : "--"
                                 color: root.item && safeStr(root.item.status) === "Downloading" ? "#62a8ff"
                                      : root.item && safeStr(root.item.status) === "Paused" ? "#b7b7b7"
                                      : root.item && safeStr(root.item.status) === "Completed" ? "#67bb7a"
@@ -1652,13 +1652,13 @@ Window {
                         Layout.fillWidth: true
                         columns: 2; columnSpacing: 8; rowSpacing: 6
 
-                        Text { text: "Status";  color: "#8899aa"; font.pixelSize: 12; font.bold: true }
-                        Text { text: root.item ? safeStr(root.item.status) : "--"; color: "#c8c8c8"; font.pixelSize: 12; Layout.fillWidth: true }
+                        Text { text: qsTr("Status");  color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: root.item ? safeStr(root.item.statusText) : "--"; color: "#c8c8c8"; font.pixelSize: 12; Layout.fillWidth: true }
 
-                        Text { text: "Size";    color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Size");    color: "#8899aa"; font.pixelSize: 12; font.bold: true }
                         Text { text: root.item ? root.formatBytes(root.item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
 
-                        Text { text: "Save to"; color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Save to"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
                             ReadOnlyField {
@@ -1670,29 +1670,29 @@ Window {
                                     return p + ((p && f) ? "\\" : "") + f
                                 }
                             }
-                            DlgButton { text: "Move"; enabled: !!root.item; onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() } }
+                            DlgButton { text: qsTr("Move"); enabled: !!root.item; onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() } }
                         }
 
-                        Text { text: "Address"; color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Address"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
                         ReadOnlyField {
                             Layout.fillWidth: true
                             fieldText: root.item ? safeStr(root.item.url) : "--"
                             textColor: "#4488dd"
                         }
 
-                        Text { text: "Web page"; color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Web page"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
                         Text {
                             text: { var p = root.item ? safeStr(root.item.parentUrl) : ""; return p || "(unknown)" }
                             color: "#c8c8c8"; font.pixelSize: 12; elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
-                        Text { text: "Referer"; color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Referer"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
                         Text {
                             text: { var r = root.item ? safeStr(root.item.referrer) : ""; return r || "(none)" }
                             color: "#c8c8c8"; font.pixelSize: 12; elide: Text.ElideMiddle; Layout.fillWidth: true
                         }
 
-                        Text { text: "Description"; color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Description"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.description) : ""
@@ -1702,7 +1702,7 @@ Window {
                             onTextChanged: if (root.item && text !== root.item.description) App.setDownloadDescription(root.item.id, text)
                         }
 
-                        Text { text: "Login"; color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Login"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.username) : ""
@@ -1712,7 +1712,7 @@ Window {
                             onTextChanged: if (root.item && text !== root.item.username) App.setDownloadUsername(root.item.id, text)
                         }
 
-                        Text { text: "Password"; color: "#8899aa"; font.pixelSize: 12; font.bold: true }
+                        Text { text: qsTr("Password"); color: "#8899aa"; font.pixelSize: 12; font.bold: true }
                         TextField {
                             Layout.fillWidth: true; implicitHeight: 26
                             text: root.item ? safeStr(root.item.password) : ""
@@ -1792,7 +1792,7 @@ Window {
                                 return s === "Completed" || s === "Seeding"
                             }
                             visible: !_isCompleteState && _eta.length > 0
-                            text: "ETA: " + _eta
+                            text: qsTr("ETA: %1").arg(_eta)
                             color: "#8f98a1"
                             font.pixelSize: 11
                             elide: Text.ElideRight
@@ -1836,12 +1836,12 @@ Window {
                         }
                         // Seeders: connected (total)
                         Text {
-                            text: root.item ? ("Seeds: " + (root.item.torrentSeeders | 0) + " (" + (root.item.torrentListSeeders | 0) + ")") : "Seeds: 0 (0)"
+                            text: root.item ? qsTr("Seeds: %1 (%2)").arg(root.item.torrentSeeders | 0).arg(root.item.torrentListSeeders | 0) : qsTr("Seeds: %1 (%2)").arg(0).arg(0)
                             color: "#c8c8c8"; font.pixelSize: 11
                         }
                         // Peers: connected (total)
                         Text {
-                            text: root.item ? ("Peers: " + (root.item.torrentPeers | 0) + " (" + (root.item.torrentListPeers | 0) + ")") : "Peers: 0 (0)"
+                            text: root.item ? qsTr("Peers: %1 (%2)").arg(root.item.torrentPeers | 0).arg(root.item.torrentListPeers | 0) : qsTr("Peers: %1 (%2)").arg(0).arg(0)
                             color: "#c8c8c8"; font.pixelSize: 11
                         }
                     }
@@ -1858,7 +1858,7 @@ Window {
                 Row {
                     anchors.fill: parent; spacing: 0
                     Repeater {
-                        model: ["General", "Speed", "Files", "Peers", "Swarm Map", "Trackers", "Web Seeds", "Piece Map"]
+                        model: [qsTr("General"), qsTr("Speed"), qsTr("Files"), qsTr("Peers"), qsTr("Swarm Map"), qsTr("Trackers"), qsTr("Web Seeds"), qsTr("Piece Map")]
                         delegate: Rectangle {
                             width: tabLbl.implicitWidth + 28; height: parent.height
                             color: root.currentTab === index
@@ -1905,7 +1905,7 @@ Window {
                             property real labelW: 76
 
                             // — Source —
-                            Text { text: "Source"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            Text { text: qsTr("Source"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
                             ReadOnlyField {
                                 Layout.fillWidth: true; Layout.columnSpan: 2
                                 fieldText: root.item ? safeStr(root.item.torrentSource) : ""
@@ -1913,22 +1913,22 @@ Window {
                             }
 
                             // — Info hash —
-                            Text { text: "Info hash"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            Text { text: qsTr("Info hash"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
                             ReadOnlyField {
                                 Layout.fillWidth: true
                                 fieldText: root.item ? safeStr(root.item.torrentInfoHash) : ""
                             }
                             DlgButton {
-                                text: "Copy"
+                                text: qsTr("Copy")
                                 enabled: !!root.item && safeStr(root.item.torrentInfoHash).length > 0
                                 onClicked: { var h = safeStr(root.item.torrentInfoHash); if (h.length > 0) App.copyToClipboard(h) }
                             }
 
                             // — Metadata —
-                            Text { text: "Metadata"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            Text { text: qsTr("Metadata"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
                             Text {
                                 readonly property bool hasMetadata: !!root.item && root.item.torrentHasMetadata
-                                text: hasMetadata ? "Available" : "Fetching from swarm..."
+                                text: hasMetadata ? qsTr("Available") : qsTr("Fetching from swarm...")
                                 color: hasMetadata ? "#5eaa6e" : "#c09a50"
                                 font.pixelSize: 11; Layout.columnSpan: 2
                             }
@@ -1937,16 +1937,16 @@ Window {
                             Rectangle { Layout.fillWidth: true; Layout.columnSpan: 3; height: 1; color: "#2a2a2a"; Layout.topMargin: 2; Layout.bottomMargin: 2 }
 
                             // — Save to —
-                            Text { text: "Save to"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            Text { text: qsTr("Save to"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
                             ReadOnlyField { Layout.fillWidth: true; fieldText: root.item ? safeStr(root.item.savePath) : "" }
                             DlgButton {
-                                text: "Move"
+                                text: qsTr("Move")
                                 enabled: !!root.item && !root._torrentIsMoving
                                 onClicked: { if (root._isTorrent) moveTorrentDialog.open(); else moveFileDialog.open() }
                             }
 
                             // — Category —
-                            Text { text: "Category"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            Text { text: qsTr("Category"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
                             ComboBox {
                                 id: categoryCombo
                                 Layout.fillWidth: true; Layout.columnSpan: 2
@@ -1986,7 +1986,7 @@ Window {
                             }
 
                             // — Note —
-                            Text { text: "Note"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
+                            Text { text: qsTr("Note"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.labelW }
                             TextField {
                                 Layout.fillWidth: true; Layout.columnSpan: 2; implicitHeight: 24
                                 text: root.item ? safeStr(root.item.description) : ""
@@ -2007,31 +2007,31 @@ Window {
                                 rowSpacing: 5
                                 property real lw: 76  // label preferred width
 
-                                Text { text: "Downloaded";  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Downloaded");  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? root.compactBytes(root.item.torrentDownloaded) : "—";  color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: "Uploaded";    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Uploaded");    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? root.compactBytes(root.item.torrentUploaded) : "—";    color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: "Wasted";      color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Wasted");      color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: { if (!root.item) return "—"; var w = root.item.torrentWastedBytes; return (w > 0) ? root.compactBytes(w) : "—" }
                                     color: (root.item && root.item.torrentWastedBytes > 0) ? "#b8924a" : "#c0c8d0"
                                     font.pixelSize: 11; Layout.fillWidth: true
                                 }
 
-                                Text { text: "Down speed";  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Down speed");  color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? root.compactSpeed(root.item.speed) : "—"; color: "#4ea2ff"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: "Up speed";    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Up speed");    color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? root.compactSpeed(root.item.torrentUploadSpeed) : "—";   color: "#4cc87a"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: "Connections"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Connections"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? String(root.item.torrentConnections | 0) : "—"; color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
 
-                                Text { text: "Share ratio"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Share ratio"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: root.item ? root.ratioText(root.item.torrentRatio) : "—"
                                     color: { if (!root.item) return "#c0c8d0"; var r = Number(root.item.torrentRatio); return r >= 1.0 ? "#5eaa6e" : r >= 0.5 ? "#c09a50" : "#c0c8d0" }
                                     font.pixelSize: 11; Layout.fillWidth: true
                                 }
-                                Text { text: "Pieces";      color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Pieces");      color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: {
                                         if (!root.item) return "—"
@@ -2042,19 +2042,19 @@ Window {
                                     }
                                     color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true
                                 }
-                                Text { text: "Availability"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Availability"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text {
                                     text: { if (!root.item) return "—"; var av = root.item.torrentAvailability; return (typeof av === "number" && av > 0) ? av.toFixed(2) : "—" }
                                     color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true
                                 }
 
-                                Text { text: "Active time"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Active time"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? root.formatDuration(root.item.torrentActiveTimeSecs) : "—";   color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
-                                Text { text: "Seed time";   color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
+                                Text { text: qsTr("Seed time");   color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw }
                                 Text { text: root.item ? root.formatDuration(root.item.torrentSeedingTimeSecs) : "—"; color: "#c0c8d0"; font.pixelSize: 11; Layout.fillWidth: true }
                                 // Speed limit — spans last pair, only shown when a limit is active
                                 Text {
-                                    text: "Speed limit"; color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw
+                                    text: qsTr("Speed limit"); color: "#6a7a8a"; font.pixelSize: 11; Layout.preferredWidth: parent.lw
                                     visible: !!root.item && (root.item.perTorrentDownLimitKBps > 0 || root.item.perTorrentUpLimitKBps > 0)
                                 }
                                 Text {
@@ -2079,7 +2079,7 @@ Window {
                         // window is at its minimum width (avoids depending on the
                         // GridLayout's column-distribution behavior at narrow sizes).
                         DlgButton {
-                            text: "Verify local data"
+                            text: qsTr("Verify local data")
                             enabled: !!root.item && !root._torrentIsMoving
                             anchors {
                                 right: parent.right; rightMargin: 12
@@ -2387,14 +2387,14 @@ Window {
 
                                 // Legend dots
                                 Rectangle { width: 8; height: 8; radius: 4; color: "#4490e8" }
-                                Text { text: "Down"; color: "#5a6a7a"; font.pixelSize: 11 }
+                                Text { text: qsTr("Down"); color: "#5a6a7a"; font.pixelSize: 11 }
                                 Text { text: root.compactSpeed(speedStatsCard._down.current); color: "#4ea2ff"; font.bold: true; font.pixelSize: 12 }
                                 Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 }
                                 Text { text: root.compactSpeed(speedStatsCard._down.avg); color: "#7ba8d0"; font.pixelSize: 11 }
                                 Text { text: "peak " + root.compactSpeed(speedStatsCard._down.max); color: "#445566"; font.pixelSize: 10 }
 
                                 Rectangle { width: 8; height: 8; radius: 4; color: "#3dba6a" }
-                                Text { text: "Up"; color: "#5a6a7a"; font.pixelSize: 11 }
+                                Text { text: qsTr("Up"); color: "#5a6a7a"; font.pixelSize: 11 }
                                 Text { text: root.compactSpeed(speedStatsCard._up.current); color: "#4cc87a"; font.bold: true; font.pixelSize: 12 }
                                 Text { text: "avg"; color: "#4a5a6a"; font.pixelSize: 10 }
                                 Text { text: root.compactSpeed(speedStatsCard._up.avg); color: "#7abf9a"; font.pixelSize: 11 }
@@ -2406,7 +2406,7 @@ Window {
                             // Time span selector — compact, bottom-right
                             RowLayout {
                                 spacing: 6
-                                Text { text: "Span"; color: "#4a5a6a"; font.pixelSize: 11 }
+                                Text { text: qsTr("Span"); color: "#4a5a6a"; font.pixelSize: 11 }
                                 ComboBox {
                                     implicitWidth: 90
                                     implicitHeight: 24
@@ -2455,7 +2455,7 @@ Window {
                                     height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 44 }
-                                        text: "Name"; color: "#b0b0b0"; font.pixelSize: 12; font.bold: true
+                                        text: qsTr("Name"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true
                                     }
                                     Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
                                     Item {
@@ -2477,7 +2477,7 @@ Window {
                                     width: root.fileColProgress; height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: fProgRh.left; rightMargin: 2 }
-                                        text: "Progress"; color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                        text: qsTr("Progress"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
                                     }
                                     Rectangle { anchors.right: parent.right; width: 1; height: parent.height; color: "#3a3a3a" }
                                     Item {
@@ -2499,7 +2499,7 @@ Window {
                                     width: root.fileColSize; height: parent.height
                                     Text {
                                         anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: fSizeRh.left; rightMargin: 2 }
-                                        text: "Size"; color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                        text: qsTr("Size"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
                                     }
                                     Item {
                                         id: fSizeRh; width: 10; height: parent.height; anchors.right: parent.right; z: 10
@@ -2529,7 +2529,7 @@ Window {
                             Text {
                                 anchors.centerIn: parent
                                 visible: fileList.count === 0
-                                text: "No file information available"
+                                text: qsTr("No file information available")
                                 color: "#666666"; font.pixelSize: 12
                             }
 
@@ -2738,12 +2738,12 @@ Window {
                                         asynchronous: true
                                     }
                                     Text {
-                                        text: "Rename item"
+                                        text: qsTr("Rename item")
                                         color: "#e0e0e0"; font.pixelSize: 14; font.bold: true
                                     }
                                 }
                                 Text {
-                                    text: "Enter a new file or folder name:"
+                                    text: qsTr("Enter a new file or folder name:")
                                     color: "#aaaaaa"; font.pixelSize: 12
                                 }
                                 TextField {
@@ -2764,12 +2764,12 @@ Window {
                                     Layout.fillWidth: true; spacing: 8
                                     Item { Layout.fillWidth: true }
                                     DlgButton {
-                                        text: "Cancel"
+                                        text: qsTr("Cancel")
                                         onClicked: renameDialog.close()
                                     }
                                     DlgButton {
                                         id: renameConfirmBtn
-                                        text: "Rename"
+                                        text: qsTr("Rename")
                                         primary: true
                                         enabled: {
                                             var t = renameInput.text.trim()
@@ -2844,7 +2844,7 @@ Window {
                                         }
 
                                         Text {
-                                            text: "Download"
+                                            text: qsTr("Download")
                                             color: "#e0e0e0"
                                             font.pixelSize: 12
                                         }
@@ -2890,7 +2890,7 @@ Window {
                                         anchors.verticalCenter: parent.verticalCenter
                                         anchors.left: parent.left
                                         anchors.leftMargin: 32
-                                        text: "Rename..."
+                                        text: qsTr("Rename...")
                                         color: "#e0e0e0"
                                         font.pixelSize: 12
                                     }
@@ -3108,7 +3108,7 @@ Window {
                             Text {
                                 anchors.centerIn: parent
                                 visible: peerListView.count === 0
-                                text: "No peers connected"
+                                text: qsTr("No peers connected")
                                 color: "#666"; font.pixelSize: 12
                             }
 
@@ -3144,7 +3144,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                             anchors.left: parent.left
                                             anchors.leftMargin: 10
-                                            text: "Peer Info"
+                                            text: qsTr("Peer Info")
                                             color: peerCtxMenu.endpoint.length > 0 ? "#e0e0e0" : "#777777"
                                             font.pixelSize: 12
                                         }
@@ -3172,7 +3172,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                             anchors.left: parent.left
                                             anchors.leftMargin: 10
-                                            text: "Ban peer"
+                                            text: qsTr("Ban peer")
                                             color: (!!root.item && peerCtxMenu.endpoint.length > 0) ? "#e0e0e0" : "#777777"
                                             font.pixelSize: 12
                                         }
@@ -3337,11 +3337,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: "Connection"; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
-                                                    Text { text: "Source: " + (root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: "Role: " + (peerInfoDialog.peerData.isSeed ? "Seeder" : "Peer"); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: "Ping: " + ((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: "Progress: " + Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100) + "%"; color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Connection"); color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                                                    Text { text: qsTr("Source: %1").arg(root.safeStr(peerInfoDialog.peerData.source) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Role: %1").arg(peerInfoDialog.peerData.isSeed ? qsTr("Seeder") : qsTr("Peer")); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Ping: %1").arg((Number(peerInfoDialog.peerData.rtt) || 0) > 0 ? (String(peerInfoDialog.peerData.rtt) + " ms") : "--"); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Progress: %1%").arg(Math.round(root.clampPct(peerInfoDialog.peerData.progress) * 100)); color: "#d0d0d0"; font.pixelSize: 12 }
                                                 }
                                             }
 
@@ -3356,11 +3356,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: "Transfer"; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
-                                                    Text { text: "Down: " + root.compactSpeed(peerInfoDialog.peerData.downSpeed); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: "Up: " + root.compactSpeed(peerInfoDialog.peerData.upSpeed); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: "Total down: " + root.compactBytes(peerInfoDialog.peerData.downloaded); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: "Total up: " + root.compactBytes(peerInfoDialog.peerData.uploaded); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Transfer"); color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                                                    Text { text: qsTr("Down: %1").arg(root.compactSpeed(peerInfoDialog.peerData.downSpeed)); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Up: %1").arg(root.compactSpeed(peerInfoDialog.peerData.upSpeed)); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Total down: %1").arg(root.compactBytes(peerInfoDialog.peerData.downloaded)); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Total up: %1").arg(root.compactBytes(peerInfoDialog.peerData.uploaded)); color: "#d0d0d0"; font.pixelSize: 12 }
                                                 }
                                             }
 
@@ -3375,11 +3375,11 @@ Window {
                                                     anchors.margins: 10
                                                     spacing: 6
 
-                                                    Text { text: "Location"; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                                                    Text { text: qsTr("Location"); color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
                                                     Text { text: root.peerLocationLabel(peerInfoDialog.peerData.countryCode, peerInfoDialog.peerData.regionName, peerInfoDialog.peerData.cityName); color: "#d0d0d0"; font.pixelSize: 12; wrapMode: Text.WordWrap; width: parent.width }
-                                                    Text { text: "Distance: " + root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude); color: "#d0d0d0"; font.pixelSize: 12; wrapMode: Text.WordWrap; width: parent.width }
-                                                    Text { text: "Country: " + (root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: "#d0d0d0"; font.pixelSize: 12 }
-                                                    Text { text: "Client: " + (root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight; width: parent.width }
+                                                    Text { text: qsTr("Distance: %1").arg(root.distanceSummary(peerInfoDialog.peerData.latitude, peerInfoDialog.peerData.longitude)); color: "#d0d0d0"; font.pixelSize: 12; wrapMode: Text.WordWrap; width: parent.width }
+                                                    Text { text: qsTr("Country: %1").arg(root.safeStr(peerInfoDialog.peerData.countryCode) || "--"); color: "#d0d0d0"; font.pixelSize: 12 }
+                                                    Text { text: qsTr("Client: %1").arg(root.safeStr(peerInfoDialog.peerData.client) || "Unknown"); color: "#d0d0d0"; font.pixelSize: 12; elide: Text.ElideRight; width: parent.width }
                                                 }
                                             }
                                         }
@@ -3458,8 +3458,8 @@ Window {
 
                                                         Rectangle { visible: parent.hasLocal; x: parent.baseMapX + parent.localX - 4; y: parent.localY - 4; width: 8; height: 8; radius: 4; color: "#8a63ff"; border.color: "#ffffff"; border.width: 1 }
                                                         Rectangle { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX - 4; y: parent.peerY - 4; width: 8; height: 8; radius: 4; color: peerInfoDialog.peerData.isSeed ? "#67bb7a" : "#62a8ff"; border.color: "#ffffff"; border.width: 1 }
-                                                        Text { visible: parent.hasLocal; x: parent.baseMapX + parent.localX + 6; y: parent.localY - 9; text: "You"; color: "#f6f6f6"; font.pixelSize: 10; font.bold: true }
-                                                        Text { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX + 6; y: parent.peerY - 9; text: "Peer"; color: "#f6f6f6"; font.pixelSize: 10; font.bold: true }
+                                                        Text { visible: parent.hasLocal; x: parent.baseMapX + parent.localX + 6; y: parent.localY - 9; text: qsTr("You"); color: "#f6f6f6"; font.pixelSize: 10; font.bold: true }
+                                                        Text { visible: parent.hasPeer; x: parent.baseMapX + parent.peerX + 6; y: parent.peerY - 9; text: qsTr("Peer"); color: "#f6f6f6"; font.pixelSize: 10; font.bold: true }
                                                     }
                                                 }
 
@@ -3475,7 +3475,7 @@ Window {
                                                 spacing: 6
 
                                                 Text {
-                                                    text: "Flags"
+                                                    text: qsTr("Flags")
                                                     color: "#9eb0c2"
                                                     font.pixelSize: 11
                                                     font.bold: true
@@ -3545,7 +3545,7 @@ Window {
                                             RowLayout {
                                                 spacing: 8
                                                 DlgButton {
-                                                    text: "Ban Peer"
+                                                    text: qsTr("Ban Peer")
                                                     destructive: true
                                                     enabled: !!root.item && root.safeStr(peerInfoDialog.peerData.endpoint).length > 0
                                                     height: 28
@@ -3570,7 +3570,7 @@ Window {
                                                     }
                                                 }
                                                 DlgButton {
-                                                    text: "Close"
+                                                    text: qsTr("Close")
                                                     primary: true
                                                     height: 28
                                                     implicitHeight: 28
@@ -3824,7 +3824,7 @@ Window {
                             spacing: 6
 
                             Text {
-                                text: "Legend:"
+                                text: qsTr("Legend:")
                                 color: "#ffffff"
                                 font.pixelSize: 10
                                 anchors.verticalCenter: parent.verticalCenter
@@ -3914,7 +3914,7 @@ Window {
                                         }
                                         contentItem: Item {}
                                     }
-                                    Text { text: "Inactive"; color: "#8ea1b5"; font.pixelSize: 11 }
+                                    Text { text: qsTr("Inactive"); color: "#8ea1b5"; font.pixelSize: 11 }
                                 }
 
                                 // Tracker dots toggle
@@ -3934,7 +3934,7 @@ Window {
                                         }
                                         contentItem: Item {}
                                     }
-                                    Text { text: "Trackers"; color: "#8ea1b5"; font.pixelSize: 11 }
+                                    Text { text: qsTr("Trackers"); color: "#8ea1b5"; font.pixelSize: 11 }
                                 }
 
                                 Rectangle {
@@ -3948,20 +3948,20 @@ Window {
                                         anchors.centerIn: parent
                                         spacing: 10
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "Peer"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Peer"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "Seed"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Seed"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 10; height: 10; radius: 5; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "You"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("You"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 8; height: 8; radius: 4; color: "#e8d57a"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "Tracker"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Tracker"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         // Line type legend
                                         Rectangle { width: 18; height: 2; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "DL"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("DL"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 18; height: 2; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "UL"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("UL"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                         Rectangle { width: 18; height: 2; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                                        Text { text: "Both"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                                        Text { text: qsTr("Both"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                                     }
                                 }
                             }
@@ -4409,7 +4409,7 @@ Window {
                                             // Status
                                             Row {
                                                 spacing: 4
-                                                Text { text: "Status"; color: "#6a8099"; font.pixelSize: 11 }
+                                                Text { text: qsTr("Status"); color: "#6a8099"; font.pixelSize: 11 }
                                                 Text {
                                                     text: root.peerMapTrackerHoverStatus || "Unknown"
                                                     color: {
@@ -4427,14 +4427,14 @@ Window {
                                             Row {
                                                 visible: root.peerMapTrackerHoverTier >= 0
                                                 spacing: 4
-                                                Text { text: "Tier"; color: "#6a8099"; font.pixelSize: 11 }
+                                                Text { text: qsTr("Tier"); color: "#6a8099"; font.pixelSize: 11 }
                                                 Text { text: String(root.peerMapTrackerHoverTier); color: "#c5d2de"; font.pixelSize: 11 }
                                             }
 
                                             // Peers reported
                                             Row {
                                                 spacing: 4
-                                                Text { text: "Peers"; color: "#6a8099"; font.pixelSize: 11 }
+                                                Text { text: qsTr("Peers"); color: "#6a8099"; font.pixelSize: 11 }
                                                 Text {
                                                     text: root.peerMapTrackerHoverCount > 0 ? String(root.peerMapTrackerHoverCount) : "—"
                                                     color: "#c5d2de"; font.pixelSize: 11
@@ -4546,7 +4546,7 @@ Window {
                                             }
 
                                             Text {
-                                                text: "You (this client)"
+                                                text: qsTr("You (this client)")
                                                 color: "#66a7ff"
                                                 font.pixelSize: 11
                                                 width: parent.width
@@ -4598,7 +4598,7 @@ Window {
                                     Text {
                                         anchors.centerIn: parent
                                         visible: !root.activePeerMapModel || mapCanvas.plottedPeerCount === 0
-                                        text: "No connected peers to plot"
+                                        text: qsTr("No connected peers to plot")
                                         color: "#708396"
                                         font.pixelSize: 12
                                     }
@@ -4606,7 +4606,7 @@ Window {
                                     Text {
                                         anchors.centerIn: parent
                                         visible: !!root.activePeerMapModel && root.activePeerMapModel.rowCount() > 0 && !root.activePeerMapModel.hasLocalLocation
-                                        text: "Waiting for your public IP so the local map position can be shown"
+                                        text: qsTr("Waiting for your public IP so the local map position can be shown")
                                         color: "#708396"
                                         font.pixelSize: 12
                                     }
@@ -4627,7 +4627,7 @@ Window {
                         property bool isSystemEntry: false
 
                         Action {
-                            text: "Force Reannounce"
+                            text: qsTr("Force Reannounce")
                             enabled: !trackerCtxMenu.isSystemEntry && !!root.item
                             onTriggered: {
                                 if (root.item && trackerCtxMenu.trackerUrl.length > 0)
@@ -4636,7 +4636,7 @@ Window {
                         }
                         MenuSeparator {}
                         Action {
-                            text: "Copy URL"
+                            text: qsTr("Copy URL")
                             enabled: !trackerCtxMenu.isSystemEntry
                             onTriggered: {
                                 if (trackerCtxMenu.trackerUrl.length > 0)
@@ -4645,7 +4645,7 @@ Window {
                         }
                         MenuSeparator {}
                         Action {
-                            text: "Remove tracker"
+                            text: qsTr("Remove tracker")
                             enabled: !trackerCtxMenu.isSystemEntry
                             onTriggered: {
                                 if (root.item && trackerCtxMenu.trackerUrl.length > 0)
@@ -4667,7 +4667,7 @@ Window {
                             RowLayout {
                                 anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
                                 Text {
-                                    text: "Trackers"
+                                    text: qsTr("Trackers")
                                     color: "#e0e0e0"; font.pixelSize: 12; font.bold: true
                                 }
                                 Text {
@@ -4692,11 +4692,11 @@ Window {
                                 }
 
                                 DlgButton {
-                                    text: "Reannounce All"
+                                    text: qsTr("Reannounce All")
                                     enabled: !!root.item
                                     ToolTip.visible: hovered
                                     ToolTip.delay: 400
-                                    ToolTip.text: "Tell every tracker you're here right now, instead of waiting for the\nnormal announce interval. Useful if your peer count suddenly dropped."
+                                    ToolTip.text: qsTr("Tell every tracker you're here right now, instead of waiting for the\nnormal announce interval. Useful if your peer count suddenly dropped.")
                                     onClicked: {
                                         if (!root.item) return
                                         App.forceReannounceTorrent(root.item.id)
@@ -4741,7 +4741,7 @@ Window {
                                 spacing: 6
 
                                 Text {
-                                    text: "Paste tracker URLs - one per line. Lines starting with # are ignored."
+                                    text: qsTr("Paste tracker URLs - one per line. Lines starting with # are ignored.")
                                     color: "#8899bb"; font.pixelSize: 11; wrapMode: Text.WordWrap
                                     Layout.fillWidth: true
                                 }
@@ -4771,7 +4771,7 @@ Window {
                                     }
                                     Item { Layout.fillWidth: true }
                                     DlgButton {
-                                        text: "Add"
+                                        text: qsTr("Add")
                                         primary: true
                                         enabled: !!root.item && trackerInput.text.trim().length > 0
                                         onClicked: {
@@ -4909,7 +4909,7 @@ Window {
                             Text {
                                 anchors.centerIn: parent
                                 visible: trackerList.count === 0
-                                text: "No trackers"
+                                text: qsTr("No trackers")
                                 color: "#666"; font.pixelSize: 12
                             }
 
@@ -5074,7 +5074,7 @@ Window {
                             RowLayout {
                                 anchors { fill: parent; leftMargin: 10; rightMargin: 10 }
                                 Text {
-                                    text: "Web Seeds"
+                                    text: qsTr("Web Seeds")
                                     color: "#e0e0e0"; font.pixelSize: 12; font.bold: true
                                 }
                                 Text {
@@ -5109,7 +5109,7 @@ Window {
                                 spacing: 6
 
                                 Text {
-                                    text: "Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted."
+                                    text: qsTr("Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.")
                                     color: "#8899bb"; font.pixelSize: 11; wrapMode: Text.WordWrap
                                     Layout.fillWidth: true
                                 }
@@ -5139,7 +5139,7 @@ Window {
                                     }
                                     Item { Layout.fillWidth: true }
                                     DlgButton {
-                                        text: "Add"
+                                        text: qsTr("Add")
                                         primary: true
                                         enabled: !!root.item && webSeedInput.text.trim().length > 0
                                         onClicked: {
@@ -5176,11 +5176,11 @@ Window {
                                 Text {
                                     width: webSeedList.width * 0.72
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: "URL"; color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
+                                    text: qsTr("URL"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true; elide: Text.ElideRight
                                 }
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
-                                    text: "Type"; color: "#b0b0b0"; font.pixelSize: 12; font.bold: true
+                                    text: qsTr("Type"); color: "#b0b0b0"; font.pixelSize: 12; font.bold: true
                                 }
                             }
                         }
@@ -5200,7 +5200,7 @@ Window {
                             Text {
                                 anchors.centerIn: parent
                                 visible: webSeedList.count === 0
-                                text: "No web seeds"
+                                text: qsTr("No web seeds")
                                 color: "#666"; font.pixelSize: 12
                             }
 
@@ -5256,14 +5256,14 @@ Window {
                                 property string seedType: ""
 
                                 Action {
-                                    text: "Copy URL"
+                                    text: qsTr("Copy URL")
                                     onTriggered: {
                                         if (webSeedCtxMenu.seedUrl.length > 0)
                                             App.copyToClipboard(webSeedCtxMenu.seedUrl)
                                     }
                                 }
                                 Action {
-                                    text: "Open in browser"
+                                    text: qsTr("Open in browser")
                                     onTriggered: {
                                         if (webSeedCtxMenu.seedUrl.length > 0)
                                             Qt.openUrlExternally(webSeedCtxMenu.seedUrl)
@@ -5271,7 +5271,7 @@ Window {
                                 }
                                 MenuSeparator {}
                                 Action {
-                                    text: "Remove seed"
+                                    text: qsTr("Remove seed")
                                     onTriggered: {
                                         if (root.item && webSeedCtxMenu.seedUrl.length > 0) {
                                             App.removeTorrentWebSeed(root.item.id, webSeedCtxMenu.seedUrl)
@@ -5396,7 +5396,7 @@ Window {
                             spacing: 14
 
                             Text {
-                                text: "Legend:"
+                                text: qsTr("Legend:")
                                 color: "#6a8099"; font.pixelSize: 11
                                 anchors.verticalCenter: parent.verticalCenter
                             }

@@ -27,7 +27,7 @@ Window {
     height: 520
     minimumWidth: 720
     minimumHeight: 460
-    title: "Torrent Metadata"
+    title: qsTr("Torrent Metadata")
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
 
@@ -184,7 +184,7 @@ Window {
     // Update window title and latch metadata state when item is assigned.
     onItemChanged: {
         // Reset to default first so a stale name from a previous torrent never persists.
-        root.title = "Torrent Metadata"
+        root.title = qsTr("Torrent Metadata")
         if (root.item && root.item.filename && root.item.filename.length > 0)
             root.title = root.item.filename
         if (root.item && root.item.torrentHasMetadata)
@@ -403,11 +403,11 @@ Window {
 
     function metadataPeerStatusText() {
         if (!root.item)
-            return "Opening torrent and reading metadata..."
+            return qsTr("Opening torrent and reading metadata...")
         var peers = metadataPeerCount()
         if (peers <= 0)
-            return "Looking for peers to download metadata..."
-        return "Downloading metadata from " + peers + (peers === 1 ? " peer" : " peers")
+            return qsTr("Looking for peers to download metadata...")
+        return qsTr("Downloading metadata from %n peer(s)", "", peers)
     }
 
     function formatBytes(bytes) {
@@ -480,7 +480,7 @@ Window {
             Text {
                 text: root.item && root.item.filename && root.item.filename.length > 0
                       ? root.item.filename
-                      : (root.pendingSourceLabel.length > 0 ? root.pendingSourceLabel : "Torrent Metadata")
+                      : (root.pendingSourceLabel.length > 0 ? root.pendingSourceLabel : qsTr("Torrent Metadata"))
                 color: "#ffffff"
                 font.pixelSize: 15
                 font.bold: true
@@ -503,7 +503,7 @@ Window {
             Layout.fillWidth: true
             spacing: 6
 
-            Text { text: "Save to"; color: "#a5a5a5"; font.pixelSize: 12 }
+            Text { text: qsTr("Save to"); color: "#a5a5a5"; font.pixelSize: 12 }
 
             TextField {
                 id: savePathField
@@ -524,7 +524,7 @@ Window {
             }
 
             DlgButton {
-                text: "Save As..."
+                text: qsTr("Save As...")
                 Layout.preferredHeight: 32
                 onClicked: saveFolderDialog.open()
             }
@@ -532,7 +532,7 @@ Window {
             // Separator
             Rectangle { width: 1; height: 22; color: "#343434" }
 
-            Text { text: "Category"; color: "#a5a5a5"; font.pixelSize: 12 }
+            Text { text: qsTr("Category"); color: "#a5a5a5"; font.pixelSize: 12 }
 
             ComboBox {
                 id: categoryCombo
@@ -564,7 +564,7 @@ Window {
 
             CheckBox {
                 id: customSavePathCheck
-                text: "Custom save folder"
+                text: qsTr("Custom save folder")
                 checked: root.useCustomSavePath
                 topPadding: 0; bottomPadding: 0
                 onToggled: {
@@ -585,7 +585,7 @@ Window {
             }
 
             CheckBox {
-                text: "Remember"
+                text: qsTr("Remember")
                 checked: root.rememberCustomSavePath
                 enabled: root.useCustomSavePath
                 topPadding: 0; bottomPadding: 0
@@ -598,7 +598,7 @@ Window {
             }
 
             Text {
-                text: "Use category folder"
+                text: qsTr("Use category folder")
                 color: root.useCustomSavePath ? "#66aaff" : "#5f5f5f"
                 font.pixelSize: 12; font.underline: root.useCustomSavePath
                 MouseArea {
@@ -615,7 +615,7 @@ Window {
 
             Rectangle { width: 1; height: 18; color: "#343434" }
 
-            Text { text: "Description"; color: "#a5a5a5"; font.pixelSize: 12 }
+            Text { text: qsTr("Description"); color: "#a5a5a5"; font.pixelSize: 12 }
             TextField {
                 Layout.fillWidth: true
                 implicitHeight: 26
@@ -650,7 +650,7 @@ Window {
             spacing: 8
 
             DlgButton {
-                text: "Torrent Settings..."
+                text: qsTr("Torrent Settings...")
                 enabled: !!root.item
                 onClicked: {
                     metaTorrentSettingsDlg.torrentItem = root.item
@@ -663,7 +663,7 @@ Window {
             Item { Layout.fillWidth: true }
 
             DlgButton {
-                text: "Cancel"
+                text: qsTr("Cancel")
                 onClicked: {
                     if (root.downloadId.length > 0)
                         App.discardTorrentDownload(root.downloadId)
@@ -672,7 +672,7 @@ Window {
             }
 
             DlgButton {
-                text: "Download Later"
+                text: qsTr("Download Later")
                 enabled: !!root.item && root.item.status !== "Error"
                 onClicked: {
                     root.persistRememberedSavePathIfNeeded()
@@ -683,7 +683,7 @@ Window {
             }
 
             DlgButton {
-                text: "Download"
+                text: qsTr("Download")
                 primary: true
                 enabled: !!root.item && root.item.status !== "Error"
                 onClicked: {
@@ -726,7 +726,7 @@ Window {
 
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
-                        text: root.item ? root.metadataPeerStatusText() : "Opening torrent..."
+                        text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
                         color: "#8ea1b5"
                         font.pixelSize: 13
                     }
@@ -762,7 +762,7 @@ Window {
 
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: root.item ? root.metadataPeerStatusText() : "Opening torrent..."
+                            text: root.item ? root.metadataPeerStatusText() : qsTr("Opening torrent...")
                             color: "#8ea1b5"
                             font.pixelSize: 12
                         }
@@ -774,11 +774,11 @@ Window {
                         spacing: 10
 
                         Rectangle { width: 10; height: 10; radius: 5; color: "#5f93c9"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: "Peer"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("Peer"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                         Rectangle { width: 10; height: 10; radius: 5; color: "#4caf7d"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: "Seed"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("Seed"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                         Rectangle { width: 10; height: 10; radius: 5; color: "#9959e6"; anchors.verticalCenter: parent.verticalCenter }
-                        Text { text: "You"; color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
+                        Text { text: qsTr("You"); color: "#b8c5d3"; font.pixelSize: 11; anchors.verticalCenter: parent.verticalCenter }
                     }
                 }
 
@@ -1125,13 +1125,14 @@ Window {
                             }
 
                             Text {
-                                text: "↓ " + root.compactSpeed(root.metaMapHoverDownSpeed) + "  ↑ " + root.compactSpeed(root.metaMapHoverUpSpeed)
+                                text: qsTr("↓ %1  ↑ %2").arg(root.compactSpeed(root.metaMapHoverDownSpeed)).arg(root.compactSpeed(root.metaMapHoverUpSpeed))
                                 color: "#9fb6c8"; font.pixelSize: 11; width: parent.width
                             }
 
                             Text {
-                                text: "RTT " + (root.metaMapHoverRtt > 0 ? (root.metaMapHoverRtt + " ms") : "—")
-                                    + "  " + Math.round(root.metaMapHoverProgress * 100) + "% done"
+                                text: qsTr("RTT %1  %2% done")
+                                    .arg(root.metaMapHoverRtt > 0 ? (root.metaMapHoverRtt + " ms") : "—")
+                                    .arg(Math.round(root.metaMapHoverProgress * 100))
                                 color: "#9fb6c8"; font.pixelSize: 11; width: parent.width
                             }
                         }
@@ -1155,10 +1156,10 @@ Window {
                 Layout.rightMargin: 10
                 Layout.topMargin: 8
                 Layout.bottomMargin: 4
-                Text { text: "Files"; color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
+                Text { text: qsTr("Files"); color: "#f0f0f0"; font.pixelSize: 14; font.bold: true }
                 Item { Layout.fillWidth: true }
                 Text {
-                    text: metaFileList ? (metaFileList.count + " items") : ""
+                    text: metaFileList ? qsTr("%n item(s)", "", metaFileList.count) : ""
                     color: "#808080"
                     font.pixelSize: 11
                 }
@@ -1207,7 +1208,7 @@ Window {
                                 color: "transparent"
                                 Text {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
-                                    text: "Name"
+                                    text: qsTr("Name")
                                     color: "#b0b0b0"
                                     font.pixelSize: 12
                                     font.bold: true
@@ -1240,7 +1241,7 @@ Window {
                                 color: "transparent"
                                 Text {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
-                                    text: "Progress"
+                                    text: qsTr("Progress")
                                     color: "#b0b0b0"
                                     font.pixelSize: 12
                                     font.bold: true
@@ -1270,7 +1271,7 @@ Window {
                                 color: "transparent"
                                 Text {
                                     anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 6; right: parent.right; rightMargin: 12 }
-                                    text: "Size"
+                                    text: qsTr("Size")
                                     color: "#b0b0b0"
                                     font.pixelSize: 12
                                     font.bold: true
@@ -1295,7 +1296,7 @@ Window {
                         Text {
                             anchors.centerIn: parent
                             visible: parent.count === 0
-                            text: "No file information available"
+                            text: qsTr("No file information available")
                             color: "#666666"
                             font.pixelSize: 12
                         }
@@ -1408,7 +1409,7 @@ Window {
 
                             Text {
                                 anchors { left: parent.left; leftMargin: 6; verticalCenter: parent.verticalCenter }
-                                text: parent.showProgress ? (Math.round(root.clampPct(progress) * 100) + "%") : "Pending"
+                                text: parent.showProgress ? (Math.round(root.clampPct(progress) * 100) + "%") : qsTr("Pending")
                                 color: wanted ? "#b0b0b0" : "#555"
                                 font.pixelSize: 11
                                 width: 46
@@ -1483,7 +1484,7 @@ Window {
                 minimumHeight: 150
                 maximumHeight: 150
                 visible: false
-                title: "Rename"
+                title: qsTr("Rename")
                 color: "#1e1e1e"
                 transientParent: root
                 modality: Qt.NonModal
@@ -1529,9 +1530,9 @@ Window {
                             fillMode: Image.PreserveAspectFit
                             asynchronous: true
                         }
-                        Text { text: "Rename item"; color: "#e0e0e0"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Rename item"); color: "#e0e0e0"; font.pixelSize: 14; font.bold: true }
                     }
-                    Text { text: "Enter a new file or folder name:"; color: "#aaaaaa"; font.pixelSize: 12 }
+                    Text { text: qsTr("Enter a new file or folder name:"); color: "#aaaaaa"; font.pixelSize: 12 }
                     TextField {
                         id: metaRenameInput
                         Layout.fillWidth: true
@@ -1548,12 +1549,12 @@ Window {
                         Layout.fillWidth: true; spacing: 8
                         Item { Layout.fillWidth: true }
                         DlgButton {
-                            text: "Cancel"
+                            text: qsTr("Cancel")
                             onClicked: metaRenameDialog.close()
                         }
                         DlgButton {
                             id: metaRenameConfirmBtn
-                            text: "Rename"; primary: true
+                            text: qsTr("Rename"); primary: true
                             enabled: {
                                 var t = metaRenameInput.text.trim()
                                 return t.length > 0
@@ -1627,7 +1628,7 @@ Window {
                             }
 
                             Text {
-                                text: "Download"
+                                text: qsTr("Download")
                                 color: "#e0e0e0"
                                 font.pixelSize: 12
                             }
@@ -1673,7 +1674,7 @@ Window {
                             anchors.verticalCenter: parent.verticalCenter
                             anchors.left: parent.left
                             anchors.leftMargin: 32
-                            text: "Rename..."
+                            text: qsTr("Rename...")
                             color: "#e0e0e0"
                             font.pixelSize: 12
                         }

@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Columns"
+    title: qsTr("Columns")
     width: 480
     height: 460
     minimumWidth: 420
@@ -71,9 +71,9 @@ Window {
         anchors { fill: parent; margins: 16 }
         spacing: 10
 
-        Text { text: "Columns"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+        Text { text: qsTr("Columns"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
         Text {
-            text: "Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like."
+            text: qsTr("Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.")
             color: "#909090"; font.pixelSize: 12
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
@@ -145,7 +145,7 @@ Window {
                     color: moveUpMa.containsMouse && colListView.currentIndex > 0 ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: colListView.currentIndex > 0 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: "Move Up"; color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Move Up"); color: "#d0d0d0"; font.pixelSize: 12 }
                     MouseArea {
                         id: moveUpMa
                         anchors.fill: parent
@@ -163,7 +163,7 @@ Window {
                     color: moveDownMa.containsMouse && colListView.currentIndex < root.localDefs.length - 1 ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: colListView.currentIndex < root.localDefs.length - 1 ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: "Move Down"; color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Move Down"); color: "#d0d0d0"; font.pixelSize: 12 }
                     MouseArea {
                         id: moveDownMa
                         anchors.fill: parent
@@ -186,7 +186,7 @@ Window {
                     color: showMa.containsMouse && canShow ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: canShow ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: "Show"; color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Show"); color: "#d0d0d0"; font.pixelSize: 12 }
                     MouseArea {
                         id: showMa
                         anchors.fill: parent
@@ -210,7 +210,7 @@ Window {
                     color: hideMa.containsMouse && canHide ? "#1e3a6e" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
                     opacity: canHide ? 1.0 : 0.4
-                    Text { anchors.centerIn: parent; text: "Hide"; color: "#d0d0d0"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Hide"); color: "#d0d0d0"; font.pixelSize: 12 }
                     MouseArea {
                         id: hideMa
                         anchors.fill: parent
@@ -230,7 +230,7 @@ Window {
                     width: 100; height: 28; radius: 3
                     color: resetMa.containsMouse ? "#443020" : "#2d2d2d"
                     border.color: "#555"; border.width: 1
-                    Text { anchors.centerIn: parent; text: "Reset"; color: "#e09060"; font.pixelSize: 12 }
+                    Text { anchors.centerIn: parent; text: qsTr("Reset"); color: "#e09060"; font.pixelSize: 12 }
                     MouseArea {
                         id: resetMa
                         anchors.fill: parent
@@ -249,7 +249,7 @@ Window {
             Layout.fillWidth: true
             spacing: 8
             Text {
-                text: "The selected column should be"
+                text: qsTr("The selected column should be")
                 color: "#909090"; font.pixelSize: 12
             }
             TextField {
@@ -270,7 +270,7 @@ Window {
                     }
                 }
             }
-            Text { text: "pixels wide"; color: "#909090"; font.pixelSize: 12 }
+            Text { text: qsTr("pixels wide"); color: "#909090"; font.pixelSize: 12 }
         }
 
         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
@@ -281,7 +281,7 @@ Window {
             spacing: 8
             Item { Layout.fillWidth: true }
             DlgButton {
-                text: "OK"
+                text: qsTr("OK")
                 primary: true
                 onClicked: {
                     root.columnsChanged(root.localDefs)
@@ -289,7 +289,7 @@ Window {
                 }
             }
             DlgButton {
-                text: "Cancel"
+                text: qsTr("Cancel")
                 onClicked: root.close()
             }
         }

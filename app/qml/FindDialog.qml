@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Find"
+    title: qsTr("Find")
     width: 380
     height: 305
     minimumWidth: 320
@@ -77,7 +77,7 @@ Window {
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            Text { text: "Find:"; color: "#c0c0c0"; font.pixelSize: 13 }
+            Text { text: qsTr("Find:"); color: "#c0c0c0"; font.pixelSize: 13 }
             TextField {
                 id: searchField
                 Layout.fillWidth: true
@@ -91,24 +91,24 @@ Window {
 
         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
-        Text { text: "Search in:"; color: "#909090"; font.pixelSize: 12 }
+        Text { text: qsTr("Search in:"); color: "#909090"; font.pixelSize: 12 }
 
         CheckBox {
-            text: "File name or part of the name"
+            text: qsTr("File name or part of the name")
             checked: root.searchName
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.searchName = checked
             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
         }
         CheckBox {
-            text: "Description or part of the description"
+            text: qsTr("Description or part of the description")
             checked: root.searchDesc
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.searchDesc = checked
             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
         }
         CheckBox {
-            text: "Site name / download link / parent web page / referrer"
+            text: qsTr("Site name / download link / parent web page / referrer")
             checked: root.searchLinks
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.searchLinks = checked
@@ -122,14 +122,14 @@ Window {
         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
         CheckBox {
-            text: "Match case"
+            text: qsTr("Match case")
             checked: root.matchCase
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.matchCase = checked
             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
         }
         CheckBox {
-            text: "Match whole string only"
+            text: qsTr("Match whole string only")
             checked: root.matchWhole
             topPadding: 0; bottomPadding: 0
             onCheckedChanged: root.matchWhole = checked
@@ -142,9 +142,9 @@ Window {
         Text {
             Layout.fillWidth: true
             text: root.resultCount < 0  ? "" :
-                  root.resultCount === 0 ? "No results found." :
-                  root.resultCount === 1 ? "Found 1 result." :
-                                           "Found " + root.resultCount + " results."
+                  root.resultCount === 0 ? qsTr("No results found.") :
+                  root.resultCount === 1 ? qsTr("Found 1 result.") :
+                                           qsTr("Found %1 results.").arg(root.resultCount)
             color: root.resultCount === 0 ? "#cc6666" : "#66bb66"
             font.pixelSize: 12
             horizontalAlignment: Text.AlignRight
@@ -157,7 +157,7 @@ Window {
             Item { Layout.fillWidth: true }
             Button {
                 id: findBtn
-                text: "Find"
+                text: qsTr("Find")
                 implicitWidth: 80
                 background: Rectangle {
                     color: root._finding ? "#2a5faa" : "#1e3a6e"
@@ -171,7 +171,7 @@ Window {
                 onClicked: root.doFind()
             }
             Button {
-                text: "Cancel"
+                text: qsTr("Cancel")
                 implicitWidth: 80
                 background: Rectangle { color: "#3a3a3a"; radius: 3; border.color: "#555"; border.width: 1 }
                 contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }

@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Stellar Grabber"
+    title: qsTr("Stellar Grabber")
     width: 1060
     height: 570
     minimumWidth: 1060
@@ -59,13 +59,13 @@ Window {
     property var _folderItems: []
     property var columnDefs: [
         { title: "", key: "check", widthPx: 34 },
-        { title: "File Name", key: "filename", widthPx: 210 },
-        { title: "File Type", key: "filetype", widthPx: 100 },
-        { title: "Size", key: "size", widthPx: 86 },
-        { title: "Status", key: "status", widthPx: 110 },
-        { title: "Link Text", key: "linktext", widthPx: 140 },
-        { title: "Download from", key: "downloadfrom", widthPx: 250 },
-        { title: "Save to", key: "saveto", widthPx: 260 }
+        { title: qsTr("File Name"), key: "filename", widthPx: 210 },
+        { title: qsTr("File Type"), key: "filetype", widthPx: 100 },
+        { title: qsTr("Size"), key: "size", widthPx: 86 },
+        { title: qsTr("Status"), key: "status", widthPx: 110 },
+        { title: qsTr("Link Text"), key: "linktext", widthPx: 140 },
+        { title: qsTr("Download from"), key: "downloadfrom", widthPx: 250 },
+        { title: qsTr("Save to"), key: "saveto", widthPx: 260 }
     ]
 
     signal queueAssignmentRequested(string projectId)
@@ -405,12 +405,12 @@ Window {
     Menu {
         id: resultsContextMenu
         MenuItem {
-            text: "Check selected"
+            text: qsTr("Check selected")
             enabled: root.selectedRowIndexes().length > 0
             onTriggered: root.setSelectedChecked(true)
         }
         MenuItem {
-            text: "Uncheck selected"
+            text: qsTr("Uncheck selected")
             enabled: root.selectedRowIndexes().length > 0
             onTriggered: root.setSelectedChecked(false)
         }
@@ -432,12 +432,12 @@ Window {
 
                 Menu {
                     id: mbProjectMenu
-                    Action { text: "Edit current project"; onTriggered: root.editProjectRequested(root.projectId) }
-                    Action { text: "Close"; onTriggered: root.close() }
+                    Action { text: qsTr("Edit current project"); onTriggered: root.editProjectRequested(root.projectId) }
+                    Action { text: qsTr("Close"); onTriggered: root.close() }
                 }
                 Menu {
                     id: mbOptionsMenu
-                    Action { text: "Grabber settings"; onTriggered: root.openGrabberSettings() }
+                    Action { text: qsTr("Grabber settings"); onTriggered: root.openGrabberSettings() }
                 }
 
                 Row {
@@ -445,8 +445,8 @@ Window {
 
                     Repeater {
                         model: [
-                            { label: "Project", menu: mbProjectMenu },
-                            { label: "Options", menu: mbOptionsMenu }
+                            { label: qsTr("Project"), menu: mbProjectMenu },
+                            { label: qsTr("Options"), menu: mbOptionsMenu }
                         ]
                         delegate: Rectangle {
                             required property var modelData
@@ -532,7 +532,7 @@ Window {
                                 }
 
                                 Text {
-                                    text: App.grabberBusy ? "Running" : "Idle"
+                                    text: App.grabberBusy ? qsTr("Running") : qsTr("Idle")
                                     color: App.grabberBusy ? "#55cc88" : "#555566"
                                     font.pixelSize: 11
                                     anchors.verticalCenter: parent.verticalCenter
@@ -543,7 +543,7 @@ Window {
                             Rectangle { width: 1; height: 12; color: "#363636"; anchors.verticalCenter: parent.verticalCenter }
 
                             Text {
-                                text: totalCount + " files found"
+                                text: qsTr("%1 files found").arg(totalCount)
                                 color: "#777788"
                                 font.pixelSize: 11
                                 anchors.verticalCenter: parent.verticalCenter
@@ -552,7 +552,7 @@ Window {
                             Rectangle { width: 1; height: 12; color: "#363636"; anchors.verticalCenter: parent.verticalCenter }
 
                             Text {
-                                text: checkedCount + " checked"
+                                text: qsTr("%1 checked").arg(checkedCount)
                                 color: checkedCount > 0 ? "#88bbff" : "#555566"
                                 font.pixelSize: 11
                                 anchors.verticalCenter: parent.verticalCenter
@@ -623,13 +623,13 @@ Window {
                         spacing: 1
                         Repeater {
                             model: [
-                                { label: "Start\nExploring",   action: "start",         icon: "resume.png",         btnWidth: 88 },
-                                { label: "Stop\nExploring",    action: "stop",          icon: "pause.png",          btnWidth: 88 },
-                                { label: "Start\nDownloading", action: "download",      icon: "arrow_down.png",     btnWidth: 96 },
-                                { label: "Stop\nDownloads",    action: "stopDownloads", icon: "pause_orange.png",   btnWidth: 88 },
-                                { label: "Update\nAll",        action: "update",        icon: "update.png",         btnWidth: 80 },
-                                { label: "Schedule\nProject",  action: "schedule",      icon: "clock.png",          btnWidth: 88 },
-                                { label: "Statistics",         action: "stats",         icon: "about.ico",          btnWidth: 84 }
+                                { label: qsTr("Start\nExploring"),   action: "start",         icon: "resume.png",         btnWidth: 88 },
+                                { label: qsTr("Stop\nExploring"),    action: "stop",          icon: "pause.png",          btnWidth: 88 },
+                                { label: qsTr("Start\nDownloading"), action: "download",      icon: "arrow_down.png",     btnWidth: 96 },
+                                { label: qsTr("Stop\nDownloads"),    action: "stopDownloads", icon: "pause_orange.png",   btnWidth: 88 },
+                                { label: qsTr("Update\nAll"),        action: "update",        icon: "update.png",         btnWidth: 80 },
+                                { label: qsTr("Schedule\nProject"),  action: "schedule",      icon: "clock.png",          btnWidth: 88 },
+                                { label: qsTr("Statistics"),         action: "stats",         icon: "about.ico",          btnWidth: 84 }
                             ]
                             delegate: ToolbarBtn {
                                 label: modelData.label
@@ -707,7 +707,7 @@ Window {
 
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
-                            text: "Categories"
+                            text: qsTr("Categories")
                             color: "#c8c8c8"
                             font.pixelSize: 11
                             font.bold: true
@@ -756,7 +756,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Text {
-                                            text: "All Files"
+                                            text: qsTr("All Files")
                                             color: sideMode === "all" ? "#88bbff" : "#b8b8b8"
                                             font.pixelSize: 12
                                             font.bold: sideMode === "all"
@@ -794,7 +794,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Text {
-                                            text: "Link View"
+                                            text: qsTr("Link View")
                                             color: "#8899aa"
                                             font.pixelSize: 10
                                             font.bold: true
@@ -898,7 +898,7 @@ Window {
                                             anchors.verticalCenter: parent.verticalCenter
                                         }
                                         Text {
-                                            text: "Folder View"
+                                            text: qsTr("Folder View")
                                             color: "#8899aa"
                                             font.pixelSize: 10
                                             font.bold: true
@@ -1201,12 +1201,12 @@ Window {
 
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
-                                text: "No files found yet"
+                                text: qsTr("No files found yet")
                                 color: "#4a4a5a"; font.pixelSize: 14; font.bold: true
                             }
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
-                                text: App.grabberBusy ? "Exploring…" : "Press Start Exploring to scan the URL."
+                                text: App.grabberBusy ? qsTr("Exploring…") : qsTr("Press Start Exploring to scan the URL.")
                                 color: "#3a3a4a"; font.pixelSize: 11
                             }
                         }
@@ -1229,7 +1229,7 @@ Window {
                     spacing: 8
 
                     DlgButton {
-                        text: "← Back"
+                        text: qsTr("← Back")
                         onClicked: root.editProjectRequested(root.projectId)
                     }
 
@@ -1249,8 +1249,8 @@ Window {
                             text: {
                                 var visible = visibleRowCount()
                                 return visible === totalCount
-                                    ? totalCount + " files"
-                                    : visible + " / " + totalCount + " (filtered)"
+                                    ? qsTr("%1 files").arg(totalCount)
+                                    : qsTr("%1 / %2 (filtered)").arg(visible).arg(totalCount)
                             }
                         }
                     }
@@ -1258,12 +1258,12 @@ Window {
                     Item { Layout.fillWidth: true }
 
                     DlgButton {
-                        text: "Add checked to download list"
+                        text: qsTr("Add checked to download list")
                         enabled: checkedCount > 0
                         onClicked: root.queueAssignmentRequested(root.projectId)
                     }
                     DlgButton {
-                        text: "Close"
+                        text: qsTr("Close")
                         primary: true
                         onClicked: root.close()
                     }

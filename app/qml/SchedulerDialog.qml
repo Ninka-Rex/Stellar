@@ -23,7 +23,7 @@ import QtQuick.Dialogs
 
 Window {
     id: root
-    title: "Scheduler"
+    title: qsTr("Scheduler")
     modality: Qt.ApplicationModal
     width: 820
     height: 620
@@ -178,7 +178,7 @@ Window {
             spacing: 6
 
             Text {
-                text: "Queues"
+                text: qsTr("Queues")
                 color: "#d0d0d0"
                 font.bold: true
                 font.pixelSize: 12
@@ -253,13 +253,13 @@ Window {
                 DlgButton {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 32
-                    text: "New queue"
+                    text: qsTr("New queue")
                     onClicked: newQueueDialog.open()
                 }
                 DlgButton {
                     Layout.preferredWidth: 60
                     Layout.preferredHeight: 32
-                    text: "Delete"
+                    text: qsTr("Delete")
                     enabled: root.selectedQueue !== null && (root.selectedQueue ? root.selectedQueue.id !== "main-download" : false)
                     opacity: enabled ? 1.0 : 0.5
                     onClicked: {
@@ -301,7 +301,7 @@ Window {
 
                 Repeater {
                     id: tabRep
-                    model: ["Schedule", "Files in the queue"]
+                    model: [qsTr("Schedule"), qsTr("Files in the queue")]
                     delegate: Button {
                         Layout.preferredWidth: 160
                         text: modelData
@@ -350,14 +350,14 @@ Window {
                             spacing: 24
 
                             RadioButton {
-                                text: "One-time downloading"
+                                text: qsTr("One-time downloading")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.isDownloadQueue : true
                                 onToggled: { if (checked && root.selectedQueue) { root.selectedQueue.isDownloadQueue = true; root.checkForChanges() } }
                             }
                             RadioButton {
-                                text: "Periodic synchronization"
+                                text: qsTr("Periodic synchronization")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? !root.selectedQueue.isDownloadQueue : false
@@ -367,7 +367,7 @@ Window {
 
                         CheckBox {
                             Layout.leftMargin: 12
-                            text: "Start download on Stellar startup"
+                            text: qsTr("Start download on Stellar startup")
                             topPadding: 0
                             bottomPadding: 0
                             checked: root.selectedQueue ? root.selectedQueue.startOnIDMStartup : false
@@ -386,7 +386,7 @@ Window {
 
                             CheckBox {
                                 id: hasStartTimeCb
-                                text: "Start download at"
+                                text: qsTr("Start download at")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.hasStartTime : false
@@ -462,7 +462,7 @@ Window {
                             opacity: enabled ? 1.0 : 0.5
 
                             RadioButton {
-                                text: "Once at"
+                                text: qsTr("Once at")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.startOnce : true
@@ -470,7 +470,7 @@ Window {
                             }
                             RadioButton {
                                 id: dailyRadio
-                                text: "Daily"
+                                text: qsTr("Daily")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.startDaily : false
@@ -520,7 +520,7 @@ Window {
 
                             CheckBox {
                                 id: startAgainCb
-                                text: "Start again every"
+                                text: qsTr("Start again every")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.hasStartAgainEvery : false
@@ -532,14 +532,14 @@ Window {
                                 enabled: startAgainCb.checked
                                 onValueModified: { if (root.selectedQueue) { root.selectedQueue.startAgainEveryHours = value; root.checkForChanges() } }
                             }
-                            Text { text: "hours"; color: "#d0d0d0" }
+                            Text { text: qsTr("hours"); color: "#d0d0d0" }
                             SpinBox {
                                 from: 0; to: 59
                                 value: root.selectedQueue ? root.selectedQueue.startAgainEveryMins : 0
                                 enabled: startAgainCb.checked
                                 onValueModified: { if (root.selectedQueue) { root.selectedQueue.startAgainEveryMins = value; root.checkForChanges() } }
                             }
-                            Text { text: "min"; color: "#d0d0d0" }
+                            Text { text: qsTr("min"); color: "#d0d0d0" }
                         }
 
                         // Day checkboxes for sync queues
@@ -587,7 +587,7 @@ Window {
 
                             CheckBox {
                                 id: hasStopTimeCb
-                                text: "Stop download at"
+                                text: qsTr("Stop download at")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.hasStopTime : false
@@ -661,7 +661,7 @@ Window {
 
                             CheckBox {
                                 id: retriesCb
-                                text: "Number of retries for each file if downloading failed :"
+                                text: qsTr("Number of retries for each file if downloading failed :")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.hasMaxRetries : false
@@ -681,7 +681,7 @@ Window {
                         CheckBox {
                             id: openFileCb
                             Layout.leftMargin: 12
-                            text: "Open the following file when done:"
+                            text: qsTr("Open the following file when done:")
                             topPadding: 0
                             bottomPadding: 0
                             checked: root.selectedQueue ? root.selectedQueue.openFileWhenDone : false
@@ -716,7 +716,7 @@ Window {
                         // Post-completion actions
                         CheckBox {
                             Layout.leftMargin: 12
-                            text: "Exit Stellar when done"
+                            text: qsTr("Exit Stellar when done")
                             topPadding: 0
                             bottomPadding: 0
                             checked: root.selectedQueue ? root.selectedQueue.exitIDMWhenDone : false
@@ -729,7 +729,7 @@ Window {
 
                             CheckBox {
                                 id: turnOffCb
-                                text: "Turn off computer when done"
+                                text: qsTr("Turn off computer when done")
                                 topPadding: 0
                                 bottomPadding: 0
                                 checked: root.selectedQueue ? root.selectedQueue.turnOffComputerWhenDone : false
@@ -737,7 +737,7 @@ Window {
                             }
                             CheckBox {
                                 Layout.leftMargin: 20
-                                text: "Force processes to terminate"
+                                text: qsTr("Force processes to terminate")
                                 topPadding: 0
                                 bottomPadding: 0
                                 enabled: turnOffCb.checked
@@ -761,13 +761,13 @@ Window {
                         Layout.leftMargin: 8
                         spacing: 8
 
-                        Text { text: "Download"; color: "#d0d0d0" }
+                        Text { text: qsTr("Download"); color: "#d0d0d0" }
                         SpinBox {
                             from: 1; to: 10
                             value: root.selectedQueue ? root.selectedQueue.maxConcurrentDownloads : 3
                             onValueModified: { if (root.selectedQueue) { root.selectedQueue.maxConcurrentDownloads = value; root.checkForChanges() } }
                         }
-                        Text { text: "files at the same time"; color: "#d0d0d0" }
+                        Text { text: qsTr("files at the same time"); color: "#d0d0d0" }
                         Item { Layout.fillWidth: true }
                     }
 
@@ -796,10 +796,10 @@ Window {
                                     anchors { fill: parent; leftMargin: 8; rightMargin: 8 }
                                     spacing: 0
 
-                                    Text { Layout.fillWidth: true; text: "File Name"; color: "#999"; font.pixelSize: 11; font.bold: true }
-                                    Text { Layout.preferredWidth: 90; text: "Size"; color: "#999"; font.pixelSize: 11; font.bold: true }
-                                    Text { Layout.preferredWidth: 80; text: "Status"; color: "#999"; font.pixelSize: 11; font.bold: true }
-                                    Text { Layout.preferredWidth: 80; text: "Time Left"; color: "#999"; font.pixelSize: 11; font.bold: true }
+                                    Text { Layout.fillWidth: true; text: qsTr("File Name"); color: "#999"; font.pixelSize: 11; font.bold: true }
+                                    Text { Layout.preferredWidth: 90; text: qsTr("Size"); color: "#999"; font.pixelSize: 11; font.bold: true }
+                                    Text { Layout.preferredWidth: 80; text: qsTr("Status"); color: "#999"; font.pixelSize: 11; font.bold: true }
+                                    Text { Layout.preferredWidth: 80; text: qsTr("Time Left"); color: "#999"; font.pixelSize: 11; font.bold: true }
                                 }
                             }
 
@@ -897,7 +897,7 @@ Window {
                             Text {
                                 anchors.centerIn: parent
                                 text: {
-                                    if (!root.selectedQueue) return "No queue selected"
+                                    if (!root.selectedQueue) return qsTr("No queue selected")
                                     // Check if any item in the model belongs to this queue
                                     for (var i = 0; i < App.downloadModel.rowCount(); i++) {
                                         var item = App.downloadModel.data(App.downloadModel.index(i, 0), Qt.UserRole + 2) // ItemRole
@@ -905,7 +905,7 @@ Window {
                                             return "" // Has files, don't show placeholder
                                         }
                                     }
-                                    return "No files in queue"
+                                    return qsTr("No files in queue")
                                 }
                                 color: "#555"
                                 font.pixelSize: 12
@@ -952,7 +952,7 @@ Window {
                         Button {
                             Layout.preferredWidth: 70
                             Layout.preferredHeight: 32
-                            text: "Delete"
+                            text: qsTr("Delete")
                             enabled: filesListView.currentIndex >= 0
                             background: Rectangle { color: parent.pressed ? "#2a2a3a" : (parent.hovered ? "#2d2d3d" : "#252525"); radius: 0; border.color: parent.enabled ? "#ff6666" : "#3a3a3a"; border.width: 1; opacity: parent.enabled ? 1.0 : 0.5 }
                             onClicked: {
@@ -976,7 +976,7 @@ Window {
                     CheckBox {
                         id: limitsEnabledCb
                         Layout.leftMargin: 12
-                        text: "Download limits"
+                        text: qsTr("Download limits")
                         topPadding: 0
                         bottomPadding: 0
                         checked: root.selectedQueue ? root.selectedQueue.hasDownloadLimits : false
@@ -989,26 +989,26 @@ Window {
                         enabled: limitsEnabledCb.checked
                         opacity: enabled ? 1.0 : 0.5
 
-                        Text { text: "Download no more than"; color: "#d0d0d0" }
+                        Text { text: qsTr("Download no more than"); color: "#d0d0d0" }
                         SpinBox {
                             from: 1; to: 100000
                             value: root.selectedQueue ? root.selectedQueue.downloadLimitMBytes : 200
                             onValueModified: { if (root.selectedQueue) { root.selectedQueue.downloadLimitMBytes = value; root.checkForChanges() } }
                         }
-                        Text { text: "MBytes"; color: "#d0d0d0" }
-                        Text { text: "every"; color: "#d0d0d0" }
+                        Text { text: qsTr("MBytes"); color: "#d0d0d0" }
+                        Text { text: qsTr("every"); color: "#d0d0d0" }
                         SpinBox {
                             from: 1; to: 24
                             value: root.selectedQueue ? root.selectedQueue.downloadLimitHours : 5
                             onValueModified: { if (root.selectedQueue) { root.selectedQueue.downloadLimitHours = value; root.checkForChanges() } }
                         }
-                        Text { text: "hours"; color: "#d0d0d0" }
+                        Text { text: qsTr("hours"); color: "#d0d0d0" }
                         Item { Layout.fillWidth: true }
                     }
 
                     CheckBox {
                         Layout.leftMargin: 12
-                        text: "Show warning before stopping downloads"
+                        text: qsTr("Show warning before stopping downloads")
                         topPadding: 0
                         bottomPadding: 0
                         checked: root.selectedQueue ? root.selectedQueue.warnBeforeStopping : true
@@ -1031,7 +1031,7 @@ Window {
                 CheckBox {
                     id: dlLimitsEnabledCb
                     Layout.leftMargin: 12
-                    text: "Download limits"
+                    text: qsTr("Download limits")
                     topPadding: 0
                     bottomPadding: 0
                     checked: root.selectedQueue ? root.selectedQueue.hasDownloadLimits : false
@@ -1044,26 +1044,26 @@ Window {
                     enabled: dlLimitsEnabledCb.checked
                     opacity: enabled ? 1.0 : 0.5
 
-                    Text { text: "Download no more than"; color: "#d0d0d0" }
+                    Text { text: qsTr("Download no more than"); color: "#d0d0d0" }
                     SpinBox {
                         from: 1; to: 100000
                         value: root.selectedQueue ? root.selectedQueue.downloadLimitMBytes : 200
                         onValueModified: { if (root.selectedQueue) root.selectedQueue.downloadLimitMBytes = value }
                     }
-                    Text { text: "MBytes"; color: "#d0d0d0" }
-                    Text { text: "every"; color: "#d0d0d0" }
+                    Text { text: qsTr("MBytes"); color: "#d0d0d0" }
+                    Text { text: qsTr("every"); color: "#d0d0d0" }
                     SpinBox {
                         from: 1; to: 24
                         value: root.selectedQueue ? root.selectedQueue.downloadLimitHours : 5
                         onValueModified: { if (root.selectedQueue) root.selectedQueue.downloadLimitHours = value }
                     }
-                    Text { text: "hours"; color: "#d0d0d0" }
+                    Text { text: qsTr("hours"); color: "#d0d0d0" }
                     Item { Layout.fillWidth: true }
                 }
 
                 CheckBox {
                     Layout.leftMargin: 12
-                    text: "Show warning before stopping downloads"
+                    text: qsTr("Show warning before stopping downloads")
                     topPadding: 0
                     bottomPadding: 0
                     checked: root.selectedQueue ? root.selectedQueue.warnBeforeStopping : true
@@ -1083,7 +1083,7 @@ Window {
                 spacing: 8
 
                 DlgButton {
-                    text: "Start now"
+                    text: qsTr("Start now")
                     Layout.preferredWidth: 90
                     Layout.preferredHeight: 32
                     enabled: root.selectedQueue !== null
@@ -1091,7 +1091,7 @@ Window {
                     onClicked: { if (root.selectedQueue) App.startQueue(root.selectedQueue.id) }
                 }
                 DlgButton {
-                    text: "Stop"
+                    text: qsTr("Stop")
                     Layout.preferredWidth: 90
                     Layout.preferredHeight: 32
                     enabled: root.selectedQueue !== null
@@ -1102,7 +1102,7 @@ Window {
                 Item { Layout.fillWidth: true }
 
                 DlgButton {
-                    text: "Apply"
+                    text: qsTr("Apply")
                     Layout.preferredWidth: 80
                     Layout.preferredHeight: 32
                     primary: root.hasChanges
@@ -1115,7 +1115,7 @@ Window {
                     }
                 }
                 DlgButton {
-                    text: "Close"
+                    text: qsTr("Close")
                     Layout.preferredWidth: 80
                     Layout.preferredHeight: 32
                     onClicked: root.close()
@@ -1171,7 +1171,7 @@ Window {
     // ── New Queue Dialog ──────────────────────────────────────────────────────
     Dialog {
         id: newQueueDialog
-        title: "New Queue"
+        title: qsTr("New Queue")
         modal: true
         anchors.centerIn: Overlay.overlay
         width: 420
@@ -1194,7 +1194,7 @@ Window {
 
                 Text {
                     Layout.fillWidth: true
-                    text: "Enter a name for the new queue that will be displayed in the list of queues"
+                    text: qsTr("Enter a name for the new queue that will be displayed in the list of queues")
                     color: "#d0d0d0"
                     wrapMode: Text.Wrap
                     font.pixelSize: 12
@@ -1217,7 +1217,7 @@ Window {
                         Keys.onReturnPressed: confirmNewQueue()
 
                         Text {
-                            text: "Queue name"
+                            text: qsTr("Queue name")
                             color: "#666"
                             anchors { left: parent.left; leftMargin: 2; verticalCenter: parent.verticalCenter }
                             visible: newQueueNameField.length === 0
@@ -1229,12 +1229,12 @@ Window {
                     Layout.fillWidth: true
                     Item { Layout.fillWidth: true }
                     DlgButton {
-                        text: "OK"
+                        text: qsTr("OK")
                         primary: true
                         onClicked: confirmNewQueue()
                     }
                     DlgButton {
-                        text: "Cancel"
+                        text: qsTr("Cancel")
                         onClicked: { newQueueNameField.text = ""; newQueueDialog.close() }
                     }
                 }
@@ -1245,7 +1245,7 @@ Window {
     // ── File picker ───────────────────────────────────────────────────────────
     FileDialog {
         id: fileDialog
-        title: "Select file to open when done"
+        title: qsTr("Select file to open when done")
         onAccepted: {
             if (root.selectedQueue)
                 root.selectedQueue.openFilePath = selectedFile.toString().replace("file:///", "")

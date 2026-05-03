@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Queue Selection"
+    title: qsTr("Queue Selection")
     width: 420
     height: 250
     minimumWidth: 380
@@ -86,13 +86,13 @@ Window {
         anchors.margins: 16
         spacing: 10
 
-        Text { text: "Put files into a queue?"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
-        Text { text: "Choose an existing queue or create a new one."; color: "#aab3c2"; font.pixelSize: 11; wrapMode: Text.WordWrap; Layout.fillWidth: true }
+        Text { text: qsTr("Put files into a queue?"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+        Text { text: qsTr("Choose an existing queue or create a new one."); color: "#aab3c2"; font.pixelSize: 11; wrapMode: Text.WordWrap; Layout.fillWidth: true }
 
         RowLayout {
             Layout.fillWidth: true
             spacing: 8
-            Text { text: "Queue"; color: "#c7cfdb"; font.pixelSize: 12; Layout.preferredWidth: 44 }
+            Text { text: qsTr("Queue"); color: "#c7cfdb"; font.pixelSize: 12; Layout.preferredWidth: 44 }
             ComboBox {
                 id: queueCombo
                 Layout.fillWidth: true
@@ -112,14 +112,14 @@ Window {
 
         CheckBox {
             id: startChk
-            text: "Start queue processing"
+            text: qsTr("Start queue processing")
             topPadding: 0; bottomPadding: 0
             contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4 }
         }
 
         CheckBox {
             id: askChk
-            text: "Don't ask me again"
+            text: qsTr("Don't ask me again")
             topPadding: 0; bottomPadding: 0
             contentItem: Text { text: parent.text; color: "#d6dbe4"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4 }
         }
@@ -132,12 +132,12 @@ Window {
             Layout.fillWidth: true
             Item { Layout.fillWidth: true }
             DlgButton {
-                text: "Don't add to queue"
+                text: qsTr("Don't add to queue")
                 implicitWidth: 150
                 onClicked: _addWithoutQueue()
             }
             DlgButton {
-                text: "OK"
+                text: qsTr("OK")
                 primary: true
                 onClicked: _acceptSelection()
             }
@@ -158,7 +158,7 @@ Window {
             anchors.fill: parent
             anchors.margins: 12
             spacing: 8
-            Text { text: "Enter queue name"; color: "#ffffff"; font.pixelSize: 12; font.bold: true }
+            Text { text: qsTr("Enter queue name"); color: "#ffffff"; font.pixelSize: 12; font.bold: true }
             TextField {
                 id: newQueueField
                 Layout.fillWidth: true
@@ -172,11 +172,11 @@ Window {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
                 DlgButton {
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     onClicked: createQueuePopup.close()
                 }
                 DlgButton {
-                    text: "Create"
+                    text: qsTr("Create")
                     primary: true
                     onClicked: createQueuePopup._createQueue()
                 }

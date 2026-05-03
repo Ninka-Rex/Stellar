@@ -25,7 +25,7 @@ Window {
     height: 220
     minimumWidth: 380
     minimumHeight: 200
-    title: "Install Search Plugin"
+    title: qsTr("Install Search Plugin")
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
@@ -44,7 +44,7 @@ Window {
         spacing: 10
 
         Text {
-            text: "Install a new search plugin"
+            text: qsTr("Install a new search plugin")
             color: "#ffffff"
             font.pixelSize: 16
             font.bold: true
@@ -52,8 +52,8 @@ Window {
 
         RowLayout {
             spacing: 8
-            DlgButton { text: "Local File"; primary: !root.webMode; onClicked: root.webMode = false }
-            DlgButton { text: "Web Link"; primary: root.webMode; onClicked: root.webMode = true }
+            DlgButton { text: qsTr("Local File"); primary: !root.webMode; onClicked: root.webMode = false }
+            DlgButton { text: qsTr("Web Link"); primary: root.webMode; onClicked: root.webMode = true }
         }
 
         Loader {
@@ -66,9 +66,9 @@ Window {
         RowLayout {
             Layout.fillWidth: true
             Item { Layout.fillWidth: true }
-            DlgButton { text: "Cancel"; onClicked: root.close() }
+            DlgButton { text: qsTr("Cancel"); onClicked: root.close() }
             DlgButton {
-                text: "OK"
+                text: qsTr("OK")
                 primary: true
                 enabled: root.webMode ? urlText.trim().length > 0 : true
                 onClicked: {
@@ -93,7 +93,7 @@ Window {
             Text {
                 anchors.fill: parent
                 anchors.margins: 12
-                text: "Choose a local .py search plugin file to copy into the search_plugins folder."
+                text: qsTr("Choose a local .py search plugin file to copy into the search_plugins folder.")
                 color: "#aeb7c0"
                 wrapMode: Text.WordWrap
                 font.pixelSize: 12
@@ -106,7 +106,7 @@ Window {
         ColumnLayout {
             spacing: 6
             Text {
-                text: "Paste a direct URL to a .py plugin file."
+                text: qsTr("Paste a direct URL to a .py plugin file.")
                 color: "#aeb7c0"
                 font.pixelSize: 12
             }

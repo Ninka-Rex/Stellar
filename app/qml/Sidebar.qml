@@ -86,12 +86,12 @@ Rectangle {
         id: grabberProjectContextMenu
         property string projectId: ""
         MenuItem {
-            text: "Edit Project"
+            text: qsTr("Edit Project")
             enabled: grabberProjectContextMenu.projectId.length > 0
             onTriggered: root.editGrabberProjectRequested(grabberProjectContextMenu.projectId)
         }
         MenuItem {
-            text: "Delete Project"
+            text: qsTr("Delete Project")
             enabled: grabberProjectContextMenu.projectId.length > 0
             onTriggered: root.deleteGrabberProjectRequested(grabberProjectContextMenu.projectId)
         }
@@ -111,7 +111,7 @@ Rectangle {
         Rectangle { width: 3; height: parent.height; color: "#5588cc" }
         Text {
             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 8 }
-            text: "Categories"; color: "#d0d0d0"; font.pixelSize: 12; font.bold: true
+            text: qsTr("Categories"); color: "#d0d0d0"; font.pixelSize: 12; font.bold: true
         }
         Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: "#3a3a3a" }
     }
@@ -189,7 +189,7 @@ Rectangle {
                                 }
                                 Image { source: "icons/categories/all_downloads.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
                                 Text {
-                                    text: "All Downloads"
+                                    text: qsTr("All Downloads")
                                     color: root.selectedIndex === 999 ? "#88bbff" : "#cccccc"
                                     font.pixelSize: 12; font.bold: root.selectedIndex === 999
                                     anchors.verticalCenter: parent.verticalCenter
@@ -458,7 +458,7 @@ Rectangle {
                               spacing: 5
                             Item { width: 3; height: 1 }
                             Image { source: "icons/folder.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                            Text { text: "Unfinished"; color: root.selectedIndex === -1 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                            Text { text: qsTr("Unfinished"); color: root.selectedIndex === -1 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                         }
                         MouseArea {
                             id: unfinMa
@@ -528,7 +528,7 @@ Rectangle {
                               spacing: 5
                             Item { width: 3; height: 1 }
                             Image { source: "icons/folder.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                            Text { text: "Finished"; color: root.selectedIndex === -2 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                            Text { text: qsTr("Finished"); color: root.selectedIndex === -2 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                         }
                         MouseArea {
                             id: finMa
@@ -617,7 +617,7 @@ Rectangle {
                                     anchors.verticalCenter: parent.verticalCenter
                                 }
                                 Text {
-                                    text: "Grabber Projects"
+                                    text: qsTr("Grabber Projects")
                                     color: "#cccccc"
                                     font.pixelSize: 12
                                     anchors.verticalCenter: parent.verticalCenter
@@ -845,7 +845,7 @@ Rectangle {
                                 spacing: 2
                                 Text { text: root.torrentsExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12; width: 16; anchors.verticalCenter: parent.verticalCenter }
                                 Image { source: "icons/torrent-categories/all_torrents.png"; width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; smooth: true; mipmap: true; anchors.verticalCenter: parent.verticalCenter }
-                                Text { text: "Torrents"; color: root.selectedIndex === -200 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; font.bold: root.selectedIndex === -200; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: qsTr("Torrents"); color: root.selectedIndex === -200 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; font.bold: root.selectedIndex === -200; anchors.verticalCenter: parent.verticalCenter }
                             }
 
                             MouseArea {
@@ -915,13 +915,13 @@ Rectangle {
                                 readonly property string subcatId: modelData
                                 readonly property string subcatLabel: {
                                     switch (subcatId) {
-                                    case "torrent_downloading": return "Downloading"
-                                    case "torrent_seeding":     return "Seeding"
-                                    case "torrent_stopped":     return "Stopped"
-                                    case "torrent_active":      return "Active"
-                                    case "torrent_inactive":    return "Inactive"
-                                    case "torrent_checking":    return "Checking"
-                                    case "torrent_moving":      return "Moving"
+                                    case "torrent_downloading": return qsTr("Downloading")
+                                    case "torrent_seeding":     return qsTr("Seeding")
+                                    case "torrent_stopped":     return qsTr("Stopped")
+                                    case "torrent_active":      return qsTr("Active")
+                                    case "torrent_inactive":    return qsTr("Inactive")
+                                    case "torrent_checking":    return qsTr("Checking")
+                                    case "torrent_moving":      return qsTr("Moving")
                                     default:                    return subcatId
                                     }
                                 }
@@ -1082,7 +1082,7 @@ Rectangle {
                                 spacing: 2
                                 Text { text: root.queuesExpanded ? "▼" : "▶"; color: "#999"; font.pixelSize: 12; width: 16; anchors.verticalCenter: parent.verticalCenter }
                                 Image { width: 16; height: 16; sourceSize.width: 16; sourceSize.height: 16; fillMode: Image.PreserveAspectFit; source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/queues.png"; anchors.verticalCenter: parent.verticalCenter }
-                                Text { text: "Queues"; color: root.selectedIndex === -999 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
+                                Text { text: qsTr("Queues"); color: root.selectedIndex === -999 ? "#88bbff" : "#cccccc"; font.pixelSize: 12; anchors.verticalCenter: parent.verticalCenter }
                             }
                             MouseArea {
                                 id: queueHeaderMa

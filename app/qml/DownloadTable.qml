@@ -242,7 +242,7 @@ Rectangle {
             torrentSelected = !!item.isTorrent
         deleteDialog.downloadId = item ? item.id : ""
         deleteDialog.downloadIds = ids || (item ? [item.id] : [])
-        deleteDialog.filename   = item ? item.filename : (deleteDialog.downloadIds.length > 1 ? deleteDialog.downloadIds.length + " selected downloads" : "")
+        deleteDialog.filename   = item ? item.filename : (deleteDialog.downloadIds.length > 1 ? qsTr("%n selected downloads", "", deleteDialog.downloadIds.length) : "")
         deleteDialog.fileExists = typeof fileExists === "boolean"
                                  ? fileExists
                                  : (item && item.status === "Completed")
@@ -273,7 +273,7 @@ Rectangle {
         property string currentName: ""
         transientParent: root.Window.window
 
-        title: "Rename"
+        title: qsTr("Rename")
         width: 360; height: 110
         minimumWidth: 280; minimumHeight: 110; maximumHeight: 110
         color: "#1e1e1e"
@@ -314,12 +314,12 @@ Rectangle {
                 spacing: 6
                 Item { Layout.fillWidth: true }
                 DlgButton {
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     onClicked: renameTorrentRootDialog.close()
                 }
                 DlgButton {
                     id: confirmBtn
-                    text: "Rename"; primary: true
+                    text: qsTr("Rename"); primary: true
                     enabled: nameInput.text.trim().length > 0 && nameInput.text.trim() !== renameTorrentRootDialog.currentName
                     onClicked: {
                         var newName = nameInput.text.trim()
@@ -342,38 +342,38 @@ Rectangle {
     Menu {
         id: rowCtxMenu
         Action {
-            text: "Properties"
+            text: qsTr("Properties")
             onTriggered: { if (root._ctxItem) root.openPropertiesRequested(root._ctxItem) }
         }
-        Action { text: "Open File";   onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
-        Action { text: "Open Folder"; onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
+        Action { text: qsTr("Open File");   onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
+        Action { text: qsTr("Open Folder"); onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
         MenuSeparator {}
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
             delegate: MenuItem {
-                text: "Rename..."
+                text: qsTr("Rename...")
                 onTriggered: { if (root._ctxItem) renameTorrentRootDialog.openFor(root._ctxItem) }
             }
         }
-        Action { text: "Copy Filename"; onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
+        Action { text: qsTr("Copy Filename"); onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
         Action {
-            text: root._ctxItem && root._ctxItem.isTorrent ? "Copy Magnet Link" : "Copy URL"
+            text: root._ctxItem && root._ctxItem.isTorrent ? qsTr("Copy Magnet Link") : qsTr("Copy URL")
             onTriggered: root.copySelectedShareLinks()
         }
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
             delegate: MenuItem {
-                text: "Export .torrent…"
+                text: qsTr("Export .torrent…")
                 enabled: root.anyTorrentSelected
                 onTriggered: root.requestExportSelectedTorrents()
             }
         }
         MenuSeparator {}
-        Action { text: "Resume"; onTriggered: root.resumeSelected() }
-        Action { text: "Stop";   onTriggered: root.stopSelected()   }
+        Action { text: qsTr("Resume"); onTriggered: root.resumeSelected() }
+        Action { text: qsTr("Stop");   onTriggered: root.stopSelected()   }
         MenuSeparator {}
         Menu {
-            title: "Move to Queue"
+            title: qsTr("Move to Queue")
             Repeater {
                 model: App.queueModel
                 delegate: MenuItem {
@@ -384,7 +384,7 @@ Rectangle {
             }
         }
         Action {
-            text: "Remove from Queue"
+            text: qsTr("Remove from Queue")
             onTriggered: {
                 for (var row in root._selectedRows) {
                     var it = App.downloadModel.data(App.downloadModel.index(parseInt(row), 0), Qt.UserRole + 2)
@@ -393,8 +393,8 @@ Rectangle {
             }
         }
         MenuSeparator {}
-        Action { text: "Redownload"; onTriggered: { if (root._ctxItem) App.redownload(root._ctxItem.id) } }
-        Action { text: "Delete";     onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
+        Action { text: qsTr("Redownload"); onTriggered: { if (root._ctxItem) App.redownload(root._ctxItem.id) } }
+        Action { text: qsTr("Delete");     onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
     }
 
     // Bump _selectionVersion only when a SELECTED row's data changes so toolbar
@@ -417,23 +417,23 @@ Rectangle {
     // Default column definitions
     readonly property var _defaultColumnDefs: [
         { title: "Q",              key: "queue",      widthPx: 31,  visible: true  },
-        { title: "File Name",      key: "name",       widthPx: 240, visible: true  },
-        { title: "Size",           key: "size",       widthPx: 80,  visible: true  },
-        { title: "Status",         key: "status",     widthPx: 90,  visible: true  },
-        { title: "Time left",      key: "timeleft",   widthPx: 90,  visible: true  },
-        { title: "Down Speed",     key: "downspeed",  widthPx: 90,  visible: true  },
-        { title: "Up Speed",       key: "upspeed",    widthPx: 90,  visible: true  },
-        { title: "Seeders",        key: "seeders",    widthPx: 70,  visible: false },
-        { title: "Peers",          key: "peers",      widthPx: 70,  visible: false },
-        { title: "Ratio",          key: "ratio",      widthPx: 70,  visible: false },
-        { title: "Uploaded",       key: "uploaded",   widthPx: 90,  visible: false },
-        { title: "Downloaded",     key: "downloaded", widthPx: 90,  visible: false },
-        { title: "Last try date",  key: "added",      widthPx: 130, visible: true  },
-        { title: "Last try date",  key: "lasttry",    widthPx: 110, visible: false },
-        { title: "Description",    key: "description",widthPx: 120, visible: false },
-        { title: "Save to",        key: "saveto",     widthPx: 140, visible: false },
-        { title: "Referer",        key: "referrer",   widthPx: 140, visible: false },
-        { title: "Parent web page",key: "parenturl",  widthPx: 140, visible: false },
+        { title: qsTr("File Name"),      key: "name",       widthPx: 240, visible: true  },
+        { title: qsTr("Size"),           key: "size",       widthPx: 80,  visible: true  },
+        { title: qsTr("Status"),         key: "status",     widthPx: 90,  visible: true  },
+        { title: qsTr("Time left"),      key: "timeleft",   widthPx: 90,  visible: true  },
+        { title: qsTr("Down Speed"),     key: "downspeed",  widthPx: 90,  visible: true  },
+        { title: qsTr("Up Speed"),       key: "upspeed",    widthPx: 90,  visible: true  },
+        { title: qsTr("Seeders"),        key: "seeders",    widthPx: 70,  visible: false },
+        { title: qsTr("Peers"),          key: "peers",      widthPx: 70,  visible: false },
+        { title: qsTr("Ratio"),          key: "ratio",      widthPx: 70,  visible: false },
+        { title: qsTr("Uploaded"),       key: "uploaded",   widthPx: 90,  visible: false },
+        { title: qsTr("Downloaded"),     key: "downloaded", widthPx: 90,  visible: false },
+        { title: qsTr("Last try date"),  key: "added",      widthPx: 130, visible: true  },
+        { title: qsTr("Last try date"),  key: "lasttry",    widthPx: 110, visible: false },
+        { title: qsTr("Description"),    key: "description",widthPx: 120, visible: false },
+        { title: qsTr("Save to"),        key: "saveto",     widthPx: 140, visible: false },
+        { title: qsTr("Referer"),        key: "referrer",   widthPx: 140, visible: false },
+        { title: qsTr("Parent web page"),key: "parenturl",  widthPx: 140, visible: false },
     ]
 
     // Column definitions — visibility toggled from context menu / ColumnsDialog
@@ -768,7 +768,7 @@ Rectangle {
         }
         MenuSeparator {}
         MenuItem {
-            text: "Columns Settings"
+            text: qsTr("Columns Settings")
             onTriggered: root.openColumnsSettingsRequested()
         }
     }
@@ -1192,14 +1192,14 @@ Rectangle {
                         text: {
                             if (!rowRect.item) return ""
                             if (rowRect.item.isTorrent && !rowRect.item.torrentHasMetadata)
-                                return "Pending"
+                                return qsTr("Pending")
                             if (rowRect.item.status === "Downloading")
                                 return (rowRect.item.progress * 100).toFixed(1) + "%"
                             if (rowRect.item.status === "Paused" && rowRect.item.progress > 0)
-                                return (rowRect.item.progress * 100).toFixed(1) + "% (Stopped)"
+                                return qsTr("%1% (Stopped)").arg((rowRect.item.progress * 100).toFixed(1))
                             if (rowRect.item.status === "Checking" && rowRect.item.progress > 0)
-                                return "Checking (" + (rowRect.item.progress * 100).toFixed(1) + "%)"
-                            return rowRect.item.status
+                                return qsTr("Checking (%1%)").arg((rowRect.item.progress * 100).toFixed(1))
+                            return rowRect.item.statusText
                         }
                         color: rowRect._sel ? "#ffffff" : "#b0b0b0"
                         font.pixelSize: 12
@@ -1505,7 +1505,7 @@ Rectangle {
                             }
                             root.categoryDragProxy.dragDownloadIds = selectedIds
                             root.categoryDragProxy.dragDownloadId  = rowRect.item.id
-                            root.categoryDragProxy.dragFilename    = selectedIds.length > 1 ? selectedIds.length + " files" : rowRect.item.filename
+                            root.categoryDragProxy.dragFilename    = selectedIds.length > 1 ? qsTr("%n file(s)", "", selectedIds.length) : rowRect.item.filename
                             root.categoryDragProxy.visible = true
                         }
                     }
@@ -1601,8 +1601,8 @@ Rectangle {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: {
                     if (parent.searchActive)
-                        return "No matching downloads."
-                    return "No downloads yet.\nClick  Add URL  to start."
+                        return qsTr("No matching downloads.")
+                    return qsTr("No downloads yet.\nClick  Add URL  to start.")
                 }
                 horizontalAlignment: Text.AlignHCenter
                 color: "#444444"
@@ -1633,7 +1633,7 @@ Rectangle {
 
             Text {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: "Loading " + App.restoreTotalCount + " downloads…"
+                text: qsTr("Loading %n download(s)…", "", App.restoreTotalCount)
                 horizontalAlignment: Text.AlignHCenter
                 color: "#444444"
                 font.pixelSize: 14

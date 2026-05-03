@@ -20,7 +20,7 @@ import QtQuick.Controls
 
 Window {
     id: root
-    title: "Duplicate Torrent"
+    title: qsTr("Duplicate Torrent")
     width: 440
     height: root.newTrackers.length > 0 ? 300 : 160
     minimumWidth: 380
@@ -67,7 +67,7 @@ Window {
                 Layout.fillWidth: true
 
                 Text {
-                    text: "Torrent already exists"
+                    text: qsTr("Torrent already exists")
                     color: "#e0e0e0"
                     font.pixelSize: 15
                     font.bold: true
@@ -75,8 +75,8 @@ Window {
 
                 Text {
                     text: root.newTrackers.length > 0
-                        ? "This torrent is already in your list. " + root.newTrackers.length + " new tracker" + (root.newTrackers.length === 1 ? "" : "s") + " found."
-                        : "This torrent is already in your list with the same trackers."
+                        ? qsTr("This torrent is already in your list. %n new tracker(s) found.", "", root.newTrackers.length)
+                        : qsTr("This torrent is already in your list with the same trackers.")
                     color: "#aaaaaa"
                     font.pixelSize: 12
                     wrapMode: Text.WordWrap
@@ -111,7 +111,7 @@ Window {
                     }
 
                     Text {
-                        text: root.newTrackers.length === 1 ? "1 new tracker" : root.newTrackers.length + " new trackers"
+                        text: qsTr("%n new tracker(s)", "", root.newTrackers.length)
                         color: "#8899bb"
                         font.pixelSize: 12
                         font.bold: true
@@ -131,7 +131,7 @@ Window {
 
                 Text {
                     visible: root.newTrackers.length > 4
-                    text: "… and " + (root.newTrackers.length - 4) + " more"
+                    text: qsTr("… and %1 more").arg(root.newTrackers.length - 4)
                     color: "#667799"
                     font.pixelSize: 11
                 }
@@ -148,14 +148,14 @@ Window {
             Item { Layout.fillWidth: true }
 
             DlgButton {
-                text: "Dismiss"
+                text: qsTr("Dismiss")
                 onClicked: { root.dismissed(); root.close() }
             }
 
             DlgButton {
                 primary: true
                 visible: root.newTrackers.length > 0
-                text: "Merge Trackers"
+                text: qsTr("Merge Trackers")
                 onClicked: {
                     root.mergeRequested(root.existingDownloadId, root.newTrackers)
                     root.dismissed()

@@ -26,7 +26,7 @@ Window {
     height: 500
     minimumWidth: 760
     minimumHeight: 500
-    title: "Torrent Search Engine"
+    title: qsTr("Torrent Search Engine")
     color: "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
 
@@ -47,12 +47,12 @@ Window {
     property string colDragInsertBeforeKey: ""
     property bool colDragging: false
     readonly property var colDefs: [
-        { title: "Name", key: "name" },
-        { title: "Size", key: "size" },
-        { title: "Seeders", key: "seeders" },
-        { title: "Leechers", key: "leechers" },
-        { title: "Engine", key: "engine" },
-        { title: "Published On", key: "publishedOn" }
+        { title: qsTr("Name"), key: "name" },
+        { title: qsTr("Size"), key: "size" },
+        { title: qsTr("Seeders"), key: "seeders" },
+        { title: qsTr("Leechers"), key: "leechers" },
+        { title: qsTr("Engine"), key: "engine" },
+        { title: qsTr("Published On"), key: "publishedOn" }
     ]
     property var colsOrdered: {
         try {
@@ -215,22 +215,22 @@ Window {
     Menu {
         id: resultMenu
         Action {
-            text: "Open Description Page"
+            text: qsTr("Open Description Page")
             onTriggered: {
                 var row = root.currentRowData()
                 if (row.descriptionUrl) Qt.openUrlExternally(row.descriptionUrl)
             }
         }
         Action {
-            text: "Download Torrent"
+            text: qsTr("Download Torrent")
             onTriggered: {
                 root.triggerDownload(root.currentRowData())
             }
         }
         MenuSeparator {}
-        Action { text: "Copy Name"; onTriggered: { var row = root.currentRowData(); App.copyToClipboard(row.name || "") } }
-        Action { text: "Copy Magnet Link"; onTriggered: { var resolved = App.torrentSearchManager.resolveResultLink(root.ctxRow, true); if (resolved) App.copyToClipboard(resolved) } }
-        Action { text: "Copy Description Page URL"; onTriggered: { var row = root.currentRowData(); App.copyToClipboard(row.descriptionUrl || "") } }
+        Action { text: qsTr("Copy Name"); onTriggered: { var row = root.currentRowData(); App.copyToClipboard(row.name || "") } }
+        Action { text: qsTr("Copy Magnet Link"); onTriggered: { var resolved = App.torrentSearchManager.resolveResultLink(root.ctxRow, true); if (resolved) App.copyToClipboard(resolved) } }
+        Action { text: qsTr("Copy Description Page URL"); onTriggered: { var row = root.currentRowData(); App.copyToClipboard(row.descriptionUrl || "") } }
     }
 
     ColumnLayout {
@@ -255,7 +255,7 @@ Window {
                 }
             }
             DlgButton {
-                text: App.torrentSearchManager.searchInProgress ? "Searching..." : "Search"
+                text: App.torrentSearchManager.searchInProgress ? qsTr("Searching...") : qsTr("Search")
                 primary: true
                 enabled: !App.torrentSearchManager.searchInProgress
                          && App.torrentSearchManager.pythonAvailable
@@ -450,7 +450,7 @@ Window {
                             width: root.colSize - 12
                             anchors.verticalCenter: parent.verticalCenter
                             leftPadding: 6
-                            text: sizeText.length > 0 ? sizeText : "Unknown"
+                            text: sizeText.length > 0 ? sizeText : qsTr("Unknown")
                             color: "#b6c0ca"
                             font.pixelSize: 12
                             elide: Text.ElideRight
@@ -516,7 +516,7 @@ Window {
                     Text {
                         anchors.centerIn: parent
                         visible: resultList.count === 0 && !App.torrentSearchManager.searchInProgress
-                        text: "No search results yet"
+                        text: qsTr("No search results yet")
                         color: "#666"
                         font.pixelSize: 13
                     }
@@ -542,7 +542,7 @@ Window {
             }
 
             Item { Layout.fillWidth: true }
-            DlgButton { text: "Search Plugins"; onClicked: { pluginsDialog.show(); pluginsDialog.raise(); pluginsDialog.requestActivate() } }
+            DlgButton { text: qsTr("Search Plugins"); onClicked: { pluginsDialog.show(); pluginsDialog.raise(); pluginsDialog.requestActivate() } }
         }
     }
 }

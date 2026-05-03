@@ -48,7 +48,7 @@ Window {
     minimumHeight: _dialogHeight
     maximumHeight: _dialogHeight
     color: "#1e1e1e"
-    title: "Confirm Delete"
+    title: qsTr("Confirm Delete")
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint
     Material.theme: Material.Dark
     Material.background: "#1e1e1e"
@@ -91,7 +91,7 @@ Window {
             ColumnLayout {
                 spacing: 4
                 Text {
-                    text: "Remove download?"
+                    text: qsTr("Remove download?")
                     color: "#ffffff"
                     font.pixelSize: 14
                     font.bold: true
@@ -120,8 +120,8 @@ Window {
             CheckBox {
                 id: deleteFileChk
                 text: root.hasTorrentSelection
-                    ? "Also delete torrent files from disk"
-                    : "Also delete file from disk"
+                    ? qsTr("Also delete torrent files from disk")
+                    : qsTr("Also delete file from disk")
                 checked: false
                 topPadding: 0
                 bottomPadding: 0
@@ -137,7 +137,7 @@ Window {
 
             CheckBox {
                 id: permDeleteChk
-                text: "Permanently delete (don't move to trash)"
+                text: qsTr("Permanently delete (don't move to trash)")
                 checked: false
                 enabled: deleteFileChk.checked
                 topPadding: 0
@@ -162,12 +162,12 @@ Window {
             Item { Layout.fillWidth: true }
 
             DlgButton {
-                text: "Cancel"
+                text: qsTr("Cancel")
                 onClicked: root.close()
             }
 
             DlgButton {
-                text: "Delete"
+                text: qsTr("Delete")
                 destructive: true
                 onClicked: {
                     var mode = 0

@@ -53,7 +53,7 @@ ApplicationWindow {
     property bool _torrentFileDragActive: false
     readonly property int settingsPageBrowser: 3
     readonly property int settingsPageSpeedLimiter: 4
-    readonly property int settingsPageAbout: 11
+    readonly property int settingsPageAbout: 12
 
     // ── Minimize to tray on close ─────────────────────────────────────────────
     property bool isQuitting:    false
@@ -309,7 +309,7 @@ ApplicationWindow {
 
             Text {
                 Layout.fillWidth: true
-                text: "This YouTube download looks like it needs login cookies."
+                text: qsTr("This YouTube download looks like it needs login cookies.")
                 color: "#e0e0e0"
                 font.pixelSize: 14
                 font.weight: Font.Medium
@@ -337,7 +337,7 @@ ApplicationWindow {
                     spacing: 6
 
                     Text {
-                        text: "Cookies from browser:"
+                        text: qsTr("Cookies from browser:")
                         color: "#8899bb"
                         font.pixelSize: 11
                     }
@@ -390,7 +390,7 @@ ApplicationWindow {
 
             Text {
                 Layout.fillWidth: true
-                text: "Stellar will retry the same yt-dlp item with that browser's cookies."
+                text: qsTr("Stellar will retry the same yt-dlp item with that browser's cookies.")
                 color: "#667788"
                 font.pixelSize: 10
                 wrapMode: Text.WordWrap
@@ -405,12 +405,12 @@ ApplicationWindow {
                 Item { Layout.fillWidth: true }
 
                 DlgButton {
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     onClicked: ytdlpCookieRetryDialog.close()
                 }
 
                 DlgButton {
-                    text: "Retry Download"
+                    text: qsTr("Retry Download")
                     primary: true
                     enabled: ytdlpCookieRetryDialog.downloadId.length > 0
                     onClicked: {
@@ -508,17 +508,17 @@ ApplicationWindow {
             id: menuCol
             anchors { left: parent.left; right: parent.right; top: parent.top; margins: 1 }
 
-            TrayMenuItem { label: "Open Stellar"; bold: true; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.requestActivate() } }
-            TrayMenuItem { label: "Add URL…";     onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
+            TrayMenuItem { label: qsTr("Open Stellar"); bold: true; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.requestActivate() } }
+            TrayMenuItem { label: qsTr("Add URL…");     onClicked: { trayMenu.visible = false; root.show(); root.raise(); addUrlDialog.show(); addUrlDialog.raise() } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: "GitHub";        onClicked: { trayMenu.visible = false; Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") } }
-            TrayMenuItem { label: "About Stellar"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
+            TrayMenuItem { label: qsTr("GitHub");        onClicked: { trayMenu.visible = false; Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") } }
+            TrayMenuItem { label: qsTr("About Stellar"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + "Speed Limiter: Turn On";  onClicked: { trayMenu.visible = false; App.enableSpeedLimiter() } }
-            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "") + "Speed Limiter: Turn Off"; onClicked: { trayMenu.visible = false; App.disableSpeedLimiter() } }
-            TrayMenuItem { label: "Speed Limiter Settings…"; onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
+            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + qsTr("Speed Limiter: Turn On");  onClicked: { trayMenu.visible = false; App.enableSpeedLimiter() } }
+            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "") + qsTr("Speed Limiter: Turn Off"); onClicked: { trayMenu.visible = false; App.disableSpeedLimiter() } }
+            TrayMenuItem { label: qsTr("Speed Limiter Settings…"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: "Exit Stellar";  onClicked: { trayMenu.visible = false; root.quitApp() } }
+            TrayMenuItem { label: qsTr("Exit Stellar");  onClicked: { trayMenu.visible = false; root.quitApp() } }
         }
     }
 
@@ -1291,11 +1291,11 @@ ApplicationWindow {
                         sum += (App.ytdlpBatchItems[i].progress || 0)
                     return sum / App.ytdlpBatchItems.length
                 }
-                text: "Total: " + totalCount
-                      + "   Completed: " + doneCount
-                      + "   Downloading: " + activeCount
-                      + "   Queued: " + queuedCount
-                      + "   Overall: " + Math.round(avgProgress) + "%"
+                text: qsTr("Total: %1").arg(totalCount)
+                      + "   " + qsTr("Completed: %1").arg(doneCount)
+                      + "   " + qsTr("Downloading: %1").arg(activeCount)
+                      + "   " + qsTr("Queued: %1").arg(queuedCount)
+                      + "   " + qsTr("Overall: %1%").arg(Math.round(avgProgress))
                 color: "#9fa9b8"
                 font.pixelSize: 11
                 elide: Text.ElideRight
@@ -1361,17 +1361,17 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
                 DlgButton {
-                    text: "Stop"
+                    text: qsTr("Stop")
                     enabled: App.ytdlpBatchActive
                     onClicked: App.stopActiveYtdlpBatch()
                 }
                 DlgButton {
-                    text: "Resume"
+                    text: qsTr("Resume")
                     enabled: !App.ytdlpBatchActive && App.ytdlpBatchCanResume
                     onClicked: App.resumeLastYtdlpBatch()
                 }
                 DlgButton {
-                    text: "Close"
+                    text: qsTr("Close")
                     onClicked: ytdlpBatchWindow.hide()
                 }
             }
@@ -1432,7 +1432,7 @@ ApplicationWindow {
                 spacing: 12
                 Layout.margins: 20
                 Text {
-                    text: "Enable BitTorrent Support?"
+                    text: qsTr("Enable BitTorrent Support?")
                     color: "#ffffff"
                     font.pixelSize: 15
                     font.bold: true
@@ -1444,7 +1444,7 @@ ApplicationWindow {
                     color: "#c0c0c0"
                     font.pixelSize: 12
                     lineHeight: 1.4
-                    text: "BitTorrent support is currently disabled.\n\nWhen you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure."
+                    text: qsTr("BitTorrent support is currently disabled.\n\nWhen you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.")
                 }
                 Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
                 RowLayout {
@@ -1452,14 +1452,14 @@ ApplicationWindow {
                     spacing: 8
                     Item { Layout.fillWidth: true }
                     DlgButton {
-                        text: "Cancel"
+                        text: qsTr("Cancel")
                         onClicked: {
                             torrentEnableNotice._pendingUri = ""
                             torrentEnableNotice.close()
                         }
                     }
                     DlgButton {
-                        text: "I Understand, Enable"
+                        text: qsTr("I Understand, Enable")
                         primary: true
                         onClicked: {
                             var uri = torrentEnableNotice._pendingUri
@@ -1535,7 +1535,7 @@ ApplicationWindow {
 
             Text {
                 Layout.fillWidth: true
-                text: "You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the \"Download File Info\" dialog.\n\nYou can turn this off in Settings → Downloads."
+                text: qsTr("You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the \"Download File Info\" dialog.\n\nYou can turn this off in Settings → Downloads.")
                 color: "#d0d0d0"
                 font.pixelSize: 13
                 wrapMode: Text.WordWrap
@@ -1548,7 +1548,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
                 DlgButton {
-                    text: "OK"
+                    text: qsTr("OK")
                     primary: true
                     onClicked: {
                         downloadLaterWarningDialog.close()
@@ -1608,7 +1608,7 @@ ApplicationWindow {
 
                     Text {
                         Layout.fillWidth: true
-                        text: "The file \u201c" + fileDeletedWarningDialog._filename + "\u201d could not be downloaded."
+                        text: qsTr("The file \u201c%1\u201d could not be downloaded.").arg(fileDeletedWarningDialog._filename)
                         color: "#e0e0e0"
                         font.pixelSize: 12
                         font.bold: true
@@ -1617,7 +1617,7 @@ ApplicationWindow {
 
                     Text {
                         Layout.fillWidth: true
-                        text: "The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata."
+                        text: qsTr("The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.")
                         color: "#c8c8c8"
                         font.pixelSize: 11
                         wrapMode: Text.WordWrap
@@ -1636,7 +1636,7 @@ ApplicationWindow {
                 Text {
                     id: fdwInfoText
                     anchors { fill: parent; margins: 8 }
-                    text: "To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:\nStellar Options \u2192 Browser \u2192 Bypass Download Interception"
+                    text: qsTr("To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:\nStellar Options \u2192 Browser \u2192 Bypass Download Interception")
                     color: "#8899bb"
                     font.pixelSize: 11
                     wrapMode: Text.WordWrap
@@ -1650,7 +1650,7 @@ ApplicationWindow {
                 Layout.fillWidth: true
                 Item { Layout.fillWidth: true }
                 DlgButton {
-                    text: "Open Browser Settings"
+                    text: qsTr("Open Browser Settings")
                     onClicked: {
                         fileDeletedWarningDialog.close()
                 settingsDialog.initialPage = root.settingsPageBrowser
@@ -1660,7 +1660,7 @@ ApplicationWindow {
                     }
                 }
                 DlgButton {
-                    text: "OK"
+                    text: qsTr("OK")
                     primary: true
                     onClicked: fileDeletedWarningDialog.close()
                 }
@@ -1732,7 +1732,7 @@ ApplicationWindow {
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 DlgButton {
-                    text: "OK"
+                    text: qsTr("OK")
                     onClicked: quickUpdateDialog.close()
                 }
             }
@@ -1771,7 +1771,7 @@ ApplicationWindow {
             spacing: 12
 
             Text {
-                text: "Version " + App.updateVersion + " is available."
+                text: qsTr("Version %1 is available.").arg(App.updateVersion)
                 color: "#ffffff"
                 font.pixelSize: 16
                 font.bold: true
@@ -1801,7 +1801,7 @@ ApplicationWindow {
                 spacing: 8
 
                 DlgButton {
-                    text: "Update Now"
+                    text: qsTr("Update Now")
                     primary: true
                     visible: Qt.platform.os === "windows"
                     onClicked: {
@@ -1817,7 +1817,7 @@ ApplicationWindow {
                 }
 
                 DlgButton {
-                    text: "Cancel"
+                    text: qsTr("Cancel")
                     onClicked: {
                         App.dismissAvailableUpdate()
                         updateAvailableDialog.close()
@@ -1883,7 +1883,7 @@ ApplicationWindow {
             RowLayout {
                 Layout.alignment: Qt.AlignRight
                 DlgButton {
-                    text: "Close"
+                    text: qsTr("Close")
                     onClicked: whatsNewDialog.close()
                 }
             }
@@ -2480,7 +2480,7 @@ ApplicationWindow {
 
             Text {
                 anchors.centerIn: parent
-                text: "Drop .torrent file to open torrent metadata"
+                text: qsTr("Drop .torrent file to open torrent metadata")
                 color: "#f0f6ff"
                 font.pixelSize: 18
                 font.weight: Font.Medium
@@ -2542,7 +2542,7 @@ ApplicationWindow {
                 spacing: 6
 
                 Text {
-                    text: "Find:"
+                    text: qsTr("Find:")
                     color: "#9090a0"
                     font.pixelSize: 12
                     verticalAlignment: Text.AlignVCenter
@@ -2590,7 +2590,7 @@ ApplicationWindow {
                     color: findBtnMa.containsMouse ? "#2a5faa" : "#1e3a6e"
                     border.color: "#4488dd"; border.width: 1
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: "Find"; color: "#ffffff"; font.pixelSize: 12; font.bold: true }
+                    Text { anchors.centerIn: parent; text: qsTr("Find"); color: "#ffffff"; font.pixelSize: 12; font.bold: true }
                     MouseArea {
                         id: findBtnMa
                         anchors.fill: parent
@@ -2607,7 +2607,7 @@ ApplicationWindow {
                     color: findSettingsMa.containsMouse ? "#333345" : "#28283a"
                     border.color: "#4a4a6a"; border.width: 1
                     Layout.alignment: Qt.AlignVCenter
-                    Text { anchors.centerIn: parent; text: "Settings ▾"; color: "#b0b0c0"; font.pixelSize: 11 }
+                    Text { anchors.centerIn: parent; text: qsTr("Settings ▾"); color: "#b0b0c0"; font.pixelSize: 11 }
                     MouseArea {
                         id: findSettingsMa
                         anchors.fill: parent
@@ -2629,24 +2629,24 @@ ApplicationWindow {
                             width: parent.width
                             spacing: 2
 
-                            Text { text: "Search in:"; color: "#808090"; font.pixelSize: 11; bottomPadding: 2 }
+                            Text { text: qsTr("Search in:"); color: "#808090"; font.pixelSize: 11; bottomPadding: 2 }
 
                             CheckBox {
-                                text: "File name or part of the name"
+                                text: qsTr("File name or part of the name")
                                 checked: downloadTable.filterName
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterName = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
                                 contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
                             CheckBox {
-                                text: "Description"
+                                text: qsTr("Description")
                                 checked: downloadTable.filterDesc
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterDesc = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
                                 contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
                             CheckBox {
-                                text: "URL / referrer / parent web page"
+                                text: qsTr("URL / referrer / parent web page")
                                 checked: downloadTable.filterLinks
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterLinks = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
@@ -2656,14 +2656,14 @@ ApplicationWindow {
                             Rectangle { width: parent.width; height: 1; color: "#3a3a4a"; Layout.topMargin: 4; Layout.bottomMargin: 4 }
 
                             CheckBox {
-                                text: "Match case"
+                                text: qsTr("Match case")
                                 checked: downloadTable.filterMatchCase
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterMatchCase = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
                                 contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 12; leftPadding: parent.indicator.width + 4; verticalAlignment: Text.AlignVCenter }
                             }
                             CheckBox {
-                                text: "Match whole string only"
+                                text: qsTr("Match whole string only")
                                 checked: downloadTable.filterMatchWhole
                                 topPadding: 0; bottomPadding: 0
                                 onCheckedChanged: { downloadTable.filterMatchWhole = checked; if (findBarField.text.length > 0) downloadTable.findFirstFiltered() }
@@ -2802,11 +2802,11 @@ ApplicationWindow {
                         delegate: CompactMenuItem {}
 
                         MenuItem {
-                            text: App.settings.sidebarOnRight ? "Move sidebar to left" : "Move sidebar to right"
+                            text: App.settings.sidebarOnRight ? qsTr("Move sidebar to left") : qsTr("Move sidebar to right")
                             onTriggered: App.settings.sidebarOnRight = !App.settings.sidebarOnRight
                         }
                         MenuItem {
-                            text: "Reset sidebar width"
+                            text: qsTr("Reset sidebar width")
                             onTriggered: App.settings.sidebarWidth = sidebarDivider.parent._clampSidebarWidth(188)
                         }
                     }

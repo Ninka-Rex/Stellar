@@ -403,6 +403,29 @@ Intentionally on 5-second cadence, same as tray tooltip — not per-tick. `Statu
 - "Verify Local Data" at bottom-right of Transfer Stats
 - File list delegates use `TapHandler` for right-click rename
 
+## Internationalisation (i18n)
+
+**Architecture:** Qt Linguist system (`tr()` / `qsTr()`). Translator loaded at startup before the QML engine so all `qsTr()` calls in component construction resolve correctly.
+
+**Files:**
+- `translations/stellar_fr.ts` — French translation source (XML). Run `lupdate app/src app/qml -ts translations/stellar_fr.ts` after adding new strings.
+- `.qm` files compiled at build time by `qt_add_translations()` in `CMakeLists.txt` (requires `Qt6LinguistTools`; guarded with `if(Qt6LinguistTools_FOUND)`).
+- Embedded as Qt resources under prefix `:/i18n/` → loaded as `:/i18n/stellar_<locale>`.
+
+**Setting:** `AppSettings::uiLanguage` — persisted locale code (e.g. `""` = English default, `"fr"` = French). Loaded in `AppSettings::load()`, saved in `save()`.
+
+**Applying at runtime:** `AppController::applyUiLanguage(locale)` — removes old translator, installs new one, calls `setUiLanguage()`. Called from `main.cpp` before QML engine loads (startup), and from `SettingsDialog::applySettings()` when user changes language.
+
+**Settings tab:** Language tab is index **11** in `SettingsDialog.qml` (between Associations=10 and About=12). `pageLanguage: 11`, `pageAbout: 12`. `settingsPageAbout` in `Main.qml` is **12**.
+
+**Adding a new language:**
+1. Add `translations/stellar_XX.ts` (copy fr.ts, set `language="xx_XX"`)
+2. Add to `qt_add_translations(TS_FILES ...)` in `CMakeLists.txt`
+3. Add a `LangOption { langCode: "xx"; langLabel: "..."; langNative: "..." }` in the Language tab of `SettingsDialog.qml`
+4. Run `lupdate`, translate `<translation>` elements, rebuild
+
+**Restart required:** QML strings are resolved at component construction time; changing the translator at runtime doesn't retranslate existing QML elements. The Language tab shows a note and the user must restart. The setting is persisted immediately.
+
 ## Update System
 
 - `AppController::checkForUpdates(bool manual)` — fetches `updateMetadataUrl()` JSON; on success fetches changelog separately

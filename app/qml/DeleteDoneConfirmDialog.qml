@@ -22,7 +22,7 @@ import QtQuick.Layouts
 
 Window {
     id: root
-    title: "Delete Completed Downloads"
+    title: qsTr("Delete Completed Downloads")
     property bool includeSeedingTorrents: false
     width: 440
     height: 236
@@ -49,19 +49,19 @@ Window {
         spacing: 16
 
         Text {
-            text: "Are you sure you want to delete all completed downloads from Stellar's list of downloads?"
+            text: qsTr("Are you sure you want to delete all completed downloads from Stellar's list of downloads?")
             color: "#d0d0d0"; font.pixelSize: 13
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
 
         Text {
-            text: "Note: This will only remove them from the list. Files on disk will not be deleted."
+            text: qsTr("Note: This will only remove them from the list. Files on disk will not be deleted.")
             color: "#909090"; font.pixelSize: 12
             wrapMode: Text.WordWrap; Layout.fillWidth: true
         }
 
         CheckBox {
-            text: "Delete completed and seeding torrents"
+            text: qsTr("Delete completed and seeding torrents")
             checked: root.includeSeedingTorrents
             topPadding: 0
             bottomPadding: 0
@@ -82,14 +82,14 @@ Window {
             spacing: 8
             Item { Layout.fillWidth: true }
             Button {
-                text: "Yes"
+                text: qsTr("Yes")
                 implicitWidth: 80
                 background: Rectangle { color: "#1e3a6e"; radius: 3; border.color: "#4488dd"; border.width: 1 }
                 contentItem: Text { text: parent.text; color: "#ffffff"; font.pixelSize: 13; font.bold: true; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }
                 onClicked: { root.confirmed(root.includeSeedingTorrents); root.close() }
             }
             Button {
-                text: "No"
+                text: qsTr("No")
                 implicitWidth: 80
                 background: Rectangle { color: "#3a3a3a"; radius: 3; border.color: "#555"; border.width: 1 }
                 contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; horizontalAlignment: Text.AlignHCenter; verticalAlignment: Text.AlignVCenter }

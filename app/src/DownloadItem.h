@@ -32,6 +32,7 @@ class DownloadItem : public QObject {
     Q_PROPERTY(double   progress       READ progress       NOTIFY doneBytesChanged)
     Q_PROPERTY(qint64   speed          READ speed          NOTIFY speedChanged)
     Q_PROPERTY(QString  status         READ status         NOTIFY statusChanged)
+    Q_PROPERTY(QString  statusText     READ statusText     NOTIFY statusChanged)
     Q_PROPERTY(QString  category       READ category       NOTIFY categoryChanged)
     Q_PROPERTY(QString  savePath       READ savePath       NOTIFY savePathChanged)
     Q_PROPERTY(QDateTime addedAt       READ addedAt        CONSTANT)
@@ -112,6 +113,7 @@ public:
     double       progress()      const;
     qint64       speed()         const { return m_speed; }
     QString      status()        const;
+    QString      statusText()    const;
     Status       statusEnum()    const { return m_status; }
     QString      category()      const { return m_category; }
     QString      savePath()      const { return m_savePath; }

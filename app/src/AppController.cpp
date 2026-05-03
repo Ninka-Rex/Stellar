@@ -7222,3 +7222,23 @@ void AppController::onYtdlpWorkerFailed(const QString &id, const QString &reason
     }
     emit activeDownloadsChanged();
 }
+
+void AppController::applyUiLanguage(const QString &locale)
+{
+    // Remove the previously installed translator before installing the new one.
+    // QCoreApplication::removeTranslator is safe to call even if the translator
+    // was never installed (returns false silently).
+    QCoreApplication::removeTranslator(&m_translator);
+
+    if (!locale.isEmpty()) {
+        // .qm files are embedded as Qt resources under :/i18n/
+        const QString qmPath = QStringLiteral(":/i18n/stellar_%1").arg(locale);
+        if (m_translator.load(qmPath)) {
+            QCoreApplication::installTranslator(&m_translator);
+        } else {
+            qWarning() << "[i18n] Failed to load translation for locale:" << locale;
+        }
+    }
+    // Persist the choice so it survives restarts.
+    m_settings->setUiLanguage(locale);
+}

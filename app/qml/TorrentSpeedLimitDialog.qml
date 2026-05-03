@@ -27,7 +27,7 @@ Window {
     height:        460
     minimumWidth:  520
     minimumHeight: 420
-    title:         "Torrent Settings"
+    title:         qsTr("Torrent Settings")
     color:         "#1e1e1e"
     flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
     modality: Qt.NonModal
@@ -185,7 +185,7 @@ Window {
                     color: "#e8e8e8"; font.pixelSize: 13; font.weight: Font.Medium; elide: Text.ElideMiddle
                 }
                 Text {
-                    text: "Per-torrent speed, share limits, peer discovery, and download mode"
+                    text: qsTr("Per-torrent speed, share limits, peer discovery, and download mode")
                     color: "#8899aa"; font.pixelSize: 10
                 }
             }
@@ -209,11 +209,11 @@ Window {
             spacing: 8
             Item { Layout.fillWidth: true }
             DlgButton {
-                text: "Close"
+                text: qsTr("Close")
                 onClicked: root.close()
             }
             DlgButton {
-                text: "Apply"
+                text: qsTr("Apply")
                 primary: true
                 enabled: root.dirty
                 onClicked: {
@@ -269,11 +269,11 @@ Window {
                         anchors { fill: parent; margins: 7 }
                         spacing: 7
 
-                        Text { text: "BANDWIDTH LIMITS"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                        Text { text: qsTr("BANDWIDTH LIMITS"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 8
-                            Text { text: "Download:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 66 }
+                            Text { text: qsTr("Download:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 66 }
                             Rectangle {
                                 Layout.preferredWidth: 86; height: 22; radius: 2
                                 color: "#1b1b1b"; border.color: downInput.activeFocus ? "#4488dd" : "#3a3a3a"
@@ -288,7 +288,7 @@ Window {
                             }
                             Text { text: "KB/s"; color: "#666"; font.pixelSize: 12 }
                             Item { Layout.preferredWidth: 8 }
-                            Text { text: "Upload:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 50 }
+                            Text { text: qsTr("Upload:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 50 }
                             Rectangle {
                                 Layout.preferredWidth: 86; height: 22; radius: 2
                                 color: "#1b1b1b"; border.color: upInput.activeFocus ? "#4488dd" : "#3a3a3a"
@@ -318,13 +318,13 @@ Window {
                         anchors { fill: parent; margins: 7 }
                         spacing: 7
 
-                        Text { text: "SHARE LIMITS"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                        Text { text: qsTr("SHARE LIMITS"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: "Ratio:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Ratio:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
                             Repeater {
-                                model: ["Default", "Unlimited", "Set to"]
+                                model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
                                     required property int index; required property string modelData
                                     height: 21; implicitWidth: rl.implicitWidth + 12; radius: 2
@@ -354,9 +354,9 @@ Window {
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: "Seeding time:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Seeding time:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
                             Repeater {
-                                model: ["Default", "Unlimited", "Set to"]
+                                model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
                                     required property int index; required property string modelData
                                     height: 21; implicitWidth: sl.implicitWidth + 12; radius: 2
@@ -380,15 +380,15 @@ Window {
                                     onTextChanged: root._seedText = text
                                 }
                             }
-                            Text { visible: root._seedMode === 2; text: "min"; color: "#666"; font.pixelSize: 12 }
+                            Text { visible: root._seedMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 }
                             Item { Layout.fillWidth: true }
                         }
 
                         RowLayout {
                             Layout.fillWidth: true; spacing: 6
-                            Text { text: "Inactive time:"; color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
+                            Text { text: qsTr("Inactive time:"); color: "#aaaaaa"; font.pixelSize: 12; Layout.preferredWidth: 100 }
                             Repeater {
-                                model: ["Default", "Unlimited", "Set to"]
+                                model: [qsTr("Default"), qsTr("Unlimited"), qsTr("Set to")]
                                 delegate: Rectangle {
                                     required property int index; required property string modelData
                                     height: 21; implicitWidth: il.implicitWidth + 12; radius: 2
@@ -412,7 +412,7 @@ Window {
                                     onTextChanged: root._inactiveText = text
                                 }
                             }
-                            Text { visible: root._inactiveMode === 2; text: "min"; color: "#666"; font.pixelSize: 12 }
+                            Text { visible: root._inactiveMode === 2; text: qsTr("min"); color: "#666"; font.pixelSize: 12 }
                             Item { Layout.fillWidth: true }
                         }
                     }
@@ -434,25 +434,25 @@ Window {
                             anchors { fill: parent; margins: 7 }
                             spacing: 7
 
-                            Text { text: "PEER DISCOVERY"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                            Text { text: qsTr("PEER DISCOVERY"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
                             InlineCheck {
                                 Layout.fillWidth: true
-                                label: "DHT"; subtext: "Distributed Hash Table"
+                                label: qsTr("DHT"); subtext: qsTr("Distributed Hash Table")
                                 checked: !root._editDisableDht
                                 enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
                                 onToggled: root._editDisableDht = !checked
                             }
                             InlineCheck {
                                 Layout.fillWidth: true
-                                label: "PeX"; subtext: "Peer Exchange"
+                                label: qsTr("PeX"); subtext: qsTr("Peer Exchange")
                                 checked: !root._editDisablePex
                                 enabled: !root.torrentItem || !root.torrentItem.torrentIsPrivate
                                 onToggled: root._editDisablePex = !checked
                             }
                             InlineCheck {
                                 Layout.fillWidth: true
-                                label: "LSD"; subtext: "Local Service Discovery"
+                                label: qsTr("LSD"); subtext: qsTr("Local Service Discovery")
                                 checked: !root._editDisableLsd
                                 onToggled: root._editDisableLsd = !checked
                             }
@@ -466,10 +466,10 @@ Window {
                                     id: pvtNote
                                     anchors { fill: parent; margins: 6 }
                                     spacing: 2
-                                    Text { text: "🔒 Private torrent"; color: "#cc9955"; font.pixelSize: 11; font.bold: true }
+                                    Text { text: qsTr("🔒 Private torrent"); color: "#cc9955"; font.pixelSize: 11; font.bold: true }
                                     Text {
                                         Layout.fillWidth: true
-                                        text: "DHT and PeX disabled by libtorrent."
+                                        text: qsTr("DHT and PeX disabled by libtorrent.")
                                         color: "#a08040"; font.pixelSize: 10; wrapMode: Text.WordWrap
                                     }
                                 }
@@ -487,19 +487,19 @@ Window {
                             anchors { fill: parent; margins: 7 }
                             spacing: 7
 
-                            Text { text: "DOWNLOAD MODE"; color: "#8899aa"; font.pixelSize: 10; font.bold: true }
+                            Text { text: qsTr("DOWNLOAD MODE"); color: "#8899aa"; font.pixelSize: 10; font.bold: true }
 
                             InlineCheck {
                                 Layout.fillWidth: true
-                                label: "Sequential download"
-                                subtext: "Pieces downloaded in order (piece 0 → last)"
+                                label: qsTr("Sequential download")
+                                subtext: qsTr("Pieces downloaded in order (piece 0 → last)")
                                 checked: root._editSequential
                                 onToggled: root._editSequential = checked
                             }
                             InlineCheck {
                                 Layout.fillWidth: true
-                                label: "Prioritize first & last pieces"
-                                subtext: "Front-loads header/footer for early playback"
+                                label: qsTr("Prioritize first & last pieces")
+                                subtext: qsTr("Front-loads header/footer for early playback")
                                 checked: root._editFirstLastPieces
                                 onToggled: root._editFirstLastPieces = checked
                             }

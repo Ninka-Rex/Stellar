@@ -29,6 +29,7 @@
 #include <QVariantList>
 #include <QDateTime>
 #include <QElapsedTimer>
+#include <QTranslator>
 #include <functional>
 
 #include "DownloadQueue.h"
@@ -400,6 +401,9 @@ public:
     Q_INVOKABLE void dismissAvailableUpdate();
     Q_INVOKABLE void dismissMotd();
     Q_INVOKABLE bool startUpdateInstall();
+    // Applies the translator for the given locale code and returns whether a
+    // restart is needed for all UI strings to update (always true for QML apps).
+    Q_INVOKABLE void applyUiLanguage(const QString &locale);
 
 signals:
     void activeDownloadsChanged();
@@ -643,6 +647,9 @@ private:
         QByteArray stderrOutput; // stderr (error messages)
     };
     QMap<QString, YtdlpProbe>        m_ytdlpProbes;
+
+    // Active UI language translator (one slot; swapped on language change).
+    QTranslator m_translator;
 
     // Tracks how long this session has been running; used to accumulate total uptime.
     QElapsedTimer m_sessionTimer;

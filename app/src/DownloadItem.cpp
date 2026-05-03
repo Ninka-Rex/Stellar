@@ -48,11 +48,26 @@ QString DownloadItem::status() const {
     case Status::Moving:      return QStringLiteral("Moving");
     case Status::Seeding:     return QStringLiteral("Seeding");
     case Status::Paused:      return QStringLiteral("Paused");
-    case Status::Assembling:  return QStringLiteral("Assembling...");
+    case Status::Assembling:  return QStringLiteral("Assembling");
     case Status::Completed:   return QStringLiteral("Completed");
     case Status::Error:       return QStringLiteral("Error");
     }
     return QStringLiteral("Unknown");
+}
+
+QString DownloadItem::statusText() const {
+    switch (m_status) {
+    case Status::Queued:      return tr("Queued");
+    case Status::Checking:    return tr("Checking");
+    case Status::Downloading: return tr("Downloading");
+    case Status::Moving:      return tr("Moving");
+    case Status::Seeding:     return tr("Seeding");
+    case Status::Paused:      return tr("Paused");
+    case Status::Assembling:  return tr("Assembling...");
+    case Status::Completed:   return tr("Completed");
+    case Status::Error:       return tr("Error");
+    }
+    return tr("Unknown");
 }
 
 QString DownloadItem::timeLeft() const {

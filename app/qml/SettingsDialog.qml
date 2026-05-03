@@ -1,4 +1,4 @@
-// Stellar Download Manager
+﻿// Stellar Download Manager
 // Copyright (C) 2026 Ninka_
 //
 // This program is free software: you can redistribute it and/or modify
@@ -29,16 +29,17 @@ Window {
     minimumWidth: 665
     minimumHeight: 500
     flags: Qt.Window | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.WindowSystemMenuHint
-    title: "Stellar Preferences"
+    title: qsTr("Stellar Preferences")
     color: "#1e1e1e"
 
     Material.theme: Material.Dark
     Material.background: "#1e1e1e"
     Material.accent: "#4488dd"
 
-    property int    initialPage: 0   // Tab indices: 0=Connection,1=Categories,2=Downloads,3=Browser,4=Speed Limiter,5=Notifications,6=General,7=Media,8=Torrents,9=RSS,10=Associations,11=About
+    property int    initialPage: 0   // Tab indices: 0=Connection,1=Categories,2=Downloads,3=Browser,4=Speed Limiter,5=Notifications,6=General,7=Media,8=Torrents,9=RSS,10=Associations,11=Language,12=About
     readonly property int pageAssociations: 10
-    readonly property int pageAbout: 11
+    readonly property int pageLanguage: 11
+    readonly property int pageAbout: 12
     property bool   torrentAssociationDefault: false
     property bool   magnetAssociationDefault: false
     property string associationStatusText: ""
@@ -148,6 +149,8 @@ Window {
     property bool   editRssAutoDownloadEnabled:  false
     property bool   editRssSmartFilterRepack:    true
     property string editRssSmartFiltersJson:     "[]"
+    // Language — empty string = English (default), "fr" = French, etc.
+    property string editUiLanguage:             ""
 
     readonly property string defaultUserAgent: "Stellar/" + App.appVersion
     readonly property string displayedUserAgent: editUseCustomUserAgent
@@ -207,8 +210,8 @@ Window {
         var adapters = App.torrentNetworkAdapters()
         torrentAdapterOptions = adapters && adapters.length ? adapters : [{
             id: "",
-            name: "Default route",
-            details: "Let the OS choose the active network adapter."
+            name: qsTr("Default route"),
+            details: qsTr("Let the OS choose the active network adapter.")
         }]
         var boundId = editTorrentBindInterface && editTorrentBindInterface.length > 0
             ? editTorrentBindInterface
@@ -236,8 +239,8 @@ Window {
             return
         torrentAdapterOptions = torrentAdapterOptions.concat([{
             id: adapterId,
-            name: adapterId + " (Unavailable)",
-            details: "This adapter is not currently available. Reconnect it or choose a different adapter."
+            name: adapterId + qsTr(" (Unavailable)"),
+            details: qsTr("This adapter is not currently available. Reconnect it or choose a different adapter.")
         }])
     }
 
@@ -445,7 +448,8 @@ Window {
         editRssMaxArticlesPerFeed     !== App.settings.rssMaxArticlesPerFeed   ||
         editRssAutoDownloadEnabled    !== App.settings.rssAutoDownloadEnabled  ||
         editRssSmartFilterRepack      !== App.settings.rssSmartFilterRepack    ||
-        editRssSmartFiltersJson       !== App.settings.rssSmartFiltersJson
+        editRssSmartFiltersJson       !== App.settings.rssSmartFiltersJson     ||
+        editUiLanguage                !== App.settings.uiLanguage
 
     property bool catDirty:       false
     property bool loadingCategory: false   // suppresses onTextChanged during programmatic load
@@ -476,7 +480,7 @@ Window {
             var existing = activeByEndpoint[manualEndpoint]
             out.push(existing ? existing : {
                 endpoint: manualEndpoint,
-                reason: "Manual ban",
+                reason: qsTr("Manual ban"),
                 countryCode: "",
                 client: "",
                 permanent: true
@@ -522,7 +526,7 @@ Window {
     // File picker for a custom yt-dlp binary location
     FileDialog {
         id: ytdlpFileDlg
-        title: "Select yt-dlp binary"
+        title: qsTr("Select yt-dlp binary")
         fileMode: FileDialog.OpenFile
         nameFilters: Qt.platform.os === "windows"
                      ? ["yt-dlp executable (yt-dlp.exe)", "All files (*)"]
@@ -537,7 +541,7 @@ Window {
     // File picker for a custom JS runtime (deno/node/bun/qjs) location
     FileDialog {
         id: jsRuntimeFileDlg
-        title: "Select JavaScript runtime binary"
+        title: qsTr("Select JavaScript runtime binary")
         fileMode: FileDialog.OpenFile
         nameFilters: Qt.platform.os === "windows"
                      ? ["Executable (*.exe)", "All files (*)"]
@@ -655,6 +659,8 @@ Window {
         App.settings.rssAutoDownloadEnabled = editRssAutoDownloadEnabled
         App.settings.rssSmartFilterRepack   = editRssSmartFilterRepack
         App.settings.rssSmartFiltersJson    = editRssSmartFiltersJson
+        if (editUiLanguage !== App.settings.uiLanguage)
+            App.applyUiLanguage(editUiLanguage)
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
@@ -741,6 +747,7 @@ Window {
         editRssAutoDownloadEnabled = App.settings.rssAutoDownloadEnabled
         editRssSmartFilterRepack   = App.settings.rssSmartFilterRepack
         editRssSmartFiltersJson    = App.settings.rssSmartFiltersJson || "[]"
+        editUiLanguage             = App.settings.uiLanguage
         // Reset dirty flags so Apply button is disabled until user actually changes something
         catDirty = false
     }
@@ -764,7 +771,7 @@ Window {
                     id: catList
                     anchors.fill: parent
                     anchors.topMargin: 8
-                    model: ["Connection", "Categories", "Downloads", "Browser", "Speed Limiter", "Notifications", "General", "Media", "Torrents", "RSS", "Associations", "About"]
+                    model: [qsTr("Connection"), qsTr("Categories"), qsTr("Downloads"), qsTr("Browser"), qsTr("Speed Limiter"), qsTr("Notifications"), qsTr("General"), qsTr("Media"), qsTr("Torrents"), qsTr("RSS"), qsTr("Associations"), qsTr("Language"), qsTr("About")]
                     currentIndex: root.initialPage
 
                     delegate: Rectangle {
@@ -807,45 +814,45 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: "Connection"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("Connection"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         GridLayout {
                             columns: 3; columnSpacing: 10; rowSpacing: 10
 
-                            Text { text: "Maximum simultaneous downloads:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                            Text { text: qsTr("Maximum simultaneous downloads:"); color: "#c0c0c0"; font.pixelSize: 13 }
                             SpinBox { from: 1; to: 16; value: root.editMaxConcurrent; onValueModified: root.editMaxConcurrent = value; padding: 0 }
                             Item {}
 
-                            Text { text: "Segments per download:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                            Text { text: qsTr("Segments per download:"); color: "#c0c0c0"; font.pixelSize: 13 }
                             SpinBox { from: 1; to: 16; value: root.editSegmentsPerDownload; onValueModified: root.editSegmentsPerDownload = value; padding: 0 }
                             Item {}
 
-                            Text { text: "Connection timeout (seconds):"; color: "#c0c0c0"; font.pixelSize: 13 }
+                            Text { text: qsTr("Connection timeout (seconds):"); color: "#c0c0c0"; font.pixelSize: 13 }
                             SpinBox { from: 5; to: 120; value: root.editConnectionTimeoutSecs; onValueModified: root.editConnectionTimeoutSecs = value; padding: 0 }
                             Item {}
 
-                            Text { text: "Retry failed downloads:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                            Text { text: qsTr("Retry failed downloads:"); color: "#c0c0c0"; font.pixelSize: 13 }
                             SpinBox { from: 0; to: 10; value: root.editMaxRetries; onValueModified: root.editMaxRetries = value; padding: 0 }
-                            Text { text: "times"; color: "#a0a0a0"; font.pixelSize: 13 }
+                            Text { text: qsTr("times"); color: "#a0a0a0"; font.pixelSize: 13 }
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
                         Text {
-                            text: "User Agent"
+                            text: qsTr("User Agent")
                             color: "#ffffff"; font.pixelSize: 14; font.bold: true
                         }
 
                         Text {
-                            text: "When custom mode is off, Stellar uses its built-in User-Agent with the current version."
+                            text: qsTr("When custom mode is off, Stellar uses its built-in User-Agent with the current version.")
                             color: "#c0c0c0"; font.pixelSize: 13
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
 
                         CheckBox {
-                            text: "Use custom user agent"
+                            text: qsTr("Use custom user agent")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editUseCustomUserAgent
                             onCheckedChanged: root.editUseCustomUserAgent = checked
@@ -873,8 +880,8 @@ Window {
 
                         Text {
                             text: root.editUseCustomUserAgent
-                                  ? "This value will be sent exactly as entered."
-                                  : "Built-in default shown above. Enable the checkbox to edit and override it."
+                                  ? qsTr("This value will be sent exactly as entered.")
+                                  : qsTr("Built-in default shown above. Enable the checkbox to edit and override it.")
                             color: "#555"; font.pixelSize: 10
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -883,7 +890,7 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e"; Layout.topMargin: 4 }
 
                         Text {
-                            text: "Proxy"
+                            text: qsTr("Proxy")
                             color: "#ffffff"; font.pixelSize: 14; font.bold: true
                         }
 
@@ -893,22 +900,22 @@ Window {
 
                             ProxyRadioButton {
                                 id: proxyNoneRadio
-                                text: "No proxy"
+                                text: qsTr("No proxy")
                                 checked: root.editProxyType === 0
                                 onClicked: root.editProxyType = 0
                             }
                             ProxyRadioButton {
-                                text: "Use system proxy"
+                                text: qsTr("Use system proxy")
                                 checked: root.editProxyType === 1
                                 onClicked: root.editProxyType = 1
                             }
                             ProxyRadioButton {
-                                text: "HTTP / HTTPS proxy"
+                                text: qsTr("HTTP / HTTPS proxy")
                                 checked: root.editProxyType === 2
                                 onClicked: root.editProxyType = 2
                             }
                             ProxyRadioButton {
-                                text: "SOCKS5 proxy"
+                                text: qsTr("SOCKS5 proxy")
                                 checked: root.editProxyType === 3
                                 onClicked: root.editProxyType = 3
                             }
@@ -925,7 +932,7 @@ Window {
                                 spacing: 8
                                 Layout.fillWidth: true
 
-                                Text { text: "Host:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                                Text { text: qsTr("Host:"); color: "#c0c0c0"; font.pixelSize: 13 }
                                 TextField {
                                     Layout.fillWidth: true
                                     text: root.editProxyHost
@@ -937,7 +944,7 @@ Window {
                                     }
                                     color: "#d0d0d0"
                                 }
-                                Text { text: "Port:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                                Text { text: qsTr("Port:"); color: "#c0c0c0"; font.pixelSize: 13 }
                                 TextField {
                                     implicitWidth: 120
                                     text: root.editProxyPort.toString()
@@ -962,10 +969,10 @@ Window {
                                 columns: 2; columnSpacing: 8; rowSpacing: 6
                                 Layout.fillWidth: true
 
-                                Text { text: "Username:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                                Text { text: qsTr("Username:"); color: "#c0c0c0"; font.pixelSize: 13 }
                                 TextField {
                                     Layout.fillWidth: true
-                                    placeholderText: "Optional"
+                                    placeholderText: qsTr("Optional")
                                     text: root.editProxyUsername
                                     selectByMouse: true
                                     font.pixelSize: 13
@@ -976,10 +983,10 @@ Window {
                                     color: "#d0d0d0"
                                 }
 
-                                Text { text: "Password:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                                Text { text: qsTr("Password:"); color: "#c0c0c0"; font.pixelSize: 13 }
                                 TextField {
                                     Layout.fillWidth: true
-                                    placeholderText: "Optional"
+                                    placeholderText: qsTr("Optional")
                                     text: root.editProxyPassword
                                     echoMode: TextInput.Password
                                     selectByMouse: true
@@ -993,7 +1000,7 @@ Window {
                             }
 
                             Text {
-                                text: "All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy."
+                                text: qsTr("All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.")
                                 color: "#555"; font.pixelSize: 10
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
@@ -1002,7 +1009,7 @@ Window {
 
                         Text {
                             visible: root.editProxyType === 1
-                            text: "Stellar will use the proxy configured in your operating system network settings."
+                            text: qsTr("Stellar will use the proxy configured in your operating system network settings.")
                             color: "#555"; font.pixelSize: 10
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -1027,7 +1034,7 @@ Window {
                                     if (proxyTestRow._testing) {
                                         proxyTestRow._testing = false
                                         proxyTestRow._ok = false
-                                        proxyTestRow._result = "Timed out — proxy did not respond"
+                                        proxyTestRow._result = qsTr("Timed out — proxy did not respond")
                                     }
                                 }
                             }
@@ -1043,7 +1050,7 @@ Window {
                             }
 
                             DlgButton {
-                                text: proxyTestRow._testing ? "Testing…" : "Test Proxy"
+                                text: proxyTestRow._testing ? qsTr("Testing…") : qsTr("Test Proxy")
                                 enabled: !proxyTestRow._testing
                                 onClicked: {
                                     proxyTestRow._result = ""
@@ -1085,7 +1092,7 @@ Window {
                         anchors { fill: parent; margins: 12 }
                         spacing: 10
 
-                        Text { text: "Categories"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("Categories"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         RowLayout {
@@ -1246,7 +1253,7 @@ Window {
                                 ColumnLayout {
                                     Layout.fillWidth: true
                                     spacing: 4
-                                    Text { text: "Name"; color: "#909090"; font.pixelSize: 11 }
+                                    Text { text: qsTr("Name"); color: "#909090"; font.pixelSize: 11 }
                                     TextField {
                                         id: catEditName
                                         Layout.fillWidth: true
@@ -1262,7 +1269,7 @@ Window {
                                 ColumnLayout {
                                     Layout.fillWidth: true
                                     spacing: 4
-                                    Text { text: "File types  (comma-separated, e.g.  mp4, mkv, avi)"; color: "#909090"; font.pixelSize: 11 }
+                                    Text { text: qsTr("File types  (comma-separated, e.g.  mp4, mkv, avi)"); color: "#909090"; font.pixelSize: 11 }
                                     ScrollView {
                                         Layout.fillWidth: true
                                         implicitHeight: 52
@@ -1301,7 +1308,7 @@ Window {
                                                 return e.length > 0 && monitored.indexOf(e) < 0
                                             })
                                             return missing.length > 0
-                                                ? "⚠ Not in browser auto-download list: " + missing.join(", ")
+                                                ? qsTr("⚠ Not in browser auto-download list: %1").arg(missing.join(", "))
                                                 : ""
                                         }
                                     }
@@ -1311,7 +1318,7 @@ Window {
                                 ColumnLayout {
                                     Layout.fillWidth: true
                                     spacing: 4
-                                    Text { text: "Auto-assign from sites  (space-separated, * wildcard)"; color: "#909090"; font.pixelSize: 11 }
+                                    Text { text: qsTr("Auto-assign from sites  (space-separated, * wildcard)"); color: "#909090"; font.pixelSize: 11 }
                                     TextField {
                                         id: catEditSites
                                         Layout.fillWidth: true
@@ -1323,7 +1330,7 @@ Window {
                                         onTextChanged: if (!root.loadingCategory) root.catDirty = true
                                     }
                                     Text {
-                                        text: "Downloads from matching sites will automatically go into this category."
+                                        text: qsTr("Downloads from matching sites will automatically go into this category.")
                                         color: "#555"; font.pixelSize: 10
                                         wrapMode: Text.WordWrap
                                         Layout.fillWidth: true
@@ -1334,7 +1341,7 @@ Window {
                                 ColumnLayout {
                                     Layout.fillWidth: true
                                     spacing: 4
-                                    Text { text: "Save to folder"; color: "#909090"; font.pixelSize: 11 }
+                                    Text { text: qsTr("Save to folder"); color: "#909090"; font.pixelSize: 11 }
                                     RowLayout {
                                         Layout.fillWidth: true
                                         spacing: 6
@@ -1382,10 +1389,10 @@ Window {
                             y: 12
                             spacing: 10
 
-                        Text { text: "Downloads"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("Downloads"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
-                        Text { text: "Default save folder:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        Text { text: qsTr("Default save folder:"); color: "#c0c0c0"; font.pixelSize: 13 }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1397,7 +1404,7 @@ Window {
                                 background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
                             }
                             Button {
-                                text: "Browse…"; font.pixelSize: 12
+                                text: qsTr("Browse…"); font.pixelSize: 12
                                 background: Rectangle { color: "#3a3a3a"; radius: 3 }
                                 contentItem: Text { text: parent.text; color: "#d0d0d0"; font: parent.font; horizontalAlignment: Text.AlignHCenter }
                                 onClicked: saveFolderDlg.open()
@@ -1406,7 +1413,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
-                        Text { text: "Custom save folder for torrents:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        Text { text: qsTr("Custom save folder for torrents:"); color: "#c0c0c0"; font.pixelSize: 13 }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1418,13 +1425,13 @@ Window {
                                 background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
                             }
                             DlgButton {
-                                text: "Browse"
+                                text: qsTr("Browse")
                                 onClicked: torrentCustomSaveFolderDlg.open()
                             }
                         }
 
                         Text {
-                            text: "This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default."
+                            text: qsTr("This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.")
                             color: "#7a7a7a"; font.pixelSize: 11
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -1432,7 +1439,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
-                        Text { text: "Stellar temporary directory:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        Text { text: qsTr("Stellar temporary directory:"); color: "#c0c0c0"; font.pixelSize: 13 }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -1444,20 +1451,20 @@ Window {
                                 background: Rectangle { color: "#2d2d2d"; border.color: "#4a4a4a"; radius: 3 }
                             }
                             DlgButton {
-                                text: "Browse"
+                                text: qsTr("Browse")
                                 onClicked: tempFolderDlg.open()
                             }
                         }
 
                         Text {
-                            text: "Stellar stores partially downloaded file parts and metadata here while downloading and assembling files."
+                            text: qsTr("Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.")
                             color: "#7a7a7a"; font.pixelSize: 11
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
                         }
 
                         CheckBox {
-                            text: "Start downloading immediately (skip file info dialog)"
+                            text: qsTr("Start downloading immediately (skip file info dialog)")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editStartImmediately
                             onCheckedChanged: root.editStartImmediately = checked
@@ -1465,7 +1472,7 @@ Window {
                         }
 
                         CheckBox {
-                            text: "Show download complete dialog"
+                            text: qsTr("Show download complete dialog")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowDownloadComplete
                             onCheckedChanged: root.editShowDownloadComplete = checked
@@ -1473,7 +1480,7 @@ Window {
                         }
 
                         CheckBox {
-                            text: "Start downloading immediately while displaying \"Download File Info\" dialog"
+                            text: qsTr("Start downloading immediately while displaying \"Download File Info\" dialog")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editStartDownloadWhileFileInfo
                             onCheckedChanged: root.editStartDownloadWhileFileInfo = checked
@@ -1481,7 +1488,7 @@ Window {
                         }
 
                         CheckBox {
-                            text: "Show swarm map when downloading torrent metadata"
+                            text: qsTr("Show swarm map when downloading torrent metadata")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowSwarmMapWhileFetchingMetadata
                             onCheckedChanged: root.editShowSwarmMapWhileFetchingMetadata = checked
@@ -1489,21 +1496,21 @@ Window {
                         }
 
                         CheckBox {
-                            text: "Show queue selection panel on pressing Download Later"
+                            text: qsTr("Show queue selection panel on pressing Download Later")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowQueueSelectionOnDownloadLater
                             onCheckedChanged: root.editShowQueueSelectionOnDownloadLater = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
                         CheckBox {
-                            text: "Show queue selection panel on closing batch downloads dialog"
+                            text: qsTr("Show queue selection panel on closing batch downloads dialog")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowQueueSelectionOnBatchDownload
                             onCheckedChanged: root.editShowQueueSelectionOnBatchDownload = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4; wrapMode: Text.WordWrap; Layout.fillWidth: true }
                         }
                         Text {
-                            text: "Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting."
+                            text: qsTr("Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.")
                             color: "#7a7a7a"; font.pixelSize: 10
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -1511,14 +1518,14 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
-                        Text { text: "If a duplicate URL is added:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        Text { text: qsTr("If a duplicate URL is added:"); color: "#c0c0c0"; font.pixelSize: 13 }
                         ComboBox {
                             id: duplicateActionCombo
                             model: [
-                                "Ask me what to do",
-                                "Add with a numbered file name",
-                                "Overwrite the existing download",
-                                "Resume / show complete dialog"
+                                qsTr("Ask me what to do"),
+                                qsTr("Add with a numbered file name"),
+                                qsTr("Overwrite the existing download"),
+                                qsTr("Resume / show complete dialog")
                             ]
                             currentIndex: root.editDuplicateAction
                             implicitWidth: 260
@@ -1535,13 +1542,13 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
-                        Text { text: "Double-clicking on a download in the file list:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        Text { text: qsTr("Double-clicking on a download in the file list:"); color: "#c0c0c0"; font.pixelSize: 13 }
                         ComboBox {
                             id: doubleClickActionCombo
                             model: [
-                                "Open file properties dialog",
-                                "Open file",
-                                "Open folder"
+                                qsTr("Open file properties dialog"),
+                                qsTr("Open file"),
+                                qsTr("Open folder")
                             ]
                             currentIndex: root.editDoubleClickAction
                             implicitWidth: 260
@@ -1558,7 +1565,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e2e" }
 
-                        Text { text: "Last try date format:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        Text { text: qsTr("Last try date format:"); color: "#c0c0c0"; font.pixelSize: 13 }
                         ComboBox {
                             id: lastTryDateStyleCombo
                             model: [
@@ -1580,12 +1587,12 @@ Window {
                             onCurrentIndexChanged: root.editLastTryDateStyle = currentIndex
                         }
 
-                        Text { text: "Time format:"; color: "#c0c0c0"; font.pixelSize: 13 }
+                        Text { text: qsTr("Time format:"); color: "#c0c0c0"; font.pixelSize: 13 }
                         ComboBox {
                             id: lastTryTimeModeCombo
                             model: [
-                                "24-hour time",
-                                "12-hour time"
+                                qsTr("24-hour time"),
+                                qsTr("12-hour time")
                             ]
                             currentIndex: root.editLastTryUse24Hour ? 0 : 1
                             implicitWidth: 220
@@ -1601,7 +1608,7 @@ Window {
                         }
 
                         CheckBox {
-                            text: "Show seconds"
+                            text: qsTr("Show seconds")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editLastTryShowSeconds
                             onCheckedChanged: root.editLastTryShowSeconds = checked
@@ -1621,7 +1628,7 @@ Window {
                                 anchors.margins: 8
                                 spacing: 4
 
-                                Text { text: "Preview"; color: "#909090"; font.pixelSize: 11 }
+                                Text { text: qsTr("Preview"); color: "#909090"; font.pixelSize: 11 }
                                 Text { text: root.lastTryPreview; color: "#f0f0f0"; font.pixelSize: 13; font.family: "Consolas" }
                             }
                         }
@@ -1645,12 +1652,12 @@ Window {
                             x: 12; y: 12
                             spacing: 10
 
-                            Text { text: "Browser Integration"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                            Text { text: qsTr("Browser Integration"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                             Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                             // ── Monitored file types ──────────────────────────────
                             Text {
-                                text: "Automatically start downloading the following file types:"
+                                text: qsTr("Automatically start downloading the following file types:")
                                 color: "#c0c0c0"; font.pixelSize: 13
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
@@ -1674,7 +1681,7 @@ Window {
                             }
 
                             Text {
-                                text: "Space or comma-separated. Case-insensitive."
+                                text: qsTr("Space or comma-separated. Case-insensitive.")
                                 color: "#555"; font.pixelSize: 10
                             }
 
@@ -1682,7 +1689,7 @@ Window {
 
                             // ── Excluded sites ────────────────────────────────────
                             Text {
-                                text: "Don't start downloading automatically from the following sites:"
+                                text: qsTr("Don't start downloading automatically from the following sites:")
                                 color: "#c0c0c0"; font.pixelSize: 13
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
@@ -1706,7 +1713,7 @@ Window {
                             }
 
                             Text {
-                                text: "Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com"
+                                text: qsTr("Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com")
                                 color: "#555"; font.pixelSize: 10
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
@@ -1716,13 +1723,13 @@ Window {
 
                             // ── Address Exceptions ────────────────────────────────
                             Text {
-                                text: "Address Exceptions"
+                                text: qsTr("Address Exceptions")
                                 color: "#ffffff"; font.pixelSize: 14; font.bold: true
                             }
 
                             CheckBox {
                                 id: showExceptDlgChk
-                                text: "Show the dialog to add an address to the list of exceptions for a twice cancelled download"
+                                text: qsTr("Show the dialog to add an address to the list of exceptions for a twice cancelled download")
                                 topPadding: 0; bottomPadding: 0
                                 Layout.fillWidth: true
                                 checked: root.editShowExceptionsDialog
@@ -1737,7 +1744,7 @@ Window {
                             }
 
                             Text {
-                                text: "Don't start downloading from the following addresses:"
+                                text: qsTr("Don't start downloading from the following addresses:")
                                 color: "#c0c0c0"; font.pixelSize: 13
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
@@ -1761,7 +1768,7 @@ Window {
                             }
 
                             Text {
-                                text: "One URL pattern per line. Wildcards (*) supported."
+                                text: qsTr("One URL pattern per line. Wildcards (*) supported.")
                                 color: "#555"; font.pixelSize: 10
                             }
 
@@ -1769,12 +1776,12 @@ Window {
 
                             // ── Bypass interception key ────────────────────────────
                             Text {
-                                text: "Bypass Download Interception"
+                                text: qsTr("Bypass Download Interception")
                                 color: "#ffffff"; font.pixelSize: 14; font.bold: true
                             }
 
                             Text {
-                                text: "Hold this key while clicking a download link to skip interception and let the browser download:"
+                                text: qsTr("Hold this key while clicking a download link to skip interception and let the browser download:")
                                 color: "#c0c0c0"; font.pixelSize: 13
                                 wrapMode: Text.WordWrap
                                 Layout.fillWidth: true
@@ -1784,7 +1791,7 @@ Window {
                                 spacing: 12
                                 ComboBox {
                                     id: bypassKeyCombo
-                                    model: ["None", "Alt", "Ctrl", "Shift"]
+                                    model: [qsTr("None"), "Alt", "Ctrl", "Shift"]
                                     currentIndex: root.editBypassInterceptKey
                                     implicitWidth: 120
                                     font.pixelSize: 12
@@ -1817,12 +1824,12 @@ Window {
                         x: 12; y: 12
                         spacing: 10
 
-                        Text { text: "Speed Limiter"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("Speed Limiter"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                             CheckBox {
                                 id: globalLimitChk
-                                text: "Enable global speed limit"
+                                text: qsTr("Enable global speed limit")
                                 topPadding: 0; bottomPadding: 0
                                 checked: root.editGlobalSpeedLimitKBps > 0
                                 onToggled: { 
@@ -1837,7 +1844,7 @@ Window {
 
                             RowLayout {
                                 spacing: 8
-                                Text { text: "Maximum speed:"; color: "#a0a0a0"; font.pixelSize: 13 }
+                                Text { text: qsTr("Maximum speed:"); color: "#a0a0a0"; font.pixelSize: 13 }
                                 TextField {
                                     id: speedLimitField
                                     implicitWidth: 90
@@ -1872,12 +1879,12 @@ Window {
                                         }
                                     }
                                 }
-                                Text { text: "KB/s"; color: "#a0a0a0"; font.pixelSize: 13 }
+                                Text { text: qsTr("KB/s"); color: "#a0a0a0"; font.pixelSize: 13 }
                             }
 
                             CheckBox {
                                 id: globalUploadLimitChk
-                                text: "Enable global upload limit"
+                                text: qsTr("Enable global upload limit")
                                 topPadding: 0; bottomPadding: 0
                                 checked: root.editGlobalUploadLimitKBps > 0
                                 onToggled: {
@@ -1892,7 +1899,7 @@ Window {
 
                             RowLayout {
                                 spacing: 8
-                                Text { text: "Maximum upload:"; color: "#a0a0a0"; font.pixelSize: 13 }
+                                Text { text: qsTr("Maximum upload:"); color: "#a0a0a0"; font.pixelSize: 13 }
                                 TextField {
                                     id: uploadLimitField
                                     implicitWidth: 90
@@ -1918,11 +1925,11 @@ Window {
                                             root.editGlobalUploadLimitKBps = v
                                     }
                                 }
-                                Text { text: "KB/s"; color: "#a0a0a0"; font.pixelSize: 13 }
+                                Text { text: qsTr("KB/s"); color: "#a0a0a0"; font.pixelSize: 13 }
                             }
 
                         CheckBox {
-                            text: "Always turn on speed limiter on Stellar startup"
+                            text: qsTr("Always turn on speed limiter on Stellar startup")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedLimiterOnStartup
                             onCheckedChanged: root.editSpeedLimiterOnStartup = checked
@@ -1935,7 +1942,7 @@ Window {
                         // Each rule: days[], onHour (1-12), onMinute (0-59), onAmPm, offHour,
                         // offMinute, offAmPm, downLimitKBps, upLimitKBps. Stored in editSpeedScheduleJson.
                         CheckBox {
-                            text: "Enable speed limiter scheduler"
+                            text: qsTr("Enable speed limiter scheduler")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedScheduleEnabled
                             onCheckedChanged: root.editSpeedScheduleEnabled = checked
@@ -2004,12 +2011,12 @@ Window {
                                         RowLayout {
                                             Layout.fillWidth: true
                                             Text {
-                                                text: "Rule " + (ruleCard.index + 1)
+                                                text: qsTr("Rule %1").arg(ruleCard.index + 1)
                                                 color: "#888888"; font.pixelSize: 11; font.bold: true
                                             }
                                             Item { Layout.fillWidth: true }
                                             Text {
-                                                text: "Remove"
+                                                text: qsTr("Remove")
                                                 color: removeHov.containsMouse ? "#ff7777" : "#aa3333"
                                                 font.pixelSize: 11
                                                 MouseArea {
@@ -2060,7 +2067,7 @@ Window {
                                             spacing: 4
                                             Layout.fillWidth: true
 
-                                            Text { text: "On"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Text { text: qsTr("On"); color: "#aaaaaa"; font.pixelSize: 12 }
 
                                             // On-hour input (1–12)
                                             Rectangle {
@@ -2172,7 +2179,7 @@ Window {
                                         // ── Speed limit row ───────────────────────────────────────
                                         RowLayout {
                                             spacing: 6
-                                            Text { text: "Download"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Text { text: qsTr("Download"); color: "#aaaaaa"; font.pixelSize: 12 }
                                             Rectangle {
                                                 width: 70; height: 26; radius: 2
                                                 color: "#1b1b1b"; border.color: downLimitFld.activeFocus ? "#4488dd" : "#3a3a3a"
@@ -2190,9 +2197,9 @@ Window {
                                                     }
                                                 }
                                             }
-                                            Text { text: "KB/s"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Text { text: qsTr("KB/s"); color: "#aaaaaa"; font.pixelSize: 12 }
                                             Item { Layout.preferredWidth: 10 }
-                                            Text { text: "Upload"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Text { text: qsTr("Upload"); color: "#aaaaaa"; font.pixelSize: 12 }
                                             Rectangle {
                                                 width: 70; height: 26; radius: 2
                                                 color: "#1b1b1b"; border.color: upLimitFld.activeFocus ? "#4488dd" : "#3a3a3a"
@@ -2210,7 +2217,7 @@ Window {
                                                     }
                                                 }
                                             }
-                                            Text { text: "KB/s"; color: "#aaaaaa"; font.pixelSize: 12 }
+                                            Text { text: qsTr("KB/s"); color: "#aaaaaa"; font.pixelSize: 12 }
                                         }
                                     }
                                 }
@@ -2218,7 +2225,7 @@ Window {
 
                             // ── Add Rule button ──────────────────────────────────────────────────
                             DlgButton {
-                                text: "+ Add Rule"
+                                text: qsTr("+ Add Rule")
                                 onClicked: {
                                     var arr = JSON.parse(root.editSpeedScheduleJson || "[]")
                                     arr.push(scheduleCol.blankRule())
@@ -2234,7 +2241,7 @@ Window {
                                 Text {
                                     id: scheduleNote
                                     anchors { left: parent.left; right: parent.right; top: parent.top; margins: 8 }
-                                    text: "Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active."
+                                    text: qsTr("Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.")
                                     color: "#8899bb"; font.pixelSize: 11; wrapMode: Text.WordWrap
                                 }
                             }
@@ -2251,18 +2258,18 @@ Window {
                         anchors { fill: parent; margins: 12 }
                         spacing: 10
 
-                        Text { text: "Notifications"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("Notifications"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         CheckBox {
-                            text: "Show notification when download completes"
+                            text: qsTr("Show notification when download completes")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowCompletionNotification
                             onCheckedChanged: root.editShowCompletionNotification = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Show notification on download error"
+                            text: qsTr("Show notification on download error")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowErrorNotification
                             onCheckedChanged: root.editShowErrorNotification = checked
@@ -2285,39 +2292,39 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: "General"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("General"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         CheckBox {
-                            text: "Minimize to system tray"
+                            text: qsTr("Minimize to system tray")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editMinimizeToTray
                             onCheckedChanged: root.editMinimizeToTray = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Close to system tray"
+                            text: qsTr("Close to system tray")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editCloseToTray
                             onCheckedChanged: root.editCloseToTray = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Launch Stellar on startup"
+                            text: qsTr("Launch Stellar on startup")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editLaunchOnStartup
                             onCheckedChanged: root.editLaunchOnStartup = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Show tips in bottom bar"
+                            text: qsTr("Show tips in bottom bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowTips
                             onCheckedChanged: root.editShowTips = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Show finished download count in status bar"
+                            text: qsTr("Show finished download count in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowFinishedCount
                             onCheckedChanged: root.editShowFinishedCount = checked
@@ -2325,31 +2332,31 @@ Window {
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
-                        Text { text: "Utilities"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Utilities"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         CheckBox {
-                            text: "Show speed in tray icon tooltip"
+                            text: qsTr("Show speed in tray icon tooltip")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInTrayTooltip
                             onCheckedChanged: root.editSpeedInTrayTooltip = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Show speed in title bar"
+                            text: qsTr("Show speed in title bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInTitleBar
                             onCheckedChanged: root.editSpeedInTitleBar = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Show speed in status bar"
+                            text: qsTr("Show speed in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editSpeedInStatusBar
                             onCheckedChanged: root.editSpeedInStatusBar = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Show estimated online users in status bar"
+                            text: qsTr("Show estimated online users in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editEstimatedOnlineUsersInStatusBar
                             onCheckedChanged: root.editEstimatedOnlineUsersInStatusBar = checked
@@ -2361,7 +2368,7 @@ Window {
                             }
                         }
                         Text {
-                            text: "Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence."
+                            text: qsTr("Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.")
                             color: "#7a7a7a"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -2369,21 +2376,21 @@ Window {
                             visible: root.editEstimatedOnlineUsersInStatusBar
                         }
                         CheckBox {
-                            text: "Show ratio in status bar"
+                            text: qsTr("Show ratio in status bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRatioInStatusBar
                             onCheckedChanged: root.editRatioInStatusBar = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         CheckBox {
-                            text: "Show Public IP in Status Bar"
+                            text: qsTr("Show Public IP in Status Bar")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editShowPublicIpInStatusBar
                             onCheckedChanged: root.editShowPublicIpInStatusBar = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
                         Text {
-                            text: "Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections."
+                            text: qsTr("Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.")
                             color: "#7a7a7a"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -2393,10 +2400,10 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
-                        Text { text: "Updates"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Updates"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         CheckBox {
-                            text: "Automatically check for updates"
+                            text: qsTr("Automatically check for updates")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editAutoCheckUpdates
                             onCheckedChanged: root.editAutoCheckUpdates = checked
@@ -2405,10 +2412,10 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
-                        Text { text: "Clipboard Monitoring"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Clipboard Monitoring"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         CheckBox {
-                            text: "Automatically start downloading URLs placed in the clipboard"
+                            text: qsTr("Automatically start downloading URLs placed in the clipboard")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editClipboardMonitorEnabled
                             onCheckedChanged: root.editClipboardMonitorEnabled = checked
@@ -2416,7 +2423,7 @@ Window {
                         }
 
                         Text {
-                            text: "When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser \u203a Automatically start downloading the following file types are picked up."
+                            text: qsTr("When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser \u203a Automatically start downloading the following file types are picked up.")
                             color: "#7a7a7a"; font.pixelSize: 11
                             wrapMode: Text.WordWrap
                             Layout.fillWidth: true
@@ -2440,12 +2447,12 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: "Video Downloader"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("Video Downloader"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear."
+                            text: qsTr("Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.")
                             color: "#909090"; font.pixelSize: 12
                             wrapMode: Text.WordWrap
                         }
@@ -2453,7 +2460,7 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
                         // ── Status indicator ──────────────────────────────────────────
-                        Text { text: "Binary status"; color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
+                        Text { text: qsTr("Binary status"); color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
 
                         RowLayout {
                             spacing: 10
@@ -2491,7 +2498,7 @@ Window {
                         RowLayout {
                             spacing: 8
                             DlgButton {
-                                text: App.ytdlpManager.available ? "Update yt-dlp" : "Download yt-dlp"
+                                text: App.ytdlpManager.available ? qsTr("Update yt-dlp") : qsTr("Download yt-dlp")
                                 enabled: !App.ytdlpManager.downloading
                                 onClicked: {
                                     if (App.ytdlpManager.available)
@@ -2501,12 +2508,12 @@ Window {
                                 }
                             }
                             DlgButton {
-                                text: "Cancel"
+                                text: qsTr("Cancel")
                                 visible: App.ytdlpManager.downloading
                                 onClicked: App.ytdlpManager.cancelDownload()
                             }
                             DlgButton {
-                                text: "Re-check"
+                                text: qsTr("Re-check")
                                 enabled: !App.ytdlpManager.downloading
                                 onClicked: App.ytdlpManager.checkAvailability()
                             }
@@ -2515,7 +2522,7 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
                         // ── ffmpeg status ─────────────────────────────────────────────
-                        Text { text: "ffmpeg status"; color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
+                        Text { text: qsTr("ffmpeg status"); color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
 
                         RowLayout {
                             spacing: 10
@@ -2526,8 +2533,8 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: App.ytdlpManager.ffmpegAvailable
-                                      ? ("ffmpeg found: " + App.ytdlpManager.ffmpegPath)
-                                      : "ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)"
+                                      ? (qsTr("ffmpeg found: %1").arg(App.ytdlpManager.ffmpegPath))
+                                      : qsTr("ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)")
                                 color: App.ytdlpManager.ffmpegAvailable ? "#c0c0c0" : "#dd8844"
                                 font.pixelSize: 12
                                 wrapMode: Text.WordWrap
@@ -2546,12 +2553,12 @@ Window {
                         RowLayout {
                             spacing: 8
                             DlgButton {
-                                text: App.ffmpegUpdating ? "Updating FFmpeg..." : "Update FFmpeg"
+                                text: App.ffmpegUpdating ? qsTr("Updating FFmpeg...") : qsTr("Update FFmpeg")
                                 enabled: !App.ffmpegUpdating
                                 onClicked: App.updateFfmpegBinary()
                             }
                             DlgButton {
-                                text: "Get ffmpeg (gyan.dev)"
+                                text: qsTr("Get ffmpeg (gyan.dev)")
                                 visible: !App.ytdlpManager.ffmpegAvailable
                                 onClicked: Qt.openUrlExternally("https://www.gyan.dev/ffmpeg/builds/")
                             }
@@ -2569,11 +2576,7 @@ Window {
                             Text {
                                 id: ffmpegNote
                                 anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 8; rightMargin: 8; topMargin: 8 }
-                                text: "ffmpeg is required to merge separate video and audio streams into MP4/MKV. " +
-                                      "Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).\n\n" +
-                                      "To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), " +
-                                      "extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. " +
-                                      "Then click Re-check above."
+                                text: qsTr("ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).\n\nTo fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.")
                                 color: "#8899bb"; font.pixelSize: 11
                                 wrapMode: Text.WordWrap
                             }
@@ -2586,11 +2589,11 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
                         // ── Custom binary path ────────────────────────────────────────
-                        Text { text: "Custom binary path"; color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
+                        Text { text: qsTr("Custom binary path"); color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version."
+                            text: qsTr("Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.")
                             color: "#808080"; font.pixelSize: 11
                             wrapMode: Text.WordWrap
                         }
@@ -2606,7 +2609,7 @@ Window {
                                 color:            "#d0d0d0"
                                 leftPadding:      8
                                 rightPadding:     8
-                                placeholderText:  "(auto - use bundled or system yt-dlp)"
+                                placeholderText:  qsTr("(auto - use bundled or system yt-dlp)")
                                 placeholderTextColor: "#555555"
                                 text: root.editYtdlpCustomBinaryPath
                                 onTextChanged: root.editYtdlpCustomBinaryPath = text
@@ -2618,7 +2621,7 @@ Window {
                             }
 
                             DlgButton {
-                                text: "Browse…"
+                                text: qsTr("Browse…")
                                 onClicked: ytdlpFileDlg.open()
                             }
                         }
@@ -2626,7 +2629,7 @@ Window {
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
                         // ── JavaScript runtime (EJS n-challenge solver) ───────────────
-                        Text { text: "JavaScript runtime"; color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
+                        Text { text: qsTr("JavaScript runtime"); color: "#c0c0c0"; font.pixelSize: 13; font.bold: true }
 
                         RowLayout {
                             Layout.fillWidth: true
@@ -2639,8 +2642,8 @@ Window {
                             Text {
                                 Layout.fillWidth: true
                                 text: App.ytdlpManager.jsRuntimeAvailable
-                                      ? (App.ytdlpManager.jsRuntimeName + " found: " + App.ytdlpManager.jsRuntimePath)
-                                      : "No JS runtime found — YouTube n-challenge solving disabled"
+                                      ? qsTr("%1 found: %2").arg(App.ytdlpManager.jsRuntimeName).arg(App.ytdlpManager.jsRuntimePath)
+                                      : qsTr("No JS runtime found — YouTube n-challenge solving disabled")
                                 color: App.ytdlpManager.jsRuntimeAvailable ? "#c0c0c0" : "#dd8844"
                                 font.pixelSize: 12
                                 elide: Text.ElideRight
@@ -2659,10 +2662,7 @@ Window {
                             Text {
                                 id: jsRuntimeNote
                                 anchors { left: parent.left; right: parent.right; top: parent.top; leftMargin: 8; rightMargin: 8; topMargin: 8 }
-                                text: "yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). " +
-                                      "Without it, YouTube downloads may fail or return only low-quality storyboard formats.\n\n" +
-                                      "Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. " +
-                                      "Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above."
+                                text: qsTr("yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.\n\nInstall one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.")
                                 color: "#8899bb"; font.pixelSize: 11
                                 wrapMode: Text.WordWrap
                             }
@@ -2670,7 +2670,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH)."
+                            text: qsTr("Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).")
                             color: "#808080"; font.pixelSize: 11
                             wrapMode: Text.WordWrap
                         }
@@ -2686,7 +2686,7 @@ Window {
                                 color:            "#d0d0d0"
                                 leftPadding:      8
                                 rightPadding:     8
-                                placeholderText:  "(auto-detect from PATH and yt-dlp folder)"
+                                placeholderText:  qsTr("(auto-detect from PATH and yt-dlp folder)")
                                 placeholderTextColor: "#555555"
                                 text: root.editYtdlpJsRuntimePath
                                 onTextChanged: root.editYtdlpJsRuntimePath = text
@@ -2698,7 +2698,7 @@ Window {
                             }
 
                             DlgButton {
-                                text: "Browse…"
+                                text: qsTr("Browse…")
                                 onClicked: jsRuntimeFileDlg.open()
                             }
                         }
@@ -2708,7 +2708,7 @@ Window {
                         // ── Auto-update option ────────────────────────────────────────
                         CheckBox {
                             id: ytdlpAutoUpdateCheck
-                            text: "Automatically update yt-dlp at startup"
+                            text: qsTr("Automatically update yt-dlp at startup")
                             font.pixelSize: 12
                             topPadding: 0
                             bottomPadding: 0
@@ -2725,7 +2725,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "When enabled, Stellar will run \"yt-dlp -U\" at startup to keep the binary up to date. Requires an active internet connection."
+                            text: qsTr("When enabled, Stellar will run \"yt-dlp -U\" at startup to keep the binary up to date. Requires an active internet connection.")
                             color: "#666666"; font.pixelSize: 11
                             wrapMode: Text.WordWrap
                         }
@@ -2747,13 +2747,13 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: "Torrent Downloads"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("Torrent Downloads"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         // Enable BitTorrent support toggle + legal notice
                         CheckBox {
                             id: torrentEnabledCheck
-                            text: "Enable BitTorrent support"
+                            text: qsTr("Enable BitTorrent support")
                             checked: root.editTorrentEnabled
                             topPadding: 0
                             bottomPadding: 0
@@ -2784,7 +2784,7 @@ Window {
                                     spacing: 12
                                     Layout.margins: 20
                                     Text {
-                                        text: "BitTorrent — Legal Notice"
+                                        text: qsTr("BitTorrent — Legal Notice")
                                         color: "#ffffff"
                                         font.pixelSize: 15
                                         font.bold: true
@@ -2796,7 +2796,7 @@ Window {
                                         color: "#c0c0c0"
                                         font.pixelSize: 12
                                         lineHeight: 1.4
-                                        text: "Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure."
+                                        text: qsTr("Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.\n\nAnything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.\n\nIt is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.")
                                     }
                                     Rectangle {
                                         Layout.fillWidth: true
@@ -2808,14 +2808,14 @@ Window {
                                         spacing: 8
                                         Item { Layout.fillWidth: true }
                                         DlgButton {
-                                            text: "Cancel"
+                                            text: qsTr("Cancel")
                                             onClicked: {
                                                 torrentLegalNotice.close()
                                                 torrentEnabledCheck.checked = false
                                             }
                                         }
                                         DlgButton {
-                                            text: "I Understand, Enable"
+                                            text: qsTr("I Understand, Enable")
                                             primary: true
                                             onClicked: {
                                                 torrentLegalNotice.close()
@@ -2832,7 +2832,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "These settings apply to .torrent files and magnet links."
+                            text: qsTr("These settings apply to .torrent files and magnet links.")
                             color: "#909090"; font.pixelSize: 12
                             wrapMode: Text.WordWrap
                         }
@@ -2843,7 +2843,7 @@ Window {
                             columnSpacing: 10
                             rowSpacing: 8
 
-                            Text { text: "Listen port"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Listen port"); color: "#c0c0c0"; font.pixelSize: 12 }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentListenPort)
@@ -2853,7 +2853,7 @@ Window {
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n)) root.editTorrentListenPort = n }
                             }
 
-                            Text { text: "Global max connections"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Global max connections"); color: "#c0c0c0"; font.pixelSize: 12 }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentConnectionsLimit)
@@ -2863,7 +2863,7 @@ Window {
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 1) root.editTorrentConnectionsLimit = n }
                             }
 
-                            Text { text: "Max connections per torrent"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Max connections per torrent"); color: "#c0c0c0"; font.pixelSize: 12 }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentConnectionsLimitPerTorrent)
@@ -2873,7 +2873,7 @@ Window {
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentConnectionsLimitPerTorrent = n }
                             }
 
-                            Text { text: "Global max upload slots"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Global max upload slots"); color: "#c0c0c0"; font.pixelSize: 12 }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentUploadSlotsLimit)
@@ -2883,7 +2883,7 @@ Window {
                                 onTextEdited: { var n = parseInt(text, 10); if (!isNaN(n) && n >= 0) root.editTorrentUploadSlotsLimit = n }
                             }
 
-                            Text { text: "Max upload slots per torrent"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Max upload slots per torrent"); color: "#c0c0c0"; font.pixelSize: 12 }
                             TextField {
                                 Layout.preferredWidth: 120
                                 text: String(root.editTorrentUploadSlotsLimitPerTorrent)
@@ -2894,13 +2894,13 @@ Window {
                             }
 
                             Item {}
-                            Text { text: "0 = unlimited (per-torrent fields and global upload slots)"; color: "#666666"; font.pixelSize: 10 }
+                            Text { text: qsTr("0 = unlimited (per-torrent fields and global upload slots)"); color: "#666666"; font.pixelSize: 10 }
 
-                            Text { text: "Protocol"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Protocol"); color: "#c0c0c0"; font.pixelSize: 12 }
                             ComboBox {
                                 id: torrentProtocolCombo
                                 Layout.preferredWidth: 160
-                                model: ["TCP and μTP", "μTP only", "TCP only"]
+                                model: [qsTr("TCP and μTP"), qsTr("μTP only"), qsTr("TCP only")]
                                 currentIndex: root.editTorrentProtocol
                                 font.pixelSize: 12
                                 background: Rectangle { color: "#2d2d2d"; border.color: torrentProtocolCombo.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
@@ -2916,11 +2916,11 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: "Port Test"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Port Test"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections."
+                            text: qsTr("Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.")
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -2931,7 +2931,7 @@ Window {
                             spacing: 10
 
                             Button {
-                                text: App.torrentPortTestInProgress ? "Testing..." : "Test Port"
+                                text: App.torrentPortTestInProgress ? qsTr("Testing...") : qsTr("Test Port")
                                 enabled: !App.torrentPortTestInProgress
                                 onClicked: App.testTorrentPort()
                             }
@@ -2955,7 +2955,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: "Networking"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Networking"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         component NetCheckRow: RowLayout {
                             property alias cbChecked: cb.checked
@@ -2984,50 +2984,50 @@ Window {
 
                         NetCheckRow {
                             label: "DHT"
-                            description: "Find peers without a tracker using a distributed hash table."
+                            description: qsTr("Find peers without a tracker using a distributed hash table.")
                             cbChecked: root.editTorrentEnableDht
                             onToggled: (v) => root.editTorrentEnableDht = v
                         }
                         NetCheckRow {
                             label: "LSD"
-                            description: "Discover peers on your local network without going through the internet."
+                            description: qsTr("Discover peers on your local network without going through the internet.")
                             cbChecked: root.editTorrentEnableLsd
                             onToggled: (v) => root.editTorrentEnableLsd = v
                         }
                         NetCheckRow {
                             label: "UPnP"
-                            description: "Automatically open a port on your router so peers can connect to you."
+                            description: qsTr("Automatically open a port on your router so peers can connect to you.")
                             cbChecked: root.editTorrentEnableUpnp
                             onToggled: (v) => root.editTorrentEnableUpnp = v
                         }
                         NetCheckRow {
                             label: "NAT-PMP"
-                            description: "Like UPnP but for Apple routers - enable both and whichever your router supports will be used."
+                            description: qsTr("Like UPnP but for Apple routers - enable both and whichever your router supports will be used.")
                             cbChecked: root.editTorrentEnableNatPmp
                             onToggled: (v) => root.editTorrentEnableNatPmp = v
                         }
                         NetCheckRow {
                             label: "PeX (Peer Exchange)"
-                            description: "Share peer lists between connected peers so you find more sources without hitting the tracker."
+                            description: qsTr("Share peer lists between connected peers so you find more sources without hitting the tracker.")
                             cbChecked: root.editTorrentEnablePex
                             onToggled: (v) => root.editTorrentEnablePex = v
                         }
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: "Advanced"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Advanced"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
-                        Text { text: "Custom bittorrent user agent"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Text { text: qsTr("Custom bittorrent user agent"); color: "#c0c0c0"; font.pixelSize: 12 }
                         TextField {
                             Layout.fillWidth: true
                             text: root.editTorrentCustomUserAgent
-                            placeholderText: "Default: Stellar/" + App.appVersion
+                            placeholderText: qsTr("Default: Stellar/%1").arg(App.appVersion)
                             onTextChanged: root.editTorrentCustomUserAgent = text
                             color: "#d0d0d0"
                             background: Rectangle { color: "#1b1b1b"; border.color: parent.activeFocus ? "#4488dd" : "#3a3a3a"; radius: 3 }
                         }
 
-                        Text { text: "Bind to network adapter"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Text { text: qsTr("Bind to network adapter"); color: "#c0c0c0"; font.pixelSize: 12 }
                         ComboBox {
                             id: torrentAdapterCombo
                             Layout.fillWidth: true
@@ -3041,7 +3041,7 @@ Window {
                                     var option = torrentAdapterCombo.currentIndex >= 0 && torrentAdapterCombo.currentIndex < root.torrentAdapterOptions.length
                                         ? root.torrentAdapterOptions[torrentAdapterCombo.currentIndex]
                                         : null
-                                    return option ? option.name : "Default route"
+                                    return option ? option.name : qsTr("Default route")
                                 }
                                 color: "#d0d0d0"
                                 font: torrentAdapterCombo.font
@@ -3078,7 +3078,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: root.editTorrentBindInterface.length > 0 ? "This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection." : "No adapter binding. Torrent traffic follows the system route."
+                            text: root.editTorrentBindInterface.length > 0 ? qsTr("This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.") : qsTr("No adapter binding. Torrent traffic follows the system route.")
                             color: root.editTorrentBindInterface.length > 0 ? "#ffffff" : "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -3095,7 +3095,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected."
+                            text: qsTr("Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.")
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -3103,22 +3103,22 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: "Torrent Security"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Torrent Security"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK."
+                            text: qsTr("Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.")
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: "Encryption Mode"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Text { text: qsTr("Encryption Mode"); color: "#c0c0c0"; font.pixelSize: 12 }
 
                         ComboBox {
                             id: encryptionModeCombo
                             implicitWidth: 220
-                            model: ["Prefer encryption", "Require encryption", "Allow encryption"]
+                            model: [qsTr("Prefer encryption"), qsTr("Require encryption"), qsTr("Allow encryption")]
                             // model index maps: 0=Prefer, 1=Require, 2=Allow — matches torrentEncryptionMode values
                             currentIndex: root.editTorrentEncryptionMode
                             onActivated: root.editTorrentEncryptionMode = currentIndex
@@ -3167,7 +3167,7 @@ Window {
                             }
                         }
 
-                        Text { text: "Blocked user agents"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Text { text: qsTr("Blocked user agents"); color: "#c0c0c0"; font.pixelSize: 12 }
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 96
@@ -3193,13 +3193,13 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied."
+                            text: qsTr("One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.")
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: "Manually ban peer"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Text { text: qsTr("Manually ban peer"); color: "#c0c0c0"; font.pixelSize: 12 }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -3207,7 +3207,7 @@ Window {
                             TextField {
                                 Layout.fillWidth: true
                                 text: root.manualBanPeerText
-                                placeholderText: "IP address, for example 203.0.113.42"
+                                placeholderText: qsTr("IP address, for example 203.0.113.42")
                                 color: "#d0d0d0"
                                 background: Rectangle {
                                     color: "#1b1b1b"
@@ -3218,7 +3218,7 @@ Window {
                             }
 
                             DlgButton {
-                                text: "Ban"
+                                text: qsTr("Ban")
                                 enabled: root.manualBanPeerText.trim().length > 0
                                 onClicked: {
                                     if (App.banTorrentPeer("", root.manualBanPeerText.trim(), 0, "", "")) {
@@ -3230,13 +3230,13 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Manual bans are permanent until you remove them from the banned peers list below."
+                            text: qsTr("Manual bans are permanent until you remove them from the banned peers list below.")
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
                         }
 
-                        Text { text: "Block peers by country"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Text { text: qsTr("Block peers by country"); color: "#c0c0c0"; font.pixelSize: 12 }
                         RowLayout {
                             Layout.fillWidth: true
                             spacing: 8
@@ -3311,7 +3311,7 @@ Window {
                             }
 
                             DlgButton {
-                                text: "Add"
+                                text: qsTr("Add")
                                 enabled: root.selectedTorrentCountryCode.length === 2
                                 onClicked: root.addBlockedTorrentCountry(root.selectedTorrentCountryCode)
                             }
@@ -3357,7 +3357,7 @@ Window {
                                             elide: Text.ElideRight
                                         }
                                         DlgButton {
-                                            text: "Remove"
+                                            text: qsTr("Remove")
                                             Layout.alignment: Qt.AlignVCenter
                                             Layout.preferredHeight: 28
                                             onClicked: root.removeBlockedTorrentCountry(modelData)
@@ -3368,14 +3368,14 @@ Window {
 
                             Text {
                                 visible: root.editTorrentBlockedPeerCountries.length === 0
-                                text: "No blocked countries."
+                                text: qsTr("No blocked countries.")
                                 color: "#666666"
                                 font.pixelSize: 11
                             }
                         }
 
                         CheckBox {
-                            text: "Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader"
+                            text: qsTr("Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader")
                             topPadding: 0
                             bottomPadding: 0
                             checked: root.editTorrentAutoBanAbusivePeers
@@ -3390,7 +3390,7 @@ Window {
                         }
 
                         CheckBox {
-                            text: "Auto Ban BitTorrent Media Player Peer"
+                            text: qsTr("Auto Ban BitTorrent Media Player Peer")
                             topPadding: 0
                             bottomPadding: 0
                             checked: root.editTorrentAutoBanMediaPlayerPeers
@@ -3404,7 +3404,7 @@ Window {
                             }
                         }
 
-                        Text { text: "Manually banned peers"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Text { text: qsTr("Manually banned peers"); color: "#c0c0c0"; font.pixelSize: 12 }
                         Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 160
@@ -3458,7 +3458,7 @@ Window {
                                         }
 
                                         DlgButton {
-                                            text: modelData.permanent ? "Unban" : "Active"
+                                            text: modelData.permanent ? qsTr("Unban") : qsTr("Active")
                                             enabled: !!modelData.permanent
                                             onClicked: {
                                                 var endpoint = String(modelData.endpoint || "")
@@ -3473,7 +3473,7 @@ Window {
                                 Text {
                                     anchors.centerIn: parent
                                     visible: bannedPeersList.count === 0
-                                    text: "No banned peers"
+                                    text: qsTr("No banned peers")
                                     color: "#666666"
                                     font.pixelSize: 12
                                 }
@@ -3482,7 +3482,7 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: "IP-to-City Database"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("IP-to-City Database"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         GridLayout {
                             Layout.fillWidth: true
@@ -3490,50 +3490,50 @@ Window {
                             columnSpacing: 10
                             rowSpacing: 6
 
-                            Text { text: "Version"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text { text: qsTr("Version"); color: "#a0a0a0"; font.pixelSize: 11 }
                             Text {
                                 Layout.fillWidth: true
-                                text: root.ipToCityDbInfo.versionStatus || "Unknown"
+                                text: root.ipToCityDbInfo.versionStatus || qsTr("Unknown")
                                 color: "#d0d0d0"
                                 font.pixelSize: 11
                                 wrapMode: Text.WordWrap
                             }
 
-                            Text { text: "Path"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text { text: qsTr("Path"); color: "#a0a0a0"; font.pixelSize: 11 }
                             Text {
                                 Layout.fillWidth: true
-                                text: root.ipToCityDbInfo.path || "Not found"
+                                text: root.ipToCityDbInfo.path || qsTr("Not found")
                                 color: "#d0d0d0"
                                 font.pixelSize: 11
                                 wrapMode: Text.WrapAnywhere
                             }
 
-                            Text { text: "Size"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text { text: qsTr("Size"); color: "#a0a0a0"; font.pixelSize: 11 }
                             Text {
                                 text: root.formatBytes(root.ipToCityDbInfo.sizeBytes || 0)
                                 color: "#d0d0d0"
                                 font.pixelSize: 11
                             }
 
-                            Text { text: "Entries"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text { text: qsTr("Entries"); color: "#a0a0a0"; font.pixelSize: 11 }
                             Text {
-                                text: root.ipToCityDbInfo.entryCountFormatted || "Unknown"
+                                text: root.ipToCityDbInfo.entryCountFormatted || qsTr("Unknown")
                                 color: "#d0d0d0"
                                 font.pixelSize: 11
                             }
 
-                            Text { text: "Last Modified"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text { text: qsTr("Last Modified"); color: "#a0a0a0"; font.pixelSize: 11 }
                             Text {
-                                text: root.ipToCityDbInfo.lastModified || "Unknown"
+                                text: root.ipToCityDbInfo.lastModified || qsTr("Unknown")
                                 color: "#d0d0d0"
                                 font.pixelSize: 11
                             }
 
-                            Text { text: "Status"; color: "#a0a0a0"; font.pixelSize: 11 }
+                            Text { text: qsTr("Status"); color: "#a0a0a0"; font.pixelSize: 11 }
                             Text {
                                 text: App.ipToCityDbUpdateStatus.length > 0
                                     ? App.ipToCityDbUpdateStatus
-                                    : (root.ipToCityDbInfo.loaded ? "Loaded" : "Available but not loaded")
+                                    : (root.ipToCityDbInfo.loaded ? qsTr("Loaded") : qsTr("Available but not loaded"))
                                 color: App.ipToCityDbUpdateStatus.length > 0 ? "#cccccc" : "#8ab4f8"
                                 font.pixelSize: 11
                                 wrapMode: Text.WordWrap
@@ -3545,12 +3545,12 @@ Window {
                             spacing: 8
 
                             DlgButton {
-                                text: App.ipToCityDbUpdating ? "Downloading..." : "Update IP-to-City DB"
+                                text: App.ipToCityDbUpdating ? qsTr("Downloading...") : qsTr("Update IP-to-City DB")
                                 enabled: !App.ipToCityDbUpdating
                                 onClicked: App.updateIpToCityDbFromCachedUrl()
                             }
                             DlgButton {
-                                text: "Refresh Info"
+                                text: qsTr("Refresh Info")
                                 onClicked: root.refreshIpToCityDbInfo()
                             }
                         }
@@ -3558,8 +3558,8 @@ Window {
                         Text {
                             Layout.fillWidth: true
                             text: App.ipToCityDbUpdateUrl && App.ipToCityDbUpdateUrl.length > 0
-                                ? ("Source: " + App.ipToCityDbUpdateUrl)
-                                : "Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json."
+                                ? qsTr("Source: %1").arg(App.ipToCityDbUpdateUrl)
+                                : qsTr("Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.")
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -3567,11 +3567,11 @@ Window {
 
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
 
-                        Text { text: "Statistics"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Statistics"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Cumulative transfer totals across all torrents, including removed ones."
+                            text: qsTr("Cumulative transfer totals across all torrents, including removed ones.")
                             color: "#666666"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -3599,19 +3599,19 @@ Window {
                                 onTriggered: torrentStatsGrid.refresh()
                             }
 
-                            Text { text: "Total Downloaded"; color: "#8899aa"; font.pixelSize: 12 }
+                            Text { text: qsTr("Total Downloaded"); color: "#8899aa"; font.pixelSize: 12 }
                             Text {
                                 text: root.formatBytes(torrentStatsGrid.stats.downloadedBytes || 0)
                                 color: "#c8c8c8"; font.pixelSize: 12
                             }
 
-                            Text { text: "Total Uploaded"; color: "#8899aa"; font.pixelSize: 12 }
+                            Text { text: qsTr("Total Uploaded"); color: "#8899aa"; font.pixelSize: 12 }
                             Text {
                                 text: root.formatBytes(torrentStatsGrid.stats.uploadedBytes || 0)
                                 color: "#c8c8c8"; font.pixelSize: 12
                             }
 
-                            Text { text: "All-time Share Ratio"; color: "#8899aa"; font.pixelSize: 12 }
+                            Text { text: qsTr("All-time Share Ratio"); color: "#8899aa"; font.pixelSize: 12 }
                             Text {
                                 text: {
                                     var r = torrentStatsGrid.stats.ratio || 0
@@ -3644,22 +3644,22 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: "RSS"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("RSS"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Configure RSS feed fetching and automatic torrent downloading rules."
+                            text: qsTr("Configure RSS feed fetching and automatic torrent downloading rules.")
                             color: "#909090"; font.pixelSize: 12
                             wrapMode: Text.WordWrap
                         }
 
                         // ── Feed fetching ──────────────────────────────────────────────
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-                        Text { text: "Feed Fetching"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Feed Fetching"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         CheckBox {
-                            text: "Enable fetching RSS feeds"
+                            text: qsTr("Enable fetching RSS feeds")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssEnabled
                             onCheckedChanged: root.editRssEnabled = checked
@@ -3673,7 +3673,7 @@ Window {
                             rowSpacing: 8
                             enabled: root.editRssEnabled
 
-                            Text { text: "Feeds refresh interval"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Feeds refresh interval"); color: "#c0c0c0"; font.pixelSize: 12 }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(root.editRssRefreshIntervalMins)
@@ -3689,9 +3689,9 @@ Window {
                                     if (!isNaN(n) && n >= 1) root.editRssRefreshIntervalMins = n
                                 }
                             }
-                            Text { text: "minutes"; color: "#666666"; font.pixelSize: 12 }
+                            Text { text: qsTr("minutes"); color: "#666666"; font.pixelSize: 12 }
 
-                            Text { text: "Same host request delay"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Same host request delay"); color: "#c0c0c0"; font.pixelSize: 12 }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(Math.round(root.editRssSameHostDelayMs / 1000))
@@ -3707,9 +3707,9 @@ Window {
                                     if (!isNaN(n) && n >= 0) root.editRssSameHostDelayMs = n * 1000
                                 }
                             }
-                            Text { text: "seconds"; color: "#666666"; font.pixelSize: 12 }
+                            Text { text: qsTr("seconds"); color: "#666666"; font.pixelSize: 12 }
 
-                            Text { text: "Maximum articles per feed"; color: "#c0c0c0"; font.pixelSize: 12 }
+                            Text { text: qsTr("Maximum articles per feed"); color: "#c0c0c0"; font.pixelSize: 12 }
                             TextField {
                                 Layout.preferredWidth: 80
                                 text: String(root.editRssMaxArticlesPerFeed)
@@ -3730,10 +3730,10 @@ Window {
 
                         // ── Auto downloader ────────────────────────────────────────────
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-                        Text { text: "Torrent Auto Downloader"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Torrent Auto Downloader"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         CheckBox {
-                            text: "Enable auto downloading of RSS torrents"
+                            text: qsTr("Enable auto downloading of RSS torrents")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssAutoDownloadEnabled
                             onCheckedChanged: root.editRssAutoDownloadEnabled = checked
@@ -3741,7 +3741,7 @@ Window {
                         }
 
                         DlgButton {
-                            text: "Edit Auto Downloading Rules..."
+                            text: qsTr("Edit Auto Downloading Rules...")
                             onClicked: {
                                 rssDownloadRulesDialog.show()
                                 rssDownloadRulesDialog.raise()
@@ -3751,17 +3751,17 @@ Window {
 
                         // ── Smart episode filter ───────────────────────────────────────
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
-                        Text { text: "Smart Episode Filter"; color: "#ffffff"; font.pixelSize: 14; font.bold: true }
+                        Text { text: qsTr("Smart Episode Filter"); color: "#ffffff"; font.pixelSize: 14; font.bold: true }
 
                         CheckBox {
-                            text: "Download REPACK/PROPER episodes"
+                            text: qsTr("Download REPACK/PROPER episodes")
                             topPadding: 0; bottomPadding: 0
                             checked: root.editRssSmartFilterRepack
                             onCheckedChanged: root.editRssSmartFilterRepack = checked
                             contentItem: Text { text: parent.text; color: "#d0d0d0"; font.pixelSize: 13; leftPadding: parent.indicator.width + 4 }
                         }
 
-                        Text { text: "Episode detection patterns (one per line):"; color: "#c0c0c0"; font.pixelSize: 12 }
+                        Text { text: qsTr("Episode detection patterns (one per line):"); color: "#c0c0c0"; font.pixelSize: 12 }
 
                         Rectangle {
                             Layout.fillWidth: true
@@ -3800,7 +3800,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "These regular expressions are used to extract season/episode numbers for smart duplicate detection."
+                            text: qsTr("These regular expressions are used to extract season/episode numbers for smart duplicate detection.")
                             color: "#666666"; font.pixelSize: 11
                             wrapMode: Text.WordWrap
                         }
@@ -3822,12 +3822,12 @@ Window {
                         anchors { left: parent.left; right: parent.right; top: parent.top; margins: 12 }
                         spacing: 10
 
-                        Text { text: "Associations"; color: "#ffffff"; font.pixelSize: 16; font.bold: true }
+                        Text { text: qsTr("Associations"); color: "#ffffff"; font.pixelSize: 16; font.bold: true }
                         Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens."
+                            text: qsTr("Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.")
                             color: "#909090"
                             font.pixelSize: 12
                             wrapMode: Text.WordWrap
@@ -3841,10 +3841,10 @@ Window {
                             columnSpacing: 16
                             rowSpacing: 8
 
-                            Text { text: ".torrent files"; color: "#c0c0c0"; font.pixelSize: 13 }
+                            Text { text: qsTr(".torrent files"); color: "#c0c0c0"; font.pixelSize: 13 }
                             Text {
                                 Layout.fillWidth: true
-                                text: root.torrentAssociationDefault ? "Currently handled by Stellar" : "Stellar is not the current default"
+                                text: root.torrentAssociationDefault ? qsTr("Currently handled by Stellar") : qsTr("Stellar is not the current default")
                                 color: root.torrentAssociationDefault ? "#7bd88f" : "#d8a65f"
                                 font.pixelSize: 12
                                 wrapMode: Text.WordWrap
@@ -3856,11 +3856,11 @@ Window {
                                     anchors.left: parent.left
                                     spacing: 8
                                     DlgButton {
-                                        text: "Set .torrent Default"
-                                        onClicked: root.showAssociationResult(App.setTorrentFileAssociationDefault(), "Stellar is now the default app for .torrent files.")
+                                        text: qsTr("Set .torrent Default")
+                                        onClicked: root.showAssociationResult(App.setTorrentFileAssociationDefault(), qsTr("Stellar is now the default app for .torrent files."))
                                     }
                                     DlgButton {
-                                        text: "Refresh Status"
+                                        text: qsTr("Refresh Status")
                                         onClicked: {
                                             root.associationStatusText = ""
                                             root.refreshAssociationStatus()
@@ -3878,10 +3878,10 @@ Window {
                             columnSpacing: 16
                             rowSpacing: 8
 
-                            Text { text: "magnet: links"; color: "#c0c0c0"; font.pixelSize: 13 }
+                            Text { text: qsTr("magnet: links"); color: "#c0c0c0"; font.pixelSize: 13 }
                             Text {
                                 Layout.fillWidth: true
-                                text: root.magnetAssociationDefault ? "Currently handled by Stellar" : "Stellar is not the current default"
+                                text: root.magnetAssociationDefault ? qsTr("Currently handled by Stellar") : qsTr("Stellar is not the current default")
                                 color: root.magnetAssociationDefault ? "#7bd88f" : "#d8a65f"
                                 font.pixelSize: 12
                                 wrapMode: Text.WordWrap
@@ -3893,11 +3893,11 @@ Window {
                                     anchors.left: parent.left
                                     spacing: 8
                                     DlgButton {
-                                        text: "Set Magnet Default"
-                                        onClicked: root.showAssociationResult(App.setMagnetAssociationDefault(), "Stellar is now the default app for magnet links.")
+                                        text: qsTr("Set Magnet Default")
+                                        onClicked: root.showAssociationResult(App.setMagnetAssociationDefault(), qsTr("Stellar is now the default app for magnet links."))
                                     }
                                     DlgButton {
-                                        text: "Refresh Status"
+                                        text: qsTr("Refresh Status")
                                         onClicked: {
                                             root.associationStatusText = ""
                                             root.refreshAssociationStatus()
@@ -3913,7 +3913,7 @@ Window {
                             Layout.fillWidth: true
                             text: root.associationStatusText.length > 0
                                 ? root.associationStatusText
-                                : "If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change."
+                                : qsTr("If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.")
                             color: root.associationStatusText.length > 0 && root.associationStatusText.indexOf("Failed") === 0 ? "#ff8a80" : "#808080"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -3921,6 +3921,152 @@ Window {
 
                         Item { Layout.fillHeight: true }
                     }
+                    }
+                }
+
+                // Language
+                Item {
+                    ColumnLayout {
+                        anchors { left: parent.left; right: parent.right; top: parent.top; margins: 20 }
+                        spacing: 14
+
+                        Text {
+                            text: qsTr("Interface Language")
+                            color: "#e0e0e0"
+                            font.pixelSize: 15
+                            font.bold: true
+                            Layout.topMargin: 8
+                        }
+
+                        Text {
+                            text: qsTr("Select the language used throughout the Stellar interface. A restart is required for all text to update.")
+                            color: "#aaaaaa"
+                            font.pixelSize: 12
+                            wrapMode: Text.WordWrap
+                            Layout.fillWidth: true
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a" }
+
+                        RowLayout {
+                            spacing: 10
+
+                            Text {
+                                text: qsTr("Language:")
+                                color: "#c0c0c0"
+                                font.pixelSize: 13
+                            }
+
+                            ComboBox {
+                                id: languageCombo
+                                implicitWidth: 220
+                                implicitHeight: 28
+
+                                // Each entry: { code, display }
+                                property var langEntries: [
+                                    { code: "",   display: "English" },
+                                    { code: "fr", display: "French — Français" }
+                                ]
+
+                                model: langEntries.map(function(e) { return e.display })
+
+                                // Sync combo selection → editUiLanguage
+                                onActivated: function(idx) {
+                                    root.editUiLanguage = langEntries[idx].code
+                                }
+
+                                // Sync editUiLanguage → combo selection on open / reset
+                                function syncFromSetting() {
+                                    for (var i = 0; i < langEntries.length; ++i) {
+                                        if (langEntries[i].code === root.editUiLanguage) {
+                                            currentIndex = i
+                                            return
+                                        }
+                                    }
+                                    currentIndex = 0
+                                }
+
+                                Component.onCompleted: syncFromSetting()
+
+                                Connections {
+                                    target: root
+                                    function onEditUiLanguageChanged() { languageCombo.syncFromSetting() }
+                                }
+
+                                background: Rectangle {
+                                    color: "#1b1b1b"
+                                    border.color: languageCombo.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    border.width: 1
+                                    radius: 2
+                                }
+
+                                contentItem: Text {
+                                    leftPadding: 8
+                                    rightPadding: languageCombo.indicator.width + 4
+                                    text: languageCombo.displayText
+                                    color: "#e0e0e0"
+                                    font.pixelSize: 12
+                                    verticalAlignment: Text.AlignVCenter
+                                    elide: Text.ElideRight
+                                }
+
+                                indicator: Text {
+                                    x: languageCombo.width - width - 8
+                                    y: (languageCombo.height - height) / 2
+                                    text: "▼"
+                                    font.pixelSize: 8
+                                    color: "#aaaaaa"
+                                }
+
+                                popup: Popup {
+                                    y: languageCombo.height + 2
+                                    width: languageCombo.width
+                                    implicitHeight: contentItem.implicitHeight
+                                    padding: 1
+
+                                    background: Rectangle {
+                                        color: "#252525"
+                                        border.color: "#3a3a3a"
+                                        border.width: 1
+                                        radius: 2
+                                    }
+
+                                    contentItem: ListView {
+                                        clip: true
+                                        implicitHeight: contentHeight
+                                        model: languageCombo.popup.visible ? languageCombo.delegateModel : null
+
+                                        ScrollIndicator.vertical: ScrollIndicator {}
+                                    }
+                                }
+
+                                delegate: ItemDelegate {
+                                    width: languageCombo.width
+                                    highlighted: languageCombo.highlightedIndex === index
+
+                                    contentItem: Text {
+                                        text: modelData
+                                        color: "#e0e0e0"
+                                        font.pixelSize: 12
+                                        verticalAlignment: Text.AlignVCenter
+                                        leftPadding: 8
+                                    }
+
+                                    background: Rectangle {
+                                        color: highlighted ? "#1a3a6a" : "transparent"
+                                    }
+                                }
+                            }
+                        }
+
+                        Rectangle { Layout.fillWidth: true; height: 1; color: "#3a3a3a"; Layout.topMargin: 4 }
+
+                        Text {
+                            text: qsTr("A restart is required after changing the language.")
+                            color: "#8899bb"
+                            font.pixelSize: 11
+                            Layout.bottomMargin: 8
+                        }
                     }
                 }
 
@@ -3963,7 +4109,7 @@ Window {
                                     spacing: 10
 
                                     Text {
-                                        text: "Version " + App.appVersion
+                                        text: qsTr("Version %1").arg(App.appVersion)
                                         color: "#4488dd"; font.pixelSize: 12
                                     }
 
@@ -3976,7 +4122,7 @@ Window {
 
                                     Text {
                                         text: App.updateAvailable
-                                              ? ("Update available: " + App.updateVersion)
+                                              ? qsTr("Update available: %1").arg(App.updateVersion)
                                               : ""
                                         color: "#55bb77"; font.pixelSize: 12
                                         visible: App.updateAvailable
@@ -3989,7 +4135,7 @@ Window {
                                     Layout.topMargin: 1
 
                                     Text {
-                                        text: "Check for updates"
+                                        text: qsTr("Check for updates")
                                         color: "#555555"; font.pixelSize: 11; font.underline: true
                                         MouseArea {
                                             anchors.fill: parent
@@ -4001,7 +4147,7 @@ Window {
                                     }
                                     Text { text: "\u00B7"; color: "#333333"; font.pixelSize: 11 }
                                     Text {
-                                        text: "What's New"
+                                        text: qsTr("What's New")
                                         color: "#555555"; font.pixelSize: 11; font.underline: true
                                         MouseArea {
                                             anchors.fill: parent
@@ -4022,17 +4168,17 @@ Window {
                             columns: 2; columnSpacing: 20; rowSpacing: 5
                             Layout.bottomMargin: 14
 
-                            Text { text: "Build date";  color: "#606060"; font.pixelSize: 12 }
+                            Text { text: qsTr("Build date");  color: "#606060"; font.pixelSize: 12 }
                             Text { text: App.buildTimeFormatted; color: "#b0b0b0"; font.pixelSize: 12 }
-                            Text { text: "Qt version";  color: "#606060"; font.pixelSize: 12 }
+                            Text { text: qsTr("Qt version");  color: "#606060"; font.pixelSize: 12 }
                             Text { text: App.qtVersion; color: "#b0b0b0"; font.pixelSize: 12 }
-                            Text { text: "Platform";    color: "#606060"; font.pixelSize: 12 }
+                            Text { text: qsTr("Platform");    color: "#606060"; font.pixelSize: 12 }
                             Text {
                                 text: {
                                     const os = Qt.platform.os
-                                    if (os === "windows") return "Windows"
-                                    if (os === "linux")   return "Linux"
-                                    if (os === "osx")     return "macOS"
+                                    if (os === "windows") return qsTr("Windows")
+                                    if (os === "linux")   return qsTr("Linux")
+                                    if (os === "osx")     return qsTr("macOS")
                                     return os.charAt(0).toUpperCase() + os.slice(1)
                                 }
                                 color: "#b0b0b0"; font.pixelSize: 12
@@ -4052,7 +4198,7 @@ Window {
                             }
                             Text { text: "\u00B7"; color: "#3a3a3a"; font.pixelSize: 11 }
                             Text {
-                                text: "GNU GPL v3.0"
+                                text: qsTr("GNU GPL v3.0")
                                 color: "#4488dd"; font.pixelSize: 11
                                 font.underline: true
                                 MouseArea { anchors.fill: parent; cursorShape: Qt.PointingHandCursor
@@ -4086,7 +4232,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3."
+                            text: qsTr("Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.")
                             color: "#808080"
                             font.pixelSize: 11
                             wrapMode: Text.WordWrap
@@ -4100,7 +4246,7 @@ Window {
                         // Attribution is required by its LGPL-2.1+ / GPL-2+ license.
                         // Full license texts are in THIRD-PARTY-NOTICES.txt.
                         Text {
-                            text: "Third-party software"
+                            text: qsTr("Third-party software")
                             color: "#909090"; font.pixelSize: 12; font.bold: true
                             Layout.bottomMargin: 10
                         }
@@ -4274,7 +4420,7 @@ Window {
 
                         Text {
                             Layout.fillWidth: true
-                            text: "Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation."
+                            text: qsTr("Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.")
                             color: "#484848"; font.pixelSize: 11
                             wrapMode: Text.WordWrap
                             Layout.bottomMargin: 16
@@ -4306,7 +4452,7 @@ Window {
                 spacing: 8
 
                 DlgButton {
-                    text: "Apply"
+                    text: qsTr("Apply")
                     primary: root.hasChanges
                     enabled: root.hasChanges
                     opacity: enabled ? 1.0 : 0.5
@@ -4314,7 +4460,7 @@ Window {
                 }
 
                 DlgButton {
-                    text: "OK"
+                    text: qsTr("OK")
                     primary: false
                     onClicked: { root.applySettings(); root.close() }
                 }
