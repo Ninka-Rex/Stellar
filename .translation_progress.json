@@ -1,0 +1,87 @@
+{
+  "completed": [
+    "ar",
+    "az",
+    "be",
+    "bg",
+    "bn",
+    "bs",
+    "ca",
+    "cs",
+    "cy",
+    "da",
+    "de",
+    "el",
+    "es",
+    "et",
+    "fa",
+    "fi",
+    "fil",
+    "fr",
+    "gl",
+    "gu",
+    "he",
+    "hi",
+    "hr",
+    "hu",
+    "hy",
+    "id",
+    "ig",
+    "it",
+    "ja",
+    "jv",
+    "ka",
+    "ko",
+    "lo",
+    "lt",
+    "mk",
+    "mn",
+    "ms",
+    "my",
+    "nb",
+    "nl",
+    "nl_BE",
+    "pa",
+    "pl",
+    "pt",
+    "pt_BR",
+    "ro",
+    "ru",
+    "sk",
+    "sl",
+    "sq",
+    "sr_Cyrl",
+    "sr_Latn",
+    "sv",
+    "sw",
+    "th",
+    "tr",
+    "ug",
+    "uk",
+    "ur",
+    "uz",
+    "vi"
+  ],
+  "failed_keys": {
+    "zh_CN": [
+      "Networking"
+    ],
+    "zh_TW": [
+      "Networking"
+    ],
+    "am": [
+      "Permanently delete (don't move to trash)"
+    ],
+    "ga": [
+      "Next >",
+      "Start Exploring"
+    ],
+    "ha": [
+      "\nDown: %1  Up: %2",
+      "\nDownloading: %1",
+      "File Name",
+      "Size",
+      "Video Download"
+    ]
+  }
+}

@@ -1,0 +1,5593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TS version="2.1" language="ka_GE" sourcelanguage="en_US">
+    <context>
+        <name>AddExceptionDialog</name>
+        <message>
+            <source>Add to Address Exceptions?</source>
+            <translation>დამატება გამონაკლისებში?</translation>
+        </message>
+        <message>
+            <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
+            <translation>ეს მისამართი ორჯერ გაუქმდა. გსურთ მისი გამონაკლისების სიაში დამატება, რომ Stellar-მა ის ავტომატურად არ ჩაიკეტოს?</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>არა</translation>
+        </message>
+        <message>
+            <source>Add Exception</source>
+            <translation>გამონაკლისის დამატება</translation>
+        </message>
+        <message>
+            <source>Add Address Exception</source>
+            <translation>მისამართის გამონაკლისის დამატება</translation>
+        </message>
+    </context>
+    <context>
+        <name>AddUrlDialog</name>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Use Authorization</source>
+            <translation>ავტორიზაციის გამოყენება</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>შესვლა</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>პაროლი</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Add URL</source>
+            <translation>URL-ის დამატება</translation>
+        </message>
+    </context>
+    <context>
+        <name>AppController</name>
+        <message>
+            <source>Stellar Download Manager v</source>
+            <translation>Stellar Download Manager v</translation>
+        </message>
+        <message>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1 ↑: %2</translation>
+        </message>
+        <message>
+            <source>
+Downloading: %1</source>
+            <translation>ჩამოტვირთვა: %1</translation>
+        </message>
+        <message>
+            <source>  Seeding: %1</source>
+            <translation>გაზიარება: %1</translation>
+        </message>
+        <message>
+            <source>
+Seeding: %1</source>
+            <translation>გაზიარება: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
+            <translation>ჯამი: %1</translation>
+        </message>
+        <message>
+            <source>
+Total: %1</source>
+            <translation>ჯამი: %1</translation>
+        </message>
+        <message>
+            <source>Stellar is shutting down...</source>
+            <translation>Stellar ითიშება...</translation>
+        </message>
+        <message>
+            <source>Stellar is starting up...</source>
+            <translation>Stellar იშვება...</translation>
+        </message>
+        <message>
+            <source>🛡️ Bound to %1</source>
+            <translation>🛡️ მიბმულია %1-თან</translation>
+        </message>
+    </context>
+    <context>
+        <name>BatchDownloadDialog</name>
+        <message>
+            <source>Batch Download</source>
+            <translation>ჯგუფური ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Generate the links here, then continue to the review step.</source>
+            <translation>შექმენით ბმულები აქ, შემდეგ გადადით მიმოხილვის ეტაპზე.</translation>
+        </message>
+        <message>
+            <source>Address:</source>
+            <translation>მისამართი:</translation>
+        </message>
+        <message>
+            <source>Replace asterisk with</source>
+            <translation>ასტერისკის ჩანაცვლება</translation>
+        </message>
+        <message>
+            <source>Numbers</source>
+            <translation>რიცხვები</translation>
+        </message>
+        <message>
+            <source>Letters</source>
+            <translation>ასოები</translation>
+        </message>
+        <message>
+            <source>From:</source>
+            <translation>დან:</translation>
+        </message>
+        <message>
+            <source>To:</source>
+            <translation>მდე:</translation>
+        </message>
+        <message>
+            <source>Wildcard size:</source>
+            <translation>ველდის ზომა:</translation>
+        </message>
+        <message>
+            <source>Preview</source>
+            <translation>წინასწარი ნახვა</translation>
+        </message>
+        <message>
+            <source>First: %1</source>
+            <translation>პირველი: %1</translation>
+        </message>
+        <message>
+            <source>Second: %1</source>
+            <translation>მეორე: %1</translation>
+        </message>
+        <message>
+            <source>Last: %1</source>
+            <translation>ბოლო: %1</translation>
+        </message>
+        <message>
+            <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
+            <translation>დაჯგუფებისთვის გამოიყენეთ რიგის ნაბიჯი OK-ის შემდეგ.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>BatchDownloadListDialog</name>
+        <message>
+            <source>File name</source>
+            <translation>ფაილის სახელი</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>სტატუსი</translation>
+        </message>
+        <message>
+            <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
+            <translation>დამატებამდე გადახედეთ ბმულებს. სვეტები დალაგებადია, გაფართოებადი და გადაადგილებადი.</translation>
+        </message>
+        <message>
+            <source>Replace filenames with wildcard pattern (*)</source>
+            <translation>სახელების ჩანაცვლება ველდის შაბლონით (*)</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ფაილები</translation>
+        </message>
+        <message>
+            <source>Check all</source>
+            <translation>ყველას შემოწმება</translation>
+        </message>
+        <message>
+            <source>Uncheck all</source>
+            <translation>ყველას გაუქმება</translation>
+        </message>
+        <message>
+            <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
+            <translation>მხოლოდ 'ნაპოვნია' მონიშნული ბმულებია არჩევადი. რიგში დამატება OK-ის შემდეგ მოხდება.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Batch download review</source>
+            <translation>ჯგუფური ჩამოტვირთვის მიმოხილვა</translation>
+        </message>
+    </context>
+    <context>
+        <name>BrowserIntegrationDialog</name>
+        <message>
+            <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
+            <translation>დააყენეთ Stellar გაფართოება ბრაუზერში ჩამოტვირთვების შესაჩერებლად და Stellar-ში ავტომატურად გადასაყვანად.</translation>
+        </message>
+        <message>
+            <source>Chrome / Edge / Brave</source>
+            <translation>Chrome / Edge / Brave</translation>
+        </message>
+        <message>
+            <source>Install directly from the Chrome Web Store</source>
+            <translation>პირდაპირ Chrome Web Store-დან დაყენება</translation>
+        </message>
+        <message>
+            <source>Open Link</source>
+            <translation>ბმულის გახსნა</translation>
+        </message>
+        <message>
+            <source>Firefox</source>
+            <translation>Firefox</translation>
+        </message>
+        <message>
+            <source>Install Firefox XPI, no automatic updates</source>
+            <translation>Firefox XPI-ის დაყენება, ავტომატური განახლებების გარეშე</translation>
+        </message>
+        <message>
+            <source>Native Messaging Host</source>
+            <translation>Native Messaging Host</translation>
+        </message>
+        <message>
+            <source>Stellar registers itself automatically so the extension can communicate with it.</source>
+            <translation>Stellar ავტომატურად რეგისტრირდება, რათა გაფართოებამ მასთან კომუნიკაცია შეძლოს.</translation>
+        </message>
+        <message>
+            <source>Registered successfully.</source>
+            <translation>წარმატებით რეგისტრირდა.</translation>
+        </message>
+        <message>
+            <source>Registration failed — see details below.</source>
+            <translation>რეგისტრაცია ვერ მოხერხდა — დეტალები ქვემოთ.</translation>
+        </message>
+        <message>
+            <source>Registering…</source>
+            <translation>რეგისტრაცია…
+</translation>
+        </message>
+        <message>
+            <source>Try again</source>
+            <translation>თავიდან სცადე</translation>
+        </message>
+        <message>
+            <source>Manual installation:</source>
+            <translation>ხელით დაყენება:
+</translation>
+        </message>
+        <message>
+            <source>Run in Command Prompt (no admin required):</source>
+            <translation>გაშვება Command Prompt-ში (ადმინის უფლება არ არის საჭირო):
+</translation>
+        </message>
+        <message>
+            <source>Copy</source>
+            <translation>კოპირება</translation>
+        </message>
+        <message>
+            <source>Copied</source>
+            <translation>დაკოპირებულია</translation>
+        </message>
+        <message>
+            <source>Run in a terminal:</source>
+            <translation>გაშვება ტერმინალში:
+</translation>
+        </message>
+        <message>
+            <source>Browser Extensions</source>
+            <translation>ბრაუზერის გაფართოებები</translation>
+        </message>
+    </context>
+    <context>
+        <name>CategoryModel</name>
+        <message>
+            <source>All Downloads</source>
+            <translation>ყველა ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Video</source>
+            <translation>ვიდეო</translation>
+        </message>
+        <message>
+            <source>Music</source>
+            <translation>მუსიკა</translation>
+        </message>
+        <message>
+            <source>Documents</source>
+            <translation>დოკუმენტები</translation>
+        </message>
+        <message>
+            <source>Compressed</source>
+            <translation>კომპრესირებული</translation>
+        </message>
+        <message>
+            <source>Programs</source>
+            <translation>პროგრამები</translation>
+        </message>
+    </context>
+    <context>
+        <name>ColumnsDialog</name>
+        <message>
+            <source>Columns</source>
+            <translation>სვეტები</translation>
+        </message>
+        <message>
+            <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
+            <translation>შეარჩიეთ სვეტები, რომლებიც ჩამოთვლაში იყოს ნაჩვენები. სვეტების გადასაადგილებლად გამოიყენეთ ზემოთ/ქვემოთ ღილაკები.</translation>
+        </message>
+        <message>
+            <source>Move Up</source>
+            <translation>ზემოთ</translation>
+        </message>
+        <message>
+            <source>Move Down</source>
+            <translation>ქვემოთ</translation>
+        </message>
+        <message>
+            <source>Show</source>
+            <translation>ჩვენება</translation>
+        </message>
+        <message>
+            <source>Hide</source>
+            <translation>დამალვა</translation>
+        </message>
+        <message>
+            <source>Reset</source>
+            <translation>გადატვირთვა</translation>
+        </message>
+        <message>
+            <source>The selected column should be</source>
+            <translation>მითითებული სვეტი უნდა იყოს</translation>
+        </message>
+        <message>
+            <source>pixels wide</source>
+            <translation>პიქსელი სიგანეზე</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+    </context>
+    <context>
+        <name>DeleteConfirmDialog</name>
+        <message>
+            <source>Confirm Delete</source>
+            <translation>წაშლის დადასტურება</translation>
+        </message>
+        <message>
+            <source>Remove download?</source>
+            <translation>გადავშალოთ ჩამოტვირთვა?</translation>
+        </message>
+        <message>
+            <source>Also delete torrent files from disk</source>
+            <translation>ასევე წავშალოთ ტორენტის ფაილები დისკიდან</translation>
+        </message>
+        <message>
+            <source>Also delete file from disk</source>
+            <translation>ასევე წავშალოთ ფაილი დისკიდან</translation>
+        </message>
+        <message>
+            <source>Permanently delete (don't move to trash)</source>
+            <translation>მუდმივად წაშლა (არ გადავიტანოთ კალათაში)</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>წაშლა</translation>
+        </message>
+    </context>
+    <context>
+        <name>DeleteDoneConfirmDialog</name>
+        <message>
+            <source>Delete Completed Downloads</source>
+            <translation>დასრულებული ჩამოტვირთვების წაშლა</translation>
+        </message>
+        <message>
+            <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
+            <translation>დარწმუნებული ხართ, რომ გსურთ ყველა დასრულებული ჩამოტვირთვის წაშლა Stellar-ის სიიდან?</translation>
+        </message>
+        <message>
+            <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
+            <translation>შენიშვნა: ეს მხოლოდ სიიდან წაშლის. ფაილები დისკზე არ წაიშლება.</translation>
+        </message>
+        <message>
+            <source>Delete completed and seeding torrents</source>
+            <translation>დასრულებული და seeding ტორენტების წაშლა</translation>
+        </message>
+        <message>
+            <source>Yes</source>
+            <translation>კი</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>არა</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadCompleteDialog</name>
+        <message>
+            <source>Download complete</source>
+            <translation>ჩამოტვირთვა დასრულდა</translation>
+        </message>
+        <message>
+            <source>Downloaded %1 (%2 Bytes)</source>
+            <translation>ჩამოტვირთულია %1 (%2 ბაიტი)</translation>
+        </message>
+        <message>
+            <source>Address</source>
+            <translation>მისამართი</translation>
+        </message>
+        <message>
+            <source>The file saved as</source>
+            <translation>ფაილი შენახულია როგორც</translation>
+        </message>
+        <message>
+            <source>The file has been moved.</source>
+            <translation>ფაილი გადაადგილებულია.</translation>
+        </message>
+        <message>
+            <source>Open</source>
+            <translation>გახსნა</translation>
+        </message>
+        <message>
+            <source>Open with...</source>
+            <translation>გახსნა...</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>ფოლდერის გახსნა</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Don't show this dialog again</source>
+            <translation>ამ დიალოგის აღარჩვენება</translation>
+        </message>
+        <message>
+            <source>You can re-enable this in Settings → General → Show download complete dialog</source>
+            <translation>გადატვირთვის დიალოგის ჩართვა შეგიძლიათ პარამეტრებში → ზოგადი → გადატვირთვის დიალოგის ჩვენება</translation>
+        </message>
+        <message>
+            <source>Drag the file to move it elsewhere</source>
+            <translation>ფაილის გადასატანად გადაიტანეთ სხვა ადგილას</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadFileInfoDialog</name>
+        <message>
+            <source>Download File Info</source>
+            <translation>ფაილის ინფორმაციის ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Adding a category to Stellar categories list</source>
+            <translation>კატეგორიის დამატება Stellar-ის კატეგორიების სიაში</translation>
+        </message>
+        <message>
+            <source>Category name</source>
+            <translation>კატეგორიის სახელი</translation>
+        </message>
+        <message>
+            <source>Automatically put in this category the following file types:</source>
+            <translation>ამ კატეგორიაში ავტომატურად განათავსეთ შემდეგი ფაილის ტიპები:</translation>
+        </message>
+        <message>
+            <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
+            <translation>შენიშვნა: ფაილის გაფართოებები დაშორებით (მაგ. avi mpg mpeg)</translation>
+        </message>
+        <message>
+            <source>Automatically put in this category the files from the following sites only:</source>
+            <translation>ამ კატეგორიაში ავტომატურად განათავსეთ ფაილები მხოლოდ შემდეგი საიტებიდან:</translation>
+        </message>
+        <message>
+            <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
+            <translation>საიტები დაშორებით. ველდის ნიმუშისთვის გამოიყენეთ täwila</translation>
+        </message>
+        <message>
+            <source>Save future downloads of this category to the following folder:</source>
+            <translation>ამ კატეგორიის მომავალი ჩამოტვირთვები შეინახეთ შემდეგ ფოლდერში:</translation>
+        </message>
+        <message>
+            <source>Remember last save path</source>
+            <translation>ბოლო შენახვის გზის გახსენება</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>შემოწმება...</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>კი</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Category</source>
+            <translation>კატეგორია</translation>
+        </message>
+        <message>
+            <source>Save As</source>
+            <translation>შენახვა როგორც</translation>
+        </message>
+        <message>
+            <source>Remember this path for &quot;%1&quot; category</source>
+            <translation>გაიხსენე ეს გზა „%1“ კატეგორიისთვის</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>აღწერა</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>გადმოწერა მოგვიანებით</translation>
+        </message>
+        <message>
+            <source>Start Download</source>
+            <translation>გადმოწერის დაწყება</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadItem</name>
+        <message>
+            <source>Queued</source>
+            <translation>რიგშია</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>შემოწმება</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>გადმოწერა</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>გადაადგილება</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>გაზიარება</translation>
+        </message>
+        <message>
+            <source>Paused</source>
+            <translation>პაუზა</translation>
+        </message>
+        <message>
+            <source>Assembling...</source>
+            <translation>შეკვრა...</translation>
+        </message>
+        <message>
+            <source>Completed</source>
+            <translation>დასრულდა</translation>
+        </message>
+        <message>
+            <source>Error</source>
+            <translation>შეცდომა</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>უცნობი</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadProgressDialog</name>
+        <message>
+            <source>Download</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Receiving data...</source>
+            <translation>მონაცემების მიღება...</translation>
+        </message>
+        <message>
+            <source>Assembling...</source>
+            <translation>შეკვრა...</translation>
+        </message>
+        <message>
+            <source>Download status</source>
+            <translation>ჩამოტვირთვის სტატუსი</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>სიჩქარის ლიმიტი</translation>
+        </message>
+        <message>
+            <source>Options on completion</source>
+            <translation>დასრულების ოპციები</translation>
+        </message>
+        <message>
+            <source>&gt;&gt;  Send to Tray</source>
+            <translation>&gt;&gt; შენიშვნაში გაგზავნა</translation>
+        </message>
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>სისტემურ ჯაჭვში მინიმიზაცია</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>სტატუსი</translation>
+        </message>
+        <message>
+            <source>File size</source>
+            <translation>ფაილის ზომა</translation>
+        </message>
+        <message>
+            <source>Downloaded</source>
+            <translation>ჩამოტვირთული</translation>
+        </message>
+        <message>
+            <source>%1  ( %2% )</source>
+            <translation>%1 ( %2% )</translation>
+        </message>
+        <message>
+            <source>Transfer rate</source>
+            <translation>გადაცემის სიჩქარე</translation>
+        </message>
+        <message>
+            <source>(Limited %1)</source>
+            <translation>(შეზღუდული %1)</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>დარჩენილი დრო</translation>
+        </message>
+        <message>
+            <source>Resume capability</source>
+            <translation>გაგრძელების შესაძლებლობა</translation>
+        </message>
+        <message>
+            <source>Yes</source>
+            <translation>კი</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>არა</translation>
+        </message>
+        <message>
+            <source>Error detail</source>
+            <translation>შეცდომის დეტალები</translation>
+        </message>
+        <message>
+            <source>Assembling... %1%</source>
+            <translation>შეკრება... %1%</translation>
+        </message>
+        <message>
+            <source>« Hide details</source>
+            <translation>დეტალების დამალვა</translation>
+        </message>
+        <message>
+            <source>» Show details</source>
+            <translation>დეტალების ჩვენება</translation>
+        </message>
+        <message>
+            <source>Start</source>
+            <translation>დაწყება</translation>
+        </message>
+        <message>
+            <source>Pause</source>
+            <translation>პაუზა</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Start positions and download progress by connections</source>
+            <translation>კავშირების პოზიციები და ჩამოტვირთვის პროგრესი</translation>
+        </message>
+        <message>
+            <source>N.</source>
+            <translation>ნ.</translation>
+        </message>
+        <message>
+            <source>Info</source>
+            <translation>ინფო</translation>
+        </message>
+        <message>
+            <source>Limit transfer rate for this download</source>
+            <translation>ჩამოტვირთვის სიჩქარის ლიმიტი</translation>
+        </message>
+        <message>
+            <source>Enable per-download limit</source>
+            <translation>ლიმიტის ჩართვა</translation>
+        </message>
+        <message>
+            <source>Maximum:</source>
+            <translation>მაქსიმუმ:</translation>
+        </message>
+        <message>
+            <source>e.g. 100</source>
+            <translation>მაგ. 100</translation>
+        </message>
+        <message>
+            <source>KB/s</source>
+            <translation>კბ/წმ</translation>
+        </message>
+        <message>
+            <source>Global limit active: %1 KB/s</source>
+            <translation>გლობალური ლიმიტი: %1 კბ/წმ</translation>
+        </message>
+        <message>
+            <source>No global limit set</source>
+            <translation>გლობალური ლიმიტი არ არის</translation>
+        </message>
+        <message>
+            <source>Global speed limiter settings…</source>
+            <translation>გლობალური ლიმიტის პარამეტრები…</translation>
+        </message>
+        <message>
+            <source>Options On Completion</source>
+            <translation>დასრულების ოპციები</translation>
+        </message>
+        <message>
+            <source>Open file when done</source>
+            <translation>ფაილის გახსნა</translation>
+        </message>
+        <message>
+            <source>Open folder when done</source>
+            <translation>საქაღალდის გახსნა</translation>
+        </message>
+        <message>
+            <source>Shutdown computer when done</source>
+            <translation>კომპიუტერის გამორთვა</translation>
+        </message>
+        <message>
+            <source>These options are temporary for this download only and start unchecked each time.</source>
+            <translation>დროებითი ოპციები</translation>
+        </message>
+    </context>
+    <context>
+        <name>DownloadTable</name>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>გადარქმევა</translation>
+        </message>
+        <message>
+            <source>Properties</source>
+            <translation>მახასიათებლები</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>ფაილის გახსნა</translation>
+        </message>
+        <message>
+            <source>Open Folder</source>
+            <translation>საქაღალდის გახსნა</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>გადარქმევა...</translation>
+        </message>
+        <message>
+            <source>Copy Filename</source>
+            <translation>ფაილის სახელის კოპირება</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>.torrent-ის ექსპორტი…</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>გაგრძელება</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>შეჩერება</translation>
+        </message>
+        <message>
+            <source>Remove from Queue</source>
+            <translation>რიგიდან წაშლა</translation>
+        </message>
+        <message>
+            <source>Redownload</source>
+            <translation>თავიდან ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Columns Settings</source>
+            <translation>სვეტების პარამეტრები</translation>
+        </message>
+        <message>
+            <source>File Name</source>
+            <translation>ფაილის სახელი</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>სტატუსი</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>დარჩენილი დრო</translation>
+        </message>
+        <message>
+            <source>Down Speed</source>
+            <translation>↓ სიჩქარე</translation>
+        </message>
+        <message>
+            <source>Up Speed</source>
+            <translation>↑ სიჩქარე</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>სიდერები</translation>
+        </message>
+        <message>
+            <source>Peers</source>
+            <translation>პირები</translation>
+        </message>
+        <message>
+            <source>Ratio</source>
+            <translation>რატიო</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>აიტვირთა</translation>
+        </message>
+        <message>
+            <source>Downloaded</source>
+            <translation>ჩამოიტვირთა</translation>
+        </message>
+        <message>
+            <source>Last try date</source>
+            <translation>ბოლო მცდეობა</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>აღწერა</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>შენახვა</translation>
+        </message>
+        <message>
+            <source>Referer</source>
+            <translation>Referer</translation>
+        </message>
+        <message>
+            <source>Parent web page</source>
+            <translation>მშობელი გვერდი</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>მოლოდინში</translation>
+        </message>
+        <message>
+            <source>%1% (Stopped)</source>
+            <translation>%1% (შეჩერებული)</translation>
+        </message>
+        <message>
+            <source>Checking (%1%)</source>
+            <translation>შემოწმება (%1%)</translation>
+        </message>
+        <message>
+            <source>%n file(s)</source>
+            <translation>%n ფაილი(ები)</translation>
+        </message>
+        <message>
+            <source>No matching downloads.</source>
+            <translation>შესაბამისი ჩამოტვირთვები არ არის.</translation>
+        </message>
+        <message>
+            <source>No downloads yet.
+Click  Add URL  to start.</source>
+            <translation>ჯერ არცერთი ჩამოტვირთვა.
+დააჭირეთ URL-ის დამატებას დასაწყებად.</translation>
+        </message>
+        <message>
+            <source>Loading %n download(s)…</source>
+            <translation>%n ჩამოტვირთვა იტვირთება…</translation>
+        </message>
+        <message>
+            <source>Move to Queue</source>
+            <translation>რიგში გადატანა</translation>
+        </message>
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Magnet ბმულის კოპირება</translation>
+        </message>
+        <message>
+            <source>Copy URL</source>
+            <translation>URL-ის კოპირება</translation>
+        </message>
+        <message>
+            <source>%n selected downloads</source>
+            <translation>%n არჩეული ჩამოტვირთვა</translation>
+        </message>
+    </context>
+    <context>
+        <name>DuplicateDownloadDialog</name>
+        <message>
+            <source>Duplicate Download Link</source>
+            <translation>დუბლიკატის ბმულის დამატება</translation>
+        </message>
+        <message>
+            <source>This file already exists in your download list.</source>
+            <translation>ეს ფაილი უკვე არის თქვენს ჩამოტვირთვების სიაში.</translation>
+        </message>
+        <message>
+            <source>You may choose one of the following options, or press Cancel to skip the download.</source>
+            <translation>შეგიძლიათ აირჩიოთ ერთ-ერთი ვარიანტი ან დააჭიროთ გაუქმება ჩამოტვირთვის გასაუქმებლად.</translation>
+        </message>
+        <message>
+            <source>Add the duplicate with a numbered file name</source>
+            <translation>დუბლიკატის დამატება რიცხვიანი სახელით</translation>
+        </message>
+        <message>
+            <source>Add the duplicate and overwrite the existing file</source>
+            <translation>დუბლიკატის დამატება და არსებული ფაილის ჩანაცვლება</translation>
+        </message>
+        <message>
+            <source>The existing file is complete - show the download complete dialog</source>
+            <translation>არსებული ფაილი დასრულებულია - ჩამოტვირთვის დასრულების დიალოგის ჩვენება</translation>
+        </message>
+        <message>
+            <source>Resume the existing download</source>
+            <translation>არსებული ჩამოტვირთვის გაგრძელება</translation>
+        </message>
+        <message>
+            <source>Remember my selection and don't show this dialog again.
+You may change it in Options → Downloads at a later time.</source>
+            <translation>ჩემი არჩევანის გახსენება და ამ დიალოგის მეორედ არჩვენება. მოგვიანებით შეცვლა შესაძლებელია პარამეტრებში → ჩამოტვირთვები.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>კი</translation>
+        </message>
+    </context>
+    <context>
+        <name>FilePropertiesDialog</name>
+        <message>
+            <source>Move Torrent Data To...</source>
+            <translation>ტორენტის მონაცემების გადატანა...</translation>
+        </message>
+        <message>
+            <source>Move File To...</source>
+            <translation>ფაილის გადატანა...</translation>
+        </message>
+        <message>
+            <source>Start</source>
+            <translation>გაშვება</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>შეჩერება</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>საქაღალდის გახსნა</translation>
+        </message>
+        <message>
+            <source>Open file</source>
+            <translation>ფაილის გახსნა</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>სტატუსი</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>შენახვა</translation>
+        </message>
+        <message>
+            <source>Move</source>
+            <translation>გადატანა</translation>
+        </message>
+        <message>
+            <source>Address</source>
+            <translation>მისამართი</translation>
+        </message>
+        <message>
+            <source>Web page</source>
+            <translation>ვებ-გვერდი</translation>
+        </message>
+        <message>
+            <source>Referer</source>
+            <translation>მითითება</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>აღწერა</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>შესვლა</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>პაროლი</translation>
+        </message>
+        <message>
+            <source>Source</source>
+            <translation>წყარო</translation>
+        </message>
+        <message>
+            <source>Info hash</source>
+            <translation>ინფო ჰეში</translation>
+        </message>
+        <message>
+            <source>Copy</source>
+            <translation>კოპირება</translation>
+        </message>
+        <message>
+            <source>Metadata</source>
+            <translation>მეტამონაცემები</translation>
+        </message>
+        <message>
+            <source>Category</source>
+            <translation>კატეგორია</translation>
+        </message>
+        <message>
+            <source>Note</source>
+            <translation>შენიშვნა</translation>
+        </message>
+        <message>
+            <source>Downloaded</source>
+            <translation>ჩამოტვირთული</translation>
+        </message>
+        <message>
+            <source>Country</source>
+            <translation>ქვეყანა</translation>
+        </message>
+        <message>
+            <source>Port</source>
+            <translation>პორტი</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>ჩატვირთული</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>სიდერები</translation>
+        </message>
+        <message>
+            <source>Message</source>
+            <translation>შეტყობინება</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>შეჩერებული</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>ჩამოტვირთვის პროცესში</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>გადაადგილება</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>სიდინგი</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>რიგში</translation>
+        </message>
+        <message>
+            <source>Problem</source>
+            <translation>პრობლემა</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>ტორენტის პარამეტრები...</translation>
+        </message>
+        <message>
+            <source>ETA: %1</source>
+            <translation>ETA: %1</translation>
+        </message>
+        <message>
+            <source>Seeds: %1 (%2)</source>
+            <translation>სიდერები: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Peers: %1 (%2)</source>
+            <translation>პირები: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>General</source>
+            <translation>ზოგადი</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ფაილები</translation>
+        </message>
+        <message>
+            <source>Swarm Map</source>
+            <translation>სმარმის რუკა</translation>
+        </message>
+        <message>
+            <source>Piece Map</source>
+            <translation>ტეხილების რუკა</translation>
+        </message>
+        <message>
+            <source>Wasted</source>
+            <translation>დაკარგული</translation>
+        </message>
+        <message>
+            <source>Down speed</source>
+            <translation>ჩამოტვირთვის სიჩქარე</translation>
+        </message>
+        <message>
+            <source>Up speed</source>
+            <translation>გადმოტვირთვის სიჩქარე</translation>
+        </message>
+        <message>
+            <source>Connections</source>
+            <translation>კავშირები</translation>
+        </message>
+        <message>
+            <source>Share ratio</source>
+            <translation>გაზიარების რატიო</translation>
+        </message>
+        <message>
+            <source>Pieces</source>
+            <translation>ტეხილები</translation>
+        </message>
+        <message>
+            <source>Availability</source>
+            <translation>ხელმისაწვდომობა</translation>
+        </message>
+        <message>
+            <source>Active time</source>
+            <translation>აქტიური დრო</translation>
+        </message>
+        <message>
+            <source>Seed time</source>
+            <translation>სიდინგის დრო</translation>
+        </message>
+        <message>
+            <source>Speed limit</source>
+            <translation>სიჩქარის ლიმიტი</translation>
+        </message>
+        <message>
+            <source>Verify local data</source>
+            <translation>ადგილობრივი მონაცემების შემოწმება</translation>
+        </message>
+        <message>
+            <source>Down</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Up</source>
+            <translation>აწევა</translation>
+        </message>
+        <message>
+            <source>Span</source>
+            <translation>შუალედი</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>სახელი</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>პროგრესი</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>ფაილის ინფორმაცია არ არის ხელმისაწვდომი</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>ელემენტის გადასახელება</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>შეიყვანეთ ახალი ფაილის ან საქაღალდის სახელი:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>გადასახელება</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>გადასახელება...</translation>
+        </message>
+        <message>
+            <source>No peers connected</source>
+            <translation>პირები არ არის დაკავშირებული</translation>
+        </message>
+        <message>
+            <source>Peer Info</source>
+            <translation>პირის ინფორმაცია</translation>
+        </message>
+        <message>
+            <source>Ban peer</source>
+            <translation>პირის ბლოკირება</translation>
+        </message>
+        <message>
+            <source>Connection</source>
+            <translation>კავშირი</translation>
+        </message>
+        <message>
+            <source>Source: %1</source>
+            <translation>წყარო: %1</translation>
+        </message>
+        <message>
+            <source>Role: %1</source>
+            <translation>როლი: %1</translation>
+        </message>
+        <message>
+            <source>Seeder</source>
+            <translation>სიდი</translation>
+        </message>
+        <message>
+            <source>Ping: %1</source>
+            <translation>პინგი: %1</translation>
+        </message>
+        <message>
+            <source>Progress: %1%</source>
+            <translation>პროგრესი: %1%</translation>
+        </message>
+        <message>
+            <source>Transfer</source>
+            <translation>გადაცემა</translation>
+        </message>
+        <message>
+            <source>Down: %1</source>
+            <translation>↓: %1</translation>
+        </message>
+        <message>
+            <source>Up: %1</source>
+            <translation>↑: %1</translation>
+        </message>
+        <message>
+            <source>Total down: %1</source>
+            <translation>სულ ↓: %1</translation>
+        </message>
+        <message>
+            <source>Total up: %1</source>
+            <translation>სულ ↑: %1</translation>
+        </message>
+        <message>
+            <source>Location</source>
+            <translation>მდებარეობა</translation>
+        </message>
+        <message>
+            <source>Client: %1</source>
+            <translation>კლიენტი: %1</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>თქვენ</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>პირი</translation>
+        </message>
+        <message>
+            <source>Flags</source>
+            <translation>დროშები</translation>
+        </message>
+        <message>
+            <source>Ban Peer</source>
+            <translation>ბლოკი</translation>
+        </message>
+        <message>
+            <source>Legend:</source>
+            <translation>ლეგენდა:</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>არააქტიური</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>ტრექერები</translation>
+        </message>
+        <message>
+            <source>Seed</source>
+            <translation>სიდის</translation>
+        </message>
+        <message>
+            <source>Tracker</source>
+            <translation>ტრექერი</translation>
+        </message>
+        <message>
+            <source>Tier</source>
+            <translation>რანგი</translation>
+        </message>
+        <message>
+            <source>Peers</source>
+            <translation>პირები</translation>
+        </message>
+        <message>
+            <source>0 known peers</source>
+            <translation>0 ცნობილი პირი</translation>
+        </message>
+        <message>
+            <source>UL</source>
+            <translation>UL</translation>
+        </message>
+        <message>
+            <source>Down %1  Up %2</source>
+            <translation>↓ %1 ↑ %2</translation>
+        </message>
+        <message>
+            <source>RTT %1</source>
+            <translation>RTT %1</translation>
+        </message>
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1 ↑ %2</translation>
+        </message>
+        <message>
+            <source>Ping %1  %2% done</source>
+            <translation>პინგი %1 %2% დასრულებული</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>უცნობი</translation>
+        </message>
+        <message>
+            <source>You (this client)</source>
+            <translation>თქვენ (ეს კლიენტი)</translation>
+        </message>
+        <message>
+            <source>No connected peers to plot</source>
+            <translation>გრაფიკისთვის დაკავშირებული პირები არ არის</translation>
+        </message>
+        <message>
+            <source>Waiting for your public IP so the local map position can be shown</source>
+            <translation>ლოკალური რუკის პოზიციის საჩვენებლად საჯარო IP-ის მოლოდინში</translation>
+        </message>
+        <message>
+            <source>Force Reannounce</source>
+            <translation>ძალისხმევით განახლება</translation>
+        </message>
+        <message>
+            <source>Copy URL</source>
+            <translation>URL-ის კოპირება</translation>
+        </message>
+        <message>
+            <source>Remove tracker</source>
+            <translation>ტრეკერის წაშლა</translation>
+        </message>
+        <message>
+            <source>Reannounce All</source>
+            <translation>ყველას განახლება</translation>
+        </message>
+        <message>
+            <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
+            <translation>ტრეკერის URL-ების ჩასმა — ხაზზე ერთი. #-ით დაწყებული ხაზები იგნორირდება.</translation>
+        </message>
+        <message>
+            <source>Add</source>
+            <translation>დამატება</translation>
+        </message>
+        <message>
+            <source>No trackers</source>
+            <translation>ტრეკერები არ არის</translation>
+        </message>
+        <message>
+            <source>Web Seeds</source>
+            <translation>ვებ-სიდი</translation>
+        </message>
+        <message>
+            <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
+            <translation>ვებ-სიდის URL-ების ჩასმა — ხაზზე ერთი. მისაღებია როგორც URL (BEP-19), ისე HTTP (BEP-17) სიდები.</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Type</source>
+            <translation>ტიპი</translation>
+        </message>
+        <message>
+            <source>No web seeds</source>
+            <translation>ვებ-თესლი არ არის</translation>
+        </message>
+        <message>
+            <source>Open in browser</source>
+            <translation>ბრაუზერში გახსნა</translation>
+        </message>
+        <message>
+            <source>Remove seed</source>
+            <translation>თესლის წაშლა</translation>
+        </message>
+        <message>
+            <source>Complete</source>
+            <translation>დასრულებული</translation>
+        </message>
+        <message>
+            <source>Client</source>
+            <translation>კლიენტი</translation>
+        </message>
+        <message>
+            <source>DL</source>
+            <translation>↓</translation>
+        </message>
+        <message>
+            <source>Both</source>
+            <translation>ორივე</translation>
+        </message>
+        <message>
+            <source>Speed</source>
+            <translation>სიჩქარე</translation>
+        </message>
+        <message>
+            <source>Available</source>
+            <translation>ხელმისაწვდომი</translation>
+        </message>
+        <message>
+            <source>Distance: %1</source>
+            <translation>მანძილი: %1</translation>
+        </message>
+        <message>
+            <source>Country: %1</source>
+            <translation>ქვეყანა: %1</translation>
+        </message>
+        <message>
+            <source>%1 known peers</source>
+            <translation>%1 ცნობილი პირი</translation>
+        </message>
+        <message>
+            <source>%n tracker(s)</source>
+            <translation>%n ტრექერი</translation>
+        </message>
+        <message>
+            <source>Tell every tracker you're here right now, instead of waiting for the
+normal announce interval. Useful if your peer count suddenly dropped.</source>
+            <translation>ტრექერს შეატყობინე, რომ აქ ხარ, ნაცვლად რეგულარული განახლებისა. სასარგებლოა, თუ პირების რაოდენობა მკვეთრად შემცირდა.</translation>
+        </message>
+        <message>
+            <source>Reannouncing...</source>
+            <translation>განახლება...</translation>
+        </message>
+        <message>
+            <source>Add trackers…</source>
+            <translation>ტრეკერების დამატება…</translation>
+        </message>
+        <message>
+            <source>%1 added</source>
+            <translation>%1 დამატებულია</translation>
+        </message>
+        <message>
+            <source>%1 added, %2 failed</source>
+            <translation>%1 დამატებულია, %2 ვერ მოხერხდა</translation>
+        </message>
+        <message>
+            <source>%n seed(s)</source>
+            <translation>%n სიდ(ი)</translation>
+        </message>
+        <message>
+            <source>Add seed…</source>
+            <translation>სიდის დამატება…</translation>
+        </message>
+        <message>
+            <source>Fetching from swarm...</source>
+            <translation>სვარმიდან მიღება...</translation>
+        </message>
+        <message>
+            <source>Torrent Properties</source>
+            <translation>ტორენტის მახასიათებლები</translation>
+        </message>
+        <message>
+            <source>Checking files</source>
+            <translation>ფაილების შემოწმება</translation>
+        </message>
+        <message>
+            <source>File Properties</source>
+            <translation>ფაილის მახასიათებლები</translation>
+        </message>
+    </context>
+    <context>
+        <name>FindDialog</name>
+        <message>
+            <source>Find</source>
+            <translation>ძიება</translation>
+        </message>
+        <message>
+            <source>Find:</source>
+            <translation>ძიება:</translation>
+        </message>
+        <message>
+            <source>Search in:</source>
+            <translation>ძიება:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>ფაილის სახელი ან მისი ნაწილი</translation>
+        </message>
+        <message>
+            <source>Description or part of the description</source>
+            <translation>აღწერა ან მისი ნაწილი</translation>
+        </message>
+        <message>
+            <source>Site name / download link / parent web page / referrer</source>
+            <translation>საიტის სახელი / ჩამოტვირთვის ბმული / მშობელი ვებ-გვერდი / რეფერერი</translation>
+        </message>
+        <message>
+            <source>Match case</source>
+            <translation>შეუსაბამებას გათვალისწინება</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>მხოლოდ მთლიანი სტრიქონის შეუსაბამება</translation>
+        </message>
+        <message>
+            <source>No results found.</source>
+            <translation>შედეგები ვერ მოიძებნა</translation>
+        </message>
+        <message>
+            <source>Found 1 result.</source>
+            <translation>1 შედეგი მოიძებნა</translation>
+        </message>
+        <message>
+            <source>Found %1 results.</source>
+            <translation>%1 შედეგი მოიძებნა</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+    </context>
+    <context>
+        <name>GrabberDialog</name>
+        <message>
+            <source>Project saved.</source>
+            <translation>პროექტი შენახულია</translation>
+        </message>
+        <message>
+            <source>Project name and start page are required.</source>
+            <translation>საჭიროა პროექტის სახელი და საწყისი გვერდი</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber – Step %1 of %2: %3</source>
+            <translation>Stellar Grabber – ნაბიჯი %1 %2-დან: %3</translation>
+        </message>
+        <message>
+            <source>Set start page</source>
+            <translation>საწყისი გვერდის დაყენება</translation>
+        </message>
+        <message>
+            <source>Save files to</source>
+            <translation>ფაილების შენახვა</translation>
+        </message>
+        <message>
+            <source>Set explorer filters</source>
+            <translation>ექსპლორერის ფილტრების დაყენება</translation>
+        </message>
+        <message>
+            <source>Set file filters</source>
+            <translation>ფაილის ფილტრების დაყენება</translation>
+        </message>
+        <message>
+            <source>Custom settings</source>
+            <translation>მორგებული პარამეტრები</translation>
+        </message>
+        <message>
+            <source>All images from a web site</source>
+            <translation>ყველა სურათი ვებსაიტიდან</translation>
+        </message>
+        <message>
+            <source>All video from a web site</source>
+            <translation>ყველა ვიდეო საიტზე</translation>
+        </message>
+        <message>
+            <source>All audio from a web site</source>
+            <translation>ყველა აუდიო საიტზე</translation>
+        </message>
+        <message>
+            <source>Complete web site</source>
+            <translation>საიტის სრული ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Include filters</source>
+            <translation>ფილტრების ჩართვა</translation>
+        </message>
+        <message>
+            <source>Exclude filters</source>
+            <translation>ფილტრების გამორთვა</translation>
+        </message>
+        <message>
+            <source>Template name</source>
+            <translation>შაბლონის სახელი</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>შენახვა</translation>
+        </message>
+        <message>
+            <source>New</source>
+            <translation>ახალი</translation>
+        </message>
+        <message>
+            <source>Load</source>
+            <translation>ჩატვირთვა</translation>
+        </message>
+        <message>
+            <source>Save current settings as a template</source>
+            <translation>მიმდინარე პარამეტრების შენახვა შაბლონად</translation>
+        </message>
+        <message>
+            <source>Recent Projects</source>
+            <translation>უახლესი პროექტები</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Grabber-ის პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Project</source>
+            <translation>პროექტი</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Grabber Project Name</source>
+            <translation>პროექტის სახელი</translation>
+        </message>
+        <message>
+            <source>Start page/address</source>
+            <translation>საწყისი გვერდი/მისამართი</translation>
+        </message>
+        <message>
+            <source>Project template</source>
+            <translation>პროექტის შაბლონი</translation>
+        </message>
+        <message>
+            <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
+            <translation>თუ შაბლონს აირჩევთ, მასტერის საჭირო პარამეტრებს ავტომატურად დააყენებს. ნებისმიერ დროს ხელით შეცვლა შეგიძლიათ.</translation>
+        </message>
+        <message>
+            <source>Use authorization</source>
+            <translation>ავტორიზაციის გამოყენება</translation>
+        </message>
+        <message>
+            <source>Advanced &lt;&lt;</source>
+            <translation>დამატებითი &lt;&lt;</translation>
+        </message>
+        <message>
+            <source>Advanced &gt;&gt;</source>
+            <translation>დამატებითი &gt;&gt;</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>შესვლა</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>პაროლი</translation>
+        </message>
+        <message>
+            <source>Press Advanced to enable manual login or to disable a logout page.</source>
+            <translation>ხელით შესვლის ან გასვლის გვერდის გამორთვისთვის „დამატებითი“-ზე დააწკაპუნეთ.</translation>
+        </message>
+        <message>
+            <source>Enter login and password manually at the following web page:</source>
+            <translation>შესვლის მონაცემები ხელით შეიყვანეთ:</translation>
+        </message>
+        <message>
+            <source>Don't open the logout page:</source>
+            <translation>გასვლის გვერდის გახსნა არ მოხდეს:</translation>
+        </message>
+        <message>
+            <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
+            <translation>მრავალი საიტიდან გასვლის გვერდი არ უნდა გაიხსნას. ანისკისი (*) გამოიყენეთ ნიმუშის მითითებისთვის.</translation>
+        </message>
+        <message>
+            <source>Save To</source>
+            <translation>შენახვა</translation>
+        </message>
+        <message>
+            <source>Every file to a folder according to Stellar category of the file</source>
+            <translation>ყოველი ფაილი Stellar-ის კატეგორიის მიხედვით</translation>
+        </message>
+        <message>
+            <source>All files to the folder associated with the following Stellar category:</source>
+            <translation>ყველა ფაილი Stellar-ის კატეგორიის მიხედვით:</translation>
+        </message>
+        <message>
+            <source>All files to the following folder</source>
+            <translation>ყველა ფაილი ამ საქაღალდეში</translation>
+        </message>
+        <message>
+            <source>Use original relative subfolders</source>
+            <translation>ორიგინალური ქვესაქაღალდეების შენარჩუნება</translation>
+        </message>
+        <message>
+            <source>Save Each File By Category</source>
+            <translation>ფაილების შენახვა კატეგორიის მიხედვით</translation>
+        </message>
+        <message>
+            <source>Save All Files To Selected Category</source>
+            <translation>ყველა ფაილის შენახვა შერჩეულ კატეგორიაში</translation>
+        </message>
+        <message>
+            <source>Save All Files To This Folder</source>
+            <translation>ყველა ფაილის შენახვა ამ საქაღალდეში</translation>
+        </message>
+        <message>
+            <source>Convert the links in downloaded html files to local files for offline browsing</source>
+            <translation>HTML-ში ბმულების ადგილობრივ ფაილებად გარდაქმნა</translation>
+        </message>
+        <message>
+            <source>Overwrite existing files</source>
+            <translation>არსებული ფაილების გადაწერა</translation>
+        </message>
+        <message>
+            <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
+            <translation>დახურვისას შეამოწმებული ფაილების Stellar-ის სიაში დამატება</translation>
+        </message>
+        <message>
+            <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
+            <translation>აქ მითითებული გვერდების მოძიება. შემდეგ ეტაპზე ფილტრების დაყენება.</translation>
+        </message>
+        <message>
+            <source>Explore the whole site</source>
+            <translation>საიტის სრული მოძიება</translation>
+        </message>
+        <message>
+            <source>Explore the specified number of link levels:</source>
+            <translation>ბმულების დონეების რაოდენობა:</translation>
+        </message>
+        <message>
+            <source>levels within the base site</source>
+            <translation>ბაზის საიტის ფარგლებში</translation>
+        </message>
+        <message>
+            <source>levels on other sites</source>
+            <translation>სხვა საიტებზე</translation>
+        </message>
+        <message>
+            <source>What is the number of link levels?</source>
+            <translation>კავშირის დონეების რაოდენობა?</translation>
+        </message>
+        <message>
+            <source>Ignore popup windows</source>
+            <translation>ფანჯრების უგულებელყოფა</translation>
+        </message>
+        <message>
+            <source>Don't explore parent directories</source>
+            <translation>მშობელი დირექტორიების გამოტოვება</translation>
+        </message>
+        <message>
+            <source>Explore all sites within the main domain</source>
+            <translation>მთავარი დომენის ყველა საიტის დათვალიერება</translation>
+        </message>
+        <message>
+            <source>Process JavaScript</source>
+            <translation>JavaScript-ის დამუშავება</translation>
+        </message>
+        <message>
+            <source>Explore web pages within the following paths/domains only:</source>
+            <translation>მხოლოდ შემდეგ გზებზე/დომენებზე დათვალიერება:</translation>
+        </message>
+        <message>
+            <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
+            <translation>შეიყვანეთ ერთი გზა ან დომენი სტრიქონში, ან გამოიყენეთ ნახევარმძიმე. * — ნებისმიერი სიმბოლო. მაგ: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
+        </message>
+        <message>
+            <source>Don't explore web pages within the following paths/domains:</source>
+            <translation>არ დათვალიეროთ შემდეგ გზებზე/დომენებზე:</translation>
+        </message>
+        <message>
+            <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
+            <translation>შეიყვანეთ ერთი გზა ან დომენი სტრიქონში, ან გამოიყენეთ ნახევარმძიმე. * — ნებისმიერი სიმბოლო. მაგ: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
+        </message>
+        <message>
+            <source>Download the following files (file types)</source>
+            <translation>ფაილების გადმოწერა (ტიპები)</translation>
+        </message>
+        <message>
+            <source>Include Filters...</source>
+            <translation>ფილტრების ჩართვა...</translation>
+        </message>
+        <message>
+            <source>Don't download the following files (file types)</source>
+            <translation>არ გადმოწეროთ შემდეგი ფაილები (ტიპები)</translation>
+        </message>
+        <message>
+            <source>Exclude Filters...</source>
+            <translation>ფილტრების გამორიცხვა...</translation>
+        </message>
+        <message>
+            <source>Search files on this site only</source>
+            <translation>მხოლოდ ამ საიტზე ძიება</translation>
+        </message>
+        <message>
+            <source>Hide duplicate files found in different locations</source>
+            <translation>დუბლიკატების დამალვა სხვადასხვა ადგილას</translation>
+        </message>
+        <message>
+            <source>Start downloading all matched files at once</source>
+            <translation>ყველა შესაბამისი ფაილის ჩამოტვირთვის დაწყება</translation>
+        </message>
+        <message>
+            <source>Download if file size is</source>
+            <translation>ჩამოტვირთვა თუ ფაილის ზომაა</translation>
+        </message>
+        <message>
+            <source>Not less than</source>
+            <translation>არანაკლებ</translation>
+        </message>
+        <message>
+            <source>Bytes</source>
+            <translation>ბაიტი</translation>
+        </message>
+        <message>
+            <source>Not more than</source>
+            <translation>არაუმეტეს</translation>
+        </message>
+        <message>
+            <source>Download the files located within the following paths/domains only:</source>
+            <translation>ჩამოტვირთე მხოლოდ ფაილები შემდეგ პაธებში/დომენებში:</translation>
+        </message>
+        <message>
+            <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
+            <translation>გამოიყენე * როგორც wildcard. შეიყვანე ერთი პათი ან დომენი სტრიქონში, ან გამოყოფილი ნقطადასმით. მაგ: *.google.com ; cdn.example.com ; /downloads/*</translation>
+        </message>
+        <message>
+            <source>Don't download the files located within the following paths/domains:</source>
+            <translation>ნუ ჩამოტვირთავ ფაილებს შემდეგ პაธებში/დომენებიდან:</translation>
+        </message>
+        <message>
+            <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
+            <translation>გამოიყენე * როგორც wildcard. შეიყვანე ერთი პათი ან დომენი სტრიქონში, ან გამოყოფილი ნقطადასმით. მაგ: *.doubleclick.net ; /ads/* ; /tracking</translation>
+        </message>
+        <message>
+            <source>Comment</source>
+            <translation>კომენტარი</translation>
+        </message>
+        <message>
+            <source>Save Project</source>
+            <translation>პროექტის შენახვა</translation>
+        </message>
+        <message>
+            <source>Delete Project</source>
+            <translation>პროექტის წაშლა</translation>
+        </message>
+        <message>
+            <source>&lt; Back</source>
+            <translation>&lt; უკან</translation>
+        </message>
+        <message>
+            <source>Next &gt;</source>
+            <translation>შემდეგი &gt;</translation>
+        </message>
+        <message>
+            <source>Start Exploring</source>
+            <translation>მოგზაურობის დაწყება</translation>
+        </message>
+    </context>
+    <context>
+        <name>GrabberIncludeFiltersDialog</name>
+        <message>
+            <source>Filter name</source>
+            <translation>ფილტრის სახელი</translation>
+        </message>
+        <message>
+            <source>Mask</source>
+            <translation>ფაილის ფორმატი</translation>
+        </message>
+        <message>
+            <source>Add</source>
+            <translation>დამატება</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>რედაქტირება</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Edit filter</source>
+            <translation>ფილტრის რედაქტირება</translation>
+        </message>
+        <message>
+            <source>New filter</source>
+            <translation>ახალი ფილტი</translation>
+        </message>
+        <message>
+            <source>Category</source>
+            <translation>კატეგორია</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>შენახვა</translation>
+        </message>
+    </context>
+    <context>
+        <name>GrabberProjectPickerDialog</name>
+        <message>
+            <source>Load Grabber Project</source>
+            <translation>პროექტის ჩატვირთვა</translation>
+        </message>
+        <message>
+            <source>Saved projects</source>
+            <translation>შენახული პროექტები</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>GrabberResultsDialog</name>
+        <message>
+            <source>Project</source>
+            <translation>პროექტი</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Running</source>
+            <translation>მუშაობს</translation>
+        </message>
+        <message>
+            <source>Idle</source>
+            <translation>მზად არის</translation>
+        </message>
+        <message>
+            <source>%1 files found</source>
+            <translation>%1 ფაილი ნაპოვნია</translation>
+        </message>
+        <message>
+            <source>%1 checked</source>
+            <translation>%1 შემოწმებული</translation>
+        </message>
+        <message>
+            <source>Exploring…</source>
+            <translation>მოძრაობს…</translation>
+        </message>
+        <message>
+            <source>Press Start Exploring to scan the URL.</source>
+            <translation>დააჭირეთ „დაწყებას“ URL-ის შესასკანერებლად.</translation>
+        </message>
+        <message>
+            <source>Start
+Exploring</source>
+            <translation>დაწყება</translation>
+        </message>
+        <message>
+            <source>File Name</source>
+            <translation>ფაილის სახელი</translation>
+        </message>
+        <message>
+            <source>File Type</source>
+            <translation>ფაილის ტიპი</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>სტატუსი</translation>
+        </message>
+        <message>
+            <source>Link Text</source>
+            <translation>შემაკავშირებელი ტექსტი</translation>
+        </message>
+        <message>
+            <source>Download from</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>შენახვა</translation>
+        </message>
+        <message>
+            <source>Check selected</source>
+            <translation>მონიშნულის შემოწმება</translation>
+        </message>
+        <message>
+            <source>Uncheck selected</source>
+            <translation>მონიშნულის გაუქმება</translation>
+        </message>
+        <message>
+            <source>Edit current project</source>
+            <translation>მიმდინარე პროექტის რედაქტირება</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Grabber-ის პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Stop
+Exploring</source>
+            <translation>შეჩერება
+მოძრაობა</translation>
+        </message>
+        <message>
+            <source>Start
+Downloading</source>
+            <translation>დაწყება
+ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Stop
+Downloads</source>
+            <translation>შეჩერება
+ჩამოტვირთვები</translation>
+        </message>
+        <message>
+            <source>Update
+All</source>
+            <translation>განახლება
+ყველა</translation>
+        </message>
+        <message>
+            <source>Schedule
+Project</source>
+            <translation>გრაფიკი
+პროექტი</translation>
+        </message>
+        <message>
+            <source>Statistics</source>
+            <translation>სტატისტიკა</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>კატეგორიები</translation>
+        </message>
+        <message>
+            <source>All Files</source>
+            <translation>ყველა ფაილი</translation>
+        </message>
+        <message>
+            <source>Link View</source>
+            <translation>ბმულის ხედი</translation>
+        </message>
+        <message>
+            <source>Folder View</source>
+            <translation>ფაილების ხედი</translation>
+        </message>
+        <message>
+            <source>No files found yet</source>
+            <translation>ფაილები ჯერ არ არის</translation>
+        </message>
+        <message>
+            <source>← Back</source>
+            <translation>← უკან</translation>
+        </message>
+        <message>
+            <source>%1 files</source>
+            <translation>%1 ფაილი</translation>
+        </message>
+        <message>
+            <source>%1 / %2 (filtered)</source>
+            <translation>%1 / %2 (ფილტრი)</translation>
+        </message>
+        <message>
+            <source>Add checked to download list</source>
+            <translation>შეამოწმებული ჩამოტვირთვის სიაში დამატება</translation>
+        </message>
+        <message>
+            <source>Stellar Grabber</source>
+            <translation>Stellar Grabber</translation>
+        </message>
+    </context>
+    <context>
+        <name>GrabberScheduleDialog</name>
+        <message>
+            <source>Schedule the grabber project</source>
+            <translation>პროექტის გრაფიკის დაგეგმვა</translation>
+        </message>
+        <message>
+            <source>Project:</source>
+            <translation>პროექტი:</translation>
+        </message>
+        <message>
+            <source>Enable project schedule</source>
+            <translation>პროექტის გრაფიკის ჩართვა</translation>
+        </message>
+        <message>
+            <source>Step 1.  Select type</source>
+            <translation>ნაბიჯი 1. ტიპის არჩევა</translation>
+        </message>
+        <message>
+            <source>One-time exploring/downloading</source>
+            <translation>ერთჯერადი სანახავი/ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>პერიოდული სინქრონიზაცია</translation>
+        </message>
+        <message>
+            <source>Step 2.  Select action</source>
+            <translation>ნაბიჯი 2. მოქმედების არჩევა</translation>
+        </message>
+        <message>
+            <source>Explore only</source>
+            <translation>მხოლოდ სანახავად</translation>
+        </message>
+        <message>
+            <source>Explore site and download matched files</source>
+            <translation>ვებგვერდის მოძიება და ფაილების ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Download checked files</source>
+            <translation>მონიშნული ფაილების ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>After completion</source>
+            <translation>დასრულების შემდეგ</translation>
+        </message>
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Stellar-ის დახურვა</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>კომპიუტერის გამორთვა</translation>
+        </message>
+        <message>
+            <source>Shut down</source>
+            <translation>გამორთვა</translation>
+        </message>
+        <message>
+            <source>Restart</source>
+            <translation>გადატვირთვა</translation>
+        </message>
+        <message>
+            <source>Sleep</source>
+            <translation>ძილი</translation>
+        </message>
+        <message>
+            <source>Hibernate</source>
+            <translation>ჰიბერნაცია</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>პროცესების ძალით დასრულება</translation>
+        </message>
+        <message>
+            <source>Step 3.  Schedule</source>
+            <translation>ნაბიჯი 3. დაგეგმვა</translation>
+        </message>
+        <message>
+            <source>Start download at</source>
+            <translation>ჩამოტვირთვის დაწყება</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>ერთხელ</translation>
+        </message>
+        <message>
+            <source>January</source>
+            <translation>იანვარი</translation>
+        </message>
+        <message>
+            <source>February</source>
+            <translation>თებერვალი</translation>
+        </message>
+        <message>
+            <source>March</source>
+            <translation>მარტი</translation>
+        </message>
+        <message>
+            <source>April</source>
+            <translation>აპრილი</translation>
+        </message>
+        <message>
+            <source>May</source>
+            <translation>მაისი</translation>
+        </message>
+        <message>
+            <source>June</source>
+            <translation>ივნისი</translation>
+        </message>
+        <message>
+            <source>July</source>
+            <translation>ივლისი</translation>
+        </message>
+        <message>
+            <source>August</source>
+            <translation>აგვისტო</translation>
+        </message>
+        <message>
+            <source>September</source>
+            <translation>სექტემბერი</translation>
+        </message>
+        <message>
+            <source>October</source>
+            <translation>ოქტომბერი</translation>
+        </message>
+        <message>
+            <source>November</source>
+            <translation>ნოემბერი</translation>
+        </message>
+        <message>
+            <source>December</source>
+            <translation>დეკემბერი</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>დღიური</translation>
+        </message>
+        <message>
+            <source>Sunday</source>
+            <translation>კვირა</translation>
+        </message>
+        <message>
+            <source>Thursday</source>
+            <translation>ხუთშაბათი</translation>
+        </message>
+        <message>
+            <source>Monday</source>
+            <translation>ორშაბათი</translation>
+        </message>
+        <message>
+            <source>Friday</source>
+            <translation>პარასკევი</translation>
+        </message>
+        <message>
+            <source>Tuesday</source>
+            <translation>მარტვილი</translation>
+        </message>
+        <message>
+            <source>Saturday</source>
+            <translation>შაბათი</translation>
+        </message>
+        <message>
+            <source>Wednesday</source>
+            <translation>სამშაბათი</translation>
+        </message>
+        <message>
+            <source>Repeat every</source>
+            <translation>განმეორება ყოველ</translation>
+        </message>
+        <message>
+            <source>hours</source>
+            <translation>საათში</translation>
+        </message>
+        <message>
+            <source>minutes</source>
+            <translation>წუთში</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>ჩამოტვირთვის შეჩერება</translation>
+        </message>
+        <message>
+            <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
+            <translation>შენიშვნა: Stellar უნდა იყოს გაშვებული სისტემის საცავში განსაზღვრულ დროს დაგეგმილი პროექტის დასაწყებად.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>GrabberSettingsDialog</name>
+        <message>
+            <source>Settings of Stellar Grabber</source>
+            <translation>Stellar Grabber-ის პარამეტრები</translation>
+        </message>
+        <message>
+            <source>files to explore at the same time (1 to 10)</source>
+            <translation>ფაილები ერთდროულად (1-დან 10-მდე)</translation>
+        </message>
+        <message>
+            <source>files to download at the same time (1 to 10)</source>
+            <translation>ჩამოტვირთვის ერთდროული ფაილები (1-დან 10-მდე)</translation>
+        </message>
+        <message>
+            <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
+            <translation>გთხოვთ გაითვალისწინოთ, რომ ვებ-სერვერმა შეიძლება უარყოს მოთხოვნები, თუ ერთდროულად ბევრ ფაილს გახსნით ან ჩამოტვირთავთ.</translation>
+        </message>
+        <message>
+            <source>Use link texts as download descriptions when adding files to Stellar main list</source>
+            <translation>შეუყვანეთ ბმულის ტექსტი ჩამოტვირთვის აღწერად Stellar-ის მთავარ სიაში ფაილების დამატებისას</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+    </context>
+    <context>
+        <name>GrabberStatisticsDialog</name>
+        <message>
+            <source>Grabber Statistics</source>
+            <translation>Grabber-ის სტატისტიკა</translation>
+        </message>
+        <message>
+            <source>Status: %1</source>
+            <translation>სტატუსი: %1</translation>
+        </message>
+        <message>
+            <source>Idle</source>
+            <translation>საწვავი</translation>
+        </message>
+        <message>
+            <source>Web pages processed</source>
+            <translation>დამუშავებული ვებ-გვერდები</translation>
+        </message>
+        <message>
+            <source>Simple</source>
+            <translation>მარტივი</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>დამატებითი</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ფაილები</translation>
+        </message>
+        <message>
+            <source>Total</source>
+            <translation>ჯამი</translation>
+        </message>
+        <message>
+            <source>Explored</source>
+            <translation>გადახედული</translation>
+        </message>
+        <message>
+            <source>Matched</source>
+            <translation>შეუსაბამობა</translation>
+        </message>
+        <message>
+            <source>Downloaded</source>
+            <translation>ჩამოტვირთული</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+    </context>
+    <context>
+        <name>Main</name>
+        <message>
+            <source>Tasks</source>
+            <translation>დავალებები</translation>
+        </message>
+        <message>
+            <source>Add URL…</source>
+            <translation>URL-ის დამატება…</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM ჩამოტვირთვები</translation>
+        </message>
+        <message>
+            <source>This YouTube download looks like it needs login cookies.</source>
+            <translation>ამ YouTube ჩამოტვირთვისთვის შესაძლოა საჭირო იყოს შესვლის cookies.</translation>
+        </message>
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Cookies ბრაუზერიდან:</translation>
+        </message>
+        <message>
+            <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
+            <translation>Stellar თავიდან სცადებს იმავე yt-dlp ელემენტს ამ ბრაუზერის cookies-ით.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Retry Download</source>
+            <translation>თავიდან ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Open Stellar</source>
+            <translation>Stellar-ის გახსნა</translation>
+        </message>
+        <message>
+            <source>GitHub</source>
+            <translation>GitHub</translation>
+        </message>
+        <message>
+            <source>Speed Limiter: Turn On</source>
+            <translation>სიჩქარის ლიმიტი: ჩართვა</translation>
+        </message>
+        <message>
+            <source>Speed Limiter: Turn Off</source>
+            <translation>სიჩქარის ლიმიტი: გამორთვა</translation>
+        </message>
+        <message>
+            <source>Speed Limiter Settings…</source>
+            <translation>სიჩქარის ლიმიტის პარამეტრები…</translation>
+        </message>
+        <message>
+            <source>Exit Stellar</source>
+            <translation>Stellar-დან გამოსვლა</translation>
+        </message>
+        <message>
+            <source>Torrent files (*.torrent)</source>
+            <translation>Torrent ფაილები (*.torrent)</translation>
+        </message>
+        <message>
+            <source>All files (*)</source>
+            <translation>ყველა ფაილი (*)</translation>
+        </message>
+        <message>
+            <source>Total: %1</source>
+            <translation>სულ: %1</translation>
+        </message>
+        <message>
+            <source>Completed: %1</source>
+            <translation>დასრულებული: %1</translation>
+        </message>
+        <message>
+            <source>Downloading: %1</source>
+            <translation>ჩამოტვირთვა: %1</translation>
+        </message>
+        <message>
+            <source>Queued: %1</source>
+            <translation>რიგში: %1</translation>
+        </message>
+        <message>
+            <source>Overall: %1%</source>
+            <translation>ზოგადად: %1%</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>შეჩერება</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>გაგრძელება</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Enable BitTorrent Support?</source>
+            <translation>BitTorrent მხარდაჭერის ჩართვა?</translation>
+        </message>
+        <message>
+            <source>BitTorrent support is currently disabled.
+
+When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
+
+Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
+
+It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
+            <translation>BitTorrent მხარდაჭერა ამჟამად გამორთულია.
+
+ტორენტის ჩამოტვირთვისას თქვენი IP მისამართი ხილული ხდება სხვა პირებისთვის და თქვენ ამავე დროს ატვირთავთ (seed) მონაცემებს.
+
+BitTorrent-ით გაზიარებული ყველაფერი თქვენი პასუხისმგებლობაა. დარწმუნდით, რომ გაქვთ უფლება გავრცელოთ კონტენტი.
+
+მკაცრად გირჩევთ Stellar-ის VPN ინტერფეისთან დაკავშირებას და VPN-ის აქტივობის შემოწმებას ტორენტების გამოყენებამდე, რათა დაცული იყოს თქვენი IP მისამართი.</translation>
+        </message>
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>გესმის, ჩართვა</translation>
+        </message>
+        <message>
+            <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
+
+You can turn this off in Settings → Downloads.</source>
+            <translation>დააჭირეთ 'მოგვიანებით ჩამოტვირთვა'-ს, მაგრამ Stellar-მა უკვე დაიწყო ფაილის ნაწილის ჩამოტვირთვა. Stellar ყოველთვის იწყებს ჩამოტვირთვას &quot;ჩამოტვირთვის ინფორმაცია&quot; დიალოგის გამოჩენისას.
+
+შეგიძლიათ გამორთოთ ეს პარამეტრებში → ჩამოტვირთვები.</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>კარგია</translation>
+        </message>
+        <message>
+            <source>The file “%1” could not be downloaded.</source>
+            <translation>ფაილის „%1“ ჩამოტვირთვა ვერ მოხერხდა.</translation>
+        </message>
+        <message>
+            <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
+            <translation>სერვერმა დააბრუნა ვებგვერდი მოსალოდნელი ფაილის ნაცვლად. ზოგიერთი საიტი ფაილებს იშვიათად აშორებს Stellar-ის მეტამონაცემების მოთხოვნის შემდეგ.</translation>
+        </message>
+        <message>
+            <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
+Stellar Options → Browser → Bypass Download Interception</source>
+            <translation>ბრაუზერისთვის პირდაპირ ჩამოტვირთვისთვის, ღილაკზე დაჭერისას დააკავშირეთ Alt, Ctrl ან Shift. გასაწესებლად: Stellar Options → Browser → Bypass Download Interception</translation>
+        </message>
+        <message>
+            <source>Open Browser Settings</source>
+            <translation>ბრაუზერის პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Version %1 is available.</source>
+            <translation>ხელმისაწვდომია ვერსია %1</translation>
+        </message>
+        <message>
+            <source>Update Now</source>
+            <translation>განახლება</translation>
+        </message>
+        <message>
+            <source>Add Torrent File…</source>
+            <translation>ტორენტის ფაილის დამატება…</translation>
+        </message>
+        <message>
+            <source>Add Batch URLs…</source>
+            <translation>URL-ების პარალელური დამატება…</translation>
+        </message>
+        <message>
+            <source>Exit</source>
+            <translation>გასვლა</translation>
+        </message>
+        <message>
+            <source>File</source>
+            <translation>ფაილი</translation>
+        </message>
+        <message>
+            <source>Open Folder</source>
+            <translation>საქაღალდის გახსნა</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>ფაილის გახსნა</translation>
+        </message>
+        <message>
+            <source>Download Now</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Stop Download</source>
+            <translation>შეჩერება</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Redownload</source>
+            <translation>თავიდან ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>.torrent-ის ექსპორტი…</translation>
+        </message>
+        <message>
+            <source>Downloads</source>
+            <translation>ჩამოტვირთვები</translation>
+        </message>
+        <message>
+            <source>Pause all</source>
+            <translation>ყველას პაუზა</translation>
+        </message>
+        <message>
+            <source>Stop all</source>
+            <translation>ყველას გაჩერება</translation>
+        </message>
+        <message>
+            <source>Delete all completed</source>
+            <translation>დასრულებულების წაშლა</translation>
+        </message>
+        <message>
+            <source>Find…</source>
+            <translation>ძიება…</translation>
+        </message>
+        <message>
+            <source>Find Next</source>
+            <translation>შემდეგის ძიება</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>გრაფიკი</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>რიგის დაწყება</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>რიგის შეჩერება</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>სიჩქარის ლიმიტი</translation>
+        </message>
+        <message>
+            <source>Turn On</source>
+            <translation>ჩართვა</translation>
+        </message>
+        <message>
+            <source>Turn Off</source>
+            <translation>გამორთვა</translation>
+        </message>
+        <message>
+            <source>Settings…</source>
+            <translation>პარამეტრები…</translation>
+        </message>
+        <message>
+            <source>Options…</source>
+            <translation>მორგება…</translation>
+        </message>
+        <message>
+            <source>View</source>
+            <translation>ხედვა</translation>
+        </message>
+        <message>
+            <source>Hide Categories</source>
+            <translation>კატეგორიების დამალვა</translation>
+        </message>
+        <message>
+            <source>Show Categories</source>
+            <translation>კატეგორიების ჩვენება</translation>
+        </message>
+        <message>
+            <source>Show Search Engine</source>
+            <translation>ძიების ძრავის ჩვენება</translation>
+        </message>
+        <message>
+            <source>Show RSS Reader</source>
+            <translation>RSS რიდერის ჩვენება</translation>
+        </message>
+        <message>
+            <source>Statistics…</source>
+            <translation>სტატისტიკა…</translation>
+        </message>
+        <message>
+            <source>Arrange Files</source>
+            <translation>ფაილების დალაგება</translation>
+        </message>
+        <message>
+            <source>By Order Of Addition</source>
+            <translation>დამატების თანმიმდევრობით</translation>
+        </message>
+        <message>
+            <source>By File Name</source>
+            <translation>ფაილის სახელით</translation>
+        </message>
+        <message>
+            <source>By Size</source>
+            <translation>ზომით</translation>
+        </message>
+        <message>
+            <source>By Status</source>
+            <translation>სტატუსით</translation>
+        </message>
+        <message>
+            <source>By Time Left</source>
+            <translation>დარჩენილი დროით</translation>
+        </message>
+        <message>
+            <source>By Transfer Rate</source>
+            <translation>გადაცემის სიჩქარით</translation>
+        </message>
+        <message>
+            <source>By Last Try Date</source>
+            <translation>ბოლო მცდელობის თარიღით</translation>
+        </message>
+        <message>
+            <source>By Description</source>
+            <translation>აღწერით</translation>
+        </message>
+        <message>
+            <source>By Save Path</source>
+            <translation>შენახვის გზით</translation>
+        </message>
+        <message>
+            <source>By Referer</source>
+            <translation>მითითებულმა რეფერერმა</translation>
+        </message>
+        <message>
+            <source>By Parent Web Page</source>
+            <translation>მშობელი ვებ-გვერდით</translation>
+        </message>
+        <message>
+            <source>Columns…</source>
+            <translation>სვეტები…</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Preferences…</source>
+            <translation>პარამეტრები…</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Open RSS Reader</source>
+            <translation>RSS მკითხველის გახსნა</translation>
+        </message>
+        <message>
+            <source>Refresh All Feeds</source>
+            <translation>ყველა ფიდის განახლება</translation>
+        </message>
+        <message>
+            <source>Mark All Items Read</source>
+            <translation>ყველა ელემენტის წაკითხულად მონიშვნა</translation>
+        </message>
+        <message>
+            <source>Help</source>
+            <translation>დახმარება</translation>
+        </message>
+        <message>
+            <source>Check for Updates</source>
+            <translation>განახლებების შემოწმება</translation>
+        </message>
+        <message>
+            <source>Drop .torrent file to open torrent metadata</source>
+            <translation>ტორენტის მეტამონაცემების გასახსნელად ჩამოაგდეთ .torrent ფაილი</translation>
+        </message>
+        <message>
+            <source>Find:</source>
+            <translation>ძიება:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>ძიება</translation>
+        </message>
+        <message>
+            <source>Settings ▾</source>
+            <translation>პარამეტრები ▾</translation>
+        </message>
+        <message>
+            <source>Search in:</source>
+            <translation>ძიება:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>ფაილის სახელი ან ნაწილი</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>აღწერა</translation>
+        </message>
+        <message>
+            <source>URL / referrer / parent web page</source>
+            <translation>URL / რეფერერი / მშობელი ვებ-გვერდი</translation>
+        </message>
+        <message>
+            <source>Match case</source>
+            <translation>დიდი/პატარა ასოების გათვალისწინება</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>მხოლოდ მთლიანი სტრიქონის თანხვედრა</translation>
+        </message>
+        <message>
+            <source>Move sidebar to left</source>
+            <translation>გვერდითა პანელის მარცხნივ გადატანა</translation>
+        </message>
+        <message>
+            <source>Move sidebar to right</source>
+            <translation>გვერდითა პანელის მარჯვნივ გადატანა</translation>
+        </message>
+        <message>
+            <source>Reset sidebar width</source>
+            <translation>გვერდითა პანელის სიგანის აღდგენა</translation>
+        </message>
+        <message>
+            <source>About Stellar</source>
+            <translation>Stellar-ის შესახებ</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>ბრაუზერთან ინტეგრაცია</translation>
+        </message>
+        <message>
+            <source>Browser Extensions…</source>
+            <translation>ბრაუზერის გაფართოებები…</translation>
+        </message>
+        <message>
+            <source>Browser Settings…</source>
+            <translation>ბრაუზერის პარამეტრები…</translation>
+        </message>
+        <message>
+            <source>Stellar</source>
+            <translation>Stellar</translation>
+        </message>
+        <message>
+            <source>Browser Cookies Required</source>
+            <translation>საჭიროა ბრაუზერის cookies</translation>
+        </message>
+        <message>
+            <source>Add Torrent File</source>
+            <translation>ტორენტის ფაილის დამატება</translation>
+        </message>
+        <message>
+            <source>Export .torrent Files</source>
+            <translation>.torrent ფაილების ექსპორტი</translation>
+        </message>
+        <message>
+            <source>Channel Download Progress</source>
+            <translation>არხის ჩამოტვირთვის პროგრესი</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>გადადგილი ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>File No Longer Available</source>
+            <translation>ფაილი აღარ არის ხელმისაწვდომი</translation>
+        </message>
+        <message>
+            <source>Quick Update</source>
+            <translation>სწრაფი განახლება</translation>
+        </message>
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar ჩამოტვირთვის მენეჯერი</translation>
+        </message>
+        <message>
+            <source>Stellar  ↓ %1  ↑ %2</source>
+            <translation>Stellar ↓ %1 ↑ %2</translation>
+        </message>
+        <message>
+            <source>New version of Stellar Download Manager is available</source>
+            <translation>ხელმისაწვდომია Stellar-ის ახალი ვერსია</translation>
+        </message>
+        <message>
+            <source>What's New in Stellar</source>
+            <translation>რაც ახალია Stellar-ში</translation>
+        </message>
+    </context>
+    <context>
+        <name>QueueSelectionDialog</name>
+        <message>
+            <source>Queue Selection</source>
+            <translation>რიგის არჩევა</translation>
+        </message>
+        <message>
+            <source>Put files into a queue?</source>
+            <translation>ფაილების რიგში ჩასმა?</translation>
+        </message>
+        <message>
+            <source>Choose an existing queue or create a new one.</source>
+            <translation>აირჩიეთ არსებული რიგი ან შექმენით ახალი.</translation>
+        </message>
+        <message>
+            <source>Queue</source>
+            <translation>რიგი</translation>
+        </message>
+        <message>
+            <source>Start queue processing</source>
+            <translation>რიგის დამუშავების დაწყება</translation>
+        </message>
+        <message>
+            <source>Don't ask me again</source>
+            <translation>არ მეკითხოთ აღარ</translation>
+        </message>
+        <message>
+            <source>Don't add to queue</source>
+            <translation>შეფერხებაში დამატება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>კი</translation>
+        </message>
+        <message>
+            <source>Enter queue name</source>
+            <translation>შეფერხების სახელი</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Create</source>
+            <translation>შექმნა</translation>
+        </message>
+    </context>
+    <context>
+        <name>RssDownloadRulesDialog</name>
+        <message>
+            <source>(Default)</source>
+            <translation>(ნაგულისხმევი)</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>ჩამოტვირთვის წესები</translation>
+        </message>
+        <message>
+            <source>Add</source>
+            <translation>დამატება</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Click &quot;Add&quot; to create a download rule</source>
+            <translation>ჩამოტვირთვის წესის შესაქმნელად დააჭირეთ „დამატება“</translation>
+        </message>
+        <message>
+            <source>Rule name</source>
+            <translation>წესის სახელი</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>ჩართული</translation>
+        </message>
+        <message>
+            <source>FILTER RULES</source>
+            <translation>ფილტრის წესები</translation>
+        </message>
+        <message>
+            <source>Use regular expressions</source>
+            <translation>რეგულარული გამოსახულებების გამოყენება</translation>
+        </message>
+        <message>
+            <source>Must contain:</source>
+            <translation>უნდა შეიცავდეს:</translation>
+        </message>
+        <message>
+            <source>regex pattern</source>
+            <translation>regex ნიმუში</translation>
+        </message>
+        <message>
+            <source>keyword1 keyword2 | keyword3</source>
+            <translation>საკვანძო1 საკვანძო2 | საკვანძო3</translation>
+        </message>
+        <message>
+            <source>Must not contain:</source>
+            <translation>არ უნდა შეიცავდეს:</translation>
+        </message>
+        <message>
+            <source>keyword1 keyword2</source>
+            <translation>საკვანძო1 საკვანძო2</translation>
+        </message>
+        <message>
+            <source>Episode filter:</source>
+            <translation>ეპიზოდის ფილტრი:</translation>
+        </message>
+        <message>
+            <source>e.g. 1x01-1x24  or  2x01;</source>
+            <translation>მაგ. 1x01-1x24 ან 2x01;</translation>
+        </message>
+        <message>
+            <source>Use Smart Episode Filter</source>
+            <translation>სმარტ ეპიზოდის ფილტრის გამოყენება</translation>
+        </message>
+        <message>
+            <source>Skips episodes already matched by previous rule triggers</source>
+            <translation>გამოტოვებს უკვე შეწყობილ ეპიზოდებს</translation>
+        </message>
+        <message>
+            <source>Ignore subsequent matches for</source>
+            <translation>უგულებელყოფს შემდგომ თანხვედრებს</translation>
+        </message>
+        <message>
+            <source>days  (0 = disabled)</source>
+            <translation>დღეები (0 = გამორთული)</translation>
+        </message>
+        <message>
+            <source>DOWNLOAD SETTINGS</source>
+            <translation>ჩამოტვირთვის პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Save at:</source>
+            <translation>შენახვა:</translation>
+        </message>
+        <message>
+            <source>Leave empty to use default save path</source>
+            <translation>დეფოლტ გზისთვის ცარიელი დატოვეთ</translation>
+        </message>
+        <message>
+            <source>Browse...</source>
+            <translation>შემოწმება...</translation>
+        </message>
+        <message>
+            <source>Category:</source>
+            <translation>კატეგორია</translation>
+        </message>
+        <message>
+            <source>Queue:</source>
+            <translation>რიგი</translation>
+        </message>
+        <message>
+            <source>TORRENT SHARE LIMITS</source>
+            <translation>ტორენტის გაზიარების ლიმიტები</translation>
+        </message>
+        <message>
+            <source>Ratio</source>
+            <translation>რატიო</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>დეფოლტი</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>ულიმიტო</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>მითითება</translation>
+        </message>
+        <message>
+            <source>Seeding time</source>
+            <translation>სიდიდის დრო</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>წთ</translation>
+        </message>
+        <message>
+            <source>Inactive seeding time</source>
+            <translation>არააქტიური სიდიდის დრო</translation>
+        </message>
+        <message>
+            <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
+            <translation>&quot;დეფოლტი&quot; იყენებს გლობალურ გაზიარების ლიმიტებს პარამეტრები → ტორენტები.</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>კარგი</translation>
+        </message>
+        <message>
+            <source>RSS Auto Download Rules</source>
+            <translation>RSS ავტო-ჩამოტვირთვის წესები</translation>
+        </message>
+    </context>
+    <context>
+        <name>RssWindow</name>
+        <message>
+            <source>Title</source>
+            <translation>სათაური</translation>
+        </message>
+        <message>
+            <source>Feed</source>
+            <translation>კვება</translation>
+        </message>
+        <message>
+            <source>Date</source>
+            <translation>თარიღი</translation>
+        </message>
+        <message>
+            <source>Open Feed</source>
+            <translation>კვების გახსნა</translation>
+        </message>
+        <message>
+            <source>Refresh</source>
+            <translation>განახლება</translation>
+        </message>
+        <message>
+            <source>Rename / Edit...</source>
+            <translation>გადასახელება / რედაქტირება...</translation>
+        </message>
+        <message>
+            <source>Remove Subscription</source>
+            <translation>გამოწერის წაშლა</translation>
+        </message>
+        <message>
+            <source>Download Torrent</source>
+            <translation>ტორენტის ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Open in Browser</source>
+            <translation>ბრაუზერში გახსნა</translation>
+        </message>
+        <message>
+            <source>Copy Link</source>
+            <translation>შეწირვა</translation>
+        </message>
+        <message>
+            <source>Mark as Read</source>
+            <translation>წაკითხულად მონიშვნა</translation>
+        </message>
+        <message>
+            <source>Mark as Unread</source>
+            <translation>უწაკითხლოდ მონიშვნა</translation>
+        </message>
+        <message>
+            <source>Mark All Read</source>
+            <translation>ყველა წაკითხულად მონიშვნა</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>სახელი</translation>
+        </message>
+        <message>
+            <source>Custom name (optional)</source>
+            <translation>საკუთარი სახელი (სურვილისამებრ)</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>შენახვა</translation>
+        </message>
+        <message>
+            <source>Add RSS or Atom feed URL...</source>
+            <translation>RSS ან Atom feed-ის URL-ის დამატება...</translation>
+        </message>
+        <message>
+            <source>Add</source>
+            <translation>დამატება</translation>
+        </message>
+        <message>
+            <source>Refreshing…</source>
+            <translation>განახება…</translation>
+        </message>
+        <message>
+            <source>Edit</source>
+            <translation>რედაქტირება</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>ჩამოტვირთვის წესები</translation>
+        </message>
+        <message>
+            <source>Subscriptions</source>
+            <translation>გამოწერები</translation>
+        </message>
+        <message>
+            <source>Untitled</source>
+            <translation>უსათაურო</translation>
+        </message>
+        <message>
+            <source>Select an article</source>
+            <translation>მუხლის არჩევა</translation>
+        </message>
+        <message>
+            <source>Open</source>
+            <translation>გახსნა</translation>
+        </message>
+        <message>
+            <source>Mark Read</source>
+            <translation>წაკითხულად მონიშვნა</translation>
+        </message>
+        <message>
+            <source>Mark Unread</source>
+            <translation>უწაკითხავად მონიშვნა</translation>
+        </message>
+        <message>
+            <source>Choose an article to view its summary.</source>
+            <translation>შეარჩიეთ სტატია შეჯამების სანახავად.</translation>
+        </message>
+        <message>
+            <source>No summary available.</source>
+            <translation>შეჯამება არ არის ხელმისაწვდომი.</translation>
+        </message>
+        <message>
+            <source>%1 unread  ·  %2 items</source>
+            <translation>%1 წაუკითხავი · %2 ელემენტი</translation>
+        </message>
+        <message>
+            <source>%1 items</source>
+            <translation>%1 ელემენტი</translation>
+        </message>
+        <message>
+            <source>RSS Feeds</source>
+            <translation>RSS მიმწოდებლები</translation>
+        </message>
+        <message>
+            <source>Edit Subscription</source>
+            <translation>გამწერის რედაქტირება</translation>
+        </message>
+    </context>
+    <context>
+        <name>SchedulerDialog</name>
+        <message>
+            <source>Queues</source>
+            <translation>რიგები</translation>
+        </message>
+        <message>
+            <source>New queue</source>
+            <translation>ახალი რიგი</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Schedule</source>
+            <translation>გრაფიკი</translation>
+        </message>
+        <message>
+            <source>Files in the queue</source>
+            <translation>ფაილები რიგში</translation>
+        </message>
+        <message>
+            <source>One-time downloading</source>
+            <translation>ერთჯერადი ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>პერიოდული სინქრონიზაცია</translation>
+        </message>
+        <message>
+            <source>Start download on Stellar startup</source>
+            <translation>ჩამოტვირთვის დაწყება Stellar-ის გაშვებისას</translation>
+        </message>
+        <message>
+            <source>Start download at</source>
+            <translation>ჩამოტვირთვის დაწყება</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>ერთხელ</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>დღიურად</translation>
+        </message>
+        <message>
+            <source>Start again every</source>
+            <translation>თავიდან დაწყება ყოველ</translation>
+        </message>
+        <message>
+            <source>hours</source>
+            <translation>საათში</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>წთ</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>ჩამოტვირთვის შეჩერება</translation>
+        </message>
+        <message>
+            <source>Number of retries for each file if downloading failed :</source>
+            <translation>თითო ფაილის რეტრაინების რაოდენობა ჩავარდნის შემთხვევაში:</translation>
+        </message>
+        <message>
+            <source>Open the following file when done:</source>
+            <translation>გახსენით ფაილი დასრულებისას:</translation>
+        </message>
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Stellar-ის დახურვა დასრულებისას</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>კომპიუტერის გამორთვა დასრულებისას</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>პროცესების ძალისხმევით დასრულება</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>files at the same time</source>
+            <translation>ფაილი ერთდროულად</translation>
+        </message>
+        <message>
+            <source>File Name</source>
+            <translation>ფაილის სახელი</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>სტატუსი</translation>
+        </message>
+        <message>
+            <source>Time Left</source>
+            <translation>დარჩენილი დრო</translation>
+        </message>
+        <message>
+            <source>No queue selected</source>
+            <translation>რიგი არ არის არჩეული</translation>
+        </message>
+        <message>
+            <source>No files in queue</source>
+            <translation>რიგში ფაილები არ არის</translation>
+        </message>
+        <message>
+            <source>Download limits</source>
+            <translation>ჩამოტვირთვის ლიმიტები</translation>
+        </message>
+        <message>
+            <source>Download no more than</source>
+            <translation>მაქსიმუმ ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>MBytes</source>
+            <translation>მბაიტი</translation>
+        </message>
+        <message>
+            <source>every</source>
+            <translation>ყოველ</translation>
+        </message>
+        <message>
+            <source>Show warning before stopping downloads</source>
+            <translation>გაფრთხილების ჩვენება ჩამოტვირთვის შეჩერებამდე</translation>
+        </message>
+        <message>
+            <source>Start now</source>
+            <translation>დაწყება</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>შეჩერება</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>დამტკიცება</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Enter a name for the new queue that will be displayed in the list of queues</source>
+            <translation>შეიყვანეთ ახალი რიგის სახელი</translation>
+        </message>
+        <message>
+            <source>Queue name</source>
+            <translation>რიგის სახელი</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>პლანერი</translation>
+        </message>
+        <message>
+            <source>New Queue</source>
+            <translation>ახალი რიგი</translation>
+        </message>
+        <message>
+            <source>Select file to open when done</source>
+            <translation>ფაილის არჩევა გახსნისთვის</translation>
+        </message>
+    </context>
+    <context>
+        <name>SettingsDialog</name>
+        <message>
+            <source>Connection</source>
+            <translation>კავშირი</translation>
+        </message>
+        <message>
+            <source>Maximum simultaneous downloads:</source>
+            <translation>მაქს. ერთდროული ჩამოტვირთვები:</translation>
+        </message>
+        <message>
+            <source>Segments per download:</source>
+            <translation>სეგმენტები ჩამოტვირთვაზე:</translation>
+        </message>
+        <message>
+            <source>Connection timeout (seconds):</source>
+            <translation>კავშირის ტაიმ-აუტი (წმ):</translation>
+        </message>
+        <message>
+            <source>Retry failed downloads:</source>
+            <translation>ჩავტვირთული ჩავტვირთვების თავიდან:</translation>
+        </message>
+        <message>
+            <source>times</source>
+            <translation>ჯერადი</translation>
+        </message>
+        <message>
+            <source>User Agent</source>
+            <translation>მომხმარებლის აგენტი</translation>
+        </message>
+        <message>
+            <source>Use custom user agent</source>
+            <translation>მორგებული აგენტის გამოყენება</translation>
+        </message>
+        <message>
+            <source>Proxy</source>
+            <translation>პროქსი</translation>
+        </message>
+        <message>
+            <source>No proxy</source>
+            <translation>პროქსის გარეშე</translation>
+        </message>
+        <message>
+            <source>Use system proxy</source>
+            <translation>სისტემის პროქსის გამოყენება</translation>
+        </message>
+        <message>
+            <source>HTTP / HTTPS proxy</source>
+            <translation>HTTP/HTTPS პროქსი</translation>
+        </message>
+        <message>
+            <source>SOCKS5 proxy</source>
+            <translation>SOCKS5 პროქსი</translation>
+        </message>
+        <message>
+            <source>Host:</source>
+            <translation>მასპინძელი:</translation>
+        </message>
+        <message>
+            <source>Port:</source>
+            <translation>პორტი:</translation>
+        </message>
+        <message>
+            <source>Username:</source>
+            <translation>მომხმარებელი:</translation>
+        </message>
+        <message>
+            <source>Password:</source>
+            <translation>პაროლი:</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>კატეგორიები</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>სახელი</translation>
+        </message>
+        <message>
+            <source>Save to folder</source>
+            <translation>შენახვა საქაღალდეში</translation>
+        </message>
+        <message>
+            <source>Downloads</source>
+            <translation>ჩამოტვირთვები</translation>
+        </message>
+        <message>
+            <source>Default save folder:</source>
+            <translation>ნაგულისხმევი საქაღალდე:</translation>
+        </message>
+        <message>
+            <source>Browse…</source>
+            <translation>სათითაოდ...</translation>
+        </message>
+        <message>
+            <source>Custom save folder for torrents:</source>
+            <translation>კასტომური საქაღალდე ტორენტებისთვის:</translation>
+        </message>
+        <message>
+            <source>Stellar temporary directory:</source>
+            <translation>Stellar-ის დროებითი საქაღალდე:</translation>
+        </message>
+        <message>
+            <source>Start downloading immediately (skip file info dialog)</source>
+            <translation>დაიწყე გადმოწერა დაუყოვნებლივ (ფაილის ინფო დიალოგის გატოვება)</translation>
+        </message>
+        <message>
+            <source>Show download complete dialog</source>
+            <translation>ჩვენება გადმოწერის დასრულების დიალოგი</translation>
+        </message>
+        <message>
+            <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
+            <translation>დაიწყე გადმოწერა დაუყოვნებლივ &quot;ფაილის ინფოს&quot; დიალოგის ჩვენებით</translation>
+        </message>
+        <message>
+            <source>Show swarm map when downloading torrent metadata</source>
+            <translation>ჩვენება რწყილის რუკა ტორენტის მეტამონაცემების გადმოწერისას</translation>
+        </message>
+        <message>
+            <source>Show queue selection panel on pressing Download Later</source>
+            <translation>ჩვენება რიგის შერჩევის პანელი &quot;გადმოწერა მოგვიანებით&quot;-ზე დაჭერისას</translation>
+        </message>
+        <message>
+            <source>Show queue selection panel on closing batch downloads dialog</source>
+            <translation>ჩვენება რიგის შერჩევის პანელი პაკეტური გადმოწერების დიალოგის დახურვისას</translation>
+        </message>
+        <message>
+            <source>If a duplicate URL is added:</source>
+            <translation>თუ დუბლირებული URL-ი ემატება:</translation>
+        </message>
+        <message>
+            <source>Double-clicking on a download in the file list:</source>
+            <translation>ფაილის სიაში გადმოწერაზე ორჯერ დაჭერა:</translation>
+        </message>
+        <message>
+            <source>Last try date format:</source>
+            <translation>ბოლო მცდეობის თარიღის ფორმატი:</translation>
+        </message>
+        <message>
+            <source>Time format:</source>
+            <translation>დროის ფორმატი:</translation>
+        </message>
+        <message>
+            <source>Show seconds</source>
+            <translation>წამების ჩვენება</translation>
+        </message>
+        <message>
+            <source>Preview</source>
+            <translation>პრევიუ</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>ბრაუზერის ინტეგრაცია</translation>
+        </message>
+        <message>
+            <source>Automatically start downloading the following file types:</source>
+            <translation>ავტომატურად დაიწყე შემდეგი ფაილის ტიპების გადმოწერა:</translation>
+        </message>
+        <message>
+            <source>Don't start downloading automatically from the following sites:</source>
+            <translation>ნუ დაიწყებ ავტომატურად გადმოწერას შემდეგი საიტებიდან:</translation>
+        </message>
+        <message>
+            <source>Address Exceptions</source>
+            <translation>გამონაკლისების მისამართები</translation>
+        </message>
+        <message>
+            <source>Don't start downloading from the following addresses:</source>
+            <translation>ჩამოტვირთვა არ დაიწყოს შემდეგი მისამართებიდან:</translation>
+        </message>
+        <message>
+            <source>Bypass Download Interception</source>
+            <translation>ჩამოტვირთვის გადაკვეთის გააქტიურება</translation>
+        </message>
+        <message>
+            <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
+            <translation>დაჭირეთ ამ ღილაკს ჩამოტვირთვის ბმულის დაწკაპუნებისას გადაკვეთის გასააქტიურებლად და ბრაუზერის ჩამოტვირთვისთვის:</translation>
+        </message>
+        <message>
+            <source>Speed Limiter</source>
+            <translation>სიჩქარის ლიმიტი</translation>
+        </message>
+        <message>
+            <source>Enable global speed limit</source>
+            <translation>გლობალური სიჩქარის ლიმიტის გააქტიურება</translation>
+        </message>
+        <message>
+            <source>Maximum speed:</source>
+            <translation>მაქსიმალური სიჩქარე:</translation>
+        </message>
+        <message>
+            <source>KB/s</source>
+            <translation>კბ/წმ</translation>
+        </message>
+        <message>
+            <source>Enable global upload limit</source>
+            <translation>გლობალური ატვირთვის ლიმიტის გააქტიურება</translation>
+        </message>
+        <message>
+            <source>Maximum upload:</source>
+            <translation>მაქსიმალური ატვირთვა:</translation>
+        </message>
+        <message>
+            <source>Always turn on speed limiter on Stellar startup</source>
+            <translation>ყოველთვის ჩართეთ სიჩქარის ლიმიტი Stellar-ის გაშვებისას</translation>
+        </message>
+        <message>
+            <source>Enable speed limiter scheduler</source>
+            <translation>სიჩქარის ლიმიტის დროის დაგეგმვის გააქტიურება</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>On</source>
+            <translation>ჩართული</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Upload</source>
+            <translation>აწევა</translation>
+        </message>
+        <message>
+            <source>+ Add Rule</source>
+            <translation>+ წესის დამატება</translation>
+        </message>
+        <message>
+            <source>Notifications</source>
+            <translation>შეტყობინებები</translation>
+        </message>
+        <message>
+            <source>Show notification when download completes</source>
+            <translation>ჩამოტვირთვის დასრულებისას შეტყობინების ჩვენება</translation>
+        </message>
+        <message>
+            <source>Show notification on download error</source>
+            <translation>ჩამოტვირთვის შეცდომისას შეტყობინების ჩვენება</translation>
+        </message>
+        <message>
+            <source>General</source>
+            <translation>ზოგადი</translation>
+        </message>
+        <message>
+            <source>Browser</source>
+            <translation>ბრაუზერი</translation>
+        </message>
+        <message>
+            <source>Media</source>
+            <translation>მედია</translation>
+        </message>
+        <message>
+            <source>Torrents</source>
+            <translation>ტორენტები</translation>
+        </message>
+        <message>
+            <source>Language</source>
+            <translation>ენა</translation>
+        </message>
+        <message>
+            <source>About</source>
+            <translation>შესახებ</translation>
+        </message>
+        <message>
+            <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
+            <translation>როცა მორგებული რეჟიმი გამორთულია, Stellar იყენებს მის ჩაშენებულ User-Agent-ს მიმდინარე ვერსიით.</translation>
+        </message>
+        <message>
+            <source>This value will be sent exactly as entered.</source>
+            <translation>ეს მნიშვნელობა გაიგზავნება ზუსტად ისე, როგორც შეიყვანეთ.</translation>
+        </message>
+        <message>
+            <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
+            <translation>ზემოთ ჩვენებულია ჩაშენებული დეფოლტი. ჩაყრეთ მონიშვნა რედაქტირებისა და ჩანაცვლებისთვის.</translation>
+        </message>
+        <message>
+            <source>Optional</source>
+            <translation>სურვილისამებრ</translation>
+        </message>
+        <message>
+            <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
+            <translation>ყველა ჩამოტვირთვა, ვიდეო ჩამოტვირთვა, განახლების შემოწმება და ტორენტის პირი/ტრეკერის კავშირები ამ პროქსის გავლით მიდის.</translation>
+        </message>
+        <message>
+            <source>Stellar will use the proxy configured in your operating system network settings.</source>
+            <translation>Stellar გამოიყენებს ოპერაციული სისტემის ქსელის პარამეტრებში კონფიგურირებულ პროქსს.</translation>
+        </message>
+        <message>
+            <source>Timed out — proxy did not respond</source>
+            <translation>დრო ამოიწურა — პროქსი არ პასუხობს</translation>
+        </message>
+        <message>
+            <source>Testing…</source>
+            <translation>შემოწმება…</translation>
+        </message>
+        <message>
+            <source>Test Proxy</source>
+            <translation>პროქსის შემოწმება</translation>
+        </message>
+        <message>
+            <source>⚠ Not in browser auto-download list: %1</source>
+            <translation>⚠ არ არის ბრაუზერის ავტო-ჩამოტვირთვის სიაში: %1</translation>
+        </message>
+        <message>
+            <source>Browse</source>
+            <translation>შემოწმება</translation>
+        </message>
+        <message>
+            <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
+            <translation>ეს არის შენახული კასტომური ტორენტის საქაღალდე, რომელიც გამოიყენება ტორენტის მეტამონაცემების დიალოგში კასტომური შენახვის საქაღალდის დეფოლტად დაყენებისას.</translation>
+        </message>
+        <message>
+            <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
+            <translation>Stellar ინახავს ნაწილობრივ ჩამოტვირთული ფაილის ნაწილებს და მეტამონაცემებს აქ ჩამოტვირთვისა და ფაილების შეკვრის დროს.</translation>
+        </message>
+        <message>
+            <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
+            <translation>შენიშვნა: ეს პარამეტრები არ ვრცელდება რიგის დამუშავებაზე „დაუყოვნებლივ ჩამოტვირთვის“ და „ჩამოტვირთვის დასრულების დიალოგის ჩვენების“ პარამეტრებში.</translation>
+        </message>
+        <message>
+            <source>Ask me what to do</source>
+            <translation>მეკითხეთ, რა გავაკეთო</translation>
+        </message>
+        <message>
+            <source>Add with a numbered file name</source>
+            <translation>დამატება რიცხვითი სახელით</translation>
+        </message>
+        <message>
+            <source>Overwrite the existing download</source>
+            <translation>არსებული ჩამოტვირთვის გადაწერა</translation>
+        </message>
+        <message>
+            <source>Resume / show complete dialog</source>
+            <translation>გაგრძელება / დასრულების დიალოგის ჩვენება</translation>
+        </message>
+        <message>
+            <source>Open file properties dialog</source>
+            <translation>ფაილის თვისებების დიალოგის გახსნა</translation>
+        </message>
+        <message>
+            <source>Open file</source>
+            <translation>ფაილის გახსნა</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>საქაღალდის გახსნა</translation>
+        </message>
+        <message>
+            <source>24-hour time</source>
+            <translation>24-საათიანი</translation>
+        </message>
+        <message>
+            <source>12-hour time</source>
+            <translation>12-საათიანი</translation>
+        </message>
+        <message>
+            <source>Space or comma-separated. Case-insensitive.</source>
+            <translation>სივრცით ან მძიმით გამიჯნული. რეგისტრის მიუხედავად.</translation>
+        </message>
+        <message>
+            <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
+            <translation>სივრცით გამიჯნული მასპინძლის ნიმუშები. მხარდაჭერილია ველდკარდები (*), მაგ. *.update.microsoft.com</translation>
+        </message>
+        <message>
+            <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
+            <translation>გამოჩენა დიალოგისა გამონაკლისების სიაში ორჯერ გაუქმებული ჩამოტვირთვისთვის</translation>
+        </message>
+        <message>
+            <source>One URL pattern per line. Wildcards (*) supported.</source>
+            <translation>ერთი URL ნიმუში ხაზზე. მხარდაჭერილია ველდკარდები (*).</translation>
+        </message>
+        <message>
+            <source>None</source>
+            <translation>არცერთი</translation>
+        </message>
+        <message>
+            <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
+            <translation>დააწკაპუნეთ დღის მარკერზე მისი გადართვისთვის. წესები ყოველ წუთში შეფასდება; პირველი შესაბამისი წესი მოქმედებს. დაგეგმილი ჩამოტვირთვის/ჩატვირთვის ლიმიტები ავტომატურად იწმინდება, როცა წესი არ არის აქტიური.</translation>
+        </message>
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>მინიმიზაცია სისტემურ ლენტში</translation>
+        </message>
+        <message>
+            <source>Close to system tray</source>
+            <translation>დახურვა სისტემურ ლენტში</translation>
+        </message>
+        <message>
+            <source>Launch Stellar on startup</source>
+            <translation>Stellar-ის გაშვება სტარტზე</translation>
+        </message>
+        <message>
+            <source>Show tips in bottom bar</source>
+            <translation>ტოპიკების ჩვენება ქვედა ზოლში</translation>
+        </message>
+        <message>
+            <source>Show finished download count in status bar</source>
+            <translation>დასრულებული ჩამოტვირთვების რაოდენობის ჩვენება სტატუს ზოლში</translation>
+        </message>
+        <message>
+            <source>Utilities</source>
+            <translation>სამეურნეო</translation>
+        </message>
+        <message>
+            <source>Show speed in tray icon tooltip</source>
+            <translation>სიჩქარის ჩვენება ტრეის ხატულაში</translation>
+        </message>
+        <message>
+            <source>Show speed in title bar</source>
+            <translation>სიჩქარის ჩვენება სათაურში</translation>
+        </message>
+        <message>
+            <source>Show speed in status bar</source>
+            <translation>სიჩქარის ჩვენება სტატუსის ზოლში</translation>
+        </message>
+        <message>
+            <source>Show estimated online users in status bar</source>
+            <translation>ონლაინ მომხმარებლების რაოდენობის ჩვენება</translation>
+        </message>
+        <message>
+            <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
+            <translation>მსოფლიო მომხმარებლების შეფასება DHT-ის საფუძველზე. * ნიშანი ნაკლები სანდოობას ნიშნავს.</translation>
+        </message>
+        <message>
+            <source>Show ratio in status bar</source>
+            <translation>რატიოს ჩვენება სტატუსის ზოლში</translation>
+        </message>
+        <message>
+            <source>Show Public IP in Status Bar</source>
+            <translation>საჯარო IP-ის ჩვენება სტატუსის ზოლში</translation>
+        </message>
+        <message>
+            <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
+            <translation>IP-ის და კავშირის ტიპის დეტექცია. გადაადგილება WiFi SSID-ისთვის.</translation>
+        </message>
+        <message>
+            <source>Updates</source>
+            <translation>განახლებები</translation>
+        </message>
+        <message>
+            <source>Automatically check for updates</source>
+            <translation>ავტომატური განახლებების შემოწმება</translation>
+        </message>
+        <message>
+            <source>Clipboard Monitoring</source>
+            <translation>ბუფერის მონიტორინგი</translation>
+        </message>
+        <message>
+            <source>Automatically start downloading URLs placed in the clipboard</source>
+            <translation>URL-ების ავტომატური ჩამოტვირთვა ბუფერიდან</translation>
+        </message>
+        <message>
+            <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
+            <translation>URL-ის კოპირებისას შეკითხვა ჩამოტვირთვის შესახებ. მხოლოდ მითითებული ფაილების ტიპებისთვის.</translation>
+        </message>
+        <message>
+            <source>Video Downloader</source>
+            <translation>ვიდეოების ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
+            <translation>Stellar იყენებს yt-dlp-ს YouTube-ის, Vimeo-ს, Twitter/X-ის, Instagram-ის და ასობით სხვა საიტისგან ვიდეოების ჩამოსატვირთად. URL-ის ჩასმისას ჩამოტვირთვის ფორმატის მორჩეტი გამოჩნდება.</translation>
+        </message>
+        <message>
+            <source>Binary status</source>
+            <translation>ბინარული სტატუსი</translation>
+        </message>
+        <message>
+            <source>Update yt-dlp</source>
+            <translation>yt-dlp-ს განახლება</translation>
+        </message>
+        <message>
+            <source>Download yt-dlp</source>
+            <translation>yt-dlp-ს ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Re-check</source>
+            <translation>თავიდან შემოწმება</translation>
+        </message>
+        <message>
+            <source>ffmpeg status</source>
+            <translation>ffmpeg-ის სტატუსი</translation>
+        </message>
+        <message>
+            <source>ffmpeg found: %1</source>
+            <translation>ffmpeg ნაპოვნია: %1</translation>
+        </message>
+        <message>
+            <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
+            <translation>ffmpeg-ს ვერ ვპოულობთ — HD ჩამოტვირთვები შეზღუდული იქნება წინასწარ-შერწყმული ფორმატებით (მაქს. ~480p)</translation>
+        </message>
+        <message>
+            <source>Updating FFmpeg...</source>
+            <translation>FFmpeg-ის განახლება...</translation>
+        </message>
+        <message>
+            <source>Update FFmpeg</source>
+            <translation>FFmpeg-ის განახლება</translation>
+        </message>
+        <message>
+            <source>Get ffmpeg (gyan.dev)</source>
+            <translation>ffmpeg-ის მიღება (gyan.dev)</translation>
+        </message>
+        <message>
+            <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
+
+To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
+            <translation>ffmpeg საჭიროა ვიდეოსა და აუდიოს სტრიმების MP4/MKV-ში შესაერთებლად. მის გარეშე YouTube-ის ჩამოტვირთვები წინასწარ-შერწყმულ სტრიმზე გადადის (ჩვეულებრივ WebM, მაქს. 480p).
+
+სამართლიანად: ჩამოტვირთეთ ffmpeg gyan.dev/ffmpeg/builds-დან (Essentials build), გამოიტანეთ ffmpeg.exe bin/ საქაღალდიდან და დადეთ იმავე საქაღალდეში, სადაც yt-dlp.exe. შემდეგ დააწკაპუნეთ ზემოთ „თავიდან შემოწმება“-ს.</translation>
+        </message>
+        <message>
+            <source>Custom binary path</source>
+            <translation>მორგებული ბინარული გზა</translation>
+        </message>
+        <message>
+            <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
+            <translation>დატოვეთ ცარიელი ბუნდოვანი ბინარული სასურველი. დააყენეთ თქვენი yt-dlp-ს აბსოლუტური გზა კონკრეტული ვერსიის გამოყენებისთვის.</translation>
+        </message>
+        <message>
+            <source>(auto - use bundled or system yt-dlp)</source>
+            <translation>(ავტო - ჩაშენებული ან სისტემის yt-dlp)</translation>
+        </message>
+        <message>
+            <source>JavaScript runtime</source>
+            <translation>JavaScript რანტაიმი</translation>
+        </message>
+        <message>
+            <source>%1 found: %2</source>
+            <translation>%1 ნაპოვნია: %2</translation>
+        </message>
+        <message>
+            <source>No JS runtime found — YouTube n-challenge solving disabled</source>
+            <translation>JS რანტაიმი ვერ მოიძებნა — YouTube n-challenge ამოხსნა გამორთულია</translation>
+        </message>
+        <message>
+            <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
+
+Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
+            <translation>yt-dlp-ს სჭირდება გარე JavaScript რანტაიმი YouTube-ის n-challenge-ის ამოსახსნელად (URL-ის შეზღუდვა). მის გარეშე YouTube-დან ჩამოტვირთვა შეიძლება ჩავარდეს ან დაბალი ხარისხის storyboard ფორმატებს დააბრუნებს.
+
+დააინსტალირეთ ერთ-ერთი: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ან QuickJS. განათავსეთ იგი yt-dlp.exe-სთან ერთად ან დაამატეთ სისტემის PATH-ში, შემდეგ დააწკაპუნეთ ხელახლა შემოწმება ზემოთ yt-dlp სტატუსის სექციაში.</translation>
+        </message>
+        <message>
+            <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
+            <translation>ავტო-განსაზღვრული რანტაიმის გზის გადაჭერა. ავტო-განსაზღვრისთვის დატოვეთ ცარიელი (ეძებს yt-dlp საქაღალდეში, აპის საქაღალდეში და სისტემის PATH-ში).</translation>
+        </message>
+        <message>
+            <source>(auto-detect from PATH and yt-dlp folder)</source>
+            <translation>(ავტო-განსაზღვრა PATH-დან და yt-dlp საქაღალდიდან)</translation>
+        </message>
+        <message>
+            <source>Automatically update yt-dlp at startup</source>
+            <translation>yt-dlp-ის ავტომატური განახლება დაწყებისას</translation>
+        </message>
+        <message>
+            <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
+            <translation>ჩართვისას Stellar დააწვება &quot;yt-dlp -U&quot; დაწყებისას, რათა ბინარი განახლებული იყოს. სჭირდება აქტიური ინტერნეტკავშირი.</translation>
+        </message>
+        <message>
+            <source>Torrent Downloads</source>
+            <translation>ტორენტის ჩამოტვირთვები</translation>
+        </message>
+        <message>
+            <source>Enable BitTorrent support</source>
+            <translation>BitTorrent მხარდაჭერის ჩართვა</translation>
+        </message>
+        <message>
+            <source>BitTorrent — Legal Notice</source>
+            <translation>BitTorrent — სამართლებრივი შენიშვნა</translation>
+        </message>
+        <message>
+            <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
+
+Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
+
+It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
+            <translation>Stellar არის ფაილების გაზიარების პროგრამა. როდესაც ტორენტს ჩამოტვირთავთ, თქვენი IP მისამართი ხდება ხილული სხვა პირებისთვის და თქვენ ერთდროულად ატვირთავთ (seed) მონაცემებს სხვებისთვის.
+
+ყველაფერი, რასაც BitTorrent-ით გაუზიარებთ, თქვენი პირადი პასუხისმგებლობაა. დარწმუნდით, რომ გაქვთ უფლება გავრცელოთ კონტენტი.
+
+მკაცრად გირჩევთ Stellar-ის VPN ქსელის ინტერფეისთან მიბმას და VPN-ის აქტიურობის შემოწმებას ტორენტების გამოყენებამდე, რათა დაცული იყოს თქვენი IP მისამართი.</translation>
+        </message>
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>გავიგე, ჩართვა</translation>
+        </message>
+        <message>
+            <source>These settings apply to .torrent files and magnet links.</source>
+            <translation>ეს პარამეტრები ეხება .torrent ფაილებს და magnet ბმულებს.</translation>
+        </message>
+        <message>
+            <source>Listen port</source>
+            <translation>სმენის პორტი</translation>
+        </message>
+        <message>
+            <source>Global max connections</source>
+            <translation>გლობალური მაქს. კავშირები</translation>
+        </message>
+        <message>
+            <source>Max connections per torrent</source>
+            <translation>მაქს. კავშირი ტორენტზე</translation>
+        </message>
+        <message>
+            <source>Global max upload slots</source>
+            <translation>გლობალური მაქს. ატვირთვის სლოტები</translation>
+        </message>
+        <message>
+            <source>Max upload slots per torrent</source>
+            <translation>მაქს. ატვირთვის სლოტი ტორენტზე</translation>
+        </message>
+        <message>
+            <source>0 = unlimited (per-torrent fields and global upload slots)</source>
+            <translation>0 = შეუზღუდავი (ტორენტის ველები და გლობალური ატვირთვის სლოტები)</translation>
+        </message>
+        <message>
+            <source>Protocol</source>
+            <translation>პროტოკოლი</translation>
+        </message>
+        <message>
+            <source>TCP and μTP</source>
+            <translation>TCP და μTP</translation>
+        </message>
+        <message>
+            <source>μTP only</source>
+            <translation>მხოლოდ μTP</translation>
+        </message>
+        <message>
+            <source>TCP only</source>
+            <translation>მხოლოდ TCP</translation>
+        </message>
+        <message>
+            <source>Port Test</source>
+            <translation>პორტის ტესტი</translation>
+        </message>
+        <message>
+            <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
+            <translation>შეამოწმეთ, ხელმისაწვდომია თუ არა თქვენი მიმდინარე ტორენტის სმენის პორტი საჯარო ინტერნეტიდან. ეს ეხმარება დადასტურებაში, რომ თქვენი VPN პორტის გადაცემა, როუტერის გადაცემა და ფაიერვოლის წესები სინამდვილეში ანუგებს ტორენტის შემომავალ კავშირებს.</translation>
+        </message>
+        <message>
+            <source>Testing...</source>
+            <translation>ტესტირება...</translation>
+        </message>
+        <message>
+            <source>Test Port</source>
+            <translation>პორტის ტესტირება</translation>
+        </message>
+        <message>
+            <source>Networking</source>
+            <translation>ქსელური</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>მოწინავე</translation>
+        </message>
+        <message>
+            <source>Custom bittorrent user agent</source>
+            <translation>მორგებული BitTorrent-ის აგენტი</translation>
+        </message>
+        <message>
+            <source>Bind to network adapter</source>
+            <translation>მიბმა ქსელის ადაპტორს</translation>
+        </message>
+        <message>
+            <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
+            <translation>ეს ადაპტორი დაბლოკილია ტორენტის ტრაფიკისთვის. თუ VPN გაითიშება ან ადაპტორი გაქრება, Stellar ჩვეულებრივ მარშრუტს აღარ გამოიყენებს და ტორენტებს ინტერნეტთან წვდომა დაეკარგებათ, ნაცვლად იმისა, რომ სხვა კავშირზე გაჟონონ.</translation>
+        </message>
+        <message>
+            <source>No adapter binding. Torrent traffic follows the system route.</source>
+            <translation>ადაპტორის მიბმა არ არის. ტორენტის ტრაფიკი სისტემის მარშრუტს ემორჩილება.</translation>
+        </message>
+        <message>
+            <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
+            <translation>ქსელის ადაპტორის მიბმა Stellar-ს ავალდებულებს, ტორენტის ტრაფიკი მხოლოდ შერჩეული ადაპტორით გაატაროს. ეს განსაკუთრებით სასარგებლოა VPN-ის მომხმარებლებისთვის, რადგან ხელს უშლის შემთხვევით გაჟონვას, როცა VPN არ არის ჩართული.</translation>
+        </message>
+        <message>
+            <source>Torrent Security</source>
+            <translation>ტორენტის უსაფრთხოება</translation>
+        </message>
+        <message>
+            <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
+            <translation>ხელით დაბლოკილი პირები მყისიერად მოქმედებს. დაბლოკილი აგენტების ქვეჯაჭვები, დაბლოკილი ქვეყნები და ავტომატური დაბლოკვის პარამეტრები მოქმედებს Apply ან OK-ზე დაჭერისას.</translation>
+        </message>
+        <message>
+            <source>Encryption Mode</source>
+            <translation>დამალვის რეჟიმი</translation>
+        </message>
+        <message>
+            <source>Prefer encryption</source>
+            <translation>დამალვის უპირატესობა</translation>
+        </message>
+        <message>
+            <source>Require encryption</source>
+            <translation>დამალვა აუცილებელია</translation>
+        </message>
+        <message>
+            <source>Allow encryption</source>
+            <translation>დამალვის დაშვება</translation>
+        </message>
+        <message>
+            <source>Blocked user agents</source>
+            <translation>დაბლოკილი აგენტები</translation>
+        </message>
+        <message>
+            <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
+            <translation>ერთი ქვეჯაჭვი ერთ სტრიქონში. თუ პირის კლიენტის სტრიქონში იქნება ზემოთ ჩამოთვლილი რომელიმე სტრიქონი, Stellar ამ პირს ავტომატურად დაბლოკს, სანამ შესაბამისი სტრიქონი არ წაიშლება და პარამეტრები არ გამოყენდება.</translation>
+        </message>
+        <message>
+            <source>Manually ban peer</source>
+            <translation>პირის ხელით დაბლოკვა</translation>
+        </message>
+        <message>
+            <source>IP address, for example 203.0.113.42</source>
+            <translation>მისამართი IP, მაგალითად 203.0.113.42</translation>
+        </message>
+        <message>
+            <source>Ban</source>
+            <translation>ბლოკი</translation>
+        </message>
+        <message>
+            <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
+            <translation>ხელით დადებული ბლოკი მუდმივია, სანამ ქვემოთ ჩამოთვლილი ბლოკირებული პირების სიიდან არ წაშლით.</translation>
+        </message>
+        <message>
+            <source>Block peers by country</source>
+            <translation>ქვეყნის მიხედვით პირების ბლოკირება</translation>
+        </message>
+        <message>
+            <source>Add</source>
+            <translation>დამატება</translation>
+        </message>
+        <message>
+            <source>No blocked countries.</source>
+            <translation>ბლოკირებული ქვეყნები არ არის.</translation>
+        </message>
+        <message>
+            <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
+            <translation>ავტომატური ბლოკი Xunlei, QQ, Baidu, Xfplay, DLBT და ოფლაინ დამტვირთველისთვის</translation>
+        </message>
+        <message>
+            <source>Auto Ban BitTorrent Media Player Peer</source>
+            <translation>ავტომატური ბლოკი BitTorrent მედია მოთამაშის პირისთვის</translation>
+        </message>
+        <message>
+            <source>Manually banned peers</source>
+            <translation>ხელით ბლოკირებული პირები</translation>
+        </message>
+        <message>
+            <source>Unban</source>
+            <translation>ბლოკის მოხსნა</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>აქტიური</translation>
+        </message>
+        <message>
+            <source>No banned peers</source>
+            <translation>ბლოკირებული პირები არ არის</translation>
+        </message>
+        <message>
+            <source>IP-to-City Database</source>
+            <translation>IP-ქალაქის მონაცემთა ბაზა</translation>
+        </message>
+        <message>
+            <source>Version</source>
+            <translation>ვერსია</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>უცნობი</translation>
+        </message>
+        <message>
+            <source>Path</source>
+            <translation>გზა</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>Entries</source>
+            <translation>ჩანაწერები</translation>
+        </message>
+        <message>
+            <source>Last Modified</source>
+            <translation>ბოლო ცვლილების დრო</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>სტატუსი</translation>
+        </message>
+        <message>
+            <source>Downloading...</source>
+            <translation>ჩამოტვირთვა...</translation>
+        </message>
+        <message>
+            <source>Update IP-to-City DB</source>
+            <translation>განაახლე IP-ქალაქის მონაცემთა ბაზა</translation>
+        </message>
+        <message>
+            <source>Refresh Info</source>
+            <translation>ინფორმაციის განახლება</translation>
+        </message>
+        <message>
+            <source>Statistics</source>
+            <translation>სტატისტიკა</translation>
+        </message>
+        <message>
+            <source>Cumulative transfer totals across all torrents, including removed ones.</source>
+            <translation>ყველა ტორენტისთვის, მათ შორის წაშლილი, ჯამური გადაცემის მაჩვენებლები.</translation>
+        </message>
+        <message>
+            <source>Total Downloaded</source>
+            <translation>სულ ჩამოტვირთული</translation>
+        </message>
+        <message>
+            <source>Total Uploaded</source>
+            <translation>სულ ატვირთული</translation>
+        </message>
+        <message>
+            <source>All-time Share Ratio</source>
+            <translation>ყველა დროის წილის შეფარდება</translation>
+        </message>
+        <message>
+            <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
+            <translation>სრული ლიცენზიის ტექსტები მოცემულია THIRD-PARTY-NOTICES.txt ფაილში, რომელიც შედის ამ ინსტალაციასთან ერთად.</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+        <message>
+            <source>Feed Fetching</source>
+            <translation>Feed-ის მიღება</translation>
+        </message>
+        <message>
+            <source>Enable fetching RSS feeds</source>
+            <translation>RSS feed-ების მიღების ჩართვა</translation>
+        </message>
+        <message>
+            <source>Feeds refresh interval</source>
+            <translation>Feed-ების განახლების ინტერვალი</translation>
+        </message>
+        <message>
+            <source>minutes</source>
+            <translation>წუთი</translation>
+        </message>
+        <message>
+            <source>Same host request delay</source>
+            <translation>ერთივე მასპინძლის მოთხოვნის დაყოვნება</translation>
+        </message>
+        <message>
+            <source>seconds</source>
+            <translation>წამი</translation>
+        </message>
+        <message>
+            <source>Maximum articles per feed</source>
+            <translation>მაქსიმალური სტატიები feed-ში</translation>
+        </message>
+        <message>
+            <source>Torrent Auto Downloader</source>
+            <translation>Torrent-ის ავტო-ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Enable auto downloading of RSS torrents</source>
+            <translation>RSS torrent-ების ავტო-ჩამოტვირთვის ჩართვა</translation>
+        </message>
+        <message>
+            <source>Edit Auto Downloading Rules...</source>
+            <translation>ავტო-ჩამოტვირთვის წესების რედაქტირება...</translation>
+        </message>
+        <message>
+            <source>Smart Episode Filter</source>
+            <translation>სმარტ ეპიზოდების ფილტრი</translation>
+        </message>
+        <message>
+            <source>Download REPACK/PROPER episodes</source>
+            <translation>REPACK/PROPER ეპიზოდების ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Episode detection patterns (one per line):</source>
+            <translation>ეპიზოდის დეტექციის პატერნები (ერთი ხაზზე):</translation>
+        </message>
+        <message>
+            <source>Associations</source>
+            <translation>კავშირები</translation>
+        </message>
+        <message>
+            <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
+            <translation>RSS feed-ების მიღების და ავტო-torrent ჩამოტვირთვის წესების კონფიგურაცია.</translation>
+        </message>
+        <message>
+            <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
+            <translation>ეს რეგულარული გამოსახულებები გამოიყენება სეზონის/სერიის ნომრების ამოსაღებად სმარტ დუბლიკატების დასაფიქსირებლად.</translation>
+        </message>
+        <message>
+            <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
+            <translation>Stellar გახადეთ .torrent ფაილების და magnet ბმულების ნაგულისხმევი აპლიკაციად. Windows 10/11-ზე დააჭირეთ ღილაკს და დაადასტურეთ ცვლილება Windows-ის ნაგულისხმევი აპლიკაციების პარამეტრებში.</translation>
+        </message>
+        <message>
+            <source>.torrent files</source>
+            <translation>.torrent ფაილები</translation>
+        </message>
+        <message>
+            <source>Currently handled by Stellar</source>
+            <translation>ამჟამად Stellar-ის მიერ მართული</translation>
+        </message>
+        <message>
+            <source>Stellar is not the current default</source>
+            <translation>Stellar არ არის მიმდინარე ნაგულისხმევი</translation>
+        </message>
+        <message>
+            <source>Set .torrent Default</source>
+            <translation>.torrent ნაგულისხმევის დაყენება</translation>
+        </message>
+        <message>
+            <source>Refresh Status</source>
+            <translation>სტატუსის განახლება</translation>
+        </message>
+        <message>
+            <source>magnet: links</source>
+            <translation>magnet: ბმულები</translation>
+        </message>
+        <message>
+            <source>Set Magnet Default</source>
+            <translation>Magnet ნაგულისხმევის დაყენება</translation>
+        </message>
+        <message>
+            <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
+            <translation>თუ თქვენი სამუშაო გარემო აპლიკაციის ასოციაციას გადაწერს, სისტემის ცვლილების დასრულების შემდეგ განაახლეთ სტატუსი.</translation>
+        </message>
+        <message>
+            <source>Interface Language</source>
+            <translation>ინტერფეისის ენა</translation>
+        </message>
+        <message>
+            <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
+            <translation>აირჩიეთ ენა Stellar ინტერფეისისთვის. ყველა ტექსტის განახლებისთვის საჭიროა გადატვირთვა.</translation>
+        </message>
+        <message>
+            <source>Language:</source>
+            <translation>ენა:</translation>
+        </message>
+        <message>
+            <source>A restart is required after changing the language.</source>
+            <translation>ენის შეცვლის შემდეგ საჭიროა გადატვირთვა.</translation>
+        </message>
+        <message>
+            <source>Check for updates</source>
+            <translation>განახლებების შემოწმება</translation>
+        </message>
+        <message>
+            <source>What's New</source>
+            <translation>რაც ახლად დამატდა</translation>
+        </message>
+        <message>
+            <source>Build date</source>
+            <translation>შენების თარიღი</translation>
+        </message>
+        <message>
+            <source>Qt version</source>
+            <translation>Qt ვერსია</translation>
+        </message>
+        <message>
+            <source>Platform</source>
+            <translation>პლატფორმა</translation>
+        </message>
+        <message>
+            <source>Windows</source>
+            <translation>Windows</translation>
+        </message>
+        <message>
+            <source>Linux</source>
+            <translation>Linux</translation>
+        </message>
+        <message>
+            <source>macOS</source>
+            <translation>macOS</translation>
+        </message>
+        <message>
+            <source>GNU GPL v3.0</source>
+            <translation>GNU GPL v3.0</translation>
+        </message>
+        <message>
+            <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
+            <translation>Stellar თავისუფალი პროგრამაა: შეგიძლიათ გადაცეთ და/ან შეცვალოთ GNU General Public License ვერსია 3-ის პირობებით.</translation>
+        </message>
+        <message>
+            <source>Third-party software</source>
+            <translation>მესამე მხარის პროგრამები</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>გამოყენება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Default route</source>
+            <translation>დეფოლტ მარშრუტი</translation>
+        </message>
+        <message>
+            <source>Let the OS choose the active network adapter.</source>
+            <translation>დატოვეთ OS-ს აქტიური ქსელის ადაპტერის არჩევა.</translation>
+        </message>
+        <message>
+            <source> (Unavailable)</source>
+            <translation> (ხელმისაწვდომი არ არის)</translation>
+        </message>
+        <message>
+            <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
+            <translation>ეს ადაპტერი ამჟამად არ არის ხელმისაწვდომი. გადაამოწმეთ კავშირი ან აირჩიეთ სხვა ადაპტერი.</translation>
+        </message>
+        <message>
+            <source>Manual ban</source>
+            <translation>ხელით ბლოკირება</translation>
+        </message>
+        <message>
+            <source>Find peers without a tracker using a distributed hash table.</source>
+            <translation>პირების პოვნა tracker-ის გარეშე განაწილებული ჰეშ-ტაბლის გამოყენებით.</translation>
+        </message>
+        <message>
+            <source>Discover peers on your local network without going through the internet.</source>
+            <translation>პირების პოვნა ადგილობრივ ქსელში ინტერნეტის გარეშე.</translation>
+        </message>
+        <message>
+            <source>Automatically open a port on your router so peers can connect to you.</source>
+            <translation>პორტის ავტომატური გახსნა რაუტერზე, რომ პირებმა შეძლონ შეერთება.</translation>
+        </message>
+        <message>
+            <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
+            <translation>UPnP-ის მსგავსია, მაგრამ Apple რაუტერებისთვის - ორივე ჩართეთ, რაუტერი რომელიც მხარს უჭერს ის გამოიყენება.</translation>
+        </message>
+        <message>
+            <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
+            <translation>პირების სიების გაზიარება შეერთებულ პირებს შორის, რათა მეტი წყარო იპოვოთ tracker-ის გარეშე.</translation>
+        </message>
+        <message>
+            <source>Stellar is now the default app for .torrent files.</source>
+            <translation>Stellar ახლა .torrent ფაილების ნაგულისხმევი აპია.</translation>
+        </message>
+        <message>
+            <source>Stellar is now the default app for magnet links.</source>
+            <translation>Stellar ახლა magnet ბმულების ნაგულისხმევი აპია.</translation>
+        </message>
+        <message>
+            <source>Default: Stellar/%1</source>
+            <translation>ნაგულისხმევი: Stellar/%1</translation>
+        </message>
+        <message>
+            <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
+            <translation>ფაილის ტიპები (მძიმით გამოყოფილი, მაგ. mp4, mkv, avi)</translation>
+        </message>
+        <message>
+            <source>Auto-assign from sites  (space-separated, * wildcard)</source>
+            <translation>ავტომატური დანიშვნა საიტებიდან (ცარიელით გამოყოფილი, * უილდკარდი)</translation>
+        </message>
+        <message>
+            <source>Downloads from matching sites will automatically go into this category.</source>
+            <translation>შესაბამისი საიტებიდან ჩამოტვირთვები ავტომატურად ამ კატეგორიაში გადავა.</translation>
+        </message>
+        <message>
+            <source>Rule %1</source>
+            <translation>წესი %1</translation>
+        </message>
+        <message>
+            <source>Not found</source>
+            <translation>ნაპოვნი არ არის</translation>
+        </message>
+        <message>
+            <source>Loaded</source>
+            <translation>ჩატვირთული</translation>
+        </message>
+        <message>
+            <source>Available but not loaded</source>
+            <translation>ხელმისაწვდომია, მაგრამ არ ჩატვირთულა</translation>
+        </message>
+        <message>
+            <source>Source: %1</source>
+            <translation>წყარო: %1</translation>
+        </message>
+        <message>
+            <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
+            <translation>წყაროს URL ჯერ კეშირებული არ არის. გამოიყენეთ განახლებების შემოწმება IPtoCityDB-ის კეშირებისთვის update.json-დან.</translation>
+        </message>
+        <message>
+            <source>Version %1</source>
+            <translation>ვერსია %1</translation>
+        </message>
+        <message>
+            <source>Update available: %1</source>
+            <translation>ხელმისაწვდომია განახლება: %1</translation>
+        </message>
+        <message>
+            <source>Stellar Preferences</source>
+            <translation>Stellar-ის პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Select yt-dlp binary</source>
+            <translation>yt-dlp ბინარული ფაილის არჩევა</translation>
+        </message>
+        <message>
+            <source>Select JavaScript runtime binary</source>
+            <translation>JavaScript რანტაიმის ბინარული ფაილის არჩევა</translation>
+        </message>
+    </context>
+    <context>
+        <name>Sidebar</name>
+        <message>
+            <source>Edit Project</source>
+            <translation>პროექტის რედაქტირება</translation>
+        </message>
+        <message>
+            <source>Delete Project</source>
+            <translation>პროექტის წაშლა</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>კატეგორიები</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>ყველა ჩატვირთვა</translation>
+        </message>
+        <message>
+            <source>Unfinished</source>
+            <translation>დაუსრულებელი</translation>
+        </message>
+        <message>
+            <source>Finished</source>
+            <translation>დასრულებული</translation>
+        </message>
+        <message>
+            <source>Grabber Projects</source>
+            <translation>პროექტები</translation>
+        </message>
+        <message>
+            <source>Torrents</source>
+            <translation>ტორენტები</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>რიგები</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>გაზიარება</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>შეჩერებული</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>აქტიური</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>არააქტიური</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>შემოწმება</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>გადაადგილება</translation>
+        </message>
+    </context>
+    <context>
+        <name>StatisticsDialog</name>
+        <message>
+            <source>Statistics</source>
+            <translation>სტატისტიკა</translation>
+        </message>
+        <message>
+            <source>Stellar Statistics</source>
+            <translation>სტელარის სტატისტიკა</translation>
+        </message>
+        <message>
+            <source>ALL TIME</source>
+            <translation>ყველა დროის</translation>
+        </message>
+        <message>
+            <source>Downloaded</source>
+            <translation>ჩამოტვირთული</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>გადატვირთული</translation>
+        </message>
+        <message>
+            <source>Share Ratio</source>
+            <translation>შეფარდება</translation>
+        </message>
+        <message>
+            <source>Uptime</source>
+            <translation>მუშაობის დრო</translation>
+        </message>
+        <message>
+            <source>Install Date</source>
+            <translation>დაყენების თარიღი</translation>
+        </message>
+        <message>
+            <source>Startups</source>
+            <translation>გაშვება</translation>
+        </message>
+        <message>
+            <source>THIS SESSION</source>
+            <translation>ამ სესიაზე</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+    </context>
+    <context>
+        <name>StatusBar</name>
+        <message>
+            <source>🟦 1 active</source>
+            <translation>🟦 1 აქტიური</translation>
+        </message>
+        <message>
+            <source>🟦 %1 active</source>
+            <translation>🟦 %1 აქტიური</translation>
+        </message>
+        <message>
+            <source>📄 1 download</source>
+            <translation>📄 1 ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>📄 %1 downloads</source>
+            <translation>📄 %1 ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>🟨 1 error</source>
+            <translation>🟨 1 შეცდომა</translation>
+        </message>
+        <message>
+            <source>🟨 %1 errors</source>
+            <translation>🟨 %1 შეცდომა</translation>
+        </message>
+        <message>
+            <source>🌐 Proxy on</source>
+            <translation>🌐 პროქსი ჩართული</translation>
+        </message>
+        <message>
+            <source>📡 Checking for updates</source>
+            <translation>📡 განახლებების შემოწმება</translation>
+        </message>
+        <message>
+            <source>🛑 Speed limiter </source>
+            <translation>🛑 სიჩქარის ლიმიტი</translation>
+        </message>
+        <message>
+            <source>🟩 Ready</source>
+            <translation>🟩 მზადაა</translation>
+        </message>
+        <message>
+            <source>🔍 1 selected</source>
+            <translation>🔍 1 არჩეული</translation>
+        </message>
+        <message>
+            <source>🔍 %1 selected</source>
+            <translation>🔍 %1 არჩეული</translation>
+        </message>
+        <message>
+            <source>🔴 DHT off</source>
+            <translation>🔴 DHT გამორთული</translation>
+        </message>
+        <message>
+            <source> online (low confidence)</source>
+            <translation>ონლაინში (დაბალი სანდოობა)</translation>
+        </message>
+        <message>
+            <source> online</source>
+            <translation>ონლაინში</translation>
+        </message>
+        <message>
+            <source>🟧 Queue runs in 1 minute</source>
+            <translation>🟧 რიგი 1 წუთში გაშვდება</translation>
+        </message>
+        <message>
+            <source>🟧 Queue runs in %1 minutes</source>
+            <translation>🟧 რიგი %1 წუთში გაშვდება</translation>
+        </message>
+        <message>
+            <source>🟡 Estimating… (%1%)</source>
+            <translation>🟡 შეფასება… (%1%)</translation>
+        </message>
+        <message>
+            <source>next &gt;&gt;</source>
+            <translation>შემდეგი &gt;&gt;</translation>
+        </message>
+        <message>
+            <source>All-time share ratio
+Click to open Statistics</source>
+            <translation>ყოველდღიური გაზიარების კოეფიციენტი
+დაწკაპუნეთ სტატისტიკის გასახსნელად</translation>
+        </message>
+        <message>
+            <source>Click to copy IP</source>
+            <translation>დაწკაპუნეთ IP-ის ასლისთვის</translation>
+        </message>
+        <message>
+            <source>Public IP: </source>
+            <translation>საჯარო IP: </translation>
+        </message>
+        <message>
+            <source>Connection: Ethernet</source>
+            <translation>კავშირი: Ethernet</translation>
+        </message>
+        <message>
+            <source>WiFi: </source>
+            <translation>WiFi: </translation>
+        </message>
+        <message>
+            <source>Signal: </source>
+            <translation>სიგნალი:</translation>
+        </message>
+        <message>
+            <source>Listening port: </source>
+            <translation>მსმენელი პორტი:</translation>
+        </message>
+        <message>
+            <source>No incoming connections, network may be misconfigured</source>
+            <translation>შემომავალი კავშირები არ არის, ქსელი შეიძლება არასწორად იყოს კონფიგურირებული</translation>
+        </message>
+    </context>
+    <context>
+        <name>SystemTrayIcon</name>
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar Download Manager</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM ჩამოტვირთვები</translation>
+        </message>
+    </context>
+    <context>
+        <name>Toolbar</name>
+        <message>
+            <source>Add URL</source>
+            <translation>URL-ის დამატება</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>გაგრძელება</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>შეჩერება</translation>
+        </message>
+        <message>
+            <source>Stop All</source>
+            <translation>ყველას შეჩერება</translation>
+        </message>
+        <message>
+            <source>Delete</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Delete Done</source>
+            <translation>დასრულებულის წაშლა</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>სchedulerი</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>რიგის დაწყება</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>რიგის შეჩერება</translation>
+        </message>
+        <message>
+            <source>Grabber</source>
+            <translation>მომპოვებელი</translation>
+        </message>
+        <message>
+            <source>Search Engine</source>
+            <translation>ძიების სისტემა</translation>
+        </message>
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentDuplicateDialog</name>
+        <message>
+            <source>Duplicate Torrent</source>
+            <translation>დუბლიკატური ტორენტი</translation>
+        </message>
+        <message>
+            <source>Torrent already exists</source>
+            <translation>ტორენტი უკვე არსებობს</translation>
+        </message>
+        <message>
+            <source>This torrent is already in your list. %n new tracker(s) found.</source>
+            <translation>ეს ტორენტი უკვე თქვენს სიაშია. %n ახალი ტრექერი(ებ)ი იპოვა.</translation>
+        </message>
+        <message>
+            <source>This torrent is already in your list with the same trackers.</source>
+            <translation>ეს ტორენტი უკვე თქვენს სიაშია იგივე ტრექერებით.</translation>
+        </message>
+        <message>
+            <source>%n new tracker(s)</source>
+            <translation>%n ახალი ტრექერი(ებ)ი</translation>
+        </message>
+        <message>
+            <source>… and %1 more</source>
+            <translation>… და კიდევ %1</translation>
+        </message>
+        <message>
+            <source>Dismiss</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Merge Trackers</source>
+            <translation>ტრექერების გაერთიანება</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentMetadataDialog</name>
+        <message>
+            <source>Save to</source>
+            <translation>შენახვა</translation>
+        </message>
+        <message>
+            <source>Save As...</source>
+            <translation>შენახვა როგორც...</translation>
+        </message>
+        <message>
+            <source>Category</source>
+            <translation>კატეგორია</translation>
+        </message>
+        <message>
+            <source>Custom save folder</source>
+            <translation>მორგებული შენახვის საქაღალდე</translation>
+        </message>
+        <message>
+            <source>Remember</source>
+            <translation>დაფიქსირება</translation>
+        </message>
+        <message>
+            <source>Use category folder</source>
+            <translation>კატეგორიის საქაღალდე</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>აღწერა</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>ტორენტის პარამეტრები...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>გადმოწერა მოგვიანებით</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>გადმოწერა</translation>
+        </message>
+        <message>
+            <source>Opening torrent...</source>
+            <translation>ტორენტის გახსნა...</translation>
+        </message>
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1 ↑ %2</translation>
+        </message>
+        <message>
+            <source>RTT %1  %2% done</source>
+            <translation>RTT %1 %2 დასრულებული</translation>
+        </message>
+        <message>
+            <source>Files</source>
+            <translation>ფაილები</translation>
+        </message>
+        <message>
+            <source>%n item(s)</source>
+            <translation>%n ელემენტი(ები)</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>სახელი</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>პროგრესი</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>ფაილის ინფორმაცია არ არის ხელმისაწვდომი</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>მოლოდინშია</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>ელემენტის გადასახელება</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>შეიყვანეთ ახალი ფაილის ან საქაღალდის სახელი:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>გადასახელება</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>გადასახელება...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>პირი</translation>
+        </message>
+        <message>
+            <source>Opening torrent and reading metadata...</source>
+            <translation>ტორენტის გახსნა და მეტამონაცემების წაკითხვა...</translation>
+        </message>
+        <message>
+            <source>Looking for peers to download metadata...</source>
+            <translation>მეტამონაცემების საძიებელი პირების ძიება...</translation>
+        </message>
+        <message>
+            <source>Downloading metadata from %n peer(s)</source>
+            <translation>მეტამონაცემების ჩამოტვირთვა %n პირიდან</translation>
+        </message>
+        <message>
+            <source>Seed</source>
+            <translation>გაზიარება</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>თქვენ</translation>
+        </message>
+        <message>
+            <source>Torrent Metadata</source>
+            <translation>ტორენტის მეტამონაცემები</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchInstallDialog</name>
+        <message>
+            <source>Install a new search plugin</source>
+            <translation>ახალი ძიების პლაგინის დაყენება</translation>
+        </message>
+        <message>
+            <source>Local File</source>
+            <translation>ადგილობრივი ფაილი</translation>
+        </message>
+        <message>
+            <source>Web Link</source>
+            <translation>ვებ-შემაერთებელი</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>კარგი</translation>
+        </message>
+        <message>
+            <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
+            <translation>აირჩიეთ .py პლაგინის ფაილი საძიებლო პლაგინების საქაღალდეში ასაკოპირებლად.</translation>
+        </message>
+        <message>
+            <source>Paste a direct URL to a .py plugin file.</source>
+            <translation>ჩასვით პირდაპირი URL .py პლაგინისთვის.</translation>
+        </message>
+        <message>
+            <source>Install Search Plugin</source>
+            <translation>პლაგინის დაყენება</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchPluginsDialog</name>
+        <message>
+            <source>Disable Plugin</source>
+            <translation>პლაგინის გათიშვა</translation>
+        </message>
+        <message>
+            <source>Enable Plugin</source>
+            <translation>პლაგინის ჩართვა</translation>
+        </message>
+        <message>
+            <source>Uninstall</source>
+            <translation>წაშლა</translation>
+        </message>
+        <message>
+            <source>Installed Search Plugins</source>
+            <translation>დაყენებული პლაგინები</translation>
+        </message>
+        <message>
+            <source>Refresh</source>
+            <translation>განახლება</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>უცნობი</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>ჩართული</translation>
+        </message>
+        <message>
+            <source>Disabled</source>
+            <translation>გათიშული</translation>
+        </message>
+        <message>
+            <source>Install a New One</source>
+            <translation>ახლის დაყენება</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Search Plugins</source>
+            <translation>პლაგინების ძიება</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSearchWindow</name>
+        <message>
+            <source>Name</source>
+            <translation>სახელი</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ზომა</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>სიდერები</translation>
+        </message>
+        <message>
+            <source>Leechers</source>
+            <translation>ლიჩერები</translation>
+        </message>
+        <message>
+            <source>Engine</source>
+            <translation>ძრავი</translation>
+        </message>
+        <message>
+            <source>Published On</source>
+            <translation>გამოქვეყნების თარიღი</translation>
+        </message>
+        <message>
+            <source>Open Description Page</source>
+            <translation>აღწერის გვერდის გახსნა</translation>
+        </message>
+        <message>
+            <source>Download Torrent</source>
+            <translation>ტორენტის ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Copy Name</source>
+            <translation>სახლის კოპირება</translation>
+        </message>
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>მაგნეტის ბმულის კოპირება</translation>
+        </message>
+        <message>
+            <source>Copy Description Page URL</source>
+            <translation>აღწერის გვერდის URL-ის კოპირება</translation>
+        </message>
+        <message>
+            <source>Searching...</source>
+            <translation>ძიება...</translation>
+        </message>
+        <message>
+            <source>Search</source>
+            <translation>ძიება</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>უცნობი</translation>
+        </message>
+        <message>
+            <source>No search results yet</source>
+            <translation>შედეგები არ არის</translation>
+        </message>
+        <message>
+            <source>Search Plugins</source>
+            <translation>პლაგინები ძიებისთვის</translation>
+        </message>
+        <message>
+            <source>Torrent Search Engine</source>
+            <translation>ტორენტების ძიება</translation>
+        </message>
+    </context>
+    <context>
+        <name>TorrentSpeedLimitDialog</name>
+        <message>
+            <source>Torrent Settings</source>
+            <translation>ტორენტის პარამეტრები</translation>
+        </message>
+        <message>
+            <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
+            <translation>სიჩქარე, გაზიარება, პირების ძიება და ჩამოტვირთვის რეჟიმი</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>დახურვა</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>გამოყენება</translation>
+        </message>
+        <message>
+            <source>BANDWIDTH LIMITS</source>
+            <translation>სიჩქარის ლიმიტები</translation>
+        </message>
+        <message>
+            <source>Download:</source>
+            <translation>ჩამოტვირთვა:</translation>
+        </message>
+        <message>
+            <source>Upload:</source>
+            <translation>აპლოუდი:</translation>
+        </message>
+        <message>
+            <source>SHARE LIMITS</source>
+            <translation>გაზიარების ლიმიტები</translation>
+        </message>
+        <message>
+            <source>Ratio:</source>
+            <translation>რატიო:</translation>
+        </message>
+        <message>
+            <source>Default</source>
+            <translation>ნაგულისხმევი</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>ულიმიტო</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>მითითება</translation>
+        </message>
+        <message>
+            <source>Seeding time:</source>
+            <translation>გაზიარების დრო:</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>წთ</translation>
+        </message>
+        <message>
+            <source>Inactive time:</source>
+            <translation>არააქტიული დრო:</translation>
+        </message>
+        <message>
+            <source>PEER DISCOVERY</source>
+            <translation>პირების ძიება</translation>
+        </message>
+        <message>
+            <source>DHT</source>
+            <translation>DHT</translation>
+        </message>
+        <message>
+            <source>Distributed Hash Table</source>
+            <translation>განაწილებული ჰეშ-ცხრილი</translation>
+        </message>
+        <message>
+            <source>PeX</source>
+            <translation>PeX</translation>
+        </message>
+        <message>
+            <source>Peer Exchange</source>
+            <translation>პირების გაცვლა</translation>
+        </message>
+        <message>
+            <source>LSD</source>
+            <translation>LSD</translation>
+        </message>
+        <message>
+            <source>Local Service Discovery</source>
+            <translation>ადგილობრივი მომსახურების ძიება</translation>
+        </message>
+        <message>
+            <source>🔒 Private torrent</source>
+            <translation>🔒 პირადი ტორენტი</translation>
+        </message>
+        <message>
+            <source>DHT and PeX disabled by libtorrent.</source>
+            <translation>DHT და PeX გამორთულია libtorrent-ით.</translation>
+        </message>
+        <message>
+            <source>DOWNLOAD MODE</source>
+            <translation>ჩამოტვირთვის რეჟიმი</translation>
+        </message>
+        <message>
+            <source>Sequential download</source>
+            <translation>მიმდევრული ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Pieces downloaded in order (piece 0 → last)</source>
+            <translation>ნაწილები ჩამოიტვირთება თანმიმდევრულად (ნაწილი 0 → ბოლო)</translation>
+        </message>
+        <message>
+            <source>Prioritize first &amp; last pieces</source>
+            <translation>პრიორიტეტი პირველ და ბოლო ნაწილებს</translation>
+        </message>
+        <message>
+            <source>Front-loads header/footer for early playback</source>
+            <translation>სათაურის/ფუტერის წინასწარი ჩატვირთვა ადრეული დაკვრისთვის</translation>
+        </message>
+    </context>
+    <context>
+        <name>YtdlpDialog</name>
+        <message>
+            <source>Fetching available formats…</source>
+            <translation>ხელმისაწვდომი ფორმატების მიღება…</translation>
+        </message>
+        <message>
+            <source>Could not fetch video information</source>
+            <translation>ვიდეოს ინფორმაციის მიღება ვერ მოხერხდა</translation>
+        </message>
+        <message>
+            <source>YouTube n-challenge solving failed</source>
+            <translation>YouTube n-გამოწვევის ამოხსნა ვერ მოხერხდა</translation>
+        </message>
+        <message>
+            <source>Fetching video info…</source>
+            <translation>ვიდეოს ინფორმაციის მიღება…</translation>
+        </message>
+        <message>
+            <source>Could not fetch video info</source>
+            <translation>ვიდეოს ინფორმაციის მიღება ვერ მოხერხდა</translation>
+        </message>
+        <message>
+            <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
+            <translation>yt-dlp-ს სჭირდება JS რანტაიმს (Deno, Node.js, Bun ან QuickJS) YouTube-ის URL-ის შეზღუდვის დასაძლევად. დააყენეთ ერთ-ერთი და განათავსეთ yt-dlp.exe-ს გვერდით ან სისტემის PATH-ში.</translation>
+        </message>
+        <message>
+            <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
+            <translation>რანტაიმი ვერ მოიძებნა. დააყენეთ Deno (რეკომენდებული) deno.com-დან, შემდეგ გადაამოწმეთ Settings → Video Downloader-ში.</translation>
+        </message>
+        <message>
+            <source>Runtime detected: %1 (%2)</source>
+            <translation>რანტაიმი მოიძებნა: %1 (%2)</translation>
+        </message>
+        <message>
+            <source>Get Deno</source>
+            <translation>Deno-ს მიღება</translation>
+        </message>
+        <message>
+            <source>Open Settings</source>
+            <translation>პარამეტრების გახსნა</translation>
+        </message>
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>ქუქიები ბრაუზერიდან:</translation>
+        </message>
+        <message>
+            <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
+            <translation>აირჩიეთ ბრაუზერი yt-dlp-სთვის ქუქიების გადაცემისთვის, შემდეგ სცადეთ თავიდან.</translation>
+        </message>
+        <message>
+            <source>Retry</source>
+            <translation>თავიდან</translation>
+        </message>
+        <message>
+            <source>Select quality:</source>
+            <translation>ხარისხის არჩევა:</translation>
+        </message>
+        <message>
+            <source>Size unavailable — this quality uses separate video
+and audio streams merged by ffmpeg after download.</source>
+            <translation>ზომა არ არის ხელმისაწვდომი — ეს ხარისხი იყენებს ცალკეულ ვიდეო და აუდიო ნაკადებს, რომლებიც ffmpeg-ით იერთება ჩამოტვირთვის შემდეგ.</translation>
+        </message>
+        <message>
+            <source>Channel / Playlist</source>
+            <translation>არხი / პლეილისტი</translation>
+        </message>
+        <message>
+            <source>All videos</source>
+            <translation>ყველა ვიდეო</translation>
+        </message>
+        <message>
+            <source>Latest</source>
+            <translation>უახლესი</translation>
+        </message>
+        <message>
+            <source>videos</source>
+            <translation>ვიდეო</translation>
+        </message>
+        <message>
+            <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
+            <translation>YouTube არხის URL-ები ჩვეულებრივ მოიცავს ყველა ატვირთვას. გამოიყენეთ Scope ერთი ჩანართისთვის.</translation>
+        </message>
+        <message>
+            <source>Videos will be saved in a subfolder named after the channel.</source>
+            <translation>ვიდეოები შეინახება ქვეფოლდერში, სახელწოდებით არხი.</translation>
+        </message>
+        <message>
+            <source>Scope:</source>
+            <translation>Scope:</translation>
+        </message>
+        <message>
+            <source>All uploads</source>
+            <translation>ყველა ატვირთვა</translation>
+        </message>
+        <message>
+            <source>Videos</source>
+            <translation>ვიდეოები</translation>
+        </message>
+        <message>
+            <source>Shorts</source>
+            <translation>Shorts</translation>
+        </message>
+        <message>
+            <source>Live</source>
+            <translation>პირდაპირი</translation>
+        </message>
+        <message>
+            <source>Subtitles</source>
+            <translation>სუბტიტრები</translation>
+        </message>
+        <message>
+            <source>Download subtitle files alongside the video</source>
+            <translation>ქვეტექსტის ფაილების ჩამოტვირთვა ვიდეოსთან ერთად</translation>
+        </message>
+        <message>
+            <source>Language:</source>
+            <translation>ენა:</translation>
+        </message>
+        <message>
+            <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
+            <translation>ენის კოდი(ები), მაგ. en  ·  en.*,ja  ·  ყველა</translation>
+        </message>
+        <message>
+            <source>Auto-generated</source>
+            <translation>ავტომატურად შექმნილი</translation>
+        </message>
+        <message>
+            <source>Include auto-generated captions when available</source>
+            <translation>ავტომატურად შექმნილი ქვეტექსტების ჩართვა ხელმისაწვდომის შემთხვევაში</translation>
+        </message>
+        <message>
+            <source>Embed in video</source>
+            <translation>ვიდეოში ჩასმა</translation>
+        </message>
+        <message>
+            <source>Embed subtitles into the video container</source>
+            <translation>ქვეტექსტების ჩასმა ვიდეოს კონტეინერში</translation>
+        </message>
+        <message>
+            <source>Embedding requires mp4, mkv, or webm</source>
+            <translation>ჩასმა მოითხოვს mp4, mkv ან webm ფორმატს</translation>
+        </message>
+        <message>
+            <source>Embed thumbnail</source>
+            <translation>მინიატურის ჩასმა</translation>
+        </message>
+        <message>
+            <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
+            <translation>გარეკანის მინიატურის ჩასმა ვიდეო ფაილში (მოითხოვს ffmpeg-ს)</translation>
+        </message>
+        <message>
+            <source>Embed metadata</source>
+            <translation>მეტამონაცემების ჩასმა</translation>
+        </message>
+        <message>
+            <source>Write title, uploader, chapters etc. into the container metadata</source>
+            <translation>სათაურის, ავტორის, თავების და სხვა ინფორმაციის ჩაწერა კონტეინერის მეტამონაცემებში</translation>
+        </message>
+        <message>
+            <source>SponsorBlock</source>
+            <translation>SponsorBlock</translation>
+        </message>
+        <message>
+            <source>Remove sponsored segments, intros, outros and self-promotion
+(YouTube only · requires ffmpeg)</source>
+            <translation>სპონსორული სეგმენტების, შესავლების, დასასრულების და თვითპრომოუშენის მოშორება
+(მხოლოდ YouTube · მოითხოვს ffmpeg-ს)</translation>
+        </message>
+        <message>
+            <source>KB/s  (blank = use global speed limit)</source>
+            <translation>კბ/წმ  (ცარიელი = გლობალური სიჩქარის ლიმიტის გამოყენება</translation>
+        </message>
+        <message>
+            <source>Download Channel</source>
+            <translation>ჩამოტვირთვის არხი</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ჩამოტვირთვა</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>დამატებითი</translation>
+        </message>
+        <message>
+            <source>date filter</source>
+            <translation>თარიღის ფილტრი</translation>
+        </message>
+        <message>
+            <source>cookies</source>
+            <translation>cookie-ები</translation>
+        </message>
+        <message>
+            <source>archive</source>
+            <translation>არქივი</translation>
+        </message>
+        <message>
+            <source>split chapters</source>
+            <translation>კაპიტლების გაყოფა</translation>
+        </message>
+        <message>
+            <source>time range</source>
+            <translation>დროის დიაპაზონი</translation>
+        </message>
+        <message>
+            <source>extra files</source>
+            <translation>დამატებითი ფაილები</translation>
+        </message>
+        <message>
+            <source>random</source>
+            <translation>შემთხვევითი</translation>
+        </message>
+        <message>
+            <source>live start</source>
+            <translation>პირდაპირი დაწყება</translation>
+        </message>
+        <message>
+            <source>rate limit</source>
+            <translation>სიჩქარის ლიმიტი</translation>
+        </message>
+        <message>
+            <source>After date:</source>
+            <translation>თარიღი:</translation>
+        </message>
+        <message>
+            <source>Only videos uploaded on or after this date</source>
+            <translation>მხოლოდ ამ თარიღიდან ან უფრო გვიან ატვირთული ვიდეოები</translation>
+        </message>
+        <message>
+            <source>Cookies:</source>
+            <translation>cookie-ები:</translation>
+        </message>
+        <message>
+            <source>Load cookies for members-only / age-restricted content</source>
+            <translation>ბრტყელი ქოქის ჩატვირთვა მხოლოდ წევრებისთვის / ასაკით შეზღუდული კონტენტისთვის</translation>
+        </message>
+        <message>
+            <source>Rate limit:</source>
+            <translation>სიჩქარის ლიმიტი:</translation>
+        </message>
+        <message>
+            <source>Time range:</source>
+            <translation>დროის დიაპაზონი:</translation>
+        </message>
+        <message>
+            <source>Download only this section, e.g. *01:30-03:00</source>
+            <translation>ჩამოტვირთე მხოლოდ ეს ნაწილი, მაგ. *01:30-03:00</translation>
+        </message>
+        <message>
+            <source>Skip already downloaded</source>
+            <translation>გამოტოვე უკვე ჩამოტვირთული</translation>
+        </message>
+        <message>
+            <source>Split by chapters</source>
+            <translation>გაყოფა თავდაპირველად</translation>
+        </message>
+        <message>
+            <source>Save description</source>
+            <translation>აღწერის შენახვა</translation>
+        </message>
+        <message>
+            <source>Save thumbnail</source>
+            <translation>მინიატურის შენახვა</translation>
+        </message>
+        <message>
+            <source>Shuffle playlist</source>
+            <translation>პლეილისთის შერევა</translation>
+        </message>
+        <message>
+            <source>Live: from start</source>
+            <translation>პირდაპირი: დასაწყისიდან</translation>
+        </message>
+        <message>
+            <source>Save to:</source>
+            <translation>შენახვა:</translation>
+        </message>
+        <message>
+            <source>Category:</source>
+            <translation>კატეგორია:</translation>
+        </message>
+        <message>
+            <source>Format:</source>
+            <translation>ფორმატი:</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>გაუქმება</translation>
+        </message>
+        <message>
+            <source>Video Download</source>
+            <translation>ვიდეოს ჩამოტვირთვა</translation>
+        </message>
+    </context>
+</TS>

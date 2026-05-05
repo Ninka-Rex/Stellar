@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TS version="2.1" language="fr_FR" sourcelanguage="en_US">
+<TS version="2.1" language="sq_AL" sourcelanguage="en_US">
     <context>
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>Ajouter aux exceptions d'adresse ?</translation>
+            <translation>Shto në Adresa të Jashtme?</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>Cette adresse a été annulée deux fois. Voulez-vous l'ajouter à la liste des exceptions afin que Stellar ne l'intercepte plus automatiquement ?</translation>
+            <translation>Kjo adresë u anullua dy herë. Dëshironi ta shtoni në listën e jashtëm që Stellar ta ndërprë kurrë automatikisht?</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Jo</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>Ajouter l'exception</translation>
+            <translation>Shto Jashtëm</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>Ajouter une exception d'adresse</translation>
+            <translation>Shto Adresë Jashtëm</translation>
         </message>
     </context>
     <context>
@@ -31,19 +31,19 @@
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>Përdor Autorizim</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Identifiant</translation>
+            <translation>Hyrje</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Fjalëkalim</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anullo</translation>
         </message>
         <message>
             <source>OK</source>
@@ -51,121 +51,117 @@
         </message>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter une URL</translation>
+            <translation>Shto URL</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation>Stellar Gestionnaire de téléchargement v</translation>
+            <translation>Stellar Download Manager v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation>
-Bas : %1  Haut : %2</translation>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation>
-Téléchargement : %1</translation>
+            <translation>Shkarkim: %1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation>  Partage : %1</translation>
+            <translation>Pjesëtim: %1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation>
-Partage : %1</translation>
+            <translation>Pjesëtim: %1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation>  Total : %1</translation>
+            <translation>Total: %1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation>
-Total : %1</translation>
+            <translation>Total: %1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>Stellar est en cours d'arrêt...</translation>
+            <translation>Stellar po mbyllet...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>Stellar démarre...</translation>
+            <translation>Stellar po nis...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Lié à %1</translation>
+            <translation>🛡️ Lidhur me %1</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>Téléchargement par lots</translation>
+            <translation>Shkarkim të grupit</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>Générez les liens ici, puis passez à l'étape de révision.</translation>
+            <translation>Krijoni lidhjet këtu, pastaj vazhdoni te hapi i kontrollit.</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation>Adresse :</translation>
+            <translation>Adresa:</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation>Remplacer l'astérisque par</translation>
+            <translation>Zëvendësoj asteriskun me</translation>
         </message>
         <message>
             <source>Numbers</source>
-            <translation>Nombres</translation>
+            <translation>Numra</translation>
         </message>
         <message>
             <source>Letters</source>
-            <translation>Lettres</translation>
+            <translation>Shenja</translation>
         </message>
         <message>
             <source>From:</source>
-            <translation>De :</translation>
+            <translation>Nga:</translation>
         </message>
         <message>
             <source>To:</source>
-            <translation>À :</translation>
+            <translation>Deri te:</translation>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation>Taille du joker :</translation>
+            <translation>Madhësia e Wildcard</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>Parapamja</translation>
         </message>
         <message>
             <source>First: %1</source>
-            <translation>Premier : %1</translation>
+            <translation>E para: %1</translation>
         </message>
         <message>
             <source>Second: %1</source>
-            <translation>Deuxième : %1</translation>
+            <translation>E dyta: %1</translation>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation>Dernier : %1</translation>
+            <translation>E fundit: %1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation>Utilisez l'étape de file d'attente après OK si vous souhaitez regrouper ces téléchargements avant leur démarrage.</translation>
+            <translation>Përdorni hapin e radhës pas OK nëse dëshironi që këto shkarkime të grupohen para se të fillojnë.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>OK</source>
@@ -176,58 +172,58 @@ Total : %1</translation>
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Emri i skedarit</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Madhësia</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Status</translation>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Vérifiez les liens avant de les ajouter. Les colonnes peuvent être triées, redimensionnées et déplacées pour changer l'ordre.</translation>
+            <translation>Shqyrto lidhjet para shtimit. Kolonat mund të renditen, rregullohen dhe të tërhiqen.</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation>Remplacer les noms de fichiers par un motif générique (*)</translation>
+            <translation>Zëvendëso emrat e skedarëve me model me dyshkë (*)</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Skedat</translation>
         </message>
         <message>
             <source>Check all</source>
-            <translation>Tout cocher</translation>
+            <translation>Kontrollo të gjitha</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation>Tout décocher</translation>
+            <translation>Hapë kontrollo të gjitha</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Seuls les liens marqués « Trouvé » sont sélectionnables. L’attribution à la file d’attente se fait après confirmation.</translation>
+            <translation>Përmbushen vetëm lidhjet e shënuara si Gjetur. Caktimi në radhë ndodh pas OK.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>Projet</translation>
+            <translation>OK</translation>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation>Revue du téléchargement par lots</translation>
+            <translation>Shqyrto ngarkesën tërthore</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation>Installez l’extension Stellar dans votre navigateur pour intercepter les téléchargements et les router automatiquement vers Stellar.</translation>
+            <translation>Instaloni shtesën Stellar për të ndaluar shkarkimet dhe për t'i drejtuar ato automatikisht në Stellar.</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
@@ -235,11 +231,11 @@ Total : %1</translation>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation>Installer directement depuis le Chrome Web Store</translation>
+            <translation>Instaloni drejtpërdrejt nga Chrome Web Store</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation>Ouvrir le lien</translation>
+            <translation>Hapni lidhjen</translation>
         </message>
         <message>
             <source>Firefox</source>
@@ -247,121 +243,121 @@ Total : %1</translation>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation>Installer le fichier XPI Firefox, mises à jour non automatiques</translation>
+            <translation>Instaloni Firefox XPI, pa përditësime automatike</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation>Hôte de messagerie native</translation>
+            <translation>Përshkruesi i Mesazheve Natyrale</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation>Stellar s’enregistre automatiquement afin que l’extension puisse communiquer avec lui.</translation>
+            <translation>Stellar regjistrohet automatikisht që shtesa të komunikojë me të.</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation>Inscription réussie.</translation>
+            <translation>Regjistrimi u krye me sukses.</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation>L'inscription a échoué — voir les détails ci-dessous.</translation>
+            <translation>Regjistrimi dështoi - shihni detajet më poshtë.</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation>Inscription en cours…</translation>
+            <translation>Regjistrohem…</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation>Réessayer</translation>
+            <translation>Përsëri</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation>Installation manuelle :</translation>
+            <translation>Instalim manual:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation>Exécuter dans l'invite de commandes (aucun droit d'administrateur requis) :</translation>
+            <translation>Rrini në Command Prompt (pa admin):</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>Kopjo</translation>
         </message>
         <message>
             <source>Copied</source>
-            <translation>Copié</translation>
+            <translation>Kopjuar</translation>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation>Exécuter dans un terminal :</translation>
+            <translation>Rrini në terminal:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation>Extensions de navigateur</translation>
+            <translation>Shtesat e shfletuesit</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Të gjitha ngarkimet</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation>Vidéo</translation>
+            <translation>Video</translation>
         </message>
         <message>
             <source>Music</source>
-            <translation>Musique</translation>
+            <translation>Muzikë</translation>
         </message>
         <message>
             <source>Documents</source>
-            <translation>Documents</translation>
+            <translation>Dokumente</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation>Archives</translation>
+            <translation>Kompresuar</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>Programmes</translation>
+            <translation>Programë</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation>Colonnes</translation>
+            <translation>Kolona</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation>Cochez les colonnes que vous souhaitez afficher dans cette liste. Utilisez les boutons Déplacer vers le haut et Déplacer vers le bas pour les réorganiser comme vous le souhaitez.</translation>
+            <translation>Zgjidhni kolonat që dëshironi të shfaqeni në këtë listë. Përdorni butonat Lëviz Lart dhe Lëviz Poshtë për të rirregulluar kolonat siç dëshironi.</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation>Déplacer vers le haut</translation>
+            <translation>Lëviz Lart</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation>Déplacer vers le bas</translation>
+            <translation>Lëviz Poshtë</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation>Afficher</translation>
+            <translation>Shfaq</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation>Masquer</translation>
+            <translation>Fshih</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation>Réinitialiser</translation>
+            <translation>Rivendos</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation>La colonne sélectionnée doit être</translation>
+            <translation>Shtylla e zgjedhur duhet të jetë</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation>pixels de large</translation>
+            <translation>pikëllëzesh të gjera</translation>
         </message>
         <message>
             <source>OK</source>
@@ -369,159 +365,159 @@ Total : %1</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anuloje</translation>
         </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation>Confirmer la suppression</translation>
+            <translation>Konfirmo fshirjen</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation>Supprimer le téléchargement ?</translation>
+            <translation>Fshi shkarkimin?</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation>Supprimer également les fichiers torrent du disque</translation>
+            <translation>Fshi edhe skedarët torrent nga disku</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation>Supprimer également le fichier du disque</translation>
+            <translation>Fshi edhe skedarin nga disku</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation>Supprimer définitivement (ne pas déplacer vers la corbeille)</translation>
+            <translation>Fshi përgjithmonë (mos e lë në koshin e plehrave)</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Fshi</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation>Supprimer les téléchargements terminés</translation>
+            <translation>Fshi shkarkimet e përfunduara</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Êtes-vous sûr de vouloir supprimer tous les téléchargements terminés de la liste de Stellar ?</translation>
+            <translation>A jeni të sigurt që dëshironi të fshini të gjitha shkarkimet e përfunduara nga lista e Stellar?</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Remarque : Cela les supprimera uniquement de la liste. Les fichiers sur le disque ne seront pas supprimés.</translation>
+            <translation>Shënim: Kjo do të fshijë vetëm ato nga lista. Skedarët në disk nuk do të fshihen.</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation>Supprimer les torrents terminés et en seeding</translation>
+            <translation>Fshi torrentet e përfunduara dhe ato që po shpërndahen</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>Po</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Jo</translation>
         </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation>Téléchargement terminé</translation>
+            <translation>Shkarkimi i përfunduar</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Téléchargé %1 (%2 octets)</translation>
+            <translation>%1 shkarkuar (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>Adresa</translation>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation>Le fichier a été enregistré sous</translation>
+            <translation>Fajli u ruajt si</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
-            <translation>Le fichier a été déplacé.</translation>
+            <translation>Fajli u lëviz.</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>Hap</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation>Ouvrir avec...</translation>
+            <translation>Hap me...</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Hap folderin</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbyll</translation>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation>Ne plus afficher cette boîte de dialogue</translation>
+            <translation>Mos tregoj këtë dialog më</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation>Vous pouvez réactiver cette option dans Paramètres → Général → Afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>E riaktivizoni në Settings → General → Trego dialogun e përfundimit të shkarkimit</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation>Faites glisser le fichier pour le déplacer ailleurs</translation>
+            <translation>Dërgo fajlin për ta lëvizur në një vend tjetër</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation>Informations sur le fichier téléchargé</translation>
+            <translation>Informacioni i dosjes së shkarkimit</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
-            <translation>Ajout d'une catégorie à la liste des catégories Stellar</translation>
+            <translation>Shtimi i një kategorie në listën e kategorive Stellar</translation>
         </message>
         <message>
             <source>Category name</source>
-            <translation>Nom de la catégorie</translation>
+            <translation>Emri i kategorisë</translation>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation>Placer automatiquement dans cette catégorie les types de fichiers suivants :</translation>
+            <translation>Vendos automatikisht këto lloje dosjesh në këtë kategori:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation>Remarque : séparez les extensions de fichier par des espaces (ex. avi mpg mpeg)</translation>
+            <translation>Shënim: ndani zgjatjet e llojeve dosje me hapësirë (p.sh. avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation>Placer automatiquement dans cette catégorie les fichiers provenant uniquement des sites suivants :</translation>
+            <translation>Vendos automatikisht dosjet nga këto faqe në këtë kategori vetëm:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation>Séparez les sites par des espaces. Vous pouvez utiliser l'astérisque comme motif générique</translation>
+            <translation>Ndani faqet me hapësirë. Mund të përdorni yje si model të dhomës</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation>Enregistrer les futurs téléchargements de cette catégorie dans le dossier suivant :</translation>
+            <translation>Ruaj shkarkimet e ardhshme të kësaj kategorie në folderin e mëposhtëm:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation>Mémoriser le dernier chemin d'enregistrement</translation>
+            <translation>Kujto rrugën e fundit të ruajtjes</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>Shflet...</translation>
         </message>
         <message>
             <source>OK</source>
@@ -529,7 +525,7 @@ Total : %1</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>URL</source>
@@ -537,177 +533,177 @@ Total : %1</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Kategoria</translation>
         </message>
         <message>
             <source>Save As</source>
-            <translation>Enregistrer sous</translation>
+            <translation>Ruaje si</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation>Mémoriser ce chemin pour la catégorie « %1 »</translation>
+            <translation>Kujto këtë rrugë për &quot;%1&quot;</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Përshkrim</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Shkarko më vonë</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation>Démarrer le téléchargement</translation>
+            <translation>Fillo shkarkimin</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>Në radhë</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>Kontrollohet</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement</translation>
+            <translation>Dërgohet</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Lëvizet</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage</translation>
+            <translation>Përshtatet</translation>
         </message>
         <message>
             <source>Paused</source>
-            <translation>En pause</translation>
+            <translation>Në pritje</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>Montohet...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation>Terminé</translation>
+            <translation>Përfunduar</translation>
         </message>
         <message>
             <source>Error</source>
-            <translation>Erreur</translation>
+            <translation>Gabim</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>E panjohur</translation>
         </message>
     </context>
     <context>
         <name>DownloadProgressDialog</name>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>Dërgim</translation>
         </message>
         <message>
             <source>Receiving data...</source>
-            <translation>Réception des données...</translation>
+            <translation>Merrje të dhënash...</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>Montim...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation>État du téléchargement</translation>
+            <translation>Statusi i shkarkimit</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Kufizuesi i shpejtësisë</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>Opsione pas përfundimit</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation>&gt;&gt; Envoyer dans la zone de notification</translation>
+            <translation>&gt;&gt; Dërgo në tray</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>Minimizo në tray</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Status</translation>
         </message>
         <message>
             <source>File size</source>
-            <translation>Taille du fichier</translation>
+            <translation>Madhësia e skedarit</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Shkarkuar</translation>
         </message>
         <message>
             <source>%1  ( %2% )</source>
-            <translation>%1 ( %2% )</translation>
+            <translation>%1 (%2%)</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation>Débit de transfert</translation>
+            <translation>Shpejtësia</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation>(Limité à %1)</translation>
+            <translation>(%1 i kufizuar)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>Koha e mbetur</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation>Capacité de reprise</translation>
+            <translation>Përsëritje</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>Po</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Jo</translation>
         </message>
         <message>
             <source>Error detail</source>
-            <translation>Détail de l'erreur</translation>
+            <translation>Detajet e gabimit</translation>
         </message>
         <message>
             <source>Assembling... %1%</source>
-            <translation>Assemblage... %1%</translation>
+            <translation>Duke mbledhur... %1%</translation>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation>« Masquer les détails</translation>
+            <translation>« Shfaq detaje</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation>» Afficher les détails</translation>
+            <translation>Shfaq detaje</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>Fillo</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation>Pause</translation>
+            <translation>Pauzë</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation>Positions de départ et progression du téléchargement par connexion</translation>
+            <translation>Pozicione fillimi dhe përparimi nga lidhjet</translation>
         </message>
         <message>
             <source>N.</source>
@@ -719,265 +715,265 @@ Total : %1</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation>Limiter le débit de transfert pour ce téléchargement</translation>
+            <translation>Kufizo shpejtësinë për këtë shkarkim</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation>Activer la limite par téléchargement</translation>
+            <translation>Aktivizo kufizim për shkarkim</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation>Maximum :</translation>
+            <translation>Maksimum:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
-            <translation>ex. 100</translation>
+            <translation>p.sh. 100</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation>Limite globale active : %1 Ko/s</translation>
+            <translation>Kufiz global aktiv: %1 KB/s</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation>Aucune limite globale définie</translation>
+            <translation>Nuk ka kufiz global</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation>Paramètres du limiteur de vitesse global…</translation>
+            <translation>Cilësimet e kufizuesit të shpejtësisë globale…</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>Opsione pas përfundimit</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation>Ouvrir le fichier une fois terminé</translation>
+            <translation>Hap skedarin kur përfundon</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation>Ouvrir le dossier une fois terminé</translation>
+            <translation>Hap folderin kur përfundon</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Fillore kompjuterin kur përfundon</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation>Ces options sont temporaires et s'appliquent uniquement à ce téléchargement ; elles sont désactivées par défaut à chaque fois.</translation>
+            <translation>Këto opsione janë të përkohshme për këtë shkarkim dhe fillojnë të paaktivizuara çdo herë.</translation>
         </message>
     </context>
     <context>
         <name>DownloadTable</name>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Ridhënon</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation>Propriétés</translation>
+            <translation>Vetëdita</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Hap Fajll</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Hap Dosje</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Ridhënon...</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation>Copier le nom du fichier</translation>
+            <translation>Kopjo Emër</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>Eksporto .torrent...</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Vazhdo</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Ndalo</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation>Retirer de la file d'attente</translation>
+            <translation>Hiqe nga radha</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>Riposhto</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Fshi</translation>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation>Paramètres des colonnes</translation>
+            <translation>Kolona</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Emër</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Madhësi</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Status</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>Kohë</translation>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>Shpejtësi↓</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>Shpejtësi↑</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>Siderues</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>Pjesëmarrës</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>Raport</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Ngarkuar</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Shkarkuar</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation>Date du dernier essai</translation>
+            <translation>Data e fundit</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Përshkrimi</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Ruaj në</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>Referues</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation>Page web parente</translation>
+            <translation>Faqja web prind</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>Në pritje</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation>%1% (Arrêté)</translation>
+            <translation>%1% (Në pranim)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
-            <translation>Vérification (%1%)</translation>
+            <translation>Kontrollohet (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation>%n fichier(s)</translation>
+            <translation>%n dosje</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation>Aucun téléchargement correspondant.</translation>
+            <translation>Asnjë shkarkim i përshtatshëm.</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation>Aucun téléchargement pour le moment.
-Cliquez sur Ajouter une URL pour commencer.</translation>
+            <translation>Asnjë shkarkim ende.
+Kliko Shto URL për të nisur.</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation>Chargement de %n téléchargement(s)…</translation>
+            <translation>Duke ngarkuar %n shkarkime...</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation>Déplacer vers la file d'attente</translation>
+            <translation>Kthe në Fier</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>Kopjo Lidhjen Magnet</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>Kopjo URL</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation>%n téléchargement(s) sélectionné(s)</translation>
+            <translation>%n shkarkime të zgjedhura</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation>Dupliquer le lien de téléchargement</translation>
+            <translation>Dyfisho lidhjen e shkarkimit</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation>Ce fichier existe déjà dans votre liste de téléchargements.</translation>
+            <translation>Ky skedar tashmë ekziston në listën tuaj të shkarkimeve.</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation>Vous pouvez choisir l'une des options suivantes, ou appuyer sur Annuler pour ignorer le téléchargement.</translation>
+            <translation>Zgjidhni një nga opsionet e mëposhtme ose preseni 'Anulo' për të kaluar shkarkimin.</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation>Ajouter le doublon avec un nom de fichier numéroté</translation>
+            <translation>Shto dyfishimin me emër skedari numëruar</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation>Ajouter le doublon et écraser le fichier existant</translation>
+            <translation>Shto dyfishimin dhe mbivendos skedarin ekzistues</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation>Le fichier existant est complet - afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>Skedari ekzistues është i plotë - trego dialogun e përfundimit të shkarkimit</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation>Reprendre le téléchargement existant</translation>
+            <translation>Rrisë shkarkimin ekzistues</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation>Mémoriser ma sélection et ne plus afficher cette boîte de dialogue.
-Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</translation>
+            <translation>Kujto zgjedhjen time dhe mos trego këtë dialog më tej.
+E mundon në Opsione → Shkarkime më vonë.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>OK</source>
@@ -988,103 +984,103 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation>Déplacer les données du torrent vers...</translation>
+            <translation>Lëviz Torrent në...</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation>Déplacer le fichier vers...</translation>
+            <translation>Lëviz File në...</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>Fillo</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Ndalo</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Hap folder</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Hap file</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbyll</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Status</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Madhësi</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Ruaj</translation>
         </message>
         <message>
             <source>Move</source>
-            <translation>Déplacer</translation>
+            <translation>Lëviz</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>Adresë</translation>
         </message>
         <message>
             <source>Web page</source>
-            <translation>Page Web</translation>
+            <translation>Faqe web</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>Referues</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Përshkrim</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>Hyrje</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Fjalëkalim</translation>
         </message>
         <message>
             <source>Source</source>
-            <translation>Source</translation>
+            <translation>Burim</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation>Hash d'information</translation>
+            <translation>Hash burimi</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>Kopjo</translation>
         </message>
         <message>
             <source>Metadata</source>
-            <translation>Métadonnées</translation>
+            <translation>Meta</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Kategoria</translation>
         </message>
         <message>
             <source>Note</source>
-            <translation>Note</translation>
+            <translation>Shënim</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Të ngarkuara</translation>
         </message>
         <message>
             <source>Country</source>
-            <translation>Pays</translation>
+            <translation>Shteti</translation>
         </message>
         <message>
             <source>Port</source>
@@ -1092,187 +1088,187 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Ngarkuar</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>Siderues</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation>Message</translation>
+            <translation>Mesazh</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>E ndalur</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>Duke u shkarkuar</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Duke u zhvendosur</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>Duke u shtuar</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>Në radhë</translation>
         </message>
         <message>
             <source>Problem</source>
-            <translation>Problème</translation>
+            <translation>Problem</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation>Cilësimet e Torrentit...</translation>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation>ETA : %1</translation>
+            <translation>Kohë e mbetur: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation>Graines : %1 (%2)</translation>
+            <translation>Shtigje: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation>Pairs : %1 (%2)</translation>
+            <translation>Njësia: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>Përgjithshme</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Skedarë</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation>Carte du swarm</translation>
+            <translation>Harta e Swarm</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation>Carte des pièces</translation>
+            <translation>Harta e pjesëve</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation>Gaspillé</translation>
+            <translation>E humbur</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>Shpejtësia e ngarkimit</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>Shpejtësia e ngarkimit</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation>Connexions</translation>
+            <translation>Lidhjet</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation>Ratio de partage</translation>
+            <translation>Raporti i përdarjes</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation>Morceaux</translation>
+            <translation>Pjesë</translation>
         </message>
         <message>
             <source>Availability</source>
-            <translation>Disponibilité</translation>
+            <translation>Disponibilitet</translation>
         </message>
         <message>
             <source>Active time</source>
-            <translation>Temps actif</translation>
+            <translation>Koha aktive</translation>
         </message>
         <message>
             <source>Seed time</source>
-            <translation>Temps de partage</translation>
+            <translation>Koha e seedingut</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation>Limite de vitesse</translation>
+            <translation>Kufiri i shpejtësisë</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation>Vérifier les données locales</translation>
+            <translation>Verifikimi i të dhënave lokale</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation>Téléchargement</translation>
+            <translation>↓</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation>Téléversement</translation>
+            <translation>↑</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation>Étendue</translation>
+            <translation>Spanja</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Emri</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>Përparimi</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>Nuk ka informacion për skedarin</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>Ridënoje elementin</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>Hyr një emër të ri për skedar ose folder:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anuloje</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Ridënoje</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Shkarko</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Ridënoje...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation>Aucun pair connecté</translation>
+            <translation>Nuk ka bashkëpunues të lidhur</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation>Informations sur le pair</translation>
+            <translation>Informacion për bashkëpunuesin</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>Dallgëzo bashkëpunuesin</translation>
         </message>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>Koneksion</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>Burim: %1</translation>
         </message>
         <message>
             <source>Role: %1</source>
-            <translation>Rôle : %1</translation>
+            <translation>Roli: %1</translation>
         </message>
         <message>
             <source>Seeder</source>
@@ -1280,87 +1276,87 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Ping: %1</source>
-            <translation>Ping : %1</translation>
+            <translation>Ping: %1</translation>
         </message>
         <message>
             <source>Progress: %1%</source>
-            <translation>Progression : %1%</translation>
+            <translation>Progres: %1%</translation>
         </message>
         <message>
             <source>Transfer</source>
-            <translation>Transfert</translation>
+            <translation>Transferim</translation>
         </message>
         <message>
             <source>Down: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>Poshtë: %1</translation>
         </message>
         <message>
             <source>Up: %1</source>
-            <translation>Haut : %1</translation>
+            <translation>Lart: %1</translation>
         </message>
         <message>
             <source>Total down: %1</source>
-            <translation>Total téléchargé : %1</translation>
+            <translation>Total poshtë: %1</translation>
         </message>
         <message>
             <source>Total up: %1</source>
-            <translation>Total envoyé : %1</translation>
+            <translation>Total: %1</translation>
         </message>
         <message>
             <source>Location</source>
-            <translation>Emplacement</translation>
+            <translation>Lokacioni</translation>
         </message>
         <message>
             <source>Client: %1</source>
-            <translation>Client : %1</translation>
+            <translation>Klient: %1</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>Ti</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>Peer</translation>
         </message>
         <message>
             <source>Flags</source>
-            <translation>Drapeaux</translation>
+            <translation>Shenja</translation>
         </message>
         <message>
             <source>Ban Peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>Ndalim Peer</translation>
         </message>
         <message>
             <source>Legend:</source>
-            <translation>Légende :</translation>
+            <translation>Legendë:</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>Joaktiv</translation>
         </message>
         <message>
             <source>Trackers</source>
-            <translation>Trackers</translation>
-        </message>
-        <message>
-            <source>Seed</source>
-            <translation>Seed</translation>
-        </message>
-        <message>
-            <source>Tracker</source>
             <translation>Tracker</translation>
         </message>
         <message>
+            <source>Seed</source>
+            <translation>Bimë</translation>
+        </message>
+        <message>
+            <source>Tracker</source>
+            <translation>Shoqërues</translation>
+        </message>
+        <message>
             <source>Tier</source>
-            <translation>Niveau</translation>
+            <translation>Nivel</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>Përdorues</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation>0 pairs connus</translation>
+            <translation>0 përdorues të njohur</translation>
         </message>
         <message>
             <source>UL</source>
@@ -1368,7 +1364,7 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation>Téléchargé %1  Envoyé %2</translation>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>RTT %1</source>
@@ -1380,51 +1376,51 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation>Ping %1  %2 % terminé</translation>
+            <translation>Ping %1  %2% përfunduar</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>E panjohur</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation>Vous (ce client)</translation>
+            <translation>Ti</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation>Aucun pair connecté à tracer</translation>
+            <translation>Nuk ka njerëz të lidhur për hartim</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation>En attente de votre adresse IP publique pour afficher la position sur la carte locale</translation>
+            <translation>Pritet IP publike</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation>Forcer la réannonce</translation>
+            <translation>Rikujto</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>Kopjo URL</translation>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation>Supprimer le tracker</translation>
+            <translation>Hiq gjurmuesin</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation>Réannoncer tout</translation>
+            <translation>Rikujto të gjithë</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation>Coller les URL des trackers - une par ligne. Les lignes commençant par # sont ignorées.</translation>
+            <translation>Ngjit URL gjurmuesish - një për rresht. Rreshtat me # injorohen.</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Shto</translation>
         </message>
         <message>
             <source>No trackers</source>
-            <translation>Aucun tracker</translation>
+            <translation>Pa tracker</translation>
         </message>
         <message>
             <source>Web Seeds</source>
@@ -1432,7 +1428,7 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation>Coller les URL des web seeds - une par ligne. Les seeds URL (BEP-19) et les seeds HTTP (BEP-17) sont tous deux acceptés.</translation>
+            <translation>Ngjit URL-t e web seeds - një për rresht. Pranojmë URL seeds (BEP-19) dhe HTTP seeds (BEP-17).</translation>
         </message>
         <message>
             <source>URL</source>
@@ -1440,27 +1436,27 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Type</source>
-            <translation>Type</translation>
+            <translation>Lloj</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation>Aucun web seed</translation>
+            <translation>Pa web seeds</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>Hap në shfletues</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation>Supprimer le seed</translation>
+            <translation>Hiq seed</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation>Terminé</translation>
+            <translation>Përfunduar</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation>Client</translation>
+            <translation>Klient</translation>
         </message>
         <message>
             <source>DL</source>
@@ -1468,489 +1464,489 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Both</source>
-            <translation>Les deux</translation>
+            <translation>Të dyja</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation>Vitesse</translation>
+            <translation>Shpejtësia</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation>Disponible</translation>
+            <translation>E disponueshme</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation>Distance : %1</translation>
+            <translation>Distanca: %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation>Pays : %1</translation>
+            <translation>Shteti: %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>%1 pairs connus</translation>
+            <translation>%1 mikra të njohur</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>%n tracker(s)</translation>
+            <translation>%n tracker(e)</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>Annoncez à tous les trackers votre présence immédiate, au lieu d'attendre l'intervalle d'annonce normal. Utile si votre nombre de pairs a chuté soudainement.</translation>
+            <translation>Njofto çdo tracker se je këtu tani, në vend të pritjes për intervalin normal të njoftimit. Është e dobishme nëse numri i mikrave u uli papritur.</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>Réannonce en cours...</translation>
+            <translation>Rinjoftim...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation>Ajouter des trackers…</translation>
+            <translation>Shto trackerë…</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation>%1 ajouté</translation>
+            <translation>%1 u shtua</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation>%1 ajouté, %2 échoué</translation>
+            <translation>%1 u shtua, %2 dështuan</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation>%n seed(s)</translation>
+            <translation>%n shtesë</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation>Ajouter un seed…</translation>
+            <translation>Shto shtesë</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation>Récupération depuis le swarm...</translation>
+            <translation>Merr nga turma...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation>Propriétés du torrent</translation>
+            <translation>Vetitë e Torrentit</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation>Vérification des fichiers</translation>
+            <translation>Kontrollo skedarët</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation>Propriétés du fichier</translation>
+            <translation>Vetitë e skedarit</translation>
         </message>
     </context>
     <context>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>Gjej</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>Gjej</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Chercher dans :</translation>
+            <translation>Kërko në</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>Emër skaje ose pjesë</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation>Description ou partie de la description</translation>
+            <translation>Përshkrim ose pjesë</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation>Nom du site / lien de téléchargement / page web parente / référent</translation>
+            <translation>Emër faqe / lidhje / faqe prind / referues</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>Respekto majuskul</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière</translation>
+            <translation>Përputhje tërësisht</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation>Aucun résultat trouvé.</translation>
+            <translation>Asnjë rezultat</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation>1 résultat trouvé.</translation>
+            <translation>Gjetur 1 rezultat</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation>%1 résultats trouvés.</translation>
+            <translation>Gjetur %1 rezultate</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
     </context>
     <context>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation>Projet enregistré.</translation>
+            <translation>Projekti u ruajt.</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation>Le nom du projet et la page de démarrage sont requis.</translation>
+            <translation>Emri dhe faqja fillestare janë të nevojshme.</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Étape %1 sur %2 : %3</translation>
+            <translation>Stellar Grabber – Hapi %1 nga %2: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
-            <translation>Définir la page de démarrage</translation>
+            <translation>Përcakto faqen fillestare</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation>Enregistrer les fichiers dans</translation>
+            <translation>Ruaj skedarët në</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation>Définir les filtres de l'explorateur</translation>
+            <translation>Përcakto filtra eksploruesi</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation>Définir les filtres de fichiers</translation>
+            <translation>Përcakto filtra skedarësh</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation>Paramètres personnalisés</translation>
+            <translation>Cilësime të përshtatura</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation>Toutes les images d'un site web</translation>
+            <translation>Të gjitha imazhet nga një faqe interneti</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation>Toutes les vidéos d'un site web</translation>
+            <translation>Të gjitha videot nga një faqe</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation>Tous les audios d'un site web</translation>
+            <translation>Të gjitha audiot nga një faqe</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation>Site web complet</translation>
+            <translation>Faqja e plotë</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation>Inclure les filtres</translation>
+            <translation>Përfshije filtra</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation>Exclure les filtres</translation>
+            <translation>Përjashto filtra</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation>Nom du modèle</translation>
+            <translation>Emri i modelit</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anuloje</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Ruaje</translation>
         </message>
         <message>
             <source>New</source>
-            <translation>Nouveau</translation>
+            <translation>Re</translation>
         </message>
         <message>
             <source>Load</source>
-            <translation>Charger</translation>
+            <translation>Krye</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation>Enregistrer les paramètres actuels en tant que modèle</translation>
+            <translation>Ruaje si model</translation>
         </message>
         <message>
             <source>Recent Projects</source>
-            <translation>Projets récents</translation>
+            <translation>Projektet e fundit</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbylle</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>Cilësimet e Grabber-it</translation>
         </message>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>Projekti</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Opsione</translation>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation>Nom du projet du grabber</translation>
+            <translation>Emri i projektit Grabber</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation>Page d'accueil / Adresse</translation>
+            <translation>Faqja/Adresi fillestare</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation>Modèle de projet</translation>
+            <translation>Modeli i projektit</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation>Si vous sélectionnez un modèle de projet, l'assistant configurera les paramètres requis pour ce modèle lors des étapes suivantes. Vous pouvez toujours modifier les paramètres manuellement.</translation>
+            <translation>Nëse zgjidhni një model projekti, asistenti do të krijojë cilësimet e nevojshme në hapat e ardhshëm. Mund t'i ndryshoni ato manualisht.</translation>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>Përdor autorizim</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation>Avancé &lt;&lt;</translation>
+            <translation>I Avancuar &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation>Avancé &gt;&gt;</translation>
+            <translation>I Avancuar &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>Hyrje</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Fjalëkalim</translation>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation>Appuyez sur Avancé pour activer la connexion manuelle ou pour désactiver la page de déconnexion.</translation>
+            <translation>Shtoni 'I Avancuar' për hyrje manuale ose për të çaktivizuar faqen e daljes.</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation>Saisissez manuellement le nom d'utilisateur et le mot de passe sur la page web suivante :</translation>
+            <translation>Hyni hyrjen dhe fjalëkalimin manualisht në faqen e mëposhtme të internetit:</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation>Ne pas ouvrir la page de déconnexion :</translation>
+            <translation>Mos hap faqen e daljes:</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation>De nombreux sites disposent d'une page de déconnexion que le Grabber ne devrait pas ouvrir. Vous pouvez utiliser un astérisque comme joker pour spécifier un motif correspondant à différentes pages de déconnexion.</translation>
+            <translation>Shumë faqe kanë një faqe dalje që Grabber-i nuk duhet ta hapë. Mund të përdorni një shenjë * për të specifikuar një model për faqet e daljes të ndryshme.</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Ruaj në</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation>Chaque fichier dans un dossier selon la catégorie Stellar du fichier</translation>
+            <translation>Në një dosje për çdo dosje Stellar</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation>Tous les fichiers dans le dossier associé à la catégorie Stellar suivante :</translation>
+            <translation>Të gjitha në dosjen e kategorisë Stellar</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation>Tous les fichiers dans le dossier suivant</translation>
+            <translation>Të gjitha në këtë dosje</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation>Utiliser les sous-dossiers relatifs originaux</translation>
+            <translation>Ruaj në nëndosjet origjinale</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation>Enregistrer chaque fichier par catégorie</translation>
+            <translation>Ruaj çdo dosje sipas kategorisë</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation>Enregistrer tous les fichiers dans la catégorie sélectionnée</translation>
+            <translation>Ruaj të gjitha në kategorinë të zgjedhur</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation>Enregistrer tous les fichiers dans ce dossier</translation>
+            <translation>Ruaj të gjitha në këtë dosje</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation>Convertir les liens dans les fichiers HTML téléchargés en fichiers locaux pour une navigation hors ligne</translation>
+            <translation>Konverto lidhjet në skedarë lokalë</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation>Écraser les fichiers existants</translation>
+            <translation>Mbi shkruaj skedarët ekzistues</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation>Ajouter les fichiers cochés à la liste principale de Stellar et à la file d'attente de téléchargement à la fermeture du grabber</translation>
+            <translation>Shto skedarët në listën kryesore dhe radhën e ngarkimit</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation>À cette étape, vous devez spécifier les pages web à explorer pour trouver les fichiers requis. À l'étape suivante, vous pourrez définir les types de fichiers, l'emplacement et d'autres filtres.</translation>
+            <translation>Në këtë hap, përcaktoni faqet e internetit për të shfletuar për të gjetur skedarët e nevojshëm. Në hapin e ardhshëm, do të mund të vendosni llojet e skedarëve, vendndodhjen dhe filtra të tjerë.</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
-            <translation>Explorer tout le site</translation>
+            <translation>Shfletoni të gjithë faqen</translation>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation>Explorer un nombre spécifié de niveaux de liens :</translation>
+            <translation>Shfletoni numrin e niveleve të lidhjeve të përcaktuara:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation>niveaux dans le site de base</translation>
+            <translation>nivele brenda faqes bazë</translation>
         </message>
         <message>
             <source>levels on other sites</source>
-            <translation>niveaux sur d'autres sites</translation>
+            <translation>nivele në faqe të tjera</translation>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation>Qu'est-ce que le nombre de niveaux de liens ?</translation>
+            <translation>Sa janë nivelet e lidhjeve?</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation>Ignorer les fenêtres contextuelles</translation>
+            <translation>Mos harroni dritaret e pop-up</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation>Ne pas explorer les répertoires parents</translation>
+            <translation>Mos shfletoni direktorit prind</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation>Explorer tous les sites du domaine principal</translation>
+            <translation>Shfletoni të gjitha faqet brenda domenit kryesor</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation>Traiter le JavaScript</translation>
+            <translation>Përpuno JavaScript</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation>Explorer uniquement les pages web dans les chemins/domaines suivants :</translation>
+            <translation>Shkoni në faqe web vetëm në këto rrugë/domene:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
+            <translation>Hyni një rrugë ose domen për çdo rresht, ose ndani hyrjet me pikëpresje. Përdorni * si një shenjë zëvendësuese. Shembuj: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation>Ne pas explorer les pages web dans les chemins/domaines suivants :</translation>
+            <translation>Mos shkoni në faqe web brenda rrugëve/domeneve të mëposhtme:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
+            <translation>Hyni një rrugë ose domen për çdo rresht, ose ndani hyrjet me pikëpresje. Përdorni * si një shenjë zëvendësuese. Shembuj: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation>Télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>Shkarkoni të dhënat e mëposhtme (lloje skedarësh)</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation>Inclure les filtres...</translation>
+            <translation>Përfshini Filtër...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation>Ne pas télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>Mos shkarkoni të dhënat e mëposhtme (lloje skedarësh)</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation>Exclure les filtres...</translation>
+            <translation>Shtoni Filtër...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation>Rechercher des fichiers uniquement sur ce site</translation>
+            <translation>Kërko skedarë vetëm në këtë faqe</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation>Masquer les fichiers dupliqués trouvés dans différents emplacements</translation>
+            <translation>Fshi skedarët e dyfishtë të gjetur në vende të ndryshme</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation>Commencer à télécharger tous les fichiers correspondants en une seule fois</translation>
+            <translation>Shkarko të gjitha skedarët e përputhur njëherë</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation>Télécharger si la taille du fichier est</translation>
+            <translation>Shkarko nëse madhësia e skedarit është</translation>
         </message>
         <message>
             <source>Not less than</source>
-            <translation>Non inférieure à</translation>
+            <translation>Nëse nuk është më pak se</translation>
         </message>
         <message>
             <source>Bytes</source>
-            <translation>Octets</translation>
+            <translation>Bajtë</translation>
         </message>
         <message>
             <source>Not more than</source>
-            <translation>Non supérieure à</translation>
+            <translation>Nëse nuk është më shumë se</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation>Télécharger les fichiers situés uniquement dans les chemins/domaines suivants :</translation>
+            <translation>Shkarko vetëm skedarët në këto rrugë/domene:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation>Utilisez * comme caractère générique. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.google.com ; cdn.example.com ; /downloads/*</translation>
+            <translation>Përdor * si shenjë të zgjerimit. Hyr një rrugë ose domen për çdo rresht, ose ndarë hyrjet me pikëpresje. Shembuj: *.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation>Ne pas télécharger les fichiers situés dans les chemins/domaines suivants :</translation>
+            <translation>Mos shkarko skedarët në këto rrugë/domene:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation>Utilisez * comme joker. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.doubleclick.net ; /ads/* ; /tracking</translation>
+            <translation>Përdor * si shenjë të zgjerimit. Hyr një rrugë ose domen për çdo rresht, ose ndarë hyrjet me pikëpresje. Shembuj: *.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
-            <translation>Commentaire</translation>
+            <translation>Komente</translation>
         </message>
         <message>
             <source>Save Project</source>
-            <translation>Enregistrer le projet</translation>
+            <translation>Ruaje Projektin</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>Fshi Projektin</translation>
         </message>
         <message>
             <source>&lt; Back</source>
-            <translation>&lt; Précédent</translation>
+            <translation>&lt; Kthehu</translation>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation>Suivant &gt;</translation>
+            <translation>Vazhdo &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation>Commencer à explorer</translation>
+            <translation>Nis Eksplorimin</translation>
         </message>
     </context>
     <context>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation>Nom du filtre</translation>
+            <translation>Filtro emrin</translation>
         </message>
         <message>
             <source>Mask</source>
-            <translation>Masque</translation>
+            <translation>Maska</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Shto</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>Redakto</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Fshi</translation>
         </message>
         <message>
             <source>OK</source>
@@ -1958,38 +1954,38 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Edit filter</source>
-            <translation>Modifier le filtre</translation>
+            <translation>Modifiko filter</translation>
         </message>
         <message>
             <source>New filter</source>
-            <translation>Nouveau filtre</translation>
+            <translation>Filter i ri</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Kategoria</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Ruaj</translation>
         </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation>Charger un projet Stellar Grabber</translation>
+            <translation>Kërko projekt Grabber</translation>
         </message>
         <message>
             <source>Saved projects</source>
-            <translation>Projets enregistrés</translation>
+            <translation>Projekte të ruajtura</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2000,153 +1996,153 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>GrabberResultsDialog</name>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>Projekti</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Opsionet</translation>
         </message>
         <message>
             <source>Running</source>
-            <translation>En cours</translation>
+            <translation>Në punë</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>Në pranim</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation>%1 fichiers trouvés</translation>
+            <translation>%1 skedarë të gjetur</translation>
         </message>
         <message>
             <source>%1 checked</source>
-            <translation>%1 vérifiés</translation>
+            <translation>%1 të kontrolluar</translation>
         </message>
         <message>
             <source>Exploring…</source>
-            <translation>Exploration en cours…</translation>
+            <translation>Duke eksploruar…</translation>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation>Appuyez sur Démarrer l'exploration pour analyser l'URL.</translation>
+            <translation>Shtypni 'Filloni Eksplorimin' për të skanuar URL-në.</translation>
         </message>
         <message>
             <source>Start
 Exploring</source>
-            <translation>Démarrer l'exploration</translation>
+            <translation>Filloni</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Duke eksploruar</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation>Type de fichier</translation>
+            <translation>Tipi</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Madhësia</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Statusi</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation>Texte du lien</translation>
+            <translation>Lidhja</translation>
         </message>
         <message>
             <source>Download from</source>
-            <translation>Télécharger depuis</translation>
+            <translation>Shkarko nga</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Ruaje në</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation>Vérifier la sélection</translation>
+            <translation>Zbulo të zgjedhurin</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation>Désélectionner la sélection</translation>
+            <translation>Fillo të zgjedhurin</translation>
         </message>
         <message>
             <source>Edit current project</source>
-            <translation>Modifier le projet actuel</translation>
+            <translation>Redakto projektin</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbylle</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>Rregullime</translation>
         </message>
         <message>
             <source>Stop
 Exploring</source>
-            <translation>Arrêter</translation>
+            <translation>Ndalim</translation>
         </message>
         <message>
             <source>Start
 Downloading</source>
-            <translation>Exploration</translation>
+            <translation>Shfletim</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
-            <translation>Démarrer</translation>
+            <translation>Fillim</translation>
         </message>
         <message>
             <source>Update
 All</source>
-            <translation>Téléchargement</translation>
+            <translation>Shkarkim</translation>
         </message>
         <message>
             <source>Schedule
 Project</source>
-            <translation>Arrêter</translation>
+            <translation>Ndalim</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Téléchargements</translation>
+            <translation>Shkarkime</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Përditësim</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation>Tous les fichiers</translation>
+            <translation>Të gjitha</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation>Vue des liens</translation>
+            <translation>Programim</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation>Vue des dossiers</translation>
+            <translation>Shikimi i Dosjes</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation>Aucun fichier trouvé pour le moment</translation>
+            <translation>Nuk u gjetën asnjë skedar</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation>← Retour</translation>
+            <translation>← Prapa</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <translation>%1 fichiers</translation>
+            <translation>%1 skedarë</translation>
         </message>
         <message>
             <source>%1 / %2 (filtered)</source>
-            <translation>%1 / %2 (filtré)</translation>
+            <translation>%1 / %2 (filtruar)</translation>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation>Ajouter les éléments cochés à la liste de téléchargement</translation>
+            <translation>Shto të zgjedhurit në listën e ngarkimit</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
@@ -2157,95 +2153,95 @@ Project</source>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation>Planifier le projet Stellar Grabber</translation>
+            <translation>Programo projektin e grabitjes</translation>
         </message>
         <message>
             <source>Project:</source>
-            <translation>Projet :</translation>
+            <translation>Projekt:</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation>Activer le calendrier du projet</translation>
+            <translation>Aktivizo programimin e projektit</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>Étape 1. Sélectionner le type</translation>
+            <translation>1. Zgjidhni llojin</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>Exploration/téléchargement unique</translation>
+            <translation>Shfletim/Shkarkim njëherësh</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>Sinkronizim periodik</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>Étape 2. Sélectionner l'action</translation>
+            <translation>2. Zgjidhni veprimin</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>Explorer uniquement</translation>
+            <translation>Shfletim vetëm</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>Explorer le site et télécharger les fichiers correspondants</translation>
+            <translation>Shfletoni dhe shkarkoni</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>Télécharger les fichiers cochés</translation>
+            <translation>Shkarkoni të kontrolluar</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>Après achèvement</translation>
+            <translation>Pas përfundimit</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>Dilni nga Stellar</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Fillojeni kompjuterin</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>Éteindre</translation>
+            <translation>Mbyll</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>Redémarrer</translation>
+            <translation>Rihapose</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation>Veille</translation>
+            <translation>Dhëmbë</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>Hibernation</translation>
+            <translation>Hiberno</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>Detyro proceset</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>Étape 3. Planification</translation>
+            <translation>Hapi 3. Programo</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>Fillo shkarkim në</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>Nëse në</translation>
         </message>
         <message>
             <source>January</source>
-            <translation>Janvier</translation>
+            <translation>Janar</translation>
         </message>
         <message>
             <source>February</source>
-            <translation>Février</translation>
+            <translation>Shkurt</translation>
         </message>
         <message>
             <source>March</source>
@@ -2253,95 +2249,95 @@ Project</source>
         </message>
         <message>
             <source>April</source>
-            <translation>Avril</translation>
+            <translation>Prill</translation>
         </message>
         <message>
             <source>May</source>
-            <translation>Mai</translation>
+            <translation>Maj</translation>
         </message>
         <message>
             <source>June</source>
-            <translation>Juin</translation>
+            <translation>Qershor</translation>
         </message>
         <message>
             <source>July</source>
-            <translation>Juillet</translation>
+            <translation>Korrik</translation>
         </message>
         <message>
             <source>August</source>
-            <translation>Août</translation>
+            <translation>Gusht</translation>
         </message>
         <message>
             <source>September</source>
-            <translation>Septembre</translation>
+            <translation>Shtator</translation>
         </message>
         <message>
             <source>October</source>
-            <translation>Octobre</translation>
+            <translation>Tetor</translation>
         </message>
         <message>
             <source>November</source>
-            <translation>Novembre</translation>
+            <translation>Nëntor</translation>
         </message>
         <message>
             <source>December</source>
-            <translation>Décembre</translation>
+            <translation>Dhjetor</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>Ditore</translation>
         </message>
         <message>
             <source>Sunday</source>
-            <translation>Dimanche</translation>
+            <translation>E Diel</translation>
         </message>
         <message>
             <source>Thursday</source>
-            <translation>Jeudi</translation>
+            <translation>E Enjte</translation>
         </message>
         <message>
             <source>Monday</source>
-            <translation>Lundi</translation>
+            <translation>E Hënë</translation>
         </message>
         <message>
             <source>Friday</source>
-            <translation>Vendredi</translation>
+            <translation>E Premte</translation>
         </message>
         <message>
             <source>Tuesday</source>
-            <translation>Mardi</translation>
+            <translation>E Martë</translation>
         </message>
         <message>
             <source>Saturday</source>
-            <translation>Samedi</translation>
+            <translation>E Shtunë</translation>
         </message>
         <message>
             <source>Wednesday</source>
-            <translation>Mercredi</translation>
+            <translation>E Mërkurë</translation>
         </message>
         <message>
             <source>Repeat every</source>
-            <translation>Répéter tous les</translation>
+            <translation>Përsëri çdo</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>orë</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>minuta</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>Ndalo shkarkimin në</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation>Remarque : Stellar doit être exécuté dans la zone de notification au moment spécifié pour démarrer un projet planifié.</translation>
+            <translation>Shënim: Stellar duhet të jetë aktiv në tray-in e sistemit në kohën e caktuar për të nisur një projekt të programuar.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2352,27 +2348,27 @@ Project</source>
         <name>GrabberSettingsDialog</name>
         <message>
             <source>Settings of Stellar Grabber</source>
-            <translation>Paramètres de Stellar Grabber</translation>
+            <translation>Cilësimet e Stellar Grabber</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation>fichiers à explorer simultanément (1 à 10)</translation>
+            <translation>skedarë për shqyrtim njëkohësisht (1-10)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation>fichiers à télécharger simultanément (1 à 10)</translation>
+            <translation>skedarë për shkarkim njëkohësisht (1-10)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation>Veuillez noter qu'un serveur web peut rejeter les requêtes si vous définissez un grand nombre de fichiers à explorer ou à télécharger simultanément.</translation>
+            <translation>Ju luteni, vini re se një server web mund të refuzojë kërkesat nëse vendosni një numër të madh skedarësh për shqyrtim ose shkarkim njëkohësisht.</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation>Utiliser les textes des liens comme descriptions de téléchargement lors de l'ajout de fichiers à la liste principale de Stellar</translation>
+            <translation>Përdor tekstet e lidhjeve si përshkrime shkarkimi kur shtoni skedarë në listën kryesore të Stellar.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2383,31 +2379,31 @@ Project</source>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation>Statistiques du grabber</translation>
+            <translation>Statistika</translation>
         </message>
         <message>
             <source>Status: %1</source>
-            <translation>État : %1</translation>
+            <translation>Status: %1</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>I lirë</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation>Pages web traitées</translation>
+            <translation>Faqet web të përpunuara</translation>
         </message>
         <message>
             <source>Simple</source>
-            <translation>Simple</translation>
+            <translation>Thjeshtë</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Të avancuara</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Skedarë</translation>
         </message>
         <message>
             <source>Total</source>
@@ -2415,58 +2411,58 @@ Project</source>
         </message>
         <message>
             <source>Explored</source>
-            <translation>Explorées</translation>
+            <translation>Eksploruar</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>Correspondantes</translation>
+            <translation>Përputhur</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Shkarkuar</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbylle</translation>
         </message>
     </context>
     <context>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation>Tâches</translation>
+            <translation>Detyra</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>Ajouter une URL…</translation>
+            <translation>Shto URL...</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>Shkarkimet SDM</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>Ce téléchargement YouTube semble nécessiter des cookies de connexion.</translation>
+            <translation>Kjo shkarkim YouTube duket se kërkon cookies login.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>Cookies nga shfletuesi:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>Stellar réessayera le même élément yt-dlp avec les cookies de ce navigateur.</translation>
+            <translation>Stellar do të riprovojë të njëjtin element yt-dlp me cookie-t e atij shfletuesi.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation>Réessayer le téléchargement</translation>
+            <translation>Riposillo</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>Ouvrir Stellar</translation>
+            <translation>Hape Stellar</translation>
         </message>
         <message>
             <source>GitHub</source>
@@ -2474,63 +2470,63 @@ Project</source>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation>Limiteur de vitesse : Activer</translation>
+            <translation>Kufizimi i shpejtësisë: Aktivizo</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation>Limiteur de vitesse : Désactiver</translation>
+            <translation>Kufizimi i shpejtësisë: Deaktivizo</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation>Paramètres du limiteur de vitesse…</translation>
+            <translation>Cilësimet e kufizimit të shpejtësisë...</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation>Quitter Stellar</translation>
+            <translation>Dil nga Stellar</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation>Fichiers torrent (*.torrent)</translation>
+            <translation>Skedarë torrent (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation>Tous les fichiers (*)</translation>
+            <translation>Të gjithë skedarët (*)</translation>
         </message>
         <message>
             <source>Total: %1</source>
-            <translation>Total : %1</translation>
+            <translation>Total: %1</translation>
         </message>
         <message>
             <source>Completed: %1</source>
-            <translation>Terminé : %1</translation>
+            <translation>Përfunduar: %1</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>Duke u shkarkuar: %1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation>En file d'attente : %1</translation>
+            <translation>Në listë: %1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
-            <translation>Global : %1%</translation>
+            <translation>Përgjithshëm: %1%</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Ndal</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Ripos</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbylle</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation>Activer le support BitTorrent ?</translation>
+            <translation>Aktivizo mbështetjen BitTorrent?</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2540,25 +2536,23 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Le support BitTorrent est actuellement désactivé.
+            <translation>Mbështetja BitTorrent është e çaktivizuar aktualisht.
 
-Lorsque vous téléchargez un torrent, votre adresse IP devient visible pour les autres pairs du swarm et vous téléversez simultanément (seed) des données vers les autres.
+Kur shkarkoni një torrent, adresa IP bëhet e dukshme për të tjerët në grup dhe ju ngarkoni (seed) të dhëna njëkohësisht.
 
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
+Çfarëdo që përdani për të ndarë përmes BitTorrent është përgjegjësi e vetme e juaj. Sigurohuni që keni të drejtën për shpërndarje.
 
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+U rekomandohet fort të lidhni Stellar me një interfejs VPN dhe të verifikoni se VPN është aktiv përdoruesi torrent, për të mbrojtur adresën IP nga zbulimi.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, activer</translation>
+            <translation>E kuptoj, Aktivizo</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>Vous avez appuyé sur le bouton « Télécharger plus tard », mais Stellar avait déjà commencé à télécharger une partie du fichier. Stellar commence toujours le téléchargement tout en affichant la boîte de dialogue « Informations sur le fichier à télécharger ».
-
-Vous pouvez désactiver cette option dans Paramètres → Téléchargements.</translation>
+            <translation>Keni shtypur 'Shkarko më vonë', por Stellar kishte filluar tashmë. Kjo mund të ndalohet në: Settings → Downloads</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2566,212 +2560,212 @@ Vous pouvez désactiver cette option dans Paramètres → Téléchargements.</tr
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>Le fichier « %1 » n'a pas pu être téléchargé.</translation>
+            <translation>S'ka mundur të shkarkohet '%1'.</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>Le serveur a renvoyé une page web au lieu du fichier attendu. Certains sites suppriment les fichiers immédiatement après que Stellar a interrogé leurs métadonnées.</translation>
+            <translation>Serveri dha një faqe web, jo një skedar. Disa site fshijnë skedarët menjëherë pas kontrollit.</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>Pour permettre à votre navigateur de télécharger directement, maintenez une touche modificateur (Alt, Ctrl ou Maj) tout en cliquant sur le lien. Configurez la touche dans : Options Stellar → Navigateur → Contourner l'interception des téléchargements</translation>
+            <translation>Për të lejuar shkarkimin direkt nga browseri, mbajni një tast (Alt, Ctrl ose Shift) kur klikoni lidhjen. Konfigurojeni në: Stellar Options → Browser → Bypass Download Interception</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>Ouvrir les paramètres du navigateur</translation>
+            <translation>Hap Settings Browser</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>La version %1 est disponible.</translation>
+            <translation>Versioni %1 është i disponueshëm.</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation>Mettre à jour maintenant</translation>
+            <translation>Përditëso Tani</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation>Ajouter un fichier Torrent…</translation>
+            <translation>Shto Torrent File…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation>Ajouter des URLs par lot…</translation>
+            <translation>Shto URL-t në parti</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation>Quitter</translation>
+            <translation>Dil</translation>
         </message>
         <message>
             <source>File</source>
-            <translation>Fichier</translation>
+            <translation>Dokumenti</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Hap folder</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Hap skedar</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation>Télécharger maintenant</translation>
+            <translation>Shkarko tani</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation>Arrêter le téléchargement</translation>
+            <translation>Ndal shkarkimin</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Hiq</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>Shkarko përsëri</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>Eksporto .torrent...</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>Shkarkime</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation>Mettre tout en pause</translation>
+            <translation>Pauzo të gjitha</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation>Arrêter tout</translation>
+            <translation>Ndalo të gjitha</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation>Supprimer tous les éléments terminés</translation>
+            <translation>Fshi të përfunduara</translation>
         </message>
         <message>
             <source>Find…</source>
-            <translation>Rechercher…</translation>
+            <translation>Gjej…</translation>
         </message>
         <message>
             <source>Find Next</source>
-            <translation>Rechercher suivant</translation>
+            <translation>Gjej tjetrin</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Kalendar</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>Nis Fila</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>Ndal Filën</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Kufizues Shpejtësie</translation>
         </message>
         <message>
             <source>Turn On</source>
-            <translation>Activer</translation>
+            <translation>Aktivizo</translation>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation>Désactiver</translation>
+            <translation>Dërgo</translation>
         </message>
         <message>
             <source>Settings…</source>
-            <translation>Paramètres…</translation>
+            <translation>Cilësimet…</translation>
         </message>
         <message>
             <source>Options…</source>
-            <translation>Options…</translation>
+            <translation>Opsione…</translation>
         </message>
         <message>
             <source>View</source>
-            <translation>Affichage</translation>
+            <translation>Shiko</translation>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation>Masquer les catégories</translation>
+            <translation>Fillo Kategoria</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation>Afficher les catégories</translation>
+            <translation>Shfaq Kategoria</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation>Afficher le moteur de recherche</translation>
+            <translation>Shfaq Motor Kërkeshe</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
-            <translation>Afficher le lecteur RSS</translation>
+            <translation>Shfaq Lexues RSS</translation>
         </message>
         <message>
             <source>Statistics…</source>
-            <translation>Statistiques…</translation>
+            <translation>Statistika…</translation>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation>Trier les fichiers</translation>
+            <translation>Renditje Arkivash</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation>Par ordre d'ajout</translation>
+            <translation>Sipas Shtimit</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation>Par nom de fichier</translation>
+            <translation>Sipas Emrit</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation>Par taille</translation>
+            <translation>Sipas Madhësisë</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation>Par statut</translation>
+            <translation>Sipas Statusit</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation>Par temps restant</translation>
+            <translation>Sipas Kohës</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation>Par taux de transfert</translation>
+            <translation>Sipas Shpejtësisë</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation>Par date de dernière tentative</translation>
+            <translation>Sipas Datës</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation>Par description</translation>
+            <translation>Sipas Përshkrimit</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation>Par chemin d'enregistrement</translation>
+            <translation>Sipas Rrugës</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation>Par référent</translation>
+            <translation>Nga Refereri</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation>Par page web parente</translation>
+            <translation>Nga Faqja Web Prind</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation>Colonnes…</translation>
+            <translation>Kolona...</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Opsione</translation>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation>Préférences…</translation>
+            <translation>Preferenca...</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -2779,91 +2773,91 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation>Ouvrir le lecteur RSS</translation>
+            <translation>Hap Lexurën RSS</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation>Actualiser tous les flux</translation>
+            <translation>Rifresko Të Gjitha Kanalat</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation>Marquer tous les éléments comme lus</translation>
+            <translation>Shëno Të Gjitha Elementet si të lexuara</translation>
         </message>
         <message>
             <source>Help</source>
-            <translation>Aide</translation>
+            <translation>Ndihmë</translation>
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>Kontrollo Përditësimet</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation>Déposez un fichier .torrent pour ouvrir les métadonnées du torrent</translation>
+            <translation>Lësho .torrent për të hapur meta të torrentit</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>Gjej:</translation>
         </message>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>Gjej</translation>
         </message>
         <message>
             <source>Settings ▾</source>
-            <translation>Paramètres ▾</translation>
+            <translation>Cilësimet ▾</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Rechercher dans :</translation>
+            <translation>Kërko në:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>Emër skedë ose pjesë e emrit</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Përshkrim</translation>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation>URL / référent / page web parente</translation>
+            <translation>URL / referues / faqe web prind</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>Përputhje raste</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière uniquement</translation>
+            <translation>Përputhje e plotë</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation>Déplacer la barre latérale à gauche</translation>
+            <translation>Kthe sidebar në majë</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation>Déplacer la barre latérale à droite</translation>
+            <translation>Kthe sidebar në djathtë</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation>Réinitialiser la largeur de la barre latérale</translation>
+            <translation>Rivendos gjerësinë</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>À propos de Stellar</translation>
+            <translation>Rreth Stellar</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>Integrim në shfletues</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation>Extensions du navigateur…</translation>
+            <translation>Shtesa shfletuesi...</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation>Paramètres du navigateur…</translation>
+            <translation>Cilësimet e shfletuesit...</translation>
         </message>
         <message>
             <source>Stellar</source>
@@ -2871,35 +2865,35 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation>Cookies du navigateur requis</translation>
+            <translation>Kërkesa për kookie</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>Ajouter un fichier torrent</translation>
+            <translation>Shto Torrent</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>Exporter les fichiers .torrent</translation>
+            <translation>Eksporto .torrent</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>Progression du téléchargement de la chaîne</translation>
+            <translation>Progresi i Kanaleve</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Shkarko Më vonë</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>Fichier non disponible</translation>
+            <translation>Skedarët nuk janë më të disponueshëm</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation>Mise à jour rapide</translation>
+            <translation>Përditëso Shpejt</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>Menaxheri Stellar</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
@@ -2907,42 +2901,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>Une nouvelle version de Stellar Download Manager est disponible</translation>
+            <translation>Verzija e re e Stellar është e disponueshme</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>Quoi de neuf dans Stellar</translation>
+            <translation>Çfarë të ri në Stellar</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>Sélection de la file d'attente</translation>
+            <translation>Zgjedhje radhe</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>Ajouter les fichiers à une file d'attente ?</translation>
+            <translation>Shto skedarë në radh?</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>Choisissez une file d'attente existante ou créez-en une nouvelle.</translation>
+            <translation>Zgjidh një radhë ekzistuese ose krijo një të re.</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>File d'attente</translation>
+            <translation>Radhë</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>Démarrer le traitement de la file d'attente</translation>
+            <translation>Fillo përpunimin e radhës</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>Ne plus me demander</translation>
+            <translation>Mos më pyet përsëri</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>Ne pas ajouter à la file d'attente</translation>
+            <translation>Mos shto në radhë</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2950,146 +2944,146 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>Entrez le nom de la file d'attente</translation>
+            <translation>Hyr emrin e radhës</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anuloje</translation>
         </message>
         <message>
             <source>Create</source>
-            <translation>Créer</translation>
+            <translation>Krijo</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>(Par défaut)</translation>
+            <translation>(Parazgjedhje)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>Rregulla shkarkimi</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Shto</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Hiq</translation>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>Cliquez sur « Ajouter » pour créer une règle de téléchargement</translation>
+            <translation>Kliko 'Shto' për të krijuar një rregull shkarkimi</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>Nom de la règle</translation>
+            <translation>Emri rregulli</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>Aktivizuar</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>RÈGLES DE FILTRAGE</translation>
+            <translation>RREGULLA FILTRIMI</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>Utiliser les expressions régulières</translation>
+            <translation>Përdor shprehje të rregullta</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>Doit contenir :</translation>
+            <translation>Përmban:</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>motif regex</translation>
+            <translation>Modeli regex</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>mots-clé1 mots-clé2 | mots-clé3</translation>
+            <translation>Fjalëkryes1 Fjalëkryes2 | Fjalëkryes3</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>Ne doit pas contenir :</translation>
+            <translation>Nuk përmban:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>mots-clé1 mots-clé2</translation>
+            <translation>Fjalëkryes1 Fjalëkryes2</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation>Filtre des épisodes :</translation>
+            <translation>Filtro episode:</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation>p. ex. 1x01-1x24 ou 2x01 ;</translation>
+            <translation>p.sh. 1x01-1x24 ose 2x01;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation>Utiliser le filtre intelligent des épisodes</translation>
+            <translation>Përdor Filtro Inteligent Episode</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation>Ignore les épisodes déjà correspondants aux règles précédentes</translation>
+            <translation>Kalo episode të përsëritura nga rregullat e mëparshme</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation>Ignorer les correspondances ultérieures pour</translation>
+            <translation>Ignoro përsëritje të mëtejshme për</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation>jours (0 = désactivé)</translation>
+            <translation>ditë</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation>PARAMÈTRES DE TÉLÉCHARGEMENT</translation>
+            <translation>RREGULLIME DËLORJE</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>Ruaj tek:</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation>Laissez vide pour utiliser le chemin d'enregistrement par défaut</translation>
+            <translation>Lëni bosh për rrugë të paracaktuar</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>Shfletoj...</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>Kategori:</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation>File d'attente :</translation>
+            <translation>Fila:</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE DE TORRENT</translation>
+            <translation>KUFIZIME SHARJE TORRENT</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>Raport</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>Parazgjedhje</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>Pa kufizim</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>Cakëtoj</translation>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation>Temps de partage</translation>
+            <translation>Koha e seedingut</translation>
         </message>
         <message>
             <source>min</source>
@@ -3097,15 +3091,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation>Temps de partage inactif</translation>
+            <translation>Koha e seedingut paaktiv</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation>&quot;Par défaut&quot; utilise les limites de partage globales définies dans Paramètres → Torrents.</translation>
+            <translation>Në 'Default' përdoren kufizimet globale të ndarjes në Settings → Torrents.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anuloje</translation>
         </message>
         <message>
             <source>OK</source>
@@ -3113,74 +3107,74 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation>Règles de téléchargement automatique par RSS</translation>
+            <translation>Rregullat e automatizimit RSS</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation>Titre</translation>
+            <translation>Titulli</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation>Flux</translation>
+            <translation>Fidh</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation>Date</translation>
+            <translation>Datë</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation>Ouvrir le flux</translation>
+            <translation>Hape Fidh</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>Rifresko</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation>Renommer / Modifier...</translation>
+            <translation>Rinjo / Redakto...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation>Supprimer l'abonnement</translation>
+            <translation>Hiq Abonimin</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation>Shkarko Torrent</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Shkarko</translation>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>Hape në Shfletues</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation>Copier le lien</translation>
+            <translation>Kopjo Lidhjen</translation>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>Shëno si të lexuar</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>Shëno si të palëxuar</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation>Tout marquer comme lu</translation>
+            <translation>Shëno të gjitha të lexuara</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Emër</translation>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation>Nom personnalisé (facultatif)</translation>
+            <translation>Emër personal (opsionale)</translation>
         </message>
         <message>
             <source>URL</source>
@@ -3188,242 +3182,242 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Ruaj</translation>
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation>Ajouter l'URL du flux RSS ou Atom...</translation>
+            <translation>Shto URL të kanaleve RSS ose Atom...</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Shto</translation>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation>Actualisation en cours…</translation>
+            <translation>Rifreskohet…</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>Ndrysho</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Hiq</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>Rregulla shkarkimi</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation>Abonnements</translation>
+            <translation>Abonimet</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation>Sans titre</translation>
+            <translation>Pa titull</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>Sélectionner un article</translation>
+            <translation>Zgjidh një artikull</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>Hape</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>Shëno si lexuar</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>Shëno si pa lexuar</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>Choisissez un article pour afficher son résumé.</translation>
+            <translation>Zgjidh një artikull për të parë përmbledhjen.</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>Aucun résumé disponible.</translation>
+            <translation>Nuk ka përmbledhje të disponueshme.</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>%1 non lu  ·  %2 éléments</translation>
+            <translation>%1 të papara · %2 elemente</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>%1 éléments</translation>
+            <translation>%1 elemente</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>Flux RSS</translation>
+            <translation>Kanale RSS</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>Modifier l'abonnement</translation>
+            <translation>Modifiko Abonimin</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>Fila</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>Filë e re</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Fshi</translation>
         </message>
         <message>
             <source>Schedule</source>
-            <translation>Planification</translation>
+            <translation>Programo</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>Fichiers dans la file d'attente</translation>
+            <translation>Fajlet në radhë</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>Téléchargement unique</translation>
+            <translation>Shkarkim njëherësh</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>Sinkronizim periodik</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>Démarrer le téléchargement au démarrage de Stellar</translation>
+            <translation>Nis shkarkimin në nisjen e Stellar</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>Nis shkarkimin në</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>Njëherë në</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>Ditë</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation>Redémarrer toutes les</translation>
+            <translation>Rris përsëri çdo</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>orë</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>minutë</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>Njezimi i shkarkimit</translation>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation>Nombre de tentatives pour chaque fichier en cas d'échec du téléchargement :</translation>
+            <translation>Numri i riprovimit për çdo skedar</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation>Ouvrir le fichier suivant une fois terminé :</translation>
+            <translation>Hapni këtë skedar kur mbaron</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>Dilni nga Stellar kur mbaron</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Fillore kompjuterin kur mbaron</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>Detyro proceset të mbarojnë</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Shkarko</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation>fichiers en même temps</translation>
+            <translation>skedra njëherësh</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Emri i Skedarit</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Madhësia</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Status</translation>
         </message>
         <message>
             <source>Time Left</source>
-            <translation>Temps restant</translation>
+            <translation>Kohë mbetesh</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation>Aucune file d'attente sélectionnée</translation>
+            <translation>Asnjë radhë e zgjedhur</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation>Aucun fichier dans la file d'attente</translation>
+            <translation>Asnjë skedar në radhë</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation>Limites de téléchargement</translation>
+            <translation>Kufizimet e ngarkimit</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation>Télécharger au maximum</translation>
+            <translation>Ngarko jo më shumë se</translation>
         </message>
         <message>
             <source>MBytes</source>
-            <translation>Mo</translation>
+            <translation>MBytes</translation>
         </message>
         <message>
             <source>every</source>
-            <translation>toutes les</translation>
+            <translation>çdo</translation>
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation>Afficher un avertissement avant d'arrêter les téléchargements</translation>
+            <translation>Shfaq paralajmërim para ndalimit të ngarkimeve</translation>
         </message>
         <message>
             <source>Start now</source>
-            <translation>Démarrer maintenant</translation>
+            <translation>Fillo tani</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Ndalim</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Zbatim</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbyll</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation>Entrez un nom pour la nouvelle file d'attente qui sera affiché dans la liste des files d'attente</translation>
+            <translation>Emërni listës së re të vargjeve</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation>Nom de la file d'attente</translation>
+            <translation>Emër vargu</translation>
         </message>
         <message>
             <source>OK</source>
@@ -3431,54 +3425,54 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Programues</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>Varg i ri</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation>Sélectionner le fichier à ouvrir une fois terminé</translation>
+            <translation>Zgjidhni skedar për hapje kur mbaroni</translation>
         </message>
     </context>
     <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>Koneksion</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation>Téléchargements simultanés maximum :</translation>
+            <translation>Shkarkime të njëkohshme maksimale</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation>Segments par téléchargement :</translation>
+            <translation>Segmente për shkarkim</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation>Délai d'expiration de la connexion (secondes) :</translation>
+            <translation>Kohëzgjatje koneksioni (sekonda)</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation>Réessayer les téléchargements échoués :</translation>
+            <translation>Riprovimi i shkarkimeve të dështuara</translation>
         </message>
         <message>
             <source>times</source>
-            <translation>fois</translation>
+            <translation>herë</translation>
         </message>
         <message>
             <source>User Agent</source>
-            <translation>Agent utilisateur</translation>
+            <translation>User Agent</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation>Utiliser un agent utilisateur personnalisé</translation>
+            <translation>Përdor User Agent të personalizuar</translation>
         </message>
         <message>
             <source>Proxy</source>
@@ -3486,11 +3480,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>No proxy</source>
-            <translation>Aucun proxy</translation>
+            <translation>Pa proxy</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation>Utiliser le proxy système</translation>
+            <translation>Përdor proxy të sistemit</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
@@ -3502,527 +3496,525 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Host:</source>
-            <translation>Hôte :</translation>
+            <translation>Host:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation>Port :</translation>
+            <translation>Port:</translation>
         </message>
         <message>
             <source>Username:</source>
-            <translation>Nom d'utilisateur :</translation>
+            <translation>Emër përdoruesi:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>Mot de passe :</translation>
+            <translation>Fjalëkalim:</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Kategoritë</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Emër</translation>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation>Enregistrer dans le dossier</translation>
+            <translation>Ruaj në folder</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>Shkarkime</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation>Dossier de sauvegarde par défaut :</translation>
+            <translation>Drejtoria e ruajtjes parashikohe</translation>
         </message>
         <message>
             <source>Browse…</source>
-            <translation>Parcourir…</translation>
+            <translation>Shfletim…</translation>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation>Dossier de sauvegarde personnalisé pour les torrents :</translation>
+            <translation>Drejtoria e ruajtjes për torrente</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation>Répertoire temporaire de Stellar :</translation>
+            <translation>Drejtoria e përkohshme Stellar</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation>Démarrer le téléchargement immédiatement (ignorer la boîte de dialogue des informations du fichier)</translation>
+            <translation>Filloni shkarkimin menjëherë (kaloni dialogun e informacionit të skedarit)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation>Afficher la boîte de dialogue de fin de téléchargement</translation>
+            <translation>Shfaq dialogun e përfundimit të shkarkimit</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation>Démarrer le téléchargement immédiatement tout en affichant la boîte de dialogue &quot;Informations du fichier à télécharger&quot;</translation>
+            <translation>Filloni shkarkimin menjëherë duke treguar dialogun 'Informacion Skedari'</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation>Afficher la carte du swarm lors du téléchargement des métadonnées du torrent</translation>
+            <translation>Shfaq hartën e turmave gjatë shkarkimit të metadatave të torrentit</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de l'appui sur &quot;Télécharger plus tard&quot;</translation>
+            <translation>Shfaq panelin e zgjedhjes së radhës duke shtypur Shkarko Më vonë</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de la fermeture de la boîte de dialogue des téléchargements par lot</translation>
+            <translation>Shfaq panelin e zgjedhjes së radhës mbylljes dialogu të shkarkimit të paketës</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation>Si une URL en double est ajoutée :</translation>
+            <translation>Nëse shtohet një URL e dyfishtë:</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation>Double-clic sur un téléchargement dans la liste des fichiers :</translation>
+            <translation>Dy klikime mbi një shkarkim në listën e skedarëve:</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation>Format de la date du dernier essai :</translation>
+            <translation>Formati i datës së tentimit të fundit:</translation>
         </message>
         <message>
             <source>Time format:</source>
-            <translation>Format de l'heure :</translation>
+            <translation>Formati i kohës:</translation>
         </message>
         <message>
             <source>Show seconds</source>
-            <translation>Afficher les secondes</translation>
+            <translation>Shfaq sekonda</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>Parapamje</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>Integrim me shfletues</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation>Démarrer automatiquement le téléchargement des types de fichiers suivants :</translation>
+            <translation>Filloni automatikisht shkarkimin e llojeve të mëposhtme skedarësh:</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation>Ne pas démarrer automatiquement le téléchargement depuis les sites suivants :</translation>
+            <translation>Mos filloni automatikisht shkarkimin nga faqet e mëposhtme:</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation>Exceptions d'adresse</translation>
+            <translation>Shkruani përshkrime për shkeljet</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation>Ne pas démarrer les téléchargements depuis les adresses suivantes :</translation>
+            <translation>Mos fillo ngarkimin nga adresat e mëposhtme:</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation>Contourner l'interception des téléchargements</translation>
+            <translation>Bypashtoni kapjen e ngarkimit</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation>Maintenez cette touche enfoncée tout en cliquant sur un lien de téléchargement pour ignorer l'interception et permettre au navigateur de télécharger :</translation>
+            <translation>Mbajeni këtë çelës duke klikuar në një lidhje ngarkimi për të kaluar kapjen dhe lejo shfletuesin të ngarkojë:</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Kufizuesi i shpejtësisë</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation>Activer la limite de vitesse globale</translation>
+            <translation>Aktivizo kufizimin global të shpejtësisë</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation>Vitesse maximale :</translation>
+            <translation>Shpejtësia maksimale:</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation>Activer la limite de téléchargement global</translation>
+            <translation>Aktivizo kufizimin global të ngarkimit</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation>Téléversement maximum :</translation>
+            <translation>Ngarkimi maksimal:</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation>Toujours activer le limiteur de vitesse au démarrage de Stellar</translation>
+            <translation>Aktivizo kufizimin e shpejtësisë në nisje</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation>Activer le planificateur de limiteur de vitesse</translation>
+            <translation>Aktivizo planifikuesin e kufizimit të shpejtësisë</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Hiq</translation>
         </message>
         <message>
             <source>On</source>
-            <translation>Activé</translation>
+            <translation>Aktiv</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>Shkarko</translation>
         </message>
         <message>
             <source>Upload</source>
-            <translation>Téléversement</translation>
+            <translation>Ngarko</translation>
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation>+ Ajouter une règle</translation>
+            <translation>+ Shto Rregull</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation>Notifications</translation>
+            <translation>Njoftime</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation>Afficher une notification lorsque le téléchargement est terminé</translation>
+            <translation>Shfaq njoftim kur përfundon shkarkimi</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation>Afficher une notification en cas d'erreur de téléchargement</translation>
+            <translation>Shfaq njoftim në gabim shkarkimi</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>Përgjithshme</translation>
         </message>
         <message>
             <source>Browser</source>
-            <translation>Navigateur</translation>
+            <translation>Shfletues</translation>
         </message>
         <message>
             <source>Media</source>
-            <translation>Média</translation>
+            <translation>Media</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation>Torrente</translation>
         </message>
         <message>
             <source>Language</source>
-            <translation>Langue</translation>
+            <translation>Gjuhë</translation>
         </message>
         <message>
             <source>About</source>
-            <translation>À propos</translation>
+            <translation>Rreth</translation>
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation>Lorsque le mode personnalisé est désactivé, Stellar utilise son User-Agent intégré avec la version actuelle.</translation>
+            <translation>Stellar përdor User-Agent të integruar me versionin aktual kur modei i përshtatur është i çaktivizuar.</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation>Cette valeur sera envoyée exactement telle qu'entrée.</translation>
+            <translation>Kjo vlerë do të dërgohet saktësisht siç është hyrur.</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation>Valeur par défaut intégrée affichée ci-dessus. Activez la case à cocher pour la modifier et la remplacer.</translation>
+            <translation>Tregohet mbi vlera parazgjedhëse. Aktivizoni kutizën për ta ndryshuar ose të zëvendësoni.</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation>Optionnel</translation>
+            <translation>Opsionale</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation>Tous les téléchargements, les téléchargements de vidéos, les vérifications de mises à jour et les connexions aux pairs/trackers de torrent sont acheminés via ce proxy.</translation>
+            <translation>Të gjitha ngarkimet, ngarkimet e videove, kontrollimet e përditësimeve dhe lidhjet e peer/tracker të torrent-it kalojnë përmes këtij proxy.</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation>Stellar utilisera le proxy configuré dans les paramètres réseau de votre système d'exploitation.</translation>
+            <translation>Stellar do të përdorë proxy-në e konfiguruar në rregullat e rrjetit të sistemit operativ.</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation>Délai d'attente dépassé — le proxy n'a pas répondu</translation>
+            <translation>Koha e kaluar — proxy nuk u përgjigj.</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation>Test en cours…</translation>
+            <translation>Testim...</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation>Tester le proxy</translation>
+            <translation>Testo Proxy</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation>⚠ Non présent dans la liste de téléchargement automatique du navigateur : %1</translation>
+            <translation>⚠ Jo në listën e ngarkimit automatik të shfletuesit: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation>Parcourir</translation>
+            <translation>Shfletim</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation>Ceci est le dossier torrent personnalisé mémorisé utilisé lorsque la boîte de dialogue des métadonnées du torrent est définie pour utiliser un dossier de sauvegarde personnalisé par défaut.</translation>
+            <translation>Kjo është folderi personalizuar i ruajtur i torrent-it që përdoret kur dialogu i metadatave të torrent-it është vendosur të përdorë një folder ruajtjeje personalizuar si parazgjedhje.</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation>Stellar stocke ici les parties de fichiers partiellement téléchargées et les métadonnées pendant le téléchargement et l'assemblage des fichiers.</translation>
+            <translation>Stellar ruajten pjesët e pjesërisht ngarkuara të skedarit dhe metadatë këtu gjatë ngarkimit dhe mbledhjes së skedarëve.</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation>Remarque : Ces paramètres ne s'appliquent pas au traitement de la file d'attente pour les paramètres « Télécharger immédiatement » et « Afficher la boîte de dialogue de téléchargement terminé ».</translation>
+            <translation>Vini re: Këto rregullat nuk zbatohen për procesimin e radhës për rregullat 'Filloni ngarkimin menjëherë' dhe 'Shfaq dialogun e përfundimit të ngarkimit'.</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation>Me demander quoi faire</translation>
+            <translation>Pyet më</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
-            <translation>Ajouter avec un nom de fichier numéroté</translation>
+            <translation>Shto me emër të numëruar</translation>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation>Écraser le téléchargement existant</translation>
+            <translation>Shkruaj mbi përgjigjen ekzistuese</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation>Reprendre / afficher la boîte de dialogue de fin</translation>
+            <translation>Ripërfill / trego dialog të plotë</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation>Ouvrir la boîte de dialogue des propriétés du fichier</translation>
+            <translation>Hap dialogun e vetive të skedarit</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Hap skedarin</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Hap folderin</translation>
         </message>
         <message>
             <source>24-hour time</source>
-            <translation>Format 24 heures</translation>
+            <translation>Koha 24-orëshe</translation>
         </message>
         <message>
             <source>12-hour time</source>
-            <translation>Format 12 heures</translation>
+            <translation>Koha 12-orëshe</translation>
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation>Séparé par des espaces ou des virgules. Insensible à la casse.</translation>
+            <translation>Hapësirë ose presë. Jo-sensitiv ndaj madhësisë.</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation>Modèles d'hôtes séparés par des espaces. Jokers (*) pris en charge, ex. *.update.microsoft.com</translation>
+            <translation>Motive host të ndarë me hapësirë. Mësuajtura (*) të mbështetura, p.sh. *.update.microsoft.com</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation>Afficher la boîte de dialogue pour ajouter une adresse à la liste des exceptions pour un téléchargement annulé deux fois</translation>
+            <translation>Shfaq dialogun për të shtuar një adresë në listën e përjashtimeve për një shkarkim të anuluar dy herë</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation>Un motif d'URL par ligne. Les caractères génériques (*) sont pris en charge.</translation>
+            <translation>Një model URL për çdo rresht. Mësuajtura (*) të mbështetura.</translation>
         </message>
         <message>
             <source>None</source>
-            <translation>Aucun</translation>
+            <translation>Asnjë</translation>
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation>Cliquez sur un jour pour le basculer. Les règles sont évaluées chaque minute ; la première règle correspondante l'emporte. Les limites de téléchargement et d'upload planifiées sont automatiquement effacées lorsqu'aucune règle n'est active.</translation>
+            <translation>Klikoni një kapsulë dite për ta ndryshuar. Rregullat vlerësohen çdo minutë; rregulli i parë që përputhet fiton. Kufizimet e shkarkimit dhe ngarkimit të programuara pastrohen automatikisht kur asnjë rregull nuk është aktiv.</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>Minimizo në tray të sistemit</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation>Fermer dans la zone de notification</translation>
+            <translation>Mbylle në tray të sistemit</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation>Lancer Stellar au démarrage</translation>
+            <translation>Lanço Stellar në nisje</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation>Afficher les astuces dans la barre inférieure</translation>
+            <translation>Shfaq këshilla në barin e poshtëm</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation>Afficher le nombre de téléchargements terminés dans la barre d'état</translation>
+            <translation>Shfaq numrin e shkarkimeve të përfunduara në status bar</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation>Utilitaires</translation>
+            <translation>Utilitete</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation>Afficher la vitesse dans l'infobulle de l'icône de la zone de notification</translation>
+            <translation>Shfaq shpejtësinë në ikonën e pluhurit</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation>Afficher la vitesse dans la barre de titre</translation>
+            <translation>Shfaq shpejtësinë në titullin</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation>Afficher la vitesse dans la barre d'état</translation>
+            <translation>Shfaq shpejtësinë në status bar</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation>Afficher le nombre estimé d'utilisateurs en ligne dans la barre d'état</translation>
+            <translation>Shfaq përdoruesit online të vlerësuar në status bar</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Utilise la densité des ID de nœuds DHT pour estimer le nombre global d'utilisateurs BitTorrent. La confiance augmente à mesure que davantage d'ID de nœuds uniques sont observés ; un * à la fin dans la barre d'état signifie que l'estimation est encore peu fiable.</translation>
+            <translation>Përdor dendësinë e DHT node-ID për të vlerësuar përdoruesit globalë BitTorrent. Besimi rritet me ID-unike të reja; * në fund tregon besim të ulët.</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation>Afficher le ratio dans la barre d'état</translation>
+            <translation>Shfaq ratio në status bar</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation>Afficher l'adresse IP publique dans la barre d'état</translation>
+            <translation>Shfaq IP publik në Status Bar</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation>Détecte votre IP publique via libtorrent et votre type de connexion actif. Survolez l'indicateur pour voir le SSID/le signal WiFi ou les avertissements concernant les connexions entrantes.</translation>
+            <translation>Detekton IP publik via libtorrent dhe llojin e lidhjes aktive. Kaloni mbi indikatorin për SSID WiFi/signal ose paralajmërime.</translation>
         </message>
         <message>
             <source>Updates</source>
-            <translation>Mises à jour</translation>
+            <translation>Përditësime</translation>
         </message>
         <message>
             <source>Automatically check for updates</source>
-            <translation>Vérifier automatiquement les mises à jour</translation>
+            <translation>Kontrollo automatikisht përditësime</translation>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation>Surveillance du presse-papiers</translation>
+            <translation>Monitorimi i prerandit</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation>Démarrer automatiquement le téléchargement des URL placées dans le presse-papiers</translation>
+            <translation>Fillo automatikisht ngarkimin e URL-ve në prerand</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation>Lorsqu'une URL correspondant à un type de fichier surveillé est copiée dans le presse-papiers, Stellar vous demandera si vous souhaitez la télécharger. Seuls les types de fichiers répertoriés sous Navigateur › Démarrer automatiquement le téléchargement des types de fichiers suivants sont pris en compte.</translation>
+            <translation>Kur një URL që përputhet me një lloj skedash të monitoruar kopjohet në prerand, Stellar do të pyesë nëse dëshironi ta ngarkoni atë. Vetëm llojet e skedave të listuara në Shfletues › Filloni automatikisht ngarkimin e llojeve të mëposhtme të skedave merren parasysh.</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation>Téléchargeur vidéo</translation>
+            <translation>Shkarkues i Videove</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation>Stellar utilise yt-dlp pour télécharger des vidéos depuis YouTube, Vimeo, Twitter/X, Instagram et des centaines d'autres sites. Lorsque vous collez une URL de vidéo dans Ajouter URL, un sélecteur de format apparaîtra.</translation>
+            <translation>Stellar përdor yt-dlp për të shkarkuar video nga YouTube, Vimeo, Twitter/X, Instagram dhe qindra faqe të tjera. Kur ngjisni një URL video në Shto URL, do të shfaqet zgjedhësi i formatit.</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation>Statut binaire</translation>
+            <translation>Status binar</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
-            <translation>Mettre à jour yt-dlp</translation>
+            <translation>Përditëso yt-dlp</translation>
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation>Télécharger yt-dlp</translation>
+            <translation>Shkarko yt-dlp</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Re-check</source>
-            <translation>Vérifier à nouveau</translation>
+            <translation>Rikontrollo</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation>État de ffmpeg</translation>
+            <translation>Statusi i ffmpeg</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation>ffmpeg trouvé : %1</translation>
+            <translation>Gjetur ffmpeg: %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation>ffmpeg introuvable — les téléchargements HD seront limités aux formats pré-muxés (max ~480p)</translation>
+            <translation>Nuk u gjet ffmpeg — Downloadet HD do të kufizohen në formatet pre-muxed (maks. ~480p)</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation>Mise à jour de FFmpeg...</translation>
+            <translation>Përditëzohet FFmpeg...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation>Mettre à jour FFmpeg</translation>
+            <translation>Përditëzo FFmpeg</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation>Obtenir ffmpeg (gyan.dev)</translation>
+            <translation>Merr ffmpeg (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation>ffmpeg est requis pour fusionner les flux vidéo et audio séparés en MP4/MKV. Sans lui, les téléchargements YouTube basculent vers un seul flux pré-muxé (généralement WebM, max 480p).
+            <translation>ffmpeg është i nevojshëm për të bashkuar rrjedhat e veçanta video dhe audio në MP4/MKV. Pa të, downloadet e YouTube kthehen në një rrjedhë të vetme pre-muxed (zakonisht WebM, maks 480p).
 
-Pour corriger : téléchargez ffmpeg depuis gyan.dev/ffmpeg/builds (build Essentials), extrayez ffmpeg.exe du dossier bin/, et placez-le dans le même dossier que yt-dlp.exe. Puis cliquez sur Vérifier à nouveau ci-dessus.</translation>
+Për t'u korrigjuar: shkarko ffmpeg nga gyan.dev/ffmpeg/builds (ndërtimi Essentials), nxirre ffmpeg.exe nga folderi bin/, dhe vendosë atë në folderin e njëjtë me yt-dlp.exe. Më pas kliko Rikontrollo më sipër.</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation>Chemin du binaire personnalisé</translation>
+            <translation>Rrugë e personalizuar e binarit</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation>Laissez vide pour utiliser le binaire intégré (recommandé). Définissez le chemin absolu de votre exécutable yt-dlp si vous souhaitez utiliser une version spécifique.</translation>
+            <translation>Lë bosh për të përdorur binarin e përfshirë (të rekomanduar). Vendos në rrugën absolute të ekzekutuesit të vetëm yt-dlp nëse dëshiron të përdorësh një version specifik.</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation>(auto - utiliser yt-dlp intégré ou système)</translation>
+            <translation>(auto - përdor yt-dlp të paketuar ose të sistemit)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation>Moteur d'exécution JavaScript</translation>
+            <translation>Mbiemër i ekzekutimit të JavaScript</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation>%1 trouvé : %2</translation>
+            <translation>%1 gjetën: %2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation>Aucun environnement JS trouvé — résolution du n-challenge YouTube désactivée</translation>
+            <translation>Nuk u gjet mbiemër JS - zgjidhja e n-challenge të YouTube është e çaktivizuar</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation>yt-dlp nécessite un environnement JavaScript externe pour résoudre le n-challenge de YouTube (limitation d'URL). Sans lui, les téléchargements YouTube peuvent échouer ou ne retourner que des formats storyboard de basse qualité.
-
-Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ou QuickJS. Placez-le dans le même dossier que yt-dlp.exe ou ajoutez-le au PATH système, puis cliquez sur Vérifier à nouveau dans la section statut yt-dlp ci-dessus.</translation>
+            <translation>yt-dlp kërkon një mbiemër të jashtëm JavaScript për të zgjidhur n-challenge të YouTube (kufizim URL). Pa të, shkarkimet nga YouTube mund të dështojnë ose të kthejnë vetëm formate storyboard të ulët.</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation>Remplacer le chemin de l'environnement détecté automatiquement. Laissez vide pour utiliser la détection automatique (recherche dans le dossier yt-dlp, dossier de l'application et PATH système).</translation>
+            <translation>Instaloni një nga: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ose QuickJS. Vendoseni në të njëjtin folder me yt-dlp.exe ose shtojeni në PATH të sistemit, më pas klikoni Ri-kontrollo në seksionin e statusit yt-dlp më sipër.</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation>(détection automatique depuis le PATH et le dossier yt-dlp)</translation>
+            <translation>Zëvendëso rrugën e mbiemrit të gjetur automatikisht. Lërë bosh për të përdorur detektimin automatik (kërkon folderin yt-dlp, folderin e aplikacionit dhe PATH të sistemit).</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation>Mettre à jour automatiquement yt-dlp au démarrage</translation>
+            <translation>(detekto automatikisht nga PATH dhe folderi yt-dlp)</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation>Lorsqu'elle est activée, Stellar exécutera « yt-dlp -U » au démarrage pour maintenir le binaire à jour. Nécessite une connexion Internet active.</translation>
+            <translation>Përditëzo automatikisht yt-dlp në nisje</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation>Téléchargements par torrent</translation>
+            <translation>Kur aktivizohet, Stellar do të rrijë 'yt-dlp -U' në nisje për të mbajtur binarinë të përditësuar. Kërkon një lidhje aktive me internetin.</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation>Activer le support BitTorrent</translation>
+            <translation>Përkrahje BitTorrent</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation>BitTorrent — Avis juridique</translation>
+            <translation>BitTorrent — Njoftim Ligjor</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4030,191 +4022,191 @@ Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Stellar est un programme de partage de fichiers. Lorsque vous téléchargez un torrent, votre adresse IP devient visible par les autres pairs du swarm et vous téléchargez simultanément (seed) des données vers les autres.
+            <translation>Stellar është program për ndarje skajsh. Kur shkarkoni një torrent, adresa IP bëhet e dukshme për të tjerët në grup dhe ju ngarkoni njëkohësisht (seed) të dhëna për të tjerët.
 
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
+Çfarëdo që ndani përmes BitTorrent është përgjegjësi e vetme juaj. Sigurohuni që keni të drejtën për shpërndarje të përmbajtjes.
 
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+Është fuqimisht rekomanduar të lidhni Stellar me një interfejs VPN dhe të verifikoni se VPN është aktiv para përdorimit të torrenteve, për të mbrojtur adresën IP nga zbulimi.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, Activer</translation>
+            <translation>E Kuptoj, Përkrah</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation>Ces paramètres s'appliquent aux fichiers .torrent et aux liens magnétiques.</translation>
+            <translation>Këto rregullat aplikohen për skajsh .torrent dhe lidhje magnet.</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation>Port d'écoute</translation>
+            <translation>Porti i dërgimit</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation>Connexions maximales globales</translation>
+            <translation>Maksimum lidhje globale</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation>Connexions maximales par torrent</translation>
+            <translation>Maksimum lidhje për torrent</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation>Créneaux de téléchargement maximal global</translation>
+            <translation>Maksimum slot ngarkimi global</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation>Créneaux de téléchargement maximal par torrent</translation>
+            <translation>Maksimum slot ngarkimi për torrent</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation>0 = illimité (champs par torrent et créneaux globaux de téléversement)</translation>
+            <translation>0 = ijashtë</translation>
         </message>
         <message>
             <source>Protocol</source>
-            <translation>Protocole</translation>
+            <translation>Protokoll</translation>
         </message>
         <message>
             <source>TCP and μTP</source>
-            <translation>TCP et μTP</translation>
+            <translation>TCP dhe μTP</translation>
         </message>
         <message>
             <source>μTP only</source>
-            <translation>Uniquement μTP</translation>
+            <translation>vetëm μTP</translation>
         </message>
         <message>
             <source>TCP only</source>
-            <translation>TCP uniquement</translation>
+            <translation>vetëm TCP</translation>
         </message>
         <message>
             <source>Port Test</source>
-            <translation>Test de port</translation>
+            <translation>Test Porti</translation>
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation>Vérifiez si votre port d'écoute de torrent actuel est accessible depuis l'internet public. Cela permet de confirmer si votre redirection de port VPN, la redirection de port sur votre routeur et les règles de pare-feu autorisent bien les connexions torrent entrantes.</translation>
+            <translation>Testimi...</translation>
         </message>
         <message>
             <source>Testing...</source>
-            <translation>Test en cours...</translation>
+            <translation>Test Porti</translation>
         </message>
         <message>
             <source>Test Port</source>
-            <translation>Tester le port</translation>
+            <translation>Rrjet</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation>Réseau</translation>
+            <translation>Rrjetim</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Advanced</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation>Agent utilisateur BitTorrent personnalisé</translation>
+            <translation>Custom bittorrent user agent</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation>Lier à l'adaptateur réseau</translation>
+            <translation>Bind to network adapter</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Cet adaptateur est verrouillé pour le trafic torrent. Si votre VPN se déconnecte ou si l'adaptateur disparaît, Stellar cesse d'utiliser la route par défaut et vos torrents perdent l'accès au réseau au lieu de fuiter sur une autre connexion.</translation>
+            <translation>Kjo adapter është bllokuar për trafik torrent. Nëse VPN-i thyhet ose adapteri mungon, Stellar ndalon rrugën paraprake dhe torrentet humbasin aksesin në rrjet në vend që të shpërthejnë në një lidhje tjetër.</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Aucun lien d'adaptateur. Le trafic torrent suit la route système.</translation>
+            <translation>Pa lidhje me adapterin. Trafiku torrent ndjek rrugën e sistemit.</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>La liaison de l'adaptateur réseau indique à Stellar d'envoyer et de recevoir du trafic torrent uniquement via l'adaptateur sélectionné. Cela est particulièrement utile pour les utilisateurs de VPN car cela empêche les fuites de trafic accidentelles lorsque le VPN n'est pas connecté.</translation>
+            <translation>Lidhja me adapterin e rrjetit tregon Stellar të dërgojë dhe pranojë trafik torrent vetëm përmes adapterit të zgjedhur. Kjo është veçanërisht e dobishme për përdoruesit e VPN-it sepse parandalon rrjedhjen e gabuar të trafikut kur VPN-i nuk është i lidhur.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
-            <translation>Sécurité du torrent</translation>
+            <translation>Torrent Security</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation>Les bannissements manuels de pairs s'appliquent immédiatement. Les sous-chaînes d'agent utilisateur bloquées, les pays bloqués et les options de bannissement automatique s'appliquent lorsque vous cliquez sur Appliquer ou OK.</translation>
+            <translation>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation>Mode de chiffrement</translation>
+            <translation>Encryption Mode</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation>Préférer le chiffrement</translation>
+            <translation>Prefer encryption</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation>Exiger le chiffrement</translation>
+            <translation>Kriptim i detyruar</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation>Autoriser le chiffrement</translation>
+            <translation>Lejo kriptimin</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation>User-Agents bloqués</translation>
+            <translation>Agentë të bllokuar</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation>Une sous-chaîne par ligne. Si la chaîne du client pair contient l'une des lignes ci-dessus, Stellar bannit automatiquement ce pair jusqu'à ce que la ligne correspondante soit supprimée et que les paramètres soient appliqués.</translation>
+            <translation>Një nëntekst për rresht. Nëse një string klienti përmban çdo rresht më sipër, Stellar e bllokon automatikisht atë derisa të hiqet rreshti përputhës dhe të aplikohen rregullat.</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation>Bannir manuellement un pair</translation>
+            <translation>Blloko manualisht klientin</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation>Adresse IP, par exemple 203.0.113.42</translation>
+            <translation>Adresë IP, p.sh. 203.0.113.42</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation>Bannir</translation>
+            <translation>Blloko</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation>Les bannissements manuels sont permanents jusqu'à ce que vous les supprimiez de la liste des pairs bannis ci-dessous.</translation>
+            <translation>Bllokimet manuale janë përgjithmonë derisa t'i hiqni ato nga lista e klientëve të bllokuar më poshtë.</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation>Bloquer les pairs par pays</translation>
+            <translation>Blloko klientë sipas shtetit</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Shto</translation>
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation>Aucun pays bloqué.</translation>
+            <translation>Pa vende të bllokuara</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation>Bannir automatiquement Xunlei, QQ, Baidu, Xfplay, DLBT et les téléchargeurs hors ligne</translation>
+            <translation>Blloko automatikisht Xunlei, QQ, Baidu, Xfplay, DLBT dhe shkarkuesit jashtë lidhjes</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation>Bannir automatiquement les pairs des lecteurs multimédias BitTorrent</translation>
+            <translation>Blloko automatikisht BitTorrent Media Player Peer</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation>Paires bannies manuellement</translation>
+            <translation>Të bllokuar manualisht</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation>Débannir</translation>
+            <translation>Zbulo</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>Aktiv</translation>
         </message>
         <message>
             <source>No banned peers</source>
-            <translation>Aucune paire bannie</translation>
+            <translation>Pa të bllokuar</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation>Base de données IP-vers-Ville</translation>
+            <translation>Bazë IP në Qytet</translation>
         </message>
         <message>
             <source>Version</source>
@@ -4222,63 +4214,63 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>E panjohur</translation>
         </message>
         <message>
             <source>Path</source>
-            <translation>Chemin</translation>
+            <translation>Rrugë</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Madhësi</translation>
         </message>
         <message>
             <source>Entries</source>
-            <translation>Entrées</translation>
+            <translation>Hyrje</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation>Dernière modification</translation>
+            <translation>Modifikuar</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Status</translation>
         </message>
         <message>
             <source>Downloading...</source>
-            <translation>Téléchargement en cours...</translation>
+            <translation>Duke u shkarkuar...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation>Mettre à jour la base de données IP-vers-Ville</translation>
+            <translation>Përditëzo IP-në në Qytet</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation>Actualiser les informations</translation>
+            <translation>Rifresko Informacionin</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>Statistika</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation>Totaux cumulés des transferts sur tous les torrents, y compris ceux qui ont été supprimés.</translation>
+            <translation>Totali i transferimit</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>Total Shkarkuar</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>Total Ngarkuar</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation>Ratio de partage global</translation>
+            <translation>Raporti i Përdarjes</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation>Les textes complets des licences se trouvent dans THIRD-PARTY-NOTICES.txt, inclus avec cette installation.</translation>
+            <translation>Tekstet e plotë të licencës janë në THIRD-PARTY-NOTICES.txt, të përfshira me këtë instalim.</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4286,139 +4278,139 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation>Récupération des flux</translation>
+            <translation>Marrja e Feed-it</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation>Activer la récupération des flux RSS</translation>
+            <translation>Aktivizo marrjen e feed-ve RSS</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation>Intervalle de rafraîchissement des flux</translation>
+            <translation>Intervali i rifreskimit të feed-ve</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>minuta</translation>
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation>Délai de requête pour le même hôte</translation>
+            <translation>Vonesë për kërkesë në të njëjtin host</translation>
         </message>
         <message>
             <source>seconds</source>
-            <translation>secondes</translation>
+            <translation>sekonda</translation>
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation>Nombre maximum d'articles par flux</translation>
+            <translation>Artikujt maksimale për feed</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation>Téléchargeur automatique de torrents</translation>
+            <translation>Downloader Torrenti Automat</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation>Activer le téléchargement automatique des torrents RSS</translation>
+            <translation>Aktivizo shkarkimin automatik të RSS</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation>Modifier les règles de téléchargement automatique...</translation>
+            <translation>Redakto Rregullat e Shkarkimit...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation>Filtre intelligent des épisodes</translation>
+            <translation>Filtro Epizodet Inteligent</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation>Télécharger les épisodes REPACK/PROPER</translation>
+            <translation>Shkarko epizodet REPACK/PROPER</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation>Motifs de détection des épisodes (un par ligne) :</translation>
+            <translation>Motive detektimi epizodish (një për rresht):</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation>Associations</translation>
+            <translation>Asociimet</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation>Configurer la récupération des flux RSS et les règles de téléchargement automatique de torrents.</translation>
+            <translation>Konfiguro marrjen e RSS dhe rregullat e shkarkimit automatik.</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation>Ces expressions régulières sont utilisées pour extraire les numéros de saison/épisode pour la détection intelligente des doublons.</translation>
+            <translation>Rregullat për të nxjerrë numrat e sezonit/epizodit.</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation>Définir Stellar comme application par défaut pour les fichiers .torrent et les liens magnet. Sur Windows 10/11, cliquez sur le bouton puis confirmez le changement dans la page des applications par défaut de Windows qui s'ouvre.</translation>
+            <translation>Bëje Stellar aplikacionin parësor për .torrent dhe magnet.</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation>Fichiers .torrent</translation>
+            <translation>Skedarët .torrent</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation>Géré actuellement par Stellar</translation>
+            <translation>Menaxhohet nga Stellar</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation>Stellar n'est pas la valeur par défaut actuelle</translation>
+            <translation>Stellar nuk është parësori</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation>Définir .torrent par défaut</translation>
+            <translation>Cakto parësorin .torrent</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation>Actualiser l'état</translation>
+            <translation>Rifresko gjendjen</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation>liens magnet</translation>
+            <translation>Lidhjet magnet:</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation>Définir Magnet par défaut</translation>
+            <translation>Cakto parësorin magnet</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation>Si votre environnement de bureau remplace l'association au niveau de l'application, actualisez l'état après que le système a fini d'appliquer le changement.</translation>
+            <translation>Rifresko gjendjen pas ndryshimit të sistemit.</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>Langue de l'interface</translation>
+            <translation>Gjuha e ndërfaqes</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>Sélectionnez la langue utilisée dans toute l'interface Stellar. Un redémarrage est nécessaire pour que tous les textes soient mis à jour.</translation>
+            <translation>Zgjidhni gjuhën për të përdorur në Stellar. Kërkon ndërrim.</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>Gjuhë:</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>Un redémarrage est requis après avoir changé la langue.</translation>
+            <translation>Kërkon ndërrim pas ndryshimit të gjuhës.</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>Kontrollo përditësimet</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation>Quoi de neuf</translation>
+            <translation>Çfarë të ri?</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation>Date de compilation</translation>
+            <translation>Datë ndërtimi</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation>Version de Qt</translation>
+            <translation>Versioni i Qt</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation>Plateforme</translation>
+            <translation>Platforma</translation>
         </message>
         <message>
             <source>Windows</source>
@@ -4438,15 +4430,15 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation>Stellar est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la GNU General Public License, version 3.</translation>
+            <translation>Stellar është softuer falas: mund ta ripërdorni dhe/ose ta modifikosh sipër kushteve të Licencës Publike të Përgjithshme GNU, versioni 3.</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation>Logiciels tiers</translation>
+            <translation>Softuerë të tjerë</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Zbato</translation>
         </message>
         <message>
             <source>OK</source>
@@ -4454,400 +4446,399 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Default route</source>
-            <translation>Route par défaut</translation>
+            <translation>Ruta parësore</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation>Laisser le système d'exploitation choisir l'adaptateur réseau actif.</translation>
+            <translation>Lejo sistemin operativ të zgjedhë adapterin e rrjetit aktiv.</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation>(Indisponible)</translation>
+            <translation>(Nuk është i disponueshëm)</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation>Cet adaptateur n'est pas actuellement disponible. Reconnectez-le ou choisissez un autre adaptateur.</translation>
+            <translation>Ky adapteri nuk është i disponueshëm. Rikonektohet ose zgjidhni një tjetër.</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation>Bannissement manuel</translation>
+            <translation>Ndalim dorë</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation>Trouver des pairs sans tracker en utilisant une table de hachage distribuée.</translation>
+            <translation>Gjej bashkëpunues pa tracker duke përdorur një tabelë hash të shpërndarë.</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation>Découvrir des pairs sur votre réseau local sans passer par Internet.</translation>
+            <translation>Zbuloni bashkëpunues në rrjetin lokal pa kaluar përmes internetit.</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation>Ouvrir automatiquement un port sur votre routeur afin que les pairs puissent se connecter à vous.</translation>
+            <translation>Hap automatikisht një portë në routerin tuaj që bashkëpunuesit të mund të lidhen me ju.</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation>Comme UPnP mais pour les routeurs Apple - activez les deux et celui que votre routeur prendra en charge sera utilisé.</translation>
+            <translation>Si UPnP por për routerët Apple - aktivizoni të dyja dhe do të përdoret ajo që mbështet routeri juaj.</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation>Partager les listes de pairs entre les pairs connectés afin de trouver plus de sources sans solliciter le tracker.</translation>
+            <translation>Ndani listat e bashkëpunuesve midis bashkëpunuesve të lidhur që të gjeni më shumë burime pa prekur trackerin.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation>Stellar est désormais l'application par défaut pour les fichiers .torrent.</translation>
+            <translation>Stellar është tani aplikacioni parës për skedarët .torrent.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation>Stellar est désormais l'application par défaut pour les liens magnet.</translation>
+            <translation>Stellar është tani aplikacioni parës për lidhjet magnet.</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation>Par défaut : Stellar/%1</translation>
+            <translation>Parazgjedhje: Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation>Types de fichiers (séparés par des virgules, ex. mp4, mkv, avi)</translation>
+            <translation>Tipi skedarësh</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation>Attribution automatique depuis les sites (séparés par des espaces, * joker)</translation>
+            <translation>Cakësim automatik nga faqet</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation>Les téléchargements depuis les sites correspondants seront automatiquement assignés à cette catégorie.</translation>
+            <translation>Përkuljet nga faqet përputhëse do të shkojnë automatikisht në këtë kategori.</translation>
         </message>
         <message>
             <source>Rule %1</source>
-            <translation>Règle %1</translation>
+            <translation>Rregulli %1</translation>
         </message>
         <message>
             <source>Not found</source>
-            <translation>Non trouvé</translation>
+            <translation>Nuk u gjet</translation>
         </message>
         <message>
             <source>Loaded</source>
-            <translation>Chargé</translation>
+            <translation>Ngarkuar</translation>
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation>Disponible mais non chargé</translation>
+            <translation>E disponueshme por jo ngarkuar</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>Burimi: %1</translation>
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>L'URL de la source n'est pas encore mise en cache. Utilisez Vérifier les mises à jour pour mettre en cache IPtoCityDB depuis update.json.</translation>
+            <translation>URL burimi nuk është memorizuar ende. Përdur Kontrollo përditësimet për të memorizuar IPtoCityDB nga update.json.</translation>
         </message>
         <message>
             <source>Version %1</source>
-            <translation>Version %1</translation>
+            <translation>Versioni %1</translation>
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation>Mise à jour disponible : %1</translation>
+            <translation>Përditësim i disponueshëm: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation>Préférences de Stellar</translation>
+            <translation>Kërkesa për Stellar</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation>Sélectionner le binaire yt-dlp</translation>
+            <translation>Zgjidhni binarin yt-dlp</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation>Sélectionner le binaire du moteur JavaScript</translation>
+            <translation>Zgjidhni binarin e runtime për JavaScript</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation>Modifier le projet</translation>
+            <translation>Ndrysho Projektin</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>Fshi Projektin</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Kategoritë</translation>
         </message>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Të gjitha ngarkesat</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation>Inachevés</translation>
+            <translation>Të papërfunduara</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation>Terminés</translation>
+            <translation>Të përfunduara</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation>Projets de récupération</translation>
+            <translation>Projekta Grabber</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation>Torrente</translation>
         </message>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>Fila</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>Duke u shkarkuar</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>Duke u shtuar</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>Ngaçmuar</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>Aktive</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>Joaktive</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>Duke u kontrolluar</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Duke u lëvizur</translation>
         </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>Statistika</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation>Statistiques Stellar</translation>
+            <translation>Statistika Stellar</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation>TOUTE L'HISTORIQUE</translation>
+            <translation>KËSH</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Të shkarkuara</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Të ngarkuara</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation>Taux de partage</translation>
+            <translation>Raporti i përdarjes</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation>Temps de fonctionnement</translation>
+            <translation>Funksionimi</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation>Date d'installation</translation>
+            <translation>Data e instalimit</translation>
         </message>
         <message>
             <source>Startups</source>
-            <translation>Démarrages</translation>
+            <translation>Fillime</translation>
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation>CETTE SESSION</translation>
+            <translation>KËJË SESIONI</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbylle</translation>
         </message>
     </context>
     <context>
         <name>StatusBar</name>
         <message>
             <source>🟦 1 active</source>
-            <translation>🟦 1 actif</translation>
+            <translation>🟦 1 aktiv</translation>
         </message>
         <message>
             <source>🟦 %1 active</source>
-            <translation>🟦 %1 actifs</translation>
+            <translation>🟦 %1 aktiv</translation>
         </message>
         <message>
             <source>📄 1 download</source>
-            <translation>📄 1 téléchargement</translation>
+            <translation>📄 1 shkarkim</translation>
         </message>
         <message>
             <source>📄 %1 downloads</source>
-            <translation>📄 %1 téléchargements</translation>
+            <translation>📄 %1 shkarkime</translation>
         </message>
         <message>
             <source>🟨 1 error</source>
-            <translation>🟨 1 erreur</translation>
+            <translation>🟨 1 gabim</translation>
         </message>
         <message>
             <source>🟨 %1 errors</source>
-            <translation>🟨 %1 erreurs</translation>
+            <translation>🟨 %1 gabime</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy activé</translation>
+            <translation>🌐 Proks i aktivizuar</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation>📡 Vérification des mises à jour</translation>
+            <translation>📡 Kërkim për përditësime</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation>🛑 Limiteur de vitesse</translation>
+            <translation>🛑 Kufizues shpejtësie</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
-            <translation>🟩 Prêt</translation>
+            <translation>🟩 Gati</translation>
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation>🔍 1 sélectionné</translation>
+            <translation>🔍 1 zgjedhur</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation>🔍 %1 sélectionnés</translation>
+            <translation>🔍 %1 të zgjedhur</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation>🔴 DHT désactivé</translation>
+            <translation>🔴 DHT i çaktivizuar</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation>en ligne (faible confiance)</translation>
+            <translation> online (besim i ulët)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation>en ligne</translation>
+            <translation> online</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 La file d'attente s'exécute dans 1 minute</translation>
+            <translation>🟧 Fila nis në 1 minutë</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 La file d'attente s'exécute dans %1 minutes</translation>
+            <translation>🟧 Fila nis në %1 minuta</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Estimation… (%1%)</translation>
+            <translation>🟡 Vlerësohet… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation>Suivant &gt;&gt;</translation>
+            <translation>tjetri &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation>Taux de partage de tout le temps
-Cliquez pour ouvrir les statistiques</translation>
+            <translation>Raport i përdorimit</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation>Cliquez pour copier l'IP</translation>
+            <translation>Kliko për statistika</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation>IP publique :</translation>
+            <translation>Kliko për kopim IP</translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation>Connexion : Ethernet</translation>
+            <translation>IP Publik:</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation>WiFi :</translation>
+            <translation>Ethernet</translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation>Signal :</translation>
+            <translation>WiFi:</translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>Port d'écoute :</translation>
+            <translation>Sinal:</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>Aucune connexion entrante, le réseau est peut-être mal configuré</translation>
+            <translation>Port i dërgimit:</translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>Asnjë lidhje hyrëse, rrjeti mund të jetë i konfiguar gabim</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>Stellar Download Manager</translation>
         </message>
     </context>
     <context>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter l'URL</translation>
+            <translation>Shto URL</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Rimëkëqy</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Ndalo</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>Tout arrêter</translation>
+            <translation>Ndal të gjitha</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Fshi</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>Supprimer terminé</translation>
+            <translation>Fshi të përfunduara</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Opsione</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Kalendar</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>Fillo radhën</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>Ndalo radhën</translation>
         </message>
         <message>
             <source>Grabber</source>
-            <translation>Grabber</translation>
+            <translation>Marrës</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation>Moteur de recherche</translation>
+            <translation>Motor Kërkesash</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4858,86 +4849,86 @@ Cliquez pour ouvrir les statistiques</translation>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation>Dupliquer le torrent</translation>
+            <translation>Torrent Duplikat</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation>Le torrent existe déjà</translation>
+            <translation>Torrent ekziston</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation>Ce torrent est déjà dans votre liste. %n nouveau(s) tracker(s) trouvé(s).</translation>
+            <translation>Ky torrent është në listën tuaj. %n tracker të rinj gjetur.</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation>Ce torrent est déjà dans votre liste avec les mêmes trackers.</translation>
+            <translation>Ky torrent është në listën tuaj me të njëjtat tracker.</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation>%n nouveau(s) tracker(s)</translation>
+            <translation>%n tracker të rinj</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation>… et %1 autre(s)</translation>
+            <translation>… dhe %1 më shumë</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation>Ignorer</translation>
+            <translation>Mbylle</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation>Fusionner les trackers</translation>
+            <translation>Kombino Tracker</translation>
         </message>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Ruaj te</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation>Enregistrer sous...</translation>
+            <translation>Ruaj si...</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Kategoria</translation>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation>Dossier de sauvegarde personnalisé</translation>
+            <translation>Drektor ruajtjeje personal</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation>Se souvenir</translation>
+            <translation>Kujto</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation>Utiliser le dossier de catégorie</translation>
+            <translation>Percjell kategoria</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Pershkrim</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation>Cilësimet Torrent...</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Shkarko më vonë</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Shkarko</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation>Ouverture du torrent...</translation>
+            <translation>Hapet torrenti...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
@@ -4945,98 +4936,98 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation>RTT %1 %2 % terminés</translation>
+            <translation>RTT %1 %2% përfunduar</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Kartela</translation>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation>%n élément(s)</translation>
+            <translation>%n artikuj</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Emër</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>Përparim</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Madhësi</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>Nuk ka informacion për skedarin</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>Në pritje</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>Ndrysho emrin</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>Hyr një emër të ri për skedar ose folder:</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Ndrysho emrin</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Ndrysho...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>Pjesëmarrës</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation>Ouverture du torrent et lecture des métadonnées...</translation>
+            <translation>Hapet torrenti dhe lexohen meta të dhënat...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation>Recherche de pairs pour télécharger les métadonnées...</translation>
+            <translation>Kërkojmë pjesëmarrës për të shkarkuar meta të dhënat...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation>Téléchargement des métadonnées depuis %n pair(s)</translation>
+            <translation>Shkarkimi i meta të dhënave nga %n pjesëmarrës</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Seed</translation>
+            <translation>Bimë</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>Ti</translation>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation>Métadonnées du torrent</translation>
+            <translation>Meta të dhënat</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation>Installer un nouveau plugin de recherche</translation>
+            <translation>Instalo një shtesë kërkimi</translation>
         </message>
         <message>
             <source>Local File</source>
-            <translation>Fichier local</translation>
+            <translation>Dokument lokal</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation>Lien Web</translation>
+            <translation>Lidhje web</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>OK</source>
@@ -5044,73 +5035,73 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation>Choisissez un fichier de plugin de recherche local .py à copier dans le dossier search_plugins.</translation>
+            <translation>Zgjidh një skedar .py lokal për kopim në folderin search_plugins.</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation>Collez une URL directe vers un fichier de plugin .py.</translation>
+            <translation>Ngjit një URL direkte për një skedar .py shtese.</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation>Installer un plugin de recherche</translation>
+            <translation>Instalo</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation>Désactiver le plugin</translation>
+            <translation>Dërgo</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation>Activer le plugin</translation>
+            <translation>Aktivo</translation>
         </message>
         <message>
             <source>Uninstall</source>
-            <translation>Désinstaller</translation>
+            <translation>Fshi</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation>Plugins de recherche installés</translation>
+            <translation>Instaluar</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>Rifresko</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>E panjohur</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>Aktiv</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation>Désactivé</translation>
+            <translation>Deaktiv</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation>Installer un nouveau</translation>
+            <translation>Instalo të ri</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbylle</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>Kërko Plugin</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Emër</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Madhësi</translation>
         </message>
         <message>
             <source>Seeders</source>
@@ -5122,110 +5113,110 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation>Moteur</translation>
+            <translation>Motor</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation>Publié le</translation>
+            <translation>Publikuar në</translation>
         </message>
         <message>
             <source>Open Description Page</source>
-            <translation>Ouvrir la page de description</translation>
+            <translation>Hap Faqen e Përshkrimit</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation>Shkarko Torrent</translation>
         </message>
         <message>
             <source>Copy Name</source>
-            <translation>Copier le nom</translation>
+            <translation>Kopjo Emër</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>Kopjo Lidhje Magnet</translation>
         </message>
         <message>
             <source>Copy Description Page URL</source>
-            <translation>Copier l'URL de la page de description</translation>
+            <translation>Kopjo URL Faqe Përshkrimi</translation>
         </message>
         <message>
             <source>Searching...</source>
-            <translation>Recherche en cours...</translation>
+            <translation>Po kërkohet...</translation>
         </message>
         <message>
             <source>Search</source>
-            <translation>Rechercher</translation>
+            <translation>Kërko</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>E panjohur</translation>
         </message>
         <message>
             <source>No search results yet</source>
-            <translation>Aucun résultat de recherche pour le moment</translation>
+            <translation>Asnjë rezultat kërkimi</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>Shtypë Kërkesa</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation>Moteur de recherche de torrents</translation>
+            <translation>Motor Kërkimi Torrent</translation>
         </message>
     </context>
     <context>
         <name>TorrentSpeedLimitDialog</name>
         <message>
             <source>Torrent Settings</source>
-            <translation>Paramètres du torrent</translation>
+            <translation>Rregullime Torrent</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Vitesse par torrent, limites de partage, découverte des pairs et mode de téléchargement</translation>
+            <translation>Shpejtësia për torrent, kufizimet e ndarjes, zbulimi i peer-it dhe mënyra e ngarkimit</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Mbylle</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Zbatohet</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LIMITES DE BANDE PASSANTE</translation>
+            <translation>KUFIZIME TË BANDWIDTH</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Téléchargement :</translation>
+            <translation>Ngarkim:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Envoi :</translation>
+            <translation>Ngarkim:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE</translation>
+            <translation>KUFIZIME TË NDARJES</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio :</translation>
+            <translation>Raport:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>Parazgjedhje</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>Pa kufi</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>Rregullohet</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Durée de partage :</translation>
+            <translation>Koha e seedingut</translation>
         </message>
         <message>
             <source>min</source>
@@ -5233,11 +5224,11 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Durée d'inactivité :</translation>
+            <translation>Koha e pasaktivitetit</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>DÉCOUVERTE DES PAIRS</translation>
+            <translation>Zbulimi i peer-ve</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -5245,7 +5236,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Table de hachage distribuée</translation>
+            <translation>Tabela Hashi e Shpërndarë</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -5253,7 +5244,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Échange de pairs</translation>
+            <translation>Shkëmbimi i Peer-ve</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -5261,135 +5252,135 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Découverte locale de services</translation>
+            <translation>Zbulimi i shërbimit lokal</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privé</translation>
+            <translation>🔒 Torrent privat</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT et PeX désactivés par libtorrent.</translation>
+            <translation>DHT dhe PeX të çaktivizuar nga libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODE DE TÉLÉCHARGEMENT</translation>
+            <translation>MODOC KËRQIMI</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Téléchargement séquentiel</translation>
+            <translation>Kërcim i shkarkimit</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Morceaux téléchargés dans l'ordre (morceau 0 → dernier)</translation>
+            <translation>Blokat e shkarkuara në rend (bloku 0 → fundi)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioriser le premier et le dernier morceau</translation>
+            <translation>Prioriteti i bllokut të parë dhe të fundit</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Précharge l'en-tête/pied de page pour la lecture anticipée</translation>
+            <translation>Kryesore/mbi-kryesore për luajtje të hershme</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>Récupération des formats disponibles…</translation>
+            <translation>Duke marrë formatet e disponueshme...</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>Nuk u mund të merren informacionet e videos.</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>Échec de la résolution du défi n-challenge de YouTube</translation>
+            <translation>YouTube n-challenge dështoi</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>Récupération des informations vidéo…</translation>
+            <translation>Duke marrë informacionin e videos…</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>Nuk u mor informacioni i videos</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>yt-dlp nécessite un environnement d'exécution JavaScript (Deno, Node.js, Bun ou QuickJS) pour contourner le défi de limitation d'URL de YouTube. Installez-en un et placez-le à côté de yt-dlp.exe ou dans votre PATH système.</translation>
+            <translation>yt-dlp kërkon një runtime JavaScript (Deno, Node.js, Bun ose QuickJS) për të kaluar sfidën e kufizimit të URL-së së YouTube. Instaloni një dhe vendoseni pranë yt-dlp.exe ose në PATH të sistemit.</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>Aucun environnement d'exécution détecté. Installez Deno (recommandé) depuis deno.com, puis revérifiez dans Paramètres → Téléchargeur vidéo.</translation>
+            <translation>Nuk u detektua runtime. Instaloni Deno (të rekomanduarin) nga deno.com, pastaj ri-kontrolloni në Settings → Video Downloader.</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>Environnement d'exécution détecté : %1 (%2)</translation>
+            <translation>Runtime i detektuar: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation>Obtenir Deno</translation>
+            <translation>Merrni Deno</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation>Ouvrir les paramètres</translation>
+            <translation>Hapni Settings</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>Cookies nga shfletuesi:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation>Sélectionnez un navigateur pour transmettre ses cookies à yt-dlp, puis réessayez.</translation>
+            <translation>Zgjidhni një shfletues për të kaluar cookies të tij te yt-dlp, pastaj riprojeni.</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation>Réessayer</translation>
+            <translation>Riprovaje</translation>
         </message>
         <message>
             <source>Select quality:</source>
-            <translation>Sélectionner la qualité :</translation>
+            <translation>Zgjidhni cilësinë:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation>Taille indisponible — cette qualité utilise des flux vidéo et audio séparés fusionnés par ffmpeg après le téléchargement.</translation>
+            <translation>Madhësia e padisponueshme — kjo cilësi përdor rrjedha video dhe audio të bashkuara nga ffmpeg pas shkarkimit.</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation>Chaîne / Playlist</translation>
+            <translation>Kanal / Listë</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation>Toutes les vidéos</translation>
+            <translation>Të gjitha videot</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation>Les plus récentes</translation>
+            <translation>Të fundit</translation>
         </message>
         <message>
             <source>videos</source>
-            <translation>vidéos</translation>
+            <translation>videot</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation>Les URL de chaînes YouTube incluent par défaut tous les téléchargements. Utilisez Portée pour cibler un seul onglet.</translation>
+            <translation>URL-të e kanaleve YouTube përfshijnë të gjitha ngarkesat sipas parimit. Përdorni Shkallë për të synuar një tab.</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation>Les vidéos seront enregistrées dans un sous-dossier nommé d'après la chaîne.</translation>
+            <translation>Videot do të ruhen në një nënkartë me emrin e kanalit.</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation>Portée :</translation>
+            <translation>Shkallë:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Të gjitha ngarkesat</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation>Vidéos</translation>
+            <translation>Video</translation>
         </message>
         <message>
             <source>Shorts</source>
@@ -5397,59 +5388,59 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Live</source>
-            <translation>En direct</translation>
+            <translation>Live</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation>Sous-titres</translation>
+            <translation>Nëntekste</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation>Télécharger les fichiers de sous-titres avec la vidéo</translation>
+            <translation>Shkarko nëntekste me videon</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>Gjuhë:</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation>Code(s) de langue, ex. en · en.*,ja · tous</translation>
+            <translation>Kode gjuhësh, p.sh. en · en.*,ja · të gjitha</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation>Généré automatiquement</translation>
+            <translation>Të gjeneruara automatikisht</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation>Inclure les sous-titres générés automatiquement si disponibles</translation>
+            <translation>Përfshij nëntekste automatike nëse janë të disponueshme</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation>Intégrer dans la vidéo</translation>
+            <translation>Shkruaj në video</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation>Intégrer les sous-titres dans le conteneur vidéo</translation>
+            <translation>Shkruaj nënkriptra në kontejnerin e videos</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation>L'intégration nécessite mp4, mkv ou webm</translation>
+            <translation>Shkruarja kërkon mp4, mkv ose webm</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation>Intégrer la vignette</translation>
+            <translation>Shkruaj miniaturë</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation>Intégrer la miniature de couverture dans le fichier vidéo (nécessite ffmpeg)</translation>
+            <translation>Shkruaj miniaturë të artit të mbuluar në skedarin e videos (kërkon ffmpeg)</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation>Intégrer les métadonnées</translation>
+            <translation>Shkruaj meta të dhëna</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation>Écrire le titre, l'uploadé, les chapitres, etc. dans les métadonnées du conteneur</translation>
+            <translation>Shkruaj titull, ngarkues, kapituj etj. në meta të dhënat e kontejnerit</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
@@ -5458,132 +5449,131 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation>Supprimer les segments sponsorisés, les génériques d'ouverture et de fermeture, ainsi que l'auto-promotion
-(Uniquement YouTube · nécessite ffmpeg)</translation>
+            <translation>Hiq segmentet sponsorizuese, hyrjet, fundet dhe promovimin e vetes (vetëm YouTube · kërkon ffmpeg)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation>Ko/s (vide = utiliser la limite de vitesse globale)</translation>
+            <translation>KB/s (bosh = përdor kufirin global të shpejtësisë)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation>Télécharger la chaîne</translation>
+            <translation>Kanali i Shkarkimit</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Shkarkim</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Të Avancuara</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation>filtre par date</translation>
+            <translation>Filtër Data</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation>cookies</translation>
+            <translation>Cookies</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation>archive</translation>
+            <translation>Arkivë</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation>diviser les chapitres</translation>
+            <translation>Pjesto Këngë</translation>
         </message>
         <message>
             <source>time range</source>
-            <translation>plage horaire</translation>
+            <translation>Interval Kohor</translation>
         </message>
         <message>
             <source>extra files</source>
-            <translation>fichiers supplémentaires</translation>
+            <translation>Skedarë Shtesë</translation>
         </message>
         <message>
             <source>random</source>
-            <translation>aléatoire</translation>
+            <translation>Të Rastësishëm</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation>début en direct</translation>
+            <translation>Fillim në direct</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation>limite de débit</translation>
+            <translation>Kufizim i shpejtësisë</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation>Date après :</translation>
+            <translation>Pas datës:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation>Seulement les vidéos téléchargées à partir de cette date</translation>
+            <translation>Për videot ngarkuar pas kësaj date</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation>Cookies :</translation>
+            <translation>Kukull:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation>Charger les cookies pour le contenu réservé aux membres / restreint par l'âge</translation>
+            <translation>Kukujt për përmbajtje vetëm për anëtarë / me moshë</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation>Limite de débit :</translation>
+            <translation>Kufizim i shpejtësisë:</translation>
         </message>
         <message>
             <source>Time range:</source>
-            <translation>Plage horaire :</translation>
+            <translation>Intervali kohor:</translation>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
-            <translation>Télécharger uniquement cette section, ex. *01:30-03:00</translation>
+            <translation>Shkarko vetëm këtë seksion, p.sh. *01:30-03:00</translation>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation>Ignorer les fichiers déjà téléchargés</translation>
+            <translation>Kalo ato që janë shkarkuar</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation>Diviser par chapitres</translation>
+            <translation>Ndahje në kapituj</translation>
         </message>
         <message>
             <source>Save description</source>
-            <translation>Enregistrer la description</translation>
+            <translation>Ruaje përshkrimin</translation>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation>Enregistrer la miniature</translation>
+            <translation>Ruaje miniaturën</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation>Mélanger la playlist</translation>
+            <translation>Dërgo rastësisht</translation>
         </message>
         <message>
             <source>Live: from start</source>
-            <translation>En direct : depuis le début</translation>
+            <translation>E gjallë: nga fillimi</translation>
         </message>
         <message>
             <source>Save to:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>Ruaje në:</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>Kategoria:</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation>Format :</translation>
+            <translation>Formati:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Anulo</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation>Téléchargement vidéo</translation>
+            <translation>Shkarkim videoje</translation>
         </message>
     </context>
 </TS>

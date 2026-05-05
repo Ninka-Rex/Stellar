@@ -1463,7 +1463,7 @@ Window {
     // ── File chooser ─────────────────────────────────────────────────────────
     FileDialog {
         id: moveFileDialog
-        title: _isTorrent ? "Move Torrent Data To..." : "Move File To..."
+        title: _isTorrent ? qsTr("Move Torrent Data To...") : qsTr("Move File To...")
         fileMode: FileDialog.SaveFile
         currentFolder: {
             if (!root.item) return ""

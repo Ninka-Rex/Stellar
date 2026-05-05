@@ -1329,20 +1329,24 @@ AppController::AppController(QObject *parent) : QObject(parent) {
         const int active     = m_queue->activeCount();
         const int total      = m_downloadModel->allItems().size();
 
-        QString tip = tr("Stellar Download Manager v") + appVersion();
+        const auto tt = [](const char *text) {
+            return QCoreApplication::translate("AppController", text);
+        };
+
+        QString tip = tt("Stellar Download Manager v") + appVersion();
 
         // Speed line — only shown when enabled and there is actual transfer activity.
         if (m_settings->speedInTrayTooltip() && (active > 0 || upSpeed > 0))
-            tip += tr("\nDown: %1  Up: %2").arg(fmtSpeed(downSpeed), fmtSpeed(upSpeed));
+            tip += tt("\nDown: %1  Up: %2").arg(fmtSpeed(downSpeed), fmtSpeed(upSpeed));
 
         if (active > 0)
-            tip += tr("\nDownloading: %1").arg(active);
+            tip += tt("\nDownloading: %1").arg(active);
         if (seeding > 0)
-            tip += active > 0 ? tr("  Seeding: %1").arg(seeding)
-                              : tr("\nSeeding: %1").arg(seeding);
+            tip += active > 0 ? tt("  Seeding: %1").arg(seeding)
+                              : tt("\nSeeding: %1").arg(seeding);
         if (total > 0)
-            tip += (active > 0 || seeding > 0) ? tr("  Total: %1").arg(total)
-                                               : tr("\nTotal: %1").arg(total);
+            tip += (active > 0 || seeding > 0) ? tt("  Total: %1").arg(total)
+                                               : tt("\nTotal: %1").arg(total);
 
         // Only call setToolTip when the text has changed — calling it while the
         // user is hovering causes Windows to dismiss and re-show the tooltip.

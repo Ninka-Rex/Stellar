@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TS version="2.1" language="fr_FR" sourcelanguage="en_US">
+<TS version="2.1" language="mn_MN" sourcelanguage="en_US">
     <context>
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>Ajouter aux exceptions d'adresse ?</translation>
+            <translation>Хаягт хэрэгжүүлэх?</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>Cette adresse a été annulée deux fois. Voulez-vous l'ajouter à la liste des exceptions afin que Stellar ne l'intercepte plus automatiquement ?</translation>
+            <translation>Энэ хаягийг хоёр удаа цуцалсан. Stellar нь автоматаар хянахаас сэргийлэхийн тулд хэрэгжүүлэх үү?</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Үгүй</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>Ajouter l'exception</translation>
+            <translation>Хэрэгжүүлэх</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>Ajouter une exception d'adresse</translation>
+            <translation>Хаягт хэрэгжүүлэх</translation>
         </message>
     </context>
     <context>
@@ -31,19 +31,19 @@
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>Тайланг ашиглах</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Identifiant</translation>
+            <translation>Нэвтрэх</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Нууц үг</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Цуцлах</translation>
         </message>
         <message>
             <source>OK</source>
@@ -51,183 +51,179 @@
         </message>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter une URL</translation>
+            <translation>URL нэмэх</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation>Stellar Gestionnaire de téléchargement v</translation>
+            <translation>Stellar Download Manager v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation>
-Bas : %1  Haut : %2</translation>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation>
-Téléchargement : %1</translation>
+            <translation>Татаж байна: %1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation>  Partage : %1</translation>
+            <translation>Хуулж байна: %1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation>
-Partage : %1</translation>
+            <translation>Хуулж байна: %1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation>  Total : %1</translation>
+            <translation>Нийт: %1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation>
-Total : %1</translation>
+            <translation>Нийт: %1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>Stellar est en cours d'arrêt...</translation>
+            <translation>Stellar явуулагдаж байна...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>Stellar démarre...</translation>
+            <translation>Stellar эхэлж байна...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Lié à %1</translation>
+            <translation>🛡️ %1-т холбогдлоо</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>Téléchargement par lots</translation>
+            <translation>Нэг дарааллаар татах</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>Générez les liens ici, puis passez à l'étape de révision.</translation>
+            <translation>Холбоосуудыг энд үүсгэж, дараа нь шалгах алхам руу шилжнэ.</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation>Adresse :</translation>
+            <translation>Хаяг:</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation>Remplacer l'astérisque par</translation>
+            <translation>Астерискийг орлуулах</translation>
         </message>
         <message>
             <source>Numbers</source>
-            <translation>Nombres</translation>
+            <translation>Тоо</translation>
         </message>
         <message>
             <source>Letters</source>
-            <translation>Lettres</translation>
+            <translation>Тэмдэгт</translation>
         </message>
         <message>
             <source>From:</source>
-            <translation>De :</translation>
+            <translation>Араас:</translation>
         </message>
         <message>
             <source>To:</source>
-            <translation>À :</translation>
+            <translation>Хүртэл:</translation>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation>Taille du joker :</translation>
+            <translation>Тэмдэгт хэмжээ</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>Дүрслэл</translation>
         </message>
         <message>
             <source>First: %1</source>
-            <translation>Premier : %1</translation>
+            <translation>Эхний: %1</translation>
         </message>
         <message>
             <source>Second: %1</source>
-            <translation>Deuxième : %1</translation>
+            <translation>Хоёр дахь: %1</translation>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation>Dernier : %1</translation>
+            <translation>Сүүлийн: %1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation>Utilisez l'étape de file d'attente après OK si vous souhaitez regrouper ces téléchargements avant leur démarrage.</translation>
+            <translation>OK дарсны дараа хавтсайд нэмэх</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Болих</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөвшөөрөх</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Файлын нэр</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Хэмжээ</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Статус</translation>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Vérifiez les liens avant de les ajouter. Les colonnes peuvent être triées, redimensionnées et déplacées pour changer l'ordre.</translation>
+            <translation>Холбоосуудыг нэмэхээс өмнө шална. Тэмдэгтүүдийг эрэмбэлж, хэмжээгээ өөрчлөх, эрэмбэ хувиргах боломжтой.</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation>Remplacer les noms de fichiers par un motif générique (*)</translation>
+            <translation>Файлын нэрүүдийг wildcard загвар (*)-аар солих</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Файлууд</translation>
         </message>
         <message>
             <source>Check all</source>
-            <translation>Tout cocher</translation>
+            <translation>Бүгдийг шалгах</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation>Tout décocher</translation>
+            <translation>Бүгдийг цэвэрлэх</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Seuls les liens marqués « Trouvé » sont sélectionnables. L’attribution à la file d’attente se fait après confirmation.</translation>
+            <translation>Зөвхөн 'Олсон' гэсэн тэмдэглэгээтэй холбоосуудыг сонгож болно. 'OK' дарсны дараа хавтсайд оруулах үйлдэл хийгдэнэ.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Цуцлах</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>Projet</translation>
+            <translation>Зөвшөөрөх</translation>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation>Revue du téléchargement par lots</translation>
+            <translation>Нэгдүгээр шалгалт</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation>Installez l’extension Stellar dans votre navigateur pour intercepter les téléchargements et les router automatiquement vers Stellar.</translation>
+            <translation>Stellar-ийг хөтөчөнд суурилуулж, татахыг автоматаар дамжуулах.</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
@@ -235,11 +231,11 @@ Total : %1</translation>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation>Installer directement depuis le Chrome Web Store</translation>
+            <translation>Chrome Web Store-ээс шууд суурилуулах.</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation>Ouvrir le lien</translation>
+            <translation>Холбоосыг нээх</translation>
         </message>
         <message>
             <source>Firefox</source>
@@ -247,281 +243,281 @@ Total : %1</translation>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation>Installer le fichier XPI Firefox, mises à jour non automatiques</translation>
+            <translation>Firefox XPI-г суурилуул, автоматаар шинэчлэхгүй.</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation>Hôte de messagerie native</translation>
+            <translation>Native Messaging Host</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation>Stellar s’enregistre automatiquement afin que l’extension puisse communiquer avec lui.</translation>
+            <translation>Stellar автоматаар бүртгэгдсэн тул хөтөчтэй холбогдоно.</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation>Inscription réussie.</translation>
+            <translation>Бүртгэл амжилттай.</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation>L'inscription a échoué — voir les détails ci-dessous.</translation>
+            <translation>Бүртгэл алдаатай — дараах мэдээллийг үзнэ.</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation>Inscription en cours…</translation>
+            <translation>Бичих...</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation>Réessayer</translation>
+            <translation>Дахин оролдох</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation>Installation manuelle :</translation>
+            <translation>Үүнийг гаргаж авах:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation>Exécuter dans l'invite de commandes (aucun droit d'administrateur requis) :</translation>
+            <translation>Командын цонхонд ажиллуулах (админ шаардлагагүй):</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>Хуулах</translation>
         </message>
         <message>
             <source>Copied</source>
-            <translation>Copié</translation>
+            <translation>Хуулсан</translation>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation>Exécuter dans un terminal :</translation>
+            <translation>Терминалд ажиллуулах:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation>Extensions de navigateur</translation>
+            <translation>Браузерын нэмэлтүүд</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Бүх татаж авсан</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation>Vidéo</translation>
+            <translation>Видео</translation>
         </message>
         <message>
             <source>Music</source>
-            <translation>Musique</translation>
+            <translation>Музыка</translation>
         </message>
         <message>
             <source>Documents</source>
-            <translation>Documents</translation>
+            <translation>Баримт</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation>Archives</translation>
+            <translation>Хуулбар</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>Programmes</translation>
+            <translation>Программ</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation>Colonnes</translation>
+            <translation>Багана</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation>Cochez les colonnes que vous souhaitez afficher dans cette liste. Utilisez les boutons Déplacer vers le haut et Déplacer vers le bas pour les réorganiser comme vous le souhaitez.</translation>
+            <translation>Баганыг харуулах</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation>Déplacer vers le haut</translation>
+            <translation>Дээш шилжүүлэх</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation>Déplacer vers le bas</translation>
+            <translation>Доош шилжүүлэх</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation>Afficher</translation>
+            <translation>Харуулах</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation>Masquer</translation>
+            <translation>Нуух</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation>Réinitialiser</translation>
+            <translation>Ажлыг дахин эхлүүлэх</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation>La colonne sélectionnée doit être</translation>
+            <translation>Үйлдсэн сонголтыг</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation>pixels de large</translation>
+            <translation>пиксел өргөн</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөвшөөрөх</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богинох</translation>
         </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation>Confirmer la suppression</translation>
+            <translation>Устгахыг баталгаажуулах</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation>Supprimer le téléchargement ?</translation>
+            <translation>Татаж авлыг устгах у?</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation>Supprimer également les fichiers torrent du disque</translation>
+            <translation>Torrent файлуудыг мөн устгах</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation>Supprimer également le fichier du disque</translation>
+            <translation>Файлыг мөн устгах</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation>Supprimer définitivement (ne pas déplacer vers la corbeille)</translation>
+            <translation>Тогтмол устгах (мусууд руу шилжүүлэхгүй)</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Боцголох</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation>Supprimer les téléchargements terminés</translation>
+            <translation>Бүтсэн татахлыг устгах</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Êtes-vous sûr de vouloir supprimer tous les téléchargements terminés de la liste de Stellar ?</translation>
+            <translation>Стелларын татахлын жагсаалтаас бүх бүтсэн татахлыг устгахыг баталгаажуулна уу?</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Remarque : Cela les supprimera uniquement de la liste. Les fichiers sur le disque ne seront pas supprimés.</translation>
+            <translation>Тэмдэглэл: Энэ нь зөвхөн жагсаалтаас нь хасна. Диск дээрх файлууд устгагдана.</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation>Supprimer les torrents terminés et en seeding</translation>
+            <translation>Бүтсэн болон тарьж байгаа торрентүүдийг устгах</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>Тийм</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Үгүй</translation>
         </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation>Téléchargement terminé</translation>
+            <translation>Татах дууслаа</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Téléchargé %1 (%2 octets)</translation>
+            <translation>%1 (%2 байт) татагдлаа</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>Нас бар</translation>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation>Le fichier a été enregistré sous</translation>
+            <translation>Хадгалагдсан файл</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
-            <translation>Le fichier a été déplacé.</translation>
+            <translation>Файл шилжсэн</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>Нээх</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation>Ouvrir avec...</translation>
+            <translation>Энэ програмар нээх</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Файлын хавтас нээх</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation>Ne plus afficher cette boîte de dialogue</translation>
+            <translation>Энэ цонхыг дахин үзүүлэхгүй</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation>Vous pouvez réactiver cette option dans Paramètres → Général → Afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>Үүнийг 'Тохиргоо → Ерөнхий → Түгжээ бүтэн болсон цонхыг үзүүлэх' хэсгээр дахин идэвхжүүлж болно</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation>Faites glisser le fichier pour le déplacer ailleurs</translation>
+            <translation>Файлыг өөр газар шилжүүлэхийн тулд татаж шилжүүлнэ</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation>Informations sur le fichier téléchargé</translation>
+            <translation>Татах файлын мэдээлэл</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
-            <translation>Ajout d'une catégorie à la liste des catégories Stellar</translation>
+            <translation>Stellar категорийн жагсаалтад шинэ категори нэмэх</translation>
         </message>
         <message>
             <source>Category name</source>
-            <translation>Nom de la catégorie</translation>
+            <translation>Категорийн нэр</translation>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation>Placer automatiquement dans cette catégorie les types de fichiers suivants :</translation>
+            <translation>Үүнийг дараах файлын төрлүүдэд автоматаар нэмнэ:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation>Remarque : séparez les extensions de fichier par des espaces (ex. avi mpg mpeg)</translation>
+            <translation>Тэмдэглэл: файлын өргөтгөлийг зайгаар тусгаарлаарай (жишээ нь: avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation>Placer automatiquement dans cette catégorie les fichiers provenant uniquement des sites suivants :</translation>
+            <translation>Зөвхөн дараах сайтудаас ирсэн файлуудыг автоматаар нэмнэ:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation>Séparez les sites par des espaces. Vous pouvez utiliser l'astérisque comme motif générique</translation>
+            <translation>Сайтуудыг зайгаар тусгаарлаарай. Астерискийг (*) оролцох загвар болгон ашиглаж болно</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation>Enregistrer les futurs téléchargements de cette catégorie dans le dossier suivant :</translation>
+            <translation>Энэхүү категорийн ирээдүйн татахуудыг дараах хэсэгт хадгалах:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation>Mémoriser le dernier chemin d'enregistrement</translation>
+            <translation>Сүүлийн хадгалах замыг санах</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>Хайх...</translation>
         </message>
         <message>
             <source>OK</source>
@@ -529,7 +525,7 @@ Total : %1</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Цуцлах</translation>
         </message>
         <message>
             <source>URL</source>
@@ -537,320 +533,320 @@ Total : %1</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Категори</translation>
         </message>
         <message>
             <source>Save As</source>
-            <translation>Enregistrer sous</translation>
+            <translation>Хадгалах</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation>Mémoriser ce chemin pour la catégorie « %1 »</translation>
+            <translation>Энэхүү зам &quot;%1&quot; төрлөөс хадгалах</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Тайлбар</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Дараа нь татах</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation>Démarrer le téléchargement</translation>
+            <translation>Татах</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>Дараалалд тавигдсан</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>Шалгах</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement</translation>
+            <translation>Татаж авах</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Зөөж байна</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage</translation>
+            <translation>Хуваах</translation>
         </message>
         <message>
             <source>Paused</source>
-            <translation>En pause</translation>
+            <translation>Зогсоосон</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>Бүтээгдэж байна...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation>Terminé</translation>
+            <translation>Бүтээгдсэн</translation>
         </message>
         <message>
             <source>Error</source>
-            <translation>Erreur</translation>
+            <translation>Алдаа</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Тодорхойгүй</translation>
         </message>
     </context>
     <context>
         <name>DownloadProgressDialog</name>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>Татаж авах</translation>
         </message>
         <message>
             <source>Receiving data...</source>
-            <translation>Réception des données...</translation>
+            <translation>Дуудлага хүлээн авч байна...</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>Бүрдүүлж байна...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation>État du téléchargement</translation>
+            <translation>Татах төлөв</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Хурд хязгаарлагч</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>Бүтээгдсэн үеийн сонголтууд</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation>&gt;&gt; Envoyer dans la zone de notification</translation>
+            <translation>&gt;&gt; Трэйд илгээх</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>Системийн трейдэд багасгах</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Төлөв</translation>
         </message>
         <message>
             <source>File size</source>
-            <translation>Taille du fichier</translation>
+            <translation>Файлын хэмжээ</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Татагдсан</translation>
         </message>
         <message>
             <source>%1  ( %2% )</source>
-            <translation>%1 ( %2% )</translation>
+            <translation>%1 (%2%)</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation>Débit de transfert</translation>
+            <translation>Шилжүүлэх хурд</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation>(Limité à %1)</translation>
+            <translation>(Хязгаарлагдсан %1)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>Хэсэг үлдсэн</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation>Capacité de reprise</translation>
+            <translation>Дахин эхлүүлэх боломж</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>Тийм</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Үгүй</translation>
         </message>
         <message>
             <source>Error detail</source>
-            <translation>Détail de l'erreur</translation>
+            <translation>Алдааны дэлгэрэнгүй</translation>
         </message>
         <message>
             <source>Assembling... %1%</source>
-            <translation>Assemblage... %1%</translation>
+            <translation>Бүрдүүлж байна... %1%</translation>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation>« Masquer les détails</translation>
+            <translation>« Дэлгэрэнгүйг нуух</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation>» Afficher les détails</translation>
+            <translation>Дэлгэрэнгүй</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>Эхлүүлэх</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation>Pause</translation>
+            <translation>Зогсоох</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Цуцлах</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation>Positions de départ et progression du téléchargement par connexion</translation>
+            <translation>Холбоосуудын байрлал болон ачаалал</translation>
         </message>
         <message>
             <source>N.</source>
-            <translation>N.</translation>
+            <translation>№</translation>
         </message>
         <message>
             <source>Info</source>
-            <translation>Info</translation>
+            <translation>Мэдээлэл</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation>Limiter le débit de transfert pour ce téléchargement</translation>
+            <translation>Ачааллын хурдыг хязгаарлах</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation>Activer la limite par téléchargement</translation>
+            <translation>Ачааллын хязгаарыг идэвхжүүлэх</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation>Maximum :</translation>
+            <translation>Хамгийн их:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
-            <translation>ex. 100</translation>
+            <translation>100</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation>Limite globale active : %1 Ko/s</translation>
+            <translation>Global limit active: %1 KB/s</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation>Aucune limite globale définie</translation>
+            <translation>Global limit тогтоогүй</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation>Paramètres du limiteur de vitesse global…</translation>
+            <translation>Global speed limiter settings…</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>Тусламж үзүүлэх сонголтууд</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation>Ouvrir le fichier une fois terminé</translation>
+            <translation>Бүтээгдсэн дараа файл нээх</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation>Ouvrir le dossier une fois terminé</translation>
+            <translation>Бүтээгдсэн дараа хэсэг нээх</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Бүтээгдсэн дараа компьютерыг зогсоох</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation>Ces options sont temporaires et s'appliquent uniquement à ce téléchargement ; elles sont désactivées par défaut à chaque fois.</translation>
+            <translation>Эдгээр сонголтууд зөвхөн энэ татах үйлдэлд хязгаарлагдмал бөгөөд бүрэн дараа тус бүр нь хаагдсан байдалтайгаар эхэлнэ.</translation>
         </message>
     </context>
     <context>
         <name>DownloadTable</name>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Боцголох</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Нэр солих</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation>Propriétés</translation>
+            <translation>Онош</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Файл нээх</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Хэсэг нээх</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Нэр солих...</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation>Copier le nom du fichier</translation>
+            <translation>Нэр хуулах</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>.torrent экспортлох...</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Дахин эхлүүлэх</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Зогсоох</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation>Retirer de la file d'attente</translation>
+            <translation>Хуваарьгаас хасч</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>Дахин татах</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation>Paramètres des colonnes</translation>
+            <translation>Баганын тохиргоо</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Файлын нэр</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Хэмжээ</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Байдал</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>Хэсэг үлдсэн</translation>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>Татах хурд</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>Аралцах хурд</translation>
         </message>
         <message>
             <source>Seeders</source>
@@ -858,23 +854,23 @@ Total : %1</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>Peers</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>Ratio</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Uploaded</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Downloaded</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation>Date du dernier essai</translation>
+            <translation>Last try date</translation>
         </message>
         <message>
             <source>Description</source>
@@ -882,102 +878,100 @@ Total : %1</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Save to</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>Referer</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation>Page web parente</translation>
+            <translation>Parent web page</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>Ажиллаж байна</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation>%1% (Arrêté)</translation>
+            <translation>%1% (Зогсоосон)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
-            <translation>Vérification (%1%)</translation>
+            <translation>Шалгаж байна (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation>%n fichier(s)</translation>
+            <translation>%n файл</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation>Aucun téléchargement correspondant.</translation>
+            <translation>Нийцэх агуулга байхгүй</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation>Aucun téléchargement pour le moment.
-Cliquez sur Ajouter une URL pour commencer.</translation>
+            <translation>Агуулга байхгүй. Эхлүүлэхийн тулд URL нэмэх</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation>Chargement de %n téléchargement(s)…</translation>
+            <translation>%n дамжуулалтыг ачааллаж байна...</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation>Déplacer vers la file d'attente</translation>
+            <translation>Магнит холбоос хуулах</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>URL хуулах</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>URL-г хуурах</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation>%n téléchargement(s) sélectionné(s)</translation>
+            <translation>%n сонгогдсон татах</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation>Dupliquer le lien de téléchargement</translation>
+            <translation>Татах холбоосыг давхарлах</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation>Ce fichier existe déjà dans votre liste de téléchargements.</translation>
+            <translation>Энэхүү файлын нэр аль хэдийн таны татах жагсаалтад байна.</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation>Vous pouvez choisir l'une des options suivantes, ou appuyer sur Annuler pour ignorer le téléchargement.</translation>
+            <translation>Доорх сонголтуудын нэгийг сонгох эсвэл 'Цуцлах'-ыг дарж татахыг зогсоож болно.</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation>Ajouter le doublon avec un nom de fichier numéroté</translation>
+            <translation>Давхаргасныг дугаартай нэрээр нэмэх</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation>Ajouter le doublon et écraser le fichier existant</translation>
+            <translation>Давхаргасныг нэмж, оршин байгаа файлыг дахин бичих</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation>Le fichier existant est complet - afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>Оршин байгаа файл бүрэн дууссан - татах дууссан цонхыг харуулах</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation>Reprendre le téléchargement existant</translation>
+            <translation>Оршин байгаа татахыг үргэлжлүүлэх</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation>Mémoriser ma sélection et ne plus afficher cette boîte de dialogue.
-Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</translation>
+            <translation>Сонголтыг минь санаж, энэ цонхыг дахин харуулахгүй. Үүнийг хожим 'Сонголт → Татах'-д өөрчлөх боломжтой.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Цуцлах</translation>
         </message>
         <message>
             <source>OK</source>
@@ -988,387 +982,387 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation>Déplacer les données du torrent vers...</translation>
+            <translation>Torrent өгөгдлийг шилжүүлэх...</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation>Déplacer le fichier vers...</translation>
+            <translation>Файл шилжүүлэх...</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>Эхлүүлэх</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Зогсоох</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Хуудсыг нээх</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Файл нээх</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Тайлан</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Хэмжээ</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Хадгалах</translation>
         </message>
         <message>
             <source>Move</source>
-            <translation>Déplacer</translation>
+            <translation>Шилжүүлэх</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>Хаяг</translation>
         </message>
         <message>
             <source>Web page</source>
-            <translation>Page Web</translation>
+            <translation>Вэб хуудас</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>Илгээгч</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Тайлбар</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>Нэвтрэх</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Нууц үг</translation>
         </message>
         <message>
             <source>Source</source>
-            <translation>Source</translation>
+            <translation>Эх үүсвэр</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation>Hash d'information</translation>
+            <translation>Мэдээллийн хашаа</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>Хуулах</translation>
         </message>
         <message>
             <source>Metadata</source>
-            <translation>Métadonnées</translation>
+            <translation>Метадүгээ</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Ангийн</translation>
         </message>
         <message>
             <source>Note</source>
-            <translation>Note</translation>
+            <translation>Тэмдэглэл</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Татаж авсан</translation>
         </message>
         <message>
             <source>Country</source>
-            <translation>Pays</translation>
+            <translation>Улс</translation>
         </message>
         <message>
             <source>Port</source>
-            <translation>Port</translation>
+            <translation>Порт</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Агуулсан</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>Хуваачид</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation>Message</translation>
+            <translation>Зурвас</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>Зогсоосон</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>Татаж байна</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Шилжүүлж байна</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>Хуулж байна</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>Дараалалд</translation>
         </message>
         <message>
             <source>Problem</source>
-            <translation>Problème</translation>
+            <translation>Алдаа</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation>Torrent тохиргоо...</translation>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation>ETA : %1</translation>
+            <translation>Хугацаа: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation>Graines : %1 (%2)</translation>
+            <translation>Хуулалт: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation>Pairs : %1 (%2)</translation>
+            <translation>Хуваалт: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>Ерөнхий</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Файлууд</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation>Carte du swarm</translation>
+            <translation>Олонлогийн зураг</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation>Carte des pièces</translation>
+            <translation>Хэсгүүдийн зураг</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation>Gaspillé</translation>
+            <translation>Хаягдсан</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>Буурах хурд</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>Дээшлэх хурд</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation>Connexions</translation>
+            <translation>Холбоосууд</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation>Ratio de partage</translation>
+            <translation>Хуваах харьцаа</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation>Morceaux</translation>
+            <translation>Хэсгүүд</translation>
         </message>
         <message>
             <source>Availability</source>
-            <translation>Disponibilité</translation>
+            <translation>Төвлөлт</translation>
         </message>
         <message>
             <source>Active time</source>
-            <translation>Temps actif</translation>
+            <translation>Ажиллаж байгаа хугацаа</translation>
         </message>
         <message>
             <source>Seed time</source>
-            <translation>Temps de partage</translation>
+            <translation>Зөөвөрлөх хугацаа</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation>Limite de vitesse</translation>
+            <translation>Хурдны хязгаар</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation>Vérifier les données locales</translation>
+            <translation>Дотоод өгөгдлийг шалгах</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation>Téléchargement</translation>
+            <translation>Буурах</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation>Téléversement</translation>
+            <translation>Нэмэгдэх</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation>Étendue</translation>
+            <translation>Хугацаа</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Нэр</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>Дуусах</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>Файлын мэдээлэл байхгүй</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>Өгөгдлийг нэрлэх</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>Шинэ файл эсвэл хавтасны нэрий оруулна уу:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Болих</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Нэрлэх</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Нэрлэх...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation>Aucun pair connecté</translation>
+            <translation>Холбогдсон төлөвлөгөөн байхгүй</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation>Informations sur le pair</translation>
+            <translation>Төлөвлөгөөний мэдээлэл</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>Төлөвлөгөөг хорих</translation>
         </message>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>Холбоо</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>Эх: %1</translation>
         </message>
         <message>
             <source>Role: %1</source>
-            <translation>Rôle : %1</translation>
+            <translation>Түлхүүр: %1</translation>
         </message>
         <message>
             <source>Seeder</source>
-            <translation>Seeder</translation>
+            <translation>Сидер</translation>
         </message>
         <message>
             <source>Ping: %1</source>
-            <translation>Ping : %1</translation>
+            <translation>Пинг: %1</translation>
         </message>
         <message>
             <source>Progress: %1%</source>
-            <translation>Progression : %1%</translation>
+            <translation>Уналт: %1%</translation>
         </message>
         <message>
             <source>Transfer</source>
-            <translation>Transfert</translation>
+            <translation>Шилжүүлэх</translation>
         </message>
         <message>
             <source>Down: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>Доош: %1</translation>
         </message>
         <message>
             <source>Up: %1</source>
-            <translation>Haut : %1</translation>
+            <translation>Дээш: %1</translation>
         </message>
         <message>
             <source>Total down: %1</source>
-            <translation>Total téléchargé : %1</translation>
+            <translation>Нийт доош: %1</translation>
         </message>
         <message>
             <source>Total up: %1</source>
-            <translation>Total envoyé : %1</translation>
+            <translation>Нийт: %1</translation>
         </message>
         <message>
             <source>Location</source>
-            <translation>Emplacement</translation>
+            <translation>Байршил</translation>
         </message>
         <message>
             <source>Client: %1</source>
-            <translation>Client : %1</translation>
+            <translation>Хэрэглэгч: %1</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>Таны</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>Холбогч</translation>
         </message>
         <message>
             <source>Flags</source>
-            <translation>Drapeaux</translation>
+            <translation>Дугаар</translation>
         </message>
         <message>
             <source>Ban Peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>Холбогчийг хорих</translation>
         </message>
         <message>
             <source>Legend:</source>
-            <translation>Légende :</translation>
+            <translation>Тайлбар:</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>Идэвхгүй</translation>
         </message>
         <message>
             <source>Trackers</source>
-            <translation>Trackers</translation>
+            <translation>Хайлгуулагчид</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Seed</translation>
+            <translation>Тасалгаач</translation>
         </message>
         <message>
             <source>Tracker</source>
-            <translation>Tracker</translation>
+            <translation>Хянагч</translation>
         </message>
         <message>
             <source>Tier</source>
-            <translation>Niveau</translation>
+            <translation>Шат</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>Холбогчид</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation>0 pairs connus</translation>
+            <translation>0 мэдэгдэж буй холбогч</translation>
         </message>
         <message>
             <source>UL</source>
-            <translation>UL</translation>
+            <translation>УЛ</translation>
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation>Téléchargé %1  Envoyé %2</translation>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>RTT %1</source>
@@ -1380,51 +1374,51 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation>Ping %1  %2 % terminé</translation>
+            <translation>Ping %1  %2% гүйцсэн</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Тодорхойгүй</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation>Vous (ce client)</translation>
+            <translation>Таны (клиент)</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation>Aucun pair connecté à tracer</translation>
+            <translation>Зурж байгаа peer байхгүй</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation>En attente de votre adresse IP publique pour afficher la position sur la carte locale</translation>
+            <translation>Таны нийтлэг IP-г хүлээж байна</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation>Forcer la réannonce</translation>
+            <translation>Дахин зарлахаар хүчирхэлж</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>URL-г хуурах</translation>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation>Supprimer le tracker</translation>
+            <translation>Tracker-г арилгах</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation>Réannoncer tout</translation>
+            <translation>Бүгдийг дахин зарлах</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation>Coller les URL des trackers - une par ligne. Les lignes commençant par # sont ignorées.</translation>
+            <translation>Tracker URL-г зургах (#-тэй мөрүүд үл тооцогдоно)</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Добдох</translation>
         </message>
         <message>
             <source>No trackers</source>
-            <translation>Aucun tracker</translation>
+            <translation>Trackerгүй</translation>
         </message>
         <message>
             <source>Web Seeds</source>
@@ -1432,7 +1426,7 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation>Coller les URL des web seeds - une par ligne. Les seeds URL (BEP-19) et les seeds HTTP (BEP-17) sont tous deux acceptés.</translation>
+            <translation>URL-гүүсгэх (нэг мөр тутамд)</translation>
         </message>
         <message>
             <source>URL</source>
@@ -1440,517 +1434,517 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Type</source>
-            <translation>Type</translation>
+            <translation>Төрөл</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation>Aucun web seed</translation>
+            <translation>Web Seedsгүй</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>Хөтлөгчөөр нээх</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation>Supprimer le seed</translation>
+            <translation>Гүүсгээг арилгах</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation>Terminé</translation>
+            <translation>Бүтээгдсэн</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation>Client</translation>
+            <translation>Хүсвэр</translation>
         </message>
         <message>
             <source>DL</source>
-            <translation>DL</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>Both</source>
-            <translation>Les deux</translation>
+            <translation>Хоёр тал</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation>Vitesse</translation>
+            <translation>Хурд</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation>Disponible</translation>
+            <translation>Байгаа</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation>Distance : %1</translation>
+            <translation>Зай: %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation>Pays : %1</translation>
+            <translation>Орон нутг: %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>%1 pairs connus</translation>
+            <translation>%1 мэдэгдсэн хамтрагч</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>%n tracker(s)</translation>
+            <translation>%n хуваарьч</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>Annoncez à tous les trackers votre présence immédiate, au lieu d'attendre l'intervalle d'annonce normal. Utile si votre nombre de pairs a chuté soudainement.</translation>
+            <translation>Бүх хуваарьчид одоо байгааг мэдэгдэж, эрүүл мэндийн мэдээллийн завсарлагаар хүлээхгүй байх. Хамтрагчийн тоо хямралд орсон үед ашигтай.</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>Réannonce en cours...</translation>
+            <translation>Дахин мэдэгдэж байна...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation>Ajouter des trackers…</translation>
+            <translation>Трекер нэмэх...</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation>%1 ajouté</translation>
+            <translation>%1 нэмэгдлээ</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation>%1 ajouté, %2 échoué</translation>
+            <translation>%1 нэмэгдлээ, %2 алдагдлаа</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation>%n seed(s)</translation>
+            <translation>%n үржүүлэгч</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation>Ajouter un seed…</translation>
+            <translation>Үржүүлэгч нэмэх...</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation>Récupération depuis le swarm...</translation>
+            <translation>Хамтын бүлгээс авч байна...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation>Propriétés du torrent</translation>
+            <translation>Торрент шинж чанар</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation>Vérification des fichiers</translation>
+            <translation>Файлуудыг шалгаж байна</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation>Propriétés du fichier</translation>
+            <translation>Файлын шинж чанар</translation>
         </message>
     </context>
     <context>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>Олох</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>Олох</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Chercher dans :</translation>
+            <translation>Хайх</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>Файлын нэр эсвэл нэрийн хэсэг</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation>Description ou partie de la description</translation>
+            <translation>Тайлбар эсвэл тайлбарын хэсэг</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation>Nom du site / lien de téléchargement / page web parente / référent</translation>
+            <translation>Вэбсайны нэр / татах холбоос / эцсийн вэб хуудас / илгээгч</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>Тогтсон үсгийн хувилбар</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière</translation>
+            <translation>Зөвхөн бүтэн мөр</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation>Aucun résultat trouvé.</translation>
+            <translation>Үр дүн олдсонгүй</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation>1 résultat trouvé.</translation>
+            <translation>1 үр дүн олдлоо</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation>%1 résultats trouvés.</translation>
+            <translation>%1 үр дүн олдлоо</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Боцголох</translation>
         </message>
     </context>
     <context>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation>Projet enregistré.</translation>
+            <translation>Төслөө хадгалав.</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation>Le nom du projet et la page de démarrage sont requis.</translation>
+            <translation>Төслөний нэр болон эхлэх хуудас шаардлагатай.</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Étape %1 sur %2 : %3</translation>
+            <translation>Stellar Grabber – %2-ын %1-р алхам: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
-            <translation>Définir la page de démarrage</translation>
+            <translation>Эхлэх хуудсыг тохируулах</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation>Enregistrer les fichiers dans</translation>
+            <translation>Файлуудыг хадгалах</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation>Définir les filtres de l'explorateur</translation>
+            <translation>Хайлтын шүүлтүүрийг тохируулах</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation>Définir les filtres de fichiers</translation>
+            <translation>Файлын шүүлтүүрийг тохируулах</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation>Paramètres personnalisés</translation>
+            <translation>Тусгай тохируулга</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation>Toutes les images d'un site web</translation>
+            <translation>Вэбсайтаас бүх зураг</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation>Toutes les vidéos d'un site web</translation>
+            <translation>Вэбсайтын бүх видео</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation>Tous les audios d'un site web</translation>
+            <translation>Вэбсайтын бүх аудио</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation>Site web complet</translation>
+            <translation>Бүх вэбсайт</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation>Inclure les filtres</translation>
+            <translation>Шүүлтүүрийг оруулах</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation>Exclure les filtres</translation>
+            <translation>Шүүлтүүрийг хасч</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation>Nom du modèle</translation>
+            <translation>Загварын нэр</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богинох</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Хадгалах</translation>
         </message>
         <message>
             <source>New</source>
-            <translation>Nouveau</translation>
+            <translation>Шинэ</translation>
         </message>
         <message>
             <source>Load</source>
-            <translation>Charger</translation>
+            <translation>Илгээх</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation>Enregistrer les paramètres actuels en tant que modèle</translation>
+            <translation>Тайлан хадгалах</translation>
         </message>
         <message>
             <source>Recent Projects</source>
-            <translation>Projets récents</translation>
+            <translation>Сүүлийн төслүүд</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>Гравберын тохиргоо</translation>
         </message>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>Төсөл</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Харилцаа</translation>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation>Nom du projet du grabber</translation>
+            <translation>Гравберын төслийн нэр</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation>Page d'accueil / Adresse</translation>
+            <translation>Эхлэх хуудас/хаяв</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation>Modèle de projet</translation>
+            <translation>Төслийн тайлан</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation>Si vous sélectionnez un modèle de projet, l'assistant configurera les paramètres requis pour ce modèle lors des étapes suivantes. Vous pouvez toujours modifier les paramètres manuellement.</translation>
+            <translation>Төслийн тайланыг сонговол заавал тохиргоог хийнэ. Үүнийг хуучингаар өөрчилж болно.</translation>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>Аутентификац</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation>Avancé &lt;&lt;</translation>
+            <translation>Нэмэлт &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation>Avancé &gt;&gt;</translation>
+            <translation>Нэмэлт &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>Нэвтрэх</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Нууц үг</translation>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation>Appuyez sur Avancé pour activer la connexion manuelle ou pour désactiver la page de déconnexion.</translation>
+            <translation>Нэмэлт дугаарыг дарж нэвтрэх эсвэл гарах хуудсыг арилгах</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation>Saisissez manuellement le nom d'utilisateur et le mot de passe sur la page web suivante :</translation>
+            <translation>Дараах вэб хуудсанд нэр, нууц үг оруулах:</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation>Ne pas ouvrir la page de déconnexion :</translation>
+            <translation>Гарах хуудсыг нээхгүй:</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation>De nombreux sites disposent d'une page de déconnexion que le Grabber ne devrait pas ouvrir. Vous pouvez utiliser un astérisque comme joker pour spécifier un motif correspondant à différentes pages de déconnexion.</translation>
+            <translation>Олон сайтанд гарах хуудас байдаг. Grabber нь эдгээрийг нээхгүй байх шаардлагатай. Ялгаатай гарах хуудсуудын загварыг тодорхойлохын тулд астериск (*) ашиглаж болно.</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Хадгалах</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation>Chaque fichier dans un dossier selon la catégorie Stellar du fichier</translation>
+            <translation>Stellar төрлөөр хуваах</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation>Tous les fichiers dans le dossier associé à la catégorie Stellar suivante :</translation>
+            <translation>Дараах Stellar төрөлтэй хуудас руу</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation>Tous les fichiers dans le dossier suivant</translation>
+            <translation>Дараах хуудас руу</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation>Utiliser les sous-dossiers relatifs originaux</translation>
+            <translation>Анхны дэд хуудсыг хадгалах</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation>Enregistrer chaque fichier par catégorie</translation>
+            <translation>Төрлөөр хуваан хадгалах</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation>Enregistrer tous les fichiers dans la catégorie sélectionnée</translation>
+            <translation>Дээр сонгосон төрөлтэй хуудас руу</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation>Enregistrer tous les fichiers dans ce dossier</translation>
+            <translation>Энэ хуудас руу</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation>Convertir les liens dans les fichiers HTML téléchargés en fichiers locaux pour une navigation hors ligne</translation>
+            <translation>Хүртсэн HTML-ийн холбоосыг оффлайн харахын тулд хувиргах</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation>Écraser les fichiers existants</translation>
+            <translation>Өгөгдсөн файлд дараах</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation>Ajouter les fichiers cochés à la liste principale de Stellar et à la file d'attente de téléchargement à la fermeture du grabber</translation>
+            <translation>Хүртсэн файлуудыг Stellar-ийн жагсаалт болон бууруулах жагсаалтад нэмэх</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation>À cette étape, vous devez spécifier les pages web à explorer pour trouver les fichiers requis. À l'étape suivante, vous pourrez définir les types de fichiers, l'emplacement et d'autres filtres.</translation>
+            <translation>Энэ алхамд шаардлагатай файлуудыг олохын тулд судлах веб хуудсуудыг тодорхойлно. Дараагийн алхамд файлын төрөл, байршил болон бусад шүүлтүүрийг тохируулах боломжтой.</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
-            <translation>Explorer tout le site</translation>
+            <translation>Бүх сайт судлах</translation>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation>Explorer un nombre spécifié de niveaux de liens :</translation>
+            <translation>Задланг тодорхойлсон холбооны түвшинг судлах:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation>niveaux dans le site de base</translation>
+            <translation>Үндсэн сайт доторх түвшин</translation>
         </message>
         <message>
             <source>levels on other sites</source>
-            <translation>niveaux sur d'autres sites</translation>
+            <translation>Бусад сайт доторх түвшин</translation>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation>Qu'est-ce que le nombre de niveaux de liens ?</translation>
+            <translation>Холбооны түвшний тоо хэд вэ?</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation>Ignorer les fenêtres contextuelles</translation>
+            <translation>Поп-ап цонхыг үл тоомсорлох</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation>Ne pas explorer les répertoires parents</translation>
+            <translation>Эцэг хавтсайг судлахгүй</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation>Explorer tous les sites du domaine principal</translation>
+            <translation>Үндсэн домэйн доторх бүх сайтыг судлах</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation>Traiter le JavaScript</translation>
+            <translation>JavaScript боловсруулах</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation>Explorer uniquement les pages web dans les chemins/domaines suivants :</translation>
+            <translation>Зөвхөн дараах зам/домен доторх хуудсыг судална:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
+            <translation>Нэг зам эсвэл доменийг мөрөнд бич, эсвэл тусгаарлагч тэмдэгтэйгээр ялга. *-г орлуулагч ашиглана. Жишээ: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation>Ne pas explorer les pages web dans les chemins/domaines suivants :</translation>
+            <translation>Дараах зам/домен доторх хуудсыг судалж буйгүй:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
+            <translation>Нэг зам эсвэл доменийг мөрөнд бич, эсвэл тусгаарлагч тэмдэгтэйгээр ялга. *-г орлуулагч ашиглана. Жишээ: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation>Télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>Дараах файлуудыг татаж авна (файл төрлүүд):</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation>Inclure les filtres...</translation>
+            <translation>Шүүлтүүр...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation>Ne pas télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>Дараах файлуудыг татаж авч буйгүй (файл төрлүүд):</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation>Exclure les filtres...</translation>
+            <translation>Шүүлтүүр...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation>Rechercher des fichiers uniquement sur ce site</translation>
+            <translation>Зөвхөн энэ сайт дээрх файлуудыг хайна</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation>Masquer les fichiers dupliqués trouvés dans différents emplacements</translation>
+            <translation>Өөр өөр байрлалд олдсон давхардсан файлуудыг нуух</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation>Commencer à télécharger tous les fichiers correspondants en une seule fois</translation>
+            <translation>Бүх нийтлэгдсэн файлуудыг нэгэн зэрэг татаж авах</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation>Télécharger si la taille du fichier est</translation>
+            <translation>Файлын хэмжээ нь</translation>
         </message>
         <message>
             <source>Not less than</source>
-            <translation>Non inférieure à</translation>
+            <translation>Багагүй</translation>
         </message>
         <message>
             <source>Bytes</source>
-            <translation>Octets</translation>
+            <translation>байт</translation>
         </message>
         <message>
             <source>Not more than</source>
-            <translation>Non supérieure à</translation>
+            <translation>Илүү ихгүй</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation>Télécharger les fichiers situés uniquement dans les chemins/domaines suivants :</translation>
+            <translation>Зөвхөн дараах зам/домен дэх файлуудыг татаж авах</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation>Utilisez * comme caractère générique. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.google.com ; cdn.example.com ; /downloads/*</translation>
+            <translation>*-г оролцох тэмдэг болгон ашиглах. Нэг мөрөнд нэг зам эсвэл домен бичих эсвэл тус бүрийг хэсэг тэмдэгээр тусгаж бичих. Жишээ: *.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation>Ne pas télécharger les fichiers situés dans les chemins/domaines suivants :</translation>
+            <translation>Дараах зам/домен дэх файлуудыг татахгүй</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation>Utilisez * comme joker. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.doubleclick.net ; /ads/* ; /tracking</translation>
+            <translation>*-г оролцох тэмдэг болгон ашиглах. Нэг мөрөнд нэг зам эсвэл домен бичих эсвэл тус бүрийг хэсэг тэмдэгээр тусгаж бичих. Жишээ: *.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
-            <translation>Commentaire</translation>
+            <translation>Тэмдэглэл</translation>
         </message>
         <message>
             <source>Save Project</source>
-            <translation>Enregistrer le projet</translation>
+            <translation>Хадгалах</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>&lt; Back</source>
-            <translation>&lt; Précédent</translation>
+            <translation>&lt; Ажиглах</translation>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation>Suivant &gt;</translation>
+            <translation>Дараах &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation>Commencer à explorer</translation>
+            <translation>Оношлуулах</translation>
         </message>
     </context>
     <context>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation>Nom du filtre</translation>
+            <translation>Нэр</translation>
         </message>
         <message>
             <source>Mask</source>
-            <translation>Masque</translation>
+            <translation>Хамгаалалт</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Нэмэх</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>Засварлах</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>OK</source>
@@ -1958,38 +1952,38 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Edit filter</source>
-            <translation>Modifier le filtre</translation>
+            <translation>Шүүлтүүрийг засах</translation>
         </message>
         <message>
             <source>New filter</source>
-            <translation>Nouveau filtre</translation>
+            <translation>Шинэ шүүлтүүр</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Категори</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богинох</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Хадгалах</translation>
         </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation>Charger un projet Stellar Grabber</translation>
+            <translation>Grabber төслийг ачаалах</translation>
         </message>
         <message>
             <source>Saved projects</source>
-            <translation>Projets enregistrés</translation>
+            <translation>Хадгалагдсан төслүүд</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богинох</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2000,7 +1994,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>GrabberResultsDialog</name>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>Project</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2008,145 +2002,145 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Running</source>
-            <translation>En cours</translation>
+            <translation>Running</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>Idle</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation>%1 fichiers trouvés</translation>
+            <translation>%1 файл олдлоо</translation>
         </message>
         <message>
             <source>%1 checked</source>
-            <translation>%1 vérifiés</translation>
+            <translation>%1 шалгав</translation>
         </message>
         <message>
             <source>Exploring…</source>
-            <translation>Exploration en cours…</translation>
+            <translation>Хайлаж байна...</translation>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation>Appuyez sur Démarrer l'exploration pour analyser l'URL.</translation>
+            <translation>URL-ийг сканнерлахын тулд 'Start Exploring' дарна уу.</translation>
         </message>
         <message>
             <source>Start
 Exploring</source>
-            <translation>Démarrer l'exploration</translation>
+            <translation>Start</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Хайлаж байна</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation>Type de fichier</translation>
+            <translation>Тайп</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Хэмжээ</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Байдал</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation>Texte du lien</translation>
+            <translation>Холбоо</translation>
         </message>
         <message>
             <source>Download from</source>
-            <translation>Télécharger depuis</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Хадгалах</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation>Vérifier la sélection</translation>
+            <translation>Долгилох</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation>Désélectionner la sélection</translation>
+            <translation>Долгилохгүй</translation>
         </message>
         <message>
             <source>Edit current project</source>
-            <translation>Modifier le projet actuel</translation>
+            <translation>Засварлах</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>Үүсгүүрийн тохируулга</translation>
         </message>
         <message>
             <source>Stop
 Exploring</source>
-            <translation>Arrêter</translation>
+            <translation>Зогсоох</translation>
         </message>
         <message>
             <source>Start
 Downloading</source>
-            <translation>Exploration</translation>
+            <translation>Шалгах</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
-            <translation>Démarrer</translation>
+            <translation>Эхлүүлэх</translation>
         </message>
         <message>
             <source>Update
 All</source>
-            <translation>Téléchargement</translation>
+            <translation>Татаж авах</translation>
         </message>
         <message>
             <source>Schedule
 Project</source>
-            <translation>Arrêter</translation>
+            <translation>Зогсоох</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Téléchargements</translation>
+            <translation>Татаж авсан</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Шинэчлэх</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation>Tous les fichiers</translation>
+            <translation>Бүгд</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation>Vue des liens</translation>
+            <translation>Бүртгүүлэх</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation>Vue des dossiers</translation>
+            <translation>Файлын харах</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation>Aucun fichier trouvé pour le moment</translation>
+            <translation>Файл олдсонгүй</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation>← Retour</translation>
+            <translation>← Ажиг</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <translation>%1 fichiers</translation>
+            <translation>%1 файл</translation>
         </message>
         <message>
             <source>%1 / %2 (filtered)</source>
-            <translation>%1 / %2 (filtré)</translation>
+            <translation>%1 / %2 (сүүдэрлэсэн)</translation>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation>Ajouter les éléments cochés à la liste de téléchargement</translation>
+            <translation>Заасныг буулгах жагсаалт руу нэмэх</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
@@ -2157,316 +2151,316 @@ Project</source>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation>Planifier le projet Stellar Grabber</translation>
+            <translation>Grabber-ийн төслийг тохируулах</translation>
         </message>
         <message>
             <source>Project:</source>
-            <translation>Projet :</translation>
+            <translation>Төслөө:</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation>Activer le calendrier du projet</translation>
+            <translation>Төслийн тохируулгыг идэвхжүүлэх</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>Étape 1. Sélectionner le type</translation>
+            <translation>1. Үе хэлбэрийг сонгох</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>Exploration/téléchargement unique</translation>
+            <translation>Нэг удаагийн судалгаа/таталт</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>Үргэлжлэх синхрончлол</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>Étape 2. Sélectionner l'action</translation>
+            <translation>2. Үйлдлийг сонгох</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>Explorer uniquement</translation>
+            <translation>Зөвхөн судалгаа</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>Explorer le site et télécharger les fichiers correspondants</translation>
+            <translation>Талбайг судалж, нийцсэн файлуудыг татах</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>Télécharger les fichiers cochés</translation>
+            <translation>Шалгасан файлуудыг татах</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>Après achèvement</translation>
+            <translation>Дуусгалаас дараа</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>Stellar-ээ дуусгасны дараа гарах</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Дуусгалаас дараа компьютерийг зогсоох</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>Éteindre</translation>
+            <translation>Ажиллагааг зогсоох</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>Redémarrer</translation>
+            <translation>Дахин эхлүүлэх</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation>Veille</translation>
+            <translation>Хүлээн</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>Hibernation</translation>
+            <translation>Хямрах</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>Процессуудыг хүчээр зогсоох</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>Étape 3. Planification</translation>
+            <translation>3-р алхам. Үүргийг тохируулах</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>Татахыг эхлүүлэх</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>Үүргийг гүйцэтгэх</translation>
         </message>
         <message>
             <source>January</source>
-            <translation>Janvier</translation>
+            <translation>Анхны сар</translation>
         </message>
         <message>
             <source>February</source>
-            <translation>Février</translation>
+            <translation>Хоёрдугаар сар</translation>
         </message>
         <message>
             <source>March</source>
-            <translation>Mars</translation>
+            <translation>Март</translation>
         </message>
         <message>
             <source>April</source>
-            <translation>Avril</translation>
+            <translation>Апрель</translation>
         </message>
         <message>
             <source>May</source>
-            <translation>Mai</translation>
+            <translation>Май</translation>
         </message>
         <message>
             <source>June</source>
-            <translation>Juin</translation>
+            <translation>Июнь</translation>
         </message>
         <message>
             <source>July</source>
-            <translation>Juillet</translation>
+            <translation>Июль</translation>
         </message>
         <message>
             <source>August</source>
-            <translation>Août</translation>
+            <translation>Август</translation>
         </message>
         <message>
             <source>September</source>
-            <translation>Septembre</translation>
+            <translation>Сентябрь</translation>
         </message>
         <message>
             <source>October</source>
-            <translation>Octobre</translation>
+            <translation>Октябрь</translation>
         </message>
         <message>
             <source>November</source>
-            <translation>Novembre</translation>
+            <translation>Ноябрь</translation>
         </message>
         <message>
             <source>December</source>
-            <translation>Décembre</translation>
+            <translation>Декабрь</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>Өдөр</translation>
         </message>
         <message>
             <source>Sunday</source>
-            <translation>Dimanche</translation>
+            <translation>Ням</translation>
         </message>
         <message>
             <source>Thursday</source>
-            <translation>Jeudi</translation>
+            <translation>Пүрэв</translation>
         </message>
         <message>
             <source>Monday</source>
-            <translation>Lundi</translation>
+            <translation>Даваа</translation>
         </message>
         <message>
             <source>Friday</source>
-            <translation>Vendredi</translation>
+            <translation>Баасан</translation>
         </message>
         <message>
             <source>Tuesday</source>
-            <translation>Mardi</translation>
+            <translation>Мягмар</translation>
         </message>
         <message>
             <source>Saturday</source>
-            <translation>Samedi</translation>
+            <translation>Бямба</translation>
         </message>
         <message>
             <source>Wednesday</source>
-            <translation>Mercredi</translation>
+            <translation>Ням</translation>
         </message>
         <message>
             <source>Repeat every</source>
-            <translation>Répéter tous les</translation>
+            <translation>Дахин давтах</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>цаг</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>минут</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>Тогтоох</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation>Remarque : Stellar doit être exécuté dans la zone de notification au moment spécifié pour démarrer un projet planifié.</translation>
+            <translation>Тайлан: Тайланг эхлүүлэхийн тулд Stellar системийн тэнцэрт ажиллаж байх ёстой.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богиноход</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөвшөөрөх</translation>
         </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
         <message>
             <source>Settings of Stellar Grabber</source>
-            <translation>Paramètres de Stellar Grabber</translation>
+            <translation>Stellar Grabber-ийн тохируулга</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation>fichiers à explorer simultanément (1 à 10)</translation>
+            <translation>нэгэн зэрэг шалгах файлууд (1-10)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation>fichiers à télécharger simultanément (1 à 10)</translation>
+            <translation>нэгэн зэрэг татах файлууд (1-10)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation>Veuillez noter qu'un serveur web peut rejeter les requêtes si vous définissez un grand nombre de fichiers à explorer ou à télécharger simultanément.</translation>
+            <translation>Шалгах эсвэл татах файлын тоог ихэсгэснээр веб сервер хүсэлтийг эвдэж болзошгүй.</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation>Utiliser les textes des liens comme descriptions de téléchargement lors de l'ajout de fichiers à la liste principale de Stellar</translation>
+            <translation>Файл нэмэхэд холбоосын текстийг татах тайлбар болгох.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Боцголох</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөв</translation>
         </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation>Statistiques du grabber</translation>
+            <translation>Нэмэлт мэдээлэл</translation>
         </message>
         <message>
             <source>Status: %1</source>
-            <translation>État : %1</translation>
+            <translation>Тайлан: %1</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>Хүлээлт</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation>Pages web traitées</translation>
+            <translation>Вэб хуудас</translation>
         </message>
         <message>
             <source>Simple</source>
-            <translation>Simple</translation>
+            <translation>Энгийн</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Дэлгэрэнгүй</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Файл</translation>
         </message>
         <message>
             <source>Total</source>
-            <translation>Total</translation>
+            <translation>Нийт</translation>
         </message>
         <message>
             <source>Explored</source>
-            <translation>Explorées</translation>
+            <translation>Шалгарсан</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>Correspondantes</translation>
+            <translation>Нийцсэн</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Татагдсан</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
     </context>
     <context>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation>Tâches</translation>
+            <translation>Бүтээгдэхүүн</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>Ajouter une URL…</translation>
+            <translation>URL нэмэх...</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>SDM татах</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>Ce téléchargement YouTube semble nécessiter des cookies de connexion.</translation>
+            <translation>Энэхүү YouTube татах нь нэвтрэх cookie шаардагдаж байна.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>Хөтчийн cookie:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>Stellar réessayera le même élément yt-dlp avec les cookies de ce navigateur.</translation>
+            <translation>Stellar нь тухайн хөтчийн cookie-г ашиглан ижил yt-dlp бүтээгдэхүүнийг дахин оролдно.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Боцголох</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation>Réessayer le téléchargement</translation>
+            <translation>Дахин татаж авах</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>Ouvrir Stellar</translation>
+            <translation>Stellar-ийг нээх</translation>
         </message>
         <message>
             <source>GitHub</source>
@@ -2474,63 +2468,63 @@ Project</source>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation>Limiteur de vitesse : Activer</translation>
+            <translation>Хурдны хязгаарлагч: Илгээх</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation>Limiteur de vitesse : Désactiver</translation>
+            <translation>Хурдны хязгаарлагч: Үйл ажиллагааг зогсоох</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation>Paramètres du limiteur de vitesse…</translation>
+            <translation>Хурдны хязгаарлагчын тохиргоо...</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation>Quitter Stellar</translation>
+            <translation>Stellar-ээс гарч</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation>Fichiers torrent (*.torrent)</translation>
+            <translation>Torrent файлууд (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation>Tous les fichiers (*)</translation>
+            <translation>Бүх файлууд (*)</translation>
         </message>
         <message>
             <source>Total: %1</source>
-            <translation>Total : %1</translation>
+            <translation>Нийт: %1</translation>
         </message>
         <message>
             <source>Completed: %1</source>
-            <translation>Terminé : %1</translation>
+            <translation>Дууссан: %1</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>Татаж байна: %1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation>En file d'attente : %1</translation>
+            <translation>Дараалалд: %1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
-            <translation>Global : %1%</translation>
+            <translation>Нийт: %1%</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Зогсоох</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Дахин эхлүүлэх</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation>Activer le support BitTorrent ?</translation>
+            <translation>BitTorrent дэмжлэгийг идэвхжүүлэх?</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2540,238 +2534,230 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Le support BitTorrent est actuellement désactivé.
-
-Lorsque vous téléchargez un torrent, votre adresse IP devient visible pour les autres pairs du swarm et vous téléversez simultanément (seed) des données vers les autres.
-
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
-
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+            <translation>BitTorrent дэмжлэг одоо идэвхгүй.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, activer</translation>
+            <translation>Зарлаа</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>Vous avez appuyé sur le bouton « Télécharger plus tard », mais Stellar avait déjà commencé à télécharger une partie du fichier. Stellar commence toujours le téléchargement tout en affichant la boîte de dialogue « Informations sur le fichier à télécharger ».
-
-Vous pouvez désactiver cette option dans Paramètres → Téléchargements.</translation>
+            <translation>Stellar файл хэсгийг татаж авахыг эхлүүлсэн боловч та 'Дараа татах' товчийг дарсан. Энэ үйлдлийг Сэтгүүл → Татах ажиллуулалтаас хаа.</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөвшөөрөх</translation>
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>Le fichier « %1 » n'a pas pu être téléchargé.</translation>
+            <translation>Файл &quot;%1&quot;-ийг татаж авч чадахаагүй.</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>Le serveur a renvoyé une page web au lieu du fichier attendu. Certains sites suppriment les fichiers immédiatement après que Stellar a interrogé leurs métadonnées.</translation>
+            <translation>Сервер хариу ирээгүй нь хуудас бөгөөд хүлээж авсан файл биш. Зарим сайт нь Stellar метадатаа асуухад л файл устгадаг.</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>Pour permettre à votre navigateur de télécharger directement, maintenez une touche modificateur (Alt, Ctrl ou Maj) tout en cliquant sur le lien. Configurez la touche dans : Options Stellar → Navigateur → Contourner l'interception des téléchargements</translation>
+            <translation>Браузераар шууд татахын тулд холбоосыг дарж байхад Alt, Ctrl эсвэл Shift товчийг дарсан байх. Холбоосыг тохируулах: Stellar сонголтууд → Браузер → Татах ажиллуулалтыг зогсоох.</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>Ouvrir les paramètres du navigateur</translation>
+            <translation>Браузерын тохируулгыг нээх</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>La version %1 est disponible.</translation>
+            <translation>Хувилбар %1 гарч байна.</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation>Mettre à jour maintenant</translation>
+            <translation>Одоо шинэчлэх</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation>Ajouter un fichier Torrent…</translation>
+            <translation>Torrent файл нэмэх…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation>Ajouter des URLs par lot…</translation>
+            <translation>Batch URL нэмэх...</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation>Quitter</translation>
+            <translation>Гарах</translation>
         </message>
         <message>
             <source>File</source>
-            <translation>Fichier</translation>
+            <translation>Файл</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Фолдер нээх</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Файл нээх</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation>Télécharger maintenant</translation>
+            <translation>Одоо татах</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation>Arrêter le téléchargement</translation>
+            <translation>Татахыг зогсоох</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>Дахин татах</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>.torrent экспортолох...</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation>Mettre tout en pause</translation>
+            <translation>Зогсоох бүгдийг</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation>Arrêter tout</translation>
+            <translation>Зогсоох бүгдийг</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation>Supprimer tous les éléments terminés</translation>
+            <translation>Бүгдийг устгах</translation>
         </message>
         <message>
             <source>Find…</source>
-            <translation>Rechercher…</translation>
+            <translation>Олох...</translation>
         </message>
         <message>
             <source>Find Next</source>
-            <translation>Rechercher suivant</translation>
+            <translation>Дараагыг олох</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Бүрхүүл</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>Дарааллыг эхлүүлэх</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>Дарааллыг зогсоох</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Хурдны хязгаарлагч</translation>
         </message>
         <message>
             <source>Turn On</source>
-            <translation>Activer</translation>
+            <translation>Ангах</translation>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation>Désactiver</translation>
+            <translation>Асаах</translation>
         </message>
         <message>
             <source>Settings…</source>
-            <translation>Paramètres…</translation>
+            <translation>Тохируулга</translation>
         </message>
         <message>
             <source>Options…</source>
-            <translation>Options…</translation>
+            <translation>Заавар</translation>
         </message>
         <message>
             <source>View</source>
-            <translation>Affichage</translation>
+            <translation>Харах</translation>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation>Masquer les catégories</translation>
+            <translation>Ангилалуудыг нуух</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation>Afficher les catégories</translation>
+            <translation>Ангилалуудыг харуулах</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation>Afficher le moteur de recherche</translation>
+            <translation>Хайлтын хэрэгсэл</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
-            <translation>Afficher le lecteur RSS</translation>
+            <translation>RSS уншигч</translation>
         </message>
         <message>
             <source>Statistics…</source>
-            <translation>Statistiques…</translation>
+            <translation>Статистик</translation>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation>Trier les fichiers</translation>
+            <translation>Файлуудыг эрэмбэлэх</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation>Par ordre d'ajout</translation>
+            <translation>Нэмэх дарааллаар</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation>Par nom de fichier</translation>
+            <translation>Файлын нэрээр</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation>Par taille</translation>
+            <translation>Хэмжээгээр</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation>Par statut</translation>
+            <translation>Статусаар</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation>Par temps restant</translation>
+            <translation>Хугацаа үлдсэнээр</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation>Par taux de transfert</translation>
+            <translation>Шилжүүлэх хурдаар</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation>Par date de dernière tentative</translation>
+            <translation>Сүүлийн оролдлогоор</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation>Par description</translation>
+            <translation>Тайлбаргаар</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation>Par chemin d'enregistrement</translation>
+            <translation>Хадгалах замгаар</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation>Par référent</translation>
+            <translation>Referer</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation>Par page web parente</translation>
+            <translation>Эцэгийн хуудас</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation>Colonnes…</translation>
+            <translation>Багц...</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Тохируулга</translation>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation>Préférences…</translation>
+            <translation>Үүд...</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -2779,91 +2765,91 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation>Ouvrir le lecteur RSS</translation>
+            <translation>RSS уншигч</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation>Actualiser tous les flux</translation>
+            <translation>Бүх эх сурвалж шинэчлэх</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation>Marquer tous les éléments comme lus</translation>
+            <translation>Бүх бүртгэлийг унсан гэж тэмдэглэх</translation>
         </message>
         <message>
             <source>Help</source>
-            <translation>Aide</translation>
+            <translation>Тусламж</translation>
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>Шинэчлэлт</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation>Déposez un fichier .torrent pour ouvrir les métadonnées du torrent</translation>
+            <translation>.torrent файл хаях</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>Хайх:</translation>
         </message>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>Хайх</translation>
         </message>
         <message>
             <source>Settings ▾</source>
-            <translation>Paramètres ▾</translation>
+            <translation>Тохируулга ▾</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Rechercher dans :</translation>
+            <translation>Хайх:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>Файлын нэр</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Тайлбар</translation>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation>URL / référent / page web parente</translation>
+            <translation>URL / эх үүсвэр / эцсийн хуудас</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>Тогтмол үсгийн хувилбар</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière uniquement</translation>
+            <translation>Төлөв бүтэн</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation>Déplacer la barre latérale à gauche</translation>
+            <translation>Хажуу хэсгийг зүүн талд</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation>Déplacer la barre latérale à droite</translation>
+            <translation>Хажуу хэсгийг баруун талд</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation>Réinitialiser la largeur de la barre latérale</translation>
+            <translation>Хажуу хэсгийн өргөнийг сэргээх</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>À propos de Stellar</translation>
+            <translation>Stellar-ийн тухай</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>Хөтчийн нэгдэл</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation>Extensions du navigateur…</translation>
+            <translation>Хөтчийн өргөтгөлүүд...</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation>Paramètres du navigateur…</translation>
+            <translation>Хөтчийн тохируулга...</translation>
         </message>
         <message>
             <source>Stellar</source>
@@ -2871,35 +2857,35 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation>Cookies du navigateur requis</translation>
+            <translation>Хөтчийн талбарын тухай мэдээлэл шаардлагатай</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>Ajouter un fichier torrent</translation>
+            <translation>Торрент файл нэмэх</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>Exporter les fichiers .torrent</translation>
+            <translation>.torrent файлуудыг экспортлох</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>Progression du téléchargement de la chaîne</translation>
+            <translation>Зурвасын татах явц</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Дараа нь татах</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>Fichier non disponible</translation>
+            <translation>Файл хэсгээс олдохгүй боллоо</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation>Mise à jour rapide</translation>
+            <translation>Хурдан шинэчлэх</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>Stellar Download Manager</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
@@ -2907,189 +2893,189 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>Une nouvelle version de Stellar Download Manager est disponible</translation>
+            <translation>Stellar Download Manager-ийн шинэ хувилбар гарлаа</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>Quoi de neuf dans Stellar</translation>
+            <translation>Stellar-д шинэчлэлтүүд</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>Sélection de la file d'attente</translation>
+            <translation>Нэгдэх</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>Ajouter les fichiers à une file d'attente ?</translation>
+            <translation>Файлуудыг нэгдэх рүү оруулах</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>Choisissez une file d'attente existante ou créez-en une nouvelle.</translation>
+            <translation>Бүртгүүлсэн нэгдэхийг сонгох эсвэл шинэ үүсгэх</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>File d'attente</translation>
+            <translation>Нэгдэх</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>Démarrer le traitement de la file d'attente</translation>
+            <translation>Нэгдэхийг ажиллуулах</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>Ne plus me demander</translation>
+            <translation>Дахин асуухгүй</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>Ne pas ajouter à la file d'attente</translation>
+            <translation>Нэгдэх рүү нэмэхгүй</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөв</translation>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>Entrez le nom de la file d'attente</translation>
+            <translation>Нэгдэхийн нэр</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богинох</translation>
         </message>
         <message>
             <source>Create</source>
-            <translation>Créer</translation>
+            <translation>Үүсгэх</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>(Par défaut)</translation>
+            <translation>(Үндсэн)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>Дүрмийг татаж авалт</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Нэмэх</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>Cliquez sur « Ajouter » pour créer une règle de téléchargement</translation>
+            <translation>Нэмэх&quot; товчийг дарж ачааллын дүрмийг үүсгэнэ.</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>Nom de la règle</translation>
+            <translation>Дүрмийн нэр</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>Идэвхтэй</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>RÈGLES DE FILTRAGE</translation>
+            <translation>ШИНЖИЛГЭЭН ДҮҮНИЙ ДҮҮРЭМ</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>Utiliser les expressions régulières</translation>
+            <translation>Тодорхойлсон загварыг ашиглан хайх</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>Doit contenir :</translation>
+            <translation>Тайван байх ёстой</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>motif regex</translation>
+            <translation>Үүрэгтэй загвар</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>mots-clé1 mots-clé2 | mots-clé3</translation>
+            <translation>Хүснэгт 1 хүснэгт 2 | хүснэгт 3</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>Ne doit pas contenir :</translation>
+            <translation>Тайван байх ёгүй</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>mots-clé1 mots-clé2</translation>
+            <translation>Хүснэгт 1 хүснэгт 2</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation>Filtre des épisodes :</translation>
+            <translation>Тайван байх ёстой:</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation>p. ex. 1x01-1x24 ou 2x01 ;</translation>
+            <translation>Жишээ нь 1x01-1x24 эсвэл 2x01;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation>Utiliser le filtre intelligent des épisodes</translation>
+            <translation>Аюулгүй Тайван байх ёстой</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation>Ignore les épisodes déjà correspondants aux règles précédentes</translation>
+            <translation>Өмнөх дүгнэлтүүдийг арилгах</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation>Ignorer les correspondances ultérieures pour</translation>
+            <translation>Дараагийн хариу үйлдлийг арилгах</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation>jours (0 = désactivé)</translation>
+            <translation>Өдөр</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation>PARAMÈTRES DE TÉLÉCHARGEMENT</translation>
+            <translation>Татах тохиргоо</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>Хадгалах:</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation>Laissez vide pour utiliser le chemin d'enregistrement par défaut</translation>
+            <translation>Хүчингүй үлдээх</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>Хайх...</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>Ангийн төрөл:</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation>File d'attente :</translation>
+            <translation>Дараалал:</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE DE TORRENT</translation>
+            <translation>TORRENT ХУВААРИЙН ХЯНАЛТ</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>Хувь</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>Үндсэн</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>Хязгааргүй</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>Тогтоох</translation>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation>Temps de partage</translation>
+            <translation>Хуваалтын хугацаа</translation>
         </message>
         <message>
             <source>min</source>
@@ -3097,90 +3083,90 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation>Temps de partage inactif</translation>
+            <translation>Хуваалтын хугацаа</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation>&quot;Par défaut&quot; utilise les limites de partage globales définies dans Paramètres → Torrents.</translation>
+            <translation>Үүнийг ашиглах нь Settings → Torrents-д тохируулсан ерөнхий хуваалтын хязгаарыг ашиглана.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Болих</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөв</translation>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation>Règles de téléchargement automatique par RSS</translation>
+            <translation>RSS-ийн автоматаар татах дүрмүүд</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation>Titre</translation>
+            <translation>Нэр</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation>Flux</translation>
+            <translation>Шинэчлэх</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation>Date</translation>
+            <translation>Оноо</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation>Ouvrir le flux</translation>
+            <translation>Шинэчлэх</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>Сонгох</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation>Renommer / Modifier...</translation>
+            <translation>Нэрээ өөрчлөх</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation>Supprimer l'abonnement</translation>
+            <translation>Хассан</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation>Торрент буулгах</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Буулгах</translation>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>Хөтлөгчөөр нээх</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation>Copier le lien</translation>
+            <translation>Холбоос хуулах</translation>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>Хуваасан</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>Хуваагаагүй</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation>Tout marquer comme lu</translation>
+            <translation>Бүгдийг хуваасан</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Нэр</translation>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation>Nom personnalisé (facultatif)</translation>
+            <translation>Өөр нэр (заавал биш)</translation>
         </message>
         <message>
             <source>URL</source>
@@ -3188,841 +3174,841 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богиох</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Хадгалах</translation>
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation>Ajouter l'URL du flux RSS ou Atom...</translation>
+            <translation>RSS эсвэл Atom сүүдрийн URL нэмэх...</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Нэмэх</translation>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation>Actualisation en cours…</translation>
+            <translation>Ажлыг дахин ачааллаж байна...</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>Засварлах</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>Татах дүрэм</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation>Abonnements</translation>
+            <translation>Төлбөрийн жагсаалт</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation>Sans titre</translation>
+            <translation>Нэргүй</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>Sélectionner un article</translation>
+            <translation>Бичиглэлийг сонгох</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>Нээх</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>Унсан гэж тэмдэглэх</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>Уншсангүй гэж тэмдэглэх</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>Choisissez un article pour afficher son résumé.</translation>
+            <translation>Хуудас сонгох</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>Aucun résumé disponible.</translation>
+            <translation>Тодорхойлолт байхгүй</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>%1 non lu  ·  %2 éléments</translation>
+            <translation>%1 уншсан · %2 бүтээгдэхүүн</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>%1 éléments</translation>
+            <translation>%1 бүтээгдэхүүн</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>Flux RSS</translation>
+            <translation>RSS урсгал</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>Modifier l'abonnement</translation>
+            <translation>Тархиалтыг засах</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>Дараалал</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>Шинэ дараалал</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>Schedule</source>
-            <translation>Planification</translation>
+            <translation>Бүрэн дүүргэх</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>Fichiers dans la file d'attente</translation>
+            <translation>Дуудвар</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>Téléchargement unique</translation>
+            <translation>Нэг удаа</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>Үргэлжлэн</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>Démarrer le téléchargement au démarrage de Stellar</translation>
+            <translation>Stellar-ийг асах</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>Асах</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>Нэг удаа</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>Өдөр тутам</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation>Redémarrer toutes les</translation>
+            <translation>Дахин эхлүүлэх</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>цаг</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>минут</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>Татахыг зогсоох</translation>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation>Nombre de tentatives pour chaque fichier en cas d'échec du téléchargement :</translation>
+            <translation>Алдагдсан файлын дахин оролдолтын тоо:</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation>Ouvrir le fichier suivant une fois terminé :</translation>
+            <translation>Дуусгасны дараа дараах файлыг нээх:</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>Stellar-ээ дуусгасны дараа гаргах</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Дуусгасны дараа компьютерийг зогсоох</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>Процессуудыг хүчтэйгээр зогсоох</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation>fichiers en même temps</translation>
+            <translation>Нэгэн зэрэг файлууд</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Файлын нэр</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Хэмжээ</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Статус</translation>
         </message>
         <message>
             <source>Time Left</source>
-            <translation>Temps restant</translation>
+            <translation>Хэсэг</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation>Aucune file d'attente sélectionnée</translation>
+            <translation>Дараалалгүй</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation>Aucun fichier dans la file d'attente</translation>
+            <translation>Файлгүй</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation>Limites de téléchargement</translation>
+            <translation>Хязгаарлалт</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation>Télécharger au maximum</translation>
+            <translation>Хязгааргүй</translation>
         </message>
         <message>
             <source>MBytes</source>
-            <translation>Mo</translation>
+            <translation>МБ</translation>
         </message>
         <message>
             <source>every</source>
-            <translation>toutes les</translation>
+            <translation>Бүгд</translation>
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation>Afficher un avertissement avant d'arrêter les téléchargements</translation>
+            <translation>Авталт</translation>
         </message>
         <message>
             <source>Start now</source>
-            <translation>Démarrer maintenant</translation>
+            <translation>Одоо эхлүүлэх</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Зогсох</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Хэрэгжүүлэх</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation>Entrez un nom pour la nouvelle file d'attente qui sera affiché dans la liste des files d'attente</translation>
+            <translation>Шинэ хавтсайн нэр оруулна уу</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation>Nom de la file d'attente</translation>
+            <translation>Хавтсайн нэр</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөвшөөрөх</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Цуцлах</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Бүрхүүл</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>Шинэ хавтас</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation>Sélectionner le fichier à ouvrir une fois terminé</translation>
+            <translation>Гүйцэтгэсний дараа нээх файлыг сонгох</translation>
         </message>
     </context>
     <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>Холбоо</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation>Téléchargements simultanés maximum :</translation>
+            <translation>Хамгийн их нэгэн зэрэг татах:</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation>Segments par téléchargement :</translation>
+            <translation>Татах хэсгүүд:</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation>Délai d'expiration de la connexion (secondes) :</translation>
+            <translation>Холбооны хугацаа (секунд):</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation>Réessayer les téléchargements échoués :</translation>
+            <translation>Алдаатай татахыг дахин оролд:</translation>
         </message>
         <message>
             <source>times</source>
-            <translation>fois</translation>
+            <translation>Давтан</translation>
         </message>
         <message>
             <source>User Agent</source>
-            <translation>Agent utilisateur</translation>
+            <translation>Хэрэглэгчийн агент</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation>Utiliser un agent utilisateur personnalisé</translation>
+            <translation>Өөрчлөгдсөн хэрэглэгчийн агент ашиглах</translation>
         </message>
         <message>
             <source>Proxy</source>
-            <translation>Proxy</translation>
+            <translation>Прокси</translation>
         </message>
         <message>
             <source>No proxy</source>
-            <translation>Aucun proxy</translation>
+            <translation>Проксигүй</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation>Utiliser le proxy système</translation>
+            <translation>Системийн прокси ашиглах</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation>Proxy HTTP / HTTPS</translation>
+            <translation>HTTP / HTTPS прокси</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation>Proxy SOCKS5</translation>
+            <translation>SOCKS5 прокси</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation>Hôte :</translation>
+            <translation>Хаяг:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation>Port :</translation>
+            <translation>Порт:</translation>
         </message>
         <message>
             <source>Username:</source>
-            <translation>Nom d'utilisateur :</translation>
+            <translation>Нэр:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>Mot de passe :</translation>
+            <translation>Нууц үг:</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Ангилал</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Нэр</translation>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation>Enregistrer dans le dossier</translation>
+            <translation>Хавтас руу хадгалах</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation>Dossier de sauvegarde par défaut :</translation>
+            <translation>Үндсэн хадгалах хэсэг:</translation>
         </message>
         <message>
             <source>Browse…</source>
-            <translation>Parcourir…</translation>
+            <translation>Хайх...</translation>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation>Dossier de sauvegarde personnalisé pour les torrents :</translation>
+            <translation>Torrent-ийн хадгалах хэсэг:</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation>Répertoire temporaire de Stellar :</translation>
+            <translation>Stellar-ийн дамжуулах хэсэг:</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation>Démarrer le téléchargement immédiatement (ignorer la boîte de dialogue des informations du fichier)</translation>
+            <translation>Татахыг шууд эхлүүлэх (файлын мэдээллийн цонхыг шилжүүлэх)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation>Afficher la boîte de dialogue de fin de téléchargement</translation>
+            <translation>Татах дууссаныг харуулах</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation>Démarrer le téléchargement immédiatement tout en affichant la boîte de dialogue &quot;Informations du fichier à télécharger&quot;</translation>
+            <translation>Файлын мэдээллийн цонхыг харуулж татахыг шууд эхлүүлэх</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation>Afficher la carte du swarm lors du téléchargement des métadonnées du torrent</translation>
+            <translation>Torrent-ийн метадатуудыг татах үед олонлогийн зурагтыг харуулах</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de l'appui sur &quot;Télécharger plus tard&quot;</translation>
+            <translation>Дараа татах товчлуур дарсан үед жагсаалтын сонгох хэсгийг харуулах</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de la fermeture de la boîte de dialogue des téléchargements par lot</translation>
+            <translation>Анхны цувааг сонгох хэсгийг харуулах</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation>Si une URL en double est ajoutée :</translation>
+            <translation>Дубляг URL нэмсэн</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation>Double-clic sur un téléchargement dans la liste des fichiers :</translation>
+            <translation>Файлын жагсаалтад даралт өгөх</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation>Format de la date du dernier essai :</translation>
+            <translation>Сүүлийн оролдлогын огноо</translation>
         </message>
         <message>
             <source>Time format:</source>
-            <translation>Format de l'heure :</translation>
+            <translation>Хугацааны формат</translation>
         </message>
         <message>
             <source>Show seconds</source>
-            <translation>Afficher les secondes</translation>
+            <translation>Нөхцөлөөр</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>Хүрээлэн</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>Хөтчтэй нэгдэх</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation>Démarrer automatiquement le téléchargement des types de fichiers suivants :</translation>
+            <translation>Дараах төрлийн файлуудыг автоматаар татаж авах</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation>Ne pas démarrer automatiquement le téléchargement depuis les sites suivants :</translation>
+            <translation>Дараах сайтнаас автоматаар татаж авахгүй</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation>Exceptions d'adresse</translation>
+            <translation>Алдааг засах</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation>Ne pas démarrer les téléchargements depuis les adresses suivantes :</translation>
+            <translation>Дараах хаягаас утсаа эхлүүлэхгүй</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation>Contourner l'interception des téléchargements</translation>
+            <translation>Утсаа хамгаалахаас зайлсхийх</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation>Maintenez cette touche enfoncée tout en cliquant sur un lien de téléchargement pour ignorer l'interception et permettre au navigateur de télécharger :</translation>
+            <translation>Утсаа хамгаалахаас зайлсхийхийн тулд утсаа холбох холбоосыг дарж энэ товчийг дарна</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Хурдны хязгаарлагч</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation>Activer la limite de vitesse globale</translation>
+            <translation>Нийт хурдны хязгаарыг идэвхжүүлэх</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation>Vitesse maximale :</translation>
+            <translation>Хамгийн их хурд:</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation>Activer la limite de téléchargement global</translation>
+            <translation>Нийт агуулахын хязгаарыг идэвхжүүлэх</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation>Téléversement maximum :</translation>
+            <translation>Хамгийн их агуулах:</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation>Toujours activer le limiteur de vitesse au démarrage de Stellar</translation>
+            <translation>Stellar эхлэхэд хурдны хязгаарлалтыг асаах</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation>Activer le planificateur de limiteur de vitesse</translation>
+            <translation>Хурдны хязгаарлалтын таймэрийг идэвхжүүлэх</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>On</source>
-            <translation>Activé</translation>
+            <translation>Асаах</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>Upload</source>
-            <translation>Téléversement</translation>
+            <translation>Аралгах</translation>
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation>+ Ajouter une règle</translation>
+            <translation>+ Дүрэм нэмэх</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation>Notifications</translation>
+            <translation>Товчлол</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation>Afficher une notification lorsque le téléchargement est terminé</translation>
+            <translation>Татагдах үед товчлол үзүүлэх</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation>Afficher une notification en cas d'erreur de téléchargement</translation>
+            <translation>Алдаа гарсан үед товчлол үзүүлэх</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>Ерөнхий</translation>
         </message>
         <message>
             <source>Browser</source>
-            <translation>Navigateur</translation>
+            <translation>Хөтч</translation>
         </message>
         <message>
             <source>Media</source>
-            <translation>Média</translation>
+            <translation>Медиа</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation>Torrent</translation>
         </message>
         <message>
             <source>Language</source>
-            <translation>Langue</translation>
+            <translation>Хэл</translation>
         </message>
         <message>
             <source>About</source>
-            <translation>À propos</translation>
+            <translation>Тухай</translation>
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation>Lorsque le mode personnalisé est désactivé, Stellar utilise son User-Agent intégré avec la version actuelle.</translation>
+            <translation>Stellar-ийн стандарт User-Agent хувилбарыг ашиглах.</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation>Cette valeur sera envoyée exactement telle qu'entrée.</translation>
+            <translation>Ордуулсан утгыг яг адилхан илгээгдэнэ.</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation>Valeur par défaut intégrée affichée ci-dessus. Activez la case à cocher pour la modifier et la remplacer.</translation>
+            <translation>Дээрх стандарт утга. Тэмдэглэгээг идэвхжүүлж өөрчил.</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation>Optionnel</translation>
+            <translation>Сонгох</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation>Tous les téléchargements, les téléchargements de vidéos, les vérifications de mises à jour et les connexions aux pairs/trackers de torrent sont acheminés via ce proxy.</translation>
+            <translation>Proxy-аар дамжуулах</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation>Stellar utilisera le proxy configuré dans les paramètres réseau de votre système d'exploitation.</translation>
+            <translation>OS-ийн сүлжээний тохиргоо дагуу</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation>Délai d'attente dépassé — le proxy n'a pas répondu</translation>
+            <translation>Хугацаа дууссан</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation>Test en cours…</translation>
+            <translation>Шалгах...</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation>Tester le proxy</translation>
+            <translation>Proxy-г шалгах</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation>⚠ Non présent dans la liste de téléchargement automatique du navigateur : %1</translation>
+            <translation>⚠ Авто-авах жагсаалтаагүй: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation>Parcourir</translation>
+            <translation>Хайх</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation>Ceci est le dossier torrent personnalisé mémorisé utilisé lorsque la boîte de dialogue des métadonnées du torrent est définie pour utiliser un dossier de sauvegarde personnalisé par défaut.</translation>
+            <translation>Тайлбар: Torrent хуулбарын хэсэг</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation>Stellar stocke ici les parties de fichiers partiellement téléchargées et les métadonnées pendant le téléchargement et l'assemblage des fichiers.</translation>
+            <translation>Хуулбар хийх үеийн хэсэг</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation>Remarque : Ces paramètres ne s'appliquent pas au traitement de la file d'attente pour les paramètres « Télécharger immédiatement » et « Afficher la boîte de dialogue de téléchargement terminé ».</translation>
+            <translation>Тайлбар: Эдгээр тохиргоо нь 'Аяндаа авах' болон 'Авсан гэдгийг харуулах' тохиргоонуудад хамаардаггүй.</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation>Me demander quoi faire</translation>
+            <translation>Үйлдэл хийх</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
-            <translation>Ajouter avec un nom de fichier numéroté</translation>
+            <translation>Дугаартай нэрээр нэмэх</translation>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation>Écraser le téléchargement existant</translation>
+            <translation>Одоогийн хуулбарыг дахин бичих</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation>Reprendre / afficher la boîte de dialogue de fin</translation>
+            <translation>Үргэлжлүүлэх / Бүх нөхцөлийг харуулах</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation>Ouvrir la boîte de dialogue des propriétés du fichier</translation>
+            <translation>Файлын шинж чанарыг нээх</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Файл нээх</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Хэсэг нээх</translation>
         </message>
         <message>
             <source>24-hour time</source>
-            <translation>Format 24 heures</translation>
+            <translation>24 цагийн форматыг ашиглах</translation>
         </message>
         <message>
             <source>12-hour time</source>
-            <translation>Format 12 heures</translation>
+            <translation>12 цагийн форматыг ашиглах</translation>
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation>Séparé par des espaces ou des virgules. Insensible à la casse.</translation>
+            <translation>Тусгаарлагч: зай эсвэл тэмдэг. Тэмдгийн хувиргалтгүй.</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation>Modèles d'hôtes séparés par des espaces. Jokers (*) pris en charge, ex. *.update.microsoft.com</translation>
+            <translation>Тусгаарлагдсан хаягууд. Дүрэм (*) ашиглах боломжтой, жишээ нь *.update.microsoft.com</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation>Afficher la boîte de dialogue pour ajouter une adresse à la liste des exceptions pour un téléchargement annulé deux fois</translation>
+            <translation>Хоёр удаа цуцлагдсан утсыг хасахын тулд цонхыг нээх</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation>Un motif d'URL par ligne. Les caractères génériques (*) sont pris en charge.</translation>
+            <translation>Нэг мөрөнд нэг URL загвар. Дүрэм (*) ашиглах боломжтой.</translation>
         </message>
         <message>
             <source>None</source>
-            <translation>Aucun</translation>
+            <translation>Үгүй</translation>
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation>Cliquez sur un jour pour le basculer. Les règles sont évaluées chaque minute ; la première règle correspondante l'emporte. Les limites de téléchargement et d'upload planifiées sont automatiquement effacées lorsqu'aucune règle n'est active.</translation>
+            <translation>Өдрийн тэмдэгт дээр дарж идэвхжүүлэх/идэвхгүй болгох. Дүрмийг минут тутамд шалгадаг; эхний тохирсон дүрмийг ашиглана. Идэвхгүй дүрмийг арилгана.</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>Системийн тавцанд багасгах</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation>Fermer dans la zone de notification</translation>
+            <translation>Системийн тавцанд хаах</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation>Lancer Stellar au démarrage</translation>
+            <translation>Stell-ийг ачаалалд хийх</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation>Afficher les astuces dans la barre inférieure</translation>
+            <translation>Доод хэсэгт зөвлөгөөг харуулах</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation>Afficher le nombre de téléchargements terminés dans la barre d'état</translation>
+            <translation>Бүтэн буулгагдсан тоог төлөвийн хэсэгт харуулах</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation>Utilitaires</translation>
+            <translation>Үйлчилгээ</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation>Afficher la vitesse dans l'infobulle de l'icône de la zone de notification</translation>
+            <translation>Хурд</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation>Afficher la vitesse dans la barre de titre</translation>
+            <translation>Хурд</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation>Afficher la vitesse dans la barre d'état</translation>
+            <translation>Хурд</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation>Afficher le nombre estimé d'utilisateurs en ligne dans la barre d'état</translation>
+            <translation>Хэрэглэгчид</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Utilise la densité des ID de nœuds DHT pour estimer le nombre global d'utilisateurs BitTorrent. La confiance augmente à mesure que davantage d'ID de nœuds uniques sont observés ; un * à la fin dans la barre d'état signifie que l'estimation est encore peu fiable.</translation>
+            <translation>ДHT</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation>Afficher le ratio dans la barre d'état</translation>
+            <translation>Харьцаа</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation>Afficher l'adresse IP publique dans la barre d'état</translation>
+            <translation>ИП</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation>Détecte votre IP publique via libtorrent et votre type de connexion actif. Survolez l'indicateur pour voir le SSID/le signal WiFi ou les avertissements concernant les connexions entrantes.</translation>
+            <translation>ИП</translation>
         </message>
         <message>
             <source>Updates</source>
-            <translation>Mises à jour</translation>
+            <translation>Нэгдлүүд</translation>
         </message>
         <message>
             <source>Automatically check for updates</source>
-            <translation>Vérifier automatiquement les mises à jour</translation>
+            <translation>Автоматаар шинэчлэлт шалгах</translation>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation>Surveillance du presse-papiers</translation>
+            <translation>Буферийн хяналт</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation>Démarrer automatiquement le téléchargement des URL placées dans le presse-papiers</translation>
+            <translation>Буферт байгаа URL-ийг автоматаар татах</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation>Lorsqu'une URL correspondant à un type de fichier surveillé est copiée dans le presse-papiers, Stellar vous demandera si vous souhaitez la télécharger. Seuls les types de fichiers répertoriés sous Navigateur › Démarrer automatiquement le téléchargement des types de fichiers suivants sont pris en compte.</translation>
+            <translation>URL-ийг буферт хуулбал Stellar файл төрлийг асуух болно</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation>Téléchargeur vidéo</translation>
+            <translation>Видео татах</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation>Stellar utilise yt-dlp pour télécharger des vidéos depuis YouTube, Vimeo, Twitter/X, Instagram et des centaines d'autres sites. Lorsque vous collez une URL de vidéo dans Ajouter URL, un sélecteur de format apparaîtra.</translation>
+            <translation>yt-dlp ашиглан YouTube, Vimeo, Twitter/X, Instagram болон бусад сайтнаас видео татах</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation>Statut binaire</translation>
+            <translation>Бинар төлөв</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
-            <translation>Mettre à jour yt-dlp</translation>
+            <translation>yt-dlp шинэчлэх</translation>
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation>Télécharger yt-dlp</translation>
+            <translation>yt-dlp татах</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Болих</translation>
         </message>
         <message>
             <source>Re-check</source>
-            <translation>Vérifier à nouveau</translation>
+            <translation>Дахин шалгах</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation>État de ffmpeg</translation>
+            <translation>ffmpeg статус</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation>ffmpeg trouvé : %1</translation>
+            <translation>ffmpeg олдлоо: %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation>ffmpeg introuvable — les téléchargements HD seront limités aux formats pré-muxés (max ~480p)</translation>
+            <translation>ffmpeg олдсонгүй — HD утгуудыг 480p хүртэлх эхлүүлсэн форматуудад хязгаарлана</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation>Mise à jour de FFmpeg...</translation>
+            <translation>FFmpeg шинэчлэх...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation>Mettre à jour FFmpeg</translation>
+            <translation>FFmpeg шинэчлэх</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation>Obtenir ffmpeg (gyan.dev)</translation>
+            <translation>ffmpeg авах (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation>ffmpeg est requis pour fusionner les flux vidéo et audio séparés en MP4/MKV. Sans lui, les téléchargements YouTube basculent vers un seul flux pré-muxé (généralement WebM, max 480p).
+            <translation>MP4/MKV форматын видео болон аудио урсгалыг нэгтгэхэд ffmpeg шаардлагатай. Тэрхүү байхгүй бол YouTube утгуудыг WebM (480p хүртэл) эхлүүлсэн урсгал руу буцна.
 
-Pour corriger : téléchargez ffmpeg depuis gyan.dev/ffmpeg/builds (build Essentials), extrayez ffmpeg.exe du dossier bin/, et placez-le dans le même dossier que yt-dlp.exe. Puis cliquez sur Vérifier à nouveau ci-dessus.</translation>
+Шийдэл: gyan.dev/ffmpeg/builds-ээс ffmpeg-г татаж авна, bin/ хэсгээс ffmpeg.exe-г салгаж, yt-dlp.exe-тэй ижил хэсэгт байрлуулна. Дараа нь дээрх Дахин шалгах товчийг дарна.</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation>Chemin du binaire personnalisé</translation>
+            <translation>Өөрчлөгдсөн binary зам</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation>Laissez vide pour utiliser le binaire intégré (recommandé). Définissez le chemin absolu de votre exécutable yt-dlp si vous souhaitez utiliser une version spécifique.</translation>
+            <translation>Бүтээгдэхүүний binary-г ашиглахын тулд хоосон үлдээх (зөвлөгөө). Өөрийн yt-dlp хувилбарыг ашиглахыг хүсвэл тухайн хувилбарын абсолют замыг тохируулна.</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation>(auto - utiliser yt-dlp intégré ou système)</translation>
+            <translation>(авто - агуулсан эсвэл системийн yt-dlp-г ашиглах)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation>Moteur d'exécution JavaScript</translation>
+            <translation>JavaScript хөтлөгчийн орчин</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation>%1 trouvé : %2</translation>
+            <translation>%1 олдлоо: %2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation>Aucun environnement JS trouvé — résolution du n-challenge YouTube désactivée</translation>
+            <translation>JS ажиллагааны орчныг олоогүй — YouTube n-чиглэлийн бодолтыг ажиллуулахыг хязгаарласан</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation>yt-dlp nécessite un environnement JavaScript externe pour résoudre le n-challenge de YouTube (limitation d'URL). Sans lui, les téléchargements YouTube peuvent échouer ou ne retourner que des formats storyboard de basse qualité.
+            <translation>yt-dlp нь YouTube-ийн URL-ийн хязгаарлалтыг шийдэхийн тулд гадаад JavaScript орчин шаардагдана. Үүнийг суурилуулсангүй бол YouTube-ээс хуулбарлах үйл ажиллагаа алдаатай эсвэл зөвхөн бага чанартай storyboard форматуудыг буцааж өгөх магадлалтай.
 
-Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ou QuickJS. Placez-le dans le même dossier que yt-dlp.exe ou ajoutez-le au PATH système, puis cliquez sur Vérifier à nouveau dans la section statut yt-dlp ci-dessus.</translation>
+Дараах нэгэн зүйлийг суурилуулна уу: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), эсвэл QuickJS. Үүнийг yt-dlp.exe файлын талбайн дотор байрлуулж эсвэл системийн PATH руу нэмж, дээрх yt-dlp статусын хэсэгт &quot;Дахин шалгах&quot; товчийг дарна уу.</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation>Remplacer le chemin de l'environnement détecté automatiquement. Laissez vide pour utiliser la détection automatique (recherche dans le dossier yt-dlp, dossier de l'application et PATH système).</translation>
+            <translation>Авто-тодорхойлогдсон ажиллагааны замыг дахин тохируулах. Авто-тодорхойлолтыг ашиглахын тулд хоосон үлдээх (yt-dlp хавтас, апп хавтас болон системийн PATH-ийг хайна).</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation>(détection automatique depuis le PATH et le dossier yt-dlp)</translation>
+            <translation>(Үүсгэгчээс PATH болон yt-dlp хавтаснаас автоматаар тодорхойлох)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation>Mettre à jour automatiquement yt-dlp au démarrage</translation>
+            <translation>Загваруудыг автоматаар шинэчлэх</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation>Lorsqu'elle est activée, Stellar exécutera « yt-dlp -U » au démarrage pour maintenir le binaire à jour. Nécessite une connexion Internet active.</translation>
+            <translation>Хэрэв идэвхжүүлсэн бол Stellar нь эхлэх үед &quot;yt-dlp -U&quot; хэрэгслийг ажиллуулж, бинарийг шинэчлэх болно. Энэ нь идэвхтэй интернет холбоог шаарддаг.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation>Téléchargements par torrent</translation>
+            <translation>Torrent-ийн татахууд</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation>Activer le support BitTorrent</translation>
+            <translation>BitTorrent-ийг идэвхжүүлэх</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation>BitTorrent — Avis juridique</translation>
+            <translation>BitTorrent — Хуулийн мэдэгдэл</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4030,255 +4016,255 @@ Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Stellar est un programme de partage de fichiers. Lorsque vous téléchargez un torrent, votre adresse IP devient visible par les autres pairs du swarm et vous téléchargez simultanément (seed) des données vers les autres.
+            <translation>Stellar нь файлын хуваалцлын програм юм. Torrent-ийг татаж авснаар таны IP хаяг олонлогийн бусад хэсэгчидэд харагдах бөгөөд зэрэгцээгээрээ өөрүүдэд өгөгдөл (seed) дамжуулна.
 
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
+Таны BitTorrent-ээр хуваалцсан бүх зүйл таны хариуцлагад орно. Агуулгыг тархахаас өмнө зөвшөөрөлтэйгээ баталгаажуулна уу.
 
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээний интерфейсэд холбож, torrent ашиглахээс өмнө VPN идэвхтэй эсэхийг шалгах нь маш чухал.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, Activer</translation>
+            <translation>Би ойлголоо, идэвхжүүлэх</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation>Ces paramètres s'appliquent aux fichiers .torrent et aux liens magnétiques.</translation>
+            <translation>Эдгээр тохируулга .torrent файлууд болон magnet холбоосуудад хамаарна</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation>Port d'écoute</translation>
+            <translation>Нарийн сонгох порт</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation>Connexions maximales globales</translation>
+            <translation>Нийт холбогдох хязгаар</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation>Connexions maximales par torrent</translation>
+            <translation>Нэг torrent-д холбогдох хязгаар</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation>Créneaux de téléchargement maximal global</translation>
+            <translation>Нийт өгөгдөл дамжуулах нэгж</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation>Créneaux de téléchargement maximal par torrent</translation>
+            <translation>Нэг torrent-д өгөгдөл дамжуулах нэгж</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation>0 = illimité (champs par torrent et créneaux globaux de téléversement)</translation>
+            <translation>0 = хязгааргүй</translation>
         </message>
         <message>
             <source>Protocol</source>
-            <translation>Protocole</translation>
+            <translation>Протокол</translation>
         </message>
         <message>
             <source>TCP and μTP</source>
-            <translation>TCP et μTP</translation>
+            <translation>TCP ба μTP</translation>
         </message>
         <message>
             <source>μTP only</source>
-            <translation>Uniquement μTP</translation>
+            <translation>Зөвхөн μTP</translation>
         </message>
         <message>
             <source>TCP only</source>
-            <translation>TCP uniquement</translation>
+            <translation>Зөвхөн TCP</translation>
         </message>
         <message>
             <source>Port Test</source>
-            <translation>Test de port</translation>
+            <translation>Порт шалгах</translation>
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation>Vérifiez si votre port d'écoute de torrent actuel est accessible depuis l'internet public. Cela permet de confirmer si votre redirection de port VPN, la redirection de port sur votre routeur et les règles de pare-feu autorisent bien les connexions torrent entrantes.</translation>
+            <translation>Шалгах...</translation>
         </message>
         <message>
             <source>Testing...</source>
-            <translation>Test en cours...</translation>
+            <translation>Порт шалгах</translation>
         </message>
         <message>
             <source>Test Port</source>
-            <translation>Tester le port</translation>
+            <translation>Төвлөрөл</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation>Réseau</translation>
+            <translation>Хүлээлт</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Нэмэлт</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation>Agent utilisateur BitTorrent personnalisé</translation>
+            <translation>БитТоррент хэрэглэгчийн агент</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation>Lier à l'adaptateur réseau</translation>
+            <translation>Төвөгтэй холбоос</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Cet adaptateur est verrouillé pour le trafic torrent. Si votre VPN se déconnecte ou si l'adaptateur disparaît, Stellar cesse d'utiliser la route par défaut et vos torrents perdent l'accès au réseau au lieu de fuiter sur une autre connexion.</translation>
+            <translation>Энэ төвөгтэй холбоос нь торрент урсгалыг хамгаалсан байна. Хэрэв таны VPN холбогдохгүй эсвэл төвөгтэй холбоос алга болбол Stellar нь стандарт замаас ашиглахаа зогсоож, торрентүүд өөр холбоос руу нүүхгүйгээр сүлжээндээ орохгүй болно.</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Aucun lien d'adaptateur. Le trafic torrent suit la route système.</translation>
+            <translation>Төвөгтэй холбоос холбохгүй. Торрент урсгал нь системийн замаар дамжина.</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>La liaison de l'adaptateur réseau indique à Stellar d'envoyer et de recevoir du trafic torrent uniquement via l'adaptateur sélectionné. Cela est particulièrement utile pour les utilisateurs de VPN car cela empêche les fuites de trafic accidentelles lorsque le VPN n'est pas connecté.</translation>
+            <translation>Төвөгтэй холбоос холбох нь Stellar-д сонгогдсон төвөгтэй холбоосын зөвхөн торрент урсгалыг илгээх, хүлээн авахыг заадаг. Энэ нь ялангуяа VPN ашиглагчид болон VPN холбогдоогүй үед урсгал нүүхээс сэргийлэхэд ашигтай.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
-            <translation>Sécurité du torrent</translation>
+            <translation>Торрент аюулгүй байдал</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation>Les bannissements manuels de pairs s'appliquent immédiatement. Les sous-chaînes d'agent utilisateur bloquées, les pays bloqués et les options de bannissement automatique s'appliquent lorsque vous cliquez sur Appliquer ou OK.</translation>
+            <translation>Хүчинтэй хамгаалалт</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation>Mode de chiffrement</translation>
+            <translation>Шифрлэх төрөл</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation>Préférer le chiffrement</translation>
+            <translation>Шифрлэлийг илүүд үзнэ</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation>Exiger le chiffrement</translation>
+            <translation>Шифрлэлт шаардах</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation>Autoriser le chiffrement</translation>
+            <translation>Шифрлэлт зөвшөөрөх</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation>User-Agents bloqués</translation>
+            <translation>Хүлээгдэж буй үйл ажиллагаа</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation>Une sous-chaîne par ligne. Si la chaîne du client pair contient l'une des lignes ci-dessus, Stellar bannit automatiquement ce pair jusqu'à ce que la ligne correspondante soit supprimée et que les paramètres soient appliqués.</translation>
+            <translation>Нэг мөрөнд нэг дэд хэсэг. Хэрэв дураарын хувьслын мөр дээрх ямар нэгэн мөр агуулагдаж байвал Stellar тухайн дураарыг автоматаар хориглож, тохиргоо хийгдэх хүртэл үргэлжлүүлнэ.</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation>Bannir manuellement un pair</translation>
+            <translation>Дураарыг гаргаж авах</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation>Adresse IP, par exemple 203.0.113.42</translation>
+            <translation>Хаяг, жишээ нь 203.0.113.42</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation>Bannir</translation>
+            <translation>Хорих</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation>Les bannissements manuels sont permanents jusqu'à ce que vous les supprimiez de la liste des pairs bannis ci-dessous.</translation>
+            <translation>Хориглосон нь үргэлжлэх хүртэл үргэлжлүүлнэ.</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation>Bloquer les pairs par pays</translation>
+            <translation>Орон нутгаар дураарыг хорих</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Нэмэх</translation>
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation>Aucun pays bloqué.</translation>
+            <translation>Хиллэгдсэн улсгүй</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation>Bannir automatiquement Xunlei, QQ, Baidu, Xfplay, DLBT et les téléchargeurs hors ligne</translation>
+            <translation>Xunlei, QQ, Baidu, Xfplay, DLBT болон Offline downloader-ийг автоматаар хорих</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation>Bannir automatiquement les pairs des lecteurs multimédias BitTorrent</translation>
+            <translation>BitTorrent Media Player Peer-ийг автоматаар хорих</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation>Paires bannies manuellement</translation>
+            <translation>Хоригдсан peer-үүдийг гаргаж авах</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation>Débannir</translation>
+            <translation>Хорих</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>Ажиллаж байна</translation>
         </message>
         <message>
             <source>No banned peers</source>
-            <translation>Aucune paire bannie</translation>
+            <translation>Хоригдсан peer байхгүй</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation>Base de données IP-vers-Ville</translation>
+            <translation>Хот-р IP-ийн сан</translation>
         </message>
         <message>
             <source>Version</source>
-            <translation>Version</translation>
+            <translation>Хувьсагч</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Тодорхойгүй</translation>
         </message>
         <message>
             <source>Path</source>
-            <translation>Chemin</translation>
+            <translation>Цагийн зам</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Хэмжээ</translation>
         </message>
         <message>
             <source>Entries</source>
-            <translation>Entrées</translation>
+            <translation>Оролтууд</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation>Dernière modification</translation>
+            <translation>Сүүлийн өөрчлөлт</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Статус</translation>
         </message>
         <message>
             <source>Downloading...</source>
-            <translation>Téléchargement en cours...</translation>
+            <translation>Татаж байна...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation>Mettre à jour la base de données IP-vers-Ville</translation>
+            <translation>Хот-ИП-ийн DB-г шинэчлэх</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation>Actualiser les informations</translation>
+            <translation>Мэдээллийг шинэчлэх</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>Статистик</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation>Totaux cumulés des transferts sur tous les torrents, y compris ceux qui ont été supprimés.</translation>
+            <translation>Нийт шилжүүлсэн хэмжээ (үгүйгээр)</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>Нийт татаж авсан</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>Нийт ирсэн</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation>Ratio de partage global</translation>
+            <translation>Нийт хуваарь</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation>Les textes complets des licences se trouvent dans THIRD-PARTY-NOTICES.txt, inclus avec cette installation.</translation>
+            <translation>Бүрэн лиценз нь THIRD-PARTY-NOTICES.txt файлд, энэ суурилуулалтад хамрагдсан.</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4286,139 +4272,139 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation>Récupération des flux</translation>
+            <translation>Баримт авч ирэх</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation>Activer la récupération des flux RSS</translation>
+            <translation>RSS баримтуудыг авч ирэхийг идэвхжүүлэх</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation>Intervalle de rafraîchissement des flux</translation>
+            <translation>Баримтуудыг шинэчлэх завсар</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>минут</translation>
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation>Délai de requête pour le même hôte</translation>
+            <translation>Ижил хостын хүсэлтийн хоцрох хугацаа</translation>
         </message>
         <message>
             <source>seconds</source>
-            <translation>secondes</translation>
+            <translation>секунд</translation>
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation>Nombre maximum d'articles par flux</translation>
+            <translation>Макс. нийтлэл</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation>Téléchargeur automatique de torrents</translation>
+            <translation>Torrent буулгагч</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation>Activer le téléchargement automatique des torrents RSS</translation>
+            <translation>RSS torrent-ийг автоматаар буулгах</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation>Modifier les règles de téléchargement automatique...</translation>
+            <translation>Авто буулгах дүрмийг засах...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation>Filtre intelligent des épisodes</translation>
+            <translation>Смарт үе шатын шүүлт</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation>Télécharger les épisodes REPACK/PROPER</translation>
+            <translation>REPACK/PROPER үе шатуудыг буулгах</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation>Motifs de détection des épisodes (un par ligne) :</translation>
+            <translation>Үе шатыг тодорхойлох загварууд (ар нэг мөр):</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation>Associations</translation>
+            <translation>Холбоосууд</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation>Configurer la récupération des flux RSS et les règles de téléchargement automatique de torrents.</translation>
+            <translation>RSS урсгалыг авч, torrent буулгах дүрмийг тохируулах.</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation>Ces expressions régulières sont utilisées pour extraire les numéros de saison/épisode pour la détection intelligente des doublons.</translation>
+            <translation>Тайлбар: улирал/төвөгтэй тоонуудыг тусгаарлах</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation>Définir Stellar comme application par défaut pour les fichiers .torrent et les liens magnet. Sur Windows 10/11, cliquez sur le bouton puis confirmez le changement dans la page des applications par défaut de Windows qui s'ouvre.</translation>
+            <translation>Stellar-ийг .torrent файлууд болон magnet холбоосуудын үндсэн програм болгох. Windows 10/11 дээр товчийг дарж, нээгдэх Windows Default Apps хуудас дээр өөрчлөлтийг баталгаажуулна.</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation>Fichiers .torrent</translation>
+            <translation>.torrent файлууд</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation>Géré actuellement par Stellar</translation>
+            <translation>Одоогоор Stellar ашиглаж байна</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation>Stellar n'est pas la valeur par défaut actuelle</translation>
+            <translation>Stellar үндсэн биш</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation>Définir .torrent par défaut</translation>
+            <translation>.torrent үндсэн болгох</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation>Actualiser l'état</translation>
+            <translation>Статусыг шинэчлэх</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation>liens magnet</translation>
+            <translation>magnet: холбоосууд</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation>Définir Magnet par défaut</translation>
+            <translation>Magnet үндсэн болгох</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation>Si votre environnement de bureau remplace l'association au niveau de l'application, actualisez l'état après que le système a fini d'appliquer le changement.</translation>
+            <translation>Систем өөрчлөлтийг хийсний дараа статусыг шинэчлэнэ</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>Langue de l'interface</translation>
+            <translation>Хэл</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>Sélectionnez la langue utilisée dans toute l'interface Stellar. Un redémarrage est nécessaire pour que tous les textes soient mis à jour.</translation>
+            <translation>Хэлийг сонгох</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>Хэл</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>Un redémarrage est requis après avoir changé la langue.</translation>
+            <translation>Хэлийг өөрчлөхөд дахин эхлүүлэх шаардлагатай</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>Нөхцөлийг шалгах</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation>Quoi de neuf</translation>
+            <translation>Шинэчлэлтүүд</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation>Date de compilation</translation>
+            <translation>Үйлдвэрлэлийн огноо</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation>Version de Qt</translation>
+            <translation>Qt хувилбар</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation>Plateforme</translation>
+            <translation>Төв</translation>
         </message>
         <message>
             <source>Windows</source>
@@ -4438,158 +4424,158 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation>Stellar est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la GNU General Public License, version 3.</translation>
+            <translation>Stellar нь үнэгүй програм бөгөөд GNU General Public License-ийн 3-р хувилбараар дамжуулан дахин тархаж/засварлах боломжтой.</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation>Logiciels tiers</translation>
+            <translation>Гурван талын програм</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Хэрэглэх</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөвшөөрөх</translation>
         </message>
         <message>
             <source>Default route</source>
-            <translation>Route par défaut</translation>
+            <translation>Үндсэн зам</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation>Laisser le système d'exploitation choisir l'adaptateur réseau actif.</translation>
+            <translation>OS нь идэвхтэй сүлжээний адаптерийг сонгоно.</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation>(Indisponible)</translation>
+            <translation>(Боломжгүй)</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation>Cet adaptateur n'est pas actuellement disponible. Reconnectez-le ou choisissez un autre adaptateur.</translation>
+            <translation>Энэхүү адаптер ашиглагдахгүй байна. Дахин холбох эсвэл өөр адаптер сонгоно уу.</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation>Bannissement manuel</translation>
+            <translation>Хүчинд хоригоор татан авах</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation>Trouver des pairs sans tracker en utilisant une table de hachage distribuée.</translation>
+            <translation>Трекергүй хамтрагчдыг тархсан хэсгүүдийн хүснэгтээр олох.</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation>Découvrir des pairs sur votre réseau local sans passer par Internet.</translation>
+            <translation>Интернэтээр дамжихгүйгээр таны орон нутгийн сүлжээнд хамтрагчдыг олж мэдэх.</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation>Ouvrir automatiquement un port sur votre routeur afin que les pairs puissent se connecter à vous.</translation>
+            <translation>Хамтрагчид таны руу холбогдохын тулд роутертээ нэвтрэх гэрээг автоматаар нээх.</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation>Comme UPnP mais pour les routeurs Apple - activez les deux et celui que votre routeur prendra en charge sera utilisé.</translation>
+            <translation>UPnP-тэй адил боловч Apple роутерийн хувьд ажиллана - хоёулаа идэвхжүүлнэ, роутерийн дэмжсэн нь ажиллана.</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation>Partager les listes de pairs entre les pairs connectés afin de trouver plus de sources sans solliciter le tracker.</translation>
+            <translation>Холбогдсон хамтрагчдын хооронд хамтрагчдын жагсаалтыг хуваалцах нь трекерт оролцохгүйгээр илүү эх үүсвэр олох.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation>Stellar est désormais l'application par défaut pour les fichiers .torrent.</translation>
+            <translation>Stellar одоо .torrent файлын үндсэн хөтөч боллоо.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation>Stellar est désormais l'application par défaut pour les liens magnet.</translation>
+            <translation>Stellar одоо magnet холбоосын үндсэн хөтөч боллоо.</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation>Par défaut : Stellar/%1</translation>
+            <translation>Үндсэн: Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation>Types de fichiers (séparés par des virgules, ex. mp4, mkv, avi)</translation>
+            <translation>Файлын төрлүүд</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation>Attribution automatique depuis les sites (séparés par des espaces, * joker)</translation>
+            <translation>Авто-тодорхойлох</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation>Les téléchargements depuis les sites correspondants seront automatiquement assignés à cette catégorie.</translation>
+            <translation>Засах</translation>
         </message>
         <message>
             <source>Rule %1</source>
-            <translation>Règle %1</translation>
+            <translation>Дүрэм %1</translation>
         </message>
         <message>
             <source>Not found</source>
-            <translation>Non trouvé</translation>
+            <translation>Олсонгүй</translation>
         </message>
         <message>
             <source>Loaded</source>
-            <translation>Chargé</translation>
+            <translation>Илгээгдсэн</translation>
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation>Disponible mais non chargé</translation>
+            <translation>Байгаа боловч илгээгдээгүй</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>Эх үүсвэр: %1</translation>
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>L'URL de la source n'est pas encore mise en cache. Utilisez Vérifier les mises à jour pour mettre en cache IPtoCityDB depuis update.json.</translation>
+            <translation>Эх үүсвэрийн URL-ийг хадгалаагүй. IPtoCityDB-г хадгалахын тулд Check for updates-г ашиглана.</translation>
         </message>
         <message>
             <source>Version %1</source>
-            <translation>Version %1</translation>
+            <translation>Хувилбар %1</translation>
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation>Mise à jour disponible : %1</translation>
+            <translation>%1 шинэчлэх боломжтой</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation>Préférences de Stellar</translation>
+            <translation>Stellar тохиргоо</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation>Sélectionner le binaire yt-dlp</translation>
+            <translation>yt-dlp бинарийг сонгох</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation>Sélectionner le binaire du moteur JavaScript</translation>
+            <translation>JavaScript хөдөлгүүрийн бинарийг сонгох</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation>Modifier le projet</translation>
+            <translation>Үйл ажиллагааг засах</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>Үйл ажиллагааг устгах</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Ангуулууд</translation>
         </message>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Бүх татаж авалт</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation>Inachevés</translation>
+            <translation>Бүтээгдээгүй</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation>Terminés</translation>
+            <translation>Бүтээгдсэн</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation>Projets de récupération</translation>
+            <translation>Гаргагч төслүүд</translation>
         </message>
         <message>
             <source>Torrents</source>
@@ -4597,257 +4583,256 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>Хүлээлтийн жагсаалт</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>Татаж авч байна</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>Хуулж байна</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>Зогсоосон</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>Ажиллаж байна</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>Ажиллаж байгаагүй</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>Шалгаж байна</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Зөөж байна</translation>
         </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>Статистик</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation>Statistiques Stellar</translation>
+            <translation>Stellar Статистик</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation>TOUTE L'HISTORIQUE</translation>
+            <translation>Бүх цаг</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Татаж авсан</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Ачаалсан</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation>Taux de partage</translation>
+            <translation>Хуваарь</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation>Temps de fonctionnement</translation>
+            <translation>Ажиллаж байгаа</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation>Date d'installation</translation>
+            <translation>Суурилуулсан</translation>
         </message>
         <message>
             <source>Startups</source>
-            <translation>Démarrages</translation>
+            <translation>Дуудалт</translation>
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation>CETTE SESSION</translation>
+            <translation>Энэ сессийн</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
     </context>
     <context>
         <name>StatusBar</name>
         <message>
             <source>🟦 1 active</source>
-            <translation>🟦 1 actif</translation>
+            <translation>🟦 1 идэвхтэй</translation>
         </message>
         <message>
             <source>🟦 %1 active</source>
-            <translation>🟦 %1 actifs</translation>
+            <translation>🟦 %1 идэвхтэй</translation>
         </message>
         <message>
             <source>📄 1 download</source>
-            <translation>📄 1 téléchargement</translation>
+            <translation>📄 1 татах</translation>
         </message>
         <message>
             <source>📄 %1 downloads</source>
-            <translation>📄 %1 téléchargements</translation>
+            <translation>📄 %1 татах</translation>
         </message>
         <message>
             <source>🟨 1 error</source>
-            <translation>🟨 1 erreur</translation>
+            <translation>🟨 1 алдаа</translation>
         </message>
         <message>
             <source>🟨 %1 errors</source>
-            <translation>🟨 %1 erreurs</translation>
+            <translation>🟨 %1 алдаа</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy activé</translation>
+            <translation>🌐 Прокси идэвхжсэн</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation>📡 Vérification des mises à jour</translation>
+            <translation>📡 шинжилгээ хийж байна</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation>🛑 Limiteur de vitesse</translation>
+            <translation>🛑 Хурдны хязгаарлагч</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
-            <translation>🟩 Prêt</translation>
+            <translation>🟦 Бэлэн</translation>
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation>🔍 1 sélectionné</translation>
+            <translation>🔍 1 сонгогдсон</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation>🔍 %1 sélectionnés</translation>
+            <translation>🔍 %1 сонгогдсон</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation>🔴 DHT désactivé</translation>
+            <translation>🔴 DHT ажилгүй</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation>en ligne (faible confiance)</translation>
+            <translation>online (бага итгэмж)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation>en ligne</translation>
+            <translation>online</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 La file d'attente s'exécute dans 1 minute</translation>
+            <translation>🟧 1 минутын дараа ажиллана</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 La file d'attente s'exécute dans %1 minutes</translation>
+            <translation>🟧 %1 минутын дараа ажиллана</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Estimation… (%1%)</translation>
+            <translation>🟡 Тооцоолож байна… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation>Suivant &gt;&gt;</translation>
+            <translation>next &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation>Taux de partage de tout le temps
-Cliquez pour ouvrir les statistiques</translation>
+            <translation>Нийт хуваарь</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation>Cliquez pour copier l'IP</translation>
+            <translation>Статистикийг нээх</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation>IP publique :</translation>
+            <translation>IP хуулбарлах</translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation>Connexion : Ethernet</translation>
+            <translation>Олон нийтийн IP:</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation>WiFi :</translation>
+            <translation>Ethernet холбоо</translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation>Signal :</translation>
+            <translation>WiFi:</translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>Port d'écoute :</translation>
+            <translation>Сигнал:</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>Aucune connexion entrante, le réseau est peut-être mal configuré</translation>
+            <translation>Нээлттэй порт:</translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>Ирэх холбоо байхгүй, сүлжээ буруу тохируулагдсан</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>Stellar Download Manager</translation>
         </message>
     </context>
     <context>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter l'URL</translation>
+            <translation>URL нэмэх</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Дуусгах</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Зогсоох</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>Tout arrêter</translation>
+            <translation>Бүгдийг зогсоох</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Устгах</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>Supprimer terminé</translation>
+            <translation>Гүйцэтгэсэн устгах</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Тохируулга</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Бүрхүүлч</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>Дарааллыг эхлүүлэх</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>Дарааллыг зогсоох</translation>
         </message>
         <message>
             <source>Grabber</source>
-            <translation>Grabber</translation>
+            <translation>Үүсгэгч</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation>Moteur de recherche</translation>
+            <translation>Хайлтын систем</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4858,86 +4843,86 @@ Cliquez pour ouvrir les statistiques</translation>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation>Dupliquer le torrent</translation>
+            <translation>Дубляж тор</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation>Le torrent existe déjà</translation>
+            <translation>Тор аль хэдийн байгаа</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation>Ce torrent est déjà dans votre liste. %n nouveau(s) tracker(s) trouvé(s).</translation>
+            <translation>Тор таны жагсаалтад байгаа. %n шинэ хянагч олдлоо.</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation>Ce torrent est déjà dans votre liste avec les mêmes trackers.</translation>
+            <translation>Тор таны жагсаалтад ижил хянагчтайгаар байгаа.</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation>%n nouveau(s) tracker(s)</translation>
+            <translation>%n шинэ хянагч</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation>… et %1 autre(s)</translation>
+            <translation>… мөн %1 илүү</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation>Ignorer</translation>
+            <translation>Дуулах</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation>Fusionner les trackers</translation>
+            <translation>Tracker-г нэгтгэх</translation>
         </message>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Хадгалах</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation>Enregistrer sous...</translation>
+            <translation>Өөр нэрээр хадгалах...</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Ангилал</translation>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation>Dossier de sauvegarde personnalisé</translation>
+            <translation>Өөр хадгалалтын хавтас</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation>Se souvenir</translation>
+            <translation>Тэмдэглэх</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation>Utiliser le dossier de catégorie</translation>
+            <translation>Ангиллын хавтас ашиглах</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Тайлбар</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation>Torrent-ийн тохиргоо...</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Болих</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Үүсгэх</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation>Ouverture du torrent...</translation>
+            <translation>Torrent нээж байна...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
@@ -4945,172 +4930,172 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation>RTT %1 %2 % terminés</translation>
+            <translation>RTT %1 %2% гүйцсэн</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Файлууд</translation>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation>%n élément(s)</translation>
+            <translation>%n элемент</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Нэр</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>Уналт</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Хэмжээ</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>Файлын мэдээлэл байхгүй</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>Дарагдаж байна</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>Нэр солих</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>Шинэ файл эсвэл хавтасны нэр оруулна уу:</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Нэр солих</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Нэр солих...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>Холбогч</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation>Ouverture du torrent et lecture des métadonnées...</translation>
+            <translation>Торрентыг нээж, метадегтэйгээ уншиж байна...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation>Recherche de pairs pour télécharger les métadonnées...</translation>
+            <translation>Метадегтэй холбогчид хайж байна...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation>Téléchargement des métadonnées depuis %n pair(s)</translation>
+            <translation>%n холбогчаас метадегтэйгээ татаж байна...</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Seed</translation>
+            <translation>Тасалгааны</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>Та</translation>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation>Métadonnées du torrent</translation>
+            <translation>Torrent Metadata</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation>Installer un nouveau plugin de recherche</translation>
+            <translation>Шинэ хайлтын нэмэлт хэрэгсэл суурилуулах</translation>
         </message>
         <message>
             <source>Local File</source>
-            <translation>Fichier local</translation>
+            <translation>Дотоод файлын</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation>Lien Web</translation>
+            <translation>Вэб холбоос</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богинох</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Зөвшөөрөх</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation>Choisissez un fichier de plugin de recherche local .py à copier dans le dossier search_plugins.</translation>
+            <translation>Хайлтын нэмэлт хэрэгслийн .py файлыг сонгож, search_plugins хавтсанд хуулах</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation>Collez une URL directe vers un fichier de plugin .py.</translation>
+            <translation>Хайлтын нэмэлт хэрэгслийн .py файлыг шууд URL-ээр хуулах</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation>Installer un plugin de recherche</translation>
+            <translation>Хайлтын нэмэлт хэрэгсэл суурилуулах</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation>Désactiver le plugin</translation>
+            <translation>Нэмэлт хэрэгслийг идэвхгүй болгох</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation>Activer le plugin</translation>
+            <translation>Нэмэлт хэрэгслийг идэвхжүүлэх</translation>
         </message>
         <message>
             <source>Uninstall</source>
-            <translation>Désinstaller</translation>
+            <translation>Сүүдэрлэх</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation>Plugins de recherche installés</translation>
+            <translation>Суурилуулсан хайлтын нэмэлт хэрэгсэл</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>Шинэчлэх</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Тодорхойгүй</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>Идэвхтэй</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation>Désactivé</translation>
+            <translation>Идэвхгүй</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation>Installer un nouveau</translation>
+            <translation>Шинэ нэмэлт хэрэгсэл суурилуулах</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>Өгөгдлийн санг хайх</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Нэр</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Хэмжээ</translation>
         </message>
         <message>
             <source>Seeders</source>
@@ -5122,122 +5107,122 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation>Moteur</translation>
+            <translation>Хөдөлгүүр</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation>Publié le</translation>
+            <translation>Илгээсэн огноо</translation>
         </message>
         <message>
             <source>Open Description Page</source>
-            <translation>Ouvrir la page de description</translation>
+            <translation>Тайлбарыг нээх</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation>Torrent-ийг татах</translation>
         </message>
         <message>
             <source>Copy Name</source>
-            <translation>Copier le nom</translation>
+            <translation>Нэр хуулах</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>Магнит холбоо хуулах</translation>
         </message>
         <message>
             <source>Copy Description Page URL</source>
-            <translation>Copier l'URL de la page de description</translation>
+            <translation>Тайлбарын URL хуулах</translation>
         </message>
         <message>
             <source>Searching...</source>
-            <translation>Recherche en cours...</translation>
+            <translation>Хайж байна...</translation>
         </message>
         <message>
             <source>Search</source>
-            <translation>Rechercher</translation>
+            <translation>Хайх</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Тодорхойгүй</translation>
         </message>
         <message>
             <source>No search results yet</source>
-            <translation>Aucun résultat de recherche pour le moment</translation>
+            <translation>Хайлтын үр дүн байхгүй</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>Нэмэлт хайлт</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation>Moteur de recherche de torrents</translation>
+            <translation>Torrent хайлтын хөтөч</translation>
         </message>
     </context>
     <context>
         <name>TorrentSpeedLimitDialog</name>
         <message>
             <source>Torrent Settings</source>
-            <translation>Paramètres du torrent</translation>
+            <translation>Torrent тохируулга</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Vitesse par torrent, limites de partage, découverte des pairs et mode de téléchargement</translation>
+            <translation>Торрент тус бүрийн хурд, хуваалтын хязгаар, хамтрагч ололт, ачаалалын төрөл</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Хаах</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Хэрэгжүүлэх</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LIMITES DE BANDE PASSANTE</translation>
+            <translation>ХАЛДВАЛЫН ХЯЗГААР</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Téléchargement :</translation>
+            <translation>Ачаалал:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Envoi :</translation>
+            <translation>Тээвэрлэлт:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE</translation>
+            <translation>ХУВААЛТЫН ХЯЗГААР</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio :</translation>
+            <translation>Харьцаа:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>Үндсэн</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>Хязгааргүй</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>Тогтоох</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Durée de partage :</translation>
+            <translation>Хүрээлүүлэх хугацаа:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>мин</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Durée d'inactivité :</translation>
+            <translation>Идэвхгүй хугацаа:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>DÉCOUVERTE DES PAIRS</translation>
+            <translation>ХӨТӨӨЛӨӨ</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -5245,7 +5230,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Table de hachage distribuée</translation>
+            <translation>Хуваарилагдсан хэсгүүдийн хүснэгт</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -5253,7 +5238,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Échange de pairs</translation>
+            <translation>Хүсэгч солилцоо</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -5261,135 +5246,135 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Découverte locale de services</translation>
+            <translation>Дотоод үйлчилгээний нээлт</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privé</translation>
+            <translation>🔒 Хувийн torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT et PeX désactivés par libtorrent.</translation>
+            <translation>libtorrent-ээр DHT болон PeX-ийг хуурамч болгосон</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODE DE TÉLÉCHARGEMENT</translation>
+            <translation>САРГАХ РЕЖИМ</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Téléchargement séquentiel</translation>
+            <translation>Дараалсан саргалт</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Morceaux téléchargés dans l'ordre (morceau 0 → dernier)</translation>
+            <translation>Хэсгүүдийг дарааллаар саргалсан (0-р хэсгээс эхлэн)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioriser le premier et le dernier morceau</translation>
+            <translation>Эх бол төгсгөлийн хэсгүүдийг эрчимжүүлсэн</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Précharge l'en-tête/pied de page pour la lecture anticipée</translation>
+            <translation>Заавал дугаар, төгсгөлийг эхлүүлэх</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>Récupération des formats disponibles…</translation>
+            <translation>Хэрэглэх боломжит форматуудыг олох...</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>Видео мэдээллийг олох боломжгүй</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>Échec de la résolution du défi n-challenge de YouTube</translation>
+            <translation>YouTube-ийн n-чиглэлийн бодолт амжилтгүй боллоо</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>Récupération des informations vidéo…</translation>
+            <translation>Видео мэдээллийг авч байна...</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>Видео мэдээллийг авч чадахагүй байна</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>yt-dlp nécessite un environnement d'exécution JavaScript (Deno, Node.js, Bun ou QuickJS) pour contourner le défi de limitation d'URL de YouTube. Installez-en un et placez-le à côté de yt-dlp.exe ou dans votre PATH système.</translation>
+            <translation>yt-dlp-ийн YouTube-ийн URL-ийн хязгаарлалтыг шийдэхийн тулд JavaScript-ийн орчин (Deno, Node.js, Bun эсвэл QuickJS) шаардлагатай. Нэгэн нь суурилуулж, yt-dlp.exe-ийн хажууд эсвэл системийн PATH-д байрлуулна уу.</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>Aucun environnement d'exécution détecté. Installez Deno (recommandé) depuis deno.com, puis revérifiez dans Paramètres → Téléchargeur vidéo.</translation>
+            <translation>Хөдөлгүүрийн хугацаа тодорхойлогдоогүй байна. deno.com-аас Deno-г суурилуулж (зөвлөгөө), дараа нь Settings → Video Downloader-д буцаж шалгаарай.</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>Environnement d'exécution détecté : %1 (%2)</translation>
+            <translation>Ажиллаж буй хугацааг тодорхойлсон: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation>Obtenir Deno</translation>
+            <translation>Deno-гэж авч авах</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation>Ouvrir les paramètres</translation>
+            <translation>Тогтоолуудыг нээх</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>Браузерээс гарсан cookie:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation>Sélectionnez un navigateur pour transmettre ses cookies à yt-dlp, puis réessayez.</translation>
+            <translation>Браузрын талбарыг сонгож, түүнийгээ yt-dlp руу дамжуулж, дахин оролд.</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation>Réessayer</translation>
+            <translation>Дахин оролдох</translation>
         </message>
         <message>
             <source>Select quality:</source>
-            <translation>Sélectionner la qualité :</translation>
+            <translation>Чанар сонгох:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation>Taille indisponible — cette qualité utilise des flux vidéo et audio séparés fusionnés par ffmpeg après le téléchargement.</translation>
+            <translation>Хэмжээ байхгүй — энэ чанар нь тусдаа видео болон дууны урсгалыг ffmpeg-ээр нэгтгэн хадгална.</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation>Chaîne / Playlist</translation>
+            <translation>Загвар / Дүрэм</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation>Toutes les vidéos</translation>
+            <translation>Бүх видео</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation>Les plus récentes</translation>
+            <translation>Шинэ</translation>
         </message>
         <message>
             <source>videos</source>
-            <translation>vidéos</translation>
+            <translation>Видео</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation>Les URL de chaînes YouTube incluent par défaut tous les téléchargements. Utilisez Portée pour cibler un seul onglet.</translation>
+            <translation>YouTube-ийн загварын URL-үүдэд үүсгэсэн бүх агуулгыг үнэнээр авна. Хэсгийг ашиглан нэг хэсэгт чиглүүл.</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation>Les vidéos seront enregistrées dans un sous-dossier nommé d'après la chaîne.</translation>
+            <translation>Видеогуудыг загварын нэрээр нэрлэгдсэн дэд хавтсайд хадгалах.</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation>Portée :</translation>
+            <translation>Хэсэг:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Бүх агуулга</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation>Vidéos</translation>
+            <translation>Видео</translation>
         </message>
         <message>
             <source>Shorts</source>
@@ -5397,59 +5382,59 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Live</source>
-            <translation>En direct</translation>
+            <translation>Тодорхойлолт</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation>Sous-titres</translation>
+            <translation>Дууны текст</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation>Télécharger les fichiers de sous-titres avec la vidéo</translation>
+            <translation>Видео болон дууны текст татах</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>Хэл:</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation>Code(s) de langue, ex. en · en.*,ja · tous</translation>
+            <translation>Хэлний код, жишээ нь: en · en.*,ja · бүгд</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation>Généré automatiquement</translation>
+            <translation>Үүсгэгдсэн</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation>Inclure les sous-titres générés automatiquement si disponibles</translation>
+            <translation>Хэрэв байгаа бол үүсгэгдсэн дугаарыг оруулах</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation>Intégrer dans la vidéo</translation>
+            <translation>Видео руу оруулах</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation>Intégrer les sous-titres dans le conteneur vidéo</translation>
+            <translation>Дууны текстүүдийг видео руу оруулах</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation>L'intégration nécessite mp4, mkv ou webm</translation>
+            <translation>mp4, mkv, эсвэл webm шаардлагатай</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation>Intégrer la vignette</translation>
+            <translation>Хүрээлэн зураг оруулах</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation>Intégrer la miniature de couverture dans le fichier vidéo (nécessite ffmpeg)</translation>
+            <translation>ffmpeg шаардлагатай: видео файлд хавтгай зураг оруулах</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation>Intégrer les métadonnées</translation>
+            <translation>Метадатуудыг оруулах</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation>Écrire le titre, l'uploadé, les chapitres, etc. dans les métadonnées du conteneur</translation>
+            <translation>Нэр, агуулах, бүлгүүд зэргийг метадад бичих</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
@@ -5458,132 +5443,131 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation>Supprimer les segments sponsorisés, les génériques d'ouverture et de fermeture, ainsi que l'auto-promotion
-(Uniquement YouTube · nécessite ffmpeg)</translation>
+            <translation>Спонсорын хэсгүүдийг, нэвтрүүлэг, төгсгөлийг, өөрийгөө танилцуулгыг арилгах (YouTube-д л ажилна · ffmpeg шаардлагатай)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation>Ko/s (vide = utiliser la limite de vitesse globale)</translation>
+            <translation>KB/s (хүрээгүй бол ерөнхий хурдны хязгаарлалтыг ашиглана)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation>Télécharger la chaîne</translation>
+            <translation>Татах канал</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Татах</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Дэлгэрэнгүй</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation>filtre par date</translation>
+            <translation>Огнооны шүүлт</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation>cookies</translation>
+            <translation>Cookies</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation>archive</translation>
+            <translation>Архив</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation>diviser les chapitres</translation>
+            <translation>Бүлэг хуваах</translation>
         </message>
         <message>
             <source>time range</source>
-            <translation>plage horaire</translation>
+            <translation>Хугацааны муж</translation>
         </message>
         <message>
             <source>extra files</source>
-            <translation>fichiers supplémentaires</translation>
+            <translation>Нэмэлт файлууд</translation>
         </message>
         <message>
             <source>random</source>
-            <translation>aléatoire</translation>
+            <translation>Харилцан</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation>début en direct</translation>
+            <translation>Тогтох</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation>limite de débit</translation>
+            <translation>Хязгаарлалт</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation>Date après :</translation>
+            <translation>Дараах огноо:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation>Seulement les vidéos téléchargées à partir de cette date</translation>
+            <translation>Энэ өдрийн дараа хуурамч</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation>Cookies :</translation>
+            <translation>Кукис:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation>Charger les cookies pour le contenu réservé aux membres / restreint par l'âge</translation>
+            <translation>Хүсэлтэй контентын кукис</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation>Limite de débit :</translation>
+            <translation>Хязгаарлалт:</translation>
         </message>
         <message>
             <source>Time range:</source>
-            <translation>Plage horaire :</translation>
+            <translation>Хугацааны муж:</translation>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
-            <translation>Télécharger uniquement cette section, ex. *01:30-03:00</translation>
+            <translation>Зөвхөн энэ хэсгийг татах</translation>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation>Ignorer les fichiers déjà téléchargés</translation>
+            <translation>Татагдсан зүйлсийг алдахгүй</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation>Diviser par chapitres</translation>
+            <translation>Бүлгээр хуваах</translation>
         </message>
         <message>
             <source>Save description</source>
-            <translation>Enregistrer la description</translation>
+            <translation>Тайлбарыг хадгалах</translation>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation>Enregistrer la miniature</translation>
+            <translation>Хүрээлгүүрийг хадгалах</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation>Mélanger la playlist</translation>
+            <translation>Хуваарийг хавхал</translation>
         </message>
         <message>
             <source>Live: from start</source>
-            <translation>En direct : depuis le début</translation>
+            <translation>Ан: эхлэлээс</translation>
         </message>
         <message>
             <source>Save to:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>Хадгалах:</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>Ангилал:</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation>Format :</translation>
+            <translation>Формат:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Богинох</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation>Téléchargement vidéo</translation>
+            <translation>Видео буулгах</translation>
         </message>
     </context>
 </TS>

@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TS version="2.1" language="fr_FR" sourcelanguage="en_US">
+<TS version="2.1" language="hu_HU" sourcelanguage="en_US">
     <context>
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>Ajouter aux exceptions d'adresse ?</translation>
+            <translation>Címzett-kivétel hozzáadása?</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>Cette adresse a été annulée deux fois. Voulez-vous l'ajouter à la liste des exceptions afin que Stellar ne l'intercepte plus automatiquement ?</translation>
+            <translation>Ezt a címet kétszer törölték. Hozzáadja a kivételek listájához, hogy a Stellar soha ne foglalkozzon vele automatikusan?</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Nem</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>Ajouter l'exception</translation>
+            <translation>Kivétel hozzáadása</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>Ajouter une exception d'adresse</translation>
+            <translation>Címzett-kivétel hozzáadása</translation>
         </message>
     </context>
     <context>
@@ -31,19 +31,19 @@
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>Hitelesítés használata</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Identifiant</translation>
+            <translation>Bejelentkezés</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Jelszó</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>OK</source>
@@ -51,121 +51,117 @@
         </message>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter une URL</translation>
+            <translation>URL hozzáadása</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation>Stellar Gestionnaire de téléchargement v</translation>
+            <translation>Stellar Download Manager v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation>
-Bas : %1  Haut : %2</translation>
+            <translation>Le: %1  Fel: %2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation>
-Téléchargement : %1</translation>
+            <translation>Letöltés: %1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation>  Partage : %1</translation>
+            <translation>Megosztás: %1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation>
-Partage : %1</translation>
+            <translation>Megosztás: %1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation>  Total : %1</translation>
+            <translation>Összesen: %1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation>
-Total : %1</translation>
+            <translation>Összesen: %1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>Stellar est en cours d'arrêt...</translation>
+            <translation>A Stellar leállítása...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>Stellar démarre...</translation>
+            <translation>A Stellar indítása...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Lié à %1</translation>
+            <translation>🛡️ Kapcsolva: %1</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>Téléchargement par lots</translation>
+            <translation>Tömeges letöltés</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>Générez les liens ici, puis passez à l'étape de révision.</translation>
+            <translation>Hozza létre a linkeket, majd folytassa a felülvizsgálattal.</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation>Adresse :</translation>
+            <translation>Cím:</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation>Remplacer l'astérisque par</translation>
+            <translation>Csere csillagjára</translation>
         </message>
         <message>
             <source>Numbers</source>
-            <translation>Nombres</translation>
+            <translation>Számok</translation>
         </message>
         <message>
             <source>Letters</source>
-            <translation>Lettres</translation>
+            <translation>Betűk</translation>
         </message>
         <message>
             <source>From:</source>
-            <translation>De :</translation>
+            <translation>Től:</translation>
         </message>
         <message>
             <source>To:</source>
-            <translation>À :</translation>
+            <translation>Igáig:</translation>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation>Taille du joker :</translation>
+            <translation>Vadkár méret:</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>Előnézet</translation>
         </message>
         <message>
             <source>First: %1</source>
-            <translation>Premier : %1</translation>
+            <translation>Első: %1</translation>
         </message>
         <message>
             <source>Second: %1</source>
-            <translation>Deuxième : %1</translation>
+            <translation>Második: %1</translation>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation>Dernier : %1</translation>
+            <translation>Utolsó: %1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation>Utilisez l'étape de file d'attente après OK si vous souhaitez regrouper ces téléchargements avant leur démarrage.</translation>
+            <translation>OK után a sorrendben végrehajtás</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>OK</source>
@@ -176,58 +172,58 @@ Total : %1</translation>
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Fájlnév</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Méret</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Státusz</translation>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Vérifiez les liens avant de les ajouter. Les colonnes peuvent être triées, redimensionnées et déplacées pour changer l'ordre.</translation>
+            <translation>Néze a linkeket hozzáadás előtt. Az oszlopok rendezhetők, méretezhetők és húzhatók.</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation>Remplacer les noms de fichiers par un motif générique (*)</translation>
+            <translation>Fájlnév helyett kódszimbólum (*) használata</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Fájlok</translation>
         </message>
         <message>
             <source>Check all</source>
-            <translation>Tout cocher</translation>
+            <translation>Minden jelölése</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation>Tout décocher</translation>
+            <translation>Jelölések törlése</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Seuls les liens marqués « Trouvé » sont sélectionnables. L’attribution à la file d’attente se fait après confirmation.</translation>
+            <translation>Csak a 'Talált' linkek választhatók. A sorozat hozzáadása az OK után történik.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>Projet</translation>
+            <translation>Rendben</translation>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation>Revue du téléchargement par lots</translation>
+            <translation>Tömeges letöltés áttekintése</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation>Installez l’extension Stellar dans votre navigateur pour intercepter les téléchargements et les router automatiquement vers Stellar.</translation>
+            <translation>Stellar bővítmény telepítése a böngészőben a letöltések átirányításához.</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
@@ -235,11 +231,11 @@ Total : %1</translation>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation>Installer directement depuis le Chrome Web Store</translation>
+            <translation>Telepítés a Chrome Web Store-ból</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation>Ouvrir le lien</translation>
+            <translation>Link megnyitása</translation>
         </message>
         <message>
             <source>Firefox</source>
@@ -247,121 +243,121 @@ Total : %1</translation>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation>Installer le fichier XPI Firefox, mises à jour non automatiques</translation>
+            <translation>Firefox XPI telepítése, automatikus frissítések nélkül</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation>Hôte de messagerie native</translation>
+            <translation>Helyi üzenetküldési gazda</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation>Stellar s’enregistre automatiquement afin que l’extension puisse communiquer avec lui.</translation>
+            <translation>A Stellar automatikusan regisztrálta magát a kommunikációhoz.</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation>Inscription réussie.</translation>
+            <translation>Sikeres regisztráció.</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation>L'inscription a échoué — voir les détails ci-dessous.</translation>
+            <translation>Sikertelen regisztráció – részletek alább.</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation>Inscription en cours…</translation>
+            <translation>Regisztrálás…</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation>Réessayer</translation>
+            <translation>Próbálja újra</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation>Installation manuelle :</translation>
+            <translation>Manuális telepítés:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation>Exécuter dans l'invite de commandes (aucun droit d'administrateur requis) :</translation>
+            <translation>Futtatás parancssorban (admin nem szükséges):</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>Másolás</translation>
         </message>
         <message>
             <source>Copied</source>
-            <translation>Copié</translation>
+            <translation>Másolva</translation>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation>Exécuter dans un terminal :</translation>
+            <translation>Futtatás terminálban:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation>Extensions de navigateur</translation>
+            <translation>Böngésző kiegészítők</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Minden letöltés</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation>Vidéo</translation>
+            <translation>Videó</translation>
         </message>
         <message>
             <source>Music</source>
-            <translation>Musique</translation>
+            <translation>Zene</translation>
         </message>
         <message>
             <source>Documents</source>
-            <translation>Documents</translation>
+            <translation>Dokumentumok</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation>Archives</translation>
+            <translation>Tömörített</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>Programmes</translation>
+            <translation>Programok</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation>Colonnes</translation>
+            <translation>Oszlopok</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation>Cochez les colonnes que vous souhaitez afficher dans cette liste. Utilisez les boutons Déplacer vers le haut et Déplacer vers le bas pour les réorganiser comme vous le souhaitez.</translation>
+            <translation>Oszlopok kijelölése. Használja a Mozat fel és Mozat le gombokat a sorrendezéshez.</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation>Déplacer vers le haut</translation>
+            <translation>Fel</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation>Déplacer vers le bas</translation>
+            <translation>Le</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation>Afficher</translation>
+            <translation>Megjelenítés</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation>Masquer</translation>
+            <translation>Elrejtés</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation>Réinitialiser</translation>
+            <translation>Reset</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation>La colonne sélectionnée doit être</translation>
+            <translation>A kiválasztott oszlop</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation>pixels de large</translation>
+            <translation>kézpont</translation>
         </message>
         <message>
             <source>OK</source>
@@ -369,159 +365,159 @@ Total : %1</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation>Confirmer la suppression</translation>
+            <translation>Törlés megerősítése</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation>Supprimer le téléchargement ?</translation>
+            <translation>Letöltés törlése?</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation>Supprimer également les fichiers torrent du disque</translation>
+            <translation>Torrent fájlok törlése is</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation>Supprimer également le fichier du disque</translation>
+            <translation>Fájl törlése is</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation>Supprimer définitivement (ne pas déplacer vers la corbeille)</translation>
+            <translation>Végleges törlés (nem a kosárba)</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation>Supprimer les téléchargements terminés</translation>
+            <translation>Fejezett letöltések törlése</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Êtes-vous sûr de vouloir supprimer tous les téléchargements terminés de la liste de Stellar ?</translation>
+            <translation>Biztosan törli az összes fejezett letöltést a Stellar listájáról?</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Remarque : Cela les supprimera uniquement de la liste. Les fichiers sur le disque ne seront pas supprimés.</translation>
+            <translation>Megjegyzés: Csak a listáról távolítja el őket. A lemezen lévő fájlok nem kerülnek törlésre.</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation>Supprimer les torrents terminés et en seeding</translation>
+            <translation>Fejezett és magolási torrentek törlése</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>Igen</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Nem</translation>
         </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation>Téléchargement terminé</translation>
+            <translation>Letöltés kész</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Téléchargé %1 (%2 octets)</translation>
+            <translation>%1 letöltve (%2 byte)</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>Cím</translation>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation>Le fichier a été enregistré sous</translation>
+            <translation>A fájl elmentése</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
-            <translation>Le fichier a été déplacé.</translation>
+            <translation>A fájl áthelyezve</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>Megnyitás</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation>Ouvrir avec...</translation>
+            <translation>Megnyitás ezzel...</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Mappa megnyitása</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation>Ne plus afficher cette boîte de dialogue</translation>
+            <translation>Ne jelenítsen meg újra</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation>Vous pouvez réactiver cette option dans Paramètres → Général → Afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>Újraindítása a Beállítások → Általános → Letöltés befejezésekor megjelenítéseként</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation>Faites glisser le fichier pour le déplacer ailleurs</translation>
+            <translation>Húzza a fájlt egy másik helyre</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation>Informations sur le fichier téléchargé</translation>
+            <translation>Fájl letöltése</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
-            <translation>Ajout d'une catégorie à la liste des catégories Stellar</translation>
+            <translation>Kategória hozzáadása a Stellar kategóriákhoz</translation>
         </message>
         <message>
             <source>Category name</source>
-            <translation>Nom de la catégorie</translation>
+            <translation>Kategória neve</translation>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation>Placer automatiquement dans cette catégorie les types de fichiers suivants :</translation>
+            <translation>Automatikusan a következő fájltípusok ide kerülnek:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation>Remarque : séparez les extensions de fichier par des espaces (ex. avi mpg mpeg)</translation>
+            <translation>Megjegyzés: fájlkiterjesztéseket szóközzel válassza el (pl. avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation>Placer automatiquement dans cette catégorie les fichiers provenant uniquement des sites suivants :</translation>
+            <translation>Automatikusan csak a következő oldalakról kerülnek ide a fájlok:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation>Séparez les sites par des espaces. Vous pouvez utiliser l'astérisque comme motif générique</translation>
+            <translation>Oldalak között szóközzel válassza el. Használhat csillagot (*) mint helykitöltőt.</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation>Enregistrer les futurs téléchargements de cette catégorie dans le dossier suivant :</translation>
+            <translation>A kategória jövőbeli letöltéseit mentse a következő mappába:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation>Mémoriser le dernier chemin d'enregistrement</translation>
+            <translation>Emlékezzen az utolsó mentési útvonalra</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>Böngészés...</translation>
         </message>
         <message>
             <source>OK</source>
@@ -529,7 +525,7 @@ Total : %1</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>URL</source>
@@ -537,177 +533,177 @@ Total : %1</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Kategória</translation>
         </message>
         <message>
             <source>Save As</source>
-            <translation>Enregistrer sous</translation>
+            <translation>Mentés másként</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation>Mémoriser ce chemin pour la catégorie « %1 »</translation>
+            <translation>Emlékezzen erre az útvonalra a &quot;%1&quot; kategóriához</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Leírás</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Későbbi letöltés</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation>Démarrer le téléchargement</translation>
+            <translation>Letöltés indítása</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>Várólistán</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>Ellenőrzés</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Áthelyezés</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage</translation>
+            <translation>Megosztás</translation>
         </message>
         <message>
             <source>Paused</source>
-            <translation>En pause</translation>
+            <translation>Szüneteltetve</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>Összeállítás...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation>Terminé</translation>
+            <translation>Kész</translation>
         </message>
         <message>
             <source>Error</source>
-            <translation>Erreur</translation>
+            <translation>Hiba</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Ismeretlen</translation>
         </message>
     </context>
     <context>
         <name>DownloadProgressDialog</name>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Receiving data...</source>
-            <translation>Réception des données...</translation>
+            <translation>Adat fogadása...</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>Összeállítás...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation>État du téléchargement</translation>
+            <translation>Letöltés állapota</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Sebesség korlátozó</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>Lezárás opciói</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation>&gt;&gt; Envoyer dans la zone de notification</translation>
+            <translation>&gt;&gt;  Tálca küldése</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>Rögzítés a tálcára</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Állapot</translation>
         </message>
         <message>
             <source>File size</source>
-            <translation>Taille du fichier</translation>
+            <translation>Fájlméret</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Letöltött</translation>
         </message>
         <message>
             <source>%1  ( %2% )</source>
-            <translation>%1 ( %2% )</translation>
+            <translation>%1 (%2%)</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation>Débit de transfert</translation>
+            <translation>Átviteli sebesség</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation>(Limité à %1)</translation>
+            <translation>(Korlátozott %1)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>Maradék idő</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation>Capacité de reprise</translation>
+            <translation>Folytatás</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>Igen</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>Nem</translation>
         </message>
         <message>
             <source>Error detail</source>
-            <translation>Détail de l'erreur</translation>
+            <translation>Hiba részlete</translation>
         </message>
         <message>
             <source>Assembling... %1%</source>
-            <translation>Assemblage... %1%</translation>
+            <translation>Összeállítás... %1%</translation>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation>« Masquer les détails</translation>
+            <translation>🔍 Részletek elrejtése</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation>» Afficher les détails</translation>
+            <translation>Részletek</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>Indítás</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation>Pause</translation>
+            <translation>Szünet</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation>Positions de départ et progression du téléchargement par connexion</translation>
+            <translation>Kapcsolatok</translation>
         </message>
         <message>
             <source>N.</source>
@@ -715,269 +711,269 @@ Total : %1</translation>
         </message>
         <message>
             <source>Info</source>
-            <translation>Info</translation>
+            <translation>Információ</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation>Limiter le débit de transfert pour ce téléchargement</translation>
+            <translation>Átviteli sebesség korlát</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation>Activer la limite par téléchargement</translation>
+            <translation>Letöltési korlát engedélyezése</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation>Maximum :</translation>
+            <translation>Maximum:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
-            <translation>ex. 100</translation>
+            <translation>pl. 100</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation>Limite globale active : %1 Ko/s</translation>
+            <translation>Globális korlát aktív: %1 KB/s</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation>Aucune limite globale définie</translation>
+            <translation>Nincs globális korlát</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation>Paramètres du limiteur de vitesse global…</translation>
+            <translation>Globális sebességkorlátozás beállításai...</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>Beállítások befejezés után</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation>Ouvrir le fichier une fois terminé</translation>
+            <translation>Fájl megnyitása készlet</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation>Ouvrir le dossier une fois terminé</translation>
+            <translation>Mappa megnyitása készlet</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Gép leállítása készlet</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation>Ces options sont temporaires et s'appliquent uniquement à ce téléchargement ; elles sont désactivées par défaut à chaque fois.</translation>
+            <translation>Ezek az opciók ideiglenesek, csak az aktuális letöltésre vonatkoznak, és minden alkalommal ki vannak kapcsolva.</translation>
         </message>
     </context>
     <context>
         <name>DownloadTable</name>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Átnevezés</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation>Propriétés</translation>
+            <translation>Tulajdonságok</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Fájl megnyitása</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Mappa megnyitása</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Átnevezés...</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation>Copier le nom du fichier</translation>
+            <translation>Név másolása</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>.torrent exportálása...</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Folytatás</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Leállítás</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation>Retirer de la file d'attente</translation>
+            <translation>Keretből törlés</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>Újratöltés</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation>Paramètres des colonnes</translation>
+            <translation>Oszlopok beállítása</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Fájlnév</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Méret</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Állapot</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>Maradék idő</translation>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>Letöltési sebesség</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>Feltöltési sebesség</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>Seederek</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>Peer-ek</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>Ratio</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Feltöltve</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Letöltve</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation>Date du dernier essai</translation>
+            <translation>Utolsó próbálkozás</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Leírás</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Mentés</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>Referens</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation>Page web parente</translation>
+            <translation>Szülő weboldal</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>Függőben</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation>%1% (Arrêté)</translation>
+            <translation>%1%% (Leállítva)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
-            <translation>Vérification (%1%)</translation>
+            <translation>Ellenőrzés (%1%%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation>%n fichier(s)</translation>
+            <translation>%n fájl</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation>Aucun téléchargement correspondant.</translation>
+            <translation>Nincs egyező letöltés</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation>Aucun téléchargement pour le moment.
-Cliquez sur Ajouter une URL pour commencer.</translation>
+            <translation>Nincs még letöltés.
+Kattintson az Add URL gombra az indításhoz.</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation>Chargement de %n téléchargement(s)…</translation>
+            <translation>Betöltés %n letöltés...</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation>Déplacer vers la file d'attente</translation>
+            <translation>Sorba helyezés</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>Magnet link másolása</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>URL másolása</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation>%n téléchargement(s) sélectionné(s)</translation>
+            <translation>%n letöltés kiválasztva</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation>Dupliquer le lien de téléchargement</translation>
+            <translation>Duplikált letöltési link</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation>Ce fichier existe déjà dans votre liste de téléchargements.</translation>
+            <translation>Ez a fájl már létezik a letöltési listában.</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation>Vous pouvez choisir l'une des options suivantes, ou appuyer sur Annuler pour ignorer le téléchargement.</translation>
+            <translation>Válasszon egy opciót, vagy nyomja meg a Mégse-t a letöltés kihagyásához.</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation>Ajouter le doublon avec un nom de fichier numéroté</translation>
+            <translation>Duplikátum hozzáadása sorszámmal a fájlnevéhez</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation>Ajouter le doublon et écraser le fichier existant</translation>
+            <translation>Duplikátum hozzáadása és a meglévő fájl felülírása</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation>Le fichier existant est complet - afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>A meglévő fájl kész – a letöltés készletének ablaka megjelenítése</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation>Reprendre le téléchargement existant</translation>
+            <translation>A meglévő letöltés folytatása</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation>Mémoriser ma sélection et ne plus afficher cette boîte de dialogue.
-Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</translation>
+            <translation>Emlékezzen a választásra és ne mutassa újra ezt az ablakot.
+Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>OK</source>
@@ -988,103 +984,103 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation>Déplacer les données du torrent vers...</translation>
+            <translation>Torrent adatok áthelyezése...</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation>Déplacer le fichier vers...</translation>
+            <translation>Fájl áthelyezése...</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>Indítás</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Leállítás</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Mappa megnyitása</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Fájl megnyitása</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Állapot</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Méret</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Mentés</translation>
         </message>
         <message>
             <source>Move</source>
-            <translation>Déplacer</translation>
+            <translation>Áthelyezés</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>Cím</translation>
         </message>
         <message>
             <source>Web page</source>
-            <translation>Page Web</translation>
+            <translation>Weboldal</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>Referer</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Leírás</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>Bejelentkezés</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Jelszó</translation>
         </message>
         <message>
             <source>Source</source>
-            <translation>Source</translation>
+            <translation>Forrás</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation>Hash d'information</translation>
+            <translation>Info hash</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>Másolás</translation>
         </message>
         <message>
             <source>Metadata</source>
-            <translation>Métadonnées</translation>
+            <translation>Metaadatok</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Kategória</translation>
         </message>
         <message>
             <source>Note</source>
-            <translation>Note</translation>
+            <translation>Megjegyzés</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Letöltve</translation>
         </message>
         <message>
             <source>Country</source>
-            <translation>Pays</translation>
+            <translation>Ország</translation>
         </message>
         <message>
             <source>Port</source>
@@ -1092,287 +1088,287 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Feltöltve</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>Magok</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation>Message</translation>
+            <translation>Üzenet</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>Leállítva</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Áthelyezés</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>Megosztás</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>Várólista</translation>
         </message>
         <message>
             <source>Problem</source>
-            <translation>Problème</translation>
+            <translation>Hiba</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation>Torrent beállítások...</translation>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation>ETA : %1</translation>
+            <translation>Becsült idő: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation>Graines : %1 (%2)</translation>
+            <translation>Magok: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation>Pairs : %1 (%2)</translation>
+            <translation>Társaik: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>Általános</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Fájlok</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation>Carte du swarm</translation>
+            <translation>Csoport térkép</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation>Carte des pièces</translation>
+            <translation>Darab térkép</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation>Gaspillé</translation>
+            <translation>Elpazarolt</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>Feltöltés</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation>Connexions</translation>
+            <translation>Kapcsolatok</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation>Ratio de partage</translation>
+            <translation>Megosztási arány</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation>Morceaux</translation>
+            <translation>Darabok</translation>
         </message>
         <message>
             <source>Availability</source>
-            <translation>Disponibilité</translation>
+            <translation>Elérhetőség</translation>
         </message>
         <message>
             <source>Active time</source>
-            <translation>Temps actif</translation>
+            <translation>Aktív idő</translation>
         </message>
         <message>
             <source>Seed time</source>
-            <translation>Temps de partage</translation>
+            <translation>Maga idő</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation>Limite de vitesse</translation>
+            <translation>Sebességkorlát</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation>Vérifier les données locales</translation>
+            <translation>Helyi adat ellenőrzése</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation>Téléchargement</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation>Téléversement</translation>
+            <translation>Feltöltés</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation>Étendue</translation>
+            <translation>Távolság</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Név</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>Haladás</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>Nincs fájlinformáció</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>Átnevezés</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>Adja meg a fájlt vagy mappát:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Átnevezés</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Átnevezés...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation>Aucun pair connecté</translation>
+            <translation>Nincs csatlakozott peer</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation>Informations sur le pair</translation>
+            <translation>Peer információ</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>Peer tiltása</translation>
         </message>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>Kapcsolat</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>Forrás: %1</translation>
         </message>
         <message>
             <source>Role: %1</source>
-            <translation>Rôle : %1</translation>
+            <translation>Szerep: %1</translation>
         </message>
         <message>
             <source>Seeder</source>
-            <translation>Seeder</translation>
-        </message>
-        <message>
-            <source>Ping: %1</source>
-            <translation>Ping : %1</translation>
-        </message>
-        <message>
-            <source>Progress: %1%</source>
-            <translation>Progression : %1%</translation>
-        </message>
-        <message>
-            <source>Transfer</source>
-            <translation>Transfert</translation>
-        </message>
-        <message>
-            <source>Down: %1</source>
-            <translation>Téléchargement : %1</translation>
-        </message>
-        <message>
-            <source>Up: %1</source>
-            <translation>Haut : %1</translation>
-        </message>
-        <message>
-            <source>Total down: %1</source>
-            <translation>Total téléchargé : %1</translation>
-        </message>
-        <message>
-            <source>Total up: %1</source>
-            <translation>Total envoyé : %1</translation>
-        </message>
-        <message>
-            <source>Location</source>
-            <translation>Emplacement</translation>
-        </message>
-        <message>
-            <source>Client: %1</source>
-            <translation>Client : %1</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Vous</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Pair</translation>
-        </message>
-        <message>
-            <source>Flags</source>
-            <translation>Drapeaux</translation>
-        </message>
-        <message>
-            <source>Ban Peer</source>
-            <translation>Bannir le pair</translation>
-        </message>
-        <message>
-            <source>Legend:</source>
-            <translation>Légende :</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Inactif</translation>
-        </message>
-        <message>
-            <source>Trackers</source>
-            <translation>Trackers</translation>
-        </message>
-        <message>
-            <source>Seed</source>
             <translation>Seed</translation>
         </message>
         <message>
+            <source>Ping: %1</source>
+            <translation>Ping: %1</translation>
+        </message>
+        <message>
+            <source>Progress: %1%</source>
+            <translation>Haladás: %1%</translation>
+        </message>
+        <message>
+            <source>Transfer</source>
+            <translation>Átvitel</translation>
+        </message>
+        <message>
+            <source>Down: %1</source>
+            <translation>Letöltés: %1</translation>
+        </message>
+        <message>
+            <source>Up: %1</source>
+            <translation>Feltöltés: %1</translation>
+        </message>
+        <message>
+            <source>Total down: %1</source>
+            <translation>Összes letöltés: %1</translation>
+        </message>
+        <message>
+            <source>Total up: %1</source>
+            <translation>Összesen: %1</translation>
+        </message>
+        <message>
+            <source>Location</source>
+            <translation>Hely</translation>
+        </message>
+        <message>
+            <source>Client: %1</source>
+            <translation>Kliens: %1</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Te</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Peer</translation>
+        </message>
+        <message>
+            <source>Flags</source>
+            <translation>Zászlók</translation>
+        </message>
+        <message>
+            <source>Ban Peer</source>
+            <translation>Peer tiltása</translation>
+        </message>
+        <message>
+            <source>Legend:</source>
+            <translation>Jelmagyarázat:</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Inaktív</translation>
+        </message>
+        <message>
+            <source>Trackers</source>
+            <translation>Nyomkövetők</translation>
+        </message>
+        <message>
+            <source>Seed</source>
+            <translation>Mag</translation>
+        </message>
+        <message>
             <source>Tracker</source>
-            <translation>Tracker</translation>
+            <translation>Követő</translation>
         </message>
         <message>
             <source>Tier</source>
-            <translation>Niveau</translation>
+            <translation>Szint</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>Társak</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation>0 pairs connus</translation>
+            <translation>0 ismert társ</translation>
         </message>
         <message>
             <source>UL</source>
-            <translation>UL</translation>
+            <translation>Feltöltés</translation>
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation>Téléchargé %1  Envoyé %2</translation>
+            <translation>Le %1  Fel %2</translation>
         </message>
         <message>
             <source>RTT %1</source>
-            <translation>RTT %1</translation>
+            <translation>Késleltetés %1</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
@@ -1380,59 +1376,59 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation>Ping %1  %2 % terminé</translation>
+            <translation>Ping %1  %2% kész</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Ismeretlen</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation>Vous (ce client)</translation>
+            <translation>Te</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation>Aucun pair connecté à tracer</translation>
+            <translation>Nincs csatlakozott peer a térképhez</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation>En attente de votre adresse IP publique pour afficher la position sur la carte locale</translation>
+            <translation>Várjuk a nyilvános IP-címedet a helymeghatározáshoz</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation>Forcer la réannonce</translation>
+            <translation>Újrajelentkezés kényszerítése</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>URL másolása</translation>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation>Supprimer le tracker</translation>
+            <translation>Tracker eltávolítása</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation>Réannoncer tout</translation>
+            <translation>Újrajelentkezés mind</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation>Coller les URL des trackers - une par ligne. Les lignes commençant par # sont ignorées.</translation>
+            <translation>Tracker URL-ek beillesztése - soronként egy. A #-val kezdődő sorok figyelmen kívül hagyásra kerülnek.</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Hozzáadás</translation>
         </message>
         <message>
             <source>No trackers</source>
-            <translation>Aucun tracker</translation>
+            <translation>Nincs tracker</translation>
         </message>
         <message>
             <source>Web Seeds</source>
-            <translation>Web Seeds</translation>
+            <translation>Web magok</translation>
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation>Coller les URL des web seeds - une par ligne. Les seeds URL (BEP-19) et les seeds HTTP (BEP-17) sont tous deux acceptés.</translation>
+            <translation>Web mag URL-ek beillesztése - soronként egy. URL (BEP-19) és HTTP (BEP-17) magok is elfogadottak.</translation>
         </message>
         <message>
             <source>URL</source>
@@ -1440,517 +1436,517 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Type</source>
-            <translation>Type</translation>
+            <translation>Típus</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation>Aucun web seed</translation>
+            <translation>Nincs web mag</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>Megnyitás böngészőben</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation>Supprimer le seed</translation>
+            <translation>Mag eltávolítása</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation>Terminé</translation>
+            <translation>Kész</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation>Client</translation>
+            <translation>Kliens</translation>
         </message>
         <message>
             <source>DL</source>
-            <translation>DL</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Both</source>
-            <translation>Les deux</translation>
+            <translation>Mindkettő</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation>Vitesse</translation>
+            <translation>Sebesség</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation>Disponible</translation>
+            <translation>Elérhető</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation>Distance : %1</translation>
+            <translation>Távolság: %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation>Pays : %1</translation>
+            <translation>Ország: %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>%1 pairs connus</translation>
+            <translation>%1 ismert csomópont</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>%n tracker(s)</translation>
+            <translation>%n nyomonkövető</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>Annoncez à tous les trackers votre présence immédiate, au lieu d'attendre l'intervalle d'annonce normal. Utile si votre nombre de pairs a chuté soudainement.</translation>
+            <translation>Jelentkezzen minden nyomonkövetőhöz azonnal, ne várja a normális bejelentési intervallumot. Hasznos, ha a csomópontok száma hirtelen csökken.</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>Réannonce en cours...</translation>
+            <translation>Újrajelentkezés...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation>Ajouter des trackers…</translation>
+            <translation>Nyomkövetők hozzáadása…</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation>%1 ajouté</translation>
+            <translation>%1 hozzáadva</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation>%1 ajouté, %2 échoué</translation>
+            <translation>%1 hozzáadva, %2 sikertelen</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation>%n seed(s)</translation>
+            <translation>%n csírázó</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation>Ajouter un seed…</translation>
+            <translation>Csírázó hozzáadása…</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation>Récupération depuis le swarm...</translation>
+            <translation>Származás lekérése…</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation>Propriétés du torrent</translation>
+            <translation>Torrent tulajdonságok</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation>Vérification des fichiers</translation>
+            <translation>Fájlok ellenőrzése</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation>Propriétés du fichier</translation>
+            <translation>Fájl tulajdonságok</translation>
         </message>
     </context>
     <context>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>Keresés</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>Keresés</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Chercher dans :</translation>
+            <translation>Keresés a:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>Fájlnév vagy rész</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation>Description ou partie de la description</translation>
+            <translation>Leírás vagy rész</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation>Nom du site / lien de téléchargement / page web parente / référent</translation>
+            <translation>Weboldal neve / letöltési link / szülőoldal / referens</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>Egyezzen az eset</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière</translation>
+            <translation>Csak teljes string</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation>Aucun résultat trouvé.</translation>
+            <translation>Nincs találat.</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation>1 résultat trouvé.</translation>
+            <translation>1 találat.</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation>%1 résultats trouvés.</translation>
+            <translation>%1 találat.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
     </context>
     <context>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation>Projet enregistré.</translation>
+            <translation>Projekt mentve.</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation>Le nom du projet et la page de démarrage sont requis.</translation>
+            <translation>A projektnevet és az induló oldalt meg kell adni.</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Étape %1 sur %2 : %3</translation>
+            <translation>Stellar Grabber – %1. lépés %2-ből: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
-            <translation>Définir la page de démarrage</translation>
+            <translation>Induló oldal beállítása</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation>Enregistrer les fichiers dans</translation>
+            <translation>Fájlok mentése ide</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation>Définir les filtres de l'explorateur</translation>
+            <translation>Keresőszűrők beállítása</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation>Définir les filtres de fichiers</translation>
+            <translation>Fájlszűrők beállítása</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation>Paramètres personnalisés</translation>
+            <translation>Egyéni beállítások</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation>Toutes les images d'un site web</translation>
+            <translation>Az összes kép egy weboldalról</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation>Toutes les vidéos d'un site web</translation>
+            <translation>Weboldal videó</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation>Tous les audios d'un site web</translation>
+            <translation>Weboldal hang</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation>Site web complet</translation>
+            <translation>Teljes weboldal</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation>Inclure les filtres</translation>
+            <translation>Szűrők be</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation>Exclure les filtres</translation>
+            <translation>Szűrők ki</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation>Nom du modèle</translation>
+            <translation>Sablon neve</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Mentés</translation>
         </message>
         <message>
             <source>New</source>
-            <translation>Nouveau</translation>
+            <translation>Új</translation>
         </message>
         <message>
             <source>Load</source>
-            <translation>Charger</translation>
+            <translation>Betöltés</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation>Enregistrer les paramètres actuels en tant que modèle</translation>
+            <translation>Mentés sablonként</translation>
         </message>
         <message>
             <source>Recent Projects</source>
-            <translation>Projets récents</translation>
+            <translation>Legutóbbi projektek</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>Beállítások</translation>
         </message>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>Projekt</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Opciók</translation>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation>Nom du projet du grabber</translation>
+            <translation>Projekt neve</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation>Page d'accueil / Adresse</translation>
+            <translation>Kezdőlap/cím</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation>Modèle de projet</translation>
+            <translation>Projekt sablon</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation>Si vous sélectionnez un modèle de projet, l'assistant configurera les paramètres requis pour ce modèle lors des étapes suivantes. Vous pouvez toujours modifier les paramètres manuellement.</translation>
+            <translation>Ha sablont választ, a varázsló a következő lépésekben beállítja a szükséges beállításokat. A beállításokat később manuálisan is módosíthatja.</translation>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>Hitelesítés</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation>Avancé &lt;&lt;</translation>
+            <translation>Haladó &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation>Avancé &gt;&gt;</translation>
+            <translation>Haladó &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>Bejelentkezés</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>Jelszó</translation>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation>Appuyez sur Avancé pour activer la connexion manuelle ou pour désactiver la page de déconnexion.</translation>
+            <translation>Nyomja meg a Haladó gombot a kézi bejelentkezés vagy a kijelentkezési oldal letiltásához.</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation>Saisissez manuellement le nom d'utilisateur et le mot de passe sur la page web suivante :</translation>
+            <translation>Adja meg a bejelentkezési nevet és a jelszót a következő weboldalon:</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation>Ne pas ouvrir la page de déconnexion :</translation>
+            <translation>Ne nyissa meg a kijelentkezési oldalt:</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation>De nombreux sites disposent d'une page de déconnexion que le Grabber ne devrait pas ouvrir. Vous pouvez utiliser un astérisque comme joker pour spécifier un motif correspondant à différentes pages de déconnexion.</translation>
+            <translation>Sok weboldal rendelkezik kijelentkezési oldallal, amelyet a Grabbernek nem szabad megnyitnia. Használjon csillag (*) helyettesítőt a különböző kijelentkezési oldalak mintájának megadásához.</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Mentés</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation>Chaque fichier dans un dossier selon la catégorie Stellar du fichier</translation>
+            <translation>Mappa Stellar kategória szerint</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation>Tous les fichiers dans le dossier associé à la catégorie Stellar suivante :</translation>
+            <translation>Mappa a következő Stellar kategóriához</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation>Tous les fichiers dans le dossier suivant</translation>
+            <translation>Mappa a következő mappa</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation>Utiliser les sous-dossiers relatifs originaux</translation>
+            <translation>Eredeti alkönyvtárak</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation>Enregistrer chaque fichier par catégorie</translation>
+            <translation>Mentés kategóriák szerint</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation>Enregistrer tous les fichiers dans la catégorie sélectionnée</translation>
+            <translation>Mentés kiválasztott kategóriába</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation>Enregistrer tous les fichiers dans ce dossier</translation>
+            <translation>Mentés ebbe a mappába</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation>Convertir les liens dans les fichiers HTML téléchargés en fichiers locaux pour une navigation hors ligne</translation>
+            <translation>Helyi fájlok offline böngészéshez</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation>Écraser les fichiers existants</translation>
+            <translation>Létező fájlok felülírása</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation>Ajouter les fichiers cochés à la liste principale de Stellar et à la file d'attente de téléchargement à la fermeture du grabber</translation>
+            <translation>Fájlok Stellar listához és letöltéshez záráskor</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation>À cette étape, vous devez spécifier les pages web à explorer pour trouver les fichiers requis. À l'étape suivante, vous pourrez définir les types de fichiers, l'emplacement et d'autres filtres.</translation>
+            <translation>Ebben a lépésben adja meg a fájlok keresésére szolgáló weboldalakat. A következő lépésben állíthatja be a fájl típusokat, elhelyezkedést és egyéb szűrőket.</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
-            <translation>Explorer tout le site</translation>
+            <translation>Az egész oldal feltérképezése</translation>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation>Explorer un nombre spécifié de niveaux de liens :</translation>
+            <translation>A megadott számú hivatkozási szint feltérképezése:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation>niveaux dans le site de base</translation>
+            <translation>szint a bázisoldalon</translation>
         </message>
         <message>
             <source>levels on other sites</source>
-            <translation>niveaux sur d'autres sites</translation>
+            <translation>szint más oldalakon</translation>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation>Qu'est-ce que le nombre de niveaux de liens ?</translation>
+            <translation>Hány hivatkozási szintet szeretne feltérképezni?</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation>Ignorer les fenêtres contextuelles</translation>
+            <translation>A felugró ablakok figyelmen kívül hagyása</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation>Ne pas explorer les répertoires parents</translation>
+            <translation>A szülőmappák feltérképezése nélkül</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation>Explorer tous les sites du domaine principal</translation>
+            <translation>Az összes oldal feltérképezése a fődoménen belül</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation>Traiter le JavaScript</translation>
+            <translation>JavaScript feldolgozása</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation>Explorer uniquement les pages web dans les chemins/domaines suivants :</translation>
+            <translation>Keresse meg a következő útvonalakban/területeken a weboldalakat:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
+            <translation>Adjon meg egy útvonalat vagy domaint sortonként, vagy válassza el a bejegyzések között pontosvesszővel. Használjon * szimbólumot helyettesítőként. Példák: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation>Ne pas explorer les pages web dans les chemins/domaines suivants :</translation>
+            <translation>Ne böngésszen a következő útvonalakban/doménekben:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
+            <translation>Adjon meg egy útvonalat vagy domaint soronként, vagy válassza el a bejegyzések között pontosvesszővel. Használja a * jelet helyettesítőként. Példák: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation>Télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>Töltse le a következő fájlokat (fájltípusok)</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation>Inclure les filtres...</translation>
+            <translation>Szűrők beállítása...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation>Ne pas télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>Ne töltse le a következő fájlokat (fájltípusok)</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation>Exclure les filtres...</translation>
+            <translation>Kizáró szűrők...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation>Rechercher des fichiers uniquement sur ce site</translation>
+            <translation>Fájlok keresése csak ezen az oldalon</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation>Masquer les fichiers dupliqués trouvés dans différents emplacements</translation>
+            <translation>Rejtse el a különböző helyeken talált duplikátumfájlokat</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation>Commencer à télécharger tous les fichiers correspondants en une seule fois</translation>
+            <translation>Minden egyező fájl letöltése</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation>Télécharger si la taille du fichier est</translation>
+            <translation>Ha a fájl mérete</translation>
         </message>
         <message>
             <source>Not less than</source>
-            <translation>Non inférieure à</translation>
+            <translation>Nem kevesebb mint</translation>
         </message>
         <message>
             <source>Bytes</source>
-            <translation>Octets</translation>
+            <translation>Bájtnyi</translation>
         </message>
         <message>
             <source>Not more than</source>
-            <translation>Non supérieure à</translation>
+            <translation>Nem több mint</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation>Télécharger les fichiers situés uniquement dans les chemins/domaines suivants :</translation>
+            <translation>Csak a következő útvonalakban/területeken lévő fájlok letöltése:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation>Utilisez * comme caractère générique. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.google.com ; cdn.example.com ; /downloads/*</translation>
+            <translation>Használjon * szöveggel. Minden soron egy útvonalat vagy tartományt írjon be, vagy pontosvesszővel válassza el őket. Példák: *.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation>Ne pas télécharger les fichiers situés dans les chemins/domaines suivants :</translation>
+            <translation>Ne töltse le a következő útvonalakban/területeken lévő fájlokat:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation>Utilisez * comme joker. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.doubleclick.net ; /ads/* ; /tracking</translation>
+            <translation>Használjon * szöveggel. Minden soron egy útvonalat vagy tartományt írjon be, vagy pontosvesszővel válassza el őket. Példák: *.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
-            <translation>Commentaire</translation>
+            <translation>Megjegyzés</translation>
         </message>
         <message>
             <source>Save Project</source>
-            <translation>Enregistrer le projet</translation>
+            <translation>Projekt mentése</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>Projekt törlése</translation>
         </message>
         <message>
             <source>&lt; Back</source>
-            <translation>&lt; Précédent</translation>
+            <translation>&lt; Vissza</translation>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation>Suivant &gt;</translation>
+            <translation>Következő &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation>Commencer à explorer</translation>
+            <translation>Kutatás indítása</translation>
         </message>
     </context>
     <context>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation>Nom du filtre</translation>
+            <translation>Név szűrése</translation>
         </message>
         <message>
             <source>Mask</source>
-            <translation>Masque</translation>
+            <translation>Maszk</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Hozzáadás</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>Szerkesztés</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>OK</source>
@@ -1958,38 +1954,38 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Edit filter</source>
-            <translation>Modifier le filtre</translation>
+            <translation>Szűrő szerkesztése</translation>
         </message>
         <message>
             <source>New filter</source>
-            <translation>Nouveau filtre</translation>
+            <translation>Új szűrő</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Kategória</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Mentés</translation>
         </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation>Charger un projet Stellar Grabber</translation>
+            <translation>Grabber projekt betöltése</translation>
         </message>
         <message>
             <source>Saved projects</source>
-            <translation>Projets enregistrés</translation>
+            <translation>Mentett projektek</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2000,153 +1996,153 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>GrabberResultsDialog</name>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>Projekt</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Beállítások</translation>
         </message>
         <message>
             <source>Running</source>
-            <translation>En cours</translation>
+            <translation>Futtatás</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>Üres</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation>%1 fichiers trouvés</translation>
+            <translation>%1 fájl található</translation>
         </message>
         <message>
             <source>%1 checked</source>
-            <translation>%1 vérifiés</translation>
+            <translation>%1 ellenőrizve</translation>
         </message>
         <message>
             <source>Exploring…</source>
-            <translation>Exploration en cours…</translation>
+            <translation>Kutatás…</translation>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation>Appuyez sur Démarrer l'exploration pour analyser l'URL.</translation>
+            <translation>Kattintson a Kutatás indítására a URL szkenneléséhez</translation>
         </message>
         <message>
             <source>Start
 Exploring</source>
-            <translation>Démarrer l'exploration</translation>
+            <translation>Indítás</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Kutatás</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation>Type de fichier</translation>
+            <translation>Fájltípus</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Méret</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Állapot</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation>Texte du lien</translation>
+            <translation>Link szöveg</translation>
         </message>
         <message>
             <source>Download from</source>
-            <translation>Télécharger depuis</translation>
+            <translation>Letöltés forrása</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Mentés</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation>Vérifier la sélection</translation>
+            <translation>Kijelölés ellenőrzése</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation>Désélectionner la sélection</translation>
+            <translation>Kijelölés törlése</translation>
         </message>
         <message>
             <source>Edit current project</source>
-            <translation>Modifier le projet actuel</translation>
+            <translation>Jelenlegi projekt szerkesztése</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>Beállítások</translation>
         </message>
         <message>
             <source>Stop
 Exploring</source>
-            <translation>Arrêter</translation>
+            <translation>Leállítás</translation>
         </message>
         <message>
             <source>Start
 Downloading</source>
-            <translation>Exploration</translation>
+            <translation>Keresés</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
-            <translation>Démarrer</translation>
+            <translation>Indítás</translation>
         </message>
         <message>
             <source>Update
 All</source>
-            <translation>Téléchargement</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Schedule
 Project</source>
-            <translation>Arrêter</translation>
+            <translation>Leállítás</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Téléchargements</translation>
+            <translation>Letöltések</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Frissítés</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation>Tous les fichiers</translation>
+            <translation>Minden</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation>Vue des liens</translation>
+            <translation>Ütemezés</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation>Vue des dossiers</translation>
+            <translation>Mappa nézet</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation>Aucun fichier trouvé pour le moment</translation>
+            <translation>Nem található fájl</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation>← Retour</translation>
+            <translation>← Vissza</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <translation>%1 fichiers</translation>
+            <translation>%1 fájl</translation>
         </message>
         <message>
             <source>%1 / %2 (filtered)</source>
-            <translation>%1 / %2 (filtré)</translation>
+            <translation>%1 / %2 (szűrve)</translation>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation>Ajouter les éléments cochés à la liste de téléchargement</translation>
+            <translation>Jelöltek hozzáadása</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
@@ -2157,316 +2153,316 @@ Project</source>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation>Planifier le projet Stellar Grabber</translation>
+            <translation>Ütemezés</translation>
         </message>
         <message>
             <source>Project:</source>
-            <translation>Projet :</translation>
+            <translation>Projekt:</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation>Activer le calendrier du projet</translation>
+            <translation>Projekt ütemezés bekapcsolása</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>Étape 1. Sélectionner le type</translation>
+            <translation>1. Típus kiválasztása</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>Exploration/téléchargement unique</translation>
+            <translation>Egyszeri felderítés/töltés</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>Periodikus szinkronizálás</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>Étape 2. Sélectionner l'action</translation>
+            <translation>2. Akció kiválasztása</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>Explorer uniquement</translation>
+            <translation>Csak felderítés</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>Explorer le site et télécharger les fichiers correspondants</translation>
+            <translation>Felderítés és egyezések letöltése</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>Télécharger les fichiers cochés</translation>
+            <translation>Ellenőrzött fájlok letöltése</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>Après achèvement</translation>
+            <translation>Befejezés után</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>Stellar kilépése</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Számógép kikapcsolása</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>Éteindre</translation>
+            <translation>Leállítás</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>Redémarrer</translation>
+            <translation>Indítás</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation>Veille</translation>
+            <translation>Állapot</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>Hibernation</translation>
+            <translation>Alvás</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>Kényszerített lezárás</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>Étape 3. Planification</translation>
+            <translation>3. Lépés: Naptár</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>Letöltés kezdése</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>Amikor elérhető</translation>
         </message>
         <message>
             <source>January</source>
-            <translation>Janvier</translation>
+            <translation>Január</translation>
         </message>
         <message>
             <source>February</source>
-            <translation>Février</translation>
+            <translation>Február</translation>
         </message>
         <message>
             <source>March</source>
-            <translation>Mars</translation>
+            <translation>Március</translation>
         </message>
         <message>
             <source>April</source>
-            <translation>Avril</translation>
+            <translation>Április</translation>
         </message>
         <message>
             <source>May</source>
-            <translation>Mai</translation>
+            <translation>Május</translation>
         </message>
         <message>
             <source>June</source>
-            <translation>Juin</translation>
+            <translation>Június</translation>
         </message>
         <message>
             <source>July</source>
-            <translation>Juillet</translation>
+            <translation>Július</translation>
         </message>
         <message>
             <source>August</source>
-            <translation>Août</translation>
+            <translation>Augusztus</translation>
         </message>
         <message>
             <source>September</source>
-            <translation>Septembre</translation>
+            <translation>Szeptember</translation>
         </message>
         <message>
             <source>October</source>
-            <translation>Octobre</translation>
+            <translation>Október</translation>
         </message>
         <message>
             <source>November</source>
-            <translation>Novembre</translation>
+            <translation>November</translation>
         </message>
         <message>
             <source>December</source>
-            <translation>Décembre</translation>
+            <translation>December</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>Napi</translation>
         </message>
         <message>
             <source>Sunday</source>
-            <translation>Dimanche</translation>
+            <translation>Vasárnap</translation>
         </message>
         <message>
             <source>Thursday</source>
-            <translation>Jeudi</translation>
+            <translation>Csütörtök</translation>
         </message>
         <message>
             <source>Monday</source>
-            <translation>Lundi</translation>
+            <translation>Hétfő</translation>
         </message>
         <message>
             <source>Friday</source>
-            <translation>Vendredi</translation>
+            <translation>Péntek</translation>
         </message>
         <message>
             <source>Tuesday</source>
-            <translation>Mardi</translation>
+            <translation>Kedd</translation>
         </message>
         <message>
             <source>Saturday</source>
-            <translation>Samedi</translation>
+            <translation>Szombat</translation>
         </message>
         <message>
             <source>Wednesday</source>
-            <translation>Mercredi</translation>
+            <translation>Szerda</translation>
         </message>
         <message>
             <source>Repeat every</source>
-            <translation>Répéter tous les</translation>
+            <translation>Ismétlés minden</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>óra</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>perc</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>Letöltés leállítása</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation>Remarque : Stellar doit être exécuté dans la zone de notification au moment spécifié pour démarrer un projet planifié.</translation>
+            <translation>Megjegyzés: a Stellarnek a kijelölt időpontban a rendszertráynak kell futnia a tervezett projekt indításához.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Rendben</translation>
         </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
         <message>
             <source>Settings of Stellar Grabber</source>
-            <translation>Paramètres de Stellar Grabber</translation>
+            <translation>Stellar Grabber beállításai</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation>fichiers à explorer simultanément (1 à 10)</translation>
+            <translation>egyidejűleg feldolgozandó fájlok (1-10)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation>fichiers à télécharger simultanément (1 à 10)</translation>
+            <translation>egyidejűleg letöltendő fájlok (1-10)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation>Veuillez noter qu'un serveur web peut rejeter les requêtes si vous définissez un grand nombre de fichiers à explorer ou à télécharger simultanément.</translation>
+            <translation>Figyelem: a webkiszolgáló elutasíthat kéréseket, ha túl sok fájlt állít be egyidejű feldolgozásra vagy letöltésre.</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation>Utiliser les textes des liens comme descriptions de téléchargement lors de l'ajout de fichiers à la liste principale de Stellar</translation>
+            <translation>Hivatkozás szövege használata letöltési leírásnak fájlok hozzáadásakor a Stellar főlistához</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Rendben</translation>
         </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation>Statistiques du grabber</translation>
+            <translation>Szúrógép statisztika</translation>
         </message>
         <message>
             <source>Status: %1</source>
-            <translation>État : %1</translation>
+            <translation>Állapot: %1</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>Üres</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation>Pages web traitées</translation>
+            <translation>Feldolgozott weboldalak</translation>
         </message>
         <message>
             <source>Simple</source>
-            <translation>Simple</translation>
+            <translation>Egyszerű</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Haladó</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Fájlok</translation>
         </message>
         <message>
             <source>Total</source>
-            <translation>Total</translation>
+            <translation>Összesen</translation>
         </message>
         <message>
             <source>Explored</source>
-            <translation>Explorées</translation>
+            <translation>Keresett</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>Correspondantes</translation>
+            <translation>Megfelelő</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Letöltve</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
     </context>
     <context>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation>Tâches</translation>
+            <translation>Feladatok</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>Ajouter une URL…</translation>
+            <translation>URL hozzáadása…</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>SDM letöltések</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>Ce téléchargement YouTube semble nécessiter des cookies de connexion.</translation>
+            <translation>Ez a YouTube letöltés bejelentkezési sütiket igényel.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>Böngésző sütik:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>Stellar réessayera le même élément yt-dlp avec les cookies de ce navigateur.</translation>
+            <translation>A Stellar újra megpróbálja a sütikkel a böngészőtől.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation>Réessayer le téléchargement</translation>
+            <translation>Újraindítás</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>Ouvrir Stellar</translation>
+            <translation>Stellar megnyitása</translation>
         </message>
         <message>
             <source>GitHub</source>
@@ -2474,63 +2470,63 @@ Project</source>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation>Limiteur de vitesse : Activer</translation>
+            <translation>Sebességkorlátozó: Bekapcsolás</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation>Limiteur de vitesse : Désactiver</translation>
+            <translation>Sebességkorlátozó: Kikapcsolás</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation>Paramètres du limiteur de vitesse…</translation>
+            <translation>Sebességkorlátozó beállításai…</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation>Quitter Stellar</translation>
+            <translation>Kilépés</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation>Fichiers torrent (*.torrent)</translation>
+            <translation>Torrent fájlok (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation>Tous les fichiers (*)</translation>
+            <translation>Minden fájl (*)</translation>
         </message>
         <message>
             <source>Total: %1</source>
-            <translation>Total : %1</translation>
+            <translation>Összesen: %1</translation>
         </message>
         <message>
             <source>Completed: %1</source>
-            <translation>Terminé : %1</translation>
+            <translation>Befejezett: %1</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>Letöltés: %1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation>En file d'attente : %1</translation>
+            <translation>Várólista: %1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
-            <translation>Global : %1%</translation>
+            <translation>Átlag: %1%</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Leállítás</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Folytatás</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation>Activer le support BitTorrent ?</translation>
+            <translation>BitTorrent támogatás engedélyezése?</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2540,25 +2536,19 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Le support BitTorrent est actuellement désactivé.
-
-Lorsque vous téléchargez un torrent, votre adresse IP devient visible pour les autres pairs du swarm et vous téléversez simultanément (seed) des données vers les autres.
-
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
-
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+            <translation>A BitTorrent támogatás jelenleg kikapcsolva.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, activer</translation>
+            <translation>Értem, Engedélyezés</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>Vous avez appuyé sur le bouton « Télécharger plus tard », mais Stellar avait déjà commencé à télécharger une partie du fichier. Stellar commence toujours le téléchargement tout en affichant la boîte de dialogue « Informations sur le fichier à télécharger ».
+            <translation>A 'Későbbi letöltés' gombot nyomta meg, de a Stellar már kezdte letölteni a fájlt. A Stellar mindig letöltést indít a 'Fájlinformáció' párbeszédablak megjelenítésekor.
 
-Vous pouvez désactiver cette option dans Paramètres → Téléchargements.</translation>
+Kikapcsolhatja a Beállítások → Letöltések menüpontban.</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2566,212 +2556,213 @@ Vous pouvez désactiver cette option dans Paramètres → Téléchargements.</tr
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>Le fichier « %1 » n'a pas pu être téléchargé.</translation>
+            <translation>A &quot;%1&quot; fájl nem tölthető le.</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>Le serveur a renvoyé une page web au lieu du fichier attendu. Certains sites suppriment les fichiers immédiatement après que Stellar a interrogé leurs métadonnées.</translation>
+            <translation>A szerver weboldalt adott vissza a vártnál nagyobb fájl helyett. Egyes oldalak azonnal törlik a fájlokat, mielőtt a Stellar lekérné a metaadatokat.</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>Pour permettre à votre navigateur de télécharger directement, maintenez une touche modificateur (Alt, Ctrl ou Maj) tout en cliquant sur le lien. Configurez la touche dans : Options Stellar → Navigateur → Contourner l'interception des téléchargements</translation>
+            <translation>A böngésző közvetlen letöltéséhez nyomja le egy módosító billentyűt (Alt, Ctrl vagy Shift) a linkre kattintás közben. Állítsa be a kulcsot:
+Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás átkelését</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>Ouvrir les paramètres du navigateur</translation>
+            <translation>Böngésző beállítások megnyitása</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>La version %1 est disponible.</translation>
+            <translation>A %1 verzió elérhető.</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation>Mettre à jour maintenant</translation>
+            <translation>Frissítés most</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation>Ajouter un fichier Torrent…</translation>
+            <translation>Torrent fájl hozzáadása…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation>Ajouter des URLs par lot…</translation>
+            <translation>Batch URL-ek hozzáadása…</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation>Quitter</translation>
+            <translation>Kilépés</translation>
         </message>
         <message>
             <source>File</source>
-            <translation>Fichier</translation>
+            <translation>Fájl</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Mappa megnyitása</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Fájl megnyitása</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation>Télécharger maintenant</translation>
+            <translation>Letöltés most</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation>Arrêter le téléchargement</translation>
+            <translation>Letöltés megszakítása</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>Újratöltés</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>.torrent exportálása…</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>Letöltések</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation>Mettre tout en pause</translation>
+            <translation>Szüneteltetés</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation>Arrêter tout</translation>
+            <translation>Megállítás</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation>Supprimer tous les éléments terminés</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Find…</source>
-            <translation>Rechercher…</translation>
+            <translation>Keresés</translation>
         </message>
         <message>
             <source>Find Next</source>
-            <translation>Rechercher suivant</translation>
+            <translation>Következő keresés</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Ütemező</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>Sor indítása</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>Sor leállítása</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Sebességkorlátozó</translation>
         </message>
         <message>
             <source>Turn On</source>
-            <translation>Activer</translation>
+            <translation>Be</translation>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation>Désactiver</translation>
+            <translation>Ki</translation>
         </message>
         <message>
             <source>Settings…</source>
-            <translation>Paramètres…</translation>
+            <translation>Beállítások</translation>
         </message>
         <message>
             <source>Options…</source>
-            <translation>Options…</translation>
+            <translation>Opciók</translation>
         </message>
         <message>
             <source>View</source>
-            <translation>Affichage</translation>
+            <translation>Nézet</translation>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation>Masquer les catégories</translation>
+            <translation>Kategóriák elrejtése</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation>Afficher les catégories</translation>
+            <translation>Kategóriák megjelenítése</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation>Afficher le moteur de recherche</translation>
+            <translation>Keresőmotor</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
-            <translation>Afficher le lecteur RSS</translation>
+            <translation>RSS olvasó</translation>
         </message>
         <message>
             <source>Statistics…</source>
-            <translation>Statistiques…</translation>
+            <translation>Statisztika</translation>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation>Trier les fichiers</translation>
+            <translation>Fájlok rendezése</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation>Par ordre d'ajout</translation>
+            <translation>Hozzáadás sorrendje</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation>Par nom de fichier</translation>
+            <translation>Fájlnév szerint</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation>Par taille</translation>
+            <translation>Méret szerint</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation>Par statut</translation>
+            <translation>Státusz szerint</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation>Par temps restant</translation>
+            <translation>Maradék idő szerint</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation>Par taux de transfert</translation>
+            <translation>Átviteli sebesség szerint</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation>Par date de dernière tentative</translation>
+            <translation>Utolsó próbálkozás dátuma</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation>Par description</translation>
+            <translation>Leírás szerint</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation>Par chemin d'enregistrement</translation>
+            <translation>Mentési út szerint</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation>Par référent</translation>
+            <translation>Referer szerint</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation>Par page web parente</translation>
+            <translation>Szülőoldal szerint</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation>Colonnes…</translation>
+            <translation>Oszlopok...</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Beállítások</translation>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation>Préférences…</translation>
+            <translation>Beállítások...</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -2779,91 +2770,91 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation>Ouvrir le lecteur RSS</translation>
+            <translation>RSS olvasó megnyitása</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation>Actualiser tous les flux</translation>
+            <translation>Minden tároló frissítése</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation>Marquer tous les éléments comme lus</translation>
+            <translation>Minden elem olvasott jelölése</translation>
         </message>
         <message>
             <source>Help</source>
-            <translation>Aide</translation>
+            <translation>Súgó</translation>
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>Frissítések ellenőrzése</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation>Déposez un fichier .torrent pour ouvrir les métadonnées du torrent</translation>
+            <translation>.torrent fájldobása a torrent metaadatok megnyitásához</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>Keresés:</translation>
         </message>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>Keresés</translation>
         </message>
         <message>
             <source>Settings ▾</source>
-            <translation>Paramètres ▾</translation>
+            <translation>Beállítások ▾</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Rechercher dans :</translation>
+            <translation>Keresés:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>Fájlnév vagy rész</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Leírás</translation>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation>URL / référent / page web parente</translation>
+            <translation>URL / forrás / szülőoldal</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>Egyezés az esetek szerint</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière uniquement</translation>
+            <translation>Csak teljes string</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation>Déplacer la barre latérale à gauche</translation>
+            <translation>Oldalsáv balra</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation>Déplacer la barre latérale à droite</translation>
+            <translation>Oldalsáv jobbra</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation>Réinitialiser la largeur de la barre latérale</translation>
+            <translation>Oldalsáv szélesség visszaállítása</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>À propos de Stellar</translation>
+            <translation>Stellarról</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>Böngésző integráció</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation>Extensions du navigateur…</translation>
+            <translation>Böngésző bővítmények…</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation>Paramètres du navigateur…</translation>
+            <translation>Böngésző beállítások…</translation>
         </message>
         <message>
             <source>Stellar</source>
@@ -2871,35 +2862,35 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation>Cookies du navigateur requis</translation>
+            <translation>Kötelező böngésző sütik</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>Ajouter un fichier torrent</translation>
+            <translation>Torrent Fájlok Hozzáadása</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>Exporter les fichiers .torrent</translation>
+            <translation>.torrent Fájlok Exportálása</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>Progression du téléchargement de la chaîne</translation>
+            <translation>Csatorna Letöltés Halad</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Későbbi Letöltés</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>Fichier non disponible</translation>
+            <translation>Fájl Már Nem Kapható</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation>Mise à jour rapide</translation>
+            <translation>Gyors Frissítés</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>Stellar Letöltés Kezelő</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
@@ -2907,280 +2898,280 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>Une nouvelle version de Stellar Download Manager est disponible</translation>
+            <translation>Új Verzió Kapható</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>Quoi de neuf dans Stellar</translation>
+            <translation>Újdonságok a Stellarben</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>Sélection de la file d'attente</translation>
+            <translation>Vorbélyezés</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>Ajouter les fichiers à une file d'attente ?</translation>
+            <translation>Fájlok sorba állítása?</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>Choisissez une file d'attente existante ou créez-en une nouvelle.</translation>
+            <translation>Válasszon meglévő sorot vagy hozzon létre újat.</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>File d'attente</translation>
+            <translation>Sor</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>Démarrer le traitement de la file d'attente</translation>
+            <translation>Sorfeldolgozás indítása</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>Ne plus me demander</translation>
+            <translation>Ne kérdezzen többet</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>Ne pas ajouter à la file d'attente</translation>
+            <translation>Ne adja hozzá a sorhoz</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Rendben</translation>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>Entrez le nom de la file d'attente</translation>
+            <translation>Sor neve</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Create</source>
-            <translation>Créer</translation>
+            <translation>Létrehozás</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>(Par défaut)</translation>
+            <translation>(Alapértelmezett)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>Letöltési szabályok</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Hozzáadás</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>Cliquez sur « Ajouter » pour créer une règle de téléchargement</translation>
+            <translation>Kattintson a 'Hozzáadás' gombra a letöltési szabály létrehozásához</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>Nom de la règle</translation>
+            <translation>Szabály neve</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>Engedélyezve</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>RÈGLES DE FILTRAGE</translation>
+            <translation>SZŰRŐSZABÁLYOK</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>Utiliser les expressions régulières</translation>
+            <translation>Rendszeres kifejezések használata</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>Doit contenir :</translation>
+            <translation>Meg kell tartalmaznia:</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>motif regex</translation>
+            <translation>regex minta</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>mots-clé1 mots-clé2 | mots-clé3</translation>
+            <translation>kulcsszó1 kulcsszó2 | kulcsszó3</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>Ne doit pas contenir :</translation>
+            <translation>Nem tartalmazhatja:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>mots-clé1 mots-clé2</translation>
+            <translation>kulcsszó1 kulcsszó2</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation>Filtre des épisodes :</translation>
+            <translation>Epizód szűrő:</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation>p. ex. 1x01-1x24 ou 2x01 ;</translation>
+            <translation>pl. 1x01-1x24 vagy 2x01;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation>Utiliser le filtre intelligent des épisodes</translation>
+            <translation>Okos epizód szűrő használata</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation>Ignore les épisodes déjà correspondants aux règles précédentes</translation>
+            <translation>Kijelöli a korábbi szabályok által már egyeztetett epizódokat</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation>Ignorer les correspondances ultérieures pour</translation>
+            <translation>Kijelöli a későbbi egyezéseket</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation>jours (0 = désactivé)</translation>
+            <translation>napok</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation>PARAMÈTRES DE TÉLÉCHARGEMENT</translation>
+            <translation>LETÖLTELÉSI BEÁLLÍTÁSOK</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>Mentés:</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation>Laissez vide pour utiliser le chemin d'enregistrement par défaut</translation>
+            <translation>Hagyja üresen az alapértelmezett útvonal használatához</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>Böngészés...</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>Kategória:</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation>File d'attente :</translation>
+            <translation>Sor:</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE DE TORRENT</translation>
+            <translation>TORRENT MEGOSZTÁS KORLÁTOZÁSOK</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>Arány</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>Alapértelmezett</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>Illimitált</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>Beállítás</translation>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation>Temps de partage</translation>
+            <translation>Csíráztatási idő</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>perc</translation>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation>Temps de partage inactif</translation>
+            <translation>Inaktív csíráztatási idő</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation>&quot;Par défaut&quot; utilise les limites de partage globales définies dans Paramètres → Torrents.</translation>
+            <translation>Alapértelmezett</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Rendben</translation>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation>Règles de téléchargement automatique par RSS</translation>
+            <translation>RSS automatikus letöltési szabályok</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation>Titre</translation>
+            <translation>Cím</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation>Flux</translation>
+            <translation>Áramlás</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation>Date</translation>
+            <translation>Dátum</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation>Ouvrir le flux</translation>
+            <translation>Áramlás megnyitása</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>Frissítés</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation>Renommer / Modifier...</translation>
+            <translation>Átnevezés/Szerkesztés...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation>Supprimer l'abonnement</translation>
+            <translation>Előfizetés eltávolítása</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation>Torrent letöltése</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>Megnyitás böngészőben</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation>Copier le lien</translation>
+            <translation>Link másolása</translation>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>Elolvasva</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>Olvasatlan</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation>Tout marquer comme lu</translation>
+            <translation>Minden elolvasva</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Név</translation>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation>Nom personnalisé (facultatif)</translation>
+            <translation>Egyedi név (opcionális)</translation>
         </message>
         <message>
             <source>URL</source>
@@ -3188,297 +3179,297 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>Mentés</translation>
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation>Ajouter l'URL du flux RSS ou Atom...</translation>
+            <translation>RSS vagy Atom feed URL hozzáadása...</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Hozzáadás</translation>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation>Actualisation en cours…</translation>
+            <translation>Frissítés…</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>Szerkesztés</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>Letöltési szabályok</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation>Abonnements</translation>
+            <translation>Feliratok</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation>Sans titre</translation>
+            <translation>Névtelen</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>Sélectionner un article</translation>
+            <translation>Cikk kiválasztása</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>Megnyitás</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>Megolvasva jelölése</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>Nem olvasva jelölése</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>Choisissez un article pour afficher son résumé.</translation>
+            <translation>Cikk kiválasztása a kivonat megtekítéséhez</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>Aucun résumé disponible.</translation>
+            <translation>Nincs elérhető kivonat</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>%1 non lu  ·  %2 éléments</translation>
+            <translation>%1 olvasatlan · %2 elem</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>%1 éléments</translation>
+            <translation>%1 elem</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>Flux RSS</translation>
+            <translation>RSS hírcsatornák</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>Modifier l'abonnement</translation>
+            <translation>Feliratok szerkesztése</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>Ütemek</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>Új ütem</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Schedule</source>
-            <translation>Planification</translation>
+            <translation>Ütemezés</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>Fichiers dans la file d'attente</translation>
+            <translation>Sorban lévő fájlok</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>Téléchargement unique</translation>
+            <translation>Egyszeri letöltés</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>Periodikus szinkronizálás</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>Démarrer le téléchargement au démarrage de Stellar</translation>
+            <translation>Letöltés indítása a Stellar indításakor</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>Letöltés indítása</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>Egyszer</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>Naponta</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation>Redémarrer toutes les</translation>
+            <translation>Újraindítás minden</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>óra</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>perc</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>Letöltés leállítása</translation>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation>Nombre de tentatives pour chaque fichier en cas d'échec du téléchargement :</translation>
+            <translation>Újrapróbálkozások száma</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation>Ouvrir le fichier suivant une fois terminé :</translation>
+            <translation>Fájl megnyitása</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>Stellar kilépése</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>Gép leállítása</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>Folyamatok kényszerű leállítása</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation>fichiers en même temps</translation>
+            <translation>Fájl egyidejű</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>Fájlnév</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Méret</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>Állapot</translation>
         </message>
         <message>
             <source>Time Left</source>
-            <translation>Temps restant</translation>
+            <translation>Időmaradék</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation>Aucune file d'attente sélectionnée</translation>
+            <translation>Nincs kiválasztott sor</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation>Aucun fichier dans la file d'attente</translation>
+            <translation>Nincsenek fájlok a sorban</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation>Limites de téléchargement</translation>
+            <translation>Letöltési korlátok</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation>Télécharger au maximum</translation>
+            <translation>Legfeljebb</translation>
         </message>
         <message>
             <source>MBytes</source>
-            <translation>Mo</translation>
+            <translation>MB</translation>
         </message>
         <message>
             <source>every</source>
-            <translation>toutes les</translation>
+            <translation>minden</translation>
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation>Afficher un avertissement avant d'arrêter les téléchargements</translation>
+            <translation>Figyelmeztetés megjelenítése letöltés leállítása előtt</translation>
         </message>
         <message>
             <source>Start now</source>
-            <translation>Démarrer maintenant</translation>
+            <translation>Indítás</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Leállítás</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Alkalmazás</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation>Entrez un nom pour la nouvelle file d'attente qui sera affiché dans la liste des files d'attente</translation>
+            <translation>Új sor neve</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation>Nom de la file d'attente</translation>
+            <translation>Sor neve</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Rendben</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégsem</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Ütemező</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>Új sor</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation>Sélectionner le fichier à ouvrir une fois terminé</translation>
+            <translation>Fájl megnyitása</translation>
         </message>
     </context>
     <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>Kapcsolat</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation>Téléchargements simultanés maximum :</translation>
+            <translation>Max. egyidejű letöltés:</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation>Segments par téléchargement :</translation>
+            <translation>Szegmensek/letöltés:</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation>Délai d'expiration de la connexion (secondes) :</translation>
+            <translation>Időtúllépés (mp):</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation>Réessayer les téléchargements échoués :</translation>
+            <translation>Hibás letöltés újrapróbálása:</translation>
         </message>
         <message>
             <source>times</source>
-            <translation>fois</translation>
+            <translation>szer</translation>
         </message>
         <message>
             <source>User Agent</source>
-            <translation>Agent utilisateur</translation>
+            <translation>Felhasználó-azonosító</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation>Utiliser un agent utilisateur personnalisé</translation>
+            <translation>Egyémi felhasználó-azonosító</translation>
         </message>
         <message>
             <source>Proxy</source>
@@ -3486,215 +3477,215 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>No proxy</source>
-            <translation>Aucun proxy</translation>
+            <translation>Nincs proxy</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation>Utiliser le proxy système</translation>
+            <translation>Rendszer proxy</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation>Proxy HTTP / HTTPS</translation>
+            <translation>HTTP / HTTPS proxy</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation>Proxy SOCKS5</translation>
+            <translation>SOCKS5 proxy</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation>Hôte :</translation>
+            <translation>Host:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation>Port :</translation>
+            <translation>Port:</translation>
         </message>
         <message>
             <source>Username:</source>
-            <translation>Nom d'utilisateur :</translation>
+            <translation>Felhasználó:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>Mot de passe :</translation>
+            <translation>Jelszó:</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Kategóriák</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Név</translation>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation>Enregistrer dans le dossier</translation>
+            <translation>Mappa mentése</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>Letöltések</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation>Dossier de sauvegarde par défaut :</translation>
+            <translation>Alapértelmezett mentési mappa:</translation>
         </message>
         <message>
             <source>Browse…</source>
-            <translation>Parcourir…</translation>
+            <translation>Böngészés…</translation>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation>Dossier de sauvegarde personnalisé pour les torrents :</translation>
+            <translation>Torrenthez egyéni mentési mappa:</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation>Répertoire temporaire de Stellar :</translation>
+            <translation>Stellar ideiglenes mappa:</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation>Démarrer le téléchargement immédiatement (ignorer la boîte de dialogue des informations du fichier)</translation>
+            <translation>Azonnal kezdje a letöltést (ugrás a fájlinformáció párbeszédablak felett)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation>Afficher la boîte de dialogue de fin de téléchargement</translation>
+            <translation>Mutassa a letöltés befejezésének ablakát</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation>Démarrer le téléchargement immédiatement tout en affichant la boîte de dialogue &quot;Informations du fichier à télécharger&quot;</translation>
+            <translation>Azonnal kezdje a letöltést a 'Fájlinformáció' párbeszédablak megjelenítésével</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation>Afficher la carte du swarm lors du téléchargement des métadonnées du torrent</translation>
+            <translation>Szivárgókép megjelenítése torrenthemetaadatok letöltésekor</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de l'appui sur &quot;Télécharger plus tard&quot;</translation>
+            <translation>Várakoztatási panel megjelenítése a 'Későbbi letöltés' megnyomásakor</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de la fermeture de la boîte de dialogue des téléchargements par lot</translation>
+            <translation>Várakozási panel megjelenítése</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation>Si une URL en double est ajoutée :</translation>
+            <translation>Duplikált URL</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation>Double-clic sur un téléchargement dans la liste des fichiers :</translation>
+            <translation>Dupla kattintás</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation>Format de la date du dernier essai :</translation>
+            <translation>Utolsó próbálkozás</translation>
         </message>
         <message>
             <source>Time format:</source>
-            <translation>Format de l'heure :</translation>
+            <translation>Időformátum</translation>
         </message>
         <message>
             <source>Show seconds</source>
-            <translation>Afficher les secondes</translation>
+            <translation>Másodpercek</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>Előnézet</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>Böngésző integráció</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation>Démarrer automatiquement le téléchargement des types de fichiers suivants :</translation>
+            <translation>Automatikus letöltés</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation>Ne pas démarrer automatiquement le téléchargement depuis les sites suivants :</translation>
+            <translation>Automatikus letöltés kikapcsolása</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation>Exceptions d'adresse</translation>
+            <translation>Kivételek kezelése</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation>Ne pas démarrer les téléchargements depuis les adresses suivantes :</translation>
+            <translation>Ne töltse le a következő címekről:</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation>Contourner l'interception des téléchargements</translation>
+            <translation>Letöltés-interceptelés átkelés</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation>Maintenez cette touche enfoncée tout en cliquant sur un lien de téléchargement pour ignorer l'interception et permettre au navigateur de télécharger :</translation>
+            <translation>Nyomja le ezt a billentyűt a letöltési linkekre kattintva az interceptelés kihagyásához és a böngésző letöltéséhez:</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>Sebességkorlátozó</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation>Activer la limite de vitesse globale</translation>
+            <translation>Globális letöltési korlát engedélyezése</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation>Vitesse maximale :</translation>
+            <translation>Maximális letöltés:</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation>Activer la limite de téléchargement global</translation>
+            <translation>Globális feltöltési korlát engedélyezése</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation>Téléversement maximum :</translation>
+            <translation>Maximális feltöltés:</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation>Toujours activer le limiteur de vitesse au démarrage de Stellar</translation>
+            <translation>Stellar indításkor mindig bekapcsolva a sebességkorlátozót</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation>Activer le planificateur de limiteur de vitesse</translation>
+            <translation>Sebességkorlátozó ütemező engedélyezése</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>On</source>
-            <translation>Activé</translation>
+            <translation>Be</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Upload</source>
-            <translation>Téléversement</translation>
+            <translation>Feltöltés</translation>
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation>+ Ajouter une règle</translation>
+            <translation>+ Szabály hozzáadása</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation>Notifications</translation>
+            <translation>Értesítések</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation>Afficher une notification lorsque le téléchargement est terminé</translation>
+            <translation>Értesítés megjelenítése letöltés befejezésénél</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation>Afficher une notification en cas d'erreur de téléchargement</translation>
+            <translation>Értesítés megjelenítése letöltési hiba esetén</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>Általános</translation>
         </message>
         <message>
             <source>Browser</source>
-            <translation>Navigateur</translation>
+            <translation>Böngésző</translation>
         </message>
         <message>
             <source>Media</source>
@@ -3702,327 +3693,325 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation>Torrentek</translation>
         </message>
         <message>
             <source>Language</source>
-            <translation>Langue</translation>
+            <translation>Nyelv</translation>
         </message>
         <message>
             <source>About</source>
-            <translation>À propos</translation>
+            <translation>Rólunk</translation>
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation>Lorsque le mode personnalisé est désactivé, Stellar utilise son User-Agent intégré avec la version actuelle.</translation>
+            <translation>A Stellar beépített User-Agentot használja a jelenlegi verzióval.</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation>Cette valeur sera envoyée exactement telle qu'entrée.</translation>
+            <translation>Ez az érték pontosan így kerül elküldésre.</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation>Valeur par défaut intégrée affichée ci-dessus. Activez la case à cocher pour la modifier et la remplacer.</translation>
+            <translation>A fenti alapértelmezett. Hozzáadásához jelölje be a négyzetet.</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation>Optionnel</translation>
+            <translation>Opcionális</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation>Tous les téléchargements, les téléchargements de vidéos, les vérifications de mises à jour et les connexions aux pairs/trackers de torrent sont acheminés via ce proxy.</translation>
+            <translation>A proxy minden letöltést, videófájlt, frissítést és torrent peer/tracker kapcsolatot átirányít.</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation>Stellar utilisera le proxy configuré dans les paramètres réseau de votre système d'exploitation.</translation>
+            <translation>A Stellar a rendszerbeállításokban konfigurált proxyt használja.</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation>Délai d'attente dépassé — le proxy n'a pas répondu</translation>
+            <translation>Időtúllépés – a proxy nem válaszolt.</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation>Test en cours…</translation>
+            <translation>Tesztelés…</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation>Tester le proxy</translation>
+            <translation>Proxy tesztelése</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation>⚠ Non présent dans la liste de téléchargement automatique du navigateur : %1</translation>
+            <translation>⚠ Nem a böngésző automatikus letöltési listájában: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation>Parcourir</translation>
+            <translation>Böngészés</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation>Ceci est le dossier torrent personnalisé mémorisé utilisé lorsque la boîte de dialogue des métadonnées du torrent est définie pour utiliser un dossier de sauvegarde personnalisé par défaut.</translation>
+            <translation>Ez a megjegyzett egyedi torrent mappa, amelyet akkor használ, ha a torrent metaadat párbeszédablak alapértelmezettként egyedi mentési mappát használ.</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation>Stellar stocke ici les parties de fichiers partiellement téléchargées et les métadonnées pendant le téléchargement et l'assemblage des fichiers.</translation>
+            <translation>A Stellar ide tárolja a részben letöltött fájlrészeket és metaadatokat a letöltés és a fájlok összeszerelése közben.</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation>Remarque : Ces paramètres ne s'appliquent pas au traitement de la file d'attente pour les paramètres « Télécharger immédiatement » et « Afficher la boîte de dialogue de téléchargement terminé ».</translation>
+            <translation>Megjegyzés: Ezek a beállítások nem vonatkoznak a Start Downloading Immediately és a Show Download Complete beállítások sorkezelésére.</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation>Me demander quoi faire</translation>
+            <translation>Kérdezzen</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
-            <translation>Ajouter avec un nom de fichier numéroté</translation>
+            <translation>Részletek</translation>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation>Écraser le téléchargement existant</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation>Reprendre / afficher la boîte de dialogue de fin</translation>
+            <translation>Folytatás</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation>Ouvrir la boîte de dialogue des propriétés du fichier</translation>
+            <translation>Jellemzők</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>Megnyitás</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>Mappa</translation>
         </message>
         <message>
             <source>24-hour time</source>
-            <translation>Format 24 heures</translation>
+            <translation>24 óra</translation>
         </message>
         <message>
             <source>12-hour time</source>
-            <translation>Format 12 heures</translation>
+            <translation>12 óra</translation>
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation>Séparé par des espaces ou des virgules. Insensible à la casse.</translation>
+            <translation>Szóköz vagy vessző</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation>Modèles d'hôtes séparés par des espaces. Jokers (*) pris en charge, ex. *.update.microsoft.com</translation>
+            <translation>Térközön elválasztott host minták. Vildkárkarakterek (*) támogatottak, pl. *.update.microsoft.com</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation>Afficher la boîte de dialogue pour ajouter une adresse à la liste des exceptions pour un téléchargement annulé deux fois</translation>
+            <translation>Kétszer elvetett letöltés esetén a kivételek listájához cím hozzáadásának párbeszédablak megjelenítése</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation>Un motif d'URL par ligne. Les caractères génériques (*) sont pris en charge.</translation>
+            <translation>URL minta soronként. Vildkárkarakterek (*) támogatottak.</translation>
         </message>
         <message>
             <source>None</source>
-            <translation>Aucun</translation>
+            <translation>Nincs</translation>
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation>Cliquez sur un jour pour le basculer. Les règles sont évaluées chaque minute ; la première règle correspondante l'emporte. Les limites de téléchargement et d'upload planifiées sont automatiquement effacées lorsqu'aucune règle n'est active.</translation>
+            <translation>Nap pillájának kattintásával kapcsolhatja be/kikapcsolhatja. A szabályok minden percben értékelődnek; az első egyezést tartalmazó szabály érvényes. A tervezett letöltési és feltöltési korlátok automatikusan törlődnek, ha nincs aktív szabály.</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>Rendszertrayba minimalizálás</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation>Fermer dans la zone de notification</translation>
+            <translation>Rendszertrayba bezárás</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation>Lancer Stellar au démarrage</translation>
+            <translation>Stellar indítása indításkor</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation>Afficher les astuces dans la barre inférieure</translation>
+            <translation>Tippok megjelenítése alsó sávban</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation>Afficher le nombre de téléchargements terminés dans la barre d'état</translation>
+            <translation>Kész letöltések száma megjelenítése státuszszávon</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation>Utilitaires</translation>
+            <translation>Eszközök</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation>Afficher la vitesse dans l'infobulle de l'icône de la zone de notification</translation>
+            <translation>Sebesség a tálca ikonban</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation>Afficher la vitesse dans la barre de titre</translation>
+            <translation>Sebesség a címsorban</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation>Afficher la vitesse dans la barre d'état</translation>
+            <translation>Sebesség a státuszszalagon</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation>Afficher le nombre estimé d'utilisateurs en ligne dans la barre d'état</translation>
+            <translation>Becsült online felhasználók a státuszszalagon</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Utilise la densité des ID de nœuds DHT pour estimer le nombre global d'utilisateurs BitTorrent. La confiance augmente à mesure que davantage d'ID de nœuds uniques sont observés ; un * à la fin dans la barre d'état signifie que l'estimation est encore peu fiable.</translation>
+            <translation>DHT csomópont-ID sűrűség alapján globális BitTorrent felhasználók becslése. Az önbizalom nő a megfigyelt egyedi csomópont-IDs számával; a státuszszalagonban lévő * jelzés alacsony önbizalmat jelez.</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation>Afficher le ratio dans la barre d'état</translation>
+            <translation>Ratio a státuszszalagonon</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation>Afficher l'adresse IP publique dans la barre d'état</translation>
+            <translation>Nyilvános IP a státuszszalagonon</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation>Détecte votre IP publique via libtorrent et votre type de connexion actif. Survolez l'indicateur pour voir le SSID/le signal WiFi ou les avertissements concernant les connexions entrantes.</translation>
+            <translation>Nyilvános IP felismerése libtorrent és aktív kapcsolattípus alapján. Az jelzőre kattintva WiFi SSID/jelet vagy bejövő kapcsolódási figyelmeztetéseket láthat.</translation>
         </message>
         <message>
             <source>Updates</source>
-            <translation>Mises à jour</translation>
+            <translation>Frissítések</translation>
         </message>
         <message>
             <source>Automatically check for updates</source>
-            <translation>Vérifier automatiquement les mises à jour</translation>
+            <translation>Frissítések ellenőrzése</translation>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation>Surveillance du presse-papiers</translation>
+            <translation>Vágólap figyelése</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation>Démarrer automatiquement le téléchargement des URL placées dans le presse-papiers</translation>
+            <translation>URL-ek letöltése a vágólapról</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation>Lorsqu'une URL correspondant à un type de fichier surveillé est copiée dans le presse-papiers, Stellar vous demandera si vous souhaitez la télécharger. Seuls les types de fichiers répertoriés sous Navigateur › Démarrer automatiquement le téléchargement des types de fichiers suivants sont pris en compte.</translation>
+            <translation>Stellar kérdezni fogja a letöltést. Csak a 'Browser › Letöltés' listában szereplő fájltípusok.</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation>Téléchargeur vidéo</translation>
+            <translation>Videóletöltő</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation>Stellar utilise yt-dlp pour télécharger des vidéos depuis YouTube, Vimeo, Twitter/X, Instagram et des centaines d'autres sites. Lorsque vous collez une URL de vidéo dans Ajouter URL, un sélecteur de format apparaîtra.</translation>
+            <translation>yt-dlp használata YouTube, Vimeo, Twitter/X, Instagram és több száz oldalról.</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation>Statut binaire</translation>
+            <translation>Bináris állapot</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
-            <translation>Mettre à jour yt-dlp</translation>
+            <translation>yt-dlp frissítése</translation>
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation>Télécharger yt-dlp</translation>
+            <translation>yt-dlp letöltése</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégsem</translation>
         </message>
         <message>
             <source>Re-check</source>
-            <translation>Vérifier à nouveau</translation>
+            <translation>Újraindítás</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation>État de ffmpeg</translation>
+            <translation>FFmpeg státusz</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation>ffmpeg trouvé : %1</translation>
+            <translation>FFmpeg található: %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation>ffmpeg introuvable — les téléchargements HD seront limités aux formats pré-muxés (max ~480p)</translation>
+            <translation>FFmpeg nem található – HD letöltések korlátozottak (max ~480p)</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation>Mise à jour de FFmpeg...</translation>
+            <translation>FFmpeg frissítése...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation>Mettre à jour FFmpeg</translation>
+            <translation>Frissítés</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation>Obtenir ffmpeg (gyan.dev)</translation>
+            <translation>FFmpeg letöltése (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation>ffmpeg est requis pour fusionner les flux vidéo et audio séparés en MP4/MKV. Sans lui, les téléchargements YouTube basculent vers un seul flux pré-muxé (généralement WebM, max 480p).
-
-Pour corriger : téléchargez ffmpeg depuis gyan.dev/ffmpeg/builds (build Essentials), extrayez ffmpeg.exe du dossier bin/, et placez-le dans le même dossier que yt-dlp.exe. Puis cliquez sur Vérifier à nouveau ci-dessus.</translation>
+            <translation>A FFmpeg szükséges a videó és hangfolyamok egyesítéséhez MP4/MKV-ba. Nélküle a YouTube letöltések WebM formátumban (max 480p) történnek.</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation>Chemin du binaire personnalisé</translation>
+            <translation>Egyéni bináris útvonal</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation>Laissez vide pour utiliser le binaire intégré (recommandé). Définissez le chemin absolu de votre exécutable yt-dlp si vous souhaitez utiliser une version spécifique.</translation>
+            <translation>Hagyja üresen a csomagolt bináris használatához (ajánlott). Állítsa be a saját yt-dlp.exe abszolút útvonalára, ha egy konkrét verziót szeretne használni.</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation>(auto - utiliser yt-dlp intégré ou système)</translation>
+            <translation>(auto - csomagolt vagy rendszeres yt-dlp)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation>Moteur d'exécution JavaScript</translation>
+            <translation>JavaScript futtatási környezet</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation>%1 trouvé : %2</translation>
+            <translation>%1 található: %2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation>Aucun environnement JS trouvé — résolution du n-challenge YouTube désactivée</translation>
+            <translation>Nincs JS futtatási környezet – a YouTube n-challenge megoldás letiltva</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation>yt-dlp nécessite un environnement JavaScript externe pour résoudre le n-challenge de YouTube (limitation d'URL). Sans lui, les téléchargements YouTube peuvent échouer ou ne retourner que des formats storyboard de basse qualité.
+            <translation>A yt-dlp külső JavaScript futtatási környezetet igényel a YouTube URL throttling kezeléséhez. Nélküle a letöltések sikertelenné válhatnak vagy csak alacsony minőségű storyboard formátumokat adnak vissza.
 
-Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ou QuickJS. Placez-le dans le même dossier que yt-dlp.exe ou ajoutez-le au PATH système, puis cliquez sur Vérifier à nouveau dans la section statut yt-dlp ci-dessus.</translation>
+Telepítsen valamelyiket: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) vagy QuickJS. Helyezze a yt-dlp.exe mellé, vagy adja hozzá a rendszer PATH-jéhez, majd kattintson a fenti yt-dlp státusz szekcióban lévő Re-check gombra.</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation>Remplacer le chemin de l'environnement détecté automatiquement. Laissez vide pour utiliser la détection automatique (recherche dans le dossier yt-dlp, dossier de l'application et PATH système).</translation>
+            <translation>A felismert futtatási környezet útvonalának felülírása. Hagyja üresen az automatikus felismeréshez (keresés a yt-dlp mappában, alkalmazás mappában és rendszer PATH-ban).</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation>(détection automatique depuis le PATH et le dossier yt-dlp)</translation>
+            <translation>(automatikus felismerés PATH-ból és yt-dlp mappából)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation>Mettre à jour automatiquement yt-dlp au démarrage</translation>
+            <translation>A yt-dlp automatikus frissítése indításkor</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation>Lorsqu'elle est activée, Stellar exécutera « yt-dlp -U » au démarrage pour maintenir le binaire à jour. Nécessite une connexion Internet active.</translation>
+            <translation>Ha engedélyezve van, a Stellar indításkor futtatja a &quot;yt-dlp -U&quot; parancsot a bináris frissítésére. Aktív internetkapcsolatot igényel.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation>Téléchargements par torrent</translation>
+            <translation>Torrent letöltések</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation>Activer le support BitTorrent</translation>
+            <translation>BitTorrent támogatás engedélyezése</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation>BitTorrent — Avis juridique</translation>
+            <translation>BitTorrent – Jogi nyilatkozat</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4030,255 +4019,251 @@ Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Stellar est un programme de partage de fichiers. Lorsque vous téléchargez un torrent, votre adresse IP devient visible par les autres pairs du swarm et vous téléchargez simultanément (seed) des données vers les autres.
-
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
-
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+            <translation>A Stellar egy fájlmegosztó program. Torrent letöltésekor az IP-címét a csomagtársak láthatják, és egyszerre feltölt (seed) adatot másoknak. Minden megosztott tartalom felelőssége kizárólag az öné. Győződjön meg arról, hogy jogosult a tartalom terjesztésére. Erősen ajánlott a Stellar kötése egy VPN hálózati felületre, és a VPN aktív állapotának ellenőrzése torrent használata előtt az IP-cím védelme érdekében.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, Activer</translation>
+            <translation>Megértettem, Engedélyezem</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation>Ces paramètres s'appliquent aux fichiers .torrent et aux liens magnétiques.</translation>
+            <translation>Beállítások .torrent fájlokra és magnet linkekre</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation>Port d'écoute</translation>
+            <translation>Hallgatási port</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation>Connexions maximales globales</translation>
+            <translation>Globális max. kapcsolatok</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation>Connexions maximales par torrent</translation>
+            <translation>Max. kapcsolatok torrentenként</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation>Créneaux de téléchargement maximal global</translation>
+            <translation>Globális max. feltöltési slotok</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation>Créneaux de téléchargement maximal par torrent</translation>
+            <translation>Max. feltöltési slotok torrentenként</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation>0 = illimité (champs par torrent et créneaux globaux de téléversement)</translation>
+            <translation>0 = korlátlan</translation>
         </message>
         <message>
             <source>Protocol</source>
-            <translation>Protocole</translation>
+            <translation>Protokoll</translation>
         </message>
         <message>
             <source>TCP and μTP</source>
-            <translation>TCP et μTP</translation>
+            <translation>TCP és μTP</translation>
         </message>
         <message>
             <source>μTP only</source>
-            <translation>Uniquement μTP</translation>
+            <translation>Csak μTP</translation>
         </message>
         <message>
             <source>TCP only</source>
-            <translation>TCP uniquement</translation>
+            <translation>Csak TCP</translation>
         </message>
         <message>
             <source>Port Test</source>
-            <translation>Test de port</translation>
+            <translation>Portteszt</translation>
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation>Vérifiez si votre port d'écoute de torrent actuel est accessible depuis l'internet public. Cela permet de confirmer si votre redirection de port VPN, la redirection de port sur votre routeur et les règles de pare-feu autorisent bien les connexions torrent entrantes.</translation>
+            <translation>Portteszt</translation>
         </message>
         <message>
             <source>Testing...</source>
-            <translation>Test en cours...</translation>
+            <translation>Tesztelés...</translation>
         </message>
         <message>
             <source>Test Port</source>
-            <translation>Tester le port</translation>
+            <translation>Port ellenőrzése</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation>Réseau</translation>
+            <translation>Hálózat</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Haladó</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation>Agent utilisateur BitTorrent personnalisé</translation>
+            <translation>Egyéni BitTorrent felhasználói ügynök</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation>Lier à l'adaptateur réseau</translation>
+            <translation>Hálózati adapterhez kötés</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Cet adaptateur est verrouillé pour le trafic torrent. Si votre VPN se déconnecte ou si l'adaptateur disparaît, Stellar cesse d'utiliser la route par défaut et vos torrents perdent l'accès au réseau au lieu de fuiter sur une autre connexion.</translation>
+            <translation>Ez az adapter zárolva a torrent forgalomhoz. Ha a VPN lekapcsolódik vagy az adapter eltűnik, a Stellar elhagyja az alapértelmezett útvonalat, így a torrentek elveszítik a hálózati hozzáférést, nem szivárognak át más kapcsolatra.</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Aucun lien d'adaptateur. Le trafic torrent suit la route système.</translation>
+            <translation>Nincs adapter-kötés. A torrent forgalom követi a rendszer útvonalát.</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>La liaison de l'adaptateur réseau indique à Stellar d'envoyer et de recevoir du trafic torrent uniquement via l'adaptateur sélectionné. Cela est particulièrement utile pour les utilisateurs de VPN car cela empêche les fuites de trafic accidentelles lorsque le VPN n'est pas connecté.</translation>
+            <translation>Az adapter-kötés arra utasítja a Stellart, hogy a torrent forgalmat csak a kiválasztott adapteren keresztül küldje és fogadja. Ez különösen hasznos VPN felhasználóknak, mivel megakadályozza a véletlen forgalom-szivárgást, ha a VPN nem csatlakozik.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
-            <translation>Sécurité du torrent</translation>
+            <translation>Torrent biztonság</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation>Les bannissements manuels de pairs s'appliquent immédiatement. Les sous-chaînes d'agent utilisateur bloquées, les pays bloqués et les options de bannissement automatique s'appliquent lorsque vous cliquez sur Appliquer ou OK.</translation>
+            <translation>A kézi társak tilalma azonnal érvényesül. A blokkolt felhasználói ügynök-alrészek, országok és az automatikus tiltható opciók csak az Alkalmazás vagy Rendben gombra kattintva lépnek érvénybe.</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation>Mode de chiffrement</translation>
+            <translation>Titkosítási mód</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation>Préférer le chiffrement</translation>
+            <translation>Titkosítás előnyben részesítése</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation>Exiger le chiffrement</translation>
+            <translation>Titkosítás</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation>Autoriser le chiffrement</translation>
+            <translation>Titkosítás engedélyezése</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation>User-Agents bloqués</translation>
+            <translation>Blokkolt felhasználói agentek</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation>Une sous-chaîne par ligne. Si la chaîne du client pair contient l'une des lignes ci-dessus, Stellar bannit automatiquement ce pair jusqu'à ce que la ligne correspondante soit supprimée et que les paramètres soient appliqués.</translation>
+            <translation>Egy alsztring sortonként. Ha egy távoli kliens sztring tartalmazza a fenti sorok bármelyikét, a Stellar automatikusan blokkolja a távoli klienst, amíg a megfelelő sort nem távolítja el és nem alkalmazza az beállításokat.</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation>Bannir manuellement un pair</translation>
+            <translation>Távoli kliens blokkolása</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation>Adresse IP, par exemple 203.0.113.42</translation>
+            <translation>IP cím (pl. 203.0.113.42)</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation>Bannir</translation>
+            <translation>Blokkolás</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation>Les bannissements manuels sont permanents jusqu'à ce que vous les supprimiez de la liste des pairs bannis ci-dessous.</translation>
+            <translation>A kézi blokkolások véglegesek, amíg nem távolítja el őket a blokkolt távoli kliensek listájáról.</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation>Bloquer les pairs par pays</translation>
+            <translation>Ország szerinti távoli kliensek blokkolása</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>Hozzáadás</translation>
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation>Aucun pays bloqué.</translation>
+            <translation>Nincs blokkolt ország</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation>Bannir automatiquement Xunlei, QQ, Baidu, Xfplay, DLBT et les téléchargeurs hors ligne</translation>
+            <translation>Automatikus tiltás: Xunlei, QQ, Baidu, Xfplay, DLBT és offline letöltők</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation>Bannir automatiquement les pairs des lecteurs multimédias BitTorrent</translation>
+            <translation>Automatikus tiltás: BitTorrent Media Player Peer</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation>Paires bannies manuellement</translation>
+            <translation>Kézzel tiltott peer-ek</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation>Débannir</translation>
+            <translation>Tiltás feloldása</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>Aktív</translation>
         </message>
         <message>
             <source>No banned peers</source>
-            <translation>Aucune paire bannie</translation>
+            <translation>Nincs tiltott peer</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation>Base de données IP-vers-Ville</translation>
+            <translation>IP-Város adatbázis</translation>
         </message>
         <message>
             <source>Version</source>
-            <translation>Version</translation>
+            <translation>Verzió</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Ismeretlen</translation>
         </message>
         <message>
             <source>Path</source>
-            <translation>Chemin</translation>
+            <translation>Útvonal</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Méret</translation>
         </message>
         <message>
             <source>Entries</source>
-            <translation>Entrées</translation>
+            <translation>Bejegyzések</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation>Dernière modification</translation>
+            <translation>Módosítva</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>Állapot</translation>
         </message>
         <message>
             <source>Downloading...</source>
-            <translation>Téléchargement en cours...</translation>
+            <translation>Letöltés...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation>Mettre à jour la base de données IP-vers-Ville</translation>
+            <translation>IP-Város DB frissítése</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation>Actualiser les informations</translation>
+            <translation>Információ frissítése</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>Statisztika</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation>Totaux cumulés des transferts sur tous les torrents, y compris ceux qui ont été supprimés.</translation>
+            <translation>Összesített adatforgalom (törölt torrentekkel is)</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>Feltöltés</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation>Ratio de partage global</translation>
+            <translation>Megosztási arány</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation>Les textes complets des licences se trouvent dans THIRD-PARTY-NOTICES.txt, inclus avec cette installation.</translation>
+            <translation>A licencszövegek a THIRD-PARTY-NOTICES.txt fájlban találhatók.</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4286,139 +4271,139 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation>Récupération des flux</translation>
+            <translation>Hírfolyam lekérés</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation>Activer la récupération des flux RSS</translation>
+            <translation>RSS hírfolyamok lekérése</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation>Intervalle de rafraîchissement des flux</translation>
+            <translation>Hírfolyam frissítési időköz</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>perc</translation>
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation>Délai de requête pour le même hôte</translation>
+            <translation>Kérés késleltetése ugyanazon hoszton</translation>
         </message>
         <message>
             <source>seconds</source>
-            <translation>secondes</translation>
+            <translation>másodperc</translation>
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation>Nombre maximum d'articles par flux</translation>
+            <translation>Max. cikk/áram</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation>Téléchargeur automatique de torrents</translation>
+            <translation>Torrent letöltő</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation>Activer le téléchargement automatique des torrents RSS</translation>
+            <translation>RSS torrentek automatikus letöltése</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation>Modifier les règles de téléchargement automatique...</translation>
+            <translation>Automatikus letöltési szabályok szerkesztése...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation>Filtre intelligent des épisodes</translation>
+            <translation>Okos epizód szűrő</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation>Télécharger les épisodes REPACK/PROPER</translation>
+            <translation>REPACK/PROPER epizódok letöltése</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation>Motifs de détection des épisodes (un par ligne) :</translation>
+            <translation>Epizód felismerési minták (soronként egy):</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation>Associations</translation>
+            <translation>RSS áram lekérdezés és torrent letöltési szabályok konfigurálása.</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation>Configurer la récupération des flux RSS et les règles de téléchargement automatique de torrents.</translation>
+            <translation>RSS és torrent letöltési szabályok konfigurálása</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation>Ces expressions régulières sont utilisées pour extraire les numéros de saison/épisode pour la détection intelligente des doublons.</translation>
+            <translation>Szezon/epizód számok kinyerésére használt reguláris kifejezések.</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation>Définir Stellar comme application par défaut pour les fichiers .torrent et les liens magnet. Sur Windows 10/11, cliquez sur le bouton puis confirmez le changement dans la page des applications par défaut de Windows qui s'ouvre.</translation>
+            <translation>Állítsa a Stellart alapértelmezett alkalmazássá .torrent fájlokhoz és magnet linkekhez. Windows 10/11-en kattintson a gombra, majd erősítse meg a változást a Windows Alapértelmezett Alkalmazások beállításaiban.</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation>Fichiers .torrent</translation>
+            <translation>.torrent fájlok</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation>Géré actuellement par Stellar</translation>
+            <translation>Jelenleg a Stellar kezeli</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation>Stellar n'est pas la valeur par défaut actuelle</translation>
+            <translation>A Stellar nem az aktuális alapértelmezett</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation>Définir .torrent par défaut</translation>
+            <translation>.torrent alapértelmezett beállítása</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation>Actualiser l'état</translation>
+            <translation>Állapot frissítése</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation>liens magnet</translation>
+            <translation>magnet: linkek</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation>Définir Magnet par défaut</translation>
+            <translation>Magnet alapértelmezett beállítása</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation>Si votre environnement de bureau remplace l'association au niveau de l'application, actualisez l'état après que le système a fini d'appliquer le changement.</translation>
+            <translation>Ha a asztali környezet felülírja az alkalmazásszintű társítást, frissítse az állapotot a rendszer változás alkalmazása után.</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>Langue de l'interface</translation>
+            <translation>Nyelv</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>Sélectionnez la langue utilisée dans toute l'interface Stellar. Un redémarrage est nécessaire pour que tous les textes soient mis à jour.</translation>
+            <translation>Nyelv</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>Nyelv</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>Un redémarrage est requis après avoir changé la langue.</translation>
+            <translation>Újraindítás</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>Frissítések</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation>Quoi de neuf</translation>
+            <translation>Újdonságok</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation>Date de compilation</translation>
+            <translation>Verzió</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation>Version de Qt</translation>
+            <translation>Qt verzió</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation>Plateforme</translation>
+            <translation>Platform</translation>
         </message>
         <message>
             <source>Windows</source>
@@ -4438,416 +4423,415 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation>Stellar est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la GNU General Public License, version 3.</translation>
+            <translation>Stellar ingyenes szoftver: a GNU General Public License, 3. verzió feltételei szerint terjesztheti és/vagy módosíthatja.</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation>Logiciels tiers</translation>
+            <translation>Harmadik féltől származó szoftver</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Alkalmazás</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Rendben</translation>
         </message>
         <message>
             <source>Default route</source>
-            <translation>Route par défaut</translation>
+            <translation>Alapértelmezett útvonal</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation>Laisser le système d'exploitation choisir l'adaptateur réseau actif.</translation>
+            <translation>Hagyja, hogy az OS válassza ki az aktív hálózati adaptert.</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation>(Indisponible)</translation>
+            <translation>(Nem elérhető)</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation>Cet adaptateur n'est pas actuellement disponible. Reconnectez-le ou choisissez un autre adaptateur.</translation>
+            <translation>Az adapter jelenleg nem érhető el. Csatlakoztassa újra vagy válasszon más adaptert.</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation>Bannissement manuel</translation>
+            <translation>Kézi tiltás</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation>Trouver des pairs sans tracker en utilisant une table de hachage distribuée.</translation>
+            <translation>Nyomozó nélküli csomópontok keresése elosztott hash táblával.</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation>Découvrir des pairs sur votre réseau local sans passer par Internet.</translation>
+            <translation>Csomópontok felfedezése a helyi hálózaton internet nélkül.</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation>Ouvrir automatiquement un port sur votre routeur afin que les pairs puissent se connecter à vous.</translation>
+            <translation>Port automatikus megnyitása a routeren a csatlakozás érdekében.</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation>Comme UPnP mais pour les routeurs Apple - activez les deux et celui que votre routeur prendra en charge sera utilisé.</translation>
+            <translation>UPnP-hoz hasonlóan Apple routerekhez – engedélyezze mindkettőt, a router támogatottja lesz használva.</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation>Partager les listes de pairs entre les pairs connectés afin de trouver plus de sources sans solliciter le tracker.</translation>
+            <translation>Csomópontlisták megosztása a csatlakozott csomópontok között a nyomozó elkerülésével.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation>Stellar est désormais l'application par défaut pour les fichiers .torrent.</translation>
+            <translation>Stellar a .torrent fájlok alapértelmezett alkalmazása.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation>Stellar est désormais l'application par défaut pour les liens magnet.</translation>
+            <translation>Stellar a magnet linkek alapértelmezett alkalmazása.</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation>Par défaut : Stellar/%1</translation>
+            <translation>Alapértelmezett: Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation>Types de fichiers (séparés par des virgules, ex. mp4, mkv, avi)</translation>
+            <translation>Fájltípusok</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation>Attribution automatique depuis les sites (séparés par des espaces, * joker)</translation>
+            <translation>Automatikus kiosztás</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation>Les téléchargements depuis les sites correspondants seront automatiquement assignés à cette catégorie.</translation>
+            <translation>Letöltések</translation>
         </message>
         <message>
             <source>Rule %1</source>
-            <translation>Règle %1</translation>
+            <translation>Szabály %1</translation>
         </message>
         <message>
             <source>Not found</source>
-            <translation>Non trouvé</translation>
+            <translation>Nem található</translation>
         </message>
         <message>
             <source>Loaded</source>
-            <translation>Chargé</translation>
+            <translation>Betöltve</translation>
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation>Disponible mais non chargé</translation>
+            <translation>Elérhető, de nem betöltve</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>Forrás: %1</translation>
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>L'URL de la source n'est pas encore mise en cache. Utilisez Vérifier les mises à jour pour mettre en cache IPtoCityDB depuis update.json.</translation>
+            <translation>Forrás URL nincs gyorsítótárazva. Használja a Frissítés ellenőrzése opciót az IPtoCityDB gyorsítótárazásához az update.json-ből.</translation>
         </message>
         <message>
             <source>Version %1</source>
-            <translation>Version %1</translation>
+            <translation>Verzió %1</translation>
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation>Mise à jour disponible : %1</translation>
+            <translation>Frissítés elérhető: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation>Préférences de Stellar</translation>
+            <translation>Stellar Beállítások</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation>Sélectionner le binaire yt-dlp</translation>
+            <translation>yt-dlp bináris kiválasztása</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation>Sélectionner le binaire du moteur JavaScript</translation>
+            <translation>JS futtatókörnyezet bináris kiválasztása</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation>Modifier le projet</translation>
+            <translation>Projekt szerkesztése</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>Projekt törlése</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>Kategóriák</translation>
         </message>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Minden letöltés</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation>Inachevés</translation>
+            <translation>Fejezetlen</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation>Terminés</translation>
+            <translation>Fejezetett</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation>Projets de récupération</translation>
+            <translation>Projektek</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation>Torrentek</translation>
         </message>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>Várólista</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>Megosztás</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>Leállítva</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>Aktív</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>Inaktív</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>Ellenőrzés</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>Áthelyezés</translation>
         </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>Statisztika</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation>Statistiques Stellar</translation>
+            <translation>Stellar Statisztika</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation>TOUTE L'HISTORIQUE</translation>
+            <translation>ÖSSZESEN</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>Feltöltés</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation>Taux de partage</translation>
+            <translation>Megosztási arány</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation>Temps de fonctionnement</translation>
+            <translation>Futási idő</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation>Date d'installation</translation>
+            <translation>Telepítés</translation>
         </message>
         <message>
             <source>Startups</source>
-            <translation>Démarrages</translation>
+            <translation>Indítások</translation>
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation>CETTE SESSION</translation>
+            <translation>Jelenlegi</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
     </context>
     <context>
         <name>StatusBar</name>
         <message>
             <source>🟦 1 active</source>
-            <translation>🟦 1 actif</translation>
+            <translation>🟦 1 aktív</translation>
         </message>
         <message>
             <source>🟦 %1 active</source>
-            <translation>🟦 %1 actifs</translation>
+            <translation>🟦 %1 aktív</translation>
         </message>
         <message>
             <source>📄 1 download</source>
-            <translation>📄 1 téléchargement</translation>
+            <translation>📄 1 letöltés</translation>
         </message>
         <message>
             <source>📄 %1 downloads</source>
-            <translation>📄 %1 téléchargements</translation>
+            <translation>📄 %1 letöltés</translation>
         </message>
         <message>
             <source>🟨 1 error</source>
-            <translation>🟨 1 erreur</translation>
+            <translation>🟨 1 hiba</translation>
         </message>
         <message>
             <source>🟨 %1 errors</source>
-            <translation>🟨 %1 erreurs</translation>
+            <translation>🟨 %1 hiba</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy activé</translation>
+            <translation>🌐 Proxy bekapcsolva</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation>📡 Vérification des mises à jour</translation>
+            <translation>📡 Frissítés keresése</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation>🛑 Limiteur de vitesse</translation>
+            <translation>🛑 Sebességkorlátozó</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
-            <translation>🟩 Prêt</translation>
+            <translation>🟩 Kész</translation>
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation>🔍 1 sélectionné</translation>
+            <translation>🔍 1 kiválasztva</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation>🔍 %1 sélectionnés</translation>
+            <translation>🔍 %1 kiválasztva</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation>🔴 DHT désactivé</translation>
+            <translation>🔴 DHT ki</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation>en ligne (faible confiance)</translation>
+            <translation> online (alacsony bizalom)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation>en ligne</translation>
+            <translation> online</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 La file d'attente s'exécute dans 1 minute</translation>
+            <translation>🟧 Sorban 1 perc</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 La file d'attente s'exécute dans %1 minutes</translation>
+            <translation>🟧 Sorban %1 perc</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Estimation… (%1%)</translation>
+            <translation>🟡 Becslés… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation>Suivant &gt;&gt;</translation>
+            <translation>következő &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation>Taux de partage de tout le temps
-Cliquez pour ouvrir les statistiques</translation>
+            <translation>Összes arány</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation>Cliquez pour copier l'IP</translation>
+            <translation>Statisztikák megnyitása</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation>IP publique :</translation>
+            <translation>IP másolása</translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation>Connexion : Ethernet</translation>
+            <translation>Nyilvános IP:</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation>WiFi :</translation>
+            <translation>Kapcsolat: Ethernet</translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation>Signal :</translation>
+            <translation>WiFi:</translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>Port d'écoute :</translation>
+            <translation>Jel:</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>Aucune connexion entrante, le réseau est peut-être mal configuré</translation>
+            <translation>Hallgatási port:</translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>Nincs belépő kapcsolat, a hálózat hibásan van konfigurálva</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>Stellar Letöltő</translation>
         </message>
     </context>
     <context>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter l'URL</translation>
+            <translation>URL hozzáadása</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>Folytatás</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>Megállítás</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>Tout arrêter</translation>
+            <translation>Összes megállítása</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>Törlés</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>Supprimer terminé</translation>
+            <translation>Kész törlése</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>Beállítások</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>Ütemező</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>Várólista indítása</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>Várólista leállítása</translation>
         </message>
         <message>
             <source>Grabber</source>
-            <translation>Grabber</translation>
+            <translation>Rövidítő</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation>Moteur de recherche</translation>
+            <translation>Keresőmotor</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4858,86 +4842,86 @@ Cliquez pour ouvrir les statistiques</translation>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation>Dupliquer le torrent</translation>
+            <translation>Duplikált Torrent</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation>Le torrent existe déjà</translation>
+            <translation>A Torrent már létezik</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation>Ce torrent est déjà dans votre liste. %n nouveau(s) tracker(s) trouvé(s).</translation>
+            <translation>A Torrent már a listában van. %n új tracker található.</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation>Ce torrent est déjà dans votre liste avec les mêmes trackers.</translation>
+            <translation>A Torrent már a listában van ugyanazokkal a trackerekkel.</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation>%n nouveau(s) tracker(s)</translation>
+            <translation>%n új tracker</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation>… et %1 autre(s)</translation>
+            <translation>… és %1 több</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation>Ignorer</translation>
+            <translation>Elutasítás</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation>Fusionner les trackers</translation>
+            <translation>Nyomkövetők egyesítése</translation>
         </message>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>Mentés</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation>Enregistrer sous...</translation>
+            <translation>Mentés másként...</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>Kategória</translation>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation>Dossier de sauvegarde personnalisé</translation>
+            <translation>Egyéni mentési mappa</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation>Se souvenir</translation>
+            <translation>Emlékeztetés</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation>Utiliser le dossier de catégorie</translation>
+            <translation>Kategória mappa használata</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>Leírás</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation>Torrent beállítások...</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégsem</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>Későbbi letöltés</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation>Ouverture du torrent...</translation>
+            <translation>Torrent megnyitása...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
@@ -4945,299 +4929,300 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation>RTT %1 %2 % terminés</translation>
+            <translation>RTT %1 %2% kész</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>Fájlok</translation>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation>%n élément(s)</translation>
+            <translation>%n elem</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Név</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>Haladás</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Méret</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>Nincs fájlinformáció</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>Várakozik</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>Átnevezés</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>Adjon meg új fájlt vagy mappanevet:</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>Átnevezés</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>Átnevezés...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>Peer</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation>Ouverture du torrent et lecture des métadonnées...</translation>
+            <translation>Nyílik a torrent és betöltődik a metaadat...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation>Recherche de pairs pour télécharger les métadonnées...</translation>
+            <translation>Peer keresése a metaadat letöltéséhez...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation>Téléchargement des métadonnées depuis %n pair(s)</translation>
+            <translation>%n peer metaadata letöltése
+</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Seed</translation>
+            <translation>Mag</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>Te</translation>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation>Métadonnées du torrent</translation>
+            <translation>Torrent Metaadatok</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation>Installer un nouveau plugin de recherche</translation>
+            <translation>Új keresőbővítmény telepítése</translation>
         </message>
         <message>
             <source>Local File</source>
-            <translation>Fichier local</translation>
+            <translation>Helyi fájl</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation>Lien Web</translation>
+            <translation>Webes hivatkozás</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégsem</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Rendben</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation>Choisissez un fichier de plugin de recherche local .py à copier dans le dossier search_plugins.</translation>
+            <translation>Válasszon egy helyi .py keresőbővítmény fájlt a search_plugins mappába másoláshoz.</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation>Collez une URL directe vers un fichier de plugin .py.</translation>
+            <translation>Illesszen be egy közvetlen URL-t egy .py bővítmény fájlra.</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation>Installer un plugin de recherche</translation>
+            <translation>Keresőbővítmény telepítése</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation>Désactiver le plugin</translation>
+            <translation>Bővítmény letiltása</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation>Activer le plugin</translation>
+            <translation>Bővítmény engedélyezése</translation>
         </message>
         <message>
             <source>Uninstall</source>
-            <translation>Désinstaller</translation>
+            <translation>Eltávolítás</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation>Plugins de recherche installés</translation>
+            <translation>Telepített keresőbővítmények</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>Frissítés</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Ismeretlen</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>Engedélyezve</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation>Désactivé</translation>
+            <translation>Letiltva</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation>Installer un nouveau</translation>
+            <translation>Új telepítése</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>Keresés</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>Név</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>Méret</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>Seederek</translation>
         </message>
         <message>
             <source>Leechers</source>
-            <translation>Leechers</translation>
+            <translation>Leecherek</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation>Moteur</translation>
+            <translation>Motor</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation>Publié le</translation>
+            <translation>Közzétéve</translation>
         </message>
         <message>
             <source>Open Description Page</source>
-            <translation>Ouvrir la page de description</translation>
+            <translation>Leírás</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Copy Name</source>
-            <translation>Copier le nom</translation>
+            <translation>Név másolása</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>Magnet link másolása</translation>
         </message>
         <message>
             <source>Copy Description Page URL</source>
-            <translation>Copier l'URL de la page de description</translation>
+            <translation>Leírás URL másolása</translation>
         </message>
         <message>
             <source>Searching...</source>
-            <translation>Recherche en cours...</translation>
+            <translation>Keresés...</translation>
         </message>
         <message>
             <source>Search</source>
-            <translation>Rechercher</translation>
+            <translation>Keresés</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>Ismeretlen</translation>
         </message>
         <message>
             <source>No search results yet</source>
-            <translation>Aucun résultat de recherche pour le moment</translation>
+            <translation>Még nincs keresési eredmény</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>Keresőbővítmények</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation>Moteur de recherche de torrents</translation>
+            <translation>Torrent keresőmotor</translation>
         </message>
     </context>
     <context>
         <name>TorrentSpeedLimitDialog</name>
         <message>
             <source>Torrent Settings</source>
-            <translation>Paramètres du torrent</translation>
+            <translation>Torrent beállítások</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Vitesse par torrent, limites de partage, découverte des pairs et mode de téléchargement</translation>
+            <translation>Sebesség, megosztás, felfedezés, mód</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>Bezárás</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>Alkalmazás</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LIMITES DE BANDE PASSANTE</translation>
+            <translation>SÁVSZABÁLYOK</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Téléchargement :</translation>
+            <translation>Letöltés:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Envoi :</translation>
+            <translation>Feltöltés:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE</translation>
+            <translation>MEGOSZTÁS</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio :</translation>
+            <translation>Arány:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>Alapértelmezett</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>Korlátlan</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>Beállítás</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Durée de partage :</translation>
+            <translation>Csírázás ideje</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>perc</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Durée d'inactivité :</translation>
+            <translation>Inaktív idő</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>DÉCOUVERTE DES PAIRS</translation>
+            <translation>PEER FELLELÉS</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -5245,7 +5230,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Table de hachage distribuée</translation>
+            <translation>Elosztott Hash Táblázat</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -5253,7 +5238,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Échange de pairs</translation>
+            <translation>Peer Cseré</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -5261,135 +5246,135 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Découverte locale de services</translation>
+            <translation>Helyi szolgáltatásfelfedezés</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privé</translation>
+            <translation>🔒 Privát torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT et PeX désactivés par libtorrent.</translation>
+            <translation>A DHT és a PeX a libtorrent által letiltva.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODE DE TÉLÉCHARGEMENT</translation>
+            <translation>LETÖLTÉSI MÓD</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Téléchargement séquentiel</translation>
+            <translation>Szekvenciális letöltés</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Morceaux téléchargés dans l'ordre (morceau 0 → dernier)</translation>
+            <translation>Letöltött darabok sorrendje (0. darab → utolsó)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioriser le premier et le dernier morceau</translation>
+            <translation>Az első és az utolsó elemek előtérbe helyezése</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Précharge l'en-tête/pied de page pour la lecture anticipée</translation>
+            <translation>Előre tölti a fejléc/láblécet a korai lejátszáshoz</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>Récupération des formats disponibles…</translation>
+            <translation>Elérhető formátumok lekérése…</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>A videóinformációk lekérése nem sikerült</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>Échec de la résolution du défi n-challenge de YouTube</translation>
+            <translation>YouTube n-challenge hiba</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>Récupération des informations vidéo…</translation>
+            <translation>Videó adatok lekérése…</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>Nem sikerült lekérni a videó adatait</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>yt-dlp nécessite un environnement d'exécution JavaScript (Deno, Node.js, Bun ou QuickJS) pour contourner le défi de limitation d'URL de YouTube. Installez-en un et placez-le à côté de yt-dlp.exe ou dans votre PATH système.</translation>
+            <translation>A yt-dlp-hoz JavaScript futtatási környezet (Deno, Node.js, Bun vagy QuickJS) szükséges a YouTube URL korlátozásának leküzdéséhez. Telepítsen egyet, és helyezze el a yt-dlp.exe mellett vagy a rendszer PATH-jában.</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>Aucun environnement d'exécution détecté. Installez Deno (recommandé) depuis deno.com, puis revérifiez dans Paramètres → Téléchargeur vidéo.</translation>
+            <translation>Nem található futtatási környezet. Telepítse a Deno-t (ajánlott) a deno.com-ról, majd ellenőrizze újra Beállítások → Videóletöltő menüpontban.</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>Environnement d'exécution détecté : %1 (%2)</translation>
+            <translation>Futtatási környezet: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation>Obtenir Deno</translation>
+            <translation>Deno letöltése</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation>Ouvrir les paramètres</translation>
+            <translation>Beállítások megnyitása</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>Böngészőből származó sütik:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation>Sélectionnez un navigateur pour transmettre ses cookies à yt-dlp, puis réessayez.</translation>
+            <translation>Válasszon egy böngészőt, és adja át a sütijét a yt-dlp-nek, majd próbálja újra.</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation>Réessayer</translation>
+            <translation>Újrapróbálkozás</translation>
         </message>
         <message>
             <source>Select quality:</source>
-            <translation>Sélectionner la qualité :</translation>
+            <translation>Minőség kiválasztása:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation>Taille indisponible — cette qualité utilise des flux vidéo et audio séparés fusionnés par ffmpeg après le téléchargement.</translation>
+            <translation>Nem elérhető méret – ez a minőség külön videó- és hangfolyamokat használ, amelyeket az ffmpeg egyesít a letöltés után.</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation>Chaîne / Playlist</translation>
+            <translation>Csatorna / Lejátszási lista</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation>Toutes les vidéos</translation>
+            <translation>Minden videó</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation>Les plus récentes</translation>
+            <translation>Legújabb</translation>
         </message>
         <message>
             <source>videos</source>
-            <translation>vidéos</translation>
+            <translation>videók</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation>Les URL de chaînes YouTube incluent par défaut tous les téléchargements. Utilisez Portée pour cibler un seul onglet.</translation>
+            <translation>A YouTube csatorna URL-jei alapértelmezetten minden feltöltést tartalmaznak. Használja a Hatást a célzott fül kiválasztásához.</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation>Les vidéos seront enregistrées dans un sous-dossier nommé d'après la chaîne.</translation>
+            <translation>A videók egy a csatorna nevét viselő alkönyvtárba lesznek mentve.</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation>Portée :</translation>
+            <translation>Hatás:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>Minden feltöltés</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation>Vidéos</translation>
+            <translation>Videók</translation>
         </message>
         <message>
             <source>Shorts</source>
@@ -5397,59 +5382,59 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Live</source>
-            <translation>En direct</translation>
+            <translation>Élő</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation>Sous-titres</translation>
+            <translation>Feliratok</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation>Télécharger les fichiers de sous-titres avec la vidéo</translation>
+            <translation>Videó mellé feliratfájlok letöltése</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>Nyelv:</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation>Code(s) de langue, ex. en · en.*,ja · tous</translation>
+            <translation>Nyelvkód(ok), pl. en · en.*,ja · all</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation>Généré automatiquement</translation>
+            <translation>Automatikusan generált</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation>Inclure les sous-titres générés automatiquement si disponibles</translation>
+            <translation>Automatikusan generált feliratok bevonása, ha elérhetők</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation>Intégrer dans la vidéo</translation>
+            <translation>Beágyazás videóba</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation>Intégrer les sous-titres dans le conteneur vidéo</translation>
+            <translation>Aláfeliratok beágyazása</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation>L'intégration nécessite mp4, mkv ou webm</translation>
+            <translation>MP4, MKV vagy Webm szükséges</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation>Intégrer la vignette</translation>
+            <translation>Beágyazás képernyőképe</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation>Intégrer la miniature de couverture dans le fichier vidéo (nécessite ffmpeg)</translation>
+            <translation>Beágyazás borítóképe (ffmpeg)</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation>Intégrer les métadonnées</translation>
+            <translation>Beágyazás metaadatok</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation>Écrire le titre, l'uploadé, les chapitres, etc. dans les métadonnées du conteneur</translation>
+            <translation>Cím, feltöltő, fejezetek írása (ffmpeg)</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
@@ -5458,132 +5443,131 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation>Supprimer les segments sponsorisés, les génériques d'ouverture et de fermeture, ainsi que l'auto-promotion
-(Uniquement YouTube · nécessite ffmpeg)</translation>
+            <translation>Sponzorált részek eltávolítása (YouTube, ffmpeg)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation>Ko/s (vide = utiliser la limite de vitesse globale)</translation>
+            <translation>KB/s (üres = globális limit)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation>Télécharger la chaîne</translation>
+            <translation>Letöltés csatorna</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>Letöltés</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>Haladó</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation>filtre par date</translation>
+            <translation>Dátum szűrő</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation>cookies</translation>
+            <translation>Sütemények</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation>archive</translation>
+            <translation>Archívum</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation>diviser les chapitres</translation>
+            <translation>Fejezetek felosztása</translation>
         </message>
         <message>
             <source>time range</source>
-            <translation>plage horaire</translation>
+            <translation>Időtartomány</translation>
         </message>
         <message>
             <source>extra files</source>
-            <translation>fichiers supplémentaires</translation>
+            <translation>További fájlok</translation>
         </message>
         <message>
             <source>random</source>
-            <translation>aléatoire</translation>
+            <translation>Véletlen</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation>début en direct</translation>
+            <translation>Élő indítás</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation>limite de débit</translation>
+            <translation>Sebességkorlát</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation>Date après :</translation>
+            <translation>Dátum után:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation>Seulement les vidéos téléchargées à partir de cette date</translation>
+            <translation>Csak ezen a dátumon vagy utána feltöltött videók</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation>Cookies :</translation>
+            <translation>Sütik:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation>Charger les cookies pour le contenu réservé aux membres / restreint par l'âge</translation>
+            <translation>Sütik betöltése kizárólagos/éves korhatáros tartalmakhoz</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation>Limite de débit :</translation>
+            <translation>Sebességkorlát:</translation>
         </message>
         <message>
             <source>Time range:</source>
-            <translation>Plage horaire :</translation>
+            <translation>Időtartomány:</translation>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
-            <translation>Télécharger uniquement cette section, ex. *01:30-03:00</translation>
+            <translation>Csak ez a szakasz letöltése, pl. *01:30-03:00</translation>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation>Ignorer les fichiers déjà téléchargés</translation>
+            <translation>Már letöltött elemek kihagyása</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation>Diviser par chapitres</translation>
+            <translation>Fejezetek</translation>
         </message>
         <message>
             <source>Save description</source>
-            <translation>Enregistrer la description</translation>
+            <translation>Leírás mentése</translation>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation>Enregistrer la miniature</translation>
+            <translation>Képkocka mentése</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation>Mélanger la playlist</translation>
+            <translation>Keverés</translation>
         </message>
         <message>
             <source>Live: from start</source>
-            <translation>En direct : depuis le début</translation>
+            <translation>Élő: kezdettől</translation>
         </message>
         <message>
             <source>Save to:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>Mentés:</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>Kategória:</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation>Format :</translation>
+            <translation>Formátum:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>Mégse</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation>Téléchargement vidéo</translation>
+            <translation>Videó letöltése</translation>
         </message>
     </context>
 </TS>

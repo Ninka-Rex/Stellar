@@ -33,13 +33,13 @@ ApplicationWindow {
     minimumHeight: 500
     title: {
         if (!App.settings.speedInTitleBar)
-            return "Stellar Download Manager " + App.appVersion
+            return qsTr("Stellar Download Manager") + " " + App.appVersion
         function fmt(bps) {
             if (bps >= 1024 * 1024)
                 return (bps / (1024 * 1024)).toFixed(1) + " MB/s"
             return Math.round(bps / 1024) + " KB/s"
         }
-        return "Stellar  ↓ " + fmt(App.totalDownSpeed) + "  ↑ " + fmt(App.totalUpSpeed)
+        return qsTr("Stellar  ↓ %1  ↑ %2").arg(fmt(App.totalDownSpeed)).arg(fmt(App.totalUpSpeed))
     }
 
     Material.theme: Material.Dark

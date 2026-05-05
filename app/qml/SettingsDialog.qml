@@ -3964,8 +3964,85 @@ Window {
 
                                 // Each entry: { code, display }
                                 property var langEntries: [
-                                    { code: "",   display: "English" },
-                                    { code: "fr", display: "French — Français" }
+                                    { code: "",        display: "English" },
+                                    { code: "sq",      display: "Albanian — Shqip" },
+                                    { code: "am",      display: "Amharic — አማርኛ" },
+                                    { code: "ar",      display: "Arabic — العربية" },
+                                    { code: "hy",      display: "Armenian — Հայերեն" },
+                                    { code: "az",      display: "Azerbaijani — Azərbaycan dili" },
+                                    { code: "be",      display: "Belarusian — Беларуская" },
+                                    { code: "bn",      display: "Bengali — বাংলা" },
+                                    { code: "bs",      display: "Bosnian — Bosanski" },
+                                    { code: "bg",      display: "Bulgarian — Български" },
+                                    { code: "my",      display: "Burmese — မြန်မာ" },
+                                    { code: "ca",      display: "Catalan — Català" },
+                                    { code: "zh_CN",   display: "Chinese (Simplified) — 简体中文" },
+                                    { code: "zh_TW",   display: "Chinese (Traditional) — 繁體中文" },
+                                    { code: "hr",      display: "Croatian — Hrvatski" },
+                                    { code: "cs",      display: "Czech — Čeština" },
+                                    { code: "da",      display: "Danish — Dansk" },
+                                    { code: "nl",      display: "Dutch — Nederlands" },
+                                    { code: "nl_BE",   display: "Dutch (Belgium) — Nederlands (België)" },
+                                    { code: "en",      display: "English" },
+                                    { code: "et",      display: "Estonian — Eesti" },
+                                    { code: "fa",      display: "Farsi (Persian) — فارسی" },
+                                    { code: "fil",     display: "Filipino — Filipino" },
+                                    { code: "fi",      display: "Finnish — Suomi" },
+                                    { code: "fr",      display: "French — Français" },
+                                    { code: "gl",      display: "Galician — Galego" },
+                                    { code: "ka",      display: "Georgian — ქართული" },
+                                    { code: "de",      display: "German — Deutsch" },
+                                    { code: "el",      display: "Greek — Ελληνικά" },
+                                    { code: "gu",      display: "Gujarati — ગુજરાતી" },
+                                    { code: "ha",      display: "Hausa — Hausa" },
+                                    { code: "he",      display: "Hebrew — עברית" },
+                                    { code: "hi",      display: "Hindi — हिन्दी" },
+                                    { code: "hu",      display: "Hungarian — Magyar" },
+                                    { code: "ig",      display: "Igbo — Igbo" },
+                                    { code: "id",      display: "Indonesian — Bahasa Indonesia" },
+                                    { code: "ga",      display: "Irish — Gaeilge" },
+                                    { code: "it",      display: "Italian — Italiano" },
+                                    { code: "ja",      display: "Japanese — 日本語" },
+                                    { code: "jv",      display: "Javanese — Basa Jawa" },
+                                    { code: "kn",      display: "Kannada — ಕನ್ನಡ" },
+                                    { code: "km",      display: "Khmer — ភាសាខ្មែរ" },
+                                    { code: "ko",      display: "Korean — 한국어" },
+                                    { code: "lo",      display: "Lao — ລາວ" },
+                                    { code: "lv",      display: "Latvian — Latviešu" },
+                                    { code: "lt",      display: "Lithuanian — Lietuvių" },
+                                    { code: "mk",      display: "Macedonian — Македонски" },
+                                    { code: "ml",      display: "Malayalam — മലയാളം" },
+                                    { code: "ms",      display: "Malay — Bahasa Melayu" },
+                                    { code: "mr",      display: "Marathi — मराठी" },
+                                    { code: "mn",      display: "Mongolian — Монгол" },
+                                    { code: "ne",      display: "Nepali — नेपाली" },
+                                    { code: "nb",      display: "Norwegian — Norsk Bokmål" },
+                                    { code: "ps",      display: "Pashto — پښتو" },
+                                    { code: "pl",      display: "Polish — Polski" },
+                                    { code: "pt",      display: "Portuguese — Português" },
+                                    { code: "pt_BR",   display: "Portuguese (Brazilian) — Português (Brasil)" },
+                                    { code: "pa",      display: "Punjabi — ਪੰਜਾਬੀ" },
+                                    { code: "ro",      display: "Romanian — Română" },
+                                    { code: "ru",      display: "Russian — Русский" },
+                                    { code: "sr_Cyrl", display: "Serbian (Cyrillic) — Српски" },
+                                    { code: "sr_Latn", display: "Serbian (Latin) — Srpski" },
+                                    { code: "si",      display: "Sinhala — සිංහල" },
+                                    { code: "sk",      display: "Slovak — Slovenčina" },
+                                    { code: "sl",      display: "Slovenian — Slovenščina" },
+                                    { code: "es",      display: "Spanish — Español" },
+                                    { code: "sw",      display: "Swahili — Kiswahili" },
+                                    { code: "sv",      display: "Swedish — Svenska" },
+                                    { code: "ta",      display: "Tamil — தமிழ்" },
+                                    { code: "te",      display: "Telugu — తెలుగు" },
+                                    { code: "th",      display: "Thai — ไทย" },
+                                    { code: "tr",      display: "Turkish — Türkçe" },
+                                    { code: "uk",      display: "Ukrainian — Українська" },
+                                    { code: "ur",      display: "Urdu — اردو" },
+                                    { code: "ug",      display: "Uyghur — ئۇيغۇرچە" },
+                                    { code: "uz",      display: "Uzbek — Oʻzbek" },
+                                    { code: "vi",      display: "Vietnamese — Tiếng Việt" },
+                                    { code: "cy",      display: "Welsh — Cymraeg" },
+                                    { code: "yo",      display: "Yoruba — Yorùbá" }
                                 ]
 
                                 model: langEntries.map(function(e) { return e.display })
@@ -4019,10 +4096,15 @@ Window {
                                 }
 
                                 popup: Popup {
-                                    y: languageCombo.height + 2
+                                    parent: Overlay.overlay
+                                    x: languageCombo.mapToItem(Overlay.overlay, 0, 0).x
+                                    y: languageCombo.mapToItem(Overlay.overlay, 0, languageCombo.height + 2).y
                                     width: languageCombo.width
-                                    implicitHeight: contentItem.implicitHeight
                                     padding: 1
+                                    clip: true
+                                    z: 10000
+                                    implicitHeight: Math.min(contentItem.implicitHeight + 2, 280)
+                                    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
 
                                     background: Rectangle {
                                         color: "#252525"
@@ -4035,8 +4117,9 @@ Window {
                                         clip: true
                                         implicitHeight: contentHeight
                                         model: languageCombo.popup.visible ? languageCombo.delegateModel : null
+                                        currentIndex: languageCombo.highlightedIndex
 
-                                        ScrollIndicator.vertical: ScrollIndicator {}
+                                        ScrollBar.vertical: ScrollBar { }
                                     }
                                 }
 

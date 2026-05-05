@@ -640,6 +640,23 @@ int main(int argc, char *argv[])
         }
     }
 
+    // Install the saved translator before AppController is constructed so
+    // QObject-based defaults created during controller/model setup (like
+    // built-in category labels) are translated from the start.
+    QTranslator startupTranslator;
+    QString savedLocale;
+    {
+        QSettings settings(StellarPaths::settingsFile(), QSettings::IniFormat);
+        savedLocale = settings.value(QStringLiteral("uiLanguage")).toString().trimmed();
+        if (!savedLocale.isEmpty()) {
+            const QString qmPath = QStringLiteral(":/i18n/stellar_%1").arg(savedLocale);
+            if (startupTranslator.load(qmPath))
+                QCoreApplication::installTranslator(&startupTranslator);
+            else
+                qWarning() << "[i18n] Failed to preload translation for locale:" << savedLocale;
+        }
+    }
+
     nmLog(QStringLiteral("Registering QML types..."));
     qmlRegisterUncreatableType<DownloadTableModel>("com.stellar.app", 1, 0, "DownloadTableModel",
         QStringLiteral("Use App.downloadModel"));
@@ -671,11 +688,8 @@ int main(int argc, char *argv[])
 
     // Load saved UI language before the QML engine starts so that qsTr() calls
     // in QML component construction pick up the correct translator.
-    {
-        const QString savedLocale = controller.settings()->uiLanguage();
-        if (!savedLocale.isEmpty())
-            controller.applyUiLanguage(savedLocale);
-    }
+    if (!savedLocale.isEmpty())
+        controller.applyUiLanguage(savedLocale);
 
     QQmlApplicationEngine engine;
     engine.addImageProvider(QStringLiteral("fileicon"), new FileIconImageProvider);

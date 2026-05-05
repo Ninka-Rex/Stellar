@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TS version="2.1" language="fr_FR" sourcelanguage="en_US">
+<TS version="2.1" language="ja_JP" sourcelanguage="en_US">
     <context>
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>Ajouter aux exceptions d'adresse ?</translation>
+            <translation>アドレス例外に追加？</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>Cette adresse a été annulée deux fois. Voulez-vous l'ajouter à la liste des exceptions afin que Stellar ne l'intercepte plus automatiquement ?</translation>
+            <translation>このアドレスは 2 回キャンセルされました。Stellar が自動的にこれをインターセプトしないように例外リストに追加しますか？</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>いいえ</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>Ajouter l'exception</translation>
+            <translation>例外を追加</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>Ajouter une exception d'adresse</translation>
+            <translation>アドレス例外を追加</translation>
         </message>
     </context>
     <context>
@@ -31,19 +31,19 @@
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>認証を使用</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Identifiant</translation>
+            <translation>ログイン</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>パスワード</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
@@ -51,121 +51,117 @@
         </message>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter une URL</translation>
+            <translation>URL 追加</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation>Stellar Gestionnaire de téléchargement v</translation>
+            <translation>Stellar Download Manager v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation>
-Bas : %1  Haut : %2</translation>
+            <translation>↓%1 ↑%2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation>
-Téléchargement : %1</translation>
+            <translation>ダウンロード中：%1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation>  Partage : %1</translation>
+            <translation>シード中：%1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation>
-Partage : %1</translation>
+            <translation>シード中：%1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation>  Total : %1</translation>
+            <translation>合計：%1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation>
-Total : %1</translation>
+            <translation>合計：%1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>Stellar est en cours d'arrêt...</translation>
+            <translation>Stellar を終了します...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>Stellar démarre...</translation>
+            <translation>Stellar の起動中...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Lié à %1</translation>
+            <translation>🛡️ %1 にバインド済み</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>Téléchargement par lots</translation>
+            <translation>一括ダウンロード</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>Générez les liens ici, puis passez à l'étape de révision.</translation>
+            <translation>ここからリンクを生成し、次にレビューステップへ</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation>Adresse :</translation>
+            <translation>アドレス:</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation>Remplacer l'astérisque par</translation>
+            <translation>アスタリスクを</translation>
         </message>
         <message>
             <source>Numbers</source>
-            <translation>Nombres</translation>
+            <translation>数字</translation>
         </message>
         <message>
             <source>Letters</source>
-            <translation>Lettres</translation>
+            <translation>文字</translation>
         </message>
         <message>
             <source>From:</source>
-            <translation>De :</translation>
+            <translation>元:</translation>
         </message>
         <message>
             <source>To:</source>
-            <translation>À :</translation>
+            <translation>先:</translation>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation>Taille du joker :</translation>
+            <translation>ワイルドカードサイズ</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>プレビュー</translation>
         </message>
         <message>
             <source>First: %1</source>
-            <translation>Premier : %1</translation>
+            <translation>最初：%1</translation>
         </message>
         <message>
             <source>Second: %1</source>
-            <translation>Deuxième : %1</translation>
+            <translation>次：%1</translation>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation>Dernier : %1</translation>
+            <translation>最後：%1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation>Utilisez l'étape de file d'attente après OK si vous souhaitez regrouper ces téléchargements avant leur démarrage.</translation>
+            <translation>OK で確定後、キューに追加して開始前にグループ化します</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
@@ -176,58 +172,58 @@ Total : %1</translation>
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation>Nom du fichier</translation>
+            <translation>ファイル名</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>ステータス</translation>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Vérifiez les liens avant de les ajouter. Les colonnes peuvent être triées, redimensionnées et déplacées pour changer l'ordre.</translation>
+            <translation>追加前にリンクを確認。列はソート、サイズ変更、ドラッグで並べ替え可能。</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation>Remplacer les noms de fichiers par un motif générique (*)</translation>
+            <translation>ファイル名をワイルドカード (*) に置換</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>ファイル</translation>
         </message>
         <message>
             <source>Check all</source>
-            <translation>Tout cocher</translation>
+            <translation>すべて選択</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation>Tout décocher</translation>
+            <translation>選択解除</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Seuls les liens marqués « Trouvé » sont sélectionnables. L’attribution à la file d’attente se fait après confirmation.</translation>
+            <translation>「Found」のみのリンクを選択可能。OK でキュー割り当てを実行。</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>Projet</translation>
+            <translation>OK</translation>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation>Revue du téléchargement par lots</translation>
+            <translation>バッチダウンロード確認</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation>Installez l’extension Stellar dans votre navigateur pour intercepter les téléchargements et les router automatiquement vers Stellar.</translation>
+            <translation>Stellar 拡張機能をブラウザにインストールして、ダウンロードを自動的に Stellar に誘導します。</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
@@ -235,11 +231,11 @@ Total : %1</translation>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation>Installer directement depuis le Chrome Web Store</translation>
+            <translation>Chrome ウェブストアから直接インストール</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation>Ouvrir le lien</translation>
+            <translation>リンクを開く</translation>
         </message>
         <message>
             <source>Firefox</source>
@@ -247,121 +243,121 @@ Total : %1</translation>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation>Installer le fichier XPI Firefox, mises à jour non automatiques</translation>
+            <translation>Firefox XPI をインストール（自動更新なし）</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation>Hôte de messagerie native</translation>
+            <translation>ネイティブメッセージングホスト</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation>Stellar s’enregistre automatiquement afin que l’extension puisse communiquer avec lui.</translation>
+            <translation>Stellar は自動的に登録されるため、拡張機能との通信が可能になります。</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation>Inscription réussie.</translation>
+            <translation>登録に成功しました。</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation>L'inscription a échoué — voir les détails ci-dessous.</translation>
+            <translation>登録に失敗しました。詳細は下記を参照してください。</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation>Inscription en cours…</translation>
+            <translation>登録中…</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation>Réessayer</translation>
+            <translation>再試行</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation>Installation manuelle :</translation>
+            <translation>手動インストール:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation>Exécuter dans l'invite de commandes (aucun droit d'administrateur requis) :</translation>
+            <translation>コマンドプロンプトで実行 (管理者権限不要)</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>コピー</translation>
         </message>
         <message>
             <source>Copied</source>
-            <translation>Copié</translation>
+            <translation>コピー済み</translation>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation>Exécuter dans un terminal :</translation>
+            <translation>ターミナルで実行:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation>Extensions de navigateur</translation>
+            <translation>ブラウザ拡張機能</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>すべてのダウンロード</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation>Vidéo</translation>
+            <translation>動画</translation>
         </message>
         <message>
             <source>Music</source>
-            <translation>Musique</translation>
+            <translation>音楽</translation>
         </message>
         <message>
             <source>Documents</source>
-            <translation>Documents</translation>
+            <translation>ドキュメント</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation>Archives</translation>
+            <translation>圧縮</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>Programmes</translation>
+            <translation>プログラム</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation>Colonnes</translation>
+            <translation>列</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation>Cochez les colonnes que vous souhaitez afficher dans cette liste. Utilisez les boutons Déplacer vers le haut et Déplacer vers le bas pour les réorganiser comme vous le souhaitez.</translation>
+            <translation>表示する列を選択してください。移動ボタンを使用して順序を変更できます。</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation>Déplacer vers le haut</translation>
+            <translation>上へ</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation>Déplacer vers le bas</translation>
+            <translation>下へ</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation>Afficher</translation>
+            <translation>表示</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation>Masquer</translation>
+            <translation>非表示</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation>Réinitialiser</translation>
+            <translation>リセット</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation>La colonne sélectionnée doit être</translation>
+            <translation>選択した列は</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation>pixels de large</translation>
+            <translation>ピクセル幅</translation>
         </message>
         <message>
             <source>OK</source>
@@ -369,159 +365,159 @@ Total : %1</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation>Confirmer la suppression</translation>
+            <translation>削除を確認</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation>Supprimer le téléchargement ?</translation>
+            <translation>ダウンロードを削除？</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation>Supprimer également les fichiers torrent du disque</translation>
+            <translation>ディスクからtorrentファイルも削除</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation>Supprimer également le fichier du disque</translation>
+            <translation>ディスクからファイルも削除</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation>Supprimer définitivement (ne pas déplacer vers la corbeille)</translation>
+            <translation>完全に削除（ゴミ箱へ移動しない）</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation>Supprimer les téléchargements terminés</translation>
+            <translation>完了ダウンロードの削除</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Êtes-vous sûr de vouloir supprimer tous les téléchargements terminés de la liste de Stellar ?</translation>
+            <translation>Stellar の完了ダウンロードをすべて削除してもよろしいですか？</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Remarque : Cela les supprimera uniquement de la liste. Les fichiers sur le disque ne seront pas supprimés.</translation>
+            <translation>リストから削除されますが、ディスク上のファイルは削除されません。</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation>Supprimer les torrents terminés et en seeding</translation>
+            <translation>完了およびシード中の Torrent の削除</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>はい</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>いいえ</translation>
         </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation>Téléchargement terminé</translation>
+            <translation>ダウンロード完了</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Téléchargé %1 (%2 octets)</translation>
+            <translation>%1（%2 バイト）ダウンロード済み</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>住所</translation>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation>Le fichier a été enregistré sous</translation>
+            <translation>保存済み</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
-            <translation>Le fichier a été déplacé.</translation>
+            <translation>移動済み</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>開く</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation>Ouvrir avec...</translation>
+            <translation>別のアプリで開く</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>フォルダを開く</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation>Ne plus afficher cette boîte de dialogue</translation>
+            <translation>今後表示しない</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation>Vous pouvez réactiver cette option dans Paramètres → Général → Afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>設定 → 一般 → 完了ダイアログ表示を有効化</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation>Faites glisser le fichier pour le déplacer ailleurs</translation>
+            <translation>ファイルをドラッグして移動</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation>Informations sur le fichier téléchargé</translation>
+            <translation>ダウンロードファイル情報</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
-            <translation>Ajout d'une catégorie à la liste des catégories Stellar</translation>
+            <translation>Stellar カテゴリリストにカテゴリを追加</translation>
         </message>
         <message>
             <source>Category name</source>
-            <translation>Nom de la catégorie</translation>
+            <translation>カテゴリ名</translation>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation>Placer automatiquement dans cette catégorie les types de fichiers suivants :</translation>
+            <translation>以下のファイルタイプを自動的にこのカテゴリに追加:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation>Remarque : séparez les extensions de fichier par des espaces (ex. avi mpg mpeg)</translation>
+            <translation>注: ファイル拡張子をスペースで区切ってください (例: avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation>Placer automatiquement dans cette catégorie les fichiers provenant uniquement des sites suivants :</translation>
+            <translation>以下のサイトからのファイルのみを自動的にこのカテゴリに追加:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation>Séparez les sites par des espaces. Vous pouvez utiliser l'astérisque comme motif générique</translation>
+            <translation>サイトはスペースで区切ってください。アスタリスク (*) をワイルドカードとして使用できます</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation>Enregistrer les futurs téléchargements de cette catégorie dans le dossier suivant :</translation>
+            <translation>このカテゴリの今後のダウンロードを以下のフォルダに保存:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation>Mémoriser le dernier chemin d'enregistrement</translation>
+            <translation>最後の保存パスを記憶</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>参照...</translation>
         </message>
         <message>
             <source>OK</source>
@@ -529,7 +525,7 @@ Total : %1</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>URL</source>
@@ -537,447 +533,445 @@ Total : %1</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>カテゴリ</translation>
         </message>
         <message>
             <source>Save As</source>
-            <translation>Enregistrer sous</translation>
+            <translation>名前を付けて保存</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation>Mémoriser ce chemin pour la catégorie « %1 »</translation>
+            <translation>%1 カテゴリのパスを記憶</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>説明</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>後でダウンロード</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation>Démarrer le téléchargement</translation>
+            <translation>ダウンロード開始</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>キュー待ち</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>確認中</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement</translation>
+            <translation>ダウンロード中</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>移動中</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage</translation>
+            <translation>シード中</translation>
         </message>
         <message>
             <source>Paused</source>
-            <translation>En pause</translation>
+            <translation>一時停止</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>組み立て中...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation>Terminé</translation>
+            <translation>完了</translation>
         </message>
         <message>
             <source>Error</source>
-            <translation>Erreur</translation>
+            <translation>エラー</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>不明</translation>
         </message>
     </context>
     <context>
         <name>DownloadProgressDialog</name>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Receiving data...</source>
-            <translation>Réception des données...</translation>
+            <translation>データ受信中...</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>組み立て中...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation>État du téléchargement</translation>
+            <translation>ダウンロード状態</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>速度制限</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>完了時のオプション</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation>&gt;&gt; Envoyer dans la zone de notification</translation>
+            <translation>&gt;&gt; トレーに送信</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>システムトレイに最小化</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>状態</translation>
         </message>
         <message>
             <source>File size</source>
-            <translation>Taille du fichier</translation>
+            <translation>ファイルサイズ</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>ダウンロード済み</translation>
         </message>
         <message>
             <source>%1  ( %2% )</source>
-            <translation>%1 ( %2% )</translation>
+            <translation>%1 (%2%)</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation>Débit de transfert</translation>
+            <translation>転送速度</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation>(Limité à %1)</translation>
+            <translation>(制限 %1)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>残り時間</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation>Capacité de reprise</translation>
+            <translation>再開可能</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>はい</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>いいえ</translation>
         </message>
         <message>
             <source>Error detail</source>
-            <translation>Détail de l'erreur</translation>
+            <translation>エラー詳細</translation>
         </message>
         <message>
             <source>Assembling... %1%</source>
-            <translation>Assemblage... %1%</translation>
+            <translation>組み立て中... %1%</translation>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation>« Masquer les détails</translation>
+            <translation>詳細を隠す</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation>» Afficher les détails</translation>
+            <translation>詳細を表示</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>開始</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation>Pause</translation>
+            <translation>一時停止</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation>Positions de départ et progression du téléchargement par connexion</translation>
+            <translation>接続ごとの開始位置とダウンロード進捗</translation>
         </message>
         <message>
             <source>N.</source>
-            <translation>N.</translation>
+            <translation>N</translation>
         </message>
         <message>
             <source>Info</source>
-            <translation>Info</translation>
+            <translation>情報</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation>Limiter le débit de transfert pour ce téléchargement</translation>
+            <translation>このダウンロードの転送速度制限</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation>Activer la limite par téléchargement</translation>
+            <translation>ダウンロードごとの制限を有効化</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation>Maximum :</translation>
+            <translation>最大:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
-            <translation>ex. 100</translation>
+            <translation>例：100</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation>Limite globale active : %1 Ko/s</translation>
+            <translation>グローバル制限有効：%1 KB/s</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation>Aucune limite globale définie</translation>
+            <translation>グローバル制限未設定</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation>Paramètres du limiteur de vitesse global…</translation>
+            <translation>グローバル速度制限設定…</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>完了時のオプション</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation>Ouvrir le fichier une fois terminé</translation>
+            <translation>完了時にファイルを開く</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation>Ouvrir le dossier une fois terminé</translation>
+            <translation>完了時にフォルダを開く</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>完了時にコンピュータをシャットダウン</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation>Ces options sont temporaires et s'appliquent uniquement à ce téléchargement ; elles sont désactivées par défaut à chaque fois.</translation>
+            <translation>これらのオプションは今回のダウンロードのみ有効で、毎回未選択状態から始まります。</translation>
         </message>
     </context>
     <context>
         <name>DownloadTable</name>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>名前変更</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation>Propriétés</translation>
+            <translation>プロパティ</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>ファイルを開く</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>フォルダを開く</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>名前変更...</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation>Copier le nom du fichier</translation>
+            <translation>ファイル名をコピー</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>.torrent をエクスポート...</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>再開</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation>Retirer de la file d'attente</translation>
+            <translation>キューから削除</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>再ダウンロード</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation>Paramètres des colonnes</translation>
+            <translation>カラム設定</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>ファイル名</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>ステータス</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>残り時間</translation>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>ダウンロード速度</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>アップロード速度</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>シード</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>ピア</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>レシオ</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>アップロード</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation>Date du dernier essai</translation>
+            <translation>最終試行日</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>説明</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>保存先</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>リファラー</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation>Page web parente</translation>
+            <translation>親ウェブページ</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>保留中</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation>%1% (Arrêté)</translation>
+            <translation>%1% (停止)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
-            <translation>Vérification (%1%)</translation>
+            <translation>確認中 (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation>%n fichier(s)</translation>
+            <translation>%n ファイル</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation>Aucun téléchargement correspondant.</translation>
+            <translation>一致するダウンロードなし</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation>Aucun téléchargement pour le moment.
-Cliquez sur Ajouter une URL pour commencer.</translation>
+            <translation>まだダウンロードなし。</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation>Chargement de %n téléchargement(s)…</translation>
+            <translation>%n 件のダウンロードを読み込み中…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation>Déplacer vers la file d'attente</translation>
+            <translation>キューへ移動</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>マグネットリンクをコピー</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>URL をコピー</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation>%n téléchargement(s) sélectionné(s)</translation>
+            <translation>%n 件のダウンロードを選択</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation>Dupliquer le lien de téléchargement</translation>
+            <translation>ダウンロードリンクの重複</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation>Ce fichier existe déjà dans votre liste de téléchargements.</translation>
+            <translation>このファイルはダウンロードリストに既に存在します</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation>Vous pouvez choisir l'une des options suivantes, ou appuyer sur Annuler pour ignorer le téléchargement.</translation>
+            <translation>以下のいずれかを選択するか、[キャンセル] を押してスキップします</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation>Ajouter le doublon avec un nom de fichier numéroté</translation>
+            <translation>番号付きファイル名で重複を追加</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation>Ajouter le doublon et écraser le fichier existant</translation>
+            <translation>重複を追加し、既存ファイルを上書き</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation>Le fichier existant est complet - afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>既存ファイルは完了しています - ダウンロード完了ダイアログを表示</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation>Reprendre le téléchargement existant</translation>
+            <translation>既存のダウンロードを再開</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation>Mémoriser ma sélection et ne plus afficher cette boîte de dialogue.
-Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</translation>
+            <translation>選択を記憶し、このダイアログを再度表示しない。後から [オプション] → [ダウンロード] で変更できます</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
@@ -988,379 +982,379 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation>Déplacer les données du torrent vers...</translation>
+            <translation> Torrent データを移動</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation>Déplacer le fichier vers...</translation>
+            <translation>ファイルを移動</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>開始</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>フォルダを開く</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>ファイルを開く</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>ステータス</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>保存先</translation>
         </message>
         <message>
             <source>Move</source>
-            <translation>Déplacer</translation>
+            <translation>移動</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>アドレス</translation>
         </message>
         <message>
             <source>Web page</source>
-            <translation>Page Web</translation>
+            <translation>Web ページ</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>リファラー</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>説明</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>ログイン</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>パスワード</translation>
         </message>
         <message>
             <source>Source</source>
-            <translation>Source</translation>
+            <translation>ソース</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation>Hash d'information</translation>
+            <translation>Info hash</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>コピー</translation>
         </message>
         <message>
             <source>Metadata</source>
-            <translation>Métadonnées</translation>
+            <translation>メタデータ</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>カテゴリ</translation>
         </message>
         <message>
             <source>Note</source>
-            <translation>Note</translation>
+            <translation>メモ</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>ダウンロード済み</translation>
         </message>
         <message>
             <source>Country</source>
-            <translation>Pays</translation>
+            <translation>国</translation>
         </message>
         <message>
             <source>Port</source>
-            <translation>Port</translation>
+            <translation>ポート</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>アップロード済み</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>シード数</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation>Message</translation>
+            <translation>メッセージ</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>ダウンロード中</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>移動中</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>シード中</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>キュー</translation>
         </message>
         <message>
             <source>Problem</source>
-            <translation>Problème</translation>
+            <translation>問題</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation> Torrent 設定...</translation>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation>ETA : %1</translation>
+            <translation>推定残り時間: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation>Graines : %1 (%2)</translation>
+            <translation>シード数: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation>Pairs : %1 (%2)</translation>
+            <translation>ピア: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>一般</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>ファイル</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation>Carte du swarm</translation>
+            <translation>スワームマップ</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation>Carte des pièces</translation>
+            <translation>ピースマップ</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation>Gaspillé</translation>
+            <translation>無駄</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>↓速度</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>↑速度</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation>Connexions</translation>
+            <translation>接続</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation>Ratio de partage</translation>
+            <translation>シェア率</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation>Morceaux</translation>
+            <translation>ピース</translation>
         </message>
         <message>
             <source>Availability</source>
-            <translation>Disponibilité</translation>
+            <translation>利用可能</translation>
         </message>
         <message>
             <source>Active time</source>
-            <translation>Temps actif</translation>
+            <translation>アクティブ時間</translation>
         </message>
         <message>
             <source>Seed time</source>
-            <translation>Temps de partage</translation>
+            <translation>シード時間</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation>Limite de vitesse</translation>
+            <translation>速度制限</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation>Vérifier les données locales</translation>
+            <translation>ローカルデータ検証</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation>Téléchargement</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation>Téléversement</translation>
+            <translation>アップロード</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation>Étendue</translation>
+            <translation>スパン</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>名前</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>進捗</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>ファイル情報なし</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>名前変更</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>新しいファイルまたはフォルダ名を入力:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>名前変更</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>名前変更...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation>Aucun pair connecté</translation>
+            <translation>ピア接続なし</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation>Informations sur le pair</translation>
+            <translation>ピア情報</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>ピアを禁止</translation>
         </message>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>接続</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>ソース: %1</translation>
         </message>
         <message>
             <source>Role: %1</source>
-            <translation>Rôle : %1</translation>
+            <translation>役割: %1</translation>
         </message>
         <message>
             <source>Seeder</source>
-            <translation>Seeder</translation>
+            <translation>シード</translation>
         </message>
         <message>
             <source>Ping: %1</source>
-            <translation>Ping : %1</translation>
+            <translation>Ping: %1</translation>
         </message>
         <message>
             <source>Progress: %1%</source>
-            <translation>Progression : %1%</translation>
+            <translation>進捗: %1%</translation>
         </message>
         <message>
             <source>Transfer</source>
-            <translation>Transfert</translation>
+            <translation>転送</translation>
         </message>
         <message>
             <source>Down: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>↓: %1</translation>
         </message>
         <message>
             <source>Up: %1</source>
-            <translation>Haut : %1</translation>
+            <translation>↑: %1</translation>
         </message>
         <message>
             <source>Total down: %1</source>
-            <translation>Total téléchargé : %1</translation>
+            <translation>ダウンロード合計：%1</translation>
         </message>
         <message>
             <source>Total up: %1</source>
-            <translation>Total envoyé : %1</translation>
+            <translation>アップロード合計：%1</translation>
         </message>
         <message>
             <source>Location</source>
-            <translation>Emplacement</translation>
+            <translation>場所</translation>
         </message>
         <message>
             <source>Client: %1</source>
-            <translation>Client : %1</translation>
+            <translation>クライアント：%1</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>あなた</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>ピア</translation>
         </message>
         <message>
             <source>Flags</source>
-            <translation>Drapeaux</translation>
+            <translation>フラグ</translation>
         </message>
         <message>
             <source>Ban Peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>ピアをBAN</translation>
         </message>
         <message>
             <source>Legend:</source>
-            <translation>Légende :</translation>
+            <translation>凡例</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>非アクティブ</translation>
         </message>
         <message>
             <source>Trackers</source>
-            <translation>Trackers</translation>
+            <translation>トラッカー</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Seed</translation>
+            <translation>シード</translation>
         </message>
         <message>
             <source>Tracker</source>
-            <translation>Tracker</translation>
+            <translation>トラッカー</translation>
         </message>
         <message>
             <source>Tier</source>
-            <translation>Niveau</translation>
+            <translation>ティア</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>ピア</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation>0 pairs connus</translation>
+            <translation>0 件のピア</translation>
         </message>
         <message>
             <source>UL</source>
@@ -1368,7 +1362,7 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation>Téléchargé %1  Envoyé %2</translation>
+            <translation>↓%1 ↑%2</translation>
         </message>
         <message>
             <source>RTT %1</source>
@@ -1376,63 +1370,63 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1  ↑ %2</translation>
+            <translation>↓%1 ↑%2</translation>
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation>Ping %1  %2 % terminé</translation>
+            <translation>Ping %1 %2% 完了</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>不明</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation>Vous (ce client)</translation>
+            <translation>あなた (このクライアント)</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation>Aucun pair connecté à tracer</translation>
+            <translation>プロット用の接続ピアがありません</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation>En attente de votre adresse IP publique pour afficher la position sur la carte locale</translation>
+            <translation>公開 IP を待機中 (ローカルマップ表示のため)</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation>Forcer la réannonce</translation>
+            <translation>再アノウンセ強制</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>URL をコピー</translation>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation>Supprimer le tracker</translation>
+            <translation>トラッカーを削除</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation>Réannoncer tout</translation>
+            <translation>全トラッカー再アノウンセ</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation>Coller les URL des trackers - une par ligne. Les lignes commençant par # sont ignorées.</translation>
+            <translation>トラッカー URL を貼り付け (1 行 1 つ。# で始まる行は無視されます)</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>追加</translation>
         </message>
         <message>
             <source>No trackers</source>
-            <translation>Aucun tracker</translation>
+            <translation>トラッカーなし</translation>
         </message>
         <message>
             <source>Web Seeds</source>
-            <translation>Web Seeds</translation>
+            <translation>Web シード</translation>
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation>Coller les URL des web seeds - une par ligne. Les seeds URL (BEP-19) et les seeds HTTP (BEP-17) sont tous deux acceptés.</translation>
+            <translation>Web シード URL を貼り付ける - 1 行ずつ。URL シード (BEP-19) および HTTP シード (BEP-17) も受け付けます。</translation>
         </message>
         <message>
             <source>URL</source>
@@ -1440,27 +1434,27 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Type</source>
-            <translation>Type</translation>
+            <translation>タイプ</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation>Aucun web seed</translation>
+            <translation>Web シードなし</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>ブラウザで開く</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation>Supprimer le seed</translation>
+            <translation>シードを削除</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation>Terminé</translation>
+            <translation>完了</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation>Client</translation>
+            <translation>クライアント</translation>
         </message>
         <message>
             <source>DL</source>
@@ -1468,489 +1462,489 @@ Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</tr
         </message>
         <message>
             <source>Both</source>
-            <translation>Les deux</translation>
+            <translation>両方</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation>Vitesse</translation>
+            <translation>速度</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation>Disponible</translation>
+            <translation>利用可能</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation>Distance : %1</translation>
+            <translation>距離：%1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation>Pays : %1</translation>
+            <translation>国：%1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>%1 pairs connus</translation>
+            <translation>%1 件のピア</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>%n tracker(s)</translation>
+            <translation>%n 件のトラッカー</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>Annoncez à tous les trackers votre présence immédiate, au lieu d'attendre l'intervalle d'annonce normal. Utile si votre nombre de pairs a chuté soudainement.</translation>
+            <translation>通常の告知間隔を待たずに、今すぐすべてのトラッカーに存在を知らせます。ピア数が急激に減少した際に有効です。</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>Réannonce en cours...</translation>
+            <translation>再宣言中...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation>Ajouter des trackers…</translation>
+            <translation>トラッカー追加…</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation>%1 ajouté</translation>
+            <translation>%1 追加</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation>%1 ajouté, %2 échoué</translation>
+            <translation>%1 追加、%2 失敗</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation>%n seed(s)</translation>
+            <translation>%n シード</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation>Ajouter un seed…</translation>
+            <translation>シード追加…</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation>Récupération depuis le swarm...</translation>
+            <translation>スワームから取得中...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation>Propriétés du torrent</translation>
+            <translation> Torrent プロパティ</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation>Vérification des fichiers</translation>
+            <translation>ファイル確認中</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation>Propriétés du fichier</translation>
+            <translation>ファイルプロパティ</translation>
         </message>
     </context>
     <context>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>検索</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>検索:</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Chercher dans :</translation>
+            <translation>検索範囲:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>ファイル名または一部</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation>Description ou partie de la description</translation>
+            <translation>説明または一部</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation>Nom du site / lien de téléchargement / page web parente / référent</translation>
+            <translation>サイト名/ダウンロードリンク/親ページ/リファラー</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>大文字小文字を区別</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière</translation>
+            <translation>完全一致のみ</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation>Aucun résultat trouvé.</translation>
+            <translation>結果が見つかりません</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation>1 résultat trouvé.</translation>
+            <translation>1 つの結果が見つかりました</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation>%1 résultats trouvés.</translation>
+            <translation>%1 件の結果が見つかりました</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
     </context>
     <context>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation>Projet enregistré.</translation>
+            <translation>プロジェクトが保存されました</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation>Le nom du projet et la page de démarrage sont requis.</translation>
+            <translation>プロジェクト名と開始ページが必要です</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Étape %1 sur %2 : %3</translation>
+            <translation>Stellar Grabber – %2 のうち %1 番目: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
-            <translation>Définir la page de démarrage</translation>
+            <translation>開始ページを設定</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation>Enregistrer les fichiers dans</translation>
+            <translation>ファイルを保存する場所</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation>Définir les filtres de l'explorateur</translation>
+            <translation>エクスプローラーフィルターを設定</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation>Définir les filtres de fichiers</translation>
+            <translation>ファイルフィルターを設定</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation>Paramètres personnalisés</translation>
+            <translation>カスタム設定</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation>Toutes les images d'un site web</translation>
+            <translation>Web サイトの画像</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation>Toutes les vidéos d'un site web</translation>
+            <translation>Web サイトの動画</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation>Tous les audios d'un site web</translation>
+            <translation>Web サイトの音声</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation>Site web complet</translation>
+            <translation>Web サイト全体</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation>Inclure les filtres</translation>
+            <translation>フィルタを含む</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation>Exclure les filtres</translation>
+            <translation>フィルタを除外</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation>Nom du modèle</translation>
+            <translation>テンプレート名</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>保存</translation>
         </message>
         <message>
             <source>New</source>
-            <translation>Nouveau</translation>
+            <translation>新規</translation>
         </message>
         <message>
             <source>Load</source>
-            <translation>Charger</translation>
+            <translation>読み込み</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation>Enregistrer les paramètres actuels en tant que modèle</translation>
+            <translation>設定をテンプレートとして保存</translation>
         </message>
         <message>
             <source>Recent Projects</source>
-            <translation>Projets récents</translation>
+            <translation>最近のプロジェクト</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>Grabber 設定</translation>
         </message>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>プロジェクト</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>オプション</translation>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation>Nom du projet du grabber</translation>
+            <translation>Grabber プロジェクト名</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation>Page d'accueil / Adresse</translation>
+            <translation>ページ/アドレス</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation>Modèle de projet</translation>
+            <translation>プロジェクトテンプレート</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation>Si vous sélectionnez un modèle de projet, l'assistant configurera les paramètres requis pour ce modèle lors des étapes suivantes. Vous pouvez toujours modifier les paramètres manuellement.</translation>
+            <translation>テンプレート選択時に、次のステップで必要な設定が自動設定されます。手動で変更可能です。</translation>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>認証を使用</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation>Avancé &lt;&lt;</translation>
+            <translation>詳細 &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation>Avancé &gt;&gt;</translation>
+            <translation>詳細 &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>ログイン</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>パスワード</translation>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation>Appuyez sur Avancé pour activer la connexion manuelle ou pour désactiver la page de déconnexion.</translation>
+            <translation>詳細ボタンで手動ログインを有効化、ログアウトページを無効化</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation>Saisissez manuellement le nom d'utilisateur et le mot de passe sur la page web suivante :</translation>
+            <translation>以下の Web ページで手動でログインとパスワードを入力</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation>Ne pas ouvrir la page de déconnexion :</translation>
+            <translation>ログアウトページを開かない</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation>De nombreux sites disposent d'une page de déconnexion que le Grabber ne devrait pas ouvrir. Vous pouvez utiliser un astérisque comme joker pour spécifier un motif correspondant à différentes pages de déconnexion.</translation>
+            <translation>多くのサイトには Grabber が開いてはならないログアウトページがあります。アスタリスク (*) を使用して異なるログアウトページのパターンを指定できます。</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation>Enregistrer dans</translation>
+            <translation>保存先</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation>Chaque fichier dans un dossier selon la catégorie Stellar du fichier</translation>
+            <translation>Stellar カテゴリごとにフォルダへ</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation>Tous les fichiers dans le dossier associé à la catégorie Stellar suivante :</translation>
+            <translation>次の Stellar カテゴリのフォルダへ</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation>Tous les fichiers dans le dossier suivant</translation>
+            <translation>次のフォルダへ</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation>Utiliser les sous-dossiers relatifs originaux</translation>
+            <translation>元の相対サブフォルダを維持</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation>Enregistrer chaque fichier par catégorie</translation>
+            <translation>カテゴリごとに個別保存</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation>Enregistrer tous les fichiers dans la catégorie sélectionnée</translation>
+            <translation>選択したカテゴリへ一括保存</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation>Enregistrer tous les fichiers dans ce dossier</translation>
+            <translation>このフォルダへ一括保存</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation>Convertir les liens dans les fichiers HTML téléchargés en fichiers locaux pour une navigation hors ligne</translation>
+            <translation>ダウンロードした HTML ファイルのリンクをローカルファイルに変換</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation>Écraser les fichiers existants</translation>
+            <translation>既存ファイルを上書き</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation>Ajouter les fichiers cochés à la liste principale de Stellar et à la file d'attente de téléchargement à la fermeture du grabber</translation>
+            <translation>Grabber 終了時に Stellar メインリストとダウンロードキューにチェック済みファイルを追加</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation>À cette étape, vous devez spécifier les pages web à explorer pour trouver les fichiers requis. À l'étape suivante, vous pourrez définir les types de fichiers, l'emplacement et d'autres filtres.</translation>
+            <translation>このステップでは、必要なファイルを検索する Web ページを指定します。次のステップでファイルタイプ、場所、その他のフィルターを設定できます。</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
-            <translation>Explorer tout le site</translation>
+            <translation>サイト全体を検索</translation>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation>Explorer un nombre spécifié de niveaux de liens :</translation>
+            <translation>指定したリンクレベル数を検索:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation>niveaux dans le site de base</translation>
+            <translation>ベースサイト内のレベル</translation>
         </message>
         <message>
             <source>levels on other sites</source>
-            <translation>niveaux sur d'autres sites</translation>
+            <translation>他のサイト上のレベル</translation>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation>Qu'est-ce que le nombre de niveaux de liens ?</translation>
+            <translation>リンクレベル数は何ですか？</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation>Ignorer les fenêtres contextuelles</translation>
+            <translation>ポップアップウィンドウを無視</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation>Ne pas explorer les répertoires parents</translation>
+            <translation>親ディレクトリを検索しない</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation>Explorer tous les sites du domaine principal</translation>
+            <translation>メインドメイン内のすべてのサイトを検索</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation>Traiter le JavaScript</translation>
+            <translation>JavaScript の処理</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation>Explorer uniquement les pages web dans les chemins/domaines suivants :</translation>
+            <translation>以下のパス/ドメイン内の Web ページを探索:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
+            <translation>1 行に 1 つのパスまたはドメインを入力するか、セミコロンで区切ります。ワイルドカードは * を使用。例：*.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation>Ne pas explorer les pages web dans les chemins/domaines suivants :</translation>
+            <translation>以下のパス/ドメイン内の Web ページを探索しない:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
+            <translation>1 行に 1 つのパスまたはドメインを入力するか、セミコロンで区切ります。ワイルドカードは * を使用。例：*.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation>Télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>以下のファイル（ファイルタイプ）をダウンロード:</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation>Inclure les filtres...</translation>
+            <translation>フィルタを含める...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation>Ne pas télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>以下のファイル（ファイルタイプ）をダウンロードしない:</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation>Exclure les filtres...</translation>
+            <translation>フィルタを除外...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation>Rechercher des fichiers uniquement sur ce site</translation>
+            <translation>このサイト内のファイルのみを検索</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation>Masquer les fichiers dupliqués trouvés dans différents emplacements</translation>
+            <translation>重複ファイルを非表示</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation>Commencer à télécharger tous les fichiers correspondants en une seule fois</translation>
+            <translation>一致したファイルをすべてダウンロード</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation>Télécharger si la taille du fichier est</translation>
+            <translation>ファイルサイズが</translation>
         </message>
         <message>
             <source>Not less than</source>
-            <translation>Non inférieure à</translation>
+            <translation>未満</translation>
         </message>
         <message>
             <source>Bytes</source>
-            <translation>Octets</translation>
+            <translation>バイト</translation>
         </message>
         <message>
             <source>Not more than</source>
-            <translation>Non supérieure à</translation>
+            <translation>以上</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation>Télécharger les fichiers situés uniquement dans les chemins/domaines suivants :</translation>
+            <translation>以下のパス/ドメイン内のファイルのみダウンロード</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation>Utilisez * comme caractère générique. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.google.com ; cdn.example.com ; /downloads/*</translation>
+            <translation>*をワイルドカードとして使用。1行に1つのパスまたはドメインを入力するか、セミコロンで区切ります。例：*.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation>Ne pas télécharger les fichiers situés dans les chemins/domaines suivants :</translation>
+            <translation>以下のパス/ドメイン内のファイルをダウンロードしない</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation>Utilisez * comme joker. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.doubleclick.net ; /ads/* ; /tracking</translation>
+            <translation>*をワイルドカードとして使用。1行に1つのパスまたはドメインを入力するか、セミコロンで区切ります。例：*.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
-            <translation>Commentaire</translation>
+            <translation>コメント</translation>
         </message>
         <message>
             <source>Save Project</source>
-            <translation>Enregistrer le projet</translation>
+            <translation>プロジェクトを保存</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>プロジェクトを削除</translation>
         </message>
         <message>
             <source>&lt; Back</source>
-            <translation>&lt; Précédent</translation>
+            <translation>&lt; 戻る</translation>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation>Suivant &gt;</translation>
+            <translation>次へ &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation>Commencer à explorer</translation>
+            <translation>探索開始</translation>
         </message>
     </context>
     <context>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation>Nom du filtre</translation>
+            <translation>名前をフィルター</translation>
         </message>
         <message>
             <source>Mask</source>
-            <translation>Masque</translation>
+            <translation>マスク</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>追加</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>編集</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>OK</source>
@@ -1958,38 +1952,38 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Edit filter</source>
-            <translation>Modifier le filtre</translation>
+            <translation>フィルタ編集</translation>
         </message>
         <message>
             <source>New filter</source>
-            <translation>Nouveau filtre</translation>
+            <translation>新規フィルタ</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>カテゴリ</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>保存</translation>
         </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation>Charger un projet Stellar Grabber</translation>
+            <translation>Grabber プロジェクト読み込み</translation>
         </message>
         <message>
             <source>Saved projects</source>
-            <translation>Projets enregistrés</translation>
+            <translation>保存済みプロジェクト</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2000,153 +1994,153 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>GrabberResultsDialog</name>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>プロジェクト</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>オプション</translation>
         </message>
         <message>
             <source>Running</source>
-            <translation>En cours</translation>
+            <translation>実行中</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>アイドル</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation>%1 fichiers trouvés</translation>
+            <translation>%1 ファイル見つかりました</translation>
         </message>
         <message>
             <source>%1 checked</source>
-            <translation>%1 vérifiés</translation>
+            <translation>%1 チェック済み</translation>
         </message>
         <message>
             <source>Exploring…</source>
-            <translation>Exploration en cours…</translation>
+            <translation>探索中…</translation>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation>Appuyez sur Démarrer l'exploration pour analyser l'URL.</translation>
+            <translation>URL をスキャンするには「探索開始」を押してください</translation>
         </message>
         <message>
             <source>Start
 Exploring</source>
-            <translation>Démarrer l'exploration</translation>
+            <translation>開始</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>ファイル名</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation>Type de fichier</translation>
+            <translation>ファイルタイプ</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>ステータス</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation>Texte du lien</translation>
+            <translation>リンク</translation>
         </message>
         <message>
             <source>Download from</source>
-            <translation>Télécharger depuis</translation>
+            <translation>ダウンロード元</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>保存先</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation>Vérifier la sélection</translation>
+            <translation>選択解除</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation>Désélectionner la sélection</translation>
+            <translation>選択解除</translation>
         </message>
         <message>
             <source>Edit current project</source>
-            <translation>Modifier le projet actuel</translation>
+            <translation>プロジェクト編集</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>設定</translation>
         </message>
         <message>
             <source>Stop
 Exploring</source>
-            <translation>Arrêter</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Start
 Downloading</source>
-            <translation>Exploration</translation>
+            <translation>探索中</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
-            <translation>Démarrer</translation>
+            <translation>開始</translation>
         </message>
         <message>
             <source>Update
 All</source>
-            <translation>Téléchargement</translation>
+            <translation>ダウンロード中</translation>
         </message>
         <message>
             <source>Schedule
 Project</source>
-            <translation>Arrêter</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Téléchargements</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>更新</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation>Tous les fichiers</translation>
+            <translation>すべて</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation>Vue des liens</translation>
+            <translation>リンクビュー</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation>Vue des dossiers</translation>
+            <translation>フォルダビュー</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation>Aucun fichier trouvé pour le moment</translation>
+            <translation>ファイルが見つかりません</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation>← Retour</translation>
+            <translation>← 戻る</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <translation>%1 fichiers</translation>
+            <translation>%1 ファイル</translation>
         </message>
         <message>
             <source>%1 / %2 (filtered)</source>
-            <translation>%1 / %2 (filtré)</translation>
+            <translation>%1 / %2 (フィルタ済み)</translation>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation>Ajouter les éléments cochés à la liste de téléchargement</translation>
+            <translation>チェック済みファイルをダウンロードリストに追加</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
@@ -2157,191 +2151,191 @@ Project</source>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation>Planifier le projet Stellar Grabber</translation>
+            <translation>グラッバープロジェクトのスケジュール設定</translation>
         </message>
         <message>
             <source>Project:</source>
-            <translation>Projet :</translation>
+            <translation>プロジェクト:</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation>Activer le calendrier du projet</translation>
+            <translation>プロジェクトスケジュールを有効化</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>Étape 1. Sélectionner le type</translation>
+            <translation>ステップ 1. タイプを選択</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>Exploration/téléchargement unique</translation>
+            <translation>ワンタイム探索/ダウンロード</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>定期的な同期</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>Étape 2. Sélectionner l'action</translation>
+            <translation>ステップ 2. アクションを選択</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>Explorer uniquement</translation>
+            <translation>探索のみ</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>Explorer le site et télécharger les fichiers correspondants</translation>
+            <translation>サイト探索と一致ファイルのダウンロード</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>Télécharger les fichiers cochés</translation>
+            <translation>チェック済みファイルのダウンロード</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>Après achèvement</translation>
+            <translation>完了後</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>完了時に Stellar を終了</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>完了時にシャットダウン</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>Éteindre</translation>
+            <translation>シャットダウン</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>Redémarrer</translation>
+            <translation>再起動</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation>Veille</translation>
+            <translation>スリープ</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>Hibernation</translation>
+            <translation>ハイバネート</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>プロセスを強制終了</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>Étape 3. Planification</translation>
+            <translation>ステップ 3. スケジュール</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>ダウンロード開始時刻</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>完了後</translation>
         </message>
         <message>
             <source>January</source>
-            <translation>Janvier</translation>
+            <translation>1 月</translation>
         </message>
         <message>
             <source>February</source>
-            <translation>Février</translation>
+            <translation>2 月</translation>
         </message>
         <message>
             <source>March</source>
-            <translation>Mars</translation>
+            <translation>3 月</translation>
         </message>
         <message>
             <source>April</source>
-            <translation>Avril</translation>
+            <translation>4 月</translation>
         </message>
         <message>
             <source>May</source>
-            <translation>Mai</translation>
+            <translation>5 月</translation>
         </message>
         <message>
             <source>June</source>
-            <translation>Juin</translation>
+            <translation>6 月</translation>
         </message>
         <message>
             <source>July</source>
-            <translation>Juillet</translation>
+            <translation>7 月</translation>
         </message>
         <message>
             <source>August</source>
-            <translation>Août</translation>
+            <translation>8 月</translation>
         </message>
         <message>
             <source>September</source>
-            <translation>Septembre</translation>
+            <translation>9 月</translation>
         </message>
         <message>
             <source>October</source>
-            <translation>Octobre</translation>
+            <translation>10 月</translation>
         </message>
         <message>
             <source>November</source>
-            <translation>Novembre</translation>
+            <translation>11 月</translation>
         </message>
         <message>
             <source>December</source>
-            <translation>Décembre</translation>
+            <translation>12 月</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>毎日</translation>
         </message>
         <message>
             <source>Sunday</source>
-            <translation>Dimanche</translation>
+            <translation>日曜日</translation>
         </message>
         <message>
             <source>Thursday</source>
-            <translation>Jeudi</translation>
+            <translation>木曜日</translation>
         </message>
         <message>
             <source>Monday</source>
-            <translation>Lundi</translation>
+            <translation>月曜日</translation>
         </message>
         <message>
             <source>Friday</source>
-            <translation>Vendredi</translation>
+            <translation>金曜日</translation>
         </message>
         <message>
             <source>Tuesday</source>
-            <translation>Mardi</translation>
+            <translation>火曜日</translation>
         </message>
         <message>
             <source>Saturday</source>
-            <translation>Samedi</translation>
+            <translation>土曜日</translation>
         </message>
         <message>
             <source>Wednesday</source>
-            <translation>Mercredi</translation>
+            <translation>水曜日</translation>
         </message>
         <message>
             <source>Repeat every</source>
-            <translation>Répéter tous les</translation>
+            <translation>繰り返し</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>時間</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>分</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>ダウンロード停止時刻</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation>Remarque : Stellar doit être exécuté dans la zone de notification au moment spécifié pour démarrer un projet planifié.</translation>
+            <translation>注: スケジュールされたプロジェクトを開始するには、指定時刻に Stellar がシステムトレイで実行されている必要があります。</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2352,27 +2346,27 @@ Project</source>
         <name>GrabberSettingsDialog</name>
         <message>
             <source>Settings of Stellar Grabber</source>
-            <translation>Paramètres de Stellar Grabber</translation>
+            <translation>Stellar Grabber の設定</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation>fichiers à explorer simultanément (1 à 10)</translation>
+            <translation>同時に探索するファイル数 (1〜10)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation>fichiers à télécharger simultanément (1 à 10)</translation>
+            <translation>同時にダウンロードするファイル数 (1〜10)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation>Veuillez noter qu'un serveur web peut rejeter les requêtes si vous définissez un grand nombre de fichiers à explorer ou à télécharger simultanément.</translation>
+            <translation>同時に探索またはダウンロードするファイル数が多すぎると、Web サーバーがリクエストを拒否する可能性があります。</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation>Utiliser les textes des liens comme descriptions de téléchargement lors de l'ajout de fichiers à la liste principale de Stellar</translation>
+            <translation>リンクテキストを Stellar メインリストへの追加時のダウンロード説明として使用</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2383,90 +2377,90 @@ Project</source>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation>Statistiques du grabber</translation>
+            <translation>Grabber 統計</translation>
         </message>
         <message>
             <source>Status: %1</source>
-            <translation>État : %1</translation>
+            <translation>ステータス：%1</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>アイドル</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation>Pages web traitées</translation>
+            <translation>処理された Web ページ</translation>
         </message>
         <message>
             <source>Simple</source>
-            <translation>Simple</translation>
+            <translation>シンプル</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>詳細</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>ファイル</translation>
         </message>
         <message>
             <source>Total</source>
-            <translation>Total</translation>
+            <translation>合計</translation>
         </message>
         <message>
             <source>Explored</source>
-            <translation>Explorées</translation>
+            <translation>探索済み</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>Correspondantes</translation>
+            <translation>一致</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>ダウンロード済み</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
     </context>
     <context>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation>Tâches</translation>
+            <translation>タスク</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>Ajouter une URL…</translation>
+            <translation>URL を追加…</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>SDM ダウンロード</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>Ce téléchargement YouTube semble nécessiter des cookies de connexion.</translation>
+            <translation>この YouTube ダウンロードにはログインクッキーが必要です</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>ブラウザのクッキー:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>Stellar réessayera le même élément yt-dlp avec les cookies de ce navigateur.</translation>
+            <translation>Stellar は、そのブラウザのクッキーを使用して、同じ yt-dlp アイテムを再試行します。</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation>Réessayer le téléchargement</translation>
+            <translation>ダウンロードを再試行</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>Ouvrir Stellar</translation>
+            <translation>Stellar を開く</translation>
         </message>
         <message>
             <source>GitHub</source>
@@ -2474,63 +2468,63 @@ Project</source>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation>Limiteur de vitesse : Activer</translation>
+            <translation>スピードリミッター：オン</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation>Limiteur de vitesse : Désactiver</translation>
+            <translation>スピードリミッター：オフ</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation>Paramètres du limiteur de vitesse…</translation>
+            <translation>スピードリミッター設定</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation>Quitter Stellar</translation>
+            <translation>Stellar を終了する</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation>Fichiers torrent (*.torrent)</translation>
+            <translation>Torrent ファイル (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation>Tous les fichiers (*)</translation>
+            <translation>すべてのファイル (*)</translation>
         </message>
         <message>
             <source>Total: %1</source>
-            <translation>Total : %1</translation>
+            <translation>合計：%1</translation>
         </message>
         <message>
             <source>Completed: %1</source>
-            <translation>Terminé : %1</translation>
+            <translation>完了：%1</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>ダウンロード中：%1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation>En file d'attente : %1</translation>
+            <translation>キュー：%1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
-            <translation>Global : %1%</translation>
+            <translation>全体：%1%</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>再開</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation>Activer le support BitTorrent ?</translation>
+            <translation>BitTorrent サポートを有効化しますか？</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2540,25 +2534,21 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Le support BitTorrent est actuellement désactivé.
-
-Lorsque vous téléchargez un torrent, votre adresse IP devient visible pour les autres pairs du swarm et vous téléversez simultanément (seed) des données vers les autres.
-
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
-
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+            <translation>BitTorrent は現在無効です。
+Torrent をダウンロードすると、IP アドレスがスワーム内の他のピアに公開され、同時にデータをアップロード (シード) します。
+BitTorrent 経由で共有するコンテンツはすべて自己責任です。配布権限を確保してください。
+IP アドレスを保護するため、Stellar を VPN ネットワークインターフェースにバインドし、Torrent を使用する前に VPN が有効であることを確認することをお勧めします。</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, activer</translation>
+            <translation>了解、有効化</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>Vous avez appuyé sur le bouton « Télécharger plus tard », mais Stellar avait déjà commencé à télécharger une partie du fichier. Stellar commence toujours le téléchargement tout en affichant la boîte de dialogue « Informations sur le fichier à télécharger ».
-
-Vous pouvez désactiver cette option dans Paramètres → Téléchargements.</translation>
+            <translation>'ダウンロード後'ボタンを押しましたが、Stellar は既にファイルの一部をダウンロードしていました。Stellar は「ファイル情報」ダイアログを表示しながら常にダウンロードを開始します。
+この動作をオフにするには、設定 → ダウンロードで設定してください。</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2566,212 +2556,213 @@ Vous pouvez désactiver cette option dans Paramètres → Téléchargements.</tr
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>Le fichier « %1 » n'a pas pu être téléchargé.</translation>
+            <translation>ファイル「%1」のダウンロードに失敗しました。</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>Le serveur a renvoyé une page web au lieu du fichier attendu. Certains sites suppriment les fichiers immédiatement après que Stellar a interrogé leurs métadonnées.</translation>
+            <translation>サーバーは期待するファイルではなく Web ページを返しました。一部のサイトは Stellar がメタデータを照会した直後にファイルを削除します。</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>Pour permettre à votre navigateur de télécharger directement, maintenez une touche modificateur (Alt, Ctrl ou Maj) tout en cliquant sur le lien. Configurez la touche dans : Options Stellar → Navigateur → Contourner l'interception des téléchargements</translation>
+            <translation>ブラウザで直接ダウンロードするには、リンクをクリックする際に修飾キー (Alt、Ctrl、または Shift) を押しながら操作してください。キーの設定は以下の通りです:
+Stellar オプション → ブラウザ → ダウンロードインターセプションの回避</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>Ouvrir les paramètres du navigateur</translation>
+            <translation>ブラウザ設定を開く</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>La version %1 est disponible.</translation>
+            <translation>バージョン %1 が利用可能です。</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation>Mettre à jour maintenant</translation>
+            <translation>今すぐ更新</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation>Ajouter un fichier Torrent…</translation>
+            <translation> Torrent ファイルを追加…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation>Ajouter des URLs par lot…</translation>
+            <translation>バッチ URL を追加…</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation>Quitter</translation>
+            <translation>終了</translation>
         </message>
         <message>
             <source>File</source>
-            <translation>Fichier</translation>
+            <translation>ファイル</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>フォルダを開く</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>ファイルを開く</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation>Télécharger maintenant</translation>
+            <translation>今すぐダウンロード</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation>Arrêter le téléchargement</translation>
+            <translation>ダウンロードを停止</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>再ダウンロード</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>.torrent のエクスポート…</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation>Mettre tout en pause</translation>
+            <translation>すべて一時停止</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation>Arrêter tout</translation>
+            <translation>すべて停止</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation>Supprimer tous les éléments terminés</translation>
+            <translation>完了したものを削除</translation>
         </message>
         <message>
             <source>Find…</source>
-            <translation>Rechercher…</translation>
+            <translation>検索…</translation>
         </message>
         <message>
             <source>Find Next</source>
-            <translation>Rechercher suivant</translation>
+            <translation>次を検索</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>スケジューラー</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>キュー開始</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>キュー停止</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>速度制限</translation>
         </message>
         <message>
             <source>Turn On</source>
-            <translation>Activer</translation>
+            <translation>オン</translation>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation>Désactiver</translation>
+            <translation>オフ</translation>
         </message>
         <message>
             <source>Settings…</source>
-            <translation>Paramètres…</translation>
+            <translation>設定…</translation>
         </message>
         <message>
             <source>Options…</source>
-            <translation>Options…</translation>
+            <translation>オプション…</translation>
         </message>
         <message>
             <source>View</source>
-            <translation>Affichage</translation>
+            <translation>表示</translation>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation>Masquer les catégories</translation>
+            <translation>カテゴリ非表示</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation>Afficher les catégories</translation>
+            <translation>カテゴリ表示</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation>Afficher le moteur de recherche</translation>
+            <translation>検索エンジン表示</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
-            <translation>Afficher le lecteur RSS</translation>
+            <translation>RSS リーダー表示</translation>
         </message>
         <message>
             <source>Statistics…</source>
-            <translation>Statistiques…</translation>
+            <translation>統計…</translation>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation>Trier les fichiers</translation>
+            <translation>ファイルの並べ替え</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation>Par ordre d'ajout</translation>
+            <translation>追加順</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation>Par nom de fichier</translation>
+            <translation>ファイル名</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation>Par taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation>Par statut</translation>
+            <translation>ステータス</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation>Par temps restant</translation>
+            <translation>残り時間</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation>Par taux de transfert</translation>
+            <translation>転送速度</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation>Par date de dernière tentative</translation>
+            <translation>最終試行日</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation>Par description</translation>
+            <translation>説明</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation>Par chemin d'enregistrement</translation>
+            <translation>保存先</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation>Par référent</translation>
+            <translation>リファラー</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation>Par page web parente</translation>
+            <translation>親ページ</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation>Colonnes…</translation>
+            <translation>カラム…</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>オプション</translation>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation>Préférences…</translation>
+            <translation>設定…</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -2779,91 +2770,91 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation>Ouvrir le lecteur RSS</translation>
+            <translation>RSSリーダーを開く</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation>Actualiser tous les flux</translation>
+            <translation>全フィードを更新</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation>Marquer tous les éléments comme lus</translation>
+            <translation>全アイテムを既読にする</translation>
         </message>
         <message>
             <source>Help</source>
-            <translation>Aide</translation>
+            <translation>ヘルプ</translation>
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>更新を確認</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation>Déposez un fichier .torrent pour ouvrir les métadonnées du torrent</translation>
+            <translation>.torrent ファイルをドロップしてメタデータを開く</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>検索:</translation>
         </message>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>検索</translation>
         </message>
         <message>
             <source>Settings ▾</source>
-            <translation>Paramètres ▾</translation>
+            <translation>設定 ▾</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Rechercher dans :</translation>
+            <translation>検索範囲:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>ファイル名または一部</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>説明</translation>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation>URL / référent / page web parente</translation>
+            <translation>URL / リファラー / 親ページ</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>大文字一致</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière uniquement</translation>
+            <translation>完全一致</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation>Déplacer la barre latérale à gauche</translation>
+            <translation>サイドバーを左へ</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation>Déplacer la barre latérale à droite</translation>
+            <translation>サイドバーを右へ</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation>Réinitialiser la largeur de la barre latérale</translation>
+            <translation>サイドバー幅をリセット</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>À propos de Stellar</translation>
+            <translation>Stellar について</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>ブラウザ統合</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation>Extensions du navigateur…</translation>
+            <translation>ブラウザ拡張機能…</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation>Paramètres du navigateur…</translation>
+            <translation>ブラウザ設定…</translation>
         </message>
         <message>
             <source>Stellar</source>
@@ -2871,78 +2862,78 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation>Cookies du navigateur requis</translation>
+            <translation>ブラウザの Cookie が必要です</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>Ajouter un fichier torrent</translation>
+            <translation> Torrent ファイルを追加</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>Exporter les fichiers .torrent</translation>
+            <translation>.torrent ファイルをエクスポート</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>Progression du téléchargement de la chaîne</translation>
+            <translation>チャンネルのダウンロード進捗</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>後でダウンロード</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>Fichier non disponible</translation>
+            <translation>ファイルは利用できません</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation>Mise à jour rapide</translation>
+            <translation>クイック更新</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>Stellar ダウンロードマネージャー</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
+            <translation>Stellar ↓%1 ↑%2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>Une nouvelle version de Stellar Download Manager est disponible</translation>
+            <translation>Stellar ダウンロードマネージャーの新しいバージョンがあります</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>Quoi de neuf dans Stellar</translation>
+            <translation>Stellar の新機能</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>Sélection de la file d'attente</translation>
+            <translation>キュー選択</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>Ajouter les fichiers à une file d'attente ?</translation>
+            <translation>ファイルをキューに追加しますか？</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>Choisissez une file d'attente existante ou créez-en une nouvelle.</translation>
+            <translation>既存のキューを選択するか、新しいキューを作成してください。</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>File d'attente</translation>
+            <translation>キュー</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>Démarrer le traitement de la file d'attente</translation>
+            <translation>キュー処理を開始</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>Ne plus me demander</translation>
+            <translation>再度询问しない</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>Ne pas ajouter à la file d'attente</translation>
+            <translation>キューに追加しない</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2950,162 +2941,162 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>Entrez le nom de la file d'attente</translation>
+            <translation>キュー名を入力</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Create</source>
-            <translation>Créer</translation>
+            <translation>作成</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>(Par défaut)</translation>
+            <translation>(デフォルト)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>ダウンロードルール</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>追加</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>Cliquez sur « Ajouter » pour créer une règle de téléchargement</translation>
+            <translation>「追加」をクリックしてダウンロードルールを作成</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>Nom de la règle</translation>
+            <translation>ルール名</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>有効</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>RÈGLES DE FILTRAGE</translation>
+            <translation>フィルタルール</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>Utiliser les expressions régulières</translation>
+            <translation>正規表現</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>Doit contenir :</translation>
+            <translation>regex パターン | キーワード 1 キーワード 2</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>motif regex</translation>
+            <translation>エピソードフィルタ</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>mots-clé1 mots-clé2 | mots-clé3</translation>
+            <translation>例：1x01-1x24 または 2x01;</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>Ne doit pas contenir :</translation>
+            <translation>スマートエピソードフィルタ</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>mots-clé1 mots-clé2</translation>
+            <translation>前回のルールで一致したエピソードはスキップ</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation>Filtre des épisodes :</translation>
+            <translation>🟦 🟩 🔴 🟨 🟧 📄 📡 🌐 ⚠ 🛡 🛑 🔍 🔒</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation>p. ex. 1x01-1x24 ou 2x01 ;</translation>
+            <translation>yt-dlp ffmpeg BitTorrent TCP μTP DHT VPN RSS URL IP SOCKS5 HTTP HTTPS JS Stellar YouTube Windows macOS Linux Deno Node.js Bun QuickJS GNU GPL</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation>Utiliser le filtre intelligent des épisodes</translation>
+            <translation>↓ ↑</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation>Ignore les épisodes déjà correspondants aux règles précédentes</translation>
+            <translation>Ratio</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation>Ignorer les correspondances ultérieures pour</translation>
+            <translation>無視</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation>jours (0 = désactivé)</translation>
+            <translation>日 (0=無効)</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation>PARAMÈTRES DE TÉLÉCHARGEMENT</translation>
+            <translation>ダウンロード設定</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>保存先:</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation>Laissez vide pour utiliser le chemin d'enregistrement par défaut</translation>
+            <translation>空欄はデフォルト</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>参照...</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>カテゴリ:</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation>File d'attente :</translation>
+            <translation>キュー:</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE DE TORRENT</translation>
+            <translation>トランスファー制限</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>レシオ</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>デフォルト</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>無制限</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>設定</translation>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation>Temps de partage</translation>
+            <translation>シード時間</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>分</translation>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation>Temps de partage inactif</translation>
+            <translation>非アクティブシード時間</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation>&quot;Par défaut&quot; utilise les limites de partage globales définies dans Paramètres → Torrents.</translation>
+            <translation>設定の「デフォルト」は、設定 → トorrent で設定されたグローバル共有制限を使用します。</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
@@ -3113,74 +3104,74 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation>Règles de téléchargement automatique par RSS</translation>
+            <translation>RSS 自動ダウンロードルール</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation>Titre</translation>
+            <translation>タイトル</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation>Flux</translation>
+            <translation>フィード</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation>Date</translation>
+            <translation>日付</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation>Ouvrir le flux</translation>
+            <translation>フィードを開く</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>更新</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation>Renommer / Modifier...</translation>
+            <translation>名前変更/編集...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation>Supprimer l'abonnement</translation>
+            <translation>購読を削除</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation> Torrent をダウンロード</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>ブラウザで開く</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation>Copier le lien</translation>
+            <translation>リンクをコピー</translation>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>既読にする</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>未読にする</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation>Tout marquer comme lu</translation>
+            <translation>すべて既読</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>名前</translation>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation>Nom personnalisé (facultatif)</translation>
+            <translation>カスタム名（オプション）</translation>
         </message>
         <message>
             <source>URL</source>
@@ -3188,242 +3179,242 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>保存</translation>
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation>Ajouter l'URL du flux RSS ou Atom...</translation>
+            <translation>RSS または Atom フィード URL を追加...</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>追加</translation>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation>Actualisation en cours…</translation>
+            <translation>更新中…</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>編集</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>ダウンロードルール</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation>Abonnements</translation>
+            <translation>購読</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation>Sans titre</translation>
+            <translation>未命名</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>Sélectionner un article</translation>
+            <translation>記事を選択</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>開く</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>既読にする</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>未読</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>Choisissez un article pour afficher son résumé.</translation>
+            <translation>要約を表示</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>Aucun résumé disponible.</translation>
+            <translation>要約なし</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>%1 non lu  ·  %2 éléments</translation>
+            <translation>%1 件の未読 · %2 項目</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>%1 éléments</translation>
+            <translation>%1 項目</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>Flux RSS</translation>
+            <translation>RSS フィード</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>Modifier l'abonnement</translation>
+            <translation>購読を編集</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>キュー</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>新しいキュー</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>Schedule</source>
-            <translation>Planification</translation>
+            <translation>スケジュール</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>Fichiers dans la file d'attente</translation>
+            <translation>キュー内のファイル</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>Téléchargement unique</translation>
+            <translation>ワンタイムダウンロード</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>定期的な同期</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>Démarrer le téléchargement au démarrage de Stellar</translation>
+            <translation>Stellar 起動時にダウンロード開始</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>時刻</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>1 回だけ</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>毎日</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation>Redémarrer toutes les</translation>
+            <translation>再度開始間隔</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>時間</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>最小</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>ダウンロード停止位置</translation>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation>Nombre de tentatives pour chaque fichier en cas d'échec du téléchargement :</translation>
+            <translation>失敗時の再試行回数</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation>Ouvrir le fichier suivant une fois terminé :</translation>
+            <translation>完了時のファイル開く</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>完了で Stellar 終了</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>完了で PC 終了</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>プロセス強制終了</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation>fichiers en même temps</translation>
+            <translation>同時ダウンロード数</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>ファイル名</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>ステータス</translation>
         </message>
         <message>
             <source>Time Left</source>
-            <translation>Temps restant</translation>
+            <translation>残り時間</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation>Aucune file d'attente sélectionnée</translation>
+            <translation>キュー未選択</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation>Aucun fichier dans la file d'attente</translation>
+            <translation>キューにファイルなし</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation>Limites de téléchargement</translation>
+            <translation>ダウンロード制限</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation>Télécharger au maximum</translation>
+            <translation>以下に制限</translation>
         </message>
         <message>
             <source>MBytes</source>
-            <translation>Mo</translation>
+            <translation>MB</translation>
         </message>
         <message>
             <source>every</source>
-            <translation>toutes les</translation>
+            <translation>すべて</translation>
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation>Afficher un avertissement avant d'arrêter les téléchargements</translation>
+            <translation>ダウンロード停止時の警告を表示</translation>
         </message>
         <message>
             <source>Start now</source>
-            <translation>Démarrer maintenant</translation>
+            <translation>開始</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>適用</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation>Entrez un nom pour la nouvelle file d'attente qui sera affiché dans la liste des files d'attente</translation>
+            <translation>新規キュー名を入力</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation>Nom de la file d'attente</translation>
+            <translation>キュー名</translation>
         </message>
         <message>
             <source>OK</source>
@@ -3431,598 +3422,599 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>スケジューラ</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>新規キュー</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation>Sélectionner le fichier à ouvrir une fois terminé</translation>
+            <translation>完了時に開くファイル</translation>
         </message>
     </context>
     <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>接続</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation>Téléchargements simultanés maximum :</translation>
+            <translation>同時ダウンロード数</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation>Segments par téléchargement :</translation>
+            <translation>ダウンロードごとのセグメント数</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation>Délai d'expiration de la connexion (secondes) :</translation>
+            <translation>接続タイムアウト (秒)</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation>Réessayer les téléchargements échoués :</translation>
+            <translation>失敗したダウンロードの再試行</translation>
         </message>
         <message>
             <source>times</source>
-            <translation>fois</translation>
+            <translation>回</translation>
         </message>
         <message>
             <source>User Agent</source>
-            <translation>Agent utilisateur</translation>
+            <translation>ユーザーエージェント</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation>Utiliser un agent utilisateur personnalisé</translation>
+            <translation>カスタムユーザーエージェントの使用</translation>
         </message>
         <message>
             <source>Proxy</source>
-            <translation>Proxy</translation>
+            <translation>プロキシ</translation>
         </message>
         <message>
             <source>No proxy</source>
-            <translation>Aucun proxy</translation>
+            <translation>プロキシなし</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation>Utiliser le proxy système</translation>
+            <translation>システムプロキシを使用</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation>Proxy HTTP / HTTPS</translation>
+            <translation>HTTP/HTTPS プロキシ</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation>Proxy SOCKS5</translation>
+            <translation>SOCKS5 プロキシ</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation>Hôte :</translation>
+            <translation>ホスト:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation>Port :</translation>
+            <translation>ポート:</translation>
         </message>
         <message>
             <source>Username:</source>
-            <translation>Nom d'utilisateur :</translation>
+            <translation>ユーザー名:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>Mot de passe :</translation>
+            <translation>パスワード:</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>カテゴリ</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>名前</translation>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation>Enregistrer dans le dossier</translation>
+            <translation>フォルダに保存</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation>Dossier de sauvegarde par défaut :</translation>
+            <translation>デフォルト保存フォルダ:</translation>
         </message>
         <message>
             <source>Browse…</source>
-            <translation>Parcourir…</translation>
+            <translation>参照…</translation>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation>Dossier de sauvegarde personnalisé pour les torrents :</translation>
+            <translation> torrents 用カスタム保存フォルダ:</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation>Répertoire temporaire de Stellar :</translation>
+            <translation>Stellar 一時ディレクトリ:</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation>Démarrer le téléchargement immédiatement (ignorer la boîte de dialogue des informations du fichier)</translation>
+            <translation>直ちにダウンロード開始 (ファイル情報ダイアログをスキップ)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation>Afficher la boîte de dialogue de fin de téléchargement</translation>
+            <translation>ダウンロード完了ダイアログを表示</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation>Démarrer le téléchargement immédiatement tout en affichant la boîte de dialogue &quot;Informations du fichier à télécharger&quot;</translation>
+            <translation>「ファイル情報」ダイアログを表示しながら直ちにダウンロード開始</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation>Afficher la carte du swarm lors du téléchargement des métadonnées du torrent</translation>
+            <translation>torrent メタデータダウンロード時にスワームマップを表示</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de l'appui sur &quot;Télécharger plus tard&quot;</translation>
+            <translation>ダウンロード後でキュー選択パネルを表示</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de la fermeture de la boîte de dialogue des téléchargements par lot</translation>
+            <translation>バッチダウンロードダイアログ閉じてキュー選択パネルを表示</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation>Si une URL en double est ajoutée :</translation>
+            <translation>重複 URL 追加時</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation>Double-clic sur un téléchargement dans la liste des fichiers :</translation>
+            <translation>ファイルリストのダウンロードをダブルクリック</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation>Format de la date du dernier essai :</translation>
+            <translation>最終試行日付形式</translation>
         </message>
         <message>
             <source>Time format:</source>
-            <translation>Format de l'heure :</translation>
+            <translation>時刻形式</translation>
         </message>
         <message>
             <source>Show seconds</source>
-            <translation>Afficher les secondes</translation>
+            <translation>秒を表示</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>プレビュー</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>ブラウザ統合</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation>Démarrer automatiquement le téléchargement des types de fichiers suivants :</translation>
+            <translation>以下のファイルタイプを自動ダウンロード</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation>Ne pas démarrer automatiquement le téléchargement depuis les sites suivants :</translation>
+            <translation>自動ダウンロード禁止サイト</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation>Exceptions d'adresse</translation>
+            <translation>除外アドレス</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation>Ne pas démarrer les téléchargements depuis les adresses suivantes :</translation>
+            <translation>除外アドレス</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation>Contourner l'interception des téléchargements</translation>
+            <translation>ダウンロード遮断回避</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation>Maintenez cette touche enfoncée tout en cliquant sur un lien de téléchargement pour ignorer l'interception et permettre au navigateur de télécharger :</translation>
+            <translation>クリック時のキー</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>速度制限</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation>Activer la limite de vitesse globale</translation>
+            <translation>グローバル速度制限</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation>Vitesse maximale :</translation>
+            <translation>最大速度</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation>Activer la limite de téléchargement global</translation>
+            <translation>グローバルアップロード制限</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation>Téléversement maximum :</translation>
+            <translation>最大アップロード</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation>Toujours activer le limiteur de vitesse au démarrage de Stellar</translation>
+            <translation>Stellar 起動時に常に速度制限を有効化</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation>Activer le planificateur de limiteur de vitesse</translation>
+            <translation>速度制限スケジューラーを有効化</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>On</source>
-            <translation>Activé</translation>
+            <translation>オン</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Upload</source>
-            <translation>Téléversement</translation>
+            <translation>アップロード</translation>
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation>+ Ajouter une règle</translation>
+            <translation>+ ルール追加</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation>Notifications</translation>
+            <translation>通知</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation>Afficher une notification lorsque le téléchargement est terminé</translation>
+            <translation>ダウンロード完了時に通知を表示</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation>Afficher une notification en cas d'erreur de téléchargement</translation>
+            <translation>ダウンロードエラー時の通知</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>全般</translation>
         </message>
         <message>
             <source>Browser</source>
-            <translation>Navigateur</translation>
+            <translation>ブラウザ</translation>
         </message>
         <message>
             <source>Media</source>
-            <translation>Média</translation>
+            <translation>メディア</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation> Torrent</translation>
         </message>
         <message>
             <source>Language</source>
-            <translation>Langue</translation>
+            <translation>言語</translation>
         </message>
         <message>
             <source>About</source>
-            <translation>À propos</translation>
+            <translation>について</translation>
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation>Lorsque le mode personnalisé est désactivé, Stellar utilise son User-Agent intégré avec la version actuelle.</translation>
+            <translation>カスタムモードをオフの場合、Stellar は現在のバージョンを含む標準の User-Agent を使用します。</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation>Cette valeur sera envoyée exactement telle qu'entrée.</translation>
+            <translation>入力された値をそのまま送信します。</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation>Valeur par défaut intégrée affichée ci-dessus. Activez la case à cocher pour la modifier et la remplacer.</translation>
+            <translation>上記のデフォルト値。チェックボックスをオンにして編集および上書きできます。</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation>Optionnel</translation>
+            <translation>オプション</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation>Tous les téléchargements, les téléchargements de vidéos, les vérifications de mises à jour et les connexions aux pairs/trackers de torrent sont acheminés via ce proxy.</translation>
+            <translation>すべてのダウンロード、動画ダウンロード、更新チェック、および Torrent ピア/トラッカー接続はこのプロキシ経由で行われます</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation>Stellar utilisera le proxy configuré dans les paramètres réseau de votre système d'exploitation.</translation>
+            <translation>Stellar は、OS のネットワーク設定で構成されたプロキシを使用します</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation>Délai d'attente dépassé — le proxy n'a pas répondu</translation>
+            <translation>タイムアウト — プロキシへの応答がありません</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation>Test en cours…</translation>
+            <translation>テスト中…</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation>Tester le proxy</translation>
+            <translation>プロキシをテスト</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation>⚠ Non présent dans la liste de téléchargement automatique du navigateur : %1</translation>
+            <translation>⚠ ブラウザの自動ダウンロードリストにありません：%1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation>Parcourir</translation>
+            <translation>閲覧</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation>Ceci est le dossier torrent personnalisé mémorisé utilisé lorsque la boîte de dialogue des métadonnées du torrent est définie pour utiliser un dossier de sauvegarde personnalisé par défaut.</translation>
+            <translation> Torrent メタデータダイアログでカスタム保存フォルダをデフォルトに設定する場合に使用されるカスタム Torrent フォルダです</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation>Stellar stocke ici les parties de fichiers partiellement téléchargées et les métadonnées pendant le téléchargement et l'assemblage des fichiers.</translation>
+            <translation>ダウンロードおよびファイルの組み立て中に Stellar は、部分的にダウンロードされたファイル部分とメタデータをここに保存します</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation>Remarque : Ces paramètres ne s'appliquent pas au traitement de la file d'attente pour les paramètres « Télécharger immédiatement » et « Afficher la boîte de dialogue de téléchargement terminé ».</translation>
+            <translation>注: 直ちにダウンロード開始およびダウンロード完了ダイアログ表示の設定には適用されません。</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation>Me demander quoi faire</translation>
+            <translation>処理方法を尋ねる</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
-            <translation>Ajouter avec un nom de fichier numéroté</translation>
+            <translation>番号付きファイル名で追加</translation>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation>Écraser le téléchargement existant</translation>
+            <translation>既存のダウンロードを上書き</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation>Reprendre / afficher la boîte de dialogue de fin</translation>
+            <translation>再開/完了ダイアログ表示</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation>Ouvrir la boîte de dialogue des propriétés du fichier</translation>
+            <translation>ファイルプロパティダイアログを開く</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>ファイルを開く</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>フォルダを開く</translation>
         </message>
         <message>
             <source>24-hour time</source>
-            <translation>Format 24 heures</translation>
+            <translation>24 時間表示</translation>
         </message>
         <message>
             <source>12-hour time</source>
-            <translation>Format 12 heures</translation>
+            <translation>12 時間表示</translation>
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation>Séparé par des espaces ou des virgules. Insensible à la casse.</translation>
+            <translation>スペースまたはカンマ区切り。大文字小文字区別なし。</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation>Modèles d'hôtes séparés par des espaces. Jokers (*) pris en charge, ex. *.update.microsoft.com</translation>
+            <translation>ホストパターンをスペース区切り。ワイルドカード (*) 対応。例：*.update.microsoft.com</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation>Afficher la boîte de dialogue pour ajouter une adresse à la liste des exceptions pour un téléchargement annulé deux fois</translation>
+            <translation>2 回キャンセルされたダウンロードの例外リストにアドレスを追加するダイアログを表示</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation>Un motif d'URL par ligne. Les caractères génériques (*) sont pris en charge.</translation>
+            <translation>1 行に 1 つの URL パターン。ワイルドカード (*) 対応。</translation>
         </message>
         <message>
             <source>None</source>
-            <translation>Aucun</translation>
+            <translation>なし</translation>
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation>Cliquez sur un jour pour le basculer. Les règles sont évaluées chaque minute ; la première règle correspondante l'emporte. Les limites de téléchargement et d'upload planifiées sont automatiquement effacées lorsqu'aucune règle n'est active.</translation>
+            <translation>1 日のピルをクリックして切り替え。ルールは 1 分ごとに評価され、最初の一致が採用されます。スケジュールされたダウンロード・アップロード制限は、ルールが非アクティブになると自動的にクリアされます。</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>システムトレイに最小化</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation>Fermer dans la zone de notification</translation>
+            <translation>システムトレイに閉じる</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation>Lancer Stellar au démarrage</translation>
+            <translation>起動時に Stellar を起動</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation>Afficher les astuces dans la barre inférieure</translation>
+            <translation>下部バーにヒントを表示</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation>Afficher le nombre de téléchargements terminés dans la barre d'état</translation>
+            <translation>完了ダウンロード数</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation>Utilitaires</translation>
+            <translation>ユーティリティ</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation>Afficher la vitesse dans l'infobulle de l'icône de la zone de notification</translation>
+            <translation>速度</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation>Afficher la vitesse dans la barre de titre</translation>
+            <translation>速度</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation>Afficher la vitesse dans la barre d'état</translation>
+            <translation>速度</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation>Afficher le nombre estimé d'utilisateurs en ligne dans la barre d'état</translation>
+            <translation>オンラインユーザー数</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Utilise la densité des ID de nœuds DHT pour estimer le nombre global d'utilisateurs BitTorrent. La confiance augmente à mesure que davantage d'ID de nœuds uniques sont observés ; un * à la fin dans la barre d'état signifie que l'estimation est encore peu fiable.</translation>
+            <translation>DHT ノード ID 密度</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation>Afficher le ratio dans la barre d'état</translation>
+            <translation>レシオ</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation>Afficher l'adresse IP publique dans la barre d'état</translation>
+            <translation>パブリック IP</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation>Détecte votre IP publique via libtorrent et votre type de connexion actif. Survolez l'indicateur pour voir le SSID/le signal WiFi ou les avertissements concernant les connexions entrantes.</translation>
+            <translation>パブリック IP 検出</translation>
         </message>
         <message>
             <source>Updates</source>
-            <translation>Mises à jour</translation>
+            <translation>更新</translation>
         </message>
         <message>
             <source>Automatically check for updates</source>
-            <translation>Vérifier automatiquement les mises à jour</translation>
+            <translation>更新の自動チェック</translation>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation>Surveillance du presse-papiers</translation>
+            <translation>クリップボード監視</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation>Démarrer automatiquement le téléchargement des URL placées dans le presse-papiers</translation>
+            <translation>クリップボードの URL を自動でダウンロード</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation>Lorsqu'une URL correspondant à un type de fichier surveillé est copiée dans le presse-papiers, Stellar vous demandera si vous souhaitez la télécharger. Seuls les types de fichiers répertoriés sous Navigateur › Démarrer automatiquement le téléchargement des types de fichiers suivants sont pris en compte.</translation>
+            <translation>監視されているファイルタイプに一致する URL がクリップボードにコピーされた場合、Stellar はダウンロードするかどうかを尋ねます。ブラウザ › 以下のファイルタイプを自動的にダウンロードする にリストされているファイルタイプのみが対象となります。</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation>Téléchargeur vidéo</translation>
+            <translation>ビデオダウンローダー</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation>Stellar utilise yt-dlp pour télécharger des vidéos depuis YouTube, Vimeo, Twitter/X, Instagram et des centaines d'autres sites. Lorsque vous collez une URL de vidéo dans Ajouter URL, un sélecteur de format apparaîtra.</translation>
+            <translation>Stellar は yt-dlp を使用して YouTube、Vimeo、Twitter/X、Instagram など数百のサイトからビデオをダウンロードします。Add URL にビデオ URL を貼り付けると、フォーマット選択画面が表示されます。</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation>Statut binaire</translation>
+            <translation>バイナリステータス</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
-            <translation>Mettre à jour yt-dlp</translation>
+            <translation>yt-dlp の更新</translation>
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation>Télécharger yt-dlp</translation>
+            <translation>yt-dlp のダウンロード</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Re-check</source>
-            <translation>Vérifier à nouveau</translation>
+            <translation>再確認</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation>État de ffmpeg</translation>
+            <translation>ffmpeg の状態</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation>ffmpeg trouvé : %1</translation>
+            <translation>ffmpeg が見つかりました: %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation>ffmpeg introuvable — les téléchargements HD seront limités aux formats pré-muxés (max ~480p)</translation>
+            <translation>ffmpeg が見つかりません - HD ダウンロードはプリマルチックス形式に制限されます (最大約 480p)</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation>Mise à jour de FFmpeg...</translation>
+            <translation>FFmpeg を更新中...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation>Mettre à jour FFmpeg</translation>
+            <translation>FFmpeg を更新</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation>Obtenir ffmpeg (gyan.dev)</translation>
+            <translation>ffmpeg を取得 (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation>ffmpeg est requis pour fusionner les flux vidéo et audio séparés en MP4/MKV. Sans lui, les téléchargements YouTube basculent vers un seul flux pré-muxé (généralement WebM, max 480p).
+            <translation>ffmpeg は MP4/MKV への動画・音声ストリームの統合に必要です。インストールしないと YouTube ダウンロードは WebM (最大 480p) にフォールバックします。
 
-Pour corriger : téléchargez ffmpeg depuis gyan.dev/ffmpeg/builds (build Essentials), extrayez ffmpeg.exe du dossier bin/, et placez-le dans le même dossier que yt-dlp.exe. Puis cliquez sur Vérifier à nouveau ci-dessus.</translation>
+修正方法: gyan.dev/ffmpeg/builds から ffmpeg をダウンロードし、bin/ フォルダから ffmpeg.exe を抽出して yt-dlp.exe と同じフォルダに配置してください。その後、上記の「再確認」をクリックしてください。</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation>Chemin du binaire personnalisé</translation>
+            <translation>カスタムバイナリパス</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation>Laissez vide pour utiliser le binaire intégré (recommandé). Définissez le chemin absolu de votre exécutable yt-dlp si vous souhaitez utiliser une version spécifique.</translation>
+            <translation>空白のままにするとバンドルバイナリを使用します（推奨）。特定のバージョンを使用したい場合は、yt-dlp 実行ファイルの絶対パスを設定してください。</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation>(auto - utiliser yt-dlp intégré ou système)</translation>
+            <translation>(自動 - バンドルまたはシステム yt-dlp)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation>Moteur d'exécution JavaScript</translation>
+            <translation>JavaScript ランタイム</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation>%1 trouvé : %2</translation>
+            <translation>%1 が見つかりました：%2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation>Aucun environnement JS trouvé — résolution du n-challenge YouTube désactivée</translation>
+            <translation>JS ランタイムが見つかりません — YouTube n-challenge 解決が無効化されました</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation>yt-dlp nécessite un environnement JavaScript externe pour résoudre le n-challenge de YouTube (limitation d'URL). Sans lui, les téléchargements YouTube peuvent échouer ou ne retourner que des formats storyboard de basse qualité.
+            <translation>YouTube の n-challenge（URL スロットリング）を解決するには、外部 JS ランタイムが必要です。それなしでは、YouTube ダウンロードが失敗するか、低品質のストーリーボード形式しか返されません。
 
-Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ou QuickJS. Placez-le dans le même dossier que yt-dlp.exe ou ajoutez-le au PATH système, puis cliquez sur Vérifier à nouveau dans la section statut yt-dlp ci-dessus.</translation>
+インストール：Deno (deno.com)、Node.js (nodejs.org)、Bun (bun.sh)、QuickJS のいずれか。
+yt-dlp.exe と同じフォルダに配置するか、システム PATH に追加し、上記 yt-dlp ステータスセクションの「再チェック」をクリックしてください。</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation>Remplacer le chemin de l'environnement détecté automatiquement. Laissez vide pour utiliser la détection automatique (recherche dans le dossier yt-dlp, dossier de l'application et PATH système).</translation>
+            <translation>自動検出されたランタイムパスを上書きします。空白のままにすると自動検出を使用します（yt-dlp フォルダ、アプリフォルダ、システム PATH を検索）。</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation>(détection automatique depuis le PATH et le dossier yt-dlp)</translation>
+            <translation>(PATH と yt-dlp フォルダから自動検出)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation>Mettre à jour automatiquement yt-dlp au démarrage</translation>
+            <translation>起動時に yt-dlp を自動更新</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation>Lorsqu'elle est activée, Stellar exécutera « yt-dlp -U » au démarrage pour maintenir le binaire à jour. Nécessite une connexion Internet active.</translation>
+            <translation>有効化すると、起動時に Stellar は「yt-dlp -U」を実行してバイナリを最新に保ちます。インターネット接続が必要です。</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation>Téléchargements par torrent</translation>
+            <translation> Torrent ダウンロード</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation>Activer le support BitTorrent</translation>
+            <translation>BitTorrent 有効化</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation>BitTorrent — Avis juridique</translation>
+            <translation>BitTorrent — 法的告知</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4030,255 +4022,254 @@ Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Stellar est un programme de partage de fichiers. Lorsque vous téléchargez un torrent, votre adresse IP devient visible par les autres pairs du swarm et vous téléchargez simultanément (seed) des données vers les autres.
+            <translation>Stellar はファイル共有プログラムです。Torrent をダウンロードすると、IP アドレスがスワーム内の他のピアに公開され、同時にデータをアップロード (シード) します。
 
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
-
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+BitTorrent で共有するコンテンツはすべて自己責任です。配布権限を確認してください。
+Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐことを強く推奨します。</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, Activer</translation>
+            <translation>了解、有効化</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation>Ces paramètres s'appliquent aux fichiers .torrent et aux liens magnétiques.</translation>
+            <translation>これらの設定は .torrent ファイルと磁力リンクに適用されます。</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation>Port d'écoute</translation>
+            <translation>リスニングポート</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation>Connexions maximales globales</translation>
+            <translation>グローバル最大接続数</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation>Connexions maximales par torrent</translation>
+            <translation>Torrent 別最大接続数</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation>Créneaux de téléchargement maximal global</translation>
+            <translation>グローバル最大アップロードスロット</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation>Créneaux de téléchargement maximal par torrent</translation>
+            <translation> Torrent 1 最大アップロードスロット</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation>0 = illimité (champs par torrent et créneaux globaux de téléversement)</translation>
+            <translation>0 = 無制限 (Torrent 別・グローバルスロット)</translation>
         </message>
         <message>
             <source>Protocol</source>
-            <translation>Protocole</translation>
+            <translation>プロトコル</translation>
         </message>
         <message>
             <source>TCP and μTP</source>
-            <translation>TCP et μTP</translation>
+            <translation>TCP と μTP</translation>
         </message>
         <message>
             <source>μTP only</source>
-            <translation>Uniquement μTP</translation>
+            <translation>μTP 専用</translation>
         </message>
         <message>
             <source>TCP only</source>
-            <translation>TCP uniquement</translation>
+            <translation>TCP 専用</translation>
         </message>
         <message>
             <source>Port Test</source>
-            <translation>Test de port</translation>
+            <translation>ポートテスト</translation>
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation>Vérifiez si votre port d'écoute de torrent actuel est accessible depuis l'internet public. Cela permet de confirmer si votre redirection de port VPN, la redirection de port sur votre routeur et les règles de pare-feu autorisent bien les connexions torrent entrantes.</translation>
+            <translation>公開インターネットから Torrent リスニングポートへの接続が確認できます。VPN のポートフォワーディング、ルーターのポートフォワーディング、ファイアウォールルールが実際にインバウンド接続を許可しているか確認できます。</translation>
         </message>
         <message>
             <source>Testing...</source>
-            <translation>Test en cours...</translation>
+            <translation>テスト中...</translation>
         </message>
         <message>
             <source>Test Port</source>
-            <translation>Tester le port</translation>
+            <translation>ポートテスト</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation>Réseau</translation>
+            <translation>ネットワーク</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>詳細</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation>Agent utilisateur BitTorrent personnalisé</translation>
+            <translation>カスタム BitTorrent ユーザーエージェント</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation>Lier à l'adaptateur réseau</translation>
+            <translation>ネットワークアダプタにバインド</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Cet adaptateur est verrouillé pour le trafic torrent. Si votre VPN se déconnecte ou si l'adaptateur disparaît, Stellar cesse d'utiliser la route par défaut et vos torrents perdent l'accès au réseau au lieu de fuiter sur une autre connexion.</translation>
+            <translation>このアダプタは Torrent トラフィックにロックされています。VPN が切断またはアダプタが消失すると、Stellar はデフォルトルートを停止し、Torrent は別の接続にリークするのではなくネットワークアクセスを失います。</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Aucun lien d'adaptateur. Le trafic torrent suit la route système.</translation>
+            <translation>アダプタバインドなし。Torrent トラフィックはシステムルートに従います。</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>La liaison de l'adaptateur réseau indique à Stellar d'envoyer et de recevoir du trafic torrent uniquement via l'adaptateur sélectionné. Cela est particulièrement utile pour les utilisateurs de VPN car cela empêche les fuites de trafic accidentelles lorsque le VPN n'est pas connecté.</translation>
+            <translation>ネットワークアダプタバインドは、Stellar が選択したアダプタのみで Torrent トラフィックを送受信することを指示します。VPN ユーザーには特に有用で、VPN が接続されていない時の誤ったトラフィックリークを防ぎます。</translation>
         </message>
         <message>
             <source>Torrent Security</source>
-            <translation>Sécurité du torrent</translation>
+            <translation>Torrent セキュリティ</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation>Les bannissements manuels de pairs s'appliquent immédiatement. Les sous-chaînes d'agent utilisateur bloquées, les pays bloqués et les options de bannissement automatique s'appliquent lorsque vous cliquez sur Appliquer ou OK.</translation>
+            <translation>手動ピア禁止は即時適用されます。ブロックされたユーザーエージェント部分文字、ブロックされた国、および自動禁止オプションは「適用」または「OK」をクリック時に適用されます。</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation>Mode de chiffrement</translation>
+            <translation>暗号化モード</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation>Préférer le chiffrement</translation>
+            <translation>暗号化を推奨</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation>Exiger le chiffrement</translation>
+            <translation>暗号化を必須</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation>Autoriser le chiffrement</translation>
+            <translation>暗号化を許可</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation>User-Agents bloqués</translation>
+            <translation>ブロックされたユーザーエージェント</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation>Une sous-chaîne par ligne. Si la chaîne du client pair contient l'une des lignes ci-dessus, Stellar bannit automatiquement ce pair jusqu'à ce que la ligne correspondante soit supprimée et que les paramètres soient appliqués.</translation>
+            <translation>1行に1つの部分文字列。ピアクライアント文字列に上記のいずれかが含まれる場合、Stellar はそのピアを自動的にブロックし、一致する行を削除して設定を適用するまでブロック状態が続きます。</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation>Bannir manuellement un pair</translation>
+            <translation>ピアを手動でブロック</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation>Adresse IP, par exemple 203.0.113.42</translation>
+            <translation>IP アドレス（例：203.0.113.42）</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation>Bannir</translation>
+            <translation>ブロック</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation>Les bannissements manuels sont permanents jusqu'à ce que vous les supprimiez de la liste des pairs bannis ci-dessous.</translation>
+            <translation>手動ブロックは、以下のブロックされたピアリストから削除するまで恒久的です。</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation>Bloquer les pairs par pays</translation>
+            <translation>国別ピアブロック</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>追加</translation>
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation>Aucun pays bloqué.</translation>
+            <translation>ブロック済み国なし</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation>Bannir automatiquement Xunlei, QQ, Baidu, Xfplay, DLBT et les téléchargeurs hors ligne</translation>
+            <translation>Xunlei、QQ、Baidu、Xfplay、DLBT、オフラインダウンローダーを自動ブロック</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation>Bannir automatiquement les pairs des lecteurs multimédias BitTorrent</translation>
+            <translation>BitTorrent メディアプレイヤーピアを自動ブロック</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation>Paires bannies manuellement</translation>
+            <translation>手動でブロック済みピア</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation>Débannir</translation>
+            <translation>ブロック解除</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>アクティブ</translation>
         </message>
         <message>
             <source>No banned peers</source>
-            <translation>Aucune paire bannie</translation>
+            <translation>ブロック済みピアなし</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation>Base de données IP-vers-Ville</translation>
+            <translation>IP-都市データベース</translation>
         </message>
         <message>
             <source>Version</source>
-            <translation>Version</translation>
+            <translation>バージョン</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>不明</translation>
         </message>
         <message>
             <source>Path</source>
-            <translation>Chemin</translation>
+            <translation>パス</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>Entries</source>
-            <translation>Entrées</translation>
+            <translation>項目</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation>Dernière modification</translation>
+            <translation>更新日時</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>ステータス</translation>
         </message>
         <message>
             <source>Downloading...</source>
-            <translation>Téléchargement en cours...</translation>
+            <translation>ダウンロード中...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation>Mettre à jour la base de données IP-vers-Ville</translation>
+            <translation>IP-都市DBを更新</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation>Actualiser les informations</translation>
+            <translation>情報を更新</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>統計</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation>Totaux cumulés des transferts sur tous les torrents, y compris ceux qui ont été supprimés.</translation>
+            <translation>全トレンター転送合計</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>ダウンロード合計</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>アップロード合計</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation>Ratio de partage global</translation>
+            <translation>総シェア率</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation>Les textes complets des licences se trouvent dans THIRD-PARTY-NOTICES.txt, inclus avec cette installation.</translation>
+            <translation>LICENSE 全文は THIRD-PARTY-NOTICES.txt に</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4286,139 +4277,139 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation>Récupération des flux</translation>
+            <translation>フィード取得</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation>Activer la récupération des flux RSS</translation>
+            <translation>RSS フィード取得有効</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation>Intervalle de rafraîchissement des flux</translation>
+            <translation>フィード更新間隔</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>分</translation>
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation>Délai de requête pour le même hôte</translation>
+            <translation>ホストリクエスト遅延</translation>
         </message>
         <message>
             <source>seconds</source>
-            <translation>secondes</translation>
+            <translation>秒</translation>
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation>Nombre maximum d'articles par flux</translation>
+            <translation>フィードごとの最大記事数</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation>Téléchargeur automatique de torrents</translation>
+            <translation> Torrent 自動ダウンロード</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation>Activer le téléchargement automatique des torrents RSS</translation>
+            <translation>RSS トルント自動ダウンロードを有効化</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation>Modifier les règles de téléchargement automatique...</translation>
+            <translation>自動ダウンロードルール編集...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation>Filtre intelligent des épisodes</translation>
+            <translation>スマートエピソードフィルタ</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation>Télécharger les épisodes REPACK/PROPER</translation>
+            <translation>REPACK/PROPER エピソードダウンロード</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation>Motifs de détection des épisodes (un par ligne) :</translation>
+            <translation>エピソード検出パターン (1 行 1 つ)</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation>Associations</translation>
+            <translation>関連付け</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation>Configurer la récupération des flux RSS et les règles de téléchargement automatique de torrents.</translation>
+            <translation>RSS 取得と自動ダウンロード設定</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation>Ces expressions régulières sont utilisées pour extraire les numéros de saison/épisode pour la détection intelligente des doublons.</translation>
+            <translation>正則表現でエピソード番号を抽出</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation>Définir Stellar comme application par défaut pour les fichiers .torrent et les liens magnet. Sur Windows 10/11, cliquez sur le bouton puis confirmez le changement dans la page des applications par défaut de Windows qui s'ouvre.</translation>
+            <translation>Stellar をデフォルトアプリに設定</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation>Fichiers .torrent</translation>
+            <translation>.torrent ファイル</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation>Géré actuellement par Stellar</translation>
+            <translation>Stellar で処理中</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation>Stellar n'est pas la valeur par défaut actuelle</translation>
+            <translation>Stellar がデフォルトではない</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation>Définir .torrent par défaut</translation>
+            <translation>.torrent デフォルト設定</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation>Actualiser l'état</translation>
+            <translation>ステータス更新</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation>liens magnet</translation>
+            <translation>magnet: リンク</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation>Définir Magnet par défaut</translation>
+            <translation>magnet: デフォルト設定</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation>Si votre environnement de bureau remplace l'association au niveau de l'application, actualisez l'état après que le système a fini d'appliquer le changement.</translation>
+            <translation>システム設定の関連付けが上書きされた場合は、変更適用後にステータスを再読み込みしてください。</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>Langue de l'interface</translation>
+            <translation>インターフェース言語</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>Sélectionnez la langue utilisée dans toute l'interface Stellar. Un redémarrage est nécessaire pour que tous les textes soient mis à jour.</translation>
+            <translation>Stellar インターフェース全体で使用される言語を選択します。すべてのテキストを更新するには再起動が必要です。</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>言語:</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>Un redémarrage est requis après avoir changé la langue.</translation>
+            <translation>言語を変更した後は再起動が必要です。</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>更新の確認</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation>Quoi de neuf</translation>
+            <translation>新機能</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation>Date de compilation</translation>
+            <translation>ビルド日</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation>Version de Qt</translation>
+            <translation>Qt バージョン</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation>Plateforme</translation>
+            <translation>プラットフォーム</translation>
         </message>
         <message>
             <source>Windows</source>
@@ -4438,15 +4429,15 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation>Stellar est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la GNU General Public License, version 3.</translation>
+            <translation>Stellar はフリーソフトウェアです。GNU General Public License バージョン 3 の条件に従って再配布および/または修正できます。</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation>Logiciels tiers</translation>
+            <translation>サードパーティ製ソフトウェア</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>適用</translation>
         </message>
         <message>
             <source>OK</source>
@@ -4454,392 +4445,391 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Default route</source>
-            <translation>Route par défaut</translation>
+            <translation>デフォルトルート</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation>Laisser le système d'exploitation choisir l'adaptateur réseau actif.</translation>
+            <translation>OS がアクティブなネットワークアダプターを選択します。</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation>(Indisponible)</translation>
+            <translation>利用不可</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation>Cet adaptateur n'est pas actuellement disponible. Reconnectez-le ou choisissez un autre adaptateur.</translation>
+            <translation>このアダプターは現在利用できません。再接続するか、別のアダプターを選択してください。</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation>Bannissement manuel</translation>
+            <translation>手動で禁止</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation>Trouver des pairs sans tracker en utilisant une table de hachage distribuée.</translation>
+            <translation>分散ハッシュテーブルを使用して、トラッカーなしでピアを検出します。</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation>Découvrir des pairs sur votre réseau local sans passer par Internet.</translation>
+            <translation>インターネットを経由せずにローカルネットワーク上のピアを検出します。</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation>Ouvrir automatiquement un port sur votre routeur afin que les pairs puissent se connecter à vous.</translation>
+            <translation>ルーターでポートを自動的に開き、ピアからの接続を受け付けます。</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation>Comme UPnP mais pour les routeurs Apple - activez les deux et celui que votre routeur prendra en charge sera utilisé.</translation>
+            <translation>UPnP と同様に Apple ルーター向け。両方を有効にし、ルーターがサポートする方が使用されます。</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation>Partager les listes de pairs entre les pairs connectés afin de trouver plus de sources sans solliciter le tracker.</translation>
+            <translation>接続されたピア間でピアリストを共有し、トラッカーに依存せずにより多くのソースを検出します。</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation>Stellar est désormais l'application par défaut pour les fichiers .torrent.</translation>
+            <translation>Stellar が .torrent ファイルのデフォルトアプリになりました。</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation>Stellar est désormais l'application par défaut pour les liens magnet.</translation>
+            <translation>Stellar が magnet リンクのデフォルトアプリになりました。</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation>Par défaut : Stellar/%1</translation>
+            <translation>Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation>Types de fichiers (séparés par des virgules, ex. mp4, mkv, avi)</translation>
+            <translation>ファイル形式</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation>Attribution automatique depuis les sites (séparés par des espaces, * joker)</translation>
+            <translation>サイト自動割り当て</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation>Les téléchargements depuis les sites correspondants seront automatiquement assignés à cette catégorie.</translation>
+            <translation>一致するサイトのダウンロードは自動的にこのカテゴリへ</translation>
         </message>
         <message>
             <source>Rule %1</source>
-            <translation>Règle %1</translation>
+            <translation>ルール %1</translation>
         </message>
         <message>
             <source>Not found</source>
-            <translation>Non trouvé</translation>
+            <translation>見つかりません</translation>
         </message>
         <message>
             <source>Loaded</source>
-            <translation>Chargé</translation>
+            <translation>読み込まれました</translation>
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation>Disponible mais non chargé</translation>
+            <translation>利用可能但未読み込み</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>ソース: %1</translation>
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>L'URL de la source n'est pas encore mise en cache. Utilisez Vérifier les mises à jour pour mettre en cache IPtoCityDB depuis update.json.</translation>
+            <translation>ソース URL のキャッシュがありません。update.json から IPtoCityDB をキャッシュするには「更新を確認」を使用してください。</translation>
         </message>
         <message>
             <source>Version %1</source>
-            <translation>Version %1</translation>
+            <translation>バージョン %1</translation>
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation>Mise à jour disponible : %1</translation>
+            <translation>更新あり: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation>Préférences de Stellar</translation>
+            <translation>Stellar 設定</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation>Sélectionner le binaire yt-dlp</translation>
+            <translation>yt-dlp バイナリを選択</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation>Sélectionner le binaire du moteur JavaScript</translation>
+            <translation>JS ランタイムバイナリを選択</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation>Modifier le projet</translation>
+            <translation>プロジェクトを編集</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>プロジェクトを削除</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>カテゴリ</translation>
         </message>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>すべてのダウンロード</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation>Inachevés</translation>
+            <translation>未完了</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation>Terminés</translation>
+            <translation>完了</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation>Projets de récupération</translation>
+            <translation>プロジェクト</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation> Torrent</translation>
         </message>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>キュー</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>ダウンロード中</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>シード中</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>アクティブ</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>非アクティブ</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>確認中</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>移動中</translation>
         </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>統計</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation>Statistiques Stellar</translation>
+            <translation>Stellar 統計</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation>TOUTE L'HISTORIQUE</translation>
+            <translation>全期間</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>アップロード</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation>Taux de partage</translation>
+            <translation>シェア率</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation>Temps de fonctionnement</translation>
+            <translation>稼働時間</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation>Date d'installation</translation>
+            <translation>インストール日</translation>
         </message>
         <message>
             <source>Startups</source>
-            <translation>Démarrages</translation>
+            <translation>起動回数</translation>
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation>CETTE SESSION</translation>
+            <translation>このセッション</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
     </context>
     <context>
         <name>StatusBar</name>
         <message>
             <source>🟦 1 active</source>
-            <translation>🟦 1 actif</translation>
+            <translation>🟦 アクティブ 1</translation>
         </message>
         <message>
             <source>🟦 %1 active</source>
-            <translation>🟦 %1 actifs</translation>
+            <translation>🟦 アクティブ %1</translation>
         </message>
         <message>
             <source>📄 1 download</source>
-            <translation>📄 1 téléchargement</translation>
+            <translation>📄 ダウンロード 1</translation>
         </message>
         <message>
             <source>📄 %1 downloads</source>
-            <translation>📄 %1 téléchargements</translation>
+            <translation>📄 ダウンロード %1</translation>
         </message>
         <message>
             <source>🟨 1 error</source>
-            <translation>🟨 1 erreur</translation>
+            <translation>🟨 エラー 1</translation>
         </message>
         <message>
             <source>🟨 %1 errors</source>
-            <translation>🟨 %1 erreurs</translation>
+            <translation>🟨 エラー %1</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy activé</translation>
+            <translation>🌐 プロキシ有効</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation>📡 Vérification des mises à jour</translation>
+            <translation>📡 更新確認中</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation>🛑 Limiteur de vitesse</translation>
+            <translation>🛑 速度制限</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
-            <translation>🟩 Prêt</translation>
+            <translation>🟩 準備完了</translation>
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation>🔍 1 sélectionné</translation>
+            <translation>🔍 1 件選択</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation>🔍 %1 sélectionnés</translation>
+            <translation>🔍 %1 件選択</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation>🔴 DHT désactivé</translation>
+            <translation>🔴 DHT 無効</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation>en ligne (faible confiance)</translation>
+            <translation>オンライン (信頼度低)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation>en ligne</translation>
+            <translation>オンライン</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 La file d'attente s'exécute dans 1 minute</translation>
+            <translation>🟧 キューが 1 分後に実行</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 La file d'attente s'exécute dans %1 minutes</translation>
+            <translation>🟧 キューが %1 分後に実行</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Estimation… (%1%)</translation>
+            <translation>🟡 推定中… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation>Suivant &gt;&gt;</translation>
+            <translation>次へ &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation>Taux de partage de tout le temps
-Cliquez pour ouvrir les statistiques</translation>
+            <translation>総共有率</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation>Cliquez pour copier l'IP</translation>
+            <translation>統計を開く</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation>IP publique :</translation>
+            <translation>IP をコピー</translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation>Connexion : Ethernet</translation>
+            <translation>公開 IP:</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation>WiFi :</translation>
+            <translation>接続: イーサネット</translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation>Signal :</translation>
+            <translation>WiFi:</translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>Port d'écoute :</translation>
+            <translation>信号:</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>Aucune connexion entrante, le réseau est peut-être mal configuré</translation>
+            <translation>リスニングポート:</translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>入出接続なし。ネットワーク設定が誤っている可能性があります</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>SDM ダウンロード</translation>
         </message>
     </context>
     <context>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter l'URL</translation>
+            <translation>URL 追加</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>再開</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>Tout arrêter</translation>
+            <translation>すべて停止</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>削除</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>Supprimer terminé</translation>
+            <translation>完了削除</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>オプション</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>スケジューラ</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>キュー開始</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>停止</translation>
         </message>
         <message>
             <source>Grabber</source>
@@ -4847,7 +4837,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation>Moteur de recherche</translation>
+            <translation>検索エンジン</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4858,185 +4848,185 @@ Cliquez pour ouvrir les statistiques</translation>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation>Dupliquer le torrent</translation>
+            <translation>重複 Torrent</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation>Le torrent existe déjà</translation>
+            <translation>Torrent 既に存在</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation>Ce torrent est déjà dans votre liste. %n nouveau(s) tracker(s) trouvé(s).</translation>
+            <translation>%n 新規トラッカー</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation>Ce torrent est déjà dans votre liste avec les mêmes trackers.</translation>
+            <translation>トラッカー重複</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation>%n nouveau(s) tracker(s)</translation>
+            <translation>%n 新規トラッカー</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation>… et %1 autre(s)</translation>
+            <translation>%1 追加</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation>Ignorer</translation>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation>Fusionner les trackers</translation>
+            <translation>トラッカーを結合</translation>
         </message>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>保存</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation>Enregistrer sous...</translation>
+            <translation>名前を付けて保存</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>カテゴリ</translation>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation>Dossier de sauvegarde personnalisé</translation>
+            <translation>カスタム保存フォルダ</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation>Se souvenir</translation>
+            <translation>記憶</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation>Utiliser le dossier de catégorie</translation>
+            <translation>カテゴリフォルダを使用</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>説明</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation> Torrent 設定</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>後でダウンロード</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation>Ouverture du torrent...</translation>
+            <translation> Torrent の開き中...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
+            <translation>↓%1 ↑%2</translation>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation>RTT %1 %2 % terminés</translation>
+            <translation>RTT %1 %2%完了</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>ファイル</translation>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation>%n élément(s)</translation>
+            <translation>%n 項目</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>名前</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>進捗</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>ファイル情報の利用できません</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>保留中</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>アイテム名の変更</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>新しいファイルまたはフォルダの名前を入力してください：</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>名前の変更</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>名前の変更...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>ピア</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation>Ouverture du torrent et lecture des métadonnées...</translation>
+            <translation>Torrent を開き、メタデータを読み込んでいます...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation>Recherche de pairs pour télécharger les métadonnées...</translation>
+            <translation>ピアからメタデータをダウンロード中...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation>Téléchargement des métadonnées depuis %n pair(s)</translation>
+            <translation>%n ピアからメタデータをダウンロード中</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Seed</translation>
+            <translation>シード</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>あなた</translation>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation>Métadonnées du torrent</translation>
+            <translation> Torrent メタデータ</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation>Installer un nouveau plugin de recherche</translation>
+            <translation>新しい検索プラグインをインストール</translation>
         </message>
         <message>
             <source>Local File</source>
-            <translation>Fichier local</translation>
+            <translation>ローカルファイル</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation>Lien Web</translation>
+            <translation>Web リンク</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>OK</source>
@@ -5044,200 +5034,200 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation>Choisissez un fichier de plugin de recherche local .py à copier dans le dossier search_plugins.</translation>
+            <translation>search_plugins フォルダにコピーする .py 検索プラグインファイルを選択</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation>Collez une URL directe vers un fichier de plugin .py.</translation>
+            <translation>直接 URL を貼り付け</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation>Installer un plugin de recherche</translation>
+            <translation>検索プラグインのインストール</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation>Désactiver le plugin</translation>
+            <translation>プラグインの無効化</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation>Activer le plugin</translation>
+            <translation>プラグインの有効化</translation>
         </message>
         <message>
             <source>Uninstall</source>
-            <translation>Désinstaller</translation>
+            <translation>アンインストール</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation>Plugins de recherche installés</translation>
+            <translation>インストール済みの検索プラグイン</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>更新</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>不明</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>有効</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation>Désactivé</translation>
+            <translation>無効</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation>Installer un nouveau</translation>
+            <translation>新規インストール</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>閉じる</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>プラグインを検索</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>名前</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>サイズ</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>シード</translation>
         </message>
         <message>
             <source>Leechers</source>
-            <translation>Leechers</translation>
+            <translation>リーチ</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation>Moteur</translation>
+            <translation>エンジン</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation>Publié le</translation>
+            <translation>公開日</translation>
         </message>
         <message>
             <source>Open Description Page</source>
-            <translation>Ouvrir la page de description</translation>
+            <translation>説明ページを開く</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation> Torrent ダウンロード</translation>
         </message>
         <message>
             <source>Copy Name</source>
-            <translation>Copier le nom</translation>
+            <translation>名前をコピー</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>マグネットリンクをコピー</translation>
         </message>
         <message>
             <source>Copy Description Page URL</source>
-            <translation>Copier l'URL de la page de description</translation>
+            <translation>説明ページURLをコピー</translation>
         </message>
         <message>
             <source>Searching...</source>
-            <translation>Recherche en cours...</translation>
+            <translation>検索中...</translation>
         </message>
         <message>
             <source>Search</source>
-            <translation>Rechercher</translation>
+            <translation>検索</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>不明</translation>
         </message>
         <message>
             <source>No search results yet</source>
-            <translation>Aucun résultat de recherche pour le moment</translation>
+            <translation>検索結果なし</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>検索プラグイン</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation>Moteur de recherche de torrents</translation>
+            <translation> Torrent 検索エンジン</translation>
         </message>
     </context>
     <context>
         <name>TorrentSpeedLimitDialog</name>
         <message>
             <source>Torrent Settings</source>
-            <translation>Paramètres du torrent</translation>
+            <translation> Torrent 設定</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Vitesse par torrent, limites de partage, découverte des pairs et mode de téléchargement</translation>
+            <translation> Torrent 別速度、共有制限、ピア発見、ダウンロードモード</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation> 閉じる</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation> 適用</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LIMITES DE BANDE PASSANTE</translation>
+            <translation> バンド幅制限</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Téléchargement :</translation>
+            <translation> ダウンロード:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Envoi :</translation>
+            <translation> アップロード:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE</translation>
+            <translation> 共有制限</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio :</translation>
+            <translation> レシオ:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation> デフォルト</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>無制限</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>設定</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Durée de partage :</translation>
+            <translation>シード時間</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>分</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Durée d'inactivité :</translation>
+            <translation>非アクティブ時間</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>DÉCOUVERTE DES PAIRS</translation>
+            <translation>ピア発見</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -5245,7 +5235,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Table de hachage distribuée</translation>
+            <translation>分散ハッシュテーブル</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -5253,7 +5243,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Échange de pairs</translation>
+            <translation>ピア交換</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -5261,195 +5251,195 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Découverte locale de services</translation>
+            <translation>ローカルサービスディスカバリー</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privé</translation>
+            <translation>🔒 プライベート・トルネード</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT et PeX désactivés par libtorrent.</translation>
+            <translation>libtorrent で DHT と PeX を無効化</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODE DE TÉLÉCHARGEMENT</translation>
+            <translation>ダウンロードモード</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Téléchargement séquentiel</translation>
+            <translation>順次ダウンロード</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Morceaux téléchargés dans l'ordre (morceau 0 → dernier)</translation>
+            <translation>ピース順ダウンロード (0→最後)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioriser le premier et le dernier morceau</translation>
+            <translation>最初と最後のピースを優先</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Précharge l'en-tête/pied de page pour la lecture anticipée</translation>
+            <translation>ヘッダー/フッターを先に読み込み</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>Récupération des formats disponibles…</translation>
+            <translation>利用可能なフォーマットを取得中…</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>動画情報の取得に失敗しました</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>Échec de la résolution du défi n-challenge de YouTube</translation>
+            <translation>YouTube の n-challenge 解決に失敗しました</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>Récupération des informations vidéo…</translation>
+            <translation>動画情報の取得中…</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>動画情報の取得に失敗しました</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>yt-dlp nécessite un environnement d'exécution JavaScript (Deno, Node.js, Bun ou QuickJS) pour contourner le défi de limitation d'URL de YouTube. Installez-en un et placez-le à côté de yt-dlp.exe ou dans votre PATH système.</translation>
+            <translation>YouTube の URL スロットリング回避には JavaScript ランタイム (Deno、Node.js、Bun、または QuickJS) が必要です。インストールして yt-dlp.exe の隣またはシステム PATH に配置してください</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>Aucun environnement d'exécution détecté. Installez Deno (recommandé) depuis deno.com, puis revérifiez dans Paramètres → Téléchargeur vidéo.</translation>
+            <translation>ランタイムが検出されません。deno.com から Deno (推奨) をインストールし、次に [設定] → [動画ダウンローダー] で再確認してください</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>Environnement d'exécution détecté : %1 (%2)</translation>
+            <translation>ランタイムを検出: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation>Obtenir Deno</translation>
+            <translation>Deno を取得</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation>Ouvrir les paramètres</translation>
+            <translation>設定を開く</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>ブラウザのクッキー:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation>Sélectionnez un navigateur pour transmettre ses cookies à yt-dlp, puis réessayez.</translation>
+            <translation>ブラウザを選択してクッキーを yt-dlp に渡す。その後、再試行。</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation>Réessayer</translation>
+            <translation>再試行</translation>
         </message>
         <message>
             <source>Select quality:</source>
-            <translation>Sélectionner la qualité :</translation>
+            <translation>品質を選択:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation>Taille indisponible — cette qualité utilise des flux vidéo et audio séparés fusionnés par ffmpeg après le téléchargement.</translation>
+            <translation>サイズ不可用 — この品質は ffmpeg で動画と音声をマージした別々のストリームを使用します。</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation>Chaîne / Playlist</translation>
+            <translation>チャンネル / プレイリスト</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation>Toutes les vidéos</translation>
+            <translation>すべての動画</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation>Les plus récentes</translation>
+            <translation>最新</translation>
         </message>
         <message>
             <source>videos</source>
-            <translation>vidéos</translation>
+            <translation>動画</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation>Les URL de chaînes YouTube incluent par défaut tous les téléchargements. Utilisez Portée pour cibler un seul onglet.</translation>
+            <translation>YouTube チャンネル URL はデフォルトですべてのアップロードを含みます。Scope を使用して特定のタブを指定してください。</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation>Les vidéos seront enregistrées dans un sous-dossier nommé d'après la chaîne.</translation>
+            <translation>動画はチャンネル名で命名されたサブフォルダに保存されます。</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation>Portée :</translation>
+            <translation>スコープ</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>全アップロード</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation>Vidéos</translation>
+            <translation>動画</translation>
         </message>
         <message>
             <source>Shorts</source>
-            <translation>Shorts</translation>
+            <translation>ショート</translation>
         </message>
         <message>
             <source>Live</source>
-            <translation>En direct</translation>
+            <translation>ライブ</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation>Sous-titres</translation>
+            <translation>字幕</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation>Télécharger les fichiers de sous-titres avec la vidéo</translation>
+            <translation>動画と字幕ファイルをダウンロード</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>言語</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation>Code(s) de langue, ex. en · en.*,ja · tous</translation>
+            <translation>言語コード（例：en · en.*,ja · all）</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation>Généré automatiquement</translation>
+            <translation>自動生成</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation>Inclure les sous-titres générés automatiquement si disponibles</translation>
+            <translation>自動字幕の埋め込み</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation>Intégrer dans la vidéo</translation>
+            <translation>動画への埋め込み</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation>Intégrer les sous-titres dans le conteneur vidéo</translation>
+            <translation>字幕の埋め込み</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation>L'intégration nécessite mp4, mkv ou webm</translation>
+            <translation>mp4/mkv/webm 必須</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation>Intégrer la vignette</translation>
+            <translation>サムネイルの埋め込み</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation>Intégrer la miniature de couverture dans le fichier vidéo (nécessite ffmpeg)</translation>
+            <translation>ffmpeg 必須</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation>Intégrer les métadonnées</translation>
+            <translation>メタデータの埋め込み</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation>Écrire le titre, l'uploadé, les chapitres, etc. dans les métadonnées du conteneur</translation>
+            <translation>タイトル/アップローダー/チャプター</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
@@ -5458,132 +5448,131 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation>Supprimer les segments sponsorisés, les génériques d'ouverture et de fermeture, ainsi que l'auto-promotion
-(Uniquement YouTube · nécessite ffmpeg)</translation>
+            <translation>広告/イントロ/アウトロ/自己宣伝の削除 (YouTube 限定・ffmpeg 必須)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation>Ko/s (vide = utiliser la limite de vitesse globale)</translation>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation>Télécharger la chaîne</translation>
+            <translation>ダウンロードチャンネル</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>ダウンロード</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>詳細</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation>filtre par date</translation>
+            <translation>日付フィルター</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation>cookies</translation>
+            <translation>クッキー</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation>archive</translation>
+            <translation>アーカイブ</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation>diviser les chapitres</translation>
+            <translation>分割チャプター</translation>
         </message>
         <message>
             <source>time range</source>
-            <translation>plage horaire</translation>
+            <translation>時間範囲</translation>
         </message>
         <message>
             <source>extra files</source>
-            <translation>fichiers supplémentaires</translation>
+            <translation>追加ファイル</translation>
         </message>
         <message>
             <source>random</source>
-            <translation>aléatoire</translation>
+            <translation>ランダム</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation>début en direct</translation>
+            <translation>ライブ開始</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation>limite de débit</translation>
+            <translation>レート制限</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation>Date après :</translation>
+            <translation>日付以降:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation>Seulement les vidéos téléchargées à partir de cette date</translation>
+            <translation>この日以降の動画のみ</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation>Cookies :</translation>
+            <translation>クッキー:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation>Charger les cookies pour le contenu réservé aux membres / restreint par l'âge</translation>
+            <translation>メンバー限定・年齢制限コンテンツのクッキーを読み込む</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation>Limite de débit :</translation>
+            <translation>レート制限:</translation>
         </message>
         <message>
             <source>Time range:</source>
-            <translation>Plage horaire :</translation>
+            <translation>時間範囲:</translation>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
-            <translation>Télécharger uniquement cette section, ex. *01:30-03:00</translation>
+            <translation>このセクションのみダウンロード（例：*01:30-03:00）</translation>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation>Ignorer les fichiers déjà téléchargés</translation>
+            <translation>スキップ</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation>Diviser par chapitres</translation>
+            <translation>分割</translation>
         </message>
         <message>
             <source>Save description</source>
-            <translation>Enregistrer la description</translation>
+            <translation>説明保存</translation>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation>Enregistrer la miniature</translation>
+            <translation>サムネイル保存</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation>Mélanger la playlist</translation>
+            <translation>シャッフル</translation>
         </message>
         <message>
             <source>Live: from start</source>
-            <translation>En direct : depuis le début</translation>
+            <translation>ライブ: 先頭</translation>
         </message>
         <message>
             <source>Save to:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>保存先:</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>カテゴリ:</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation>Format :</translation>
+            <translation>形式:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>キャンセル</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation>Téléchargement vidéo</translation>
+            <translation>動画ダウンロード</translation>
         </message>
     </context>
 </TS>

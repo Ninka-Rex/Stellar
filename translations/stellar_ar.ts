@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TS version="2.1" language="fr_FR" sourcelanguage="en_US">
+<TS version="2.1" language="ar_SA" sourcelanguage="en_US">
     <context>
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>Ajouter aux exceptions d'adresse ?</translation>
+            <translation>إضافة إلى استثناءات العنوان؟</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>Cette adresse a été annulée deux fois. Voulez-vous l'ajouter à la liste des exceptions afin que Stellar ne l'intercepte plus automatiquement ?</translation>
+            <translation>تم إلغاء هذا العنوان مرتين. هل تريد إضافته إلى قائمة الاستثناءات حتى لا يقوم Stellar باعتراضه تلقائيًا؟</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>لا</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>Ajouter l'exception</translation>
+            <translation>إضافة استثناء</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>Ajouter une exception d'adresse</translation>
+            <translation>إضافة استثناء عنوان</translation>
         </message>
     </context>
     <context>
@@ -31,505 +31,501 @@
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>استخدام التفويض</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Identifiant</translation>
+            <translation>تسجيل الدخول</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>كلمة المرور</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter une URL</translation>
+            <translation>إضافة URL</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation>Stellar Gestionnaire de téléchargement v</translation>
+            <translation>Stellar Download Manager v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation>
-Bas : %1  Haut : %2</translation>
+            <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation>
-Téléchargement : %1</translation>
+            <translation>جارٍ التنزيل: %1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation>  Partage : %1</translation>
+            <translation>جارٍ البذر: %1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation>
-Partage : %1</translation>
+            <translation>البذر: %1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation>  Total : %1</translation>
+            <translation>الإجمالي: %1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation>
-Total : %1</translation>
+            <translation>الإجمالي: %1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>Stellar est en cours d'arrêt...</translation>
+            <translation>Stellar ينطفئ...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>Stellar démarre...</translation>
+            <translation>جارٍ بدء تشغيل Stellar...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation>🛡️ Lié à %1</translation>
+            <translation>🛡️ مرتبط بـ %1</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>Téléchargement par lots</translation>
+            <translation>تنزيل دفعة</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>Générez les liens ici, puis passez à l'étape de révision.</translation>
+            <translation>أنشئ الروابط هنا، ثم انتقل إلى خطوة المراجعة.</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation>Adresse :</translation>
+            <translation>العنوان:</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation>Remplacer l'astérisque par</translation>
+            <translation>استبدل النجمة بـ</translation>
         </message>
         <message>
             <source>Numbers</source>
-            <translation>Nombres</translation>
+            <translation>أرقام</translation>
         </message>
         <message>
             <source>Letters</source>
-            <translation>Lettres</translation>
+            <translation>حروف</translation>
         </message>
         <message>
             <source>From:</source>
-            <translation>De :</translation>
+            <translation>من:</translation>
         </message>
         <message>
             <source>To:</source>
-            <translation>À :</translation>
+            <translation>إلى:</translation>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation>Taille du joker :</translation>
+            <translation>حجم النقطة البرية:</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>معاينة</translation>
         </message>
         <message>
             <source>First: %1</source>
-            <translation>Premier : %1</translation>
+            <translation>الأول: %1</translation>
         </message>
         <message>
             <source>Second: %1</source>
-            <translation>Deuxième : %1</translation>
+            <translation>الثاني: %1</translation>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation>Dernier : %1</translation>
+            <translation>الأخير: %1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation>Utilisez l'étape de file d'attente après OK si vous souhaitez regrouper ces téléchargements avant leur démarrage.</translation>
+            <translation>استخدم خطوة الطابور بعد موافق إذا كنت تريد تجميع هذه التنزيلات قبل بدء تشغيلها.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation>Nom du fichier</translation>
+            <translation>اسم الملف</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>الحجم</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>الحالة</translation>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Vérifiez les liens avant de les ajouter. Les colonnes peuvent être triées, redimensionnées et déplacées pour changer l'ordre.</translation>
+            <translation>راجع الروابط قبل إضافتها. يمكن فرز الأعمدة وتغيير حجمها وسحبها لإعادة الترتيب.</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation>Remplacer les noms de fichiers par un motif générique (*)</translation>
+            <translation>استبدال أسماء الملفات بنمط البدل (*)</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>الملفات</translation>
         </message>
         <message>
             <source>Check all</source>
-            <translation>Tout cocher</translation>
+            <translation>تحديد الكل</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation>Tout décocher</translation>
+            <translation>إلغاء تحديد الكل</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Seuls les liens marqués « Trouvé » sont sélectionnables. L’attribution à la file d’attente se fait après confirmation.</translation>
+            <translation>فقط الروابط المحددة كـ 'موجودة' قابلة للاختيار. يتم تعيين الطابور بعد الضغط على موافق.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>Projet</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation>Revue du téléchargement par lots</translation>
+            <translation>مراجعة التنزيلات الجماعية</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation>Installez l’extension Stellar dans votre navigateur pour intercepter les téléchargements et les router automatiquement vers Stellar.</translation>
+            <translation>ثبّت ملحق Stellar في متصفحك لالتقاط التنزيلات وتوجيهها إلى Stellar تلقائيًا.</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
-            <translation>Chrome / Edge / Brave</translation>
+            <translation>كروم / إيدج / بريف</translation>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation>Installer directement depuis le Chrome Web Store</translation>
+            <translation>التثبيت مباشرة من متجر كروم الإلكتروني</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation>Ouvrir le lien</translation>
+            <translation>فتح الرابط</translation>
         </message>
         <message>
             <source>Firefox</source>
-            <translation>Firefox</translation>
+            <translation>فايرفوكس</translation>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation>Installer le fichier XPI Firefox, mises à jour non automatiques</translation>
+            <translation>تثبيت ملحق فايرفوكس XPI، بدون تحديثات تلقائية</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation>Hôte de messagerie native</translation>
+            <translation>مضيف المراسلة الأصلية</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation>Stellar s’enregistre automatiquement afin que l’extension puisse communiquer avec lui.</translation>
+            <translation>يسجّل Stellar نفسه تلقائيًا لتمكين الملحق من التواصل معه.</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation>Inscription réussie.</translation>
+            <translation>تم التسجيل بنجاح.</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation>L'inscription a échoué — voir les détails ci-dessous.</translation>
+            <translation>فشل التسجيل — انظر التفاصيل أدناه.</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation>Inscription en cours…</translation>
+            <translation>جارٍ التسجيل…</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation>Réessayer</translation>
+            <translation>حاول مرة أخرى</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation>Installation manuelle :</translation>
+            <translation>التثبيت اليدوي:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation>Exécuter dans l'invite de commandes (aucun droit d'administrateur requis) :</translation>
+            <translation>تشغيل في موجه الأوامر (لا يتطلب صلاحيات المسؤول):</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>نسخ</translation>
         </message>
         <message>
             <source>Copied</source>
-            <translation>Copié</translation>
+            <translation>تم النسخ</translation>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation>Exécuter dans un terminal :</translation>
+            <translation>تشغيل في طرفية:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation>Extensions de navigateur</translation>
+            <translation>إضافات المتصفح</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>جميع التنزيلات</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation>Vidéo</translation>
+            <translation>فيديو</translation>
         </message>
         <message>
             <source>Music</source>
-            <translation>Musique</translation>
+            <translation>موسيقى</translation>
         </message>
         <message>
             <source>Documents</source>
-            <translation>Documents</translation>
+            <translation>مستندات</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation>Archives</translation>
+            <translation>ملفات مضغوطة</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>Programmes</translation>
+            <translation>برامج</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation>Colonnes</translation>
+            <translation>الأعمدة</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation>Cochez les colonnes que vous souhaitez afficher dans cette liste. Utilisez les boutons Déplacer vers le haut et Déplacer vers le bas pour les réorganiser comme vous le souhaitez.</translation>
+            <translation>حدد الأعمدة التي تريد إظهارها في هذه القائمة. استخدم أزرار التحريك لأعلى والتحرك لأسفل لإعادة ترتيب الأعمدة كما تشاء.</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation>Déplacer vers le haut</translation>
+            <translation>تحريك لأعلى</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation>Déplacer vers le bas</translation>
+            <translation>تحريك لأسفل</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation>Afficher</translation>
+            <translation>إظهار</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation>Masquer</translation>
+            <translation>إخفاء</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation>Réinitialiser</translation>
+            <translation>إعادة تعيين</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation>La colonne sélectionnée doit être</translation>
+            <translation>العمود المحدد يجب أن يكون</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation>pixels de large</translation>
+            <translation>بكسل عريض</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation>Confirmer la suppression</translation>
+            <translation>تأكيد الحذف</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation>Supprimer le téléchargement ?</translation>
+            <translation>إزالة التنزيل؟</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation>Supprimer également les fichiers torrent du disque</translation>
+            <translation>حذف ملفات التورنت من القرص أيضًا</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation>Supprimer également le fichier du disque</translation>
+            <translation>حذف الملف من القرص أيضًا</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation>Supprimer définitivement (ne pas déplacer vers la corbeille)</translation>
+            <translation>حذف نهائيًا (بدون نقل إلى سلة المهملات)</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>حذف</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation>Supprimer les téléchargements terminés</translation>
+            <translation>حذف التنزيلات المكتملة</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Êtes-vous sûr de vouloir supprimer tous les téléchargements terminés de la liste de Stellar ?</translation>
+            <translation>هل أنت متأكد من حذف جميع التنزيلات المكتملة من قائمة Stellar؟</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Remarque : Cela les supprimera uniquement de la liste. Les fichiers sur le disque ne seront pas supprimés.</translation>
+            <translation>ملاحظة: سيؤدي هذا إلى إزالتها من القائمة فقط. لن يتم حذف الملفات الموجودة على القرص.</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation>Supprimer les torrents terminés et en seeding</translation>
+            <translation>حذف التورنتات المكتملة والمُرسلة</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>نعم</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>لا</translation>
         </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation>Téléchargement terminé</translation>
+            <translation>اكتمل التنزيل</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>Téléchargé %1 (%2 octets)</translation>
+            <translation>تم تنزيل %1 (%2 بايت)</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>العنوان</translation>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation>Le fichier a été enregistré sous</translation>
+            <translation>تم حفظ الملف باسم</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
-            <translation>Le fichier a été déplacé.</translation>
+            <translation>تم نقل الملف.</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>فتح</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation>Ouvrir avec...</translation>
+            <translation>فتح باستخدام...</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>فتح المجلد</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation>Ne plus afficher cette boîte de dialogue</translation>
+            <translation>عدم عرض هذا الحوار مرة أخرى</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation>Vous pouvez réactiver cette option dans Paramètres → Général → Afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>يمكنك إعادة تمكين ذلك في الإعدادات → عام → عرض حوار اكتمال التنزيل</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation>Faites glisser le fichier pour le déplacer ailleurs</translation>
+            <translation>اسحب الملف لنقله إلى مكان آخر</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation>Informations sur le fichier téléchargé</translation>
+            <translation>معلومات ملف التنزيل</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
-            <translation>Ajout d'une catégorie à la liste des catégories Stellar</translation>
+            <translation>إضافة فئة إلى قائمة فئات Stellar</translation>
         </message>
         <message>
             <source>Category name</source>
-            <translation>Nom de la catégorie</translation>
+            <translation>اسم الفئة</translation>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation>Placer automatiquement dans cette catégorie les types de fichiers suivants :</translation>
+            <translation>وضع الملفات التالية في هذه الفئة تلقائياً:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation>Remarque : séparez les extensions de fichier par des espaces (ex. avi mpg mpeg)</translation>
+            <translation>ملاحظة: اكتب امتدادات الملفات مفصولة بمسافة (مثال: avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation>Placer automatiquement dans cette catégorie les fichiers provenant uniquement des sites suivants :</translation>
+            <translation>وضع الملفات من المواقع التالية فقط في هذه الفئة تلقائياً:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation>Séparez les sites par des espaces. Vous pouvez utiliser l'astérisque comme motif générique</translation>
+            <translation>افصل بين المواقع بمسافات. يمكنك استخدام النجمة كنمط تعويضي</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation>Enregistrer les futurs téléchargements de cette catégorie dans le dossier suivant :</translation>
+            <translation>حفظ تنزيلات هذه الفئة المستقبلية في المجلد التالي:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation>Mémoriser le dernier chemin d'enregistrement</translation>
+            <translation>تذكر آخر مسار حفظ</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>تصفح...</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>URL</source>
@@ -537,117 +533,117 @@ Total : %1</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>الفئة</translation>
         </message>
         <message>
             <source>Save As</source>
-            <translation>Enregistrer sous</translation>
+            <translation>حفظ باسم</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation>Mémoriser ce chemin pour la catégorie « %1 »</translation>
+            <translation>تذكر هذا المسار لفئة &quot;%1&quot;</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>الوصف</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>تحميل لاحقاً</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation>Démarrer le téléchargement</translation>
+            <translation>بدء التحميل</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>في الانتظار</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>جارٍ الفحص</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement</translation>
+            <translation>جارٍ التحميل</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>جارٍ النقل</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage</translation>
+            <translation>جارٍ المشاركة</translation>
         </message>
         <message>
             <source>Paused</source>
-            <translation>En pause</translation>
+            <translation>متوقف مؤقتاً</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>جارٍ التجميع...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation>Terminé</translation>
+            <translation>مكتمل</translation>
         </message>
         <message>
             <source>Error</source>
-            <translation>Erreur</translation>
+            <translation>خطأ</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>غير معروف</translation>
         </message>
     </context>
     <context>
         <name>DownloadProgressDialog</name>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>تحميل</translation>
         </message>
         <message>
             <source>Receiving data...</source>
-            <translation>Réception des données...</translation>
+            <translation>استلام البيانات...</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Assemblage...</translation>
+            <translation>التجميع...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation>État du téléchargement</translation>
+            <translation>حالة التنزيل</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>محدد السرعة</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>خيارات عند الانتهاء</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation>&gt;&gt; Envoyer dans la zone de notification</translation>
+            <translation>&gt;&gt; إرسال إلى الصينية</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>تصغير إلى الصينية</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>الحالة</translation>
         </message>
         <message>
             <source>File size</source>
-            <translation>Taille du fichier</translation>
+            <translation>حجم الملف</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>المُنزَّل</translation>
         </message>
         <message>
             <source>%1  ( %2% )</source>
@@ -655,1818 +651,1819 @@ Total : %1</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation>Débit de transfert</translation>
+            <translation>معدل النقل</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation>(Limité à %1)</translation>
+            <translation>(مُحدَّد %1)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>الوقت المتبقي</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation>Capacité de reprise</translation>
+            <translation>إمكانية الاستئناف</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation>Oui</translation>
+            <translation>نعم</translation>
         </message>
         <message>
             <source>No</source>
-            <translation>Planifier</translation>
+            <translation>لا</translation>
         </message>
         <message>
             <source>Error detail</source>
-            <translation>Détail de l'erreur</translation>
+            <translation>تفاصيل الخطأ</translation>
         </message>
         <message>
             <source>Assembling... %1%</source>
-            <translation>Assemblage... %1%</translation>
+            <translation>التجميع... %1%</translation>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation>« Masquer les détails</translation>
+            <translation>إخفاء التفاصيل</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation>» Afficher les détails</translation>
+            <translation>إظهار التفاصيل</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>بدء</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation>Pause</translation>
+            <translation>إيقاف مؤقت</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation>Positions de départ et progression du téléchargement par connexion</translation>
+            <translation>مواقع البدء وتقدم التنزيل بالاتصالات</translation>
         </message>
         <message>
             <source>N.</source>
-            <translation>N.</translation>
+            <translation>ن.</translation>
         </message>
         <message>
             <source>Info</source>
-            <translation>Info</translation>
+            <translation>معلومات</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation>Limiter le débit de transfert pour ce téléchargement</translation>
+            <translation>تعيين حد معدل النقل لهذا التنزيل</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation>Activer la limite par téléchargement</translation>
+            <translation>تفعيل الحد لكل تنزيل</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation>Maximum :</translation>
+            <translation>الحد الأقصى:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
-            <translation>ex. 100</translation>
+            <translation>مثال: 100</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>كيلوبايت/ث</translation>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation>Limite globale active : %1 Ko/s</translation>
+            <translation>الحد العالمي نشط: %1 كيلوبايت/ث</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation>Aucune limite globale définie</translation>
+            <translation>لا يوجد حد عالمي</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation>Paramètres du limiteur de vitesse global…</translation>
+            <translation>إعدادات مقيد السرعة العالمي…</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation>Options à l'achèvement</translation>
+            <translation>خيارات عند الإكمال</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation>Ouvrir le fichier une fois terminé</translation>
+            <translation>فتح الملف عند الانتهاء</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation>Ouvrir le dossier une fois terminé</translation>
+            <translation>فتح المجلد عند الانتهاء</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>إيقاف تشغيل الحاسوب عند الانتهاء</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation>Ces options sont temporaires et s'appliquent uniquement à ce téléchargement ; elles sont désactivées par défaut à chaque fois.</translation>
+            <translation>هذه الخيارات مؤقتة لهذا التنزيل فقط وتبدأ غير محددة التحديد في كل مرة.</translation>
         </message>
     </context>
     <context>
         <name>DownloadTable</name>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>إعادة تسمية</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation>Propriétés</translation>
+            <translation>خصائص</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>فتح الملف</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>فتح المجلد</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>إعادة تسمية...</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation>Copier le nom du fichier</translation>
+            <translation>نسخ اسم الملف</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>تصدير .torrent…</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>استئناف</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>إيقاف</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation>Retirer de la file d'attente</translation>
+            <translation>إزالة من قائمة الانتظار</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>إعادة تنزيل</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>حذف</translation>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation>Paramètres des colonnes</translation>
+            <translation>إعدادات الأعمدة</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>اسم الملف</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>الحجم</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>الحالة</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Temps restant</translation>
+            <translation>الوقت المتبقي</translation>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>سرعة التنزيل</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>سرعة الرفع</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>المُغذّيات</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>الأقران</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>النسبة</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>مُحمّل</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>مُحمّل</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation>Date du dernier essai</translation>
+            <translation>تاريخ المحاولة الأخيرة</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>الوصف</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>حفظ في</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>المُرجع</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation>Page web parente</translation>
+            <translation>صفحة الويب الأصلية</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>قيد الانتظار</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation>%1% (Arrêté)</translation>
+            <translation>%1% (متوقّف)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
-            <translation>Vérification (%1%)</translation>
+            <translation>جارٍ الفحص (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation>%n fichier(s)</translation>
+            <translation>%n ملف/ملفات</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation>Aucun téléchargement correspondant.</translation>
+            <translation>لا توجد تنزيلات مطابقة.</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation>Aucun téléchargement pour le moment.
-Cliquez sur Ajouter une URL pour commencer.</translation>
+            <translation>لا توجد تنزيلات بعد.
+انقر على إضافة عنوان URL للبدء.</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation>Chargement de %n téléchargement(s)…</translation>
+            <translation>جارٍ تحميل %n تنزيل/تنزيلات…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation>Déplacer vers la file d'attente</translation>
+            <translation>نقل إلى الطابور</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>نسخ رابط المغناطيس</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>نسخ عنوان URL</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation>%n téléchargement(s) sélectionné(s)</translation>
+            <translation>%n تنزيلات محددة</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation>Dupliquer le lien de téléchargement</translation>
+            <translation>رابط تنزيل مكرر</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation>Ce fichier existe déjà dans votre liste de téléchargements.</translation>
+            <translation>هذا الملف موجود بالفعل في قائمة التنزيلات.</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation>Vous pouvez choisir l'une des options suivantes, ou appuyer sur Annuler pour ignorer le téléchargement.</translation>
+            <translation>يمكنك اختيار أحد الخيارات التالية، أو الضغط على إلغاء لتخطي التنزيل.</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation>Ajouter le doublon avec un nom de fichier numéroté</translation>
+            <translation>إضافة المكرر باسم ملف مرقم</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation>Ajouter le doublon et écraser le fichier existant</translation>
+            <translation>إضافة المكرر واستبدال الملف الموجود</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation>Le fichier existant est complet - afficher la boîte de dialogue de téléchargement terminé</translation>
+            <translation>الملف الموجود مكتمل - عرض مربع حوار اكتمال التنزيل</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation>Reprendre le téléchargement existant</translation>
+            <translation>استئناف التنزيل الموجود</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation>Mémoriser ma sélection et ne plus afficher cette boîte de dialogue.
-Vous pourrez la modifier ultérieurement dans Options → Téléchargements.</translation>
+            <translation>تذكر اختياري وعدم عرض هذا المربع مرة أخرى.
+يمكنك تغييره لاحقًا في الخيارات → التنزيلات.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation>Déplacer les données du torrent vers...</translation>
+            <translation>نقل بيانات التورنت إلى...</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation>Déplacer le fichier vers...</translation>
+            <translation>نقل الملف إلى...</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>Démarrer</translation>
+            <translation>بدء</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>إيقاف</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>فتح المجلد</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>فتح الملف</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>الحالة</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>الحجم</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>حفظ إلى</translation>
         </message>
         <message>
             <source>Move</source>
-            <translation>Déplacer</translation>
+            <translation>نقل</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>Adresse</translation>
+            <translation>العنوان</translation>
         </message>
         <message>
             <source>Web page</source>
-            <translation>Page Web</translation>
+            <translation>صفحة ويب</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Référent</translation>
+            <translation>المُحيل</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>الوصف</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>تسجيل الدخول</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>كلمة المرور</translation>
         </message>
         <message>
             <source>Source</source>
-            <translation>Source</translation>
+            <translation>المصدر</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation>Hash d'information</translation>
+            <translation>هاش المعلومات</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>Copier</translation>
+            <translation>نسخ</translation>
         </message>
         <message>
             <source>Metadata</source>
-            <translation>Métadonnées</translation>
+            <translation>البيانات الوصفية</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>الفئة</translation>
         </message>
         <message>
             <source>Note</source>
-            <translation>Note</translation>
+            <translation>ملاحظة</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>مُحمّل</translation>
         </message>
         <message>
             <source>Country</source>
-            <translation>Pays</translation>
+            <translation>الدولة</translation>
         </message>
         <message>
             <source>Port</source>
-            <translation>Port</translation>
+            <translation>المنفذ</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>مُرفّع</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>المُغذّون</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation>Message</translation>
+            <translation>الرسالة</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>متوقف</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>جارٍ التنزيل</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>جارٍ النقل</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>جارٍ البذر</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation>En file d'attente</translation>
+            <translation>في الانتظار</translation>
         </message>
         <message>
             <source>Problem</source>
-            <translation>Problème</translation>
+            <translation>مشكلة</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation>إعدادات التورنت...</translation>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation>ETA : %1</translation>
+            <translation>الوقت المتبقي: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation>Graines : %1 (%2)</translation>
+            <translation>البذور: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation>Pairs : %1 (%2)</translation>
+            <translation>الأقران: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>عام</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>الملفات</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation>Carte du swarm</translation>
+            <translation>خريطة السرب</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation>Carte des pièces</translation>
+            <translation>خريطة القطع</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation>Gaspillé</translation>
+            <translation>مهدر</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation>Vitesse ↓</translation>
+            <translation>سرعة ↓</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation>Vitesse ↑</translation>
+            <translation>سرعة ↑</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation>Connexions</translation>
+            <translation>الاتصالات</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation>Ratio de partage</translation>
+            <translation>نسبة المشاركة</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation>Morceaux</translation>
+            <translation>القطع</translation>
         </message>
         <message>
             <source>Availability</source>
-            <translation>Disponibilité</translation>
+            <translation>التوفر</translation>
         </message>
         <message>
             <source>Active time</source>
-            <translation>Temps actif</translation>
+            <translation>وقت النشاط</translation>
         </message>
         <message>
             <source>Seed time</source>
-            <translation>Temps de partage</translation>
+            <translation>وقت البذرة</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation>Limite de vitesse</translation>
+            <translation>حد السرعة</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation>Vérifier les données locales</translation>
+            <translation>التحقق من البيانات المحلية</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation>Téléchargement</translation>
+            <translation>↓</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation>Téléversement</translation>
+            <translation>↑</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation>Étendue</translation>
+            <translation>المدة</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>الاسم</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>التقدم</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>لا توجد معلومات عن الملفات</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>إعادة تسمية العنصر</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>أدخل اسماً جديداً للملف أو المجلد:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>إعادة تسمية</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>تنزيل</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>إعادة تسمية...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation>Aucun pair connecté</translation>
+            <translation>لا توجد أقران متصلة</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation>Informations sur le pair</translation>
+            <translation>معلومات الأقران</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>حظر القرين</translation>
         </message>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>اتصال</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>المصدر: %1</translation>
         </message>
         <message>
             <source>Role: %1</source>
-            <translation>Rôle : %1</translation>
+            <translation>الدور: %1</translation>
         </message>
         <message>
             <source>Seeder</source>
-            <translation>Seeder</translation>
+            <translation>مُرسِل</translation>
         </message>
         <message>
             <source>Ping: %1</source>
-            <translation>Ping : %1</translation>
+            <translation>زمن الاستجابة: %1</translation>
         </message>
         <message>
             <source>Progress: %1%</source>
-            <translation>Progression : %1%</translation>
+            <translation>التقدم: %1%</translation>
         </message>
         <message>
             <source>Transfer</source>
-            <translation>Transfert</translation>
+            <translation>النقل</translation>
         </message>
         <message>
             <source>Down: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>↓: %1</translation>
         </message>
         <message>
             <source>Up: %1</source>
-            <translation>Haut : %1</translation>
+            <translation>↑: %1</translation>
         </message>
         <message>
             <source>Total down: %1</source>
-            <translation>Total téléchargé : %1</translation>
+            <translation>إجمالي ↓: %1</translation>
         </message>
         <message>
             <source>Total up: %1</source>
-            <translation>Total envoyé : %1</translation>
+            <translation>إجمالي ↑: %1</translation>
         </message>
         <message>
             <source>Location</source>
-            <translation>Emplacement</translation>
+            <translation>الموقع</translation>
         </message>
         <message>
             <source>Client: %1</source>
-            <translation>Client : %1</translation>
+            <translation>العميل: %1</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>أنت</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>نظير</translation>
         </message>
         <message>
             <source>Flags</source>
-            <translation>Drapeaux</translation>
+            <translation>الأعلام</translation>
         </message>
         <message>
             <source>Ban Peer</source>
-            <translation>Bannir le pair</translation>
+            <translation>حظر النظير</translation>
         </message>
         <message>
             <source>Legend:</source>
-            <translation>Légende :</translation>
+            <translation>الأسطورة:</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>غير نشط</translation>
         </message>
         <message>
             <source>Trackers</source>
-            <translation>Trackers</translation>
+            <translation>المَتعَقِّبات</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Seed</translation>
+            <translation>بذرة</translation>
         </message>
         <message>
             <source>Tracker</source>
-            <translation>Tracker</translation>
+            <translation>متعقّب</translation>
         </message>
         <message>
             <source>Tier</source>
-            <translation>Niveau</translation>
+            <translation>طبقة</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Pairs</translation>
+            <translation>نظراء</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation>0 pairs connus</translation>
+            <translation>0 نظير معروف</translation>
         </message>
         <message>
             <source>UL</source>
-            <translation>UL</translation>
+            <translation>رفع</translation>
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation>Téléchargé %1  Envoyé %2</translation>
+            <translation>تنزيل %1 رفع %2</translation>
         </message>
         <message>
             <source>RTT %1</source>
-            <translation>RTT %1</translation>
+            <translation>زمن الاستجابة %1</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1  ↑ %2</translation>
+            <translation>↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation>Ping %1  %2 % terminé</translation>
+            <translation>زمن الاستجابة %1 %2% مكتمل</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>غير معروف</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation>Vous (ce client)</translation>
+            <translation>أنت (هذا العميل)</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation>Aucun pair connecté à tracer</translation>
+            <translation>لا يوجد نظراء متصلون للرسم</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation>En attente de votre adresse IP publique pour afficher la position sur la carte locale</translation>
+            <translation>في انتظار عنوان IP العام لعرض الموقع على الخريطة المحلية</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation>Forcer la réannonce</translation>
+            <translation>فرض إعادة الإعلان</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation>Copier l'URL</translation>
+            <translation>نسخ الرابط</translation>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation>Supprimer le tracker</translation>
+            <translation>إزالة المتعقّب</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation>Réannoncer tout</translation>
+            <translation>إعادة الإعلان للجميع</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation>Coller les URL des trackers - une par ligne. Les lignes commençant par # sont ignorées.</translation>
+            <translation>الصق عناوين URL للمتاعب - واحد لكل سطر. تُتجاهل الأسطر التي تبدأ بـ #.</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>إضافة</translation>
         </message>
         <message>
             <source>No trackers</source>
-            <translation>Aucun tracker</translation>
+            <translation>بدون متتبعات</translation>
         </message>
         <message>
             <source>Web Seeds</source>
-            <translation>Web Seeds</translation>
+            <translation>بذور الويب</translation>
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation>Coller les URL des web seeds - une par ligne. Les seeds URL (BEP-19) et les seeds HTTP (BEP-17) sont tous deux acceptés.</translation>
+            <translation>الصق عناوين بذور الويب - سطر واحد لكل عنوان. يتم قبول بذور URL (BEP-19) وبذور HTTP (BEP-17).</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation>URL</translation>
+            <translation>العنوان</translation>
         </message>
         <message>
             <source>Type</source>
-            <translation>Type</translation>
+            <translation>النوع</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation>Aucun web seed</translation>
+            <translation>بدون بذور ويب</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>فتح في المتصفح</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation>Supprimer le seed</translation>
+            <translation>إزالة البذرة</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation>Terminé</translation>
+            <translation>مكتمل</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation>Client</translation>
+            <translation>العميل</translation>
         </message>
         <message>
             <source>DL</source>
-            <translation>DL</translation>
+            <translation>↓</translation>
         </message>
         <message>
             <source>Both</source>
-            <translation>Les deux</translation>
+            <translation>كلاهما</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation>Vitesse</translation>
+            <translation>السرعة</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation>Disponible</translation>
+            <translation>متاح</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation>Distance : %1</translation>
+            <translation>المسافة: %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation>Pays : %1</translation>
+            <translation>البلد: %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>%1 pairs connus</translation>
+            <translation>%1 نظيرًا معروفًا</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>%n tracker(s)</translation>
+            <translation>%n متتبع(ات)</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>Annoncez à tous les trackers votre présence immédiate, au lieu d'attendre l'intervalle d'annonce normal. Utile si votre nombre de pairs a chuté soudainement.</translation>
+            <translation>أخبر كل متتبع بأنك هنا الآن، بدلاً من انتظار فترة الإعلان العادية. مفيد إذا انخفض عدد نظرائك فجأة.</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>Réannonce en cours...</translation>
+            <translation>إعادة الإعلان...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation>Ajouter des trackers…</translation>
+            <translation>إضافة متتبعات…</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation>%1 ajouté</translation>
+            <translation>تمت إضافة %1</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation>%1 ajouté, %2 échoué</translation>
+            <translation>تمت إضافة %1، فشلت %2</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation>%n seed(s)</translation>
+            <translation>%n مُصدر(ة)</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation>Ajouter un seed…</translation>
+            <translation>إضافة مُصدر…</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation>Récupération depuis le swarm...</translation>
+            <translation>جارٍ الجلب من السرب...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation>Propriétés du torrent</translation>
+            <translation>خصائص التورنت</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation>Vérification des fichiers</translation>
+            <translation>فحص الملفات</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation>Propriétés du fichier</translation>
+            <translation>خصائص الملف</translation>
         </message>
     </context>
     <context>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>بحث</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>بحث:</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Chercher dans :</translation>
+            <translation>البحث في:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>اسم الملف أو جزء منه</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation>Description ou partie de la description</translation>
+            <translation>الوصف أو جزء من الوصف</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation>Nom du site / lien de téléchargement / page web parente / référent</translation>
+            <translation>اسم الموقع / رابط التحميل / الصفحة الأصلية / المُحيل</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>مطابقة حالة الأحرف</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière</translation>
+            <translation>مطابقة السلسلة كاملة فقط</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation>Aucun résultat trouvé.</translation>
+            <translation>لم يتم العثور على نتائج.</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation>1 résultat trouvé.</translation>
+            <translation>تم العثور على نتيجة واحدة.</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation>%1 résultats trouvés.</translation>
+            <translation>تم العثور على %1 نتائج.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
     </context>
     <context>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation>Projet enregistré.</translation>
+            <translation>تم حفظ المشروع.</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation>Le nom du projet et la page de démarrage sont requis.</translation>
+            <translation>اسم المشروع والصفحة الرئيسية مطلوبان.</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – Étape %1 sur %2 : %3</translation>
+            <translation>Stellar Grabber – الخطوة %1 من %2: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
-            <translation>Définir la page de démarrage</translation>
+            <translation>تعيين الصفحة الرئيسية</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation>Enregistrer les fichiers dans</translation>
+            <translation>حفظ الملفات إلى</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation>Définir les filtres de l'explorateur</translation>
+            <translation>تعيين مرشحات المستكشف</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation>Définir les filtres de fichiers</translation>
+            <translation>تعيين مرشحات الملفات</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation>Paramètres personnalisés</translation>
+            <translation>إعدادات مخصصة</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation>Toutes les images d'un site web</translation>
+            <translation>جميع الصور من موقع ويب</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation>Toutes les vidéos d'un site web</translation>
+            <translation>جميع مقاطع الفيديو من موقع ويب</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation>Tous les audios d'un site web</translation>
+            <translation>جميع الملفات الصوتية من موقع ويب</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation>Site web complet</translation>
+            <translation>موقع ويب كامل</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation>Inclure les filtres</translation>
+            <translation>تضمين المرشحات</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation>Exclure les filtres</translation>
+            <translation>استبعاد المرشحات</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation>Nom du modèle</translation>
+            <translation>اسم القالب</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>حفظ</translation>
         </message>
         <message>
             <source>New</source>
-            <translation>Nouveau</translation>
+            <translation>جديد</translation>
         </message>
         <message>
             <source>Load</source>
-            <translation>Charger</translation>
+            <translation>تحميل</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation>Enregistrer les paramètres actuels en tant que modèle</translation>
+            <translation>حفظ الإعدادات الحالية كنموذج</translation>
         </message>
         <message>
             <source>Recent Projects</source>
-            <translation>Projets récents</translation>
+            <translation>المشاريع الأخيرة</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>إعدادات الجاذب</translation>
         </message>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>مشروع</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>خيارات</translation>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation>Nom du projet du grabber</translation>
+            <translation>اسم مشروع الجاذب</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation>Page d'accueil / Adresse</translation>
+            <translation>الصفحة/العنوان الابتدائي</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation>Modèle de projet</translation>
+            <translation>نموذج المشروع</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation>Si vous sélectionnez un modèle de projet, l'assistant configurera les paramètres requis pour ce modèle lors des étapes suivantes. Vous pouvez toujours modifier les paramètres manuellement.</translation>
+            <translation>إذا اخترت نموذج مشروع، سيقوم المعالج بضبط الإعدادات المطلوبة للخطوات التالية. يمكنك دائماً تغيير الإعدادات يدوياً.</translation>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation>Utiliser l'autorisation</translation>
+            <translation>استخدام المصادقة</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation>Avancé &lt;&lt;</translation>
+            <translation>متقدم &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation>Avancé &gt;&gt;</translation>
+            <translation>متقدم &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation>Connexion</translation>
+            <translation>تسجيل الدخول</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation>Mot de passe</translation>
+            <translation>كلمة المرور</translation>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation>Appuyez sur Avancé pour activer la connexion manuelle ou pour désactiver la page de déconnexion.</translation>
+            <translation>اضغط على 'متقدم' لتسجيل الدخول يدوياً أو لإيقاف صفحة تسجيل الخروج.</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation>Saisissez manuellement le nom d'utilisateur et le mot de passe sur la page web suivante :</translation>
+            <translation>أدخل اسم المستخدم وكلمة المرور يدوياً في الصفحة التالية:</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation>Ne pas ouvrir la page de déconnexion :</translation>
+            <translation>عدم فتح صفحة تسجيل الخروج:</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation>De nombreux sites disposent d'une page de déconnexion que le Grabber ne devrait pas ouvrir. Vous pouvez utiliser un astérisque comme joker pour spécifier un motif correspondant à différentes pages de déconnexion.</translation>
+            <translation>تحتوي العديد من المواقع على صفحة تسجيل خروج يجب ألا يفتحها الجاذب. يمكنك استخدام علامة النجمة (*) لتحديد نمط لصفحات تسجيل الخروج المختلفة.</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation>Enregistrer dans</translation>
+            <translation>حفظ في</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation>Chaque fichier dans un dossier selon la catégorie Stellar du fichier</translation>
+            <translation>كل ملف إلى مجلد حسب فئة Stellar للملف</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation>Tous les fichiers dans le dossier associé à la catégorie Stellar suivante :</translation>
+            <translation>جميع الملفات إلى المجلد المرتبط بفئة Stellar التالية:</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation>Tous les fichiers dans le dossier suivant</translation>
+            <translation>جميع الملفات إلى المجلد التالي</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation>Utiliser les sous-dossiers relatifs originaux</translation>
+            <translation>استخدام مجلدات فرعية نسبية أصلية</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation>Enregistrer chaque fichier par catégorie</translation>
+            <translation>حفظ كل ملف حسب الفئة</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation>Enregistrer tous les fichiers dans la catégorie sélectionnée</translation>
+            <translation>حفظ جميع الملفات إلى الفئة المحددة</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation>Enregistrer tous les fichiers dans ce dossier</translation>
+            <translation>حفظ جميع الملفات إلى هذا المجلد</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation>Convertir les liens dans les fichiers HTML téléchargés en fichiers locaux pour une navigation hors ligne</translation>
+            <translation>تحويل الروابط في ملفات HTML المُحمّلة إلى ملفات محلية للتصفح دون اتصال</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation>Écraser les fichiers existants</translation>
+            <translation>الكتابة فوق الملفات الموجودة</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation>Ajouter les fichiers cochés à la liste principale de Stellar et à la file d'attente de téléchargement à la fermeture du grabber</translation>
+            <translation>إضافة الملفات المحددة إلى القائمة الرئيسية وقائمة التنزيل في Stellar عند إغلاق أداة الالتقاط</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation>À cette étape, vous devez spécifier les pages web à explorer pour trouver les fichiers requis. À l'étape suivante, vous pourrez définir les types de fichiers, l'emplacement et d'autres filtres.</translation>
+            <translation>في هذه الخطوة، يجب تحديد صفحات الويب لاستكشافها للعثور على الملفات المطلوبة. في الخطوة التالية، ستتمكن من ضبط أنواع الملفات والموقع والمرشحات الأخرى.</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
-            <translation>Explorer tout le site</translation>
+            <translation>استكشاف الموقع بأكمله</translation>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation>Explorer un nombre spécifié de niveaux de liens :</translation>
+            <translation>استكشاف عدد محدد من مستويات الروابط:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation>niveaux dans le site de base</translation>
+            <translation>مستوى ضمن الموقع الأساسي</translation>
         </message>
         <message>
             <source>levels on other sites</source>
-            <translation>niveaux sur d'autres sites</translation>
+            <translation>مستوى على مواقع أخرى</translation>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation>Qu'est-ce que le nombre de niveaux de liens ?</translation>
+            <translation>ما هو عدد مستويات الروابط؟</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation>Ignorer les fenêtres contextuelles</translation>
+            <translation>تجاهل النوافذ المنبثقة</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation>Ne pas explorer les répertoires parents</translation>
+            <translation>عدم استكشاف المجلدات الأصل</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation>Explorer tous les sites du domaine principal</translation>
+            <translation>استكشاف جميع المواقع ضمن النطاق الرئيسي</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation>Traiter le JavaScript</translation>
+            <translation>معالجة JavaScript</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation>Explorer uniquement les pages web dans les chemins/domaines suivants :</translation>
+            <translation>استكشف صفحات الويب ضمن المسارات/النطاقات التالية فقط:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
+            <translation>أدخل مساراً أو نطاقاً واحداً في كل سطر، أو افصل بين الإدخالات بنقاط فاصلة منقوطة. استخدم * كرمز عام. أمثلة: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation>Ne pas explorer les pages web dans les chemins/domaines suivants :</translation>
+            <translation>لا تستكشف صفحات الويب ضمن المسارات/النطاقات التالية:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation>Saisissez un chemin ou un domaine par ligne, ou séparez les entrées par des points-virgules. Utilisez * comme joker. Exemples : *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
+            <translation>أدخل مساراً أو نطاقاً واحداً في كل سطر، أو افصل بين الإدخالات بنقاط فاصلة منقوطة. استخدم * كرمز عام. أمثلة: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation>Télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>تنزيل الملفات التالية (أنواع الملفات)</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation>Inclure les filtres...</translation>
+            <translation>تضمين المرشحات...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation>Ne pas télécharger les fichiers suivants (types de fichiers)</translation>
+            <translation>لا تنزّل الملفات التالية (أنواع الملفات)</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation>Exclure les filtres...</translation>
+            <translation>استبعاد المرشحات...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation>Rechercher des fichiers uniquement sur ce site</translation>
+            <translation>البحث عن ملفات في هذا الموقع فقط</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation>Masquer les fichiers dupliqués trouvés dans différents emplacements</translation>
+            <translation>إخفاء الملفات المكررة الموجودة في مواقع مختلفة</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation>Commencer à télécharger tous les fichiers correspondants en une seule fois</translation>
+            <translation>بدء تنزيل جميع الملفات المطابقة في وقت واحد</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation>Télécharger si la taille du fichier est</translation>
+            <translation>تنزيل إذا كان حجم الملف</translation>
         </message>
         <message>
             <source>Not less than</source>
-            <translation>Non inférieure à</translation>
+            <translation>ليس أقل من</translation>
         </message>
         <message>
             <source>Bytes</source>
-            <translation>Octets</translation>
+            <translation>بايت</translation>
         </message>
         <message>
             <source>Not more than</source>
-            <translation>Non supérieure à</translation>
+            <translation>ليس أكثر من</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation>Télécharger les fichiers situés uniquement dans les chemins/domaines suivants :</translation>
+            <translation>تنزّل الملفات الموجودة ضمن المسارات/النطاقات التالية فقط:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation>Utilisez * comme caractère générique. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.google.com ; cdn.example.com ; /downloads/*</translation>
+            <translation>استخدم * كرمز عام. أدخل مساراً أو نطاقاً واحداً في كل سطر، أو افصل بين الإدخالات بنقاط فاصلة منقوطة. أمثلة: *.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation>Ne pas télécharger les fichiers situés dans les chemins/domaines suivants :</translation>
+            <translation>لا تنزّل الملفات الموجودة ضمن المسارات/النطاقات التالية:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation>Utilisez * comme joker. Entrez un chemin ou un domaine par ligne, ou séparez les entrées avec des points-virgules. Exemples : *.doubleclick.net ; /ads/* ; /tracking</translation>
+            <translation>استخدم * كرمز عام. أدخل مساراً أو نطاقاً واحداً في كل سطر، أو افصل بين الإدخالات بنقاط فاصلة منقوطة. أمثلة: *.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
-            <translation>Commentaire</translation>
+            <translation>تعليق</translation>
         </message>
         <message>
             <source>Save Project</source>
-            <translation>Enregistrer le projet</translation>
+            <translation>حفظ المشروع</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>حذف المشروع</translation>
         </message>
         <message>
             <source>&lt; Back</source>
-            <translation>&lt; Précédent</translation>
+            <translation>&lt; رجوع</translation>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation>Suivant &gt;</translation>
+            <translation>التالي &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation>Commencer à explorer</translation>
+            <translation>ابدأ الاستكشاف</translation>
         </message>
     </context>
     <context>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation>Nom du filtre</translation>
+            <translation>اسم التصفية</translation>
         </message>
         <message>
             <source>Mask</source>
-            <translation>Masque</translation>
+            <translation>قناع</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>إضافة</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>تعديل</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>حذف</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Edit filter</source>
-            <translation>Modifier le filtre</translation>
+            <translation>تعديل التصفية</translation>
         </message>
         <message>
             <source>New filter</source>
-            <translation>Nouveau filtre</translation>
+            <translation>تصفية جديدة</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>الفئة</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>حفظ</translation>
         </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation>Charger un projet Stellar Grabber</translation>
+            <translation>تحميل مشروع الجاذب</translation>
         </message>
         <message>
             <source>Saved projects</source>
-            <translation>Projets enregistrés</translation>
+            <translation>المشاريع المحفوظة</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
         <message>
             <source>Project</source>
-            <translation>Projet</translation>
+            <translation>المشروع</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>الخيارات</translation>
         </message>
         <message>
             <source>Running</source>
-            <translation>En cours</translation>
+            <translation>جارٍ التشغيل</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>خامل</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation>%1 fichiers trouvés</translation>
+            <translation>تم العثور على %1 ملفات</translation>
         </message>
         <message>
             <source>%1 checked</source>
-            <translation>%1 vérifiés</translation>
+            <translation>تم التحقق من %1</translation>
         </message>
         <message>
             <source>Exploring…</source>
-            <translation>Exploration en cours…</translation>
+            <translation>جارٍ الاستكشاف…</translation>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation>Appuyez sur Démarrer l'exploration pour analyser l'URL.</translation>
+            <translation>اضغط ابدأ الاستكشاف لمسح الرابط.</translation>
         </message>
         <message>
             <source>Start
 Exploring</source>
-            <translation>Démarrer l'exploration</translation>
+            <translation>ابدأ
+الاستكشاف</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>اسم الملف</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation>Type de fichier</translation>
+            <translation>نوع الملف</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>الحجم</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>الحالة</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation>Texte du lien</translation>
+            <translation>نص الرابط</translation>
         </message>
         <message>
             <source>Download from</source>
-            <translation>Télécharger depuis</translation>
+            <translation>تحميل من</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>حفظ إلى</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation>Vérifier la sélection</translation>
+            <translation>تحديد المحدد</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation>Désélectionner la sélection</translation>
+            <translation>إلغاء تحديد المحدد</translation>
         </message>
         <message>
             <source>Edit current project</source>
-            <translation>Modifier le projet actuel</translation>
+            <translation>تعديل المشروع الحالي</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Paramètres du grabber</translation>
+            <translation>إعدادات الجاذب</translation>
         </message>
         <message>
             <source>Stop
 Exploring</source>
-            <translation>Arrêter</translation>
+            <translation>إيقاف</translation>
         </message>
         <message>
             <source>Start
 Downloading</source>
-            <translation>Exploration</translation>
+            <translation>استكشاف</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
-            <translation>Démarrer</translation>
+            <translation>بدء</translation>
         </message>
         <message>
             <source>Update
 All</source>
-            <translation>Téléchargement</translation>
+            <translation>تحميل</translation>
         </message>
         <message>
             <source>Schedule
 Project</source>
-            <translation>Arrêter</translation>
+            <translation>إيقاف</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Téléchargements</translation>
+            <translation>التنزيلات</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>تحديث</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation>Tous les fichiers</translation>
+            <translation>الكل</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation>Vue des liens</translation>
+            <translation>جدولة</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation>Vue des dossiers</translation>
+            <translation>المشروع</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation>Aucun fichier trouvé pour le moment</translation>
+            <translation>الإحصائيات</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation>← Retour</translation>
+            <translation>الفئات</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <translation>%1 fichiers</translation>
+            <translation>%1 ملفات</translation>
         </message>
         <message>
             <source>%1 / %2 (filtered)</source>
-            <translation>%1 / %2 (filtré)</translation>
+            <translation>%1 / %2 (مفلتر)</translation>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation>Ajouter les éléments cochés à la liste de téléchargement</translation>
+            <translation>عرض المجلدات</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
-            <translation>Stellar Grabber</translation>
+            <translation>لا توجد ملفات بعد</translation>
         </message>
     </context>
     <context>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation>Planifier le projet Stellar Grabber</translation>
+            <translation>← رجوع</translation>
         </message>
         <message>
             <source>Project:</source>
-            <translation>Projet :</translation>
+            <translation>المشروع:</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation>Activer le calendrier du projet</translation>
+            <translation>تفعيل جدول المشروع</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>Étape 1. Sélectionner le type</translation>
+            <translation>الخطوة 1. اختر النوع</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>Exploration/téléchargement unique</translation>
+            <translation>استكشاف/تنزيل لمرة واحدة</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>مزامنة دورية</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>Étape 2. Sélectionner l'action</translation>
+            <translation>الخطوة 2. اختر الإجراء</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>Explorer uniquement</translation>
+            <translation>استكشاف فقط</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>Explorer le site et télécharger les fichiers correspondants</translation>
+            <translation>استكشاف الموقع وتنزيل الملفات المتطابقة</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>Télécharger les fichiers cochés</translation>
+            <translation>تنزيل الملفات المحددة</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>Après achèvement</translation>
+            <translation>بعد الانتهاء</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>إغلاق Stellar عند الانتهاء</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>إيقاف تشغيل الجهاز عند الانتهاء</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>Éteindre</translation>
+            <translation>إيقاف التشغيل</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>Redémarrer</translation>
+            <translation>إعادة التشغيل</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation>Veille</translation>
+            <translation>وضع السكون</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>Hibernation</translation>
+            <translation>وضع التعليق</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>إجبار العمليات على الإنهاء</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>Étape 3. Planification</translation>
+            <translation>الخطوة 3. الجدولة</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>بدء التنزيل في</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>مرة واحدة في</translation>
         </message>
         <message>
             <source>January</source>
-            <translation>Janvier</translation>
+            <translation>يناير</translation>
         </message>
         <message>
             <source>February</source>
-            <translation>Février</translation>
+            <translation>فبراير</translation>
         </message>
         <message>
             <source>March</source>
-            <translation>Mars</translation>
+            <translation>مارس</translation>
         </message>
         <message>
             <source>April</source>
-            <translation>Avril</translation>
+            <translation>أبريل</translation>
         </message>
         <message>
             <source>May</source>
-            <translation>Mai</translation>
+            <translation>مايو</translation>
         </message>
         <message>
             <source>June</source>
-            <translation>Juin</translation>
+            <translation>يونيو</translation>
         </message>
         <message>
             <source>July</source>
-            <translation>Juillet</translation>
+            <translation>يوليو</translation>
         </message>
         <message>
             <source>August</source>
-            <translation>Août</translation>
+            <translation>أغسطس</translation>
         </message>
         <message>
             <source>September</source>
-            <translation>Septembre</translation>
+            <translation>سبتمبر</translation>
         </message>
         <message>
             <source>October</source>
-            <translation>Octobre</translation>
+            <translation>أكتوبر</translation>
         </message>
         <message>
             <source>November</source>
-            <translation>Novembre</translation>
+            <translation>نوفمبر</translation>
         </message>
         <message>
             <source>December</source>
-            <translation>Décembre</translation>
+            <translation>ديسمبر</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>يوميًا</translation>
         </message>
         <message>
             <source>Sunday</source>
-            <translation>Dimanche</translation>
+            <translation>الأحد</translation>
         </message>
         <message>
             <source>Thursday</source>
-            <translation>Jeudi</translation>
+            <translation>الخميس</translation>
         </message>
         <message>
             <source>Monday</source>
-            <translation>Lundi</translation>
+            <translation>الاثنين</translation>
         </message>
         <message>
             <source>Friday</source>
-            <translation>Vendredi</translation>
+            <translation>الجمعة</translation>
         </message>
         <message>
             <source>Tuesday</source>
-            <translation>Mardi</translation>
+            <translation>الثلاثاء</translation>
         </message>
         <message>
             <source>Saturday</source>
-            <translation>Samedi</translation>
+            <translation>السبت</translation>
         </message>
         <message>
             <source>Wednesday</source>
-            <translation>Mercredi</translation>
+            <translation>الأربعاء</translation>
         </message>
         <message>
             <source>Repeat every</source>
-            <translation>Répéter tous les</translation>
+            <translation>تكرار كل</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>ساعات</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>دقائق</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>إيقاف التنزيل عند</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation>Remarque : Stellar doit être exécuté dans la zone de notification au moment spécifié pour démarrer un projet planifié.</translation>
+            <translation>ملاحظة: يجب أن يعمل Stellar في منطقة الإعلام في الوقت المحدد لبدء مشروع مجدول.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
         <message>
             <source>Settings of Stellar Grabber</source>
-            <translation>Paramètres de Stellar Grabber</translation>
+            <translation>إعدادات Stellar Grabber</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation>fichiers à explorer simultanément (1 à 10)</translation>
+            <translation>ملفات للاستكشاف في نفس الوقت (1 إلى 10)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation>fichiers à télécharger simultanément (1 à 10)</translation>
+            <translation>ملفات للتنزيل في نفس الوقت (1 إلى 10)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation>Veuillez noter qu'un serveur web peut rejeter les requêtes si vous définissez un grand nombre de fichiers à explorer ou à télécharger simultanément.</translation>
+            <translation>يرجى ملاحظة أن الخادم قد يرفض الطلبات إذا قمت بتعيين عدد كبير من الملفات للاستكشاف أو التنزيل في نفس الوقت.</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation>Utiliser les textes des liens comme descriptions de téléchargement lors de l'ajout de fichiers à la liste principale de Stellar</translation>
+            <translation>استخدام نصوص الروابط كأوصاف للتنزيل عند إضافة الملفات إلى القائمة الرئيسية لـ Stellar</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation>Statistiques du grabber</translation>
+            <translation>إحصائيات Grabber</translation>
         </message>
         <message>
             <source>Status: %1</source>
-            <translation>État : %1</translation>
+            <translation>الحالة: %1</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Inactif</translation>
+            <translation>خامل</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation>Pages web traitées</translation>
+            <translation>صفحات الويب المعالجة</translation>
         </message>
         <message>
             <source>Simple</source>
-            <translation>Simple</translation>
+            <translation>بسيط</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>متقدم</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>ملفات</translation>
         </message>
         <message>
             <source>Total</source>
-            <translation>Total</translation>
+            <translation>المجموع</translation>
         </message>
         <message>
             <source>Explored</source>
-            <translation>Explorées</translation>
+            <translation>مستكشف</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>Correspondantes</translation>
+            <translation>متطابق</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>محمّل</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
     </context>
     <context>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation>Tâches</translation>
+            <translation>المهام</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>Ajouter une URL…</translation>
+            <translation>إضافة عنوان URL…</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>تنزيلات SDM</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>Ce téléchargement YouTube semble nécessiter des cookies de connexion.</translation>
+            <translation>يبدو أن تنزيل YouTube هذا يتطلب ملفات تعريف الارتباط لتسجيل الدخول.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>ملفات تعريف الارتباط من المتصفح:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>Stellar réessayera le même élément yt-dlp avec les cookies de ce navigateur.</translation>
+            <translation>ستعيد Stellar محاولة نفس عنصر yt-dlp باستخدام ملفات تعريف الارتباط لذلك المتصفح.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation>Réessayer le téléchargement</translation>
+            <translation>إعادة المحاولة</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>Ouvrir Stellar</translation>
+            <translation>فتح Stellar</translation>
         </message>
         <message>
             <source>GitHub</source>
@@ -2474,63 +2471,63 @@ Project</source>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation>Limiteur de vitesse : Activer</translation>
+            <translation>محدد السرعة: تشغيل</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation>Limiteur de vitesse : Désactiver</translation>
+            <translation>محدد السرعة: إيقاف</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation>Paramètres du limiteur de vitesse…</translation>
+            <translation>إعدادات محدد السرعة…</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation>Quitter Stellar</translation>
+            <translation>خروج Stellar</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation>Fichiers torrent (*.torrent)</translation>
+            <translation>ملفات تورنت (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation>Tous les fichiers (*)</translation>
+            <translation>جميع الملفات (*)</translation>
         </message>
         <message>
             <source>Total: %1</source>
-            <translation>Total : %1</translation>
+            <translation>الإجمالي: %1</translation>
         </message>
         <message>
             <source>Completed: %1</source>
-            <translation>Terminé : %1</translation>
+            <translation>مكتمل: %1</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation>Téléchargement : %1</translation>
+            <translation>جارٍ التنزيل: %1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation>En file d'attente : %1</translation>
+            <translation>في الانتظار: %1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
-            <translation>Global : %1%</translation>
+            <translation>عام: %1%</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>إيقاف</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>استئناف</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation>Activer le support BitTorrent ?</translation>
+            <translation>تفعيل دعم BitTorrent؟</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2540,238 +2537,239 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Le support BitTorrent est actuellement désactivé.
+            <translation>دعم BitTorrent معطّل حالياً.
 
-Lorsque vous téléchargez un torrent, votre adresse IP devient visible pour les autres pairs du swarm et vous téléversez simultanément (seed) des données vers les autres.
+عند تنزيل ملف torrent، يصبح عنوان IP الخاص بك مرئياً للأقران الآخرين في الشبكة وتقوم برفع (تغذية) البيانات للآخرين.
 
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
+أي شيء تشاركه عبر BitTorrent هو مسؤوليتك الوحيدة. تأكد من امتلاكك الحق في توزيع المحتوى.
 
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+يُنصح بشدة بربط Stellar بواجهة شبكة VPN والتحقق من نشاط VPN قبل استخدام torrents لحماية عنوان IP من التعرض.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, activer</translation>
+            <translation>أفهم، تفعيل</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>Vous avez appuyé sur le bouton « Télécharger plus tard », mais Stellar avait déjà commencé à télécharger une partie du fichier. Stellar commence toujours le téléchargement tout en affichant la boîte de dialogue « Informations sur le fichier à télécharger ».
+            <translation>لقد ضغطت على زر 'التنزيل لاحقاً'، لكن Stellar كان قد بدأ بالفعل تنزيل جزء من الملف. يبدأ Stellar التنزيل دائماً أثناء عرض مربع حوار 'معلومات ملف التنزيل'.
 
-Vous pouvez désactiver cette option dans Paramètres → Téléchargements.</translation>
+يمكنك إيقاف ذلك في الإعدادات → التنزيلات.</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>Le fichier « %1 » n'a pas pu être téléchargé.</translation>
+            <translation>تعذر تنزيل الملف “%1”.</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>Le serveur a renvoyé une page web au lieu du fichier attendu. Certains sites suppriment les fichiers immédiatement après que Stellar a interrogé leurs métadonnées.</translation>
+            <translation>أعاد الخادم صفحة ويب بدلاً من الملف المتوقع. تحذف بعض المواقع الملفات فوراً بعد استعلام Stellar عن بياناتها الوصفية.</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>Pour permettre à votre navigateur de télécharger directement, maintenez une touche modificateur (Alt, Ctrl ou Maj) tout en cliquant sur le lien. Configurez la touche dans : Options Stellar → Navigateur → Contourner l'interception des téléchargements</translation>
+            <translation>للسماح للمتصفح بالتنزيل مباشرة، اضغط على مفتاح تعديل (Alt، Ctrl، أو Shift) أثناء النقر على الرابط. قم بتكوين المفتاح في:
+خيارات Stellar → المتصفح → تجاوز اعتراض التنزيل</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>Ouvrir les paramètres du navigateur</translation>
+            <translation>فتح إعدادات المتصفح</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>La version %1 est disponible.</translation>
+            <translation>الإصدار %1 متاح.</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation>Mettre à jour maintenant</translation>
+            <translation>التحديث الآن</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation>Ajouter un fichier Torrent…</translation>
+            <translation>إضافة ملف Torrent…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation>Ajouter des URLs par lot…</translation>
+            <translation>إضافة عناوين URL دفعة واحدة…</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation>Quitter</translation>
+            <translation>خروج</translation>
         </message>
         <message>
             <source>File</source>
-            <translation>Fichier</translation>
+            <translation>ملف</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>فتح المجلد</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>فتح الملف</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation>Télécharger maintenant</translation>
+            <translation>تحميل الآن</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation>Arrêter le téléchargement</translation>
+            <translation>إيقاف التحميل</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>إزالة</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Retélécharger</translation>
+            <translation>إعادة التحميل</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Exporter .torrent…</translation>
+            <translation>تصدير .torrent…</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>التحميلات</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation>Mettre tout en pause</translation>
+            <translation>إيقاف الكل مؤقتاً</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation>Arrêter tout</translation>
+            <translation>إيقاف الكل</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation>Supprimer tous les éléments terminés</translation>
+            <translation>حذف المكتمل</translation>
         </message>
         <message>
             <source>Find…</source>
-            <translation>Rechercher…</translation>
+            <translation>بحث…</translation>
         </message>
         <message>
             <source>Find Next</source>
-            <translation>Rechercher suivant</translation>
+            <translation>بحث التالي</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>المجدول</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>بدء الطابور</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>إيقاف الطابور</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>محدد السرعة</translation>
         </message>
         <message>
             <source>Turn On</source>
-            <translation>Activer</translation>
+            <translation>تفعيل</translation>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation>Désactiver</translation>
+            <translation>إيقاف</translation>
         </message>
         <message>
             <source>Settings…</source>
-            <translation>Paramètres…</translation>
+            <translation>الإعدادات…</translation>
         </message>
         <message>
             <source>Options…</source>
-            <translation>Options…</translation>
+            <translation>الخيارات…</translation>
         </message>
         <message>
             <source>View</source>
-            <translation>Affichage</translation>
+            <translation>عرض</translation>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation>Masquer les catégories</translation>
+            <translation>إخفاء الفئات</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation>Afficher les catégories</translation>
+            <translation>إظهار الفئات</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation>Afficher le moteur de recherche</translation>
+            <translation>إظهار محرك البحث</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
-            <translation>Afficher le lecteur RSS</translation>
+            <translation>إظهار قارئ RSS</translation>
         </message>
         <message>
             <source>Statistics…</source>
-            <translation>Statistiques…</translation>
+            <translation>الإحصائيات…</translation>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation>Trier les fichiers</translation>
+            <translation>ترتيب الملفات</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation>Par ordre d'ajout</translation>
+            <translation>حسب ترتيب الإضافة</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation>Par nom de fichier</translation>
+            <translation>حسب اسم الملف</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation>Par taille</translation>
+            <translation>حسب الحجم</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation>Par statut</translation>
+            <translation>حسب الحالة</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation>Par temps restant</translation>
+            <translation>حسب الوقت المتبقي</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation>Par taux de transfert</translation>
+            <translation>حسب معدل النقل</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation>Par date de dernière tentative</translation>
+            <translation>حسب تاريخ المحاولة الأخيرة</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation>Par description</translation>
+            <translation>حسب الوصف</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation>Par chemin d'enregistrement</translation>
+            <translation>حسب مسار الحفظ</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation>Par référent</translation>
+            <translation>حسب المرجع</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation>Par page web parente</translation>
+            <translation>حسب صفحة الويب الأصلية</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation>Colonnes…</translation>
+            <translation>الأعمدة…</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>الخيارات</translation>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation>Préférences…</translation>
+            <translation>التفضيلات…</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -2779,1250 +2777,1250 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation>Ouvrir le lecteur RSS</translation>
+            <translation>فتح قارئ RSS</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation>Actualiser tous les flux</translation>
+            <translation>تحديث جميع المصادر</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation>Marquer tous les éléments comme lus</translation>
+            <translation>تحديد كل العناصر كمقروءة</translation>
         </message>
         <message>
             <source>Help</source>
-            <translation>Aide</translation>
+            <translation>المساعدة</translation>
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>التحقق من التحديثات</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation>Déposez un fichier .torrent pour ouvrir les métadonnées du torrent</translation>
+            <translation>اسحب ملف .torrent لفتح بيانات التعريف</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Rechercher :</translation>
+            <translation>بحث:</translation>
         </message>
         <message>
             <source>Find</source>
-            <translation>Rechercher</translation>
+            <translation>بحث</translation>
         </message>
         <message>
             <source>Settings ▾</source>
-            <translation>Paramètres ▾</translation>
+            <translation>الإعدادات ▾</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>Rechercher dans :</translation>
+            <translation>البحث في:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Nom de fichier ou partie du nom</translation>
+            <translation>اسم الملف أو جزء منه</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>الوصف</translation>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation>URL / référent / page web parente</translation>
+            <translation>URL / المرجع / صفحة الويب الأصلية</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Respecter la casse</translation>
+            <translation>مطابقة حالة الأحرف</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Correspondre à la chaîne entière uniquement</translation>
+            <translation>مطابقة السلسلة الكاملة فقط</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation>Déplacer la barre latérale à gauche</translation>
+            <translation>نقل الشريط الجانبي لليسار</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation>Déplacer la barre latérale à droite</translation>
+            <translation>نقل الشريط الجانبي لليمين</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation>Réinitialiser la largeur de la barre latérale</translation>
+            <translation>إعادة تعيين عرض الشريط الجانبي</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation>À propos de Stellar</translation>
+            <translation>حول ستيلار</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>تكامل المتصفح</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation>Extensions du navigateur…</translation>
+            <translation>إضافات المتصفح…</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation>Paramètres du navigateur…</translation>
+            <translation>إعدادات المتصفح…</translation>
         </message>
         <message>
             <source>Stellar</source>
-            <translation>Stellar</translation>
+            <translation>ستيلار</translation>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation>Cookies du navigateur requis</translation>
+            <translation>ملفات تعريف الارتباط للمتصفح مطلوبة</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>Ajouter un fichier torrent</translation>
+            <translation>إضافة ملف تورنت</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>Exporter les fichiers .torrent</translation>
+            <translation>تصدير ملفات .torrent</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>Progression du téléchargement de la chaîne</translation>
+            <translation>تقدم تنزيل القناة</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>تنزيل لاحقاً</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>Fichier non disponible</translation>
+            <translation>الملف لم يعد متاحاً</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation>Mise à jour rapide</translation>
+            <translation>تحديث سريع</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>مدير تنزيل ستيلار</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>Stellar ↓ %1 ↑ %2</translation>
+            <translation>ستيلار  ↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>Une nouvelle version de Stellar Download Manager est disponible</translation>
+            <translation>يتوفر إصدار جديد من مدير تنزيل ستيلار</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>Quoi de neuf dans Stellar</translation>
+            <translation>ما الجديد في ستيلار</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>Sélection de la file d'attente</translation>
+            <translation>اختيار قائمة الانتظار</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>Ajouter les fichiers à une file d'attente ?</translation>
+            <translation>إضافة الملفات إلى قائمة الانتظار؟</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>Choisissez une file d'attente existante ou créez-en une nouvelle.</translation>
+            <translation>اختر قائمة انتظار موجودة أو أنشئ واحدة جديدة.</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>File d'attente</translation>
+            <translation>قائمة الانتظار</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>Démarrer le traitement de la file d'attente</translation>
+            <translation>بدء معالجة قائمة الانتظار</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>Ne plus me demander</translation>
+            <translation>لا تسألني مرة أخرى</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>Ne pas ajouter à la file d'attente</translation>
+            <translation>عدم الإضافة إلى قائمة الانتظار</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>Entrez le nom de la file d'attente</translation>
+            <translation>أدخل اسم قائمة الانتظار</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Create</source>
-            <translation>Créer</translation>
+            <translation>إنشاء</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>(Par défaut)</translation>
+            <translation>(الافتراضي)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>قواعد التنزيل</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>إضافة</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>إزالة</translation>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>Cliquez sur « Ajouter » pour créer une règle de téléchargement</translation>
+            <translation>انقر على &quot;إضافة&quot; لإنشاء قاعدة تنزيل</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>Nom de la règle</translation>
+            <translation>اسم القاعدة</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>مفعّل</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>RÈGLES DE FILTRAGE</translation>
+            <translation>تصفية القواعد</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>Utiliser les expressions régulières</translation>
+            <translation>استخدام التعبيرات النمطية</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>Doit contenir :</translation>
+            <translation>يجب أن يحتوي:</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>motif regex</translation>
+            <translation>نمط التعبير النمطي</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>mots-clé1 mots-clé2 | mots-clé3</translation>
+            <translation>كلمة1 كلمة2 | كلمة3</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>Ne doit pas contenir :</translation>
+            <translation>يجب ألا يحتوي:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>mots-clé1 mots-clé2</translation>
+            <translation>كلمة1 كلمة2</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation>Filtre des épisodes :</translation>
+            <translation>تصفية الحلقات:</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation>p. ex. 1x01-1x24 ou 2x01 ;</translation>
+            <translation>مثال: 1x01-1x24 أو 2x01;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation>Utiliser le filtre intelligent des épisodes</translation>
+            <translation>استخدم تصفية الحلقات الذكية</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation>Ignore les épisodes déjà correspondants aux règles précédentes</translation>
+            <translation>يتخطى الحلقات التي تم مطابقتها بالفعل بواسطة المحفزات السابقة</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation>Ignorer les correspondances ultérieures pour</translation>
+            <translation>تجاهل المطابقات اللاحقة لـ</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation>jours (0 = désactivé)</translation>
+            <translation>أيام (0 = معطل)</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation>PARAMÈTRES DE TÉLÉCHARGEMENT</translation>
+            <translation>إعدادات التنزيل</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>حفظ في:</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation>Laissez vide pour utiliser le chemin d'enregistrement par défaut</translation>
+            <translation>اتركه فارغًا لاستخدام المسار الافتراضي</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Parcourir...</translation>
+            <translation>تصفح...</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>الفئة:</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation>File d'attente :</translation>
+            <translation>قائمة الانتظار:</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE DE TORRENT</translation>
+            <translation>حدود مشاركة التورنت</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Taux</translation>
+            <translation>النسبة</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>الافتراضي</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>غير محدود</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>تعيين إلى</translation>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation>Temps de partage</translation>
+            <translation>وقت البث</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>دقيقة</translation>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation>Temps de partage inactif</translation>
+            <translation>وقت البث غير النشط</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation>&quot;Par défaut&quot; utilise les limites de partage globales définies dans Paramètres → Torrents.</translation>
+            <translation>يستخدم &quot;الافتراضي&quot; حدود المشاركة العالمية المحددة في الإعدادات → التورنت.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation>Règles de téléchargement automatique par RSS</translation>
+            <translation>قواعد التنزيل التلقائي لـ RSS</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation>Titre</translation>
+            <translation>العنوان</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation>Flux</translation>
+            <translation>المصدر</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation>Date</translation>
+            <translation>التاريخ</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation>Ouvrir le flux</translation>
+            <translation>فتح المصدر</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>تحديث</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation>Renommer / Modifier...</translation>
+            <translation>إعادة تسمية / تعديل...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation>Supprimer l'abonnement</translation>
+            <translation>إزالة الاشتراك</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation>تنزيل التورنت</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>تنزيل</translation>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation>Ouvrir dans le navigateur</translation>
+            <translation>فتح في المتصفح</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation>Copier le lien</translation>
+            <translation>نسخ الرابط</translation>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>وضع كمقروء</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>وضع كغير مقروء</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation>Tout marquer comme lu</translation>
+            <translation>وضع الكل كمقروء</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>الاسم</translation>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation>Nom personnalisé (facultatif)</translation>
+            <translation>اسم مخصص (اختياري)</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation>URL</translation>
+            <translation>الرابط</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>Enregistrer</translation>
+            <translation>حفظ</translation>
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation>Ajouter l'URL du flux RSS ou Atom...</translation>
+            <translation>أضف رابط RSS أو Atom...</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>إضافة</translation>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation>Actualisation en cours…</translation>
+            <translation>جارٍ التحديث…</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>Modifier</translation>
+            <translation>تعديل</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>إزالة</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Règles de téléchargement</translation>
+            <translation>قواعد التنزيل</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation>Abonnements</translation>
+            <translation>الاشتراكات</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation>Sans titre</translation>
+            <translation>بدون عنوان</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>Sélectionner un article</translation>
+            <translation>تحديد مقال</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Ouvrir</translation>
+            <translation>فتح</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>Marquer comme lu</translation>
+            <translation>وضع كمقروء</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>Marquer comme non lu</translation>
+            <translation>وضع كغير مقروء</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>Choisissez un article pour afficher son résumé.</translation>
+            <translation>اختر مقالاً لعرض ملخصه.</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>Aucun résumé disponible.</translation>
+            <translation>لا يوجد ملخص متاح.</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>%1 non lu  ·  %2 éléments</translation>
+            <translation>%1 غير مقروء · %2 عنصر</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>%1 éléments</translation>
+            <translation>%1 عناصر</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>Flux RSS</translation>
+            <translation>تغذيات RSS</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>Modifier l'abonnement</translation>
+            <translation>تعديل الاشتراك</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>قوائم الانتظار</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>قائمة انتظار جديدة</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>حذف</translation>
         </message>
         <message>
             <source>Schedule</source>
-            <translation>Planification</translation>
+            <translation>جدولة</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>Fichiers dans la file d'attente</translation>
+            <translation>ملفات في قائمة الانتظار</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>Téléchargement unique</translation>
+            <translation>تنزيل لمرة واحدة</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Synchronisation périodique</translation>
+            <translation>مزامنة دورية</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>Démarrer le téléchargement au démarrage de Stellar</translation>
+            <translation>بدء التنزيل عند بدء Stellar</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Démarrer le téléchargement à</translation>
+            <translation>بدء التنزيل في</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Une fois à</translation>
+            <translation>مرة واحدة في</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Quotidien</translation>
+            <translation>يومياً</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation>Redémarrer toutes les</translation>
+            <translation>إعادة البدء كل</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>heures</translation>
+            <translation>ساعات</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>دقيقة</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>Arrêter le téléchargement à</translation>
+            <translation>إيقاف التنزيل عند</translation>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation>Nombre de tentatives pour chaque fichier en cas d'échec du téléchargement :</translation>
+            <translation>عدد المحاولات لكل ملف في حال فشل التنزيل:</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation>Ouvrir le fichier suivant une fois terminé :</translation>
+            <translation>فتح الملف التالي عند الانتهاء:</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Quitter Stellar une fois terminé</translation>
+            <translation>الخروج من Stellar عند الانتهاء</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Éteindre l'ordinateur une fois terminé</translation>
+            <translation>إيقاف تشغيل الحاسوب عند الانتهاء</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Forcer l'arrêt des processus</translation>
+            <translation>إجبار العمليات على الإنهاء</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>تنزيل</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation>fichiers en même temps</translation>
+            <translation>ملفات في نفس الوقت</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>Nom du fichier</translation>
+            <translation>اسم الملف</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>الحجم</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>État</translation>
+            <translation>الحالة</translation>
         </message>
         <message>
             <source>Time Left</source>
-            <translation>Temps restant</translation>
+            <translation>الوقت المتبقي</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation>Aucune file d'attente sélectionnée</translation>
+            <translation>لا يوجد طابور محدد</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation>Aucun fichier dans la file d'attente</translation>
+            <translation>لا توجد ملفات في الطابور</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation>Limites de téléchargement</translation>
+            <translation>حدود التنزيل</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation>Télécharger au maximum</translation>
+            <translation>تنزيل لا يزيد عن</translation>
         </message>
         <message>
             <source>MBytes</source>
-            <translation>Mo</translation>
+            <translation>ميغابايت</translation>
         </message>
         <message>
             <source>every</source>
-            <translation>toutes les</translation>
+            <translation>كل</translation>
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation>Afficher un avertissement avant d'arrêter les téléchargements</translation>
+            <translation>إظهار تحذير قبل إيقاف التنزيلات</translation>
         </message>
         <message>
             <source>Start now</source>
-            <translation>Démarrer maintenant</translation>
+            <translation>ابدأ الآن</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>إيقاف</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>تطبيق</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation>Entrez un nom pour la nouvelle file d'attente qui sera affiché dans la liste des files d'attente</translation>
+            <translation>أدخل اسماً للطابور الجديد الذي سيظهر في قائمة الطوابير</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation>Nom de la file d'attente</translation>
+            <translation>اسم الطابور</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>المجدول</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation>Nouvelle file d'attente</translation>
+            <translation>طابور جديد</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation>Sélectionner le fichier à ouvrir une fois terminé</translation>
+            <translation>تحديد ملف لفتحه عند الانتهاء</translation>
         </message>
     </context>
     <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation>Connexion</translation>
+            <translation>اتصال</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation>Téléchargements simultanés maximum :</translation>
+            <translation>الحد الأقصى للتنزيلات المتزامنة:</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation>Segments par téléchargement :</translation>
+            <translation>الأجزاء لكل تنزيل:</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation>Délai d'expiration de la connexion (secondes) :</translation>
+            <translation>مهلة الاتصال (بالثواني):</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation>Réessayer les téléchargements échoués :</translation>
+            <translation>إعادة محاولة التنزيلات الفاشلة:</translation>
         </message>
         <message>
             <source>times</source>
-            <translation>fois</translation>
+            <translation>مرات</translation>
         </message>
         <message>
             <source>User Agent</source>
-            <translation>Agent utilisateur</translation>
+            <translation>وكيل المستخدم</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation>Utiliser un agent utilisateur personnalisé</translation>
+            <translation>استخدام وكيل مستخدم مخصص</translation>
         </message>
         <message>
             <source>Proxy</source>
-            <translation>Proxy</translation>
+            <translation>وكيل</translation>
         </message>
         <message>
             <source>No proxy</source>
-            <translation>Aucun proxy</translation>
+            <translation>بدون وكيل</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation>Utiliser le proxy système</translation>
+            <translation>استخدام وكيل النظام</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation>Proxy HTTP / HTTPS</translation>
+            <translation>وكيل HTTP/HTTPS</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation>Proxy SOCKS5</translation>
+            <translation>وكيل SOCKS5</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation>Hôte :</translation>
+            <translation>المضيف:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation>Port :</translation>
+            <translation>المنفذ:</translation>
         </message>
         <message>
             <source>Username:</source>
-            <translation>Nom d'utilisateur :</translation>
+            <translation>اسم المستخدم:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation>Mot de passe :</translation>
+            <translation>كلمة المرور:</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>الفئات</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>الاسم</translation>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation>Enregistrer dans le dossier</translation>
+            <translation>حفظ في المجلد</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Téléchargements</translation>
+            <translation>التنزيلات</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation>Dossier de sauvegarde par défaut :</translation>
+            <translation>مجلد الحفظ الافتراضي:</translation>
         </message>
         <message>
             <source>Browse…</source>
-            <translation>Parcourir…</translation>
+            <translation>تصفح…</translation>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation>Dossier de sauvegarde personnalisé pour les torrents :</translation>
+            <translation>مجلد الحفظ المخصص للتورنت:</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation>Répertoire temporaire de Stellar :</translation>
+            <translation>دليل Stellar المؤقت:</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation>Démarrer le téléchargement immédiatement (ignorer la boîte de dialogue des informations du fichier)</translation>
+            <translation>بدء التنزيل فوراً (تخطي مربع معلومات الملف)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation>Afficher la boîte de dialogue de fin de téléchargement</translation>
+            <translation>إظهار مربع اكتمال التنزيل</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation>Démarrer le téléchargement immédiatement tout en affichant la boîte de dialogue &quot;Informations du fichier à télécharger&quot;</translation>
+            <translation>بدء التنزيل فوراً مع إظهار مربع &quot;معلومات ملف التنزيل&quot;</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation>Afficher la carte du swarm lors du téléchargement des métadonnées du torrent</translation>
+            <translation>إظهار خريطة السرب عند تنزيل بيانات التورنت</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de l'appui sur &quot;Télécharger plus tard&quot;</translation>
+            <translation>إظهار لوحة اختيار الطابور عند الضغط على &quot;التنزيل لاحقاً&quot;</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation>Afficher le panneau de sélection de la file d'attente lors de la fermeture de la boîte de dialogue des téléchargements par lot</translation>
+            <translation>إظهار لوحة اختيار قائمة الانتظار عند إغلاق مربع حوار التنزيلات المتعددة</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation>Si une URL en double est ajoutée :</translation>
+            <translation>عند إضافة عنوان URL مكرر:</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation>Double-clic sur un téléchargement dans la liste des fichiers :</translation>
+            <translation>النقر المزدوج على تنزيل في قائمة الملفات:</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation>Format de la date du dernier essai :</translation>
+            <translation>تنسيق تاريخ آخر محاولة:</translation>
         </message>
         <message>
             <source>Time format:</source>
-            <translation>Format de l'heure :</translation>
+            <translation>تنسيق الوقت:</translation>
         </message>
         <message>
             <source>Show seconds</source>
-            <translation>Afficher les secondes</translation>
+            <translation>إظهار الثواني</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Aperçu</translation>
+            <translation>معاينة</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Intégration du navigateur</translation>
+            <translation>تكامل المتصفح</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation>Démarrer automatiquement le téléchargement des types de fichiers suivants :</translation>
+            <translation>بدء التنزيل تلقائياً لأنواع الملفات التالية:</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation>Ne pas démarrer automatiquement le téléchargement depuis les sites suivants :</translation>
+            <translation>عدم بدء التنزيل تلقائياً من المواقع التالية:</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation>Exceptions d'adresse</translation>
+            <translation>استثناءات العناوين</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation>Ne pas démarrer les téléchargements depuis les adresses suivantes :</translation>
+            <translation>عدم بدء التنزيل من العناوين التالية:</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation>Contourner l'interception des téléchargements</translation>
+            <translation>تجاوز اعتراض التنزيل</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation>Maintenez cette touche enfoncée tout en cliquant sur un lien de téléchargement pour ignorer l'interception et permettre au navigateur de télécharger :</translation>
+            <translation>اضغط هذا المفتاح أثناء النقر على رابط التنزيل لتجاوز الاعتراض والسماح للمتصفح بالتنزيل:</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Limiteur de vitesse</translation>
+            <translation>محدد السرعة</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation>Activer la limite de vitesse globale</translation>
+            <translation>تفعيل حد السرعة العالمي</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation>Vitesse maximale :</translation>
+            <translation>السرعة القصوى:</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation>Ko/s</translation>
+            <translation>كيلوبايت/ثانية</translation>
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation>Activer la limite de téléchargement global</translation>
+            <translation>تفعيل حد الرفع العالمي</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation>Téléversement maximum :</translation>
+            <translation>الرفع الأقصى:</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation>Toujours activer le limiteur de vitesse au démarrage de Stellar</translation>
+            <translation>تفعيل حد السرعة عند بدء Stellar</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation>Activer le planificateur de limiteur de vitesse</translation>
+            <translation>تفعيل جدولة حد السرعة</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>Supprimer</translation>
+            <translation>إزالة</translation>
         </message>
         <message>
             <source>On</source>
-            <translation>Activé</translation>
+            <translation>مفعّل</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Téléchargement</translation>
+            <translation>تنزيل</translation>
         </message>
         <message>
             <source>Upload</source>
-            <translation>Téléversement</translation>
+            <translation>رفع</translation>
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation>+ Ajouter une règle</translation>
+            <translation>+ إضافة قاعدة</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation>Notifications</translation>
+            <translation>الإشعارات</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation>Afficher une notification lorsque le téléchargement est terminé</translation>
+            <translation>عرض إشعار عند اكتمال التنزيل</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation>Afficher une notification en cas d'erreur de téléchargement</translation>
+            <translation>عرض إشعار عند حدوث خطأ في التنزيل</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Général</translation>
+            <translation>عام</translation>
         </message>
         <message>
             <source>Browser</source>
-            <translation>Navigateur</translation>
+            <translation>المتصفح</translation>
         </message>
         <message>
             <source>Media</source>
-            <translation>Média</translation>
+            <translation>الوسائط</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation>التورنت</translation>
         </message>
         <message>
             <source>Language</source>
-            <translation>Langue</translation>
+            <translation>اللغة</translation>
         </message>
         <message>
             <source>About</source>
-            <translation>À propos</translation>
+            <translation>حول</translation>
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation>Lorsque le mode personnalisé est désactivé, Stellar utilise son User-Agent intégré avec la version actuelle.</translation>
+            <translation>عند إيقاف الوضع المخصص، يستخدم Stellar وكيل مستخدم مدمجًا مع الإصدار الحالي.</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation>Cette valeur sera envoyée exactement telle qu'entrée.</translation>
+            <translation>سيتم إرسال هذه القيمة كما أدخلتها بالضبط.</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation>Valeur par défaut intégrée affichée ci-dessus. Activez la case à cocher pour la modifier et la remplacer.</translation>
+            <translation>الافتراضي المدمج موضح أعلاه. فعّل مربع الاختيار لتحريره وتجاوزها.</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation>Optionnel</translation>
+            <translation>اختياري</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation>Tous les téléchargements, les téléchargements de vidéos, les vérifications de mises à jour et les connexions aux pairs/trackers de torrent sont acheminés via ce proxy.</translation>
+            <translation>جميع التنزيلات، وتنزيلات الفيديو، وفحوصات التحديث، واتصالات نظير/متتبع البت تورنت، يتم توجيهها عبر هذا الوكيل.</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation>Stellar utilisera le proxy configuré dans les paramètres réseau de votre système d'exploitation.</translation>
+            <translation>ستستخدم ستيلار الوكيل المُعدّل في إعدادات شبكة نظام التشغيل.</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation>Délai d'attente dépassé — le proxy n'a pas répondu</translation>
+            <translation>انتهت المهلة — لم يستجب الوكيل</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation>Test en cours…</translation>
+            <translation>جارٍ الاختبار…</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation>Tester le proxy</translation>
+            <translation>اختبار الوكيل</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation>⚠ Non présent dans la liste de téléchargement automatique du navigateur : %1</translation>
+            <translation>⚠ غير موجود في قائمة التنزيل التلقائي للمتصفح: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation>Parcourir</translation>
+            <translation>تصفح</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation>Ceci est le dossier torrent personnalisé mémorisé utilisé lorsque la boîte de dialogue des métadonnées du torrent est définie pour utiliser un dossier de sauvegarde personnalisé par défaut.</translation>
+            <translation>هذا هو مجلد البت تورنت المخصص المحفوظ، ويُستخدم عندما يكون مربع حوار بيانات البت تورنت مُعدّلاً لاستخدام مجلد حفظ مخصص كخيار افتراضي.</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation>Stellar stocke ici les parties de fichiers partiellement téléchargées et les métadonnées pendant le téléchargement et l'assemblage des fichiers.</translation>
+            <translation>تخزن ستيلار أجزاء الملفات التي تم تنزيلها جزئياً وبياناتها الوصفية هنا أثناء التنزيل وتجميع الملفات.</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation>Remarque : Ces paramètres ne s'appliquent pas au traitement de la file d'attente pour les paramètres « Télécharger immédiatement » et « Afficher la boîte de dialogue de téléchargement terminé ».</translation>
+            <translation>ملاحظة: لا تنطبق هذه الإعدادات على معالجة الطابور لإعداد &quot;بدء التنزيل فوراً&quot; وإعداد &quot;إظهار مربع حوار اكتمال التنزيل&quot;.</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation>Me demander quoi faire</translation>
+            <translation>اسألني عما يجب فعله</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
-            <translation>Ajouter avec un nom de fichier numéroté</translation>
+            <translation>إضافة باسم ملف مرقّم</translation>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation>Écraser le téléchargement existant</translation>
+            <translation>استبدال التنزيل الموجود</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation>Reprendre / afficher la boîte de dialogue de fin</translation>
+            <translation>استئناف / إظهار مربع حوار اكتمال</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation>Ouvrir la boîte de dialogue des propriétés du fichier</translation>
+            <translation>فتح مربع حوار خصائص الملف</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Ouvrir le fichier</translation>
+            <translation>فتح الملف</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Ouvrir le dossier</translation>
+            <translation>فتح المجلد</translation>
         </message>
         <message>
             <source>24-hour time</source>
-            <translation>Format 24 heures</translation>
+            <translation>وقت 24 ساعة</translation>
         </message>
         <message>
             <source>12-hour time</source>
-            <translation>Format 12 heures</translation>
+            <translation>وقت 12 ساعة</translation>
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation>Séparé par des espaces ou des virgules. Insensible à la casse.</translation>
+            <translation>مفصولة بمسافة أو فاصلة. غير حساسة لحالة الأحرف.</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation>Modèles d'hôtes séparés par des espaces. Jokers (*) pris en charge, ex. *.update.microsoft.com</translation>
+            <translation>أنماط مضيف مفصولة بمسافات. يدعم الرموز العامة (*), مثال: *.update.microsoft.com</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation>Afficher la boîte de dialogue pour ajouter une adresse à la liste des exceptions pour un téléchargement annulé deux fois</translation>
+            <translation>إظهار الحوار لإضافة عنوان إلى قائمة الاستثناءات لتحميل تم إلغاؤه مرتين</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation>Un motif d'URL par ligne. Les caractères génériques (*) sont pris en charge.</translation>
+            <translation>نمط URL واحد لكل سطر. يدعم الرموز العامة (*).</translation>
         </message>
         <message>
             <source>None</source>
-            <translation>Aucun</translation>
+            <translation>لا شيء</translation>
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation>Cliquez sur un jour pour le basculer. Les règles sont évaluées chaque minute ; la première règle correspondante l'emporte. Les limites de téléchargement et d'upload planifiées sont automatiquement effacées lorsqu'aucune règle n'est active.</translation>
+            <translation>انقر على يوم لتبديله. تُقيَّم القواعد كل دقيقة؛ أول قاعدة مطابقة هي الفائزة. تُصفَّر حدود التحميل والتحميل التلقائي عند عدم نشاط أي قاعدة.</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Réduire dans la zone de notification</translation>
+            <translation>تصغير إلى منطقة الإعلام</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation>Fermer dans la zone de notification</translation>
+            <translation>إغلاق إلى منطقة الإعلام</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation>Lancer Stellar au démarrage</translation>
+            <translation>تشغيل Stellar عند بدء التشغيل</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation>Afficher les astuces dans la barre inférieure</translation>
+            <translation>إظهار النصائح في الشريط السفلي</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation>Afficher le nombre de téléchargements terminés dans la barre d'état</translation>
+            <translation>إظهار عدد التحميلات المكتملة في شريط الحالة</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation>Utilitaires</translation>
+            <translation>أدوات</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation>Afficher la vitesse dans l'infobulle de l'icône de la zone de notification</translation>
+            <translation>إظهار السرعة في تلميح أيقونة منطقة الإعلام</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation>Afficher la vitesse dans la barre de titre</translation>
+            <translation>إظهار السرعة في شريط العنوان</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation>Afficher la vitesse dans la barre d'état</translation>
+            <translation>إظهار السرعة في شريط الحالة</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation>Afficher le nombre estimé d'utilisateurs en ligne dans la barre d'état</translation>
+            <translation>إظهار عدد المستخدمين المتصلين المقدر في شريط الحالة</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Utilise la densité des ID de nœuds DHT pour estimer le nombre global d'utilisateurs BitTorrent. La confiance augmente à mesure que davantage d'ID de nœuds uniques sont observés ; un * à la fin dans la barre d'état signifie que l'estimation est encore peu fiable.</translation>
+            <translation>يستخدم كثافة معرف عقدة DHT لتقدير مستخدمي BitTorrent العالميين. تزداد الثقة بملاحظة معرفات عقدة فريدة أكثر؛ يعني النجمة (*) في شريط الحالة أن التقدير لا يزال منخفض الثقة.</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation>Afficher le ratio dans la barre d'état</translation>
+            <translation>إظهار النسبة في شريط الحالة</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation>Afficher l'adresse IP publique dans la barre d'état</translation>
+            <translation>إظهار IP العام في شريط الحالة</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation>Détecte votre IP publique via libtorrent et votre type de connexion actif. Survolez l'indicateur pour voir le SSID/le signal WiFi ou les avertissements concernant les connexions entrantes.</translation>
+            <translation>يكشف IP العام الخاص بك عبر libtorrent ونوع اتصالك النشط. مرر المؤشر فوق المؤشر لرؤية SSID/إشارة WiFi أو تحذيرات حول الاتصالات الواردة.</translation>
         </message>
         <message>
             <source>Updates</source>
-            <translation>Mises à jour</translation>
+            <translation>التحديثات</translation>
         </message>
         <message>
             <source>Automatically check for updates</source>
-            <translation>Vérifier automatiquement les mises à jour</translation>
+            <translation>التحقق تلقائيًا من التحديثات</translation>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation>Surveillance du presse-papiers</translation>
+            <translation>مراقبة الحافظة</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation>Démarrer automatiquement le téléchargement des URL placées dans le presse-papiers</translation>
+            <translation>بدء التنزيل تلقائيًا للروابط في الحافظة</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation>Lorsqu'une URL correspondant à un type de fichier surveillé est copiée dans le presse-papiers, Stellar vous demandera si vous souhaitez la télécharger. Seuls les types de fichiers répertoriés sous Navigateur › Démarrer automatiquement le téléchargement des types de fichiers suivants sont pris en compte.</translation>
+            <translation>عند نسخ رابط لنوع ملف مُراقَب، سيطلب Stellar تأكيد التنزيل. يُكتفى فقط بأنواع الملفات المدرجة تحت المتصفح › بدء التنزيل تلقائيًا لأنواع الملفات التالية.</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation>Téléchargeur vidéo</translation>
+            <translation>مُنزِّل الفيديو</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation>Stellar utilise yt-dlp pour télécharger des vidéos depuis YouTube, Vimeo, Twitter/X, Instagram et des centaines d'autres sites. Lorsque vous collez une URL de vidéo dans Ajouter URL, un sélecteur de format apparaîtra.</translation>
+            <translation>يستخدم Stellar yt-dlp لتنزيل الفيديوهات من YouTube وVimeo وTwitter/X وInstagram ومئات المواقع الأخرى. عند لصق رابط فيديو في إضافة رابط، سيظهر مُختار الصيغة.</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation>Statut binaire</translation>
+            <translation>حالة الثنائي</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
-            <translation>Mettre à jour yt-dlp</translation>
+            <translation>تحديث yt-dlp</translation>
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation>Télécharger yt-dlp</translation>
+            <translation>تنزيل yt-dlp</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Re-check</source>
-            <translation>Vérifier à nouveau</translation>
+            <translation>إعادة التحقق</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation>État de ffmpeg</translation>
+            <translation>حالة ffmpeg</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation>ffmpeg trouvé : %1</translation>
+            <translation>تم العثور على ffmpeg: %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation>ffmpeg introuvable — les téléchargements HD seront limités aux formats pré-muxés (max ~480p)</translation>
+            <translation>لم يتم العثور على ffmpeg — ستُحدَّد تنزيلات HD بالصيغ المدمجة مسبقًا (بحد أقصى ~480p)</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation>Mise à jour de FFmpeg...</translation>
+            <translation>جارٍ تحديث FFmpeg...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation>Mettre à jour FFmpeg</translation>
+            <translation>تحديث FFmpeg</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation>Obtenir ffmpeg (gyan.dev)</translation>
+            <translation>الحصول على ffmpeg (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation>ffmpeg est requis pour fusionner les flux vidéo et audio séparés en MP4/MKV. Sans lui, les téléchargements YouTube basculent vers un seul flux pré-muxé (généralement WebM, max 480p).
+            <translation>مطلوب ffmpeg لدمج تدفقات الفيديو والصوت المنفصلة إلى MP4/MKV. بدونه، تعود تنزيلات YouTube إلى تدفق واحد مدمج مسبقًا (عادة WebM، بحد أقصى 480p).
 
-Pour corriger : téléchargez ffmpeg depuis gyan.dev/ffmpeg/builds (build Essentials), extrayez ffmpeg.exe du dossier bin/, et placez-le dans le même dossier que yt-dlp.exe. Puis cliquez sur Vérifier à nouveau ci-dessus.</translation>
+لإصلاح ذلك: حمّل ffmpeg من gyan.dev/ffmpeg/builds (الإصدار Essentials)، واستخرج ffmpeg.exe من مجلد bin/، وضعه في نفس مجلد yt-dlp.exe. ثم انقر إعادة التحقق أعلاه.</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation>Chemin du binaire personnalisé</translation>
+            <translation>مسار مخصص للثنائي</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation>Laissez vide pour utiliser le binaire intégré (recommandé). Définissez le chemin absolu de votre exécutable yt-dlp si vous souhaitez utiliser une version spécifique.</translation>
+            <translation>اتركه فارغًا لاستخدام الثنائي المرفق (موصى به). اضبطه على المسار المطلق لملف yt-dlp التنفيذي الخاص بك إذا أردت استخدام إصدار محدد.</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation>(auto - utiliser yt-dlp intégré ou système)</translation>
+            <translation>(تلقائي - استخدام yt-dlp المدمج أو النظام)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation>Moteur d'exécution JavaScript</translation>
+            <translation>بيئة تشغيل JavaScript</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation>%1 trouvé : %2</translation>
+            <translation>%1 وُجد: %2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation>Aucun environnement JS trouvé — résolution du n-challenge YouTube désactivée</translation>
+            <translation>لم يتم العثور على بيئة تشغيل JavaScript — تم تعطيل حل تحدي n لـ YouTube</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation>yt-dlp nécessite un environnement JavaScript externe pour résoudre le n-challenge de YouTube (limitation d'URL). Sans lui, les téléchargements YouTube peuvent échouer ou ne retourner que des formats storyboard de basse qualité.
+            <translation>يتطلب yt-dlp بيئة تشغيل JavaScript خارجية لحل تحدي n لـ YouTube (تقييد URL). بدونه، قد تفشل تنزيلات YouTube أو تُرجع فقط تنسيقات لوحة القصة منخفضة الجودة.
 
-Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ou QuickJS. Placez-le dans le même dossier que yt-dlp.exe ou ajoutez-le au PATH système, puis cliquez sur Vérifier à nouveau dans la section statut yt-dlp ci-dessus.</translation>
+ثبّت أحد: Deno (deno.com)، Node.js (nodejs.org)، Bun (bun.sh)، أو QuickJS. ضعه في نفس مجلد yt-dlp.exe أو أضفه إلى مسار النظام، ثم انقر على إعادة الفحص في قسم حالة yt-dlp أعلاه.</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation>Remplacer le chemin de l'environnement détecté automatiquement. Laissez vide pour utiliser la détection automatique (recherche dans le dossier yt-dlp, dossier de l'application et PATH système).</translation>
+            <translation>تجاوز مسار المكتشف تلقائياً. اتركه فارغاً للاستخدام التلقائي (يبحث في مجلد yt-dlp، مجلد التطبيق، ومسار النظام).</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation>(détection automatique depuis le PATH et le dossier yt-dlp)</translation>
+            <translation>(اكتشاف تلقائي من PATH ومجلد yt-dlp)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation>Mettre à jour automatiquement yt-dlp au démarrage</translation>
+            <translation>تحديث yt-dlp تلقائياً عند البدء</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation>Lorsqu'elle est activée, Stellar exécutera « yt-dlp -U » au démarrage pour maintenir le binaire à jour. Nécessite une connexion Internet active.</translation>
+            <translation>عند التمكين، سيشغل Stellar &quot;yt-dlp -U&quot; عند البدء للحفاظ على حداثة الثنائي. يتطلب اتصالاً نشطاً بالإنترنت.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation>Téléchargements par torrent</translation>
+            <translation>تنزيلات BitTorrent</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation>Activer le support BitTorrent</translation>
+            <translation>تمكين دعم BitTorrent</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation>BitTorrent — Avis juridique</translation>
+            <translation>BitTorrent — إشعار قانوني</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4030,255 +4028,255 @@ Installez l'un des suivants : Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Stellar est un programme de partage de fichiers. Lorsque vous téléchargez un torrent, votre adresse IP devient visible par les autres pairs du swarm et vous téléchargez simultanément (seed) des données vers les autres.
+            <translation>Stellar هو برنامج لمشاركة الملفات. عند تنزيل ملف torrent، يصبح عنوان IP الخاص بك مرئياً للأقران الآخرين في السرب وتقوم برفع (تغذية) البيانات للآخرين في نفس الوقت.
 
-Tout ce que vous partagez via BitTorrent relève de votre seule responsabilité. Assurez-vous d'avoir le droit de distribuer le contenu.
+أي شيء تشاركه عبر BitTorrent هو مسؤوليتك الوحيدة. تأكد من امتلاكك الحق في توزيع المحتوى.
 
-Il est fortement recommandé de lier Stellar à une interface réseau VPN et de vérifier que votre VPN est actif avant d'utiliser des torrents, afin de protéger votre adresse IP contre toute exposition.</translation>
+يُنصح بشدة بربط Stellar بواجهة شبكة VPN والتحقق من نشاط VPN قبل استخدام التورنت، لحماية عنوان IP الخاص بك من التعرض.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Je comprends, Activer</translation>
+            <translation>أفهم، تمكين</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation>Ces paramètres s'appliquent aux fichiers .torrent et aux liens magnétiques.</translation>
+            <translation>تنطبق هذه الإعدادات على ملفات .torrent وروابط magnet.</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation>Port d'écoute</translation>
+            <translation>منصة الاستماع</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation>Connexions maximales globales</translation>
+            <translation>الحد الأقصى العالمي للاتصالات</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation>Connexions maximales par torrent</translation>
+            <translation>الحد الأقصى للاتصالات لكل torrent</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation>Créneaux de téléchargement maximal global</translation>
+            <translation>الحد الأقصى العالمي لفتحات الرفع</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation>Créneaux de téléchargement maximal par torrent</translation>
+            <translation>الحد الأقصى لفتحات الرفع لكل torrent</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation>0 = illimité (champs par torrent et créneaux globaux de téléversement)</translation>
+            <translation>0 = غير محدود (حقول لكل تورنت وخانات رفع عالمية)</translation>
         </message>
         <message>
             <source>Protocol</source>
-            <translation>Protocole</translation>
+            <translation>البروتوكول</translation>
         </message>
         <message>
             <source>TCP and μTP</source>
-            <translation>TCP et μTP</translation>
+            <translation>TCP و μTP</translation>
         </message>
         <message>
             <source>μTP only</source>
-            <translation>Uniquement μTP</translation>
+            <translation>μTP فقط</translation>
         </message>
         <message>
             <source>TCP only</source>
-            <translation>TCP uniquement</translation>
+            <translation>TCP فقط</translation>
         </message>
         <message>
             <source>Port Test</source>
-            <translation>Test de port</translation>
+            <translation>اختبار المنفذ</translation>
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation>Vérifiez si votre port d'écoute de torrent actuel est accessible depuis l'internet public. Cela permet de confirmer si votre redirection de port VPN, la redirection de port sur votre routeur et les règles de pare-feu autorisent bien les connexions torrent entrantes.</translation>
+            <translation>اختبر ما إذا كان منفذ الاستماع للتورنت الخاص بك متاحًا من الإنترنت العام. يساعد هذا في تأكيد ما إذا كانت إعادة توجيه المنفذ في VPN، وإعادة التوجيه في الراوتر، وقواعد جدار الحماية تسمح بالاتصالات الواردة للتورنت.</translation>
         </message>
         <message>
             <source>Testing...</source>
-            <translation>Test en cours...</translation>
+            <translation>جارٍ الاختبار...</translation>
         </message>
         <message>
             <source>Test Port</source>
-            <translation>Tester le port</translation>
+            <translation>اختبار المنفذ</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation>Réseau</translation>
+            <translation>الشبكة</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>متقدم</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation>Agent utilisateur BitTorrent personnalisé</translation>
+            <translation>وكيل مستخدم مخصص لـ BitTorrent</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation>Lier à l'adaptateur réseau</translation>
+            <translation>التصاق بمحول الشبكة</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Cet adaptateur est verrouillé pour le trafic torrent. Si votre VPN se déconnecte ou si l'adaptateur disparaît, Stellar cesse d'utiliser la route par défaut et vos torrents perdent l'accès au réseau au lieu de fuiter sur une autre connexion.</translation>
+            <translation>هذا المحور مقفل لحركة التورنت. إذا انقطع اتصال VPN أو اختفى المحور، يتوقف Stellar عن استخدام المسار الافتراضي وتفقد التورنتات الوصول إلى الشبكة بدلاً من التسرب إلى اتصال آخر.</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Aucun lien d'adaptateur. Le trafic torrent suit la route système.</translation>
+            <translation>بدون التصاق بالمحول. تتبع حركة التورنت مسار النظام.</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>La liaison de l'adaptateur réseau indique à Stellar d'envoyer et de recevoir du trafic torrent uniquement via l'adaptateur sélectionné. Cela est particulièrement utile pour les utilisateurs de VPN car cela empêche les fuites de trafic accidentelles lorsque le VPN n'est pas connecté.</translation>
+            <translation>يخبر التصاق المحور Stellar بإرسال واستقبال حركة التورنت فقط عبر المحور المحدد. هذا مفيد جدًا لمستخدمي VPN لأنه يمنع التسرب العرضي للحركة عندما لا يكون VPN متصلاً.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
-            <translation>Sécurité du torrent</translation>
+            <translation>أمان التورنت</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation>Les bannissements manuels de pairs s'appliquent immédiatement. Les sous-chaînes d'agent utilisateur bloquées, les pays bloqués et les options de bannissement automatique s'appliquent lorsque vous cliquez sur Appliquer ou OK.</translation>
+            <translation>تطبق الحظر اليدوي للأقران فورًا. تُطبق سلاسل وكيل المستخدم المحظورة، والدول المحظورة، وخيارات الحظر التلقائي عند النقر على تطبيق أو موافق.</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation>Mode de chiffrement</translation>
+            <translation>وضع التشفير</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation>Préférer le chiffrement</translation>
+            <translation>تفضيل التشفير</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation>Exiger le chiffrement</translation>
+            <translation>تشفير إلزامي</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation>Autoriser le chiffrement</translation>
+            <translation>السماح بالتشفير</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation>User-Agents bloqués</translation>
+            <translation>وكلاء مستخدمون محظورون</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation>Une sous-chaîne par ligne. Si la chaîne du client pair contient l'une des lignes ci-dessus, Stellar bannit automatiquement ce pair jusqu'à ce que la ligne correspondante soit supprimée et que les paramètres soient appliqués.</translation>
+            <translation>تجزئة واحدة لكل سطر. إذا احتوى نص عميل النظير على أي سطر أعلاه، سيتم حظر Stellar للنظير تلقائيًا حتى يتم إزالة السطر المطابق وتطبيق الإعدادات.</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation>Bannir manuellement un pair</translation>
+            <translation>حظر النظير يدويًا</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation>Adresse IP, par exemple 203.0.113.42</translation>
+            <translation>عنوان IP، على سبيل المثال 203.0.113.42</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation>Bannir</translation>
+            <translation>حظر</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation>Les bannissements manuels sont permanents jusqu'à ce que vous les supprimiez de la liste des pairs bannis ci-dessous.</translation>
+            <translation>الحظر اليدوي دائم حتى تتم إزالته من قائمة النظراء المحظورين أدناه.</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation>Bloquer les pairs par pays</translation>
+            <translation>حظر النظراء حسب الدولة</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>Ajouter</translation>
+            <translation>إضافة</translation>
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation>Aucun pays bloqué.</translation>
+            <translation>لا توجد دول محظورة.</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation>Bannir automatiquement Xunlei, QQ, Baidu, Xfplay, DLBT et les téléchargeurs hors ligne</translation>
+            <translation>حظر تلقائي لـ Xunlei، QQ، Baidu، Xfplay، DLBT ومُحمّلات غير متصلة</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation>Bannir automatiquement les pairs des lecteurs multimédias BitTorrent</translation>
+            <translation>حظر تلقائي لنظراء مشغلات وسائط BitTorrent</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation>Paires bannies manuellement</translation>
+            <translation>نظراء محظورون يدويًا</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation>Débannir</translation>
+            <translation>إلغاء الحظر</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>نشط</translation>
         </message>
         <message>
             <source>No banned peers</source>
-            <translation>Aucune paire bannie</translation>
+            <translation>لا يوجد نظراء محظورون</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation>Base de données IP-vers-Ville</translation>
+            <translation>قاعدة بيانات IP إلى المدينة</translation>
         </message>
         <message>
             <source>Version</source>
-            <translation>Version</translation>
+            <translation>الإصدار</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>غير معروف</translation>
         </message>
         <message>
             <source>Path</source>
-            <translation>Chemin</translation>
+            <translation>المسار</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>الحجم</translation>
         </message>
         <message>
             <source>Entries</source>
-            <translation>Entrées</translation>
+            <translation>العناصر</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation>Dernière modification</translation>
+            <translation>آخر تعديل</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>Statut</translation>
+            <translation>الحالة</translation>
         </message>
         <message>
             <source>Downloading...</source>
-            <translation>Téléchargement en cours...</translation>
+            <translation>جارٍ التنزيل...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation>Mettre à jour la base de données IP-vers-Ville</translation>
+            <translation>تحديث قاعدة بيانات IP إلى المدينة</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation>Actualiser les informations</translation>
+            <translation>تحديث المعلومات</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>الإحصائيات</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation>Totaux cumulés des transferts sur tous les torrents, y compris ceux qui ont été supprimés.</translation>
+            <translation>إجمالي النقل عبر جميع التورنتات، بما في ذلك المحذوفة.</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>إجمالي التنزيل</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation>Total téléchargé</translation>
+            <translation>إجمالي الرفع</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation>Ratio de partage global</translation>
+            <translation>نسبة المشاركة طوال الوقت</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation>Les textes complets des licences se trouvent dans THIRD-PARTY-NOTICES.txt, inclus avec cette installation.</translation>
+            <translation>تتضمن نصوص الترخيص الكاملة في ملف THIRD-PARTY-NOTICES.txt، المرفق مع هذا التثبيت.</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4286,151 +4284,151 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation>Récupération des flux</translation>
+            <translation>جلب التغذية</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation>Activer la récupération des flux RSS</translation>
+            <translation>تمكين جلب تغذيات RSS</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation>Intervalle de rafraîchissement des flux</translation>
+            <translation>فترة تحديث التغذية</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>minutes</translation>
+            <translation>دقائق</translation>
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation>Délai de requête pour le même hôte</translation>
+            <translation>تأخير طلب المضيف نفسه</translation>
         </message>
         <message>
             <source>seconds</source>
-            <translation>secondes</translation>
+            <translation>ثوانٍ</translation>
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation>Nombre maximum d'articles par flux</translation>
+            <translation>أقصى عدد للمقالات</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation>Téléchargeur automatique de torrents</translation>
+            <translation>تحميل تلقائي للتورنت</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation>Activer le téléchargement automatique des torrents RSS</translation>
+            <translation>تفعيل التحميل التلقائي لتورنتات RSS</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation>Modifier les règles de téléchargement automatique...</translation>
+            <translation>تحرير قواعد التحميل التلقائي...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation>Filtre intelligent des épisodes</translation>
+            <translation>فلتر الحلقات الذكي</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation>Télécharger les épisodes REPACK/PROPER</translation>
+            <translation>تحميل حلقات REPACK/PROPER</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation>Motifs de détection des épisodes (un par ligne) :</translation>
+            <translation>أنماط اكتشاف الحلقات (واحدة لكل سطر):</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation>Associations</translation>
+            <translation>الروابط</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation>Configurer la récupération des flux RSS et les règles de téléchargement automatique de torrents.</translation>
+            <translation>تكوين جلب تغذية RSS وقواعد التحميل التلقائي للتورنت.</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation>Ces expressions régulières sont utilisées pour extraire les numéros de saison/épisode pour la détection intelligente des doublons.</translation>
+            <translation>تُستخدم هذه التعبيرات العادية لاستخراج أرقام الموسم/الحلقة للكشف عن التكرارات الذكية.</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation>Définir Stellar comme application par défaut pour les fichiers .torrent et les liens magnet. Sur Windows 10/11, cliquez sur le bouton puis confirmez le changement dans la page des applications par défaut de Windows qui s'ouvre.</translation>
+            <translation>اجعل Stellar التطبيق الافتراضي لملفات .torrent وروابط magnet. على Windows 10/11، انقر الزر ثم أكد التغيير في صفحة إعدادات التطبيقات الافتراضية في Windows.</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation>Fichiers .torrent</translation>
+            <translation>ملفات .torrent</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation>Géré actuellement par Stellar</translation>
+            <translation>تتولى Stellar التعامل معها حالياً</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation>Stellar n'est pas la valeur par défaut actuelle</translation>
+            <translation>Stellar ليس الافتراضي الحالي</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation>Définir .torrent par défaut</translation>
+            <translation>تعيين .torrent كافتراضي</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation>Actualiser l'état</translation>
+            <translation>تحديث الحالة</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation>liens magnet</translation>
+            <translation>روابط magnet:</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation>Définir Magnet par défaut</translation>
+            <translation>تعيين Magnet كافتراضي</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation>Si votre environnement de bureau remplace l'association au niveau de l'application, actualisez l'état après que le système a fini d'appliquer le changement.</translation>
+            <translation>إذا كان بيئة سطح المكتب تتجاوز ارتباط التطبيق، قم بتحديث الحالة بعد انتهاء النظام من تطبيق التغيير.</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>Langue de l'interface</translation>
+            <translation>لغة الواجهة</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>Sélectionnez la langue utilisée dans toute l'interface Stellar. Un redémarrage est nécessaire pour que tous les textes soient mis à jour.</translation>
+            <translation>اختر اللغة المستخدمة في واجهة Stellar. يلزم إعادة التشغيل لتحديث جميع النصوص.</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>اللغة:</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>Un redémarrage est requis après avoir changé la langue.</translation>
+            <translation>يلزم إعادة التشغيل بعد تغيير اللغة.</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation>Vérifier les mises à jour</translation>
+            <translation>التحقق من التحديثات</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation>Quoi de neuf</translation>
+            <translation>ما الجديد</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation>Date de compilation</translation>
+            <translation>تاريخ البناء</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation>Version de Qt</translation>
+            <translation>إصدار Qt</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation>Plateforme</translation>
+            <translation>المنصة</translation>
         </message>
         <message>
             <source>Windows</source>
-            <translation>Windows</translation>
+            <translation>ويندوز</translation>
         </message>
         <message>
             <source>Linux</source>
-            <translation>Linux</translation>
+            <translation>لينكس</translation>
         </message>
         <message>
             <source>macOS</source>
-            <translation>macOS</translation>
+            <translation>ماك أو إس</translation>
         </message>
         <message>
             <source>GNU GPL v3.0</source>
@@ -4438,416 +4436,415 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation>Stellar est un logiciel libre : vous pouvez le redistribuer et/ou le modifier selon les termes de la GNU General Public License, version 3.</translation>
+            <translation>Stellar برنامج مجاني: يمكنك إعادة توزيعه و/أو تعديله بموجب شروط الرخصة العامة العامة لـ GNU، الإصدار 3.</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation>Logiciels tiers</translation>
+            <translation>برامج الطرف الثالث</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>تطبيق</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Default route</source>
-            <translation>Route par défaut</translation>
+            <translation>المسار الافتراضي</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation>Laisser le système d'exploitation choisir l'adaptateur réseau actif.</translation>
+            <translation>دع نظام التشغيل يختبط محوّل الشبكة النشط.</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation>(Indisponible)</translation>
+            <translation>(غير متاح)</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation>Cet adaptateur n'est pas actuellement disponible. Reconnectez-le ou choisissez un autre adaptateur.</translation>
+            <translation>هذا المحوّل غير متاح حالياً. أعد توصيله أو اختر محوّلًا آخر.</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation>Bannissement manuel</translation>
+            <translation>حظر يدوي</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation>Trouver des pairs sans tracker en utilisant une table de hachage distribuée.</translation>
+            <translation>العثور على نظراء بدون متتبع باستخدام جدول تجزئة موزع.</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation>Découvrir des pairs sur votre réseau local sans passer par Internet.</translation>
+            <translation>اكتشاف نظراء على شبكتك المحلية دون المرور بالإنترنت.</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation>Ouvrir automatiquement un port sur votre routeur afin que les pairs puissent se connecter à vous.</translation>
+            <translation>فتح منفذ تلقائيًا على الراوتر لتمكين الاتصال بك.</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation>Comme UPnP mais pour les routeurs Apple - activez les deux et celui que votre routeur prendra en charge sera utilisé.</translation>
+            <translation>مثل UPnP لكن للراوترات من أبل - فعّل الاثنين ليتم استخدام ما يدعمه الراوتر.</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation>Partager les listes de pairs entre les pairs connectés afin de trouver plus de sources sans solliciter le tracker.</translation>
+            <translation>مشاركة قوائم النظراء بينهم لاكتشاف مصادر أكثر دون اللجوء للمتتبع.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation>Stellar est désormais l'application par défaut pour les fichiers .torrent.</translation>
+            <translation>Stellar هو الآن التطبيق الافتراضي لملفات .torrent.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation>Stellar est désormais l'application par défaut pour les liens magnet.</translation>
+            <translation>Stellar هو الآن التطبيق الافتراضي لروابط magnet.</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation>Par défaut : Stellar/%1</translation>
+            <translation>الافتراضي: Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation>Types de fichiers (séparés par des virgules, ex. mp4, mkv, avi)</translation>
+            <translation>أنواع الملفات (مفصولة بفواصل، مثل mp4, mkv, avi)</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation>Attribution automatique depuis les sites (séparés par des espaces, * joker)</translation>
+            <translation>تعيين تلقائي من المواقع (مفصولة بمسافات، * للكل)</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation>Les téléchargements depuis les sites correspondants seront automatiquement assignés à cette catégorie.</translation>
+            <translation>ستنتقل التنزيلات من المواقع المطابقة تلقائيًا إلى هذه الفئة.</translation>
         </message>
         <message>
             <source>Rule %1</source>
-            <translation>Règle %1</translation>
+            <translation>القاعدة %1</translation>
         </message>
         <message>
             <source>Not found</source>
-            <translation>Non trouvé</translation>
+            <translation>غير موجود</translation>
         </message>
         <message>
             <source>Loaded</source>
-            <translation>Chargé</translation>
+            <translation>محمّل</translation>
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation>Disponible mais non chargé</translation>
+            <translation>متاح لكن غير محمّل</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Source : %1</translation>
+            <translation>المصدر: %1</translation>
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>L'URL de la source n'est pas encore mise en cache. Utilisez Vérifier les mises à jour pour mettre en cache IPtoCityDB depuis update.json.</translation>
+            <translation>لم يتم تخزين عنوان URL للمصدر بعد. استخدم التحقق من التحديثات لتخزين IPtoCityDB من update.json.</translation>
         </message>
         <message>
             <source>Version %1</source>
-            <translation>Version %1</translation>
+            <translation>الإصدار %1</translation>
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation>Mise à jour disponible : %1</translation>
+            <translation>تحديث متاح: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation>Préférences de Stellar</translation>
+            <translation>تفضيلات ستيلار</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation>Sélectionner le binaire yt-dlp</translation>
+            <translation>تحديد ملف yt-dlp الثنائي</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation>Sélectionner le binaire du moteur JavaScript</translation>
+            <translation>تحديد ملف وقت تشغيل JavaScript الثنائي</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation>Modifier le projet</translation>
+            <translation>تعديل المشروع</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Supprimer le projet</translation>
+            <translation>حذف المشروع</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Catégories</translation>
+            <translation>الفئات</translation>
         </message>
         <message>
             <source>All Downloads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>جميع التنزيلات</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation>Inachevés</translation>
+            <translation>غير مكتمل</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation>Terminés</translation>
+            <translation>مكتمل</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation>Projets de récupération</translation>
+            <translation>مشاريع الجاذب</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>Torrents</translation>
+            <translation>التورنتات</translation>
         </message>
         <message>
             <source>Queues</source>
-            <translation>Files d'attente</translation>
+            <translation>طوابير الانتظار</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Téléchargement en cours</translation>
+            <translation>جارٍ التنزيل</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Partage en cours</translation>
+            <translation>جارٍ البذر</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>Arrêté</translation>
+            <translation>متوقف</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation>Actif</translation>
+            <translation>نشط</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Inactif</translation>
+            <translation>غير نشط</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Vérification</translation>
+            <translation>جارٍ الفحص</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Déplacement</translation>
+            <translation>جارٍ النقل</translation>
         </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation>Statistiques</translation>
+            <translation>الإحصائيات</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation>Statistiques Stellar</translation>
+            <translation>إحصائيات ستيلار</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation>TOUTE L'HISTORIQUE</translation>
+            <translation>دائماً</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Téléchargé</translation>
+            <translation>المحمول</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Téléversé</translation>
+            <translation>المُحمّل</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation>Taux de partage</translation>
+            <translation>نسبة المشاركة</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation>Temps de fonctionnement</translation>
+            <translation>وقت التشغيل</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation>Date d'installation</translation>
+            <translation>تاريخ التثبيت</translation>
         </message>
         <message>
             <source>Startups</source>
-            <translation>Démarrages</translation>
+            <translation>مرات البدء</translation>
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation>CETTE SESSION</translation>
+            <translation>هذه الجلسة</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
     </context>
     <context>
         <name>StatusBar</name>
         <message>
             <source>🟦 1 active</source>
-            <translation>🟦 1 actif</translation>
+            <translation>🟦 نشط واحد</translation>
         </message>
         <message>
             <source>🟦 %1 active</source>
-            <translation>🟦 %1 actifs</translation>
+            <translation>🟦 %1 نشط</translation>
         </message>
         <message>
             <source>📄 1 download</source>
-            <translation>📄 1 téléchargement</translation>
+            <translation>📄 تحميل واحد</translation>
         </message>
         <message>
             <source>📄 %1 downloads</source>
-            <translation>📄 %1 téléchargements</translation>
+            <translation>📄 %1 تحميلات</translation>
         </message>
         <message>
             <source>🟨 1 error</source>
-            <translation>🟨 1 erreur</translation>
+            <translation>🟨 خطأ واحد</translation>
         </message>
         <message>
             <source>🟨 %1 errors</source>
-            <translation>🟨 %1 erreurs</translation>
+            <translation>🟨 %1 أخطاء</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation>🌐 Proxy activé</translation>
+            <translation>🌐 الوكيل مفعّل</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation>📡 Vérification des mises à jour</translation>
+            <translation>📡 التحقق من التحديثات</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation>🛑 Limiteur de vitesse</translation>
+            <translation>🛑 مُقيّد السرعة</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
-            <translation>🟩 Prêt</translation>
+            <translation>🟩 جاهز</translation>
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation>🔍 1 sélectionné</translation>
+            <translation>🔍 محدد واحد</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation>🔍 %1 sélectionnés</translation>
+            <translation>🔍 %1 محدد</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation>🔴 DHT désactivé</translation>
+            <translation>🔴 DHT معطّل</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation>en ligne (faible confiance)</translation>
+            <translation>متصل (ثقة منخفضة)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation>en ligne</translation>
+            <translation>متصل</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 La file d'attente s'exécute dans 1 minute</translation>
+            <translation>🟧 القائمة ستعمل بعد دقيقة</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 La file d'attente s'exécute dans %1 minutes</translation>
+            <translation>🟧 القائمة ستعمل بعد %1 دقائق</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Estimation… (%1%)</translation>
+            <translation>🟡 جارٍ التقييم… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation>Suivant &gt;&gt;</translation>
+            <translation>التالي &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation>Taux de partage de tout le temps
-Cliquez pour ouvrir les statistiques</translation>
+            <translation>نسبة المشاركة طوال الوقت</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation>Cliquez pour copier l'IP</translation>
+            <translation>انقر لفتح الإحصائيات</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation>IP publique :</translation>
+            <translation>انقر لنسخ عنوان IP</translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation>Connexion : Ethernet</translation>
+            <translation>عنوان IP العام: </translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation>WiFi :</translation>
+            <translation>الاتصال: إيثرنت</translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation>Signal :</translation>
+            <translation>واي فاي: </translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>Port d'écoute :</translation>
+            <translation>الإشارة: </translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>Aucune connexion entrante, le réseau est peut-être mal configuré</translation>
+            <translation>منفذ الاستماع: </translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Gestionnaire de téléchargement Stellar</translation>
+            <translation>لا توجد اتصالات واردة، قد يكون الشبكة مضبوطة بشكل خاطئ</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Téléchargements SDM</translation>
+            <translation>مدير التنزيلات ستيلار</translation>
         </message>
     </context>
     <context>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation>Ajouter l'URL</translation>
+            <translation>إضافة عنوان URL</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>Reprendre</translation>
+            <translation>استئناف</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Arrêter</translation>
+            <translation>إيقاف</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>Tout arrêter</translation>
+            <translation>إيقاف الكل</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>Supprimer</translation>
+            <translation>حذف</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>Supprimer terminé</translation>
+            <translation>حذف المكتمل</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>Options</translation>
+            <translation>خيارات</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Planificateur</translation>
+            <translation>المجدول</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Démarrer la file d'attente</translation>
+            <translation>بدء قائمة الانتظار</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Arrêter la file d'attente</translation>
+            <translation>إيقاف قائمة الانتظار</translation>
         </message>
         <message>
             <source>Grabber</source>
-            <translation>Grabber</translation>
+            <translation>الماسح</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation>Moteur de recherche</translation>
+            <translation>محرك البحث</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4858,386 +4855,386 @@ Cliquez pour ouvrir les statistiques</translation>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation>Dupliquer le torrent</translation>
+            <translation>تكرار التورنت</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation>Le torrent existe déjà</translation>
+            <translation>التورنت موجود بالفعل</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation>Ce torrent est déjà dans votre liste. %n nouveau(s) tracker(s) trouvé(s).</translation>
+            <translation>هذا التورنت موجود بالفعل في قائمتك. تم العثور على %n متتبع(ات) جديد(ة).</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation>Ce torrent est déjà dans votre liste avec les mêmes trackers.</translation>
+            <translation>هذا التورنت موجود بالفعل في قائمتك بنفس المتتبعات.</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation>%n nouveau(s) tracker(s)</translation>
+            <translation>%n متتبع(ات) جديد(ة)</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation>… et %1 autre(s)</translation>
+            <translation>و%1 آخر(ة)</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation>Ignorer</translation>
+            <translation>تجاهل</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation>Fusionner les trackers</translation>
+            <translation>دمج المتتبعات</translation>
         </message>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation>Enregistrer dans</translation>
+            <translation>حفظ في</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation>Enregistrer sous...</translation>
+            <translation>حفظ باسم...</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Catégorie</translation>
+            <translation>الفئة</translation>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation>Dossier de sauvegarde personnalisé</translation>
+            <translation>مجلد حفظ مخصص</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation>Se souvenir</translation>
+            <translation>تذكر</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation>Utiliser le dossier de catégorie</translation>
+            <translation>استخدام مجلد الفئة</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>الوصف</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>Paramètres du torrent...</translation>
+            <translation>إعدادات التورنت...</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Télécharger plus tard</translation>
+            <translation>التحميل لاحقاً</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>تحميل</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation>Ouverture du torrent...</translation>
+            <translation>جاري فتح التورنت...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation>RTT %1 %2 % terminés</translation>
+            <translation>RTT %1  %2% مكتمل</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fichiers</translation>
+            <translation>الملفات</translation>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation>%n élément(s)</translation>
+            <translation>%n عنصر</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>الاسم</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>Progression</translation>
+            <translation>التقدم</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>الحجم</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>Aucune information de fichier disponible</translation>
+            <translation>لا توجد معلومات عن الملف</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>En attente</translation>
+            <translation>قيد الانتظار</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Renommer l'élément</translation>
+            <translation>إعادة تسمية العنصر</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Entrez un nouveau nom de fichier ou de dossier :</translation>
+            <translation>أدخل اسماً جديداً للملف أو المجلد:</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Renommer</translation>
+            <translation>إعادة تسمية</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Renommer...</translation>
+            <translation>إعادة تسمية...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Pair</translation>
+            <translation>نظير</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation>Ouverture du torrent et lecture des métadonnées...</translation>
+            <translation>جاري فتح التورنت وقراءة البيانات الوصفية...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation>Recherche de pairs pour télécharger les métadonnées...</translation>
+            <translation>البحث عن نظراء لتحميل البيانات الوصفية...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation>Téléchargement des métadonnées depuis %n pair(s)</translation>
+            <translation>تحميل البيانات الوصفية من %n نظير/نظراء</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Seed</translation>
+            <translation>مُصدر</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Vous</translation>
+            <translation>أنت</translation>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation>Métadonnées du torrent</translation>
+            <translation>بيانات التورنت الوصفية</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation>Installer un nouveau plugin de recherche</translation>
+            <translation>تثبيت إضافة بحث جديدة</translation>
         </message>
         <message>
             <source>Local File</source>
-            <translation>Fichier local</translation>
+            <translation>ملف محلي</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation>Lien Web</translation>
+            <translation>رابط ويب</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>موافق</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation>Choisissez un fichier de plugin de recherche local .py à copier dans le dossier search_plugins.</translation>
+            <translation>اختر ملف إضافة بحث .py محلياً لنسخه إلى مجلد search_plugins.</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation>Collez une URL directe vers un fichier de plugin .py.</translation>
+            <translation>الصق رابطاً مباشراً لملف إضافة .py.</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation>Installer un plugin de recherche</translation>
+            <translation>تثبيت إضافة البحث</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation>Désactiver le plugin</translation>
+            <translation>تعطيل الإضافة</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation>Activer le plugin</translation>
+            <translation>تفعيل الإضافة</translation>
         </message>
         <message>
             <source>Uninstall</source>
-            <translation>Désinstaller</translation>
+            <translation>إلغاء التثبيت</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation>Plugins de recherche installés</translation>
+            <translation>إضافات البحث المثبتة</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Actualiser</translation>
+            <translation>تحديث</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>غير معروف</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>Activé</translation>
+            <translation>مفعّل</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation>Désactivé</translation>
+            <translation>معطّل</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation>Installer un nouveau</translation>
+            <translation>تثبيت واحد جديد</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>إضافات البحث</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
         <message>
             <source>Name</source>
-            <translation>Nom</translation>
+            <translation>الاسم</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Taille</translation>
+            <translation>الحجم</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>المُغذّون</translation>
         </message>
         <message>
             <source>Leechers</source>
-            <translation>Leechers</translation>
+            <translation>المُحمّلون</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation>Moteur</translation>
+            <translation>المحرك</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation>Publié le</translation>
+            <translation>نُشر في</translation>
         </message>
         <message>
             <source>Open Description Page</source>
-            <translation>Ouvrir la page de description</translation>
+            <translation>فتح صفحة الوصف</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>Télécharger le torrent</translation>
+            <translation>تحميل التورنت</translation>
         </message>
         <message>
             <source>Copy Name</source>
-            <translation>Copier le nom</translation>
+            <translation>نسخ الاسم</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Copier le lien Magnet</translation>
+            <translation>نسخ رابط Magnet</translation>
         </message>
         <message>
             <source>Copy Description Page URL</source>
-            <translation>Copier l'URL de la page de description</translation>
+            <translation>نسخ عنوان صفحة الوصف</translation>
         </message>
         <message>
             <source>Searching...</source>
-            <translation>Recherche en cours...</translation>
+            <translation>جارٍ البحث...</translation>
         </message>
         <message>
             <source>Search</source>
-            <translation>Rechercher</translation>
+            <translation>بحث</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Inconnu</translation>
+            <translation>غير معروف</translation>
         </message>
         <message>
             <source>No search results yet</source>
-            <translation>Aucun résultat de recherche pour le moment</translation>
+            <translation>لا توجد نتائج بحث بعد</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Plugins de recherche</translation>
+            <translation>إضافات البحث</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation>Moteur de recherche de torrents</translation>
+            <translation>محرك بحث التورنت</translation>
         </message>
     </context>
     <context>
         <name>TorrentSpeedLimitDialog</name>
         <message>
             <source>Torrent Settings</source>
-            <translation>Paramètres du torrent</translation>
+            <translation>إعدادات التورنت</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Vitesse par torrent, limites de partage, découverte des pairs et mode de téléchargement</translation>
+            <translation>السرعة، حدود المشاركة، اكتشاف الأقران، ووضع التحميل لكل تورنت</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>Fermer</translation>
+            <translation>إغلاق</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Appliquer</translation>
+            <translation>تطبيق</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>LIMITES DE BANDE PASSANTE</translation>
+            <translation>حدود النطاق الترددي</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>Téléchargement :</translation>
+            <translation>التحميل:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Envoi :</translation>
+            <translation>الرفع:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>LIMITES DE PARTAGE</translation>
+            <translation>حدود المشاركة</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio :</translation>
+            <translation>النسبة:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Par défaut</translation>
+            <translation>افتراضي</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Illimité</translation>
+            <translation>غير محدود</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation>Définir à</translation>
+            <translation>تعيين إلى</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Durée de partage :</translation>
+            <translation>وقت البث:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>دقيقة</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>Durée d'inactivité :</translation>
+            <translation>وقت عدم النشاط:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>DÉCOUVERTE DES PAIRS</translation>
+            <translation>اكتشاف الأقران</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -5245,7 +5242,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Table de hachage distribuée</translation>
+            <translation>جدول التجزئة الموزع</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -5253,7 +5250,7 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Échange de pairs</translation>
+            <translation>تبادل الأقران</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -5261,195 +5258,195 @@ Cliquez pour ouvrir les statistiques</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Découverte locale de services</translation>
+            <translation>اكتشاف الخدمة المحلية</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation>🔒 Torrent privé</translation>
+            <translation>🔒 تورنت خاص</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>DHT et PeX désactivés par libtorrent.</translation>
+            <translation>تم تعطيل DHT وPeX بواسطة libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>MODE DE TÉLÉCHARGEMENT</translation>
+            <translation>وضع التنزيل</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Téléchargement séquentiel</translation>
+            <translation>تنزيل تسلسلي</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Morceaux téléchargés dans l'ordre (morceau 0 → dernier)</translation>
+            <translation>تنزيل القطع بالترتيب (القطعة 0 → الأخيرة)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Prioriser le premier et le dernier morceau</translation>
+            <translation>إعطاء الأولوية للقطع الأولى والأخيرة</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Précharge l'en-tête/pied de page pour la lecture anticipée</translation>
+            <translation>تحميل الرأس/الذيل للتشغيل المبكر</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>Récupération des formats disponibles…</translation>
+            <translation>جاري جلب الصيغ المتاحة…</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>تعذر جلب معلومات الفيديو</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>Échec de la résolution du défi n-challenge de YouTube</translation>
+            <translation>فشل حل تحدي YouTube</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>Récupération des informations vidéo…</translation>
+            <translation>جاري جلب معلومات الفيديو…</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>Impossible de récupérer les informations vidéo</translation>
+            <translation>تعذر جلب معلومات الفيديو</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>yt-dlp nécessite un environnement d'exécution JavaScript (Deno, Node.js, Bun ou QuickJS) pour contourner le défi de limitation d'URL de YouTube. Installez-en un et placez-le à côté de yt-dlp.exe ou dans votre PATH système.</translation>
+            <translation>يتطلب yt-dlp بيئة تشغيل JavaScript (Deno أو Node.js أو Bun أو QuickJS) لتجاوز تحدي تحديد معدل URL في YouTube. قم بتثبيت واحدة وضعها بجانب yt-dlp.exe أو في مسار النظام.</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>Aucun environnement d'exécution détecté. Installez Deno (recommandé) depuis deno.com, puis revérifiez dans Paramètres → Téléchargeur vidéo.</translation>
+            <translation>لم يتم اكتشاف بيئة تشغيل. قم بتثبيت Deno (موصى به) من deno.com، ثم أعد التحقق في الإعدادات → مُنزِّل الفيديو.</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>Environnement d'exécution détecté : %1 (%2)</translation>
+            <translation>بيئة التشغيل المكتشفة: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation>Obtenir Deno</translation>
+            <translation>احصل على Deno</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation>Ouvrir les paramètres</translation>
+            <translation>افتح الإعدادات</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies du navigateur :</translation>
+            <translation>ملفات تعريف الارتباط من المتصفح:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation>Sélectionnez un navigateur pour transmettre ses cookies à yt-dlp, puis réessayez.</translation>
+            <translation>حدد متصفحًا لنقل ملفات تعريف الارتباط الخاصة به إلى yt-dlp، ثم أعد المحاولة.</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation>Réessayer</translation>
+            <translation>أعد المحاولة</translation>
         </message>
         <message>
             <source>Select quality:</source>
-            <translation>Sélectionner la qualité :</translation>
+            <translation>حدد الجودة:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation>Taille indisponible — cette qualité utilise des flux vidéo et audio séparés fusionnés par ffmpeg après le téléchargement.</translation>
+            <translation>الحجم غير متاح — تستخدم هذه الجودة تدفقات فيديو وصوت منفصلة يتم دمجها بواسطة ffmpeg بعد التنزيل.</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation>Chaîne / Playlist</translation>
+            <translation>القناة / قائمة التشغيل</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation>Toutes les vidéos</translation>
+            <translation>جميع الفيديوهات</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation>Les plus récentes</translation>
+            <translation>الأحدث</translation>
         </message>
         <message>
             <source>videos</source>
-            <translation>vidéos</translation>
+            <translation>فيديوهات</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation>Les URL de chaînes YouTube incluent par défaut tous les téléchargements. Utilisez Portée pour cibler un seul onglet.</translation>
+            <translation>تتضمن عناوين URL لقنوات YouTube جميع التحميلات الافتراضية. استخدم النطاق لاستهداف علامة تبويب واحدة.</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation>Les vidéos seront enregistrées dans un sous-dossier nommé d'après la chaîne.</translation>
+            <translation>سيتم حفظ الفيديوهات في مجلد فرعي يحمل اسم القناة.</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation>Portée :</translation>
+            <translation>النطاق:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation>Tous les téléchargements</translation>
+            <translation>جميع التحميلات</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation>Vidéos</translation>
+            <translation>فيديوهات</translation>
         </message>
         <message>
             <source>Shorts</source>
-            <translation>Shorts</translation>
+            <translation>شورتس</translation>
         </message>
         <message>
             <source>Live</source>
-            <translation>En direct</translation>
+            <translation>بث مباشر</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation>Sous-titres</translation>
+            <translation>الترجمات</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation>Télécharger les fichiers de sous-titres avec la vidéo</translation>
+            <translation>تحميل ملفات الترجمة مع الفيديو</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Langue :</translation>
+            <translation>اللغة:</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation>Code(s) de langue, ex. en · en.*,ja · tous</translation>
+            <translation>رموز اللغات، مثلاً en  ·  en.*,ja  ·  الكل</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation>Généré automatiquement</translation>
+            <translation>توليد تلقائي</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation>Inclure les sous-titres générés automatiquement si disponibles</translation>
+            <translation>تضمين التسميات التوليدية عند توفرها</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation>Intégrer dans la vidéo</translation>
+            <translation>تضمين في الفيديو</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation>Intégrer les sous-titres dans le conteneur vidéo</translation>
+            <translation>تضمين الترجمة في حاوية الفيديو</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation>L'intégration nécessite mp4, mkv ou webm</translation>
+            <translation>يتطلب تضمين mp4 أو mkv أو webm</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation>Intégrer la vignette</translation>
+            <translation>تضمين الصورة المصغرة</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation>Intégrer la miniature de couverture dans le fichier vidéo (nécessite ffmpeg)</translation>
+            <translation>تضمين صورة الغلاف في ملف الفيديو (يتطلب ffmpeg)</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation>Intégrer les métadonnées</translation>
+            <translation>تضمين البيانات الوصفية</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation>Écrire le titre, l'uploadé, les chapitres, etc. dans les métadonnées du conteneur</translation>
+            <translation>كتابة العنوان، الناشر، الفصول إلخ في بيانات الحاوية</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
@@ -5458,132 +5455,132 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation>Supprimer les segments sponsorisés, les génériques d'ouverture et de fermeture, ainsi que l'auto-promotion
-(Uniquement YouTube · nécessite ffmpeg)</translation>
+            <translation>إزالة مقاطع الرعاية، المقدمة، الخاتمة والترويج الذاتي
+(يوتيوب فقط · يتطلب ffmpeg)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation>Ko/s (vide = utiliser la limite de vitesse globale)</translation>
+            <translation>كيلوبايت/ثانية  (فارغ = استخدام حد السرعة العام)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation>Télécharger la chaîne</translation>
+            <translation>قناة التنزيل</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Télécharger</translation>
+            <translation>تنزيل</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Avancé</translation>
+            <translation>متقدم</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation>filtre par date</translation>
+            <translation>تصفية بالتاريخ</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation>cookies</translation>
+            <translation>ملفات تعريف الارتباط</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation>archive</translation>
+            <translation>أرشيف</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation>diviser les chapitres</translation>
+            <translation>تقسيم الفصول</translation>
         </message>
         <message>
             <source>time range</source>
-            <translation>plage horaire</translation>
+            <translation>نطاق زمني</translation>
         </message>
         <message>
             <source>extra files</source>
-            <translation>fichiers supplémentaires</translation>
+            <translation>ملفات إضافية</translation>
         </message>
         <message>
             <source>random</source>
-            <translation>aléatoire</translation>
+            <translation>عشوائي</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation>début en direct</translation>
+            <translation>بداية البث المباشر</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation>limite de débit</translation>
+            <translation>حد المعدل</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation>Date après :</translation>
+            <translation>بعد التاريخ:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation>Seulement les vidéos téléchargées à partir de cette date</translation>
+            <translation>الفيديوهات المرفوعة في هذا التاريخ أو بعده فقط</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation>Cookies :</translation>
+            <translation>ملفات تعريف الارتباط:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation>Charger les cookies pour le contenu réservé aux membres / restreint par l'âge</translation>
+            <translation>تحميل ملفات تعريف الارتباط للمحتوى الحصري للأعضاء / المقيد بالعمر</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation>Limite de débit :</translation>
+            <translation>حد المعدل:</translation>
         </message>
         <message>
             <source>Time range:</source>
-            <translation>Plage horaire :</translation>
+            <translation>النطاق الزمني:</translation>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
-            <translation>Télécharger uniquement cette section, ex. *01:30-03:00</translation>
+            <translation>تنزيل هذا القسم فقط، مثال: *01:30-03:00</translation>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation>Ignorer les fichiers déjà téléchargés</translation>
+            <translation>تخطي ما تم تنزيله بالفعل</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation>Diviser par chapitres</translation>
+            <translation>تقسيم حسب الفصول</translation>
         </message>
         <message>
             <source>Save description</source>
-            <translation>Enregistrer la description</translation>
+            <translation>حفظ الوصف</translation>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation>Enregistrer la miniature</translation>
+            <translation>حفظ الصورة المصغرة</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation>Mélanger la playlist</translation>
+            <translation>خلط قائمة التشغيل</translation>
         </message>
         <message>
             <source>Live: from start</source>
-            <translation>En direct : depuis le début</translation>
+            <translation>بث مباشر: من البداية</translation>
         </message>
         <message>
             <source>Save to:</source>
-            <translation>Enregistrer dans :</translation>
+            <translation>حفظ في:</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Catégorie :</translation>
+            <translation>الفئة:</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation>Format :</translation>
+            <translation>الصيغة:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Annuler</translation>
+            <translation>إلغاء</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation>Téléchargement vidéo</translation>
+            <translation>تنزيل الفيديو</translation>
         </message>
     </context>
 </TS>
