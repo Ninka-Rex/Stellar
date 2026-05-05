@@ -104,7 +104,7 @@ Window {
                     font.bold: true
                 }
                 Text {
-                    text: item ? qsTr("Downloaded %1 (%2 Bytes)").arg(root.fmtBytes(item.totalBytes)).arg(item.totalBytes || 0) : ""
+                    text: item ? qsTr("Downloaded %1 (%2 Bytes)").arg(root.fmtBytes(item.totalBytes)).arg((item.totalBytes || 0).toLocaleString(Qt.locale("en_US"), "f", 0)) : ""
                     color: "#aaaaaa"
                     font.pixelSize: 11
                 }
