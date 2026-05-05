@@ -26,100 +26,6 @@
 #include <QRegularExpression>
 #include <QStringList>
 
-namespace {
-
-QString builtInEnglishLabelForId(const QString &id)
-{
-    if (id == QStringLiteral("all"))
-        return QStringLiteral("All Downloads");
-    if (id == QStringLiteral("video"))
-        return QStringLiteral("Video");
-    if (id == QStringLiteral("music"))
-        return QStringLiteral("Music");
-    if (id == QStringLiteral("documents"))
-        return QStringLiteral("Documents");
-    if (id == QStringLiteral("compressed"))
-        return QStringLiteral("Compressed");
-    if (id == QStringLiteral("programs"))
-        return QStringLiteral("Programs");
-    return {};
-}
-
-QStringList builtInKnownDefaultLabelsForId(const QString &id)
-{
-    if (id == QStringLiteral("all")) {
-        return {
-            QStringLiteral("All Downloads"),
-            QStringLiteral("Tous les téléchargements"),
-            QStringLiteral("Todas las descargas"),
-            QStringLiteral("Усі завантаження")
-        };
-    }
-    if (id == QStringLiteral("video")) {
-        return {
-            QStringLiteral("Video"),
-            QStringLiteral("Vidéo"),
-            QStringLiteral("Vídeo"),
-            QStringLiteral("Відео")
-        };
-    }
-    if (id == QStringLiteral("music")) {
-        return {
-            QStringLiteral("Music"),
-            QStringLiteral("Musique"),
-            QStringLiteral("Musica"),
-            QStringLiteral("Музика")
-        };
-    }
-    if (id == QStringLiteral("documents")) {
-        return {
-            QStringLiteral("Documents"),
-            QStringLiteral("Documentos"),
-            QStringLiteral("Документи")
-        };
-    }
-    if (id == QStringLiteral("compressed")) {
-        return {
-            QStringLiteral("Compressed"),
-            QStringLiteral("Archives"),
-            QStringLiteral("Comprimidos"),
-            QStringLiteral("Архіви")
-        };
-    }
-    if (id == QStringLiteral("programs")) {
-        return {
-            QStringLiteral("Programs"),
-            QStringLiteral("Programmes"),
-            QStringLiteral("Programas"),
-            QStringLiteral("Програми")
-        };
-    }
-    return {};
-}
-
-bool shouldPreserveSavedBuiltInLabel(const QString &id, const QString &savedLabel)
-{
-    const QString trimmed = savedLabel.trimmed();
-    if (trimmed.isEmpty())
-        return false;
-
-    const QStringList knownDefaults = builtInKnownDefaultLabelsForId(id);
-    if (knownDefaults.isEmpty())
-        return true;
-
-    // Old installs persisted built-in labels in whatever UI language was active
-    // at the time. Treat any known built-in default label as locale-derived
-    // state, not a user customization, so the current translator can supply the
-    // right label for this session.
-    for (const QString &knownDefault : knownDefaults) {
-        if (trimmed.compare(knownDefault, Qt::CaseInsensitive) == 0)
-            return false;
-    }
-    return true;
-}
-
-} // namespace
-
 CategoryModel::CategoryModel(QObject *parent) : QAbstractListModel(parent) {
     m_downloadsBase = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
     initDefaults();
@@ -190,13 +96,9 @@ void CategoryModel::loadFromDisk() {
         }
 
         if (defaultIdx >= 0) {
-            // Take the built-in entry and apply any saved field overrides
+            // Take the built-in entry (label always comes from tr(), never from disk)
+            // and apply any saved field overrides for non-label fields.
             Category cat = m_categories[defaultIdx];
-            if (obj.contains(QStringLiteral("label"))) {
-                const QString savedLabel = obj[QStringLiteral("label")].toString();
-                if (shouldPreserveSavedBuiltInLabel(cat.id, savedLabel))
-                    cat.label = savedLabel;
-            }
             if (obj.contains(QStringLiteral("extensions"))) {
                 QStringList exts;
                 for (const auto &e : obj[QStringLiteral("extensions")].toArray()) exts << e.toString();
@@ -238,7 +140,10 @@ void CategoryModel::saveToDisk() const {
         // Save all categories (built-in overrides + user categories)
         QJsonObject obj;
         obj[QStringLiteral("id")] = cat.id;
-        obj[QStringLiteral("label")] = cat.label;
+        // Built-in labels come from tr() at runtime — don't persist them so
+        // language changes take effect immediately without needing a known-translations list.
+        if (!cat.builtIn)
+            obj[QStringLiteral("label")] = cat.label;
         obj[QStringLiteral("builtIn")] = cat.builtIn;
         obj[QStringLiteral("savePath")] = cat.defaultSavePath;
 
