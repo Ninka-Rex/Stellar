@@ -121,9 +121,9 @@ Window {
             minimumHeight = 360
             height = 520
         } else {
-            minimumHeight = 240
-            maximumHeight = 270
-            height = 270
+            maximumHeight = 16777215
+            minimumHeight = 280
+            height = 320
         }
     }
 
