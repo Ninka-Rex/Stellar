@@ -147,7 +147,7 @@ SegmentedTransfer::SegmentedTransfer(DownloadItem *item,
     : QObject(parent), m_item(item), m_nam(nam), m_segmentCount(segments)
 {
     m_progressTimer = new QTimer(this);
-    m_progressTimer->setInterval(250);
+    m_progressTimer->setInterval(kTickIntervalMs);
     connect(m_progressTimer, &QTimer::timeout, this, &SegmentedTransfer::onProgressTick);
 }
 
@@ -945,7 +945,7 @@ void SegmentedTransfer::onProgressTick() {
     // available (e.g. newly started dynamic segments) yield their share back
     // to the pool so active segments can consume the full quota.
     if (m_speedLimitKBps > 0) {
-        qint64 totalBudget = (qint64)m_speedLimitKBps * 1024 / 4; // tick = 250 ms
+        qint64 totalBudget = (qint64)m_speedLimitKBps * 1024 * kTickIntervalMs / 1000;
 
         // First pass: drain each segment up to an equal share, collect leftover.
         int busySegs = 0;
@@ -1077,24 +1077,26 @@ void SegmentedTransfer::onProgressTick() {
     qint64 delta = totalReceived - m_lastReceived;
     m_lastReceived = totalReceived;
 
-    // Maintain sliding window of per-tick byte deltas (max 120 ticks = 30 s at 250 ms/tick)
+    // Maintain sliding window of per-tick byte deltas
     m_speedSamples.append(delta);
-    if (m_speedSamples.size() > 120)
+    if (m_speedSamples.size() > kSpeedWindowTicks)
         m_speedSamples.removeFirst();
 
-    // Display speed: 2-second window (last 8 ticks) — prevents wild jumps in the UI
-    int displayN = std::min((int)m_speedSamples.size(), 8);
+    // Display speed: short window to prevent wild UI jumps on bursty connections
+    int displayN = std::min((int)m_speedSamples.size(), kDisplayWindowTicks);
     qint64 displaySum = 0;
     for (int i = (int)m_speedSamples.size() - displayN; i < (int)m_speedSamples.size(); ++i)
         displaySum += m_speedSamples[i];
-    qint64 speedBps = displayN > 0 ? (displaySum * 4 / displayN) : 0;
+    static constexpr int kTicksPerSecond = 1000 / kTickIntervalMs;
+    qint64 speedBps = displayN > 0 ? (displaySum * kTicksPerSecond / displayN) : 0;
     m_item->setSpeed(speedBps);
 
-    // ETA speed: 30-second window (all samples) — stable enough to give a calm countdown
+    // ETA speed: full window (all samples) — stable enough to give a calm countdown
     {
         qint64 sum = 0;
         for (qint64 s : m_speedSamples) sum += s;
-        qint64 etaSpeedBps = !m_speedSamples.isEmpty() ? (sum * 4 / (int)m_speedSamples.size()) : 0;
+        qint64 etaSpeedBps = !m_speedSamples.isEmpty()
+            ? (sum * kTicksPerSecond / (int)m_speedSamples.size()) : 0;
         m_item->setEtaSpeed(etaSpeedBps);
     }
 
@@ -1105,7 +1107,7 @@ void SegmentedTransfer::onProgressTick() {
     // most 5 s of progress instead of the entire download.  loadMeta()
     // already clamps to actual part-file size, so this is strictly a
     // safety net for the in-memory state.
-    if (++m_ticksSinceMetaSave >= 20) {  // 20 × 250 ms = 5 s
+    if (++m_ticksSinceMetaSave >= kMetaSaveIntervalTicks) {
         m_ticksSinceMetaSave = 0;
         saveMeta();
     }
@@ -1583,11 +1585,8 @@ void SegmentedTransfer::applyReplyReadBufferSize(QNetworkReply *reply) {
     int activeSegs = 0;
     for (const auto &s : m_segments) if (!s.done) ++activeSegs;
     if (activeSegs < 1) activeSegs = 1;
-    // 4 seconds of per-segment budget so QNAM always has data queued for the tick.
-    // 1 second was too small: with 8 segments at 500 KB/s each segment gets 62 KB,
-    // drains in 4 ticks, then the socket goes dry for 1 tick → oscillation.
-    // Minimum 128 KB so low-rate or many-segment cases don't starve either.
-    qint64 bufSize = qMax((qint64)m_speedLimitKBps * 1024 * 4 / activeSegs, (qint64)128 * 1024);
+    qint64 bufSize = qMax((qint64)m_speedLimitKBps * 1024 * kReadBufferSeconds / activeSegs,
+                          kMinReadBufferBytes);
     reply->setReadBufferSize(bufSize);
 }
 

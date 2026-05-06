@@ -29,12 +29,22 @@ class SegmentedTransfer : public QObject {
     Q_OBJECT
 
 public:
-    static constexpr int kDefaultSegments      = 8;
-    static constexpr qint64 kMinSegmentSize    = 512 * 1024;       // 512 KB
-    static constexpr int kMaxSegmentRetries    = 4;                // per segment: 1s/2s/4s/8s backoff
-    static constexpr int kStallTimeoutMs       = 30'000;           // bytes must arrive within this window
-    static constexpr qint64 kStealThresholdBytes = 2 * 1024 * 1024;// only steal if victim has >2 MB left
-    static constexpr int kMaxDynamicSegments   = 32;               // hard cap on segment count
+    static constexpr int kDefaultSegments        = 8;
+    static constexpr qint64 kMinSegmentSize      = 512 * 1024;       // 512 KB
+    static constexpr int kMaxSegmentRetries      = 4;                // per segment: 1s/2s/4s/8s backoff
+    static constexpr int kStallTimeoutMs         = 30'000;           // bytes must arrive within this window
+    static constexpr qint64 kStealThresholdBytes = 2 * 1024 * 1024; // only steal if victim has >2 MB left
+    static constexpr int kMaxDynamicSegments     = 32;               // hard cap on segment count
+
+    // Progress tick cadence and derived sliding-window sizes
+    static constexpr int kTickIntervalMs         = 250;              // onProgressTick fires every 250 ms
+    static constexpr int kSpeedWindowTicks       = 120;              // 30 s history  (120 × 250 ms)
+    static constexpr int kDisplayWindowTicks     = 8;                // 2 s display   (8 × 250 ms)
+    static constexpr int kMetaSaveIntervalTicks  = 20;               // save every 5 s (20 × 250 ms)
+
+    // Throttle read-buffer sizing
+    static constexpr int kReadBufferSeconds      = 4;                // QNAM buffer = N seconds of budget/seg
+    static constexpr qint64 kMinReadBufferBytes  = 128 * 1024;       // floor so low-rate/many-seg don't starve
 
     explicit SegmentedTransfer(DownloadItem *item,
                                QNetworkAccessManager *nam,
