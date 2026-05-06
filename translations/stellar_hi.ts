@@ -61,37 +61,25 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>
 ↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>
 डाउनलोड हो रहा है: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>  सीडिंग: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>
-सीडिंग: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>  कुल: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>
-कुल: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar बंद हो रहा है...</translation>
@@ -163,14 +151,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>यदि आप इन डाउनलोड्स को शुरू होने से पहले ग्रुप करना चाहते हैं, तो OK के बाद कतार (queue) स्टेप का उपयोग करें।</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -210,14 +192,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>केवल 'Found' मार्क किए गए लिंक ही चुने जा सकते हैं। OK के बाद भी कतार असाइनमेंट होता है।</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>बैच डाउनलोड समीक्षा</translation>
@@ -363,14 +339,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>पिक्सेल चौड़ा</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -394,10 +364,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>स्थायी रूप से हटाएँ (ट्रैश में नहीं)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>हटाएँ</translation>
@@ -425,10 +392,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>हाँ</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>नहीं</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -523,18 +487,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>ब्राउज़ करें...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>श्रेणी</translation>
@@ -613,10 +568,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>डेटा प्राप्त हो रहा है...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>असेंबल हो रहा है...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>डाउनलोड स्थिति</translation>
@@ -637,10 +589,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>सिस्टम ट्रे में मिनिमाइज़ करें</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>स्थिति</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>फ़ाइल साइज़</translation>
@@ -669,14 +618,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>रीज़्यूम क्षमता</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>हाँ</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>नहीं</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>त्रुटि विवरण</translation>
@@ -701,10 +644,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>रोकें</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>कनेक्शन के अनुसार स्थिति और प्रगति</translation>
@@ -772,10 +712,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>नाम बदलें</translation>
@@ -820,10 +757,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>पुनः डाउनलोड करें</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>हटाएं</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>कॉलम सेटिंग</translation>
@@ -832,18 +766,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>फ़ाइल का नाम</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>साइज़</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>स्थिति</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>शेष समय</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>↓ गति</translation>
@@ -868,18 +793,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>अपलोड</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>डाउनलोड</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>अंतिम प्रयास तिथि</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>विवरण</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>सहेजें</translation>
@@ -978,14 +897,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>मेरा चयन याद रखें और यह डायलॉग दोबारा न दिखाएं।
 आप इसे बाद में Options → Downloads में बदल सकते हैं।</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -997,66 +910,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>फ़ाइल यहाँ ले जाएँ...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>शुरू करें</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>रोकें</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>फ़ोल्डर खोलें</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>फ़ाइल खोलें</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>स्थिति</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>आकार</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>में सेव करें</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>मूव करें</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>पता</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>वेब पेज</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>रेफरर</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>विवरण</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>लॉगिन</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>पासवर्ड</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>स्रोत</translation>
@@ -1065,26 +942,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>इन्फो हैश</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>कॉपी करें</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>मेटाडेटा</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>श्रेणी</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>नोट</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>डाउनलोड किया गया</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>देश</translation>
@@ -1093,14 +961,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>पोर्ट</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>अपलोड किया गया</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>सीडर्स</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>संदेश</translation>
@@ -1109,22 +971,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>रुका हुआ</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>डाउनलोड हो रहा है</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>मूव हो रहा है</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>सीडिंग</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>कतार में</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>समस्या</translation>
@@ -1149,10 +999,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>सामान्य</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>फ़ाइलें</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>स्वार्म मैप</translation>
@@ -1237,22 +1084,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>नई फ़ाइल या फ़ोल्डर का नाम दर्ज करें:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>पुनः नाम दें</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>डाउनलोड</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>पुनः नाम दें...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>कोई पीयर कनेक्ट नहीं है</translation>
@@ -1357,10 +1192,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>टियर</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>पीयर्स</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 ज्ञात पीयर्स</translation>
@@ -1385,10 +1217,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1 %2% पूरा हुआ</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>अज्ञात</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>आप (यह क्लाइंट)</translation>
@@ -1405,10 +1234,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Force Reannounce</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>URL कॉपी करें</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>ट्रैकर हटाएँ</translation>
@@ -1437,10 +1263,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Web seed URL पेस्ट करें - एक प्रति लाइन। URL seeds (BEP-19) और HTTP seeds (BEP-17) दोनों स्वीकार्य हैं।</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>प्रकार</translation>
@@ -1593,10 +1416,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 परिणाम मिले।</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1660,10 +1480,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>टेम्पलेट का नाम</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>सेव करें</translation>
@@ -1684,10 +1501,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>हालिया प्रोजेक्ट्स</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>ग्रैबर सेटिंग्स</translation>
@@ -1728,14 +1542,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>एडवांस्ड &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>लॉगिन</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>पासवर्ड</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>मैनुअल लॉगिन सक्षम करने या लॉगआउट पेज को अक्षम करने के लिए एडवांस्ड दबाएं।</translation>
@@ -1947,22 +1755,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>मास्क</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>जोड़ें</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>एडिट करें</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>डिलीट करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>फ़िल्टर एडिट करें</translation>
@@ -1971,18 +1770,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>नया फ़िल्टर</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>श्रेणी</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>सेव करें</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1994,25 +1784,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>सेव किए गए प्रोजेक्ट</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>प्रोजेक्ट</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>विकल्प</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>चल रहा है</translation>
@@ -2043,22 +1821,13 @@ Exploring</source>
             <translation>शुरू करें
 खोजें</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>फ़ाइल का नाम</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>फ़ाइल प्रकार</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>साइज़</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>स्थिति</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>लिंक टेक्स्ट</translation>
@@ -2067,10 +1836,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>यहाँ से डाउनलोड करें</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>यहाँ सेव करें</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>चयनित चुनें</translation>
@@ -2083,14 +1849,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>वर्तमान प्रोजेक्ट बदलें</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>ग्रैबर सेटिंग्स</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2352,14 +2112,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>नोट: शेड्यूल्ड प्रोजेक्ट शुरू करने के लिए निर्दिष्ट समय पर Stellar का सिस्टम ट्रे में चलना आवश्यक है।</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2383,14 +2137,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Stellar मुख्य सूची में फ़ाइलें जोड़ते समय लिंक टेक्स्ट को डाउनलोड विवरण के रूप में उपयोग करें</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2402,10 +2150,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>स्थिति: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>खाली</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>प्रोसेस्ड वेब पेज</translation>
@@ -2418,10 +2163,7 @@ Project</source>
             <source>Advanced</source>
             <translation>उन्नत</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>फ़ाइलें</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>कुल</translation>
@@ -2434,14 +2176,8 @@ Project</source>
             <source>Matched</source>
             <translation>मैच हुआ</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>डाउनलोड किया</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2469,10 +2205,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar उसी yt-dlp आइटम को उस ब्राउज़र की कुकीज़ के साथ फिर से प्रयास करेगा।</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>डाउनलोड पुनः प्रयास करें</translation>
@@ -2509,18 +2242,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>सभी फ़ाइलें (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>कुल: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>पूरा हुआ: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>डाउनलोड हो रहा है: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>कतार में: %1</translation>
@@ -2529,18 +2256,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>कुल मिलाकर: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>रोकें</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>जारी रखें</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent सपोर्ट सक्षम करें?</translation>
@@ -2573,10 +2291,7 @@ You can turn this off in Settings → Downloads.</source>
 
 आप इसे Settings → Downloads में बंद कर सकते हैं।</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>फ़ाइल &quot;%1&quot; डाउनलोड नहीं की जा सकी।</translation>
@@ -2619,14 +2334,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>File</source>
             <translation>फ़ाइल</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>फ़ोल्डर खोलें</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>फ़ाइल खोलें</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>अभी डाउनलोड करें</translation>
@@ -2639,14 +2348,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Remove</source>
             <translation>हटाएं</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>पुनः डाउनलोड करें</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent एक्सपोर्ट करें…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>डाउनलोड्स</translation>
@@ -2683,10 +2386,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Stop Queue</source>
             <translation>कतार रोकें</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>स्पीड लिमिटर</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>चालू करें</translation>
@@ -2779,10 +2479,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Columns…</source>
             <translation>कॉलम…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>विकल्प</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>पसंद…</translation>
@@ -2815,42 +2512,21 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>.torrent फ़ाइल को मेटाडेटा खोलने के लिए यहाँ छोड़ें</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>खोजें:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>खोजें</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>सेटिंग्स ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>इसमें खोजें:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>फ़ाइल का नाम या नाम का हिस्सा</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>विवरण</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / referrer / parent वेब पेज</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>केस मिलाएँ</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>केवल पूरी स्ट्रिंग मिलाएँ</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>साइडबार बाईं ओर ले जाएँ</translation>
@@ -2899,10 +2575,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Channel Download Progress</source>
             <translation>चैनल डाउनलोड प्रगति</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>बाद में डाउनलोड करें</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>फ़ाइल अब उपलब्ध नहीं है</translation>
@@ -2958,18 +2631,12 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Don't add to queue</source>
             <translation>कतार में न जोड़ें</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>कतार का नाम दर्ज करें</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>बनाएँ</translation>
@@ -2985,14 +2652,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Download Rules</source>
             <translation>डाउनलोड नियम</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>जोड़ें</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>हटाएं</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>नियम बनाने के लिए &quot;जोड़ें&quot; पर क्लिक करें</translation>
@@ -3069,10 +2730,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Leave empty to use default save path</source>
             <translation>डिफ़ॉल्ट पाथ के लिए खाली छोड़ें</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>ब्राउज़ करें...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>श्रेणी:</translation>
@@ -3085,10 +2743,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>TORRENT SHARE LIMITS</source>
             <translation>टोरेंट शेयर सीमा</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>रेशियो</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>डिफ़ॉल्ट</translation>
@@ -3117,14 +2772,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>&quot;Default&quot; में Settings → Torrents में सेट वैश्विक शेयर सीमा का उपयोग होता है।</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS ऑटो डाउनलोड नियम</translation>
@@ -3164,10 +2813,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Download Torrent</source>
             <translation>टोरेंट डाउनलोड करें</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>डाउनलोड</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>ब्राउज़र में खोलें</translation>
@@ -3188,50 +2834,26 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Mark All Read</source>
             <translation>सभी को पढ़ा हुआ मार्क करें</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>नाम</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>कस्टम नाम (वैकल्पिक)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>सहेजें</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS या Atom फ़ीड URL जोड़ें...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>जोड़ें</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>रिफ्रेश हो रहा है…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>संपादित करें</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>हटाएं</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>डाउनलोड नियम</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>सब्सक्रिप्शन</translation>
@@ -3244,10 +2866,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Select an article</source>
             <translation>एक लेख चुनें</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>खोलें</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>पढ़ा हुआ मार्क करें</translation>
@@ -3291,10 +2910,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>New queue</source>
             <translation>नई कतार</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>डिलीट करें</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>शेड्यूल</translation>
@@ -3307,42 +2923,21 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>One-time downloading</source>
             <translation>एक बार डाउनलोड करें</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>समयबद्ध सिंक</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Stellar स्टार्टअप पर डाउनलोड शुरू करें</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>डाउनलोड शुरू करें</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>पहले पर</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>दैनिक</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>दोबारा शुरू करें</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>घंटे</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>मिनट</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>डाउनलोड रोकें:</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>डाउनलोड विफल होने पर प्रत्येक फ़ाइल के पुनः प्रयास की संख्या:</translation>
@@ -3351,38 +2946,17 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Open the following file when done:</source>
             <translation>पूरा होने पर यह फ़ाइल खोलें:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>पूरा होने पर Stellar बंद करें</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>पूरा होने पर कंप्यूटर बंद करें</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>प्रक्रियाओं को समाप्त करने के लिए मजबूर करें</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>डाउनलोड करें</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>एक साथ फ़ाइलें</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>फ़ाइल का नाम</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>आकार</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>स्थिति</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>शेष समय</translation>
@@ -3419,18 +2993,12 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Start now</source>
             <translation>अभी शुरू करें</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>रोकें</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>लागू करें</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>कतारों की सूची में दिखने वाली नई कतार के लिए नाम दर्ज करें</translation>
@@ -3439,18 +3007,9 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Queue name</source>
             <translation>कतार का नाम</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>शेड्यूलर</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>नई कतार</translation>
@@ -3462,10 +3021,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>कनेक्शन</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>अधिकतम एक साथ डाउनलोड:</translation>
@@ -3530,22 +3086,13 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Password:</source>
             <translation>पासवर्ड:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>श्रेणियाँ</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>नाम</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>फ़ोल्डर में सेव करें</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>डाउनलोड्स</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>डिफ़ॉल्ट सेव फ़ोल्डर:</translation>
@@ -3606,14 +3153,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Show seconds</source>
             <translation>सेकंड दिखाएं</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>पूर्वावलोकन</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>ब्राउज़र इंटीग्रेशन</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>निम्नलिखित फ़ाइल प्रकारों को स्वचालित रूप से डाउनलोड करें:</translation>
@@ -3638,10 +3179,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>इंटरसेप्शन से बचने और ब्राउज़र में डाउनलोड करने के लिए क्लिक करते समय इस कुंजी को दबाए रखें:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>स्पीड लिमिटर</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>ग्लोबल स्पीड लिमिट सक्षम करें</translation>
@@ -3650,10 +3188,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Maximum speed:</source>
             <translation>अधिकतम गति:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>ग्लोबल अपलोड लिमिट सक्षम करें</translation>
@@ -3670,18 +3205,12 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Enable speed limiter scheduler</source>
             <translation>स्पीड लिमिटर शेड्यूलर सक्षम करें</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>हटाएं</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>चालू</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>डाउनलोड</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>अपलोड</translation>
@@ -3702,10 +3231,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Show notification on download error</source>
             <translation>डाउनलोड त्रुटि पर सूचना दिखाएं</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>सामान्य</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>ब्राउज़र</translation>
@@ -3802,14 +3328,8 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Open file properties dialog</source>
             <translation>फ़ाइल प्रॉपर्टीज़ डायलॉग खोलें</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>फ़ाइल खोलें</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>फ़ोल्डर खोलें</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24-घंटे का समय</translation>
@@ -3842,10 +3362,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>टॉगल करने के लिए दिन चुनें। नियम हर मिनट जांचे जाते हैं; पहला मिलान वाला नियम लागू होगा। सक्रिय नियम न होने पर शेड्यूल डाउनलोड/अपलोड सीमा स्वतः हट जाती है।</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>सिस्टम ट्रे में मिनिमाइज़ करें</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>सिस्टम ट्रे में क्लोज करें</translation>
@@ -3938,10 +3455,7 @@ Stellar Options → Browser → Bypass Download Interception</translation>
             <source>Download yt-dlp</source>
             <translation>yt-dlp डाउनलोड करें</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>पुनः जांचें</translation>
@@ -4050,10 +3564,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
 
 अपने IP पते को सुरक्षित रखने के लिए, टॉरेंट का उपयोग करने से पहले Stellar को VPN नेटवर्क इंटरफ़ेस से बांधना और यह सत्यापित करना दृढ़ता से अनुशंसित है कि आपका VPN सक्रिय है।</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>समझ गया, सक्षम करें</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>ये सेटिंग्स .torrent फ़ाइलों और magnet लिंक पर लागू होती हैं।</translation>
@@ -4118,10 +3629,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Networking</source>
             <translation>नेटवर्किंग</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>एडवांस्ड</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>कस्टम bittorrent यूजर एजेंट</translation>
@@ -4194,10 +3702,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Block peers by country</source>
             <translation>देश के अनुसार पीयर्स को ब्लॉक करें</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>जोड़ें</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>कोई ब्लॉक किया गया देश नहीं।</translation>
@@ -4234,18 +3739,12 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Version</source>
             <translation>वर्जन</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>अज्ञात</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>पाथ</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>आकार</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>प्रविष्टियाँ</translation>
@@ -4254,10 +3753,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Last Modified</source>
             <translation>अंतिम संशोधन</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>स्थिति</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>डाउनलोड हो रहा है...</translation>
@@ -4270,10 +3766,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Refresh Info</source>
             <translation>जानकारी रिफ्रेश करें</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>सांख्यिकी</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>हटाए गए टॉरेंट्स सहित सभी का कुल ट्रांसफर डेटा।</translation>
@@ -4294,10 +3787,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>पूर्ण लाइसेंस टेक्स्ट THIRD-PARTY-NOTICES.txt में हैं, जो इस इंस्टॉलेशन के साथ शामिल हैं।</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>फ़ीड फ़ेचिंग</translation>
@@ -4310,10 +3800,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Feeds refresh interval</source>
             <translation>फ़ीड रिफ्रेश अंतराल</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>मिनट</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>समान होस्ट अनुरोध विलंब</translation>
@@ -4474,14 +3961,8 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Third-party software</source>
             <translation>थर्ड-पार्टी सॉफ़्टवेयर</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>लागू करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>डिफ़ॉल्ट रूट</translation>
@@ -4562,10 +4043,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Available but not loaded</source>
             <translation>उपलब्ध है पर लोड नहीं किया गया</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>स्रोत: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Source URL अभी कैश नहीं हुआ है। update.json से IPtoCityDB कैश करने के लिए 'Check for updates' का उपयोग करें।</translation>
@@ -4597,18 +4075,9 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Edit Project</source>
             <translation>प्रोजेक्ट एडिट करें</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>प्रोजेक्ट हटाएं</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>श्रेणियां</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>सभी डाउनलोड</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>अधूरे</translation>
@@ -4621,49 +4090,19 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>Grabber Projects</source>
             <translation>ग्रैबर प्रोजेक्ट्स</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>टोरेंट</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>कतारें</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>डाउनलोड हो रहा है</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>सीडिंग</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>रुका हुआ</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>सक्रिय</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>निष्क्रिय</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>जांच जारी है</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>मूव हो रहा है</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>आंकड़े</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar आंकड़े</translation>
@@ -4672,14 +4111,8 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>ALL TIME</source>
             <translation>अब तक</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>डाउनलोड किया गया</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>अपलोड किया गया</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>शेयर रेश्यो</translation>
@@ -4700,10 +4133,7 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <source>THIS SESSION</source>
             <translation>इस सत्र में</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4820,57 +4250,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>SDM डाउनलोड्स</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>SDM डाउनलोड</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>URL जोड़ें</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>जारी रखें</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>रोकें</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>सभी रोकें</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>हटाएं</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>पूरा हुआ हटाएं</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>विकल्प</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>शेड्यूलर</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>कतार शुरू करें</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>कतार रोकें</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>ग्रैबर</translation>
@@ -4879,10 +4279,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>सर्च इंजन</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4923,18 +4320,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>सेव करें</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Save As...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>श्रेणी</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>कस्टम सेव फ़ोल्डर</translation>
@@ -4947,88 +4338,37 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>कैटेगरी फ़ोल्डर का उपयोग करें</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>विवरण</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Torrent Settings...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>बाद में डाउनलोड करें</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>डाउनलोड करें</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>टोरेंट खुल रहा है...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2% पूरा</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>फ़ाइलें</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>
                 %n आइटम
                 </translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>नाम</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>प्रगति</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>आकार</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>कोई फ़ाइल जानकारी उपलब्ध नहीं</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>लंबित</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>आइटम का नाम बदलें</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>नई फ़ाइल या फ़ोल्डर का नाम दर्ज करें:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>नाम बदलें</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>नाम बदलें...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>पीयर</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>टोरेंट खोल रहा है और मेटाडेटा पढ़ रहा है...</translation>
@@ -5043,14 +4383,8 @@ Click to open Statistics</source>
                 %n पीयर से मेटाडेटा डाउनलोड हो रहा है
                 </translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>सीड</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>आप</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>टोरेंट मेटाडेटा</translation>
@@ -5070,14 +4404,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>वेब लिंक</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ठीक है</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>search_plugins फ़ोल्डर में कॉपी करने के लिए एक लोकल .py सर्च प्लगइन फ़ाइल चुनें।</translation>
@@ -5109,18 +4437,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>इंस्टॉल किए गए सर्च प्लगइन्स</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>रिफ्रेश</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>अज्ञात</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>इनेबल</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>डिसेबल</translation>
@@ -5129,10 +4448,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>नया इंस्टॉल करें</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>सर्च प्लगइन्स</translation>
@@ -5140,18 +4456,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>नाम</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>साइज़</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>सीडर्स</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>लीचर्स</translation>
@@ -5168,18 +4475,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>विवरण पेज खोलें</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>टोरेंट डाउनलोड करें</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>नाम कॉपी करें</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>मैग्नेट लिंक कॉपी करें</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>डिस्क्रिप्शन URL कॉपी करें</translation>
@@ -5192,18 +4493,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>खोजें</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>अज्ञात</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>अभी कोई परिणाम नहीं</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>सर्च प्लगइन्स</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>टोरेंट सर्च इंजन</translation>
@@ -5219,14 +4514,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>प्रति-टोरेंट स्पीड, शेयर सीमा, पीयर डिस्कवरी और डाउनलोड मोड</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>बंद करें</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>लागू करें</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>बैंडविड्थ सीमा</translation>
@@ -5247,26 +4536,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>रेशियो:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>डिफ़ॉल्ट</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>असीमित</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>पर सेट करें</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>सीडिंग समय:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>मिनट</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>निष्क्रिय समय:</translation>
@@ -5370,10 +4647,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Settings खोलें</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>ब्राउज़र से Cookies:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>yt-dlp में cookies भेजने के लिए एक ब्राउज़र चुनें, फिर पुनः प्रयास करें।</translation>
@@ -5443,10 +4717,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>वीडियो के साथ सबटाइटल डाउनलोड करें</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>भाषा:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>भाषा कोड, जैसे en · en.*,ja · all</translation>
@@ -5505,14 +4776,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>चैनल डाउनलोड करें</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>डाउनलोड</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>एडवांस्ड</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>तारीख फ़िल्टर</translation>
@@ -5605,18 +4870,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>सहेजें:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>श्रेणी:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>फॉर्मेट:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>रद्द करें</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>वीडियो डाउनलोड</translation>

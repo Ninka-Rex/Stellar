@@ -61,33 +61,23 @@
             <translation>Stellar Nedlaster v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Laster ned: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Deling: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Deling: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Totalt: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Totalt: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar avslutter...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Bruk køtrinn etter OK for å gruppere nedlastinger før start.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Kun lenker merket 'Funnet' kan velges. Kjøer tildeles likevel etter OK.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Gjennomgå batchnedlasting</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>pixels bred</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Slett permanent</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Slett</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Ja</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Nei</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Utforsk...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Kategori</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Mottar data...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Samler...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Nedlastingsstatus</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Minimer til systemkurv</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Filstørrelse</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Gjenopptakelse</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Ja</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Nei</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Feildetaljer</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Pause</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Startposisjon og nedlastingsprosent per tilkobling</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Gi nytt navn</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Nedlast på nytt</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Slett</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Kolonninnstillinger</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Filnavn</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Størrelse</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Tid igjen</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Nedlastingshastighet</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Opplastet</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lastet ned</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Siste forsøk</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Beskrivelse</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Lagre til</translation>
@@ -970,14 +891,8 @@ Klikk Legg til URL for å starte.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Husk mitt valg og vis ikke denne dialogen igjen.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Du kan endre dette i Innstillinger → Nedlastinger senere.</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Flytt fil til...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Start</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stopp</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Åpne mappe</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Åpne fil</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Størrelse</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Lagre til</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Flytt</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Adresse</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Nettside</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Referanse</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Beskrivelse</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Innlogging</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Passord</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Kilde</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Info-hash</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Kopier</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Metadata</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Merknad</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lastet ned</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Land</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Lastet opp</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seedere</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Melding</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Stoppet</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Lastes ned</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Flyttes</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Deling</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>I kø</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Problem</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Generelt</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Filer</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Swarm-kart</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Skriv inn nytt navn:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Gi nytt navn</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Last ned</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Gi nytt navn...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Ingen peerer tilkoblet</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Tier</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Peers</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 kjente peers</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% ferdig</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Ukjent</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Du</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Tving gjenannonsere</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Kopier URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Fjern sporingsserver</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Lim inn web-seed-URLer – én per linje. BEP-19 og HTTP-seed (BEP-17) støttes.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Type</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Fant %1 resultater</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Mallnavn</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Lagre</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Nylige prosjekter</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Innsamlingsinnstillinger</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Avansert &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Innlogging</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Passord</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Trykk Avansert for å aktivere manuell innlogging eller deaktivere utloggingsside.</translation>
@@ -1935,22 +1745,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Maske</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Legg til</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Rediger</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Slett</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Rediger filter</translation>
@@ -1959,18 +1760,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Nytt filter</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Lagre</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1982,25 +1774,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Lagrede prosjekter</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Prosjekt</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Innstillinger</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Kjørende</translation>
@@ -2030,22 +1810,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Start</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Utforsker</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Filtype</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Størrelse</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Lenke</translation>
@@ -2054,10 +1825,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>Last ned fra</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Lagre til</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Marker valgte</translation>
@@ -2070,14 +1838,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Rediger prosjekt</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Innstillinger</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2334,14 +2096,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Merk: Stellar må være i systemboksen for å starte et planlagt prosjekt.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2365,14 +2121,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Bruk lenketekster som nedlastingsbeskrivelser når du legger til filer i hovedlisten.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2384,10 +2134,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Status: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Inaktiv</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Behandlede sider</translation>
@@ -2400,10 +2147,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Avansert</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Filer</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Totalt</translation>
@@ -2416,14 +2160,8 @@ Project</source>
             <source>Matched</source>
             <translation>Matchet</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lastet ned</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2451,10 +2189,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar vil prøve igjen yt-dlp-elementet med nettleserens cookies.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Gjenstart nedlasting</translation>
@@ -2491,18 +2226,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Alle filer (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Total: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Fullført: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Laster ned: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Kø: %1</translation>
@@ -2511,18 +2240,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Totalt: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stopp</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Fortsett</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Aktiver BitTorrent?</translation>
@@ -2548,10 +2268,7 @@ You can turn this off in Settings → Downloads.</source>
             <translation>Du trykket 'Last ned senere', men Stellar hadde allerede startet nedlasting av en del av filen. Stellar starter alltid nedlasting mens 'Vis filinformasjon'-dialogen vises.
 Du kan slå dette av i Innstillinger → Nedlastinger.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Filen &quot;%1&quot; kunne ikke lastes ned.</translation>
@@ -2594,14 +2311,8 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>File</source>
             <translation>Fil</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Åpne mappe</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Åpne fil</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Last ned nå</translation>
@@ -2614,14 +2325,8 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Remove</source>
             <translation>Fjern</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Last ned på nytt</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Eksporter .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Nedlastinger</translation>
@@ -2658,10 +2363,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Stop Queue</source>
             <translation>Stopp kø</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Hastighetsbegrenser</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>På</translation>
@@ -2754,10 +2456,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Columns…</source>
             <translation>Søyler...</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Innstillinger</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Foretrukne...</translation>
@@ -2790,42 +2489,21 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Slipp .torrent-fil for å åpne metadata</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Søk:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Søk</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Innstillinger ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Søk i:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Filnavn eller del av navn</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Beskrivelse</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / henvisning / foreldreside</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Match store/små bokstaver</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Kjenn hele streng</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Flytt sidefelt til venstre</translation>
@@ -2874,10 +2552,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Channel Download Progress</source>
             <translation>Kanalen laster ned</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Last ned senere</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Fil ikke lenger tilgjengelig</translation>
@@ -2933,18 +2608,12 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Don't add to queue</source>
             <translation>Ikke legg i kø</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Skriv inn kønavn</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Opprett</translation>
@@ -2960,14 +2629,8 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Download Rules</source>
             <translation>Nedlastingsregler</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Legg til</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Fjern</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Klikk &quot;Legg til&quot; for å opprette en nedlastingsregel</translation>
@@ -3044,10 +2707,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Leave empty to use default save path</source>
             <translation>La stå tomt for standard</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Utforsk...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Kategori:</translation>
@@ -3060,10 +2720,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>TORRENT SHARE LIMITS</source>
             <translation>DELINGSBEGRENSNINGER</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Ratio</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Standard</translation>
@@ -3092,14 +2749,8 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>«Standard» bruker globale delingsbegrensninger i Innstillinger → Torrenter.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS-regler for nedlasting</translation>
@@ -3139,10 +2790,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Download Torrent</source>
             <translation>Last ned torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Last ned</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Åpne i nettleser</translation>
@@ -3163,50 +2811,26 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Mark All Read</source>
             <translation>Merk alle lest</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Navn</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Egendefinert navn (valgfritt)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Lagre</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Legg til RSS- eller Atom-feed-URL...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Legg til</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Oppdaterer…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Rediger</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Fjern</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Last ned-regler</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Abonnemang</translation>
@@ -3219,10 +2843,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Select an article</source>
             <translation>Velg artikkel</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Åpne</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Marker lest</translation>
@@ -3266,10 +2887,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>New queue</source>
             <translation>Ny kø</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Slett</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Planlegg</translation>
@@ -3282,42 +2900,21 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>One-time downloading</source>
             <translation>En gangs nedlasting</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Periodyk synkronisering</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Start nedlasting ved Stellar-start</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Start nedlasting kl</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>En gang kl</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Daglig</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Start på nytt hver</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>timer</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Stopp nedlasting</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Antall forsøk per fil</translation>
@@ -3326,38 +2923,17 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Open the following file when done:</source>
             <translation>Åpne denne filen</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Avslutt Stellar</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Slå av PC-en</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Avslutt prosesser</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Nedlast</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>filer samtidig</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Filnavn</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Størrelse</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Tid igjen</translation>
@@ -3394,18 +2970,12 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Start now</source>
             <translation>Start nå</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stopp</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Gjør klar</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Gi nytt kønav</translation>
@@ -3414,18 +2984,9 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Queue name</source>
             <translation>Kønav</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Planlegger</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Ny kø</translation>
@@ -3437,10 +2998,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Kobling</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Maks. samtidige nedlastinger:</translation>
@@ -3505,22 +3063,13 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Password:</source>
             <translation>Passord:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategorier</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Navn</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Lagre i mappe</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Nedlastinger</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Standard lagringsmappe:</translation>
@@ -3581,14 +3130,8 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Show seconds</source>
             <translation>Vis sekunder</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Forhåndsvisning</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Nettleser-integrasjon</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Start automatisk nedlasting av følgende filtyper:</translation>
@@ -3613,10 +3156,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Hold denne tasten nede mens du klikker på en nedlastingslenke for å hoppe over intersepsjon og la nettleseren laste ned:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Hastighetsbegrenser</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Aktiver global nedlastingsbegrensning</translation>
@@ -3625,10 +3165,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Maximum speed:</source>
             <translation>Maksimal hastighet:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Aktiver global opplastningsbegrensning</translation>
@@ -3645,18 +3182,12 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Enable speed limiter scheduler</source>
             <translation>Aktiver hastighetsbegrensningsskjema</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Fjern</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>På</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Last ned</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Last opp</translation>
@@ -3677,10 +3208,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Show notification on download error</source>
             <translation>Vis varsel ved nedlastingsfeil</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Generelt</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Nettleser</translation>
@@ -3777,14 +3305,8 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Open file properties dialog</source>
             <translation>Egenskaper</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Åpne</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Mappe</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24-timers</translation>
@@ -3817,10 +3339,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Klikk på en dagspille for å skifte tilstand. Regler evalueres hvert minutt; første matchende regel gjelder. Planlagte nedlastings- og opplastningsbegrensninger slettes automatisk når ingen regel er aktiv.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Minimer til systemboks</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Lukk til systemboks</translation>
@@ -3913,10 +3432,7 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
             <source>Download yt-dlp</source>
             <translation>Nedlast yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Gjenkjekk</translation>
@@ -4025,10 +3541,7 @@ Alt du deler via BitTorrent er ditt eget ansvar. Sørg for at du har rett til å
 
 Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte at VPN er aktivt før du bruker torrenter, for å beskytte IP-adressen din.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Jeg forstår, Aktiver</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Dette gjelder .torrent-filer og magnetlenker.</translation>
@@ -4093,10 +3606,7 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Networking</source>
             <translation>Nettverk</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Avansert</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Egendefinert bittorrent user agent</translation>
@@ -4169,10 +3679,7 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Block peers by country</source>
             <translation>Blokker peers etter land</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Legg til</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Ingen blokkerte land</translation>
@@ -4209,18 +3716,12 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Version</source>
             <translation>Versjon</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Ukjent</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Sti</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Størrelse</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Innhold</translation>
@@ -4229,10 +3730,7 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Last Modified</source>
             <translation>Endret</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Laster ned...</translation>
@@ -4245,10 +3743,7 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Refresh Info</source>
             <translation>Oppdater info</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistikk</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Totalt overført</translation>
@@ -4269,10 +3764,7 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Lisens tekster er i THIRD-PARTY-NOTICES.txt, inkludert med denne installasjonen.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Henting av feed</translation>
@@ -4285,10 +3777,7 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Feeds refresh interval</source>
             <translation>Oppdateringsintervall for feed</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>minutter</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Forsinkelse for forespørsler til samme vert</translation>
@@ -4449,14 +3938,8 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Third-party software</source>
             <translation>Programvare fra tredjepart</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Bruk</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Standardrute</translation>
@@ -4537,10 +4020,7 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Available but not loaded</source>
             <translation>Tilgjengelig, men ikke lastet inn</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Kilde: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Kilde-URL er ikke lagret ennå. Bruk Sjekk oppdateringer for å lagre IPtoCityDB fra update.json.</translation>
@@ -4572,18 +4052,9 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Edit Project</source>
             <translation>Rediger prosjekt</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Slett prosjekt</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategorier</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Alle nedlastinger</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Ufullførte</translation>
@@ -4596,49 +4067,19 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>Grabber Projects</source>
             <translation>Henter</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrenter</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Kø</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Henter ned</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Deler</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Stoppet</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Aktiv</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Inaktiv</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Kontrollerer</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Flytter</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistikk</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar-statistikk</translation>
@@ -4647,14 +4088,8 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>ALL TIME</source>
             <translation>ALLE TIDER</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lastet ned</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Lastet opp</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Delingsratio</translation>
@@ -4675,10 +4110,7 @@ Det anbefales sterkt å binde Stellar til et VPN-nettvergsinterface og bekrefte 
             <source>THIS SESSION</source>
             <translation>DENNE SESJONEN</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4794,57 +4226,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Ingen innkommende tilkoblinger, nettverket kan være feilkonfigurert</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Stellar nedlastingshåndterer</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Legg til URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Fortsett</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stopp</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Stopp alt</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Slett</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Slett ferdig</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Innstillinger</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Planlegger</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Start kø</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Stopp kø</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Henter</translation>
@@ -4853,10 +4255,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Søkemotor</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4895,18 +4294,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Lagre til</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Lagre som...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Egendefinert lagringsmappe</translation>
@@ -4919,86 +4312,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Bruk kategorimappe</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Beskrivelse</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Torrentinnstillinger...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Nedlast senere</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Nedlast</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Åpner torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% fullført</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Filer</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n element(er)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Navn</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Fremdrift</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Størrelse</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Ingen filinformasjon</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Venter</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Gi nytt navn</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Skriv inn nytt navn for fil eller mappe:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Gi nytt navn</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Gi nytt navn...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Peer</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Åpner torrent og leser metadata...</translation>
@@ -5011,14 +4353,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Laster ned metadata fra %n peer(e)</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Seed</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Du</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrent-metadata</translation>
@@ -5038,14 +4374,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Nettlesker</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Velg en lokal .py-søkepluginn-fil å kopiere til mappen search_plugins.</translation>
@@ -5077,18 +4407,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Installerte søk</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Oppdater</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Ukjent</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Aktivert</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Deaktivert</translation>
@@ -5097,10 +4418,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Installer ny</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Søk plugins</translation>
@@ -5108,18 +4426,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Navn</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Størrelse</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seedere</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Leechere</translation>
@@ -5136,18 +4445,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Åpne beskrivelse</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Last ned torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Kopier navn</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Kopier magnetlenke</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Kopier beskrivelsesside-URL</translation>
@@ -5160,18 +4463,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Søk</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Ukjent</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Ingen søkeresultater ennå</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Søkeplugins</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrentsøkemotor</translation>
@@ -5187,14 +4484,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Hastighet, delingsgrenser, peer-opdagelse og nedlastingsmodus</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Lukk</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Bruk</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>BANDVIDDEGRENSE</translation>
@@ -5215,26 +4506,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Ratio:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Standard</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Uendelig</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Set til</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Såingstid:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Inaktiv tid:</translation>
@@ -5338,10 +4617,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Åpne Innstillinger</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Kjeks fra nettleser:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Velg en nettleser for å overføre dets kjeks til yt-dlp, og prøv igjen.</translation>
@@ -5411,10 +4687,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Last ned undertekstfiler sammen med videoen</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Språk:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Språkkode(r), f.eks. en · en.*,ja · alle</translation>
@@ -5472,14 +4745,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Nedlastningskanal</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Nedlast</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Avansert</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Dato-filter</translation>
@@ -5572,18 +4839,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Lagre til:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Kategori:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Format:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Avbryt</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Videohenting</translation>

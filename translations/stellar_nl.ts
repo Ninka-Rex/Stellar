@@ -61,33 +61,23 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Aan het downloaden: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Aan het delen: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Delen: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Totaal: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Totaal: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar sluit af...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Gebruik de wachtrij na OK om downloads te groeperen.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Alleen 'Gevonden' links selecteerbaar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Batch-download controleren</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>pixels breed</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Permanent verwijderen (niet naar prullenbak)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Verwijderen</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Ja</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Nee</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Bladeren...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Categorie</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Data ontvangen...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Samenstellen...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Downloadstatus</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Minimaliseren naar systeemvak</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Bestandsgrootte</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Hervatten</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Ja</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Nee</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Foutdetail</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Pauze</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Startposities en downloadvoortgang per verbinding</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Hernoemen</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Opnieuw downloaden</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Verwijderen</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Kolommen instellen</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Bestandsnaam</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Grootte</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Over</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Omlaag</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Geüpload</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Gedownload</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Datum laatste poging</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Beschrijving</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Opslaan in</translation>
@@ -970,14 +891,8 @@ Klik op URL toevoegen om te starten.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Onthoud mijn keuze en toon dit dialoog niet meer.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Wijzigen in Opties → Downloads op een later moment.</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Bestand verplaatsen naar...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Starten</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stoppen</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Map openen</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Bestand openen</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Grootte</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Opslaan naar</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Verplaatsen</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Adres</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Webpagina</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Referer</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Omschrijving</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Inloggen</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Wachtwoord</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Bron</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Info hash</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Kopiëren</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Metadata</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categorie</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Opmerking</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Gedownload</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Land</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Poort</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Geüpload</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seeders</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Bericht</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Gestopt</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Downloaden</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Verplaatsen</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Zaaien</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Wachtrij</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Probleem</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Algemeen</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Bestanden</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Swarmkaart</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Nieuwe naam invoeren</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Hernoemen</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Downloaden</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Hernoemen...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Geen peers verbonden</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Tier</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Peers</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 bekende peers</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% klaar</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Onbekend</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Jij</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Forceer heraanmelding</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>URL kopiëren</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Tracker verwijderen</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Plak web seed URLs - één per regel. URL seeds (BEP-19) en HTTP seeds (BEP-17) worden beide geaccepteerd.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Type</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 resultaten gevonden.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Sjabloonnaam</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Opslaan</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Recente projecten</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Instellingen Grabber</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Geavanceerd &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Inloggen</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Wachtwoord</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Druk op Geavanceerd om handmatige inlog te schakelen of uitlogpagina uit te schakelen.</translation>
@@ -1935,22 +1745,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Masker</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Toevoegen</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Bewerken</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Verwijderen</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Filter bewerken</translation>
@@ -1959,18 +1760,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Nieuw filter</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categorie</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Opslaan</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1982,25 +1774,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Opgeslagen projecten</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Project</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Opties</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Lopend</translation>
@@ -2030,22 +1810,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Start</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Verkennen</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Type</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Grootte</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Link</translation>
@@ -2054,10 +1825,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>Downloaden van</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Opslaan in</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Geselecteerd selecteren</translation>
@@ -2070,14 +1838,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Huidig project bewerken</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Instellingen</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2334,14 +2096,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Opmerking: Stellar moet in de systeemvak draaien op het opgegeven tijdstip om een gepland project te starten.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2365,14 +2121,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Gebruik linkteksten als downloadbeschrijvingen bij het toevoegen van bestanden aan de Stellar-lijst.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2384,10 +2134,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Status: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Staan</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Verwerkte webpagina's</translation>
@@ -2400,10 +2147,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Geavanceerd</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Bestanden</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Totaal</translation>
@@ -2416,14 +2160,8 @@ Project</source>
             <source>Matched</source>
             <translation>Gekoppeld</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Gedownload</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2451,10 +2189,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar zal hetzelfde yt-dlp-item opnieuw proberen met die browsers cookies.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Download opnieuw</translation>
@@ -2491,18 +2226,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Alle bestanden (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Totaal: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Voltooid: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Ophalen: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Wachtrij: %1</translation>
@@ -2511,18 +2240,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Algemeen: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stop</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Hervatten</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent ondersteuning inschakelen?</translation>
@@ -2553,10 +2273,7 @@ Het wordt sterk aanbevolen Stellar te binden aan een VPN-netwerkinterface en te 
 You can turn this off in Settings → Downloads.</source>
             <translation>U heeft op 'Later downloaden' gedrukt, maar Stellar had het bestand al gedeeltelijk gedownload. Stellar begint altijd te downloaden terwijl het dialoogvenster 'Bestandsinformatie' toont. U kunt dit uitschakelen in Instellingen → Downloads.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Het bestand &quot;%1&quot; kon niet worden gedownload.</translation>
@@ -2598,14 +2315,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Bestand</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Map openen</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Bestand openen</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Nu downloaden</translation>
@@ -2618,14 +2329,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Verwijderen</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Opnieuw downloaden</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent exporteren…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Downloads</translation>
@@ -2662,10 +2367,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Wachtrij stoppen</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Snelheidsbeperker</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>In</translation>
@@ -2758,10 +2460,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Kolommen…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Opties</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Voorkeuren…</translation>
@@ -2794,42 +2493,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>.torrent bestand neerzetten</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Zoeken:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Zoeken</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Instellingen ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Zoeken in:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Bestandsnaam of gedeelte</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Omschrijving</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / referrer / ouderpagina</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Hoofdletters</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Alleen volledige string</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Sidebar naar links</translation>
@@ -2878,10 +2556,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Kanaal-downloadvoortgang</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Later downloaden</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Bestand niet meer beschikbaar</translation>
@@ -2937,18 +2612,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Niet toevoegen aan wachtrij</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Wachtrijnaam invoeren</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Creëren</translation>
@@ -2964,14 +2633,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Downloadregels</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Toevoegen</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Verwijderen</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>&quot;Toevoegen&quot; klikken om een downloadregel te maken</translation>
@@ -3048,10 +2711,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Laat leeg voor standaardpad</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Bladeren...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Categorie:</translation>
@@ -3064,10 +2724,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>TORRENT DEELBEPERKINGEN</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Ratio</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Standaard</translation>
@@ -3096,14 +2753,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Standaard gebruikt de globale deelgrenzen in Instellingen → Torrents.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS Automatische Downloadregels</translation>
@@ -3143,10 +2794,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Torrent downloaden</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Downloaden</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>In browser openen</translation>
@@ -3167,50 +2815,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Alles lezen</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Naam</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Aangepaste naam (optioneel)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Opslaan</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS- of Atom-feed URL toevoegen...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Toevoegen</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Vernieuwen…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Bewerken</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Verwijderen</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Downloadregels</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Abonnementen</translation>
@@ -3223,10 +2847,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Artikel selecteren</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Openen</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Lezen gemarkeerd</translation>
@@ -3270,10 +2891,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Nieuwe wachtrij</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Verwijderen</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Plannen</translation>
@@ -3286,42 +2904,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Eenmalig downloaden</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Periodieke synchronisatie</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Start bij Stellar-start</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Start om</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Eenmalig om</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Dagelijks</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Herstart elke</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>uur</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Download stoppen bij</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Aantal pogingen per bestand</translation>
@@ -3330,38 +2927,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Open dit bestand bij voltooiing</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Stellar afsluiten bij voltooiing</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Computer uitschakelen bij voltooiing</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Processen forceren</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Downloaden</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>Bestanden gelijktijdig</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Bestandsnaam</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Grootte</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Resterende tijd</translation>
@@ -3398,18 +2974,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Nu starten</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stoppen</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Toepassen</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Naam voor nieuwe wachtrij</translation>
@@ -3418,18 +2988,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Wachtrijnaam</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Scheduler</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Nieuwe wachtrij</translation>
@@ -3441,10 +3002,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Verbinding</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Max. gelijktijdige downloads:</translation>
@@ -3509,22 +3067,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Wachtwoord:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Categorieën</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Naam</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Opslaan in map</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Downloads</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Standaard opslaan map:</translation>
@@ -3585,14 +3134,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Toon seconden</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Voorvertoning</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Browser-integratie</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Start automatisch downloaden van volgende bestandssoorten:</translation>
@@ -3617,10 +3160,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Druk op deze toets om interceptie te omzeilen:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Snelheidsbeperker</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Globale snelheidsbeperking inschakelen</translation>
@@ -3629,10 +3169,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Maximale snelheid:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Globale uploadbeperking inschakelen</translation>
@@ -3649,18 +3186,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Snelheidsbeperker-scheduler inschakelen</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Verwijderen</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Aan</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Downloaden</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Uploaden</translation>
@@ -3681,10 +3212,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Melding bij downloadfout</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Algemeen</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Browser</translation>
@@ -3781,14 +3309,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Bestands eigenschappen</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Bestand openen</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Map openen</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24-uurs tijd</translation>
@@ -3821,10 +3343,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Klik op een dagpill om te wisselen. Regels worden elke minuut geëvalueerd; eerst matchende regel wint. Beplande download- en uploadlimieten worden automatisch gewist als geen regel actief is.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Minimaliseren naar systeemvak</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Sluiten naar systeemvak</translation>
@@ -3917,10 +3436,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>yt-dlp downloaden</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Opnieuw controleren</translation>
@@ -4025,10 +3541,7 @@ Anything you share via BitTorrent is your sole responsibility. Ensure you have t
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
             <translation>Stellar is een bestandssharesoftware. Bij downloaden van een torrent wordt uw IP-adres zichtbaar voor andere peers en uploaden (seeden) u gelijktijdig data. Alles wat u deelt is uw eigen verantwoordelijkheid. Zorg dat u het recht heeft om de inhoud te distribueren. Het wordt sterk aanbevolen Stellar aan een VPN-interface te binden en te controleren of uw VPN actief is voordat u torrents gebruikt, om uw IP-adres te beschermen.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Ik begrijp het, Inschakelen</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Instellingen voor .torrent-bestanden en magnet-links</translation>
@@ -4093,10 +3606,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>Netwerk</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Geavanceerd</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Aangepaste BitTorrent user agent</translation>
@@ -4169,10 +3679,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>Blokkeer peers per land</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Toevoegen</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Geen geblokkeerde landen</translation>
@@ -4209,18 +3716,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>Versie</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Onbekend</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Pad</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Grootte</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Items</translation>
@@ -4229,10 +3730,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>Laatst gewijzigd</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Ophalen...</translation>
@@ -4245,10 +3743,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>Info vernieuwen</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistieken</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Cumulatieve overdrachtstotaal voor alle torrents, inclusief verwijderde.</translation>
@@ -4269,10 +3764,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Volledige licentieteksten in THIRD-PARTY-NOTICES.txt</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Feed ophalen</translation>
@@ -4285,10 +3777,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Verversinterval feeds</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>minuten</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Vertraging voor verzoeken aan dezelfde host</translation>
@@ -4449,14 +3938,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>Derde-partij software</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Toepassen</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Standaard route</translation>
@@ -4537,10 +4020,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>Beschikbaar maar niet geladen</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Bron: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Bron-URL nog niet geïncacheerd. Gebruik 'Updates controleren' om IPtoCityDB te incachen vanuit update.json.</translation>
@@ -4572,18 +4052,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>Project bewerken</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Project verwijderen</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Categorieën</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Alle downloads</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Onvoltooid</translation>
@@ -4596,49 +4067,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Projecten</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrents</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Wachtrij</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Downloaden</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Zaden</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Gestopt</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Actief</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Inactief</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Controleren</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Verplaatsen</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistieken</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar Statistieken</translation>
@@ -4647,14 +4088,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>ALTIJD</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Gedownload</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Geüpload</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Deelratio</translation>
@@ -4675,10 +4110,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>DEZE SESSIE</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4794,57 +4226,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Geen inkomende verbindingen, netwerk mogelijk verkeerd geconfigureerd</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Stellar Download Manager</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>URL toevoegen</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Hervatten</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stoppen</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Alles stoppen</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Verwijderen</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Klaar verwijderd</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Opties</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Scheduler</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Wachtrij starten</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Wachtrij stoppen</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Haalder</translation>
@@ -4853,10 +4255,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Zoekmachine</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4895,18 +4294,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Opslaan in</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Opslaan als...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categorie</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Aangepaste opslagmap</translation>
@@ -4919,86 +4312,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Categoriemap gebruiken</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Beschrijving</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Torrent-instellingen...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Later downloaden</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Downloaden</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Opent torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% voltooid</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Bestanden</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n item(s)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Naam</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Vooruitgang</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Grootte</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Geen bestandsinformatie</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Wachtend</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Hernoem item</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Voer een nieuwe naam in:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Hernoem</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Hernoemen...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Peer</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Opent torrent en leest metadata...</translation>
@@ -5011,14 +4353,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Downloadt metadata van %n peer(s)...</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Seed</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Jij</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrent Metadata</translation>
@@ -5038,14 +4374,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Weblink</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Kies een lokaal .py-bestand voor de zoekplugin om te kopiëren naar de map search_plugins.</translation>
@@ -5077,18 +4407,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Geïnstalleerde zoekplugins</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Vernieuwen</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Onbekend</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Ingeschakeld</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Uitgeschakeld</translation>
@@ -5097,10 +4418,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Een nieuwe installeren</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Plugins zoeken</translation>
@@ -5108,18 +4426,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Naam</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Grootte</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seeders</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Leechers</translation>
@@ -5136,18 +4445,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Omschrijving openen</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Torrent downloaden</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Naam kopiëren</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Magnetlink kopiëren</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Beschrijfsurl kopiëren</translation>
@@ -5160,18 +4463,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Zoeken</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Onbekend</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Nog geen resultaten</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Zoekplugins</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrentzoeker</translation>
@@ -5187,14 +4484,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Snelheid, delen, peers, modus</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Sluiten</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Toepassen</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>BANDWIDTH LIMITS</translation>
@@ -5215,26 +4506,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Ratio:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Standaard</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Onbeperkt</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Instellen op</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Zaaitijd:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Inactieve tijd:</translation>
@@ -5338,10 +4617,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Instellingen openen</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Cookies van browser:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Selecteer een browser om zijn cookies door te geven aan yt-dlp en probeer het opnieuw.</translation>
@@ -5411,10 +4687,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Download ondertitels</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Taal:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Taalcode(s), bijv. en · en.*,ja · alle</translation>
@@ -5472,14 +4745,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Downloadkanaal</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Downloaden</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Geavanceerd</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Datumfilter</translation>
@@ -5572,18 +4839,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Opslaan in:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Categorie:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Formaat:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Annuleren</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Video downloaden</translation>

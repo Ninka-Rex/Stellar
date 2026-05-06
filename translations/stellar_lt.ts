@@ -61,33 +61,23 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Atsisiunčiama: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Sėjinama: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Sėjinama: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Iš viso: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Iš viso: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar užsibaigia...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Jei norite suskirstyti atsisiuntimus, spauskite OK</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Pasirinkti tik nuorodas, pažymėtas kaip Rasta. Eilutės priskyrimas vis tiek vyksta po spaudimo OK.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Masinis atsisiuntimo peržiūra</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>pikselių pločio</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Visam laikui ištrinti (neperkelti į šiukšliadėžę)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Ištrinti</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Taip</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Ne</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Naršyti...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Kategorija</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Gaunama duomenų...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Surenkama...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Atsisiuntimo būklė</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Sumažinti į sistemos dėklą</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Būklė</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Failo dydis</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Atkurti</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Taip</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Ne</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Klaidos detalės</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Pauzė</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Pradžios pozicijos ir atsisiuntimo progresas pagal ryšius</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Pervadinti</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Atsisiųsti iš naujo</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Ištrinti</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Stulpelių nustatymai</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Failo pavadinimas</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Dydis</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Būsena</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Liko laiko</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Siuntimo greitis</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Įkelti</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Atsisiųsti</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Paskutinio bandymo data</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Aprašymas</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Išsaugoti į</translation>
@@ -970,14 +891,8 @@ Spauskite  Pridėti URL  pradžiai.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Atsiminkite mano pasirinkimą ir daugiau nerodykite šio dialogo.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Jį galite pakeisti Vyr. → Atsisiuntimai vėliau.</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Perkelti failą į...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Pradėti</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Sustabdyti</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Atidaryti aplanką</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Atidaryti failą</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Būsena</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Dydis</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Saugoti į</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Perkelti</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Adresas</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Tinklalapis</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Šaltinis</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Aprašymas</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Prisijungimas</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Slaptažodis</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Šaltinis</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Info hash</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Kopijuoti</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Meta duomenys</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorija</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Pastaba</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Atsisiųsta</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Šalis</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Užduotis</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Įkelta</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Sėkėjai</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Žinutė</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Sustabdyta</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Atsisiunčiama</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Perkelinama</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Sėjinama</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Eilėje</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Problema</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Bendrinė</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Failai</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Draudimo žemėlapis</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Įveskite naują failo arba aplanko pavadinimą:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Pervadinti</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Atsisiųsti</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Pervadinti...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Nėra prijungtų bendrininkų</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Lygmuo</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Dalyviai</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 žinomų dalyvių</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% atlikta</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Nežinoma</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Jūs</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Priverstinė peržiūra</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Kopijuoti URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Šalinti sekėją</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Įklijuoti web seed URL – po vieną eilutėje</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Tipas</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Rasta %1 rezultatų.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Šablonas</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Išsaugoti</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Paskutiniai projektai</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Grobėjo nustatymai</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Išplėstinai &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Prisijungti</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Slaptažodis</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Paspauskite Išplėstinai, kad įjungtumėte rankinį prisijungimą arba išjungtumėte išsijungimo puslapį.</translation>
@@ -1935,22 +1745,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Maskė</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Pridėti</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Redaguoti</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Ištrinti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Redaguoti filtrą</translation>
@@ -1959,18 +1760,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Naujas filtras</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorija</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Išsaugoti</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1982,25 +1774,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Išsaugoti projektai</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Projektas</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Parinktys</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Veiksmas</translation>
@@ -2030,22 +1810,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Pradėti</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Ieškojimas</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Tipas</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Dydis</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Būsena</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Nuoroda</translation>
@@ -2054,10 +1825,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>Atsisiųsti iš</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Išsaugoti į</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Žymėti</translation>
@@ -2070,14 +1838,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Redaguoti projektą</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Nustatymai</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2334,14 +2096,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Pastaba: Stellar turi būti paleistas sistemos skydelio juostoje norint pradėti planuojamą projektą.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2365,14 +2121,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Naudoti nuorodų tekstus kaip atsisiuntimo aprašymus, kai pridedate failus į pagrindinį Stellar sąrašą</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2384,10 +2134,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Būsena: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Nekurs</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Apdoroti puslapiai</translation>
@@ -2400,10 +2147,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Išplėstinė</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Failai</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Iš viso</translation>
@@ -2416,14 +2160,8 @@ Project</source>
             <source>Matched</source>
             <translation>Sutampama</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Atsisiųsta</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2451,10 +2189,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar bandys tą patį yt-dlp elementą su šios naršyklės slapukais.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Bandyti iš naujo</translation>
@@ -2491,18 +2226,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Visi failai (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Iš viso: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Užbaigta: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Atsisiunčiama: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Eilėje: %1</translation>
@@ -2511,18 +2240,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Viso: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stabdyti</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Tęsti</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Įjungti BitTorrent palaikymą?</translation>
@@ -2555,10 +2275,7 @@ You can turn this off in Settings → Downloads.</source>
 
 Išjungti galima nustatymuose: Nustatymai → Atsisiuntimai.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Failas '%1' negalėjo būti atsisiųstas.</translation>
@@ -2601,14 +2318,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>File</source>
             <translation>Failas</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Atverti aplanką</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Atverti failą</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Atsisiųsti</translation>
@@ -2621,14 +2332,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Remove</source>
             <translation>Ištrinti</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Atsisiųsti iš naujo</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Eksportuoti .torrent</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Atsisiuntimai</translation>
@@ -2665,10 +2370,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Stop Queue</source>
             <translation>Stabdyti eilę</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Greičio ribotuvas</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Įjungti</translation>
@@ -2761,10 +2463,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Columns…</source>
             <translation>Stulpeliai…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Parinktys</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Nuostatos…</translation>
@@ -2797,42 +2496,21 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Nuleisti .torrent failą</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Ieškoti:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Ieškoti</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Nustatymai ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Ieškoti:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Failo pavadinimas arba jo dalis</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Aprašymas</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / šaltinis / tėvo puslapis</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Atitikti raidžių dydį</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Visa eilutė tiksliai</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Perkelti šoninį meniu į kairę</translation>
@@ -2881,10 +2559,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Channel Download Progress</source>
             <translation>Kanalo atsisiuntimo progresas</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Atsisiųsti vėliau</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Failas daugiau neprieinamas</translation>
@@ -2940,18 +2615,12 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Don't add to queue</source>
             <translation>Neįtraukti į eilę</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Įveskite eilės pavadinimą</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Kurti</translation>
@@ -2967,14 +2636,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Download Rules</source>
             <translation>Atsisiuntimo taisyklės</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Pridėti</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Ištrinti</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Spauskite „Pridėti</translation>
@@ -3051,10 +2714,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Leave empty to use default save path</source>
             <translation>Palikti tuščią</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Naršyti...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Kategorija:</translation>
@@ -3067,10 +2727,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>TORRENT SHARE LIMITS</source>
             <translation>Dalybos limitai</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Ratio</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Numatytasis</translation>
@@ -3099,14 +2756,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Numatyta</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS automatinio atsisiuntimo taisyklės</translation>
@@ -3146,10 +2797,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Download Torrent</source>
             <translation>Atsisiųsti torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Atsisiųsti</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Atidaryti naršyklėje</translation>
@@ -3170,50 +2818,26 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Mark All Read</source>
             <translation>Žymėti viską kaip perskaityta</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Vardas</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Pavadinimas (nebūtina)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Išsaugoti</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Pridėti RSS arba Atom srauto URL...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Pridėti</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Atnaujinama…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Redaguoti</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Ištrinti</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Taisyklės</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Prenumeratos</translation>
@@ -3226,10 +2850,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Select an article</source>
             <translation>Pasirinkite straipsnį</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Atidaryti</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Pažymėti kaip perskaitytą</translation>
@@ -3273,10 +2894,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>New queue</source>
             <translation>Nauja eilutė</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Ištrinti</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Planuoti</translation>
@@ -3289,42 +2907,21 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>One-time downloading</source>
             <translation>Vienkartinis atsisiuntimas</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Periodinė sinchronizacija</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Pradėti po Stellar paleidimo</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Pradėti</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Vieną kartą</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Kasdien</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Iš naujo kas</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>val.</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>min.</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Sustabdyti atsisiuntimą</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Pabandymų skaičius</translation>
@@ -3333,38 +2930,17 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Open the following file when done:</source>
             <translation>Atidaryti failą</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Išeiti iš Stellar</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Išjungti kompiuterį</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Priverstinai užbaigti</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Atsisiųsti</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>Failų skaičius</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Failo pavadinimas</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Dydis</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Būsena</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Liko laiko</translation>
@@ -3401,18 +2977,12 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Start now</source>
             <translation>Pradėti dabar</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Sustabdyti</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Taikyti</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Įveskite naujos eilutės pavadinimą</translation>
@@ -3421,18 +2991,9 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Queue name</source>
             <translation>Eilutės pavadinimas</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Planuotojas</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Nauja eilutė</translation>
@@ -3444,10 +3005,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Ryšys</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Maksimalus vienu metu atsisiunčiamų failų skaičius</translation>
@@ -3512,22 +3070,13 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Password:</source>
             <translation>Slaptažodis:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategorijos</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Pavadinimas</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Išsaugoti į aplanką</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Atsisiuntimai</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Numatyta saugojimo aplinka:</translation>
@@ -3588,14 +3137,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Show seconds</source>
             <translation>Rodyti sekundes</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Peržiūra</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Sąveika su naršykle</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Automatiškai atsisiųsti šiuos failus</translation>
@@ -3620,10 +3163,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Paspauskite šį klavišą, kad išvengtumėte atsargumo priemonės ir lestumėte naršyklai atsisiųsti:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Greitumo ribotukas</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Įjungti bendrą greičio ribą</translation>
@@ -3632,10 +3172,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Maximum speed:</source>
             <translation>Maksimalus greitis:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Įjungti bendrą siuntimo ribą</translation>
@@ -3652,18 +3189,12 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Enable speed limiter scheduler</source>
             <translation>Įjungti greičio ribotuvo planuotoją</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Ištrinti</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Įjungta</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Atsisiųsti</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Išsiųsti</translation>
@@ -3684,10 +3215,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Show notification on download error</source>
             <translation>Parodyti pranešimą susidarius klaidai atsisiėstant</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Bendrinis</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Skelėtas</translation>
@@ -3784,14 +3312,8 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Open file properties dialog</source>
             <translation>Savybės</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Atidaryti</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Aplankas</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24 val.</translation>
@@ -3824,10 +3346,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Spauskite dienos tabletį, kad jį įjungtumėte. Taisyklės vertinamos kas minutę; taikoma pirmoji sutampanti taisyklė. Numatyti atsisiuntimo ir siuntimo limitai automatiškai išvalomi, kai nėra aktyvių taisyklių</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Sumažinti į sistemos dėklą</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Uždaryti į sistemos dėklą</translation>
@@ -3920,10 +3439,7 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
             <source>Download yt-dlp</source>
             <translation>Atsisiųsti 'yt-dlp'</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Peržiūrėti</translation>
@@ -4027,10 +3543,7 @@ Anything you share via BitTorrent is your sole responsibility. Ensure you have t
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
             <translation>Stellar yra failų dalinimosi programa. Parsisiunčiant torrent, jūsų IP adresas tampa matomas kitiems grupės dalyviams, o jūs vienu metu siunčiate (seed) duomenis kitiems. Viskas, ką dalinatės per BitTorrent, yra jūsų atsakomybė. Įsitikinkite, kad turite teisę platinti turinį. stipriai rekomenduojama prisirišti Stellar prie VPN tinklo sąsajos ir patikrinti, ar VPN veikia, prieš naudodami torrent, kad apsaugotumėte savo IP adresą nuo atskleidimo.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Supratau, Įjungti</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Šios nustatytos taisyklos taikomos .torrent failams ir magnetiniams nuorodoms.</translation>
@@ -4095,10 +3608,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>Tinklas</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Išplėstinai</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Nustatyti BitTorrent naudotojo agentą</translation>
@@ -4171,10 +3681,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>Užblokuoti draugus pagal šalį</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Pridėti</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Jokios blokavimo šalių</translation>
@@ -4211,18 +3718,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>Versija</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Nežinoma</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Kelias</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Dydis</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Įrašai</translation>
@@ -4231,10 +3732,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>Paskutinė keitimo data</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Būsena</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Atsisiunčiama...</translation>
@@ -4247,10 +3745,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>Atnaujinti informaciją</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistika</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Viso perleistų duomenų suma visiems torrentams, įskaitant pašalintus.</translation>
@@ -4271,10 +3766,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Licencijos tekstai – THIRD-PARTY-NOTICES.txt</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Šaltinių gavimas</translation>
@@ -4287,10 +3779,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Šaltinių atnaujinimo intervalas</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>min</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Vėlavimas prašymams tame pačiame hoste</translation>
@@ -4451,14 +3940,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>Trečiųjų šalių programinė įranga</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Taikyti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Numatytasis maršrutas</translation>
@@ -4539,10 +4022,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>Prieinama, bet neįkelta</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Šaltinis: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Šaltinio URL dar nėra įkeltas. Naudokite „Patikrinti atnaujinimus</translation>
@@ -4574,18 +4054,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>Redaguoti projektą</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Ištrinti projektą</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategorijos</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Visi atsisiuntimai</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Nebaigta</translation>
@@ -4598,49 +4069,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Projektai</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrentai</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Eilutės</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Atsisiuntimai</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Paskleidimas</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Sustabdyti</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Veikiantys</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Nedalyvaujantys</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Patikrinimas</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Perkėlimas</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistika</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar statistika</translation>
@@ -4649,14 +4090,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>VISADA</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Atsisiųsta</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Išsiųsta</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Dalybos santykis</translation>
@@ -4677,10 +4112,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>ŠI SESIJA</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4796,57 +4228,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Jokių įeinančių ryšių, tinklas gali būti neteisingai sukonfigūruotas</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Stellar Download Manager</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Pridėti URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Tęsti</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Sustabdyti</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Sustabdyti viską</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Ištrinti</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Ištrinta</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Nustatymai</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Planuotojas</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Paleisti eilę</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Sustabdyti eilę</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Grobėjas</translation>
@@ -4855,10 +4257,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Paieškos variklis</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4897,18 +4296,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Išsaugoti į</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Išsaugoti kaip...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorija</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Nustatyti išsaugojimo aplanką</translation>
@@ -4921,86 +4314,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Naudoti kategorijos aplanką</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Aprašymas</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Torrent nustatymai...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Vėliau atsisiųsti</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Atsisiųsti</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Atidaromas torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% atlikta</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Failai</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n elementų</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Pavadinimas</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Progresas</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Dydis</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Nėra failo informacijos</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Laukiama</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Pervadinti elementą</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Įveskite naują failo arba aplanko pavadinimą:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Pervadinti</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Pervadinti...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Peer</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Atidaromas torrent ir skaitomi metafailai...</translation>
@@ -5013,14 +4355,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Atsisiunčiama metafailai iš %n peer'ų</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Sėkla</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Jūs</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrento duomenys</translation>
@@ -5040,14 +4376,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Web nuoroda</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Gerai</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Pasirinkite vietinį .py paieškos įskiepio failą kopijuoti į search_plugins aplanką.</translation>
@@ -5079,18 +4409,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Įdiegti įskiepį</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Atnaujinti</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Nežinoma</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Įjungta</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Išjungta</translation>
@@ -5099,10 +4420,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Įdiegti naują</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Ieškoti įskiepių</translation>
@@ -5110,18 +4428,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Pavadinimas</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Dydis</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Sėklintojai</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Priešai</translation>
@@ -5138,18 +4447,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Atidaryti aprašymo puslapį</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Atsisiųsti torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Kopijuoti pavadinimą</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Kopijuoti magnetinį nuorodą</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Kopijuoti aprašymo puslapio URL</translation>
@@ -5162,18 +4465,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Ieškoti</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Nežinoma</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Dar nėra ieškotų rezultatų</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Ieškos įskiepių</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrento paieškos variklis</translation>
@@ -5189,14 +4486,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Greitis, dalinimasis, draugai, režimas</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Uždaryti</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Taikyti</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>BANDWIDTH LIMITS</translation>
@@ -5217,26 +4508,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Ratio:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Numatyti</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Neribota</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Nustatyta</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Sėjinimo laikas:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Neaktyvus laikas:</translation>
@@ -5340,10 +4619,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Atidaryti nustatymus</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Sesijos slapukai iš naršyklės:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Pasirinkite naršyklę, kad jos slapukai būtų perduoti yt-dlp, ir bandykite dar kartą.</translation>
@@ -5413,10 +4689,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Išsisiųsti subtitrus kartu su vaizdo įrašu</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Kalba:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Kalbos kodai, pvz. en · en.*,ja · visos</translation>
@@ -5474,14 +4747,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Kanalas</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Atsisiųsti</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Išplėstinai</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Datos filtras</translation>
@@ -5574,18 +4841,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Išsaugoti į:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Kategorija:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Formatas:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atšaukti</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Vaizdo įrašo atsisiuntimas</translation>

@@ -61,33 +61,23 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Stahuji: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Seeduji: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Seeduji: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Celkem: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Celkem: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar se vypíná...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Pokud chcete tato stahování seskupit před spuštěním, použijte krok fronty po potvrzení.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Pouze odkazy označené jako Našel jsou vybíratelné. Zařazení do fronty proběhne po potvrzení.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Hromadná kontrola stahování</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>být široký</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Trvale smazat (nepřesouvat do koše)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Smazat</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Ano</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Ne</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Procházet...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Kategorie</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Přijímání dat...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Skládání...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Stav stahování</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Minimalizovat do lišty</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Stav</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Velikost souboru</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Podpora obnovení</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Ano</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Ne</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Detaily chyby</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Pozastavit</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Počáteční pozice a postup stahování podle připojení</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Přejmenovat</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Znovu stáhnout</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Smazat</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Nastavení sloupců</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Název souboru</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Velikost</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Stav</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Zbývá času</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Rychlost ↓</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Nahráno</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Staženo</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Datum posledního pokusu</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Popis</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Uložit do</translation>
@@ -972,14 +893,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Zapamatovat si výběr a již nezobrazovat tento dialog.
 Lze změnit v Možnosti → Stahování.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -991,66 +906,30 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Move File To...</source>
             <translation>Přesunout soubor do...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Spustit</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Zastavit</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Otevřít složku</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Otevřít soubor</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Stav</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Velikost</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Uložit do</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Přesunout</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Adresa</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Webová stránka</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Odkaz</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Popis</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Přihlášení</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Heslo</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Zdroj</translation>
@@ -1059,26 +938,17 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Info hash</source>
             <translation>Info hash</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Kopírovat</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Metadata</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorie</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Poznámka</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Staženo</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Země</translation>
@@ -1087,14 +957,8 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Nahráno</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seedři</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Zpráva</translation>
@@ -1103,22 +967,10 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Stopped</source>
             <translation>Zastaveno</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Stahování</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Přesouvání</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Sdílení</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Ve frontě</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Chyba</translation>
@@ -1143,10 +995,7 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>General</source>
             <translation>Obecné</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Soubory</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Mapa swarmu</translation>
@@ -1231,22 +1080,10 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Enter a new file or folder name:</source>
             <translation>Zadejte nový název souboru/složky:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Přejmenovat</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Stáhnout</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Přejmenovat...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Žádní peerové</translation>
@@ -1351,10 +1188,7 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Tier</source>
             <translation>Úroveň</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Peerové</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 známých peerů</translation>
@@ -1379,10 +1213,7 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1 %2% hotovo</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Neznámý</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Vy (tento klient)</translation>
@@ -1399,10 +1230,7 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Force Reannounce</source>
             <translation>Vynutit reannounce</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Kopírovat URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Odebrat tracker</translation>
@@ -1431,10 +1259,7 @@ Lze změnit v Možnosti → Stahování.</translation>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Vložte URL webových semen – jedno na řádek. Podporovány jsou URL semena (BEP-19) i HTTP semena (BEP-17).</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Typ</translation>
@@ -1583,10 +1408,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Nalezeno %1 výsledků.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1650,10 +1472,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Název šablony</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Uložit</translation>
@@ -1674,10 +1493,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Nedávné projekty</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Nastavení Grabberu</translation>
@@ -1718,14 +1534,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Pokročilé &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Přihlášení</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Heslo</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Klikněte na Pokročilé pro ruční přihlášení nebo pro zakázání stránky odhlášení.</translation>
@@ -1937,22 +1747,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Maska</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Přidat</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Upravit</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Smazat</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Upravit filtr</translation>
@@ -1961,18 +1762,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Nový filtr</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorie</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Uložit</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1984,25 +1776,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Uložené projekty</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Projekt</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Možnosti</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Běží</translation>
@@ -2032,22 +1812,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Spustit</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Prohledávání</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Název souboru</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Typ souboru</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Velikost</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Stav</translation>
@@ -2056,10 +1827,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>Text odkazu</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Stáhnout z</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Uložit do</translation>
@@ -2072,14 +1840,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Odznačit vybrané</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Upravit aktuální projekt</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Nastavení Grabberu</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2336,14 +2098,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Poznámka: Stellar by měl v zadaný čas běžet na systémové liště, aby spustil naplánovaný úkol.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2367,14 +2123,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Použít texty odkazů jako popisy stahování při přidání souborů do hlavního seznamu Stellar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2386,10 +2136,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Stav: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Nečinný</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Zpracované webové stránky</translation>
@@ -2402,10 +2149,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Pokročilý</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Soubory</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Celkem</translation>
@@ -2418,14 +2162,8 @@ Project</source>
             <source>Matched</source>
             <translation>Spárováno</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Staženo</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2453,10 +2191,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar zkusí znovu stáhnout stejnou položku yt-dlp s těmito soubory cookie.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Zkusit znovu</translation>
@@ -2493,18 +2228,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Všechny soubory (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Celkem: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Dokončeno: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Stahování: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Ve frontě: %1</translation>
@@ -2513,18 +2242,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Celkem: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Zastavit</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Pokračovat</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Povolit podporu BitTorrent?</translation>
@@ -2557,10 +2277,7 @@ You can turn this off in Settings → Downloads.</source>
 
 Tuto funkci můžete vypnout v Nastavení → Stahování.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Soubor „%1“ se nepodařilo stáhnout.</translation>
@@ -2603,14 +2320,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>File</source>
             <translation>Soubor</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Otevřít složku</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Otevřít soubor</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Stáhnout nyní</translation>
@@ -2623,14 +2334,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Remove</source>
             <translation>Odebrat</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Stáhnout znovu</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Exportovat .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Stahování</translation>
@@ -2667,10 +2372,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Stop Queue</source>
             <translation>Zastavit frontu</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Omezení rychlosti</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Zapnout</translation>
@@ -2763,10 +2465,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Columns…</source>
             <translation>Sloupce…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Možnosti</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Předvolby…</translation>
@@ -2799,42 +2498,21 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Přetáhněte soubor .torrent pro otevření metadat torrentu</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Hledat:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Hledat</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Nastavení ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Hledat v:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Název souboru nebo jeho část</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Popis</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / referer / nadřazená webová stránka</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Rozlišovat velká a malá písmena</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Přesný řetězec</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Přesunout postranní panel doleva</translation>
@@ -2883,10 +2561,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Channel Download Progress</source>
             <translation>Postup stahování kanálu</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Stáhnout později</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Soubor již není dostupný</translation>
@@ -2942,18 +2617,12 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Don't add to queue</source>
             <translation>Nepřidávat do fronty</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Zadejte název fronty</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Vytvořit</translation>
@@ -2969,14 +2638,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Download Rules</source>
             <translation>Pravidla pro stahování</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Přidat</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Odebrat</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Klikněte na „Přidat“ a vytvořte pravidlo pro stahování</translation>
@@ -3053,10 +2716,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Leave empty to use default save path</source>
             <translation>Ponechte prázdné pro výchozí cestu</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Procházet...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Kategorie:</translation>
@@ -3069,10 +2729,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>TORRENT SHARE LIMITS</source>
             <translation>OMEZENÍ SDÍLENÍ TORRENTU</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Ratio</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Výchozí</translation>
@@ -3101,14 +2758,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>„Výchozí“ používá globální limity sdílení nastavené v Nastavení → Torrenty.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Pravidla automatického stahování RSS</translation>
@@ -3148,10 +2799,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Download Torrent</source>
             <translation>Stáhnout torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Stáhnout</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Otevřít v prohlížeči</translation>
@@ -3172,50 +2820,26 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Mark All Read</source>
             <translation>Označit vše jako přečtené</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Název</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Vlastní název (volitelné)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Uložit</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Přidat RSS nebo Atom feed URL...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Přidat</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Obnovování…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Upravit</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Odebrat</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Pravidla stahování</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Odběry</translation>
@@ -3228,10 +2852,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Select an article</source>
             <translation>Vybrat článek</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Otevřít</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Označit jako přečtené</translation>
@@ -3275,10 +2896,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>New queue</source>
             <translation>Nová fronta</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Smazat</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Plánování</translation>
@@ -3291,42 +2909,21 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>One-time downloading</source>
             <translation>Jednorázové stahování</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Periodická synchronizace</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Spustit stahování při startu Stellar</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Spustit stahování v</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Jednou v</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Denně</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Opakovat každých</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>hodin</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Zastavit stahování při</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Počet opakování pro každý soubor při selhání stahování:</translation>
@@ -3335,38 +2932,17 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Open the following file when done:</source>
             <translation>Otevřít následující soubor po dokončení:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Ukončit Stellar po dokončení</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Vypnout počítač po dokončení</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Donutit procesy k ukončení</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Stahovat</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>souborů najednou</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Název souboru</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Velikost</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Stav</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Zbývající čas</translation>
@@ -3403,18 +2979,12 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Start now</source>
             <translation>Spustit nyní</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Zastavit</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Použít</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Zadejte název nové fronty, který se zobrazí v seznamu front</translation>
@@ -3423,18 +2993,9 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Queue name</source>
             <translation>Název fronty</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Storno</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Plánovač</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Nová fronta</translation>
@@ -3446,10 +3007,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Připojení</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Max. souběžných stahování:</translation>
@@ -3514,22 +3072,13 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Password:</source>
             <translation>Heslo:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategorie</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Název</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Uložit do složky</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Stahování</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Výchozí složka pro uložení:</translation>
@@ -3590,14 +3139,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Show seconds</source>
             <translation>Zobrazit sekundy</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Náhled</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Integrace prohlížeče</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Automaticky spustit stahování těchto typů souborů:</translation>
@@ -3622,10 +3165,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Podržte tuto klávesu při kliknutí na odkaz pro přeskočení zachycení a stažení prohlížečem:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Omezovač rychlosti</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Povolit globální omezení rychlosti</translation>
@@ -3634,10 +3174,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Maximum speed:</source>
             <translation>Maximální rychlost:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Povolit globální omezení odesílání</translation>
@@ -3654,18 +3191,12 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Enable speed limiter scheduler</source>
             <translation>Povolit plánovač omezení rychlosti</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Odebrat</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Zapnuto</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Stahování</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Nahrávání</translation>
@@ -3686,10 +3217,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Show notification on download error</source>
             <translation>Zobrazit oznámení při chybě stahování</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Obecné</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Prohlížeč</translation>
@@ -3786,14 +3314,8 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Open file properties dialog</source>
             <translation>Otevřít dialog vlastností souboru</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Otevřít soubor</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Otevřít složku</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24hodinový formát</translation>
@@ -3826,10 +3348,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Kliknutím na den přepnete jeho stav. Pravidla se vyhodnocují každou minutu; platí první shoda. Limity stahování a uploadu se automaticky vymažou, když není aktivní žádné pravidlo.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Minimalizovat do systémové lišty</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Zavřít do systémové lišty</translation>
@@ -3922,10 +3441,7 @@ Možnosti Stellar → Prohlížeč → Obcházet zachycení stahování</transla
             <source>Download yt-dlp</source>
             <translation>Stáhnout yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Znovu zkontrolovat</translation>
@@ -4034,10 +3550,7 @@ Vše, co sdílíte přes BitTorrent, je na vaši vlastní odpovědnost. Ujistět
 
 Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že vaše VPN je aktivní před použitím torrentů, aby se chránila vaše IP adresa před odhalením.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Rozumím, Povolit</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Tato nastavení se vztahují na .torrent soubory a magnetické odkazy.</translation>
@@ -4102,10 +3615,7 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Networking</source>
             <translation>Síť</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Pokročilé</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Vlastní user agent bittorrent</translation>
@@ -4178,10 +3688,7 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Block peers by country</source>
             <translation>Blokovat peeru podle země</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Přidat</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Žádné zablokované země.</translation>
@@ -4218,18 +3725,12 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Version</source>
             <translation>Verze</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Neznámý</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Cesta</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Velikost</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Položky</translation>
@@ -4238,10 +3739,7 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Last Modified</source>
             <translation>Poslední změna</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Stav</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Stahování…</translation>
@@ -4254,10 +3752,7 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Refresh Info</source>
             <translation>Obnovit info</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistiky</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Kumulativní přenosy přes všechny torrenty, včetně odstraněných.</translation>
@@ -4278,10 +3773,7 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Plné texty licencí jsou v souboru THIRD-PARTY-NOTICES.txt, součást instalace.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Načítání kanálů</translation>
@@ -4294,10 +3786,7 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Feeds refresh interval</source>
             <translation>Interval obnovy kanálů</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>minut</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Zpoždění požadavků stejného hostitele</translation>
@@ -4458,14 +3947,8 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Third-party software</source>
             <translation>Software třetích stran</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Použít</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Výchozí brána</translation>
@@ -4546,10 +4029,7 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Available but not loaded</source>
             <translation>Dostupné, ale nenacteno</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Zdroj: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Zdroj URL ještě není v mezipaměti. Použijte Zkontrolovat aktualizace pro uložení IPtoCityDB z update.json.</translation>
@@ -4581,18 +4061,9 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Edit Project</source>
             <translation>Upravit projekt</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Smazat projekt</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategorie</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Všechna stahování</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Nedokončené</translation>
@@ -4605,49 +4076,19 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>Grabber Projects</source>
             <translation>Projekty Grabber</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrenty</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Fronty</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Stahování</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Seedování</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Zastavené</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Aktivní</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Neaktivní</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Kontrola</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Přesouvání</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistiky</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar Statistiky</translation>
@@ -4656,14 +4097,8 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>ALL TIME</source>
             <translation>ZA CELÝ ČAS</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Staženo</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Nahráno</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Poměr sdílení</translation>
@@ -4684,10 +4119,7 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <source>THIS SESSION</source>
             <translation>TATO RELACE</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4804,57 +4236,27 @@ Klikněte pro otevření Statistiky</translation>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>SDM stahování</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Přidat URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Obnovit</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Zastavit</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Zastavit vše</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Smazat</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Smazat dokončené</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Možnosti</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Plánovač</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Spustit frontu</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Zastavit frontu</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Grabber</translation>
@@ -4863,10 +4265,7 @@ Klikněte pro otevření Statistiky</translation>
             <source>Search Engine</source>
             <translation>Vyhledávač</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4905,18 +4304,12 @@ Klikněte pro otevření Statistiky</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Uložit do</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Uložit jako...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorie</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Vlastní složka pro ukládání</translation>
@@ -4929,86 +4322,35 @@ Klikněte pro otevření Statistiky</translation>
             <source>Use category folder</source>
             <translation>Použít složku kategorie</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Popis</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Nastavení torrentu...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Stáhnout později</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Stáhnout</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Otevírání torrentu...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2 hotovo</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Soubory</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n položek</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Název</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Postup</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Velikost</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Žádné informace o souboru</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Čeká se</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Přejmenovat položku</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Zadejte nový název souboru nebo složky:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Přejmenovat</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Přejmenovat…</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Peer</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Otevírám torrent a čtu metadata…</translation>
@@ -5021,14 +4363,8 @@ Klikněte pro otevření Statistiky</translation>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Stahování metadat z %n peerů</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Seed</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Vy</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Metadata torrentu</translation>
@@ -5048,14 +4384,8 @@ Klikněte pro otevření Statistiky</translation>
             <source>Web Link</source>
             <translation>Webový odkaz</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Vyberte místní .py soubor pluginu pro zkopírování do složky search_plugins.</translation>
@@ -5087,18 +4417,9 @@ Klikněte pro otevření Statistiky</translation>
             <source>Installed Search Plugins</source>
             <translation>Nainstalované vyhledávací pluginy</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Obnovit</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Neznámý</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Povoleno</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Zakázáno</translation>
@@ -5107,10 +4428,7 @@ Klikněte pro otevření Statistiky</translation>
             <source>Install a New One</source>
             <translation>Nainstalovat nový</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Vyhledávací pluginy</translation>
@@ -5118,18 +4436,9 @@ Klikněte pro otevření Statistiky</translation>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Název</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Velikost</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seedři</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Leecheři</translation>
@@ -5146,18 +4455,12 @@ Klikněte pro otevření Statistiky</translation>
             <source>Open Description Page</source>
             <translation>Otevřít popis</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Stáhnout torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Kopírovat název</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Kopírovat magnet odkaz</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Kopírovat URL popisu</translation>
@@ -5170,18 +4473,12 @@ Klikněte pro otevření Statistiky</translation>
             <source>Search</source>
             <translation>Hledat</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Neznámý</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Zatím žádné výsledky</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Doplňky vyhledávání</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Vyhledávač torrentů</translation>
@@ -5197,14 +4494,8 @@ Klikněte pro otevření Statistiky</translation>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Rychlost, limity sdílení, objevování peerů a režim stahování pro každý torrent</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Zavřít</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Použít</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>LIMITY PŘENOSU</translation>
@@ -5225,26 +4516,14 @@ Klikněte pro otevření Statistiky</translation>
             <source>Ratio:</source>
             <translation>Poměr:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Výchozí</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Neomezeně</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Nastavit na</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Čas seedování:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Čas nečinnosti:</translation>
@@ -5348,10 +4627,7 @@ Klikněte pro otevření Statistiky</translation>
             <source>Open Settings</source>
             <translation>Otevřít nastavení</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Cookies z prohlížeče:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Vyberte prohlížeč pro předání jeho cookies do yt-dlp, poté zkuste znovu.</translation>
@@ -5421,10 +4697,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Stáhnout soubory s titulky spolu s videem</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Jazyk:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Kód(y) jazyka, např. en · en.*,ja · všechny</translation>
@@ -5483,14 +4756,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Kanál stahování</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Stáhnout</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Pokročilé</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Filtr data</translation>
@@ -5583,18 +4850,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Uložit do:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Kategorie:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Formát:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Zrušit</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Stáhnout video</translation>

@@ -61,37 +61,25 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>
 Sísọ̀kalẹ̀: %1  Ìgòkè: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>
 Ńṣàgbékalẹ̀: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>  Ńfúnni: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>
-Ńfúnni: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>  Lápapọ̀: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>
-Lápapọ̀: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar ń ti pa...</translation>
@@ -163,14 +151,8 @@ Lápapọ̀: %1</translation>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Lo ìgbésẹ̀ ìlà lẹ́yìn OK tó o bá fẹ́ kí àwọn ìgbanilówó wọ̀nyí jẹ́ àkójọpọ̀ kí wọ́n tó bẹ̀rẹ̀.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -210,14 +192,8 @@ Lápapọ̀: %1</translation>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Àwọn ìjápọ̀ tí a sàmì sí 'Rí' nìkan ni a lè yàn. Ìṣètò ìlà ìtòlẹ́sẹẹsẹ ṣì ń ṣẹlẹ̀ lẹ́yìn 'Ó Dára'.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó Dára</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Àtúnyẹ̀wò ìgbàsílẹ̀ àkójọpọ̀</translation>
@@ -363,14 +339,8 @@ Lápapọ̀: %1</translation>
             <source>pixels wide</source>
             <translation>píkìsẹ́lì ní fífẹ̀</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -394,10 +364,7 @@ Lápapọ̀: %1</translation>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Pa pátápátá (má ṣe gbé lọ sí àpò ìdọ̀tí)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilee</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Parẹ</translation>
@@ -425,10 +392,7 @@ Lápapọ̀: %1</translation>
             <source>Yes</source>
             <translation>Bẹ́ẹ̀ni</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Bẹ́ẹ̀kọ́</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -523,18 +487,9 @@ Lápapọ̀: %1</translation>
             <source>Browse...</source>
             <translation>Ṣàwárí...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Ẹ̀ka</translation>
@@ -613,10 +568,7 @@ Lápapọ̀: %1</translation>
             <source>Receiving data...</source>
             <translation>Ń gba dátà...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Ń kó jọ...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Ipò ìgbàsílẹ̀</translation>
@@ -637,10 +589,7 @@ Lápapọ̀: %1</translation>
             <source>Minimize to system tray</source>
             <translation>Dínkù sí atẹ ètò</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Ipò</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Ìwọ̀n fáìlì</translation>
@@ -669,14 +618,8 @@ Lápapọ̀: %1</translation>
             <source>Resume capability</source>
             <translation>Agbára àtúnbẹ̀rẹ̀</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Bẹ́ẹ̀ni</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Bẹ́ẹ̀kọ́</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Kúlẹ̀kúlẹ̀ àṣìṣe</translation>
@@ -701,10 +644,7 @@ Lápapọ̀: %1</translation>
             <source>Pause</source>
             <translation>Dádúró</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Àwọn ibẹ̀rẹ̀ àti ìlọsíwájú gbígba láti àwọn ìsopọ̀</translation>
@@ -772,10 +712,7 @@ Lápapọ̀: %1</translation>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilee</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Tún orúkọ sọ</translation>
@@ -820,10 +757,7 @@ Lápapọ̀: %1</translation>
             <source>Redownload</source>
             <translation>Tún gbà wọle</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Parẹ́</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Ètò àwọn òpó</translation>
@@ -832,18 +766,9 @@ Lápapọ̀: %1</translation>
             <source>File Name</source>
             <translation>Orúkọ fáìlì</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Ìwọ̀n</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Ipò</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Àsìkò tó kù</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Ìsàlẹ̀ ìwọ̀n</translation>
@@ -868,18 +793,12 @@ Lápapọ̀: %1</translation>
             <source>Uploaded</source>
             <translation>Ìgbésókè</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Ìgbàwọlé</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Ọjọ́ ìgbìyànjú</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Àpèjúwe</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Fipamọ́ sí</translation>
@@ -975,14 +894,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Rántí àṣàyàn mi, má sì ṣe fi àtẹ yìí hàn mọ́.
 O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkókò mìíràn.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -994,66 +907,30 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Move File To...</source>
             <translation>Gbe fáìlì lọ sí...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Bẹ̀rẹ̀</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Dáwọ́</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Ṣí fọ́ńdà</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Ṣí fáìlì</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Ipò</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Ìwọ̀n</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Fipamọ si</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Gbe</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Adirẹsi</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Oju-iwe wẹẹbu</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Olutọka</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Apejuwe</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Wọle</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Ọrọigbaniwọle</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Orisun</translation>
@@ -1062,26 +939,17 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Info hash</source>
             <translation>Hash alaye</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Dáko</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Àlàyé</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Ẹ̀ka</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Àkíyèsí</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Ti gbà</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Orílẹ̀-èdè</translation>
@@ -1090,14 +958,8 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Port</source>
             <translation>Èbúté</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Ti gbé</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Olùgbìn</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Ìfiránṣẹ́</translation>
@@ -1106,22 +968,10 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Stopped</source>
             <translation>Duro</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>N gba lati ayelujara</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>N gbe</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>N pin</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Ni isinyi</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Isoro</translation>
@@ -1146,10 +996,7 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>General</source>
             <translation>Gbogboogbo</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Àwọn fáìlì</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Máàpù Swarm</translation>
@@ -1234,22 +1081,10 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Enter a new file or folder name:</source>
             <translation>Fi oruko faili tabi folda titun sii:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilee</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Tun loruko</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Ṣe igbasilẹ</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Tun loruko...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Ko si awọn ẹlẹgbẹ ti a so</translation>
@@ -1354,10 +1189,7 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Tier</source>
             <translation>Ìpele</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Àwọn ẹlẹgbẹ́</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 ẹlẹgbẹ́ tí a mọ̀</translation>
@@ -1382,10 +1214,7 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% ti parí</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Àìmọ̀</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Ìwọ (oníbàárà yìí)</translation>
@@ -1402,10 +1231,7 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Force Reannounce</source>
             <translation>Fipá Tún Kéde</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Dáàkó URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Yọ olùtọpinpin kúrò</translation>
@@ -1434,10 +1260,7 @@ O lè yí i padà ní Àwọn Àṣàyàn → Àwọn Gbígbà Jáde ní àkók�
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Lẹ̀ẹ́mọ́ àwọn URL irúgbìn wẹ́ẹ̀bù - ọ̀kan fún ìlà. Àwọn irúgbìn URL (BEP-19) àti irúgbìn HTTP (BEP-17) ni a gbà.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Irú</translation>
@@ -1586,10 +1409,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>A rí èsì %1.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilee</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1653,10 +1473,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Orukọ àdàkọ</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Fipamọ́</translation>
@@ -1677,10 +1494,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Iṣẹ akanṣe aipẹ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Eto amúni</translation>
@@ -1721,14 +1535,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Ìlọsíwájú &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Ìwọlé</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Ọ̀rọ̀ìpamọ́</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Tẹ Ìlọsíwájú láti ṣí ìwọlé afọwọ́sí tàbí láti pa ojúewé ìjáde kúrò.</translation>
@@ -1940,22 +1748,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Ìbòjú</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Fi kún</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Ṣàtúnṣe</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Parẹ́</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Ṣàtúnṣe àṣàyàn</translation>
@@ -1964,18 +1763,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Àṣàyàn tuntun</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Ẹ̀ka</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Fipamọ́</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1987,25 +1777,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Àwọn iṣẹ́ tí a fipamọ́</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Iṣẹ́</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Àwọn àṣàyàn</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Ńṣiṣẹ́</translation>
@@ -2036,22 +1814,13 @@ Exploring</source>
             <translation>Bẹ̀rẹ̀
 Ṣàwárí</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Orúkọ Fáìlì</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Iru Faili</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Iwọn</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Ipo</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Ọrọ Ìjápọ</translation>
@@ -2060,10 +1829,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>Ṣagbara lati</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Fipamọ si</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Ṣayẹwo ti a yan</translation>
@@ -2076,14 +1842,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Ṣatunkọ iṣẹ lọwọlọwọ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tii</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Ètò agbámúlò</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2345,14 +2105,8 @@ Iṣẹ́</translation>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Àkíyèsí: Stellar gbọ́dọ̀ wà ní atẹ́ ẹ̀rọ ní àkókò tí a yàn láti bẹ̀rẹ̀ iṣẹ́ tí a ṣètò.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2376,14 +2130,8 @@ Iṣẹ́</translation>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Lo àwọn ọ̀rọ̀ ìsopọ̀ gẹ́gẹ́ bí àpèjúwe gbígbà sílẹ̀ nígbà tí o bá ń fi àwọn fáìlì kún àkójọ Stellar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilee</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>O Dara</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2395,10 +2143,7 @@ Iṣẹ́</translation>
             <source>Status: %1</source>
             <translation>Ipo: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Ìsinmi</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Ojú ewé wẹẹbu ti ṣiṣẹ</translation>
@@ -2411,10 +2156,7 @@ Iṣẹ́</translation>
             <source>Advanced</source>
             <translation>Ìlọsíwájú</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Àwọn fáìlì</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Lapapọ</translation>
@@ -2427,14 +2169,8 @@ Iṣẹ́</translation>
             <source>Matched</source>
             <translation>Báramu</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Ṣe ìgbàsílẹ̀</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2462,10 +2198,7 @@ Iṣẹ́</translation>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar yóò tún ohun yt-dlp kan náà gbìyànjú pẹ̀lú kúkì aṣàwákiri yẹn.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilee</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Tun igbasilẹ ṣe</translation>
@@ -2502,18 +2235,12 @@ Iṣẹ́</translation>
             <source>All files (*)</source>
             <translation>Gbogbo fáìlì (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Lapapọ: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Ti pari: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Nṣagbara: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Ni isinyi: %1</translation>
@@ -2522,18 +2249,9 @@ Iṣẹ́</translation>
             <source>Overall: %1%</source>
             <translation>Gbogbo: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Duro</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Tẹsiwaju</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Ṣe Atilẹyin BitTorrent?</translation>
@@ -2566,10 +2284,7 @@ You can turn this off in Settings → Downloads.</source>
 
 O le pa eyi ni Eto → Awọn igbasilẹ.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>O DARA</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Faili “%1” ko le ṣe igbasilẹ.</translation>
@@ -2612,14 +2327,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>File</source>
             <translation>Fáìlì</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Ṣí Fọ́ńdà</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Ṣí Fáìlì</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Ṣe Ìgbàsílẹ̀ Báyìí</translation>
@@ -2632,14 +2341,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Remove</source>
             <translation>Yọ kúrò</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Tún ṣe ìgbàsílẹ̀</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Ṣe àgbéjáde .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Àwọn ìgbàlódé</translation>
@@ -2676,10 +2379,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Stop Queue</source>
             <translation>Dá ìlà dúró</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ìdínwó ìyára</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Tan-an</translation>
@@ -2772,10 +2472,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Columns…</source>
             <translation>Àwọn Ìlà...</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Àwọn Àṣàyàn</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Àwọn Ìfẹ́ràn...</translation>
@@ -2808,42 +2505,21 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Ju faili .torrent silẹ lati ṣii metadata torrent</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Wa:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Wa</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Eto ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Ṣawari ninu:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Orukọ faili tabi apakan orukọ</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Apejuwe</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / olutọkasi / oju-iwe wẹẹbu obi</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Ṣe ibaamu ọrọ</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Ṣe ìbámu gbogbo okùn nìkan</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Gbe pẹpẹ ẹ̀gbẹ́ sí apá òsì</translation>
@@ -2892,10 +2568,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Channel Download Progress</source>
             <translation>Ìlọsíwájú Ìgbarisilẹ̀ Ikanni</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Ṣe ìgbarisilẹ̀ nígbàmíràn</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Fáìlì kò sí mọ́</translation>
@@ -2951,18 +2624,12 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Don't add to queue</source>
             <translation>Má fi sí ìlà</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Fi orúkọ ìlà sílẹ̀</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Ṣẹ̀dá</translation>
@@ -2978,14 +2645,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Download Rules</source>
             <translation>Àwọn Òfin Ìgbàsílẹ̀</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Fi kún</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Yọ kúrò</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Tẹ &quot;Fi kún&quot; láti ṣẹ̀dá òfin ìgbàsílẹ̀</translation>
@@ -3062,10 +2723,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Leave empty to use default save path</source>
             <translation>Fi òfo sílẹ̀ láti lo ọ̀nà ìpamọ́ àtìlẹdá</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Ṣàwárí...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Ẹ̀ka:</translation>
@@ -3078,10 +2736,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>TORRENT SHARE LIMITS</source>
             <translation>ÀÀLÀ PÍNPÍN TORRENT</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Ìpín</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Àtìlẹdá</translation>
@@ -3110,14 +2765,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>&quot;Àtìbẹ̀rẹ̀&quot; ń lo ààlà pínpín àgbáyé tí a ṣeto ní Ìtòlẹ́sẹẹsẹ → Torrents.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Àwọn Òfin Àdàkọ Ìgbàsílẹ̀ RSS</translation>
@@ -3157,10 +2806,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Download Torrent</source>
             <translation>Ṣagbéwọlé Torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Ṣagbéwọlé</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Ṣii nínú Aṣàwákiri</translation>
@@ -3181,50 +2827,26 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Mark All Read</source>
             <translation>Sàmì Gbogbo rẹ̀ sí Tí a Ti Kà</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Orúkọ</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Orúkọ àdáni (àṣàyàn)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagi lé</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Fipamọ́</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Fi URL RSS tàbí Atom kún...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Fi kún</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Ń ṣàtúnṣe…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Ṣàtúnṣe</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Yọ</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Àwọn Òfin Ìgbàsílẹ̀</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Àwọn Ìforúkọsílẹ̀</translation>
@@ -3237,10 +2859,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Select an article</source>
             <translation>Yan àpilẹ̀kọ</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Ṣí</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Sàmì Bíi Tí A Ti Kà</translation>
@@ -3284,10 +2903,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>New queue</source>
             <translation>8. Ìlà tuntun</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>9. Pa rẹ́</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>10. Ìṣètò</translation>
@@ -3300,42 +2916,21 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>One-time downloading</source>
             <translation>Ìgbàlódé ẹ̀ẹ̀kan</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Ìmúṣiṣẹ́pọ̀ ìgbà-dé-ìgbà</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Bẹ̀rẹ̀ ìgbàlódé ní ìbẹ̀rẹ̀ Stellar</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Bẹ̀rẹ̀ ìgbàlódé ní</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Ẹ̀ẹ̀kan ní</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Ojoojúmọ́</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Tún bẹ̀rẹ̀ lẹ́yìn gbogbo</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>wákàtí</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>ìṣẹ́jú</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Duro igbasilẹ ni</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Iye igbiyanju fun faili kọọkan ti igbasilẹ ba kuna:</translation>
@@ -3344,38 +2939,17 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Open the following file when done:</source>
             <translation>Ṣii faili yii nigbati o ba pari:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Jade kuro ni Stellar nigbati o ba pari</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Pa kọmputa nigbati o ba pari</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Fi agbara mu awọn ilana lati da duro</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Ṣe igbasilẹ</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>awọn faili ni akoko kanna</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Orukọ Faili</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Iwọn</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Ipò</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Àkókò tó kù</translation>
@@ -3412,18 +2986,12 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Start now</source>
             <translation>Bẹ̀rẹ̀ nísinsìnyí</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Dáwọ́</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Fisílẹ̀</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Tẹ orúkọ fún ìlà tuntun tí yóò hàn nínú àtòjọ àwọn ìlà</translation>
@@ -3432,18 +3000,9 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Queue name</source>
             <translation>Orúkọ ìlà</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Ètò ìṣètò</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Ìlà Tuntun</translation>
@@ -3455,10 +3014,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Ìsopọ̀</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Àwọn ìgbàjáde lẹ́ẹ̀kan náà pọ̀ jù:</translation>
@@ -3523,22 +3079,13 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Password:</source>
             <translation>Ọ̀rọ̀ìkọ̀kọ̀:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Àwọn ẹ̀ka</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Orúkọ</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Fipamọ́ sí folda</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Àwọn ìgbàsílẹ̀</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Fọ́ńdà ìfipamọ́ àtìbẹ̀rẹ̀:</translation>
@@ -3599,14 +3146,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Show seconds</source>
             <translation>Fi ìṣẹ́jú hàn</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Àwòtẹ́lẹ̀</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Ìṣàkópọ̀ Aṣàwákiri</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Bẹ̀rẹ̀ sí í ṣàgbàjáde àwọn irú fáìlì wọ̀nyí láìdábọ̀:</translation>
@@ -3631,10 +3172,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Di bọ́tìnì yìí mú nígbà tí o bá tẹ ìjápọ̀ gbígba láti fo ìdánilẹ́kun kí aṣàwákiri gbà á:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ìdínkù Ìyára</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Muu ìdínkù ìyára àgbáyé ṣiṣẹ́</translation>
@@ -3643,10 +3181,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Maximum speed:</source>
             <translation>Ìyára tó pọ̀jù:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Muu ìdínkù ìgbéjáde àgbáyé ṣiṣẹ́</translation>
@@ -3663,18 +3198,12 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Enable speed limiter scheduler</source>
             <translation>Muu ètò ìdádúró iyara ṣiṣẹ́</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Yọ</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Tàn</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Ìgba</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Ìfisí</translation>
@@ -3695,10 +3224,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Show notification on download error</source>
             <translation>Fi ìfitónilétí hàn lórí àṣìṣe ìgba</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Gbogboogbo</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Aṣàwákiri</translation>
@@ -3795,14 +3321,8 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Open file properties dialog</source>
             <translation>Ṣí àdìrọ̀sọ àwọn àbùdá fáìlì</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Ṣí fáìlì</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Ṣí fọ́ldà</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>Àsìkò wákàtí 24</translation>
@@ -3835,10 +3355,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Tẹ ìsédò ọjọ́ kan láti yí i padà. A máa ń ṣàyẹ̀wò àwọn òfin ní ìṣẹ́jú kọ̀ọ̀kan; òfin àkọ́kọ́ tí ó bá ṣẹ ni yóò wọlé. A máa ń fagi lé àwọn ààlà gbígba-sílẹ̀ àti gbígbé-sókè tí a ṣètò fún àkókò kan láìfọwọ́sí nígbà tí kò bá sí òfin tí ń ṣiṣẹ́.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Dínkù sí atẹ́rí ètò</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Padé sí atẹ́rí ètò</translation>
@@ -3931,10 +3448,7 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
             <source>Download yt-dlp</source>
             <translation>Gba yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Tún ṣàyẹ̀wò</translation>
@@ -4043,10 +3557,7 @@ Ohunkóhun tí o bá pín nípasẹ̀ BitTorrent jẹ́ ojúṣe rẹ nìkan. R�
 
 A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ́ọ̀kì VPN kí o sì ṣàyẹ̀wò pé VPN rẹ ń ṣiṣẹ́ kí o tó lo torrents, láti dáàbò bo àdírẹ́sì IP rẹ lọ́wọ́ ìṣípayá.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Ó Yé Mi, Ṣiṣẹ́</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Àwọn ètò wọ̀nyí kan àwọn fáìlì .torrent àti àwọn ìjápọ̀ magnet.</translation>
@@ -4111,10 +3622,7 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Networking</source>
             <translation>Nẹtiwọki</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Ìlọsíwájú</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Aṣojú olùmúlò BitTorrent àdáni</translation>
@@ -4187,10 +3695,7 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Block peers by country</source>
             <translation>9. Dínà alábàáṣiṣẹ́ nípa orílẹ̀-èdè</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>10. Fi kún</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Ko si orilẹ-ede ti a dina mọ</translation>
@@ -4227,18 +3732,12 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Version</source>
             <translation>Ẹya</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Aimọ</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Ọ̀nà</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Ìwọ̀n</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Àwọn àkọsílẹ̀</translation>
@@ -4247,10 +3746,7 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Last Modified</source>
             <translation>Àtúnṣe Ìgbẹ̀yìn</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Ipò</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Ń ṣe ìgbàsílẹ̀...</translation>
@@ -4263,10 +3759,7 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Refresh Info</source>
             <translation>Tún Ìfitónilétí ṣe</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Ìṣirò</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Àpapọ̀ gbígbé àgbékalẹ̀ lórí gbogbo torrents, pẹ̀lú àwọn tí a ti yọ kúrò.</translation>
@@ -4287,10 +3780,7 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Àwọn ìwé àṣẹ kíkún wà nínú THIRD-PARTY-NOTICES.txt, tí ó wà pẹ̀lú ìfisíwẹ̀rẹ̀ yìí.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Mímú Àwọn Ìkànnì Wá</translation>
@@ -4303,10 +3793,7 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Feeds refresh interval</source>
             <translation>Àsìkò ìtura àwọn ìkànnì</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>ìṣẹ́jú</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Ìdádúró ìbéèrè olùgbàlejò kan náà</translation>
@@ -4467,14 +3954,8 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Third-party software</source>
             <translation>Sọ́fútùwé ẹlẹ́kẹta</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Fíì</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ó dára</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Ọ̀nà àbáláyé</translation>
@@ -4555,10 +4036,7 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Available but not loaded</source>
             <translation>Wà ṣùgbọ́n kò tì gbérù</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Orísun: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL orísun kò tì pamọ́. Lo Ṣàyẹ̀wo àwọn ìmúdòjuìwọ̀n láti pamọ́ IPtoCityDB láti update.json.</translation>
@@ -4590,18 +4068,9 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Edit Project</source>
             <translation>Ṣàtúnṣe Iṣẹ́</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Pa Iṣẹ́ rẹ́</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Àwọn Ẹ̀ka</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Gbogbo Àwọn Ìgbàjáde</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Àìparí</translation>
@@ -4614,49 +4083,19 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>Grabber Projects</source>
             <translation>Àwọn Iṣẹ́ Grabber</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrents</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Àwọn ìlà</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Ńṣàgbàjáde</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Ńfúnni</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Dúró</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Ṣiṣẹ́</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Kò ṣiṣẹ́</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Ńṣàyẹ̀wò</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Ńlọ</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Ìṣirò</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Ìṣirò Stellar</translation>
@@ -4665,14 +4104,8 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>ALL TIME</source>
             <translation>GBOGBO ÌGBÀ</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Ti ṣe ìgba</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Ti ṣe ìfisí</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Ìpín Ìpín</translation>
@@ -4693,10 +4126,7 @@ A gbà ọ́ níyànjú gidigidi láti so Stellar mọ́ àyíká nẹ́tíwọ�
             <source>THIS SESSION</source>
             <translation>ÌGBÀ YÌÍ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4813,57 +4243,27 @@ Tẹ láti ṣí Ìṣirò</translation>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>3. Olùṣàkóso Ìgbàsílẹ̀ Stellar</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>4. Àwọn ìgbàsílẹ̀ SDM</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>5. Fi URL kún</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>6. Tẹ̀síwájú</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>7. Dáwọ́</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>8. Dá gbogbo dúró</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>9. Pa rẹ́</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>10. Pa àwọn tí ó parí</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Àwọn àṣàyàn</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Olùṣètò</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Bẹ̀rẹ̀ Ìlà</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Dá Ìlà Dúró</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Amúni</translation>
@@ -4872,10 +4272,7 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Search Engine</source>
             <translation>Ẹ̀rọ Ìṣàwárí</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4914,18 +4311,12 @@ Tẹ láti ṣí Ìṣirò</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Fipamọ́ sí</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Fipamọ́ bí...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Ẹ̀ka</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Fọ́ldà ìfipamọ́ àdáni</translation>
@@ -4938,86 +4329,35 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Use category folder</source>
             <translation>Lo àpótí ẹ̀ka</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Àpèjúwe</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Ètò Torrent...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Ṣe ìgbàsílẹ̀ lẹ́yìn</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Ṣe ìgbàsílẹ̀</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Ṣíṣí torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% ti parí</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Àwọn fáìlì</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n nkan</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Oruko</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Ilọsiwaju</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Iwọn</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Ko si alaye faili</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Nduro</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Tun orukọ nkan</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Fi orukọ faili tabi folda tuntun sii:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Tun orukọ</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Tun orukọ...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Ẹlẹgbẹ</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Ṣiṣi torrent ati kika metadata...</translation>
@@ -5030,14 +4370,8 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Ṣagbe metadata lati %n ẹlẹgbẹ</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Irúgbìn</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Ìwọ</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Metadata Torrent</translation>
@@ -5057,14 +4391,8 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Web Link</source>
             <translation>Ọ̀na asopọ Ayelujara</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilee</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>O Dara</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Yan fáìlì .py àṣàwárí agbègbè láti da sí folda search_plugins.</translation>
@@ -5096,18 +4424,9 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Installed Search Plugins</source>
             <translation>Àwọn Plugin Àṣàwárí Tí A Fi Sórí</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Tuntun</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Àìmọ̀</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Ṣiṣẹ́</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Dáadúró</translation>
@@ -5116,10 +4435,7 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Install a New One</source>
             <translation>Fi Tuntun Síi</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Ṣàwárí Àfikún</translation>
@@ -5127,18 +4443,9 @@ Tẹ láti ṣí Ìṣirò</translation>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Orúkọ</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Ìwọ̀n</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Afúnrúgbìn</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Agbàle</translation>
@@ -5155,18 +4462,12 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Open Description Page</source>
             <translation>Ṣí Ojúewé Àpèjúwe</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Ṣagbéfún Torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Dá Orúkọ</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Dá Magnet Link</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Dá URL Ojúewé Àpèjúwe</translation>
@@ -5179,18 +4480,12 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Search</source>
             <translation>Wá</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Àìmọ̀</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Kò sí àbájáde ìwádi</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Àwọn ìfikún ìwádi</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Ẹ́njìnnì ìwádi Torrent</translation>
@@ -5206,14 +4501,8 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Ìyára fún torrent kọ̀ọ̀kan, ààlà pínpín, ìṣàwárí ẹlẹgbẹ́, àti ọ̀nà gbígbà sílẹ̀</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tì</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Fọwọ́sí</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ÀÀLÀ BANDWIDTH</translation>
@@ -5234,26 +4523,14 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Ratio:</source>
             <translation>Ìpín:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Àtìbẹ̀bẹ̀</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Àìlópin</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Ṣètò sí</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Àkókò fífúnrúgbin:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>ìṣẹ́jú</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Àkókò àìṣiṣẹ́:</translation>
@@ -5357,10 +4634,7 @@ Tẹ láti ṣí Ìṣirò</translation>
             <source>Open Settings</source>
             <translation>2. Ṣí Ètò</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>3. Kúkì láti aṣàwákiri:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>4. Yan aṣàwákiri láti fi kúkì rẹ̀ sí yt-dlp, lẹ́yìn náà tún gbìyànjú.</translation>
@@ -5430,10 +4704,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Ṣàgbékalẹ̀ àwọn fáìlì àkọlé abẹ́lẹ̀ pẹ̀lú fídíò</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Èdè</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Kóòdù èdè</translation>
@@ -5491,14 +4762,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Ṣe ìgbàsílẹ̀ Ìkànnì</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Ìgbàsílẹ̀</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Ìlọsíwájú</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>àṣẹyẹwò ọjọ́</translation>
@@ -5591,18 +4856,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Fipamọ́ sí:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Ẹ̀ka</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Ọ̀nà</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Fagilé</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Gba Fídíò</translation>

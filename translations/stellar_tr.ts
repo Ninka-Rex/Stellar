@@ -61,33 +61,23 @@
             <translation>Stellar İndirici v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>İndir: %1  Yükle: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>İndiriliyor: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Paylaşıyor: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Paylaşıyor: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Toplam: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Toplam: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar kapatılıyor...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Tamam'a tıkladıktan sonra bu indirmeleri başlatmadan önce gruplandırmak için kuyruk adımını kullanın.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Sadece Bulundu olarak işaretli bağlantılar seçilebilir. Sıra ataması OK'a basıldıktan sonra gerçekleşir.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Toplu indirme incelemesi</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>piksel genişliğinde</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Kalıcı sil (çöp kutusuna taşıma)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Sil</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Evet</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Hayır</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Gözat...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Kategori</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Veri alınıyor...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Birleştiriliyor...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>İndirme durumu</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Sisteme gizle</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Durum</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Dosya boyutu</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Devam etme</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Evet</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Hayır</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Hata detayı</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Duraklat</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Başlangıç noktaları ve bağlantı başına indirme ilerlemesi</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Yeniden Adlandır</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Yeniden İndir</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Sil</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Sütun Ayarları</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Dosya Adı</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Boyut</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Durum</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Kalan Süre</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>İndirme Hızı</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Yüklenen</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>İndirilen</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Son deneme tarihi</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Açıklama</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Kaydet</translation>
@@ -970,14 +891,8 @@ Başlatmak için URL Ekle'ye tıklayın.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Seçimi hatırla ve bu iletişim kutusunu tekrar gösterme.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Seçenekler → İndirmeler'den daha sonra değiştirebilirsiniz.</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Dosyayı Taşı...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Başlat</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Durdur</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Klasörü Aç</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Dosyayı Aç</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Durum</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Boyut</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Kaydet</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Taşı</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Adres</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Web sayfası</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Referans</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Açıklama</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Giriş</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Şifre</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Kaynak</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>İmza</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Kopyala</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Meta Veri</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Not</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>İndirildi</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Ülke</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Yüklendi</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Tohumlayıcı</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Mesaj</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Durduruldu</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>İndiriliyor</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Taşınıyor</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Paylaşıyor</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Sıradaki</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Sorun</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Genel</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Dosyalar</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Sürü Haritası</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Yeni dosya veya klasör adı girin</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Yeniden adlandır</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>İndir</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Yeniden adlandır...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Bağlı olmayan eşler</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Katman</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Eşler</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 bilinen eş</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% tamamlandı</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Bilinmiyor</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Siz (bu istemci)</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Zorla Yeniden Duyur</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>URL Kopyala</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Takipçiyi Kaldır</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Web tohumu URL'lerini yapıştırın - her satırda bir tane. URL tohumları (BEP-19) ve HTTP tohumları (BEP-17) kabul edilir.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Tip</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 sonuç bulundu</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Şablon adı</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Kaydet</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Son Projeler</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Alıcı Ayarları</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Gelişmiş &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Giriş Yap</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Şifre</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>İleri seçeneğine basarak manuel giriş etkinleştirilebilir veya çıkış sayfası devre dışı bırakılabilir.</translation>
@@ -1935,22 +1745,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Maske</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Ekle</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Düzenle</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Sil</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Filtre düzenle</translation>
@@ -1959,18 +1760,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Yeni filtre</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Kaydet</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1982,25 +1774,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Kaydedilmiş projeler</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Proje</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Ayarlar</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Çalışıyor</translation>
@@ -2030,22 +1810,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Başlat</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Dosya Adı</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Dosya Tipi</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Boyut</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Durum</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Bağlantı</translation>
@@ -2054,10 +1825,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>İndir</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Kaydet</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Seçilenleri İşaretle</translation>
@@ -2070,14 +1838,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Proje Düzenle</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Ayarlar</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2334,14 +2096,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Not: Stellar, planlanan projeyi başlatmak için belirtilen zamanda sistem tepsisinde çalışmalıdır.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2365,14 +2121,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Dosyaları Stellar ana listesine eklerken link metinlerini indirme açıklamaları olarak kullan</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2384,10 +2134,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Durum: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Boş</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>İşlenen Web Sayfaları</translation>
@@ -2400,10 +2147,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Gelişmiş</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Dosyalar</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Toplam</translation>
@@ -2416,14 +2160,8 @@ Project</source>
             <source>Matched</source>
             <translation>Eşleştirildi</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>İndirildi</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2451,10 +2189,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar, bu tarayıcının cookie'lerini kullanarak aynı yt-dlp öğesini tekrar deneyecek.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>İndirmeyi Yeniden Dene</translation>
@@ -2491,18 +2226,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Tüm dosyalar (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Toplam: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Tamamlanan: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>İndiriliyor: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Sıradaki: %1</translation>
@@ -2511,18 +2240,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Genel: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Durdur</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Devam Ettir</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent Desteği Etkinleştirilsin mi?</translation>
@@ -2547,10 +2267,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 You can turn this off in Settings → Downloads.</source>
             <translation>Stellar dosyanın bir kısmını zaten indirmeye başladı. 'Dosya Bilgisi' iletişim kutusu gösterilirken indirme başlar.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>'%1' dosyası indirilemedi.</translation>
@@ -2592,14 +2309,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Dosya</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Klasör Aç</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Dosya Aç</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>İndir</translation>
@@ -2612,14 +2323,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Kaldır</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Yeniden İndir</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent Dışa Aktar...</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>İndirmeler</translation>
@@ -2656,10 +2361,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Kuyruğu Durdur</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Hız Sınırlayıcı</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Aç</translation>
@@ -2752,10 +2454,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Sütunlar…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Seçenekler</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Tercihler…</translation>
@@ -2788,42 +2487,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>.torrent dosyasını bırakarak torrent meta verilerini aç</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Ara:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Ara</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Ayarlar ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Arama:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Dosya adı veya kısmı</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Açıklama</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / kaynak sayfası / üst sayfa</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Büyük/küçük harf duyarlı</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Tam eşleşme</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Yan paneli sola taşı</translation>
@@ -2872,10 +2550,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Kanal İndirme İlerlemesi</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Sonra İndir</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Dosya Artık Mevcut Değil</translation>
@@ -2931,18 +2606,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Kuyruğa ekleme</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Kuyruk adı girin</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Oluştur</translation>
@@ -2958,14 +2627,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>İndirme Kuralları</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Ekle</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Kaldır</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Bir indirme kuralı oluşturmak için 'Ekle'ye tıklayın</translation>
@@ -3042,10 +2705,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Boş bırakarak varsayılan yolu kullan</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Gözat...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Kategori:</translation>
@@ -3058,10 +2718,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>TORRENT PAYLAŞIM SINIRLARI</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Ratio</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Varsayılan</translation>
@@ -3090,14 +2747,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Varsayılan</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS Otomatik İndirme Kuralları</translation>
@@ -3137,10 +2788,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Torrent İndir</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>İndir</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Tarayıcıda Aç</translation>
@@ -3161,50 +2809,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Tümü Okundu</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>İsim</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Özel isim (opsiyonel)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Kaydet</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS veya Atom beslemesi URL'si ekle...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Ekle</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Yenileniyor…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Düzenle</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Kaldır</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>İndirme Kuralları</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Abonelikler</translation>
@@ -3217,10 +2841,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Bir makale seç</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Aç</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Okundu İşaretle</translation>
@@ -3264,10 +2885,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Yeni kuyruk</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Sil</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Takvim</translation>
@@ -3280,42 +2898,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Tek seferlik indirme</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Periyodik senkronizasyon</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Stellar başlangıcında başlat</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Şu saatte başlat</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Bir kez şu saatte</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Günlük</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Her seferinde yeniden başlat</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>saat</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>dakika</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>İndirmeyi duraklat</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Başarısız indirmeler için tekrar sayısı:</translation>
@@ -3324,38 +2921,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Tamamlandığında şu dosyayı aç:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Stellar'i tamamlandığında kapat</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Tamamlandığında bilgisayarı kapat</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>İşlemleri zorla sonlandır</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>İndir</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>aynı anda dosya</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Dosya Adı</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Boyut</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Durum</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Kalan Süre</translation>
@@ -3392,18 +2968,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Şimdi başlat</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Durdur</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Uygula</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Yeni kuyruk adı girin</translation>
@@ -3412,18 +2982,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Kuyruk adı</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Zamanlayıcı</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Yeni Kuyruk</translation>
@@ -3435,10 +2996,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Bağlantı</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Maksimum eşzamanlı indirme:</translation>
@@ -3503,22 +3061,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Şifre:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategoriler</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>İsim</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Klasöre kaydet</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>İndirmeler</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Varsayılan kaydetme klasörü:</translation>
@@ -3579,14 +3128,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Saniye</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Önizleme</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Tarayıcı</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Şu türleri otomatik indir:</translation>
@@ -3611,10 +3154,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Kestirmeyi atlatıp tarayıcıyı indirmeye bırakmak için indirme bağlantısına tıklarken bu tuşa basılı tutun:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Hız Sınırlayıcı</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Küresel hız sınırını etkinleştir</translation>
@@ -3623,10 +3163,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Maksimum hız:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Küresel yükleme sınırını etkinleştir</translation>
@@ -3643,18 +3180,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Hız sınırlayıcı planlayıcısını etkinleştir</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Kaldır</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Açık</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>İndir</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Yükle</translation>
@@ -3675,10 +3206,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>İndirme hatası olduğunda bildirim göster</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Genel</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Tarayıcı</translation>
@@ -3775,14 +3303,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Dosya özellikleri diyalogunu aç</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Dosyayı aç</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Klasörü aç</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24 saatlik zaman</translation>
@@ -3815,10 +3337,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Bir gün hapına tıklayarak aç/kapa. Kurallar her dakikada değerlendirilir; ilk eşleşen kural geçerlidir. Aktif kural yoksa planlı indirme/yükleme sınırları otomatik temizlenir.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Sistem tepsisine küçült</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Sistem tepsisine kapat</translation>
@@ -3911,10 +3430,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>yt-dlp'yi indir</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Tekrar Kontrol Et</translation>
@@ -4017,10 +3533,7 @@ Anything you share via BitTorrent is your sole responsibility. Ensure you have t
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
             <translation>Stellar, dosya paylaşım programıdır. Bir torrent indirdiğinizde IP adresiniz sürüdeki diğer parçalar tarafından görülebilir ve aynı anda veri yüklersiniz (seed). Paylaştığınız her şey sorumluluğunuzdadır. İçeriği dağıtma hakkınız olduğundan emin olun. Torrent kullanmadan önce IP adresinizi korumak için Stellar'ı VPN ağ arayüzüne bağlamanız ve VPN'in aktif olduğundan emin olmanız önerilir.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Anlıyorum, Aktifleştir</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Bu ayarlar .torrent dosyaları ve manyet linkleri için geçerlidir.</translation>
@@ -4085,10 +3598,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>Ağ</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Gelişmiş</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Özel BitTorrent User Agent</translation>
@@ -4161,10 +3671,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>Ülkeye göre eşleri engelle</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Ekle</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Kilitlenmemiş ülke</translation>
@@ -4201,18 +3708,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>Sürüm</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Bilinmiyor</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Yol</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Boyut</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Girdiler</translation>
@@ -4221,10 +3722,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>Son Değiştirme</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Durum</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>İndiriliyor...</translation>
@@ -4237,10 +3735,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>Bilgi Yenile</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>İstatistikler</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Toplam aktarım tutarları (tüm torrentler dahil, kaldırılanlar dahil).</translation>
@@ -4261,10 +3756,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Lisans metinleri THIRD-PARTY-NOTICES.txt dosyasında, bu kurulumla birlikte.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Beslemeleri Getirme</translation>
@@ -4277,10 +3769,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Besleme yenileme aralığı</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>dakika</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Aynı sunucu istek gecikmesi</translation>
@@ -4441,14 +3930,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>Üçüncü taraf yazılımlar</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Uygula</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Varsayılan rota</translation>
@@ -4529,10 +4012,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>Mevcut ama yüklü değil</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Kaynak: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Kaynak URL henüz önbelleğe alınmadı. IPtoCityDB'yi önbelleğe almak için Güncellemeleri kontrol et.</translation>
@@ -4564,18 +4044,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>Proje Düzenle</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Proje Sil</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategoriler</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Tüm İndirmeler</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Tamamlanmamış</translation>
@@ -4588,49 +4059,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Projeler</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrentler</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Kuyruklar</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>İndirilen</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Paylaşılan</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Durdurulmuş</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Aktif</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Pasif</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Kontrol Ediliyor</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Taşınıyor</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>İstatistikler</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar İstatistikleri</translation>
@@ -4639,14 +4080,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>TÜM SÜRE</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>İndirilen</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Yüklenen</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Paylaşım Oranı</translation>
@@ -4667,10 +4102,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>BU OTURUM</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4786,57 +4218,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Gelen bağlantı yok, ağ yapılandırması hatalı olabilir</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Stellar İndirme Yöneticisi</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>URL Ekle</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Devam Ettir</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Durdur</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Tümünü Durdur</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Sil</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Tamamlananları Sil</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Ayarlar</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Zamanlayıcı</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Kuyruğu Başlat</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Kuyruğu Durdur</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Kaptırıcı</translation>
@@ -4845,10 +4247,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Arama Motoru</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4887,18 +4286,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Kaydet</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Farklı Kaydet...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Özel Kayıt Klasörü</translation>
@@ -4911,86 +4304,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Kategori Klasörü Kullan</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Açıklama</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Torrent Ayarları...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Sonra İndir</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>İndir</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Torrent açılıyor...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% tamamlandı</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Dosyalar</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n öğe</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>İsim</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>İlerleme</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Boyut</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Dosya bilgisi yok</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Beklemede</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Öğe yeniden adlandır</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Yeni dosya veya klasör adı girin:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Yeniden adlandır</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Yeniden adlandır...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Katılımcı</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Torrent açılıyor ve meta veriler okunuyor...</translation>
@@ -5003,14 +4345,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%n katılımcıdan meta veri indiriliyor...</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Tohum</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Sen</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrent Meta Verisi</translation>
@@ -5030,14 +4366,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Web Bağlantısı</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Tamam</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Arama_plugins klasörüne kopyalanacak yerel .py eklentisi dosyası seçin.</translation>
@@ -5069,18 +4399,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Yüklenmiş Arama Eklentileri</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Yenile</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Bilinmiyor</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Aktif</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Pasif</translation>
@@ -5089,10 +4410,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Yeni Bir Tanesi Yükle</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Ara</translation>
@@ -5100,18 +4418,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>İsim</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Boyut</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seed</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Leech</translation>
@@ -5128,18 +4437,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Açıklamayı Aç</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Torrent İndir</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Adı Kopyala</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Magnet Bağlantısını Kopyala</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Açıklama Sayfası URL'sini Kopyala</translation>
@@ -5152,18 +4455,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Ara</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Bilinmiyor</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Henüz sonuç yok</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Arama Eklentileri</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent Arama Motoru</translation>
@@ -5179,14 +4476,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Torrent başına hız, paylaşım sınırları, eş keşfi ve indirme modu</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Kapat</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Uygula</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>BANT AYARLARI</translation>
@@ -5207,26 +4498,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Oran:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Varsayılan</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Sınırsız</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Ayarla</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Ekipman süresi:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>dk</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Pasif süresi:</translation>
@@ -5330,10 +4609,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Ayarları Aç</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Tarayıcıdan gelen çerezler:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Bir tarayıcı seçin, ardından cookie'lerini yt-dlp'e aktarın ve tekrar deneyin.</translation>
@@ -5403,10 +4679,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Videonun yanına altyazı dosyaları indir</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Dil:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Dil kodu(ları), örn. en · en.*,ja · tüm</translation>
@@ -5464,14 +4737,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>İndirme Kanalı</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>İndir</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Gelişmiş</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Tarih Filtresi</translation>
@@ -5564,18 +4831,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Kaydet:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Kategori:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Biçim:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>İptal</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Video İndir</translation>

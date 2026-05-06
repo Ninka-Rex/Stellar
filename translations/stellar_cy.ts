@@ -61,37 +61,25 @@
             <translation>3. Rheolwr Llwytho Stellar v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>4. 
 ↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>5. 
 Wrthi'n llwytho: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>6.   Hadu: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>7. 
-Hadu: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>8.   Cyfanswm: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>9. 
-Cyfanswm: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>10. Mae Stellar yn cau...</translation>
@@ -163,14 +151,8 @@ Cyfanswm: %1</translation>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Defnyddiwch y cam ciw ar ôl OK os ydych am i'r lawrlwythiadau hyn gael eu grwpio cyn iddynt ddechrau.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -210,14 +192,8 @@ Cyfanswm: %1</translation>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Dim ond dolenni wedi'u marcio Wedi'u Canfod sy'n ddetholadwy. Mae aseinio ciw yn dal i ddigwydd ar ôl OK.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Adolygiad lawrlwytho swp</translation>
@@ -363,14 +339,8 @@ Cyfanswm: %1</translation>
             <source>pixels wide</source>
             <translation>picsel o led</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -394,10 +364,7 @@ Cyfanswm: %1</translation>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Dileu'n barhaol (peidio symud i'r bin)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Dileu</translation>
@@ -425,10 +392,7 @@ Cyfanswm: %1</translation>
             <source>Yes</source>
             <translation>Iawn</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Na</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -523,18 +487,9 @@ Cyfanswm: %1</translation>
             <source>Browse...</source>
             <translation>Pori...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Categori</translation>
@@ -613,10 +568,7 @@ Cyfanswm: %1</translation>
             <source>Receiving data...</source>
             <translation>Yn derbyn data...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Yn cydosod...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Statws llwytho i lawr</translation>
@@ -637,10 +589,7 @@ Cyfanswm: %1</translation>
             <source>Minimize to system tray</source>
             <translation>Lleihau i'r hambwrdd system</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Statws</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Maint ffeil</translation>
@@ -669,14 +618,8 @@ Cyfanswm: %1</translation>
             <source>Resume capability</source>
             <translation>Gallu ailddechrau</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Ie</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Na</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Manylion gwall</translation>
@@ -701,10 +644,7 @@ Cyfanswm: %1</translation>
             <source>Pause</source>
             <translation>Seibio</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Safleoedd cychwyn a chynnydd lawrlwytho fesul cysylltiad</translation>
@@ -772,10 +712,7 @@ Cyfanswm: %1</translation>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Ailenwi</translation>
@@ -820,10 +757,7 @@ Cyfanswm: %1</translation>
             <source>Redownload</source>
             <translation>Ail-lwytho</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Dileu</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Gosodiadau Colofnau</translation>
@@ -832,18 +766,9 @@ Cyfanswm: %1</translation>
             <source>File Name</source>
             <translation>Enw Ffeil</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Maint</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Statws</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Amser ar ôl</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Cyflymder ↓</translation>
@@ -868,18 +793,12 @@ Cyfanswm: %1</translation>
             <source>Uploaded</source>
             <translation>Llwythwyd</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lawrlwythwyd</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Dyddiad cynnig diwethaf</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Disgrifiad</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Cadw i</translation>
@@ -975,14 +894,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Cofiwch fy newis a pheidiwch â dangos y deialog hwn eto.
 Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -994,66 +907,30 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Move File To...</source>
             <translation>Symud Ffeil i...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Cychwyn</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stopio</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Agor ffolder</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Agor ffeil</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Statws</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Maint</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Cadw i</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Symud</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Cyfeiriad</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Tudalen we</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Cyfeirydd</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Disgrifiad</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Mewngofnodi</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Cyfrinair</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Ffynhonnell</translation>
@@ -1062,26 +939,17 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Info hash</source>
             <translation>Hash gwyb</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Copïo</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Metadata</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categori</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Nodyn</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Llwythwyd</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Gwlad</translation>
@@ -1090,14 +958,8 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Port</source>
             <translation>Porth</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Llwythwyd i fyny</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Hadwyr</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Neges</translation>
@@ -1106,22 +968,10 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Stopped</source>
             <translation>Wedi stopio</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Yn lawrlwytho</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Yn symud</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Yn hadu</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Yn y ciw</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Problem</translation>
@@ -1146,10 +996,7 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>General</source>
             <translation>Cyffredinol</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Ffeiliau</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Map Haid</translation>
@@ -1234,22 +1081,10 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Enter a new file or folder name:</source>
             <translation>Rhowch enw ffeil neu ffolder newydd:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Ailenwi</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Llwytho i lawr</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Ailenwi...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Dim cyfoedion wedi'u cysylltu</translation>
@@ -1354,10 +1189,7 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Tier</source>
             <translation>Haen</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Cyfoedion</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 cyfoedion hysbys</translation>
@@ -1382,10 +1214,7 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% wedi'i wneud</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Anhysbys</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Chi (y cleient hwn)</translation>
@@ -1402,10 +1231,7 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Force Reannounce</source>
             <translation>Ailgyhoeddi Gorfodol</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Copïo URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Tynnu traciwr</translation>
@@ -1434,10 +1260,7 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Gludo URLau hadau gwe - un fesul llinell. Derbynnir hadau URL (BEP-19) a hadau HTTP (BEP-17).</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Math</translation>
@@ -1586,10 +1409,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Canfuwyd %1 o ganlyniadau.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1653,10 +1473,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Enw templed</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Cadw</translation>
@@ -1677,10 +1494,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Prosiectau Diweddar</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Gosodiadau Grabber</translation>
@@ -1721,14 +1535,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Uwch &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Mewngofnodi</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Cyfrinair</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Pwyswch Uwch i alluogi mewngofnodi â llaw neu analluogi tudalen allgofnodi.</translation>
@@ -1940,22 +1748,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Masg</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Ychwanegu</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Golygu</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Dileu</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Golygu hidlydd</translation>
@@ -1964,18 +1763,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Hidlydd newydd</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categori</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Cadw</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1987,25 +1777,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Prosiectau wedi'u cadw</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Prosiect</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Dewisiadau</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Yn rhedeg</translation>
@@ -2036,22 +1814,13 @@ Exploring</source>
             <translation>Dechrau
 Archwilio</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Enw Ffeil</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Math Ffeil</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Maint</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Statws</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Testun Dolen</translation>
@@ -2060,10 +1829,7 @@ Archwilio</translation>
             <source>Download from</source>
             <translation>Llwytho o</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Cadw i</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Gwirio dewis</translation>
@@ -2076,14 +1842,8 @@ Archwilio</translation>
             <source>Edit current project</source>
             <translation>Golygu prosiect</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Gosodiadau Grabber</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2345,14 +2105,8 @@ Prosiect</translation>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Nodyn: Rhaid i Stellar fod yn rhedeg yn yr hambwrdd system ar yr amser penodedig i gychwyn prosiect wedi'i drefnu.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2376,14 +2130,8 @@ Prosiect</translation>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Defnyddio testunau dolen fel disgrifiadau lawrlwytho wrth ychwanegu ffeiliau at brif restr Stellar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2395,10 +2143,7 @@ Prosiect</translation>
             <source>Status: %1</source>
             <translation>Statws: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Segur</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Tudalennau gwe wedi'u prosesu</translation>
@@ -2411,10 +2156,7 @@ Prosiect</translation>
             <source>Advanced</source>
             <translation>Uwch</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Ffeiliau</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Cyfanswm</translation>
@@ -2427,14 +2169,8 @@ Prosiect</translation>
             <source>Matched</source>
             <translation>Wedi cydweddu</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Wedi llwytho</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2462,10 +2198,7 @@ Prosiect</translation>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Bydd Stellar yn ailgeisio'r un eitem yt-dlp gyda chwcis y porwr hwnnw.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Ailgeisio Lawrlwytho</translation>
@@ -2502,18 +2235,12 @@ Prosiect</translation>
             <source>All files (*)</source>
             <translation>Pob ffeil (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Cyfanswm: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Wedi cwblhau: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Wrthi'n llwytho: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Wedi ciwio: %1</translation>
@@ -2522,18 +2249,9 @@ Prosiect</translation>
             <source>Overall: %1%</source>
             <translation>Cyffredinol: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stopio</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Ailgychwyn</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Galluogi cefnogaeth BitTorrent?</translation>
@@ -2566,10 +2284,7 @@ You can turn this off in Settings → Downloads.</source>
 
 Gallwch ddiffodd hyn yn Gosodiadau → Lawrlwythiadau.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Methwyd lawrlwytho'r ffeil “%1”.</translation>
@@ -2612,14 +2327,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>File</source>
             <translation>Ffeil</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Agor Ffolder</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Agor Ffeil</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Lawrlwytho Nawr</translation>
@@ -2632,14 +2341,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Remove</source>
             <translation>Tynnu</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Ail-lawrlwytho</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Allforio .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Llwythiadau</translation>
@@ -2676,10 +2379,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Stop Queue</source>
             <translation>Stopio Ciw</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Cyfyngydd Cyflymder</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Ymlaen</translation>
@@ -2772,10 +2472,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Columns…</source>
             <translation>Colofnau…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Dewisiadau</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Dewisiadau…</translation>
@@ -2808,42 +2505,21 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Gollwng ffeil .torrent i agor metadata</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Canfod:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Canfod</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Gosodiadau ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Chwilio yn:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Enw ffeil neu ran o'r enw</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Disgrifiad</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / cyfeirydd / tudalen we rhiant</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Cydweddu maint</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Cyfateb llinyn cyfan yn unig</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Symud bar ochr i'r chwith</translation>
@@ -2892,10 +2568,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Channel Download Progress</source>
             <translation>Cynnydd Llwytho Sianel</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Llwytho'n Ddiweddarach</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Ffeil Ddim ar Gael Bellach</translation>
@@ -2951,18 +2624,12 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Don't add to queue</source>
             <translation>Peidio ag ychwanegu i'r ciw</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Rhowch enw'r ciw</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Creu</translation>
@@ -2978,14 +2645,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Download Rules</source>
             <translation>Rheolau Llwytho</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Ychwanegu</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Tynnu</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Cliciwch &quot;Ychwanegu&quot; i greu rheol llwytho</translation>
@@ -3062,10 +2723,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Leave empty to use default save path</source>
             <translation>Gadewch yn wag i ddefnyddio llwybr diofyn</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Pori...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Categori:</translation>
@@ -3078,10 +2736,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>TORRENT SHARE LIMITS</source>
             <translation>TERFYNAU RHANNU TORRENT</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Cymhareb</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Diofyn</translation>
@@ -3110,14 +2765,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Mae &quot;Rhagosodiad&quot; yn defnyddio'r terfynau rhannu byd-eang yn Gosodiadau → Torrents.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Rheolau Llwytho Awtomatig RSS</translation>
@@ -3157,10 +2806,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Download Torrent</source>
             <translation>Llwytho Torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Llwytho</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Agor mewn Porwr</translation>
@@ -3181,50 +2827,26 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Mark All Read</source>
             <translation>Marcio Popeth wedi'i Ddarllen</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Enw</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Enw personol (dewisol)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Cadw</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Ychwanegu URL porthiant RSS neu Atom...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Ychwanegu</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Wrthi'n adnewyddu…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Golygu</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Tynnu</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Rheolau Llwytho</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Tanysgrifiadau</translation>
@@ -3237,10 +2859,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Select an article</source>
             <translation>Dewis erthygl</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Agor</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Nodi fel Darllenwyd</translation>
@@ -3284,10 +2903,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>New queue</source>
             <translation>Ciw newydd</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Dileu</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Atodlen</translation>
@@ -3300,42 +2916,21 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>One-time downloading</source>
             <translation>Lawrlwytho untro</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Cydweddu cyfnodol</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Dechrau lawrlwytho wrth gychwyn Stellar</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Dechrau lawrlwytho am</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Unwaith am</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Dyddiol</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Ailgychwyn bob</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>awr</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>munud</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Stopio lawrlwytho am</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Nifer y ceisiadau fesul ffeil os methwyd:</translation>
@@ -3344,38 +2939,17 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Open the following file when done:</source>
             <translation>Agor y ffeil ganlynol ar ôl gorffen:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Gadael Stellar ar ôl gorffen</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Diffodd y cyfrifiadur ar ôl gorffen</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Gorfodi prosesau i derfynu</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Lawrlwytho</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>ffeiliau ar yr un pryd</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Enw Ffeil</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Maint</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Statws</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Amser ar ôl</translation>
@@ -3412,18 +2986,12 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Start now</source>
             <translation>Dechrau nawr</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stopio</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Gosod</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Rhowch enw ar gyfer y ciw newydd a ddangosir yn y rhestr</translation>
@@ -3432,18 +3000,9 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Queue name</source>
             <translation>Enw'r ciw</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Atodlennydd</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Ciw Newydd</translation>
@@ -3455,10 +3014,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Cysylltiad</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Llwythiadau cydamserol mwyaf:</translation>
@@ -3523,22 +3079,13 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Password:</source>
             <translation>Cyfrinair:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Categorïau</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Enw</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Cadw i ffolder</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Llwythiadau</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Ffolder cadw diofyn:</translation>
@@ -3599,14 +3146,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Show seconds</source>
             <translation>Dangos eiliadau</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Rhagolwg</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Integreiddio Porwr</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Dechrau llwytho'r mathau ffeil canlynol yn awtomatig:</translation>
@@ -3631,10 +3172,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Daliwch yr allwedd hon wrth glicio dolen lawrlwytho i osgoi dal a gadael i'r porwr lawrlwytho:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Cyfyngydd Cyflymder</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Galluogi terfyn cyflymder byd-eang</translation>
@@ -3643,10 +3181,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Maximum speed:</source>
             <translation>Cyflymder uchaf:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/e</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Galluogi terfyn llwytho i fyny byd-eang</translation>
@@ -3663,18 +3198,12 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Enable speed limiter scheduler</source>
             <translation>Galluogi amserlennydd cyfyngydd cyflymder</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Tynnu</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Ymlaen</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Llwytho i lawr</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Llwytho i fyny</translation>
@@ -3695,10 +3224,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Show notification on download error</source>
             <translation>Dangos hysbysiad ar wall llwytho i lawr</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Cyffredinol</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Porwr</translation>
@@ -3795,14 +3321,8 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Open file properties dialog</source>
             <translation>Agor deialog priodweddau ffeil</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Agor ffeil</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Agor ffolder</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>Amser 24 awr</translation>
@@ -3835,10 +3355,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Cliciwch bilsen diwrnod i'w doglo. Gwerthusir rheolau bob munud; y rheol gyntaf sy'n cyfateb sy'n ennill. Clirir terfynau lawrlwytho a llwytho wedi'u hamserlennu'n awtomatig pan nad oes rheol yn weithredol.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Lleihau i'r hambwrdd system</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Cau i'r hambwrdd system</translation>
@@ -3931,10 +3448,7 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
             <source>Download yt-dlp</source>
             <translation>Llwytho yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Ail-wirio</translation>
@@ -4043,10 +3557,7 @@ Unrhyw beth a rennir gennych drwy BitTorrent yw eich cyfrifoldeb chi'n unig. Sic
 
 Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwirio bod eich VPN yn weithredol cyn defnyddio torrents, er mwyn diogelu eich cyfeiriad IP rhag cael ei ddatgelu.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Rwy'n Deall, Galluogi</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Mae'r gosodiadau hyn yn berthnasol i ffeiliau .torrent a dolenni magnet.</translation>
@@ -4111,10 +3622,7 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Networking</source>
             <translation>Rhwydweithio</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Uwch</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Asiant defnyddiwr BitTorrent wedi'i addasu</translation>
@@ -4187,10 +3695,7 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Block peers by country</source>
             <translation>Blocio cymheiriaid yn ôl gwlad</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Ychwanegu</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Dim gwledydd wedi'u blocio</translation>
@@ -4227,18 +3732,12 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Version</source>
             <translation>Fersiwn</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Anhysbys</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Llwybr</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Maint</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Cofnodion</translation>
@@ -4247,10 +3746,7 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Last Modified</source>
             <translation>Addaswyd Diwethaf</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Statws</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Wrthi'n lawrlwytho...</translation>
@@ -4263,10 +3759,7 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Refresh Info</source>
             <translation>Adnewyddu Gwybodaeth</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Ystadegau</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Cyfansymiau trosglwyddo cronnus ar draws pob torrent, gan gynnwys rhai a ddilëwyd.</translation>
@@ -4287,10 +3780,7 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Mae testunau trwydded llawn yn THIRD-PARTY-NOTICES.txt, wedi'u cynnwys gyda'r gosodiad hwn.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Nôl porthiant</translation>
@@ -4303,10 +3793,7 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Feeds refresh interval</source>
             <translation>Cyfnod adnewyddu porthiannau</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>munud</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Oedi cais un gwesteiwr</translation>
@@ -4467,14 +3954,8 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Third-party software</source>
             <translation>Meddalwedd trydydd parti</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Gweithredu</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Llwybr diofyn</translation>
@@ -4555,10 +4036,7 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Available but not loaded</source>
             <translation>Ar gael ond heb lwytho</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Ffynhonnell: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL ffynhonnell heb ei storio eto. Defnyddiwch Gwirio am ddiweddariadau i storio IPtoCityDB o update.json.</translation>
@@ -4590,18 +4068,9 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Edit Project</source>
             <translation>Golygu Prosiect</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Dileu Prosiect</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Categorïau</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Pob Llwythiad</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Anorffenedig</translation>
@@ -4614,49 +4083,19 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>Grabber Projects</source>
             <translation>Prosiectau Grabber</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrents</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Ciwiau</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Wrthi'n Llwytho</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Hadau</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Wedi Stopio</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Gweithredol</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Anweithredol</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Gwirio</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Symud</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Ystadegau</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Ystadegau Stellar</translation>
@@ -4665,14 +4104,8 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>ALL TIME</source>
             <translation>ERIOED</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Llwythwyd i Lawr</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Llwythwyd i Fyny</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Cymhareb Rhannu</translation>
@@ -4693,10 +4126,7 @@ Argymhellir yn gryf eich bod yn clymu Stellar i ryngwyneb rhwydwaith VPN a gwiri
             <source>THIS SESSION</source>
             <translation>Y SESIWN HWN</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4813,57 +4243,27 @@ Cliciwch i agor Ystadegau</translation>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Rheolwr Lawrlwytho Stellar</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Lawrlwythiadau SDM</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Ychwanegu URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Ailddechrau</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stopio</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Stopio'r Cyfan</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Dileu</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Dileu Wedi'i Wneud</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Dewisiadau</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Atodlennydd</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Dechrau Ciw</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Stopio Ciw</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Cipiwr</translation>
@@ -4872,10 +4272,7 @@ Cliciwch i agor Ystadegau</translation>
             <source>Search Engine</source>
             <translation>Peiriant Chwilio</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4914,18 +4311,12 @@ Cliciwch i agor Ystadegau</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Cadw i</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Cadw Fel...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categori</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Ffolder cadw personol</translation>
@@ -4938,86 +4329,35 @@ Cliciwch i agor Ystadegau</translation>
             <source>Use category folder</source>
             <translation>Defnyddio ffolder categori</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Disgrifiad</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Gosodiadau Torrent...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Lawrlwytho'n hwyrach</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Lawrlwytho</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Yn agor torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2% wedi'i wneud</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Ffeiliau</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n eitem(au)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Enw</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Cynnydd</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Maint</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Dim gwybodaeth ffeil</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Arfaeth</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Ailenwi eitem</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Rhowch enw newydd:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Ailenwi</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Ailenwi...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Cymar</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Agor torrent a darllen metadata...</translation>
@@ -5030,14 +4370,8 @@ Cliciwch i agor Ystadegau</translation>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Llwytho metadata o %n cymar/iaid</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Hadu</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Chi</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Metadata Torrent</translation>
@@ -5057,14 +4391,8 @@ Cliciwch i agor Ystadegau</translation>
             <source>Web Link</source>
             <translation>Dolen We</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Iawn</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Dewis ffeil .py ategyn chwilio lleol i'w chopïo i'r ffolder search_plugins.</translation>
@@ -5096,18 +4424,9 @@ Cliciwch i agor Ystadegau</translation>
             <source>Installed Search Plugins</source>
             <translation>Ategion Chwilio Wedi'u Gosod</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Adnewyddu</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Anhysbys</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Wedi'i alluogi</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Wedi'i analluogi</translation>
@@ -5116,10 +4435,7 @@ Cliciwch i agor Ystadegau</translation>
             <source>Install a New One</source>
             <translation>Gosod un newydd</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Chwilio ategion</translation>
@@ -5127,18 +4443,9 @@ Cliciwch i agor Ystadegau</translation>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Enw</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Maint</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Hadwyr</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Cydrannwyr</translation>
@@ -5155,18 +4462,12 @@ Cliciwch i agor Ystadegau</translation>
             <source>Open Description Page</source>
             <translation>Agor Tudalen Disgrifiad</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Llwytho Torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Copïo Enw</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Copïo Dolen Magnet</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Copïo URL Tudalen Disgrifiad</translation>
@@ -5179,18 +4480,12 @@ Cliciwch i agor Ystadegau</translation>
             <source>Search</source>
             <translation>Chwilio</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Anhysbys</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Dim canlyniadau chwilio eto</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Ategion Chwilio</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Peiriant Chwilio Torrent</translation>
@@ -5206,14 +4501,8 @@ Cliciwch i agor Ystadegau</translation>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Cyflymder fesul torrent, terfynau rhannu, darganfod cyfoedion, a modd lawrlwytho</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Cau</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Gweithredu</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>TERFYNAU LLED BAND</translation>
@@ -5234,26 +4523,14 @@ Cliciwch i agor Ystadegau</translation>
             <source>Ratio:</source>
             <translation>Cymhareb:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Diofyn</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Diderfyn</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Gosod i</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Amser hadu:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>mun</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Amser anweithgar:</translation>
@@ -5357,10 +4634,7 @@ Cliciwch i agor Ystadegau</translation>
             <source>Open Settings</source>
             <translation>Agor Gosodiadau</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Cwcis o'r porwr:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Dewiswch borwr i drosglwyddo ei gwcis i yt-dlp, yna ceisiwch eto.</translation>
@@ -5430,10 +4704,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Llwytho ffeiliau isdeitlau lawr ochr yn ochr â'r fideo</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Iaith</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Cod(au) iaith, e.e. cy  ·  cy.*,ja  ·  i gyd</translation>
@@ -5492,14 +4763,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Llwytho Sianel</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Llwytho</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Uwch</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>hidlydd dyddiad</translation>
@@ -5592,18 +4857,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Cadw i:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Categori:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Fformat:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Canslo</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Llwytho Fideo</translation>

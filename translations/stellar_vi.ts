@@ -61,33 +61,23 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Tải xuống: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Phát tán: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Phát tán: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Tổng: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Tổng: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar đang tắt...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Bấm OK để nhóm các tải xuống này trước khi bắt đầu</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Chỉ liên kết đánh dấu Đã tìm thấy mới có thể chọn. Gán hàng đợi vẫn diễn ra sau khi xác nhận.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Xác nhận</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Xem lại tải xuống theo lô</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>rộng</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Xóa vĩnh viễn (không di chuyển vào thùng rác)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Xóa</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Có</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Không</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Duyệt...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Danh mục</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Đang nhận dữ liệu...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Đang lắp ráp...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Trạng thái tải xuống</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Thu nhỏ vào khay hệ thống</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Trạng thái</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Kích thước tệp</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Khả năng tiếp tục</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Có</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Không</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Chi tiết lỗi</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Tạm dừng</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Vị trí bắt đầu và tiến trình tải theo kết nối</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Đổi tên</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Tải lại</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Xóa</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Cài đặt cột</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Tên tệp</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Kích thước</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Trạng thái</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Thời gian còn lại</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Tốc độ tải xuống</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Đã tải lên</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Đã tải xuống</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Ngày thử cuối</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Mô tả</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Lưu vào</translation>
@@ -970,14 +891,8 @@ Nhấn Thêm URL để bắt đầu.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Ghi nhớ lựa chọn của tôi và không hiển thị hộp thoại này nữa.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Bạn có thể thay đổi trong Tùy chọn → Tải xuống sau này.</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Di chuyển File...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Bắt đầu</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Dừng</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Mở thư mục</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Mở file</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Trạng thái</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Kích thước</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Lưu vào</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Di chuyển</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Địa chỉ</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Trang web</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Truy xuất</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Mô tả</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Đăng nhập</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Mật khẩu</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Nguồn</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Hash thông tin</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Sao chép</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Metadata</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Danh mục</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Ghi chú</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Đã tải</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Quốc gia</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Cổng</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Đã tải lên</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Người phát</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Tin nhắn</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Dừng</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Tải xuống</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Di chuyển</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Phát tán</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Đã xếp hàng</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Vấn đề</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Tổng</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Tệp</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Bản đồ bầy</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Nhập tên tệp hoặc thư mục mới:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Đổi tên</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Tải xuống</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Đổi tên...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Không có người đồng kết nối</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Cấp</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Bàn đồng</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 bạn đồng hành</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% hoàn thành</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Không rõ</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Bạn</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Bắt buộc thông báo lại</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Sao chép URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Xóa trình theo dõi</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Dán URL web seeds - mỗi dòng một URL. URL seeds (BEP-19) và HTTP seeds (BEP-17) đều được chấp nhận.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Loại</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Tìm thấy %1 kết quả.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Tên mẫu</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Lưu</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Dự án gần đây</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Cài đặt Grabber</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Nâng cao &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Đăng nhập</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Mật khẩu</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Nhấn Nâng cao để bật đăng nhập thủ công hoặc tắt trang đăng xuất.</translation>
@@ -1935,22 +1745,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Che</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Thêm</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Chỉnh sửa</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Xóa</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Chỉnh sửa bộ lọc</translation>
@@ -1959,18 +1760,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Bộ lọc mới</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Danh mục</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Lưu</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1982,25 +1774,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Dự án đã lưu</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Dự án</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Tùy chọn</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Đang chạy</translation>
@@ -2030,22 +1810,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Bắt đầu</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Khám phá</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Loại</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Kích thước</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Trạng thái</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Liên kết</translation>
@@ -2054,10 +1825,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>Tải từ</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Lưu vào</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Chọn</translation>
@@ -2070,14 +1838,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Chỉnh sửa</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Cài đặt Grabber</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2334,14 +2096,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Lưu ý: Stellar phải chạy ở khay hệ thống vào thời điểm chỉ định để bắt đầu dự án lên lịch.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Được</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2365,14 +2121,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Sử dụng văn bản liên kết làm mô tả tải xuống khi thêm tệp vào danh sách chính của Stellar.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2384,10 +2134,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Trạng thái: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Ngỉ</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Trang web đã xử lý</translation>
@@ -2400,10 +2147,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Nâng cao</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Tệp</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Tổng</translation>
@@ -2416,14 +2160,8 @@ Project</source>
             <source>Matched</source>
             <translation>Đã khớp</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Đã tải</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2451,10 +2189,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar sẽ thử lại yt-dlp với cookie của trình duyệt đó.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Thử lại</translation>
@@ -2491,18 +2226,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Tất cả tệp (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Tổng: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Hoàn thành: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Tải xuống: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Đã xếp hàng: %1</translation>
@@ -2511,18 +2240,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Tổng thể: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Dừng</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Tiếp tục</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Bật hỗ trợ BitTorrent?</translation>
@@ -2554,10 +2274,7 @@ You can turn this off in Settings → Downloads.</source>
             <translation>Bạn đã nhấn 'Tải về sau', nhưng Stellar đã bắt đầu tải một phần tệp. Stellar luôn bắt đầu tải khi hiển thị hộp thoại 'Thông tin tệp'.
 Bạn có thể tắt tính năng này trong Cài đặt → Tải về.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Không thể tải tệp &quot;%1&quot;.</translation>
@@ -2600,14 +2317,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>File</source>
             <translation>Tệp</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Mở thư mục</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Mở tệp</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Tải xuống ngay</translation>
@@ -2620,14 +2331,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Remove</source>
             <translation>Xóa</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Tải lại</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Xuất .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Tải xuống</translation>
@@ -2664,10 +2369,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Stop Queue</source>
             <translation>Dừng hàng đợi</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Giới hạn tốc độ</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Bật</translation>
@@ -2760,10 +2462,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Columns…</source>
             <translation>Cột...</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Tùy chọn</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Cài đặt...</translation>
@@ -2796,42 +2495,21 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Rơi file .torrent để mở metadata</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Tìm:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Tìm</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Cài đặt ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Tìm trong:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Tên file hoặc phần tên</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Mô tả</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / trang web cha / nguồn</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Nhạy cảm chữ hoa</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Chỉ khớp toàn bộ</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Dịch thanh bên sang trái</translation>
@@ -2880,10 +2558,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Channel Download Progress</source>
             <translation>Tiến trình tải kênh</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Tải sau</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>File không còn sẵn</translation>
@@ -2939,18 +2614,12 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Don't add to queue</source>
             <translation>Không thêm vào hàng đợi</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Nhập tên hàng đợi</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Tạo</translation>
@@ -2966,14 +2635,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Download Rules</source>
             <translation>Quy tắc tải xuống</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Thêm</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Xóa</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Nhấn &quot;Thêm&quot; để tạo quy tắc tải xuống</translation>
@@ -3050,10 +2713,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Leave empty to use default save path</source>
             <translation>Để trống để dùng đường dẫn mặc định</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Duyệt...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Danh mục:</translation>
@@ -3066,10 +2726,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>TORRENT SHARE LIMITS</source>
             <translation>GIỚI HẠN CHIA TẢI TORRENT</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Tỷ lệ</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Mặc định</translation>
@@ -3098,14 +2755,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Mặc định sử dụng giới hạn chia sẻ toàn cầu trong Cài đặt → Torrents.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Được</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Quy tắc tải tự động RSS</translation>
@@ -3145,10 +2796,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Download Torrent</source>
             <translation>Tải torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Tải xuống</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Mở trong trình duyệt</translation>
@@ -3169,50 +2817,26 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Mark All Read</source>
             <translation>Đánh dấu tất cả đã đọc</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Tên</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Tên tùy chỉnh (tùy chọn)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Lưu</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Thêm URL nguồn tin RSS hoặc Atom...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Thêm</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Đang tải lại…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Chỉnh sửa</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Xóa</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Quy tắc tải xuống</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Đăng ký</translation>
@@ -3225,10 +2849,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Select an article</source>
             <translation>Chọn bài viết</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Mở</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Đánh dấu đã đọc</translation>
@@ -3272,10 +2893,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>New queue</source>
             <translation>Hàng đợi mới</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Xóa</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Lên lịch</translation>
@@ -3288,42 +2906,21 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>One-time downloading</source>
             <translation>Tải xuống một lần</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Đồng bộ hóa định kỳ</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Bắt đầu tải xuống khi Stellar khởi động</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Bắt đầu tải xuống lúc</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Một lần vào lúc</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Hàng ngày</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Bắt đầu lại mỗi</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>giờ</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>phút</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Dừng tải tại</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Số lần thử lại cho mỗi file:</translation>
@@ -3332,38 +2929,17 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Open the following file when done:</source>
             <translation>Mở file sau khi xong:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Thoát Stellar khi xong</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Tắt máy khi xong</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Buộc dừng tiến trình</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Tải xuống</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>file cùng lúc</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Tên file</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Kích thước</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Trạng thái</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Thời gian còn lại</translation>
@@ -3400,18 +2976,12 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Start now</source>
             <translation>Bắt đầu ngay</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Dừng</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Áp dụng</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Nhập tên hàng đợi mới</translation>
@@ -3420,18 +2990,9 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Queue name</source>
             <translation>Tên hàng đợi</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Được</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Lịch trình</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Hàng đợi mới</translation>
@@ -3443,10 +3004,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Kết nối</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Tải xuống đồng thời tối đa:</translation>
@@ -3511,22 +3069,13 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Password:</source>
             <translation>Mật khẩu:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Danh mục</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Tên</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Lưu vào thư mục</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Tải xuống</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Mục đích lưu trữ mặc định:</translation>
@@ -3587,14 +3136,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Show seconds</source>
             <translation>Hiển thị giây</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Xem trước</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Tích hợp trình duyệt</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Tự động tải xuống các loại tệp sau:</translation>
@@ -3619,10 +3162,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Nhấn giữ phím này khi nhấp vào liên kết tải xuống để bỏ qua chặn và cho phép trình duyệt tải xuống:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Giới hạn tốc độ</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Bật giới hạn tốc độ toàn cục</translation>
@@ -3631,10 +3171,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Maximum speed:</source>
             <translation>Tốc độ tối đa:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Bật giới hạn tải lên toàn cục</translation>
@@ -3651,18 +3188,12 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Enable speed limiter scheduler</source>
             <translation>Bật lịch trình giới hạn tốc độ</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Xóa</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Bật</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Tải xuống</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Tải lên</translation>
@@ -3683,10 +3214,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Show notification on download error</source>
             <translation>Hiển thị thông báo khi tải xuống lỗi</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Tổng quát</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Trình duyệt</translation>
@@ -3783,14 +3311,8 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Open file properties dialog</source>
             <translation>Mở thuộc tính</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Mở tệp</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Mở thư mục</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24 giờ</translation>
@@ -3823,10 +3345,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Nhấp vào viên thuốc ngày để bật/tắt. Các quy tắc được đánh giá mỗi phút; quy tắc đầu tiên khớp sẽ thắng. Giới hạn tải xuống và tải lên lên lịch sẽ được xóa tự động khi không có quy tắc nào hoạt động</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Thu nhỏ vào khay hệ thống</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Đóng vào khay hệ thống</translation>
@@ -3919,10 +3438,7 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
             <source>Download yt-dlp</source>
             <translation>Tải xuống yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Kiểm tra lại</translation>
@@ -4031,10 +3547,7 @@ Tất cả những gì bạn chia sẻ qua BitTorrent là trách nhiệm của b
 
 Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang hoạt động trước khi sử dụng torrent để bảo vệ địa chỉ IP của bạn khỏi bị lộ.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Tôi hiểu, Bật</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Các cài đặt này áp dụng cho tệp .torrent và liên kết magnet.</translation>
@@ -4099,10 +3612,7 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Networking</source>
             <translation>Mạng</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Tiên tiến</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>User agent tùy chỉnh BitTorrent</translation>
@@ -4175,10 +3685,7 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Block peers by country</source>
             <translation>Chặn máy ngang hàng theo quốc gia</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Thêm</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Không chặn quốc gia</translation>
@@ -4215,18 +3722,12 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Version</source>
             <translation>Phiên bản</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Không rõ</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Đường dẫn</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Kích thước</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Bản ghi</translation>
@@ -4235,10 +3736,7 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Last Modified</source>
             <translation>Cập nhật</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Trạng thái</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Đang tải...</translation>
@@ -4251,10 +3749,7 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Refresh Info</source>
             <translation>Làm mới thông tin</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Thống kê</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Tổng tải toàn bộ</translation>
@@ -4275,10 +3770,7 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Văn bản giấy phép đầy đủ nằm trong THIRD-PARTY-NOTICES.txt, kèm theo cài đặt này.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Lấy dữ liệu nguồn</translation>
@@ -4291,10 +3783,7 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Feeds refresh interval</source>
             <translation>Khoảng thời gian làm mới nguồn</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>phút</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Độ trễ yêu cầu cùng host</translation>
@@ -4455,14 +3944,8 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Third-party software</source>
             <translation>Phần mềm bên thứ ba</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Áp dụng</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Được</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Mặc định</translation>
@@ -4543,10 +4026,7 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Available but not loaded</source>
             <translation>Có sẵn nhưng chưa tải</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Nguồn: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL nguồn chưa được lưu cache. Sử dụng Kiểm tra cập nhật để lưu cache IPtoCityDB từ update.json.</translation>
@@ -4578,18 +4058,9 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Edit Project</source>
             <translation>Chỉnh sửa dự án</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Xóa dự án</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Danh mục</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Tất cả tải xuống</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Chưa hoàn thành</translation>
@@ -4602,49 +4073,19 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>Grabber Projects</source>
             <translation>Dự án</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrent</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Hàng đợi</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Tải xuống</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Chia sẻ</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Dừng</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Hoạt động</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Không hoạt động</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Kiểm tra</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Đang di chuyển</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Thống kê</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Thống kê Stellar</translation>
@@ -4653,14 +4094,8 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>ALL TIME</source>
             <translation>TẤT CẢ THỜI GIAN</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Đã tải xuống</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Đã tải lên</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Tỷ lệ chia sẻ</translation>
@@ -4681,10 +4116,7 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <source>THIS SESSION</source>
             <translation>Phiên bản này</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4801,57 +4233,27 @@ Nhấp để xem thống kê</translation>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Tải xuống</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Thêm URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Tiếp tục</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Dừng</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Dừng tất cả</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Xóa</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Xóa đã xong</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Tùy chọn</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Lịch trình</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Bắt đầu hàng đợi</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Dừng hàng đợi</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Grabber</translation>
@@ -4860,10 +4262,7 @@ Nhấp để xem thống kê</translation>
             <source>Search Engine</source>
             <translation>Công cụ tìm kiếm</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4902,18 +4301,12 @@ Nhấp để xem thống kê</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Lưu vào</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Lưu dưới tên...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Danh mục</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Thư mục tùy chỉnh</translation>
@@ -4926,86 +4319,35 @@ Nhấp để xem thống kê</translation>
             <source>Use category folder</source>
             <translation>Sử dụng thư mục danh mục</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Mô tả</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Cài đặt torrent...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Tải sau</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Tải</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Mở torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% xong</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Tệp</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n mục</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Tên</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Tiến độ</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Kích thước</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Không có thông tin tệp</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Đang chờ</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Đổi tên mục</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Nhập tên tệp hoặc thư mục mới:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Đổi tên</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Đổi tên...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Buddy</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Mở torrent và đọc metadata...</translation>
@@ -5018,14 +4360,8 @@ Nhấp để xem thống kê</translation>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Đang tải metadata từ %n đồng đẳng</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Giữ</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Bạn</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Metadata Torrent</translation>
@@ -5045,14 +4381,8 @@ Nhấp để xem thống kê</translation>
             <source>Web Link</source>
             <translation>Liên kết web</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Được</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Chọn tệp plugin tìm kiếm .py cục bộ để sao chép vào thư mục search_plugins.</translation>
@@ -5084,18 +4414,9 @@ Nhấp để xem thống kê</translation>
             <source>Installed Search Plugins</source>
             <translation>Khuôn viên tìm kiếm</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Làm mới</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Không rõ</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Đã bật</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Đã tắt</translation>
@@ -5104,10 +4425,7 @@ Nhấp để xem thống kê</translation>
             <source>Install a New One</source>
             <translation>Cài mới</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Tìm plugin</translation>
@@ -5115,18 +4433,9 @@ Nhấp để xem thống kê</translation>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Tên</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Kích thước</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Người seeding</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Người leech</translation>
@@ -5143,18 +4452,12 @@ Nhấp để xem thống kê</translation>
             <source>Open Description Page</source>
             <translation>Mô tả</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Tải Torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Sao chép Tên</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Sao chép Link Magnet</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Sao chép URL Trang Mô tả</translation>
@@ -5167,18 +4470,12 @@ Nhấp để xem thống kê</translation>
             <source>Search</source>
             <translation>Tìm kiếm</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Không rõ</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Chưa có kết quả tìm kiếm</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Plugin Tìm kiếm</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Công cụ Tìm kiếm Torrent</translation>
@@ -5194,14 +4491,8 @@ Nhấp để xem thống kê</translation>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Tốc độ, giới hạn chia sẻ, phát hiện đồng trang và chế độ tải</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Đóng</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Áp dụng</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>GIỚI HẠN BANDWIDTH</translation>
@@ -5222,26 +4513,14 @@ Nhấp để xem thống kê</translation>
             <source>Ratio:</source>
             <translation>Tỷ lệ:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Mặc định</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Không giới hạn</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Đặt thành</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Thời gian seeding:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>phút</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Thời gian không hoạt động:</translation>
@@ -5345,10 +4624,7 @@ Nhấp để xem thống kê</translation>
             <source>Open Settings</source>
             <translation>Mở Cài đặt</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Cookie từ trình duyệt:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Chọn trình duyệt để chuyển cookie của nó sang yt-dlp, sau đó thử lại.</translation>
@@ -5418,10 +4694,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Tải xuống phụ đề kèm video</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Ngôn ngữ</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Mã ngôn ngữ, ví dụ: en · en.*, ja · tất cả</translation>
@@ -5479,14 +4752,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Kênh tải xuống</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Tải xuống</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Nâng cao</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Lọc ngày</translation>
@@ -5579,18 +4846,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Lưu vào:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Danh mục:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Định dạng:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Hủy</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Tải Video</translation>

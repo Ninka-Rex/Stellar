@@ -61,33 +61,23 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Mengunduh: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Menyebarkan: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Menyebarkan: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Jumlah: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Jumlah: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar sedang menutup...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Batalkan</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Nama fail</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Hanya pautan bertanda Ditemui yang boleh dipilih. Penjadualan masih berlaku selepas OK.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Semakan muat turun dalam kumpulan</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>px lebar</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Padam kekal</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Padam</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Ya</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Tidak</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Layari...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Kategori</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Menerima data...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Menyusun...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Status muat turun</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Kecilkan ke tray sistem</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Saiz fail</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Kemampuan sambung semula</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Ya</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Tidak</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Butiran ralat</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Jeda</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batalkan</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Posisi &amp; kemajuan muat turun</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Namakan Semula</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Muat Semula</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Padam</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Tetapan Kolom</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Nama Fail</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Saiz</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Masa Sisa</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Kelajuan Muat Turun</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Muat Naik</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Muat Turun</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Tarikh Cubaan Terakhir</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Penerangan</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Simpan Ke</translation>
@@ -971,14 +892,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Ingat pilihan saya dan jangan paparkan dialog ini lagi.
 Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -990,66 +905,30 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Move File To...</source>
             <translation>Pindahkan Fail Ke...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Mulakan</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Berhenti</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Buka Folder</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Buka Fail</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Saiz</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Simpan ke</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Pindahkan</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Alamat</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Laman web</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Rujukan</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Penerangan</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Log masuk</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Kata laluan</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Sumber</translation>
@@ -1058,26 +937,17 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Info hash</source>
             <translation>Info hash</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Salin</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Meta</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Nota</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Dimuat Turun</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Negara</translation>
@@ -1086,14 +956,8 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Dimuat Naik</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Penabur</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Mesej</translation>
@@ -1102,22 +966,10 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Stopped</source>
             <translation>Dihentikan</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Mengunduh</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Memindahkan</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Menyebarkan</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Antar</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Masalah</translation>
@@ -1142,10 +994,7 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>General</source>
             <translation>Umum</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Fail</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Peta Rantaian</translation>
@@ -1230,22 +1079,10 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Enter a new file or folder name:</source>
             <translation>Masukkan nama fail atau folder baru</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Namakan semula</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Muat turun</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Namakan semula...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Tiada rakan sambung</translation>
@@ -1350,10 +1187,7 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Tier</source>
             <translation>Tingkat</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Rakan</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 rakan diketahui</translation>
@@ -1378,10 +1212,7 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% siap</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Tidak Diketahui</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Anda</translation>
@@ -1398,10 +1229,7 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Force Reannounce</source>
             <translation>Ulangisytiharkan Paksa</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Salin URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Buang pelayar</translation>
@@ -1430,10 +1258,7 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Tampal URL web seed - satu per baris.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Jenis</translation>
@@ -1582,10 +1407,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Ditemui %1 keputusan.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1649,10 +1471,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Nama templat</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Simpan</translation>
@@ -1673,10 +1492,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Projek Terkini</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Tetapan Grabber</translation>
@@ -1717,14 +1533,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Lanjutan &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Log masuk</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Kata laluan</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Tekan Lanjutan untuk log masuk manual atau matikan halaman log keluar.</translation>
@@ -1936,22 +1746,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Mask</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Tambah</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Sunting</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Padam</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Sunting penapis</translation>
@@ -1960,18 +1761,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Penapis baharu</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Simpan</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1983,25 +1775,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Projek tersimpan</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Projek</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Pilihan</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Berjalan</translation>
@@ -2031,22 +1811,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Mula</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Menjelajah</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Tipe</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Saiz</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Pautan</translation>
@@ -2055,10 +1826,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>Muat turun dari</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Simpan ke</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Semak pilihan</translation>
@@ -2071,14 +1839,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Sunting projek semasa</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Pengaturan</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2335,14 +2097,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Nota: Stellar mesti berjalan di baki sistem pada masa yang ditentukan untuk memulakan projek jadual.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2366,14 +2122,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Gunakan teks pautan sebagai deskripsi muat turun apabila menambah fail ke senarai utama Stellar.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2385,10 +2135,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Status: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Tidur</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Laman web diproses</translation>
@@ -2401,10 +2148,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Lanjutan</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Fail</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Jumlah</translation>
@@ -2417,14 +2161,8 @@ Project</source>
             <source>Matched</source>
             <translation>Padan</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Muat turun</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2452,10 +2190,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar akan cuba semula item yt-dlp yang sama dengan cookie pelayar tersebut.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Cuba Semula Muat Turun</translation>
@@ -2492,18 +2227,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Semua Fail (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Jumlah: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Selesai: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Mengunduh: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Antarabuka: %1</translation>
@@ -2512,18 +2241,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Keseluruhan: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Berhenti</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Teruskan</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Dayakan Sokongan BitTorrent?</translation>
@@ -2554,10 +2274,7 @@ Sangat disyorkan untuk mengikat Stellar ke antara muka rangkaian VPN dan mengesa
 You can turn this off in Settings → Downloads.</source>
             <translation>Anda menekan 'Muat Turun Nanti', tetapi Stellar sudah memuat turun sebahagian fail. Stellar sentiasa memuat turun semasa memaparkan dialog 'Maklumat Fail Muat Turun'. Anda boleh matikannya dalam Tetapan → Muat Turun.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Fail '%1' tidak boleh dimuat turun.</translation>
@@ -2599,14 +2316,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Fail</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Buka Folder</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Buka Fail</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Muat Turun Sekarang</translation>
@@ -2619,14 +2330,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Buang</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Muat Turun Semula</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Eksport .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Muat Turun</translation>
@@ -2663,10 +2368,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Berhenti Antrian</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Penyekat Kelajuan</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Nyalakan</translation>
@@ -2759,10 +2461,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Lajur...</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Pilihan</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Tetapan...</translation>
@@ -2795,42 +2494,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Lepaskan fail .torrent</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Cari:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Cari</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Tetapan ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Cari dalam:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Nama fail atau sebahagian nama</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Penerangan</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / rujukan / laman web induk</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Padankan kes huruf</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Padankan keseluruhan</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Pindahkan panel ke kiri</translation>
@@ -2879,10 +2557,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Kemajuan Muat Turun Saluran</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Muat Turun Nanti</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Fail Tidak Lagi Tersedia</translation>
@@ -2938,18 +2613,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Jangan tambah ke antaian</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Masukkan nama antaian</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Cipta</translation>
@@ -2965,14 +2634,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Aturan Muat Turun</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Tambah</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Buang</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Klik 'Tambah' untuk cipta aturan muat turun</translation>
@@ -3049,10 +2712,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Kosongkan guna laluan lalai</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Layari...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Kategori:</translation>
@@ -3065,10 +2725,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>Had Partisi BitTorrent</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Rasio</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Lalai</translation>
@@ -3097,14 +2754,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Lalai menggunakan had kongsi global dalam Tetapan → Torrent.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Aturan Muat Turun RSS Automatik</translation>
@@ -3144,10 +2795,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Muat Turun Torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Muat Turun</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Buka di Pelayar</translation>
@@ -3168,50 +2816,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Semua Selesai</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Nama</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Nama kustom (pilihan)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Simpan</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Tambah URL sumber RSS atau Atom...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Tambah</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Menyegarkan…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Sunting</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Buang</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Aturan Muat Turun</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Langganan</translation>
@@ -3224,10 +2848,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Pilih Artikel</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Buka</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Tanda Baca</translation>
@@ -3271,10 +2892,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Antaian baharu</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Padam</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Jadualkan</translation>
@@ -3287,42 +2905,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Muat turun sekali</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Sinkronisasi berkala</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Mulakan muat turun pada permulaan Stellar</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Mulakan muat turun pada</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Sekali pada</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Harian</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Mulakan semula setiap</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>jam</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Hentikan muat turun</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Bilangan cubaan untuk setiap fail:</translation>
@@ -3331,38 +2928,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Buka fail berikut bila siap:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Tutup Stellar bila siap</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Matikan komputer bila siap</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Paksa proses berhenti</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Muat turun</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>fail serentak</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Nama Fail</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Saiz</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Masa Baki</translation>
@@ -3399,18 +2975,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Mula sekarang</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Berhenti</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Terapkan</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Masukkan nama untuk barisan baharu yang akan dipaparkan dalam senarai barisan</translation>
@@ -3419,18 +2989,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Nama barisan</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batalkan</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Penjadual</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Barisan Baharu</translation>
@@ -3442,10 +3003,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Sambungan</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Muat turun serentak maksimum:</translation>
@@ -3510,22 +3068,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Kata laluan:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategori</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Nama</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Simpan ke folder</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Muat Turun</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Folder simpan lalai:</translation>
@@ -3586,14 +3135,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Paparkan saat</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Pratonton</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Pengesanan Pelayar</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Mulakan muat turun secara automatik untuk jenis fail berikut:</translation>
@@ -3618,10 +3161,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Tahan butang ini semasa klik pautan muat turun untuk lompat penangkapan dan biarkan pelayar memuat turun:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Penyahhadkan Kelajuan</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Aktifkan had kelajuan global</translation>
@@ -3630,10 +3170,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Kelajuan maksimum:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Aktifkan had muat naik global</translation>
@@ -3650,18 +3187,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Aktifkan penjadual had kelajuan</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Buang</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>On</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Muat turun</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Muat naik</translation>
@@ -3682,10 +3213,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Notifikasi bila ralat muat turun</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Umum</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Pelayar</translation>
@@ -3782,14 +3310,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Buka dialog sifat fail</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Buka fail</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Buka folder</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>Masa 24-jam</translation>
@@ -3822,10 +3344,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Klik pil hari untuk menukarnya. Aturan dinilai setiap minit; peraturan pertama yang sepadan menang. Had muat turun dan muat naik jadual dibersihkan secara automatik apabila tiada aturan aktif.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Kecilkan ke baki sistem</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Tutup ke baki sistem</translation>
@@ -3918,10 +3437,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Muat turun yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batalkan</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Semak Semula</translation>
@@ -4030,10 +3546,7 @@ Apapun yang anda kongsi melalui BitTorrent adalah tanggungjawab sepenuhnya anda.
 
 Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan mengesahkan bahawa VPN anda aktif sebelum menggunakan torrent, untuk melindungi alamat IP anda daripada pendedahan.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Saya Faham, Aktifkan</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Tetapan ini terpakai kepada fail .torrent dan pautan magnet.</translation>
@@ -4098,10 +3611,7 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Networking</source>
             <translation>Jaringan</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Lanjutan</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>User agent bittorrent tersuai</translation>
@@ -4174,10 +3684,7 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Block peers by country</source>
             <translation>Blok sejawat mengikut negara</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Tambah</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Tiada negara diblok</translation>
@@ -4214,18 +3721,12 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Version</source>
             <translation>Versi</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Tidak diketahui</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Laluan</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Saiz</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Entri</translation>
@@ -4234,10 +3735,7 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Last Modified</source>
             <translation>Ubah Tahn</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Status</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Mengunduh...</translation>
@@ -4250,10 +3748,7 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Refresh Info</source>
             <translation>Semak Maklumat</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistik</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Jumlah Transfer Keseluruhan</translation>
@@ -4274,10 +3769,7 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Lisensi</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Ambil</translation>
@@ -4290,10 +3782,7 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Feeds refresh interval</source>
             <translation>Selang</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>Minit</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Masa</translation>
@@ -4454,14 +3943,8 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Third-party software</source>
             <translation>Perisian pihak ketiga</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Terapkan</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Laluan lalai</translation>
@@ -4542,10 +4025,7 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Available but not loaded</source>
             <translation>Tersedia tetapi tidak dimuatkan</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Sumber: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL sumber belum dikemaskini. Gunakan Semak kemas kini untuk memuatkan IPtoCityDB dari update.json.</translation>
@@ -4577,18 +4057,9 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Edit Project</source>
             <translation>Sunting Projek</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Padam Projek</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategori</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Semua Muat Turun</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Belum Selesai</translation>
@@ -4601,49 +4072,19 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>Grabber Projects</source>
             <translation>Projek Grabber</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrent</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Antaian</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Mengunduh</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Menyebarkan</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Dihentikan</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Aktif</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Tidak Aktif</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Semak</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Pindah</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistik</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Statistik Stellar</translation>
@@ -4652,14 +4093,8 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>ALL TIME</source>
             <translation>SELAMAH</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Dimuat Turun</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Dimuat Naik</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Nisbah Kongsi</translation>
@@ -4680,10 +4115,7 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <source>THIS SESSION</source>
             <translation>SESI INI</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4799,57 +4231,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Tiada sambungan masuk, rangkaian mungkin salah konfigurasi</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Pengurus Muat Tur Stellar</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Tambah URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Lanjutkan</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Berhenti</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Berhenti Semua</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Padam</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Padam Selesai</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Pilihan</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Penjadual</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Mulai Antaian</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Berhenti Antaian</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Pengambil</translation>
@@ -4858,10 +4260,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Enjin Carian</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4900,18 +4299,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Simpan ke</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Simpan Sebagai...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategori</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Folder Simpanan Tersuai</translation>
@@ -4924,86 +4317,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Gunakan folder kategori</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Penerangan</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Tetapan Torrent...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Muat Tur Nanti</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Muat Tur</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Membuka torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% siap</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Fail</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n item</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Nama</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Kedudukan</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Saiz</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Tiada maklumat fail</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Menunggu</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Namakan semula</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Masukkan nama fail atau folder baru:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Namakan semula</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Namakan semula...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Rakan</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Membuka torrent dan membaca meta data...</translation>
@@ -5016,14 +4358,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Memuat turun meta data dari %n rakan</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Benih</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Anda</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Metadata Torrent</translation>
@@ -5043,14 +4379,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Pautan Web</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Pilih fail plugin carian .py tempatan untuk disalin ke folder search_plugins.</translation>
@@ -5082,18 +4412,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Pencarian Terpasang</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Semula</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Tidak Diketahui</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Diaktifkan</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Dinonaktifkan</translation>
@@ -5102,10 +4423,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Pasang Baru</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Cari Plugin</translation>
@@ -5113,18 +4431,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Nama</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Saiz</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Penyiar</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Pelawat</translation>
@@ -5141,18 +4450,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Lihat Penerangan</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Muat Turun Torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Salin Nama</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Salin Pautan Magnet</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Salin URL Halaman Penerangan</translation>
@@ -5165,18 +4468,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Cari</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Tidak Diketahui</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Tiada hasil carian lagi</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Pelancong Carian</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Enjin Carian Torrent</translation>
@@ -5192,14 +4489,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Kecajuan, had, penemuan, mod</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tutup</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Terapkan</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>HAD BANDWIDTH</translation>
@@ -5220,26 +4511,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Rasio:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Lalai</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Tak Terhad</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Tetapkan</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Masa penaburan:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Masa tidak aktif:</translation>
@@ -5343,10 +4622,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Buka Tetapan</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Cookies dari pelayar:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Pilih pelayar untuk menghantar cookiesnya ke yt-dlp, kemudian cuba semula.</translation>
@@ -5416,10 +4692,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Muat turun fail teks bawah bersama video</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Bahasa:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Kod bahasa, cth. en · en.*,ja · semua</translation>
@@ -5477,14 +4750,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Saluran Muat Turun</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Muat Turun</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Tamat</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Tapis Tarikh</translation>
@@ -5577,18 +4844,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Simpan ke:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Kategori:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Format:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Batal</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Muat turun video</translation>

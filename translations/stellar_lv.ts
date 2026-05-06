@@ -61,33 +61,23 @@
             <translation>Stellar lejupielādes menedžeris v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Lejupielādē: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Sēšana: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Sēšana: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Kopā: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Kopā: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar tiek apturēts...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Izmanto rindas soli pēc OK, lai šīs lejupielādes tiktu grupētas pirms sākuma.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Izvēlami tikai saites ar statusu &quot;Atrasts&quot;. Rinda tiek piešķirta pēc OK.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Partijas lejupielādes pārskats</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>pikseļu plata</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Dzēst neatgriezeniski (neuzglabāt atkritnē)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Dzēst</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Jā</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Nē</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Pārlūkot...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Kategorija</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Datu saņemšana...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Salikšana...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Lejupielādes statuss</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Minimizēt uz lodziņu</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Statuss</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Faila izmērs</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Atjaunošanas iespēja</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Jā</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Nē</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Kļūdas detaļas</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Pauzēt</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Sākuma pozīcijas un lejupielādes progress pa savienojumiem</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Pārdēvēt</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Pārlādēt</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Dzēst</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Kolonnas iestatījumi</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Faila nosaukums</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Izmērs</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Stāvoklis</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Atlikušais laiks</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>↓ Ātrums</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Augšupielādēts</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lejupielādēts</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Pēdējais mēģinājums</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Apraksts</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Saglabāt uz</translation>
@@ -971,14 +892,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Atcerēties manu izvēli un nerādīt šo dialogu vairāk.
 To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -990,66 +905,30 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Move File To...</source>
             <translation>Pārvietot failu uz...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Sākt</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Apturēt</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Atvērt mapi</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Atvērt failu</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Statuss</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Izmērs</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Saglabāt</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Pārvietot</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Adrese</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Tīmekļa lapa</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Atsaucējs</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Apraksts</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Pieslēgties</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Parole</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Avots</translation>
@@ -1058,26 +937,17 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Info hash</source>
             <translation>Info hash</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Kopēt</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Metadati</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorija</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Piezīme</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lejupielādēts</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Valsts</translation>
@@ -1086,14 +956,8 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Port</source>
             <translation>Ports</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Augšupielādēts</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seederi</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Ziņojums</translation>
@@ -1102,22 +966,10 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Stopped</source>
             <translation>Apturēts</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Lejupielāde</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Pārvieto</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Sēdēšana</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Rindā</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Problēma</translation>
@@ -1142,10 +994,7 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>General</source>
             <translation>Vispārīgi</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Faili</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Saimas karte</translation>
@@ -1230,22 +1079,10 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Enter a new file or folder name:</source>
             <translation>Ievadiet jaunu faila vai mapes nosaukumu:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Pārdēvēt</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Lejupielādēt</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Pārdēvēt...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Nav savienojumu ar peer</translation>
@@ -1350,10 +1187,7 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Tier</source>
             <translation>Līmenis</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Peer</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 zināmi peer</translation>
@@ -1378,10 +1212,7 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1 %2% pabeigts</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Nezināms</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Jūs (šis klients)</translation>
@@ -1398,10 +1229,7 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Force Reannounce</source>
             <translation>Spiest atkārtoti paziņot</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Kopēt URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Noņemt trackeru</translation>
@@ -1430,10 +1258,7 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Ielīmējiet tīkla sēklu URL - pa vienam rindā. Pieņemti gan URL sēklas (BEP-19), gan HTTP sēklas (BEP-17).</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Tips</translation>
@@ -1582,10 +1407,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Atrasti %1 rezultāti.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1649,10 +1471,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Veidnes nosaukums</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Saglabāt</translation>
@@ -1673,10 +1492,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Nesenie projekti</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Grabber iestatījumi</translation>
@@ -1717,14 +1533,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Papildu &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Pieslēgties</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Parole</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Nospiediet Papildu, lai iespējotu manuālu pieslēgšanos vai atspējotu izrakstīšanās lapu.</translation>
@@ -1936,22 +1746,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Maska</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Pievienot</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Rediģēt</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Dzēst</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Rediģēt filtru</translation>
@@ -1960,18 +1761,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Jauns filtrs</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorija</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Saglabāt</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1983,25 +1775,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Saglabātie projekti</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Projekts</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Iespējas</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Darbībā</translation>
@@ -2032,22 +1812,13 @@ Exploring</source>
             <translation>Sākt
 Izpēte</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Faila nosaukums</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Faila tips</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Izmērs</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Statuss</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Saites teksts</translation>
@@ -2056,10 +1827,7 @@ Izpēte</translation>
             <source>Download from</source>
             <translation>Lejupielādēt no</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Saglabāt uz</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Pārbaudīt atlasīto</translation>
@@ -2072,14 +1840,8 @@ Izpēte</translation>
             <source>Edit current project</source>
             <translation>Rediģēt pašreizējo projektu</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Grabber iestatījumi</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2336,14 +2098,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Piezīme: Stellar ir jābūt palaistam sistēmas laukā norādītajā laikā, lai sāktu plānoto projektu.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2367,14 +2123,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Izmantot saites tekstu kā lejupielādes aprakstu, pievienojot failus Stellar galvenajam sarakstam</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2386,10 +2136,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Statuss: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Gaida</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Apstrādātas tīmekļa lapas</translation>
@@ -2402,10 +2149,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Paplašināts</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Faili</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Kopā</translation>
@@ -2418,14 +2162,8 @@ Project</source>
             <source>Matched</source>
             <translation>Sakritušais</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lejupielādēts</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2453,10 +2191,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar mēģinās atkārtoti lejupielādēt to pašu yt-dlp ierakstu, izmantojot šī pārlūka sīkdatnes.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Mēģināt vēlreiz</translation>
@@ -2493,18 +2228,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Visi faili (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Kopā: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Pabeigts: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Lejupielāde: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Rindā: %1</translation>
@@ -2513,18 +2242,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Kopā: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Apturēt</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Turpināt</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Iespējot BitTorrent atbalstu?</translation>
@@ -2557,10 +2277,7 @@ You can turn this off in Settings → Downloads.</source>
 
 Izslēdziet iestatījumos → Lejupielādes.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Fails &quot;%1&quot; nevar tikt lejupielādēts.</translation>
@@ -2602,14 +2319,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Fails</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Atvērt mapi</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Atvērt failu</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Lejupielādēt tagad</translation>
@@ -2622,14 +2333,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Noņemt</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Lejupielādēt vēlreiz</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Eksportēt .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Lejupielādes</translation>
@@ -2666,10 +2371,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Apturēt rindu</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ātruma ierobežotājs</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Ieslēgt</translation>
@@ -2762,10 +2464,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Kolonnas…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Iespējas</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Iestatījumi…</translation>
@@ -2798,42 +2497,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Iemet .torrent failu, lai atvērtu torrent metadatus</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Meklēt:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Meklēt</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Iestatījumi ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Meklēt:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Faila nosaukums vai daļa</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Apraksts</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / atsauces / vecāktā tīmekļa lapa</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Sakritība ar lielo burtu</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Tikai pilna sakritība</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Pārvietot sānjoslu pa kreisi</translation>
@@ -2882,10 +2560,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Kanāla lejupielādes progress</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Lejupielādēt vēlāk</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Fails vairs nav pieejams</translation>
@@ -2941,18 +2616,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Ne pievienot rindai</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Ievadiet rindas nosaukumu</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Izveidot</translation>
@@ -2968,14 +2637,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Lejupielādes noteikumi</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Pievienot</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Noņemt</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Noklikšķiniet uz „Pievienot”, lai izveidotu lejupielādes noteikumu</translation>
@@ -3052,10 +2715,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Atstāj tukšu, lai izmantotu noklusējuma ceļu</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Pārlūkot...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Kategorija</translation>
@@ -3068,10 +2728,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>TORRENTA DALĪŠANĀS IEROBEŽOJUMI</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Attiecība</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Noklusējums</translation>
@@ -3100,14 +2757,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>&quot;Noklusējums&quot; izmanto globālos dalīšanās ierobežojumus, kas iestatīti Iestatījumi → Torrenti.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS automātiskās lejupielādes noteikumi</translation>
@@ -3147,10 +2798,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Lejupielādēt torrentu</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Lejupielādēt</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Atvērt pārlūkā</translation>
@@ -3171,50 +2819,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Atzīmēt visu kā izlasītu</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Nosaukums</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Pielāgots nosaukums (neobligāti)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Saglabāt</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Pievienot RSS vai Atom kanāla URL...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Pievienot</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Atjauno...</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Rediģēt</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Noņemt</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Lejupielādes noteikumi</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Abonementi</translation>
@@ -3227,10 +2851,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Izvēlēties rakstu</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Atvērt</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Atzīmēt izlasītu</translation>
@@ -3274,10 +2895,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Jauna rinda</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Dzēst</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Plāns</translation>
@@ -3290,42 +2908,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Vienreizēja lejupielāde</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Periodiska sinhronizācija</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Sākt lejupielādi, startējot Stellar</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Sākt lejupielādi plkst.</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Kad nonākt</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Katru dienu</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Sākt no jauna ik pēc</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>stundām</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Apturēt lejupielādi, kad</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Atkārtotu mēģinājumu skaits katram failam, ja lejupielāde neizdodas:</translation>
@@ -3334,38 +2931,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Atvērt šo failu, kad pabeigts:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Iziet no Stellar, kad pabeigts</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Izslēgt datoru, kad pabeigts</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Piespiedu procesa pārtraukšana</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Lejupielāde</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>faili vienlaicīgi</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Faila nosaukums</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Izmērs</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Statuss</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Atlikušais laiks</translation>
@@ -3402,18 +2978,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Sākt tagad</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Apturēt</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Pielietot</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Ievadiet jaunas rindas nosaukumu, kas tiks rādīts rindu sarakstā</translation>
@@ -3422,18 +2992,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Rindas nosaukums</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Plānotājs</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Jauna rinda</translation>
@@ -3445,10 +3006,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Savienojums</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Maksimālais vienlaicīgo lejupielāžu skaits:</translation>
@@ -3513,22 +3071,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Parole:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategorijas</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Nosaukums</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Saglabāt mapē</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Lejupielādes</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Noklusējuma saglabāšanas mape:</translation>
@@ -3589,14 +3138,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Rādīt sekundes</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Priekšskatījums</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Pārlūka integrācija</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Automātiski sākt lejupielādēt šāda veida failus:</translation>
@@ -3621,10 +3164,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Turiet nospiestu šo taustiņu, noklikšķinot uz lejupielādes saites, lai izlaistu tīkšanu un ļautu pārlūkprogrammai veikt lejupielādi:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ātruma ierobežotājs</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Iespējot globālo ātruma ierobežojumu</translation>
@@ -3633,10 +3173,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Maksimālais ātrums:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Iespējot globālo augšupielādes ierobežojumu</translation>
@@ -3653,18 +3190,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Iespējot ātruma ierobežotāja plānotāju</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Noņemt</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Ieslēgts</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Lejupielādēt</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Augšupielādēt</translation>
@@ -3685,10 +3216,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Rādīt paziņojumu par lejupielādes kļūdu</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Vispārīgi</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Pārlūks</translation>
@@ -3785,14 +3313,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Atvērt faila īpašību dialogu</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Atvērt failu</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Atvērt mapi</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24h laiks</translation>
@@ -3825,10 +3347,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Noklikšķiniet uz dienas pildspalvas, lai to pārslēgtu. Noteikumi tiek novērtēti katru minūti; pirmais atbilstošais noteikums uzvar. Plānotie lejupielādes un augšupielādes limiti tiek automātiski dzēsti, ja nav aktīvs neviens noteikums.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Minimizēt uz sistēmas joslu</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Aizvērt uz sistēmas joslu</translation>
@@ -3921,10 +3440,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Lejupielādēt yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Pārbaudīt vēlreiz</translation>
@@ -4033,10 +3549,7 @@ Jebkas, ko kopīgojat caur BitTorrent, ir jūsu atbildība. Pārliecinieties, ka
 
 Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jūsu VPN ir aktīvs, pirms izmantot torrentus, lai aizsargātu savu IP adresi no atklāšanas.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Es saprotu, Iespējot</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Šie iestatījumi attiecas uz .torrent failiem un magnet saites.</translation>
@@ -4101,10 +3614,7 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Networking</source>
             <translation>Tīkls</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Papildu</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Pielāgots BitTorrent lietotāja aģents</translation>
@@ -4177,10 +3687,7 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Block peers by country</source>
             <translation>Bloķēt peer pēc valsts</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Pievienot</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Nav bloķētu valstu.</translation>
@@ -4217,18 +3724,12 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Version</source>
             <translation>Versija</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Nezināms</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Ceļš</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Izmērs</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Ieraksti</translation>
@@ -4237,10 +3738,7 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Last Modified</source>
             <translation>Pēdējoreiz mainīts</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Statuss</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Lejupielāde...</translation>
@@ -4253,10 +3751,7 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Refresh Info</source>
             <translation>Atsvaidzināt info</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistika</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Kopējais pārraidījums visiem torrentiem, ieskaitot noņemtos.</translation>
@@ -4277,10 +3772,7 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Pilni licences teksti ir failā THIRD-PARTY-NOTICES.txt, kas iekļauts šajā instalācijā.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Barības ielāde</translation>
@@ -4293,10 +3785,7 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Feeds refresh interval</source>
             <translation>Barību atsvaidzināšanas intervāls</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>minūtes</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Viena resursdatora pieprasījumu aizture</translation>
@@ -4457,14 +3946,8 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Third-party software</source>
             <translation>Trešo pušu programmatūra</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Piemērot</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Noklusējuma maršruts</translation>
@@ -4545,10 +4028,7 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Available but not loaded</source>
             <translation>Pieejams, bet neielādēts</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Avots: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Avota URL vēl nav kešatmiņā. Izmantojo 'Pārbaudīt atjauninājumus', lai kešatmiņā ielādētu IPtoCityDB no update.json.</translation>
@@ -4580,18 +4060,9 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Edit Project</source>
             <translation>Rediģēt projektu</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Dzēst projektu</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Kategorijas</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Visi lejupielādes</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Nepabeigti</translation>
@@ -4604,49 +4075,19 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>Grabber Projects</source>
             <translation>Grabber projekti</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrenti</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Rindas</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Lejupielādē</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Augšupielādē</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Apturēti</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Aktīvi</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Neaktīvi</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Pārbauda</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Pārvieto</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Statistika</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar statistika</translation>
@@ -4655,14 +4096,8 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>ALL TIME</source>
             <translation>Visu laiku</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Lejupielādēts</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Augšupielādēts</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Dalīšanās attiecība</translation>
@@ -4683,10 +4118,7 @@ Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jū
             <source>THIS SESSION</source>
             <translation>Šajā sesijā</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4803,57 +4235,27 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Stellar lejupielāžu pārvaldnieks</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>SDM lejupielādes</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Pievienot URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Turpināt</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Apturēt</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Apturēt visu</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Dzēst</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Dzēst pabeigtos</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Iespējas</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Plānotājs</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Sākt rindu</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Apturēt rindu</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Ķērājs</translation>
@@ -4862,10 +4264,7 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Search Engine</source>
             <translation>Meklēšanas dzinējs</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4904,18 +4303,12 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Saglabāt</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Saglabāt kā...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Kategorija</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Pielāgota saglabāšanas mape</translation>
@@ -4928,86 +4321,35 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Use category folder</source>
             <translation>Izmantot kategorijas mapi</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Apraksts</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Torrenta iestatījumi...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Lejupielādēt vēlāk</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Lejupielādēt</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Torrents tiek atvērts...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2 pabeigts</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Faili</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n vienums(i)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Nosaukums</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Progresa</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Izmērs</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Nav pieejama faila informācija</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Gaida</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Pārdēvēt vienumu</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Ievadiet jaunu faila vai mapes nosaukumu:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Pārdēvēt</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Pārdēvēt...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Pāris</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Atver torrentu un lasa metadatus...</translation>
@@ -5020,14 +4362,8 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Lejupielādē metadatus no %n pāra(iem)</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Sēdēt</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Tu</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrenta metadati</translation>
@@ -5047,14 +4383,8 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Web Link</source>
             <translation>Tīkla saite</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Labi</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Izvēlies lokālu .py meklēšanas spraudņa failu, lai nokopētu to meklēšanas_spraudņu mapē.</translation>
@@ -5086,18 +4416,9 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Installed Search Plugins</source>
             <translation>Instalētie meklēšanas spraudņi</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Atsvaidzināt</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Nezināms</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Iespējots</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Neaktivizēts</translation>
@@ -5106,10 +4427,7 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Install a New One</source>
             <translation>Instalēt jaunu</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Meklēt spraudņus</translation>
@@ -5117,18 +4435,9 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Nosaukums</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Izmērs</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seederi</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Leecheri</translation>
@@ -5145,18 +4454,12 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Open Description Page</source>
             <translation>Atvērt apraksta lapu</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Lejupielādēt torrentu</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Kopēt nosaukumu</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Kopēt magnet saiti</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Kopēt apraksta lapas URL</translation>
@@ -5169,18 +4472,12 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Search</source>
             <translation>Meklēt</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Nezināms</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Vēl nav meklēšanas rezultātu</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Meklēšanas spraudņi</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrentu meklētājs</translation>
@@ -5196,14 +4493,8 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Ātrums, dalīšanās limiti, peer atklāšana un lejupielādes režīms</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Aizvērt</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Piemērot</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>PLATAS LĪMJI</translation>
@@ -5224,26 +4515,14 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Ratio:</source>
             <translation>Attiecība:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Noklusējums</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Bez ierobežojuma</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Iestatīt uz</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Sēdēšanas laiks:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Neaktīvā laiks:</translation>
@@ -5347,10 +4626,7 @@ Noklikšķiniet, lai atvērtu statistiku</translation>
             <source>Open Settings</source>
             <translation>Atvērt iestatījumus</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Sīkdatnes no pārlūkprogrammas:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Izvēlieties pārlūkprogrammu, lai nodotu tās sīkdatnes yt-dlp, pēc tam mēģiniet vēlreiz.</translation>
@@ -5420,10 +4696,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Lejupielādēt subtitru failus kopā ar video</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Valoda:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Valodu kodi, piem., en · en.*,ja · visi</translation>
@@ -5482,14 +4755,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Lejupielādēt kanālu</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Lejupielādēt</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Papildu</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>datuma filtrs</translation>
@@ -5582,18 +4849,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Saglabāt uz:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Kategorija</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Formāts</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Atcelt</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Video lejupielāde</translation>

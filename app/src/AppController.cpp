@@ -1337,16 +1337,16 @@ AppController::AppController(QObject *parent) : QObject(parent) {
 
         // Speed line — only shown when enabled and there is actual transfer activity.
         if (m_settings->speedInTrayTooltip() && (active > 0 || upSpeed > 0))
-            tip += tt("\nDown: %1  Up: %2").arg(fmtSpeed(downSpeed), fmtSpeed(upSpeed));
+            tip += QLatin1String("\n") + tt("Down: %1  Up: %2").arg(fmtSpeed(downSpeed), fmtSpeed(upSpeed));
 
         if (active > 0)
-            tip += tt("\nDownloading: %1").arg(active);
+            tip += QLatin1String("\n") + tt("Downloading: %1").arg(active);
         if (seeding > 0)
-            tip += active > 0 ? tt("  Seeding: %1").arg(seeding)
-                              : tt("\nSeeding: %1").arg(seeding);
+            tip += active > 0 ? (QLatin1String("  ") + tt("Seeding: %1").arg(seeding))
+                              : (QLatin1String("\n") + tt("Seeding: %1").arg(seeding));
         if (total > 0)
-            tip += (active > 0 || seeding > 0) ? tt("  Total: %1").arg(total)
-                                               : tt("\nTotal: %1").arg(total);
+            tip += (active > 0 || seeding > 0) ? (QLatin1String("  ") + tt("Total: %1").arg(total))
+                                               : (QLatin1String("\n") + tt("Total: %1").arg(total));
 
         // Only call setToolTip when the text has changed — calling it while the
         // user is hovering causes Windows to dismiss and re-show the tooltip.

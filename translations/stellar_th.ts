@@ -61,33 +61,23 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>ดาวน์โหลด: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>แชร์: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>แชร์: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>รวม: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>รวม: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>กำลังปิด Stellar...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>ใช้ขั้นตอนคิวหลังจาก OK เพื่อรวมการดาวน์โหลดเหล่านี้ก่อนเริ่ม</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>เลือกเฉพาะลิงก์ที่พบ</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>ตรวจสอบการดาวน์โหลดแบบกลุ่ม</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>กว้าง</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>ลบถาวร (ไม่ย้ายไปยังถังขยะ)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>ลบ</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>ใช่</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>ไม่</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>เรียกดู...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>หมวดหมู่</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>รับข้อมูล...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>ประกอบ...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>สถานะการดาวน์โหลด</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>ย่อถาดระบบ</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>สถานะ</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>ขนาดไฟล์</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>รองรับการต่อต่อ</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>ใช่</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>ไม่</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>รายละเอียดข้อผิดพลาด</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>หยุด</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>ตำแหน่งเริ่มต้นและคืบหน้าการดาวน์โหลดต่อแต่ละการเชื่อมต่อ</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>เปลี่ยนชื่อ</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>ดาวน์โหลดใหม่</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>ลบ</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>ตั้งค่าคอลัมน์</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>ชื่อไฟล์</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ขนาด</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>สถานะ</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>เวลาที่เหลือ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>ความเร็วรับ</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Uploaded</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Downloaded</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Last try date</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Description</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Save to</translation>
@@ -970,14 +891,8 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>จดจำการเลือกและไม่แสดงหน้าต่างนี้อีก</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>ย้ายไฟล์ไปที่...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>เริ่ม</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>หยุด</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>เปิดโฟลเดอร์</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>เปิดไฟล์</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>สถานะ</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ขนาด</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>บันทึก</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>ย้าย</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>ที่อยู่</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>หน้าเว็บ</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>แหล่งที่มา</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>คำอธิบาย</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>เข้าสู่ระบบ</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>รหัสผ่าน</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>แหล่ง</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>แฮชข้อมูล</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>คัดลอก</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>ข้อมูล</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>หมวดหมู่</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>บันทึก</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>ประเทศ</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>พอร์ต</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>อัพโหลด</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>ซีเดอร์</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>ข้อความ</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>หยุด</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>ย้าย</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>แชร์</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>รอคิว</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>มีปัญหา</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>ทั่วไป</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ไฟล์</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>แผนที่ฝูงชน</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>กรอกชื่อไฟล์หรือโฟลเดอร์ใหม่</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>เปลี่ยนชื่อ</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>เปลี่ยนชื่อ...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>ไม่มีเพื่อนเชื่อมต่อ</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Tier</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Peers</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>ไม่มี Peers</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% เสร็จแล้ว</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>ไม่ทราบ</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>คุณ</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>บังคับประกาศใหม่</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>คัดลอก URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>ลบตัวติดตาม</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>วาง URL Web Seed (บรรทัดละ 1 URL)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>ประเภท</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>พบ %1 ผลลัพธ์</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>ชื่อเทมเพลต</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>บันทึก</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>โครงการล่าสุด</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>การตั้งค่า Grabber</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>ขั้นสูง &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>เข้าสู่ระบบ</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>รหัสผ่าน</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>กดขั้นสูงเพื่อเปิดเข้าสู่ระบบด้วยตนเองหรือปิดหน้าออกจากระบบ</translation>
@@ -1936,22 +1746,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>หน้ากาก</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>เพิ่ม</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>แก้ไข</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>ลบ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>แก้ไขตัวกรอง</translation>
@@ -1960,18 +1761,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>ตัวกรองใหม่</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>หมวดหมู่</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>บันทึก</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1983,25 +1775,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>โปรเจกต์ที่บันทึกไว้</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>โครงการ</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>ตัวเลือก</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>กำลังทำงาน</translation>
@@ -2031,22 +1811,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>เริ่ม</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>กำลังสำรวจ</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>ประเภทไฟล์</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ขนาด</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>สถานะ</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>ลิงก์</translation>
@@ -2055,10 +1826,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>ดาวน์โหลดจาก</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>บันทึกเป็น</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>เลือก</translation>
@@ -2071,14 +1839,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>แก้ไขโปรเจกต์</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>การตั้งค่า Grabber</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2335,14 +2097,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>หมายเหตุ: Stellar ต้องทำงานในถาดระบบตามเวลาที่กำหนดเพื่อเริ่มโปรเจกต์ที่กำหนดเวลา</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2366,14 +2122,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>ใช้ข้อความลิงก์เป็นคำอธิบายการดาวน์โหลดเมื่อเพิ่มไฟล์ไปยังรายการหลักของ Stellar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2385,10 +2135,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>สถานะ: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>ว่าง</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>หน้าเว็บที่ประมวลผล</translation>
@@ -2401,10 +2148,7 @@ Project</source>
             <source>Advanced</source>
             <translation>ขั้นสูง</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ไฟล์</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>รวม</translation>
@@ -2417,14 +2161,8 @@ Project</source>
             <source>Matched</source>
             <translation>จับคู่แล้ว</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>ดาวน์โหลดแล้ว</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2452,10 +2190,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar จะลองดาวน์โหลดรายการ yt-dlp เดิมด้วยคุกกี้จากเบราว์เซอร์นั้นอีกครั้ง</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>ดาวน์โหลดใหม่</translation>
@@ -2492,18 +2227,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>ไฟล์ทั้งหมด (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>รวม: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>เสร็จสิ้น: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>ดาวน์โหลด: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>รอคิว: %1</translation>
@@ -2512,18 +2241,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>รวม: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>หยุด</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>ต่อ</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>เปิดใช้งาน BitTorrent?</translation>
@@ -2549,10 +2269,7 @@ You can turn this off in Settings → Downloads.</source>
             <translation>กดปุ่ม 'ดาวน์โหลดทีหลัง' แล้ว แต่ Stellar เริ่มดาวน์โหลดไฟล์บางส่วนไปแล้ว Stellar จะเริ่มดาวน์โหลดขณะแสดงกล่องข้อความ 'ข้อมูลไฟล์' เสมอ
 ปิดได้ใน การตั้งค่า → ดาวน์โหลด</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>ดาวน์โหลดไฟล์ &quot;%1&quot; ไม่สำเร็จ</translation>
@@ -2596,14 +2313,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>ไฟล์</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>เปิดโฟลเดอร์</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>เปิดไฟล์</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>ดาวน์โหลดทันที</translation>
@@ -2616,14 +2327,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>ลบ</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>ดาวน์โหลดใหม่</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>ส่งออก .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>ดาวน์โหลด</translation>
@@ -2660,10 +2365,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>หยุดคิว</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>จำกัดความเร็ว</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>เปิด</translation>
@@ -2756,10 +2458,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>คอลัมน์...</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>ตัวเลือก</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>การตั้งค่า...</translation>
@@ -2792,42 +2491,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>วางไฟล์ .torrent เพื่อเปิดข้อมูล</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>ค้นหา:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>ค้นหา</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>การตั้งค่า ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>ค้นหาใน:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>ชื่อไฟล์หรือส่วนหนึ่งของชื่อ</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>คำอธิบาย</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / แหล่งที่มา / หน้าเว็บหลัก</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>จับคู่ตัวพิมพ์ใหญ่/เล็ก</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>ตรงทั้งสตริง</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>ย้ายแถบข้างไปซ้าย</translation>
@@ -2876,10 +2554,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>ความคืบหน้าการดาวน์โหลดช่อง</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>ดาวน์โหลดภายหลัง</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>ไฟล์ไม่พร้อมใช้งาน</translation>
@@ -2935,18 +2610,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>ไม่เพิ่มเข้าคิว</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>ระบุชื่อคิว</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>สร้าง</translation>
@@ -2962,14 +2631,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>กฎการดาวน์โหลด</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>เพิ่ม</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ลบ</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>คลิก &quot;เพิ่ม&quot; เพื่อสร้างกฎการดาวน์โหลด</translation>
@@ -3046,10 +2709,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>เว้นว่างเพื่อใช้เส้นทางบันทึกเริ่มต้น</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>เรียกดู...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>หมวดหมู่:</translation>
@@ -3062,10 +2722,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>ข้อจำกัดการแชร์ TORRENT</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>อัตราส่วน</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>ค่าเริ่มต้น</translation>
@@ -3094,14 +2751,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>ค่าเริ่มต้น</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>กฎดาวน์โหลดอัตโนมัติ RSS</translation>
@@ -3141,10 +2792,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>ดาวน์โหลดทอร์เรนต์</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>เปิดในเบราว์เซอร์</translation>
@@ -3165,50 +2813,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>อ่านทั้งหมด</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>ชื่อ</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>ชื่อที่กำหนด (ไม่บังคับ)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>บันทึก</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>เพิ่ม URL ฟีด RSS หรือ Atom...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>เพิ่ม</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>กำลังรีเฟรช…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>แก้ไข</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ลบ</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>กฎการดาวน์โหลด</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>การสมัครสมาชิก</translation>
@@ -3221,10 +2845,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>เลือกบทความ</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>เปิด</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>ทำเครื่องหมายว่าอ่านแล้ว</translation>
@@ -3268,10 +2889,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>คิวใหม่</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>ลบ</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>กำหนดเวลา</translation>
@@ -3284,42 +2902,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>ดาวน์โหลดครั้งเดียว</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>ซิงค์เป็นระยะ</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>เริ่มดาวน์โหลดเมื่อ Stellar เริ่มทำงาน</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>เริ่มดาวน์โหลดที่</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>ครั้งเดียวที่</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>รายวัน</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>เริ่มใหม่ทุก</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>ชั่วโมง</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>นาที</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>หยุดดาวน์โหลดที่</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>จำนวนครั้งในการลองใหม่สำหรับแต่ละไฟล์หากดาวน์โหลดล้มเหลว:</translation>
@@ -3328,38 +2925,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>เปิดไฟล์ต่อไปนี้เมื่อเสร็จสิ้น:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>ออกจาก Stellar เมื่อเสร็จสิ้น</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>ปิดคอมพิวเตอร์เมื่อเสร็จสิ้น</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>บังคับให้กระบวนการสิ้นสุด</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>ไฟล์ในเวลาเดียวกัน</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ชื่อไฟล์</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ขนาด</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>สถานะ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>เวลาที่เหลือ</translation>
@@ -3396,18 +2972,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>เริ่มทันที</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>หยุด</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>ใช้</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>ใส่ชื่อคิวใหม่ที่จะแสดงในรายการคิว</translation>
@@ -3416,18 +2986,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>ชื่อคิว</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>ตารางเวลา</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>คิวใหม่</translation>
@@ -3439,10 +3000,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>การเชื่อมต่อ</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>ดาวน์โหลดพร้อมกันสูงสุด:</translation>
@@ -3507,22 +3065,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>รหัสผ่าน:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>หมวดหมู่</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>ชื่อ</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>บันทึกในโฟลเดอร์</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>โฟลเดอร์บันทึกเริ่มต้น:</translation>
@@ -3583,14 +3132,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>แสดงวินาที</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>ตัวอย่าง</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>การผสานรวมเบราว์เซอร์</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>ดาวน์โหลดอัตโนมัติสำหรับ:</translation>
@@ -3615,10 +3158,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>กดปุ่มนี้ขณะคลิกลิงก์เพื่อข้ามการดักจับและให้เบราว์เซอร์ดาวน์โหลด:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>จำกัดความเร็ว</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>เปิดใช้งานขีดจำกัดความเร็วทั่วโลก</translation>
@@ -3627,10 +3167,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>ความเร็วสูงสุด:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>เปิดใช้งานขีดจำกัดอัปโหลดทั่วโลก</translation>
@@ -3647,18 +3184,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>เปิดกำหนดเวลาจำกัดความเร็ว</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>ลบ</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>เปิด</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>อัปโหลด</translation>
@@ -3679,10 +3210,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>แจ้งเตือนเมื่อเกิดข้อผิดพลาด</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>ทั่วไป</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>เบราว์เซอร์</translation>
@@ -3779,14 +3307,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>เปิดกล่องโต้ตอบคุณสมบัติไฟล์</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>เปิดไฟล์</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>เปิดโฟลเดอร์</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>เวลา 24 ชั่วโมง</translation>
@@ -3819,10 +3341,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>คลิกแท็บวันเพื่อเปิด/ปิด กฎถูกประเมินทุกนาที กฎแรกที่ตรงกันจะชนะ ลิมิตการดาวน์โหลดและอัปโหลดที่กำหนดเวลาจะถูกล้างอัตโนมัติเมื่อไม่มีกฎที่ใช้งาน</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>ย่อลงในถาดระบบ</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>ปิดลงในถาดระบบ</translation>
@@ -3915,10 +3434,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>ดาวน์โหลด yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>ตรวจสอบอีกครั้ง</translation>
@@ -4025,10 +3541,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 แนะนำให้ผูก Stellar กับอินเทอร์เฟซเครือข่าย VPN และตรวจสอบว่า VPN ทำงานอยู่ก่อนใช้ torrent เพื่อปกป้องที่อยู่ IP ของคุณ</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>ฉันเข้าใจ เปิดใช้งาน</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>ตั้งค่าใช้กับไฟล์ .torrent และลิงก์ magnet</translation>
@@ -4093,10 +3606,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>เครือข่าย</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>ขั้นสูง</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>User Agent ของ BitTorrent แบบกำหนดเอง</translation>
@@ -4169,10 +3679,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>บล็อก peer ตามประเทศ</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>เพิ่ม</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>ไม่มีประเทศที่ถูกบล็อก</translation>
@@ -4209,18 +3716,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>เวอร์ชัน</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>ไม่ทราบ</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>เส้นทาง</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ขนาด</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>รายการ</translation>
@@ -4229,10 +3730,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>แก้ไขล่าสุด</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>สถานะ</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>กำลังดาวน์โหลด...</translation>
@@ -4245,10 +3743,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>รีเฟรชข้อมูล</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>สถิติ</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>รวมปริมาณการถ่ายโอนทั้งหมดของทุก torrent รวมถึงที่ถูกลบ</translation>
@@ -4269,10 +3764,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>ดูสัญญาอนุญาตฉบับเต็มใน THIRD-PARTY-NOTICES.txt ที่รวมมาด้วย</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>ดึงฟีด</translation>
@@ -4285,10 +3777,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>ช่วงเวลาการรีเฟรชฟีด</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>นาที</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>ความหน่วงของคำขอโฮสต์เดียวกัน</translation>
@@ -4449,14 +3938,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>ซอฟต์แวร์บุคคลที่สาม</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>ใช้</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>เส้นทางเริ่มต้น</translation>
@@ -4537,10 +4020,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>มีแต่ยังไม่โหลด</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>แหล่งที่มา: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>ยังไม่มี URL แหล่งที่มาในแคช ใช้ 'ตรวจสอบการอัปเดต' เพื่อบันทึก IPtoCityDB จาก update.json</translation>
@@ -4572,18 +4052,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>แก้ไขโครงการ</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>ลบโครงการ</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>หมวดหมู่</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>การดาวน์โหลดทั้งหมด</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>ยังไม่เสร็จ</translation>
@@ -4596,49 +4067,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>โครงการ</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>ทอร์เรนต์</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>คิว</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>แชร์</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>หยุด</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>ใช้งาน</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>ไม่ใช้งาน</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>ตรวจสอบ</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>ย้าย</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>สถิติ</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>สถิติ Stellar</translation>
@@ -4647,14 +4088,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>ตลอดกาล</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>อัปโหลด</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>อัตราส่วนการแบ่งปัน</translation>
@@ -4675,10 +4110,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>เซสชันนี้</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4794,57 +4226,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>ไม่มีคำขอเข้า อาจมีการตั้งค่าเครือข่ายไม่ถูกต้อง</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Stellar Download Manager</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>เพิ่ม URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>ต่อ</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>หยุด</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>หยุดทั้งหมด</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>ลบ</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>ลบที่ทำเสร็จแล้ว</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>ตัวเลือก</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>ตารางเวลา</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>เริ่มคิว</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>หยุดคิว</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>ตัวดึง</translation>
@@ -4853,10 +4255,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>เครื่องมือค้นหา</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4895,18 +4294,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>บันทึกเป็น</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>บันทึกด้วยชื่อ...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>หมวดหมู่</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>โฟลเดอร์บันทึกแบบกำหนดเอง</translation>
@@ -4919,86 +4312,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>ใช้โฟลเดอร์หมวดหมู่</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>คำอธิบาย</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>การตั้งค่า Torrent...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>ดาวน์โหลดภายหลัง</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>กำลังเปิดไฟล์ torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% เสร็จ</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ไฟล์</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n รายการ</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>ชื่อ</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>ความคืบหน้า</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ขนาด</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>ไม่มีข้อมูลไฟล์</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>รอดำเนินการ</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>เปลี่ยนชื่อรายการ</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>กรอกชื่อไฟล์หรือโฟลเดอร์ใหม่:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>เปลี่ยนชื่อ</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>เปลี่ยนชื่อ...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>เพื่อน</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>กำลังเปิดไฟล์ torrent และอ่านข้อมูลเมตา...</translation>
@@ -5011,14 +4353,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>กำลังดาวน์โหลดข้อมูลเมตาจาก %n เพื่อน</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Seed</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>คุณ</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>ข้อมูล Torrent</translation>
@@ -5038,14 +4374,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>ลิงก์เว็บ</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ตกลง</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>เลือกไฟล์ .py ปลั๊กอินค้นหาเพื่อคัดลอกไปยังโฟลเดอร์ search_plugins</translation>
@@ -5077,18 +4407,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>ปลั๊กอินค้นหาที่ติดตั้งแล้ว</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>รีเฟรช</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>ไม่ทราบ</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>เปิดใช้งาน</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>ปิดใช้งาน</translation>
@@ -5097,10 +4418,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>ติดตั้งใหม่</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>ค้นหาปลั๊กอิน</translation>
@@ -5108,18 +4426,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>ชื่อ</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ขนาด</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>ผู้ให้</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>ผู้รับ</translation>
@@ -5136,18 +4445,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>เปิดหน้าคำอธิบาย</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>ดาวน์โหลดทอร์เรนต์</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>คัดลอกชื่อ</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>คัดลอกลิงก์ Magnet</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>คัดลอกรายการ URL</translation>
@@ -5160,18 +4463,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>ค้นหา</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>ไม่ทราบ</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>ยังไม่มีผลการค้นหา</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>ปลั๊กอินค้นหา</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>เครื่องยนต์ค้นหา Torrent</translation>
@@ -5187,14 +4484,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>ความเร็วต่อ Torrent, จำกัดการแชร์, ค้นหาเพื่อน, และโหมดดาวน์โหลด</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>ปิด</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>ใช้</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>จำกัดแบนด์วิธ</translation>
@@ -5215,26 +4506,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>อัตราส่วน:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>ค่าเริ่มต้น</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>ไม่จำกัด</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>ตั้งค่า</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>เวลา seeding</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>นาที</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>เวลาไม่ใช้งาน</translation>
@@ -5338,10 +4617,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>เปิด Settings</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>คุกกี้จากเบราว์เซอร์:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>เลือกเบราว์เซอร์เพื่อส่งคุกกี้ไปยัง yt-dlp แล้วลองอีกครั้ง</translation>
@@ -5411,10 +4687,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>ดาวน์โหลดไฟล์คำบรรยายพร้อมวิดีโอ</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>ภาษา:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>รหัสภาษา เช่น en · en.*,ja · ทั้งหมด</translation>
@@ -5472,14 +4745,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>ดาวน์โหลดช่อง</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ดาวน์โหลด</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>ขั้นสูง</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>กรองวันที่</translation>
@@ -5572,18 +4839,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>บันทึกไปยัง:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>หมวดหมู่:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>รูปแบบ:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>ยกเลิก</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>ดาวน์โหลดวิดีโอ</translation>

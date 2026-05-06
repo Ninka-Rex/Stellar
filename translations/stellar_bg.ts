@@ -61,33 +61,23 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Изтегляне: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Сийдване: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Сийдване: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Общо: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Общо: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar се затваря...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Използвайте стъпката с опашката след OK, ако искате тези изтегляния да бъдат групирани преди началото им.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Само връзките с отметка 'Намерена' са изброими. Редът в опашката се определя след натискане на ОК.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Преглед на пакетно изтегляне</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>пиксела широка</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Постоянно изтриване (без кошче)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Изтриване</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Да</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Не</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Преглед...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Категория</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Получаване на данни...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Сглобяване...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Статус на изтеглянето</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Минимизиране в системния лотос</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Статус</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Размер на файла</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Възможност за възобновяване</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Да</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Не</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Детайли на грешката</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Пауза</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Начални позиции и прогрес по връзки</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Преименуване</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Презареди</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Изтрий</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Настройки на колони</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Име</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Размер</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Статус</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Оставащо време</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>↓ Скорост</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Качено</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Свалено</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Последен опит</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Описание</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Запази в</translation>
@@ -971,14 +892,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Запомнете моя избор и не показвайте този диалогов прозорец отново.
 Може да го промените по-късно в Опции → Изтегляния.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Добре</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -990,66 +905,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Преместете файла в...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Старт</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Стоп</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Отвори папка</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Отвори файл</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Статус</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Размер</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Запази в</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Премести</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Адрес</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Уеб страница</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Реферер</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Описание</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Вход</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Парола</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Източник</translation>
@@ -1058,26 +937,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Инфо хеш</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Копирай</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Метаданни</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Категория</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Забележка</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Изтеглено</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Държава</translation>
@@ -1086,14 +956,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Порт</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Качено</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Сийдъри</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Съобщение</translation>
@@ -1102,22 +966,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Спряно</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Изтегляне</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Преместване</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Сийдване</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>На опашка</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Грешка</translation>
@@ -1142,10 +994,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Общи</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Файлове</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Карта на рояка</translation>
@@ -1230,22 +1079,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Въведете ново име на файл или папка:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Преименувай</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Изтегли</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Преименувай...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Няма свързани пиъри</translation>
@@ -1350,10 +1187,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Ниво</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Пиъри</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 известни пиъри</translation>
@@ -1378,10 +1212,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Пинг %1 %2% завършен</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Неизвестен</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Ти (този клиент)</translation>
@@ -1398,10 +1229,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Принудително преобявяване</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Копиране на URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Премахване на тракър</translation>
@@ -1430,10 +1258,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Поставете URL адреси на уеб семена — по един на ред. Приема се както URL семена (BEP-19), така и HTTP семена (BEP-17).</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Тип</translation>
@@ -1582,10 +1407,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Намерени са %1 резултата.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1649,10 +1471,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Име на шаблона</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Запази</translation>
@@ -1673,10 +1492,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Последни проекти</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Настройки на Grabber</translation>
@@ -1717,14 +1533,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Разширени &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Вход</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Парола</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Натиснете „Разширени“ за ръчен вход или за изключване на страницата за изход.</translation>
@@ -1936,22 +1746,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Маска</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Добави</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Редактирай</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Изтрий</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Редактиране на филтър</translation>
@@ -1960,18 +1761,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Нов филтър</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Категория</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Запази</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1983,25 +1775,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Запазени проекти</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Проект</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Опции</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Изпълнява се</translation>
@@ -2031,22 +1811,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Старт</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Преглед</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Име на файл</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Тип файл</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Размер</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Статус</translation>
@@ -2055,10 +1826,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>Текст на връзка</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Изтегли от</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Запази в</translation>
@@ -2071,14 +1839,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Премахни избора на избраните</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Редактиране на текущия проект</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Настройки на Grabber</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2335,14 +2097,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Забележка: Stellar трябва да работи в системния лоток в посоченото време, за да стартира планиран проект.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2366,14 +2122,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Използвай текста на връзките като описание при добавяне на файлове в основния списък на Stellar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2385,10 +2135,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Статус: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Неактивен</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Обработени уеб страници</translation>
@@ -2401,10 +2148,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Разширен</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Файлове</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Общо</translation>
@@ -2417,14 +2161,8 @@ Project</source>
             <source>Matched</source>
             <translation>Съпоставени</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Изтеглени</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2452,10 +2190,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar ще опита отново същия елемент на yt-dlp с бисквитките на този браузър.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Опитай отново</translation>
@@ -2492,18 +2227,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Всички файлове (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Общо: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Завършени: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Изтегляне: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>На опашка: %1</translation>
@@ -2512,18 +2241,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Общо: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Спри</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Продължи</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Активиране на BitTorrent поддръжка?</translation>
@@ -2556,10 +2276,7 @@ You can turn this off in Settings → Downloads.</source>
 
 Можете да изключите това в Настройки → Изтегляния.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Добре</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Файлът „%1“ не може да бъде изтеглен.</translation>
@@ -2602,14 +2319,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Файл</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Отвори папка</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Отвори файл</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Изтегли сега</translation>
@@ -2622,14 +2333,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Премахни</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Преизтегли</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Експортирай .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Изтегляния</translation>
@@ -2666,10 +2371,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Стоп на опашката</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ограничител на скоростта</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Включване</translation>
@@ -2762,10 +2464,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Колони…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Опции</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Предпочитания…</translation>
@@ -2798,42 +2497,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Пусни .torrent файл за отваряне на метаданни</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Търси:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Търси</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Настройки ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Търси в:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Име на файл или част от името</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Описание</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / реферер / родителска уеб страница</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Съвпадение на регистъра</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Съвпадение на цялата низ</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Премести страничната лента вляво</translation>
@@ -2882,10 +2560,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Напредък на изтеглянето на канала</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Изтегли по-късно</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Файлът вече не е наличен</translation>
@@ -2941,18 +2616,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Без добавяне в опашка</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Име на опашка</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Създай</translation>
@@ -2968,14 +2637,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Правила за изтегляне</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Добави</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Премахни</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Кликнете „Добави“ за ново правило</translation>
@@ -3052,10 +2715,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Оставете празно за път по подразбиране</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Преглед...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Категория:</translation>
@@ -3068,10 +2728,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>ОГРАНИЧЕНИЯ ЗА СПОДЕЛЯНЕ НА ТОРЕНТ</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Съотношение</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>По подразбиране</translation>
@@ -3100,14 +2757,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>„По подразбиране“ използва глобалните лимити за споделяне, зададени в Настройки → Торенти.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Правила за автоматично изтегляне на RSS</translation>
@@ -3147,10 +2798,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Изтегли торент</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Изтегли</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Отвори в браузър</translation>
@@ -3171,50 +2819,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Отбелязване на всички като прочетени</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Име</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Персонализирано име (по избор)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Запазване</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Добавяне на URL адрес на RSS или Atom канал...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Добавяне</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Опресняване…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Редактиране</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Премахване</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Правила за изтегляне</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Абонаменти</translation>
@@ -3227,10 +2851,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Избор на статия</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Отваряне</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Отбелязване като прочетено</translation>
@@ -3274,10 +2895,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Нова опашка</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Изтриване</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>График</translation>
@@ -3290,42 +2908,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Еднократно изтегляне</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Периодична синхронизация</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Стартиране при стартиране на Stellar</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Стартиране в</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Еднократно в</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Всеки ден</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Повтаряне на всеки</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>часа</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>мин</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Спри изтеглянето при</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Брой опити за всеки файл при неуспех:</translation>
@@ -3334,38 +2931,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Отвори следния файл при завършване:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Затвори Stellar при завършване</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Изключи компютъра при завършване</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Принудително прекратяване на процесите</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Изтегляне</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>файла едновременно</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Име на файл</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Размер</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Статус</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Оставащо време</translation>
@@ -3402,18 +2978,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Стартирай сега</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Спри</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Приложи</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Въведете име за новия опашка, което ще се показва в списъка с опашки</translation>
@@ -3422,18 +2992,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Име на опашка</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Планировчик</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Нова опашка</translation>
@@ -3445,10 +3006,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Връзка</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Максимален брой едновременни изтегляния:</translation>
@@ -3513,22 +3071,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Парола:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Категории</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Име</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Запазване в папка</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Изтегляния</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Папка по подразбиране:</translation>
@@ -3589,14 +3138,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Показване на секундите</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Предварителен преглед</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Интеграция с браузъра</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Автоматично започване на изтегляния за следните типове файлове:</translation>
@@ -3621,10 +3164,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Задръжте този клавиш при щракване на връзка за изтегляне, за да пропуснете прехващането и да използвате браузъра:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Ограничител на скоростта</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Активиране на глобално ограничение на скоростта</translation>
@@ -3633,10 +3173,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Максимална скорост:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>КБ/с</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Активиране на глобално ограничение на качването</translation>
@@ -3653,18 +3190,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Активиране на планировчик на ограничителя на скоростта</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Премахни</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Вкл</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Изтегли</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Качи</translation>
@@ -3685,10 +3216,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Показвай известие при грешка при изтегляне</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Общи</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Браузър</translation>
@@ -3785,14 +3313,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Отвори диалог за свойства на файла</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Отвори файл</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Отвори папка</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24-часов формат</translation>
@@ -3825,10 +3347,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Кликнете върху деня за превключване. Правилата се оценяват на минута; първото съвпадение печели. Лимитите за изтегляне и качване се нулират автоматично, когато няма активно правило.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Минимизиране в системния лотос</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Затваряне в системния лотос</translation>
@@ -3921,10 +3440,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Изтегли yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Повторна проверка</translation>
@@ -4033,10 +3549,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 Настоятелно се препоръчва да свържете Stellar с мрежовия интерфейс на VPN и да проверите дали VPN е активен, преди да използвате торенти, за да защитите IP адреса си от разкриване.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Разбирам, Активирай</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Тези настройки се прилагат за .torrent файлове и magnet връзки.</translation>
@@ -4101,10 +3614,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>Мрежа</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Разширени</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Персонализиран потребителски агент за BitTorrent</translation>
@@ -4177,10 +3687,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>Блокиране на пиъри по държава</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Добави</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Няма блокирани държави.</translation>
@@ -4217,18 +3724,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>Версия</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Неизвестен</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Път</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Размер</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Елементи</translation>
@@ -4237,10 +3738,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>Последна промяна</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Статус</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Изтегляне...</translation>
@@ -4253,10 +3751,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>Обнови инфо</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Статистика</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Кумулативни общи предавания за всички торенти, включително премахнатите.</translation>
@@ -4277,10 +3772,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Пълните текстове на лицензите са в THIRD-PARTY-NOTICES.txt, включен с тази инсталация.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Извличане на канали</translation>
@@ -4293,10 +3785,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Интервал за обновяване на каналите</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>минути</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Забавяне на заявки към същия хост</translation>
@@ -4457,14 +3946,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>Софтуер на трети страни</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Приложи</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Маршрут по подразбиране</translation>
@@ -4545,10 +4028,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>Налично, но не е заредено</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Източник: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL на източника все още не е кеширан. Използвайте Проверка за актуализации.</translation>
@@ -4580,18 +4060,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>Редактиране на проект</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Изтриване на проект</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Категории</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Всички изтегляния</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Незавършени</translation>
@@ -4604,49 +4075,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Проекти на Grabber</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Торенти</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Опашки</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Изтегляне</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Сийдване</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Спрени</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Активни</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Неактивни</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Проверка</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Преместване</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Статистика</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Статистика на Stellar</translation>
@@ -4655,14 +4096,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>ЗА ВСЯКО ВРЕМЕ</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Изтеглени</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Качени</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Съотношение</translation>
@@ -4683,10 +4118,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>ТАЗИ СЕСИЯ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4803,57 +4235,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Изтегляния на SDM</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Добави URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Възобнови</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Спри</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Спри всички</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Изтрий</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Изтрий завършени</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Опции</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Планиране</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Старт на опашка</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Стоп на опашка</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Грабър</translation>
@@ -4862,10 +4264,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Търсачка</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4904,18 +4303,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Запазване в</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Запазване като...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Категория</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Персонализирана папка за запазване</translation>
@@ -4928,86 +4321,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Използвай папка на категорията</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Описание</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Настройки на торент...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Изтегли по-късно</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Изтегли</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Отваряне на торент...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% завършено</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Файлове</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n елемента</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Име</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Напредък</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Размер</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Няма налична информация за файла</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Изчаква</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Преименуване на елемент</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Въведете ново име на файл или папка:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Преименуване</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Преименуване...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Пиър</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Отваряне на торент и четене на метаданни...</translation>
@@ -5020,14 +4362,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Изтегляне на метаданни от %n пиър(а)</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Сийд</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Вие</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Метаданни на торент</translation>
@@ -5047,14 +4383,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Уеб връзка</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ОК</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Изберете локален .py файл за плъгин за копиране в папката search_plugins.</translation>
@@ -5086,18 +4416,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Инсталирани плъгини за търсене</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Опресняване</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Неизвестен</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Активиран</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Деактивиран</translation>
@@ -5106,10 +4427,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Инсталирай нов</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Плъгини за търсене</translation>
@@ -5117,18 +4435,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Име</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Размер</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Сийдъри</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Лийчъри</translation>
@@ -5145,18 +4454,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Отвори страницата с описание</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Изтегли торент</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Копирай име</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Копирай магнитен линк</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Копирай URL на страницата</translation>
@@ -5169,18 +4472,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Търси</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Неизвестно</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Все още няма резултати</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Добавки за търсене</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Търсачка за торенти</translation>
@@ -5196,14 +4493,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Скорост, лимити за споделяне, откриване на пиъри и режим на изтегляне</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Затвори</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Приложи</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ЛИМИТИ ЗА БАНДШИРЪК</translation>
@@ -5224,26 +4515,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Съотношение:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>По подразбиране</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Без лимит</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Зададено на</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Време на сийдване:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>мин</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Време на неактивност:</translation>
@@ -5347,10 +4626,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Отворете настройките</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Бисквитки от браузъра:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Изберете браузър, за да предадете неговите бисквитки на yt-dlp, след което опитайте отново.</translation>
@@ -5420,10 +4696,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Изтегляй субтитри заедно с видеото</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Език:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Езиков код(ове), напр. en · en.*,ja · всички</translation>
@@ -5482,14 +4755,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Канал за изтегляне</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Изтегляне</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Разширени</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Филтър по дата</translation>
@@ -5582,18 +4849,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Запази в:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Категория:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Формат:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Отказ</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Изтегляне на видео</translation>

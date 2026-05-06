@@ -61,33 +61,23 @@
             <translation>സ്റ്റെല്ലർ ഡൗൺലോഡ് മാനേജർ v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>ഡൗൺലോഡ്: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>സീഡിംഗ്: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>സീഡിംഗ്: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>ആകെ: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>ആകെ: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>സ്റ്റെല്ലർ അടയ്ക്കുന്നു...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>ആരംഭിക്കുന്നതിന് മുമ്പ് ഈ ഡൗൺലോഡുകൾ ഗ്രൂപ്പാക്കാൻ OK നൽകിയ ശേഷം ക്യൂ ഘട്ടം ഉപയോഗിക്കുക.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Found എന്ന് മാർക്ക് ചെയ്ത ലിങ്കുകൾ മാത്രം തിരഞ്ഞെടുക്കാം. OK ക്ലിക്ക് ചെയ്ത ശേഷം ക്യൂ അസൈൻമെന്റ് നടക്കും.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>ബാച്ച് ഡൗൺലോഡ് അവലോകനം</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>പിക്സൽ വീതി</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>സ്ഥിരമായി ഇല്ലാതാക്കുക (ട്രാഷിലേക്ക് മാറ്റരുത്)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>ഇല്ലാതാക്കുക</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>അതെ</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>ഇല്ല</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>ബ്രൗസ്...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>വിഭാഗം</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>ഡാറ്റ സ്വീകരിക്കുന്നു...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>ഘടിപ്പിക്കുന്നു...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>ഡൗൺലോഡ് നില</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>സിസ്റ്റം ട്രേയിലേക്ക് കുറയ്ക്കുക</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>നില</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>ഫയൽ വലിപ്പം</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>പുനരാരംഭ സാധ്യത</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>അതെ</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>ഇല്ല</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>പിശക് വിശദാംശങ്ങൾ</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>നിർത്തുക</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>ബന്ധങ്ങളിലൂടെയുള്ള ആരംഭ സ്ഥാനങ്ങളും ഡൗൺലോഡ് പുരോഗതിയും</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>പേര് മാറ്റുക</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>പുനഃഡൗൺലോഡ്</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>ഇല്ലാതാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>കോളം ക്രമീകരണങ്ങൾ</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>ഫയൽ പേര്</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>വലിപ്പം</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>നില</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>ശേഷിക്കുന്ന സമയം</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>↓ വേഗത</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>അപ്‌ലോഡ് ചെയ്തത്</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>ഡൗൺലോഡ് ചെയ്തത്</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>അവസാന ശ്രമ തീയതി</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>വിവരണം</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>സൂക്ഷിക്കേണ്ട സ്ഥലം</translation>
@@ -970,14 +891,8 @@ URL ചേർക്കുക ആരംഭിക്കാൻ.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>എന്റെ തിരഞ്ഞെടുപ്പ് ഓർക്കുക, ഈ ഡയലോഗ് വീണ്ടും കാണിക്കരുത്. പിന്നീട് ഓപ്ഷനുകൾ → ഡൗൺലോഡുകൾ എന്നിവിടെ മാറ്റാം.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>ഫയൽ മാറ്റുക...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>ആരംഭിക്കുക</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>നിർത്തുക</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>ഫോൾഡർ തുറക്കുക</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>ഫയൽ തുറക്കുക</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>നില</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>വലിപ്പം</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>സൂക്ഷിക്കാൻ</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>നീക്കം ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>വിലാസം</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>വെബ് പേജ്</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>റഫറർ</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>വിവരണം</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>ലോഗിൻ</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>പാസ്‌വേഡ്</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>ഉറവിടം</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>ഇൻഫോ ഹാഷ്</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>പകർത്തുക</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>മെറ്റാഡാറ്റ</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>വിഭാഗം</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>കുറിപ്പ്</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>ഡൗൺലോഡ് ചെയ്തു</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>രാജ്യം</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>പോർട്ട്</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>അപ്‌ലോഡ് ചെയ്തത്</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>സീഡർമാർ</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>സന്ദേശം</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>നിർത്തി</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>ഡൗൺലോഡ് ചെയ്യുന്നു</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>നീക്കുന്നു</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>സീഡിംഗ്</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>ക്യൂയിൽ</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>പ്രശ്നം</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>പൊതുവായ</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ഫയലുകൾ</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>സ്മാർട്ട് മാപ്പ്</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>പുതിയ ഫയൽ അല്ലെങ്കിൽ ഫോൾഡർ പേര് നൽകുക:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>പുനർനാമകരണം</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ഡൗൺലോഡ്</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>പുനർനാമകരണം...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>പിയർ കണക്റ്റിംഗില്ല</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>ടിയർ</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>പിയറുകൾ</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 അറിയാവുന്ന പിയറുകൾ</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>പിംഗ് %1 %2% പൂർത്തിയായി</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>അജ്ഞാതം</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>നിങ്ങൾ (ഈ ക്ലയന്റ്)</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>ബലപൂർവ്വം പുനഃപ്രഖ്യാപിക്കുക</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>URL പകർത്തുക</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>ട്രാക്കർ നീക്കം ചെയ്യുക</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>വെബ് സീഡ് URL പകർത്തുക - വരിക്ക് ഒന്ന്. URL സീഡുകൾ (BEP-19), HTTP സീഡുകൾ (BEP-17) സ്വീകരിക്കും.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>തരം</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 ഫലങ്ങൾ കണ്ടെത്തി.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>ടെംപ്ലേറ്റ് പേര്</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>സേവ് ചെയ്യുക</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>ഇടയ്ക്കിടെയുള്ള പ്രോജക്റ്റുകൾ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>ഗ്രാബർ സജ്ജീകരണങ്ങൾ</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>വിശദമായവ &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>ലോഗിൻ</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>പാസ്‌വേഡ്</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>മാനുവൽ ലോഗിൻ സജീവമാക്കാനോ ലോഗ്ഔട്ട് പേജ് നിർജ്ജീവമാക്കാനോ വിശദമായവ ക്ലിക്ക് ചെയ്യുക.</translation>
@@ -1935,22 +1745,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>മാസ്ക്</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>ചേർക്കുക</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>എഡിറ്റ്</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>ഇല്ലാതാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>ഫിൽട്ടർ എഡിറ്റ് ചെയ്യുക</translation>
@@ -1959,18 +1760,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>പുതിയ ഫിൽട്ടർ</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>വിഭാഗം</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>സേവ് ചെയ്യുക</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1982,25 +1774,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>സേവ് ചെയ്ത പ്രോജക്റ്റുകൾ</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>പദ്ധതി</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>ഓപ്ഷനുകൾ</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>പ്രവർത്തിക്കുന്നു</translation>
@@ -2031,22 +1811,13 @@ Exploring</source>
             <translation>തുടങ്ങുക
 അന്വേഷിക്കുക</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ഫയൽ പേര്</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>ഫയൽ തരം</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>വലിപ്പം</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>നില</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>ലിങ്ക് പേര്</translation>
@@ -2055,10 +1826,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>ഇതിൽ നിന്ന് ഡൗൺലോഡ് ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>സൂക്ഷിക്കാൻ</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>തിരഞ്ഞെടുത്തത് പരിശോധിക്കുക</translation>
@@ -2071,14 +1839,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>നിലവിലെ പ്രോജക്റ്റ് എഡിറ്റ് ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>ഗ്രാബർ സെറ്റിംഗുകൾ</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2340,14 +2102,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>കുറിപ്പ്: നിശ്ചിത സമയത്ത് ഒരു ഷെഡ്യൂൾ ചെയ്ത പ്രോജക്റ്റ് ആരംഭിക്കാൻ സിറ്റലർ സിസ്റ്റം ട്രേയിൽ പ്രവർത്തിക്കണം.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2371,14 +2127,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>ഫയലുകൾ സിറ്റലർ പ്രധാന പട്ടികയിലേക്ക് ചേർക്കുമ്പോൾ ഡൗൺലോഡ് വിവരണങ്ങളായി ലിങ്ക് പേരുകൾ ഉപയോഗിക്കുക</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2390,10 +2140,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>നില: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>നിഷ്ക്രിയം</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>പ്രോസസ്സ് ചെയ്ത വെബ് പേജുകൾ</translation>
@@ -2406,10 +2153,7 @@ Project</source>
             <source>Advanced</source>
             <translation>ഉയർന്ന തലത്തിലുള്ള</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ഫയലുകൾ</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>ആകെ</translation>
@@ -2422,14 +2166,8 @@ Project</source>
             <source>Matched</source>
             <translation>പൊരുത്തപ്പെട്ട</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>ഡൗൺലോഡ് ചെയ്ത</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2457,10 +2195,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>സ്റ്റല്ലർ ആ ബ്രൗസറിന്റെ കുക്കീസ് ഉപയോഗിച്ച് yt-dlp ഐറ്റം വീണ്ടും ശ്രമിക്കും.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>വീണ്ടും ഡൗൺലോഡ് ചെയ്യുക</translation>
@@ -2497,18 +2232,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>എല്ലാ ഫയലുകളും (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>ആകെ: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>പൂർത്തിയായത്: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>ഡൗൺലോഡ് ചെയ്യുന്നു: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>ക്യൂയിൽ: %1</translation>
@@ -2517,18 +2246,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>ആകെ: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>നിർത്തുക</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>തുടരുക</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent പിന്തുണ സജീവമാക്കണോ?</translation>
@@ -2561,10 +2281,7 @@ You can turn this off in Settings → Downloads.</source>
 
 ഇത് Settings → Downloads-ൽ അടയ്ക്കാം.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>&quot;%1&quot; ഫയൽ ഡൗൺലോഡ് ചെയ്യാൻ കഴിഞ്ഞില്ല.</translation>
@@ -2606,14 +2323,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>ഫയൽ</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>ഫോൾഡർ തുറക്കുക</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>ഫയൽ തുറക്കുക</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>ഇപ്പോൾ ഡൗൺലോഡ് ചെയ്യുക</translation>
@@ -2626,14 +2337,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>നീക്കം ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>പുനഃഡൗൺലോഡ്</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent എക്സ്പോർട്ട് ചെയ്യുക…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>ഡൗൺലോഡുകൾ</translation>
@@ -2670,10 +2375,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>ക്യൂ നിർത്തുക</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>വേഗത പരിമിതി</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>ഓൺ ആക്കുക</translation>
@@ -2766,10 +2468,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>കോളങ്ങൾ…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>ഓപ്ഷനുകൾ</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>പ്രാധാന്യങ്ങൾ…</translation>
@@ -2802,42 +2501,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>ടോറന്റ് മെറ്റാഡാറ്റ തുറക്കാൻ .torrent ഫയൽ വലിച്ചിടുക</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>കണ്ടെത്തുക:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>കണ്ടെത്തുക</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>സജ്ജീകരണങ്ങൾ ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>തിരയുക:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>ഫയൽ പേര് അല്ലെങ്കിൽ പേരിന്റെ ഭാഗം</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>വിവരണം</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / റഫറർ / മാതൃ വെബ് പേജ്</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>കേസ് മാച്ച്</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>പൂർണ്ണ ശൃംഖല മാത്രം</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>സൈഡ്ബാർ ഇടത്തേക്ക് മാറ്റുക</translation>
@@ -2886,10 +2564,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>ചാനൽ ഡൗൺലോഡ് പ്രോഗ്രസ്</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>പിന്നീട് ഡൗൺലോഡ് ചെയ്യുക</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>ഫയൽ ഇനി ലഭ്യമല്ല</translation>
@@ -2945,18 +2620,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>ക്യൂവിൽ ചേർക്കരുത്</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>ക്യൂ പേര് നൽകുക</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>സൃഷ്ടിക്കുക</translation>
@@ -2972,14 +2641,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>ഡൗൺലോഡ് നിയമങ്ങൾ</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>ചേർക്കുക</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>നീക്കംചെയ്യുക</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>ഡൗൺലോഡ് നിയമം സൃഷ്ടിക്കാൻ 'ചേർക്കുക' ക്ലിക്ക് ചെയ്യുക</translation>
@@ -3056,10 +2719,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>ഡിഫോൾട്ട് സേവ് പാത്ത് ഉപയോഗിക്കാൻ ഖാലിയാക്കുക</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>ബ്രൗസ് ചെയ്യുക...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>വിഭാഗം</translation>
@@ -3072,10 +2732,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>ടോറന്റ് ഷെയർ പരിധികൾ</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>അനുപാതം</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>ഡിഫോൾട്ട്</translation>
@@ -3104,14 +2761,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>&quot;ഡിഫോൾട്ട്&quot; സജ്ജീകരണങ്ങളിലെ ടോറന്റുകൾ → ഷെയർ പരിധികൾ ഉപയോഗിക്കുന്നു.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS ഓട്ടോ ഡൗൺലോഡ് നിയമങ്ങൾ</translation>
@@ -3151,10 +2802,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>ടോറന്റ് ഡൗൺലോഡ്</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ഡൗൺലോഡ്</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>ബ്രൗസറിൽ തുറക്കുക</translation>
@@ -3175,50 +2823,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>എല്ലാം വായിച്ചതായി അടയാളപ്പെടുത്തുക</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>പേര്</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>കസ്റ്റം പേര് (ഓപ്ഷണൽ)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>സംരക്ഷിക്കുക</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS അല്ലെങ്കിൽ Atom ഫീഡ് URL ചേർക്കുക...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>ചേർക്കുക</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>പുതുക്കുന്നു…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>തിരുത്തുക</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>നീക്കംചെയ്യുക</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>ഡൗൺലോഡ് നിയമങ്ങൾ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>സബ്സ്ക്രിപ്ഷനുകൾ</translation>
@@ -3231,10 +2855,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>ഒരു ലേഖനം തിരഞ്ഞെടുക്കുക</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>തുറക്കുക</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>വായിച്ചതായി അടയാളപ്പെടുത്തുക</translation>
@@ -3278,10 +2899,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>പുതിയ ക്യൂ</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>ഇല്ലാതാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>ഷെഡ്യൂൾ</translation>
@@ -3294,42 +2912,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>ഒറ്റ തവണ ഡൗൺലോഡ്</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>ആവർത്തിച്ചുള്ള സിങ്ക്രൊണൈസേഷൻ</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Stellar ആരംഭിക്കുമ്പോൾ ഡൗൺലോഡ് ആരംഭിക്കുക</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>ഈ സമയത്ത് ഡൗൺലോഡ് ആരംഭിക്കുക</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>ഒരിക്കൽ</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>ദൈനംദിനം</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>പുനഃരാരംഭിക്കുക</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>മണിക്കൂർ</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>മിനിറ്റ്</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>ഡൗൺലോഡ് നിർത്തുക</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>ഡൗൺലോഡ് പരാജയപ്പെട്ടാൽ ഓരോ ഫയലിനുമുള്ള പുനർചെയ്യലുകളുടെ എണ്ണം:</translation>
@@ -3338,38 +2935,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>പൂർത്തിയാക്കിയ ശേഷം തുറക്കുക:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>പൂർത്തിയാക്കിയ ശേഷം പുറത്തുകടക്കുക</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>പൂർത്തിയാക്കിയ ശേഷം കമ്പ്യൂട്ടർ ഓഫ് ചെയ്യുക</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>പ്രക്രിയകൾ നിർബന്ധിതമായി അവസാനിപ്പിക്കുക</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ഡൗൺലോഡ്</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>ഒരേസമയം ഫയലുകൾ</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ഫയൽ പേര്</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>വലിപ്പം</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>നില</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>ശേഷിക്കുന്ന സമയം</translation>
@@ -3406,18 +2982,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>ഇപ്പോൾ തുടങ്ങുക</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>നിർത്തുക</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>പ്രയോഗിക്കുക</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>വാരിയെടുക്കലിന്റെ പേര് നൽകുക</translation>
@@ -3426,18 +2996,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>വാരിയെടുക്കലിന്റെ പേര്</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>ഷെഡ്യൂളർ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>പുതിയ ക്യൂ</translation>
@@ -3449,10 +3010,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>കണക്ഷൻ</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>ഒരേസമയമുള്ള പരമാവധി ഡൗൺലോഡുകൾ:</translation>
@@ -3517,22 +3075,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>പാസ്‌വേഡ്:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>വിഭാഗങ്ങൾ</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>പേര്</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>ഫോൾഡറിൽ സേവ് ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>ഡൗൺലോഡുകൾ</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>ഡിഫോൾട്ട് സേവ് ഫോൾഡർ:</translation>
@@ -3593,14 +3142,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>സെക്കൻഡുകൾ കാണിക്കുക</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>പ്രിവ്യൂ</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>ബ്രൗസർ ഇന്റഗ്രേഷൻ</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>താഴെ പറയുന്ന ഫയൽ തരങ്ങൾ സ്വയം ഡൗൺലോഡ് ആരംഭിക്കുക:</translation>
@@ -3625,10 +3168,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>ഇന്റർസെപ്ഷൻ ഒഴിവാക്കി ബ്രൗസർ ഡൗൺലോഡ് ചെയ്യാൻ ഡൗൺലോഡ് ലിങ്ക് ക്ലിക്ക് ചെയ്യുമ്പോൾ ഈ കീ പിടിച്ചുവയ്ക്കുക:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>സ്പീഡ് ലിമിറ്റർ</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>ഗ്ലോബൽ സ്പീഡ് ലിമിറ്റ് പ്രവർത്തനക്ഷമമാക്കുക</translation>
@@ -3637,10 +3177,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>പരമാവധി വേഗത:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>ഗ്ലോബൽ അപ്‌ലോഡ് ലിമിറ്റ് പ്രവർത്തനക്ഷമമാക്കുക</translation>
@@ -3657,18 +3194,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>സ്പീഡ് ലിമിറ്റർ ഷെഡ്യൂളർ പ്രവർത്തനക്ഷമമാക്കുക</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>നീക്കം ചെയ്യുക</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>ഓൺ</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ഡൗൺലോഡ്</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>അപ്‌ലോഡ്</translation>
@@ -3689,10 +3220,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>ഡൗൺലോഡ് പിശകുണ്ടാകുമ്പോൾ അറിയിപ്പ് കാണിക്കുക</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>പൊതുവായ</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>ബ്രൗസർ</translation>
@@ -3789,14 +3317,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>ഫയൽ പ്രോപ്പർട്ടീസ് ഡയലോഗ് തുറക്കുക</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>ഫയൽ തുറക്കുക</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>ഫോൾഡർ തുറക്കുക</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24-മണിക്കൂർ സമയം</translation>
@@ -3829,10 +3351,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>ഒരു ദിവസം ടോഗിൾ ചെയ്യാൻ ക്ലിക്ക് ചെയ്യുക. നിയമങ്ങൾ ഓരോ മിനിറ്റിലും മൂല്യനിർണ്ണയം ചെയ്യുന്നു; ആദ്യം യോജിക്കുന്ന നിയമം വിജയിക്കുന്നു. നിയമം സജീവമല്ലാത്തപ്പോൾ ഷെഡ്യൂൾ ചെയ്ത ഡൗൺലോഡ്/അപ്‌ലോഡ പരിമിതികൾ സ്വയം ക്ലിയർ ചെയ്യുന്നു.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>സിസ്റ്റം ട്രേയിലേക്ക് കുറയ്ക്കുക</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>സിസ്റ്റം ട്രേയിലേക്ക് അടയ്ക്കുക</translation>
@@ -3925,10 +3444,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>yt-dlp ഡൗൺലോഡ് ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>പുനഃപരിശോധിക്കുക</translation>
@@ -4035,10 +3551,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
 
 നിങ്ങളുടെ IP വിലാസം വെളിപ്പെടുന്നത് തടയാൻ, Stellar-നെ ഒരു VPN നെറ്റ്‌വർക്ക് ഇന്റർഫേസുമായി ബൈൻഡ് ചെയ്യാനും ടോറന്റുകൾ ഉപയോഗിക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ VPN സജീവമാണെന്ന് പരിശോധിക്കാനും ശക്തമായി ശുപാർശ ചെയ്യുന്നു.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>ഞാൻ മനസ്സിലാക്കി, സജീവമാക്കുക</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>ഈ സെറ്റിംഗുകൾ .torrent ഫയലുകൾക്കും മാഗ്നറ്റ് ലിങ്കുകൾക്കും ബാധകമാണ്.</translation>
@@ -4103,10 +3616,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Networking</source>
             <translation>നെറ്റ്‌വർക്കിംഗ്</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>മുൻകൂട്ടി</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>കസ്റ്റം ബിറ്റ്‌ടോറന്റ് ഉപയോക്തൃ ഏജന്റ്</translation>
@@ -4179,10 +3689,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Block peers by country</source>
             <translation>രാജ്യം അടിസ്ഥാനമാക്കി പിയർമാരെ തടയുക</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>ചേർക്കുക</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>തടഞ്ഞ രാജ്യങ്ങളില്ല.</translation>
@@ -4219,18 +3726,12 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Version</source>
             <translation>പതിപ്പ്</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>അജ്ഞാതം</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>പാത</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>വലിപ്പം</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>എൻട്രികൾ</translation>
@@ -4239,10 +3740,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Last Modified</source>
             <translation>അവസാനം മാറ്റിയത്</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>നില</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>ഡൗൺലോഡ് ചെയ്യുന്നു...</translation>
@@ -4255,10 +3753,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Refresh Info</source>
             <translation>വിവരങ്ങൾ പുതുക്കുക</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>സ്ഥിതിവിവരക്കണക്കുകൾ</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>നീക്കം ചെയ്തവ ഉൾപ്പെടെ എല്ലാ ടോറന്റുകളിലുമുള്ള ആകെ കൈമാറ്റം.</translation>
@@ -4279,10 +3774,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>പൂർണ്ണ ലൈസൻസ് പാഠങ്ങൾ THIRD-PARTY-NOTICES.txt-ൽ ഉണ്ട്, ഈ ഇൻസ്റ്റാളേഷനോടൊപ്പം ഉൾപ്പെടുത്തിയിരിക്കുന്നു.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>ഫീഡ് ഫെച്ചിംഗ്</translation>
@@ -4295,10 +3787,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Feeds refresh interval</source>
             <translation>ഫീഡ് പുതുക്കൽ ഇന്റർവൽ</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>മിനിറ്റുകൾ</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>അതേ ഹോസ്റ്റ് അഭ്യർത്ഥനാ വൈകല്യം</translation>
@@ -4459,14 +3948,8 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Third-party software</source>
             <translation>മൂന്നാം കക്ഷി സോഫ്റ്റ്‌വെയർ</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>പ്രയോഗിക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>ഡിഫോൾട്ട് റൂട്ട്</translation>
@@ -4547,10 +4030,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Available but not loaded</source>
             <translation>ലഭ്യമാണെങ്കിലും ലോഡ് ചെയ്തിട്ടില്ല</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>ഉറവിടം: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>ഉറവിട URL ഇനിയും കാഷ് ചെയ്തിട്ടില്ല. update.json-ൽ നിന്ന് IPtoCityDB കാഷ് ചെയ്യാൻ അപ്ഡേറ്റ് പരിശോധിക്കുക ഉപയോഗിക്കുക.</translation>
@@ -4582,18 +4062,9 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Edit Project</source>
             <translation>പദ്ധതി എഡിറ്റ് ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>പദ്ധതി ഇല്ലാതാക്കുക</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>വിഭാഗങ്ങൾ</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>എല്ലാ ഡൗൺലോഡുകളും</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>അപൂർണ്ണമായവ</translation>
@@ -4606,49 +4077,19 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>Grabber Projects</source>
             <translation>ഗ്രാബർ പ്രോജക്റ്റുകൾ</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>ടോറന്റുകൾ</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>ക്യൂകൾ</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>ഡൗൺലോഡ് ചെയ്യുന്നു</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>സീഡിംഗ്</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>നിർത്തിയത്</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>സജീവം</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>നിഷ്ക്രിയം</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>പരിശോധിക്കുന്നു</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>നീക്കുന്നു</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>സ്ഥിതിവിവരക്കണക്കുകൾ</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>സ്റ്റല്ലർ സ്ഥിതിവിവരക്കണക്കുകൾ</translation>
@@ -4657,14 +4098,8 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>ALL TIME</source>
             <translation>എല്ലാ സമയത്തും</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>ഡൗൺലോഡ് ചെയ്തത്</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>അപ്‌ലോഡ് ചെയ്തത്</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>പങ്കിടൽ അനുപാതം</translation>
@@ -4685,10 +4120,7 @@ BitTorrent വഴി നിങ്ങൾ പങ്കിടുന്ന ഏതെ
             <source>THIS SESSION</source>
             <translation>ഈ സെഷൻ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4805,57 +4237,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>സ്റ്റെല്ലാർ ഡൗൺലോഡ് മാനേജർ</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>SDM ഡൗൺലോഡുകൾ</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>URL ചേർക്കുക</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>പുനരാരംഭിക്കുക</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>നിർത്തുക</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>എല്ലാം നിർത്തുക</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>ഇല്ലാതാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>ഇല്ലാതാക്കൽ പൂർത്തിയായി</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>ഓപ്ഷനുകൾ</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>ഷെഡ്യൂളർ</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>ക്യൂ ആരംഭിക്കുക</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>ക്യൂ നിർത്തുക</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>ഗ്രാബർ</translation>
@@ -4864,10 +4266,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>സെർച്ച് എഞ്ചിൻ</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4906,18 +4305,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>സൂക്ഷിക്കുക</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>വേറെ സൂക്ഷിക്കുക...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>വിഭാഗം</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>സ്വന്തം സൂക്ഷിപ്പ് ഫോൾഡർ</translation>
@@ -4930,86 +4323,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>വിഭാഗം ഫോൾഡർ ഉപയോഗിക്കുക</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>വിവരണം</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>ടോറന്റ് സജ്ജീകരണങ്ങൾ...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>പിന്നീട് ഡൗൺലോഡ്</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ഡൗൺലോഡ്</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>ടോറന്റ് തുറക്കുന്നു...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% പൂർത്തിയായി</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ഫയലുകൾ</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n ഐറ്റം(കൾ)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>പേര്</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>പ്രഗതി</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>വലിപ്പം</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>ഫയൽ വിവരങ്ങൾ ലഭ്യമല്ല</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>കാത്തിരിക്കുന്നു</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>പുനർനാമകരണം</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>പുതിയ ഫയൽ അല്ലെങ്കിൽ ഫോൾഡർ പേര് നൽകുക:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>പുനർനാമകരണം</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>പുനർനാമകരണം...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>പിയർ</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>ടോറന്റ് തുറക്കുകയും മെറ്റാഡാറ്റ വായിക്കുകയും ചെയ്യുന്നു...</translation>
@@ -5022,14 +4364,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%n പിയർ(കൾ)യിൽ നിന്ന് മെറ്റാഡാറ്റ ഡൗൺലോഡ് ചെയ്യുന്നു</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>സീഡ്</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>നിങ്ങൾ</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>ടോറന്റ് മെറ്റാഡാറ്റ</translation>
@@ -5049,14 +4385,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>വെബ് ലിങ്ക്</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>ശരി</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>തിരയൽ_പ്ലഗ്ഇൻ ഫോൾഡറിലേക്ക് പകർത്താൻ ഒരു ലോക്കൽ .py ഫയൽ തിരഞ്ഞെടുക്കുക.</translation>
@@ -5088,18 +4418,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>ഇൻസ്റ്റാൾ ചെയ്ത തിരയൽ പ്ലഗ്ഇനുകൾ</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>പുതുക്കുക</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>അജ്ഞാതം</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>സജ്ജമാക്കി</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>അസജ്ജമാക്കി</translation>
@@ -5108,10 +4429,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>പുതിയത് ഇൻസ്റ്റാൾ ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>പ്ലഗിനുകൾ തിരയുക</translation>
@@ -5119,18 +4437,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>പേര്</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>വലിപ്പം</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>സീഡേഴ്സ്</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>ലീച്ചേഴ്സ്</translation>
@@ -5147,18 +4456,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>വിവരണ പേജ് തുറക്കുക</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>ടോറന്റ് ഡൗൺലോഡ്</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>പേര് പകർത്തുക</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>മാഗ്നറ്റ് ലിങ്ക് പകർത്തുക</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>വിവരണ പേജ് URL പകർത്തുക</translation>
@@ -5171,18 +4474,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>തിരയുക</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>അജ്ഞാതം</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>ഇതുവരെ തിരയൽ ഫലങ്ങളില്ല</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>തിരയൽ പ്ലഗിനുകൾ</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>ടോറന്റ് തിരയൽ എഞ്ചിൻ</translation>
@@ -5198,14 +4495,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>ടോറന്റ്-തലത്തിലുള്ള വേഗത, ഷെയർ പരിധികൾ, പിയാർ കണ്ടെത്തൽ, ഡൗൺലോഡ് മോഡ്</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>അടയ്ക്കുക</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>പ്രയോഗിക്കുക</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ബാൻഡ്‌വിഡ്ത്ത് പരിധികൾ</translation>
@@ -5226,26 +4517,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>അനുപാതം:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>ഡിഫോൾട്ട്</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>പരിധിയില്ല</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>സജ്ജീകരിക്കുക</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>സീഡിംഗ് സമയം:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>മി.</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>നിഷ്ക്രിയ സമയം:</translation>
@@ -5349,10 +4628,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>സെറ്റിംഗ്സ് തുറക്കുക</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>ബ്രൗസറിൽ നിന്നുള്ള കുക്കീകൾ:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>yt-dlp-ലേക്ക് കുക്കീകൾ കൈമാറ്റം ചെയ്യാൻ ഒരു ബ്രൗസർ തിരഞ്ഞെടുക്കുക, പിന്നീട് പുനർചെയ്യുക.</translation>
@@ -5422,10 +4698,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>വീഡിയോയ്‌ക്കൊപ്പം സബ്‌ടൈറ്റിൽ ഫയലുകൾ ഡൗൺലോഡ് ചെയ്യുക</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>ഭാഷ:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>ഭാഷാ കോഡ്(കൾ), ഉദാ. en  ·  en.*,ja  ·  all</translation>
@@ -5484,14 +4757,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>ചാനൽ ഡൗൺലോഡ്</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ഡൗൺലോഡ്</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>ഉയർന്നത്</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>തീയതി ഫിൽട്ടർ</translation>
@@ -5584,18 +4851,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>ഇതിലേക്ക് സംരക്ഷിക്കുക:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>വിഭാഗം</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>രൂപം</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>റദ്ദാക്കുക</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>വീഡിയോ ഡൗൺലോഡ്</translation>

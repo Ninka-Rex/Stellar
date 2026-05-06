@@ -61,33 +61,23 @@
             <translation>Bainisteoir Íoslódála Stellar v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>Síos: %1 Suas: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Á íoslódáil: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Seideadh: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Seideadh: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Iomlán: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Iomlán: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar ag stop...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Úsáid an céim ciúin tar éis OK má theastaíonn uait na íoslódálacha seo a ghrúpáil sula dtosaíonn siad.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Níl ach naisc a chuirtear le 'Aimsithe' inrochtana. Déanfar an ceangal ciúin tar éis OK.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Athbhreithniú íoslódála baitsí</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>picseal ar leithead</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceadaigh</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Scrios go buan (ná bog chuig an sbhionnáil)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Scrios</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Tá</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>Níl</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Brabhsáil...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Catagóir</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Ag fáil sonraí...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Ag bailiú...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Stádas íoslódála</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Íoslaghdú go tráid an chórais</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Stádas</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Méid an chomhaid</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Cumais athraonta</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Sea</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>Níl</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Mionsonraí earráide</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Sos</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Suíomhanna tosaigh agus dul chun cinn íoslódála de réir ceangail</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Athainmnigh</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Athlódáil</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Scrios</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Socruithe Colúin</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Ainm Comhad</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Méid</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Stádas</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Am fágtha</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Luas íoslódála</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Uaslódáilte</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Íoslódáilte</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Dáta an iarracht deireanach</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Cur síos</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Sábháil go</translation>
@@ -970,14 +891,8 @@ Cliceáil Cuir URL leis chun tosú.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Cuimhnigh mo rogha agus ná taispeáin an dialóg seo arís. Is féidir é a athrú in Roghanna → Íoslódálacha níos déanaí.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Bog Comhad Go...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Tosaigh</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stad</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Foldder oscail</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Comhad oscail</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Stádas</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Méid</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Sábháil go</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Bog</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Seoladh</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Leathanach Gréasáin</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Tagraí</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Cur síos</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Logáil isteach</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Pasfhocal</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Foinse</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Hash eolais</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Cóipeáil</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Meiteashonraí</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Catagóir</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Nóta</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Íoslódáilte</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>Tír</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Uaslódáilte</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Síoltaireacha</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Teachtaireacht</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Stadaithe</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Ag Íoslódáil</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Ag Bogadh</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Ag Síolrú</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>Sa Chéad</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Fadhb</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Ginearálta</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Comhaid</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Mapa Swarm</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Cuir isteach ainm nua comhaid nó fillteáin:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Athainmnigh</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Íoslódáil</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Athainmnigh...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>Gan comhpháirtí ceangailte</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Leibhéal</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Comhpháirtithe</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 comhpháirtí ar eolas</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1 %2% déanta</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Anaithnid</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Tú (an cliant seo)</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Fórsa Athfhógra</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Cóipeáil URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Bain taifeach</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Greamaigh URLanna seid láithreáin - ceann in aghaidh an líne. Glactar le seidí URL (BEP-19) agus seidí HTTP (BEP-17).</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Cineál</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 thoradh le fáil.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Ainm an teimpléid</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Sábháil</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Tionscadail le déanaí</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Socruithe an Grabber</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Castaithe &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Logáil isteach</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Pasfhocal</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Brúigh Castaithe chun logáil isteach de láimh a chumasú nó leathanach logáil amach a dhíchumasú.</translation>
@@ -1935,22 +1745,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Masc</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Cuir</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Cuir in eagar</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Scrios</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Cuir an scagaire in eagar</translation>
@@ -1959,18 +1760,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Scagaire nua</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Catagóir</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Sábháil</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1982,25 +1774,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Tionscadail shábhálta</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Tionscadal</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Roghanna</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>Ag rith</translation>
@@ -2031,22 +1811,13 @@ Exploring</source>
             <translation>Tosaigh
 Iniúchadh</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Ainm an Chomhaid</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Cineál an Chomhaid</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Méid</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Stádas</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Téacs Nasc</translation>
@@ -2055,10 +1826,7 @@ Iniúchadh</translation>
             <source>Download from</source>
             <translation>Íoslódáil ó</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Sábháil go</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Seiceáil roghnaithe</translation>
@@ -2071,14 +1839,8 @@ Iniúchadh</translation>
             <source>Edit current project</source>
             <translation>Cuir an tionscadal reatha in eagar</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Socruithe Grabber</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2335,14 +2097,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Nóta: Ba chóir Stellar a bheith riththe sa tráidire córais ag an am sonraithe chun tionscadal sionraithe a thosú.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2366,14 +2122,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Úsáid téacsanna naisc mar cur síos ar íoslódálacha nuair a chuirtear comhaid leis an liosta príomha Stellar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>OK</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2385,10 +2135,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Stádas: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Gan gníomh</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Leathanaigh ghréasáin phróiseáilte</translation>
@@ -2401,10 +2148,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Casta</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Comhaid</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Iomlán</translation>
@@ -2417,14 +2161,8 @@ Project</source>
             <source>Matched</source>
             <translation>Meaitseáilte</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Íoslódáilte</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2452,10 +2190,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Déanfaidh Stellar iarracht arís an mír yt-dlp céanna leis na cóipbhailí brabhsálaí sin.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Iarracht arís</translation>
@@ -2492,18 +2227,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Gach comhad (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Iomlán: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Críochnaithe: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Ag Íoslódáil: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>Sa Chéadnáir: %1</translation>
@@ -2512,18 +2241,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Gabhálach: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stad</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Lean</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Cumasaigh Tacaíocht BitTorrent?</translation>
@@ -2556,10 +2276,7 @@ You can turn this off in Settings → Downloads.</source>
 
 Is féidir leat é seo a dhíchumasú i Socruithe → Íoslódálacha.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Níorbh fhéidir an comhad “%1” a íoslódáil.</translation>
@@ -2601,14 +2318,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Comhad</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Oscail Fillteán</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Oscail Comhad</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Íoslódáil Anois</translation>
@@ -2621,14 +2332,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Bain</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Ath-íoslódáil</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Easpórtáil .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Íoslódálacha</translation>
@@ -2665,10 +2370,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Stad an Fheidhmchlár</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Teorainn Luais</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Cumasaigh</translation>
@@ -2761,10 +2463,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Colúin…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Roghanna</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Sainroghanna…</translation>
@@ -2797,42 +2496,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Scaoil comhad .torrent chun sonraí torrent a oscailt</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Aimsigh:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Aimsigh</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Socruithe ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Cuardaigh i:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Ainm comhaid nó cuid den ainm</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Cur síos</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / tagairt / leathanach gréasáin máthair</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Comhoiriúint cás</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Comhoiriúint sreang iomlán amháin</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Bog an barra taoibh ar chlé</translation>
@@ -2881,10 +2559,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Dul chun cinn íoslódála na sraithe</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Íoslódáil níos déanaí</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>Níl an comhad ar fáil a thuilleadh</translation>
@@ -2940,18 +2615,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Ná cuir sa scuaine</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Cuir ainm na scuaine isteach</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Cruthaigh</translation>
@@ -2967,14 +2636,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Rialacha Íoslódála</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Cuir</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Bain</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Cliceáil 'Cuir' chun rial íoslódála a chruthú</translation>
@@ -3051,10 +2714,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Fág folamh chun an bealach sábhála réamhshocraithe a úsáid</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Brabhsáil...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Catagóir</translation>
@@ -3067,10 +2727,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>CRÍOCHTAÍ RÓIN RÓIN</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Cóimheas</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Réamhshocraithe</translation>
@@ -3099,14 +2756,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Úsáideann &quot;Réamhshocraithe&quot; na teorainneacha roin ghlóthacha atá socraithe i Socruithe → Róin.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Rialacha Íoslódála Uathoibríoch RSS</translation>
@@ -3146,10 +2797,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Íosluchtaigh Torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Íosluchtaigh</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Oscail sa Bhrabhsálaí</translation>
@@ -3170,50 +2818,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Marcáil Gach mar Léite</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Ainm</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Ainm saincheaptha (roghnach)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Sábháil</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Cuir URL RSS nó Atom leis...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Cuir</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Á athnuachan…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Cuir in eagar</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Bain</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Rialacha Íoslódála</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Fógraíochtaí</translation>
@@ -3226,10 +2850,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Roghnaigh alt</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Oscail</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Marcáil léite</translation>
@@ -3273,10 +2894,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Ciúnas nua</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Scrios</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Sceideal</translation>
@@ -3289,42 +2907,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Íoslódáil aonuaire</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Sioncronú tréimhsiúil</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Tosaigh íoslódáil ar thosú Stellar</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Tosaigh íoslódáil ag</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Uair amháin ag</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Láil</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Tosaigh arís gach</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>uair an chloig</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>nóim</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Stad íoslódáil ag</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Líon athdhéanamh do gach comhad má theip ar an íoslódáil:</translation>
@@ -3333,38 +2930,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Oscail an comhad seo nuair a bheidh sé críochnaithe:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Fág Stellar nuair a bheidh sé críochnaithe</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Múch an ríomhaire nuair a bheidh sé críochnaithe</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Fórsa próisis a stopadh</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Íoslódáil</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>comhaid ag an am céanna</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Ainm an Chomhaid</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Méid</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Stádas</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Am Fágtha</translation>
@@ -3401,18 +2977,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Tosaigh anois</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stop</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Cuir i bhfeidhm</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Cuir ainm leis an scuaine nua a fheicfear sa liosta scuanna</translation>
@@ -3421,18 +2991,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Ainm na scuaine</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Amhárán</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Ciúin Nua</translation>
@@ -3444,10 +3005,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Nasc</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Uasmhéid íoslódálacha comhthreomhara:</translation>
@@ -3512,22 +3070,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Pasfhocal:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Catagóirí</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Ainm</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Sábháil go fillteán</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Íoslódálacha</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Fillteán sábhála réamhshocraithe:</translation>
@@ -3588,14 +3137,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Taispeáin soicindí</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Réamhamharc</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Comhtháthú Brabhsálaí</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Tosaigh íoslódáil go huathoibríoch do na cineálacha comhad seo a leanas:</translation>
@@ -3620,10 +3163,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Coinnigh an eochair seo brúite agus tú ag cliceáil nasc lódála síos chun an t-idirghabháil a sheachaint agus an brabhsálaí a fhágáil chun an lódáil a dhéanamh:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Teorainn Luais</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Cumasaigh teorainn luais ghlobálach</translation>
@@ -3632,10 +3172,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Luas uasta:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Cumasaigh teorainn uaslódála ghlobálach</translation>
@@ -3652,18 +3189,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Cumasaigh sceidealóir teorann luais</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Bain</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Ar</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Lódáil síos</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Uaslódáil</translation>
@@ -3684,10 +3215,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Taispeáin fógra ar earráid lódála</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>Ginearálta</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Brabhsálaí</translation>
@@ -3784,14 +3312,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Oscail dialóg airíonna an chomhaid</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Oscail comhad</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Oscail fillteán</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>Am 24 uair</translation>
@@ -3824,10 +3346,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Cliceáil ar chláirseach lá chun é a chur in éag. Déantar rialacha a mheas gach nóiméad; buaitear an rialach is airde. Scaoiltear teorainneacha íoslódála agus uaslódála uathoibríoch nuair nach bhfuil rialach gníomhach.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Íoslaghdú go tráidire an chórais</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Dún go tráidire an chórais</translation>
@@ -3920,10 +3439,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Íoslódáil yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Athbhreithniú</translation>
@@ -4032,10 +3548,7 @@ Tá sé ar do chumas féin aon rud a roinnt trí BitTorrent. Cinntigh go bhfuil 
 
 Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go bhfuil do VPN gníomhach sula n-úsáideann tú torrents, chun do IP a chosaint ó nochtadh.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Tuigim, Cumasaigh</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Cuir i bhfeidhm na socruithe seo do chomhaid .torrent agus nascanna magnet.</translation>
@@ -4100,10 +3613,7 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Networking</source>
             <translation>Líonraíocht</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Ardleibhéal</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Ainmneoir bittorrent saincheaptha</translation>
@@ -4176,10 +3686,7 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Block peers by country</source>
             <translation>Bac comhpháirteanna de réir tíre</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Cuir</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Gan tíortha bacaithe.</translation>
@@ -4216,18 +3723,12 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Version</source>
             <translation>Leagan</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Anaithnid</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Bealach</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Méid</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Intrísí</translation>
@@ -4236,10 +3737,7 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Last Modified</source>
             <translation>Athraithe deireanach</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Stádas</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Ag íoslódáil...</translation>
@@ -4252,10 +3750,7 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Refresh Info</source>
             <translation>Athnuaigh Eolas</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Staitisticí</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Iomlán aistrithe thar gach torrent, lena n-áirítear cinn a d'fhostrástar.</translation>
@@ -4276,10 +3771,7 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Téacsanna iomlána na ceadúnaithe i THIRD-PARTY-NOTICES.txt, san áireamh leis an suiteáil seo.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Faigh an Fhídh</translation>
@@ -4292,10 +3784,7 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Feeds refresh interval</source>
             <translation>Eatramh athnuachana fídh</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>nóiméid</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Moill iarratais ar an óstach céanna</translation>
@@ -4456,14 +3945,8 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Third-party software</source>
             <translation>Bogearraí tríú páirtí</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Cuir i bhfeidhm</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Ró réamhshocraithe</translation>
@@ -4544,10 +4027,7 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Available but not loaded</source>
             <translation>Ar fáil ach gan a lódáil</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Foinse: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Níl an URL foinse caighdeánaithe fós. Úsáid Seiceáil nuashonruithe chun IPtoCityDB a chaighdeánú ó update.json.</translation>
@@ -4579,18 +4059,9 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Edit Project</source>
             <translation>Cuir an tionscadal in eagar</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Scrios an tionscadal</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Catagóirí</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Gach Íoslódáil</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Neamhchríochnaithe</translation>
@@ -4603,49 +4074,19 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>Grabber Projects</source>
             <translation>Tionscadail Grabber</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrents</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Ciúin</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Ag Íoslódáil</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Ag Síolrú</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Stadtha</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Gníomhach</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Neamhghníomhach</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Ag Seiceáil</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Ag Bogadh</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Staitisticí</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Staitisticí Stellar</translation>
@@ -4654,14 +4095,8 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>ALL TIME</source>
             <translation>AR FEADH AM</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Íoslódáilte</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Uaslódáilte</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Cóimheas Roinntaithe</translation>
@@ -4682,10 +4117,7 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
             <source>THIS SESSION</source>
             <translation>AN SEISEAN SEO</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4801,57 +4233,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Bainisteoir Íoslódála Stellar</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Íoslódálacha SDM</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Cuir URL leis</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Lean ar aghaidh</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Stad</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Stad Uile</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Scrios</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Scrios Déanta</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Roghanna</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Scheidealóir</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Tosaigh an Ceap</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Stad an Ceap</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Grabálaí</translation>
@@ -4860,10 +4262,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Inneall cuardaigh</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4902,18 +4301,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Sábháil go</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Sábháil Mar...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Catagóir</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Fillteán sábhála saincheaptha</translation>
@@ -4926,86 +4319,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Úsáid fillteán catagóire</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Cur síos</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Socruithe Torrent...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Íosluchtaigh níos déanaí</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Íosluchtaigh</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Torrent á oscailt...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% déanta</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Comhaid</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n mír(eanna)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Ainm</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Dul chun cinn</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Méid</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>Gan eolas comhaid ar fáil</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Ag feitheamh</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Athainmnigh</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Cuir ainm nua comhaid nó fillteáin:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Athainmnigh</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Athainmnigh...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Comhpháirtí</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Ag oscailt torrent agus ag léamh meiteashonraí...</translation>
@@ -5018,14 +4360,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Ag íoslódáil meiteashonraí ó %n chomhpháirtí</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Síolraí</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Tú</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Meiteashonraí Torrent</translation>
@@ -5045,14 +4381,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Nasc Gréasáin</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>Ceart go leor</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Roghnaigh comhad .py áitiúil chun a chóipeáil chuig fillteán na n-ionstraimí cuardaigh.</translation>
@@ -5084,18 +4414,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Ionstraimí Cuardaigh Suiteáilte</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Athnuachan</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Anaithnid</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Cumasaite</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Díchumasaithe</translation>
@@ -5104,10 +4425,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Suiteáil Ceann Nua</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Cuardaigh Breiseáin</translation>
@@ -5115,18 +4433,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Ainm</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Méid</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Síoltaí</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Leachóirí</translation>
@@ -5143,18 +4452,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Oscail Leathanach Cur Síos</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Íosluchtaigh Torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Cóipeáil Ainm</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Cóipeáil Nasc Magnet</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Cóipeáil URL Leathanaigh Cur Síos</translation>
@@ -5167,18 +4470,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Cuardaigh</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Anaithnid</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Gan torthaí cuardaigh fós</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Breiseáin Chuardaigh</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Inneall Cuardaigh Torrent</translation>
@@ -5194,14 +4491,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Luas, teorainneacha roinnte, aimsiú comhpháirteanna, mód íoslódála</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Dún</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Cuir i bhfeidhm</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>TEORAINNEANNA LEATHANDBANDA</translation>
@@ -5222,26 +4513,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Cóimheas:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Réamhshocraithe</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Gan teorainn</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Socraigh go</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Am síolraithe:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>nóim</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Am neamhghníomhach:</translation>
@@ -5345,10 +4624,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Oscail Socruithe</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Fíochóidí ó bhrabhsálaí:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Roghnaigh brabhsálaí chun a fhíochóidí a chur chuig yt-dlp, ansin déan iarracht arís.</translation>
@@ -5418,10 +4694,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Íoslódáil comhaid fotheidil leis an bhfíseán</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Teanga:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Códanna teanga, m.sh. en · en.*,ja · gach</translation>
@@ -5479,14 +4752,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Ceanal Íoslódála</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Íoslódáil</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Casta</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Scagaire dáta</translation>
@@ -5579,18 +4846,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Sábháil go:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Catagóir:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Formáid:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cealaigh</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Íoslódáil Físeáin</translation>

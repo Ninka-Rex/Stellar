@@ -61,33 +61,23 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>Descarregant: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>Semenant: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>Semenant: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>Total: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>Total: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar s'està tancant...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Utilitza l'opció de cua després d'OK si vols agrupar aquestes descàrregues abans d'iniciar-les.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Només els enllaços marcats com a Trobat són seleccionables. La assignació a la cua es produeix després d'OK.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>Revisió de descàrrega massiva</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>pixels d'amplada</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>Elimina permanentment (no moguis a la paperera)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>Elimina</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>Sí</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>No</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>Navega...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>Categoria</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>Recebent dades...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>Muntant...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>Estat de la baixada</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>Minimitzar a la safata del sistema</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Estat</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>Mida del fitxer</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>Capacitat de represa</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>Sí</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>No</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>Detalls de l'error</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>Pausa</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Posicions d'inici i progrés de descàrrega per connexions</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>Canvia el nom</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>Torna a descarregar</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Suprimeix</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>Configuració de columnes</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>Nom del fitxer</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Mida</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Estat</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>Temps restant</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>Velocitat ↓</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>Pujat</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Baixat</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>Darrera intènt</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Descripció</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>Desa a</translation>
@@ -971,14 +892,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Recorda la meva selecció i no mostris aquest diàleg de nou.
 Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -990,66 +905,30 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Move File To...</source>
             <translation>Mou el fitxer a...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>Inicia</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Atura</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Obre la carpeta</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>Obre el fitxer</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Estat</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Mida</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>Desa a</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>Mou</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>Adreça</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>Pàgina web</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>Referer</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Descripció</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>Inici de sessió</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Contrasenya</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>Origen</translation>
@@ -1058,26 +937,17 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Info hash</source>
             <translation>Hash d'informació</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>Copia</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>Metadades</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categoria</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>Nota</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Descarregat</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>País</translation>
@@ -1086,14 +956,8 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Pujat</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Seeders</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>Missatge</translation>
@@ -1102,22 +966,10 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Stopped</source>
             <translation>Aturat</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Descarregant</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Movent</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Semillant</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>En cua</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>Problema</translation>
@@ -1142,10 +994,7 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>General</source>
             <translation>General</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Fitxers</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>Mapa del grup</translation>
@@ -1230,22 +1079,10 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Enter a new file or folder name:</source>
             <translation>Introdueix un nou nom de fitxer o carpeta:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Canvia el nom</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Descarrega</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Canvia el nom...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>No hi ha peers connectats</translation>
@@ -1350,10 +1187,7 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Tier</source>
             <translation>Nivell</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>Parells</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 parells coneguts</translation>
@@ -1378,10 +1212,7 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1 %2% fet</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Desconegut</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>Tu (aquest client)</translation>
@@ -1398,10 +1229,7 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Force Reannounce</source>
             <translation>Forçar Reanunci</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>Copia URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>Elimina tracker</translation>
@@ -1430,10 +1258,7 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Enganxa les URL dels web seeds - una per línia. S'accepten tant les URL seeds (BEP-19) com les HTTP seeds (BEP-17).</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>Tipus</translation>
@@ -1582,10 +1407,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>S'han trobat %1 resultats.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·lar</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1649,10 +1471,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Nom de la plantilla</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·lar</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>Desar</translation>
@@ -1673,10 +1492,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Projectes recents</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>Configuració del Grabber</translation>
@@ -1717,14 +1533,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Avançat &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>Inici de sessió</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>Contrasenya</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Prem Avançat per habilitar l'inici de sessió manual o desactivar la pàgina de tancament de sessió.</translation>
@@ -1936,22 +1746,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Màscara</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Afegeix</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>Edita</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Suprimeix</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>Edita el filtre</translation>
@@ -1960,18 +1761,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Filtre nou</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categoria</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Desa</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1983,25 +1775,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Projectes desats</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>Projecte</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>Opcions</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>En marxa</translation>
@@ -2032,22 +1812,13 @@ Exploring</source>
             <translation>Inicia
 l'exploració</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Nom del fitxer</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>Tipus de fitxer</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Mida</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Estat</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>Text del enllaç</translation>
@@ -2056,10 +1827,7 @@ l'exploració</translation>
             <source>Download from</source>
             <translation>Descarrega des de</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>Desa a</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>Verifica seleccionats</translation>
@@ -2072,14 +1840,8 @@ l'exploració</translation>
             <source>Edit current project</source>
             <translation>Edita el projecte actual</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>Configuració del Grabber</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2336,14 +2098,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Nota: Stellar ha d'estar executant-se a la safata del sistema a l'hora especificada per iniciar un projecte programat.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2367,14 +2123,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Utilitza els textos dels enllaços com a descripcions de descàrrega en afegir fitxers a la llista principal de Stellar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2386,10 +2136,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>Estat: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>Inactiu</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>Pàgines web processades</translation>
@@ -2402,10 +2149,7 @@ Project</source>
             <source>Advanced</source>
             <translation>Avançat</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Fitxers</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>Total</translation>
@@ -2418,14 +2162,8 @@ Project</source>
             <source>Matched</source>
             <translation>Emparellat</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Descarregat</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2453,10 +2191,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar tornarà a provar el mateix element de yt-dlp amb les galetes d'aquest navegador.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>Torna a provar la descàrrega</translation>
@@ -2493,18 +2228,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>Tots els fitxers (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>Total: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>Completat: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>Descarregant: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>En cua: %1</translation>
@@ -2513,18 +2242,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Global: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Atura</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Reprèn</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Vols habilitar el suport BitTorrent?</translation>
@@ -2557,10 +2277,7 @@ You can turn this off in Settings → Downloads.</source>
 
 Pots desactivar-ho a Configuració → Descàrregues.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>No s'ha pogut descarregar el fitxer “%1”.</translation>
@@ -2603,14 +2320,8 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>File</source>
             <translation>Fitxer</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>Obre carpeta</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>Obre fitxer</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>Descarrega ara</translation>
@@ -2623,14 +2334,8 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Remove</source>
             <translation>Elimina</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>Torna a descarregar</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>Exporta .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>Descàrregues</translation>
@@ -2667,10 +2372,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Stop Queue</source>
             <translation>Atura la cua</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Limitador de velocitat</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>Activar</translation>
@@ -2763,10 +2465,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Columns…</source>
             <translation>Columnes…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Opcions</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>Preferències…</translation>
@@ -2799,42 +2498,21 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Arrossega un fitxer .torrent per obrir les metadades del torrent</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>Cerca:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>Cerca</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>Configuració ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>Cerca a:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>Nom del fitxer o part del nom</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>Descripció</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / referer / pàgina web pare</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>Distingeix majúscules i minúscules</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>Coincidir només la cadena completa</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>Moure la barra lateral a l'esquerra</translation>
@@ -2883,10 +2561,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Channel Download Progress</source>
             <translation>Progrés de la descàrrega del canal</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Descarrega més tard</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>El fitxer ja no està disponible</translation>
@@ -2942,18 +2617,12 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Don't add to queue</source>
             <translation>No afegeixis a la cua</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>Introdueix el nom de la cua</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>Crea</translation>
@@ -2969,14 +2638,8 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Download Rules</source>
             <translation>Regles de descàrrega</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Afegeix</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Elimina</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Fes clic a «Afegeix» per crear una regla de descàrrega</translation>
@@ -3053,10 +2716,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Leave empty to use default save path</source>
             <translation>Deixa buit per utilitzar la ruta per defecte</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>Navega...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>Categoria:</translation>
@@ -3069,10 +2729,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>TORRENT SHARE LIMITS</source>
             <translation>LÍMITS DE COMPARTICIÓ DE TORRENT</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>Ratio</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>Per defecte</translation>
@@ -3101,14 +2758,8 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>El valor per defecte utilitza els límits globals de compartició configurats a Configuració → Torrents.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·lar</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Regles d'auto-descàrrega RSS</translation>
@@ -3148,10 +2799,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Download Torrent</source>
             <translation>Descarregar torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Descarregar</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>Obrir al navegador</translation>
@@ -3172,50 +2820,26 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Mark All Read</source>
             <translation>Marcar tot com a llegit</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Nom</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>Nom personalitzat (opcional)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>Desa</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Afegeix URL de canal RSS o Atom...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Afegeix</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>Actualitzant…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>Edita</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>Elimina</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>Regles de descàrrega</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>Subscripcions</translation>
@@ -3228,10 +2852,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Select an article</source>
             <translation>Selecciona un article</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>Obre</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>Marca com a llegit</translation>
@@ -3275,10 +2896,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>New queue</source>
             <translation>Nova cua</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Suprimeix</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>Programa</translation>
@@ -3291,42 +2909,21 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>One-time downloading</source>
             <translation>Descàrrega única</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>Sincronització periòdica</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Inicia la descàrrega en iniciar Stellar</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>Inicia la descàrrega a</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>Un cop a</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>Diàriament</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>Torna a iniciar cada</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>hores</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>Atura la descàrrega a</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Nombre de reintents per fitxer si falla la descàrrega:</translation>
@@ -3335,38 +2932,17 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Open the following file when done:</source>
             <translation>Obre el fitxer següent quan acabi:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>Surt de Stellar quan acabi</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>Apaga l'ordinador quan acabi</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>Força la terminació dels processos</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Descàrrega</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>fitxers alhora</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>Nom del fitxer</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Mida</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>Estat</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>Temps restant</translation>
@@ -3403,18 +2979,12 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Start now</source>
             <translation>Inicia ara</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>Atura</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>Aplica</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Introdueix un nom per a la nova cua que es mostrarà a la llista de cues</translation>
@@ -3423,18 +2993,9 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Queue name</source>
             <translation>Nom de la cua</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Planificador</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>Nova cua</translation>
@@ -3446,10 +3007,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>Connexió</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Màxim de descàrregues simultànies:</translation>
@@ -3514,22 +3072,13 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Password:</source>
             <translation>Contrasenya:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>Categories</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>Nom</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>Desa a la carpeta</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>Descàrregues</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>Carpeta de destí predeterminada:</translation>
@@ -3590,14 +3139,8 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Show seconds</source>
             <translation>Mostra els segons</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>Previsualització</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>Integració del navegador</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Inicia automàticament les descàrregues dels següents tipus de fitxer:</translation>
@@ -3622,10 +3165,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Mantén aquesta tecla en fer clic en un enllaç de descàrrega per ometre la interceptació i permetre que el navegador descarregui:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>Limitador de velocitat</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>Activa el límit global de velocitat</translation>
@@ -3634,10 +3174,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Maximum speed:</source>
             <translation>Velocitat màxima:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>Activa el límit global de pujada</translation>
@@ -3654,18 +3191,12 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Enable speed limiter scheduler</source>
             <translation>Activa el programador del limitador de velocitat</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>Elimina</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>Activat</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Baixa</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>Puja</translation>
@@ -3686,10 +3217,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Show notification on download error</source>
             <translation>Mostra notificació en error de baixada</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>General</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>Navegador</translation>
@@ -3786,14 +3314,8 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Open file properties dialog</source>
             <translation>Obre el diàleg de propietats del fitxer</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>Obre el fitxer</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>Obre la carpeta</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>Temps de 24 hores</translation>
@@ -3826,10 +3348,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Feu clic en un dia per alternar-lo. Les regles s'avaluen cada minut; guanya la primera coincidència. Els límits de descàrrega i pujada programats s'esborren automàticament quan no hi ha cap regla activa.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>Minimitza a la safata del sistema</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>Tanca a la safata del sistema</translation>
@@ -3922,10 +3441,7 @@ Opcions de Stellar → Navegador → Omet la interceptació de descàrregues</tr
             <source>Download yt-dlp</source>
             <translation>Descarrega yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>Torna a comprovar</translation>
@@ -4034,10 +3550,7 @@ Qualsevol cosa que comparteixis via BitTorrent és sota la teva exclusiva respon
 
 Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verificar que la VPN està activa abans d'utilitzar torrents, per protegir la teva adreça IP de l'exposició.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>Ho entenc, activa</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Aquests paràmetres s'apliquen als fitxers .torrent i als enllaços magnet.</translation>
@@ -4102,10 +3615,7 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Networking</source>
             <translation>Xarxa</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Avançat</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Agent d'usuari BitTorrent personalitzat</translation>
@@ -4178,10 +3688,7 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Block peers by country</source>
             <translation>Bloqueja peers per país</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>Afegeix</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>Cap país bloquejat.</translation>
@@ -4218,18 +3725,12 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Version</source>
             <translation>Versió</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Desconegut</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>Ruta</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>Mida</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>Entrades</translation>
@@ -4238,10 +3739,7 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Last Modified</source>
             <translation>Última modificació</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>Estat</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>Descarregant...</translation>
@@ -4254,10 +3752,7 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Refresh Info</source>
             <translation>Actualitza la informació</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>Estadístiques</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Total acumulat de transferència en tots els torrents, inclosos els eliminats.</translation>
@@ -4278,10 +3773,7 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Els textos de llicència complets es troben a THIRD-PARTY-NOTICES.txt, inclòs amb aquesta instal·lació.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>Obtenció de canals</translation>
@@ -4294,10 +3786,7 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Feeds refresh interval</source>
             <translation>Interval d'actualització dels canals</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>minuts</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>Retard de sol·licitud al mateix amfitrió</translation>
@@ -4458,14 +3947,8 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Third-party software</source>
             <translation>Programari de tercers</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>Aplica</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>Ruta predeterminada</translation>
@@ -4546,10 +4029,7 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Available but not loaded</source>
             <translation>Disponible però no carregat</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>Font: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL de la font no emmagatzemada en caché. Fes servir Comprova actualitzacions per emmagatzemar IPtoCityDB des d'update.json.</translation>
@@ -4581,18 +4061,9 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Edit Project</source>
             <translation>Edita el projecte</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>Suprimeix el projecte</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>Categories</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>Totes les baixades</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>Inacabades</translation>
@@ -4605,49 +4076,19 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>Grabber Projects</source>
             <translation>Projectes del Grabber</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrents</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>Cua de baixades</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>Baixant</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>Semillant</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>Aturat</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>Actiu</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>Inactiu</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>Comprovant</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>Movent</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>Estadístiques</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Estadístiques de Stellar</translation>
@@ -4656,14 +4097,8 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>ALL TIME</source>
             <translation>TOTA L'HORA</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>Descarregat</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>Pujat</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>Ratio de compartició</translation>
@@ -4684,10 +4119,7 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <source>THIS SESSION</source>
             <translation>AQUESTA SESSIÓ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4804,57 +4236,27 @@ Fes clic per obrir les estadístiques</translation>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Descàrregues de SDM</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>Afegeix URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>Reprèn</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>Atura</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>Atura-ho tot</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>Suprimeix</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>Suprimeix acabats</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>Opcions</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>Programador</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>Inicia la cua</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>Atura la cua</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>Captador</translation>
@@ -4863,10 +4265,7 @@ Fes clic per obrir les estadístiques</translation>
             <source>Search Engine</source>
             <translation>Motor de cerca</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4905,18 +4304,12 @@ Fes clic per obrir les estadístiques</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>Desa a</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>Desa com...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>Categoria</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>Carpeta de destinació personalitzada</translation>
@@ -4929,86 +4322,35 @@ Fes clic per obrir les estadístiques</translation>
             <source>Use category folder</source>
             <translation>Fes servir la carpeta de categoria</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>Descripció</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>Configuració del torrent...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>Baixa més tard</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>Baixa</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>Obrint torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% fet</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>Fitxers</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n element(s)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>Nom</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>Progrés</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Mida</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>No hi ha informació del fitxer disponible</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>Pendent</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>Canvia el nom de l'element</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>Introdueix un nom nou per al fitxer o la carpeta:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>Canvia el nom</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>Canvia el nom...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>Peer</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>S'obrirà el torrent i es llegiran les metadades...</translation>
@@ -5021,14 +4363,8 @@ Fes clic per obrir les estadístiques</translation>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Descarregant metadades de %n peer(s)</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>Seed</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>Tu</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>Metadades del torrent</translation>
@@ -5048,14 +4384,8 @@ Fes clic per obrir les estadístiques</translation>
             <source>Web Link</source>
             <translation>Enllaç web</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>D'acord</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Tria un fitxer .py de cerca local per copiar-lo a la carpeta search_plugins.</translation>
@@ -5087,18 +4417,9 @@ Fes clic per obrir les estadístiques</translation>
             <source>Installed Search Plugins</source>
             <translation>Connectors de cerca instal·lats</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>Actualitza</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Desconegut</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>Activat</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>Desactivat</translation>
@@ -5107,10 +4428,7 @@ Fes clic per obrir les estadístiques</translation>
             <source>Install a New One</source>
             <translation>Instal·la'n un de nou</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>Connectors de cerca</translation>
@@ -5118,18 +4436,9 @@ Fes clic per obrir les estadístiques</translation>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>Nom</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>Mida</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>Semillers</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>Leechers</translation>
@@ -5146,18 +4455,12 @@ Fes clic per obrir les estadístiques</translation>
             <source>Open Description Page</source>
             <translation>Obre la pàgina de descripció</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>Baixa el torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>Copia el nom</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>Copia l'enllaç magnet</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>Copia l'URL de la pàgina de descripció</translation>
@@ -5170,18 +4473,12 @@ Fes clic per obrir les estadístiques</translation>
             <source>Search</source>
             <translation>Cerca</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>Desconegut</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>Encara no hi ha resultats de cerca</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>Complements de cerca</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>Motor de cerca de torrents</translation>
@@ -5197,14 +4494,8 @@ Fes clic per obrir les estadístiques</translation>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Velocitat per torrent, límits de compartició, descobriment de peers i mode de descàrrega</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>Tanca</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>Aplica</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>LÍMITS DE BANDA</translation>
@@ -5225,26 +4516,14 @@ Fes clic per obrir les estadístiques</translation>
             <source>Ratio:</source>
             <translation>Ratio:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>Per defecte</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>Ilimitat</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>Configura a</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>Temps de semàfor:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>min</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>Temps inactiu:</translation>
@@ -5348,10 +4627,7 @@ Fes clic per obrir les estadístiques</translation>
             <source>Open Settings</source>
             <translation>Obre la configuració</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>Galetes del navegador:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Selecciona un navegador per passar-li les galetes a yt-dlp i torna-ho a provar.</translation>
@@ -5421,10 +4697,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Descarrega els fitxers de subtítols juntament amb el vídeo</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>Idioma:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Codi(s) d'idioma, p. ex. en · en.*,ja · tots</translation>
@@ -5483,14 +4756,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Canal de descàrrega</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>Descarrega</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>Avançat</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>Filtre per data</translation>
@@ -5583,18 +4850,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>Desa a:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>Categoria:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>Format:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>Cancel·la</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>Descàrrega de vídeo</translation>

@@ -61,37 +61,25 @@
             <translation>స్టెల్లార్ డౌన్‌లోడ్ మేనేజర్ v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>
 ↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>
 ↓: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>  ↑: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>
-↑: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>  మొత్తం: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>
-మొత్తం: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>స్టెల్లార్ ఆపివేయబడుతోంది...</translation>
@@ -163,14 +151,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>డౌన్‌లోడ్‌లు ప్రారంభానికి ముందు సమూహంగా ఉండాలంటే సరే తర్వాత క్యూ దశను ఉపయోగించండి.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -210,14 +192,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>గుర్తించబడిన లింక్లు మాత్రమే ఎంచుకోదగినవి. సరే తర్వాత క్యూ అసైన్మెంట్ ఇప్పటికీ జరుగుతుంది.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయండి</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>సమీక్షను బ్యాచ్ డౌన్లోడ్ చేయండి</translation>
@@ -363,14 +339,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>పిక్సెల్స్ వెడల్పు</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -394,10 +364,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>శాశ్వతంగా తొలగించు (ట్రాష్‌కు తరలించవద్దు)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>తొలగించు</translation>
@@ -425,10 +392,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>అవును</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>కాదు</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -523,18 +487,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>బ్రౌజ్ చేయండి...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>వర్గం</translation>
@@ -613,10 +568,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>డేటా స్వీకరిస్తోంది...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>అసెంబ్లింగ్...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>డౌన్‌లోడ్ స్థితి</translation>
@@ -637,10 +589,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>సిస్టమ్ ట్రేకి కనిష్టీకరించు</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>స్థితి</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>ఫైల్ పరిమాణం</translation>
@@ -669,14 +618,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>పునఃప్రారంభ సామర్థ్యం</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>అవును</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>లేదు</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>దోష వివరాలు</translation>
@@ -701,10 +644,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>విరామం</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>కనెక్షన్ల వారీగా ప్రారంభ స్థానాలు మరియు డౌన్‌లోడ్ పురోగతి</translation>
@@ -772,10 +712,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>పేరు మార్చు</translation>
@@ -820,10 +757,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>మళ్లీ డౌన్‌లోడ్ చేయి</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>తొలగించు</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>నిలువు వరుసల సెట్టింగ్‌లు</translation>
@@ -832,18 +766,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>ఫైల్ పేరు</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>పరిమాణం</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>స్థితి</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>మిగిలిన సమయం</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>↓ వేగం</translation>
@@ -868,18 +793,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>అప్‌లోడ్ చేయబడింది</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>డౌన్‌లోడ్ చేయబడింది</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>చివరి ప్రయత్న తేదీ</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>వివరణ</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>ఇక్కడ భద్రపరచు</translation>
@@ -975,14 +894,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>నా ఎంపికను గుర్తుంచుకో మరియు ఈ డైలాగ్‌ను మళ్లీ చూపించవద్దు.
 మీరు తర్వాత ఎంపికలు → డౌన్‌లోడ్‌లలో దీన్ని మార్చవచ్చు.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయి</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -994,66 +907,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>ఫైల్ను తరలించు...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>ప్రారంభించు</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>ఆపు</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>ఫోల్డర్ తెరువు</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>ఫైల్ తెరువు</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>స్థితి</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>పరిమాణం</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>దాచు</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>తరలించు</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>చిరునామా</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>వెబ్ పేజీ</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>రెఫరర్</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>వివరణ</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>లాగిన్</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>పాస్వర్డ్</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>మూలం</translation>
@@ -1062,26 +939,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>సమాచార హాష్</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>కాపీ చేయి</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>మెటాడేటా</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>వర్గం</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>గమనిక</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>డౌన్‌లోడ్ చేయబడింది</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>దేశం</translation>
@@ -1090,14 +958,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>పోర్ట్</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>అప్‌లోడ్ చేయబడింది</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>సీడర్లు</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>సందేశం</translation>
@@ -1106,22 +968,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>ఆగిపోయింది</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>డౌన్‌లోడ్ అవుతోంది</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>తరలిస్తోంది</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>సీడింగ్</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>క్యూలో ఉంది</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>సమస్య</translation>
@@ -1146,10 +996,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>సాధారణం</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ఫైళ్లు</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>సమూహ పటం</translation>
@@ -1234,22 +1081,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>కొత్త ఫైల్ లేదా ఫోల్డర్ పేరు నమోదు చేయండి:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>పేరు మార్చు</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>డౌన్‌లోడ్</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>పేరు మార్చు...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>పీర్‌లు కనెక్ట్ కాలేదు</translation>
@@ -1354,10 +1189,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>శ్రేణి</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>సహచరులు</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 తెలిసిన సహచరులు</translation>
@@ -1382,10 +1214,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>పింగ్ %1  %2% పూర్తి</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>తెలియదు</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>మీరు (ఈ క్లయింట్)</translation>
@@ -1402,10 +1231,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>బలవంతంగా రీఅనౌన్స్</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>URL కాపీ చేయండి</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>ట్రాకర్ తొలగించు</translation>
@@ -1434,10 +1260,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>వెబ్ సీడ్ URLలను అతికించండి - ఒక్కో లైనుకు ఒకటి. URL సీడ్లు (BEP-19) మరియు HTTP సీడ్లు (BEP-17) రెండూ ఆమోదించబడతాయి.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>రకం</translation>
@@ -1586,10 +1409,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 ఫలితాలు కనుగొనబడ్డాయి.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయి</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1653,10 +1473,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>టెంప్లేట్ పేరు</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయి</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>సేవ్ చేయి</translation>
@@ -1677,10 +1494,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>ఇటీవలి ప్రాజెక్ట్లు</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>గ్రాబర్ సెట్టింగ్లు</translation>
@@ -1721,14 +1535,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>3. అధునాతన &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>4. లాగిన్</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>5. పాస్వర్డ్</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>6. మాన్యువల్ లాగిన్ ప్రారంభించడానికి లేదా లాగ్అవుట్ పేజీని నిలిపివేయడానికి అధునాతన నొక్కండి.</translation>
@@ -1940,22 +1748,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>మాస్క్</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>జోడించు</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>సవరించు</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>తొలగించు</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>వడపోత సవరించు</translation>
@@ -1964,18 +1763,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>కొత్త వడపోత</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>వర్గం</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>సేవ్</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1987,25 +1777,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>సేవ్ చేసిన ప్రాజెక్టులు</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>ప్రాజెక్ట్</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>ఎంపికలు</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>నడుస్తోంది</translation>
@@ -2036,22 +1814,13 @@ Exploring</source>
             <translation>అన్వేషణ
 ప్రారంభించు</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ఫైల్ పేరు</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>ఫైల్ రకం</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>పరిమాణం</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>స్థితి</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>లింక్ టెక్స్ట్</translation>
@@ -2060,10 +1829,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>నుండి డౌన్‌లోడ్</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>ఇక్కడ సేవ్ చేయి</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>ఎంచుకున్నవి తనిఖీ</translation>
@@ -2076,14 +1842,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>ప్రస్తుత ప్రాజెక్ట్ సవరించు</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>గ్రాబర్ సెట్టింగ్లు</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2345,14 +2105,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>గమనిక: షెడ్యూల్ చేసిన ప్రాజెక్ట్ ప్రారంభించడానికి స్టెల్లార్ నిర్ణీత సమయంలో సిస్టమ్ ట్రేలో నడుస్తూ ఉండాలి.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2376,14 +2130,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>స్టెల్లార్ ప్రధాన జాబితాకు ఫైల్‌లను జోడించేటప్పుడు లింక్ టెక్స్ట్‌లను డౌన్‌లోడ్ వివరణలుగా ఉపయోగించు</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2395,10 +2143,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>స్థితి: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>నిష్క్రియ</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>వెబ్ పేజీలు ప్రాసెస్ చేయబడ్డాయి</translation>
@@ -2411,10 +2156,7 @@ Project</source>
             <source>Advanced</source>
             <translation>అధునాతన</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ఫైళ్లు</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>మొత్తం</translation>
@@ -2427,14 +2169,8 @@ Project</source>
             <source>Matched</source>
             <translation>సరిపోలింది</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>డౌన్‌లోడ్ చేయబడింది</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2462,10 +2198,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar ఆ బ్రౌజర్ కుక్కీలతో అదే yt-dlp అంశాన్ని మళ్లీ ప్రయత్నిస్తుంది.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయి</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>డౌన్‌లోడ్ మళ్లీ ప్రయత్నించు</translation>
@@ -2502,18 +2235,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>అన్ని ఫైల్స్ (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>మొత్తం: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>పూర్తయినవి: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>డౌన్‌లోడ్: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>వరుసలో: %1</translation>
@@ -2522,18 +2249,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>మొత్తం: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>ఆపు</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>కొనసాగించు</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent మద్దతు ప్రారంభించాలా?</translation>
@@ -2566,10 +2284,7 @@ You can turn this off in Settings → Downloads.</source>
 
 మీరు దీన్ని సెట్టింగ్‌లు → డౌన్‌లోడ్‌లలో ఆఫ్ చేయవచ్చు.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>&quot;%1&quot; ఫైల్ డౌన్‌లోడ్ చేయడం సాధ్యం కాలేదు.</translation>
@@ -2612,14 +2327,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>ఫైల్</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>ఫోల్డర్ తెరువు</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>ఫైల్ తెరువు</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>ఇప్పుడే డౌన్‌లోడ్ చేయి</translation>
@@ -2632,14 +2341,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>తొలగించు</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>మళ్లీ డౌన్‌లోడ్ చేయి</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent ఎగుమతి చేయి…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>డౌన్‌లోడ్‌లు</translation>
@@ -2676,10 +2379,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>క్యూ ఆపు</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>వేగ పరిమితి</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>ఆన్ చేయి</translation>
@@ -2772,10 +2472,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>నిలువు వరుసలు…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>ఎంపికలు</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>ప్రాధాన్యతలు…</translation>
@@ -2808,42 +2505,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>టొరెంట్ మెటాడేటా తెరవడానికి .torrent ఫైల్ను వదలండి</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>కనుగొను:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>కనుగొను</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>సెట్టింగ్లు ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>దీనిలో వెతకండి:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>ఫైల్ పేరు లేదా పేరులో భాగం</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>వివరణ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / రెఫరర్ / మాతృ వెబ్ పేజీ</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>అక్షర సరిపోలిక</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>మొత్తం స్ట్రింగ్ మాత్రమే సరిపోల్చు</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>సైడ్‌బార్‌ను ఎడమవైపుకు తరలించు</translation>
@@ -2892,10 +2568,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>ఛానెల్ డౌన్‌లోడ్ పురోగతి</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>తర్వాత డౌన్‌లోడ్</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>ఫైల్ ఇక అందుబాటులో లేదు</translation>
@@ -2951,18 +2624,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>క్యూకి జోడించవద్దు</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>క్యూ పేరు నమోదు చేయండి</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>సృష్టించు</translation>
@@ -2978,14 +2645,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>డౌన్‌లోడ్ నియమాలు</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>జోడించు</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>తొలగించు</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>డౌన్‌లోడ్ నియమాన్ని సృష్టించడానికి &quot;జోడించు&quot; క్లిక్ చేయండి</translation>
@@ -3062,10 +2723,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>డిఫాల్ట్ సేవ్ పాత్ ఉపయోగించడానికి ఖాళీగా వదలండి</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>బ్రౌజ్ చేయి...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>వర్గం:</translation>
@@ -3078,10 +2736,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>టొరెంట్ షేర్ పరిమితులు</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>నిష్పత్తి</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>డిఫాల్ట్</translation>
@@ -3110,14 +2765,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>&quot;డిఫాల్ట్&quot; సెట్టింగ్స్ → టొరెంట్లలోని గ్లోబల్ షేర్ పరిమితులను ఉపయోగిస్తుంది.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS ఆటో డౌన్‌లోడ్ నియమాలు</translation>
@@ -3157,10 +2806,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>టొరెంట్ డౌన్‌లోడ్</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>డౌన్‌లోడ్</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>బ్రౌజర్‌లో తెరవండి</translation>
@@ -3181,50 +2827,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>అన్నీ చదివినట్లు గుర్తించు</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>పేరు</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>అనుకూల పేరు (ఐచ్ఛికం)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>సేవ్</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS లేదా Atom ఫీడ్ URL జోడించండి...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>జోడించు</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>రిఫ్రెష్ అవుతోంది…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>సవరించు</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>తొలగించు</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>డౌన్‌లోడ్ నియమాలు</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>చందాలు</translation>
@@ -3237,10 +2859,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>ఒక వ్యాసాన్ని ఎంచుకోండి</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>తెరువు</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>చదివినట్లు గుర్తించు</translation>
@@ -3284,10 +2903,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>కొత్త క్యూ</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>తొలగించు</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>షెడ్యూల్</translation>
@@ -3300,42 +2916,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>ఒకేసారి డౌన్‌లోడ్</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>ఆవర్తన సమకాలీకరణ</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>స్టెల్లార్ ప్రారంభంలో డౌన్‌లోడ్ మొదలు</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>డౌన్‌లోడ్ ప్రారంభ సమయం</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>ఒకసారి</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>ప్రతిరోజు</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>ప్రతి మళ్ళీ మొదలు</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>గంటలు</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>నిమి</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>డౌన్‌లోడ్ ఆపు వద్ద</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>ప్రతి ఫైల్‌కు పునఃప్రయత్నాల సంఖ్య విఫలమైతే :</translation>
@@ -3344,38 +2939,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>పూర్తయిన తర్వాత ఈ ఫైల్ తెరవండి:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>పూర్తయిన తర్వాత Stellar నుండి నిష్క్రమించు</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>పూర్తయిన తర్వాత కంప్యూటర్ ఆఫ్ చేయి</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>ప్రక్రియలను బలవంతంగా ముగించు</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>డౌన్‌లోడ్</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>ఫైళ్లు ఒకేసారి</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ఫైల్ పేరు</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>పరిమాణం</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>స్థితి</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>మిగిలిన సమయం</translation>
@@ -3412,18 +2986,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>ఇప్పుడే ప్రారంభించు</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>ఆపు</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>వర్తించు</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>క్యూల జాబితాలో చూపించడానికి కొత్త క్యూకు పేరు నమోదు చేయండి</translation>
@@ -3432,18 +3000,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>క్యూ పేరు</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>షెడ్యూలర్</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>కొత్త క్యూ</translation>
@@ -3455,10 +3014,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>కనెక్షన్</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>గరిష్ట ఏకకాల డౌన్‌లోడ్‌లు:</translation>
@@ -3523,22 +3079,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>పాస్వర్డ్:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>వర్గాలు</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>పేరు</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>ఫోల్డర్కు సేవ్ చేయి</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>డౌన్లోడ్లు</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>డిఫాల్ట్ సేవ్ ఫోల్డర్:</translation>
@@ -3599,14 +3146,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>సెకన్లు చూపు</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>మునుజూపు</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>బ్రౌజర్ అనుసంధానం</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>కింది ఫైల్ రకాలను స్వయంచాలకంగా డౌన్‌లోడ్ చేయడం ప్రారంభించు:</translation>
@@ -3631,10 +3172,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>డౌన్‌లోడ్ లింక్‌పై క్లిక్ చేస్తున్నప్పుడు ఈ కీని నొక్కి ఉంచండి:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>వేగ పరిమితి</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>గ్లోబల్ వేగ పరిమితిని ప్రారంభించు</translation>
@@ -3643,10 +3181,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>గరిష్ట వేగం:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>గ్లోబల్ అప్‌లోడ్ పరిమితిని ప్రారంభించు</translation>
@@ -3663,18 +3198,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>వేగ పరిమితి షెడ్యూలర్ను ప్రారంభించు</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>తొలగించు</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>ఆన్</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>డౌన్‌లోడ్</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>అప్‌లోడ్</translation>
@@ -3695,10 +3224,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>డౌన్‌లోడ్ లోపంపై నోటిఫికేషన్ చూపు</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>సాధారణం</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>బ్రౌజర్</translation>
@@ -3795,14 +3321,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>ఫైల్ లక్షణాల డైలాగ్ తెరువు</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>ఫైల్ తెరువు</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>ఫోల్డర్ తెరువు</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24-గంటల సమయం</translation>
@@ -3835,10 +3355,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>దాన్ని టోగుల్ చేయడానికి ఒక రోజు పిల్పై క్లిక్ చేయండి. నియమాలు ప్రతి నిమిషం మూల్యాంకనం చేయబడతాయి; మొదట సరిపోలిన నియమం గెలుస్తుంది. ఏ నియమం సక్రియంగా లేనప్పుడు షెడ్యూల్ చేసిన డౌన్లోడ్ మరియు అప్లోడ్ పరిమితులు స్వయంచాలకంగా తొలగించబడతాయి.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>సిస్టమ్ ట్రేకి కనిష్టీకరించు</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>సిస్టమ్ ట్రేకి మూసివేయి</translation>
@@ -3931,10 +3448,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>yt-dlp డౌన్లోడ్ చేయండి</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయండి</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>మళ్ళీ తనిఖీ చేయి</translation>
@@ -4043,10 +3557,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 మీ IP చిరునామా బహిర్గతం కాకుండా రక్షించుకోవడానికి, స్టెల్లార్‌ను VPN నెట్‌వర్క్ ఇంటర్‌ఫేస్‌కు బైండ్ చేయాలని మరియు టొరెంట్లను ఉపయోగించే ముందు మీ VPN సక్రియంగా ఉందని ధృవీకరించుకోవాలని గట్టిగా సిఫార్సు చేయబడింది.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>నేను అర్థం చేసుకున్నాను, ప్రారంభించు</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>ఈ సెట్టింగ్‌లు .torrent ఫైల్స్ మరియు మాగ్నెట్ లింక్‌లకు వర్తిస్తాయి.</translation>
@@ -4111,10 +3622,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>నెట్‌వర్కింగ్</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>అధునాతన</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>అనుకూల బిట్టొరెంట్ వినియోగదారు ఏజెంట్</translation>
@@ -4187,10 +3695,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>దేశం ద్వారా పీర్లను నిరోధించండి</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>జోడించు</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>1. నిషేధిత దేశాలు లేవు.</translation>
@@ -4227,18 +3732,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>9. వెర్షన్</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>10. తెలియనిది</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>మార్గం</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>పరిమాణం</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>ఎంట్రీలు</translation>
@@ -4247,10 +3746,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>చివరి మార్పు</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>స్థితి</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>డౌన్‌లోడ్ అవుతోంది...</translation>
@@ -4263,10 +3759,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>సమాచారం రిఫ్రెష్</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>గణాంకాలు</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>తొలగించిన వాటితో సహా అన్ని టొరెంట్ల మొత్తం బదిలీ మొత్తాలు.</translation>
@@ -4287,10 +3780,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>పూర్తి లైసెన్స్ పాఠ్యాలు THIRD-PARTY-NOTICES.txtలో ఉన్నాయి, ఈ ఇన్‌స్టాలేషన్‌తో చేర్చబడింది.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>ఫీడ్ పొందడం</translation>
@@ -4303,10 +3793,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>ఫీడ్‌ల రిఫ్రెష్ వ్యవధి</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>నిమిషాలు</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>ఒకే హోస్ట్ అభ్యర్థన ఆలస్యం</translation>
@@ -4467,14 +3954,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>థర్డ్-పార్టీ సాఫ్ట్‌వేర్</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>వర్తించు</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>డిఫాల్ట్ మార్గం</translation>
@@ -4555,10 +4036,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>అందుబాటులో ఉంది కానీ లోడ్ కాలేదు</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>మూలం: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>మూల URL ఇంకా కాష్ కాలేదు. update.json నుండి IPtoCityDB కాష్ చేయడానికి నవీకరణల కోసం తనిఖీ చేయండి.</translation>
@@ -4590,18 +4068,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>ప్రాజెక్ట్‌ను సవరించండి</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>ప్రాజెక్ట్‌ను తొలగించండి</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>వర్గాలు</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>అన్ని డౌన్‌లోడ్‌లు</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>అసంపూర్ణం</translation>
@@ -4614,49 +4083,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>గ్రాబర్ ప్రాజెక్ట్‌లు</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>టొరెంట్‌లు</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>క్యూలు</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>డౌన్‌లోడ్ అవుతోంది</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>సీడింగ్</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>ఆపివేయబడింది</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>సక్రియం</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>నిష్క్రియం</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>తనిఖీ చేస్తోంది</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>తరలిస్తోంది</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>గణాంకాలు</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>స్టెల్లార్ గణాంకాలు</translation>
@@ -4665,14 +4104,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>మొత్తం కాలం</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>డౌన్‌లోడ్ చేయబడింది</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>అప్‌లోడ్ చేయబడింది</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>షేర్ నిష్పత్తి</translation>
@@ -4693,10 +4126,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>ఈ సెషన్</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4813,57 +4243,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>3. స్టెల్లార్ డౌన్లోడ్ మేనేజర్</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>4. SDM డౌన్లోడ్లు</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>5. URL జోడించు</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>6. కొనసాగించు</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>7. ఆపు</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>8. అన్నీ ఆపు</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>9. తొలగించు</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>10. పూర్తయినవి తొలగించు</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>ఎంపికలు</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>షెడ్యూలర్</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>క్యూ ప్రారంభించు</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>క్యూ ఆపు</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>గ్రాబర్</translation>
@@ -4872,10 +4272,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>శోధన యంత్రం</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4914,18 +4311,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>ఇక్కడ భద్రపరచు</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>ఇలా భద్రపరచు...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>వర్గం</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>అనుకూల భద్రపరిచే ఫోల్డర్</translation>
@@ -4938,86 +4329,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>వర్గం ఫోల్డర్ ఉపయోగించండి</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>వివరణ</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>టొరెంట్ సెట్టింగ్లు...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయండి</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>తర్వాత డౌన్లోడ్ చేయండి</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>డౌన్లోడ్</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>టొరెంట్ తెరుస్తోంది...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2% పూర్తయింది</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ఫైళ్లు</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n అంశం(లు)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>పేరు</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>పురోగతి</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>పరిమాణం</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>ఫైల్ సమాచారం అందుబాటులో లేదు</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>పెండింగ్</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>అంశం పేరు మార్చండి</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>కొత్త ఫైల్ లేదా ఫోల్డర్ పేరు నమోదు చేయండి:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>పేరు మార్చు</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>పేరు మార్చు...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>పీర్</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>టొరెంట్ తెరిచి మెటాడేటా చదువుతోంది...</translation>
@@ -5030,14 +4370,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%n పీర్(ల) నుండి మెటాడేటా డౌన్‌లోడ్ అవుతోంది</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>సీడ్</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>మీరు</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>టొరెంట్ మెటాడేటా</translation>
@@ -5057,14 +4391,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>వెబ్ లింక్</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయి</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>సరే</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>స్థానిక .py శోధన ప్లగిన్ ఫైల్ను ఎంచుకోండి</translation>
@@ -5096,18 +4424,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>ఇన్‌స్టాల్ చేసిన శోధన ప్లగిన్‌లు</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>రిఫ్రెష్</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>తెలియదు</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>ప్రారంభించబడింది</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>నిలిపివేయబడింది</translation>
@@ -5116,10 +4435,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>కొత్తది ఇన్‌స్టాల్ చేయండి</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>మూసివేయి</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>ప్లగిన్‌లను వెతకండి</translation>
@@ -5127,18 +4443,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>పేరు</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>పరిమాణం</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>సీడర్లు</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>లీచర్లు</translation>
@@ -5155,18 +4462,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>వివరణ పేజీ తెరవండి</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>టొరెంట్ దించు</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>పేరు కాపీ చేయి</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>మాగ్నెట్ లింక్ కాపీ చేయి</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>వివరణ పేజీ URL కాపీ చేయి</translation>
@@ -5179,18 +4480,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>వెతుకు</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>తెలియదు</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>1. ఇంకా శోధన ఫలితాలు లేవు</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>2. ప్లగిన్లను శోధించు</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>3. టొరెంట్ శోధన యంత్రం</translation>
@@ -5206,14 +4501,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>5. ప్రతి-టొరెంట్ వేగం, షేర్ పరిమితులు, పీర్ డిస్కవరీ, డౌన్లోడ్ మోడ్</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>6. మూసివేయి</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>7. వర్తించు</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>8. బ్యాండ్విడ్త్ పరిమితులు</translation>
@@ -5234,26 +4523,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>నిష్పత్తి:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>డిఫాల్ట్</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>అపరిమితం</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>సెట్ చేయి</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>సీడింగ్ సమయం:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>నిమి</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>నిష్క్రియ సమయం:</translation>
@@ -5357,10 +4634,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>సెట్టింగ్స్ తెరవండి</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>బ్రౌజర్ నుండి కుకీలు:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>yt-dlpకి కుకీలు పంపడానికి బ్రౌజర్ ఎంచుకోండి, తర్వాత మళ్లీ ప్రయత్నించండి.</translation>
@@ -5431,10 +4705,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>వీడియోతో పాటు సబ్ టైటిల్ ఫైల్స్ డౌన్‌లోడ్ చేయండి</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>భాష:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>భాషా సంకేతం(లు), ఉదా. en  ·  en.*,ja  ·  అన్నీ</translation>
@@ -5493,14 +4764,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>డౌన్లోడ్ ఛానెల్</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>డౌన్లోడ్</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>అధునాతన</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>తేదీ ఫిల్టర్</translation>
@@ -5593,18 +4858,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>ఇక్కడ సేవ్ చేయి:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>వర్గం:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>ఫార్మాట్:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>రద్దు చేయి</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>వీడియో డౌన్‌లోడ్</translation>

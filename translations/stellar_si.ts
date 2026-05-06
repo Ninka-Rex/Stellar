@@ -61,33 +61,23 @@
             <translation>Stellar බාගැනීම් කළමනාකරු v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>බාගත: %1  උඩුගත: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>බාගනිමින්: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>   බෙදාහරිමින්: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>බෙදාහරිමින්: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>   මුළු: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>මුළු: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar වසා දමමින්...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>බාගැනීම් ආරම්භ වීමට පෙර කාණ්ඩගත කිරීමට OK පසු පෝලිම් පියවර භාවිත කරන්න.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Found ලෙස සලකුණු කළ සබැඳි පමණක් තෝරාගත හැක. පෝලිම් පැවරීම OK පසුව සිදුවේ.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>කණ්ඩායම් බාගැනීම් සමාලෝචනය</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>පික්සල පළල</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>ස්ථිරවම මකන්න (කුණු කූඩයට නොයවන්න)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>මකන්න</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>ඔව්</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>නැත</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>පිරික්සන්න...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>ප්‍රවර්ගය</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>දත්ත ලබා ගනිමින්...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>එකලස් කරමින්...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>බාගත කිරීමේ තත්ත්වය</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>පද්ධති තැටියට අවම කරන්න</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>තත්ත්වය</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>ගොනු ප්‍රමාණය</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>නැවත ආරම්භ හැකියාව</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>ඔව්</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>නැත</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>දෝෂ විස්තර</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>විරාම කරන්න</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>සම්බන්ධතා අනුව ආරම්භක ස්ථාන සහ බාගැනීම් ප්‍රගතිය</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>නැවත නම් කරන්න</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>නැවත බාගන්න</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>මකන්න</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>තීරු සැකසුම්</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>ගොනු නම</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ප්‍රමාණය</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>තත්ත්වය</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>ඉතිරි කාලය</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>↓ වේගය</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>උඩුගත කළ</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>බාගත කළ</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>අවසන් උත්සාහ දිනය</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>විස්තරය</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>සුරකින්න</translation>
@@ -971,14 +892,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>මගේ තේරීම මතක තබාගෙන මෙම සංවාදය නැවත නොපෙන්වන්න.
 ඔබට පසුව විකල්ප → බාගැනීම් තුළ එය වෙනස් කළ හැක.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -990,66 +905,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>ගොනුව ගෙනයන්න...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>ආරම්භ කරන්න</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>නවත්වන්න</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>ෆෝල්ඩරය විවෘත කරන්න</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>ගොනුව විවෘත කරන්න</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>තත්ත්වය</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ප්රමාණය</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>සුරකින්න</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>ගෙනයන්න</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>ලිපිනය</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>වෙබ් පිටුව</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>යොමුකරු</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>විස්තරය</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>පිවිසුම</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>මුරපදය</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>මූලාශ්රය</translation>
@@ -1058,26 +937,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>තොරතුරු හැෂ්</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>පිටපත් කරන්න</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>පාරදත්ත</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>ප්‍රවර්ගය</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>සටහන</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>බාගත කළ</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>රට</translation>
@@ -1086,14 +956,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>තොට</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>උඩුගත කළ</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>බීජකරුවන්</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>පණිවිඩය</translation>
@@ -1102,22 +966,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>නැවැත්වූ</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>බාගත වෙමින්</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>ගෙනයමින්</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>බෙදාහරිමින්</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>පෝලිමේ</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>ගැටලුව</translation>
@@ -1142,10 +994,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>සාමාන්‍ය</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ගොනු</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>සමූහ සිතියම</translation>
@@ -1230,22 +1079,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>නව නම ඇතුළත් කරන්න:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>නම වෙනස් කරන්න</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>බාගන්න</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>නම වෙනස් කරන්න...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>සම්බන්ධිත පීර් නැත</translation>
@@ -1350,10 +1187,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>ශ්රේණිය</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>සම වයස්කරුවන්</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>0 දන්නා සම වයස්කරුවන්</translation>
@@ -1378,10 +1212,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% අවසන්</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>නොදනී</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>ඔබ (මෙම සේවාලාභියා)</translation>
@@ -1398,10 +1229,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>බලහත්කාර නැවත දැනුම්දීම</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>URL පිටපත් කරන්න</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>ලුහුබැඳීම ඉවත් කරන්න</translation>
@@ -1430,10 +1258,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>වෙබ් බීජ URL අලවන්න - පේළියකට එකක්. URL බීජ (BEP-19) සහ HTTP බීජ (BEP-17) දෙකම පිළිගනු ලැබේ.</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>වර්ගය</translation>
@@ -1582,10 +1407,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>ප්‍රතිඵල %1ක් හමු විය.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1649,10 +1471,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>සැකිලි නම</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>සුරකින්න</translation>
@@ -1673,10 +1492,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>මෑත ව්‍යාපෘති</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>ග්‍රැබර් සැකසුම්</translation>
@@ -1717,14 +1533,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>උසස් &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>පිවිසුම් නම</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>මුරපදය</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>අතින් පිවිසීම සක්‍රීය කිරීමට හෝ පිටවීමේ පිටුවක් අක්‍රීය කිරීමට උසස් ඔබන්න.</translation>
@@ -1936,22 +1746,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>මුහුණත</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>එකතු</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>සංස්කරණය</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>මකන්න</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>පෙරහන සංස්කරණය</translation>
@@ -1960,18 +1761,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>නව පෙරහන</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>ප්‍රවර්ගය</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>සුරකින්න</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1983,25 +1775,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>සුරකින ලද ව්‍යාපෘති</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>ව්‍යාපෘතිය</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>විකල්ප</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>ක්‍රියාත්මකයි</translation>
@@ -2031,22 +1811,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>ගවේෂණය අරඹන්න</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ගොනු නම</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>ගොනු වර්ගය</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ප්‍රමාණය</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>තත්ත්වය</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>සබැඳි පෙළ</translation>
@@ -2055,10 +1826,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>බාගත කරන ස්ථානය</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>සුරකින ස්ථානය</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>තෝරාගත් දෑ සලකුණු කරන්න</translation>
@@ -2071,14 +1839,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>වත්මන් ව්‍යාපෘතිය සංස්කරණය කරන්න</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>ග්‍රාහක සැකසුම්</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2340,14 +2102,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>සටහන: නියමිත ව්‍යාපෘතියක් ආරම්භ කිරීමට Stellar පද්ධති තැටියේ ධාවනය විය යුතුය.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2371,14 +2127,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Stellar ප්‍රධාන ලැයිස්තුවට ගොනු එක් කිරීමේදී සබැඳි පෙළ බාගැනීම් විස්තර ලෙස භාවිතා කරන්න</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2390,10 +2140,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>තත්ත්වය: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>නිෂ්ක්‍රීය</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>වෙබ් පිටු සැකසූ</translation>
@@ -2406,10 +2153,7 @@ Project</source>
             <source>Advanced</source>
             <translation>උසස්</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ගොනු</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>මුළු</translation>
@@ -2422,14 +2166,8 @@ Project</source>
             <source>Matched</source>
             <translation>ගැළපුණු</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>බාගත්</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2457,10 +2195,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar එම බ්‍රවුසරයේ කුකී සමඟ yt-dlp අයිතමය නැවත උත්සාහ කරයි.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>බාගැනීම නැවත උත්සාහ කරන්න</translation>
@@ -2497,18 +2232,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>සියලු ගොනු (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>මුළු: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>සම්පූර්ණ: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>බාගත වෙමින්: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>පෝලිමේ: %1</translation>
@@ -2517,18 +2246,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>සමස්ත: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>නවත්වන්න</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>යළි අරඹන්න</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent සහාය සබල කරන්නද?</translation>
@@ -2561,10 +2281,7 @@ You can turn this off in Settings → Downloads.</source>
 
 ඔබට මෙය සැකසුම් → බාගැනීම් තුළ අක්‍රිය කළ හැක.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>“%1” ගොනුව බාගත කළ නොහැකි විය.</translation>
@@ -2607,14 +2324,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>File</source>
             <translation>ගොනුව</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>ෆෝල්ඩරය විවෘත කරන්න</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>ගොනුව විවෘත කරන්න</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>දැන් බාගන්න</translation>
@@ -2627,14 +2338,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Remove</source>
             <translation>ඉවත් කරන්න</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>නැවත බාගන්න</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent අපනයනය…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>බාගැනීම්</translation>
@@ -2671,10 +2376,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Stop Queue</source>
             <translation>පෝලිම නවත්වන්න</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>වේග සීමාකය</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>සක්‍රිය කරන්න</translation>
@@ -2767,10 +2469,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Columns…</source>
             <translation>තීරු…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>විකල්ප</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>මනාප…</translation>
@@ -2803,42 +2502,21 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>ටොරන්ට් පාරදත්ත විවෘත කිරීමට .torrent ගොනුව දමන්න</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>සොයන්න:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>සොයන්න</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>සැකසුම් ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>තුළ සොයන්න:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>ගොනු නම හෝ කොටසක්</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>විස්තරය</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / යොමුකරු / මව් වෙබ් පිටුව</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>අකුරු හැඩය ගලපන්න</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>සම්පූර්ණ වැල පමණක් ගලපන්න</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>පැති තීරුව වමට ගෙනයන්න</translation>
@@ -2887,10 +2565,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Channel Download Progress</source>
             <translation>නාලිකා බාගැනීම් ප්‍රගතිය</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>පසුව බාගන්න</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>ගොනුව තවදුරටත් නැත</translation>
@@ -2946,18 +2621,12 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Don't add to queue</source>
             <translation>පෝලිමට එක් නොකරන්න</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>පෝලිම් නම ඇතුළු කරන්න</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>සාදන්න</translation>
@@ -2973,14 +2642,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Download Rules</source>
             <translation>බාගැනීම් නීති</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>එකතු</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ඉවත්</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>බාගැනීම් නීතියක් සෑදීමට &quot;එකතු&quot; ක්ලික් කරන්න</translation>
@@ -3057,10 +2720,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Leave empty to use default save path</source>
             <translation>හිස්ව තබන්න පෙරනිමි සුරැකුම් මාර්ගය භාවිතා කිරීමට</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>සැරිසරන්න...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>ප්‍රවර්ගය</translation>
@@ -3073,10 +2733,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>TORRENT SHARE LIMITS</source>
             <translation>ටොරන්ට් බෙදාගැනීමේ සීමා</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>අනුපාතය</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>පෙරනිමිය</translation>
@@ -3105,14 +2762,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>පෙරනිමි&quot; සැකසුම් → ටොරන්ට්ස් හි සකසා ඇති ගෝලීය බෙදාගැනීමේ සීමා භාවිතා කරයි.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS ස්වයංක්‍රීය බාගැනීම් නීති</translation>
@@ -3152,10 +2803,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Download Torrent</source>
             <translation>ටොරන්ට් බාගන්න</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>බාගත කරන්න</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>බ්‍රවුසරයේ විවෘත කරන්න</translation>
@@ -3176,50 +2824,26 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Mark All Read</source>
             <translation>සියල්ල කියවූ ලෙස සලකුණු කරන්න</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>නම</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>අභිරුචි නම (විකල්ප)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>සුරකින්න</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS හෝ Atom සංග්රහ URL එකතු කරන්න...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>එකතු කරන්න</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>නැවුම් කරමින්…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>සංස්කරණය කරන්න</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ඉවත් කරන්න</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>බාගත කිරීමේ නීති</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>දායකත්ව</translation>
@@ -3232,10 +2856,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Select an article</source>
             <translation>ලිපියක් තෝරන්න</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>විවෘත කරන්න</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>කියවූ ලෙස සලකුණු කරන්න</translation>
@@ -3279,10 +2900,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>New queue</source>
             <translation>නව පෝලිම</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>මකන්න</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>කාලසටහන</translation>
@@ -3295,42 +2913,21 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>One-time downloading</source>
             <translation>එක්-වර බාගැනීම</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>ආවර්තිත සමමුහුර්තකරණය</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Stellar ආරම්භයේදී බාගැනීම අරඹන්න</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>බාගැනීම අරඹන වේලාව</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>වරක්</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>දිනපතා</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>නැවත අරඹන කාල පරතරය</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>පැය</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>විනාඩි</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>බාගැනීම නවතින වේලාව</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>ගොනුවක් අසාර්ථක වූ විට නැවත උත්සාහ ගණන :</translation>
@@ -3339,38 +2936,17 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Open the following file when done:</source>
             <translation>අවසන් වූ පසු පහත ගොනුව විවෘත කරන්න:</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>අවසන් වූ පසු Stellar වසන්න</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>අවසන් වූ පසු පරිගණකය ක්‍රියාවිරහිත කරන්න</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>ක්‍රියාවලි බලෙන් අවසන් කරන්න</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>බාගන්න</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>ගොනු එකවර</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ගොනු නම</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ප්‍රමාණය</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>තත්ත්වය</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>ඉතිරි කාලය</translation>
@@ -3407,18 +2983,12 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Start now</source>
             <translation>දැන් අරඹන්න</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>නවතන්න</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>යොදන්න</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>පෝලිම් ලැයිස්තුවේ පෙන්වීමට නව පෝලිමට නමක් ඇතුළත් කරන්න</translation>
@@ -3427,18 +2997,9 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Queue name</source>
             <translation>පෝලිම් නම</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>කාලසටහන</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>නව පෝලිම</translation>
@@ -3450,10 +3011,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>සම්බන්ධතාව</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>උපරිම සමගාමී බාගැනීම්:</translation>
@@ -3518,22 +3076,13 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Password:</source>
             <translation>මුරපදය:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>ප්‍රවර්ග</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>නම</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>ෆෝල්ඩරයට සුරකින්න</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>බාගැනීම්</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>පෙරනිමි සුරැකුම් බහාලුම:</translation>
@@ -3594,14 +3143,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Show seconds</source>
             <translation>තත්පර පෙන්වන්න</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>පෙරදසුන</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>බ්‍රවුසර අනුකලනය</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>පහත ගොනු වර්ග ස්වයංක්‍රීයව බාගැනීම අරඹන්න:</translation>
@@ -3626,10 +3169,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>අතුරු මඟහැර බ්‍රවුසරයට බාගැනීමට ඉඩ දීමට බාගැනීම් සබැඳියක් ක්ලික් කරන විට මෙම යතුර ඔබාගෙන සිටින්න:</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>වේග සීමාකය</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>ගෝලීය වේග සීමාව සක්‍රීය කරන්න</translation>
@@ -3638,10 +3178,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Maximum speed:</source>
             <translation>උපරිම වේගය:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/තත්</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>ගෝලීය උඩුගත කිරීමේ සීමාව සක්‍රීය කරන්න</translation>
@@ -3658,18 +3195,12 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Enable speed limiter scheduler</source>
             <translation>වේග සීමා කාලසටහන සක්‍රීය කරන්න</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>ඉවත් කරන්න</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>සක්‍රිය කර ඇත</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>බාගන්න</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>උඩුගත කරන්න</translation>
@@ -3690,10 +3221,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Show notification on download error</source>
             <translation>බාගැනීමේ දෝෂයකදී දැනුම්දීම පෙන්වන්න</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>සාමාන්ය</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>බ්‍රවුසරය</translation>
@@ -3790,14 +3318,8 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Open file properties dialog</source>
             <translation>ගොනු ගුණාංග සංවාදය විවෘත කරන්න</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>ගොනුව විවෘත කරන්න</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>ෆෝල්ඩරය විවෘත කරන්න</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>පැය 24 වේලාව</translation>
@@ -3830,10 +3352,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>එය මාරු කිරීමට දින පෙත්තක් ක්ලික් කරන්න. සෑම විනාඩියකටම රීති ඇගයීමට ලක් කෙරේ; පළමු ගැළපෙන රීතිය ජය ගනී. කිසිදු රීතියක් සක්‍රිය නොමැති විට උපලේඛනගත බාගැනීම් සහ උඩුගත කිරීම් සීමා ස්වයංක්‍රීයව ඉවත් කෙරේ.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>පද්ධති තැටියට හකුළන්න</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>පද්ධති තැටියට වසන්න</translation>
@@ -3926,10 +3445,7 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
             <source>Download yt-dlp</source>
             <translation>yt-dlp බාගන්න</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>නැවත පරීක්ෂා කරන්න</translation>
@@ -4038,10 +3554,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 ඔබේ IP ලිපිනය නිරාවරණයෙන් ආරක්ෂා කර ගැනීමට, Stellar VPN ජාල අතුරුමුහුණතකට බැඳ ටොරන්ට් භාවිතා කිරීමට පෙර ඔබේ VPN සක්‍රීය බව තහවුරු කර ගැනීම දැඩි ලෙස නිර්දේශ කෙරේ.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>මම තේරුම් ගතිමි, සබල කරන්න</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>මෙම සැකසුම් .torrent ගොනු සහ චුම්බක සබැඳි සඳහා අදාළ වේ.</translation>
@@ -4106,10 +3619,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>ජාලකරණය</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>උසස්</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>අභිරුචි බිට්ටොරන්ට් පරිශීලක නියෝජිත</translation>
@@ -4182,10 +3692,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>රට අනුව පේර් අවහිර කරන්න</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>එකතු</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>අවහිර කළ රටවල් නැත.</translation>
@@ -4222,18 +3729,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>අනුවාදය</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>නොදන්නා</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>මාර්ගය</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ප්‍රමාණය</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>ඇතුළත් කිරීම්</translation>
@@ -4242,10 +3743,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>අවසන් වෙනස් කළ</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>තත්ත්වය</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>බාගත වෙමින්...</translation>
@@ -4258,10 +3756,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>තොරතුරු නැවුම් කරන්න</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>සංඛ්‍යාලේඛන</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>ඉවත් කළ ඒවා ඇතුළු සියලු ටොරන්ට් හරහා සමුච්චිත හුවමාරු එකතුව.</translation>
@@ -4282,10 +3777,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>සම්පූර්ණ බලපත්‍ර පාඨ THIRD-PARTY-NOTICES.txt හි ඇත, මෙම ස්ථාපනය සමඟ ඇතුළත් කර ඇත.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>සංග්‍රහ ලබා ගැනීම</translation>
@@ -4298,10 +3790,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>සංග්‍රහ නැවුම් කිරීමේ පරතරය</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>මිනිත්තු</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>එකම ධාරක ඉල්ලීම් ප්‍රමාදය</translation>
@@ -4462,14 +3951,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>තෙවන පාර්ශවීය මෘදුකාංග</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>යොදන්න</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>පෙරනිමි මාර්ගය</translation>
@@ -4550,10 +4033,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>පවතින නමුත් පූරණය නොවී</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>මූලාශ්රය: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>මූලාශ්ර URL තවමත් හැඹිලිගත නොවී. update.json වෙතින් IPtoCityDB හැඹිලිගත කිරීමට යාවත්කාලීන පරීක්ෂා කරන්න.</translation>
@@ -4585,18 +4065,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>ව්‍යාපෘතිය සංස්කරණය</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>ව්‍යාපෘතිය මකන්න</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>ප්‍රවර්ග</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>සියලු බාගැනීම්</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>අසම්පූර්ණ</translation>
@@ -4609,49 +4080,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>ග්‍රාබර් ව්‍යාපෘති</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>ටොරන්ට්</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>පෝලිම්</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>බාගනිමින්</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>බෙදාහරිමින්</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>නැවැත්වූ</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>සක්‍රිය</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>අක්‍රිය</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>පරීක්ෂා කරමින්</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>ගෙනයමින්</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>සංඛ්‍යාලේඛන</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>තාරකා සංඛ්යාලේඛන</translation>
@@ -4660,14 +4101,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>සියලු කාලය</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>බාගත කරන ලදී</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>උඩුගත කළ</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>බෙදාගැනීමේ අනුපාතය</translation>
@@ -4688,10 +4123,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>මෙම සැසිය</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4808,57 +4240,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>ස්ටෙලාර් බාගැනීම් කළමනාකරු</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>SDM බාගැනීම්</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>URL එක් කරන්න</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>නැවත ආරම්භ කරන්න</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>නවත්වන්න</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>සියල්ල නවත්වන්න</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>මකන්න</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>අවසන් වූ ඒවා මකන්න</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>විකල්ප</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>කාලසටහන</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>පෝලිම ආරම්භ කරන්න</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>පෝලිම නවත්වන්න</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>ග්‍රැබර්</translation>
@@ -4867,10 +4269,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>සෙවුම් යන්ත්රය</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4909,18 +4308,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>සුරකින ස්ථානය</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>ලෙස සුරකින්න...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>ප්‍රවර්ගය</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>අභිරුචි සුරැකුම් ෆෝල්ඩරය</translation>
@@ -4933,86 +4326,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>ප්‍රවර්ග ෆෝල්ඩරය භාවිත කරන්න</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>විස්තරය</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>ටොරන්ට් සැකසුම්...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>පසුව බාගන්න</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>බාගන්න</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>ටොරන්ට් විවෘත වෙමින්...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1  ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2% අවසන්</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ගොනු</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n අයිතම(ය)</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>නම</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>ප්‍රගතිය</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ප්‍රමාණය</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>ගොනු තොරතුරු නොමැත</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>බලාපොරොත්තු</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>අයිතමය නැවත නම් කරන්න</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>නව ගොනු හෝ ෆෝල්ඩර නමක් ඇතුළත් කරන්න:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>නැවත නම් කරන්න</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>නැවත නම් කරන්න...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>සමකාලීන</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>ටොරන්ට් විවෘත කරමින්...</translation>
@@ -5025,14 +4367,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%n සමකාලීන(යන්)ගෙන් පාරදත්ත බාගනිමින්</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>බීජ</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>ඔබ</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>ටොරන්ට් පාරදත්ත</translation>
@@ -5052,14 +4388,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>වෙබ් සබැඳිය</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>හරි</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>search_plugins ෆෝල්ඩරයට පිටපත් කිරීමට දේශීය .py සෙවුම් ප්ලගින් ගොනුවක් තෝරන්න.</translation>
@@ -5091,18 +4421,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>ස්ථාපිත සෙවුම් ප්ලගින</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>නැවුම් කරන්න</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>නොදන්නා</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>සක්‍රියයි</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>අක්‍රියයි</translation>
@@ -5111,10 +4432,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>අලුත් එකක් ස්ථාපනය කරන්න</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>සෙවුම් ප්ලගින</translation>
@@ -5122,18 +4440,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>නම</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ප්‍රමාණය</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>බෙදන්නන්</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>ලබන්නන්</translation>
@@ -5150,18 +4459,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>විස්තර පිටුව විවෘත කරන්න</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>ටොරන්ට් බාගන්න</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>නම පිටපත් කරන්න</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>මැග්නට් සබැඳිය පිටපත් කරන්න</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>විස්තර පිටු URL පිටපත් කරන්න</translation>
@@ -5174,18 +4477,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>සොයන්න</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>නොදන්නා</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>සෙවුම් ප්‍රතිඵල නැත</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>ප්ලගීන සොයන්න</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>ටොරන්ට් සෙවුම් යන්ත්‍රය</translation>
@@ -5201,14 +4498,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>ටොරන්ට් අනුව වේගය, බෙදාගැනීමේ සීමා, සම වයස් සොයාගැනීම, සහ බාගැනීම් ආකාරය</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>වසන්න</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>යොදන්න</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>කලාප පළල සීමා</translation>
@@ -5229,26 +4520,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>අනුපාතය:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>පෙරනිමි</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>අසීමිත</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>සකසන්න</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>බීජ වපුරන කාලය:</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>විනා</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>අක්‍රිය කාලය:</translation>
@@ -5352,10 +4631,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>සැකසුම් විවෘත කරන්න</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>බ්‍රවුසරයෙන් කුකීස්:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>yt-dlp වෙත කුකීස් ලබා දීමට බ්‍රවුසරයක් තෝරා, නැවත උත්සාහ කරන්න.</translation>
@@ -5425,10 +4701,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>වීඩියෝව සමඟ උපසිරැසි ගොනු බාගන්න</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>භාෂාව:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>භාෂා කේත, උදා: en  ·  en.*,ja  ·  all</translation>
@@ -5487,14 +4760,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>නාලිකාව බාගන්න</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>බාගන්න</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>උසස්</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>දින පෙරහන</translation>
@@ -5587,18 +4854,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>මෙතැනට සුරකින්න:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>ප්‍රවර්ගය</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>ආකෘතිය</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>අවලංගු කරන්න</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>වීඩියෝ බාගැනීම</translation>

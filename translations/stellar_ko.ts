@@ -61,33 +61,23 @@
             <translation>Stellar 다운로드 관리자 v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>다운로드 중: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>시드 중: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>시드 중: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>총계: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>총계: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar 종료 중...</translation>
@@ -159,14 +149,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>확인 후 대기열 단계 사용 시 다운로드가 시작되기 전에 그룹화됩니다.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -206,14 +190,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>찾은 링크만 선택 가능. OK 후 큐 할당.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>배치 다운로드 검토</translation>
@@ -359,14 +337,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>픽셀 너비</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -390,10 +362,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>영구 삭제 (휴지통으로 이동 안 함)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>삭제</translation>
@@ -421,10 +390,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>예</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>아니오</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -519,18 +485,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>찾아보기...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>카테고리</translation>
@@ -609,10 +566,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>데이터 수신 중...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>조립 중...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>다운로드 상태</translation>
@@ -633,10 +587,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>시스템 트레이 최소화</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>상태</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>파일 크기</translation>
@@ -665,14 +616,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>재개 가능</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>예</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>아니오</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>오류 세부 정보</translation>
@@ -697,10 +642,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>일시 정지</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>연결별 시작 위치 및 다운로드 진행</translation>
@@ -768,10 +710,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>이름 변경</translation>
@@ -816,10 +755,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>재다운로드</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>삭제</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>열 설정</translation>
@@ -828,18 +764,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>파일명</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>크기</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>상태</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>남은 시간</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>다운 속도</translation>
@@ -864,18 +791,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>업로드</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>다운로드</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>마지막 시도</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>설명</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>저장</translation>
@@ -970,14 +891,8 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>선택 기억 및 대화상자 다시 표시 안 함. 나중에 옵션 → 다운로드에서 변경할 수 있습니다.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -989,66 +904,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>파일 이동</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>시작</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>중지</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>폴더 열기</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>파일 열기</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>상태</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>크기</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>저장</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>이동</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>주소</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>웹 페이지</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>referer</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>설명</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>로그인</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>비밀번호</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>소스</translation>
@@ -1057,26 +936,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>정보 해시</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>복사</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>메타데이터</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>카테고리</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>노트</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>다운로드</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>국가</translation>
@@ -1085,14 +955,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>포트</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>업로드</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>시드</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>메시지</translation>
@@ -1101,22 +965,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>중지됨</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>다운로드 중</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>이동 중</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>시드 중</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>대기 중</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>문제 발생</translation>
@@ -1141,10 +993,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>일반</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>파일</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>스웜 맵</translation>
@@ -1229,22 +1078,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>새 파일 또는 폴더 이름 입력</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>이름 변경</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>다운로드</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>이름 변경...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>연결된 피어 없음</translation>
@@ -1349,10 +1186,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>티어</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>피어</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>피어 없음</translation>
@@ -1377,10 +1211,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>핑 %1 %2% 완료</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>알 수 없음</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>당신 (이 클라이언트)</translation>
@@ -1397,10 +1228,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>강제 재선고</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>URL 복사</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>트래커 제거</translation>
@@ -1429,10 +1257,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>웹 시드 URL 붙여넣기 (한 줄당 하나)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>유형</translation>
@@ -1581,10 +1406,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 개 결과 발견</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1648,10 +1470,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>템플릿 이름</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>저장</translation>
@@ -1672,10 +1491,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>최근 프로젝트</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>그라버 설정</translation>
@@ -1716,14 +1532,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>고급 &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>로그인</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>비밀번호</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>고급을 눌러 수동 로그인 또는 로그아웃 페이지 비활성화</translation>
@@ -1935,22 +1745,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>마스크</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>추가</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>편집</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>삭제</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>필터 편집</translation>
@@ -1959,18 +1760,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>새 필터</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>카테고리</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>저장</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1982,25 +1774,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>저장된 프로젝트</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>프로젝트</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>옵션</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>실행 중</translation>
@@ -2030,22 +1810,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>시작</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>탐색 중</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>파일 형식</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>크기</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>상태</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>링크</translation>
@@ -2054,10 +1825,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>다운로드</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>저장</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>선택 확인</translation>
@@ -2070,14 +1838,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>프로젝트 편집</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>그래버 설정</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2334,14 +2096,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>참고: 지정된 시간에 스타렐이 시스템 트레이에서 실행 중이어야 예약된 프로젝트를 시작할 수 있습니다.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2365,14 +2121,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>파일 추가 시 링크 텍스트를 다운로드 설명으로 사용</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2384,10 +2134,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>상태: %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>비활성</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>처리된 웹 페이지</translation>
@@ -2400,10 +2147,7 @@ Project</source>
             <source>Advanced</source>
             <translation>고급</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>파일</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>총계</translation>
@@ -2416,14 +2160,8 @@ Project</source>
             <source>Matched</source>
             <translation>일치됨</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>다운로드됨</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2451,10 +2189,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar 는 해당 브라우저의 쿠키를 사용하여 동일한 yt-dlp 항목을 다시 시도합니다.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>다운로드 재시도</translation>
@@ -2491,18 +2226,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>모든 파일 (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>총: %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>완료: %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>다운로드 중: %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>대기: %1</translation>
@@ -2511,18 +2240,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>전체: %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>중지</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>재개</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent 지원 활성화?</translation>
@@ -2549,10 +2269,7 @@ You can turn this off in Settings → Downloads.</source>
 
 설정 → 다운로드에서 이를 끌 수 있습니다.</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>파일 &quot;%1&quot; 을 다운로드할 수 없습니다.</translation>
@@ -2595,14 +2312,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>File</source>
             <translation>파일</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>폴더 열기</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>파일 열기</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>지금 다운로드</translation>
@@ -2615,14 +2326,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Remove</source>
             <translation>삭제</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>재다운로드</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>.torrent 내보내기…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>다운로드</translation>
@@ -2659,10 +2364,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Stop Queue</source>
             <translation>대기열 중지</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>속도 제한기</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>켜기</translation>
@@ -2755,10 +2457,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Columns…</source>
             <translation>열기</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>옵션</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>설정</translation>
@@ -2791,42 +2490,21 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>.torrent 파일 드래그하여 메타데이터 열기</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>검색:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>검색</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>설정 ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>검색 위치:</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>파일명 또는 일부</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>설명</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL/referrer/부모 웹페이지</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>대소문자 구분</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>전체 문자열 일치</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>사이드바 왼쪽으로 이동</translation>
@@ -2875,10 +2553,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Channel Download Progress</source>
             <translation>채널 다운로드 진행</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>나중에 다운로드</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>파일 더 이상 없음</translation>
@@ -2934,18 +2609,12 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Don't add to queue</source>
             <translation>큐에 추가 안 함</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>큐 이름 입력</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>생성</translation>
@@ -2961,14 +2630,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Download Rules</source>
             <translation>다운로드 규칙</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>추가</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>삭제</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>'추가'를 클릭하여 다운로드 규칙을 생성합니다</translation>
@@ -3045,10 +2708,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Leave empty to use default save path</source>
             <translation>기본 저장 경로 사용</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>찾아보기...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>카테고리:</translation>
@@ -3061,10 +2721,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>TORRENT SHARE LIMITS</source>
             <translation>토렌트 공유 제한</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>비율</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>기본</translation>
@@ -3093,14 +2750,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>기본값은 설정 → 토렌트의 전역 공유 제한을 사용합니다.</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS 자동 다운로드 규칙</translation>
@@ -3140,10 +2791,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Download Torrent</source>
             <translation>토렌트 다운로드</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>다운로드</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>브라우저에서 열기</translation>
@@ -3164,50 +2812,26 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Mark All Read</source>
             <translation>전체 읽음 표시</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>이름</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>사용자 지정 이름 (선택)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>저장</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS 또는 Atom 피드 URL 추가...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>추가</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>새로고침 중…</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>편집</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>삭제</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>다운로드 규칙</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>구독</translation>
@@ -3220,10 +2844,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Select an article</source>
             <translation>기사 선택</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>열기</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>읽음 표시</translation>
@@ -3267,10 +2888,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>New queue</source>
             <translation>새 큐</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>삭제</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>일정</translation>
@@ -3283,42 +2901,21 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>One-time downloading</source>
             <translation>한 번 다운로드</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>주기 동기화</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Stellar 시작 시 다운로드 시작</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>시작 시간</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>한 번</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>매일</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>다시 시작 주기</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>시간</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>분</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>다운로드 중지</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>실패 시 재시도 횟수:</translation>
@@ -3327,38 +2924,17 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Open the following file when done:</source>
             <translation>완료 시 다음 파일 열기</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>완료 시 Stellar 종료</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>완료 시 컴퓨터 종료</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>프로세스 강제 종료</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>다운로드</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>동시 다운로드 파일 수</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>파일명</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>크기</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>상태</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>남은 시간</translation>
@@ -3395,18 +2971,12 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Start now</source>
             <translation>지금 시작</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>중지</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>적용</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>새 큐 이름 입력</translation>
@@ -3415,18 +2985,9 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Queue name</source>
             <translation>큐 이름</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>스케줄러</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>새 큐</translation>
@@ -3438,10 +2999,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>연결</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>최대 동시 다운로드:</translation>
@@ -3506,22 +3064,13 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Password:</source>
             <translation>비밀번호:</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>카테고리</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>이름</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>폴더 저장</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>다운로드</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>기본 저장 폴더:</translation>
@@ -3582,14 +3131,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Show seconds</source>
             <translation>초 표시</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>미리보기</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>브라우저 통합</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>다음 파일 형식 자동 다운로드</translation>
@@ -3614,10 +3157,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>가로채기 건너뛰려면 다운로드 링크 클릭 시 이 키를 누르세요</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>속도 제한기</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>전체 속도 제한 활성화</translation>
@@ -3626,10 +3166,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Maximum speed:</source>
             <translation>최대 속도:</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>KB/s</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>전체 업로드 제한 활성화</translation>
@@ -3646,18 +3183,12 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Enable speed limiter scheduler</source>
             <translation>속도 제한 스케줄러 활성화</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>삭제</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>켜기</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>다운로드</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>업로드</translation>
@@ -3678,10 +3209,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Show notification on download error</source>
             <translation>다운로드 오류 시 알림 표시</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>일반</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>브라우저</translation>
@@ -3778,14 +3306,8 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Open file properties dialog</source>
             <translation>속성</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>열기</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>폴더 열기</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>24 시간</translation>
@@ -3818,10 +3340,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>일별 약정 클릭하여 토글. 규칙은 분마다 평가되며, 첫 번째 일치 규칙이 우선합니다. 활성화된 규칙이 없을 경우 다운로드/업로드 제한은 자동으로 초기화됩니다.</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>시스템 트레이로 최소화</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>시스템 트레이로 닫기</translation>
@@ -3914,10 +3433,7 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
             <source>Download yt-dlp</source>
             <translation>yt-dlp 다운로드</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>재확인</translation>
@@ -4024,10 +3540,7 @@ BitTorrent 를 통해 공유한 모든 콘텐츠는 본인의 책임입니다. �
 
 IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar 를 바인딩하고 VPN 이 활성화되었는지 반드시 확인하세요.</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>이해함, 활성화</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>.torrent 파일 및 자석 링크에 적용됩니다.</translation>
@@ -4092,10 +3605,7 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Networking</source>
             <translation>네트워킹</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>고급</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>사용자 지정 BitTorrent 사용자 에이전트</translation>
@@ -4168,10 +3678,7 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Block peers by country</source>
             <translation>국가별 피어 차단</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>추가</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>차단 국가 없음</translation>
@@ -4208,18 +3715,12 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Version</source>
             <translation>버전</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>알 수 없음</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>경로</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>크기</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>항목</translation>
@@ -4228,10 +3729,7 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Last Modified</source>
             <translation>수정일</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>상태</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>다운로드 중...</translation>
@@ -4244,10 +3742,7 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Refresh Info</source>
             <translation>정보 새로고침</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>통계</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>전체 토렌트 누적 전송량 (삭제 포함)</translation>
@@ -4268,10 +3763,7 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>라이선스 텍스트는 THIRD-PARTY-NOTICES.txt 에 있습니다.</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>피드 가져오기</translation>
@@ -4284,10 +3776,7 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Feeds refresh interval</source>
             <translation>피드 새로고침 간격</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>분</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>동일 호스트 요청 지연</translation>
@@ -4448,14 +3937,8 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Third-party software</source>
             <translation>제 3 자 소프트웨어</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>적용</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>기본 라우트</translation>
@@ -4536,10 +4019,7 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Available but not loaded</source>
             <translation>사용 가능但未 로드</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>출처: %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>출처 URL 캐시되지 않았습니다. update.json 에서 IPtoCityDB 를 캐시하려면 업데이트 확인을 사용하세요.</translation>
@@ -4571,18 +4051,9 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Edit Project</source>
             <translation>프로젝트 편집</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>프로젝트 삭제</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>카테고리</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>전체 다운로드</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>미완료</translation>
@@ -4595,49 +4066,19 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>Grabber Projects</source>
             <translation>프로젝트</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>토렌트</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>대기열</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>다운로드 중</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>시드 중</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>중지됨</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>활성</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>비활성</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>확인 중</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>이동 중</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>통계</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar 통계</translation>
@@ -4646,14 +4087,8 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>ALL TIME</source>
             <translation>전체</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>다운로드</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>업로드</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>공유 비율</translation>
@@ -4674,10 +4109,7 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <source>THIS SESSION</source>
             <translation>이번 세션</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4793,57 +4225,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>인바운드 연결 없음, 네트워크 구성 오류</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>Stellar 다운로드 관리자</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>URL 추가</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>계속</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>중지</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>모두 중지</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>삭제</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>완료 삭제</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>옵션</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>스케줄러</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>대기열 시작</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>대기열 중지</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>그래버</translation>
@@ -4852,10 +4254,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>검색 엔진</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4894,18 +4293,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>저장</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>다른 이름으로 저장</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>카테고리</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>사용자 지정 저장 폴더</translation>
@@ -4918,86 +4311,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>카테고리 폴더 사용</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>설명</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>토렌트 설정...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>후로 다운로드</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>다운로드</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>토렌트 열기...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% 완료</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>파일</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n 개 항목</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>이름</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>진행</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>크기</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>파일 정보 없음</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>대기 중</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>이름 변경</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>새 파일 또는 폴더 이름 입력:</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>이름 변경</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>이름 변경...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>피어</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>토렌트 열기 및 메타데이터 읽기...</translation>
@@ -5010,14 +4352,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%n 개의 피어에서 메타데이터 다운로드 중</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>시드</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>당신</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>토렌트 메타데이터</translation>
@@ -5037,14 +4373,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>웹 링크</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>확인</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>검색_plugins 폴더에 복사할 로컬 .py 플러그인 파일 선택</translation>
@@ -5076,18 +4406,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>설치된 검색 플러그인</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>새로고침</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>알 수 없음</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>활성화</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>비활성화</translation>
@@ -5096,10 +4417,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>새로 설치</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>플러그인 검색</translation>
@@ -5107,18 +4425,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>이름</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>크기</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>시드</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>리치</translation>
@@ -5135,18 +4444,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>설명 페이지 열기</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>토렌트 다운로드</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>이름 복사</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>자석 링크 복사</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>설명 페이지 URL 복사</translation>
@@ -5159,18 +4462,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>검색</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>알 수 없음</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>검색 결과 없음</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>검색 플러그인</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>토렌트 검색 엔진</translation>
@@ -5186,14 +4483,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>토렌트당 속도, 공유 제한, 피어 발견, 다운로드 모드</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>닫기</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>적용</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>대역폭 제한</translation>
@@ -5214,26 +4505,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>비율:</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>기본값</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>무제한</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>설정</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>시드 시간</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>분</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>비활성 시간</translation>
@@ -5337,10 +4616,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>설정 열기</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>브라우저 쿠키:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>쿠키를 yt-dlp 에 전달할 브라우저 선택 후 재시도하세요.</translation>
@@ -5410,10 +4686,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>비디오와 함께 자막 파일 다운로드</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>언어:</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>언어 코드 (예: en, en.*, ja, all)</translation>
@@ -5471,14 +4744,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>다운로드 채널</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>다운로드</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>고급</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>날짜 필터</translation>
@@ -5571,18 +4838,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>저장 위치:</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>카테고리:</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>포맷:</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>취소</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>동영상 다운로드</translation>

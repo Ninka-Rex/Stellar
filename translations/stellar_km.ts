@@ -61,37 +61,25 @@
             <translation>13. Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>
-Down: %1  Up: %2</source>
+            <source>Down: %1  Up: %2</source>
             <translation>14. 
 ↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>
-Downloading: %1</source>
+            <source>Downloading: %1</source>
             <translation>15. 
 ទាញយក: %1</translation>
         </message>
         <message>
-            <source>  Seeding: %1</source>
+            <source>Seeding: %1</source>
             <translation>16.   បណ្ដុះ: %1</translation>
         </message>
+        
         <message>
-            <source>
-Seeding: %1</source>
-            <translation>17. 
-បណ្ដុះ: %1</translation>
-        </message>
-        <message>
-            <source>  Total: %1</source>
+            <source>Total: %1</source>
             <translation>18.   សរុប: %1</translation>
         </message>
-        <message>
-            <source>
-Total: %1</source>
-            <translation>19. 
-សរុប: %1</translation>
-        </message>
+        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>20. Stellar កំពុងបិទ...</translation>
@@ -163,14 +151,8 @@ Total: %1</source>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>ប្រើជំហានជួរបន្ទាប់ពីយល់ព្រម បើអ្នកចង់ដាក់ទាញយកទាំងនេះជាក្រុមមុនពេលចាប់ផ្ដើម។</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -210,14 +192,8 @@ Total: %1</source>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>មានតែតំណដែលសម្គាល់ថារកឃើញប៉ុណ្ណោះដែលអាចជ្រើសរើសបាន។ ការដាក់ចូលជួរនៅតែកើតឡើងបន្ទាប់ពីយល់ព្រម។</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
         <message>
             <source>Batch download review</source>
             <translation>ពិនិត្យទាញយកជាក្រុម</translation>
@@ -363,14 +339,8 @@ Total: %1</source>
             <source>pixels wide</source>
             <translation>ភីកសែលទទឹង</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -394,10 +364,7 @@ Total: %1</source>
             <source>Permanently delete (don't move to trash)</source>
             <translation>លុបជាអចិន្ត្រៃយ៍ (កុំផ្លាស់ទៅធុងសំរាម)</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
         <message>
             <source>Delete</source>
             <translation>លុប</translation>
@@ -425,10 +392,7 @@ Total: %1</source>
             <source>Yes</source>
             <translation>បាទ/ចាស</translation>
         </message>
-        <message>
-            <source>No</source>
-            <translation>ទេ</translation>
-        </message>
+        
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -523,18 +487,9 @@ Total: %1</source>
             <source>Browse...</source>
             <translation>រកមើល...</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Category</source>
             <translation>ប្រភេទ</translation>
@@ -613,10 +568,7 @@ Total: %1</source>
             <source>Receiving data...</source>
             <translation>កំពុងទទួលទិន្នន័យ...</translation>
         </message>
-        <message>
-            <source>Assembling...</source>
-            <translation>កំពុងផ្គុំ...</translation>
-        </message>
+        
         <message>
             <source>Download status</source>
             <translation>ស្ថានភាពទាញយក</translation>
@@ -637,10 +589,7 @@ Total: %1</source>
             <source>Minimize to system tray</source>
             <translation>បង្រួមទៅថាសប្រព័ន្ធ</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>ស្ថានភាព</translation>
-        </message>
+        
         <message>
             <source>File size</source>
             <translation>ទំហំឯកសារ</translation>
@@ -669,14 +618,8 @@ Total: %1</source>
             <source>Resume capability</source>
             <translation>អាចបន្តបាន</translation>
         </message>
-        <message>
-            <source>Yes</source>
-            <translation>បាទ</translation>
-        </message>
-        <message>
-            <source>No</source>
-            <translation>ទេ</translation>
-        </message>
+        
+        
         <message>
             <source>Error detail</source>
             <translation>ព័ត៌មានកំហុស</translation>
@@ -701,10 +644,7 @@ Total: %1</source>
             <source>Pause</source>
             <translation>ផ្អាក</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>ទីតាំងចាប់ផ្ដើម និងវឌ្ឍនភាពទាញយកតាមការតភ្ជាប់</translation>
@@ -772,10 +712,7 @@ Total: %1</source>
     </context>
     <context>
         <name>DownloadTable</name>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
         <message>
             <source>Rename</source>
             <translation>ប្ដូរឈ្មោះ</translation>
@@ -820,10 +757,7 @@ Total: %1</source>
             <source>Redownload</source>
             <translation>ទាញយកឡើងវិញ</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>លុប</translation>
-        </message>
+        
         <message>
             <source>Columns Settings</source>
             <translation>ការកំណត់ជួរឈរ</translation>
@@ -832,18 +766,9 @@ Total: %1</source>
             <source>File Name</source>
             <translation>ឈ្មោះឯកសារ</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ទំហំ</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>ស្ថានភាព</translation>
-        </message>
-        <message>
-            <source>Time left</source>
-            <translation>ពេលនៅសល់</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Down Speed</source>
             <translation>↓</translation>
@@ -868,18 +793,12 @@ Total: %1</source>
             <source>Uploaded</source>
             <translation>បានផ្ទុកឡើង</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>បានទាញយក</translation>
-        </message>
+        
         <message>
             <source>Last try date</source>
             <translation>កាលបរិច្ឆេទសាកចុងក្រោយ</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>ការពិពណ៌នា</translation>
-        </message>
+        
         <message>
             <source>Save to</source>
             <translation>រក្សាទុកទៅ</translation>
@@ -975,14 +894,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ចងចាំជម្រើសរបស់ខ្ញុំ ហើយកុំបង្ហាញប្រអប់នេះម្តងទៀត។
 អ្នកអាចផ្លាស់ប្តូរវានៅក្នុង ជម្រើស → ការទាញយក នៅពេលក្រោយ។</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -994,66 +907,30 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>ផ្លាស់ទីឯកសារទៅ...</translation>
         </message>
-        <message>
-            <source>Start</source>
-            <translation>ចាប់ផ្ដើម</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>បញ្ឈប់</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>បើកថត</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Open file</source>
             <translation>បើកឯកសារ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>ស្ថានភាព</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ទំហំ</translation>
-        </message>
-        <message>
-            <source>Save to</source>
-            <translation>រក្សាទុក</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Move</source>
             <translation>ផ្លាស់ទី</translation>
         </message>
-        <message>
-            <source>Address</source>
-            <translation>អាសយដ្ឋាន</translation>
-        </message>
+        
         <message>
             <source>Web page</source>
             <translation>គេហទំព័រ</translation>
         </message>
-        <message>
-            <source>Referer</source>
-            <translation>អ្នកយោង</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>ការពិពណ៌នា</translation>
-        </message>
-        <message>
-            <source>Login</source>
-            <translation>ចូល</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>ពាក្យសម្ងាត់</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Source</source>
             <translation>ប្រភព</translation>
@@ -1062,26 +939,17 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>សញ្ញាសម្គាល់ព័ត៌មាន</translation>
         </message>
-        <message>
-            <source>Copy</source>
-            <translation>ចម្លង</translation>
-        </message>
+        
         <message>
             <source>Metadata</source>
             <translation>ទិន្នន័យមេតា</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>ប្រភេទ</translation>
-        </message>
+        
         <message>
             <source>Note</source>
             <translation>កំណត់ចំណាំ</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>បានទាញយក</translation>
-        </message>
+        
         <message>
             <source>Country</source>
             <translation>ប្រទេស</translation>
@@ -1090,14 +958,8 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>ច្រក</translation>
         </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>បានផ្ទុកឡើង</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>អ្នកផ្តល់</translation>
-        </message>
+        
+        
         <message>
             <source>Message</source>
             <translation>សារ</translation>
@@ -1106,22 +968,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>បានបញ្ឈប់</translation>
         </message>
-        <message>
-            <source>Downloading</source>
-            <translation>កំពុងទាញយក</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>កំពុងផ្លាស់ទី</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>កំពុងផ្តល់</translation>
-        </message>
-        <message>
-            <source>Queued</source>
-            <translation>ក្នុងជួរ</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Problem</source>
             <translation>បញ្ហា</translation>
@@ -1146,10 +996,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>ទូទៅ</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ឯកសារ</translation>
-        </message>
+        
         <message>
             <source>Swarm Map</source>
             <translation>ផែនទីហ្វូង</translation>
@@ -1234,22 +1081,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>បញ្ចូលឈ្មោះឯកសារឬថតថ្មី៖</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>ប្ដូរឈ្មោះ</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ទាញយក</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>ប្ដូរឈ្មោះ...</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>No peers connected</source>
             <translation>គ្មានមិត្តភ័ត្រតភ្ជាប់</translation>
@@ -1354,10 +1189,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>ថ្នាក់</translation>
         </message>
-        <message>
-            <source>Peers</source>
-            <translation>មិត្តភ័ត</translation>
-        </message>
+        
         <message>
             <source>0 known peers</source>
             <translation>០ មិត្តភ័តដែលស្គាល់</translation>
@@ -1382,10 +1214,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% រួចរាល់</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>មិនស្គាល់</translation>
-        </message>
+        
         <message>
             <source>You (this client)</source>
             <translation>អ្នក (ម៉ាស៊ីននេះ)</translation>
@@ -1402,10 +1231,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>បង្ខំប្រកាសឡើងវិញ</translation>
         </message>
-        <message>
-            <source>Copy URL</source>
-            <translation>ចម្លង URL</translation>
-        </message>
+        
         <message>
             <source>Remove tracker</source>
             <translation>ដក tracker</translation>
@@ -1434,10 +1260,7 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>បិទភ្ជាប់ URL web seed - មួយក្នុងមួយបន្ទាត់។ URL seeds (BEP-19) និង HTTP seeds (BEP-17) ត្រូវបានទទួលយកទាំងពីរ។</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
+        
         <message>
             <source>Type</source>
             <translation>ប្រភេទ</translation>
@@ -1586,10 +1409,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>រកឃើញ %1 លទ្ធផល។</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1653,10 +1473,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>ឈ្មោះគំរូ</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
         <message>
             <source>Save</source>
             <translation>រក្សាទុក</translation>
@@ -1677,10 +1494,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>គម្រោងថ្មីៗ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
+        
         <message>
             <source>Grabber settings</source>
             <translation>ការកំណត់ Grabber</translation>
@@ -1721,14 +1535,8 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>កម្រិតខ្ពស់ &gt;&gt;</translation>
         </message>
-        <message>
-            <source>Login</source>
-            <translation>ចូល</translation>
-        </message>
-        <message>
-            <source>Password</source>
-            <translation>ពាក្យសម្ងាត់</translation>
-        </message>
+        
+        
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>ចុច កម្រិតខ្ពស់ ដើម្បីបើកការចូលដោយដៃ ឬបិទទំព័រចាកចេញ។</translation>
@@ -1940,22 +1748,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>របាំង</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>បន្ថែម</translation>
-        </message>
+        
         <message>
             <source>Edit</source>
             <translation>កែសម្រួល</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>លុប</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
         <message>
             <source>Edit filter</source>
             <translation>កែសម្រួលតម្រង</translation>
@@ -1964,18 +1763,9 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>តម្រងថ្មី</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>ប្រភេទ</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>រក្សាទុក</translation>
-        </message>
+        
+        
+        
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1987,25 +1777,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>គម្រោងដែលបានរក្សាទុក</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        <message>
-            <source>Project</source>
-            <translation>គម្រោង</translation>
-        </message>
-        <message>
-            <source>Options</source>
-            <translation>ជម្រើស</translation>
-        </message>
+        
+        
         <message>
             <source>Running</source>
             <translation>កំពុងដំណើរការ</translation>
@@ -2035,22 +1813,13 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>ចាប់ផ្តើមរុករក</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ឈ្មោះឯកសារ</translation>
-        </message>
+        
         <message>
             <source>File Type</source>
             <translation>ប្រភេទឯកសារ</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ទំហំ</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>ស្ថានភាព</translation>
-        </message>
+        
+        
         <message>
             <source>Link Text</source>
             <translation>អត្ថបទតំណ</translation>
@@ -2059,10 +1828,7 @@ Exploring</source>
             <source>Download from</source>
             <translation>ទាញយកពី</translation>
         </message>
-        <message>
-            <source>Save to</source>
-            <translation>រក្សាទុកទៅ</translation>
-        </message>
+        
         <message>
             <source>Check selected</source>
             <translation>ធីកដែលបានជ្រើស</translation>
@@ -2075,14 +1841,8 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>កែសម្រួលគម្រោងបច្ចុប្បន្ន</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
-        <message>
-            <source>Grabber settings</source>
-            <translation>ការកំណត់ឧបករណ៍ចាប់</translation>
-        </message>
+        
+        
         <message>
             <source>Stop
 Exploring</source>
@@ -2344,14 +2104,8 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>ចំណាំ៖ Stellar ត្រូវតែដំណើរការក្នុងថាសប្រព័ន្ធនៅពេលកំណត់ ដើម្បីចាប់ផ្តើមគម្រោងដែលបានកំណត់ពេល។</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2375,14 +2129,8 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>ប្រើអត្ថបទតំណជាការពិពណ៌នាទាញយក ពេលបន្ថែមឯកសារទៅបញ្ជីមេរបស់ Stellar</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2394,10 +2142,7 @@ Project</source>
             <source>Status: %1</source>
             <translation>ស្ថានភាព៖ %1</translation>
         </message>
-        <message>
-            <source>Idle</source>
-            <translation>ទំនេរ</translation>
-        </message>
+        
         <message>
             <source>Web pages processed</source>
             <translation>ទំព័របានដំណើរការ</translation>
@@ -2410,10 +2155,7 @@ Project</source>
             <source>Advanced</source>
             <translation>កម្រិតខ្ពស់</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ឯកសារ</translation>
-        </message>
+        
         <message>
             <source>Total</source>
             <translation>សរុប</translation>
@@ -2426,14 +2168,8 @@ Project</source>
             <source>Matched</source>
             <translation>បានផ្គូផ្គង</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>បានទាញយក</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Main</name>
@@ -2461,10 +2197,7 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar នឹងព្យាយាមម្តងទៀតនូវធាតុ yt-dlp ដដែលជាមួយខូគីរបស់កម្មវិធីរុករកនោះ។</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
         <message>
             <source>Retry Download</source>
             <translation>ព្យាយាមទាញយកម្តងទៀត</translation>
@@ -2501,18 +2234,12 @@ Project</source>
             <source>All files (*)</source>
             <translation>ឯកសារទាំងអស់ (*)</translation>
         </message>
-        <message>
-            <source>Total: %1</source>
-            <translation>សរុប៖ %1</translation>
-        </message>
+        
         <message>
             <source>Completed: %1</source>
             <translation>បានបញ្ចប់៖ %1</translation>
         </message>
-        <message>
-            <source>Downloading: %1</source>
-            <translation>កំពុងទាញយក៖ %1</translation>
-        </message>
+        
         <message>
             <source>Queued: %1</source>
             <translation>ក្នុងជួរ៖ %1</translation>
@@ -2521,18 +2248,9 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>សរុប៖ %1%</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>បញ្ឈប់</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>បន្ត</translation>
-        </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>បើកជំនួយ BitTorrent?</translation>
@@ -2565,10 +2283,7 @@ You can turn this off in Settings → Downloads.</source>
 
 អ្នកអាចបិទវានៅក្នុង ការកំណត់ → ការទាញយក។</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>ឯកសារ “%1” មិនអាចទាញយកបានទេ។</translation>
@@ -2611,14 +2326,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>ឯកសារ</translation>
         </message>
-        <message>
-            <source>Open Folder</source>
-            <translation>បើកថត</translation>
-        </message>
-        <message>
-            <source>Open File</source>
-            <translation>បើកឯកសារ</translation>
-        </message>
+        
+        
         <message>
             <source>Download Now</source>
             <translation>ទាញយកឥឡូវ</translation>
@@ -2631,14 +2340,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>ដកចេញ</translation>
         </message>
-        <message>
-            <source>Redownload</source>
-            <translation>ទាញយកឡើងវិញ</translation>
-        </message>
-        <message>
-            <source>Export .torrent…</source>
-            <translation>នាំចេញ .torrent…</translation>
-        </message>
+        
+        
         <message>
             <source>Downloads</source>
             <translation>ការទាញយក</translation>
@@ -2675,10 +2378,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>បញ្ឈប់ជួរ</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>កំណត់ល្បឿន</translation>
-        </message>
+        
         <message>
             <source>Turn On</source>
             <translation>បើក</translation>
@@ -2771,10 +2471,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>ជួរឈរ…</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>ជម្រើស</translation>
-        </message>
+        
         <message>
             <source>Preferences…</source>
             <translation>ចំណូលចិត្ត…</translation>
@@ -2807,42 +2504,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>ទម្លាក់ឯកសារ .torrent ដើម្បីបើកទិន្នន័យមេតា</translation>
         </message>
-        <message>
-            <source>Find:</source>
-            <translation>ស្វែងរក:</translation>
-        </message>
-        <message>
-            <source>Find</source>
-            <translation>ស្វែងរក</translation>
-        </message>
+        
+        
         <message>
             <source>Settings ▾</source>
             <translation>ការកំណត់ ▾</translation>
         </message>
-        <message>
-            <source>Search in:</source>
-            <translation>ស្វែងរកក្នុង</translation>
-        </message>
-        <message>
-            <source>File name or part of the name</source>
-            <translation>ឈ្មោះឯកសារ ឬផ្នែកនៃឈ្មោះ</translation>
-        </message>
-        <message>
-            <source>Description</source>
-            <translation>ការពិពណ៌នា</translation>
-        </message>
+        
+        
+        
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / អ្នកយោង / ទំព័រមេ</translation>
         </message>
-        <message>
-            <source>Match case</source>
-            <translation>ផ្គូផ្គងអក្សរតូចធំ</translation>
-        </message>
-        <message>
-            <source>Match whole string only</source>
-            <translation>ផ្គូផ្គងតែខ្សែអក្សរទាំងមូល</translation>
-        </message>
+        
+        
         <message>
             <source>Move sidebar to left</source>
             <translation>ផ្លាស់របារចំហៀងទៅឆ្វេង</translation>
@@ -2891,10 +2567,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>វឌ្ឍនភាពទាញយកឆានែល</translation>
         </message>
-        <message>
-            <source>Download Later</source>
-            <translation>ទាញយកពេលក្រោយ</translation>
-        </message>
+        
         <message>
             <source>File No Longer Available</source>
             <translation>ឯកសារលែងមានទៀត</translation>
@@ -2950,18 +2623,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>7. កុំបន្ថែមទៅជួរ</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>8. យល់ព្រម</translation>
-        </message>
+        
         <message>
             <source>Enter queue name</source>
             <translation>9. បញ្ចូលឈ្មោះជួរ</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>10. បោះបង់</translation>
-        </message>
+        
         <message>
             <source>Create</source>
             <translation>11. បង្កើត</translation>
@@ -2977,14 +2644,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>13. ច្បាប់ទាញយក</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>14. បន្ថែម</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>15. ដកចេញ</translation>
-        </message>
+        
+        
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>16. ចុច &quot;បន្ថែម&quot; ដើម្បីបង្កើតច្បាប់ទាញយក</translation>
@@ -3061,10 +2722,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>9. ទុកទទេដើម្បីប្រើផ្លូវរក្សាទុកលំនាំដើម</translation>
         </message>
-        <message>
-            <source>Browse...</source>
-            <translation>10. រកមើល...</translation>
-        </message>
+        
         <message>
             <source>Category:</source>
             <translation>11. ប្រភេទ៖</translation>
@@ -3077,10 +2735,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>13. ដែនកំណត់ចែករំលែក Torrent</translation>
         </message>
-        <message>
-            <source>Ratio</source>
-            <translation>14. អនុបាត</translation>
-        </message>
+        
         <message>
             <source>Default</source>
             <translation>15. លំនាំដើម</translation>
@@ -3109,14 +2764,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>21. &quot;លំនាំដើម&quot; ប្រើដែនកំណត់ចែករំលែកសកលដែលបានកំណត់ក្នុង ការកំណត់ → Torrents។</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>22. បោះបង់</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>23. យល់ព្រម</translation>
-        </message>
+        
+        
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>24. ច្បាប់ទាញយកស្វ័យប្រវត្តិ RSS</translation>
@@ -3156,10 +2805,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>ទាញយក Torrent</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ទាញយក</translation>
-        </message>
+        
         <message>
             <source>Open in Browser</source>
             <translation>បើកក្នុងកម្មវិធីរុករក</translation>
@@ -3180,50 +2826,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>សម្គាល់ទាំងអស់ថាបានអាន</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>ឈ្មោះ</translation>
-        </message>
+        
         <message>
             <source>Custom name (optional)</source>
             <translation>ឈ្មោះផ្ទាល់ខ្លួន (ជម្រើស)</translation>
         </message>
-        <message>
-            <source>URL</source>
-            <translation>URL</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>Save</source>
-            <translation>រក្សាទុក</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>បន្ថែម URL មតិព័ត៌មាន RSS ឬ Atom...</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>បន្ថែម</translation>
-        </message>
+        
         <message>
             <source>Refreshing…</source>
             <translation>កំពុងធ្វើឱ្យស្រស់...</translation>
         </message>
-        <message>
-            <source>Edit</source>
-            <translation>កែសម្រួល</translation>
-        </message>
-        <message>
-            <source>Remove</source>
-            <translation>ដកចេញ</translation>
-        </message>
-        <message>
-            <source>Download Rules</source>
-            <translation>ច្បាប់ទាញយក</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Subscriptions</source>
             <translation>ការជាវ</translation>
@@ -3236,10 +2858,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>ជ្រើសអត្ថបទ</translation>
         </message>
-        <message>
-            <source>Open</source>
-            <translation>បើក</translation>
-        </message>
+        
         <message>
             <source>Mark Read</source>
             <translation>សម្គាល់អាន</translation>
@@ -3283,10 +2902,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>ជួរថ្មី</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>លុប</translation>
-        </message>
+        
         <message>
             <source>Schedule</source>
             <translation>កាលវិភាគ</translation>
@@ -3299,42 +2915,21 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>ទាញយកម្ដង</translation>
         </message>
-        <message>
-            <source>Periodic synchronization</source>
-            <translation>ធ្វើសមកាលកម្មតាមកាលកំណត់</translation>
-        </message>
+        
         <message>
             <source>Start download on Stellar startup</source>
             <translation>ចាប់ផ្ដើមទាញយកពេល Stellar ចាប់ផ្ដើម</translation>
         </message>
-        <message>
-            <source>Start download at</source>
-            <translation>ចាប់ផ្ដើមទាញយកនៅ</translation>
-        </message>
-        <message>
-            <source>Once at</source>
-            <translation>ម្ដងនៅ</translation>
-        </message>
-        <message>
-            <source>Daily</source>
-            <translation>រៀងរាល់ថ្ងៃ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Start again every</source>
             <translation>ចាប់ផ្ដើមម្ដងទៀតរៀងរាល់</translation>
         </message>
-        <message>
-            <source>hours</source>
-            <translation>ម៉ោង</translation>
-        </message>
-        <message>
-            <source>min</source>
-            <translation>នាទី</translation>
-        </message>
-        <message>
-            <source>Stop download at</source>
-            <translation>បញ្ឈប់ការទាញយកនៅ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>ចំនួននៃការព្យាយាមឡើងវិញសម្រាប់ឯកសារនីមួយៗ ប្រសិនបើការទាញយកបរាជ័យ៖</translation>
@@ -3343,38 +2938,17 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>បើកឯកសារខាងក្រោមនៅពេលរួចរាល់៖</translation>
         </message>
-        <message>
-            <source>Exit Stellar when done</source>
-            <translation>ចាកចេញពី Stellar នៅពេលរួចរាល់</translation>
-        </message>
-        <message>
-            <source>Turn off computer when done</source>
-            <translation>បិទកុំព្យូទ័រពេលរួចរាល់</translation>
-        </message>
-        <message>
-            <source>Force processes to terminate</source>
-            <translation>បង្ខំឱ្យដំណើរការបញ្ចប់</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ទាញយក</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>files at the same time</source>
             <translation>ឯកសារក្នុងពេលតែមួយ</translation>
         </message>
-        <message>
-            <source>File Name</source>
-            <translation>ឈ្មោះឯកសារ</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ទំហំ</translation>
-        </message>
-        <message>
-            <source>Status</source>
-            <translation>ស្ថានភាព</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Time Left</source>
             <translation>ម៉ោងដែលនៅសល់</translation>
@@ -3411,18 +2985,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>ចាប់ផ្ដើមឥឡូវនេះ</translation>
         </message>
-        <message>
-            <source>Stop</source>
-            <translation>ឈប់</translation>
-        </message>
+        
         <message>
             <source>Apply</source>
             <translation>អនុវត្ត</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
+        
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>បញ្ចូលឈ្មោះសម្រាប់ជួរថ្មីដែលនឹងបង្ហាញក្នុងបញ្ជីជួរ</translation>
@@ -3431,18 +2999,9 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>ឈ្មោះជួរ</translation>
         </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>កម្មវិធីកំណត់ពេល</translation>
-        </message>
+        
+        
+        
         <message>
             <source>New Queue</source>
             <translation>ជួរថ្មី</translation>
@@ -3454,10 +3013,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        <message>
-            <source>Connection</source>
-            <translation>ការតភ្ជាប់</translation>
-        </message>
+        
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>ទាញយកដំណាលគ្នាអតិបរមា៖</translation>
@@ -3522,22 +3078,13 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>ពាក្យសម្ងាត់៖</translation>
         </message>
-        <message>
-            <source>Categories</source>
-            <translation>ប្រភេទ</translation>
-        </message>
-        <message>
-            <source>Name</source>
-            <translation>ឈ្មោះ</translation>
-        </message>
+        
+        
         <message>
             <source>Save to folder</source>
             <translation>រក្សាទុកទៅថត</translation>
         </message>
-        <message>
-            <source>Downloads</source>
-            <translation>ការទាញយក</translation>
-        </message>
+        
         <message>
             <source>Default save folder:</source>
             <translation>ថតរក្សាទុកលំនាំដើម៖</translation>
@@ -3598,14 +3145,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>បង្ហាញវិនាទី</translation>
         </message>
-        <message>
-            <source>Preview</source>
-            <translation>មើលជាមុន</translation>
-        </message>
-        <message>
-            <source>Browser Integration</source>
-            <translation>សមាហរណកម្មកម្មវិធីរុករក</translation>
-        </message>
+        
+        
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>ចាប់ផ្តើមទាញយកប្រភេទឯកសារខាងក្រោមដោយស្វ័យប្រវត្តិ៖</translation>
@@ -3630,10 +3171,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>សង្កត់គ្រាប់ចុចនេះពេលចុចតំណទាញយក ដើម្បីរំលងការស្ទាក់ចាប់ ហើយឲ្យកម្មវិធីរុករកទាញយក៖</translation>
         </message>
-        <message>
-            <source>Speed Limiter</source>
-            <translation>កំណត់ល្បឿន</translation>
-        </message>
+        
         <message>
             <source>Enable global speed limit</source>
             <translation>បើកកំណត់ល្បឿនសកល</translation>
@@ -3642,10 +3180,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>ល្បឿនអតិបរមា៖</translation>
         </message>
-        <message>
-            <source>KB/s</source>
-            <translation>គីឡូបៃ/វិនាទី</translation>
-        </message>
+        
         <message>
             <source>Enable global upload limit</source>
             <translation>បើកកំណត់ផ្ទុកឡើងសកល</translation>
@@ -3662,18 +3197,12 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>បើកកម្មវិធីកំណត់ពេលល្បឿន</translation>
         </message>
-        <message>
-            <source>Remove</source>
-            <translation>ដកចេញ</translation>
-        </message>
+        
         <message>
             <source>On</source>
             <translation>បើក</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ទាញយក</translation>
-        </message>
+        
         <message>
             <source>Upload</source>
             <translation>ផ្ទុកឡើង</translation>
@@ -3694,10 +3223,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>បង្ហាញការជូនដំណឹងពេលទាញយកមានបញ្ហា</translation>
         </message>
-        <message>
-            <source>General</source>
-            <translation>ទូទៅ</translation>
-        </message>
+        
         <message>
             <source>Browser</source>
             <translation>កម្មវិធីរុករក</translation>
@@ -3794,14 +3320,8 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>បើកប្រអប់លក្ខណៈសម្បត្តិឯកសារ</translation>
         </message>
-        <message>
-            <source>Open file</source>
-            <translation>បើកឯកសារ</translation>
-        </message>
-        <message>
-            <source>Open folder</source>
-            <translation>បើកថត</translation>
-        </message>
+        
+        
         <message>
             <source>24-hour time</source>
             <translation>ម៉ោង 24</translation>
@@ -3834,10 +3354,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>ចុចថ្នាំងថ្ងៃដើម្បីបិទបើក។ ច្បាប់ត្រូវបានវាយតម្លៃរៀងរាល់នាទី; ច្បាប់ដែលត្រូវគ្នាដំបូងឈ្នះ។ ដែនកំណត់ទាញយក និងផ្ទុកឡើងដែលបានកំណត់ពេលត្រូវបានសម្អាតដោយស្វ័យប្រវត្តិនៅពេលគ្មានច្បាប់សកម្ម។</translation>
         </message>
-        <message>
-            <source>Minimize to system tray</source>
-            <translation>បង្រួមទៅថាសប្រព័ន្ធ</translation>
-        </message>
+        
         <message>
             <source>Close to system tray</source>
             <translation>បិទទៅថាសប្រព័ន្ធ</translation>
@@ -3930,10 +3447,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>ទាញយក yt-dlp</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
         <message>
             <source>Re-check</source>
             <translation>1. ពិនិត្យឡើងវិញ</translation>
@@ -4042,10 +3556,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 វាត្រូវបានណែនាំយ៉ាងខ្លាំងឱ្យភ្ជាប់ Stellar ទៅនឹងចំណុចប្រទាក់បណ្តាញ VPN ហើយផ្ទៀងផ្ទាត់ថា VPN របស់អ្នកសកម្មមុនពេលប្រើ torrents ដើម្បីការពារអាសយដ្ឋាន IP របស់អ្នកពីការលាតត្រដាង។</translation>
         </message>
-        <message>
-            <source>I Understand, Enable</source>
-            <translation>24. ខ្ញុំយល់ហើយ បើកដំណើរការ</translation>
-        </message>
+        
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>25. ការកំណត់ទាំងនេះអនុវត្តចំពោះឯកសារ .torrent និងតំណ magnet។</translation>
@@ -4110,10 +3621,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>បណ្តាញ</translation>
         </message>
-        <message>
-            <source>Advanced</source>
-            <translation>កម្រិតខ្ពស់</translation>
-        </message>
+        
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>ភ្នាក់ងារអ្នកប្រើ BitTorrent ផ្ទាល់ខ្លួន</translation>
@@ -4186,10 +3694,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>រារាំងមិត្តភ័ក្តិតាមប្រទេស</translation>
         </message>
-        <message>
-            <source>Add</source>
-            <translation>បន្ថែម</translation>
-        </message>
+        
         <message>
             <source>No blocked countries.</source>
             <translation>គ្មានប្រទេសដែលបានរារាំង។</translation>
@@ -4226,18 +3731,12 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>កំណែ</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>មិនស្គាល់</translation>
-        </message>
+        
         <message>
             <source>Path</source>
             <translation>ផ្លូវ</translation>
         </message>
-        <message>
-            <source>Size</source>
-            <translation>ទំហំ</translation>
-        </message>
+        
         <message>
             <source>Entries</source>
             <translation>ធាតុ</translation>
@@ -4246,10 +3745,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>កែប្រែចុងក្រោយ</translation>
         </message>
-        <message>
-            <source>Status</source>
-            <translation>ស្ថានភាព</translation>
-        </message>
+        
         <message>
             <source>Downloading...</source>
             <translation>កំពុងទាញយក...</translation>
@@ -4262,10 +3758,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>ធ្វើឱ្យព័ត៌មានស្រស់</translation>
         </message>
-        <message>
-            <source>Statistics</source>
-            <translation>ស្ថិតិ</translation>
-        </message>
+        
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>សរុបការផ្ទេរបង្គរលើគ្រប់ torrent រួមទាំងដែលបានលុបចេញ។</translation>
@@ -4286,10 +3779,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>អត្ថបទអាជ្ញាបណ្ណពេញមានក្នុង THIRD-PARTY-NOTICES.txt រួមជាមួយការដំឡើងនេះ។</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
         <message>
             <source>Feed Fetching</source>
             <translation>ការទាញយកមតិព័ត៌មាន</translation>
@@ -4302,10 +3792,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>ចន្លោះពេលធ្វើឱ្យមតិព័ត៌មានស្រស់</translation>
         </message>
-        <message>
-            <source>minutes</source>
-            <translation>នាទី</translation>
-        </message>
+        
         <message>
             <source>Same host request delay</source>
             <translation>ការពន្យាពេលស្នើសុំម៉ាស៊ីនដូចគ្នា</translation>
@@ -4466,14 +3953,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>កម្មវិធីភាគីទីបី</translation>
         </message>
-        <message>
-            <source>Apply</source>
-            <translation>អនុវត្ត</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
         <message>
             <source>Default route</source>
             <translation>ផ្លូវលំនាំដើម</translation>
@@ -4554,10 +4035,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>មានតែមិនបានផ្ទុក</translation>
         </message>
-        <message>
-            <source>Source: %1</source>
-            <translation>ប្រភព៖ %1</translation>
-        </message>
+        
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL ប្រភពមិនទាន់ឃ្លាំង។ ប្រើពិនិត្យបច្ចុប្បន្នភាពដើម្បីឃ្លាំង IPtoCityDB ពី update.json។</translation>
@@ -4589,18 +4067,9 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>កែសម្រួលគម្រោង</translation>
         </message>
-        <message>
-            <source>Delete Project</source>
-            <translation>លុបគម្រោង</translation>
-        </message>
-        <message>
-            <source>Categories</source>
-            <translation>ប្រភេទ</translation>
-        </message>
-        <message>
-            <source>All Downloads</source>
-            <translation>ទាញយកទាំងអស់</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Unfinished</source>
             <translation>មិនទាន់ចប់</translation>
@@ -4613,49 +4082,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>គម្រោង Grabber</translation>
         </message>
-        <message>
-            <source>Torrents</source>
-            <translation>Torrents</translation>
-        </message>
-        <message>
-            <source>Queues</source>
-            <translation>ជួរ</translation>
-        </message>
-        <message>
-            <source>Downloading</source>
-            <translation>កំពុងទាញយក</translation>
-        </message>
-        <message>
-            <source>Seeding</source>
-            <translation>កំពុងផ្សព្វផ្សាយ</translation>
-        </message>
-        <message>
-            <source>Stopped</source>
-            <translation>បានបញ្ឈប់</translation>
-        </message>
-        <message>
-            <source>Active</source>
-            <translation>សកម្ម</translation>
-        </message>
-        <message>
-            <source>Inactive</source>
-            <translation>អសកម្ម</translation>
-        </message>
-        <message>
-            <source>Checking</source>
-            <translation>កំពុងពិនិត្យ</translation>
-        </message>
-        <message>
-            <source>Moving</source>
-            <translation>កំពុងផ្លាស់ទី</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </context>
     <context>
         <name>StatisticsDialog</name>
-        <message>
-            <source>Statistics</source>
-            <translation>ស្ថិតិ</translation>
-        </message>
+        
         <message>
             <source>Stellar Statistics</source>
             <translation>ស្ថិតិ Stellar</translation>
@@ -4664,14 +4103,8 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>គ្រប់ពេល</translation>
         </message>
-        <message>
-            <source>Downloaded</source>
-            <translation>ទាញយក</translation>
-        </message>
-        <message>
-            <source>Uploaded</source>
-            <translation>បញ្ចូល</translation>
-        </message>
+        
+        
         <message>
             <source>Share Ratio</source>
             <translation>សមាមាត្រ</translation>
@@ -4692,10 +4125,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>វគ្គនេះ</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
+        
     </context>
     <context>
         <name>StatusBar</name>
@@ -4812,57 +4242,27 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        <message>
-            <source>Stellar Download Manager</source>
-            <translation>Stellar Download Manager</translation>
-        </message>
-        <message>
-            <source>SDM downloads</source>
-            <translation>ទាញយក SDM</translation>
-        </message>
+        
+        
     </context>
     <context>
         <name>Toolbar</name>
-        <message>
-            <source>Add URL</source>
-            <translation>បន្ថែម URL</translation>
-        </message>
-        <message>
-            <source>Resume</source>
-            <translation>បន្ត</translation>
-        </message>
-        <message>
-            <source>Stop</source>
-            <translation>បញ្ឈប់</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Stop All</source>
             <translation>បញ្ឈប់ទាំងអស់</translation>
         </message>
-        <message>
-            <source>Delete</source>
-            <translation>លុប</translation>
-        </message>
+        
         <message>
             <source>Delete Done</source>
             <translation>លុបដែលបានបញ្ចប់</translation>
         </message>
-        <message>
-            <source>Options</source>
-            <translation>ជម្រើស</translation>
-        </message>
-        <message>
-            <source>Scheduler</source>
-            <translation>កម្មវិធីកំណត់ពេល</translation>
-        </message>
-        <message>
-            <source>Start Queue</source>
-            <translation>ចាប់ផ្តើមជួរ</translation>
-        </message>
-        <message>
-            <source>Stop Queue</source>
-            <translation>បញ្ឈប់ជួរ</translation>
-        </message>
+        
+        
+        
+        
         <message>
             <source>Grabber</source>
             <translation>ឧបករណ៍ចាប់យក</translation>
@@ -4871,10 +4271,7 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>ម៉ាស៊ីនស្វែងរក</translation>
         </message>
-        <message>
-            <source>RSS</source>
-            <translation>RSS</translation>
-        </message>
+        
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4913,18 +4310,12 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        <message>
-            <source>Save to</source>
-            <translation>រក្សាទុកទៅ</translation>
-        </message>
+        
         <message>
             <source>Save As...</source>
             <translation>រក្សាទុកជា...</translation>
         </message>
-        <message>
-            <source>Category</source>
-            <translation>ប្រភេទ</translation>
-        </message>
+        
         <message>
             <source>Custom save folder</source>
             <translation>ថតរក្សាទុកផ្ទាល់ខ្លួន</translation>
@@ -4937,86 +4328,35 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>ប្រើថតប្រភេទ</translation>
         </message>
-        <message>
-            <source>Description</source>
-            <translation>ការពិពណ៌នា</translation>
-        </message>
-        <message>
-            <source>Torrent Settings...</source>
-            <translation>ការកំណត់ Torrent...</translation>
-        </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>Download Later</source>
-            <translation>ទាញយកពេលក្រោយ</translation>
-        </message>
-        <message>
-            <source>Download</source>
-            <translation>ទាញយក</translation>
-        </message>
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent...</source>
             <translation>កំពុងបើក Torrent...</translation>
         </message>
-        <message>
-            <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
-        </message>
+        
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% រួចរាល់</translation>
         </message>
-        <message>
-            <source>Files</source>
-            <translation>ឯកសារ</translation>
-        </message>
+        
         <message>
             <source>%n item(s)</source>
             <translation>%n ធាតុ</translation>
         </message>
-        <message>
-            <source>Name</source>
-            <translation>ឈ្មោះ</translation>
-        </message>
-        <message>
-            <source>Progress</source>
-            <translation>វឌ្ឍនភាព</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ទំហំ</translation>
-        </message>
-        <message>
-            <source>No file information available</source>
-            <translation>គ្មានព័ត៌មានឯកសារ</translation>
-        </message>
-        <message>
-            <source>Pending</source>
-            <translation>កំពុងរង់ចាំ</translation>
-        </message>
-        <message>
-            <source>Rename item</source>
-            <translation>ប្តូរឈ្មោះធាតុ</translation>
-        </message>
-        <message>
-            <source>Enter a new file or folder name:</source>
-            <translation>បញ្ចូលឈ្មោះឯកសារ ឬថតថ្មី៖</translation>
-        </message>
-        <message>
-            <source>Rename</source>
-            <translation>ប្តូរឈ្មោះ</translation>
-        </message>
-        <message>
-            <source>Rename...</source>
-            <translation>ប្តូរឈ្មោះ...</translation>
-        </message>
-        <message>
-            <source>Peer</source>
-            <translation>មិត្តភ័ក្តិ</translation>
-        </message>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>កំពុងបើក torrent និងអានទិន្នន័យមេតា...</translation>
@@ -5029,14 +4369,8 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>កំពុងទាញយកទិន្នន័យមេតាពី %n មិត្តភ័ក្តិ</translation>
         </message>
-        <message>
-            <source>Seed</source>
-            <translation>អ្នកបង្កាត់</translation>
-        </message>
-        <message>
-            <source>You</source>
-            <translation>អ្នក</translation>
-        </message>
+        
+        
         <message>
             <source>Torrent Metadata</source>
             <translation>ទិន្នន័យមេតា Torrent</translation>
@@ -5056,14 +4390,8 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>តំណភ្ជាប់បណ្ដាញ</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
-        <message>
-            <source>OK</source>
-            <translation>យល់ព្រម</translation>
-        </message>
+        
+        
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>ជ្រើសរើសឯកសារ .py កម្មវិធីជំនួយស្វែងរកក្នុងតំបន់ ដើម្បីចម្លងទៅថត search_plugins</translation>
@@ -5095,18 +4423,9 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>កម្មវិធីស្វែងរកដែលបានដំឡើង</translation>
         </message>
-        <message>
-            <source>Refresh</source>
-            <translation>ធ្វើឱ្យថ្មី</translation>
-        </message>
-        <message>
-            <source>Unknown</source>
-            <translation>មិនស្គាល់</translation>
-        </message>
-        <message>
-            <source>Enabled</source>
-            <translation>បានបើក</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Disabled</source>
             <translation>បានបិទ</translation>
@@ -5115,10 +4434,7 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>ដំឡើងថ្មី</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
+        
         <message>
             <source>Search Plugins</source>
             <translation>កម្មវិធីស្វែងរក</translation>
@@ -5126,18 +4442,9 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        <message>
-            <source>Name</source>
-            <translation>ឈ្មោះ</translation>
-        </message>
-        <message>
-            <source>Size</source>
-            <translation>ទំហំ</translation>
-        </message>
-        <message>
-            <source>Seeders</source>
-            <translation>អ្នកផ្សព្វផ្សាយ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Leechers</source>
             <translation>អ្នកទាញយក</translation>
@@ -5154,18 +4461,12 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>បើកទំព័រពិពណ៌នា</translation>
         </message>
-        <message>
-            <source>Download Torrent</source>
-            <translation>ទាញយក Torrent</translation>
-        </message>
+        
         <message>
             <source>Copy Name</source>
             <translation>ចម្លងឈ្មោះ</translation>
         </message>
-        <message>
-            <source>Copy Magnet Link</source>
-            <translation>ចម្លងតំណ Magnet</translation>
-        </message>
+        
         <message>
             <source>Copy Description Page URL</source>
             <translation>ចម្លង URL ទំព័រពិពណ៌នា</translation>
@@ -5178,18 +4479,12 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>ស្វែងរក</translation>
         </message>
-        <message>
-            <source>Unknown</source>
-            <translation>មិនស្គាល់</translation>
-        </message>
+        
         <message>
             <source>No search results yet</source>
             <translation>មិនទាន់មានលទ្ធផលស្វែងរក</translation>
         </message>
-        <message>
-            <source>Search Plugins</source>
-            <translation>កម្មវិធីស្វែងរក</translation>
-        </message>
+        
         <message>
             <source>Torrent Search Engine</source>
             <translation>ម៉ាស៊ីនស្វែងរក Torrent</translation>
@@ -5205,14 +4500,8 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>ល្បឿនក្នុងមួយ Torrent, កម្រិតចែករំលែក, ការរកឃើញមិត្តភ័ក្តិ និងរបៀបទាញយក</translation>
         </message>
-        <message>
-            <source>Close</source>
-            <translation>បិទ</translation>
-        </message>
-        <message>
-            <source>Apply</source>
-            <translation>អនុវត្ត</translation>
-        </message>
+        
+        
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>កម្រិតកម្រិតបញ្ជូន</translation>
@@ -5233,26 +4522,14 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>សមាមាត្រ៖</translation>
         </message>
-        <message>
-            <source>Default</source>
-            <translation>លំនាំដើម</translation>
-        </message>
-        <message>
-            <source>Unlimited</source>
-            <translation>គ្មានដែនកំណត់</translation>
-        </message>
-        <message>
-            <source>Set to</source>
-            <translation>កំណត់ទៅ</translation>
-        </message>
+        
+        
+        
         <message>
             <source>Seeding time:</source>
             <translation>ពេលបណ្ដុះ៖</translation>
         </message>
-        <message>
-            <source>min</source>
-            <translation>នាទី</translation>
-        </message>
+        
         <message>
             <source>Inactive time:</source>
             <translation>ពេលអសកម្ម៖</translation>
@@ -5356,10 +4633,7 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>17. បើកការកំណត់</translation>
         </message>
-        <message>
-            <source>Cookies from browser:</source>
-            <translation>18. ខូគីពីកម្មវិធីរុករក:</translation>
-        </message>
+        
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>19. ជ្រើសរើសកម្មវិធីរុករកដើម្បីបញ្ជូនខូគីរបស់វាទៅ yt-dlp បន្ទាប់មកព្យាយាមម្តងទៀត។</translation>
@@ -5429,10 +4703,7 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>ទាញយកឯកសារអក្សររត់ពីក្រោមជាមួយវីដេអូ</translation>
         </message>
-        <message>
-            <source>Language:</source>
-            <translation>ភាសា៖</translation>
-        </message>
+        
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>កូដភាសា ឧ. en  ·  en.*,ja  ·  all</translation>
@@ -5491,14 +4762,8 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>ទាញយកឆានែល</translation>
         </message>
-        <message>
-            <source>Download</source>
-            <translation>ទាញយក</translation>
-        </message>
-        <message>
-            <source>Advanced</source>
-            <translation>កម្រិតខ្ពស់</translation>
-        </message>
+        
+        
         <message>
             <source>date filter</source>
             <translation>តម្រងកាលបរិច្ឆេទ</translation>
@@ -5591,18 +4856,12 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Save to:</source>
             <translation>រក្សាទុកទៅ៖</translation>
         </message>
-        <message>
-            <source>Category:</source>
-            <translation>ប្រភេទ</translation>
-        </message>
+        
         <message>
             <source>Format:</source>
             <translation>ទ្រង់ទ្រាយ</translation>
         </message>
-        <message>
-            <source>Cancel</source>
-            <translation>បោះបង់</translation>
-        </message>
+        
         <message>
             <source>Video Download</source>
             <translation>ទាញយកវីដេអូ</translation>
