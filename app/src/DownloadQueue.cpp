@@ -133,6 +133,20 @@ void DownloadQueue::enqueue(DownloadItem *item) {
     scheduleNext();
 }
 
+void DownloadQueue::enqueueSilent(DownloadItem *item) {
+    // Identical to enqueue() but suppresses itemAdded so the item stays hidden
+    // in the model until the caller explicitly surfaces it (pending file-info dialog).
+    item->setParent(this);
+    m_items.append(item);
+    connect(item, &DownloadItem::statusChanged, this, [this]{ emit activeCountChanged(); scheduleNext(); });
+    connect(item, QOverload<int>::of(&DownloadItem::speedLimitKBpsChanged), this, [this, item](int kbps) {
+        auto *worker = m_workers.value(item->id());
+        if (worker) worker->setSpeedLimitKBps(kbps);
+    });
+    emit queueChanged();
+    scheduleNext();
+}
+
 void DownloadQueue::enqueueHeld(DownloadItem *item) {
     item->setParent(this);
     item->setStatus(DownloadItem::Status::Paused);

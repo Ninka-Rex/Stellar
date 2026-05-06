@@ -2323,7 +2323,7 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
                                                 const QString &referrer, const QString &parentUrl,
                                                 const QString &username, const QString &password,
                                                 const QString &filenameOverride, const QString &queueId,
-                                                bool emitUiSignal) {
+                                                bool emitUiSignal, bool silentEnqueue) {
     if (url.trimmed().isEmpty())
         return nullptr;
 
@@ -2365,7 +2365,9 @@ DownloadItem *AppController::createDownloadItem(const QString &url, const QStrin
         item->setSavePath(normalizeUserSavePath(m_settings->defaultSavePath()));
     }
 
-    if (startNow)
+    if (startNow && silentEnqueue)
+        m_queue->enqueueSilent(item);   // start downloading but stay hidden until finalize
+    else if (startNow)
         m_queue->enqueue(item);
     else
         m_queue->enqueueHeld(item);
@@ -3102,9 +3104,11 @@ QString AppController::beginPendingDownload(const QString &url,
                                             const QString &username,
                                             const QString &password) {
     const QString tempDir = m_settings->temporaryDirectory().trimmed();
+    // silentEnqueue=true: download starts immediately in background but item is NOT
+    // added to the model yet — it stays hidden until finalizePendingDownload() is called.
     DownloadItem *item = createDownloadItem(url, tempDir, {}, {}, true, cookies, referrer,
                                             parentUrl, username, password,
-                                            filenameOverride, {}, false);
+                                            filenameOverride, {}, false, true);
     if (!item)
         return {};
     m_pendingFileInfoDownloads.insert(item->id());
@@ -3118,8 +3122,17 @@ bool AppController::finalizePendingDownload(const QString &downloadId,
                                             bool startNow,
                                             const QString &queueId) {
     DownloadItem *item = m_downloadModel->itemById(downloadId);
-    if (!item)
-        return false;
+
+    // Item was queued silently (beginPendingDownload with startDownloadWhileFileInfo).
+    // Surface it into the model now so it becomes visible before we touch its metadata.
+    if (!item) {
+        item = m_queue->itemById(downloadId);
+        if (!item)
+            return false;
+        m_downloadModel->addItem(item);
+        m_db->save(item);
+        watchItem(item);
+    }
 
     const int sep = qMax(fullSavePath.lastIndexOf(QLatin1Char('/')),
                          fullSavePath.lastIndexOf(QLatin1Char('\\')));

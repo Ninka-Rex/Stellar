@@ -55,6 +55,7 @@ public:
     Q_INVOKABLE void enqueue(DownloadItem *item);
     Q_INVOKABLE void enqueueHeld(DownloadItem *item);      // add as Paused, don't start
     void             enqueueRestored(DownloadItem *item);  // add preserving existing status
+    void             enqueueSilent(DownloadItem *item);    // add + start, but do NOT emit itemAdded
     Q_INVOKABLE void pause(const QString &id);
     Q_INVOKABLE void resume(const QString &id);
     Q_INVOKABLE void cancel(const QString &id);
@@ -63,6 +64,10 @@ public:
     Q_INVOKABLE void scheduleNext();  // Manually trigger scheduling (used by queue controller)
 
     const QList<DownloadItem *> &items() const { return m_items; }
+    DownloadItem *itemById(const QString &id) const {
+        for (auto *item : m_items) if (item->id() == id) return item;
+        return nullptr;
+    }
 
 signals:
     void maxConcurrentChanged();

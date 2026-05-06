@@ -576,7 +576,7 @@ private:
                                      const QString &referrer, const QString &parentUrl,
                                      const QString &username, const QString &password,
                                      const QString &filenameOverride, const QString &queueId,
-                                     bool emitUiSignal);
+                                     bool emitUiSignal, bool silentEnqueue = false);
     DownloadItem *createTorrentItem(const QString &source, const QString &savePath,
                                     const QString &category, const QString &description,
                                     bool startNow, const QString &queueId, bool emitUiSignal,
