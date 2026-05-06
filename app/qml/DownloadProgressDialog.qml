@@ -39,7 +39,7 @@ Window {
     property int    segmentRowLimit: Math.max(1, App.settings ? App.settings.perHostConnectionLimit : 8)
 
     width: 620
-    height: 520
+    height: 500
     minimumWidth: 440
     minimumHeight: 240
 
@@ -119,11 +119,11 @@ Window {
         if (detailsVisible) {
             maximumHeight = 16777215
             minimumHeight = 360
-            height = 520
+            height = 500
         } else {
             maximumHeight = 16777215
-            minimumHeight = 280
-            height = 320
+            minimumHeight = 260
+            height = 310
         }
     }
 
@@ -209,7 +209,7 @@ Window {
         // ── Tab bar ──────────────────────────────────────────────────────────
         Rectangle {
             Layout.fillWidth: true
-            height: 34
+            height: 26
             color: "#252525"
 
             // Bottom separator
@@ -237,7 +237,7 @@ Window {
                             anchors.centerIn: parent
                             text: modelData
                             color: tabStack.currentIndex === index ? "#ffffff" : "#909090"
-                            font.pixelSize: 12
+                            font.pixelSize: 11
                         }
 
                         // Active underline
@@ -268,7 +268,7 @@ Window {
                     anchors.centerIn: parent
                     text: qsTr(">>  Send to Tray")
                     color: minTrayMa.containsMouse ? "#cccccc" : "#888888"
-                    font.pixelSize: 12
+                    font.pixelSize: 11
                 }
 
                 // Active underline matching tab style
@@ -305,8 +305,8 @@ Window {
             // ── Tab 0: Download status ────────────────────────────────────────
             Item {
                 ColumnLayout {
-                    anchors { fill: parent; margins: 10; bottomMargin: 8 }
-                    spacing: 7
+                    anchors { fill: parent; margins: 8; bottomMargin: 6 }
+                    spacing: 5
 
                     // ── Info box ─────────────────────────────────────────────
                     Rectangle {
@@ -340,7 +340,7 @@ Window {
                             Row {
                                 spacing: 0
                                 width: parent.width
-                                height: 22
+                                height: 18
 
                                 Text {
                                     text: qsTr("Status")
@@ -363,12 +363,12 @@ Window {
 
                             // Data rows — individual bindings so they react to item changes
                             Row {
-                                spacing: 0; width: parent.width; height: 20
+                                spacing: 0; width: parent.width; height: 18
                                 Text { text: qsTr("File size");  color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text { text: item ? root.fmtBytes(item.totalBytes) : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
                             }
                             Row {
-                                spacing: 0; width: parent.width; height: 20
+                                spacing: 0; width: parent.width; height: 18
                                 Text { text: qsTr("Downloaded"); color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
                                     text: item ? qsTr("%1  ( %2% )").arg(root.fmtBytes(item.doneBytes)).arg(Math.round(item.progress * 100)) : "--"
@@ -376,7 +376,7 @@ Window {
                                 }
                             }
                             Row {
-                                spacing: 0; width: parent.width; height: 20
+                                spacing: 0; width: parent.width; height: 18
                                 Text { text: qsTr("Transfer rate"); color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
                                     text: {
@@ -396,12 +396,12 @@ Window {
                                 }
                             }
                             Row {
-                                spacing: 0; width: parent.width; height: 20
+                                spacing: 0; width: parent.width; height: 18
                                 Text { text: qsTr("Time left");  color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text { text: item ? item.timeLeft : "--"; color: "#c8c8c8"; font.pixelSize: 12 }
                             }
                             Row {
-                                spacing: 0; width: parent.width; height: 20
+                                spacing: 0; width: parent.width; height: 18
                                 Text { text: qsTr("Resume capability"); color: "#666"; font.pixelSize: 12; width: 120 }
                                 Text {
                                     text: (item && item.resumeCapable) ? qsTr("Yes") : qsTr("No")
@@ -430,9 +430,9 @@ Window {
                     Rectangle {
                         id: progressBarRect
                         Layout.fillWidth: true
-                        height: 24
+                        height: 14
                         color: "#2a2a2a"
-                        radius: 3
+                        radius: 2
                         clip: true
 
                         readonly property bool assembling: item && item.status === "Assembling"
@@ -457,7 +457,7 @@ Window {
                                 return pct + "%"
                             }
                             color: "white"
-                            font.pixelSize: 11
+                            font.pixelSize: 10
                             font.bold: true
                         }
                     }
@@ -469,8 +469,8 @@ Window {
 
                         // Hide/Show details
                         Rectangle {
-                            height: 26
-                            width: hideDetailsLabel.implicitWidth + 20
+                            height: 22
+                            width: hideDetailsLabel.implicitWidth + 16
                             color: hideDetailsMa.containsMouse ? "#303030" : "transparent"
                             border.color: hideDetailsMa.containsMouse ? "#484848" : "#383838"
                             radius: 3
@@ -523,7 +523,7 @@ Window {
                         // Label
                         Rectangle {
                             Layout.fillWidth: true
-                            height: 20
+                            height: 16
                             color: "#1e1e1e"
 
                             Rectangle { width: parent.width; height: 1; color: "#2e2e2e" }
@@ -539,7 +539,7 @@ Window {
                         // Segment visualizer
                         Rectangle {
                             Layout.fillWidth: true
-                            height: 20
+                            height: 10
                             color: "#252525"
                             border.color: "#303030"
                             radius: 2
