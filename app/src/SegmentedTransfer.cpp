@@ -152,22 +152,28 @@ SegmentedTransfer::SegmentedTransfer(DownloadItem *item,
 }
 
 SegmentedTransfer::~SegmentedTransfer() {
-    // Abort any active replies to avoid dangling pointers
+    // Disconnect before aborting — abort() emits finished() synchronously, which
+    // would invoke onSegmentFinished() and touch m_segments while we're iterating it.
+    m_progressTimer->stop();
     if (m_headReply) {
+        m_headReply->disconnect(this);
         m_headReply->abort();
         m_headReply->deleteLater();
+        m_headReply = nullptr;
     }
     for (auto &seg : m_segments) {
         if (seg.reply) {
+            seg.reply->disconnect(this);
             seg.reply->abort();
             seg.reply->deleteLater();
+            seg.reply = nullptr;
         }
         if (seg.file) {
             seg.file->close();
             delete seg.file;
+            seg.file = nullptr;
         }
     }
-    m_progressTimer->stop();
 }
 
 void SegmentedTransfer::start() {
