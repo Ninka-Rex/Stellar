@@ -17,9 +17,9 @@
 #include "DownloadItem.h"
 #include <QFileInfo>
 
-int DownloadItem::s_dateStyle = 0;
-bool DownloadItem::s_use24Hour = true;
-bool DownloadItem::s_showSeconds = true;
+std::atomic<int>  DownloadItem::s_dateStyle{0};
+std::atomic<bool> DownloadItem::s_use24Hour{true};
+std::atomic<bool> DownloadItem::s_showSeconds{true};
 
 DownloadItem::DownloadItem(const QString &id, const QUrl &url, QObject *parent)
     : QObject(parent), m_id(id), m_url(url), m_addedAt(QDateTime::currentDateTime())

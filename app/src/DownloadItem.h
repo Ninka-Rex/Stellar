@@ -18,6 +18,7 @@
 #include <QObject>
 #include <QString>
 #include <QUrl>
+#include <atomic>
 #include <QDateTime>
 #include <QVariantList>
 #include <QStringList>
@@ -353,7 +354,7 @@ private:
     QString      m_ytdlpFormatId;       // yt-dlp format selector used for this download
     bool         m_ytdlpPlaylistMode{false};
     QString      m_ytdlpExtraOptions;   // JSON blob of extra yt-dlp options for resume
-    static int   s_dateStyle;
-    static bool  s_use24Hour;
-    static bool  s_showSeconds;
+    static std::atomic<int>  s_dateStyle;
+    static std::atomic<bool> s_use24Hour;
+    static std::atomic<bool> s_showSeconds;
 };
