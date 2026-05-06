@@ -664,6 +664,8 @@ Window {
                         id: limitThisChk
                         text: qsTr("Enable per-download limit")
                         enabled: App.settings.globalSpeedLimitKBps === 0
+                        topPadding: 0
+                        bottomPadding: 0
                         onCheckedChanged: root.applyPerDownloadSpeed()
                     }
 

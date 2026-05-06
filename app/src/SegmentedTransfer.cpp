@@ -940,63 +940,97 @@ void SegmentedTransfer::onSegmentFinished(int index) {
 void SegmentedTransfer::onProgressTick() {
     if (!m_item) return;
 
-    // Throttled: flush a budget's worth of pending data to disk each tick
+    // Throttled: pull exactly one tick's worth of bytes from live replies.
+    // Budget is the total allowed bytes this tick; segments that have nothing
+    // available (e.g. newly started dynamic segments) yield their share back
+    // to the pool so active segments can consume the full quota.
     if (m_speedLimitKBps > 0) {
+        qint64 totalBudget = (qint64)m_speedLimitKBps * 1024 / 4; // tick = 250 ms
+
+        // First pass: drain each segment up to an equal share, collect leftover.
         int busySegs = 0;
         for (const auto &seg : m_segments)
             if (!seg.done) ++busySegs;
 
         if (busySegs > 0) {
-            qint64 budgetPerSeg = ((qint64)m_speedLimitKBps * 1024 / 4) / busySegs;
-            if (budgetPerSeg < 1) budgetPerSeg = 1;
+            qint64 sharePerSeg = std::max((qint64)1, totalBudget / busySegs);
+            qint64 remaining = totalBudget;
 
+            // Lambda to write data to a segment's file, returns false on disk error.
+            auto writeToDisk = [&](Segment &seg, const QByteArray &data) -> bool {
+                qint64 w = seg.file->write(data);
+                if (w != data.size()) {
+                    QString err = seg.file->errorString();
+                    qDebug() << "[ST] throttled disk write failed:" << err;
+                    m_progressTimer->stop();
+                    m_item->setStatus(DownloadItem::Status::Error);
+                    emit failed(QStringLiteral("Disk write failed: %1").arg(err));
+                    return false;
+                }
+                seg.received += w;
+                seg.lastByteTime = QDateTime::currentMSecsSinceEpoch();
+                remaining -= w;
+                return true;
+            };
+
+            // First pass: give each segment up to its share.
             for (auto &seg : m_segments) {
-                if (seg.done || !seg.file) continue;
+                if (seg.done || !seg.file || remaining <= 0) continue;
 
+                qint64 cap = std::min(sharePerSeg, remaining);
                 qint64 wrote = 0;
 
-                // Live reply: pull exactly budgetPerSeg bytes off the socket.
-                // This is what actually enforces the rate — the kernel buffers
-                // the rest at TCP level and flow-controls the server naturally.
                 if (seg.reply && !seg.networkDone) {
-                    qint64 avail = seg.reply->bytesAvailable();
-                    qint64 toRead = std::min(avail, budgetPerSeg);
+                    qint64 toRead = std::min(seg.reply->bytesAvailable(), cap);
                     if (toRead > 0) {
                         QByteArray data = seg.reply->read(toRead);
                         if (!data.isEmpty()) {
-                            wrote = seg.file->write(data);
-                            if (wrote != data.size()) {
-                                QString err = seg.file->errorString();
-                                qDebug() << "[ST] throttled disk write failed:" << err;
-                                m_progressTimer->stop();
-                                m_item->setStatus(DownloadItem::Status::Error);
-                                emit failed(QStringLiteral("Disk write failed: %1").arg(err));
-                                return;
-                            }
-                            seg.received += wrote;
-                            seg.lastByteTime = QDateTime::currentMSecsSinceEpoch();
+                            if (!writeToDisk(seg, data)) return;
+                            wrote = data.size();
                         }
                     }
                 }
 
-                // Drain tail bytes buffered when the reply finished mid-tick.
+                // Drain tail bytes buffered when reply finished mid-tick.
                 if (seg.networkDone && !seg.pending.isEmpty()) {
-                    qint64 toWrite = std::min((qint64)seg.pending.size(), budgetPerSeg - wrote);
+                    qint64 toWrite = std::min((qint64)seg.pending.size(), cap - wrote);
                     if (toWrite > 0) {
-                        qint64 w = seg.file->write(seg.pending.constData(), toWrite);
-                        if (w != toWrite) {
-                            QString err = seg.file->errorString();
-                            qDebug() << "[ST] throttled disk write failed:" << err;
-                            m_progressTimer->stop();
-                            m_item->setStatus(DownloadItem::Status::Error);
-                            emit failed(QStringLiteral("Disk write failed: %1").arg(err));
-                            return;
-                        }
-                        seg.received += w;
-                        seg.pending.remove(0, (int)w);
+                        QByteArray chunk = seg.pending.left((int)toWrite);
+                        if (!writeToDisk(seg, chunk)) return;
+                        seg.pending.remove(0, (int)toWrite);
                     }
                 }
+            }
 
+            // Second pass: redistribute leftover budget to segments that still
+            // have data, so inactive/new segments don't starve the total rate.
+            if (remaining > 0) {
+                for (auto &seg : m_segments) {
+                    if (seg.done || !seg.file || remaining <= 0) continue;
+
+                    if (seg.reply && !seg.networkDone) {
+                        qint64 toRead = std::min(seg.reply->bytesAvailable(), remaining);
+                        if (toRead > 0) {
+                            QByteArray data = seg.reply->read(toRead);
+                            if (!data.isEmpty()) {
+                                if (!writeToDisk(seg, data)) return;
+                            }
+                        }
+                    }
+
+                    if (seg.networkDone && !seg.pending.isEmpty()) {
+                        qint64 toWrite = std::min((qint64)seg.pending.size(), remaining);
+                        if (toWrite > 0) {
+                            QByteArray chunk = seg.pending.left((int)toWrite);
+                            if (!writeToDisk(seg, chunk)) return;
+                            seg.pending.remove(0, (int)toWrite);
+                        }
+                    }
+                }
+            }
+
+            for (auto &seg : m_segments) {
+                if (seg.done || !seg.file) continue;
                 if (seg.networkDone && seg.pending.isEmpty()) {
                     seg.done = true;
                     if (seg.file) seg.file->close();
@@ -1546,8 +1580,11 @@ void SegmentedTransfer::applyReplyReadBufferSize(QNetworkReply *reply) {
     int activeSegs = 0;
     for (const auto &s : m_segments) if (!s.done) ++activeSegs;
     if (activeSegs < 1) activeSegs = 1;
-    // One second worth of budget per segment, minimum 64 KB so QNAM isn't starved.
-    qint64 bufSize = qMax((qint64)m_speedLimitKBps * 1024 / activeSegs, (qint64)64 * 1024);
+    // 4 seconds of per-segment budget so QNAM always has data queued for the tick.
+    // 1 second was too small: with 8 segments at 500 KB/s each segment gets 62 KB,
+    // drains in 4 ticks, then the socket goes dry for 1 tick → oscillation.
+    // Minimum 128 KB so low-rate or many-segment cases don't starve either.
+    qint64 bufSize = qMax((qint64)m_speedLimitKBps * 1024 * 4 / activeSegs, (qint64)128 * 1024);
     reply->setReadBufferSize(bufSize);
 }
 
@@ -1868,6 +1905,13 @@ bool SegmentedTransfer::maybeStealWork(int freedUiSlot) {
     // Restart the victim and fire up the new connection.
     startSegment(m_segments[victimIdx]);
     startSegment(m_segments.last());
+
+    // Reapply buffer sizes on all replies — activeSegs just increased so the
+    // per-segment share changed. Old replies need their cap updated too.
+    if (m_speedLimitKBps > 0) {
+        for (auto &seg : m_segments)
+            applyReplyReadBufferSize(seg.reply);
+    }
     return true;
 }
 
