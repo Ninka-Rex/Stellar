@@ -509,11 +509,25 @@ QString GrabberCrawler::wildcardToRegex(const QString &pattern) const
 
 bool GrabberCrawler::matchesAnyPattern(const QString &text, const QStringList &patterns) const
 {
-    for (const QString &pattern : patterns) {
-        const QString trimmed = pattern.trimmed();
-        if (trimmed.isEmpty())
-            continue;
-        const QRegularExpression re(wildcardToRegex(trimmed), QRegularExpression::CaseInsensitiveOption);
+    if (patterns.isEmpty())
+        return false;
+
+    const QString cacheKey = patterns.join(QLatin1Char('\0'));
+    auto it = m_patternCache.find(cacheKey);
+    if (it == m_patternCache.end()) {
+        QList<QRegularExpression> compiled;
+        compiled.reserve(patterns.size());
+        for (const QString &pattern : patterns) {
+            const QString trimmed = pattern.trimmed();
+            if (trimmed.isEmpty())
+                continue;
+            compiled.append(QRegularExpression(wildcardToRegex(trimmed),
+                                               QRegularExpression::CaseInsensitiveOption));
+        }
+        it = m_patternCache.insert(cacheKey, std::move(compiled));
+    }
+
+    for (const QRegularExpression &re : *it) {
         if (re.match(text).hasMatch())
             return true;
     }
