@@ -508,6 +508,12 @@ void SegmentedTransfer::startSegment(Segment &seg) {
     seg.lastByteTime = QDateTime::currentMSecsSinceEpoch();
     seg.reply = m_nam->get(req);
 
+    // Without setReadBufferSize, QNAM drains the entire kernel socket buffer into
+    // userspace RAM on every readyRead regardless of how much the app reads.
+    // Setting it makes QNAM set downstreamLimited=true so it stops calling
+    // socket->read() once its internal buffer is full — actual TCP backpressure.
+    applyReplyReadBufferSize(seg.reply);
+
     int idx = seg.index;
     connect(seg.reply, &QNetworkReply::readyRead, this, [this, idx]() {
         onSegmentReadyRead(idx);
@@ -726,24 +732,27 @@ void SegmentedTransfer::onSegmentReadyRead(int index) {
         }
     }
 
+    if (m_speedLimitKBps > 0) {
+        // Throttled: don't read here — onProgressTick pulls exactly budgetPerSeg
+        // bytes per tick directly from the reply. Reading eagerly would download
+        // the whole file into RAM instantly regardless of the speed limit.
+        return;
+    }
+
     QByteArray data = seg.reply->readAll();
     if (data.isEmpty()) return;
 
-    if (m_speedLimitKBps > 0) {
-        seg.pending.append(data);
-    } else {
-        qint64 wrote = seg.file->write(data);
-        if (wrote != data.size()) {
-            // Disk full, permission denied, I/O error — fatal.  Abort
-            // everything; retrying won't help if the disk is full.
-            QString err = seg.file->errorString();
-            qDebug() << "[ST] disk write failed on segment" << index << ":" << err;
-            m_item->setStatus(DownloadItem::Status::Error);
-            emit failed(QStringLiteral("Disk write failed: %1").arg(err));
-            return;
-        }
-        seg.received += wrote;
+    qint64 wrote = seg.file->write(data);
+    if (wrote != data.size()) {
+        // Disk full, permission denied, I/O error — fatal.  Abort
+        // everything; retrying won't help if the disk is full.
+        QString err = seg.file->errorString();
+        qDebug() << "[ST] disk write failed on segment" << index << ":" << err;
+        m_item->setStatus(DownloadItem::Status::Error);
+        emit failed(QStringLiteral("Disk write failed: %1").arg(err));
+        return;
     }
+    seg.received += wrote;
 }
 
 void SegmentedTransfer::onSegmentFinished(int index) {
@@ -804,12 +813,14 @@ void SegmentedTransfer::onSegmentFinished(int index) {
         return;
     }
 
-    // Read any remaining bytes the network delivered before finishing
+    // Read any remaining bytes the network delivered before finishing.
+    // In throttled mode, onProgressTick has been reading budgetPerSeg bytes per
+    // tick directly from the reply; only a partial tick's worth can be left here.
     if (seg.reply->bytesAvailable() > 0) {
         QByteArray data = seg.reply->readAll();
         if (!data.isEmpty()) {
             if (m_speedLimitKBps > 0) {
-                seg.pending.append(data);
+                seg.pending.append(data); // small tail; drained by onProgressTick
             } else if (seg.file) {
                 seg.file->write(data);
                 seg.received += data.size();
@@ -942,19 +953,48 @@ void SegmentedTransfer::onProgressTick() {
             for (auto &seg : m_segments) {
                 if (seg.done || !seg.file) continue;
 
-                qint64 toWrite = std::min((qint64)seg.pending.size(), budgetPerSeg);
-                if (toWrite > 0) {
-                    qint64 wrote = seg.file->write(seg.pending.constData(), toWrite);
-                    if (wrote != toWrite) {
-                        QString err = seg.file->errorString();
-                        qDebug() << "[ST] throttled disk write failed:" << err;
-                        m_progressTimer->stop();
-                        m_item->setStatus(DownloadItem::Status::Error);
-                        emit failed(QStringLiteral("Disk write failed: %1").arg(err));
-                        return;
+                qint64 wrote = 0;
+
+                // Live reply: pull exactly budgetPerSeg bytes off the socket.
+                // This is what actually enforces the rate — the kernel buffers
+                // the rest at TCP level and flow-controls the server naturally.
+                if (seg.reply && !seg.networkDone) {
+                    qint64 avail = seg.reply->bytesAvailable();
+                    qint64 toRead = std::min(avail, budgetPerSeg);
+                    if (toRead > 0) {
+                        QByteArray data = seg.reply->read(toRead);
+                        if (!data.isEmpty()) {
+                            wrote = seg.file->write(data);
+                            if (wrote != data.size()) {
+                                QString err = seg.file->errorString();
+                                qDebug() << "[ST] throttled disk write failed:" << err;
+                                m_progressTimer->stop();
+                                m_item->setStatus(DownloadItem::Status::Error);
+                                emit failed(QStringLiteral("Disk write failed: %1").arg(err));
+                                return;
+                            }
+                            seg.received += wrote;
+                            seg.lastByteTime = QDateTime::currentMSecsSinceEpoch();
+                        }
                     }
-                    seg.received += wrote;
-                    seg.pending.remove(0, (int)wrote);
+                }
+
+                // Drain tail bytes buffered when the reply finished mid-tick.
+                if (seg.networkDone && !seg.pending.isEmpty()) {
+                    qint64 toWrite = std::min((qint64)seg.pending.size(), budgetPerSeg - wrote);
+                    if (toWrite > 0) {
+                        qint64 w = seg.file->write(seg.pending.constData(), toWrite);
+                        if (w != toWrite) {
+                            QString err = seg.file->errorString();
+                            qDebug() << "[ST] throttled disk write failed:" << err;
+                            m_progressTimer->stop();
+                            m_item->setStatus(DownloadItem::Status::Error);
+                            emit failed(QStringLiteral("Disk write failed: %1").arg(err));
+                            return;
+                        }
+                        seg.received += w;
+                        seg.pending.remove(0, (int)w);
+                    }
                 }
 
                 if (seg.networkDone && seg.pending.isEmpty()) {
@@ -1481,6 +1521,7 @@ void SegmentedTransfer::handleConfirmPage(const QByteArray &html) {
     applyRequestHeaders(req, newUrl);
 
     seg.reply = m_nam->get(req);
+    applyReplyReadBufferSize(seg.reply);
     connect(seg.reply, &QNetworkReply::readyRead, this, [this]() {
         onSegmentReadyRead(0);
     });
@@ -1493,9 +1534,30 @@ void SegmentedTransfer::handleConfirmPage(const QByteArray &html) {
     m_progressTimer->start();
 }
 
+// Sets the QNAM internal read-buffer cap on a reply so that QNAM stops draining
+// the kernel socket once its buffer is full, creating real TCP backpressure.
+// Must be called immediately after reply creation and whenever the limit changes.
+void SegmentedTransfer::applyReplyReadBufferSize(QNetworkReply *reply) {
+    if (!reply) return;
+    if (m_speedLimitKBps <= 0) {
+        reply->setReadBufferSize(0); // unlimited
+        return;
+    }
+    int activeSegs = 0;
+    for (const auto &s : m_segments) if (!s.done) ++activeSegs;
+    if (activeSegs < 1) activeSegs = 1;
+    // One second worth of budget per segment, minimum 64 KB so QNAM isn't starved.
+    qint64 bufSize = qMax((qint64)m_speedLimitKBps * 1024 / activeSegs, (qint64)64 * 1024);
+    reply->setReadBufferSize(bufSize);
+}
+
 void SegmentedTransfer::setSpeedLimitKBps(int kbps) {
     int oldLimit = m_speedLimitKBps;
     m_speedLimitKBps = kbps;
+
+    // Update read-buffer cap on all live replies so backpressure takes effect now.
+    for (auto &seg : m_segments)
+        applyReplyReadBufferSize(seg.reply);
 
     // Transitioning throttled → unlimited: discard pending buffers.
     // The network replies are still active — new data arriving via
@@ -1505,10 +1567,22 @@ void SegmentedTransfer::setSpeedLimitKBps(int kbps) {
     // need to flush to avoid a gap).  Flush pending to disk here.
     if (oldLimit > 0 && kbps == 0) {
         for (auto &seg : m_segments) {
+            // Flush any tail bytes that arrived while throttled and were held
+            // in seg.pending waiting for the tick to drain them.
             if (!seg.pending.isEmpty() && seg.file) {
                 seg.file->write(seg.pending);
                 seg.received += seg.pending.size();
                 seg.pending.clear();
+            }
+            // Drain whatever the reply has buffered in QNAM — now that we're
+            // unlimited, read it all directly to disk.
+            if (seg.reply && seg.file && !seg.networkDone) {
+                qint64 avail = seg.reply->bytesAvailable();
+                if (avail > 0) {
+                    QByteArray data = seg.reply->readAll();
+                    seg.file->write(data);
+                    seg.received += data.size();
+                }
             }
             if (seg.networkDone && !seg.done) {
                 seg.done = true;

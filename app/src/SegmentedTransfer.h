@@ -74,7 +74,7 @@ private:
         QFile *file{nullptr};
         QNetworkReply *reply{nullptr};
         bool done{false};
-        QByteArray pending;      // buffered bytes waiting to be flushed (throttled mode)
+        QByteArray pending;      // tail bytes from onSegmentFinished in throttled mode
         bool networkDone{false}; // reply finished but pending not yet flushed
         int    retryCount{0};    // number of retries attempted for this segment
         qint64 lastByteTime{0};  // QDateTime::currentMSecsSinceEpoch() of last received byte
@@ -115,6 +115,7 @@ private:
     bool isConfirmPageUrl(const QUrl &url) const;
     void handleConfirmPage(const QByteArray &html);
     void applyRequestHeaders(QNetworkRequest &req, const QUrl &url) const;
+    void applyReplyReadBufferSize(QNetworkReply *reply);
     void retrySegment(int index, int extraDelayMs = 0);
     void fallbackToSingleSegment();
     bool maybeStealWork(int freedUiSlot = -1);
