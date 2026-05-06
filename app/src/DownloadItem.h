@@ -151,14 +151,14 @@ public:
     void setErrorString(const QString &v) { if (m_errorString != v) { m_errorString = v; emit errorStringChanged(); } }
     QString queueId() const { return m_queueId; }
     void setQueueId(const QString &v) { if (m_queueId != v) { m_queueId = v; emit queueIdChanged(); } }
-    void setCookies(const QString &v) { m_cookies = v; }
+    void setCookies(const QString &v) { m_cookies = v; } // no signal — internal, not observed by QML
     QString cookies() const { return m_cookies; }
     void setReferrer(const QString &v)  { if (m_referrer  != v) { m_referrer  = v; emit referrerChanged();  } }
     void setParentUrl(const QString &v) { if (m_parentUrl != v) { m_parentUrl = v; emit parentUrlChanged(); } }
     void setUsername(const QString &v)  { if (m_username  != v) { m_username  = v; emit usernameChanged();  } }
     void setPassword(const QString &v)  { if (m_password  != v) { m_password  = v; emit passwordChanged();  } }
     void setLastTryAt(const QDateTime &v) { if (m_lastTryAt != v) { m_lastTryAt = v; emit lastTryAtChanged(); } }
-    void setAddedAt(const QDateTime &v) { m_addedAt = v; }
+    void setAddedAt(const QDateTime &v) { m_addedAt = v; } // no signal — write-once at construction/load
     
     void setFilenameManuallySet(bool v) { m_filenameManuallySet = v; }
     bool isFilenameManuallySet() const { return m_filenameManuallySet; }
@@ -245,14 +245,14 @@ public:
     bool    ytdlpPlaylistMode() const { return m_ytdlpPlaylistMode; }
     // JSON blob storing extra yt-dlp options (subtitles, SponsorBlock, etc.) for resume.
     QString ytdlpExtraOptions() const { return m_ytdlpExtraOptions; }
-    void setIsYtdlp(bool v)                { m_isYtdlp = v; }
+    void setIsYtdlp(bool v)                { m_isYtdlp = v; } // no signal — write-once at construction/load
     void setYtdlpFormatId(const QString &v) {
         if (m_ytdlpFormatId != v) { m_ytdlpFormatId = v; emit ytdlpFormatIdChanged(); }
     }
     void setYtdlpPlaylistMode(bool v) {
         if (m_ytdlpPlaylistMode != v) { m_ytdlpPlaylistMode = v; emit ytdlpPlaylistModeChanged(); }
     }
-    void setYtdlpExtraOptions(const QString &v) { m_ytdlpExtraOptions = v; }
+    void setYtdlpExtraOptions(const QString &v) { m_ytdlpExtraOptions = v; } // no signal — internal resume metadata
 
 signals:
     void filenameChanged();

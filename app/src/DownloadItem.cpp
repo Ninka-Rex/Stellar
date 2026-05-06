@@ -160,7 +160,7 @@ void DownloadItem::setFilename(const QString &v)       { if (m_filename      != 
 void DownloadItem::setTotalBytes(qint64 v)              { if (m_totalBytes    != v) { m_totalBytes    = v; emit totalBytesChanged();     } }
 void DownloadItem::setDoneBytes(qint64 v)               { if (m_doneBytes     != v) { m_doneBytes     = v; emit doneBytesChanged(); emit timeLeftChanged(); } }
 void DownloadItem::setSpeed(qint64 bytesPerSec)         { if (m_speed         != bytesPerSec) { m_speed = bytesPerSec; emit speedChanged(); emit timeLeftChanged(); } }
-void DownloadItem::setEtaSpeed(qint64 bytesPerSec)      { m_etaSpeed = bytesPerSec; emit timeLeftChanged(); }
+void DownloadItem::setEtaSpeed(qint64 bytesPerSec)      { if (m_etaSpeed != bytesPerSec) { m_etaSpeed = bytesPerSec; emit timeLeftChanged(); } }
 void DownloadItem::setStatus(Status s)                  { if (m_status        != s) { m_status        = s; emit statusChanged(); emit timeLeftChanged(); } }
 void DownloadItem::setCategory(const QString &v)        { if (m_category      != v) { m_category      = v; emit categoryChanged();       } }
 void DownloadItem::setSavePath(const QString &v)        { if (m_savePath      != v) { m_savePath      = v; emit savePathChanged();       } }
@@ -173,6 +173,7 @@ void DownloadItem::setTorrentSource(const QString &v)   { if (m_torrentSource !=
 void DownloadItem::setTorrentInfoHash(const QString &v) { if (m_torrentInfoHash != v) { m_torrentInfoHash = v; emit torrentChanged(); } }
 void DownloadItem::setTorrentSeeders(int v)             { if (m_torrentSeeders != v) { m_torrentSeeders = v; emit torrentStatsChanged(); } }
 void DownloadItem::setTorrentPeers(int v)               { if (m_torrentPeers != v) { m_torrentPeers = v; emit torrentStatsChanged(); } }
+// +1.0 offset is the documented Qt idiom for qFuzzyCompare when either value may be 0.0.
 void DownloadItem::setTorrentRatio(double v)            { if (!qFuzzyCompare(m_torrentRatio + 1.0, v + 1.0)) { m_torrentRatio = v; emit torrentStatsChanged(); } }
 void DownloadItem::setTorrentUploaded(qint64 v)         { if (m_torrentUploaded != v) { m_torrentUploaded = v; emit torrentStatsChanged(); } }
 void DownloadItem::setTorrentDownloaded(qint64 v)       { if (m_torrentDownloaded != v) { m_torrentDownloaded = v; emit torrentStatsChanged(); } }
