@@ -1228,9 +1228,12 @@ void SegmentedTransfer::mergeAndFinish() {
             if (f.open(QIODevice::ReadOnly)) {
                 const QByteArray head = f.read(512).trimmed();
                 f.close();
-                bool looksLikeHtml = head.startsWith('<')
-                    && (head.contains("html") || head.contains("HTML")
-                        || head.contains("<!DOCTYPE") || head.contains("<!doctype"));
+                // Require explicit HTML markers — startsWith('<') alone matches SVG,
+                // XML, RSS, ATOM and other valid small XML-family downloads.
+                // Only fire on unambiguous HTML: <html tag or <!DOCTYPE html declaration.
+                const QByteArray lower = head.toLower();
+                bool looksLikeHtml = lower.startsWith("<!doctype html")
+                    || lower.startsWith("<html");
                 if (looksLikeHtml) {
                     // Remove the useless HTML file — the download is effectively failed.
                     QFile::remove(outPath);
