@@ -584,7 +584,14 @@ QByteArray fileSha256Hex(const QString &path, QString *errorText) {
                              .arg(path, f.errorString());
         return {};
     }
-    return QCryptographicHash::hash(f.readAll(), QCryptographicHash::Sha256).toHex();
+    QCryptographicHash hash(QCryptographicHash::Sha256);
+    if (!hash.addData(&f)) {
+        if (errorText)
+            *errorText = QStringLiteral("Could not read %1 for hash verification: %2")
+                             .arg(path, f.errorString());
+        return {};
+    }
+    return hash.result().toHex();
 }
 
 bool verifyFileSha256(const QString &path, const QString &expectedHex, QString *errorText) {
