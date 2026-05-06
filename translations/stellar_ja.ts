@@ -4392,6 +4392,22 @@ Torrent 使用前に VPN を有効化し、IP アドレスの暴露を防ぐこ�
             <translation>言語を変更した後は再起動が必要です。</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>再起動が必要</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>言語変更を反映するには再起動が必要です。今すぐ再起動しますか？</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>今すぐ再起動</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>後で</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>更新の確認</translation>
         </message>

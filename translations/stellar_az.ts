@@ -4396,6 +4396,22 @@ IP ünvanınızın aşkarlanmasından qorunmaq üçün Stellar-ı VPN şəbəkə
             <translation>Dil dəyişdirildikdən sonra yenidən başlatmaq lazımdır.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Yenidən başladılmalıdır</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Dil dəyişikliyi tətbiq olunması üçün yenidən başlatma tələb olunur. İndi yenidən başlatmaq istəyirsiniz?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>İndi yenidən başlat</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Sonra</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Yenilikləri yoxla</translation>
         </message>

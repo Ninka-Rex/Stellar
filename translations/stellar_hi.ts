@@ -4415,6 +4415,22 @@ BitTorrent के माध्यम से आप जो कुछ भी स�
             <translation>भाषा बदलने के बाद रीस्टार्ट आवश्यक है।</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>पुनः आरंभ आवश्यक</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>भाषा परिवर्तन लागू करने के लिए पुनः आरंभ की आवश्यकता है। अभी पुनः आरंभ करें?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>अभी पुनः आरंभ करें</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>बाद में</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>अपडेट चेक करें</translation>
         </message>

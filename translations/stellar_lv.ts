@@ -4,2527 +4,2530 @@
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation/>
+            <translation>Pievienot adreses izņēmumiem?</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation/>
+            <translation>Šī adrese tika atcelta divas reizes. Vai vēlaties to pievienot izņēmumu sarakstam, lai Stellar to nekad automātiski neaizturētu?</translation>
         </message>
         <message>
             <source>No</source>
-            <translation/>
+            <translation>Nē</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation/>
+            <translation>Pievienot izņēmumu</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation/>
+            <translation>Pievienot adreses izņēmumu</translation>
         </message>
     </context>
     <context>
         <name>AddUrlDialog</name>
         <message>
             <source>URL</source>
-            <translation/>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation/>
+            <translation>Izmantot autorizāciju</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation/>
+            <translation>Pieslēgties</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation/>
+            <translation>Parole</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Add URL</source>
-            <translation/>
+            <translation>Pievienot URL</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation/>
+            <translation>Stellar lejupielādes menedžeris v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation/>
+            <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation/>
+            <translation>Lejupielādē: %1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation/>
+            <translation>Sēšana: %1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation/>
+            <translation>Sēšana: %1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation/>
+            <translation>Kopā: %1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation/>
+            <translation>Kopā: %1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation/>
+            <translation>Stellar tiek apturēts...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation/>
+            <translation>Stellar tiek palaists...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation/>
+            <translation>🛡️ Saistīts ar %1</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation/>
+            <translation>Partijas lejupielāde</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation/>
+            <translation>Ģenerējiet saites šeit, tad turpiniet pārskatīšanas soli.</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation/>
+            <translation>Adrese:</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation/>
+            <translation>Aizstāt zvaigznīti ar</translation>
         </message>
         <message>
             <source>Numbers</source>
-            <translation/>
+            <translation>Skaitļi</translation>
         </message>
         <message>
             <source>Letters</source>
-            <translation/>
+            <translation>Burti</translation>
         </message>
         <message>
             <source>From:</source>
-            <translation/>
+            <translation>No:</translation>
         </message>
         <message>
             <source>To:</source>
-            <translation/>
+            <translation>Līdz:</translation>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation/>
+            <translation>Mežona izmērs:</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation/>
+            <translation>Priekšskatījums</translation>
         </message>
         <message>
             <source>First: %1</source>
-            <translation/>
+            <translation>Pirmais: %1</translation>
         </message>
         <message>
             <source>Second: %1</source>
-            <translation/>
+            <translation>Otrais: %1</translation>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation/>
+            <translation>Pēdējais: %1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation/>
+            <translation>Izmanto rindas soli pēc OK, lai šīs lejupielādes tiktu grupētas pirms sākuma.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation/>
+            <translation>Faila nosaukums</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Izmērs</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>Statuss</translation>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation/>
+            <translation>Pārskatiet saites pirms pievienošanas. Kolonnas var kārto, mainīt izmēru un pārkārtot velkot.</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation/>
+            <translation>Aizstāt failu nosaukumus ar mežonas rakstu (*)</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation/>
+            <translation>Faili</translation>
         </message>
         <message>
             <source>Check all</source>
-            <translation/>
+            <translation>Atzīmēt visus</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation/>
+            <translation>Atcelt visus</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation/>
+            <translation>Izvēlami tikai saites ar statusu &quot;Atrasts&quot;. Rinda tiek piešķirta pēc OK.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation/>
+            <translation>Partijas lejupielādes pārskats</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation/>
+            <translation>Instalējiet Stellar paplašinājumu pārlūkā, lai noķertu lejupielādes un automātiski novirzītu uz Stellar.</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
-            <translation/>
+            <translation>Chrome / Edge / Brave</translation>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation/>
+            <translation>Instalēt tieši no Chrome Web Store</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation/>
+            <translation>Atvērt saiti</translation>
         </message>
         <message>
             <source>Firefox</source>
-            <translation/>
+            <translation>Firefox</translation>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation/>
+            <translation>Instalēt Firefox XPI, bez automātiskiem atjauninājumiem</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation/>
+            <translation>Native Messaging Host</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation/>
+            <translation>Stellar automātiski reģistrējas, lai paplašinājums varētu ar to sazināties.</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation/>
+            <translation>Reģistrācija veiksmīga.</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation/>
+            <translation>Reģistrācija neizdevās — skatīt detalizētu informāciju zemāk.</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation/>
+            <translation>Reģistrēšanās…</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation/>
+            <translation>Mēģināt vēlreiz</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation/>
+            <translation>Manuāla instalēšana:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation/>
+            <translation>Palaidiet komandu rindā (admin nav nepieciešams):</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation/>
+            <translation>Kopēt</translation>
         </message>
         <message>
             <source>Copied</source>
-            <translation/>
+            <translation>Nokopēts</translation>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation/>
+            <translation>Palaidiet terminalī:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation/>
+            <translation>Pārlūka paplašinājumi</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation/>
+            <translation>Visi lejupielādes</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation/>
+            <translation>Video</translation>
         </message>
         <message>
             <source>Music</source>
-            <translation/>
+            <translation>Mūzika</translation>
         </message>
         <message>
             <source>Documents</source>
-            <translation/>
+            <translation>Dokumenti</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation/>
+            <translation>Arhīvi</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation/>
+            <translation>Programmas</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation/>
+            <translation>Kolonnas</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation/>
+            <translation>Izvēlieties kolonnas, kas redzamas šajā sarakstā. Izmantojiet pogas Augšup un Lejup, lai pārkārtotu kolonnas pēc savas vēlmes.</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation/>
+            <translation>Augšup</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation/>
+            <translation>Lejup</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation/>
+            <translation>Rādīt</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation/>
+            <translation>Slēpt</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation/>
+            <translation>Atiestatīt</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation/>
+            <translation>Atlasītā kolonna ir jābūt</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation/>
+            <translation>pikseļu plata</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation/>
+            <translation>Apstiprināt dzēšanu</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation/>
+            <translation>Noņemt lejupielādi?</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation/>
+            <translation>Arī dzēst torrent failus no diska</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation/>
+            <translation>Arī dzēst failu no diska</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation/>
+            <translation>Dzēst neatgriezeniski (neuzglabāt atkritnē)</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>Dzēst</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation/>
+            <translation>Dzēst pabeigtās lejupielādes</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation/>
+            <translation>Vai tiešām vēlaties dzēst visas pabeigtās lejupielādes no Stellar saraksta?</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation/>
+            <translation>Piezīme: Tās tiks noņemtas tikai no saraksta. Faili diskā netiks dzēsti.</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation/>
+            <translation>Dzēst pabeigtās un seeding torrentus</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation/>
+            <translation>Jā</translation>
         </message>
         <message>
             <source>No</source>
-            <translation/>
+            <translation>Nē</translation>
         </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation/>
+            <translation>Lejupielāde pabeigta</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation/>
+            <translation>Lejupielādēts %1 (%2 B)</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation/>
+            <translation>Adrese</translation>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation/>
+            <translation>Fails saglabāts kā</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
-            <translation/>
+            <translation>Fails ir pārvietots.</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation/>
+            <translation>Atvērt</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation/>
+            <translation>Atvērt ar...</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation/>
+            <translation>Atvērt mapi</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation/>
+            <translation>Vairs nerādīt šo dialogu</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation/>
+            <translation>Šo var atļaut iestatījumos → Vispārīgi → Rādīt lejupielādes pabeigšanas dialogu</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation/>
+            <translation>Velciet failu, lai pārvietotu citur</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation/>
+            <translation>Lejupielādes faila informācija</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
-            <translation/>
+            <translation>Kategorijas pievienošana Stellar kategoriju sarakstam</translation>
         </message>
         <message>
             <source>Category name</source>
-            <translation/>
+            <translation>Kategorijas nosaukums</translation>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation/>
+            <translation>Automātiski pievienot šai kategorijai šāda veida failus:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation/>
+            <translation>Piezīme: ievadiet failu paplašinājumus, atdalot ar atstarpēm (piem., avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation/>
+            <translation>Automātiski pievienot šai kategorijai tikai failus no šādām vietnēm:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation/>
+            <translation>Atdaliet vietnes ar atstarpēm. Varat izmantot zvaigznīti kā aizstājējzīmi</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation/>
+            <translation>Saglabāt turpmākas šīs kategorijas lejupielādes šajā mapē:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation/>
+            <translation>Atcerēties pēdējo saglabāšanas ceļu</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation/>
+            <translation>Pārlūkot...</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation/>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation/>
+            <translation>Kategorija</translation>
         </message>
         <message>
             <source>Save As</source>
-            <translation/>
+            <translation>Saglabāt kā</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation/>
+            <translation>Atcerēties šo ceļu „%1” kategorijai</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>Apraksts</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation/>
+            <translation>Lejupielādēt vēlāk</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation/>
+            <translation>Sākt lejupielādi</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation/>
+            <translation>Rindā</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation/>
+            <translation>Pārbauda</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation/>
+            <translation>Lejupielādē</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation/>
+            <translation>Pārvieto</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation/>
+            <translation>Sēdē</translation>
         </message>
         <message>
             <source>Paused</source>
-            <translation/>
+            <translation>Apturēts</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation/>
+            <translation>Salikšana...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation/>
+            <translation>Pabeigts</translation>
         </message>
         <message>
             <source>Error</source>
-            <translation/>
+            <translation>Kļūda</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>Nezināms</translation>
         </message>
     </context>
     <context>
         <name>DownloadProgressDialog</name>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>Lejupielāde</translation>
         </message>
         <message>
             <source>Receiving data...</source>
-            <translation/>
+            <translation>Datu saņemšana...</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation/>
+            <translation>Salikšana...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation/>
+            <translation>Lejupielādes statuss</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation/>
+            <translation>Ātruma ierobežotājs</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation/>
+            <translation>Pabeigšanas opcijas</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation/>
+            <translation>&gt;&gt; Nosūtīt uz lodziņu</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation/>
+            <translation>Minimizēt uz lodziņu</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>Statuss</translation>
         </message>
         <message>
             <source>File size</source>
-            <translation/>
+            <translation>Faila izmērs</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>Lejupielādēts</translation>
         </message>
         <message>
             <source>%1  ( %2% )</source>
-            <translation/>
+            <translation>%1 ( %2% )</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation/>
+            <translation>Pārraides ātrums</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation/>
+            <translation>(Ierobežots %1)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation/>
+            <translation>Atlikušais laiks</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation/>
+            <translation>Atjaunošanas iespēja</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation/>
+            <translation>Jā</translation>
         </message>
         <message>
             <source>No</source>
-            <translation/>
+            <translation>Nē</translation>
         </message>
         <message>
             <source>Error detail</source>
-            <translation/>
+            <translation>Kļūdas detaļas</translation>
         </message>
         <message>
             <source>Assembling... %1%</source>
-            <translation/>
+            <translation>Savienošana... %1%</translation>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation/>
+            <translation>Aizslēpt detaļas</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation/>
+            <translation>Rādīt detaļas</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation/>
+            <translation>Sākt</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation/>
+            <translation>Pauzēt</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation/>
+            <translation>Sākuma pozīcijas un lejupielādes progress pa savienojumiem</translation>
         </message>
         <message>
             <source>N.</source>
-            <translation/>
+            <translation>N.</translation>
         </message>
         <message>
             <source>Info</source>
-            <translation/>
+            <translation>Info</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation/>
+            <translation>Ierobežot šī lejupielādes pārraides ātrumu</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation/>
+            <translation>Iespējot lejupielādes līmeņa ierobežojumu</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation/>
+            <translation>Maksimālais:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
-            <translation/>
+            <translation>piem. 100</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation/>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation/>
+            <translation>Globālais ierobežojums: %1 KB/s</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation/>
+            <translation>Nav iestatīts globālais ierobežojums</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation/>
+            <translation>Globālā ātruma ierobežotāja iestatījumi…</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation/>
+            <translation>Iespējas pēc pabeigšanas</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation/>
+            <translation>Atvērt failu pēc pabeigšanas</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation/>
+            <translation>Atvērt mapi pēc pabeigšanas</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation/>
+            <translation>Izslēgt datoru pēc pabeigšanas</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation/>
+            <translation>Šīs opcijas ir pagaidu tikai šim lejupielādei un katru reizi sākas atzīmētas.</translation>
         </message>
     </context>
     <context>
         <name>DownloadTable</name>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation/>
+            <translation>Pārdēvēt</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation/>
+            <translation>Īpašības</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation/>
+            <translation>Atvērt failu</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation/>
+            <translation>Atvērt mapi</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation/>
+            <translation>Pārdēvēt...</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation/>
+            <translation>Kopēt faila nosaukumu</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation/>
+            <translation>Eksportēt .torrent…</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation/>
+            <translation>Turpināt</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>Apturēt</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation/>
+            <translation>Noņemt no rindas</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation/>
+            <translation>Pārlādēt</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>Dzēst</translation>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation/>
+            <translation>Kolonnas iestatījumi</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation/>
+            <translation>Faila nosaukums</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Izmērs</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>Stāvoklis</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation/>
+            <translation>Atlikušais laiks</translation>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation/>
+            <translation>↓ Ātrums</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation/>
+            <translation>↑ Ātrums</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation/>
+            <translation>Seederi</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation/>
+            <translation>Pīri</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation/>
+            <translation>Rācija</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation/>
+            <translation>Augšupielādēts</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>Lejupielādēts</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation/>
+            <translation>Pēdējais mēģinājums</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>Apraksts</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation/>
+            <translation>Saglabāt uz</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation/>
+            <translation>Atsauce</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation/>
+            <translation>Vecākpārlūklapa</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation/>
+            <translation>Gaida</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation/>
+            <translation>%1% (Apturēts)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
-            <translation/>
+            <translation>Pārbauda (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation/>
+            <translation>%n fails(i)</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation/>
+            <translation>Nav atbilstošu lejupielādu.</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation/>
+            <translation>Vēl nav lejupielādu.
+Noklikšķiniet uz Pievienot URL, lai sāktu.</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation/>
+            <translation>Ielādē %n lejupielādu…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation/>
+            <translation>Pārvietot uz rindu</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation/>
+            <translation>Kopēt magnet saiti</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation/>
+            <translation>Kopēt URL</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation/>
+            <translation>Atlasīti %n lejupielādi</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation/>
+            <translation>Dublēt lejupielādes saiti</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation/>
+            <translation>Šis fails jau eksistē jūsu lejupielāžu sarakstā.</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation/>
+            <translation>Varat izvēlēties vienu no šīm opcijām vai noklikšķināt Atcelt, lai izlaistu lejupielādi.</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation/>
+            <translation>Pievienot dublikātu ar numurētu faila nosaukumu</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation/>
+            <translation>Pievienot dublikātu un pārrakstīt esošo failu</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation/>
+            <translation>Esošais fails ir pabeigts — rādīt lejupielādes pabeigšanas dialogu</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation/>
+            <translation>Turpināt esošo lejupielādi</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation/>
+            <translation>Atcerēties manu izvēli un nerādīt šo dialogu vairāk.
+To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation/>
+            <translation>Pārvietot torrenta datus uz...</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation/>
+            <translation>Pārvietot failu uz...</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation/>
+            <translation>Sākt</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>Apturēt</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation/>
+            <translation>Atvērt mapi</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation/>
+            <translation>Atvērt failu</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>Statuss</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Izmērs</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation/>
+            <translation>Saglabāt</translation>
         </message>
         <message>
             <source>Move</source>
-            <translation/>
+            <translation>Pārvietot</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation/>
+            <translation>Adrese</translation>
         </message>
         <message>
             <source>Web page</source>
-            <translation/>
+            <translation>Tīmekļa lapa</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation/>
+            <translation>Atsaucējs</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>Apraksts</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation/>
+            <translation>Pieslēgties</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation/>
+            <translation>Parole</translation>
         </message>
         <message>
             <source>Source</source>
-            <translation/>
+            <translation>Avots</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation/>
+            <translation>Info hash</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation/>
+            <translation>Kopēt</translation>
         </message>
         <message>
             <source>Metadata</source>
-            <translation/>
+            <translation>Metadati</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation/>
+            <translation>Kategorija</translation>
         </message>
         <message>
             <source>Note</source>
-            <translation/>
+            <translation>Piezīme</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>Lejupielādēts</translation>
         </message>
         <message>
             <source>Country</source>
-            <translation/>
+            <translation>Valsts</translation>
         </message>
         <message>
             <source>Port</source>
-            <translation/>
+            <translation>Ports</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation/>
+            <translation>Augšupielādēts</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation/>
+            <translation>Seederi</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation/>
+            <translation>Ziņojums</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation/>
+            <translation>Apturēts</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation/>
+            <translation>Lejupielāde</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation/>
+            <translation>Pārvieto</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation/>
+            <translation>Sēdēšana</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation/>
+            <translation>Rindā</translation>
         </message>
         <message>
             <source>Problem</source>
-            <translation/>
+            <translation>Problēma</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation/>
+            <translation>Torrenta iestatījumi...</translation>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation/>
+            <translation>ETA: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation/>
+            <translation>Seeds: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation/>
+            <translation>Peers: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
-            <translation/>
+            <translation>Vispārīgi</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation/>
+            <translation>Faili</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation/>
+            <translation>Saimas karte</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation/>
+            <translation>Daļu karte</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation/>
+            <translation>Zaudēts</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation/>
+            <translation>Lejupielādes ātrums</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation/>
+            <translation>Augšupielādes ātrums</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation/>
+            <translation>Savienojumi</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation/>
+            <translation>Dalīšanās attiecība</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation/>
+            <translation>Daļas</translation>
         </message>
         <message>
             <source>Availability</source>
-            <translation/>
+            <translation>Pieejamība</translation>
         </message>
         <message>
             <source>Active time</source>
-            <translation/>
+            <translation>Aktīvais laiks</translation>
         </message>
         <message>
             <source>Seed time</source>
-            <translation/>
+            <translation>Sēdēšanas laiks</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation/>
+            <translation>Ātruma limits</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation/>
+            <translation>Pārbaudīt lokālos datus</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation/>
+            <translation>Lejup</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation/>
+            <translation>Augšup</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation/>
+            <translation>Izplatīt</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>Nosaukums</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation/>
+            <translation>Progresa</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation/>
+            <translation>Nav pieejama faila informācija</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation/>
+            <translation>Pārdēvēt vienumu</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation/>
+            <translation>Ievadiet jaunu faila vai mapes nosaukumu:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation/>
+            <translation>Pārdēvēt</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>Lejupielādēt</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation/>
+            <translation>Pārdēvēt...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation/>
+            <translation>Nav savienojumu ar peer</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation/>
+            <translation>Peer Informācija</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation/>
+            <translation>Bloķēt peer</translation>
         </message>
         <message>
             <source>Connection</source>
-            <translation/>
+            <translation>Savienojums</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation/>
+            <translation>Avots: %1</translation>
         </message>
         <message>
             <source>Role: %1</source>
-            <translation/>
+            <translation>Loma: %1</translation>
         </message>
         <message>
             <source>Seeder</source>
-            <translation/>
+            <translation>Seeder</translation>
         </message>
         <message>
             <source>Ping: %1</source>
-            <translation/>
+            <translation>Ping: %1</translation>
         </message>
         <message>
             <source>Progress: %1%</source>
-            <translation/>
+            <translation>Progresa: %1%</translation>
         </message>
         <message>
             <source>Transfer</source>
-            <translation/>
+            <translation>Pārraide</translation>
         </message>
         <message>
             <source>Down: %1</source>
-            <translation/>
+            <translation>↓: %1</translation>
         </message>
         <message>
             <source>Up: %1</source>
-            <translation/>
+            <translation>↑: %1</translation>
         </message>
         <message>
             <source>Total down: %1</source>
-            <translation/>
+            <translation>Kopā ↓: %1</translation>
         </message>
         <message>
             <source>Total up: %1</source>
-            <translation/>
+            <translation>Kopā ↑: %1</translation>
         </message>
         <message>
             <source>Location</source>
-            <translation/>
+            <translation>Atrašanās vieta</translation>
         </message>
         <message>
             <source>Client: %1</source>
-            <translation/>
+            <translation>Klients: %1</translation>
         </message>
         <message>
             <source>You</source>
-            <translation/>
+            <translation>Jūs</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation/>
+            <translation>Peer</translation>
         </message>
         <message>
             <source>Flags</source>
-            <translation/>
+            <translation>Karogi</translation>
         </message>
         <message>
             <source>Ban Peer</source>
-            <translation/>
+            <translation>Bloķēt peer</translation>
         </message>
         <message>
             <source>Legend:</source>
-            <translation/>
+            <translation>Apzīmējumi:</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation/>
+            <translation>Neaktīvs</translation>
         </message>
         <message>
             <source>Trackers</source>
-            <translation/>
+            <translation>Trackeri</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation/>
+            <translation>Seed</translation>
         </message>
         <message>
             <source>Tracker</source>
-            <translation/>
+            <translation>Tracker</translation>
         </message>
         <message>
             <source>Tier</source>
-            <translation/>
+            <translation>Līmenis</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation/>
+            <translation>Peer</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation/>
+            <translation>0 zināmi peer</translation>
         </message>
         <message>
             <source>UL</source>
-            <translation/>
+            <translation>UL</translation>
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation/>
+            <translation>Lej %1 Augš %2</translation>
         </message>
         <message>
             <source>RTT %1</source>
-            <translation/>
+            <translation>RTT %1</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation/>
+            <translation>↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation/>
+            <translation>Ping %1 %2% pabeigts</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>Nezināms</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation/>
+            <translation>Jūs (šis klients)</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation/>
+            <translation>Nav savienojumu, ko attēlot</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation/>
+            <translation>Gaida publisko IP, lai parādītu vietējo kartes pozīciju</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation/>
+            <translation>Spiest atkārtoti paziņot</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation/>
+            <translation>Kopēt URL</translation>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation/>
+            <translation>Noņemt trackeru</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation/>
+            <translation>Atkārtoti paziņot visiem</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation/>
+            <translation>Ielīmējiet trackeru URL - pa vienam rindā. Rindas, kas sākas ar #, tiek ignorētas.</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>Pievienot</translation>
         </message>
         <message>
             <source>No trackers</source>
-            <translation/>
+            <translation>Nav trackeru</translation>
         </message>
         <message>
             <source>Web Seeds</source>
-            <translation/>
+            <translation>Tīkla sēklas</translation>
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation/>
+            <translation>Ielīmējiet tīkla sēklu URL - pa vienam rindā. Pieņemti gan URL sēklas (BEP-19), gan HTTP sēklas (BEP-17).</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation/>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Type</source>
-            <translation/>
+            <translation>Tips</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation/>
+            <translation>Nav tīmekļa sēklu</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation/>
+            <translation>Atvērt pārlūkā</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation/>
+            <translation>Noņemt sēklu</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation/>
+            <translation>Pabeigts</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation/>
+            <translation>Klients</translation>
         </message>
         <message>
             <source>DL</source>
-            <translation/>
+            <translation>DL</translation>
         </message>
         <message>
             <source>Both</source>
-            <translation/>
+            <translation>Abi</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation/>
+            <translation>Ātrums</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation/>
+            <translation>Pieejams</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation/>
+            <translation>Attālums: %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation/>
+            <translation>Valsts: %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation/>
+            <translation>%1 zināmie dalībnieki</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation/>
+            <translation>%n traker(is/i)</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation/>
+            <translation>Paziņot visiem trakeriem, ka esi šeit, nevis gaidīt normālo paziņojumu intervālu. Noderīgi, ja pēkšņi samazinājies dalībnieku skaits.</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation/>
+            <translation>Atkārtota paziņošana...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation/>
+            <translation>Pievienot trackerus…</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation/>
+            <translation>%1 pievienots</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation/>
+            <translation>%1 pievienots, %2 neizdevās</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation/>
+            <translation>%n sēdeis(s)</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation/>
+            <translation>Pievienot sēdi…</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation/>
+            <translation>Lejupielāde no kopas...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation/>
+            <translation>Torrenta īpašības</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation/>
+            <translation>Failu pārbaude</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation/>
+            <translation>Faila īpašības</translation>
         </message>
     </context>
     <context>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation/>
+            <translation>Atrast</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation/>
+            <translation>Atrast:</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation/>
+            <translation>Meklēt:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation/>
+            <translation>Faila nosaukums vai daļa</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation/>
+            <translation>Apraksts vai daļa</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation/>
+            <translation>Vietnes nosaukums / lejupielādes saite / vecākpārlūka lapa / atsauksme</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation/>
+            <translation>Atbilst lielo/mazo burtu režīms</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation/>
+            <translation>Tikai pilna sakritība</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation/>
+            <translation>Rezultāti nav atrasti.</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation/>
+            <translation>Atrasts 1 rezultāts.</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation/>
+            <translation>Atrasti %1 rezultāti.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
     </context>
     <context>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation/>
+            <translation>Projekts saglabāts.</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation/>
+            <translation>Nepieciešams projekta nosaukums un sākuma lapa.</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation/>
+            <translation>Stellar Grabber – 1. solis %1 no %2: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
-            <translation/>
+            <translation>Iestatīt sākuma lapu</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation/>
+            <translation>Saglabāt failus uz</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation/>
+            <translation>Iestatīt pārlūka filtrus</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation/>
+            <translation>Iestatīt failu filtrus</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation/>
+            <translation>Pielāgoti iestatījumi</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation/>
+            <translation>Visas attēlu no tīmekļa vietnes</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation/>
+            <translation>Visi video no vietnes</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation/>
+            <translation>Visa audio no vietnes</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation/>
+            <translation>Pilna vietne</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation/>
+            <translation>Iekļaut filtrus</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation/>
+            <translation>Izslēgt filtrus</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation/>
+            <translation>Veidnes nosaukums</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation/>
+            <translation>Saglabāt</translation>
         </message>
         <message>
             <source>New</source>
-            <translation/>
+            <translation>Jauns</translation>
         </message>
         <message>
             <source>Load</source>
-            <translation/>
+            <translation>Ielādēt</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation/>
+            <translation>Saglabāt pašreizējos iestatījumus kā veidni</translation>
         </message>
         <message>
             <source>Recent Projects</source>
-            <translation/>
+            <translation>Nesenie projekti</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation/>
+            <translation>Grabber iestatījumi</translation>
         </message>
         <message>
             <source>Project</source>
-            <translation/>
+            <translation>Projekts</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation/>
+            <translation>Iespējas</translation>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation/>
+            <translation>Aptveršanas projekta nosaukums</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation/>
+            <translation>Sākuma lapa/adrese</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation/>
+            <translation>Projekta veidne</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation/>
+            <translation>Izvēloties projekta veidni, vednis nākamajos posmos automātiski iestatīs nepieciešamos parametrus. Iestatījumus vienmēr varat mainīt manuāli.</translation>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation/>
+            <translation>Izmantot autorizāciju</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation/>
+            <translation>Papildu &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation/>
+            <translation>Papildu &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation/>
+            <translation>Pieslēgties</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation/>
+            <translation>Parole</translation>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation/>
+            <translation>Nospiediet Papildu, lai iespējotu manuālu pieslēgšanos vai atspējotu izrakstīšanās lapu.</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation/>
+            <translation>Manuāli ievadiet lietotājvārdu un paroli šajā tīmekļa lapā:</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation/>
+            <translation>Neatvērt izrakstīšanās lapu:</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation/>
+            <translation>Daudzās vietnēs ir izrakstīšanās lapa, kuru Aptvērējam nevajadzētu atvērt. Šeit varat izmantot zvaigznītes (*) simbolu, lai norādītu dažādu izrakstīšanās lapu rakstu.</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation/>
+            <translation>Saglabāt uz</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation/>
+            <translation>Katru failu mapē pēc Stellar kategorijas</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation/>
+            <translation>Visus failus mapē, kas saistīta ar šo Stellar kategoriju:</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation/>
+            <translation>Visus failus šajā mapē</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation/>
+            <translation>Izmantot sākotnējās relatīvās apakšmapes</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation/>
+            <translation>Saglabāt katru failu pēc kategorijas</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation/>
+            <translation>Saglabāt visus failus izvēlētajā kategorijā</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation/>
+            <translation>Saglabāt visus failus šajā mapē</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation/>
+            <translation>Pārvērst lejupielādēto HTML failu saites lokālos failos, lai lasītu bezsaistē</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation/>
+            <translation>Pārrakstīt esošos failus</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation/>
+            <translation>Aizverot grabberu, pievienot atzīmētos failus Stellar galvenajam sarakstam un lejupielādes rindai</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation/>
+            <translation>Šajā solī norādiet, kuras tīmekļa lapas izpētīt, lai atrastu nepieciešamos failus. Nākamajā solī varēsiet iestatīt failu tipus, atrašanās vietu un citus filtrus.</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
-            <translation/>
+            <translation>Izpētīt visu vietni</translation>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation/>
+            <translation>Izpētīt norādīto saites līmeņu skaitu:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation/>
+            <translation>līmeņus pamatvietnē</translation>
         </message>
         <message>
             <source>levels on other sites</source>
-            <translation/>
+            <translation>līmeņus citās vietnēs</translation>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation/>
+            <translation>Saites līmeņu skaits?</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation/>
+            <translation>Ignorēt uznirstošos logus</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation/>
+            <translation>Neizpētīt vecāko direktoriju</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation/>
+            <translation>Izpētīt visas vietnes galvenajā domēnā</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation/>
+            <translation>Apstrādāt JavaScript</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation/>
+            <translation>Izpētīt tikai šos ceļus/domēnus:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation/>
+            <translation>Ievadiet ceļu vai domēnu katrā rindā vai atdaliet ar semikolonu. Izmantojiet * kā aizstājēju. Piemēram: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation/>
+            <translation>Neizpētīt šos ceļus/domēnus:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation/>
+            <translation>Ievadiet ceļu vai domēnu katrā rindā vai atdaliet ar semikolonu. Izmantojiet * kā aizstājēju. Piemēram: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation/>
+            <translation>Lejupielādēt tikai šos failu veidus</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation/>
+            <translation>Iekļaut filtrus...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation/>
+            <translation>Nelejupielādēt šos failu veidus</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation/>
+            <translation>Izslēgt filtrus...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation/>
+            <translation>Meklēt tikai šajā vietnē</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation/>
+            <translation>Paslēpt dublikātus dažādās vietās</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation/>
+            <translation>Sākt lejupielādi visiem sakritušajiem failiem</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation/>
+            <translation>Lejupielādēt, ja faila izmērs ir</translation>
         </message>
         <message>
             <source>Not less than</source>
-            <translation/>
+            <translation>Nav mazāks par</translation>
         </message>
         <message>
             <source>Bytes</source>
-            <translation/>
+            <translation>Baiti</translation>
         </message>
         <message>
             <source>Not more than</source>
-            <translation/>
+            <translation>Nav lielāks par</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation/>
+            <translation>Lejupielādēt tikai failus, kas atrodas šajos ceļos/domēnos:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation/>
+            <translation>Izmantojiet * kā aizstājējzīmi. Ievadiet vienu ceļu vai domēnu katrā rindā vai atdaliet ierakstus ar semikolu. Piemēri: *.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation/>
+            <translation>Nelejupielādēt failus, kas atrodas šajos ceļos/domēnos:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation/>
+            <translation>Izmantojiet * kā aizstājējzīmi. Ievadiet vienu ceļu vai domēnu katrā rindā vai atdaliet ierakstus ar semikolu. Piemēri: *.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
-            <translation/>
+            <translation>Komentārs</translation>
         </message>
         <message>
             <source>Save Project</source>
-            <translation/>
+            <translation>Saglabāt projektu</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation/>
+            <translation>Dzēst projektu</translation>
         </message>
         <message>
             <source>&lt; Back</source>
-            <translation/>
+            <translation>&lt; Atpakaļ</translation>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation/>
+            <translation>Tālāk &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation/>
+            <translation>Sākt izpēti</translation>
         </message>
     </context>
     <context>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation/>
+            <translation>Filtra nosaukums</translation>
         </message>
         <message>
             <source>Mask</source>
-            <translation/>
+            <translation>Maska</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>Pievienot</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation/>
+            <translation>Rediģēt</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>Dzēst</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Edit filter</source>
-            <translation/>
+            <translation>Rediģēt filtru</translation>
         </message>
         <message>
             <source>New filter</source>
-            <translation/>
+            <translation>Jauns filtrs</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation/>
+            <translation>Kategorija</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation/>
+            <translation>Saglabāt</translation>
         </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation/>
+            <translation>Ielādēt Grabber projektu</translation>
         </message>
         <message>
             <source>Saved projects</source>
-            <translation/>
+            <translation>Saglabātie projekti</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
         <message>
             <source>Project</source>
-            <translation/>
+            <translation>Projekts</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation/>
+            <translation>Iespējas</translation>
         </message>
         <message>
             <source>Running</source>
-            <translation/>
+            <translation>Darbībā</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation/>
+            <translation>Gaida</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation/>
+            <translation>Atrasti %1 faili</translation>
         </message>
         <message>
             <source>%1 checked</source>
-            <translation/>
+            <translation>Pārbaudīts %1</translation>
         </message>
         <message>
             <source>Exploring…</source>
-            <translation/>
+            <translation>Izpēte…</translation>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation/>
+            <translation>Nospiediet Sākt izpēti, lai skanētu URL.</translation>
         </message>
         <message>
             <source>Start
 Exploring</source>
-            <translation/>
+            <translation>Sākt
+Izpēte</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation/>
+            <translation>Faila nosaukums</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation/>
+            <translation>Faila tips</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Izmērs</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>Statuss</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation/>
+            <translation>Saites teksts</translation>
         </message>
         <message>
             <source>Download from</source>
-            <translation/>
+            <translation>Lejupielādēt no</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation/>
+            <translation>Saglabāt uz</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation/>
+            <translation>Pārbaudīt atlasīto</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation/>
+            <translation>Noņemt atlasi no atlasītajiem</translation>
         </message>
         <message>
             <source>Edit current project</source>
-            <translation/>
+            <translation>Rediģēt pašreizējo projektu</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation/>
+            <translation>Grabber iestatījumi</translation>
         </message>
         <message>
             <source>Stop
 Exploring</source>
-            <translation/>
+            <translation>Apturēt</translation>
         </message>
         <message>
             <source>Start
 Downloading</source>
-            <translation/>
+            <translation>Sākt</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
-            <translation/>
+            <translation>Apturēt</translation>
         </message>
         <message>
             <source>Update
 All</source>
-            <translation/>
+            <translation>Atjaunināt</translation>
         </message>
         <message>
             <source>Schedule
 Project</source>
-            <translation/>
+            <translation>Plānot</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation/>
+            <translation>Statistika</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation/>
+            <translation>Kategorijas</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation/>
+            <translation>Visi faili</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation/>
+            <translation>Saites skats</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation/>
+            <translation>Mapju skats</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation/>
+            <translation>Faili nav atrasti</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation/>
+            <translation>← Atpakaļ</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <translation/>
+            <translation>%1 faili</translation>
         </message>
         <message>
             <source>%1 / %2 (filtered)</source>
-            <translation/>
+            <translation>%1 / %2 (filtrēti)</translation>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation/>
+            <translation>Pievienot izvēlētos lejupielāžu sarakstam</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
-            <translation/>
+            <translation>Stellar Grabber</translation>
         </message>
     </context>
     <context>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation/>
+            <translation>Plānot projekta lejupielādi</translation>
         </message>
         <message>
             <source>Project:</source>
-            <translation/>
+            <translation>Projekts:</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation/>
+            <translation>Iespējot projekta grafiku</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation/>
+            <translation>1. solis. Izvēlies veidu</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation/>
+            <translation>Vienreizēja izpēte/lejupielāde</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation/>
+            <translation>Periodiska sinhronizācija</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation/>
+            <translation>2. solis. Izvēlies darbību</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation/>
+            <translation>Tikai izpēte</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation/>
+            <translation>Izpētīt vietni un lejupielādēt sakrīt. failus</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation/>
+            <translation>Lejupielādēt atzīmētos failus</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation/>
+            <translation>Pēc pabeigšanas</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation/>
+            <translation>Iziet no Stellar, kad pabeigts</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation/>
+            <translation>Izslēgt datoru, kad pabeigts</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation/>
+            <translation>Izslēgt</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation/>
+            <translation>Pārstartēt</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation/>
+            <translation>Gulēt</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation/>
+            <translation>Hibernēt</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation/>
+            <translation>Piespiedu process beigt</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation/>
+            <translation>3. solis. Plānot</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation/>
+            <translation>Sākt lejupielādi plkst.</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation/>
+            <translation>Reizi plkst.</translation>
         </message>
         <message>
             <source>January</source>
-            <translation/>
+            <translation>Janvāris</translation>
         </message>
         <message>
             <source>February</source>
-            <translation/>
+            <translation>Februāris</translation>
         </message>
         <message>
             <source>March</source>
-            <translation/>
+            <translation>Marts</translation>
         </message>
         <message>
             <source>April</source>
-            <translation/>
+            <translation>Aprīlis</translation>
         </message>
         <message>
             <source>May</source>
-            <translation/>
+            <translation>Maijs</translation>
         </message>
         <message>
             <source>June</source>
-            <translation/>
+            <translation>Jūnijs</translation>
         </message>
         <message>
             <source>July</source>
-            <translation/>
+            <translation>Jūlijs</translation>
         </message>
         <message>
             <source>August</source>
-            <translation/>
+            <translation>Augusts</translation>
         </message>
         <message>
             <source>September</source>
-            <translation/>
+            <translation>Septembris</translation>
         </message>
         <message>
             <source>October</source>
-            <translation/>
+            <translation>Oktobris</translation>
         </message>
         <message>
             <source>November</source>
-            <translation/>
+            <translation>Novembris</translation>
         </message>
         <message>
             <source>December</source>
-            <translation/>
+            <translation>Decembris</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation/>
+            <translation>Dienas</translation>
         </message>
         <message>
             <source>Sunday</source>
-            <translation/>
+            <translation>Svētdiena</translation>
         </message>
         <message>
             <source>Thursday</source>
-            <translation/>
+            <translation>Ceturtdiena</translation>
         </message>
         <message>
             <source>Monday</source>
-            <translation/>
+            <translation>Pirmdiena</translation>
         </message>
         <message>
             <source>Friday</source>
-            <translation/>
+            <translation>Piektdiena</translation>
         </message>
         <message>
             <source>Tuesday</source>
-            <translation/>
+            <translation>Otrdiena</translation>
         </message>
         <message>
             <source>Saturday</source>
-            <translation/>
+            <translation>Sestdiena</translation>
         </message>
         <message>
             <source>Wednesday</source>
-            <translation/>
+            <translation>Trešdiena</translation>
         </message>
         <message>
             <source>Repeat every</source>
-            <translation/>
+            <translation>Atkārtot ik pēc</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation/>
+            <translation>stundām</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation/>
+            <translation>minūtēm</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation/>
+            <translation>Apturēt lejupielādi plkst</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation/>
+            <translation>Piezīme: Stellar ir jābūt palaistam sistēmas laukā norādītajā laikā, lai sāktu plānoto projektu.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
         <message>
             <source>Settings of Stellar Grabber</source>
-            <translation/>
+            <translation>Stellar Grabber iestatījumi</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation/>
+            <translation>vienlaicīgi izpētāmie faili (1–10)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation/>
+            <translation>vienlaicīgi lejupielādējamie faili (1–10)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation/>
+            <translation>Ņemiet vērā, ka tīmekļa serveris var noraidīt pieprasījumus, ja vienlaicīgi iestatīts liels skaits izpētāmo vai lejupielādējamo failu.</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation/>
+            <translation>Izmantot saites tekstu kā lejupielādes aprakstu, pievienojot failus Stellar galvenajam sarakstam</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation/>
+            <translation>Grabber statistika</translation>
         </message>
         <message>
             <source>Status: %1</source>
-            <translation/>
+            <translation>Statuss: %1</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation/>
+            <translation>Gaida</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation/>
+            <translation>Apstrādātas tīmekļa lapas</translation>
         </message>
         <message>
             <source>Simple</source>
-            <translation/>
+            <translation>Vienkāršs</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation/>
+            <translation>Paplašināts</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation/>
+            <translation>Faili</translation>
         </message>
         <message>
             <source>Total</source>
-            <translation/>
+            <translation>Kopā</translation>
         </message>
         <message>
             <source>Explored</source>
-            <translation/>
+            <translation>Izpētīts</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation/>
+            <translation>Sakritušais</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>Lejupielādēts</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
     </context>
     <context>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation/>
+            <translation>Uzdevumi</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation/>
+            <translation>Pievienot URL…</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation/>
+            <translation>SDM lejupielādes</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation/>
+            <translation>Šķiet, ka šai YouTube lejupielādei nepieciešamas pārlūka sīkdatnes.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation/>
+            <translation>Sīkdatnes no pārlūka:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation/>
+            <translation>Stellar mēģinās atkārtoti lejupielādēt to pašu yt-dlp ierakstu, izmantojot šī pārlūka sīkdatnes.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation/>
+            <translation>Mēģināt vēlreiz</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation/>
+            <translation>Atvērt Stellar</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation/>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation/>
+            <translation>Ātruma ierobežotājs: Ieslēgt</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation/>
+            <translation>Ātruma ierobežotājs: Izslēgt</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation/>
+            <translation>Ātruma ierobežotāja iestatījumi…</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation/>
+            <translation>Iziet no Stellar</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation/>
+            <translation>Torrent faili (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation/>
+            <translation>Visi faili (*)</translation>
         </message>
         <message>
             <source>Total: %1</source>
-            <translation/>
+            <translation>Kopā: %1</translation>
         </message>
         <message>
             <source>Completed: %1</source>
-            <translation/>
+            <translation>Pabeigts: %1</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation/>
+            <translation>Lejupielāde: %1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation/>
+            <translation>Rindā: %1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
-            <translation/>
+            <translation>Kopā: %1%</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>Apturēt</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation/>
+            <translation>Turpināt</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation/>
+            <translation>Iespējot BitTorrent atbalstu?</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2534,1477 +2537,1489 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation/>
+            <translation>BitTorrent atbalsts pašlaik ir atspējots.
+
+Lejupielādējot torrentu, jūsu IP adrese kļūst redzama citiem peeriem un vienlaikus augšupielādējat datus.
+
+Jūs esat atbildīgs par kopīgo saturu. Pārliecinieties, ka jums ir tiesības to izplatīt.
+
+Ieteicams saistīt Stellar ar VPN interfeisu un pārbaudīt VPN aktiviteti pirms torrentu izmantošanas.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation/>
+            <translation>Es saprotu, iespējot</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation/>
+            <translation>Nospējāt 'Lejupielādēt vēlāk', bet Stellar jau sāka lejupielādi. Tas notiek, rādot 'Lejupielādes informācija' dialogu.
+
+Izslēdziet iestatījumos → Lejupielādes.</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation/>
+            <translation>Fails &quot;%1&quot; nevar tikt lejupielādēts.</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation/>
+            <translation>Serveris atgrieza lapu, nevis failu. Dažas vietnes dzēš failus pēc metadata vaicājuma.</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation/>
+            <translation>Lai pārlūks lejupielādētu tieši, turiet modificējošo taustiņu (Alt, Ctrl vai Shift), noklikšķinot uz saites. Konfigurējiet taustiņu: Stellar opcijas → Pārlūks → Lejupielādes aizturēšanas apiet</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation/>
+            <translation>Atvērt pārlūka iestatījumus</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation/>
+            <translation>Pieejama versija %1</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation/>
+            <translation>Atjaunināt tagad</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation/>
+            <translation>Pievienot torrent failu…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation/>
+            <translation>Pievienot partijas URL…</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation/>
+            <translation>Iziet</translation>
         </message>
         <message>
             <source>File</source>
-            <translation/>
+            <translation>Fails</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation/>
+            <translation>Atvērt mapi</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation/>
+            <translation>Atvērt failu</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation/>
+            <translation>Lejupielādēt tagad</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation/>
+            <translation>Apturēt lejupielādi</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation/>
+            <translation>Noņemt</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation/>
+            <translation>Lejupielādēt vēlreiz</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation/>
+            <translation>Eksportēt .torrent…</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation/>
+            <translation>Lejupielādes</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation/>
+            <translation>Pauzēt visu</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation/>
+            <translation>Apturēt visu</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation/>
+            <translation>Dzēst pabeigtos</translation>
         </message>
         <message>
             <source>Find…</source>
-            <translation/>
+            <translation>Atrast…</translation>
         </message>
         <message>
             <source>Find Next</source>
-            <translation/>
+            <translation>Atrast nākamo</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation/>
+            <translation>Plānotājs</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation/>
+            <translation>Sākt rindu</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation/>
+            <translation>Apturēt rindu</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation/>
+            <translation>Ātruma ierobežotājs</translation>
         </message>
         <message>
             <source>Turn On</source>
-            <translation/>
+            <translation>Ieslēgt</translation>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation/>
+            <translation>Izslēgt</translation>
         </message>
         <message>
             <source>Settings…</source>
-            <translation/>
+            <translation>Iestatījumi…</translation>
         </message>
         <message>
             <source>Options…</source>
-            <translation/>
+            <translation>Opcijas…</translation>
         </message>
         <message>
             <source>View</source>
-            <translation/>
+            <translation>Skats</translation>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation/>
+            <translation>Slēpt kategorijas</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation/>
+            <translation>Rādīt kategorijas</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation/>
+            <translation>Rādīt meklētāju</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
-            <translation/>
+            <translation>Rādīt RSS lasītāju</translation>
         </message>
         <message>
             <source>Statistics…</source>
-            <translation/>
+            <translation>Statistika…</translation>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation/>
+            <translation>Kārtot failus</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation/>
+            <translation>Pēc pievienošanas kārtas</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation/>
+            <translation>Pēc faila nosaukuma</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation/>
+            <translation>Pēc izmēra</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation/>
+            <translation>Pēc statusa</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation/>
+            <translation>Pēc atlikušā laika</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation/>
+            <translation>Pārneses ātrums</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation/>
+            <translation>Pēc pēdējā mēģinājuma datuma</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation/>
+            <translation>Pēc apraksta</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation/>
+            <translation>Pēc saglabāšanas ceļa</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation/>
+            <translation>Pēc atsauces</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation/>
+            <translation>Pēc vecāktā tīmekļa lapas</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation/>
+            <translation>Kolonnas…</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation/>
+            <translation>Iespējas</translation>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation/>
+            <translation>Iestatījumi…</translation>
         </message>
         <message>
             <source>RSS</source>
-            <translation/>
+            <translation>RSS</translation>
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation/>
+            <translation>Atvērt RSS lasītāju</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation/>
+            <translation>Atsvaidzināt visus plūsmas</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation/>
+            <translation>Atzīmēt visus vienumus izlasītus</translation>
         </message>
         <message>
             <source>Help</source>
-            <translation/>
+            <translation>Palīdzība</translation>
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation/>
+            <translation>Pārbaudīt atjauninājumus</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation/>
+            <translation>Iemet .torrent failu, lai atvērtu torrent metadatus</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation/>
+            <translation>Meklēt:</translation>
         </message>
         <message>
             <source>Find</source>
-            <translation/>
+            <translation>Meklēt</translation>
         </message>
         <message>
             <source>Settings ▾</source>
-            <translation/>
+            <translation>Iestatījumi ▾</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation/>
+            <translation>Meklēt:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation/>
+            <translation>Faila nosaukums vai daļa</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>Apraksts</translation>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation/>
+            <translation>URL / atsauces / vecāktā tīmekļa lapa</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation/>
+            <translation>Sakritība ar lielo burtu</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation/>
+            <translation>Tikai pilna sakritība</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation/>
+            <translation>Pārvietot sānjoslu pa kreisi</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation/>
+            <translation>Pārvietot sānjoslu pa labi</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation/>
+            <translation>Atiestatīt sānjoslas platumu</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation/>
+            <translation>Par Stellar</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation/>
+            <translation>Pārlūka integrācija</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation/>
+            <translation>Pārlūka paplašinājumi…</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation/>
+            <translation>Pārlūka iestatījumi…</translation>
         </message>
         <message>
             <source>Stellar</source>
-            <translation/>
+            <translation>Stellar</translation>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation/>
+            <translation>Nepieciešamas pārlūka sīkdatnes</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation/>
+            <translation>Pievienot torrent failu</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation/>
+            <translation>Eksportēt .torrent failus</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation/>
+            <translation>Kanāla lejupielādes progress</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation/>
+            <translation>Lejupielādēt vēlāk</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation/>
+            <translation>Fails vairs nav pieejams</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation/>
+            <translation>Ātra atjaunināšana</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation/>
+            <translation>Stellar Download Manager</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation/>
+            <translation>Stellar ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation/>
+            <translation>Pieejama jauna Stellar Download Manager versija</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation/>
+            <translation>Jaunās funkcijas Stellar</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation/>
+            <translation>Rindas izvēle</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation/>
+            <translation>Pievienot failus rindai?</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation/>
+            <translation>Izvēlieties esošu rindu vai izveidojiet jaunu.</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation/>
+            <translation>Rinda</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation/>
+            <translation>Sākt rindas apstrādi</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation/>
+            <translation>Vairs neprasīt</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation/>
+            <translation>Ne pievienot rindai</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation/>
+            <translation>Ievadiet rindas nosaukumu</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Create</source>
-            <translation/>
+            <translation>Izveidot</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation/>
+            <translation>(Noklusējums)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation/>
+            <translation>Lejupielādes noteikumi</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>Pievienot</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation/>
+            <translation>Noņemt</translation>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation/>
+            <translation>Noklikšķiniet uz „Pievienot”, lai izveidotu lejupielādes noteikumu</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation/>
+            <translation>Noteikuma nosaukums</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation/>
+            <translation>Aktivizēts</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation/>
+            <translation>FILTRĒŠANAS NOTEIKUMI</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation/>
+            <translation>Izmantot regulārās izteiksmes</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation/>
+            <translation>Jā satur:</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation/>
+            <translation>regex raksts</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation/>
+            <translation>atslēgvārds1 atslēgvārds2 | atslēgvārds3</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation/>
+            <translation>Jā nesatur:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation/>
+            <translation>atslēgvārds1 atslēgvārds2</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation/>
+            <translation>Epizodes filtrs:</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation/>
+            <translation>piem. 1x01-1x24 vai 2x01;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation/>
+            <translation>Izmantot viedepizodes filtru</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation/>
+            <translation>Izlaiž epizodes, kas jau atbilst iepriekšējiem noteikumiem</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation/>
+            <translation>Ignorēt turpmākos sakritības priekš</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation/>
+            <translation>dienas (0 = atspējots)</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation/>
+            <translation>LEJUPIELĀDES IESTATĪJUMI</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation/>
+            <translation>Saglabāt:</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation/>
+            <translation>Atstāj tukšu, lai izmantotu noklusējuma ceļu</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation/>
+            <translation>Pārlūkot...</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation/>
+            <translation>Kategorija</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation/>
+            <translation>Rinda</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation/>
+            <translation>TORRENTA DALĪŠANĀS IEROBEŽOJUMI</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation/>
+            <translation>Attiecība</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation/>
+            <translation>Noklusējums</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation/>
+            <translation>Bez ierobežojuma</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation/>
+            <translation>Iestatīt uz</translation>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation/>
+            <translation>Sēdēšanas laiks</translation>
         </message>
         <message>
             <source>min</source>
-            <translation/>
+            <translation>min</translation>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation/>
+            <translation>Neaktīvā sēdēšanas laiks</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation/>
+            <translation>&quot;Noklusējums&quot; izmanto globālos dalīšanās ierobežojumus, kas iestatīti Iestatījumi → Torrenti.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation/>
+            <translation>RSS automātiskās lejupielādes noteikumi</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation/>
+            <translation>Nosaukums</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation/>
+            <translation>Plūsma</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation/>
+            <translation>Datums</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation/>
+            <translation>Atvērt plūsmu</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation/>
+            <translation>Atsvaidzināt</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation/>
+            <translation>Pārdēvēt / Rediģēt...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation/>
+            <translation>Noņemt abonementu</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation/>
+            <translation>Lejupielādēt torrentu</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>Lejupielādēt</translation>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation/>
+            <translation>Atvērt pārlūkā</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation/>
+            <translation>Kopēt saiti</translation>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation/>
+            <translation>Atzīmēt kā izlasītu</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation/>
+            <translation>Atzīmēt kā neizlasītu</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation/>
+            <translation>Atzīmēt visu kā izlasītu</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>Nosaukums</translation>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation/>
+            <translation>Pielāgots nosaukums (neobligāti)</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation/>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation/>
+            <translation>Saglabāt</translation>
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation/>
+            <translation>Pievienot RSS vai Atom kanāla URL...</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>Pievienot</translation>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation/>
+            <translation>Atjauno...</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation/>
+            <translation>Rediģēt</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation/>
+            <translation>Noņemt</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation/>
+            <translation>Lejupielādes noteikumi</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation/>
+            <translation>Abonementi</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation/>
+            <translation>Bez nosaukuma</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation/>
+            <translation>Izvēlēties rakstu</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation/>
+            <translation>Atvērt</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation/>
+            <translation>Atzīmēt izlasītu</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation/>
+            <translation>Atzīmēt neizlasītu</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation/>
+            <translation>Izvēlieties rakstu, lai skatītu kopsavilkumu.</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation/>
+            <translation>Kopsavilkums nav pieejams.</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation/>
+            <translation>%1 neizlasīti  ·  %2 vienumi</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation/>
+            <translation>%1 vienumi</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation/>
+            <translation>RSS plūsmas</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation/>
+            <translation>Rediģēt abonēšanu</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation/>
+            <translation>Rindas</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation/>
+            <translation>Jauna rinda</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>Dzēst</translation>
         </message>
         <message>
             <source>Schedule</source>
-            <translation/>
+            <translation>Plāns</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation/>
+            <translation>Faili rindā</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation/>
+            <translation>Vienreizēja lejupielāde</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation/>
+            <translation>Periodiska sinhronizācija</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation/>
+            <translation>Sākt lejupielādi, startējot Stellar</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation/>
+            <translation>Sākt lejupielādi plkst.</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation/>
+            <translation>Kad nonākt</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation/>
+            <translation>Katru dienu</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation/>
+            <translation>Sākt no jauna ik pēc</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation/>
+            <translation>stundām</translation>
         </message>
         <message>
             <source>min</source>
-            <translation/>
+            <translation>min</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation/>
+            <translation>Apturēt lejupielādi, kad</translation>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation/>
+            <translation>Atkārtotu mēģinājumu skaits katram failam, ja lejupielāde neizdodas:</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation/>
+            <translation>Atvērt šo failu, kad pabeigts:</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation/>
+            <translation>Iziet no Stellar, kad pabeigts</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation/>
+            <translation>Izslēgt datoru, kad pabeigts</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation/>
+            <translation>Piespiedu procesa pārtraukšana</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>Lejupielāde</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation/>
+            <translation>faili vienlaicīgi</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation/>
+            <translation>Faila nosaukums</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Izmērs</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>Statuss</translation>
         </message>
         <message>
             <source>Time Left</source>
-            <translation/>
+            <translation>Atlikušais laiks</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation/>
+            <translation>Nav izvēlēta rinda</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation/>
+            <translation>Rindā nav failu</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation/>
+            <translation>Lejupielādes ierobežojumi</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation/>
+            <translation>Lejupielādēt ne vairāk kā</translation>
         </message>
         <message>
             <source>MBytes</source>
-            <translation/>
+            <translation>MB</translation>
         </message>
         <message>
             <source>every</source>
-            <translation/>
+            <translation>katras</translation>
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation/>
+            <translation>Rādīt brīdinājumu pirms lejupielāžu apturēšanas</translation>
         </message>
         <message>
             <source>Start now</source>
-            <translation/>
+            <translation>Sākt tagad</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>Apturēt</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation/>
+            <translation>Pielietot</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation/>
+            <translation>Ievadiet jaunas rindas nosaukumu, kas tiks rādīts rindu sarakstā</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation/>
+            <translation>Rindas nosaukums</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation/>
+            <translation>Plānotājs</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation/>
+            <translation>Jauna rinda</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation/>
+            <translation>Izvēlies failu atvēršanai pēc pabeigšanas</translation>
         </message>
     </context>
     <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation/>
+            <translation>Savienojums</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation/>
+            <translation>Maksimālais vienlaicīgo lejupielāžu skaits:</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation/>
+            <translation>Segmenti uz lejupielādi:</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation/>
+            <translation>Savienojuma timeout (sekundes):</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation/>
+            <translation>Mēģināt neveiksmīgas lejupielādes vēlreiz:</translation>
         </message>
         <message>
             <source>times</source>
-            <translation/>
+            <translation>reizes</translation>
         </message>
         <message>
             <source>User Agent</source>
-            <translation/>
+            <translation>Lietotāja aģents</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation/>
+            <translation>Izmantot pielāgotu lietotāja aģentu</translation>
         </message>
         <message>
             <source>Proxy</source>
-            <translation/>
+            <translation>Starpniekserveris</translation>
         </message>
         <message>
             <source>No proxy</source>
-            <translation/>
+            <translation>Bez starpniekservera</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation/>
+            <translation>Izmantot sistēmas proxy</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation/>
+            <translation>HTTP/HTTPS proxy</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation/>
+            <translation>SOCKS5 proxy</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation/>
+            <translation>Resursdators:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation/>
+            <translation>Ports:</translation>
         </message>
         <message>
             <source>Username:</source>
-            <translation/>
+            <translation>Lietotājvārds:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation/>
+            <translation>Parole:</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation/>
+            <translation>Kategorijas</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>Nosaukums</translation>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation/>
+            <translation>Saglabāt mapē</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation/>
+            <translation>Lejupielādes</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation/>
+            <translation>Noklusējuma saglabāšanas mape:</translation>
         </message>
         <message>
             <source>Browse…</source>
-            <translation/>
+            <translation>Pārlūkot…</translation>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation/>
+            <translation>Pielāgota torrentu saglabāšanas mape:</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation/>
+            <translation>Stellar pagaidu direktorija:</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation/>
+            <translation>Sākt lejupielādi nekavējoties (izlaist faila informācijas dialogu)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation/>
+            <translation>Rādīt lejupielādes pabeigšanas dialogu</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation/>
+            <translation>Sākt lejupielādi nekavējoties, rādot „Lejupielādēt faila informāciju” dialogu</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation/>
+            <translation>Rādīt svītras karti, lejupielādējot torrenta metadatus</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation/>
+            <translation>Rādīt rindas izvēlni, nospiežot „Lejupielādēt vēlāk”</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation/>
+            <translation>Rādīt rindas izvēlni, aizverot masveida lejupielāžu dialogu</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation/>
+            <translation>Ja tiek pievienots dubults URL:</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation/>
+            <translation>Dubultklikšķis uz lejupielādes failu sarakstā:</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation/>
+            <translation>Pēdējā mēģinājuma datuma formāts:</translation>
         </message>
         <message>
             <source>Time format:</source>
-            <translation/>
+            <translation>Laika formāts:</translation>
         </message>
         <message>
             <source>Show seconds</source>
-            <translation/>
+            <translation>Rādīt sekundes</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation/>
+            <translation>Priekšskatījums</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation/>
+            <translation>Pārlūka integrācija</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation/>
+            <translation>Automātiski sākt lejupielādēt šāda veida failus:</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation/>
+            <translation>Nesākt automātiski lejupielādēt no šādām vietnēm:</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation/>
+            <translation>Izņēmumu adreses</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation/>
+            <translation>Neielādēt no šādām adresēm:</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation/>
+            <translation>Apiet lejupielādes tīkšanu</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation/>
+            <translation>Turiet nospiestu šo taustiņu, noklikšķinot uz lejupielādes saites, lai izlaistu tīkšanu un ļautu pārlūkprogrammai veikt lejupielādi:</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation/>
+            <translation>Ātruma ierobežotājs</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation/>
+            <translation>Iespējot globālo ātruma ierobežojumu</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation/>
+            <translation>Maksimālais ātrums:</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation/>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation/>
+            <translation>Iespējot globālo augšupielādes ierobežojumu</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation/>
+            <translation>Maksimālā augšupielāde:</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation/>
+            <translation>Vienmēr ieslēgt ātruma ierobežotāju, startējot Stellar</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation/>
+            <translation>Iespējot ātruma ierobežotāja plānotāju</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation/>
+            <translation>Noņemt</translation>
         </message>
         <message>
             <source>On</source>
-            <translation/>
+            <translation>Ieslēgts</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>Lejupielādēt</translation>
         </message>
         <message>
             <source>Upload</source>
-            <translation/>
+            <translation>Augšupielādēt</translation>
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation/>
+            <translation>+ Pievienot likumu</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation/>
+            <translation>Paziņojumi</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation/>
+            <translation>Rādīt paziņojumu, kad lejupielāde pabeigta</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation/>
+            <translation>Rādīt paziņojumu par lejupielādes kļūdu</translation>
         </message>
         <message>
             <source>General</source>
-            <translation/>
+            <translation>Vispārīgi</translation>
         </message>
         <message>
             <source>Browser</source>
-            <translation/>
+            <translation>Pārlūks</translation>
         </message>
         <message>
             <source>Media</source>
-            <translation/>
+            <translation>Daudzveidība</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation/>
+            <translation>Torrenti</translation>
         </message>
         <message>
             <source>Language</source>
-            <translation/>
+            <translation>Valoda</translation>
         </message>
         <message>
             <source>About</source>
-            <translation/>
+            <translation>Par</translation>
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation/>
+            <translation>Kad īpašais režīms ir izslēgts, Stellar izmanto iebūvēto lietotāja aģentu ar pašreizējo versiju.</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation/>
+            <translation>Šī vērtība tiks nosūtīta tieši tā, kā ievadīta.</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation/>
+            <translation>Iebūvētais noklusējums ir parādīts augstāk. Atzīmējiet izvēles rūtiņu, lai rediģētu un pārrakstītu to.</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation/>
+            <translation>Pēc izvēles</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation/>
+            <translation>Visi lejupielādes, video lejupielādes, atjauninājumu pārbaudes un torrenta peer/tracker savienojumi tiek novirzīti caur šo starpniekserveri.</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation/>
+            <translation>Stellar izmantos jūsu operētājsistēmas tīkla iestatījumos konfigurēto starpniekserveri.</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation/>
+            <translation>Laiks beidzies — starpniekserveris neatbildēja</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation/>
+            <translation>Testēšana…</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation/>
+            <translation>Testēt starpniekserveri</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation/>
+            <translation>⚠ Nav pārlūkprogrammas automātiskās lejupielādes sarakstā: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation/>
+            <translation>Pārlūkot</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation/>
+            <translation>Šī ir atcerētā pielāgotā torrent mapes vieta, kas tiek izmantota, kad torrenta metadatu dialoglodziņš ir iestatīts uz noklusējuma pielāgotu saglabāšanas mapi.</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation/>
+            <translation>Stellar šeit glabā daļēji lejupielādētu failu daļas un metadatus lejupielādes un failu apvienošanas laikā.</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation/>
+            <translation>Piezīme: Šie iestatījumi neattiecas uz rindas apstrādi, kad ir aktivizēts iestatījums „Sākt lejupielādi nekavējoties” un iestatījums „Rādīt lejupielādes pabeigšanas dialogu”.</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation/>
+            <translation>Jautāt, ko darīt</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
-            <translation/>
+            <translation>Pievienot ar numurētu faila nosaukumu</translation>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation/>
+            <translation>Pārrakstīt esošo lejupielādi</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation/>
+            <translation>Turpināt / rādīt pabeigšanas dialogu</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation/>
+            <translation>Atvērt faila īpašību dialogu</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation/>
+            <translation>Atvērt failu</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation/>
+            <translation>Atvērt mapi</translation>
         </message>
         <message>
             <source>24-hour time</source>
-            <translation/>
+            <translation>24h laiks</translation>
         </message>
         <message>
             <source>12-hour time</source>
-            <translation/>
+            <translation>12h laiks</translation>
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation/>
+            <translation>Atstarpes vai komatu atdalīti. Nešķir lielos/mazos burtus.</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation/>
+            <translation>Ar atstarpēm atdalīti hostu raksti. Atbalstīti zvaigznītes (*), piem. *.update.microsoft.com</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation/>
+            <translation>Rādīt dialogu, lai pievienotu adresi izņēmumu sarakstam divreiz atceltai lejupielādei</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation/>
+            <translation>Viens URL raksts rindā. Atbalstīti zvaigznītes (*).</translation>
         </message>
         <message>
             <source>None</source>
-            <translation/>
+            <translation>Nav</translation>
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation/>
+            <translation>Noklikšķiniet uz dienas pildspalvas, lai to pārslēgtu. Noteikumi tiek novērtēti katru minūti; pirmais atbilstošais noteikums uzvar. Plānotie lejupielādes un augšupielādes limiti tiek automātiski dzēsti, ja nav aktīvs neviens noteikums.</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation/>
+            <translation>Minimizēt uz sistēmas joslu</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation/>
+            <translation>Aizvērt uz sistēmas joslu</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation/>
+            <translation>Palaidīt Stellar startējot</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation/>
+            <translation>Rādīt padomi apakšējā joslā</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation/>
+            <translation>Rādīt pabeigtu lejupielāžu skaitu statusa joslā</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation/>
+            <translation>Rīki</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation/>
+            <translation>Rādīt ātrumu sistēmas laukā</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation/>
+            <translation>Rādīt ātrumu titullīnijā</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation/>
+            <translation>Rādīt ātrumu statusa joslā</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation/>
+            <translation>Rādīt aptuveno tiešsaistes lietotāju skaitu statusa joslā</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation/>
+            <translation>Izmanto DHT mezglu ID blīvumu, lai novērtētu globālos BitTorrent lietotājus. Pārliecība pieaug, novērojot vairāk unikālu mezglu ID; statusa joslā redzams * zīmju, ja novērtējums ir zemas pārliecības.</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation/>
+            <translation>Rādīt attiecību statusa joslā</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation/>
+            <translation>Rādīt publisko IP statusa joslā</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation/>
+            <translation>Noteic publisko IP, izmantojot libtorrent, un aktīvo savienojuma veidu. Novietojiet rādītāju uz indikatoru, lai redzētu WiFi SSID/signālu vai brīdinājumus par ienākošiem savienojumiem.</translation>
         </message>
         <message>
             <source>Updates</source>
-            <translation/>
+            <translation>Atjauninājumi</translation>
         </message>
         <message>
             <source>Automatically check for updates</source>
-            <translation/>
+            <translation>Automātiski pārbaudīt atjauninājumus</translation>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation/>
+            <translation>Starpliktuves uzraudzība</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation/>
+            <translation>Automātiski sākt lejupielādēt URL, kas ievietoti starpliktuvē</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation/>
+            <translation>Kopējot URL, kas atbilst uzraudzītam faila tipam, Stellar vaicās, vai vēlaties to lejupielādēt. Tiek ņemti vērā tikai failu tipi, kas uzskaitīti sadaļā Pārlūks › Automātiski sākt lejupielādēt šādus failu tipus.</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation/>
+            <translation>Video lejupielādētājs</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation/>
+            <translation>Stellar izmanto yt-dlp, lai lejupielādētu video no YouTube, Vimeo, Twitter/X, Instagram un simtiem citu vietņu. Ievietojot video URL laukā 'Pievienot URL', parādīsies formāta izvēlne.</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation/>
+            <translation>Bināro failu statuss</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
-            <translation/>
+            <translation>Atjaunināt yt-dlp</translation>
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation/>
+            <translation>Lejupielādēt yt-dlp</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Re-check</source>
-            <translation/>
+            <translation>Pārbaudīt vēlreiz</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation/>
+            <translation>ffmpeg statuss</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation/>
+            <translation>ffmpeg atrasts: %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation/>
+            <translation>ffmpeg nav atrasts — HD lejupielādes būs ierobežotas līdz iepriekš sapludinātiem formātiem (maks. ~480p)</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation/>
+            <translation>Atjaunina FFmpeg...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation/>
+            <translation>Atjaunināt FFmpeg</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation/>
+            <translation>Iegūt ffmpeg (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation/>
+            <translation>ffmpeg ir nepieciešams, lai sapludinātu atsevišķas video un audio plūsmas MP4/MKV formātā. Bez tā YouTube lejupielādes tiek izmantotas kā viena iepriekš sapludināta plūsma (parasti WebM, maks. 480p).
+
+Lai to novērstu: lejupielādējiet ffmpeg no gyan.dev/ffmpeg/builds (Essentials build), izvelciet ffmpeg.exe no bin/ mapes un novietojiet to tajā pašā mapē kā yt-dlp.exe. Tad noklikšķiniet uz 'Pārbaudīt vēlreiz' augstāk.</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation/>
+            <translation>Pielāgots bināro failu ceļš</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation/>
+            <translation>Atstājiet tukšu, lai izmantotu iekļauto bināro failu (ieteicams). Iestatiet uz absolūto ceļu uz savu yt-dlp izpildāmo failu, ja vēlaties izmantot konkrētu versiju.</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation/>
+            <translation>(auto - izmantot iebūvēto vai sistēmas yt-dlp)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation/>
+            <translation>JavaScript izpildvide</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation/>
+            <translation>Atrasts %1: %2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation/>
+            <translation>Nav atrasta JS izpildvide — YouTube n-izsaukuma risināšana atspējota</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation/>
+            <translation>yt-dlp nepieciešama ārēja JavaScript izpildvide, lai atrisinātu YouTube n-izsaukumu (URL throttling). Bez tā YouTube lejupielādes var neizdoties vai atgriezt tikai zemas kvalitātes storyboard formātus.
+
+Instalējiet vienu no: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) vai QuickJS. Novietojiet to tajā pašā mapē kā yt-dlp.exe vai pievienojiet to sistēmas PATH, pēc tam noklikšķiniet uz Pārbaudīt vēlreiz yt-dlp statusa sadaļā augstāk.</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation/>
+            <translation>Pārrakstīt automātiski noteikto izpildvides ceļu. Atstājiet tukšu, lai izmantotu automātisko noteikšanu (meklē yt-dlp mapē, lietotnes mapē un sistēmas PATH).</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation/>
+            <translation>(automātiski noteikt no PATH un yt-dlp mapes)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation/>
+            <translation>Automātiski atjaunināt yt-dlp startējot</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation/>
+            <translation>Kad iespējots, Stellar startējā palaist &quot;yt-dlp -U&quot;, lai saglabātu bināro failu aktuālu. Nepieciešama aktīva interneta savienojuma.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation/>
+            <translation>BitTorrent lejupielādes</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation/>
+            <translation>Iespējot BitTorrent atbalstu</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation/>
+            <translation>BitTorrent — Juridiskais paziņojums</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4012,1554 +4027,1576 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation/>
+            <translation>Stellar ir failu kopīgošanas programma. Lejupielādējot torrentu, jūsu IP adrese kļūst redzama citiem peer savienojumā, un vienlaikus augšupielādējat (seed) datus citiem.
+
+Jebkas, ko kopīgojat caur BitTorrent, ir jūsu atbildība. Pārliecinieties, ka jums ir tiesības izplatīt saturu.
+
+Stingri ieteicams saistīt Stellar ar VPN tīkla saskarni un pārbaudīt, ka jūsu VPN ir aktīvs, pirms izmantot torrentus, lai aizsargātu savu IP adresi no atklāšanas.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation/>
+            <translation>Es saprotu, Iespējot</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation/>
+            <translation>Šie iestatījumi attiecas uz .torrent failiem un magnet saites.</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation/>
+            <translation>Klausīšanās ports</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation/>
+            <translation>Globālais maks. savienojumu skaits</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation/>
+            <translation>Maks. savienojumi uz torrentu</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation/>
+            <translation>Globālais maks. augšupielādes sloti</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation/>
+            <translation>Maks. augšupielādes sloti uz torrentu</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation/>
+            <translation>0 = neierobežots (uz torrentu un globālie augšupielādes sloti)</translation>
         </message>
         <message>
             <source>Protocol</source>
-            <translation/>
+            <translation>Protokols</translation>
         </message>
         <message>
             <source>TCP and μTP</source>
-            <translation/>
+            <translation>TCP un μTP</translation>
         </message>
         <message>
             <source>μTP only</source>
-            <translation/>
+            <translation>Tikai μTP</translation>
         </message>
         <message>
             <source>TCP only</source>
-            <translation/>
+            <translation>Tikai TCP</translation>
         </message>
         <message>
             <source>Port Test</source>
-            <translation/>
+            <translation>Porta tests</translation>
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation/>
+            <translation>Pārbaudīt, vai pašreizējais torrentu klausīšanās ports ir sasniedzams no publiskā interneta. Tas palīdz apstiprināt, vai VPN portu pāradresācija, maršrutētāja pāradresācija un ugunsmūra noteikumi patiešām ļauj ienākošās torrentu savienojumus.</translation>
         </message>
         <message>
             <source>Testing...</source>
-            <translation/>
+            <translation>Testēšana...</translation>
         </message>
         <message>
             <source>Test Port</source>
-            <translation/>
+            <translation>Testēt portu</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation/>
+            <translation>Tīkls</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation/>
+            <translation>Papildu</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation/>
+            <translation>Pielāgots BitTorrent lietotāja aģents</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation/>
+            <translation>Saistīt ar tīkla adapteri</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation/>
+            <translation>Šis adapteris ir bloķēts torrent satiksmes lietošanai. Ja VPN atvienojas vai adapteris pazūd, Stellar pārtrauc noklusējuma maršruta izmantošanu, un torrentiem pazūd tīkla piekļuve, nevis notiek datu noplūda citā savienojumā.</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation/>
+            <translation>Bez adaptera saistīšanas. Torrent satiksme seko sistēmas maršrutam.</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation/>
+            <translation>Tīkla adaptera saistīšana norāda Stellar nosūtīt un saņemt torrent satiksmi tikai caur izvēlēto adapteri. Tas ir īpaši noderīgi VPN lietotājiem, jo novērš nejaušu datu noplūdi, kad VPN nav savienots.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
-            <translation/>
+            <translation>Torrent drošība</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation/>
+            <translation>Manuālie bloķētie peer tiek piemēroti nekavējoties. Bloķētie lietotāja aģenta apakšvirknes, bloķētās valstis un automātiskās bloķēšanas opcijas tiek piemērotas, kad noklikšķināt uz 'Piemērot' vai 'Labi'.</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation/>
+            <translation>Šifrēšanas režīms</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation/>
+            <translation>Dot priekšroku šifrēšanai</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation/>
+            <translation>Pieprasīt šifrēšanu</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation/>
+            <translation>Atļaut šifrēšanu</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation/>
+            <translation>Bloķētie lietotāja aģenti</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation/>
+            <translation>Viens apakšvirknis rindā. Ja peer klienta virkne satur kādu no augstāk minētajām rindām, Stellar automātiski bloķē šo peer, līdz attiecīgā rinda tiek noņemta un iestatījumi tiek piemēroti.</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation/>
+            <translation>Manuāli bloķēt peer</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation/>
+            <translation>IP adrese, piemēram, 203.0.113.42</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation/>
+            <translation>Aizliegt</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation/>
+            <translation>Manuālie aizliegumi ir pastāvīgi, līdz tos noņemat no zemāk esošā aizliegto peer saraksta.</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation/>
+            <translation>Bloķēt peer pēc valsts</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>Pievienot</translation>
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation/>
+            <translation>Nav bloķētu valstu.</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation/>
+            <translation>Automātiski aizliegt Xunlei, QQ, Baidu, Xfplay, DLBT un Offline lejuplādētāju</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation/>
+            <translation>Automātiski aizliegt BitTorrent mediju atskaņotāja peer</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation/>
+            <translation>Manuāli aizliegtie peer</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation/>
+            <translation>Atļaut</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation/>
+            <translation>Aktīvs</translation>
         </message>
         <message>
             <source>No banned peers</source>
-            <translation/>
+            <translation>Nav aizliegto peer</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation/>
+            <translation>IP pilsētas datubāze</translation>
         </message>
         <message>
             <source>Version</source>
-            <translation/>
+            <translation>Versija</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>Nezināms</translation>
         </message>
         <message>
             <source>Path</source>
-            <translation/>
+            <translation>Ceļš</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Izmērs</translation>
         </message>
         <message>
             <source>Entries</source>
-            <translation/>
+            <translation>Ieraksti</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation/>
+            <translation>Pēdējoreiz mainīts</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>Statuss</translation>
         </message>
         <message>
             <source>Downloading...</source>
-            <translation/>
+            <translation>Lejupielāde...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation/>
+            <translation>Atjaunināt IP-pilsētu DB</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation/>
+            <translation>Atsvaidzināt info</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation/>
+            <translation>Statistika</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation/>
+            <translation>Kopējais pārraidījums visiem torrentiem, ieskaitot noņemtos.</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation/>
+            <translation>Kopā lejupielādēts</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation/>
+            <translation>Kopā augšupielādēts</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation/>
+            <translation>Kopējais dalīšanās koeficients</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation/>
+            <translation>Pilni licences teksti ir failā THIRD-PARTY-NOTICES.txt, kas iekļauts šajā instalācijā.</translation>
         </message>
         <message>
             <source>RSS</source>
-            <translation/>
+            <translation>RSS</translation>
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation/>
+            <translation>Barības ielāde</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation/>
+            <translation>Iespējot RSS barību ielādi</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation/>
+            <translation>Barību atsvaidzināšanas intervāls</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation/>
+            <translation>minūtes</translation>
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation/>
+            <translation>Viena resursdatora pieprasījumu aizture</translation>
         </message>
         <message>
             <source>seconds</source>
-            <translation/>
+            <translation>sekundes</translation>
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation/>
+            <translation>Maksimālais rakstu skaits vienā barībā</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation/>
+            <translation>Torrentu automātiskā lejupielāde</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation/>
+            <translation>Iespējot RSS torrentu automātisko lejupielādi</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation/>
+            <translation>Rediģēt automātiskās lejupielādes noteikumus...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation/>
+            <translation>Gudra sēriju filtrēšana</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation/>
+            <translation>Lejupielādēt REPACK/PROPER sērijas</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation/>
+            <translation>Sēriju noteikšanas raksti (katrs rindā):</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation/>
+            <translation>Asociācijas</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation/>
+            <translation>Konfigurēt RSS barību ielādi un automātiskos torrentu lejupielādes noteikumus.</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation/>
+            <translation>Šīs regulārās izteiksmes tiek izmantotas, lai iegūtu sezonu/epizodes numurus viedai dublikātu noteikšanai.</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation/>
+            <translation>Padarīt Stellar par noklusējuma lietotni .torrent failiem un magnet saites. Windows 10/11 noklikšķiniet uz pogas un apstipriniet izmaiņas Windows Noklusējuma lietotņu iestatījumos.</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation/>
+            <translation>.torrent faili</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation/>
+            <translation>Pašlaik apstrādā Stellar</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation/>
+            <translation>Stellar nav pašreizējā noklusējuma</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation/>
+            <translation>Iestatīt .torrent noklusējuma</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation/>
+            <translation>Atsvaidzināt statusu</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation/>
+            <translation>magnet: saites</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation/>
+            <translation>Iestatīt Magnet noklusējuma</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation/>
+            <translation>Ja jūsu darbvirsmas vide pārraksta lietotnes līmeņa asociāciju, atsvaidziniet statusu pēc sistēmas izmaiņu piemērošanas.</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation/>
+            <translation>Sasknes valoda</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation/>
+            <translation>Izvēlieties valodu, kas tiek izmantota Stellar sasknē. Nepieciešama pārlāde, lai atjauninātu visu tekstu.</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation/>
+            <translation>Valoda:</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation/>
+            <translation>Pēc valodas maiņas nepieciešama pārlāde.</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Nepieciešama pārlāde</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Lai mainītu valodu, nepieciešama pārlāde. Pārlādēt tagad?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Pārlādēt tagad</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Vēlāk</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation/>
+            <translation>Pārbaudīt atjauninājumus</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation/>
+            <translation>Jaunumi</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation/>
+            <translation>Būvēšanas datums</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation/>
+            <translation>Qt versija</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation/>
+            <translation>Platforma</translation>
         </message>
         <message>
             <source>Windows</source>
-            <translation/>
+            <translation>Windows</translation>
         </message>
         <message>
             <source>Linux</source>
-            <translation/>
+            <translation>Linux</translation>
         </message>
         <message>
             <source>macOS</source>
-            <translation/>
+            <translation>macOS</translation>
         </message>
         <message>
             <source>GNU GPL v3.0</source>
-            <translation/>
+            <translation>GNU GPL v3.0</translation>
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation/>
+            <translation>Stellar ir bezmaksas programmatūra: to varat izplatīt un/vai modificēt saskaņā ar GNU ģenerālās publiskās licences 3. versijas noteikumiem.</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation/>
+            <translation>Trešo pušu programmatūra</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation/>
+            <translation>Piemērot</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Default route</source>
-            <translation/>
+            <translation>Noklusējuma maršruts</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation/>
+            <translation>Ļaut OS izvēlēties aktīvo tīkla adapteri.</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation/>
+            <translation>(Nav pieejams)</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation/>
+            <translation>Šis adapteris pašlaik nav pieejams. Pārslēdziet to vai izvēlieties citu adapteri.</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation/>
+            <translation>Manuāls bloķējums</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation/>
+            <translation>Atrast peer bez tracker, izmantojot izkliedēto hash tabulu.</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation/>
+            <translation>Atrast peer vietējā tīklā, neizmantojot internetu.</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation/>
+            <translation>Automātiski atvērt portu maršrutētājā, lai peer varētu savienoties ar jums.</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation/>
+            <translation>Kā UPnP, bet Apple maršrutētājiem - ieslēdziet abus, un tiks izmantots tas, ko atbalsta jūsu maršrutētājs.</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation/>
+            <translation>Kopīgot peer sarakstus starp savienotajiem peer, lai atrastu vairāk avotu, neizmantojot tracker.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation/>
+            <translation>Stellar tagad ir noklusējuma lietotne .torrent failiem.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation/>
+            <translation>Stellar tagad ir noklusējuma lietotne magnet saitēm.</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation/>
+            <translation>Noklusējums: Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation/>
+            <translation>Failu tipi (atdalīti ar komatu, piem., mp4, mkv, avi)</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation/>
+            <translation>Automātiska piešķiršana no vietnēm (atdalītas ar atstarpi, * vilkme)</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation/>
+            <translation>Lejupielādes no atbilstošām vietnēm automātiski nonāk šajā kategorijā.</translation>
         </message>
         <message>
             <source>Rule %1</source>
-            <translation/>
+            <translation>Noteikums %1</translation>
         </message>
         <message>
             <source>Not found</source>
-            <translation/>
+            <translation>Nav atrasts</translation>
         </message>
         <message>
             <source>Loaded</source>
-            <translation/>
+            <translation>Ielādēts</translation>
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation/>
+            <translation>Pieejams, bet neielādēts</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation/>
+            <translation>Avots: %1</translation>
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation/>
+            <translation>Avota URL vēl nav kešatmiņā. Izmantojo 'Pārbaudīt atjauninājumus', lai kešatmiņā ielādētu IPtoCityDB no update.json.</translation>
         </message>
         <message>
             <source>Version %1</source>
-            <translation/>
+            <translation>Versija %1</translation>
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation/>
+            <translation>Pieejams atjauninājums: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation/>
+            <translation>Stellar preferences</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation/>
+            <translation>Izvēlieties yt-dlp bināro failu</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation/>
+            <translation>Izvēlieties JavaScript izpildes vides bināro failu</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation/>
+            <translation>Rediģēt projektu</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation/>
+            <translation>Dzēst projektu</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation/>
+            <translation>Kategorijas</translation>
         </message>
         <message>
             <source>All Downloads</source>
-            <translation/>
+            <translation>Visi lejupielādes</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation/>
+            <translation>Nepabeigti</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation/>
+            <translation>Pabeigti</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation/>
+            <translation>Grabber projekti</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation/>
+            <translation>Torrenti</translation>
         </message>
         <message>
             <source>Queues</source>
-            <translation/>
+            <translation>Rindas</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation/>
+            <translation>Lejupielādē</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation/>
+            <translation>Augšupielādē</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation/>
+            <translation>Apturēti</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation/>
+            <translation>Aktīvi</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation/>
+            <translation>Neaktīvi</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation/>
+            <translation>Pārbauda</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation/>
+            <translation>Pārvieto</translation>
         </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation/>
+            <translation>Statistika</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation/>
+            <translation>Stellar statistika</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation/>
+            <translation>Visu laiku</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>Lejupielādēts</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation/>
+            <translation>Augšupielādēts</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation/>
+            <translation>Dalīšanās attiecība</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation/>
+            <translation>Darbības laiks</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation/>
+            <translation>Instalēšanas datums</translation>
         </message>
         <message>
             <source>Startups</source>
-            <translation/>
+            <translation>Palaišanas reizes</translation>
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation/>
+            <translation>Šajā sesijā</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
     </context>
     <context>
         <name>StatusBar</name>
         <message>
             <source>🟦 1 active</source>
-            <translation/>
+            <translation>🟦 1 aktīvs</translation>
         </message>
         <message>
             <source>🟦 %1 active</source>
-            <translation/>
+            <translation>🟦 %1 aktīvi</translation>
         </message>
         <message>
             <source>📄 1 download</source>
-            <translation/>
+            <translation>📄 1 lejupielāde</translation>
         </message>
         <message>
             <source>📄 %1 downloads</source>
-            <translation/>
+            <translation>📄 %1 lejupielādes</translation>
         </message>
         <message>
             <source>🟨 1 error</source>
-            <translation/>
+            <translation>🟨 1 kļūda</translation>
         </message>
         <message>
             <source>🟨 %1 errors</source>
-            <translation/>
+            <translation>🟨 %1 kļūdas</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation/>
+            <translation>🌐 Proksi iesl.</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation/>
+            <translation>📡 Pārbauda atjauninājumus</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation/>
+            <translation>🛑 Ātruma ierobežotājs</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
-            <translation/>
+            <translation>🟩 Gatavs</translation>
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation/>
+            <translation>🔍 Atlasīta 1</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation/>
+            <translation>🔍 Atlasīti %1</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation/>
+            <translation>🔴 DHT izsl.</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation/>
+            <translation>online (zema uzticamība)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation/>
+            <translation>online</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation/>
+            <translation>🟧 Rinda tiks apstrādāta pēc 1 min.</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation/>
+            <translation>🟧 Rinda tiks apstrādāta pēc %1 min.</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation/>
+            <translation>🟡 Aprēķina… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation/>
+            <translation>nākamais &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation/>
+            <translation>Visu laiku dalīšanās koeficients
+Noklikšķiniet, lai atvērtu statistiku</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation/>
+            <translation>Noklikšķiniet, lai nokopētu IP</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation/>
+            <translation>Publiskais IP:</translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation/>
+            <translation>Savienojums: Ethernet</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation/>
+            <translation>WiFi:</translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation/>
+            <translation>Signāls:</translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation/>
+            <translation>Klausīšanās ports:</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation/>
+            <translation>Nav ienākošu savienojumu, tīkls var būt nepareizi konfigurēts</translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation/>
+            <translation>Stellar lejupielāžu pārvaldnieks</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation/>
+            <translation>SDM lejupielādes</translation>
         </message>
     </context>
     <context>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation/>
+            <translation>Pievienot URL</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation/>
+            <translation>Turpināt</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>Apturēt</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation/>
+            <translation>Apturēt visu</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>Dzēst</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation/>
+            <translation>Dzēst pabeigtos</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation/>
+            <translation>Iespējas</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation/>
+            <translation>Plānotājs</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation/>
+            <translation>Sākt rindu</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation/>
+            <translation>Apturēt rindu</translation>
         </message>
         <message>
             <source>Grabber</source>
-            <translation/>
+            <translation>Ķērājs</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation/>
+            <translation>Meklēšanas dzinējs</translation>
         </message>
         <message>
             <source>RSS</source>
-            <translation/>
+            <translation>RSS</translation>
         </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation/>
+            <translation>Dublikāta torrenta</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation/>
+            <translation>Torrents jau eksistē</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation/>
+            <translation>Šis torrents jau ir jūsu sarakstā. Atrasti %n jauni trakeri.</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation/>
+            <translation>Šis torrents jau ir jūsu sarakstā ar tiem pašiem trakeriem.</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation/>
+            <translation>%n jauni trakeri</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation/>
+            <translation>… un vēl %1</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation/>
+            <translation>Apvienot trakerus</translation>
         </message>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation/>
+            <translation>Saglabāt</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation/>
+            <translation>Saglabāt kā...</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation/>
+            <translation>Kategorija</translation>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation/>
+            <translation>Pielāgota saglabāšanas mape</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation/>
+            <translation>Atcerēties</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation/>
+            <translation>Izmantot kategorijas mapi</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>Apraksts</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation/>
+            <translation>Torrenta iestatījumi...</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation/>
+            <translation>Lejupielādēt vēlāk</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>Lejupielādēt</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation/>
+            <translation>Torrents tiek atvērts...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation/>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation/>
+            <translation>RTT %1  %2 pabeigts</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation/>
+            <translation>Faili</translation>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation/>
+            <translation>%n vienums(i)</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>Nosaukums</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation/>
+            <translation>Progresa</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Izmērs</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation/>
+            <translation>Nav pieejama faila informācija</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation/>
+            <translation>Gaida</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation/>
+            <translation>Pārdēvēt vienumu</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation/>
+            <translation>Ievadiet jaunu faila vai mapes nosaukumu:</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation/>
+            <translation>Pārdēvēt</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation/>
+            <translation>Pārdēvēt...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation/>
+            <translation>Pāris</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation/>
+            <translation>Atver torrentu un lasa metadatus...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation/>
+            <translation>Meklē pārus metadatu lejupielādei...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation/>
+            <translation>Lejupielādē metadatus no %n pāra(iem)</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation/>
+            <translation>Sēdēt</translation>
         </message>
         <message>
             <source>You</source>
-            <translation/>
+            <translation>Tu</translation>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation/>
+            <translation>Torrenta metadati</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation/>
+            <translation>Instalēt jaunu meklēšanas spraudni</translation>
         </message>
         <message>
             <source>Local File</source>
-            <translation/>
+            <translation>Lokālais fails</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation/>
+            <translation>Tīkla saite</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Labi</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation/>
+            <translation>Izvēlies lokālu .py meklēšanas spraudņa failu, lai nokopētu to meklēšanas_spraudņu mapē.</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation/>
+            <translation>Ielīmē tiešo URL uz .py spraudņa failu.</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation/>
+            <translation>Instalēt meklēšanas spraudni</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation/>
+            <translation>Atspējot spraudni</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation/>
+            <translation>Iespējot spraudni</translation>
         </message>
         <message>
             <source>Uninstall</source>
-            <translation/>
+            <translation>Noņemt</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation/>
+            <translation>Instalētie meklēšanas spraudņi</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation/>
+            <translation>Atsvaidzināt</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>Nezināms</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation/>
+            <translation>Iespējots</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation/>
+            <translation>Neaktivizēts</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation/>
+            <translation>Instalēt jaunu</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation/>
+            <translation>Meklēt spraudņus</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>Nosaukums</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Izmērs</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation/>
+            <translation>Seederi</translation>
         </message>
         <message>
             <source>Leechers</source>
-            <translation/>
+            <translation>Leecheri</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation/>
+            <translation>Dzinējs</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation/>
+            <translation>Publicēts</translation>
         </message>
         <message>
             <source>Open Description Page</source>
-            <translation/>
+            <translation>Atvērt apraksta lapu</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation/>
+            <translation>Lejupielādēt torrentu</translation>
         </message>
         <message>
             <source>Copy Name</source>
-            <translation/>
+            <translation>Kopēt nosaukumu</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation/>
+            <translation>Kopēt magnet saiti</translation>
         </message>
         <message>
             <source>Copy Description Page URL</source>
-            <translation/>
+            <translation>Kopēt apraksta lapas URL</translation>
         </message>
         <message>
             <source>Searching...</source>
-            <translation/>
+            <translation>Meklēšana...</translation>
         </message>
         <message>
             <source>Search</source>
-            <translation/>
+            <translation>Meklēt</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>Nezināms</translation>
         </message>
         <message>
             <source>No search results yet</source>
-            <translation/>
+            <translation>Vēl nav meklēšanas rezultātu</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation/>
+            <translation>Meklēšanas spraudņi</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation/>
+            <translation>Torrentu meklētājs</translation>
         </message>
     </context>
     <context>
         <name>TorrentSpeedLimitDialog</name>
         <message>
             <source>Torrent Settings</source>
-            <translation/>
+            <translation>Torrentu iestatījumi</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation/>
+            <translation>Ātrums, dalīšanās limiti, peer atklāšana un lejupielādes režīms</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>Aizvērt</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation/>
+            <translation>Piemērot</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation/>
+            <translation>PLATAS LĪMJI</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation/>
+            <translation>Lejupielāde:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation/>
+            <translation>Augšupielāde:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation/>
+            <translation>DALĪŠANAS IEROBEŽOJUMI</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation/>
+            <translation>Attiecība:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation/>
+            <translation>Noklusējums</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation/>
+            <translation>Bez ierobežojuma</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation/>
+            <translation>Iestatīt uz</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation/>
+            <translation>Sēdēšanas laiks:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation/>
+            <translation>min</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation/>
+            <translation>Neaktīvā laiks:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation/>
+            <translation>TĀLĀKATRODU MEKLĒŠANA</translation>
         </message>
         <message>
             <source>DHT</source>
-            <translation/>
+            <translation>DHT</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation/>
+            <translation>Izplatītā Hash tabula</translation>
         </message>
         <message>
             <source>PeX</source>
-            <translation/>
+            <translation>PeX</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation/>
+            <translation>Tāllietotāju apmaiņa</translation>
         </message>
         <message>
             <source>LSD</source>
-            <translation/>
+            <translation>LSD</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation/>
+            <translation>Lokālais pakalpojumu atklāšana</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation/>
+            <translation>🔒 Privāts torrent</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation/>
+            <translation>DHT un PeX atspējoti ar libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation/>
+            <translation>LEJUPIELĀDES REŽĪMS</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation/>
+            <translation>Sekvenca lejupielāde</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation/>
+            <translation>Lejupielādē secībā (0 → pēdējā)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation/>
+            <translation>Prioritāte pirmajai un pēdējai daļai</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation/>
+            <translation>Priekšā ielādē header/footer agrākai atskaņošanai</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation/>
+            <translation>Iegūst pieejamos formātus…</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation/>
+            <translation>Neizdevās iegūt video informāciju</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation/>
+            <translation>YouTube n-challenge risināšana neizdevās</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation/>
+            <translation>Iegūst video informāciju…</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation/>
+            <translation>Neizdevās iegūt video info</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation/>
+            <translation>yt-dlp prasa JavaScript laukvidi (Deno, Node.js, Bun vai QuickJS), lai apietu YouTube URL throttling izaicinājumu. Instalējiet vienu un novietojiet blakus yt-dlp.exe vai sistēmas PATH.</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation/>
+            <translation>Nav konstatēta laukvide. Instalējiet Deno (ieteicams) no deno.com, tad pārbaudiet iestatījumos → Video lejupielādētājs.</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation/>
+            <translation>Konstatēta laukvide: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation/>
+            <translation>Iegūt Deno</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation/>
+            <translation>Atvērt iestatījumus</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation/>
+            <translation>Sīkdatnes no pārlūkprogrammas:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation/>
+            <translation>Izvēlieties pārlūkprogrammu, lai nodotu tās sīkdatnes yt-dlp, pēc tam mēģiniet vēlreiz.</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation/>
+            <translation>Mēģināt vēlreiz</translation>
         </message>
         <message>
             <source>Select quality:</source>
-            <translation/>
+            <translation>Izvēlieties kvalitāti:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation/>
+            <translation>Izmērs nav pieejams — šī kvalitāte izmanto atsevišķus video un audio plūsmas, kas tiek apvienotas ar ffmpeg pēc lejupielādes.</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation/>
+            <translation>Kanāls / Atskaņošanas saraksts</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation/>
+            <translation>Visi video</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation/>
+            <translation>Jaunākie</translation>
         </message>
         <message>
             <source>videos</source>
-            <translation/>
+            <translation>video</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation/>
+            <translation>YouTube kanāla URL pēc noklusējuma ietver visus augšupielādes darbus. Izmantojiet Apjomu, lai mērķētu uz vienu cilni.</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation/>
+            <translation>Video tiks saglabāti apakšmapē, kas nosaukta pēc kanāla.</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation/>
+            <translation>Apjoms:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation/>
+            <translation>Visi augšupielādes darbi</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation/>
+            <translation>Video</translation>
         </message>
         <message>
             <source>Shorts</source>
-            <translation/>
+            <translation>Shorts</translation>
         </message>
         <message>
             <source>Live</source>
-            <translation/>
+            <translation>Tiešraide</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation/>
+            <translation>Subtitri</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation/>
+            <translation>Lejupielādēt subtitru failus kopā ar video</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation/>
+            <translation>Valoda:</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation/>
+            <translation>Valodu kodi, piem., en · en.*,ja · visi</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation/>
+            <translation>Automātiski ģenerēti</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation/>
+            <translation>Iekļaut automātiski ģenerētus subtitrus, ja pieejami</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation/>
+            <translation>Iekļaut video</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation/>
+            <translation>Iekļaut subtitrus video konteinerā</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation/>
+            <translation>Iekļaušanai nepieciešams mp4, mkv vai webm</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation/>
+            <translation>Iekļaut sīktēlu</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation/>
+            <translation>Iekļaut vāka attēlu video failā (nepieciešams ffmpeg)</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation/>
+            <translation>Iekļaut metadatus</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation/>
+            <translation>Ierakstīt virsrakstu, augšuplādētāju, nodaļas utt. konteinerā</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
-            <translation/>
+            <translation>SponsorBlock</translation>
         </message>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation/>
+            <translation>Noņemt sponsorētās segmentus, ievadus, beigas un pašreklāmu
+(Tikai YouTube · nepieciešams ffmpeg)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation/>
+            <translation>KB/s (tukšs = izmantot globālo ātruma limitu)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation/>
+            <translation>Lejupielādēt kanālu</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>Lejupielādēt</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation/>
+            <translation>Papildu</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation/>
+            <translation>datuma filtrs</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation/>
+            <translation>sīkdatnes</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation/>
+            <translation>arhīvs</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation/>
+            <translation>sadalīt nodaļas</translation>
         </message>
         <message>
             <source>time range</source>
-            <translation/>
+            <translation>laika diapazons</translation>
         </message>
         <message>
             <source>extra files</source>
-            <translation/>
+            <translation>papildu faili</translation>
         </message>
         <message>
             <source>random</source>
-            <translation/>
+            <translation>nejauši</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation/>
+            <translation>tiešraides sākums</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation/>
+            <translation>ātruma ierobežojums</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation/>
+            <translation>Pēc datuma:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation/>
+            <translation>Lejupielādēt tikai video, kas augšupielādēti šajā datumā vai vēlāk</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation/>
+            <translation>Sīkdatu faili:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation/>
+            <translation>Ielādēt sīkdatnes, lai skatītu saturu tikai dalībniekiem / ar vecuma ierobežojumu</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation/>
+            <translation>Ātruma ierobežojums:</translation>
         </message>
         <message>
             <source>Time range:</source>
-            <translation/>
+            <translation>Laika posms:</translation>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
-            <translation/>
+            <translation>Lejupielādēt tikai šo daļu, piem., *01:30-03:00</translation>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation/>
+            <translation>Izlaist jau lejupielādēto</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation/>
+            <translation>Sadalīt pa nodaļām</translation>
         </message>
         <message>
             <source>Save description</source>
-            <translation/>
+            <translation>Saglabāt aprakstu</translation>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation/>
+            <translation>Saglabāt sīktēlu</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation/>
+            <translation>Jaukt atskaņošanas sarakstu</translation>
         </message>
         <message>
             <source>Live: from start</source>
-            <translation/>
+            <translation>Tiešraide: no sākuma</translation>
         </message>
         <message>
             <source>Save to:</source>
-            <translation/>
+            <translation>Saglabāt uz:</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation/>
+            <translation>Kategorija</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation/>
+            <translation>Formāts</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Atcelt</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation/>
+            <translation>Video lejupielāde</translation>
         </message>
     </context>
 </TS>

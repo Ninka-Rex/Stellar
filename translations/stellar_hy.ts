@@ -4390,6 +4390,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Լեզուն փոխելուց հետո անհրաժեշտ է վերագործարկում։</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Վերագործարկում է պահանջվում</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Լեզվի փոփոխությունը կիրառելու համար անհրաժեշտ է վերագործարկել: Վերագործարկե՞լ հիմա:</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Վերագործարկել հիմա</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Հետո</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Ստուգել թարմացումները</translation>
         </message>
@@ -4994,7 +5010,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation>Ներբեռնում...</translation>
+            <translation>Տվյալների բեռնում %n հաղորդակից(ներ)ից</translation>
         </message>
         <message>
             <source>Seed</source>

@@ -4399,6 +4399,22 @@ Důrazně se doporučuje svázat Stellar s rozhraním VPN sítě a ověřit, že
             <translation>Po změně jazyka je nutné aplikaci restartovat.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Požadován restart</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Pro aplikování změny jazyka je nutný restart. Provést nyní?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Restartovat nyní</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Později</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Zkontrolovat aktualizace</translation>
         </message>

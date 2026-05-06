@@ -4407,6 +4407,22 @@ Se recomienda encarecidamente vincular Stellar a una interfaz VPN y verificar qu
             <translation>Se requiere reiniciar tras cambiar el idioma.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Reinicio necesario</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Se requiere reiniciar para aplicar el cambio de idioma. ¿Reiniciar ahora?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Reiniciar ahora</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Más tarde</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Buscar actualizaciones</translation>
         </message>

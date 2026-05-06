@@ -4398,6 +4398,22 @@ Toplo se preporučuje vezati Stellar na VPN mrežno sučelje i provjeriti je li 
             <translation>Potrebno je ponovno pokretanje nakon promjene jezika.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Potreban je restart</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Promjena jezika zahtijeva restart. Restartati odmah?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Restartuj odmah</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Kasnije</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Provjeri ažuriranja</translation>
         </message>

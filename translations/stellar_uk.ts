@@ -4399,6 +4399,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Після зміни мови потрібен перезапуск.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Потрібен перезапуск</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Для зміни мови потрібен перезапуск. Перезапустити зараз?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Перезапустити</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Пізніше</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Перевірити оновлення</translation>
         </message>

@@ -2,7 +2,7 @@
 """
 Stellar Translation Auto-Filler
 ===============================
-Uses a local LLM (LM Studio) to fill missing translations in all .ts files.
+Uses a local LLM (LM Studio) or DeepSeek API to fill missing translations in all .ts files.
 
 stellar_en.ts is the master file. Its <translation> values are the authoritative
 English source text. All other language files are synced against it:
@@ -14,16 +14,18 @@ English source text. All other language files are synced against it:
   - --force                                            → retranslate everything
 
 Usage:
-    python fill_translations.py              # fill ALL missing strings in all languages
-    python fill_translations.py it de es     # fill missing in specific languages
-    python fill_translations.py --dry-run    # show what would be translated/dropped
-    python fill_translations.py --force      # retranslate everything
-    python fill_translations.py --batch 5    # batch size per LLM call
-    python fill_translations.py --check      # report issues only, no LLM calls
+    python fill_translations.py                          # fill ALL missing (local LLM)
+    python fill_translations.py it de es                 # fill specific languages
+    python fill_translations.py --backend deepseek       # use DeepSeek API
+    python fill_translations.py --dry-run                # show what would be translated/dropped
+    python fill_translations.py --force                  # retranslate everything
+    python fill_translations.py --batch 5                # batch size per LLM call
+    python fill_translations.py --check                  # report issues only, no LLM calls
 """
 
 import argparse
 import json
+import os
 import re
 import sys
 import time
@@ -39,15 +41,40 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
+# ── Load .env ────────────────────────────────────────────────────────────────────
+
+def _load_dotenv():
+    env_path = Path(__file__).resolve().parent / ".env"
+    if not env_path.exists():
+        return
+    with open(env_path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            key = key.strip()
+            val = val.strip().strip('"').strip("'")
+            if key and key not in os.environ:
+                os.environ[key] = val
+
+_load_dotenv()
+
 # ── Configuration ────────────────────────────────────────────────────────────────
 
 LLM_URL         = "http://127.0.0.1:1234/v1/chat/completions"
-LLM_MODEL       = "qwen/qwen3.6-35b-a3b"
+LLM_MODEL       = "qwen/qwen3.5-9b"
 LLM_TEMPERATURE = 0.1
 LLM_MAX_TOKENS  = 4096
 LLM_TIMEOUT     = 120
-MAX_RETRIES_PER_BATCH = 3
+MAX_RETRIES_PER_BATCH = 1
 RETRY_DELAY     = 1
+
+DEEPSEEK_BASE_URL   = "https://api.deepseek.com"
+DEEPSEEK_MODEL      = "deepseek-v4-pro"
+
+# Active backend — set by CLI arg in main(); "local" or "deepseek"
+_BACKEND = "local"
 
 SCRIPT_DIR       = Path(__file__).resolve().parent
 TRANSLATIONS_DIR = SCRIPT_DIR / "translations"
@@ -206,7 +233,7 @@ def write_ts(lang_code: str, entries: List[Tuple[str, str, str]]):
 
 # ── LLM Interface ────────────────────────────────────────────────────────────────
 
-def call_llm(messages):
+def _call_local(messages) -> Optional[str]:
     body = {
         "model": LLM_MODEL,
         "messages": messages,
@@ -229,6 +256,45 @@ def call_llm(messages):
             if attempt < MAX_RETRIES_PER_BATCH:
                 time.sleep(delay)
     return None
+
+
+def _call_deepseek(messages) -> Optional[str]:
+    try:
+        from openai import OpenAI
+    except ImportError:
+        print("ERROR: openai package not installed. Run: pip install openai", file=sys.stderr)
+        sys.exit(1)
+
+    api_key = os.environ.get("DEEPSEEK_API_KEY", "")
+    if not api_key:
+        print("ERROR: DEEPSEEK_API_KEY not set. Add it to .env or environment.", file=sys.stderr)
+        sys.exit(1)
+
+    client = OpenAI(api_key=api_key, base_url=DEEPSEEK_BASE_URL, timeout=LLM_TIMEOUT)
+
+    for attempt in range(1, MAX_RETRIES_PER_BATCH + 1):
+        try:
+            response = client.chat.completions.create(
+                model=DEEPSEEK_MODEL,
+                messages=messages,
+                temperature=LLM_TEMPERATURE,
+                max_tokens=LLM_MAX_TOKENS,
+                stream=False,
+                extra_body={"thinking": {"type": "disabled"}},
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            delay = RETRY_DELAY * (2 ** (attempt - 1))
+            sys.stderr.write(f"    [DeepSeek error attempt {attempt}: {e}]\n")
+            if attempt < MAX_RETRIES_PER_BATCH:
+                time.sleep(delay)
+    return None
+
+
+def call_llm(messages) -> Optional[str]:
+    if _BACKEND == "deepseek":
+        return _call_deepseek(messages)
+    return _call_local(messages)
 
 
 def parse_llm_response(response_text, expected_count):
@@ -590,24 +656,31 @@ def main():
                         help="Report orphans and arg mismatches only; no LLM calls.")
     parser.add_argument("--force",      action="store_true",
                         help="Retranslate all strings, ignoring existing translations.")
-    parser.add_argument("--batch",      type=int, default=15,
+    parser.add_argument("--batch",      type=int, default=10,
                         help="Strings per LLM call (default: 10).")
     parser.add_argument("--dir",        type=str, default=None,
                         help="Override translations directory.")
     parser.add_argument("--all",        action="store_true",
                         help="Create and fill every language in LANG_NAMES, skipping 'en' and already-complete languages.")
+    parser.add_argument("--backend",    type=str, default="local", choices=["local", "deepseek"],
+                        help="LLM backend: 'local' (LM Studio, default) or 'deepseek' (DeepSeek API).")
     args = parser.parse_args()
 
-    global TRANSLATIONS_DIR
+    global TRANSLATIONS_DIR, _BACKEND
+    _BACKEND = args.backend
+
     if args.dir:
         TRANSLATIONS_DIR = Path(args.dir)
     TRANSLATIONS_DIR = TRANSLATIONS_DIR.resolve()
 
     print(f"Dir:     {TRANSLATIONS_DIR}")
     if not (args.dry_run or args.check):
-        print(f"Model:   {LLM_MODEL}")
+        if _BACKEND == "deepseek":
+            print(f"Backend: DeepSeek API ({DEEPSEEK_MODEL})")
+        else:
+            print(f"Backend: Local LLM ({LLM_MODEL})")
+            print(f"LLM URL: {LLM_URL}")
         print(f"Batch:   {args.batch} strings/call")
-        print(f"LLM URL: {LLM_URL}")
 
     canonical = load_canonical()
     print(f"Canonical (EN) strings: {len(canonical)}")
@@ -651,13 +724,19 @@ def main():
         return
 
     if not (args.dry_run or args.check):
-        print("Checking LLM connectivity...")
-        try:
-            urllib.request.urlopen("http://127.0.0.1:1234/v1/models", timeout=5)
-            print("LLM reachable.\n")
-        except Exception:
-            print("ERROR: LLM not reachable at http://127.0.0.1:1234", file=sys.stderr)
-            sys.exit(1)
+        if _BACKEND == "local":
+            print("Checking LLM connectivity...")
+            try:
+                urllib.request.urlopen("http://127.0.0.1:1234/v1/models", timeout=5)
+                print("LLM reachable.\n")
+            except Exception:
+                print("ERROR: LLM not reachable at http://127.0.0.1:1234", file=sys.stderr)
+                sys.exit(1)
+        else:
+            if not os.environ.get("DEEPSEEK_API_KEY"):
+                print("ERROR: DEEPSEEK_API_KEY not set. Add it to .env or environment.", file=sys.stderr)
+                sys.exit(1)
+            print("DeepSeek API key loaded.\n")
 
     completed_set, all_failed_keys = load_progress()
 

@@ -404,6 +404,7 @@ public:
     // Applies the translator for the given locale code and returns whether a
     // restart is needed for all UI strings to update (always true for QML apps).
     Q_INVOKABLE void applyUiLanguage(const QString &locale);
+    Q_INVOKABLE void restartApp();
 
 signals:
     void activeDownloadsChanged();

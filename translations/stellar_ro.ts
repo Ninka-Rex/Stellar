@@ -4387,6 +4387,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Este necesară o repornire după schimbarea limbii.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Repornire necesară</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Este necesară o repornire pentru ca schimbarea limbii să aibă efect. Reporniți acum?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Reporniți acum</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Mai târziu</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Verifică actualizările</translation>
         </message>

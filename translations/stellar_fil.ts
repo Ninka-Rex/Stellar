@@ -4392,6 +4392,22 @@ Malakas na inirerekomenda na i-bind ang Stellar sa isang VPN network interface a
             <translation>Kinakailangan ang pag-iisa pagbabago ng wika.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Kailangan ng Restart</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Kailangan ng restart para mag-apply ang pagbabago ng wika. I-restart na ngayon?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>I-restart Na Ngayon</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Huli</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Suriin ang mga update</translation>
         </message>

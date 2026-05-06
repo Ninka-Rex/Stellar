@@ -4,11 +4,11 @@
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>Ƙara cikin Ƙa'idodin Adresi?</translation>
+            <translation>Ƙara zuwa Keɓancewar Adireshi?</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>An soke wannan adires din sau biyu. Shin kana son ƙara shi cikin jerin ƙa'idodi don Stellar ba zai tsare shi ba?</translation>
+            <translation>An soke wannan adireshin sau biyu. Kana so ka ƙara shi cikin jerin keɓancewa don Stellar ta daina katse shi kai tsaye?</translation>
         </message>
         <message>
             <source>No</source>
@@ -16,11 +16,11 @@
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>Ƙara Ƙa'ida</translation>
+            <translation>Ƙara Keɓancewa</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>Ƙara Ƙa'idar Adresi</translation>
+            <translation>Ƙara Keɓancewar Adireshi</translation>
         </message>
     </context>
     <context>
@@ -31,7 +31,7 @@
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>Yi amfani da Authorization</translation>
+            <translation>Yi Amfani da Izini</translation>
         </message>
         <message>
             <source>Login</source>
@@ -39,7 +39,7 @@
         </message>
         <message>
             <source>Password</source>
-            <translation>Kalmar sirri</translation>
+            <translation>Kalmar Sirri</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -47,71 +47,73 @@
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>1. Ok</translation>
         </message>
         <message>
             <source>Add URL</source>
-            <translation>Ƙara URL</translation>
+            <translation>2. Ƙara URL</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation>Stellar Download Manager v
-ƙasa: %1 sama: %2
-Yana ɗaukar: %1</translation>
+            <translation>3. Stellar Download Manager v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation/>
+            <translation>4. 
+↓: %1  ↑: %2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation/>
+            <translation>5. 
+Ana saukewa: %1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation>Ana ba da tallafi: %1</translation>
+            <translation>6.   Ana rarrabawa: %1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation>Ana ba da tallafi: %1</translation>
+            <translation>7. 
+Ana rarrabawa: %1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation>Jimla: %1</translation>
+            <translation>8.   Jimla: %1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation>Jimla: %1</translation>
+            <translation>9. 
+Jimla: %1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>Stellar yana rufe...</translation>
+            <translation>10. Stellar na rufewa...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>Stellar yana fadada...</translation>
+            <translation>Stellar na farawa...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation>🛡️ An haɗa shi da %1</translation>
+            <translation>🛡️ An ɗaure zuwa %1</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>Sauke yawa</translation>
+            <translation>Saukar da yawa</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>Ƙirƙiri haɗin a nan, sannan ci gaba da matakin dubawa.</translation>
+            <translation>Ƙirƙiri hanyoyin haɗi anan, sannan ci gaba zuwa matakin dubawa.</translation>
         </message>
         <message>
             <source>Address:</source>
@@ -119,7 +121,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation>Matsakaicin da aka maye gurbin</translation>
+            <translation>Sauya alamar tauraro da</translation>
         </message>
         <message>
             <source>Numbers</source>
@@ -139,11 +141,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation>Girman wildcard:</translation>
+            <translation>Girman kati:</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Duba</translation>
+            <translation>Dubawa</translation>
         </message>
         <message>
             <source>First: %1</source>
@@ -155,11 +157,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation>Na karshe: %1</translation>
+            <translation>Ƙarshe: %1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation>Yi amfani da matakin jirgin bayan OK idan kana son waɗannan ɗaukar su a rukuni kafin su fara.</translation>
+            <translation>Yi amfani da matakin jere bayan OK idan kana son a haɗa waɗannan zazzagewa kafin su fara.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -186,11 +188,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>Duba hanyoyin haɗin kafin ƙara su. Ana iya tsara, canza girma, da ja don sake tsara.</translation>
+            <translation>Bitar hanyoyin haɗi kafin ƙara su. Ana iya jera ginshiƙai, sauya girma, da jan su don sake tsari.</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation>Matsana sunayen fayil da tsarin wildcard (*)</translation>
+            <translation>Sauya sunayen fayiloli da tsarin alamar (*)</translation>
         </message>
         <message>
             <source>Files</source>
@@ -198,15 +200,15 @@ Total: %1</source>
         </message>
         <message>
             <source>Check all</source>
-            <translation>Duba duk</translation>
+            <translation>Duba duka</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation>Duba duk</translation>
+            <translation>Cire duba duka</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>Kawai hanyoyin da aka alama An gano suna zaɓa. Aikin jirgin yana faruwa bayan OK.</translation>
+            <translation>Hanyoyin da aka yiwa alama Samu ne kawai za'a iya zaɓa. Har yanzu ana sanya jerin gwano bayan OK.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -218,14 +220,14 @@ Total: %1</source>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation>Binciken ɗaukar tarin</translation>
+            <translation>Bitar saukar da yawa</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation>Sanya ƙarin Stellar a cikin browser ɗinka don hana ɗaukar hoto da kuma kai su zuwa Stellar ta atomatik.</translation>
+            <translation>Shigar da ƙarin Stellar a cikin burauzarka don kama abubuwan zazzagewa da tura su zuwa Stellar kai tsaye.</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
@@ -233,11 +235,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation>Sanya kai tsaye daga Chrome Web Store</translation>
+            <translation>Shigar kai tsaye daga Shagon Yanar Gizo na Chrome</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation>Bude Hanyar</translation>
+            <translation>Buɗe hanyar haɗi</translation>
         </message>
         <message>
             <source>Firefox</source>
@@ -245,27 +247,27 @@ Total: %1</source>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation>Sanya Firefox XPI, babu sabuntawa ta atomatik</translation>
+            <translation>Shigar Firefox XPI, babu sabuntawa ta atomatik</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation>Mahaɗin Sakonna na Asali</translation>
+            <translation>Mai ɗaukar saƙon asali</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation>Stellar yana sa kansa ta atomatik don haka ƙarin zai iya tattaunawa da shi.</translation>
+            <translation>Stellar na yin rajista kai tsaye don ƙarin ya iya sadarwa da shi.</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation>An yi rajista da nasara.</translation>
+            <translation>An yi rajista cikin nasara.</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation>Rajista ta kasa — ga cikakkun bayanai a ƙasa.</translation>
+            <translation>Rajista ta gaza — duba cikakkun bayanai a ƙasa.</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation>Ana rajista…</translation>
+            <translation>Ana yin rajista…</translation>
         </message>
         <message>
             <source>Try again</source>
@@ -273,11 +275,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation>Rukuni na hannu:</translation>
+            <translation>Shigarwa da hannu:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation>Gudu a Command Prompt (babu admin):</translation>
+            <translation>Gudanar a Command Prompt (ba a buƙatar admin):</translation>
         </message>
         <message>
             <source>Copy</source>
@@ -289,18 +291,18 @@ Total: %1</source>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation>Gudu a terminal:</translation>
+            <translation>Gudanar a tashar kwamfuta:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation>Ƙarin Browser</translation>
+            <translation>Ƙarin Mai Bincike</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation>Dukkan Ɗaukawa</translation>
+            <translation>Duk Zazzagewa</translation>
         </message>
         <message>
             <source>Video</source>
@@ -308,7 +310,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Music</source>
-            <translation>Kishi</translation>
+            <translation>Waƙa</translation>
         </message>
         <message>
             <source>Documents</source>
@@ -316,30 +318,30 @@ Total: %1</source>
         </message>
         <message>
             <source>Compressed</source>
-            <translation>An taru</translation>
+            <translation>Matse</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>Shirye-shiryen</translation>
+            <translation>Shirye-shirye</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation>Kofuna</translation>
+            <translation>Ginshiƙai</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation>Duba wuraren da kake so su bayyana a wannan jerin. Yi amfani da maɓallin ƙara sama da ƙasa don sake tsarin wuraren yadda kake so.</translation>
+            <translation>Duba ginshiƙan da kake son gani a wannan jerin. Yi amfani da maɓallin Matsar da Sama da Matsar da Ƙasa don sake tsara ginshiƙan yadda kake so.</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation>Ƙara sama</translation>
+            <translation>Matsar da Sama</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation>Ƙara ƙasa</translation>
+            <translation>Matsar da Ƙasa</translation>
         </message>
         <message>
             <source>Show</source>
@@ -355,15 +357,15 @@ Total: %1</source>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation>Wurin da aka zaɓa ya kamata ya kasance</translation>
+            <translation>Rukunin da aka zaɓa ya zama</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation>mai fadin pixels</translation>
+            <translation>faɗin pixels</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>Aa</translation>
+            <translation>OK</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -374,23 +376,23 @@ Total: %1</source>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation>Tabbatar da sharewa</translation>
+            <translation>Tabbatar da gogewa</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation>Share ɗaukar?</translation>
+            <translation>Cire zazzagewa?</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation>Kuma share fayilolin torrent daga diski</translation>
+            <translation>Haka kuma goge fayilolin torrent daga faifai</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation>Kuma share fayil daga diski</translation>
+            <translation>Haka kuma goge fayil daga faifai</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation>Share ba tare da komawa baya ba (ba a ƙaura zuwa ashewa ba)</translation>
+            <translation>Goge har abada (kar a kai shara)</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -405,19 +407,19 @@ Total: %1</source>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation>Share da aka kammala</translation>
+            <translation>Share Zazzagewar da Aka Kammala</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>Shin ka tabbata kana son share duk share da aka kammala daga jerin Stellar?</translation>
+            <translation>Ka tabbata kana son share duk zazzagewar da aka kammala daga jerin zazzagewa na Stellar?</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>Lura: Wannan zai cire su daga jerin kawai. Bayanan da ke disk ba za a share su ba.</translation>
+            <translation>Lura: Wannan zai cire su daga jerin kawai. Fayiloli a faifai ba za a share su ba.</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation>Share da aka kammala da seeding</translation>
+            <translation>Share torrents ɗin da aka kammala kuma ake rarrabawa</translation>
         </message>
         <message>
             <source>Yes</source>
@@ -432,11 +434,11 @@ Total: %1</source>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation>An kammala saukewa</translation>
+            <translation>Zazzagewa ta kammala</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>An sauke %1 (%2 Bytes)</translation>
+            <translation>An zazzage %1 (%2 Bytes)</translation>
         </message>
         <message>
             <source>Address</source>
@@ -444,23 +446,23 @@ Total: %1</source>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation>An adana fayil a matsayin</translation>
+            <translation>Fayil ɗin da aka ajiye</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
-            <translation>An canza fayil.</translation>
+            <translation>An motsa fayil ɗin</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Bude</translation>
+            <translation>Buɗe</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation>Bude da...</translation>
+            <translation>Buɗe da...</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Bude daiki</translation>
+            <translation>Buɗe babban fayil</translation>
         </message>
         <message>
             <source>Close</source>
@@ -468,22 +470,22 @@ Total: %1</source>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation>Ba nuna wannan dialog ba sake</translation>
+            <translation>Kada a sake nuna wannan magana</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation>Zaka iya sake kunna shi a Saituna → Gabaɗaya → Nuna dialog ƙarshen saukewa</translation>
+            <translation>Za ka iya sake kunna wannan a Saituna → Gabaɗaya → Nuna maganar saukewa ta ƙare</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation>Ja fayil ɗin don motsa shi zuwa waje</translation>
+            <translation>Ja fayil ɗin don matsar da shi wani wuri</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation>Bayanin Fayil ɗin Saukewa</translation>
+            <translation>Bayanan Fayil ɗin Zazzagewa</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
@@ -495,35 +497,35 @@ Total: %1</source>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation>A tauntawa saka cikin wannan rukuni irin waɗannan fayil ɗin: </translation>
+            <translation>Saka waɗannan nau'ikan fayiloli kai tsaye cikin wannan rukuni:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation>Lura: rubuta faɗaɗen fayil ɗin da ke raba da sarari (misali avi mpg mpeg)</translation>
+            <translation>Lura: rubuta tsawoyin fayil ɗin da sarari ya raba (misali avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation>A tauntawa saka cikin wannan rukuni fayil ɗin daga waɗannan shafuka kawai: </translation>
+            <translation>Saka fayilolin daga waɗannan shafuka kawai kai tsaye cikin wannan rukuni:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation>Raba shafuka da sarari. Za ka iya amfani da asterisk (*) a matsayin alamar wildcard</translation>
+            <translation>Raba shafuka da sarari. Kuna iya amfani da alamar tauraro azaman tsarin daji</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation>A adana saukewen gaba na wannan rukuni zuwa wannan daiki: </translation>
+            <translation>Ajiye zazzagewa na gaba na wannan rukuni zuwa babban fayil mai zuwa:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation>Tuna ƙarshe adana hanya</translation>
+            <translation>Tuna hanyar ajiya ta ƙarshe</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>Bincika...</translation>
+            <translation>Bincike...</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>A'a</translation>
+            <translation>Ok</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -539,11 +541,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Save As</source>
-            <translation>Ajiye Aka</translation>
+            <translation>Ajiye A Matsayin</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation>Kai wannan hanya don rukunin &quot;%1</translation>
+            <translation>Tuna wannan hanyar don rukunin &quot;%1&quot;</translation>
         </message>
         <message>
             <source>Description</source>
@@ -551,46 +553,46 @@ Total: %1</source>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Sauke a baya</translation>
+            <translation>Sauke Daga Baya</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation>Fara Sauke</translation>
+            <translation>Fara Saukewa</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation>An jera shi a jere</translation>
+            <translation>An jera</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation>Yana bincika</translation>
+            <translation>Dubawa</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Yana saukewa</translation>
+            <translation>Saukewa</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>Yana tafiya</translation>
+            <translation>Motsawa</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Shuka</translation>
+            <translation>Shukawa</translation>
         </message>
         <message>
             <source>Paused</source>
-            <translation>An tsaya</translation>
+            <translation>Dakata</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Ana hadawa...</translation>
+            <translation>Harhaɗawa...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation>An kammala</translation>
+            <translation>Kammala</translation>
         </message>
         <message>
             <source>Error</source>
@@ -598,7 +600,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Ba a sani</translation>
+            <translation>Ba a sani ba</translation>
         </message>
     </context>
     <context>
@@ -613,27 +615,27 @@ Total: %1</source>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>Ana hadawa...</translation>
+            <translation>Ana haɗawa...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation>Matsayin sauke</translation>
+            <translation>Matsayin saukewa</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Iyakar sauri</translation>
+            <translation>Mai iyakance gudu</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation>Zaɓin ƙarshe</translation>
+            <translation>Zaɓuɓɓuka bayan kammalawa</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation>&gt;&gt; Aika zuwa Tray</translation>
+            <translation>&gt;&gt; Aika zuwa Tire</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Ƙarami zuwa tray na tsarin</translation>
+            <translation>Rage zuwa tire na tsarin</translation>
         </message>
         <message>
             <source>Status</source>
@@ -649,23 +651,23 @@ Total: %1</source>
         </message>
         <message>
             <source>%1  ( %2% )</source>
-            <translation>%1 ( %2% )</translation>
+            <translation>%1 (%2%)</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation>Ƙimar canja wurin</translation>
+            <translation>Saurin aikawa</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation>(Ya kasance %1)</translation>
+            <translation>(Iyakance %1)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Lokacin da ya rage</translation>
+            <translation>Lokaci ya rage</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation>Ikon dawowa</translation>
+            <translation>Ikon ci gaba</translation>
         </message>
         <message>
             <source>Yes</source>
@@ -677,7 +679,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Error detail</source>
-            <translation>Bayanin kuskure</translation>
+            <translation>Cikakken kuskure</translation>
         </message>
         <message>
             <source>Assembling... %1%</source>
@@ -685,11 +687,11 @@ Total: %1</source>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation>« Ƙara bayani</translation>
+            <translation>« Ɓoye cikakkun bayanai</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation>» Nuna bayanan</translation>
+            <translation>» Nuna cikakken bayani</translation>
         </message>
         <message>
             <source>Start</source>
@@ -697,7 +699,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Pause</source>
-            <translation>Tsaya</translation>
+            <translation>Dakata</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -705,11 +707,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation>Farawa da ci gaban saukewa bisa haɗin</translation>
+            <translation>Matsayin farawa da ci gaban saukewa ta hanyar haɗi</translation>
         </message>
         <message>
             <source>N.</source>
-            <translation>N.</translation>
+            <translation>A'a.</translation>
         </message>
         <message>
             <source>Info</source>
@@ -717,15 +719,15 @@ Total: %1</source>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation>Iyaka saurin canja wurin wannan saukewa</translation>
+            <translation>Iyakance saurin canja wuri na wannan saukewar</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation>Kara iyaka na kowane saukewa</translation>
+            <translation>Kunna iyaka ta kowane saukewa</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation>Mafi girma:</translation>
+            <translation>Matsakaici:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
@@ -737,35 +739,35 @@ Total: %1</source>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation>Iyaka duniya tana aiki: %1 KB/s</translation>
+            <translation>Iyakar duniya tana aiki: %1 KB/s</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation>Babu iyaka duniya da aka sanya</translation>
+            <translation>Babu iyakar duniya da aka saita</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation>Saitunan iyakar saurin duniya…</translation>
+            <translation>Saitunan iyakance gudun duniya…</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation>Zaɓin ƙarewa</translation>
+            <translation>Zaɓuɓɓukan Kammalawa</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation>Buɗe fayil lokacin ƙarewa</translation>
+            <translation>Buɗe fayil idan an gama</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation>Buɗe fayol lokacin ƙarewa</translation>
+            <translation>Buɗe babban fayil idan an gama</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation>Rufe kwamfuta lokacin ƙarewa</translation>
+            <translation>Kashe kwamfuta idan an gama</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation>Waɗannan zaɓin na wataƙila ne kawai ga wannan saukewa kuma suna farawa ba a zaɓa su ba kowane lokaci.</translation>
+            <translation>Waɗannan zaɓuɓɓukan na ɗan lokaci ne don wannan saukewa kawai kuma suna farawa ba a duba su kowane lokaci.</translation>
         </message>
     </context>
     <context>
@@ -776,31 +778,31 @@ Total: %1</source>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Canza suna</translation>
+            <translation>Sake suna</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation>Siffa</translation>
+            <translation>Halaye</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Bude fayil</translation>
+            <translation>Buɗe Fayil</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Bude daiki</translation>
+            <translation>Buɗe Jakunkuna</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Canza suna...</translation>
+            <translation>Sake suna...</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation>Kopi sunan fayil</translation>
+            <translation>Kwafi sunan fayil</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Fitar .torrent…</translation>
+            <translation>Fitar da .torrent…</translation>
         </message>
         <message>
             <source>Resume</source>
@@ -808,11 +810,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Dakatar</translation>
+            <translation>Tsaya</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation>Cire daga layi</translation>
+            <translation>Cire daga jerin</translation>
         </message>
         <message>
             <source>Redownload</source>
@@ -824,7 +826,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation>Saitunan Koluna</translation>
+            <translation>Saitunan ginshiƙai</translation>
         </message>
         <message>
             <source>File Name</source>
@@ -840,39 +842,39 @@ Total: %1</source>
         </message>
         <message>
             <source>Time left</source>
-            <translation>Lokacin da ya rage</translation>
+            <translation>Lokaci ya rage</translation>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation>Ƙarfin Ɗauka</translation>
+            <translation>Saurin saukewa</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation>Ƙarfin Aika</translation>
+            <translation>Saurin ɗorawa</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Masu Bada</translation>
+            <translation>Masu rarrabawa</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Haɗin Kai</translation>
+            <translation>Masu saukewa</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Rabawa</translation>
+            <translation>Rabon</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>An aika</translation>
+            <translation>An ɗora</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>An ɗauka</translation>
+            <translation>An sauke</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation>Kwanakin gwaji na ƙarshe</translation>
+            <translation>Kwanan gwaji na ƙarshe</translation>
         </message>
         <message>
             <source>Description</source>
@@ -880,53 +882,53 @@ Total: %1</source>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Ajiye a</translation>
+            <translation>Ajiye zuwa</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Manufa</translation>
+            <translation>Mai nuni</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation>Shafin yanar gizo na iyaye</translation>
+            <translation>Shafin iyaye</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>Ana jira</translation>
+            <translation>Jiran</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation>%1% (An dakatar da shi)</translation>
+            <translation>%1% (An dakatar)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
-            <translation>Bincike (%1%)</translation>
+            <translation>Ana dubawa (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation>Fayil(oi) %n</translation>
+            <translation>%n fayil(fayiloli)</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation>Babu saukewa daidai.</translation>
+            <translation>Babu zazzagewa da suka dace.</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation>Babu saukewa har yanzu.
-Danna Ƙara URL don farawa.</translation>
+            <translation>Babu zazzagewa tukuna.
+Danna  Ƙara URL  don farawa.</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation>Ana loda saukewa %n…</translation>
+            <translation>Ana ɗora %n zazzagewa…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation>Matsawa zuwa Rijiya</translation>
+            <translation>Matsa zuwa Jeri</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>Kwafi Dangon Magnet</translation>
+            <translation>Kwafi Magnet Link</translation>
         </message>
         <message>
             <source>Copy URL</source>
@@ -934,62 +936,62 @@ Danna Ƙara URL don farawa.</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation>Saukewa %n da aka zaɓa</translation>
+            <translation>%n zaɓaɓɓun zazzagewa</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation>Maimaita Dangon Saukewa</translation>
+            <translation>Maimaita hanyar zazzagewa</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation>Wannan fayil din ya riga ya wanzu a jerin saukewarka.</translation>
+            <translation>Wannan fayil ɗin ya riga ya wanzu a jerin zazzagewar ku.</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation>Za ka iya zaɓar ɗaya daga cikin zaɓin da ke gaba, ko danna Soke don gujewa saukewa.</translation>
+            <translation>Za ku iya zaɓar ɗaya daga cikin zaɓuɓɓuka masu zuwa, ko ku danna Cancel don tsallake zazzagewar.</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation>Ƙara maimaita tare da sunan fayil mai lamba</translation>
+            <translation>Ƙara maimaitaccen da sunan fayil mai lamba</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation>Ƙara maimaitawa da maye gurbin fayil din da ke akwai</translation>
+            <translation>Ƙara maimaitaccen kuma maye gurbin fayil ɗin da ke akwai</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation>Fayil din da ke akwai cikakke ne - nuna dialog na kammala saukewa</translation>
+            <translation>Fayil ɗin da ke akwai cikakke - nuna maganganun kammala zazzagewa</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation>Ci gaba da saukewar da ke akwai</translation>
+            <translation>Ci gaba da zazzagewar da ke akwai</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation>Kiyaye zaɓina kuma in nuna wannan dialog ba a gaskiya ba. Za ka iya canza shi a Zaɓuɓɓuka → Sauke a lokaci mai zuwa.</translation>
+            <translation>Tuna zaɓina kuma kar a sake nuna wannan maganganun. Za ku iya canza shi a Zaɓuɓɓuka → Zazzagewa daga baya.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Soke</translation>
+            <translation>Cancel</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Ok</translation>
         </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation>Matsar Bayanin Torrent zuwa...</translation>
+            <translation>Matsar da bayanan Torrent zuwa...</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation>Matsar Fayil zuwa...</translation>
+            <translation>Matsar da fayil zuwa...</translation>
         </message>
         <message>
             <source>Start</source>
@@ -997,15 +999,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Dakatar</translation>
+            <translation>Tsaya</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Bude shafin</translation>
+            <translation>Buɗe babban fayil</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>Bude fayil</translation>
+            <translation>Buɗe fayil</translation>
         </message>
         <message>
             <source>Close</source>
@@ -1025,7 +1027,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Move</source>
-            <translation>Matsa</translation>
+            <translation>Matsar</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1033,15 +1035,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Web page</source>
-            <translation>Shafin yanar gizo</translation>
+            <translation>Shafin yanar</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Manufar</translation>
+            <translation>Mai nuni</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Bayani</translation>
+            <translation>Bayanin</translation>
         </message>
         <message>
             <source>Login</source>
@@ -1053,11 +1055,11 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Source</source>
-            <translation>Tushen</translation>
+            <translation>Tushe</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation>Hash bayanai</translation>
+            <translation>Hash ɗin bayani</translation>
         </message>
         <message>
             <source>Copy</source>
@@ -1073,39 +1075,39 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Note</source>
-            <translation>Lura</translation>
+            <translation>Bayanin kula</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>An saukewa</translation>
+            <translation>An sauke</translation>
         </message>
         <message>
             <source>Country</source>
-            <translation>Kasa</translation>
+            <translation>Ƙasa</translation>
         </message>
         <message>
             <source>Port</source>
-            <translation>Port</translation>
+            <translation>Tashar jiragen ruwa</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>An tura</translation>
+            <translation>An ɗora</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Masu tushewa</translation>
+            <translation>Masu shuka</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation>Saƙonni</translation>
+            <translation>Saƙo</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>An dakatar</translation>
+            <translation>Dakatar</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Ana ɗaukar</translation>
+            <translation>Ana saukewa</translation>
         </message>
         <message>
             <source>Moving</source>
@@ -1113,11 +1115,11 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Ana tushewa</translation>
+            <translation>Ana rarrabawa</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation>An jera</translation>
+            <translation>A jere</translation>
         </message>
         <message>
             <source>Problem</source>
@@ -1129,55 +1131,55 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation>ETA: %1</translation>
+            <translation>Lokacin ƙarewa: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation>Tushewa: %1 (%2)</translation>
+            <translation>Masu rarrabawa: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation>Abokan hulɗa: %1 (%2)</translation>
+            <translation>Masu haɗawa: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Gabaɗaya</translation>
+            <translation>Gaba ɗaya</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>Fayololi</translation>
+            <translation>Fayiloli</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation>Mapin Swarm</translation>
+            <translation>Taswirar Swarm</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation>Mapin Sashi</translation>
+            <translation>Taswirar Yanki</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation>An asara</translation>
+            <translation>Ɓatacce</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation>Ƙarfin saukewa</translation>
+            <translation>Saurin Saukewa</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation>Ƙarfin ɗauka</translation>
+            <translation>Saurin Hurawa</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation>Haɗin gwiwa</translation>
+            <translation>Haɗi</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation>Rabon rarrabawa</translation>
+            <translation>Rabon Rarrabawa</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation>Sassa</translation>
+            <translation>Yankuna</translation>
         </message>
         <message>
             <source>Availability</source>
@@ -1189,31 +1191,31 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Seed time</source>
-            <translation>Lokacin tushen</translation>
+            <translation>Lokacin shuka</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation>Iyakar sauri</translation>
+            <translation>Iyakar gudu</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation>Tabbatar da bayanin gida</translation>
+            <translation>Tabbatar da bayanan gida</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation>Ƙasa</translation>
+            <translation>Sauka</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation>Sama</translation>
+            <translation>Tashi</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation>Tsawo</translation>
+            <translation>Tsawon lokaci</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Sunan</translation>
+            <translation>Suna</translation>
         </message>
         <message>
             <source>Progress</source>
@@ -1225,11 +1227,11 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Canza sunan abu</translation>
+            <translation>Sake suna</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Shigar da sabon sunan fayil ko daiki:</translation>
+            <translation>Shigar da sabon sunan fayil ko babban fayil:</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -1237,7 +1239,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Canza sunan</translation>
+            <translation>Sake suna</translation>
         </message>
         <message>
             <source>Download</source>
@@ -1245,27 +1247,27 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Canza sunan...</translation>
+            <translation>Sake suna...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation>Babu abokin haɗin gwiwa</translation>
+            <translation>Babu masu haɗi</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation>Bayanin Abokin Haɗin Gwiwa</translation>
+            <translation>Bayanin masu haɗi</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation>Hana abokin haɗin gwiwa</translation>
+            <translation>Hana masu haɗi</translation>
         </message>
         <message>
             <source>Connection</source>
-            <translation>Haɗin kai</translation>
+            <translation>Haɗi</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Tushen: %1</translation>
+            <translation>Tushe: %1</translation>
         </message>
         <message>
             <source>Role: %1</source>
@@ -1273,7 +1275,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Seeder</source>
-            <translation>Mai ba da</translation>
+            <translation>Mai rarrabawa</translation>
         </message>
         <message>
             <source>Ping: %1</source>
@@ -1289,15 +1291,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Down: %1</source>
-            <translation>Ƙasa: %1</translation>
+            <translation>Sauka: %1</translation>
         </message>
         <message>
             <source>Up: %1</source>
-            <translation>Sama: %1</translation>
+            <translation>Tashi: %1</translation>
         </message>
         <message>
             <source>Total down: %1</source>
-            <translation>Jimlar ƙasa: %1</translation>
+            <translation>Jimlar sauka: %1</translation>
         </message>
         <message>
             <source>Total up: %1</source>
@@ -1309,55 +1311,55 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Client: %1</source>
-            <translation>Abokin: %1</translation>
+            <translation>Abokin ciniki: %1</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Ka</translation>
+            <translation>Kai</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Abokin haɗin gwiwa</translation>
+            <translation>Abokin sadarwa</translation>
         </message>
         <message>
             <source>Flags</source>
-            <translation>Alamu</translation>
+            <translation>Tutoci</translation>
         </message>
         <message>
             <source>Ban Peer</source>
-            <translation>Hana Abokin</translation>
+            <translation>Hana abokin sadarwa</translation>
         </message>
         <message>
             <source>Legend:</source>
-            <translation>Bayani:</translation>
+            <translation>Ma'ana:</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>Ba a yi aiki</translation>
+            <translation>Ba ya aiki</translation>
         </message>
         <message>
             <source>Trackers</source>
-            <translation>Masu biyan</translation>
+            <translation>Masu bibiya</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Beri</translation>
+            <translation>Iri</translation>
         </message>
         <message>
             <source>Tracker</source>
-            <translation>Mai biyan</translation>
+            <translation>Mabiyi</translation>
         </message>
         <message>
             <source>Tier</source>
-            <translation>Mataki</translation>
+            <translation>Matsayi</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Abokai</translation>
+            <translation>Abokan sadarwa</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation>Abokai 0 da aka sani</translation>
+            <translation>0 sanannun abokan sadarwa</translation>
         </message>
         <message>
             <source>UL</source>
@@ -1365,7 +1367,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation>↓ %1 ↑ %2</translation>
+            <translation>Saukar %1  Tashi %2</translation>
         </message>
         <message>
             <source>RTT %1</source>
@@ -1373,31 +1375,31 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation>Ping %1 %2% an kammala</translation>
+            <translation>Ping %1  %2% an gama</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Ba a sani</translation>
+            <translation>Ba a sani ba</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation>Ka (wannan abokin tarayya)</translation>
+            <translation>Kai (wannan abokin ciniki)</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation>Babu abokan tarayya da aka haɗa don zana</translation>
+            <translation>Babu takwarorin da aka haɗa don nunawa</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation>Ana jiran IP na jama'a don nuna wurin da ke kan taswira</translation>
+            <translation>Ana jiran IP ɗinka na jama'a domin a nuna matsayin taswira</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation>Aika sake sanarwa</translation>
+            <translation>Tilasta Sake Sanarwa</translation>
         </message>
         <message>
             <source>Copy URL</source>
@@ -1405,15 +1407,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation>Cire mai saƙa</translation>
+            <translation>Cire mai bibiya</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation>Sake sanarwa ga duk</translation>
+            <translation>Sake Sanar da Duka</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation>Shigar da URL na masu saƙa - ɗaya a kowace layi. Layukan da suka fara da # ana manta da su.</translation>
+            <translation>Manna URL ɗin mai bibiya - ɗaya kowane layi. Layukan da suka fara da # ba a kula da su.</translation>
         </message>
         <message>
             <source>Add</source>
@@ -1421,15 +1423,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>No trackers</source>
-            <translation>Babu masu saƙa</translation>
+            <translation>Babu masu bibiya</translation>
         </message>
         <message>
             <source>Web Seeds</source>
-            <translation>Dandamali na Web</translation>
+            <translation>Tsirar yanar gizo</translation>
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation>Shigar da URL na web seed - ɗaya a kowace layi. Ana karɓar URL seeds (BEP-19) da HTTP seeds (BEP-17).</translation>
+            <translation>Manna URL ɗin tsirar yanar gizo - ɗaya kowane layi. Ana karɓar tsirar URL (BEP-19) da tsirar HTTP (BEP-17).</translation>
         </message>
         <message>
             <source>URL</source>
@@ -1437,104 +1439,104 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Type</source>
-            <translation>Irin</translation>
+            <translation>Nau'i</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation>Babu web seeds</translation>
+            <translation>Babu tsirar yanar gizo</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation>Bude a cikin mai kallo</translation>
+            <translation>Buɗe a browser</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation>Cire seed</translation>
+            <translation>Cire tsirar</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation>Kammala</translation>
+            <translation>Cikakke</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation>Klient</translation>
+            <translation>Abokin ciniki</translation>
         </message>
         <message>
             <source>DL</source>
-            <translation>DL</translation>
+            <translation>1. Zazzagewa</translation>
         </message>
         <message>
             <source>Both</source>
-            <translation>Duka</translation>
+            <translation>2. Duka</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation>Sauri</translation>
+            <translation>3. Gudun</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation>Yana da wuya</translation>
+            <translation>4. Akwai</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation>Nisa: %1</translation>
+            <translation>5. Nisa: %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation>Kasa: %1</translation>
+            <translation>6. Ƙasa: %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>%1 masu haɗin gwiwa da aka sani</translation>
+            <translation>7. %1 takwarori sanannu</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>%n tracker(s)</translation>
+            <translation>8. %n masu bibiya</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>Bari kowane tracker ya sani cewa kana nan yanzu, maimakon jiran lokacin sanarwar yau da kullum. Yana da amfani idan adadin haɗin gwiwar ya ragu da sauri.</translation>
+            <translation>9. Faɗa wa kowane mai bibiya cewa kana nan yanzu, maimakon jiran tazarar sanarwa ta al'ada. Yana da amfani idan adadin takwarorinka ya faɗi kwatsam.</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>Yana sake sanarwa...</translation>
+            <translation>10. Ana sake sanarwa...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation>Ƙara masu biyan...</translation>
+            <translation>Ƙara masu bibiya…</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation>%1 an ƙara</translation>
+            <translation>An ƙara %1</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation>%1 an ƙara, %2 ya kasa</translation>
+            <translation>An ƙara %1, %2 sun gaza</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation>%d tsirrai</translation>
+            <translation>mai shuka %n</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation>Ƙara zuciya…</translation>
+            <translation>Ƙara mai shuka…</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation>Ana ɗauka daga swarm...</translation>
+            <translation>Ana karɓowa daga taro...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation>Siffofin Torrent</translation>
+            <translation>Halayen Torrent</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation>Yin duba fayiloli</translation>
+            <translation>Ana duba fayiloli</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation>Sifofin Fayil</translation>
+            <translation>Halayen Fayil</translation>
         </message>
     </context>
     <context>
@@ -1545,7 +1547,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Find:</source>
-            <translation>Nemo:</translation>
+            <translation>Nema:</translation>
         </message>
         <message>
             <source>Search in:</source>
@@ -1553,35 +1555,35 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Sunan fayil ɗin ko wani bangare na sunan</translation>
+            <translation>Sunan fayil ko ɓangaren suna</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation>Bayani ko wani bangare na bayani</translation>
+            <translation>Bayani ko ɓangaren bayani</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation>Sunan shafi / dangiwar ɗaukar fayil / shafin yanar gizo na iyaye / mai nuna hanya</translation>
+            <translation>Sunan shafi / hanyar saukewa / shafin iyaye / mai nuni</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>Daidaita harafi</translation>
+            <translation>Daidaituwar haruffa</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Daidaita jerin kowa kawai</translation>
+            <translation>Daidaituwar duka kalmar kawai</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation>Babu sakamakon da aka samu.</translation>
+            <translation>Ba a sami sakamako ba.</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation>An samu sakamako 1.</translation>
+            <translation>An sami sakamako 1.</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation>An samu sakamako %1.</translation>
+            <translation>An sami sakamako %1.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -1592,11 +1594,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation>An adana aikin.</translation>
+            <translation>Aikin ya adana.</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation>Ana bukatar sunan aikin da shafin farko.</translation>
+            <translation>Ana buƙatar sunan aiki da shafin farawa.</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
@@ -1604,51 +1606,51 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Set start page</source>
-            <translation>Saita shafin farko</translation>
+            <translation>Saita shafin farawa</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation>Ajiye fayiloli zuwa</translation>
+            <translation>Adana fayiloli zuwa</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation>Saita tacewar mai gida</translation>
+            <translation>Saita tacewar bincike</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation>Saita tacewar fayiloli</translation>
+            <translation>Saita tacewar fayil</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation>Saituna na musamman</translation>
+            <translation>Saitunan musamman</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation>Dukkan hotunan daga shafin yanar gizo</translation>
+            <translation>Duk hotuna daga gidan yanar</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation>Duk bidiyo daga shafin yanar gizo</translation>
+            <translation>Duk bidiyo daga gidan yanar</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation>Duk sauti daga shafin yanar gizo</translation>
+            <translation>Duk sauti daga gidan yanar</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation>Gaba ɗayan shafin yanar gizo</translation>
+            <translation>Cikakken gidan yanar</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation>Ƙara tacewa</translation>
+            <translation>Haɗa tacewa</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation>Rage tacewa</translation>
+            <translation>Cire tacewa</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation>Sunan tsari</translation>
+            <translation>Sunan samfuri</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -1660,7 +1662,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>New</source>
-            <translation>Sabuwa</translation>
+            <translation>Sabo</translation>
         </message>
         <message>
             <source>Load</source>
@@ -1668,11 +1670,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation>Ajiye saitin yanzu a matsayin tsari</translation>
+            <translation>Ajiye saitunan yanzu a matsayin samfuri</translation>
         </message>
         <message>
             <source>Recent Projects</source>
-            <translation>Ayyukan da suka gabata</translation>
+            <translation>Ayyukan baya-bayan nan</translation>
         </message>
         <message>
             <source>Close</source>
@@ -1680,7 +1682,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Saitunan Grabber</translation>
+            <translation>Saitunan ɗauko</translation>
         </message>
         <message>
             <source>Project</source>
@@ -1692,19 +1694,19 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation>Sunan Aikin Grabber</translation>
+            <translation>Sunan aikin ɗauko</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation>Shafin/fadin farko</translation>
+            <translation>Shafin farawa/adireshi</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation>Tsarin aikin</translation>
+            <translation>Samfurin aiki</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation>Idan ka zaɓi tsarin aikin, wizard zai saita saitin aikin da ake bukata a matakan da suka biyo baya. Za ka iya canza saitin a hannu a kowane lokaci.</translation>
+            <translation>Idan ka zaɓi samfurin aiki, mayen zai yi saitunan aikin da ake buƙata don samfurin da aka zaɓa a matakai na gaba. Kullum kana iya canza saitunan da hannu.</translation>
         </message>
         <message>
             <source>Use authorization</source>
@@ -1712,11 +1714,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation>Ci gaba &lt;&lt;</translation>
+            <translation>Cigaba &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation>Ci gaba &gt;&gt;</translation>
+            <translation>Cigaba &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
@@ -1728,67 +1730,67 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation>Danna Ci gaba don kunna shiga a hannu ko kashe shafin fita.</translation>
+            <translation>Danna Cigaba don kunna shiga da hannu ko kashe shafin fita.</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation>Shigar da sunan shiga da kalmar sirri a wannan shafin yanar gizo:</translation>
+            <translation>Shigar da shiga da kalmar sirri da hannu a wannan shafin yanar:</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation>A buɗe shafin fita:</translation>
+            <translation>Kada ka buɗe shafin fita:</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation>Yawancin shafukan yanar gizo suna da shafin fita wanda Grabber ya kamata a buɗe. Za ka iya amfani da asterisk wildcard a nan don nuna tsari don shafukan fita daban-daban.</translation>
+            <translation>Shafuka da yawa suna da shafin fita wanda Grabber bai kamata ya buɗe ba. Kana iya amfani da alamar tauraro anan don ƙayyade tsari na shafukan fita daban-daban.</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation>Ajiye a</translation>
+            <translation>Ajiye Zuwa</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation>Kowane fayil zuwa cikin takin dangane da rukunin Stellar na fayil</translation>
+            <translation>Ajiye kowane fayil zuwa babban fayil bisa nau'in Stellar</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation>Dukkan fayilole zuwa takin da ke da alaka da rukunin Stellar na:</translation>
+            <translation>Duk fayiloli zuwa babban fayil mai alaƙa da wannan nau'in Stellar:</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation>Dukkan fayilole zuwa takin da aka zaɓa</translation>
+            <translation>Duk fayiloli zuwa babban fayil mai zuwa</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation>Yi amfani da ƙananan takunan asali</translation>
+            <translation>Yi amfani da ƙananan manyan fayiloli na asali</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation>Ajiye kowane fayil dangane da rukuni</translation>
+            <translation>Ajiye Kowane Fayil Ta Nau'i</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation>Ajiye dukkan fayilole zuwa rukunin da aka zaɓa</translation>
+            <translation>Ajiye Duk Fayiloli Zuwa Nau'in Da Aka Zaɓa</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation>Ajiye dukkan fayilole zuwa wannan takin</translation>
+            <translation>Ajiye Duk Fayiloli Zuwa Wannan Babban Fayil</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation>Canza hanyoyin da ke cikin fayilolin HTML da aka ɗauka zuwa fayilolin gida don bincike ba tare da intanet ba</translation>
+            <translation>Maida hanyoyin haɗi a cikin fayilolin html da aka sauke zuwa fayilolin gida don bincike ba tare da intanet ba</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation>Sake rubutawa kan fayilolin da ke akwai</translation>
+            <translation>Maye gurbin fayilolin da suke</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation>Ƙara fayilolin da aka zaɓa zuwa jerin Stellar na farko da rijistar ɗauka lokacin rufe mai ɗauka</translation>
+            <translation>Ƙara fayilolin da aka duba zuwa jerin Stellar da layin saukewa lokacin rufe grabber</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation>A wannan matakin, dole ne ka bayyana shafukan yanar gizo da za a bincika don neman fayilolin da ake buƙata. A matakin gaba, za ka iya saita nau'ikan fayil, wurin, da sauran tacewa.</translation>
+            <translation>A wannan mataki, ya kamata ka saka shafukan yanar da za a bincika don nemo fayilolin da ake buƙata. A mataki na gaba, za ka iya saita nau'in fayil, wuri, da sauran matattara.</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
@@ -1796,83 +1798,83 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation>Bincika adadin matakan hanyar da aka bayyana:</translation>
+            <translation>Bincika adadin matakan mahaɗa da aka saka:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation>matakan cikin shafin tushen</translation>
+            <translation>matakai a cikin shafin asali</translation>
         </message>
         <message>
             <source>levels on other sites</source>
-            <translation>matakan a sauran shafuka</translation>
+            <translation>matakai a wasu shafuka</translation>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation>Menene adadin matakan haɗin?</translation>
+            <translation>Mene ne adadin matakan mahaɗa?</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation>Yi watsi da tagogin popup</translation>
+            <translation>Yi watsi da tagogin buɗaɗɗe</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation>A yi watsi da manyan shafuka</translation>
+            <translation>Kada a bincika manyan fayilolin iyaye</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation>Bincika duk shafukan da ke cikin babban domain</translation>
+            <translation>Bincika dukkan shafuka a cikin babban yanki</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation>A yi amfani da JavaScript</translation>
+            <translation>Aiwatar da JavaScript</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation>Bincika shafukan yanar gizo a cikin waɗannan hanyoyin/domain kawai:</translation>
+            <translation>Bincika shafukan yanar cikin waɗannan hanyoyi/yankuna kawai:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation>Shigar da hanyar ko domain ɗaya a kowane layi, ko raba shigarwa da semicolons. Yi amfani da * a matsayin wildcard. Misalai: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
+            <translation>Shigar da hanya ko yanki ɗaya a kowane layi, ko raba abubuwa da digo-mai-waƙafi. Yi amfani da * azaman alamar daji. Misalai: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation>A yi watsi da shafukan yanar gizo a cikin waɗannan hanyoyin/domain:</translation>
+            <translation>Kada a bincika shafukan yanar cikin waɗannan hanyoyi/yankuna:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation>Shigar da hanyar ko domain ɗaya a kowane layi, ko raba shigarwa da semicolons. Yi amfani da * a matsayin wildcard. Misalai: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
+            <translation>Shigar da hanya ko yanki ɗaya a kowane layi, ko raba abubuwa da digo-mai-waƙafi. Yi amfani da * azaman alamar daji. Misalai: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation>Sauke waɗannan fayiloli ( nau'ikan fayil )</translation>
+            <translation>Zazzage waɗannan fayiloli (nau'ukan fayil)</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation>Haɗa Filters...</translation>
+            <translation>Haɗa Tacewa...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation>A yi rashin sauke waɗannan fayiloli ( nau'ikan fayil )</translation>
+            <translation>Kada a zazzage waɗannan fayiloli (nau'ukan fayil)</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation>Riƙe Filters...</translation>
+            <translation>Cire Tacewa...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation>Bincika fayiloli a wannan shafin kawai</translation>
+            <translation>Nemo fayiloli a wannan shafin kawai</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation>Ɓoye fayiloli masu kama da juna da aka sami a wurare daban-daban</translation>
+            <translation>Ɓoye fayiloli iri ɗaya da aka samu a wurare daban-daban</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation>Fara saukewa na dukkan fayilolin da aka gano a lokaci guda</translation>
+            <translation>Fara saukar da duk fayilolin da suka dace lokaci guda</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation>Sauke idan girman fayil yana</translation>
+            <translation>Saukar idan girman fayil ya</translation>
         </message>
         <message>
             <source>Not less than</source>
@@ -1884,23 +1886,23 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Not more than</source>
-            <translation>Ba sama da</translation>
+            <translation>Ba fiye da</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation>Sauke fayilolin da ke cikin waɗannan hanyoyi/domen kawai:</translation>
+            <translation>Saukar da fayilolin da ke cikin waɗannan hanyoyi/yankuna kawai:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation>Yi amfani da * a matsayin wildcard. Shigar da hanyar ko domain ɗaya a kowane layi, ko raba shigarwa da semicolons. Misalai: *.google.com ; cdn.example.com ; /downloads/*</translation>
+            <translation>Yi amfani da * azaman kati. Shigar da hanya ɗaya ko yanki a kowane layi, ko raba abubuwa da digo-masu-ƙira. Misalai: *.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation>A sauke fayilolin da ke cikin waɗannan hanyoyi/domen:</translation>
+            <translation>Kada ka saukar da fayilolin da ke cikin waɗannan hanyoyi/yankuna:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation>Yi amfani da * a matsayin wildcard. Shigar da hanyar ko domain ɗaya a kowane layi, ko raba shigarwa da semicolons. Misalai: *.doubleclick.net ; /ads/* ; /tracking</translation>
+            <translation>Yi amfani da * azaman kati. Shigar da hanya ɗaya ko yanki a kowane layi, ko raba abubuwa da digo-masu-ƙira. Misalai: *.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
@@ -1908,11 +1910,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Save Project</source>
-            <translation>Ajiye Aiki</translation>
+            <translation>Ajiye Aikin</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Share Aiki</translation>
+            <translation>Share Aikin</translation>
         </message>
         <message>
             <source>&lt; Back</source>
@@ -1931,11 +1933,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation>Sunan tace</translation>
+            <translation>Sunan Tace</translation>
         </message>
         <message>
             <source>Mask</source>
-            <translation>Faski</translation>
+            <translation>Rufe</translation>
         </message>
         <message>
             <source>Add</source>
@@ -1959,11 +1961,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>New filter</source>
-            <translation>Sabuwar tace</translation>
+            <translation>Sabon tace</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation>Irin</translation>
+            <translation>Rukuni</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -1978,7 +1980,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation>Loda Aikin Grabber</translation>
+            <translation>Loda aikin Grabber</translation>
         </message>
         <message>
             <source>Saved projects</source>
@@ -2009,15 +2011,15 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Yana jira</translation>
+            <translation>Babu aiki</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation>An sami fayiloli %1</translation>
+            <translation>Fayiloli %1 an samu</translation>
         </message>
         <message>
             <source>%1 checked</source>
-            <translation>%1 an gwada su</translation>
+            <translation>%1 an duba</translation>
         </message>
         <message>
             <source>Exploring…</source>
@@ -2025,7 +2027,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation>Danna Fara Bincike don duban URL.</translation>
+            <translation>Danna Fara Bincike don duba URL.</translation>
         </message>
         <message>
             <source>Start
@@ -2039,7 +2041,7 @@ Bincike</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation>Irin Fayil</translation>
+            <translation>Nau'in fayil</translation>
         </message>
         <message>
             <source>Size</source>
@@ -2051,7 +2053,7 @@ Bincike</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation>Rubutun Haɗin</translation>
+            <translation>Rubutun hanyar</translation>
         </message>
         <message>
             <source>Download from</source>
@@ -2063,11 +2065,11 @@ Bincike</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation>Duba da aka zaɓa</translation>
+            <translation>Duba zaɓaɓɓu</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation>Cire da aka zaɓa</translation>
+            <translation>Cire zaɓaɓɓu</translation>
         </message>
         <message>
             <source>Edit current project</source>
@@ -2079,7 +2081,7 @@ Bincike</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>Saitunan Grabber</translation>
+            <translation>Saitunan kama</translation>
         </message>
         <message>
             <source>Stop
@@ -2091,13 +2093,13 @@ Bincike</translation>
             <source>Start
 Downloading</source>
             <translation>Fara
-Ana ɗaukar</translation>
+Saukarwa</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
             <translation>Dakatar
-Akwatattun</translation>
+Saukarwa</translation>
         </message>
         <message>
             <source>Update
@@ -2108,12 +2110,12 @@ Duka</translation>
         <message>
             <source>Schedule
 Project</source>
-            <translation>Tsari
+            <translation>Tsara
 Aiki</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Sakamako</translation>
+            <translation>Ƙididdiga</translation>
         </message>
         <message>
             <source>Categories</source>
@@ -2121,27 +2123,27 @@ Aiki</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation>Dukkan Fayiloli</translation>
+            <translation>Duk Fayiloli</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation>Dangane da Link</translation>
+            <translation>Duban hanyar haɗi</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation>Dangane da Folders</translation>
+            <translation>Duban fayil</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation>Babu fayiloli har yanzu</translation>
+            <translation>Ba a sami fayiloli ba tukuna</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation>← Komawa</translation>
+            <translation>← Baya</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <translation>Fayiloli %1</translation>
+            <translation>fayiloli %1</translation>
         </message>
         <message>
             <source>%1 / %2 (filtered)</source>
@@ -2149,18 +2151,18 @@ Aiki</translation>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation>Ƙara zuwa jerin saukewa</translation>
+            <translation>Ƙara waɗanda aka yiwa alama zuwa jerin saukewa</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
-            <translation>Stellar Grabber</translation>
+            <translation>Mai karɓar Stellar</translation>
         </message>
     </context>
     <context>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation>Tsara aikin grabber</translation>
+            <translation>Tsara aikin mai karɓa</translation>
         </message>
         <message>
             <source>Project:</source>
@@ -2168,23 +2170,23 @@ Aiki</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation>Kunnawa tsarin aikin</translation>
+            <translation>Kunna tsarin aiki</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>Mataki na 1. Zaɓi nau'i</translation>
+            <translation>Mataki 1. Zaɓi nau'i</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>Bincike/sauke sau ɗaya</translation>
+            <translation>Bincike/saukarwa sau ɗaya</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Haɗin kai na lokaci-lokaci</translation>
+            <translation>Daidaitawa lokaci-lokaci</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>Mataki na 2. Zaɓi aiki</translation>
+            <translation>Mataki 2. Zaɓi aiki</translation>
         </message>
         <message>
             <source>Explore only</source>
@@ -2192,7 +2194,7 @@ Aiki</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>Bincika shafin da sauran fayilolin da suka dace</translation>
+            <translation>Bincika shafi ka sauke fayilolin da suka dace</translation>
         </message>
         <message>
             <source>Download checked files</source>
@@ -2204,35 +2206,35 @@ Aiki</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Fice daga Stellar bayan kammalawa</translation>
+            <translation>Fita daga Stellar idan an gama</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Kwace na'ura bayan kammalawa</translation>
+            <translation>Kashe kwamfuta idan an gama</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>Kwace</translation>
+            <translation>Kashe</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>Sake farawa</translation>
+            <translation>Sake kunnawa</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation>Zaɓi</translation>
+            <translation>Barci</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>Hibernation</translation>
+            <translation>Hibernate</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>Tura tsare-tsare su ƙare</translation>
+            <translation>Tilasta ƙare ayyuka</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>Mataki na 3. Tsawaitawa</translation>
+            <translation>Mataki 3. Jadawali</translation>
         </message>
         <message>
             <source>Start download at</source>
@@ -2240,7 +2242,7 @@ Aiki</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Da farko a</translation>
+            <translation>Sau ɗaya a</translation>
         </message>
         <message>
             <source>January</source>
@@ -2248,15 +2250,15 @@ Aiki</translation>
         </message>
         <message>
             <source>February</source>
-            <translation>Faburari</translation>
+            <translation>Fabrairu</translation>
         </message>
         <message>
             <source>March</source>
-            <translation>Mar</translation>
+            <translation>Maris</translation>
         </message>
         <message>
             <source>April</source>
-            <translation>Afr</translation>
+            <translation>Afrilu</translation>
         </message>
         <message>
             <source>May</source>
@@ -2264,35 +2266,35 @@ Aiki</translation>
         </message>
         <message>
             <source>June</source>
-            <translation>Yun</translation>
+            <translation>Yuni</translation>
         </message>
         <message>
             <source>July</source>
-            <translation>Yul</translation>
+            <translation>Yuli</translation>
         </message>
         <message>
             <source>August</source>
-            <translation>Agu</translation>
+            <translation>Agusta</translation>
         </message>
         <message>
             <source>September</source>
-            <translation>Sat</translation>
+            <translation>Satumba</translation>
         </message>
         <message>
             <source>October</source>
-            <translation>Okt</translation>
+            <translation>Oktoba</translation>
         </message>
         <message>
             <source>November</source>
-            <translation>Nuw</translation>
+            <translation>Nuwamba</translation>
         </message>
         <message>
             <source>December</source>
-            <translation>Dis</translation>
+            <translation>Disamba</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Kowace rana</translation>
+            <translation>Kullum</translation>
         </message>
         <message>
             <source>Sunday</source>
@@ -2308,11 +2310,11 @@ Aiki</translation>
         </message>
         <message>
             <source>Friday</source>
-            <translation>Jumma'a</translation>
+            <translation>Juma'a</translation>
         </message>
         <message>
             <source>Tuesday</source>
-            <translation>Laraba</translation>
+            <translation>Talata</translation>
         </message>
         <message>
             <source>Saturday</source>
@@ -2328,11 +2330,11 @@ Aiki</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>awoli</translation>
+            <translation>sa'o'i</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation>mintuna</translation>
+            <translation>mintoci</translation>
         </message>
         <message>
             <source>Stop download at</source>
@@ -2340,7 +2342,7 @@ Aiki</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation>Lura: Stellar ya kamata ya yi aiki a cikin tray na tsarin a lokacin da aka tsara don fara aikin da aka tsara.</translation>
+            <translation>Lura: Dole Stellar ya kasance yana gudana a cikin tiren tsarin a lokacin da aka tsara don fara aikin da aka tsara.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2348,7 +2350,7 @@ Aiki</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Ok</translation>
         </message>
     </context>
     <context>
@@ -2359,19 +2361,19 @@ Aiki</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation>fayoli don bincike a lokaci guda (1 zuwa 10)</translation>
+            <translation>fayiloli don bincike lokaci guda (1 zuwa 10)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation>fayoli don saukewa a lokaci guda (1 zuwa 10)</translation>
+            <translation>fayiloli don saukewa lokaci guda (1 zuwa 10)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation>Da fatan za a lura cewa mai sarrafa shafin yanar gizo zai iya guje wa buƙatu idan ka sanya adadi mai yawa na fayoli don bincike ko saukewa a lokaci guda.</translation>
+            <translation>Lura cewa sabar yanar gizo na iya ƙin buƙatun idan ka saita adadin fayiloli masu yawa don bincike ko saukewa lokaci guda.</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation>Yi amfani da rubutun haɗin a matsayin bayanan saukewa lokacin ƙara fayoli zuwa jerin Stellar na manya</translation>
+            <translation>Yi amfani da rubutun mahaɗi azaman bayanin saukewa lokacin ƙara fayiloli zuwa babban jerin Stellar</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2379,14 +2381,14 @@ Aiki</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Ok</translation>
         </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation>Ƙididdigar Grabber</translation>
+            <translation>Ƙididdigar Mai Kama</translation>
         </message>
         <message>
             <source>Status: %1</source>
@@ -2394,11 +2396,11 @@ Aiki</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>Ba a yi aiki</translation>
+            <translation>Rashin aiki</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation>Shafukan yanar gizo da aka sarrafa</translation>
+            <translation>Shafukan yanar da aka sarrafa</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2406,7 +2408,7 @@ Aiki</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Ci gaba</translation>
+            <translation>Na gaba</translation>
         </message>
         <message>
             <source>Files</source>
@@ -2422,11 +2424,11 @@ Aiki</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>An dace</translation>
+            <translation>An daidaita</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>An saukewa</translation>
+            <translation>An sauke</translation>
         </message>
         <message>
             <source>Close</source>
@@ -2445,19 +2447,19 @@ Aiki</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Sauke SDM</translation>
+            <translation>Saukarwar SDM</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>Wannan sauke YouTube yana buƙatar cookies na shiga.</translation>
+            <translation>Wannan saukarwar YouTube tana buƙatar kukis na shiga.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies daga mai kallo:</translation>
+            <translation>Kukis daga mai bincike:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>Stellar zai sake gwada abin yt-dlp tare da cookies na wannan mai kallo.</translation>
+            <translation>Stellar zai sake gwada abun yt-dlp ɗin da kukis ɗin mai binciken.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2465,11 +2467,11 @@ Aiki</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation>Sake Gwada Sauke</translation>
+            <translation>Sake Saukewa</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>Bude Stellar</translation>
+            <translation>Buɗe Stellar</translation>
         </message>
         <message>
             <source>GitHub</source>
@@ -2477,15 +2479,15 @@ Aiki</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation>Iyakar Gudun: Aika</translation>
+            <translation>Mai Iyakance Gudun: Kunna</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation>Iyakar Gudun: Kashe</translation>
+            <translation>Mai Iyakance Gudun: Kashe</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation>Saitunan Iyakar Gudun…</translation>
+            <translation>Saitunan Mai Iyakance Gudun…</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2497,7 +2499,7 @@ Aiki</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation>Dukkan fayiloli (*)</translation>
+            <translation>Duk fayiloli (*)</translation>
         </message>
         <message>
             <source>Total: %1</source>
@@ -2509,19 +2511,19 @@ Aiki</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation>Yana saukewa: %1</translation>
+            <translation>Ana saukewa: %1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation>An jera shi: %1</translation>
+            <translation>A jere: %1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
-            <translation>Gaba daya: %1%</translation>
+            <translation>Gaba ɗaya: %1%</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Dak</translation>
+            <translation>Tsayar</translation>
         </message>
         <message>
             <source>Resume</source>
@@ -2533,7 +2535,7 @@ Aiki</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation>Shirya tallafin BitTorrent?</translation>
+            <translation>Kunna tallafin BitTorrent?</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2543,50 +2545,51 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Kulawar BitTorrent a yanzu an kashe shi.
+            <translation>Tallafin BitTorrent a kashe yake yanzu.
 
-Lokacin da kake saukake wani torrent, adireshin IP ɗinka yana zama ganowa ga sauran masu haɗin gwiwa a cikin swarm, kuma a lokaci guda kana tura (seed) bayanan ga sauran.
+Idan ka sauke torrent, adireshin IP ɗinka zai bayyana ga sauran masu amfani a cikin rukunin kuma za ka aika (seed) bayanai ga wasu.
 
-Abin da kake raba ta hanyar BitTorrent alherfin ka ne kawai. Tabbatar da cewa kana da damar rarraba abun ciki.
+Duk abin da ka raba ta BitTorrent alhakinka ne kawai. Tabbatar cewa kana da haƙƙin rarraba abun.
 
-An yi shawarar da karfi a haɗa Stellar da interface na VPN kuma a tabbatar da cewa VPN ɗinka yana aiki kafin a yi amfani da torrents, don kare adireshin IP ɗinka daga bayyanawa.</translation>
+An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwar VPN kuma ka tabbatar VPN ɗinka na aiki kafin amfani da torrents, don kare adireshin IP ɗinka daga fallasa.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Na fahimta, Aika</translation>
+            <translation>Na Gane, Kunna</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>Ka danna maɓallin 'Download Later', amma Stellar ya fara ɗaukar wani bangare na fayil ɗin. Stellar yana fara ɗaukar fayil ɗin yayin da aka nuna dialog na &quot;Download File Info&quot;.
+            <translation>Ka danna maɓallin 'Sake saukewa', amma Stellar ya riga ya fara sauke wani ɓangare na fayil ɗin. Stellar koyaushe yana fara saukewa yayin nuna maganganun 'Bayanin Fayil ɗin Saukewa'.
 
-Zaka iya kashe wannan a cikin Saituna → Ɗaukar.</translation>
+Zaka iya kashe wannan a Saituna → Saukewa.</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>Da kyau</translation>
+            <translation>OK</translation>
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>Ba a iya saukar da fayil din “%1” ba.</translation>
+            <translation>Fayil ɗin &quot;%1&quot; ba a iya sauke shi ba.</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>Safarwar ta koma shafin yanar gizo maimakon fayil da aka saba. Wasu shafuka suna share fayiloli nan take bayan Stellar suna neman bayanan su.</translation>
+            <translation>Sabar ta mayar da shafin yanar maimakon fayil ɗin da ake tsammani. Wasu shafuka suna share fayiloli kai tsaye bayan Stellar ya bincika bayanansu.</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>Don bar browser ɗin ka ɗauka kai tsaye, riƙe maɓalli na canji (Alt, Ctrl, ko Shift) yayin danna link ɗin. Saita maɓallin a: Zaɓin Stellar → Browser → Bypass Download Interception</translation>
+            <translation>Don barin burauzarka ta sauke kai tsaye, riƙe maɓallin gyarawa (Alt, Ctrl, ko Shift) yayin danna hanyar. Sanya maɓallin a:
+Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>Bude Saitunan Browser</translation>
+            <translation>Buɗe Saitunan Burauza</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>Sigar %1 tana da wuya.</translation>
+            <translation>Sigar %1 tana nan.</translation>
         </message>
         <message>
             <source>Update Now</source>
@@ -2598,7 +2601,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation>Ƙara URLs ɗin Batch…</translation>
+            <translation>Ƙara URLs Batch…</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -2610,19 +2613,19 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>Bude Bayanin</translation>
+            <translation>Buɗe Jakunkuna</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>Bude Fayil</translation>
+            <translation>Buɗe Fayil</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation>Dauka Yanzu</translation>
+            <translation>Sauke Yanzu</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation>Dakatar da ɗauka</translation>
+            <translation>Dakatar da Saukewa</translation>
         </message>
         <message>
             <source>Remove</source>
@@ -2630,27 +2633,27 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>Sake ɗauka</translation>
+            <translation>Sake Saukewa</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>Fitarwa .torrent…</translation>
+            <translation>Fitar da .torrent…</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Sauke</translation>
+            <translation>Zazzagewa</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation>Dakatar duk</translation>
+            <translation>Dakata duka</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation>Dakatar duk</translation>
+            <translation>Tsayar da duka</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation>Share duk da aka kammala</translation>
+            <translation>Share duk waɗanda aka kammala</translation>
         </message>
         <message>
             <source>Find…</source>
@@ -2662,19 +2665,19 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Wurin Aiki</translation>
+            <translation>Mai tsarawa</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Fara Jirgin</translation>
+            <translation>Fara jerin</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Dakatar Jirgin</translation>
+            <translation>Tsayar da jerin</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Iyakar Sauri</translation>
+            <translation>Mai iyakance gudu</translation>
         </message>
         <message>
             <source>Turn On</source>
@@ -2682,7 +2685,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation>Kwace</translation>
+            <translation>Kashe</translation>
         </message>
         <message>
             <source>Settings…</source>
@@ -2698,15 +2701,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation>Ƙare Nau'ikan</translation>
+            <translation>Ɓoye Rukunai</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation>Nuna Nau'ikan</translation>
+            <translation>Nuna Rukunai</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation>Nuna Binciken</translation>
+            <translation>Nuna Injin Bincike</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
@@ -2718,55 +2721,55 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation>Tsara Fayiloli</translation>
+            <translation>Shirya Fayiloli</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation>Da Tsarin Ƙara</translation>
+            <translation>Ta Tsarin Ƙarawa</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation>Da Sunan Fayil</translation>
+            <translation>Ta Sunan Fayil</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation>Da Girma</translation>
+            <translation>Ta Girma</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation>Da Matsayi</translation>
+            <translation>Ta Matsayi</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation>Da Lokacin Da Ya Rage</translation>
+            <translation>Ta Lokacin Da Ya Rage</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation>Da Gudun Canja</translation>
+            <translation>Ta Saurin Canjawa</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation>Da Kwanakin Ƙarshen Ƙoƙari</translation>
+            <translation>Ta Kwanan Ƙoƙarin Ƙarshe</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation>Da Bayani</translation>
+            <translation>Ta Bayani</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation>Da Hanyar Ajiye</translation>
+            <translation>Ta Hanyar Ajiyewa</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation>Ta hanyar Referer</translation>
+            <translation>Ta hanyar Mai Nuni</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation>Ta shafin iyaye</translation>
+            <translation>Ta Shafin Yanar Gizo Na Iyaye</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation>Kulumomi…</translation>
+            <translation>Shafuka…</translation>
         </message>
         <message>
             <source>Options</source>
@@ -2774,7 +2777,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation>Fafatawa…</translation>
+            <translation>Zaɓuɓɓukan…</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -2782,15 +2785,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation>Bude Mai Karanta RSS</translation>
+            <translation>Buɗe Mai Karanta RSS</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation>Sabunta duk abubuwan</translation>
+            <translation>Sabunta Duk Ciyarwa</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation>Alama duk abubuwa suna karanta</translation>
+            <translation>Alama Duk Abubuwa Karanta</translation>
         </message>
         <message>
             <source>Help</source>
@@ -2798,11 +2801,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation>Bincika sabuntawa</translation>
+            <translation>Bincika Sabuntawa</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation>Duba .torrent don buɗe bayanin torrent</translation>
+            <translation>Zuba fayil .torrent don buɗe bayanan torrent</translation>
         </message>
         <message>
             <source>Find:</source>
@@ -2822,7 +2825,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>Sunan fayil ko sashi na sunan</translation>
+            <translation>Sunan fayil ko ɓangaren suna</translation>
         </message>
         <message>
             <source>Description</source>
@@ -2830,7 +2833,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation>URL / mai nufi / shafin yanar gizo na iyaye</translation>
+            <translation>URL / mai nuni / shafin yanar gizo na asali</translation>
         </message>
         <message>
             <source>Match case</source>
@@ -2838,19 +2841,19 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>Daidaita kowane jerin kalmomi kawai</translation>
+            <translation>Daidaita duka kirtani kawai</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation>Matsa bango a hagu</translation>
+            <translation>Matsar da gefe zuwa hagu</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation>Matsa bango a dama</translation>
+            <translation>Matsar da gefe zuwa dama</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation>Sake saitin faɗin bango</translation>
+            <translation>Sake saita faɗin gefe</translation>
         </message>
         <message>
             <source>About Stellar</source>
@@ -2874,35 +2877,35 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation>Ana buƙatar Cookies na Browser</translation>
+            <translation>Ana Bukatar Kukis na Browser</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>Ƙara fayil ɗin torrent</translation>
+            <translation>Ƙara Fayil ɗin Torrent</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>Fitar fayiloli .torrent</translation>
+            <translation>Fitar da Fayilolin .torrent</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>Ci gaban ɗaukar sashin</translation>
+            <translation>Ci gaban Zazzagewar Tasha</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>ɗauka a baya</translation>
+            <translation>Zazzagewa Daga Baya</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>Fayil ba ya samuwa ba</translation>
+            <translation>Fayil ɗin Ba Ya Nan</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation>Sabunta da sauri</translation>
+            <translation>Sabuntawa Mai Sauri</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Stellar Download Manager</translation>
+            <translation>Manajan Zazzagewa na Stellar</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
@@ -2910,42 +2913,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>Sabon sigar Stellar Download Manager tana samuwa</translation>
+            <translation>Akwai sabon sigar Manajan Zazzagewa na Stellar</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>Abin da ya sabawa a Stellar</translation>
+            <translation>Sababbin Abubuwa a Stellar</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>Zaɓin jirgin</translation>
+            <translation>Zaɓin jerin gwano</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>Saka fayiloli a cikin jirgi?</translation>
+            <translation>Saka fayiloli cikin jerin gwano?</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>Zaɓi jirgi da ke akwai ko ƙirƙiri sabon ɗaya.</translation>
+            <translation>Zaɓi jerin gwano na yanzu ko ƙirƙiri sabo.</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>Jirgi</translation>
+            <translation>Jerin gwano</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>Fara sarrafa jirgi</translation>
+            <translation>Fara sarrafa jerin gwano</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>Ba na so in tambaya sake</translation>
+            <translation>Kada ka sake tambayata</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>Ba a ƙara zuwa jirgin</translation>
+            <translation>Kada ka saka cikin jerin gwano</translation>
         </message>
         <message>
             <source>OK</source>
@@ -2953,7 +2956,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>Shigar da sunan jirgin</translation>
+            <translation>Shigar da sunan jerin gwano</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -2961,18 +2964,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Create</source>
-            <translation>Ƙirƙiri</translation>
+            <translation>Ƙirƙira</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>(Matsakaici)</translation>
+            <translation>(Tsoho)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Dokokin ɗaukar hoto</translation>
+            <translation>Dokokin Saukewa</translation>
         </message>
         <message>
             <source>Add</source>
@@ -2984,15 +2987,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>Danna 'Ƙara' don ƙirƙira dokar ɗaukar hoto</translation>
+            <translation>Danna &quot;Ƙara&quot; don ƙirƙirar dokar saukewa</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>Sunan dokar</translation>
+            <translation>Sunan doka</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>An kunna</translation>
+            <translation>Kunna</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
@@ -3000,11 +3003,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>Yi amfani da dabarun alamu</translation>
+            <translation>Yi amfani da maganganun yau da kullun</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>Dole ne ya ƙunshi:</translation>
+            <translation>Dole ya ƙunshi:</translation>
         </message>
         <message>
             <source>regex pattern</source>
@@ -3016,7 +3019,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>Dole ba ya ƙunshi:</translation>
+            <translation>Kada ya ƙunshi:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
@@ -3024,31 +3027,31 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation>Tace shugaba:</translation>
+            <translation>Tacewar kashi:</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation>misali. 1x01-1x24 ko 2x01;</translation>
+            <translation>misali 1x01-1x24 ko 2x01;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation>Yi amfani da Tace Shugaba Mai Hankali</translation>
+            <translation>Yi amfani da Tacewar Kashi Mai Hankali</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation>Yana tserewa shugabodin da aka gane da ka'idojin da suka gabata</translation>
+            <translation>Tsallake kashin da aka riga aka daidaita ta hanyar ƙa'idojin da suka gabata</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation>Matsa waɗanda suka biyo baya don</translation>
+            <translation>Yi watsi da matches na gaba don</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation>kwanaki (0 = an kashe shi)</translation>
+            <translation>kwanaki (0 = a kashe)</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation>SAITONEN SAIDAWA</translation>
+            <translation>SAITUN SAUKARWA</translation>
         </message>
         <message>
             <source>Save at:</source>
@@ -3056,7 +3059,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation>Bar a cikin tsarin ajiya na asali</translation>
+            <translation>Bar komai don amfani da hanyar ajiya ta asali</translation>
         </message>
         <message>
             <source>Browse...</source>
@@ -3064,27 +3067,27 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Irinin</translation>
+            <translation>Rukuni:</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation>Daidaitawa</translation>
+            <translation>Jerin layi:</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation>Iyakokin Raba Torrent</translation>
+            <translation>IYAKAR RABA TORRENT</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Ratio</translation>
+            <translation>Rabon</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Daidaitaccen</translation>
+            <translation>Asali</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Ba shi da iyaka</translation>
+            <translation>Mara iyaka</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -3092,19 +3095,19 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation>Lokacin Raba</translation>
+            <translation>Lokacin shuka</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>minti</translation>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation>Lokacin Raba mara aiki</translation>
+            <translation>Lokacin shuka mara aiki</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation>&quot;Daidaitaccen&quot; yana amfani da iyakokin raba duniya da aka saita a Saituna → Torrents.</translation>
+            <translation>&quot;Tsoho&quot; yana amfani da iyakokin rabawa na duniya da aka saita a Saituna → Torrents.</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -3112,22 +3115,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Ok</translation>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation>Dokokin Saukar RSS na Atomatik</translation>
+            <translation>Dokokin Saukewa ta Kai tsaye ta RSS</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation>Taken</translation>
+            <translation>Take</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation>Sako</translation>
+            <translation>Ciyarwa</translation>
         </message>
         <message>
             <source>Date</source>
@@ -3135,19 +3138,19 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation>Bude Sako</translation>
+            <translation>Buɗe Ciyarwa</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>Sabunta</translation>
+            <translation>Sake ɗorawa</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation>Canza sunan / Gyara...</translation>
+            <translation>Sake suna / Gyara...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation>Cire Haɗin</translation>
+            <translation>Cire Biyan kuɗi</translation>
         </message>
         <message>
             <source>Download Torrent</source>
@@ -3159,7 +3162,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation>Bude a Browser</translation>
+            <translation>Buɗe a Browser</translation>
         </message>
         <message>
             <source>Copy Link</source>
@@ -3167,15 +3170,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation>Alama a matsayin Karanta</translation>
+            <translation>Alama Karantawa</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation>Alama a matsayin Ba a Karanta</translation>
+            <translation>Alama Ba Karantawa</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation>Alama Duk Karanta</translation>
+            <translation>Alama Duk Karantawa</translation>
         </message>
         <message>
             <source>Name</source>
@@ -3183,7 +3186,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation>Suna na musamman (zaɓi)</translation>
+            <translation>Suna na musamman (na zaɓi)</translation>
         </message>
         <message>
             <source>URL</source>
@@ -3199,7 +3202,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation>Ƙara URL na RSS ko Atom...</translation>
+            <translation>Ƙara RSS ko Atom feed URL...</translation>
         </message>
         <message>
             <source>Add</source>
@@ -3207,7 +3210,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation>Ana sabunta...</translation>
+            <translation>Ana sabuntawa…</translation>
         </message>
         <message>
             <source>Edit</source>
@@ -3219,43 +3222,43 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>Dokokin Sauke</translation>
+            <translation>Dokokin Saukewa</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation>Abokan ciniki</translation>
+            <translation>Biyan kuɗi</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation>Ba shi da suna</translation>
+            <translation>Ba suna</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>Zabi labari</translation>
+            <translation>Zaɓi labari</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>Bude</translation>
+            <translation>Buɗe</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>Alama an karanta</translation>
+            <translation>Alamar Karantawa</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>Alama ba a karanta</translation>
+            <translation>Alamar Ba Karantawa</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>Zabi takarda don ganin takaitaccen bayanin.</translation>
+            <translation>Zaɓi labari don ganin taƙaitawa</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>Babu takaitawa da ake da ita.</translation>
+            <translation>Babu taƙaitawa</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>%1 marasa karanta · %2 abubuwa</translation>
+            <translation>%1 ba a karanta  ·  %2 abubuwa</translation>
         </message>
         <message>
             <source>%1 items</source>
@@ -3263,22 +3266,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>Rukunin RSS</translation>
+            <translation>Ciyarwar RSS</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>Gyara Abokin</translation>
+            <translation>Gyara Biyan Kuɗi</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>Safuna</translation>
+            <translation>Layuka</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>Sabuwar layi</translation>
+            <translation>Sabon layi</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -3286,47 +3289,47 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Schedule</source>
-            <translation>Shirye-shiryen</translation>
+            <translation>Jadawali</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>Fayoyi a cikin jerin aiki</translation>
+            <translation>Fayiloli a jerin</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>Sau ɗaya na saukewa</translation>
+            <translation>Zazzagewa sau ɗaya</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>Haɗawa ta lokaci-lokaci</translation>
+            <translation>Aiki tare na lokaci-lokaci</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>Fara saukewa lokacin da Stellar ya fara aiki</translation>
+            <translation>Fara zazzagewa a tashin Stellar</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>Fara saukewa a</translation>
+            <translation>Fara zazzagewa a</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>Da farko a</translation>
+            <translation>Sau ɗaya a</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>Kowace rana</translation>
+            <translation>Kullum</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation>Fara sake kowane</translation>
+            <translation>Sake farawa kowane</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>awoli</translation>
+            <translation>sa'o'i</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>minti</translation>
         </message>
         <message>
             <source>Stop download at</source>
@@ -3334,39 +3337,39 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation>Adadin sake gwadawa na kowane fayil idan saukewar ta kasa: Buɗe fayilen da ke gaba idan an kammala: Fita Stellar idan an kammala</translation>
+            <translation>Adadin sake gwadawa ga kowane fayil idan saukewa ya gaza :</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation>Kwace na'ura idan an kammala</translation>
+            <translation>Buɗe fayil ɗin nan idan an gama:</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>Iya tilasta tsare-tsare su tsaya</translation>
+            <translation>Fita daga Stellar idan an gama</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>Sauke</translation>
+            <translation>Kashe kwamfuta idan an gama</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>fayili a lokaci guda</translation>
+            <translation>Tilasta tsare-tsaren su ƙare</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Sunan Fayil</translation>
+            <translation>Sauke</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation>Girma</translation>
+            <translation>fayiloli a lokaci guda</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation/>
+            <translation>Sunan Fayil</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>Girma</translation>
         </message>
         <message>
             <source>Status</source>
@@ -3374,23 +3377,23 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Time Left</source>
-            <translation>Lokacin da ya rage</translation>
+            <translation>Lokaci ya rage</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation>Babu da ke zaɓa</translation>
+            <translation>Ba a zaɓi jerin aiki ba</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation>Babu fayiloli a da ke</translation>
+            <translation>Babu fayiloli a jerin</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation>Iyakokin saukewa</translation>
+            <translation>Iyakar saukewa</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation>Sauke ba fiye da</translation>
+            <translation>Kada ka sauke fiye da</translation>
         </message>
         <message>
             <source>MBytes</source>
@@ -3402,7 +3405,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation>Nuna shawara kafin dakatar da saukewa</translation>
+            <translation>Nuna faɗakarwa kafin dakatar da saukewa</translation>
         </message>
         <message>
             <source>Start now</source>
@@ -3410,11 +3413,11 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Dakatar</translation>
+            <translation>Tsaya</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Aika</translation>
+            <translation>Aiwatar</translation>
         </message>
         <message>
             <source>Close</source>
@@ -3422,15 +3425,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation>Shigar da sunan sabon da ke zai bayyana a jerin da ke</translation>
+            <translation>Shigar da suna don sabon jerin da za a nuna a cikin jerin layuka</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation>Sunan da ke</translation>
+            <translation>Sunan jerin</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Ok</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -3438,78 +3441,78 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Mai tsara</translation>
+            <translation>Mai tsarawa</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation>Safin sabuwa</translation>
+            <translation>Sabon Jeri</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation>Zabi fayil don buɗewa bayan kammalawa</translation>
+            <translation>Zaɓi fayil don buɗe idan an gama</translation>
         </message>
     </context>
     <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation>Haɗin kai</translation>
+            <translation>Haɗi</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation>Mafi yawan saukewa a lokaci guda:</translation>
+            <translation>Matsakaicin saukewa a lokaci ɗaya:</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation>Sassan kowane saukewa:</translation>
+            <translation>Yankuna kowane saukewa:</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation>Lokacin tsayawar haɗin kai (daƙiƙa):</translation>
+            <translation>Lokacin katsewar haɗi (daƙiƙoƙi):</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation>Sake gwada saukewun da suka kasa:</translation>
+            <translation>Sake gwada saukewar da suka faɗi:</translation>
         </message>
         <message>
             <source>times</source>
-            <translation>lokaci</translation>
+            <translation>sau</translation>
         </message>
         <message>
             <source>User Agent</source>
-            <translation>Mai amfani</translation>
+            <translation>Wakilin Mai Amfani</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation>Yi amfani da mai amfani na musamman</translation>
+            <translation>Yi amfani da wakilin mai amfani na musamman</translation>
         </message>
         <message>
             <source>Proxy</source>
-            <translation>Mai tsaye</translation>
+            <translation>Wakili</translation>
         </message>
         <message>
             <source>No proxy</source>
-            <translation>Babu mai tsaye</translation>
+            <translation>Babu wakili</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation>Yi amfani da proxy na tsarin</translation>
+            <translation>Yi amfani da wakili na tsarin</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation>Proxy HTTP / HTTPS</translation>
+            <translation>Wakilin HTTP/HTTPS</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation>Proxy SOCKS5</translation>
+            <translation>Wakilin SOCKS5</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation>Mai haɗi:</translation>
+            <translation>Mai masauki:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation>Port:</translation>
+            <translation>Tashar jiragen ruwa:</translation>
         </message>
         <message>
             <source>Username:</source>
@@ -3529,15 +3532,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation>Ajiye a cikin takin</translation>
+            <translation>Ajiye zuwa babban fayil</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>Sauke</translation>
+            <translation>Zazzagewa</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation>Takin ajiya na asali:</translation>
+            <translation>Babban fayil ɗin ajiya:</translation>
         </message>
         <message>
             <source>Browse…</source>
@@ -3545,99 +3548,99 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation>Takin ajiya na musamman na torrents:</translation>
+            <translation>Fayil ɗin ajiya na torrent:</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation>Takin lokaci na Stellar:</translation>
+            <translation>Fayil ɗin wucin gadi na Stellar:</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation>Fara saukewa nan take (ka watsa dialog bayanin fayil)</translation>
+            <translation>Fara zazzagewa kai tsaye (tsallake bayanin fayil)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation>Nuna dialog saukewa ya kare</translation>
+            <translation>Nuna sanarwar kammala zazzagewa</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation>Fara saukewa nan take yayin nuna dialog 'Bayanin Fayil'</translation>
+            <translation>Fara zazzagewa kai tsaye yayin nuna bayanin fayil</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation>Nuna taswirar swarm yayin saukewar bayanin torrent</translation>
+            <translation>Nuna taswirar tarin lokacin zazzage bayanan torrent</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation>Nuna panel zaftar jira lokacin danna 'Saka Saurin'</translation>
+            <translation>Nuna zaɓin jerin gwano lokacin danna Zazzagewa Daga Baya</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation>Nuna panel zaftar jira lokacin rufan dialog saukewa yawa</translation>
+            <translation>Nuna zaɓin jerin gwano yayin rufe maganganar saukar da yawa</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation>Idan aka ƙara URL maimaitawa:</translation>
+            <translation>Idan an ƙara URL mai maimaitawa:</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation>Danna sau biyu akan saukewa a cikin jerin fayil:</translation>
+            <translation>Danna sau biyu akan saukewa a jerin fayiloli:</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation>Tsarin ranar ƙarshe gwagwarmaya:</translation>
+            <translation>Tsarin kwanan ƙoƙari na ƙarshe:</translation>
         </message>
         <message>
             <source>Time format:</source>
-            <translation>Tsarin lokaci:</translation>
+            <translation>Tsarin lokaci</translation>
         </message>
         <message>
             <source>Show seconds</source>
-            <translation>Nuna daƙiƙa</translation>
+            <translation>Nuna sakan</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation>Gani</translation>
+            <translation>Duba</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>Haɗin Browser</translation>
+            <translation>Haɗin Mai Bincike</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation>Fara saukewar waɗannan nau'ikan fayil da kansu:</translation>
+            <translation>Fara saukewa ta atomatik waɗannan nau'ikan fayiloli:</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation>A ka fara saukewa da kansu daga waɗannan shafukan:</translation>
+            <translation>Kada a fara saukewa ta atomatik daga waɗannan shafuka:</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation>Kasancewa na Musamman</translation>
+            <translation>Keɓancewar Adireshi</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation>A ka fara saukewa daga wuraren da ke gaba:</translation>
+            <translation>Kar a fara saukewa daga waɗannan adiresoshin:</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation>Kewayawa na Saukewa</translation>
+            <translation>Tsallake Katsewar Saukewa</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation>Kai wannan maɓallin yayin danna link na saukewa don guje wa kewayawa ka bar browser ya saukawa:</translation>
+            <translation>Riƙe wannan maɓalli yayin danna hanyar saukewa don tsallake katsewa kuma bar mai bincike ya sauke:</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>Iyakar Sauro</translation>
+            <translation>Mai Iyakance Gudun</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation>A kunna iyakar sauro ta duniya</translation>
+            <translation>Kunna iyakar gudun duniya</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation>Mafi girman sauro:</translation>
+            <translation>Matsakaicin gudu:</translation>
         </message>
         <message>
             <source>KB/s</source>
@@ -3645,19 +3648,19 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation>A kunna iyakar upload ta duniya</translation>
+            <translation>Kunna iyakar ɗorawa ta duniya</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation>Mafi girman upload:</translation>
+            <translation>Matsakaicin ɗorawa:</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation>A kunna iyakar sauro koyaushe lokacin fara Stellar</translation>
+            <translation>Kunna iyakacin gudu a farkon Stellar</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation>A kunna jadawalin iyakar sauro</translation>
+            <translation>Kunna tsarin iyakacin gudu</translation>
         </message>
         <message>
             <source>Remove</source>
@@ -3665,43 +3668,43 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>On</source>
-            <translation>Aiki</translation>
+            <translation>Kunna</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Sauke</translation>
+            <translation>Saukarwa</translation>
         </message>
         <message>
             <source>Upload</source>
-            <translation>Daga sama</translation>
+            <translation>Lodawa</translation>
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation>+ Ƙara Ka'ida</translation>
+            <translation>+ Ƙara Doka</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation>Lambar</translation>
+            <translation>Sanarwa</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation>Nuna labarin lokacin da ɗaukar ya kare</translation>
+            <translation>Nuna sanarwa idan saukarwa ta ƙare</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation>Nuna labarin idan akwai kuskure a ɗaukar</translation>
+            <translation>Nuna sanarwa idan saukarwa ta sami matsala</translation>
         </message>
         <message>
             <source>General</source>
-            <translation>Gabaɗaya</translation>
+            <translation>Gaba ɗaya</translation>
         </message>
         <message>
             <source>Browser</source>
-            <translation>Browza</translation>
+            <translation>Mai bincike</translation>
         </message>
         <message>
             <source>Media</source>
-            <translation>Tsarin</translation>
+            <translation>Kafofin watsa labarai</translation>
         </message>
         <message>
             <source>Torrents</source>
@@ -3717,63 +3720,63 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation>Idan yanayin na musamman ya kasance a rufe, Stellar yana amfani da User-Agent na ciki tare da sabon sigar.</translation>
+            <translation>Lokacin da yanayin al'ada ke kashe, Stellar yana amfani da Wakilin Mai Amfani da aka gina tare da sigar yanzu.</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation>Wannan ƙimar za a tura ta daidai yadda aka shigar.</translation>
+            <translation>Wannan ƙimar za a aika daidai yadda aka shigar.</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation>Matsakaicin da ke sama. Sauƙaƙe akawar don gyara da maye gurbin shi.</translation>
+            <translation>Tsohuwar da aka gina an nuna a sama. Kunna akwatin rajistan don gyara da maye gurbinsa.</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation>Zaɓi</translation>
+            <translation>Na zaɓi</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation>Duk sauran, sauran bidiyo, binciken sabuntawa, da haɗin abokin torrent/mai tallafi ana kaiwa ta wannan mai tsaka-tsaki.</translation>
+            <translation>Duk abubuwan saukewa, saukewar bidiyo, duba sabuntawa, da haɗin yanar gizo na torrent ana tura su ta wannan wakili.</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation>Stellar zai yi amfani da mai tsaka-tsaki da aka tsara a cikin saitin shafin yanar gizon tsarin aikin ku.</translation>
+            <translation>Stellar zai yi amfani da wakili da aka saita a cikin saitunan hanyar sadarwa na tsarin aiki.</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation>An tsaya — mai tsaka-tsaki bai amsa ba</translation>
+            <translation>Lokaci ya ƙare — wakili bai amsa ba</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation>A gwada…</translation>
+            <translation>Ana gwadawa…</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation>Gwada Mai Tsaka-tsaki</translation>
+            <translation>Jarrabawar Wakili</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation>⚠ Ba cikin jerin sauran browser ba: %1</translation>
+            <translation>⚠ Ba a cikin jerin abubuwan da za a sauke ta atomatik na burauza: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation>Bincika</translation>
+            <translation>Lilo</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation>Wannan shi ne daidaitaccen folder na torrent da aka tuna lokacin da zaɓin metadata na torrent ya zama cewa ana amfani da folder na adana na musamman a matsayin daidaitaccen.</translation>
+            <translation>Wannan shine babban fayil ɗin torrent da aka tuna da shi wanda ake amfani dashi lokacin da aka saita maganganun metadata na torrent don amfani da babban fayil ɗin ajiya na al'ada ta tsohuwa.</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation>Stellar yana adana sassan fayilolin da ba a cika su ba da metadata a nan yayin sauran da hada fayiloli.</translation>
+            <translation>Shafukan Stellar suna adana sassan fayil da aka sauke da metadata a nan yayin saukewa da haɗa fayiloli.</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation>Lura: Waɗannan saitin ba su aiki ga sarrafa jirgin don saitin 'Sura Sauran Nan da Nan' da saitin 'Nuna Tattaunawar Cika Sauran' ba.</translation>
+            <translation>Lura: Waɗannan saitunan ba su shafi aikin layi ba don saitin Fara Saukewa Nan Da Nan da saitin Nuna Maganar Kammala Saukewa.</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation>Tambaye ni abin da za in yi</translation>
+            <translation>Tambaye ni abin yi</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
@@ -3781,15 +3784,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation>Rushewa sauran da ke wanzuwa</translation>
+            <translation>Maye gurbin zazzagewar data kasance</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation>Ci gaba / nuna tattaunawar cika</translation>
+            <translation>Ci gaba / nuna maganganun kammala</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation>Bude tattaunawar fasalin fayil</translation>
+            <translation>Buɗe maganganun halayen fayil</translation>
         </message>
         <message>
             <source>Open file</source>
@@ -3797,31 +3800,31 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>Buɗe takobi</translation>
+            <translation>Buɗe babban fayil</translation>
         </message>
         <message>
             <source>24-hour time</source>
-            <translation>Lokaci na sa'o'i 24</translation>
+            <translation>Lokacin awa 24</translation>
         </message>
         <message>
             <source>12-hour time</source>
-            <translation>Lokaci na sa'o'i 12</translation>
+            <translation>Lokacin awa 12</translation>
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation>Kari ko koma-baki. Ba tare da launin harafi ba.</translation>
+            <translation>Rarraba da sarari ko wakafi. Babu kula da manya-ƙanana.</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation>Tsarin masu saiti na host. Ana goyon bayan wildcards (*), misali *.update.microsoft.com</translation>
+            <translation>Tsarin masaukin da sarari ya raba. Ana goyan bayan alamar tauraro (*), misali *.update.microsoft.com</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation>Nuna tattaunawar ƙara adresses zuwa jerin exceptions don saukewa da aka soke sau biyu</translation>
+            <translation>Nuna maganganu don ƙara adireshi cikin jerin keɓancewa don zazzagewar da aka soke sau biyu</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation>Tsarin URL ɗaya a layi. Ana goyon bayan wildcards (*).</translation>
+            <translation>Tsarin URL ɗaya a kowane layi. Ana goyan bayan alamar tauraro (*).</translation>
         </message>
         <message>
             <source>None</source>
@@ -3829,63 +3832,63 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation>Danna ɓangaren rana don canza shi. Dokoki ana tantance su kowane minti; doka ta farko da ta dace ta fi girma. Iyakar saukewa da ɗaukar aiki ana share su ta atomatik lokacin da babu dokar da ke aiki.</translation>
+            <translation>Danna guntun rana don kunnawa/kashewa. Ana duba ƙa'idodi kowane minti; ƙa'idar farko da ta dace ita ke aiki. Iyakokin zazzagewa da ɗorawa da aka tsara suna sharewa kai tsaye idan babu ƙa'ida mai aiki.</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>Ƙanƙanta zuwa tray na tsarin</translation>
+            <translation>Rage zuwa tiren tsarin</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation>Rufe zuwa tray na tsarin</translation>
+            <translation>Rufe zuwa tiren tsarin</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation>Fara Stellar a farawa</translation>
+            <translation>Bude Stellar lokacin farawa</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation>Nuna shawarwari a ƙasa</translation>
+            <translation>Nuna shawarwari a mashigin ƙasa</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation>Nuna adadin saukewa da aka kammala a babban juriya</translation>
+            <translation>Nuna adadin zazzagewar da aka gama a mashigin matsayi</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation>Amfani</translation>
+            <translation>Kayan aiki</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation>Nuna saurin a tooltip na tray icon</translation>
+            <translation>Nuna saurin a alamar tire</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation>Nuna saurin a titin shafi</translation>
+            <translation>Nuna saurin a kan taken taga</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation>Nuna saurin a layin yanayi</translation>
+            <translation>Nuna saurin a sandar matsayi</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation>Nuna adadin masu amfani da intanet a layin yanayi</translation>
+            <translation>Nuna kiyasin masu amfani a sandar matsayi</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>Yana amfani da yawan node-ID na DHT don kimanta masu amfani da BitTorrent a duniya. Ingancin kimar yana karuwa yayin da aka sami mafi yawan node IDs masu zaman kansu; asterisk (*) a layin yanayi yana nufin kimar tana da raunin inganci.</translation>
+            <translation>Yana amfani da yawan DHT node-ID don kiyasta masu amfani da BitTorrent. Amincewa yana ƙaruwa yayin da ake ganin ƙarin ID; alamar * a sandar matsayi na nuna kiyasin bai tabbata ba.</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation>Nuna rabo a layin yanayi</translation>
+            <translation>Nuna rabo a sandar matsayi</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation>Nuna IP na jama'a a Layin Yanayi</translation>
+            <translation>Nuna IP na jama'a a sandar matsayi</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation>Yana gano IP na jama'a ta hanyar libtorrent da nau'in haɗin da ke aiki. Danna alamar don ganin SSID/signa na WiFi ko kuma duk wani shawarwari game da haɗin da ke zuwa.</translation>
+            <translation>Yana gano IP ɗinka na jama'a ta libtorrent da nau'in haɗin kai. Tsaya kan alamar don ganin SSID/siginar WiFi ko faɗakarwa game da haɗin shigowa.</translation>
         </message>
         <message>
             <source>Updates</source>
@@ -3897,27 +3900,27 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation>Daidaita Clipboard</translation>
+            <translation>Sa ido kan allo</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation>Fara zazzagewar URLs da aka saka a clipboard ta atomatik</translation>
+            <translation>Fara saukar URLs da aka saka ta atomatik</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation>Idan URL da ya dace da nau'in fayil da ake kula da shi an kwafi shi zuwa clipboard, Stellar zana tambaya idan kana son zazzage shi. Kawai nau'ikan fayil da aka jera a ƙarƙashin Browser › Fara zazzagewar nau'ikan fayil masu zuwa ne ake gano su.</translation>
+            <translation>Idan aka kwafi URL mai dacewa da nau'in fayil da ake sa ido, Stellar zai tambaye ka ko kana son saukewa. Nau'in fayil da aka jera a ƙarƙashin Browser › Fara saukar waɗannan nau'ikan fayil ta atomatik ne kawai ake ɗauka.</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation>Mai Zazzage Bidiyo</translation>
+            <translation>Mai saukar bidiyo</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation>Stellar yana amfani da yt-dlp don saukar da bidiyo daga YouTube, Vimeo, Twitter/X, Instagram da sauran shafuka da yawa. Lokacin da ka saka URL na bidiyo a Ƙara URL, za a nuna zaɓin siffa.</translation>
+            <translation>Stellar na amfani da yt-dlp don saukar bidiyo daga YouTube, Vimeo, Twitter/X, Instagram da ɗaruruwan sauran shafuka. Idan ka manna URL na bidiyo cikin Ƙara URL, zaɓin tsari zai bayyana.</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation>Matsayin Binary</translation>
+            <translation>Matsayin binary</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
@@ -3925,7 +3928,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation>Sauke yt-dlp</translation>
+            <translation>Saukar yt-dlp</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -3941,15 +3944,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation>ffmpeg an gano: %1</translation>
+            <translation>An sami ffmpeg: %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation>ffmpeg ba a gano ba — saukar HD za ta iyakance zuwa siffofi da aka haɗa da farko (matsakaici ~480p)</translation>
+            <translation>Ba a sami ffmpeg ba — zazzagewar HD za a iyakance ga tsarukan da aka riga aka haɗa (matsakaicin ~480p)</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation>Sabunta FFmpeg...</translation>
+            <translation>Ana sabunta FFmpeg...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
@@ -3963,67 +3966,69 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation>ffmpeg yana buƙatar haɗa manyan bidiyo da sauti zuwa MP4/MKV. Ba tare da shi ba, saukar YouTube za ta komawa ga wani hanya ɗaya (yawanci WebM, matsakaici 480p). Don gyara: sauke ffmpeg daga gyan.dev/ffmpeg/builds (Essentials build), fitar ffmpeg.exe daga cikin bin/, da sa shi a cikin daidai da yt-dlp.exe. Sannan danna Sake dubawa a sama.</translation>
+            <translation>Ana buƙatar ffmpeg don haɗa rafukan bidiyo da sauti daban zuwa MP4/MKV. Idan babu shi, zazzagewar YouTube za ta koma ga rafi ɗaya da aka riga aka haɗa (yawanci WebM, matsakaicin 480p).
+
+Don gyara: zazzage ffmpeg daga gyan.dev/ffmpeg/builds (Ginin Essentials), cire ffmpeg.exe daga babban fayil ɗin bin/, sannan ka sanya shi a babban fayil ɗin da yt-dlp.exe yake. Sannan danna Sake dubawa a sama.</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation>Hanyar binary ta musamman</translation>
+            <translation>Hanyar binary na musamman</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation>Bar a baya don amfani da binary da aka haɗa (an yarda). Saita zuwa cikakken hanya na yt-dlp executable idan kana son amfani da takamaiman sigar.</translation>
+            <translation>Bar fanko don amfani da binary ɗin da aka haɗa (an bada shawara). Saita zuwa cikakkiyar hanyar aiwatarwar yt-dlp naka idan kana son amfani da takamaiman siga.</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation>(auto - yi amfani da na ciki ko na tsarin yt-dlp)</translation>
+            <translation>(auto - yi amfani da yt-dlp na ciki ko na tsarin)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation>JavaScript runtime</translation>
+            <translation>Mai gudanar da JavaScript</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation>%1 an gano: %2</translation>
+            <translation>%1 an samu: %2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation>Babu JS runtime da aka gano — warware n-challenge na YouTube ya kashe</translation>
+            <translation>Ba a sami mai gudanar da JS ba — warware n-challenge na YouTube an kashe</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation>yt-dlp yana buƙatar wani waje JavaScript runtime don warware n-challenge na YouTube (tuntubar URL). Ba tare da shi ba, saukewa na YouTube na iya fashewa ko komawa kawai tsarin storyboard mai ƙarancin inganci.
+            <translation>yt-dlp na buƙatar mai gudanar da JavaScript na waje don warware n-challenge na YouTube (maƙura URL). Idan babu shi, saukar da YouTube na iya gazawa ko mayar da ƙananan tsarukan storyboard kawai.
 
-Saka ɗaya daga cikin: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), ko QuickJS. Sanya shi a cikin daidai daidai da yt-dlp.exe ko ƙara shi zuwa PATH na tsarin, sannan danna Sake-bincike a cikin sashin yanayin yt-dlp a sama.</translation>
+Shigar ɗaya daga: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), ko QuickJS. Sanya shi a babban fayil ɗin yt-dlp.exe ko ƙara shi zuwa PATH ɗin tsarin ka, sannan danna Sake Dubawa a sashin matsayin yt-dlp na sama.</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation>Matsar da hanyar runtime da aka gano. Bar a baya don amfani da gano auto (yana bincika cikin yt-dlp, app, da PATH na tsarin).</translation>
+            <translation>Maye gurbin hanyar mai gudanarwa da aka gano ta atomatik. Bar fanko don amfani da gano kai tsaye (yana bincika babban fayil ɗin yt-dlp, babban fayil ɗin app, da PATH na tsarin).</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation>(auto-detect daga PATH da cikin yt-dlp)</translation>
+            <translation>(gano kai tsaye daga PATH da babban fayil ɗin yt-dlp)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation>Sake sabuntawa na yt-dlp a farawa</translation>
+            <translation>Sabunta yt-dlp ta atomatik a lokacin farawa</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation>Idan aka kunna, Stellar zai gudanar da &quot;yt-dlp -U&quot; a farawa don kiyaye binary ya kasance sabuwa. Yana buƙatar haɗin intanet mai aiki.</translation>
+            <translation>Idan an kunna, Stellar zai gudanar da &quot;yt-dlp -U&quot; a farawa don ci gaba da sabunta binary. Yana buƙatar haɗin intanet mai aiki.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation>Sakewa na Torrent</translation>
+            <translation>Saukar da Torrent</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation>Kunna goyon baya na BitTorrent</translation>
+            <translation>Kunna goyon bayan BitTorrent</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation>BitTorrent — Labarin Doka</translation>
+            <translation>BitTorrent — Sanarwa ta Shari'a</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4031,47 +4036,47 @@ Saka ɗaya daga cikin: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), ko Q
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Stellar shi aikin raba fayil. Lokacin da ka sauke torrent, adiresin IP ka yana zama ganuwa ga sauran ma'aikata a cikin swarm kuma ka yi amfani da bayanai ga sauran.
+            <translation>Stellar shiri ne na raba fayiloli. Idan ka sauke torrent, adireshin IP ɗinka zai bayyana ga sauran masu amfani a cikin rukunin kuma kana aikawa (seeding) data ga wasu lokaci guda.
 
-Abin da kake raba ta BitTorrent shine alhakin ka kawai. Tabbatar da kana da damar rarraba abun ciki.
+Duk abin da ka raba ta BitTorrent alhakinka ne kawai. Tabbatar cewa kana da haƙƙin rarraba abun cikin.
 
-An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbatar da cewa VPN ka yana aiki kafin amfani da torrents, don kare adiresin IP ka daga bayyanawa.</translation>
+An bada shawarar sosai ka ɗaure Stellar zuwa hanyar sadarwa ta VPN kuma ka tabbatar da cewa VPN ɗinka na aiki kafin amfani da torrents, don kare adireshin IP ɗinka daga fallasa.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>Na fahimci, Kunna</translation>
+            <translation>Na Fahimta, Kunna</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation>Waɗannan saitin suna aiki ga fayilolin .torrent da magnet links.</translation>
+            <translation>Waɗannan saitunan sun shafi fayilolin .torrent da hanyoyin magnet.</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation>Jagororin port</translation>
+            <translation>Sauraron tashar jiragen ruwa</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation>Matsakaicin haɗin duniya</translation>
+            <translation>Matsakaicin haɗin kai na duniya</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation>Matsakaicin haɗin kowane torrent</translation>
+            <translation>Matsakaicin haɗin kai kowane torrent</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation>Matsakaicin wuraren upload na duniya</translation>
+            <translation>Matsakaicin ramukan aikawa na duniya</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation>Matsakaicin wuraren upload na kowane torrent</translation>
+            <translation>Matsakaicin ramukan aikawa kowane torrent</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation>0 = mara iyaka (filayen kowane torrent da wuraren upload na duniya)</translation>
+            <translation>0 = mara iyaka (filayen kowane-torrent da ramukan ɗorawa na duniya)</translation>
         </message>
         <message>
             <source>Protocol</source>
-            <translation>Tsarin</translation>
+            <translation>Yarjejeniya</translation>
         </message>
         <message>
             <source>TCP and μTP</source>
@@ -4087,11 +4092,11 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Port Test</source>
-            <translation>Gwada Port</translation>
+            <translation>Gwajin Tashar</translation>
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation>Gwada ko port na sauraron torrent na yanzu yana da wuya daga duniya. Wannan yana taimakawa tabbatar da cewa forwarding na VPN, forwarding na router, da ka'idojin firewall suna ba da damar haɗin torrent na shiga.</translation>
+            <translation>Gwada ko tashar sauraron torrent ɗinka na yanzu ana iya samunta daga intanet na jama'a. Wannan yana taimakawa tabbatar da ko tura tashar VPN ɗinka, tura na'ura mai ba da hanya tsakanin hanyoyin sadarwa, da dokokin bangon wuta suna ba da damar haɗin torrent masu shigowa.</translation>
         </message>
         <message>
             <source>Testing...</source>
@@ -4099,35 +4104,35 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Test Port</source>
-            <translation>Gwada Port</translation>
+            <translation>Gwada Tashar</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation>Hadinin Intanet</translation>
+            <translation>Sadarwa</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Ci gaba</translation>
+            <translation>Na gaba</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation>Sana'ar mai amfani na BitTorrent</translation>
+            <translation>Wakilin mai amfani na BitTorrent</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation>Danna kan mai haɗin waya</translation>
+            <translation>Haɗa zuwa adaftar cibiyar sadarwa</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>Wannan mai haɗin waya an taɓa ta don tarin torrent. Idan VPN ɗinka ya tsaya ko mai haɗin ya ɓace, Stellar yana daina amfani da hanyar da ta dace, kuma torrent ɗinka yana asarar samun damar shafin yanar gizo maimakon ya yi fashi akan wani haɗin.</translation>
+            <translation>Wannan adaftar an kulle don zirga-zirgar torrent. Idan VPN ɗinka ya katse ko adaftar ta ɓace, Stellar zai daina amfani da hanyar tsohuwa kuma torrent ɗinka zasu rasa hanyar sadarwa maimakon yaɗuwa zuwa wata hanyar sadarwa.</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>Babu haɗin mai haɗin waya. Tarin torrent yana bin hanyar tsarin.</translation>
+            <translation>Babu haɗin adaftar. Zirga-zirgar torrent tana bin hanyar tsarin.</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>Haɗin mai haɗin waya yana nufin Stellar ya amsa da karɓar tarin torrent ta hanyar mai haɗin da aka zaɓa. Wannan yana da amfani musamman ga masu amfani da VPN saboda yana hana fashewar tarin lokacin da VPN ba ya haɗe.</translation>
+            <translation>Haɗin adaftar cibiyar sadarwa yana gaya wa Stellar ya aika da karɓar zirga-zirgar torrent ta hanyar adaftar da aka zaɓa kawai. Wannan yana da amfani musamman ga masu amfani da VPN saboda yana hana yaɗuwar zirga-zirga ba da gangan ba lokacin da VPN ba ta haɗa ba.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
@@ -4135,51 +4140,51 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation>Bansin abokan haɗin gwiwa na hannu yana aiki nan take. Sauraren mai amfani da aka taɓa, ƙasashen da aka taɓa, da zaɓin bansin kai tsaye suna aiki lokacin da ka danna Aika ko OK.</translation>
+            <translation>Hana takwarori da hannu yana aiki nan take. Ƙananan igiyoyin wakilin mai amfani da aka toshe, ƙasashe da aka toshe, da zaɓuɓɓukan hana kai tsaye suna aiki lokacin da ka danna Aiwatar ko Ok.</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation>Yanayin Encryption</translation>
+            <translation>Yanayin ɓoyewa</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation>Favor encryption</translation>
+            <translation>Fi son ɓoyewa</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation>Amsa encryption</translation>
+            <translation>Bukatar ɓoyewa</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation>Ba da damar encryption</translation>
+            <translation>Bada damar ɓoyewa</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation>Sauraren mai amfani da aka taɓa</translation>
+            <translation>Wakilan mai amfani da aka toshe</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation>Kwata kwata a layi. Idan jerin abokan haɗin gwiwa ya ƙunshi kowane layi a sama, Stellar yana bansin abokin haɗin gwiwa har sai an cire layin da ya dace da aka aiki.</translation>
+            <translation>Juzu'i ɗaya a kowane layi. Idan kalmar abokin haɗin ta ƙunshi kowane layi na sama, Stellar zai toshe abokin haɗin kai tsaye har sai an cire layin da ya dace kuma an yi amfani da saitunan.</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation>Bansin abokin haɗin gwiwa na hannu</translation>
+            <translation>Toshe abokin haɗin da hannu</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation>Adiban IP, misali 203.0.113.42</translation>
+            <translation>Adireshin IP, misali 203.0.113.42</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation>Dace</translation>
+            <translation>Toshe</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation>Dace na hannu har abada har sai ka cire su daga jerin abokan da aka dace a ƙasa.</translation>
+            <translation>Toshewar hannu na dindindin har sai ka cire su daga jerin abokan haɗin da aka toshe a ƙasa.</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation>Hana abokan ƙasa</translation>
+            <translation>Toshe abokan haɗi ta ƙasa</translation>
         </message>
         <message>
             <source>Add</source>
@@ -4187,23 +4192,23 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation>Babu ƙasashen da aka hana.</translation>
+            <translation>Babu ƙasashe da aka toshe</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation>Dace na atomatik na Xunlei, QQ, Baidu, Xfplay, DLBT da mai savawa na offline</translation>
+            <translation>Toshe Xunlei, QQ, Baidu, Xfplay, DLBT da Offline downloader kai tsaye</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation>Dace na atomatik na abokin mai wasa na BitTorrent Media</translation>
+            <translation>Toshe BitTorrent Media Player Peer kai tsaye</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation>Abokan da aka dace da hannu</translation>
+            <translation>Abokan da aka toshe da hannu</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation>Cire dace</translation>
+            <translation>Cire toshewa</translation>
         </message>
         <message>
             <source>Active</source>
@@ -4211,11 +4216,11 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>No banned peers</source>
-            <translation>Babu abokan da aka dace</translation>
+            <translation>Babu abokan da aka toshe</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation>Bayanan Iyaka zuwa Birni</translation>
+            <translation>Database na IP-zuwa-Gari</translation>
         </message>
         <message>
             <source>Version</source>
@@ -4223,11 +4228,11 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Ba a sani</translation>
+            <translation>Ba a sani ba</translation>
         </message>
         <message>
             <source>Path</source>
-            <translation>Hanyar</translation>
+            <translation>Hanya</translation>
         </message>
         <message>
             <source>Size</source>
@@ -4235,11 +4240,11 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Entries</source>
-            <translation>Shigarwa</translation>
+            <translation>Shigowa</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation>An Sabunta</translation>
+            <translation>Sauyi na Ƙarshe</translation>
         </message>
         <message>
             <source>Status</source>
@@ -4247,39 +4252,39 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Downloading...</source>
-            <translation>Ana ɗaukar...</translation>
+            <translation>Ana saukewa...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation>Sabunta DB na IP zuwa Birni</translation>
+            <translation>Sabunta bayanan IP-zuwa-Gari</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation>Sabunta Bayani</translation>
+            <translation>Sake sabunta bayani</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>Lissafi</translation>
+            <translation>Ƙididdiga</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation>Jimlar canjin duk bitarrorori, ciki har da waɗanda aka cire.</translation>
+            <translation>Jimlar canja wuri na duk torrents, har da waɗanda aka cire.</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation>Jimlar ɗaukar</translation>
+            <translation>Jimlar Zazzagewa</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation>Jimlar ɗaukar</translation>
+            <translation>Jimlar Aikawa</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation>Dukkan lokacin rabo</translation>
+            <translation>Rabon Rabawa na Duk Lokaci</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation>Dukkan rubuce-rubucen lasisi suna cikin THIRD-PARTY-NOTICES.txt, wanda aka haɗa da wannan shigarwa.</translation>
+            <translation>Cikakkun rubutun lasisi suna cikin THIRD-PARTY-NOTICES.txt, an haɗa tare da wannan shigarwa.</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4287,15 +4292,15 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation>Karkatar da Abubuwa</translation>
+            <translation>Karɓar Ciyarwa</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation>Kunna karkatar da RSS</translation>
+            <translation>Kunna karɓar ciyarwar RSS</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation>Lokacin sabuntawa</translation>
+            <translation>Tazarar sabunta ciyarwa</translation>
         </message>
         <message>
             <source>minutes</source>
@@ -4303,95 +4308,95 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation>Ƙaunar amsa</translation>
+            <translation>Jinkirin buƙatar mai watsa shiri ɗaya</translation>
         </message>
         <message>
             <source>seconds</source>
-            <translation>daƙiƙa</translation>
+            <translation>sakan</translation>
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation>Mafi yawan labarai</translation>
+            <translation>Matsakaicin labarai kowane ciyarwa</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation>Mai Sauke Torrent na Auto</translation>
+            <translation>Mai saukar da Torrent ta atomatik</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation>Kunna sauken auto na RSS torrents</translation>
+            <translation>Kunna saukar da torrent RSS ta atomatik</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation>Gyara Dokokin Sauken Auto...</translation>
+            <translation>Gyara Dokokin Saukarwa ta atomatik...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation>Tace Sassa na Hankali</translation>
+            <translation>Tacewar Episode mai wayo</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation>Sauken REPACK/PROPER</translation>
+            <translation>Saukar da shirye-shiryen REPACK/PROPER</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation>Tsarin gano sassa:</translation>
+            <translation>Hanyoyin gano episode (daya kowane layi):</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation>Haɗin kai</translation>
+            <translation>Ƙungiyoyi</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation>Saita karkatar da RSS da dokokin sauken torrent.</translation>
+            <translation>Tsara ɗauko ciyarwar RSS da dokokin saukar da torrent ta atomatik.</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation>Wadannan dabarun lissafi ana amfani da su don fitar da lambobin lokaci/episodes don gano maimaitawa mai hankali.</translation>
+            <translation>Waɗannan ƙa'idodi na yau da kullun ana amfani da su don cire lambobin kakar wasa/shirye-shirye don gano kwafi mai wayo.</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation>Sanya Stellar a matsayin aikin da aka saba don fayilolin .torrent da magnet links. A Windows 10/11, danna maɓallin sannan tabbatar da canjin a shafin Saitunan Ayyukan Saba na Windows da ke buɗe.</translation>
+            <translation>Sanya Stellar ta zama manhajar farko don fayilolin .torrent da hanyoyin magnet. A kan Windows 10/11, danna maɓallin sannan ka tabbatar da canjin a shafin Saitunan Manhajojin Farko na Windows da ke buɗewa.</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation>Fayilolin .torrent</translation>
+            <translation>fayilolin .torrent</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation>Yanzu ana sarrafa shi ta Stellar</translation>
+            <translation>A halin yanzu Stellar ke kula da shi</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation>Stellar ba shi ne na yanzu ba</translation>
+            <translation>Stellar ba ita ce manhajar farko ta yanzu ba</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation>Sanya .torrent Saba</translation>
+            <translation>Saita .torrent Farko</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation>Sabunta Matsayi</translation>
+            <translation>Sabo da Matsayi</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation>magnet: links</translation>
+            <translation>hanyoyin magnet:</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation>Sanya Magnet Saba</translation>
+            <translation>Saita Magnet Farko</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation>Idan yanayin desktop ɗin ya canza haɗin aiki na matakin aikin, sabunta matsayi bayan tsarin ƙare canjin.</translation>
+            <translation>Idan yanayin tebur ɗinka ya ƙetare haɗin matakin manhaja, sabo da matsayin bayan tsarin ya gama amfani da canjin.</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>Harshe na Tsarin</translation>
+            <translation>Harshen Maɓalli</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>Zaɓi harshe da ake amfani da shi a duk tsarin Stellar. Ana buƙatar sake farawa don dukkan rubutu ya sabunta.</translation>
+            <translation>Zaɓi harshen da ake amfani da shi a duk faɗin Stellar. Ana buƙatar sake kunnawa don duk rubutu ya sabunta.</translation>
         </message>
         <message>
             <source>Language:</source>
@@ -4399,7 +4404,23 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>Ana buƙatar sake farawa bayan canza harshe.</translation>
+            <translation>Ana buƙatar sake kunnawa bayan canza harshe.</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Sake Kunnawa Bukata</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Ana buƙatar sake kunnawa don canjin harshe ya yi tasiri. Sake kunnawa yanzu?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Sake Kunnawa Yanzu</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Daga Baya</translation>
         </message>
         <message>
             <source>Check for updates</source>
@@ -4407,11 +4428,11 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>What's New</source>
-            <translation>Abubuwan Sabon</translation>
+            <translation>Me Sabo</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation>Kwanakin Gini</translation>
+            <translation>Ranar ginawa</translation>
         </message>
         <message>
             <source>Qt version</source>
@@ -4419,7 +4440,7 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Platform</source>
-            <translation>Dandamali</translation>
+            <translation>Tsarin aiki</translation>
         </message>
         <message>
             <source>Windows</source>
@@ -4439,83 +4460,83 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation>Stellar software ne kyauta: za ka iya rarrabawa da/ko gyarawa a ƙarƙashin sharuɗɗan GNU General Public License, sigar 3.</translation>
+            <translation>Stellar software ce kyauta: za ka iya sake rarrabawa ko gyara ta ƙarƙashin sharuɗɗan GNU General Public License, sigar 3.</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation>Software na ƙasa da ƙasa</translation>
+            <translation>Software na ɓangare na uku</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Aika</translation>
+            <translation>Aiwatar</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Tabbas</translation>
         </message>
         <message>
             <source>Default route</source>
-            <translation>Hanyar da ta dace</translation>
+            <translation>Tafarki na asali</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation>Barin tsarin aiki ya zaɓi mai sarrafa shafin yanar gizo mai aiki.</translation>
+            <translation>Bari OS ta zaɓi adaftar cibiyar sadarwa mai aiki.</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation> (Ba a samu)</translation>
+            <translation>(Babu)</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation>Wannan mai haɗawa ba ya aiki yanzu. Haɗa shi ko zaɓi wani mai haɗawa.</translation>
+            <translation>Wannan adaftar ba ta samuwa a yanzu. Sake haɗa ta ko zaɓi wata adaftar daban.</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation>Dai-daitaccen daɗewa</translation>
+            <translation>Hana da hannu</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation>Nemo abokan hulɗa ba tare da mai bita ba ta amfani da teburin hash na rarrabawa.</translation>
+            <translation>Nemo takwarorinsu ba tare da mai bin diddigi ba ta amfani da teburin zanta da aka rarraba.</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation>Gano abokan hulɗa a kan cibiyar sadarwa ta gida ba tare da taɓa intanet ba.</translation>
+            <translation>Gano takwarorinka a cibiyar sadarwar gida ba tare da shiga intanet ba.</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation>Bude port a kan router don abokan hulɗa su haɗu da kai.</translation>
+            <translation>Bude tashar jiragen ruwa ta atomatik a kan na'urar hanyar sadarwa ta yanar gizo don takwarorinka su iya haɗuwa da kai.</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation>Kamar UPnP amma don router na Apple - kunna duka, kuma wanda router ɗinka ya goyi baya zai yi amfani da shi.</translation>
+            <translation>Kamar UPnP amma don na'urorin hanyar sadarwa na Apple - kunna duka biyun kuma duk wanda na'urar hanyar sadarwarka ta goyi bayan za a yi amfani da shi.</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation>Raba jerin abokan hulɗa tsakanin abokan hulɗa da aka haɗa don samun ƙarin tushe ba tare da taɓa mai bita ba.</translation>
+            <translation>Raba jerin takwarori tsakanin takwarori masu haɗi don samun ƙarin tushe ba tare da buga tracker ba.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation>Stellar yanzu shine aikin da aka sanya don fayilolin .torrent.</translation>
+            <translation>Stellar yanzu ita ce manhajar farko don fayilolin .torrent.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation>Stellar yanzu shine aikin da aka sanya don dangantakar magnet.</translation>
+            <translation>Stellar yanzu ita ce manhajar farko don hanyoyin magnet.</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation>Matsakaici: Stellar/%1</translation>
+            <translation>Farko: Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation>Irin fayiloli (wanda aka raba da comma, misali mp4, mkv, avi)</translation>
+            <translation>Nau’in fayil (wanda aka raba da waƙafi, misali mp4, mkv, avi)</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation>Aika kai tsaye daga wurare (wanda aka raba da sarari, * wildcard)</translation>
+            <translation>Sanya kai tsaye daga shafuka (wanda aka raba da sarari, * alamar daji)</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation>Sauke daga wuraren da suka dace za su tafi wannan rukunin kai tsaye.</translation>
+            <translation>Zazzagewa daga shafuka masu dacewa za su shiga wannan rukunin kai tsaye.</translation>
         </message>
         <message>
             <source>Rule %1</source>
@@ -4523,23 +4544,23 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Not found</source>
-            <translation>Ba a sami ba</translation>
+            <translation>Ba a samu ba</translation>
         </message>
         <message>
             <source>Loaded</source>
-            <translation>An cika</translation>
+            <translation>An ɗora</translation>
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation>Yana da amfamu amma bai cika ba</translation>
+            <translation>Akwai amma ba a ɗora ba</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation>Tushen: %1</translation>
+            <translation>Tushe: %1</translation>
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>URL na tushen bai kasance a cache ba. Yi amfani da 'Bincika sabuntawa' don cache IPtoCityDB daga update.json.</translation>
+            <translation>Tushen URL ɗin bai ɓoye ba tukuna. Yi amfani da Duba sabuntawa don ɓoye IPtoCityDB daga update.json.</translation>
         </message>
         <message>
             <source>Version %1</source>
@@ -4547,50 +4568,50 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation>Sabuntawa yana da wuya: %1</translation>
+            <translation>Akwai sabuntawa: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation>Saitunan Stellar</translation>
+            <translation>Zaɓuɓɓukan Stellar</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation>Zaɓi binary na yt-dlp</translation>
+            <translation>Zaɓi binary ɗin yt-dlp</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation>Zaɓi binary na yanayin JavaScript</translation>
+            <translation>Zaɓi binary ɗin runtime ɗin JavaScript</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation>Gyara Aiki</translation>
+            <translation>Gyara Aikin</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>Share Aiki</translation>
+            <translation>Share Aikin</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>Rukunoni</translation>
+            <translation>Rukunai</translation>
         </message>
         <message>
             <source>All Downloads</source>
-            <translation>Dukkanin Saukewa</translation>
+            <translation>Zazzagewa Duka</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation>Ba a kammala</translation>
+            <translation>Ba a Kammala ba</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation>An kammala</translation>
+            <translation>An Kammala</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation>Ayyukan Grabber</translation>
+            <translation>Ayyukan Kama</translation>
         </message>
         <message>
             <source>Torrents</source>
@@ -4598,19 +4619,19 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Queues</source>
-            <translation>Jiragen</translation>
+            <translation>Layuka</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>Ana saukewa</translation>
+            <translation>Ana Zazzagewa</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>Ana tura</translation>
+            <translation>Ana Shukawa</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>An dakatar</translation>
+            <translation>An Dakatar</translation>
         </message>
         <message>
             <source>Active</source>
@@ -4633,15 +4654,15 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation>Bayanan</translation>
+            <translation>Ƙididdiga</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation>Bayanan Stellar</translation>
+            <translation>Ƙididdigar Stellar</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation>DUK WAKTI</translation>
+            <translation>DUK LOKACI</translation>
         </message>
         <message>
             <source>Downloaded</source>
@@ -4649,19 +4670,19 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>An tura</translation>
+            <translation>An ɗora</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation>Rabon Raba</translation>
+            <translation>Rabon Rarrabawa</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation>Lokacin Aiki</translation>
+            <translation>Lokacin aiki</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation>Kwanakin Shigarwa</translation>
+            <translation>Ranar shigarwa</translation>
         </message>
         <message>
             <source>Startups</source>
@@ -4669,7 +4690,7 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation>WANNAN SESSION</translation>
+            <translation>WANNAN ZAMAN</translation>
         </message>
         <message>
             <source>Close</source>
@@ -4680,11 +4701,11 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         <name>StatusBar</name>
         <message>
             <source>🟦 1 active</source>
-            <translation>🟦 1 aiki</translation>
+            <translation>🟦 1 yana aiki</translation>
         </message>
         <message>
             <source>🟦 %1 active</source>
-            <translation>🟦 %1 aiki</translation>
+            <translation>🟦 %1 suna aiki</translation>
         </message>
         <message>
             <source>📄 1 download</source>
@@ -4700,19 +4721,19 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>🟨 %1 errors</source>
-            <translation>🟨 %1 kuskure</translation>
+            <translation>🟨 kurakurai %1</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation>🌐 Mai canji yana</translation>
+            <translation>🌐 Wakili a kunne</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation>📡 Bincike don sabuntawa</translation>
+            <translation>📡 Ana duba sabuntawa</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation>🛑 Iyakar sauri</translation>
+            <translation>🛑 Mai iyakance gudu</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
@@ -4720,44 +4741,44 @@ An ba da shawarar da ƙarfi don haɗa Stellar zuwa interface na VPN kuma tabbata
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation>🔍 An zaɓi 1</translation>
+            <translation>🔍 1 zaɓaɓɓe</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation>🔍 An zaɓi %1</translation>
+            <translation>🔍 %1 zaɓaɓɓu</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation>🔴 DHT ya kashe</translation>
+            <translation>🔴 DHT a kashe</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation> online (ƙaramin aminci)</translation>
+            <translation>a layi (ƙarancin tabbaci)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation> online</translation>
+            <translation>a layi</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 Jirgin ya gudana a minti 1</translation>
+            <translation>🟧 Jerin zai fara nan da minti 1</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 Jirgin ya gudana a mintuna %1</translation>
+            <translation>🟧 Jerin zai fara nan da minti %1</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 Ana ƙididdige… (%1%)</translation>
+            <translation>🟡 Ana ƙididdigewa… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation>suka gaba &gt;&gt;</translation>
+            <translation>gaba &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation>Daidaiton rarrabawa na duniya
+            <translation>Rabon rabawa na kowane lokaci
 Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
@@ -4766,38 +4787,38 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation>IP na jama'a: </translation>
+            <translation>IP na jama'a:</translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation>Haɗin gwiwa: Ethernet</translation>
+            <translation>Haɗi: Ethernet</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation>WiFi: </translation>
+            <translation>WiFi:</translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation>Alamar:</translation>
+            <translation>Sigina:</translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>Bawul na sauraro:</translation>
+            <translation>Tashar sauraro:</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>Babu haɗin shiga, ƙwararun yanar gizo na iya zama ba daidai ba</translation>
+            <translation>Babu haɗi mai shigowa, cibiyar sadarwa na iya zama ba daidai ba</translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>Mai Sauke Bayanai na Stellar</translation>
+            <translation>Manajan Saukarwa na Stellar</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>Sauke SDM</translation>
+            <translation>Saukarwa na SDM</translation>
         </message>
     </context>
     <context>
@@ -4812,11 +4833,11 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>Dakatar</translation>
+            <translation>Tsaya</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>Dakatar Duk</translation>
+            <translation>Tsaya Duka</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -4824,7 +4845,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>Share Da Kammala</translation>
+            <translation>Share Kammala</translation>
         </message>
         <message>
             <source>Options</source>
@@ -4832,23 +4853,23 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>Mai Tsara Lokaci</translation>
+            <translation>Tsara lokaci</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>Fara Jirgin</translation>
+            <translation>Fara jerin</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>Dakatar Jirgin</translation>
+            <translation>Dakatar da jerin</translation>
         </message>
         <message>
             <source>Grabber</source>
-            <translation>Maiɗauki</translation>
+            <translation>Mai kama</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation>Binciken Injina</translation>
+            <translation>Injin bincike</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4859,35 +4880,35 @@ Danna don buɗe Ƙididdiga</translation>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation>Maimaitaccen Torrent</translation>
+            <translation>Torrent ɗin kwafi</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation>Wannan torrent ya riga ya wanzu</translation>
+            <translation>Torrent ya riga ya wanzu</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation>Wannan torrent ya riga ya kasance a jerinka. %n sabbin maiɗauka aka gano.</translation>
+            <translation>Wannan torrent ɗin yana cikin jerinku. An sami sababbin masu bibiya %n.</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation>Wannan torrent ya riga ya kasance a jerinka tare da irin waɗannan maiɗauka.</translation>
+            <translation>Wannan torrent ɗin yana cikin lissafinka da masu bibiya iri ɗaya.</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation>%n sabbin maiɗauka</translation>
+            <translation>Sabbin masu bibiya %n</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation>… da ƙarin %1</translation>
+            <translation>… da ƙari %1</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation>Fada</translation>
+            <translation>Soke</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation>Haɗa Maiɗauka</translation>
+            <translation>Haɗa Masu Bibiya</translation>
         </message>
     </context>
     <context>
@@ -4898,7 +4919,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation>Ajiye Aiki...</translation>
+            <translation>Ajiye Kamar...</translation>
         </message>
         <message>
             <source>Category</source>
@@ -4906,15 +4927,15 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation>Dandamalin ajiye na musamman</translation>
+            <translation>Babban fayil ɗin ajiya na musamman</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation>Kiyaye</translation>
+            <translation>Tuna</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation>Yi amfani da daftarin rukuni</translation>
+            <translation>Yi amfani da babban fayil ɗin rukuni</translation>
         </message>
         <message>
             <source>Description</source>
@@ -4930,7 +4951,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>Sauke a baya</translation>
+            <translation>Sauke Daga Baya</translation>
         </message>
         <message>
             <source>Download</source>
@@ -4938,15 +4959,15 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation>Bude torrent...</translation>
+            <translation>Ana buɗe torrent...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation>RTT %1 %2 an kammala</translation>
+            <translation>RTT %1  %2% an gama</translation>
         </message>
         <message>
             <source>Files</source>
@@ -4954,11 +4975,11 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation>%n abu</translation>
+            <translation>%n abu/abubuwa</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>Sunan</translation>
+            <translation>Suna</translation>
         </message>
         <message>
             <source>Progress</source>
@@ -4974,58 +4995,58 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>A jere</translation>
+            <translation>Jiran</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>Canza sunan abu</translation>
+            <translation>Sake suna</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>Shigar da sabon sunan fayil ko takarda:</translation>
+            <translation>Shigar da sabon sunan fayil ko babban fayil:</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>Canza sunan</translation>
+            <translation>Sake suna</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>Canza sunan...</translation>
+            <translation>Sake suna...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>Abokin tarayya</translation>
+            <translation>Abokin sadarwa</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation>Bude torrent da karanta bayanan...</translation>
+            <translation>Ana buɗe torrent da karanta metadata...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation>Neman abokan tarayya don ɗaukar bayanan...</translation>
+            <translation>Ana neman abokan sadarwa don sauke metadata...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation>Yana ɗaukar bayanan daga %n abokin tarayya</translation>
+            <translation>Ana sauke metadata daga abokan sadarwa %n</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>Beri</translation>
+            <translation>Mai shuka</translation>
         </message>
         <message>
             <source>You</source>
-            <translation>Ka</translation>
+            <translation>Kai</translation>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation>Bayanan Torrent</translation>
+            <translation>Metadata na Torrent</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation>Shigar da sabon ƙwararorin bincike</translation>
+            <translation>Shigar da sabon plugin ɗin bincike</translation>
         </message>
         <message>
             <source>Local File</source>
@@ -5033,7 +5054,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation>Dangantakar Yanar Gizo</translation>
+            <translation>Hanyar yanar gizo</translation>
         </message>
         <message>
             <source>Cancel</source>
@@ -5041,30 +5062,30 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>OK</translation>
+            <translation>Ok</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation>Zabi fayil ɗin bincike na .py na gida don kwafawa zuwa cikin fayil ɗin search_plugins.</translation>
+            <translation>Zaɓi fayil ɗin .py na bincike na gida don kwafa cikin babban fayil ɗin search_plugins.</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation>Shigar da URL kai tsaye zuwa fayil ɗin plugin na .py.</translation>
+            <translation>Manna URL kai tsaye zuwa fayil ɗin .py.</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation>Shigar da Bincike Plugin</translation>
+            <translation>Shigar Plugin ɗin Bincike</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation>Rufe Plugin</translation>
+            <translation>Kashe Plugin</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation>Kara Plugin</translation>
+            <translation>Kunna Plugin</translation>
         </message>
         <message>
             <source>Uninstall</source>
@@ -5072,7 +5093,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation>Bincike Plugins da aka shigar</translation>
+            <translation>Plugins ɗin Bincike Da Aka Shigar</translation>
         </message>
         <message>
             <source>Refresh</source>
@@ -5080,19 +5101,19 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Ba a sani</translation>
+            <translation>Ba a sani ba</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>An kara</translation>
+            <translation>An kunna</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation>An rufe</translation>
+            <translation>An kashe</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation>Shigar da Sabon ɗaya</translation>
+            <translation>Shigar da sabo</translation>
         </message>
         <message>
             <source>Close</source>
@@ -5100,7 +5121,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Bincika Plugins</translation>
+            <translation>Nemo plugins</translation>
         </message>
     </context>
     <context>
@@ -5111,23 +5132,23 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>Girman</translation>
+            <translation>Girma</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Masu Bada</translation>
+            <translation>Masu shuka</translation>
         </message>
         <message>
             <source>Leechers</source>
-            <translation>Masu Ɗauka</translation>
+            <translation>Masu saukewa</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation>Injiniya</translation>
+            <translation>Inji</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation>An Buga A</translation>
+            <translation>An Buga Ranar</translation>
         </message>
         <message>
             <source>Open Description Page</source>
@@ -5151,7 +5172,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Searching...</source>
-            <translation>Ana bincika...</translation>
+            <translation>Ana Bincike...</translation>
         </message>
         <message>
             <source>Search</source>
@@ -5159,19 +5180,19 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>Ba a sani</translation>
+            <translation>Ba a sani ba</translation>
         </message>
         <message>
             <source>No search results yet</source>
-            <translation>Babu sakamakon bincike har yanzu</translation>
+            <translation>Babu sakamakon bincike tukuna</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>Binciken Plugins</translation>
+            <translation>Nemo Plugins</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation>Injiniyan Binciken Torrent</translation>
+            <translation>Injin Binciken Torrent</translation>
         </message>
     </context>
     <context>
@@ -5182,7 +5203,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>Sauri na kowane torrent, iyakokin raba, gano abokan hamayya, da yanayin saukewa</translation>
+            <translation>Gudun kowane-torrent, iyakokin rabawa, gano takwarori, da yanayin saukewa</translation>
         </message>
         <message>
             <source>Close</source>
@@ -5190,11 +5211,11 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>Aika</translation>
+            <translation>Aiwatar</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>Iyakokin Bandwidth</translation>
+            <translation>IYAKOKIN BANDWIDTH</translation>
         </message>
         <message>
             <source>Download:</source>
@@ -5202,23 +5223,23 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>Aika:</translation>
+            <translation>Loda:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>Iyakokin Raba</translation>
+            <translation>IYAKAN RABAWA</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>Ratio:</translation>
+            <translation>Rabon:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Da al'ada</translation>
+            <translation>Tsoho</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>Ba shi da iyaka</translation>
+            <translation>Mara iyaka</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -5226,11 +5247,11 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>Lokacin rarrabawa:</translation>
+            <translation>Lokacin shuka:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>min</translation>
+            <translation>minti</translation>
         </message>
         <message>
             <source>Inactive time:</source>
@@ -5238,7 +5259,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>BUNDAWAWAR MAƙABTAN</translation>
+            <translation>GANO ABOKAN TSARA</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -5246,7 +5267,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>Teburin Hash na Rarrabawa</translation>
+            <translation>Teburin Hash Rarraba</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -5254,7 +5275,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>Canjin Maƙabta</translation>
+            <translation>Musayar Abokan Sadarwa</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -5262,7 +5283,7 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>Binciken Aiki na Gida</translation>
+            <translation>Gano Sabis na Gida</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
@@ -5270,62 +5291,62 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>An dakatar da DHT da PeX ta hanyar libtorrent.</translation>
+            <translation>DHT da PeX an kashe ta libtorrent.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>YANUWAR SAIDAWA</translation>
+            <translation>YANAYIN SAUKEWA</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>Saidawa a jere</translation>
+            <translation>Sauke a jere</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>Sassan da aka saukewa a tsari (sassi 0 → na ƙarshe)</translation>
+            <translation>Guda-guda da aka sauke a jere (guda 0 → na ƙarshe)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>Daga farko &amp; sassan ƙarshe</translation>
+            <translation>Fara da farko da ƙarshe</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>Yana ɗaukar header/footer don fara wasa</translation>
+            <translation>Sanya kai/ƙafa gaba don kallo da wuri</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>Ana neman tsarin da ake samu…</translation>
+            <translation>Ana ɗauko tsaruka masu samuwa…</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>Ba a iya samun bayanin bidiyo</translation>
+            <translation>An kasa ɗauko bayanan bidiyo</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>Farkon magance matsalar YouTube ya kasa</translation>
+            <translation>Maganin ƙalubalen n-challenge na YouTube ya faɗi</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>Ana neman bayanin bidiyo…</translation>
+            <translation>Ana ɗauko bayanan bidiyo…</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>Ba a iya samun bayanin bidiyo</translation>
+            <translation>An kasa ɗauko bayanan bidiyo</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>yt-dlp yana buƙatar yanayin JavaScript (Deno, Node.js, Bun, ko QuickJS) don guje wa matsalar URL na YouTube. Saka ɗaya kuma a sanya shi kusa da yt-dlp.exe ko a cikin PATH na tsarin.</translation>
+            <translation>yt-dlp na buƙatar JavaScript runtime (Deno, Node.js, Bun, ko QuickJS) don ƙetare ƙalubalen rage gudun URL na YouTube. Shigar da ɗaya kusa da yt-dlp.exe ko a cikin PATH ɗin tsarin ka.</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>Ba a gano yanayi. Saka Deno (an yarda) daga deno.com, sannan ka sake dubawa a Saituna → Mai Saukawa Bidiyo.</translation>
+            <translation>Ba a gano runtime ba. Shigar da Deno (an bada shawara) daga deno.com, sannan a sake dubawa a Saituna → Mai Sauke Bidiyo.</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>An gano yanayi: %1 (%2)</translation>
+            <translation>An gano runtime: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
@@ -5337,11 +5358,11 @@ Danna don buɗe Ƙididdiga</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Cookies daga mai kallo:</translation>
+            <translation>Kukis daga browser:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation>Zaɓi mai kallo don watsa cookies dinsa zuwa yt-dlp, sannan ka sake gwadawa.</translation>
+            <translation>Zaɓi browser don aika kukis ɗinsa zuwa yt-dlp, sannan a sake gwadawa.</translation>
         </message>
         <message>
             <source>Retry</source>
@@ -5354,15 +5375,15 @@ Danna don buɗe Ƙididdiga</translation>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation>Girman ba ya samuwa — wannan inganci yana amfani da kewayon bidiyo da sauti daban-daban waɗanda ffmpeg ya haɗa bayan ɗaukar su.</translation>
+            <translation>Girma babu — wannan ingancin yana amfani da bidiyo da sauti daban waɗanda ffmpeg ke haɗawa bayan saukewa.</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation>Kanam / Playlist</translation>
+            <translation>Tasha / Jeri</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation>Dukkan bidiyoyi</translation>
+            <translation>Duk bidiyoyi</translation>
         </message>
         <message>
             <source>Latest</source>
@@ -5370,87 +5391,87 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>videos</source>
-            <translation>bidiyoyi</translation>
+            <translation>bidiyo</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation>URL ɗin kanam na YouTube sun haɗa duk ɗaukar da al'ada. Yi amfani da Matsayi don nufin takamaiman shafi.</translation>
+            <translation>URLs na tashar YouTube sun haɗa duk abubuwan da aka ɗora ta atomatik. Yi amfani da Iyaka don zaɓar shafi ɗaya.</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation>Bidiyoyi za a adana su a cikin ɓangaren ƙasa wanda aka sanya sunan kanam.</translation>
+            <translation>Za a adana bidiyo a cikin ƙaramin fayil mai sunan tashar.</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation>Matsayi:</translation>
+            <translation>Iyaka:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation>Dukkan ɗaukar</translation>
+            <translation>Duk abubuwan da aka ɗora</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation>Bidiyoyi</translation>
+            <translation>Bidiyo</translation>
         </message>
         <message>
             <source>Shorts</source>
-            <translation>Shorts</translation>
+            <translation>Gajeru</translation>
         </message>
         <message>
             <source>Live</source>
-            <translation>Talla</translation>
+            <translation>Kai tsaye</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation>Takardu</translation>
+            <translation>Fassarar magana</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation>Sauke fayilolin subtitlu tare da bidiyon</translation>
+            <translation>Sauke fayilolin fassarar magana tare da bidiyo</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>Harshe:</translation>
+            <translation>Harshe</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation>Kodon harshe, misali. en  ·  en.*,ja  ·  duka</translation>
+            <translation>Lambar harshe, misali en · en.*,ja · duka</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation>Ta atomatik</translation>
+            <translation>Ƙirƙirar kai tsaye</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation>Haɗa bayanin da aka samu ta atomatik idan akwai</translation>
+            <translation>Haɗa rubutun da aka ƙirƙira kai tsaye idan akwai</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation>Shigar cikin bidiyo</translation>
+            <translation>Saka a cikin bidiyo</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation>Shigar subtitlu cikin ɗakin bidiyo</translation>
+            <translation>Saka rubutun cikin kwandon bidiyo</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation>Shigar yana buƙatar mp4, mkv, ko webm</translation>
+            <translation>Sakawa na buƙatar mp4, mkv, ko webm</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation>Shigar hoton ƙirar</translation>
+            <translation>Saka hoton ɗan yatsa</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation>Shigar hoton ƙirar cikin fayilolin bidiyo (yana buƙatar ffmpeg)</translation>
+            <translation>Saka hoton bangon fasaha cikin fayil ɗin bidiyo (yana buƙatar ffmpeg)</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation>Shigar bayanai</translation>
+            <translation>Saka bayanan ƙarfe</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation>Rubuta suna, mai gina, sassa da sauransu cikin bayanin ɗakin</translation>
+            <translation>Rubuta take, mai ɗorawa, babi da sauransu cikin metadata na kwantena</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
@@ -5459,84 +5480,83 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation>Cire sassan tallafi, farko, ƙarshe da tallafin kai tsaye
-(Youtube kawai · yana buƙatar ffmpeg)</translation>
+            <translation>Cire sassan talla, gabatarwa, kammalawa da tallan kai (YouTube kawai · yana buƙatar ffmpeg)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation>KB/s  (baki = yi amfani da iyakar saurin duniya]</translation>
+            <translation>KB/s (fanko = yi amfani da iyakar gudu ta duniya)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation>Sashen Sauke</translation>
+            <translation>Tashar Zazzagewa</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>Sauke</translation>
+            <translation>Zazzage</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>Ci gaba da ci gaba</translation>
+            <translation>Na ci gaba</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation>Tacewar kwanaki</translation>
+            <translation>Tacewar kwanan wata</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation>Cookies</translation>
+            <translation>Kukis</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation>Archive</translation>
+            <translation>Taskar</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation>Raba sassan</translation>
+            <translation>raba babi</translation>
         </message>
         <message>
             <source>time range</source>
-            <translation>Kewayon lokaci</translation>
+            <translation>lokaci</translation>
         </message>
         <message>
             <source>extra files</source>
-            <translation>Ƙarin fayiloli</translation>
+            <translation>ƙarin fayiloli</translation>
         </message>
         <message>
             <source>random</source>
-            <translation>Bazuwar</translation>
+            <translation>bazuwa</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation>Farawa kai tsaye</translation>
+            <translation>fara kai tsaye</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation>Iyakar sauri</translation>
+            <translation>iyaka sauri</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation>Bayan kwanaki:</translation>
+            <translation>Bayan kwanan wata:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation>Kawai bidiyoyin da aka ɗora a wannan kwanaki ko bayan haka</translation>
+            <translation>Bidiyo da aka ɗora daga wannan rana</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation>Cookies:</translation>
+            <translation>Kukis:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation>Saka cookies don abubuwan da ke buƙatar membobi / shekaru</translation>
+            <translation>Shigar kukis don abun membobi/kayyade shekaru</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation>Iyakar sauri:</translation>
+            <translation>Iyakar saurin:</translation>
         </message>
         <message>
             <source>Time range:</source>
-            <translation>Kewayon lokaci:</translation>
+            <translation>Tsawon lokaci:</translation>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
@@ -5544,11 +5564,11 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation>Daina sauken da aka riga an sauke</translation>
+            <translation>Tsallake abin da aka riga aka sauke</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation>Raba ta bangarori</translation>
+            <translation>Raba da babi</translation>
         </message>
         <message>
             <source>Save description</source>
@@ -5556,11 +5576,11 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation>Ajiye hoton</translation>
+            <translation>Ajiye hoto</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation>Tsaita jerin shirye-shiryen</translation>
+            <translation>Gauraya lissafin waƙa</translation>
         </message>
         <message>
             <source>Live: from start</source>
@@ -5572,19 +5592,19 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Category:</source>
-            <translation>Irin:</translation>
+            <translation>Nau'i:</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation>Soke</translation>
+            <translation>Tsari:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>Sauken bidiyo</translation>
+            <translation>Soke</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation/>
+            <translation>Zazzage Bidiyo</translation>
         </message>
     </context>
 </TS>

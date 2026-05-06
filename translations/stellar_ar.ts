@@ -4399,6 +4399,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>يلزم إعادة التشغيل بعد تغيير اللغة.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>مطلوب إعادة التشغيل</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>يجب إعادة التشغيل لتطبيق تغيير اللغة. إعادة التشغيل الآن؟</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>إعادة التشغيل الآن</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>لاحقاً</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>التحقق من التحديثات</translation>
         </message>

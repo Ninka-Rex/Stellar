@@ -4391,6 +4391,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ભાષા બદલ્યા પછી પુનરારંભ જરૂરી છે.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>પુનઃશરૂ કરવું જરૂરી છે</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>ભાષા બદલાવા માટે પુનઃશરૂ કરવું જરૂરી છે. હવે પુનઃશરૂ કરવું?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>હવે પુનઃશરૂ કરો</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>પછી</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>અપડેટ ચકાસો</translation>
         </message>

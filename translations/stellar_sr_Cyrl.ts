@@ -4395,6 +4395,22 @@ Preporučuje se vezivanje Stellara za mrežni sučelje VPN-a i provera da li je 
             <translation>Потребно је покретање поново након промене језика.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Потребно поновно покретање</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Потребно је поновно покретање да би промена језика ступила на снагу. Покренути поново сада?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Поново покрени сада</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Касније</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Провера ажурирања</translation>
         </message>

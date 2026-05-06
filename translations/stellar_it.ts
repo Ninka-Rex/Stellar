@@ -4388,6 +4388,22 @@ Si raccomanda vivamente di legare Stellar a un'interfaccia di rete VPN e verific
             <translation>È necessario un riavvio dopo aver cambiato la lingua.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Riavvio necessario</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>È necessario riavviare per applicare la modifica della lingua. Riavviare ora?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Riavvia ora</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Più tardi</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Controlla aggiornamenti</translation>
         </message>

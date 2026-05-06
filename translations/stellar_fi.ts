@@ -4394,6 +4394,22 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <translation>Kielenvaihtoa varten on tehtävä uudelleenkäynnistys.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Uudelleenkäynnistys tarvitaan</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Kielen muutoksen voimaantuloon tarvitaan uudelleenkäynnistys. Uudelleenkäynnistetäänkö nyt?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Uudelleenkäynnistä nyt</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Myöhemmin</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Päivitän</translation>
         </message>

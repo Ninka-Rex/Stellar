@@ -493,6 +493,49 @@ Window {
         id: rssDownloadRulesDialog
     }
 
+    Dialog {
+        id: restartPrompt
+        anchors.centerIn: parent
+        title: qsTr("Restart Required")
+        modal: true
+        standardButtons: Dialog.No
+        Material.theme: Material.Dark
+        Material.background: "#1e1e1e"
+        Material.accent: "#4488dd"
+
+        function open() { restartPrompt.visible = true }
+
+        ColumnLayout {
+            spacing: 12
+            width: 340
+
+            Text {
+                Layout.fillWidth: true
+                text: qsTr("A restart is required for the language change to take effect. Restart now?")
+                color: "#e0e0e0"
+                font.pixelSize: 13
+                wrapMode: Text.WordWrap
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 8
+
+                Item { Layout.fillWidth: true }
+
+                DlgButton {
+                    text: qsTr("Restart Now")
+                    primary: true
+                    onClicked: App.restartApp()
+                }
+                DlgButton {
+                    text: qsTr("Later")
+                    onClicked: restartPrompt.visible = false
+                }
+            }
+        }
+    }
+
     FolderDialog {
         id: saveFolderDlg
         currentFolder: root.editDefaultSavePath.length > 0
@@ -659,11 +702,14 @@ Window {
         App.settings.rssAutoDownloadEnabled = editRssAutoDownloadEnabled
         App.settings.rssSmartFilterRepack   = editRssSmartFilterRepack
         App.settings.rssSmartFiltersJson    = editRssSmartFiltersJson
-        if (editUiLanguage !== App.settings.uiLanguage)
+        var languageChanged = editUiLanguage !== App.settings.uiLanguage
+        if (languageChanged)
             App.applyUiLanguage(editUiLanguage)
         App.settings.save()
         // Sync edit properties so settingsChanged resets to false
         resetEdits()
+        if (languageChanged)
+            restartPrompt.open()
     }
 
     function resetEdits() {

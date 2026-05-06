@@ -4396,6 +4396,22 @@ Nên liên kết Stellar với giao diện mạng VPN và xác minh VPN đang ho
             <translation>Cần khởi động lại sau khi thay đổi ngôn ngữ.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Cần khởi động lại</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Cần khởi động lại để thay đổi ngôn ngữ có hiệu lực. Khởi động lại ngay?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Khởi động lại ngay</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Để sau</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Kiểm tra cập nhật</translation>
         </message>

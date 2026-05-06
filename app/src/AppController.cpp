@@ -7246,3 +7246,10 @@ void AppController::applyUiLanguage(const QString &locale)
     // Persist the choice so it survives restarts.
     m_settings->setUiLanguage(locale);
 }
+
+void AppController::restartApp()
+{
+    QProcess::startDetached(QCoreApplication::applicationFilePath(),
+                            QCoreApplication::arguments());
+    QCoreApplication::quit();
+}

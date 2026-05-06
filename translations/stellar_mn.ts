@@ -4387,6 +4387,22 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <translation>Хэлийг өөрчлөхөд дахин эхлүүлэх шаардлагатай</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Дахин ачаалах шаардлагатай</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Хэлний өөрчлөлт хүчин төгөлдөр болохын тулд дахин ачаалах шаардлагатай. Одоо дахин ачааллах уу?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Одоо дахин ачаалах</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Дараа нь</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Нөхцөлийг шалгах</translation>
         </message>

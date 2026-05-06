@@ -4390,6 +4390,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Herstart vereist na taalwijziging.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Herstart vereist</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Herstart nu?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Herstart nu</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Later</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Updates controleren</translation>
         </message>

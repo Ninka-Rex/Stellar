@@ -4405,6 +4405,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>ენის შეცვლის შემდეგ საჭიროა გადატვირთვა.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>გადატვირთვა საჭიროა</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>ენის ცვლილებისთვის გადატვირთვაა საჭირო. გადატვირთვა ახლა?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>გადატვირთვა ახლა</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>შემდეგში</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>განახლებების შემოწმება</translation>
         </message>

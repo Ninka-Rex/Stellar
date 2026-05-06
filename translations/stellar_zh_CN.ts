@@ -541,7 +541,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation>记住此路径</translation>
+            <translation>记住“%1”类别的路径</translation>
         </message>
         <message>
             <source>Description</source>
@@ -4099,7 +4099,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Networking</source>
-            <translation/>
+            <translation>网络</translation>
         </message>
         <message>
             <source>Advanced</source>
@@ -4396,6 +4396,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>A restart is required after changing the language.</source>
             <translation>更改语言后需重启。</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>需重启</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>语言更改需重启才能生效。立即重启？</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>立即重启</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>稍后</translation>
         </message>
         <message>
             <source>Check for updates</source>

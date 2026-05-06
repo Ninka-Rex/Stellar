@@ -4389,6 +4389,22 @@ IP 노출을 방지하려면 토렌트 사용 전 VPN 인터페이스에 Stellar
             <translation>언어 변경 시 재시작 필요</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>다시 시작 필요</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>언어 변경을 적용하려면 다시 시작해야 합니다. 지금 다시 시작하시겠습니까?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>지금 다시 시작</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>나중에</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>업데이트 확인</translation>
         </message>

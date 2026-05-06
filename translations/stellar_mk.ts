@@ -1799,7 +1799,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation>Истражувајте %n нивоа на линкови</translation>
+            <translation>Истражи го специфицираниот број на нивоа на врски</translation>
         </message>
         <message>
             <source>levels within the base site</source>
@@ -4391,6 +4391,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>A restart is required after changing the language.</source>
             <translation>Потребно е рестартирање по промена на јазикот.</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Потребно е рестартирање</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>За да се примени промената на јазикот, потребно е рестартирање. Рестартирајте сега?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Рестартирај сега</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Подоцна</translation>
         </message>
         <message>
             <source>Check for updates</source>

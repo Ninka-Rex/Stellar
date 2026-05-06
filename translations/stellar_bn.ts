@@ -4398,6 +4398,22 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <translation>ভাষা পরিবর্তনের পর পুনরায় চালু করতে হবে।</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>পুনরায় চালু করতে হবে</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>ভাষা পরিবর্তনের প্রভাবের জন্য পুনরায় চালু করতে হবে। এখন পুনরায় চালু করবেন?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>এখন পুনরায় চালু করুন</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>পরে</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>আপডেট পরীক্ষা করুন</translation>
         </message>

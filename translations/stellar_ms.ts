@@ -4395,6 +4395,22 @@ Dianjurkan dengan kuat untuk mengikat Stellar ke antara muka rangkaian VPN dan m
             <translation>Perlu memulakan semula selepas menukar bahasa.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Perlu Semula Memula</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Semula memula diperlukan untuk perubahan bahasa berkuat kuasa. Semula sekarang?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Semula Sekarang</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Nanti</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Semak kemas kini</translation>
         </message>

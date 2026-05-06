@@ -4,2527 +4,2529 @@
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation/>
+            <translation>पत्ता अपवादहरूमा थप्नुहोस्?</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation/>
+            <translation>यो पत्ता दुई पटक रद्द गरिएको छ। के तपाईं यसलाई अपवाद सूचीमा थप्नुहुन्छ ताकि Stellar ले यसलाई स्वतः अन्तरकटन नगरोस्?</translation>
         </message>
         <message>
             <source>No</source>
-            <translation/>
+            <translation>होइन</translation>
         </message>
         <message>
             <source>Add Exception</source>
-            <translation/>
+            <translation>अपवाद थप्नुहोस्</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation/>
+            <translation>पत्ता अपवाद थप्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>AddUrlDialog</name>
         <message>
             <source>URL</source>
-            <translation/>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation/>
+            <translation>अनुमति प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation/>
+            <translation>लोगिन</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation/>
+            <translation>पासवर्ड</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ठीक छ</translation>
         </message>
         <message>
             <source>Add URL</source>
-            <translation/>
+            <translation>URL थप्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation/>
+            <translation>Stellar डाउनलोड म्यानेजर v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation/>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation/>
+            <translation>डाउनलोड हुँदैछ: %1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation/>
+            <translation>बीज: %1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation/>
+            <translation>बीज: %1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation/>
+            <translation>कुल: %1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation/>
+            <translation>कुल: %1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation/>
+            <translation>स्टेलर बन्द हुँदैछ...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation/>
+            <translation>स्टेलर सुरु हुँदैछ...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
-            <translation/>
+            <translation>🛡️ %1 मा बाँधिएको</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation/>
+            <translation>समूह डाउनलोड</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation/>
+            <translation>यहाँ लिङ्कहरू बनाउनुहोस्, त्यसपछि समीक्षा चरणमा जानुहोस्।</translation>
         </message>
         <message>
             <source>Address:</source>
-            <translation/>
+            <translation>पता:</translation>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation/>
+            <translation>अन्डरस्कोर (*) लेख्नुहोस्</translation>
         </message>
         <message>
             <source>Numbers</source>
-            <translation/>
+            <translation>अङ्कहरू</translation>
         </message>
         <message>
             <source>Letters</source>
-            <translation/>
+            <translation>अक्षरहरू</translation>
         </message>
         <message>
             <source>From:</source>
-            <translation/>
+            <translation>बाट:</translation>
         </message>
         <message>
             <source>To:</source>
-            <translation/>
+            <translation>सम्म:</translation>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation/>
+            <translation>वाइल्डकार्ड साइज</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation/>
+            <translation>पूर्वदर्शन</translation>
         </message>
         <message>
             <source>First: %1</source>
-            <translation/>
+            <translation>पहिलो: %1</translation>
         </message>
         <message>
             <source>Second: %1</source>
-            <translation/>
+            <translation>दोस्रो: %1</translation>
         </message>
         <message>
             <source>Last: %1</source>
-            <translation/>
+            <translation>अन्तिम: %1</translation>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation/>
+            <translation>सुरु हुनु अघि यी डाउनलोडहरू समूहमा राख्न OK पछि क्वीज स्टेप प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ठीक छ</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation/>
+            <translation>फाइलको नाम</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>साइज</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>स्थिति</translation>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation/>
+            <translation>थप्नु अघि लिङ्कहरू समीक्षा गर्नुहोस्। स्तम्भहरूलाई सज्जा गर्न, साइज परिवर्तन गर्न र पुनः क्रमबद्ध गर्न खिच्न सकिन्छ</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation/>
+            <translation>वाइल्डकार्ड पैटर्न (*) ले फाइल नामहरू प्रतिस्थापन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation/>
+            <translation>फाइलहरू</translation>
         </message>
         <message>
             <source>Check all</source>
-            <translation/>
+            <translation>सबै जाँच गर्नुहोस्</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation/>
+            <translation>सबै अनचेक गर्नुहोस्</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation/>
+            <translation>केवल 'Found' चिन्हित लिङ्कहरू चयन गर्न सकिन्छ। OK पछि पनि क्युअि असाइन हुन्छ।</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>समाप्त</translation>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation/>
+            <translation>ब्याच डाउनलोड समीक्षा</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation/>
+            <translation>डाउनलोडहरू रोक्न र Stellar मा पठाउन ब्राउजरमा Stellar एक्सटेन्सन स्थापना गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
-            <translation/>
+            <translation>Chrome / Edge / Brave</translation>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation/>
+            <translation>Chrome Web Store बाट सिधै स्थापना गर्नुहोस्</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation/>
+            <translation>लिङ्क खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Firefox</source>
-            <translation/>
+            <translation>Firefox</translation>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation/>
+            <translation>Firefox XPI स्थापना गर्नुहोस्, स्वचालित अद्यावधिक छैन</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation/>
+            <translation>नेटिभ मेसेजिङ होस्ट</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation/>
+            <translation>Stellar स्वचालित रूपमा दर्ता हुन्छ ताकि एक्सटेन्सन्ससँग सञ्चार गर्न सकियोस्।</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation/>
+            <translation>सफलतापूर्वक दर्ता भयो।</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation/>
+            <translation>दर्ता असफल भयो — तल विवरण हेर्नुहोस्।</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation/>
+            <translation>रजिस्टर गरिँदै...</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation/>
+            <translation>फेरु प्रयास गर्नुहोस्</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation/>
+            <translation>म्यानुअल स्थापना:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation/>
+            <translation>कमांड प्रम्प्टमा चलाउनुहोस् (प्रशासन आवश्यक छैन):</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation/>
+            <translation>कपी</translation>
         </message>
         <message>
             <source>Copied</source>
-            <translation/>
+            <translation>कपी भयो</translation>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation/>
+            <translation>टर्मिनलमा चलाउनुहोस्:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation/>
+            <translation>ब्राउजर एक्सटन्सनहरू</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation/>
+            <translation>सबै डाउनलोडहरू</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation/>
+            <translation>भिडियो</translation>
         </message>
         <message>
             <source>Music</source>
-            <translation/>
+            <translation>संगीत</translation>
         </message>
         <message>
             <source>Documents</source>
-            <translation/>
+            <translation>दस्तावेजहरू</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation/>
+            <translation>संपीडित</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation/>
+            <translation>प्रोग्रामहरू</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation/>
+            <translation>कलमहरू</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation/>
+            <translation>कालमहरू छान्नुहोस् जसलाई तपाईं यस सूचीमा देखाउनुहुन्छ। कालमहरूको क्रम परिवर्तन गर्न 'Move Up' र 'Move Down' बटनहरू प्रयोग गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation/>
+            <translation>Move Up</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation/>
+            <translation>Move Down</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation/>
+            <translation>Show</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation/>
+            <translation>Hide</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation/>
+            <translation>Reset</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation/>
+            <translation>चयन गरिएको कालमको चौडाई</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation/>
+            <translation>पिक्सेल</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>OK</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>Cancel</translation>
         </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation/>
+            <translation>मेटाउनुहोस्?</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation/>
+            <translation>डाउनलोड मेटाउनुहोस्?</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation/>
+            <translation>डिस्कबाट टोरेंट फाइलहरू पनि मेटाउनुहोस्</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation/>
+            <translation>डिस्कबाट फाइल पनि मेटाउनुहोस्</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation/>
+            <translation>अपरिवर्तनीय रूपमा मेटाउनुहोस् (कचराको ढुंगा मा जान नदिनुहोस्)</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>हटाउनुहोस्</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation/>
+            <translation>सम्पन्न डाउनलोड हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation/>
+            <translation>के तपाईं Stellar को डाउनलोड सूचीबाट सबै सम्पन्न डाउनलोड हटाउन चाहनुहुन्छ?</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation/>
+            <translation>नोट: यो केवल सूचीबाट मात्र हटाउँछ। डिस्कमा रहेका फाइलहरू हटाइँदैनन्।</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation/>
+            <translation>सम्पन्न र सीडिङ टोरेंटहरू हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation/>
+            <translation>हो</translation>
         </message>
         <message>
             <source>No</source>
-            <translation/>
+            <translation>होइन</translation>
         </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation/>
+            <translation>डाउनलोड सम्पन्न</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation/>
+            <translation>%1 डाउनलोड गरियो (%2 बाइट)</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation/>
+            <translation>पत्ता</translation>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation/>
+            <translation>फाइल यस्तो नाममा सेभ गरियो</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
-            <translation/>
+            <translation>फाइल सर्जिएको छ।</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation/>
+            <translation>खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation/>
+            <translation>यससँग खोल्नुहोस्...</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation/>
+            <translation>फोल्डर खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation/>
+            <translation>यो संवाद पुनः देखाउनुहोस्</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation/>
+            <translation>सेटिङ्स → सामान्य → डाउनलोड पूरा भएको संवाद देखाउनेमा पुनः सक्रिय गर्न सकिन्छ</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation/>
+            <translation>फाइललाई अर्को ठाउँमा सर्न खिच्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation/>
+            <translation>फाइल जानकारी डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
-            <translation/>
+            <translation>स्टेलर श्रेणीहरूको सूचीमा श्रेणी थप्दैछ</translation>
         </message>
         <message>
             <source>Category name</source>
-            <translation/>
+            <translation>श्रेणीको नाम</translation>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation/>
+            <translation>यस श्रेणीमा निम्न फाइल प्रकारहरू स्वचालित रूपमा राखिन्छ:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation/>
+            <translation>नोट: फाइल विस्तारहरूलाई स्पेसद्वारा छुट्याएर लेख्नुहोस् (जस्तै: avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation/>
+            <translation>यस श्रेणीमा निम्न साइटहरूबाट मात्र फाइलहरू स्वचालित रूपमा राखिन्छ:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation/>
+            <translation>साइटहरूलाई स्पेसद्वारा छुट्याउनुहोस्। तपाईं वाइल्डकार्ड मोडेलको रूपमा तारा (*) प्रयोग गर्न सक्नुहुन्छ</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation/>
+            <translation>यस श्रेणीको भविष्यका डाउनलोडहरूलाई निम्न फोल्डरमा सहेर राख्नुहोस्:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation/>
+            <translation>अन्तिम सेव पथ सम्झनुहोस्</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation/>
+            <translation>ब्राउज...</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>सही</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation/>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation/>
+            <translation>श्रेणी</translation>
         </message>
         <message>
             <source>Save As</source>
-            <translation/>
+            <translation>यसरी सेव गर्नुहोस्</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation/>
+            <translation>&quot;%1&quot; श्रेणीको लागि यो मार्ग सम्झनुहोस्</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>विवरण</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation/>
+            <translation>पछि डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation/>
+            <translation>डाउनलोड सुरु गर्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation/>
+            <translation>सिरमा राखिएको</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation/>
+            <translation>जाँच गरिँदै</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation/>
+            <translation>डाउनलोड भइरहेको</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation/>
+            <translation>स्थानान्तरण भइरहेको</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation/>
+            <translation>सीडिङ भइरहेको</translation>
         </message>
         <message>
             <source>Paused</source>
-            <translation/>
+            <translation>रोकिएको</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation/>
+            <translation>संयोजन...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation/>
+            <translation>पूर्ण</translation>
         </message>
         <message>
             <source>Error</source>
-            <translation/>
+            <translation>त्रुटि</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>अज्ञात</translation>
         </message>
     </context>
     <context>
         <name>DownloadProgressDialog</name>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>डाउनलोड</translation>
         </message>
         <message>
             <source>Receiving data...</source>
-            <translation/>
+            <translation>डाटा प्राप्त गर्दै...</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation/>
+            <translation>संयोजन...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation/>
+            <translation>डाउनलोड अवस्था</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation/>
+            <translation>गति सीमा</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation/>
+            <translation>पूर्णतामा विकल्पहरू</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation/>
+            <translation>&gt;&gt; ट्रेमा पठाउनुहोस्</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation/>
+            <translation>सिस्टम ट्रेमा न्यूनतम गर्नुहोस्</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>अवस्था</translation>
         </message>
         <message>
             <source>File size</source>
-            <translation/>
+            <translation>फाइल आकार</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>डाउनलोड गरिएको</translation>
         </message>
         <message>
             <source>%1  ( %2% )</source>
-            <translation/>
+            <translation>%1 (%2%)</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation/>
+            <translation>संचालन दर</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation/>
+            <translation>(सीमित %1)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation/>
+            <translation>बाँकी समय</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation/>
+            <translation>फेरुबाट सुरु गर्ने क्षमता</translation>
         </message>
         <message>
             <source>Yes</source>
-            <translation/>
+            <translation>हो</translation>
         </message>
         <message>
             <source>No</source>
-            <translation/>
+            <translation>नै</translation>
         </message>
         <message>
             <source>Error detail</source>
-            <translation/>
+            <translation>त्रुटि विवरण</translation>
         </message>
         <message>
             <source>Assembling... %1%</source>
-            <translation/>
+            <translation>संगठन हुँदै... %1%</translation>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation/>
+            <translation>विवरण लुकाउनुहोस्</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation/>
+            <translation>विवरण देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation/>
+            <translation>सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation/>
+            <translation>रोकनुहोस्</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation/>
+            <translation>सम्पर्क अनुसार सुरु स्थान र डाउनलोड प्रगति</translation>
         </message>
         <message>
             <source>N.</source>
-            <translation/>
+            <translation>N.</translation>
         </message>
         <message>
             <source>Info</source>
-            <translation/>
+            <translation>जानकारी</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation/>
+            <translation>यो डाउनलोडको लागि ट्रान्सफर दर सीमित गर्नुहोस्</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation/>
+            <translation>प्रति-डाउनलोड सीमा सक्षम गर्नुहोस्</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation/>
+            <translation>अधिकतम:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
-            <translation/>
+            <translation>उदाहरणका लागि १००</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation/>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation/>
+            <translation>ग्लोबल सीमा सक्रिय: %1 KB/s</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation/>
+            <translation>कुनै ग्लोबल सीमा सेट गरिएको छैन</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation/>
+            <translation>ग्लोबल स्पीड लिमिटर सेटिङहरू...</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation/>
+            <translation>सम्पन्न भएपछिको विकल्पहरू</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation/>
+            <translation>सम्पन्न भएपछि फाइल खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation/>
+            <translation>सम्पन्न भएपछि फोल्डर खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation/>
+            <translation>सम्पन्न भएपछि कम्प्युटर बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation/>
+            <translation>यी विकल्पहरू केवल यो डाउनलोडका लागि अस्थायी हुन्छन् र प्रत्येक पटक अनचेक अवस्थामा सुरु हुन्छन्।</translation>
         </message>
     </context>
     <context>
         <name>DownloadTable</name>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation/>
+            <translation>नाम परिवर्तन</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation/>
+            <translation>गुणहरू</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation/>
+            <translation>फाइल खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation/>
+            <translation>फोल्डर खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation/>
+            <translation>नाम परिवर्तन...</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation/>
+            <translation>फाइल नाम प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation/>
+            <translation>.torrent निर्यात गर्नुहोस्...</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation/>
+            <translation>फेरि सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>रोक</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation/>
+            <translation>सिरबाट हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation/>
+            <translation>फेरि डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>मेटाउनुहोस्</translation>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation/>
+            <translation>कलम सेटिङहरू</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation/>
+            <translation>फाइल नाम</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>आकार</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>स्थिति</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation/>
+            <translation>समय बाँकी</translation>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation/>
+            <translation>डाउनलोड गति</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation/>
+            <translation>अपलोड गति</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation/>
+            <translation>सीडरहरू</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation/>
+            <translation>पिअरहरू</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation/>
+            <translation>रेशियो</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation/>
+            <translation>अपलोड गरियो</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>डाउनलोड गरियो</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation/>
+            <translation>अन्तिम प्रयास मिति</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>विवरण</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation/>
+            <translation>सहेज्नुहोस्</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation/>
+            <translation>सन्दर्भ</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation/>
+            <translation>मूल वेबपृष्ठ</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation/>
+            <translation>अवधिमा</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation/>
+            <translation>%1% (रोकिएको)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
-            <translation/>
+            <translation>जाँच गरिँदै (%1%)</translation>
         </message>
         <message>
             <source>%n file(s)</source>
-            <translation/>
+            <translation>%n फाइल(हरू)</translation>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation/>
+            <translation>कुनै मेल खाँदैन</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation/>
+            <translation>कुनै डाउनलोड अझै छैन।
+सुरु गर्न 'URL थप्नुहोस्' क्लिक गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation/>
+            <translation>%n डाउनलोड(हरू) लोड गरिँदै…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation/>
+            <translation>सिरमा राख्नुहोस्</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation/>
+            <translation>म्याग्नेट लिंक प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation/>
+            <translation>URL प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation/>
+            <translation>%n चयन गरिएका डाउनलोड</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation/>
+            <translation>डुप्लिकेट डाउनलोड लिंक</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation/>
+            <translation>यो फाइल तपाईंको डाउनलोड सूचीमा पहिले नै छ।</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation/>
+            <translation>तपाईं निम्न विकल्प मध्ये एक छान्न सक्नुहुन्छ वा डाउनलोड हटाउन Cancel थिच्नुहोस्।</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation/>
+            <translation>डुप्लिकेटलाई नम्बर भएको फाइल नामसँग थप्नुहोस्</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation/>
+            <translation>दुवटा थपिनुहोस् र मौजूदा फाइल ओभरराइट गर्नुहोस्</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation/>
+            <translation>मौजूदा फाइल पूरा छ - डाउनलोड पूरा भएको संवाद देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation/>
+            <translation>मौजूदा डाउनलोड जारी गर्नुहोस्</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation/>
+            <translation>मेरो छनोट सम्झनुहोस् र यो संवाद पुनः नदेखाउनुहोस्।
+पछि Options → Downloads मा परिवर्तन गर्न सकिन्छ।</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ठीक छ</translation>
         </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation/>
+            <translation>टोरन्ट डाटा स्थानान्तरण गर्नुहोस्...</translation>
         </message>
         <message>
             <source>Move File To...</source>
-            <translation/>
+            <translation>फाइल स्थानान्तरण गर्नुहोस्...</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation/>
+            <translation>शुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>रोक गर्नुहोस्</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation/>
+            <translation>फोल्डर खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation/>
+            <translation>फाइल खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>स्थिति</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>आकार</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation/>
+            <translation>सहेज्नुहोस्</translation>
         </message>
         <message>
             <source>Move</source>
-            <translation/>
+            <translation>सार्नुहोस्</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation/>
+            <translation>पता</translation>
         </message>
         <message>
             <source>Web page</source>
-            <translation/>
+            <translation>वेब पृष्ठ</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation/>
+            <translation>सन्दर्भ</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>विवरण</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation/>
+            <translation>लगइन</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation/>
+            <translation>पासवर्ड</translation>
         </message>
         <message>
             <source>Source</source>
-            <translation/>
+            <translation>स्रोत</translation>
         </message>
         <message>
             <source>Info hash</source>
-            <translation/>
+            <translation>इन्फो हैश</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation/>
+            <translation>कपी</translation>
         </message>
         <message>
             <source>Metadata</source>
-            <translation/>
+            <translation>मेटाडेटा</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation/>
+            <translation>श्रेणी</translation>
         </message>
         <message>
             <source>Note</source>
-            <translation/>
+            <translation>नोट</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>डाउनलोड गरियो</translation>
         </message>
         <message>
             <source>Country</source>
-            <translation/>
+            <translation>देश</translation>
         </message>
         <message>
             <source>Port</source>
-            <translation/>
+            <translation>पोर्ट</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation/>
+            <translation>अपलोड गरियो</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation/>
+            <translation>सीडरहरू</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation/>
+            <translation>संदेश</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation/>
+            <translation>रोकिएको</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation/>
+            <translation>डाउनलोड हुँदैछ</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation/>
+            <translation>सार्दैछ</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation/>
+            <translation>सीडिङ</translation>
         </message>
         <message>
             <source>Queued</source>
-            <translation/>
+            <translation>सिरमा</translation>
         </message>
         <message>
             <source>Problem</source>
-            <translation/>
+            <translation>समस्या</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation/>
+            <translation>टोरन्ट सेटिङ...</translation>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation/>
+            <translation>अनुमानित समय: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation/>
+            <translation>सीड: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation/>
+            <translation>पिअर: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
-            <translation/>
+            <translation>सामान्य</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation/>
+            <translation>फाइलहरू</translation>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation/>
+            <translation>स्वर्म मानचित्र</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation/>
+            <translation>पिस मानचित्र</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation/>
+            <translation>बर्बाद</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation/>
+            <translation>डाउन स्पीड</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation/>
+            <translation>अप स्पीड</translation>
         </message>
         <message>
             <source>Connections</source>
-            <translation/>
+            <translation>सम्पर्कहरू</translation>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation/>
+            <translation>शेयर अनुपात</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation/>
+            <translation>पिसहरू</translation>
         </message>
         <message>
             <source>Availability</source>
-            <translation/>
+            <translation>उपलब्धता</translation>
         </message>
         <message>
             <source>Active time</source>
-            <translation/>
+            <translation>सक्रिय समय</translation>
         </message>
         <message>
             <source>Seed time</source>
-            <translation/>
+            <translation>सीड समय</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation/>
+            <translation>स्पीड सीमा</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation/>
+            <translation>स्थानीय डाटा जाँच</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation/>
+            <translation>↓</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation/>
+            <translation>↑</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation/>
+            <translation>Span</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>नाम</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation/>
+            <translation>प्रगति</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation/>
+            <translation>कुनै फाइल जानकारी उपलब्ध छैन</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation/>
+            <translation>वस्तुको नाम परिवर्तन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation/>
+            <translation>नयाँ फाइल वा फोल्डरको नाम दर्ता गर्नुहोस्:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation/>
+            <translation>नाम परिवर्तन</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>डाउनलोड</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation/>
+            <translation>नाम परिवर्तन...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation/>
+            <translation>कुनै साथी जोडिएको छैन</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation/>
+            <translation>साथीको जानकारी</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation/>
+            <translation>साथीलाई प्रतिबन्ध लगाउनुहोस्</translation>
         </message>
         <message>
             <source>Connection</source>
-            <translation/>
+            <translation>सम्पर्क</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation/>
+            <translation>स्रोत: %1</translation>
         </message>
         <message>
             <source>Role: %1</source>
-            <translation/>
+            <translation>भूमिका: %1</translation>
         </message>
         <message>
             <source>Seeder</source>
-            <translation/>
+            <translation>सीडर</translation>
         </message>
         <message>
             <source>Ping: %1</source>
-            <translation/>
+            <translation>पिङ: %1</translation>
         </message>
         <message>
             <source>Progress: %1%</source>
-            <translation/>
+            <translation>प्रगति: %1%</translation>
         </message>
         <message>
             <source>Transfer</source>
-            <translation/>
+            <translation>संक्रमण</translation>
         </message>
         <message>
             <source>Down: %1</source>
-            <translation/>
+            <translation>डाउन: %1</translation>
         </message>
         <message>
             <source>Up: %1</source>
-            <translation/>
+            <translation>अप: %1</translation>
         </message>
         <message>
             <source>Total down: %1</source>
-            <translation/>
+            <translation>कुल डाउन: %1</translation>
         </message>
         <message>
             <source>Total up: %1</source>
-            <translation/>
+            <translation>कुल अप: %1</translation>
         </message>
         <message>
             <source>Location</source>
-            <translation/>
+            <translation>स्थान</translation>
         </message>
         <message>
             <source>Client: %1</source>
-            <translation/>
+            <translation>ग्राहक: %1</translation>
         </message>
         <message>
             <source>You</source>
-            <translation/>
+            <translation>तपाईं</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation/>
+            <translation>साझेदार</translation>
         </message>
         <message>
             <source>Flags</source>
-            <translation/>
+            <translation>पनिहरू</translation>
         </message>
         <message>
             <source>Ban Peer</source>
-            <translation/>
+            <translation>साझेदार प्रतिबन्ध</translation>
         </message>
         <message>
             <source>Legend:</source>
-            <translation/>
+            <translation>कथा:</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation/>
+            <translation>क्रियाविहीन</translation>
         </message>
         <message>
             <source>Trackers</source>
-            <translation/>
+            <translation>ट्र्याकरहरू</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation/>
+            <translation>सीड</translation>
         </message>
         <message>
             <source>Tracker</source>
-            <translation/>
+            <translation>ट्र्याकर</translation>
         </message>
         <message>
             <source>Tier</source>
-            <translation/>
+            <translation>तह</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation/>
+            <translation>साझेदारहरू</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation/>
+            <translation>० जना चिनिने साझेदारहरू</translation>
         </message>
         <message>
             <source>UL</source>
-            <translation/>
+            <translation>UL</translation>
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation/>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>RTT %1</source>
-            <translation/>
+            <translation>RTT %1</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation/>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation/>
+            <translation>पिङ %1  %2% सम्पन्न</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>अज्ञात</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation/>
+            <translation>तपाईं (यो क्लाइन्ट)</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation/>
+            <translation>प्लट गर्न कुनै जोडिएका साथीहरू छैनन्</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation/>
+            <translation>तपाईंको सार्वजनिक IP प्रतीक्षा गरिरहेको छ ताकि स्थानीय नक्शाको स्थिति देखाउन सकियोस्</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation/>
+            <translation>फोर्स रि-एनान्स</translation>
         </message>
         <message>
             <source>Copy URL</source>
-            <translation/>
+            <translation>URL प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation/>
+            <translation>ट्र्याकर हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation/>
+            <translation>सबै रि-एनान्स गर्नुहोस्</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation/>
+            <translation>ट्र्याकर URLहरू पेस्ट गर्नुहोस् - प्रत्येक लाइनमा एक। # ले सुरु भएका लाइनहरू अनदेखा गरिन्छन्।</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>थप्नुहोस्</translation>
         </message>
         <message>
             <source>No trackers</source>
-            <translation/>
+            <translation>कुनै ट्र्याकर छैन</translation>
         </message>
         <message>
             <source>Web Seeds</source>
-            <translation/>
+            <translation>वेब सीडहरू</translation>
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation/>
+            <translation>वेब सीड URLहरू पेस्ट गर्नुहोस् - प्रत्येक लाइनमा एक। URL सीडहरू (BEP-19) र HTTP सीडहरू (BEP-17) दुवै स्वीकार्य छन्।</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation/>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Type</source>
-            <translation/>
+            <translation>प्रकार</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation/>
+            <translation>कोई वेब सीडहरू छैनन्</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation/>
+            <translation>ब्राउजरमा खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation/>
+            <translation>सीड हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation/>
+            <translation>पूर्ण</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation/>
+            <translation>क्लाइन्ट</translation>
         </message>
         <message>
             <source>DL</source>
-            <translation/>
+            <translation>DL</translation>
         </message>
         <message>
             <source>Both</source>
-            <translation/>
+            <translation>दुवै</translation>
         </message>
         <message>
             <source>Speed</source>
-            <translation/>
+            <translation>गति</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation/>
+            <translation>उपलब्ध</translation>
         </message>
         <message>
             <source>Distance: %1</source>
-            <translation/>
+            <translation>दूरी: %1</translation>
         </message>
         <message>
             <source>Country: %1</source>
-            <translation/>
+            <translation>देश: %1</translation>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation/>
+            <translation>%1 जना चिनिएका सहयोगीहरू</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation/>
+            <translation>%n ट्र्याकर(s)</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation/>
+            <translation>सबै ट्र्याकरलाई तुरुन्तै थाहा दिनुहोस्, सामान्य सूचना अन्तरालको प्रतीक्षा नगरी। यदि तपाईंका सहयोगीको संख्या अचानक घटेमा यो उपयोगी हुन्छ।</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation/>
+            <translation>पुनः सूचना दिँदै...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation/>
+            <translation>ट्र्याकर थप्नुहोस्…</translation>
         </message>
         <message>
             <source>%1 added</source>
-            <translation/>
+            <translation>%1 थपियो</translation>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation/>
+            <translation>%1 थपियो, %2 असफल</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation/>
+            <translation>%n बीज (seed)</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation/>
+            <translation>बीज थप्नुहोस्…</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation/>
+            <translation>स्वर्मबाट डाउनलोड गरिँदै...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation/>
+            <translation>टोरन्ट विशेषताहरू</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation/>
+            <translation>फाइल जाँच गरिँदै</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation/>
+            <translation>फाइल विशेषताहरू</translation>
         </message>
     </context>
     <context>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation/>
+            <translation>खोज्नुहोस्</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation/>
+            <translation>खोज्नुहोस्:</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation/>
+            <translation>योमा खोज्नुहोस्:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation/>
+            <translation>फाइल नाम वा नामको भाग</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation/>
+            <translation>विवरण वा विवरणको भाग</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation/>
+            <translation>साइट नाम / डाउनलोड लिंक / माता-पिता वेबपृष्ठ / रिफरर</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation/>
+            <translation>केस मिलाउनुहोस्</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation/>
+            <translation>पूर्ण स्ट्रिङ मात्र मिलाउनुहोस्</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation/>
+            <translation>कुनै नतिजा फेला परेन</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation/>
+            <translation>१ नतिजा फेला पर्यो</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation/>
+            <translation>%1 नतिजा फेला परे</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation/>
+            <translation>प्रोजेक्ट सेव भयो</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation/>
+            <translation>प्रोजेक्ट नाम र सुरुवातको पृष्ठ आवश्यक छ</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation/>
+            <translation>स्टेलर ग्राबर – चरण %1 of %2: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
-            <translation/>
+            <translation>सुरुवातको पृष्ठ सेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation/>
+            <translation>फाइलहरू सेव गर्नुहोस्</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation/>
+            <translation>एक्सप्लोरर फिल्टर सेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation/>
+            <translation>फाइल फिल्टर सेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation/>
+            <translation>कस्टम सेटिङहरू</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation/>
+            <translation>वेबसाइटबाट सबै तस्बिरहरू</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation/>
+            <translation>वेबसाइटबाट सबै भिडियो</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation/>
+            <translation>वेबसाइटबाट सबै ध्वनी</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation/>
+            <translation>पूर्ण वेबसाइट</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation/>
+            <translation>फिल्टर समावेश गर्नुहोस्</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation/>
+            <translation>फिल्टर हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation/>
+            <translation>टेम्पलेटको नाम</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation/>
+            <translation>सहेज्नुहोस्</translation>
         </message>
         <message>
             <source>New</source>
-            <translation/>
+            <translation>नयाँ</translation>
         </message>
         <message>
             <source>Load</source>
-            <translation/>
+            <translation>लोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation/>
+            <translation>वर्तमान सेटिङहरू टेम्पलेटको रूपमा सहेज्नुहोस्</translation>
         </message>
         <message>
             <source>Recent Projects</source>
-            <translation/>
+            <translation>नजिकका प्रोजेक्टहरू</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation/>
+            <translation>ग्रबबर सेटिङहरू</translation>
         </message>
         <message>
             <source>Project</source>
-            <translation/>
+            <translation>प्रोजेक्ट</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation/>
+            <translation>विकल्प</translation>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation/>
+            <translation>प्रोजेक्टको नाम</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation/>
+            <translation>सुरुवातको पृष्ठ/पत्ता</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation/>
+            <translation>प्रोजेक्टको टेम्पलेट</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation/>
+            <translation>यदि तपाईं एउटा प्रोजेक्ट टेम्पलेट छान्नुहुन्छ, जादुई कलमले अर्को चरणमा छानिएको टेम्पलेटका लागि आवश्यक प्रोजेक्ट सेटिङहरू बनाउँछ। तपाईंले सेटिङहरूलाई कहिल्यै पनि हातले परिवर्तन गर्न सक्नुहुन्छ।</translation>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation/>
+            <translation>अधिकृत प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation/>
+            <translation>अव्वान्स &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation/>
+            <translation>अव्वान्स &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
-            <translation/>
+            <translation>लोगिन</translation>
         </message>
         <message>
             <source>Password</source>
-            <translation/>
+            <translation>पासवर्ड</translation>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation/>
+            <translation>अव्वान्स बटन दबाउनुहोस् ताकि हातले लोगिन सकियोस् वा लोजआउट पृष्ठ बन्दिन सकियोस्।</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation/>
+            <translation>तलको वेब पृष्ठमा हातले लोगिन र पासवर्ड प्रविष्ट गर्नुहोस्:</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation/>
+            <translation>लोजआउट पृष्ठ खोल्नुहोस् होइन:</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation/>
+            <translation>बहुतै साइटहरूमा लोजआउट पृष्ठ हुन्छ जुन ग्र्याबरले खोल्नु हुँदैन। तपाईं यहाँ एस्टेरीस्क वाइल्डकार्ड प्रयोग गर्न सक्नुहुन्छ जसले विभिन्न लोजआउट पृष्ठहरूको लागि एउटा नमुना निर्धारण गर्दछ।</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation/>
+            <translation>सहेक्नुहोस् मा</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation/>
+            <translation>Stellar श्रेणी अनुसार फोल्डरमा</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation/>
+            <translation>निर्देशित Stellar श्रेणीको फोल्डरमा</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation/>
+            <translation>निर्देशित फोल्डरमा</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation/>
+            <translation>मूल सापेक्ष उप-फोल्डरहरू</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation/>
+            <translation>श्रेणी अनुसार प्रत्येक फाइल</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation/>
+            <translation>चयनित श्रेणीमा सबै फाइलहरू</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation/>
+            <translation>यस फोल्डरमा सबै फाइलहरू</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation/>
+            <translation>अफलाइन ब्राउजिङका लागि HTML फाइलहरूमा लिंकहरू स्थानीय फाइलहरूमा</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation/>
+            <translation>अस्तित्वमा रहेका फाइलहरू ओभरराइट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation/>
+            <translation>बन्द गर्दा मुख्य सूची र डाउनलोड क्युमा थप</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation/>
+            <translation>फाइलहरू खोज्न वेबपृष्ठहरू अनुसन्धान गर्नुहोस्</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
-            <translation/>
+            <translation>पूर्ण साइट अनुसन्धान गर्नुहोस्</translation>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation/>
+            <translation>निर्देशित लिंक स्तरहरू अनुसन्धान गर्नुहोस्:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation/>
+            <translation>मूल साइटभित्र स्तरहरू</translation>
         </message>
         <message>
             <source>levels on other sites</source>
-            <translation/>
+            <translation>अन्य साइटहरूमा स्तरहरू</translation>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation/>
+            <translation>लिंक स्तरहरूको संख्या कति हो?</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation/>
+            <translation>पप-अप विंडोहरू अनदेखा गर्नुहोस्</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation/>
+            <translation>मूल डायरेक्टरीहरू अनुसन्धान नगर्नुहोस्</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation/>
+            <translation>मुख्य डोमेन भित्रका सबै साइटहरू अनुसन्धान गर्नुहोस्</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation/>
+            <translation>JavaScript प्रक्रिया गर्नुहोस्</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation/>
+            <translation>केवल निम्न पथ/डोमेनहरू भित्रका वेबपृष्ठहरू अनुसन्धान गर्नुहोस्:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation/>
+            <translation>प्रति लाइन एउटा पथ वा डोमेन लेख्नुहोस् वा अर्धकोलोन (;) ले छुट्याउनुहोस्। * लाई वाइल्डकार्डको रूपमा प्रयोग गर्नुहोस्। उदाहरण: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation/>
+            <translation>निम्न पथ/डोमेनहरू भित्रका वेबपृष्ठहरू अनुसन्धान नगर्नुहोस्:</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation/>
+            <translation>प्रति लाइन एउटा पथ वा डोमेन लेख्नुहोस् वा अर्धकोलोन (;) ले छुट्याउनुहोस्। * लाई वाइल्डकार्डको रूपमा प्रयोग गर्नुहोस्। उदाहरण: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation/>
+            <translation>निम्न फाइलहरू (फाइल प्रकारहरू) डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation/>
+            <translation>फिल्टर समावेश गर्नुहोस्...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation/>
+            <translation>निम्न फाइलहरू (फाइल प्रकारहरू) डाउनलोड नगर्नुहोस्</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation/>
+            <translation>फिल्टर बहिष्कार गर्नुहोस्...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation/>
+            <translation>केवल यस साइटमा फाइलहरू खोज्नुहोस्</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation/>
+            <translation>भिन्न स्थानहरूमा भेटिएका दोहोरिने फाइलहरू लुकाउनुहोस्</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation/>
+            <translation>सबै मिल्ने फाइलहरू एकैपटक डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation/>
+            <translation>फाइलको साइज</translation>
         </message>
         <message>
             <source>Not less than</source>
-            <translation/>
+            <translation>भन्दा कम</translation>
         </message>
         <message>
             <source>Bytes</source>
-            <translation/>
+            <translation>बाइट</translation>
         </message>
         <message>
             <source>Not more than</source>
-            <translation/>
+            <translation>भन्दा बढी</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation/>
+            <translation>केवल निम्न पथ/डोमेनहरूमा रहेका फाइलहरू डाउनलोड गर्नुहोस्:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation/>
+            <translation>वाइल्डकार्ड (*) प्रयोग गर्नुहोस्। प्रत्येक पङ्क्तिमा एक पथ वा डोमेन राख्नुहोस् वा अर्धकोलन (;) ले छुट्याउनुहोस्। उदाहरण: *.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation/>
+            <translation>निम्न पथ/डोमेनहरूमा रहेका फाइलहरू डाउनलोड नगर्नुहोस्:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation/>
+            <translation>वाइल्डकार्ड (*) प्रयोग गर्नुहोस्। प्रत्येक पङ्क्तिमा एक पथ वा डोमेन राख्नुहोस् वा अर्धकोलन (;) ले छुट्याउनुहोस्। उदाहरण: *.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
-            <translation/>
+            <translation>टिप्पणी</translation>
         </message>
         <message>
             <source>Save Project</source>
-            <translation/>
+            <translation>प्रोजेक्ट सेव गर्नुहोस्</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation/>
+            <translation>प्रोजेक्ट हटाउनुहोस्</translation>
         </message>
         <message>
             <source>&lt; Back</source>
-            <translation/>
+            <translation>← पछाडि</translation>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation/>
+            <translation>अघि &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation/>
+            <translation>अन्वेषण सुरु गर्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation/>
+            <translation>फिल्टरको नाम</translation>
         </message>
         <message>
             <source>Mask</source>
-            <translation/>
+            <translation>म्यास्क</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>थप्नुहोस्</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation/>
+            <translation>सम्पादन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>हटाउनुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ओके</translation>
         </message>
         <message>
             <source>Edit filter</source>
-            <translation/>
+            <translation>फिल्टर सम्पादन</translation>
         </message>
         <message>
             <source>New filter</source>
-            <translation/>
+            <translation>नयाँ फिल्टर</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation/>
+            <translation>श्रेणी</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation/>
+            <translation>सहेज्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation/>
+            <translation>ग्राबर प्रोजेक्ट लोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Saved projects</source>
-            <translation/>
+            <translation>सहेजेका प्रोजेक्टहरू</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ओके</translation>
         </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
         <message>
             <source>Project</source>
-            <translation/>
+            <translation>प्रोजेक्ट</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation/>
+            <translation>विकल्पहरू</translation>
         </message>
         <message>
             <source>Running</source>
-            <translation/>
+            <translation>चल्दैछ</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation/>
+            <translation>राम्रो</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation/>
+            <translation>%1 फाइलहरू भेटियो</translation>
         </message>
         <message>
             <source>%1 checked</source>
-            <translation/>
+            <translation>%1 जाँचियो</translation>
         </message>
         <message>
             <source>Exploring…</source>
-            <translation/>
+            <translation>अन्वेषण गर्दै...</translation>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation/>
+            <translation>URL स्क्यान गर्न 'Start Exploring' थिच्नुहोस्।</translation>
         </message>
         <message>
             <source>Start
 Exploring</source>
-            <translation/>
+            <translation>सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation/>
+            <translation>अन्वेषण गर्दै</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation/>
+            <translation>फाइलको नाम</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>फाइल प्रकार</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>आकार</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation/>
+            <translation>स्थिति</translation>
         </message>
         <message>
             <source>Download from</source>
-            <translation/>
+            <translation>लिंक टेक्स्ट</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation/>
+            <translation>सहेज्नुहोस्</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation/>
+            <translation>चयन गरिएको जाँच गर्नुहोस्</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation/>
+            <translation>चयन गरिएको हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Edit current project</source>
-            <translation/>
+            <translation>वर्तमान प्रोजेक्ट सम्पादन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation/>
+            <translation>सेटिङहरू</translation>
         </message>
         <message>
             <source>Stop
 Exploring</source>
-            <translation/>
+            <translation>रोक गर्नुहोस्</translation>
         </message>
         <message>
             <source>Start
 Downloading</source>
-            <translation/>
+            <translation>अन्वेषण गर्दै</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
-            <translation/>
+            <translation>सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Update
 All</source>
-            <translation/>
+            <translation>डाउनलोड गर्दै</translation>
         </message>
         <message>
             <source>Schedule
 Project</source>
-            <translation/>
+            <translation>डाउनलोडहरू</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation/>
+            <translation>अपडेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation/>
+            <translation>सबै</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation/>
+            <translation>समय तालिका</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation/>
+            <translation>प्रोजेक्ट</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation/>
+            <translation>फोल्डर हेर्ने</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation/>
+            <translation>कुनै फाइल फेला परेन</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation/>
+            <translation>← फर्क</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <translation/>
+            <translation>%1 फाइलहरू</translation>
         </message>
         <message>
             <source>%1 / %2 (filtered)</source>
-            <translation/>
+            <translation>%1 / %2 (फिल्टर)</translation>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation/>
+            <translation>चयन गरिएकाहरू डाउनलोड सूचीमा थप्नुहोस्</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
-            <translation/>
+            <translation>स्टेलर ग्राबर</translation>
         </message>
     </context>
     <context>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation/>
+            <translation>ग्राबर प्रोजेक्ट समयानुसार सेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Project:</source>
-            <translation/>
+            <translation>प्रोजेक्ट:</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation/>
+            <translation>प्रोजेक्ट समयानुसार सक्रिय गर्नुहोस्</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation/>
+            <translation>चरण १. प्रकार चयन गर्नुहोस्</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation/>
+            <translation>एकपटकको अनुसन्धान/डाउनलोड</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation/>
+            <translation>नियमित सिन्क्रनाइजेसन</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation/>
+            <translation>चरण २. क्रियाकलाप चयन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation/>
+            <translation>अनुसन्धान मात्र गर्नुहोस्</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation/>
+            <translation>साइट अनुसन्धान र मिल्ने फाइलहरू डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation/>
+            <translation>जाँच गरिएका फाइलहरू डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation/>
+            <translation>सम्पन्न भएपछि</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation/>
+            <translation>Stellar बाहिरिनुहोस्</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation/>
+            <translation>कम्प्युटर बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation/>
+            <translation>फेरि सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Sleep</source>
-            <translation/>
+            <translation>सोपना</translation>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation/>
+            <translation>होबेरनेट</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation/>
+            <translation>प्रक्रियाहरू बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation/>
+            <translation>चरण ३. समय तालिका</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation/>
+            <translation>डाउनलोड सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation/>
+            <translation>पछि</translation>
         </message>
         <message>
             <source>January</source>
-            <translation/>
+            <translation>जनवरी</translation>
         </message>
         <message>
             <source>February</source>
-            <translation/>
+            <translation>फेब्रुअरी</translation>
         </message>
         <message>
             <source>March</source>
-            <translation/>
+            <translation>मार्च</translation>
         </message>
         <message>
             <source>April</source>
-            <translation/>
+            <translation>अप्रिल</translation>
         </message>
         <message>
             <source>May</source>
-            <translation/>
+            <translation>मई</translation>
         </message>
         <message>
             <source>June</source>
-            <translation/>
+            <translation>जुन</translation>
         </message>
         <message>
             <source>July</source>
-            <translation/>
+            <translation>जुलाई</translation>
         </message>
         <message>
             <source>August</source>
-            <translation/>
+            <translation>अगस्त</translation>
         </message>
         <message>
             <source>September</source>
-            <translation/>
+            <translation>सेप्टेम्बर</translation>
         </message>
         <message>
             <source>October</source>
-            <translation/>
+            <translation>अक्टोबर</translation>
         </message>
         <message>
             <source>November</source>
-            <translation/>
+            <translation>नोभेम्बर</translation>
         </message>
         <message>
             <source>December</source>
-            <translation/>
+            <translation>डिसेम्बर</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation/>
+            <translation>दैनिक</translation>
         </message>
         <message>
             <source>Sunday</source>
-            <translation/>
+            <translation>आइतबार</translation>
         </message>
         <message>
             <source>Thursday</source>
-            <translation/>
+            <translation>बुधबार</translation>
         </message>
         <message>
             <source>Monday</source>
-            <translation/>
+            <translation>सोमबार</translation>
         </message>
         <message>
             <source>Friday</source>
-            <translation/>
+            <translation>शुक्रबार</translation>
         </message>
         <message>
             <source>Tuesday</source>
-            <translation/>
+            <translation>मंगलबार</translation>
         </message>
         <message>
             <source>Saturday</source>
-            <translation/>
+            <translation>शनिबार</translation>
         </message>
         <message>
             <source>Wednesday</source>
-            <translation/>
+            <translation>बुधबार</translation>
         </message>
         <message>
             <source>Repeat every</source>
-            <translation/>
+            <translation>प्रत्येक</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation/>
+            <translation>घण्टा</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation/>
+            <translation>मिनेट</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation/>
+            <translation>डाउनलोड रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation/>
+            <translation>नोट: स्टेलरलाई निर्धारित समयमा सिस्टम ट्रेमा चालू हुनुपर्छ।</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ठीक छ</translation>
         </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
         <message>
             <source>Settings of Stellar Grabber</source>
-            <translation/>
+            <translation>स्टेलर ग्राबरको सेटिङ</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation/>
+            <translation>एकै समयमा हेर्ने फाइलहरू (१ देखि १०)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation/>
+            <translation>एकै समयमा डाउनलोड गर्ने फाइलहरू (१ देखि १०)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation/>
+            <translation>ध्यान दिनुहोस्: यदि धेरै फाइलहरू एउटै समयमा हेर्ने वा डाउनलोड गर्ने सेटिङ गर्यो भने वेब सर्भर अनुरोध अस्वीकार गर्न सक्छ।</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation/>
+            <translation>फाइल थप्दा लिंक टेक्स्टलाई डाउनलोड विवरणको रूपमा प्रयोग गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ठीक छ</translation>
         </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation/>
+            <translation>ग्रब्बर सांख्यिकी</translation>
         </message>
         <message>
             <source>Status: %1</source>
-            <translation/>
+            <translation>स्थिति: %1</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation/>
+            <translation>निष्क्रिय</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation/>
+            <translation>वेब पृष्ठहरू प्रसोधित</translation>
         </message>
         <message>
             <source>Simple</source>
-            <translation/>
+            <translation>सरल</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation/>
+            <translation>उन्नत</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation/>
+            <translation>फाइलहरू</translation>
         </message>
         <message>
             <source>Total</source>
-            <translation/>
+            <translation>कुल</translation>
         </message>
         <message>
             <source>Explored</source>
-            <translation/>
+            <translation>अन्वेषण गरिएको</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation/>
+            <translation>मिलेको</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>डाउनलोड गरिएको</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द</translation>
         </message>
     </context>
     <context>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation/>
+            <translation>कार्यहरू</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation/>
+            <translation>URL थप्नुहोस्…</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation/>
+            <translation>SDM डाउनलोडहरू</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation/>
+            <translation>यो YouTube डाउनलोडमा लगिन कुकीहरू चाहिन्छ जस्तो देखिन्छ।</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation/>
+            <translation>ब्राउजरबाट कुकीहरू:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation/>
+            <translation>Stellar ले त्यस ब्राउजरका कुकीहरूसँग त्यही yt-dlp आइटम पुनः प्रयास गर्नेछ।</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation/>
+            <translation>डाउनलोड पुनः प्रयास गर्नुहोस्</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation/>
+            <translation>Stellar खोल्नुहोस्</translation>
         </message>
         <message>
             <source>GitHub</source>
-            <translation/>
+            <translation>GitHub</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation/>
+            <translation>गति सीमा: चालू गर्नुहोस्</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation/>
+            <translation>गति सीमा: बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation/>
+            <translation>गति सीमा सेटिङहरू…</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation/>
+            <translation>Stellar बाहिरिनुहोस्</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation/>
+            <translation>टोरन्ट फाइलहरू (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
-            <translation/>
+            <translation>सबै फाइलहरू (*)</translation>
         </message>
         <message>
             <source>Total: %1</source>
-            <translation/>
+            <translation>कुल: %1</translation>
         </message>
         <message>
             <source>Completed: %1</source>
-            <translation/>
+            <translation>सम्पन्न: %1</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation/>
+            <translation>डाउनलोड हुँदैछ: %1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation/>
+            <translation>सिरङमा: %1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
-            <translation/>
+            <translation>कुल: %1%</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>रोक</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation/>
+            <translation>फिर सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation/>
+            <translation>BitTorrent समर्थन सक्षम गर्नुहोस्?</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2534,1477 +2536,1481 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation/>
+            <translation>BitTorrent समर्थन हाल निष्क्रिय छ।</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation/>
+            <translation>टोरन्ट डाउनलोड गर्दा, तपाईंको IP ठेगाना समूहका अन्य सहयोगीहरूलाई देखिन्छ र तपाईंले एकैसाथ डाटा (सीड) पठाउनुहुन्छ।</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation/>
+            <translation>BitTorrent मार्फत साझेदारी गर्ने कुनै पनि सामग्रीको पूर्ण जिम्मेवारी तपाईंको मात्र हुन्छ। सामग्री वितरणको अधिकार तपाईंसँग छ भनी सुनिश्चित गर्नुहोस्।</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>Stellar लाई VPN नेटवर्क इन्टरफेससँग बाँध्नु र टोरन्ट प्रयोग गर्नु अघि VPN सक्रिय छ भनी जाँच गर्नु धेरै सुझाव दिइएको छ, तपाईंको IP ठेगाना सुरक्षित राख्न।</translation>
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation/>
+            <translation>फाइल “%1” डाउनलोड गर्न सकिएन।</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation/>
+            <translation>'पछि डाउनलोड गर्नुहोस्' बटन थिचेपनि, Stellar ले फाइलको भाग डाउनलोड सुरु गरिसकेको थियो। Stellar ले 'डाउनलोड फाइल जानकारी' संवाद देखाउँदा नै डाउनलोड सुरु गर्छ।</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation/>
+            <translation>स्टेलर विकल्प → ब्राउजर → डाउनलोड अन्तरception बहाल गर्नुहोस्</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation/>
+            <translation>ब्राउजर सेटिङ खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation/>
+            <translation>वर्जन %1 उपलब्ध छ</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation/>
+            <translation>अब अद्यावधिक गर्नुहोस्</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation/>
+            <translation>टोरन्ट फाइल थप्नुहोस्...</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation/>
+            <translation>ब्याच URL थप्नुहोस्...</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation/>
+            <translation>निस्कनुहोस्</translation>
         </message>
         <message>
             <source>File</source>
-            <translation/>
+            <translation>फाइल</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation/>
+            <translation>फोल्डर खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation/>
+            <translation>फाइल खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation/>
+            <translation>अब डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation/>
+            <translation>डाउनलोड रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation/>
+            <translation>हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation/>
+            <translation>फेरि डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation/>
+            <translation>.torrent निर्यात गर्नुहोस्...</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation/>
+            <translation>डाउनलोड</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation/>
+            <translation>सबै रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation/>
+            <translation>सबै रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation/>
+            <translation>सबै सम्पन्न मेटाउनुहोस्</translation>
         </message>
         <message>
             <source>Find…</source>
-            <translation/>
+            <translation>खोज्नुहोस्…</translation>
         </message>
         <message>
             <source>Find Next</source>
-            <translation/>
+            <translation>अर्को खोज्नुहोस्</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation/>
+            <translation>समय तालिका</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation/>
+            <translation>पंक्ति सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation/>
+            <translation>पंक्ति रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation/>
+            <translation>गति सीमा</translation>
         </message>
         <message>
             <source>Turn On</source>
-            <translation/>
+            <translation>चालू गर्नुहोस्</translation>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Settings…</source>
-            <translation/>
+            <translation>सेटिङ्स…</translation>
         </message>
         <message>
             <source>Options…</source>
-            <translation/>
+            <translation>विकल्प…</translation>
         </message>
         <message>
             <source>View</source>
-            <translation/>
+            <translation>हेर्नुहोस्</translation>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation/>
+            <translation>श्रेणीहरू छुपाउनुहोस्</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation/>
+            <translation>श्रेणीहरू देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation/>
+            <translation>खोज इन्जिन देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
-            <translation/>
+            <translation>RSS पढ्ने देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Statistics…</source>
-            <translation/>
+            <translation>सांख्यिकी…</translation>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation/>
+            <translation>फाइलहरू व्यवस्थित गर्नुहोस्</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation/>
+            <translation>थपने क्रम अनुसार</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation/>
+            <translation>फाइल नाम अनुसार</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation/>
+            <translation>आकार अनुसार</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation/>
+            <translation>स्थिति अनुसार</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation/>
+            <translation>बाँकी समय अनुसार</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation/>
+            <translation>ट्रांसफर दर अनुसार</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation/>
+            <translation>अन्तिम प्रयास मिति अनुसार</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation/>
+            <translation>विवरण अनुसार</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation/>
+            <translation>सहेजने पथ अनुसार</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation/>
+            <translation>Referrer</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation/>
+            <translation>Parent Web Page</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation/>
+            <translation>Columns</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation/>
+            <translation>Options</translation>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation/>
+            <translation>Preferences</translation>
         </message>
         <message>
             <source>RSS</source>
-            <translation/>
+            <translation>RSS</translation>
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation/>
+            <translation>RSS खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation/>
+            <translation>सबै फिड रिफ्रेश गर्नुहोस्</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation/>
+            <translation>सबै आइटम पढेको चिन्ह लगाउनुहोस्</translation>
         </message>
         <message>
             <source>Help</source>
-            <translation/>
+            <translation>मद्दत</translation>
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation/>
+            <translation>अपडेट जाँच गर्नुहोस्</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation/>
+            <translation>.torrent फाइल छोपेर टोरेंट मेटाडाटा खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation/>
+            <translation>खोज:</translation>
         </message>
         <message>
             <source>Find</source>
-            <translation/>
+            <translation>खोज</translation>
         </message>
         <message>
             <source>Settings ▾</source>
-            <translation/>
+            <translation>सेटिङ्स ▾</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation/>
+            <translation>खोज गर्नुहोस्:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation/>
+            <translation>फाइलको नाम वा भाग</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>विवरण</translation>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation/>
+            <translation>URL / रेफरर / माता-पिताको वेब पृष्ठ</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation/>
+            <translation>केस मेल</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation/>
+            <translation>पूर्ण स्ट्रिङ मात्र मेल</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation/>
+            <translation>साइडबार बायाँमा लैजानुहोस्</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation/>
+            <translation>साइडबार दायाँमा लैजानुहोस्</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation/>
+            <translation>साइडबारको चौडाइ रिसेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>About Stellar</source>
-            <translation/>
+            <translation>स्टेलरको बारेमा</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation/>
+            <translation>ब्राउजर इन्टिग्रेसन</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation/>
+            <translation>ब्राउजर एक्सटर्नसन्स…</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation/>
+            <translation>ब्राउजर सेटिङ्स…</translation>
         </message>
         <message>
             <source>Stellar</source>
-            <translation/>
+            <translation>स्टेलर</translation>
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation/>
+            <translation>ब्राउजर कुकी आवश्यक छ</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation/>
+            <translation>टोरेंट फाइल थप्नुहोस्</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation/>
+            <translation>टोरेंट फाइल निर्यात गर्नुहोस्</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation/>
+            <translation>च्यानल डाउनलोड प्रगति</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation/>
+            <translation>पछि डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation/>
+            <translation>फाइल अब उपलब्ध छैन</translation>
         </message>
         <message>
             <source>Quick Update</source>
-            <translation/>
+            <translation>त्वरित अद्यावधिक</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation/>
+            <translation>स्टेलर डाउनलोड म्यानेजर</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation/>
+            <translation>स्टेलर ↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation/>
+            <translation>स्टेलर डाउनलोड म्यानेजरको नयाँ संस्करण उपलब्ध छ</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation/>
+            <translation>स्टेलरमा के नयाँ छ</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation/>
+            <translation>सिराङ छान्नुहोस्</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation/>
+            <translation>फाइलहरू सिराङमा राख्नुहोस्?</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation/>
+            <translation>अस्तित्वमा रहेको सिराङ छान्नुहोस् वा नयाँ बनाउनुहोस्</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation/>
+            <translation>सिराङ</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation/>
+            <translation>सिराङ प्रक्रिया सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation/>
+            <translation>फेरि सोध्नु हुँदैन</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation/>
+            <translation>सिरमा थप्नु हुँदैन</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ठीक छ</translation>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation/>
+            <translation>सिरको नाम प्रविष्ट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Create</source>
-            <translation/>
+            <translation>सर्ज गर्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation/>
+            <translation>(पूर्वनिर्धारित)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation/>
+            <translation>डाउनलोड नियमहरू</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>थप्नुहोस्</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation/>
+            <translation>हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation/>
+            <translation>'थप्नुहोस्' बटनमा क्लिक गरेर डाउनलोड नियम बनाउनुहोस्</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation/>
+            <translation>नियमको नाम</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation/>
+            <translation>सक्रिय</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation/>
+            <translation>फिल्टर नियमहरू</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation/>
+            <translation>साधारण अभिव्यक्तिहरू प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation/>
+            <translation>१. अनिवार्य रूपरेखा</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation/>
+            <translation>२. नियमको ढाँचा</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation/>
+            <translation>३. मुख्य शब्द १ मुख्य शब्द २ | मुख्य शब्द ३</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation/>
+            <translation>४. अनिवार्य नहुने: </translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation/>
+            <translation>५. मुख्य शब्द १ मुख्य शब्द २</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation/>
+            <translation>६. एपिसोड फिल्टर:</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation/>
+            <translation>७. उदाहरण: १x०१-१x२४ वा २x०१;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation/>
+            <translation>८. स्मार्ट एपिसोड फिल्टर प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation/>
+            <translation>९. पहिलो नियमले मिल्ने एपिसोडहरू छुट्याउँछ</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation/>
+            <translation>१०. पछि मिल्नेहरूलाई नजरअन्दाज गर्नुहोस्</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation/>
+            <translation>११. दिनहरू (० = अक्षम)</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation/>
+            <translation>१२. डाउनलोड सेटिङहरू</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation/>
+            <translation>१३. यहाँ सहेउनुहोस्:</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation/>
+            <translation>१४. डिफोल्थ राहलाई प्रयोग गर्न खाली राख्नुहोस्</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation/>
+            <translation>१५. ब्राउज...</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation/>
+            <translation>श्रेणी</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation/>
+            <translation>सिर</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation/>
+            <translation>टोररेन्ट शेयर सीमाहरू</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation/>
+            <translation>रेशियो</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation/>
+            <translation>पूर्वनिर्धारित</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation/>
+            <translation>असीमित</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation/>
+            <translation>सेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Seeding time</source>
-            <translation/>
+            <translation>बिउ समय</translation>
         </message>
         <message>
             <source>min</source>
-            <translation/>
+            <translation>मिनिट</translation>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation/>
+            <translation>निष्क्रिय बिउ समय</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation/>
+            <translation>'पूर्वनिर्धारित' सेटिङ्स → टोररेन्ट्समा सेट गरिएका वैश्विक शेयर सीमाहरू प्रयोग गर्छ।</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ठीक छ</translation>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation/>
+            <translation>RSS स्वचालित डाउनलोड नियमहरू</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation/>
+            <translation>शीर्षक</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation/>
+            <translation>फिड</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation/>
+            <translation>मिति</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation/>
+            <translation>फिड खोल्ने</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation/>
+            <translation>फ्रेश</translation>
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation/>
+            <translation>नाम परिवर्तन/सम्पादन...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation/>
+            <translation>सबस्क्रिप्शन हटाउने</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation/>
+            <translation>टोरन्ट डाउनलोड</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>डाउनलोड</translation>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation/>
+            <translation>ब्राउजरमा खोल्ने</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation/>
+            <translation>लिंक प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation/>
+            <translation>पढाएको चिन्ह लगाउनुहोस्</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation/>
+            <translation>पढाइएको नलागो</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation/>
+            <translation>सबै पढाएको चिन्ह लगाउनुहोस्</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>नाम</translation>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation/>
+            <translation>कस्टम नाम (वैकल्पिक)</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation/>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation/>
+            <translation>संरक्षित गर्नुहोस्</translation>
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation/>
+            <translation>RSS वा Atom फिड URL थप्नुहोस्...</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>थप्नुहोस्</translation>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation/>
+            <translation>पुनः ताजा गर्दै...</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation/>
+            <translation>सम्पादन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation/>
+            <translation>हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation/>
+            <translation>डाउनलोड नियमहरू</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation/>
+            <translation>सदस्यताहरू</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation/>
+            <translation>नामहीन</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation/>
+            <translation>एक लेख छान्नुहोस्</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation/>
+            <translation>खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation/>
+            <translation>पढेको चिन्ह लगाउनुहोस्</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation/>
+            <translation>पढेको नचिन्ह लगाउनुहोस्</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation/>
+            <translation>१. लेखको सारांश हेर्न</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation/>
+            <translation>२. कुनै पनि सारांश उपलब्ध छैन</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation/>
+            <translation>३. %1 पढ्नुपर्ने · %2 वस्तुहरू</translation>
         </message>
         <message>
             <source>%1 items</source>
-            <translation/>
+            <translation>४. %1 वस्तुहरू</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation/>
+            <translation>५. RSS फिडहरू</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation/>
+            <translation>६. सदस्यता सम्पादन गर्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation/>
+            <translation>७. क्वीजहरू</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation/>
+            <translation>८. नयाँ क्वीज</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>९. हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Schedule</source>
-            <translation/>
+            <translation>१०. समय तालिका</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation/>
+            <translation>११. क्वीजमा रहेका फाइलहरू</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation/>
+            <translation>१२. एकपटक डाउनलोड</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation/>
+            <translation>१३. नियमित सिन्क्रनाइजेसन</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation/>
+            <translation>१४. Stellar सुरु हुँदा डाउनलोड सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation/>
+            <translation>१५. डाउनलोड सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation/>
+            <translation>एकपटक</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation/>
+            <translation>दैनिक</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation/>
+            <translation>प्रति</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation/>
+            <translation>घण्टा</translation>
         </message>
         <message>
             <source>min</source>
-            <translation/>
+            <translation>मिनेट</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation/>
+            <translation>डाउनलोड रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation/>
+            <translation>प्रति फाइल पुनः प्रयासहरू</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation/>
+            <translation>समाप्त भएपछि निम्न फाइल खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation/>
+            <translation>समाप्त भएपछि Stellar बाहिर निस्कनुहोस्</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation/>
+            <translation>समाप्त भएपछि कम्प्युटर बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation/>
+            <translation>प्रक्रियाहरूलाई बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>डाउनलोड</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation/>
+            <translation>फाइलहरू</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation/>
+            <translation>फाइल नाम</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>आकार</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>स्थिति</translation>
         </message>
         <message>
             <source>Time Left</source>
-            <translation/>
+            <translation>बेँचिने समय</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation/>
+            <translation>कोच छैन</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation/>
+            <translation>फाइलहरू छैनन्</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation/>
+            <translation>डाउनलोड सीमा</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation/>
+            <translation>डाउनलोड नगर्नुहोस्</translation>
         </message>
         <message>
             <source>MBytes</source>
-            <translation/>
+            <translation>एमबी</translation>
         </message>
         <message>
             <source>every</source>
-            <translation/>
+            <translation>प्रति</translation>
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation/>
+            <translation>डाउनलोड रोक्नु अघि चेतावनी देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Start now</source>
-            <translation/>
+            <translation>अब सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation/>
+            <translation>प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation/>
+            <translation>नयाँ कोचको नाम लेख्नुहोस्</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation/>
+            <translation>कोचको नाम</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>समाप्त</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation/>
+            <translation>समय तालिका</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation/>
+            <translation>नयाँ श्रेणी</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation/>
+            <translation>समाप्तमा खोल्न फाइल छान्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>SettingsDialog</name>
         <message>
             <source>Connection</source>
-            <translation/>
+            <translation>सम्पर्क</translation>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation/>
+            <translation>अधिकतम समान्तर डाउनलोड:</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation/>
+            <translation>डाउनलोड प्रति खण्डहरू:</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation/>
+            <translation>सम्पर्क समय सीमा (सेकेन्ड):</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation/>
+            <translation>असफल डाउनलोड पुनः प्रयास गर्नुहोस्:</translation>
         </message>
         <message>
             <source>times</source>
-            <translation/>
+            <translation>पटकहरू</translation>
         </message>
         <message>
             <source>User Agent</source>
-            <translation/>
+            <translation>उपयोगकर्ता एजेन्ट</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation/>
+            <translation>कस्टम उपयोगकर्ता एजेन्ट प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Proxy</source>
-            <translation/>
+            <translation>प्रोक्सी</translation>
         </message>
         <message>
             <source>No proxy</source>
-            <translation/>
+            <translation>कुनै प्रोक्सी छैन</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation/>
+            <translation>सिस्टम प्रोक्सी प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation/>
+            <translation>HTTP / HTTPS प्रोक्सी</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation/>
+            <translation>SOCKS5 प्रोक्सी</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation/>
+            <translation>होस्ट:</translation>
         </message>
         <message>
             <source>Port:</source>
-            <translation/>
+            <translation>पोर्ट:</translation>
         </message>
         <message>
             <source>Username:</source>
-            <translation/>
+            <translation>प्रयोगकर्ता:</translation>
         </message>
         <message>
             <source>Password:</source>
-            <translation/>
+            <translation>पासवर्ड:</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation/>
+            <translation>श्रेणीहरू</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>नाम</translation>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation/>
+            <translation>फोल्डरमा सहेउनुहोस्</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation/>
+            <translation>डाउनलोडहरू</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation/>
+            <translation>पूर्वनिर्धारित सहेउने फोल्डर:</translation>
         </message>
         <message>
             <source>Browse…</source>
-            <translation/>
+            <translation>ढुन्डोस्…</translation>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation/>
+            <translation>टोरेंटका लागि विशेष सहेउने फोल्डर:</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation/>
+            <translation>स्टेलरको अस्थायी डायरेक्टरी:</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation/>
+            <translation>तुरुन्त डाउनलोड सुरु गर्नुहोस् (फाइलको जानकारीको डायलग छुट्याउनुहोस्)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation/>
+            <translation>डाउनलोड पूरा भयो भन्ने संवाद देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation/>
+            <translation>तुरुन्त डाउनलोड सुरु गर्नुहोस् र &quot;डाउनलोड फाइल जानकारी&quot; संवाद देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation/>
+            <translation>टोरेंट मेटाडेटा डाउनलोड गर्दा स्warm मानचित्र देखाउनुहोस्।</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation/>
+            <translation>डाउनलोड पछि प्यानल देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation/>
+            <translation>ब्याच डाउनलोड डायलोग बन्द गर्दा क्यु चयन प्यानल देखाउनुहोस्।</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation/>
+            <translation>यदि एउटा दोहोरो URL थप गरियो:</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation/>
+            <translation>फाइल सूचीमा डाउनलोडमा डबल-क्लिक गर्नुहोस्:</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation/>
+            <translation>अन्तिम प्रयासको मितिको प्रारूप:</translation>
         </message>
         <message>
             <source>Time format:</source>
-            <translation/>
+            <translation>समय प्रारूप:</translation>
         </message>
         <message>
             <source>Show seconds</source>
-            <translation/>
+            <translation>सेकेन्ड देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Preview</source>
-            <translation/>
+            <translation>पूर्वदर्शन</translation>
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation/>
+            <translation>ब्राउजर एकीकरण</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation/>
+            <translation>आगामी फाइल प्रकारहरूलाई स्वचालित रूपमा डाउनलोड गर्न सुरु गर्नुहोस्:</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation/>
+            <translation>यस्ता साइटहरूबाट स्वतः डाउनलोड गर्न नदेख्नुहोस्:</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation/>
+            <translation>पत्ताको अपवादहरू</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation/>
+            <translation>यिँबाट डाउनलोड नदेखिने पत्ताहरू</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation/>
+            <translation>डाउनलोड अन्तरकृति बहाल गर्नुहोस्</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation/>
+            <translation>डाउनलोड लिंकमा क्लिक गर्दा यो कुञ्जी दबाइ राख्नुहोस् ताकि अन्तरकृति हुँदैन र ब्राउजरले डाउनलोड गर्छ</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation/>
+            <translation>गति सीमाकर्ता</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation/>
+            <translation>सम्पूर्ण गति सीमा सक्रिय गर्नुहोस्</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation/>
+            <translation>अधिकतम गति:</translation>
         </message>
         <message>
             <source>KB/s</source>
-            <translation/>
+            <translation>KB/s</translation>
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation/>
+            <translation>सम्पूर्ण अपलोड सीमा सक्रिय गर्नुहोस्</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation/>
+            <translation>अधिकतम अपलोड:</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation/>
+            <translation>Stellar सुरु हुँदा सधैं गति सीमाकर्ता चालू गर्नुहोस्</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation/>
+            <translation>गति सीमाकर्ता अनुसूचक सक्रिय गर्नुहोस्</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation/>
+            <translation>हटाउनुहोस्</translation>
         </message>
         <message>
             <source>On</source>
-            <translation/>
+            <translation>चालू</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>डाउनलोड</translation>
         </message>
         <message>
             <source>Upload</source>
-            <translation/>
+            <translation>उपलोड</translation>
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation/>
+            <translation>+ नियम थप्नुहोस्</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation/>
+            <translation>सूचनाहरू</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation/>
+            <translation>डाउनलोड सकिएपछि सूचना देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation/>
+            <translation>डाउनलोड त्रुटिमा सूचना देखाउनुहोस्</translation>
         </message>
         <message>
             <source>General</source>
-            <translation/>
+            <translation>सामान्य</translation>
         </message>
         <message>
             <source>Browser</source>
-            <translation/>
+            <translation>ब्राउजर</translation>
         </message>
         <message>
             <source>Media</source>
-            <translation/>
+            <translation>मीडिया</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation/>
+            <translation>टोरन्ट</translation>
         </message>
         <message>
             <source>Language</source>
-            <translation/>
+            <translation>भाषा</translation>
         </message>
         <message>
             <source>About</source>
-            <translation/>
+            <translation>बारेमा</translation>
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation/>
+            <translation>स्टेलरले आफ्नो निर्माण गरिएको User-Agent र हालको संस्करण प्रयोग गर्छ।</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation/>
+            <translation>यो मान ठीक त्यस्तै पठाइनेछ।</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation/>
+            <translation>माथि देखाइएको मान पूर्वनिर्धारित छ। चेकबक्स सक्रिय गरेर यसलाई सम्पादन गर्न सकिन्छ।</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation/>
+            <translation>वैकल्पिक</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation/>
+            <translation>प्रोक्सी मार्फत सबै डाउनलोड, भिडियो डाउनलोड, अपडेट जाँच र टोरन्ट पियर/ट्र्याकर कनेक्सनहरू।</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation/>
+            <translation>स्टेलरले तपाईंको OS नेटवर्क सेटिङमा सेट गरिएको प्रोक्सी प्रयोग गर्नेछ।</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation/>
+            <translation>समय सकियो — प्रोक्सीले जवाफ दिँदैन</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation/>
+            <translation>जाँच भइरहेको छ...</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation/>
+            <translation>प्रोक्सी जाँच गर्नुहोस्</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation/>
+            <translation>⚠ ब्राउजरको स्वचालित डाउनलोड सूचीमा छैन: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation/>
+            <translation>गण्नुहोस्</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation/>
+            <translation>यो त्यो कस्टम टोरन्ट फोल्डर हो जसलाई टोरन्ट मेटाडाटा डायलोगलाई कस्टम सेभ फोल्डर प्रयोग गर्दा सम्झिन्छ।</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation/>
+            <translation>डाउनलोड भएका फाइल भागहरू र मेटाडाटा यहाँ स्टोर हुन्छन्।</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation/>
+            <translation>नोट: यी सेटिङहरू 'तुरुन्त डाउनलोड सुरु गर्नुहोस्' र 'डाउनलोड पूरा भयो' डायलोग देखाउने सेटिङका लागि लागू हुँदैनन्।</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation/>
+            <translation>मलाई के गर्ने भनेर सोध्नुहोस्</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
-            <translation/>
+            <translation>नम्बर भएको फाइल नामसँग थप्नुहोस्</translation>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation/>
+            <translation>अस्तित्वमा रहेको डाउनलोडलाई ओभरराइट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation/>
+            <translation>सम्झाउनुहोस् / पूरा भयो डायलोग देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation/>
+            <translation>फाइल गुणहरूको डायलोग खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation/>
+            <translation>फाइल खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation/>
+            <translation>फोल्डर खोल्नुहोस्</translation>
         </message>
         <message>
             <source>24-hour time</source>
-            <translation/>
+            <translation>२४-घण्टा समय</translation>
         </message>
         <message>
             <source>12-hour time</source>
-            <translation/>
+            <translation>१२-घण्टा समय</translation>
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation/>
+            <translation>स्पेस वा कमा-विभाजित (केस-असंवेदनशील)</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation/>
+            <translation>स्पेस-विभाजित होस्ट प्याटर्न (वाइल्डकार्ड (*) सहयोगी)</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation/>
+            <translation>दुई पटक रद्द गरिएको डाउनलोडको लागि अपवादहरूको सूचीमा ठेगाना थप्ने संवाद देखाउनुहोस्</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation/>
+            <translation>प्रति रेख एक URL प्याटर्न (वाइल्डकार्ड (*) सहयोगी)</translation>
         </message>
         <message>
             <source>None</source>
-            <translation/>
+            <translation>कुनै पनि</translation>
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation/>
+            <translation>एक दिनको गोलीमा क्लिक गरेर टगल गर्नुहोस्; नियमहरू प्रति मिनेट मूल्याङ्कन गरिन्छ; पहिलो मेलिङ नियम जित्छ; कुनै नियम सक्रिय नभएको अवस्थामा सजेशन डाउनलोड र अपलोड सीमाहरू स्वचालित रूपमा सफा गरिन्छ</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation/>
+            <translation>सिस्टम ट्रेमा न्युनिकरण गर्नुहोस्</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation/>
+            <translation>सिस्टम ट्रेमा बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation/>
+            <translation>स्टेलरलाई सुरुवातमा सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation/>
+            <translation>निम्ति बारमा सुझावहरू देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation/>
+            <translation>स्थिति बारमा सकिएको डाउनलोडको गणना देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation/>
+            <translation>उपकरणहरू</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation/>
+            <translation>ट्रे आइकन टूलटिपमा गति देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation/>
+            <translation>शीर्षक बारमा गति देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation/>
+            <translation>स्थिति बारमा गति देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation/>
+            <translation>स्थिति बारमा अनुमानित अनलाइन प्रयोगकर्ताहरू देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation/>
+            <translation>DHT नोड-ID घनत्व प्रयोग गरेर वैश्विक BitTorrent प्रयोगकर्ताहरूको अनुमान गर्नुहोस्। विश्वास बढ्दै जान्छ जति बढी यूनिक नोड ID हेरिन्छ; स्थिति बारमा अन्त्यमा * ले अनुमान कम विश्वासयोग्य भएको जनाउँछ।</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation/>
+            <translation>स्थिति बारमा अनुपात देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation/>
+            <translation>स्थिति बारमा सार्वजनिक IP देखाउनुहोस्</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation/>
+            <translation>libtorrent मार्फत तपाईंको सार्वजनिक IP र तपाईंको सक्रिय कनेक्सन प्रकार पत्ता लगाउँछ। संकेतकमा माउस राख्दा WiFi SSID/सिग्नल वा आगमन गर्ने कनेक्सनको बारेमा चेतावनी हेर्न सकिन्छ।</translation>
         </message>
         <message>
             <source>Updates</source>
-            <translation/>
+            <translation>अपडेटहरू</translation>
         </message>
         <message>
             <source>Automatically check for updates</source>
-            <translation/>
+            <translation>अपडेटहरूको लागि स्वचालित रूपमा जाँच गर्नुहोस्</translation>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation/>
+            <translation>क्लिपबोर्ड मनिटरिङ</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation/>
+            <translation>क्लिपबोर्डमा राखिएका URL हरूलाई स्वचालित रूपमा डाउनलोड सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation/>
+            <translation>URL लाई क्लिपबोर्डमा राख्दा, Stellar ले डाउनलोड गर्न चाहनुहुन्छ कि भन्ने सोध्छ। केवल ब्राउजर › निम्न फाइल प्रकारहरू स्वचालित रूपमा डाउनलोड गर्नुहोस् तहत सूचीबद्ध फाइल प्रकारहरू मात्र लिइन्छन्।</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation/>
+            <translation>भिडियो डाउनलोडर</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation/>
+            <translation>Stellar ले yt-dlp प्रयोग गरेर YouTube, Vimeo, Twitter/X, Instagram र अन्य धेरै साइटहरूबाट भिडियो डाउनलोड गर्छ। 'Add URL' मा URL पेस्ट गर्दा फर्म्याट चयनकर्ता देखिन्छ।</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation/>
+            <translation>द्विपद अवस्था</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
-            <translation/>
+            <translation>yt-dlp अद्यावधिक गर्नुहोस्</translation>
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation/>
+            <translation>yt-dlp डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Re-check</source>
-            <translation/>
+            <translation>पुनः जाँच गर्नुहोस्</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation/>
+            <translation>ffmpeg अवस्था</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
-            <translation/>
+            <translation>ffmpeg भेटियो: %1</translation>
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation/>
+            <translation>ffmpeg भेटिएन — HD डाउनलोडहरू अगाडि मक्स (max ~480p) को प्री-मक्स गरिएका फर्म्याटहरूमा सीमित हुनेछन्</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation/>
+            <translation>FFmpeg अद्यावधिक गरिँदै...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation/>
+            <translation>FFmpeg अद्यावधिक गर्नुहोस्</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation/>
+            <translation>ffmpeg प्राप्त गर्नुहोस् (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation/>
+            <translation>भिडियो र ध्वनी स्ट्रिमहरूलाई MP4/MKV मा मर्ज गर्न ffmpeg आवश्यक छ। यस बिना, YouTube डाउनलोडहरू एउटा प्री-मक्स गरिएको स्ट्रिम (आमतौका WebM, max 480p) मा फर्कन्छन्।
+
+समाधान: gyan.dev/ffmpeg/builds बाट ffmpeg डाउनलोड गर्नुहोस् (Essentials build), bin/ फोल्डरबाट ffmpeg.exe निकाल्नुहोस् र yt-dlp.exe को एउटै फोल्डरमा राख्नुहोस्। त्यसपछि माथि 'Re-check' बटन क्लिक गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation/>
+            <translation>कस्टम द्विपद पथ</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation/>
+            <translation>बन्डल द्विपद प्रयोग गर्न खाली राख्नुहोस् (सिफारिस गरिएको)। आफ्नो yt-dlp एक्जेक्युटेबलको पूर्ण पथ सेट गर्नुहोस् यदि तपाईं विशिष्ट संस्करण प्रयोग गर्न चाहनुहुन्छ भने।</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation/>
+            <translation>(auto - bundled/system yt-dlp)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation/>
+            <translation>JavaScript runtime</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
-            <translation/>
+            <translation>%1 पाइयो: %2</translation>
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation/>
+            <translation>JS runtime पाइएन्यो — YouTube n-challenge समाधान अक्षम</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation/>
+            <translation>yt-dlp ले YouTube को n-challenge (URL throttling) समाधान गर्न बाह्य JS runtime चाहिन्छ। बिना यस, YouTube डाउनलोड असफल हुन सक्छ वा केवल कम गुणस्तरको storyboard format फर्काउन सक्छ।
+
+यसमध्ये एउटा स्थापित गर्नुहोस्: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), वा QuickJS। यसलाई yt-dlp.exe को फोल्डरमा राख्नुहोस् वा system PATH मा थप्नुहोस्, त्यसपछि माथि yt-dlp स्थिति खण्डमा Re-check क्लिक गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation/>
+            <translation>Auto-detected runtime path ओभराइड गर्नुहोस्। खाली छोड्नुहोस् auto-detection प्रयोग गर्न (yt-dlp फोल्डर, app फोल्डर, र system PATH खोज्छ)।</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation/>
+            <translation>(PATH र yt-dlp फोल्डरबाट auto-detect)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation/>
+            <translation>Startup मा yt-dlp स्वचालित रूपमा update गर्नुहोस्</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation/>
+            <translation>सक्रिय बनाउँदा, Stellar startup मा &quot;yt-dlp -U&quot; चलाउँछ binary update राख्न। सक्रिय internet connection चाहिन्छ।</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation/>
+            <translation>Torrent Downloads</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation/>
+            <translation>BitTorrent support सक्षम गर्नुहोस्</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation/>
+            <translation>BitTorrent — Legal Notice</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4012,1554 +4018,1574 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation/>
+            <translation>Stellar एक file-sharing program हो। जब तपाईं एउटा torrent डाउनलोड गर्नुहुन्छ, तपाईंको IP address swarm मा अन्य peers को लागि दृश्य हुन्छ र तपाईं एकैसाथ data upload (seed) गर्नुहुन्छ।
+
+तपाईंले BitTorrent मार्फत साझेदारी गर्ने कुनै पनि कुरा तपाईंको पूर्ण जिम्मेवारी हो। सामग्री वितरणको अधिकार भएको सुनिश्चित गर्नुहोस्।
+
+torrent प्रयोग गर्नु अघि तपाईंको IP address प्रकट हुनबाट बच्न Stellar लाई VPN network interface बाँध्नु र VPN सक्रिय भएको पुष्टि गर्नु धेरै सुझाव दिइएको छ।</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation/>
+            <translation>म बुझ्छु, सक्षम गर्नुहोस्</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation/>
+            <translation>यी सेटिङहरू .torrent files र magnet links को लागि लागू हुन्छ।</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation/>
+            <translation>सुनेको पोर्ट</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation/>
+            <translation>सम्पूर्ण अधिकतम कनेक्शन</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation/>
+            <translation>टोरेंट प्रति अधिकतम कनेक्शन</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation/>
+            <translation>सम्पूर्ण अधिकतम अपलोड स्लट</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation/>
+            <translation>टोरेंट प्रति अधिकतम अपलोड स्लट</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation/>
+            <translation>असीमित (टोरेंट-विशिष्ट क्षेत्र र सम्पूर्ण अपलोड स्लट)</translation>
         </message>
         <message>
             <source>Protocol</source>
-            <translation/>
+            <translation>प्रोटोकल</translation>
         </message>
         <message>
             <source>TCP and μTP</source>
-            <translation/>
+            <translation>TCP र μTP</translation>
         </message>
         <message>
             <source>μTP only</source>
-            <translation/>
+            <translation>μTP मात्र</translation>
         </message>
         <message>
             <source>TCP only</source>
-            <translation/>
+            <translation>TCP मात्र</translation>
         </message>
         <message>
             <source>Port Test</source>
-            <translation/>
+            <translation>पोर्ट परीक्षण</translation>
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation/>
+            <translation>पोर्ट परीक्षण गर्दै</translation>
         </message>
         <message>
             <source>Testing...</source>
-            <translation/>
+            <translation>पोर्ट परीक्षण</translation>
         </message>
         <message>
             <source>Test Port</source>
-            <translation/>
+            <translation>नेटवर्किङ</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation/>
+            <translation>सञ्जाल</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation/>
+            <translation>उन्नत</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation/>
+            <translation>कस्टम BitTorrent User Agent</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation/>
+            <translation>नेटवर्क एडाप्टरमा बाइन्ड गर्नुहोस्</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation/>
+            <translation>यो एडाप्टर टोरेंट ट्र्याफिकका लागि लक गरिएको छ। यदि तपाईंको VPN डिस्कनेक्ट हुन्छ वा एडाप्टर हराउँछ भने, Stellar डिफोल्ट राउट प्रयोग बन्द गर्छ र तपाईंका टोरेंटहरू अर्को कनेक्सनमा लीक हुनुको सट्टा नेटवर्क पहुँच गुमाउँछन्।</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation/>
+            <translation>कुनै एडाप्टर बाइन्डिङ छैन। टोरेंट ट्र्याफिक सिस्टम राउट अनुसार जान्छ।</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation/>
+            <translation>नेटवर्क एडाप्टर बाइन्डिङले Stellar लाई चयन गरिएको एडाप्टर मार्फत मात्र टोरेंट ट्र्याफिक पठाउने र प्राप्त गर्ने भन्ने बताउँछ। यो विशेष गरी VPN प्रयोगकर्ताहरूका लागि उपयोगी छ किनभने यो VPN कनेक्ट नभएको अवस्थामा दुर्घटनासँग ट्र्याफिक लीक हुनबाट रोक्छ।</translation>
         </message>
         <message>
             <source>Torrent Security</source>
-            <translation/>
+            <translation>टोरेंट सुरक्षा</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation/>
+            <translation>म्यानुअल पेयर बानहरू तुरुन्त लागू हुन्छन्। ब्लक गरिएका user-agent सबस्ट्रिङ, ब्लक गरिएका देशहरू, र auto-ban विकल्पहरू तपाईंले Apply वा OK मा क्लिक गर्दा लागू हुन्छन्।</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation/>
+            <translation>एन्क्रिप्सन मोड</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation/>
+            <translation>एन्क्रिप्सन प्राथमिकता दिनुहोस्</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation/>
+            <translation>एन्क्रिप्सन आवश्यक पर्छ</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation/>
+            <translation>एन्क्रिप्सन अनुमति दिनुहोस्</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation/>
+            <translation>ब्लक गरिएका User Agents</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation/>
+            <translation>प्रति लाइन एउटा सबस्ट्रिङ। यदि कुनै peer client string मा माथिको कुनै लाइन समावेश छ भने, Stellar त्यो peer लाई auto-ban गर्छ जबसम्म म्याचिङ लाइन हटाइएको र सेटिङहरू लागू गरिएको हुँदैन।</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation/>
+            <translation>म्यानुअली पेयर बान गर्नुहोस्</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation/>
+            <translation>IP ठेगाना</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation/>
+            <translation>बन्</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation/>
+            <translation>बन्हरू स्थायी हुन्छन् जबसम्म तपाईं तलको बन् लिस्टबाट हटाउनु हुँदैन</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation/>
+            <translation>देश अनुसार साथीहरू ब्लक गर्नुहोस्</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation/>
+            <translation>थप्</translation>
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation/>
+            <translation>कुनै पनि ब्लक गरिएका देशहरू छैनन्</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation/>
+            <translation>Xunlei, QQ, Baidu, Xfplay, DLBT र Offline डाउनलोडरलाई स्वचालित रूपमा बन् गर्नुहोस्</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation/>
+            <translation>BitTorrent Media Player साथीलाई स्वचालित रूपमा बन् गर्नुहोस्</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation/>
+            <translation>स्वचालित रूपमा बन् गरिएका साथीहरू</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation/>
+            <translation>बन् उठाउनुहोस्</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation/>
+            <translation>सक्रिय</translation>
         </message>
         <message>
             <source>No banned peers</source>
-            <translation/>
+            <translation>कुनै पनि बन् गरिएका साथीहरू छैनन्</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation/>
+            <translation>IP-सहर डेटाबेस</translation>
         </message>
         <message>
             <source>Version</source>
-            <translation/>
+            <translation>संस्करण</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>अज्ञात</translation>
         </message>
         <message>
             <source>Path</source>
-            <translation/>
+            <translation>मार्ग</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>आकार</translation>
         </message>
         <message>
             <source>Entries</source>
-            <translation/>
+            <translation>प्रविष्टिहरू</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation/>
+            <translation>अन्तिम परिवर्तन</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation/>
+            <translation>स्थिति</translation>
         </message>
         <message>
             <source>Downloading...</source>
-            <translation/>
+            <translation>डाउनलोड हुँदैछ...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation/>
+            <translation>IP-सहर डेटाबेस अद्यावधिक गर्नुहोस्</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation/>
+            <translation>जानकारी ताजा गर्नुहोस्</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation/>
+            <translation>सांख्यिकी</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation/>
+            <translation>कुल डाउनलोड</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation/>
+            <translation>कुल अपलोड</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation/>
+            <translation>कुल साझेदारी अनुपात</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation/>
+            <translation>पूर्ण लाइसेन्स पाठहरू THIRD-PARTY-NOTICES.txt मा छन्, यो स्थापनासँग समावेश छ।</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation/>
+            <translation>RSS</translation>
         </message>
         <message>
             <source>RSS</source>
-            <translation/>
+            <translation>RSS</translation>
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation/>
+            <translation>फिड लोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation/>
+            <translation>RSS फिड लोड गर्न सक्षम गर्नुहोस्</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation/>
+            <translation>फिड रिफ्रेश अन्तराल</translation>
         </message>
         <message>
             <source>minutes</source>
-            <translation/>
+            <translation>मिनेट</translation>
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation/>
+            <translation>समान होस्ट अनुरोध ढिलाइ</translation>
         </message>
         <message>
             <source>seconds</source>
-            <translation/>
+            <translation>सेकेन्ड</translation>
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation/>
+            <translation>अधिकतम लेखहरू प्रति फिड</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation/>
+            <translation>टोरेंट स्वचालित डाउनलोडर</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation/>
+            <translation>RSS टोरेंट स्वचालित डाउनलोड गर्न सक्षम गर्नुहोस्</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation/>
+            <translation>स्वचालित डाउनलोड नियम सम्पादन...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation/>
+            <translation>स्मार्ट एपिसोड फिल्टर</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation/>
+            <translation>REPACK/PROPER एपिसोड डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation/>
+            <translation>एपिसोड पहिचान प्याटर्नहरू (प्रति लाइन एक):</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation/>
+            <translation>सम्बन्धहरू</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation/>
+            <translation>RSS फिड लोडिङ र स्वचालित टोरेंट डाउनलोड नियम सेटिङ गर्नुहोस्।</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation/>
+            <translation>मौसम/एपिसोड नम्बर निकाल्न यी नियमित अभिव्यक्तिलाई प्रयोग गरिन्छ।</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation/>
+            <translation>Stellar लाई .torrent फाइल र magnet लिंकको डिफ़ोल्ट एप बनाउनुहोस्। Windows 10/11 मा, बटनमा क्लिक गर्नुहोस् र खोल्ने Windows डिफ़ोल्ट एप सेटिङ्स पृष्ठमा परिवर्तनलाई पुष्टि गर्नुहोस्।</translation>
         </message>
         <message>
             <source>.torrent files</source>
-            <translation/>
+            <translation>.torrent फाइलहरू</translation>
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation/>
+            <translation>Stellar द्वारा हालै व्यवस्थापित</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation/>
+            <translation>Stellar हालको डिफ़ोल्ट होइन</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation/>
+            <translation>.torrent डिफ़ोल्ट सेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation/>
+            <translation>स्थिति ताजा गर्नुहोस्</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation/>
+            <translation>magnet: लिंकहरू</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation/>
+            <translation>Magnet डिफ़ोल्ट सेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation/>
+            <translation>यदि तपाईंको डेस्कटप वातावरणले एप-स्तरीय सम्बन्धलाई ओभरराइड गर्छ भने, परिवर्तन लागू भएपछि स्थिति ताजा गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation/>
+            <translation>इन्टरफेस भाषा</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation/>
+            <translation>Stellar इन्टरफेसमा प्रयोग हुने भाषा छान्नुहोस्। सबै पाठ अपडेट हुन पुनःसुरु आवश्यक छ।</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation/>
+            <translation>भाषा:</translation>
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation/>
+            <translation>भाषा परिवर्तन पछि पुनःसुरु आवश्यक छ।</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>पुनःसुरु आवश्यक</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>भाषा परिवर्तन लागू हुन पुन: सुरु गर्नुपर्छ। अब पुन: सुरु गर्नुहोस्?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>अब पुन: सुरु गर्नुहोस्</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>पछि</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation/>
+            <translation>अपडेट जाँच गर्नुहोस्</translation>
         </message>
         <message>
             <source>What's New</source>
-            <translation/>
+            <translation>नयाँ केही</translation>
         </message>
         <message>
             <source>Build date</source>
-            <translation/>
+            <translation>निर्माण मिति</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation/>
+            <translation>Qt संस्करण</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation/>
+            <translation>प्लेटफर्म</translation>
         </message>
         <message>
             <source>Windows</source>
-            <translation/>
+            <translation>Windows</translation>
         </message>
         <message>
             <source>Linux</source>
-            <translation/>
+            <translation>Linux</translation>
         </message>
         <message>
             <source>macOS</source>
-            <translation/>
+            <translation>macOS</translation>
         </message>
         <message>
             <source>GNU GPL v3.0</source>
-            <translation/>
+            <translation>GNU GPL v3.0</translation>
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation/>
+            <translation>Stellar स्वतन्त्र सफ्टवेयर हो: तपाईं GNU General Public License, संस्करण 3 को शर्तहरूमा यसलाई पुन: वितरण गर्न सक्नुहुन्छ र/वा परिवर्तन गर्न सक्नुहुन्छ।</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation/>
+            <translation>तिनौं-पक्षको सफ्टवेयर</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation/>
+            <translation>लागू गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>सही</translation>
         </message>
         <message>
             <source>Default route</source>
-            <translation/>
+            <translation>डिफ़ॉल्ट राउट</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation/>
+            <translation>OS ले नेटवर्क एडाप्टर छान्ने</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation/>
+            <translation>(उपलब्ध छैन)</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation/>
+            <translation>यो एडाप्टर हालै उपलब्ध छैन। पुनः जोड्नु वा अर्को छान्नु</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation/>
+            <translation>म्यानुअल ब्यान</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation/>
+            <translation>ट्र्याकर बिना डिस्ट्रिब्युटेड ह्यास टेबल प्रयोग गरेर पेअर खोज्नुहोस्</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation/>
+            <translation>इन्टरनेट बिना स्थानीय नेटवर्कमा पेअर खोज्नुहोस्</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation/>
+            <translation>रूटरमा पोर्ट खुल्ने गरी सेटिङ गर्नुहोस् ताकि पेअर तपाईंसँग जोडिन सकुन्</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation/>
+            <translation>UPnP जस्तै Apple रूटरका लागि - दुवै सक्षम गर्नुहोस्, रूटरले समर्थन गर्ने प्रयोग हुन्छ</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation/>
+            <translation>जुडिएका पेअरहरू बीच पेअर लिस्ट साझा गर्नुहोस् ताकि ट्र्याकर बिना बढी स्रोत पाउन सकुन्</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation/>
+            <translation>Stellar अब .torrent फाइलको डिफ़ॉल्ट एप हो</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation/>
+            <translation>Stellar अब magnet लिंकको डिफ़ॉल्ट एप हो</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation/>
+            <translation>डिफ़ॉल्ट: Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation/>
+            <translation>फाइल प्रकारहरू (कमा-सेपरेट, जस्तै mp4, mkv, avi)</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation/>
+            <translation>साइटबाट स्वचालित रूपमा सज्ज गर्नुहोस् (स्पेसद्वारा छुट्याइएको, * वाइल्डकार्ड)</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation/>
+            <translation>मेलिङ साइटबाट डाउनलोड स्वचालित रूपमा यो श्रेणीमा जान्छन्</translation>
         </message>
         <message>
             <source>Rule %1</source>
-            <translation/>
+            <translation>नियम %1</translation>
         </message>
         <message>
             <source>Not found</source>
-            <translation/>
+            <translation>खुजिएन</translation>
         </message>
         <message>
             <source>Loaded</source>
-            <translation/>
+            <translation>लोड भयो</translation>
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation/>
+            <translation>उपलब्ध तर लोड गरिएको छैन</translation>
         </message>
         <message>
             <source>Source: %1</source>
-            <translation/>
+            <translation>स्रोत: %1</translation>
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation/>
+            <translation>स्रोत URL अझै कास नै छैन। update.json बाट IPtoCityDB कास गर्न Check for updates प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Version %1</source>
-            <translation/>
+            <translation>वर्जन %1</translation>
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation/>
+            <translation>अपडेट उपलब्ध: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation/>
+            <translation>स्टेलर प्राथमिकताहरू</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation/>
+            <translation>yt-dlp बाइनरी छान्नुहोस्</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation/>
+            <translation>JavaScript रनटाइम बाइनरी छान्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation/>
+            <translation>प्रोजेक्ट सम्पादन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation/>
+            <translation>प्रोजेक्ट हटाउनुहोस्</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation/>
+            <translation>श्रेणीहरू</translation>
         </message>
         <message>
             <source>All Downloads</source>
-            <translation/>
+            <translation>सबै डाउनलोड</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation/>
+            <translation>असम्पन्न</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation/>
+            <translation>सम्पन्न</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation/>
+            <translation>ग्राबर प्रोजेक्टहरू</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation/>
+            <translation>टोरन्ट</translation>
         </message>
         <message>
             <source>Queues</source>
-            <translation/>
+            <translation>सिर</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation/>
+            <translation>डाउनलोड भइरहेको</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation/>
+            <translation>सीडिङ</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation/>
+            <translation>रोकिएको</translation>
         </message>
         <message>
             <source>Active</source>
-            <translation/>
+            <translation>सक्रिय</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation/>
+            <translation>असक्रिय</translation>
         </message>
         <message>
             <source>Checking</source>
-            <translation/>
+            <translation>जाँच भइरहेको</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation/>
+            <translation>सार्न</translation>
         </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation/>
+            <translation>सांख्यिकी</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation/>
+            <translation>स्टेलर सांख्यिकी</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation/>
+            <translation>सबै समय</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation/>
+            <translation>डाउनलोड गरियो</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation/>
+            <translation>अपलोड गरियो</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation/>
+            <translation>शेयर अनुपात</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation/>
+            <translation>सञ्चालन समय</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation/>
+            <translation>स्थापना मिति</translation>
         </message>
         <message>
             <source>Startups</source>
-            <translation/>
+            <translation>प्रारम्भहरू</translation>
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation/>
+            <translation>यो सत्र</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>StatusBar</name>
         <message>
             <source>🟦 1 active</source>
-            <translation/>
+            <translation>🟦 १ सक्रिय</translation>
         </message>
         <message>
             <source>🟦 %1 active</source>
-            <translation/>
+            <translation>🟦 %1 सक्रिय</translation>
         </message>
         <message>
             <source>📄 1 download</source>
-            <translation/>
+            <translation>📄 १ डाउनलोड</translation>
         </message>
         <message>
             <source>📄 %1 downloads</source>
-            <translation/>
+            <translation>📄 %1 डाउनलोडहरू</translation>
         </message>
         <message>
             <source>🟨 1 error</source>
-            <translation/>
+            <translation>🟨 १ त्रुटि</translation>
         </message>
         <message>
             <source>🟨 %1 errors</source>
-            <translation/>
+            <translation>%1 त्रुटिहरू</translation>
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation/>
+            <translation>प्रोक्सी सक्रिय</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation/>
+            <translation>अपडेट जाँचिँदै</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation/>
+            <translation>गति सीमा</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
-            <translation/>
+            <translation>तयार</translation>
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation/>
+            <translation>१ चयन</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation/>
+            <translation>%1 चयन</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation/>
+            <translation>DHT बन्द</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation/>
+            <translation>सक्रिय (कम विश्वास)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation/>
+            <translation>सक्रिय</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation/>
+            <translation>१ मिनेटमा क्वीच सुरु हुनेछ</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation/>
+            <translation>%1 मिनेटमा क्वीच सुरु हुनेछ</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation/>
+            <translation>अनुमान गरिँदै… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
-            <translation/>
+            <translation>अर्को &gt;&gt;</translation>
         </message>
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation/>
+            <translation>कुल साझेदारी अनुपात</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation/>
+            <translation>IP प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation/>
+            <translation>सार्वजनिक IP:</translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation/>
+            <translation>सम्पर्क: इथरनेट</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation/>
+            <translation>WiFi:</translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation/>
+            <translation>सिग्नल:</translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation/>
+            <translation>सुनेको पोर्ट:</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation/>
+            <translation>कुनै आगमन सम्पर्क छैन, नेटवर्क गलत रूपमा सेट गरिएको हुन सक्छ</translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation/>
+            <translation>स्टेलर डाउनलोड म्यानेजर</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation/>
+            <translation>SDM डाउनलोडहरू</translation>
         </message>
     </context>
     <context>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation/>
+            <translation>URL थप्नुहोस्</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation/>
+            <translation>फेरि सुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation/>
+            <translation>रोक</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation/>
+            <translation>सबै रोक्नुहोस्</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation/>
+            <translation>मेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation/>
+            <translation>सम्पन्न मेटाइएको</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation/>
+            <translation>विकल्प</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation/>
+            <translation>समय तालिका</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation/>
+            <translation>शुरु गर्नुहोस्</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation/>
+            <translation>रोकौं</translation>
         </message>
         <message>
             <source>Grabber</source>
-            <translation/>
+            <translation>ग्रबर</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation/>
+            <translation>खोज इन्जिन</translation>
         </message>
         <message>
             <source>RSS</source>
-            <translation/>
+            <translation>RSS</translation>
         </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation/>
+            <translation>दुईपटक टोरेंट</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation/>
+            <translation>टोरेंट पहिले नै छ</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation/>
+            <translation>यो टोरेंट पहिले नै छ। %n नयाँ ट्र्याकर फेला परे।</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation/>
+            <translation>यो टोरेंट पहिले नै छ, ट्र्याकरहरू समान छन्।</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation/>
+            <translation>%n नयाँ ट्र्याकर</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation/>
+            <translation>… र %1 थप</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation/>
+            <translation>अस्वीकार गर्नुहोस्</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation/>
+            <translation>ट्र्याकरहरू मिलाउनुहोस्</translation>
         </message>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation/>
+            <translation>सहेज्नुहोस्</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation/>
+            <translation>अन्य नाममा सहेज्नुहोस्...</translation>
         </message>
         <message>
             <source>Category</source>
-            <translation/>
+            <translation>श्रेणी</translation>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation/>
+            <translation>कस्टम सहेज्ने फोल्डर</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation/>
+            <translation>याद राख्नुहोस्</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation/>
+            <translation>श्रेणीको फोल्डर प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation/>
+            <translation>विवरण</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation/>
+            <translation>टोरन्ट सेटिङ...</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation/>
+            <translation>पछि डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation/>
+            <translation>टोरन्ट खोल्न...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation/>
+            <translation>↓ %1 ↑ %2</translation>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation/>
+            <translation>RTT %1 %2% सम्पन्न</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation/>
+            <translation>फाइलहरू</translation>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation/>
+            <translation>%n वस्तुहरू</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>नाम</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation/>
+            <translation>प्रगति</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>आकार</translation>
         </message>
         <message>
             <source>No file information available</source>
-            <translation/>
+            <translation>कुनै फाइल जानकारी उपलब्ध छैन</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation/>
+            <translation>प्रतीक्षा</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation/>
+            <translation>वस्तुको नाम परिवर्तन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation/>
+            <translation>नयाँ फाइल वा फोल्डरको नाम प्रविष्ट गर्नुहोस्:</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation/>
+            <translation>नाम परिवर्तन</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation/>
+            <translation>नाम परिवर्तन...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation/>
+            <translation>पिअर</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation/>
+            <translation>टोरेंट खोल्दै र मेटाडेटा पढ्दै...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation/>
+            <translation>मेटाडेटा डाउनलोड गर्न पिअरहरू खोज्दै...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation/>
+            <translation>%n पिअर(s) बाट मेटाडेटा डाउनलोड गर्दै</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation/>
+            <translation>सीड</translation>
         </message>
         <message>
             <source>You</source>
-            <translation/>
+            <translation>तपाईं</translation>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation/>
+            <translation>टोरन्ट मेटाडेटा</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation/>
+            <translation>नयाँ खोजी प्लगइन स्थापित गर्नुहोस्</translation>
         </message>
         <message>
             <source>Local File</source>
-            <translation/>
+            <translation>स्थानीय फाइल</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation/>
+            <translation>वेब लिंक</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation/>
+            <translation>ठीक छ</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation/>
+            <translation>खोजी प्लगइन फाइल .py स्थानीय रूपमा छान्नुहोस् र search_plugins फोल्डरमा प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation/>
+            <translation>प्रत्यक्ष URL पेस्ट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation/>
+            <translation>खोजी प्लगइन स्थापित गर्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation/>
+            <translation>प्लगइन अक्षम बनाउनुहोस्</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation/>
+            <translation>प्लगइन सक्षम बनाउनुहोस्</translation>
         </message>
         <message>
             <source>Uninstall</source>
-            <translation/>
+            <translation>अन्स्टाल गर्नुहोस्</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation/>
+            <translation>स्थापित खोजी प्लगइनहरू</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation/>
+            <translation>फ्रिस्च गर्नुहोस्</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>अज्ञात</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation/>
+            <translation>सक्रिय</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation/>
+            <translation>निष्क्रिय</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation/>
+            <translation>नयाँ स्थापित गर्नुहोस्</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation/>
+            <translation>प्लगइन खोज्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
         <message>
             <source>Name</source>
-            <translation/>
+            <translation>नाम</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation/>
+            <translation>आकार</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation/>
+            <translation>सीडर</translation>
         </message>
         <message>
             <source>Leechers</source>
-            <translation/>
+            <translation>लीचर</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation/>
+            <translation>इन्जिन</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation/>
+            <translation>प्रकाशित मिति</translation>
         </message>
         <message>
             <source>Open Description Page</source>
-            <translation/>
+            <translation>विवरण पृष्ठ खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation/>
+            <translation>टोरन्ट डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Copy Name</source>
-            <translation/>
+            <translation>नाम प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation/>
+            <translation>म्याग्नेट लिंक प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Copy Description Page URL</source>
-            <translation/>
+            <translation>विवरण पृष्ठ URL प्रतिलिपि गर्नुहोस्</translation>
         </message>
         <message>
             <source>Searching...</source>
-            <translation/>
+            <translation>खोजि भइरहेको छ...</translation>
         </message>
         <message>
             <source>Search</source>
-            <translation/>
+            <translation>खोज</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation/>
+            <translation>अज्ञात</translation>
         </message>
         <message>
             <source>No search results yet</source>
-            <translation/>
+            <translation>खोज परिणाम अझै छैनन्</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation/>
+            <translation>खोज प्लगइनहरू</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation/>
+            <translation>टोरन्ट खोज इन्जिन</translation>
         </message>
     </context>
     <context>
         <name>TorrentSpeedLimitDialog</name>
         <message>
             <source>Torrent Settings</source>
-            <translation/>
+            <translation>टोरन्ट सेटिङहरू</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation/>
+            <translation>टोरन्ट अनुसार गति, शेयर सीमा, पेयर डिस्कभरी र डाउनलोड मोड</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation/>
+            <translation>बन्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation/>
+            <translation>प्रयोग गर्नुहोस्</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation/>
+            <translation>ब्यान्डविड्थ सीमाहरू</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation/>
+            <translation>डाउनलोड:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation/>
+            <translation>अपलोड:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation/>
+            <translation>शेयर सीमाहरू</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation/>
+            <translation>रेशियो:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation/>
+            <translation>पूर्वनिर्धारित</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation/>
+            <translation>असीमित</translation>
         </message>
         <message>
             <source>Set to</source>
-            <translation/>
+            <translation>सेट गर्नुहोस्</translation>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation/>
+            <translation>बीज समय:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation/>
+            <translation>मिनेट</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation/>
+            <translation>अक्रिय समय:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation/>
+            <translation>पिअर खोज</translation>
         </message>
         <message>
             <source>DHT</source>
-            <translation/>
+            <translation>डीएचटी</translation>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation/>
+            <translation>वितरित हैश तालिका</translation>
         </message>
         <message>
             <source>PeX</source>
-            <translation/>
+            <translation>पिअक्स</translation>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation/>
+            <translation>पिअर विनिमय</translation>
         </message>
         <message>
             <source>LSD</source>
-            <translation/>
+            <translation>एलएसडी</translation>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation/>
+            <translation>स्थानीय सेवा खोज</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation/>
+            <translation>🔒 निजी टोरेंट</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation/>
+            <translation>libtorrent ले DHT र PeX अक्षम गरिएको छ।</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation/>
+            <translation>डाउनलोड मोड</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation/>
+            <translation>क्रमिक डाउनलोड</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation/>
+            <translation>पिस्सहरू क्रममा डाउनलोड (पिस्स ० → अन्तिम)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation/>
+            <translation>पहिलो र अन्तिम पिस्सहरूलाई प्राथमिकता दिनुहोस्</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation/>
+            <translation>हेडर/फुटरलाई शुरुमा लोड गर्नुहोस्</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation/>
+            <translation>उपलब्ध फर्म्याटहरू लोड गरिरहेको छ...</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation/>
+            <translation>भिडियो जानकारी लोड गर्न असफल भयो</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation/>
+            <translation>YouTube n-challenge समाधान गर्न असफल भयो</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation/>
+            <translation>भिडियो जानकारी लोड गरिरहेको छ...</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation/>
+            <translation>भिडियो जानकारी लोड गर्न असफल भयो</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation/>
+            <translation>yt-dlp लाई URL थ्रोटलिंग चुनौती बाइपास गर्न JS runtime (Deno, Node.js, Bun, वा QuickJS) आवश्यक छ। एउटा स्थापना गर्नुहोस् र yt-dlp.exe को नजिक वा तपाईंको सिस्टम PATH मा राख्नुहोस्।</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation/>
+            <translation>कुनै runtime पत्ता लगाएन। deno.com बाट Deno (सुझावित) स्थापना गर्नुहोस्, त्यसपछि Settings → Video Downloader मा पुनः जाँच गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation/>
+            <translation>runtime पत्ता लाग्यो: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation/>
+            <translation>Deno प्राप्त गर्नुहोस्</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation/>
+            <translation>सेटिङ खोल्नुहोस्</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation/>
+            <translation>ब्राउजरबाट कुकीहरू:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation/>
+            <translation>कुकीहरू पठाउन ब्राउजर छान्नुहोस् र पुनः प्रयास गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation/>
+            <translation>पुनः प्रयास गर्नुहोस्</translation>
         </message>
         <message>
             <source>Select quality:</source>
-            <translation/>
+            <translation>गुणस्तर छान्नुहोस्:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation/>
+            <translation>साइज उपलब्ध छैन — यो गुणस्तरमा भिडियो र ध्वनी प्रवाहहरू अलग छन् र ffmpeg ले डाउनलोडपछि मिलाउँछ।</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation/>
+            <translation>च्यानल / प्लेलिस्ट</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation/>
+            <translation>सबै भिडियोहरू</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation/>
+            <translation>नयाँ</translation>
         </message>
         <message>
             <source>videos</source>
-            <translation/>
+            <translation>भिडियोहरू</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation/>
+            <translation>YouTube च्यानल URL हरूमा डिफ़ोल्ट रूपमा सबै अपलोडहरू समावेश हुन्छन्। एक ट्याब लक्षित गर्न Scope प्रयोग गर्नुहोस्।</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation/>
+            <translation>भिडियोहरू च्यानलको नाम भएको उपफोल्डरमा संचित हुनेछन्।</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation/>
+            <translation>Scope:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation/>
+            <translation>सबै अपलोडहरू</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation/>
+            <translation>वीडियोहरू</translation>
         </message>
         <message>
             <source>Shorts</source>
-            <translation/>
+            <translation>शर्ट्स</translation>
         </message>
         <message>
             <source>Live</source>
-            <translation/>
+            <translation>लाइभ</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation/>
+            <translation>उपशीर्षकहरू</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation/>
+            <translation>वीडियोसँगै उपशीर्षक फाइलहरू डाउनलोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation/>
+            <translation>भाषा:</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation/>
+            <translation>भाषा कोड(हरू), जस्तै: en · en.*, ja · सबै</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation/>
+            <translation>स्वचालित</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation/>
+            <translation>उपलब्ध भएमा स्वचालित उपशीर्षकहरू समावेश गर्नुहोस्</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation/>
+            <translation>वीडियोमा समावेश गर्नुहोस्</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation/>
+            <translation>उपशीर्षकहरू वीडियो कन्टेनरमा समावेश गर्नुहोस्</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation/>
+            <translation>mp4, mkv, वा webm आवश्यक छ</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation/>
+            <translation>थम्बनेल समावेश गर्नुहोस्</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation/>
+            <translation>ffmpeg आवश्यक छ</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation/>
+            <translation>मेटाडाटा समावेश गर्नुहोस्</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation/>
+            <translation>कन्टेनर मेटाडेटामा शीर्षक, अपलोडर, अध्यायहरू लेख्नुहोस्</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
-            <translation/>
+            <translation>सपोन्सरब्लक</translation>
         </message>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation/>
+            <translation>प्रचारित खण्डहरू, परिचय, समापन र आफैंलाई प्रचार गर्ने भागहरू हटाउनुहोस् (YouTube मात्र · ffmpeg आवश्यक)</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation/>
+            <translation>KB/s (खाली = ग्लोबल स्पीड लिमिट प्रयोग गर्नुहोस्)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation/>
+            <translation>च्यानल डाउनलोड</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation/>
+            <translation>डाउनलोड</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation/>
+            <translation>अवधि</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation/>
+            <translation>मिति फिल्टर</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation/>
+            <translation>कुकीहरू</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation/>
+            <translation>आर्काइभ</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation/>
+            <translation>अध्यायहरू विभाजित गर्नुहोस्</translation>
         </message>
         <message>
             <source>time range</source>
-            <translation/>
+            <translation>समय सीमा</translation>
         </message>
         <message>
             <source>extra files</source>
-            <translation/>
+            <translation>अतिरिक्त फाइलहरू</translation>
         </message>
         <message>
             <source>random</source>
-            <translation/>
+            <translation>र्यान्डम</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation/>
+            <translation>लाइभ सुरु</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation/>
+            <translation>रेट लिमिट</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation/>
+            <translation>तारीख पछि:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation/>
+            <translation>यो तारीख वा त्यसपछि अपलोड भएका भिडियो मात्र</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation/>
+            <translation>कुकीहरू:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation/>
+            <translation>सदस्य-मैत्री/उमेर-सीमित सामग्रीका लागि कुकीहरू लोड गर्नुहोस्</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation/>
+            <translation>रेट लिमिट:</translation>
         </message>
         <message>
             <source>Time range:</source>
-            <translation/>
+            <translation>समयको दायरा:</translation>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
-            <translation/>
+            <translation>केवल यो खण्ड डाउनलोड गर्नुहोस्, जस्तै *01:30-03:00</translation>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation/>
+            <translation>सुचारु डाउनलोड गरिसकेका</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation/>
+            <translation>अध्याय अनुसार विभाजन गर्नुहोस्</translation>
         </message>
         <message>
             <source>Save description</source>
-            <translation/>
+            <translation>विवरण सहेनुहोस्</translation>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation/>
+            <translation>थम्बनेल सहेनुहोस्</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation/>
+            <translation>प्लेलिस्ट मिस्रज गर्नुहोस्</translation>
         </message>
         <message>
             <source>Live: from start</source>
-            <translation/>
+            <translation>लाइभ: सुरुवातबाट</translation>
         </message>
         <message>
             <source>Save to:</source>
-            <translation/>
+            <translation>सहेर राख्नुहोस्:</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation/>
+            <translation>श्रेणी</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation/>
+            <translation>फारमेट</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation/>
+            <translation>रद्द गर्नुहोस्</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation/>
+            <translation>भिडियो डाउनलोड गर्नुहोस्</translation>
         </message>
     </context>
 </TS>

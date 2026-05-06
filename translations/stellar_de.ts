@@ -4397,6 +4397,22 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <translation>Nach dem Ändern der Sprache ist ein Neustart erforderlich.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Neustart erforderlich</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Ein Neustart ist erforderlich, damit die Sprachänderung wirksam wird. Jetzt neu starten?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Jetzt neu starten</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Später</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Auf Updates prüfen</translation>
         </message>

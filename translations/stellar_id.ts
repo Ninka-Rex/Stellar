@@ -4395,6 +4395,22 @@ Sangat disarankan untuk mengikat Stellar ke antarmuka jaringan VPN dan memverifi
             <translation>Diperlukan restart setelah mengubah bahasa.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Diperlukan Mulai Ulang</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Mulai ulang sekarang agar perubahan bahasa berlaku?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Mulai Ulang Sekarang</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Nanti</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Periksa pembaruan</translation>
         </message>

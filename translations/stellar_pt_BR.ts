@@ -4398,6 +4398,22 @@ Recomenda-se fortemente vincular o Stellar a uma interface de rede VPN e verific
             <translation>É necessário reiniciar após alterar o idioma.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Reinício necessário</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>É necessário reiniciar para aplicar o idioma. Reiniciar agora?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Reiniciar agora</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Depois</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Verificar atualizações</translation>
         </message>

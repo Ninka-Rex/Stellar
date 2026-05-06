@@ -16669,17 +16669,45 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             
         
             <source>A restart is required after changing the language.</source>
-            
-        
+
+
             <translation></translation>
-            
-    
+
+
         </message>
-        
-    
+
+
         <message>
-            
-        
+            <location filename="../app/qml/SettingsDialog.qml" line="0"/>
+            <source>Restart Required</source>
+            <translation></translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/SettingsDialog.qml" line="0"/>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation></translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/SettingsDialog.qml" line="0"/>
+            <source>Restart Now</source>
+            <translation></translation>
+        </message>
+
+
+        <message>
+            <location filename="../app/qml/SettingsDialog.qml" line="0"/>
+            <source>Later</source>
+            <translation></translation>
+        </message>
+
+
+        <message>
+
+
             <location filename="../app/qml/SettingsDialog.qml" line="4195"/>
             
         

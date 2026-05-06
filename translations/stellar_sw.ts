@@ -3244,7 +3244,7 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>%1 items</source>
-            <translation>%n vitu</translation>
+            <translation>Vipengee %1</translation>
         </message>
         <message>
             <source>RSS Feeds</source>
@@ -3442,15 +3442,15 @@ Stellar Options → Browser → Bypass Download Interception</source>
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation>Kupakia zaidi: %n</translation>
+            <translation>Upakuaji wa juu kwa wakati mmoja:</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation>Sehemu kwa kupakia: %n</translation>
+            <translation>Sehemu kwa kila upakuaji:</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation>Kupotea kwa uhusiano (s: %n)</translation>
+            <translation>Muda wa kuisha kwa muunganisho (sekunde):</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
@@ -4385,6 +4385,22 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
         <message>
             <source>A restart is required after changing the language.</source>
             <translation>Inahitaji kuanzishwa tena baada ya kubadilisha lugha.</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Kuanzisha Upya Kunahitajika</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Kuanzisha upya kunahitajika ili mabadiliko ya lugha yaanze kutumika. Anzisha upya sasa?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Anzisha Upya Sasa</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Baadaye</translation>
         </message>
         <message>
             <source>Check for updates</source>

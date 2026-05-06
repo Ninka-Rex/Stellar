@@ -4,11 +4,11 @@
         <name>AddExceptionDialog</name>
         <message>
             <source>Add to Address Exceptions?</source>
-            <translation>ئادرەس خاتالىرىغا قوشۇش؟</translation>
+            <translation>ئادرېس ئەھۋالىغا قوشامسىز؟</translation>
         </message>
         <message>
             <source>This address was cancelled twice. Do you want to add it to the list of exceptions so Stellar will never intercept it automatically?</source>
-            <translation>بۇ ئادرەس ئىككى قېتىم بىكار قىلىندى. ئۇنى خاتالىق تىزىملىكىغا قوشىمۇ؟ Stellar ئاپتوماتىك ئۇنى تەسۋىرگە ئېلىۋېتىشىنىڭ ئالدىنى ئېلىش ئۈچۈن.</translation>
+            <translation>بۇ ئادرېس ئىككى قېتىم ئەمەلدىن قالدۇرۇلدى. ئۇنى ئەھۋال تىزىملىكىگە قوشۇپ، Stellar ئۇنى ئاپتوماتىك توسۇپ قالماسلىقىنى خالامسىز؟</translation>
         </message>
         <message>
             <source>No</source>
@@ -16,11 +16,11 @@
         </message>
         <message>
             <source>Add Exception</source>
-            <translation>خاتالىق قوشۇش</translation>
+            <translation>ئەھۋال قوش</translation>
         </message>
         <message>
             <source>Add Address Exception</source>
-            <translation>ئادرەس خاتالىقىنى قوشۇش</translation>
+            <translation>ئادرېس ئەھۋالى قوش</translation>
         </message>
     </context>
     <context>
@@ -31,7 +31,7 @@
         </message>
         <message>
             <source>Use Authorization</source>
-            <translation>ئىجازەت ئىشلىتىش</translation>
+            <translation>ھوقۇق ئىشلەت</translation>
         </message>
         <message>
             <source>Login</source>
@@ -43,58 +43,62 @@
         </message>
         <message>
             <source>Cancel</source>
-            <translation>بىكار قىلىش</translation>
+            <translation>بىكار</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>يېڭى</translation>
+            <translation>1. ماۋۇ</translation>
         </message>
         <message>
             <source>Add URL</source>
-            <translation>URL قوشۇش</translation>
+            <translation>2. URL قوشۇش</translation>
         </message>
     </context>
     <context>
         <name>AppController</name>
         <message>
             <source>Stellar Download Manager v</source>
-            <translation>Stellar تۆۋەنلىتىش مۇديتورى v</translation>
+            <translation>3. Stellar چۈشۈرۈش باشقۇرغۇچى v</translation>
         </message>
         <message>
             <source>
 Down: %1  Up: %2</source>
-            <translation>تۆۋەن: %1  يۇقىرى: %2</translation>
+            <translation>4. 
+↓: %1  ↑: %2</translation>
         </message>
         <message>
             <source>
 Downloading: %1</source>
-            <translation>تۆۋەنلىتىۋاتىدۇ: %1</translation>
+            <translation>5. 
+چۈشۈرۈۋاتىدۇ: %1</translation>
         </message>
         <message>
             <source>  Seeding: %1</source>
-            <translation>ئۇرۇش: %1</translation>
+            <translation>6.   تارقىتىۋاتىدۇ: %1</translation>
         </message>
         <message>
             <source>
 Seeding: %1</source>
-            <translation>ئۇرۇش: %1</translation>
+            <translation>7. 
+تارقىتىۋاتىدۇ: %1</translation>
         </message>
         <message>
             <source>  Total: %1</source>
-            <translation>جەمئىي: %1</translation>
+            <translation>8.   جەمئىي: %1</translation>
         </message>
         <message>
             <source>
 Total: %1</source>
-            <translation>جەمئىي: %1</translation>
+            <translation>9. 
+جەمئىي: %1</translation>
         </message>
         <message>
             <source>Stellar is shutting down...</source>
-            <translation>Stellar ئۆچۈپ كېتىۋاتىدۇ...</translation>
+            <translation>10. Stellar تاقىلىۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Stellar is starting up...</source>
-            <translation>Stellar باشلىنىۋاتىدۇ...</translation>
+            <translation>Stellar قوزغىلىۋاتىدۇ...</translation>
         </message>
         <message>
             <source>🛡️ Bound to %1</source>
@@ -105,11 +109,11 @@ Total: %1</source>
         <name>BatchDownloadDialog</name>
         <message>
             <source>Batch Download</source>
-            <translation>تەركىمە ئېلىش</translation>
+            <translation>تۈركۈملەپ چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Generate the links here, then continue to the review step.</source>
-            <translation>بۇ يەردە ئۇلىنىشلارنى ھاسىل قىلىڭ، ئاندىن باھالىش باسقۇچىغا ئۆتىڭ.</translation>
+            <translation>ئۇلىنىشلارنى بۇ يەردە ھاسىللاڭ، ئاندىن تەكشۈرۈش باسقۇچىغا داۋاملاشتۇرۇڭ.</translation>
         </message>
         <message>
             <source>Address:</source>
@@ -117,7 +121,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Replace asterisk with</source>
-            <translation>يۇلتۇزچىنى ئالماشتۇرۇڭ</translation>
+            <translation>يۇلتۇز بەلگىنى ئالماشتۇر</translation>
         </message>
         <message>
             <source>Numbers</source>
@@ -129,15 +133,15 @@ Total: %1</source>
         </message>
         <message>
             <source>From:</source>
-            <translation>ئىلگىرى:</translation>
+            <translation>باشلىنىش:</translation>
         </message>
         <message>
             <source>To:</source>
-            <translation>كېيىنكى:</translation>
+            <translation>ئاخىرلىشىش:</translation>
         </message>
         <message>
             <source>Wildcard size:</source>
-            <translation>يۇلتۇزچە چوڭلۇق</translation>
+            <translation>Wildcard چوڭلۇقى:</translation>
         </message>
         <message>
             <source>Preview</source>
@@ -157,22 +161,22 @@ Total: %1</source>
         </message>
         <message>
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
-            <translation>بۇ يۈكلەشلەرنى باشلىغاندىن بۇرۇن بىر گۇرۇپپا قىلىش ئۈچۈن، «تەييار» دىن كېيىن قاتار باسقۇچىنى ئىشلىتىڭ</translation>
+            <translation>چۈشۈرۈشلەر باشلىنىشتىن بۇرۇن گۇرۇپپىلانسۇن دېسىڭىز، OK دىن كېيىن نۆۋەت قەدىمىنى ئىشلىتىڭ.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىرىش</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەييار</translation>
+            <translation>جەزملەش</translation>
         </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
         <message>
             <source>File name</source>
-            <translation>فائىل ئىسمى</translation>
+            <translation>ھۆججەت ئاتى</translation>
         </message>
         <message>
             <source>Size</source>
@@ -184,46 +188,46 @@ Total: %1</source>
         </message>
         <message>
             <source>Review links before adding them. Columns can be sorted, resized, and dragged to reorder.</source>
-            <translation>قوشۇشتىن بۇرۇن ئالاقىلىرىنى تەكشۈرۈڭ. ئۇچۇرلار تىزىملىكىنى تەرتىپكە سېلىش، چوڭ-كىچىك قىلىش ۋە ئورنىنى ئالماشتۇرۇش مۇمكىن.</translation>
+            <translation>ئۇلانمىلارنى قوشۇشتىن بۇرۇن تەكشۈرۈڭ. ئىستونلارنى رەتلەش، چوڭايتىش-كىچىكلەشتە ۋە سۆرەپ تەرتىپلەشتە بولىدۇ.</translation>
         </message>
         <message>
             <source>Replace filenames with wildcard pattern (*)</source>
-            <translation>فائىل ئاتىلىرىنى يىلتىز نۇقتىسى (*) بىلەن ئالماشتۇرۇڭ</translation>
+            <translation>ھۆججەت ئاتلىرىنى يۇلتۇز بەلگە (*) بىلەن ئالماشتۇرۇڭ</translation>
         </message>
         <message>
             <source>Files</source>
-            <translation>فائىللار</translation>
+            <translation>ھۆججەتلەر</translation>
         </message>
         <message>
             <source>Check all</source>
-            <translation>ھەممىسىنى تەكشۈرۈش</translation>
+            <translation>ھەممىنى تاللا</translation>
         </message>
         <message>
             <source>Uncheck all</source>
-            <translation>ھەممىسىنى تەكشۈرۈشتىن بۇرۇن</translation>
+            <translation>ھەممىنى تاللىما</translation>
         </message>
         <message>
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
-            <translation>پەقەت «تېپىلدى» دەپ بەلگىلەنگەن ئالاقىلارلا تاللىغىلى بولىدۇ. «تەكشۈرۈش» دىن كېيىن قاتارغا سېلىش ئىشلىنىدۇ.</translation>
+            <translation>پەقەت 'تېپىلدى' دەپ بەلگىلەنگەن ئۇلانمىلارنى تاللىغىلى بولىدۇ. ئۆچرەت تەقسىملەش جەزملەشتىن كېيىن ئېلىپ بېرىلىدۇ.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ۋاسىتە</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەكشۈرۈش</translation>
+            <translation>جەزملەش</translation>
         </message>
         <message>
             <source>Batch download review</source>
-            <translation>تەكشۈرۈش</translation>
+            <translation>تۈركۈملەپ چۈشۈرۈشنى تەكشۈرۈش</translation>
         </message>
     </context>
     <context>
         <name>BrowserIntegrationDialog</name>
         <message>
             <source>Install the Stellar extension in your browser to intercept downloads and route them to Stellar automatically.</source>
-            <translation>Stellar كېڭەيتمىسىنى سىزنىڭ بۇراغىڭىزدا ئورنىتىڭ، تۆۋەنلىمىلەرنى ئۈزۈپ ئېلىش ۋە ئۇلارنى ئاپتوماتىك ھالدا Stellar غا يۆتكەش ئۈچۈن.</translation>
+            <translation>Stellar كېڭەيتىلمىسىنى تور كۆرگۈچكە قاچىلاپ، چۈشۈرۈشلەرنى تۇتۇپ ئاپتوماتىك Stellar غا يۆتكەڭ.</translation>
         </message>
         <message>
             <source>Chrome / Edge / Brave</source>
@@ -231,11 +235,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Install directly from the Chrome Web Store</source>
-            <translation>Chrome Web Store دىن بىۋاسىتە ئورنىتىڭ</translation>
+            <translation>Chrome Web Store دىن بىۋاسىتە قاچىلاڭ</translation>
         </message>
         <message>
             <source>Open Link</source>
-            <translation>لىنكىنى ئېچىڭ</translation>
+            <translation>ئۇلانمىنى ئېچىڭ</translation>
         </message>
         <message>
             <source>Firefox</source>
@@ -243,43 +247,43 @@ Total: %1</source>
         </message>
         <message>
             <source>Install Firefox XPI, no automatic updates</source>
-            <translation>Firefox XPI نى ئورنىتىڭ، ئاپتوماتىك يېڭىلانمايدۇ</translation>
+            <translation>Firefox XPI نى قاچىلاڭ، ئاپتوماتىك يېڭىلانمايدۇ</translation>
         </message>
         <message>
             <source>Native Messaging Host</source>
-            <translation>Native Messaging Host</translation>
+            <translation>يەرلىك ئۇچۇر ئالماشتۇرۇش مۇلازىمېتى</translation>
         </message>
         <message>
             <source>Stellar registers itself automatically so the extension can communicate with it.</source>
-            <translation>Stellar ئاپتوماتىك ھالدا ۋەزىپىسىنى تىزىۋالدى، شۇڭا كېڭەيتمە ئۇنىڭ بىلەن ئالاقىلىشىشقا بولىدۇ.</translation>
+            <translation>Stellar ئۆزىنى ئاپتوماتىك تىزىملاتىدۇ، شۇڭا كېڭەيتىلمە ئۇنىڭ بىلەن ئالاقىلىشالايدۇ.</translation>
         </message>
         <message>
             <source>Registered successfully.</source>
-            <translation>مۇۋەپپەقىيەتلىك تىزىلدى.</translation>
+            <translation>مۇۋەپپەقىيەتلىك تىزىملاندى.</translation>
         </message>
         <message>
             <source>Registration failed — see details below.</source>
-            <translation>تىزىش خاتالىق كەلتۈرۈپ چىقاردى — تەپسىلاتنى تۆۋەندىكىدەك كۆرۈڭ.</translation>
+            <translation>تىزىملاش مەغلۇپ بولدى — تەپسىلاتنى تۆۋەندە كۆرۈڭ.</translation>
         </message>
         <message>
             <source>Registering…</source>
-            <translation>تەييارلىنىۋاتىدۇ...</translation>
+            <translation>تىزىملىتىۋاتىدۇ…</translation>
         </message>
         <message>
             <source>Try again</source>
-            <translation>قايتا سىناش</translation>
+            <translation>قايتا سىناڭ</translation>
         </message>
         <message>
             <source>Manual installation:</source>
-            <translation>قولدا ئورنىتىش:</translation>
+            <translation>قولدا قاچىلاش:</translation>
         </message>
         <message>
             <source>Run in Command Prompt (no admin required):</source>
-            <translation>Command Prompt دا ئىشلىتىش (باشقۇرۇشچى كېرەك ئەمەس):</translation>
+            <translation>بۇيرۇق كۆزنىكىدە ئىجرا قىلىڭ (باشقۇرۇش ھوقۇقى تەلەپ قىلمايدۇ):</translation>
         </message>
         <message>
             <source>Copy</source>
-            <translation>كۆچۈرۈش</translation>
+            <translation>كۆچۈرۈڭ</translation>
         </message>
         <message>
             <source>Copied</source>
@@ -287,22 +291,22 @@ Total: %1</source>
         </message>
         <message>
             <source>Run in a terminal:</source>
-            <translation>تېرمىنالدا ئىشلىتىش:</translation>
+            <translation>تېرمىنالدا ئىجرا قىلىڭ:</translation>
         </message>
         <message>
             <source>Browser Extensions</source>
-            <translation>بۇرۇش كېڭەيتمىلىرى</translation>
+            <translation>توركۆرگۈچ كېڭەيتىلمىلىرى</translation>
         </message>
     </context>
     <context>
         <name>CategoryModel</name>
         <message>
             <source>All Downloads</source>
-            <translation>بارلىق تۆھپىلەر</translation>
+            <translation>بارلىق چۈشۈرۈشلەر</translation>
         </message>
         <message>
             <source>Video</source>
-            <translation>ۋىدېئو</translation>
+            <translation>سىن</translation>
         </message>
         <message>
             <source>Music</source>
@@ -310,112 +314,112 @@ Total: %1</source>
         </message>
         <message>
             <source>Documents</source>
-            <translation>ھۆججەتلەر</translation>
+            <translation>پۈتۈكلەر</translation>
         </message>
         <message>
             <source>Compressed</source>
-            <translation>پىششىقلانغان</translation>
+            <translation>قىسىلغان</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>دەرىجىلەر</translation>
+            <translation>پروگراممىلار</translation>
         </message>
     </context>
     <context>
         <name>ColumnsDialog</name>
         <message>
             <source>Columns</source>
-            <translation>ستونلار</translation>
+            <translation>ئىستونلار</translation>
         </message>
         <message>
             <source>Check the columns that you would like visible in this list. Use the Move Up and Move Down buttons to reorder the columns however you like.</source>
-            <translation>بۇ تىزىملىكتە كۆرۈنۈشچان بولۇشى كېرەك بولغان ستونلارنى تاللاڭ. تەرتىپنى ئۆزگەرتىش ئۈچۈن يۇقىرىغا ۋە تۆۋەنگە بېسىش تەكلىپىنى ئىشلىتىڭ.</translation>
+            <translation>بۇ تىزىملىكتە كۆرۈنىدىغان ئىستونلارنى تاللاڭ. ئىستونلارنى خالىغان تەرتىپكە كەلتۈرۈش ئۈچۈن يۇقىرىغا يۆتكەش ۋە تۆۋەنگە يۆتكەش كۇنۇپكىلىرىنى ئىشلىتىڭ.</translation>
         </message>
         <message>
             <source>Move Up</source>
-            <translation>يۇقىرىغا</translation>
+            <translation>يۇقىرىغا يۆتكەش</translation>
         </message>
         <message>
             <source>Move Down</source>
-            <translation>تۆۋەنگە</translation>
+            <translation>تۆۋەنگە يۆتكەش</translation>
         </message>
         <message>
             <source>Show</source>
-            <translation>كۆرسىتىش</translation>
+            <translation>كۆرسەت</translation>
         </message>
         <message>
             <source>Hide</source>
-            <translation>بېسىپ يوشۇرۇش</translation>
+            <translation>يوشۇر</translation>
         </message>
         <message>
             <source>Reset</source>
-            <translation>قايتۇرۇش</translation>
+            <translation>ئەسلىگە قايتۇرۇش</translation>
         </message>
         <message>
             <source>The selected column should be</source>
-            <translation>تاللانغان ستون</translation>
+            <translation>تاللانغان ئىستون</translation>
         </message>
         <message>
             <source>pixels wide</source>
-            <translation>پىكسل كەڭلىكى</translation>
+            <translation>پىكسېل كەڭلىكىدە</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>ھە</translation>
+            <translation>جەزملەش</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>يوق</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
         <message>
             <source>Confirm Delete</source>
-            <translation>ئۆچۈرۈشنى ئېتىش</translation>
+            <translation>ئۆچۈرۈشنى جەزملەش</translation>
         </message>
         <message>
             <source>Remove download?</source>
-            <translation>تارتىشنى ئۆچۈرۈش</translation>
+            <translation>چۈشۈرۈشنى ئۆچۈرەمسىز؟</translation>
         </message>
         <message>
             <source>Also delete torrent files from disk</source>
-            <translation>ھە، تارتىش ھۆججىتىنىمۇ ئۆچۈرۈش</translation>
+            <translation>توررېنت ھۆججەتلىرىنى دىسكىدىنمۇ ئۆچۈرۈش</translation>
         </message>
         <message>
             <source>Also delete file from disk</source>
-            <translation>ھە، ھۆججەتنىمۇ ئۆچۈرۈش</translation>
+            <translation>ھۆججەتنى دىسكىدىنمۇ ئۆچۈرۈش</translation>
         </message>
         <message>
             <source>Permanently delete (don't move to trash)</source>
-            <translation>مۇقىم ئۆچۈرۈش (چۆپ سەتگە يۆتكەلمەسلىك)</translation>
+            <translation>مەڭگۈلۈك ئۆچۈرۈش (ئەخلەت ساندۇقىغا يۆتكىمەستىن)</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>يەنمەۋەت</translation>
+            <translation>ۋاز كەچ</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>ئۆچۈرۈش</translation>
+            <translation>ئۆچۈر</translation>
         </message>
     </context>
     <context>
         <name>DeleteDoneConfirmDialog</name>
         <message>
             <source>Delete Completed Downloads</source>
-            <translation>تەمىنلەنگەن يۈكلەشلەرنى ئۆچۈرۈش</translation>
+            <translation>تاماملانغان چۈشۈرۈشلەرنى ئۆچۈر</translation>
         </message>
         <message>
             <source>Are you sure you want to delete all completed downloads from Stellar's list of downloads?</source>
-            <translation>بارلىق تەمىنلەنگەن يۈكلەشلەرنى Stellar نىڭ يۈكلەش رەتىدىن ئۆچۈرۈشكە كەسكىن بولسىڭىزمۇ؟</translation>
+            <translation>Stellar نىڭ چۈشۈرۈش تىزىملىكىدىكى بارلىق تاماملانغان چۈشۈرۈشلەرنى ئۆچۈرۈشكە جەزم قىلامسىز؟</translation>
         </message>
         <message>
             <source>Note: This will only remove them from the list. Files on disk will not be deleted.</source>
-            <translation>ئەسكەرتىش: بۇ پەقەت ئۇلارنى رەتتىنلا ئۆچۈرىدۇ، قاتتىق دىسكىدىكى ھۆججەتلەر ئۆچۈرۈلمەيدۇ</translation>
+            <translation>ئەسكەرتىش: بۇ ئۇلارنى پەقەت تىزىملىكتىن چىقىرىۋېتىدۇ. دىسكىدىكى ھۆججەتلەر ئۆچۈرۈلمەيدۇ.</translation>
         </message>
         <message>
             <source>Delete completed and seeding torrents</source>
-            <translation>تەمىنلەنگەن ۋە ئۇرۇشۇۋاتقان تورلارنى ئۆچۈرۈش</translation>
+            <translation>تاماملانغان ۋە تارقىتىۋاتقان توررېنتلارنى ئۆچۈر</translation>
         </message>
         <message>
             <source>Yes</source>
@@ -430,19 +434,19 @@ Total: %1</source>
         <name>DownloadCompleteDialog</name>
         <message>
             <source>Download complete</source>
-            <translation>يۈكلەش تەمىنلەندى</translation>
+            <translation>چۈشۈرۈش تاماملاندى</translation>
         </message>
         <message>
             <source>Downloaded %1 (%2 Bytes)</source>
-            <translation>%1 يۈكلەندى (%2 بايت)</translation>
+            <translation>%1 چۈشۈرۈلدى (%2 بايت)</translation>
         </message>
         <message>
             <source>Address</source>
-            <translation>ئادرەس</translation>
+            <translation>ئادرېس</translation>
         </message>
         <message>
             <source>The file saved as</source>
-            <translation>ھۆججەت ساقلىنىپ قالدى</translation>
+            <translation>ھۆججەت ساقلانغان ئورۇن</translation>
         </message>
         <message>
             <source>The file has been moved.</source>
@@ -450,82 +454,82 @@ Total: %1</source>
         </message>
         <message>
             <source>Open</source>
-            <translation>ئېچىش</translation>
+            <translation>ئاچ</translation>
         </message>
         <message>
             <source>Open with...</source>
-            <translation>بۇ بىلەن ئېچىش...</translation>
+            <translation>باشقا پروگرامما بىلەن ئاچ...</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>پولكىنى ئېچىش</translation>
+            <translation>ھۆججەت قىسقۇچنى ئاچ</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
         <message>
             <source>Don't show this dialog again</source>
-            <translation>بۇ دىئالوگنى قايتا كۆرسەتمەسلىك</translation>
+            <translation>بۇ دىئالوگنى قايتا كۆرسەتمە</translation>
         </message>
         <message>
             <source>You can re-enable this in Settings → General → Show download complete dialog</source>
-            <translation>بۇنى تەڭشەكلەردە → ئومۇمىي → تۆۋەنلىك تولۇق بولغاندا دىئالوگنى كۆرسىتىش ئارقىلىق قايتا ئاكتىپلاشقا بولىدۇ</translation>
+            <translation>تەڭشەكلەر ← ئادەتتىكى ← چۈشۈرۈش تاماملانغان دىئالوگنى كۆرسەت ئارقىلىق قايتا قوزغىتالايسىز</translation>
         </message>
         <message>
             <source>Drag the file to move it elsewhere</source>
-            <translation>ھۆججەتنى يەنە بىر يەرگە يۆتكەش ئۈچۈن سىرتقا سىلىڭ</translation>
+            <translation>ھۆججەتنى باشقا جايغا يۆتكەش ئۈچۈن سۆرەڭ</translation>
         </message>
     </context>
     <context>
         <name>DownloadFileInfoDialog</name>
         <message>
             <source>Download File Info</source>
-            <translation>تۆۋەنلىتىش ھۆججەت ئۇچۇرى</translation>
+            <translation>چۈشۈرۈش ھۆججەت ئۇچۇرى</translation>
         </message>
         <message>
             <source>Adding a category to Stellar categories list</source>
-            <translation>Stellar تۈرلىرى ئىستىسىگە تۈر قوشۇش</translation>
+            <translation>Stellar كاتېگورىيە تىزىمىغا كاتېگورىيە قوشۇش</translation>
         </message>
         <message>
             <source>Category name</source>
-            <translation>تۈر ئاتى</translation>
+            <translation>كاتېگورىيە ئاتى</translation>
         </message>
         <message>
             <source>Automatically put in this category the following file types:</source>
-            <translation>تۆۋەندىكى ھۆججەت تۈرلىرىنى ئاپتوماتىك بۇ تۈرگە قويۇش:</translation>
+            <translation>تۆۋەندىكى ھۆججەت تىپلىرىنى بۇ كاتېگورىيەگە ئاپتوماتىك قويۇڭ:</translation>
         </message>
         <message>
             <source>Note: type file extensions separated by space (e.g. avi mpg mpeg)</source>
-            <translation>ئەسكەرتىش: ھۆججەت كېڭەيتمىلىرىنى بوشلۇق ئارىلىقى بىلەن ئايرىڭ (مەسىلەن: avi mpg mpeg)</translation>
+            <translation>ئەسكەرتىش: ھۆججەت كېڭەيتىلمىلىرىنى بوشلۇق بىلەن ئايرىڭ (مەس. avi mpg mpeg)</translation>
         </message>
         <message>
             <source>Automatically put in this category the files from the following sites only:</source>
-            <translation>تۆۋەندىكى ساھەلەردىن پەقەت تۆۋەندىكى ھۆججەتلەرنى ئاپتوماتىك بۇ تۈرگە قويۇش:</translation>
+            <translation>تۆۋەندىكى تور بەتلەردىن كەلگەن ھۆججەتلەرنى بۇ كاتېگورىيەگە ئاپتوماتىك قويۇڭ:</translation>
         </message>
         <message>
             <source>Separate sites by spaces. You may use asterisk as a wildcard pattern</source>
-            <translation>ساھەلەرنى بوشلۇق ئارىلىقى بىلەن ئايرىڭ. سىز * نى ئالماشتۇرغۇچ سۈپىتىدە ئىشلىتەلەيسىز</translation>
+            <translation>تور بەتلەرنى بوشلۇق بىلەن ئايرىڭ. ئۇلگە سۈپىتىدە يۇلتۇز بەلگىسىنى ئىشلەتسىڭىز بولىدۇ</translation>
         </message>
         <message>
             <source>Save future downloads of this category to the following folder:</source>
-            <translation>بۇ تۈرنىڭ كېيىنكى تۆۋەنلىتىشلەرنى تۆۋەندىكى فولدەرغا ساقلاڭ:</translation>
+            <translation>بۇ كاتېگورىيەنىڭ كەلگۈسىدىكى چۈشۈرۈشلىرىنى تۆۋەندىكى ھۆججەت قىسقۇچقا ساقلاڭ:</translation>
         </message>
         <message>
             <source>Remember last save path</source>
-            <translation>ئاخىرقى ساقلاش يولىنى ئەسلەڭ</translation>
+            <translation>ئاخىرقى ساقلاش يولىنى ئەستە تۇت</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>تەكشۈرۈش...</translation>
+            <translation>كۆرۈش...</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەييار</translation>
+            <translation>ماقۇل</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتى</translation>
+            <translation>بىكار قىل</translation>
         </message>
         <message>
             <source>URL</source>
@@ -537,30 +541,30 @@ Total: %1</source>
         </message>
         <message>
             <source>Save As</source>
-            <translation>ساقلاپ قويۇش</translation>
+            <translation>ساقلاش ئورنى</translation>
         </message>
         <message>
             <source>Remember this path for &quot;%1&quot; category</source>
-            <translation>بۇ يولنى &quot;%1&quot; تۈرى ئۈچۈن ئەستە ساقلاش</translation>
+            <translation>بۇ يولنى &quot;%1&quot; تۈرىگە ئەستە ساقلا</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>تەسۋىر</translation>
+            <translation>چۈشەندۈرۈش</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>كېيىنچە يۈكلەش</translation>
+            <translation>كېيىن چۈشۈر</translation>
         </message>
         <message>
             <source>Start Download</source>
-            <translation>يۈكلەشنى باشلاش</translation>
+            <translation>چۈشۈرۈشنى باشلا</translation>
         </message>
     </context>
     <context>
         <name>DownloadItem</name>
         <message>
             <source>Queued</source>
-            <translation>تورغا قۇيۇلغان</translation>
+            <translation>كۈتۈش قاتارىدا</translation>
         </message>
         <message>
             <source>Checking</source>
@@ -568,11 +572,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>يۈكلەۋاتىدۇ</translation>
+            <translation>چۈشۈرۈۋاتىدۇ</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>كۆچۈرۈۋاتىدۇ</translation>
+            <translation>يۆتكەۋاتىدۇ</translation>
         </message>
         <message>
             <source>Seeding</source>
@@ -580,15 +584,15 @@ Total: %1</source>
         </message>
         <message>
             <source>Paused</source>
-            <translation>توقىتىلدى</translation>
+            <translation>توختىتىلدى</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>يىغىۋېلىۋاتىدۇ...</translation>
+            <translation>قۇراشتۇرۇۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Completed</source>
-            <translation>تەمىنلەندى</translation>
+            <translation>تاماملاندى</translation>
         </message>
         <message>
             <source>Error</source>
@@ -596,74 +600,74 @@ Total: %1</source>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>بەلگىسىز</translation>
+            <translation>نامەلۇم</translation>
         </message>
     </context>
     <context>
         <name>DownloadProgressDialog</name>
         <message>
             <source>Download</source>
-            <translation>يۈكلەش</translation>
+            <translation>چۈشۈر</translation>
         </message>
         <message>
             <source>Receiving data...</source>
-            <translation>دەت ئېلىۋاتىدۇ...</translation>
+            <translation>سانلىق مەلۇمات قوبۇل قىلىنىۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Assembling...</source>
-            <translation>يىغىۋېلىۋاتىدۇ...</translation>
+            <translation>قۇراشتۇرۇلۇۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Download status</source>
-            <translation>تۆۋەنلىتىش ئەھۋالى</translation>
+            <translation>چۈشۈرۈش ھالىتى</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>تېزلىك چەكلىگۈچ</translation>
+            <translation>سۈرئەت چەكلىگۈچ</translation>
         </message>
         <message>
             <source>Options on completion</source>
-            <translation>تەمىنلەش تاماملانغاندىن كېيىنكى تاللاشلار</translation>
+            <translation>تاماملانغاندىكى تاللانمىلار</translation>
         </message>
         <message>
             <source>&gt;&gt;  Send to Tray</source>
-            <translation>&gt;&gt; تەييارلىق سىتىغا يوللاش</translation>
+            <translation>&gt;&gt;  تەگلىككە يوللاش</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>سىستېما تەييارلىقىغا كىچىكلەش</translation>
+            <translation>سىستېما تەگلىكىگە يوشۇر</translation>
         </message>
         <message>
             <source>Status</source>
-            <translation>ئەھۋال</translation>
+            <translation>ھالەت</translation>
         </message>
         <message>
             <source>File size</source>
-            <translation>فائىل چوڭلۇقى</translation>
+            <translation>ھۆججەت چوڭلۇقى</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>تۆۋەنلىتىلگەن</translation>
+            <translation>چۈشۈرۈلدى</translation>
         </message>
         <message>
             <source>%1  ( %2% )</source>
-            <translation>%1 (%2%)</translation>
+            <translation>%1  ( %2% )</translation>
         </message>
         <message>
             <source>Transfer rate</source>
-            <translation>توشۇش سۈرئىتى</translation>
+            <translation>يۆتكەش سۈرئىتى</translation>
         </message>
         <message>
             <source>(Limited %1)</source>
-            <translation>(%1 چەكلىك)</translation>
+            <translation>(چەكلەنگەن %1)</translation>
         </message>
         <message>
             <source>Time left</source>
-            <translation>قېلىپ قالغان ۋاقىت</translation>
+            <translation>قالغان ۋاقىت</translation>
         </message>
         <message>
             <source>Resume capability</source>
-            <translation>تەڭشەش مۇمكىن</translation>
+            <translation>داۋاملاشتۇرۇش ئىمكانىيىتى</translation>
         </message>
         <message>
             <source>Yes</source>
@@ -679,55 +683,55 @@ Total: %1</source>
         </message>
         <message>
             <source>Assembling... %1%</source>
-            <translation>يىغىلىۋاتىدۇ... %1%</translation>
+            <translation>قۇراشتۇرۇۋاتىدۇ... %1%</translation>
         </message>
         <message>
             <source>« Hide details</source>
-            <translation>تەپسىلاتنى يوشۇرۇش</translation>
+            <translation>« تەپسىلاتنى يوشۇر</translation>
         </message>
         <message>
             <source>» Show details</source>
-            <translation>تەپسىلاتلىرىنى كۆرسىتىش</translation>
+            <translation>» تەپسىلاتىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Start</source>
-            <translation>باشلاش</translation>
+            <translation>باشلا</translation>
         </message>
         <message>
             <source>Pause</source>
-            <translation>توختىتىش</translation>
+            <translation>ۋاقىتلىق توختات</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىرىش</translation>
+            <translation>بىكار قىل</translation>
         </message>
         <message>
             <source>Start positions and download progress by connections</source>
-            <translation>ئۇلىنىشلار ئارقىلىق باشلانغان ئورۇن ۋە يۈكلەش ئىلگىرىلىشى</translation>
+            <translation>ئۇلىنىشلار بويىچە باشلىنىش ئورنى ۋە چۈشۈرۈش جەريانى</translation>
         </message>
         <message>
             <source>N.</source>
-            <translation>N</translation>
+            <translation>N.</translation>
         </message>
         <message>
             <source>Info</source>
-            <translation>مەلۇمات</translation>
+            <translation>ئۇچۇر</translation>
         </message>
         <message>
             <source>Limit transfer rate for this download</source>
-            <translation>بۇ يۈكلەش ئۈچۈن يۆتكەش سۈرئىتىنى چەكلەش</translation>
+            <translation>بۇ چۈشۈرۈش ئۈچۈن يۆتكەش سۈرئىتىنى چەكلە</translation>
         </message>
         <message>
             <source>Enable per-download limit</source>
-            <translation>يۈكلەش ئۈچۈن چەكلىمىنى ئاكتىپلاشتۇرۇش</translation>
+            <translation>ھەر چۈشۈرۈش چەكلىمىسىنى قوزغات</translation>
         </message>
         <message>
             <source>Maximum:</source>
-            <translation>ئەڭ يۇقىرى:</translation>
+            <translation>ئەڭ چوڭ:</translation>
         </message>
         <message>
             <source>e.g. 100</source>
-            <translation>مەسىلەن، 100</translation>
+            <translation>مەس. 100</translation>
         </message>
         <message>
             <source>KB/s</source>
@@ -735,86 +739,86 @@ Total: %1</source>
         </message>
         <message>
             <source>Global limit active: %1 KB/s</source>
-            <translation>ئومۇمىي چەك ئىشلىتىلۋاتىدۇ: %1 كىبىت/سېكۇنت</translation>
+            <translation>ئومۇمىي چەك ئاكتىپ: %1 KB/s</translation>
         </message>
         <message>
             <source>No global limit set</source>
-            <translation>ئومۇمىي چەك بەلگىلەنمىگەن</translation>
+            <translation>ئومۇمىي چەك بېكىتىلمىدى</translation>
         </message>
         <message>
             <source>Global speed limiter settings…</source>
-            <translation>دۇنيادىكى سۈرەت چەكلىگۈچ تەڭشىكى...</translation>
+            <translation>ئومۇمىي سۈرئەت چەكلىگۈچ تەڭشەكلىرى…</translation>
         </message>
         <message>
             <source>Options On Completion</source>
-            <translation>تەمىنلەش تۈگەپ بولغاندىن كېيىنكى تاللاشلار</translation>
+            <translation>تاماملانغاندا تاللانمىلار</translation>
         </message>
         <message>
             <source>Open file when done</source>
-            <translation>تۈگەپ كەتكەندە ھۆججەتنى ئېچىش</translation>
+            <translation>تاماملانغاندا ھۆججەتنى ئاچ</translation>
         </message>
         <message>
             <source>Open folder when done</source>
-            <translation>تەييار بولغاندىن كېيىن فولدېرنى ئېچىش</translation>
+            <translation>تاماملانغاندا قىسقۇچنى ئاچ</translation>
         </message>
         <message>
             <source>Shutdown computer when done</source>
-            <translation>تەييار بولغاندىن كېيىن كومپيۇتېرنى ئۆچۈرۈۋېتىش</translation>
+            <translation>تاماملانغاندا كومپيۇتېرنى ئۆچۈر</translation>
         </message>
         <message>
             <source>These options are temporary for this download only and start unchecked each time.</source>
-            <translation>بۇ تاللاشلار پەقەت بۇ يۈكلەش ئۈچۈنلا ۋاقىتلىق بولۇپ، ھەر قېتىم ئاچىلغاندا ئىختىيارىي تىكىلمايدۇ.</translation>
+            <translation>بۇ تاللانمىلار پەقەت بۇ چۈشۈرۈش ئۈچۈن ۋاقىتلىق، ھەر قېتىم تاللانمىغان ھالدا باشلىنىدۇ.</translation>
         </message>
     </context>
     <context>
         <name>DownloadTable</name>
         <message>
             <source>Cancel</source>
-            <translation>يېتىم قىلىش</translation>
+            <translation>ۋاز كەچ</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>ئىسىم ئۆزگەرتەلەيدۇ</translation>
+            <translation>ئات ئۆزگەرت</translation>
         </message>
         <message>
             <source>Properties</source>
-            <translation>خۇسۇسىيەت</translation>
+            <translation>خاسلىق</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>فائىل ئېچىش</translation>
+            <translation>ھۆججەت ئاچ</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>پولكا ئېچىش</translation>
+            <translation>قىسقۇچ ئاچ</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>ئىسىم ئۆزگەرتەلەيدۇ...</translation>
+            <translation>ئات ئۆزگەرت…</translation>
         </message>
         <message>
             <source>Copy Filename</source>
-            <translation>فائىل ئىسمىنى كۆچۈرۈش</translation>
+            <translation>ھۆججەت ئاتىنى كۆچۈر</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>.torrent چىقىرىش...</translation>
+            <translation>.torrent چىقار…</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>تەۋرىنىش</translation>
+            <translation>داۋاملاشتۇر</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>توقىتىش</translation>
+            <translation>توختات</translation>
         </message>
         <message>
             <source>Remove from Queue</source>
-            <translation>تىزىمدىن چىقىرىش</translation>
+            <translation>قىستۇرۇشتىن چىقىرىش</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>قايتا تارتىش</translation>
+            <translation>قايتا چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -822,11 +826,11 @@ Total: %1</source>
         </message>
         <message>
             <source>Columns Settings</source>
-            <translation>ستون تەڭشىكى</translation>
+            <translation>ستون تەڭشەكلەر</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>فائىل ئاتى</translation>
+            <translation>ھۆججەت ئاتى</translation>
         </message>
         <message>
             <source>Size</source>
@@ -834,7 +838,7 @@ Total: %1</source>
         </message>
         <message>
             <source>Status</source>
-            <translation>ھالىتى</translation>
+            <translation>ھالەت</translation>
         </message>
         <message>
             <source>Time left</source>
@@ -842,59 +846,59 @@ Total: %1</source>
         </message>
         <message>
             <source>Down Speed</source>
-            <translation>تۆۋەنلىگۈچ تېزلىك</translation>
+            <translation>↓ تېزلىك</translation>
         </message>
         <message>
             <source>Up Speed</source>
-            <translation>يۇقىرىلىغۇچ تېزلىك</translation>
+            <translation>↑ تېزلىك</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>Seeders</translation>
+            <translation>ئۇرۇقچىلار</translation>
         </message>
         <message>
             <source>Peers</source>
-            <translation>Peers</translation>
+            <translation>تەڭداشلار</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>Ratio</translation>
+            <translation>نىسبەت</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>Uploaded</translation>
+            <translation>يۈكلەنگەن</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>Downloaded</translation>
+            <translation>چۈشۈرۈلگەن</translation>
         </message>
         <message>
             <source>Last try date</source>
-            <translation>Last try date</translation>
+            <translation>ئاخىرقى سىناۋ كۈنى</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>Description</translation>
+            <translation>چۈشەندۈرۈش</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>Save to</translation>
+            <translation>ساقلاش ئورنى</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>Referer</translation>
+            <translation>يوللىغۇچى</translation>
         </message>
         <message>
             <source>Parent web page</source>
-            <translation>Parent web page</translation>
+            <translation>ئاساسىي تور بەت</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>قويلىۋاتىدۇ</translation>
+            <translation>كۈتۈلۈۋاتىدۇ</translation>
         </message>
         <message>
             <source>%1% (Stopped)</source>
-            <translation>%1% (توقىتىلدى)</translation>
+            <translation>%1% (توختىتىلدى)</translation>
         </message>
         <message>
             <source>Checking (%1%)</source>
@@ -906,24 +910,25 @@ Total: %1</source>
         </message>
         <message>
             <source>No matching downloads.</source>
-            <translation>ماس كەلمەگەن يۈكلەشلەر</translation>
+            <translation>ماس كېلىدىغان چۈشۈرۈش يوق.</translation>
         </message>
         <message>
             <source>No downloads yet.
 Click  Add URL  to start.</source>
-            <translation>ھازىرچە يۈكلەش يوق. باشلاش ئۈچۈن «URL قوشۇش» نى بېسىڭ</translation>
+            <translation>تېخى چۈشۈرۈش يوق.
+چۈشۈرۈشنى باشلاش ئۈچۈن  URL قوشۇش نى بېسىڭ.</translation>
         </message>
         <message>
             <source>Loading %n download(s)…</source>
-            <translation>%n تۆھۈتۈش داۋاملاشتۇرۇۋاتىدۇ…</translation>
+            <translation>%n چۈشۈرۈش يۈكلەۋاتىدۇ…</translation>
         </message>
         <message>
             <source>Move to Queue</source>
-            <translation>مېگنېت ئۇلىنى كۆچۈرۈش</translation>
+            <translation>نۆۋەتكە يۆتكەش</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>URL نى كۆچۈرۈش</translation>
+            <translation>ماگنىت ئۇلانمىسىنى كۆچۈرۈش</translation>
         </message>
         <message>
             <source>Copy URL</source>
@@ -931,58 +936,58 @@ Click  Add URL  to start.</source>
         </message>
         <message>
             <source>%n selected downloads</source>
-            <translation>%n تاللانغان يۈكلەشلەر</translation>
+            <translation>%n تاللانغان چۈشۈرۈش</translation>
         </message>
     </context>
     <context>
         <name>DuplicateDownloadDialog</name>
         <message>
             <source>Duplicate Download Link</source>
-            <translation>يۈكلەش ئالاقىسىنى كۆپەيتىش</translation>
+            <translation>تەكرار چۈشۈرۈش ئۇلانمىسى</translation>
         </message>
         <message>
             <source>This file already exists in your download list.</source>
-            <translation>بۇ ھۆججەت سىزنىڭ يۈكلەش تىزىملىكىڭىزدا بار</translation>
+            <translation>بۇ ھۆججەت چۈشۈرۈش تىزىملىكىڭىزدە مەۋجۇت.</translation>
         </message>
         <message>
             <source>You may choose one of the following options, or press Cancel to skip the download.</source>
-            <translation>تۆۋەندىكى ئىقتىدارلارنىڭ بىرىنى تاللىسىڭىز بولىدۇ ياكى «ئىنكاس» نى بېسىپ يۈكلەشنى ئۆتكۈزۈپ كېتىسىز</translation>
+            <translation>تۆۋەندىكى تاللانمىلاردىن بىرىنى تاللاڭ ياكى چۈشۈرۈشنى ئاتلاش ئۈچۈن ۋاز كەچنى بېسىڭ.</translation>
         </message>
         <message>
             <source>Add the duplicate with a numbered file name</source>
-            <translation>كۆپەيتكەن ھۆججەتنى نومۇرلىق ئاتالغۇ بىلەن قوشۇش</translation>
+            <translation>تەكرارنى نومۇرلانغان ھۆججەت ئاتى بىلەن قوشۇڭ</translation>
         </message>
         <message>
             <source>Add the duplicate and overwrite the existing file</source>
-            <translation>كۆپەيتكەن ھۆججەتنى قوشۇپ، مەۋجۇت ھۆججەتنى ئۆتكۈزۈپ كېتىش</translation>
+            <translation>تەكرارنى قوشۇپ، مەۋجۇت ھۆججەتنى ئالماشتۇرۇڭ</translation>
         </message>
         <message>
             <source>The existing file is complete - show the download complete dialog</source>
-            <translation>مەۋجۇت ھۆججەت تولۇق — يۈكلەش تولۇقلىنىش ئېغىزىنى كۆرسىتىش</translation>
+            <translation>مەۋجۇت ھۆججەت تاماملاندى - چۈشۈرۈش تاماملاندى دىئالوگىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Resume the existing download</source>
-            <translation>مەۋجۇت يۈكلەشنى داۋاملاشتۇرۇش</translation>
+            <translation>مەۋجۇت چۈشۈرۈشنى داۋاملاشتۇر</translation>
         </message>
         <message>
             <source>Remember my selection and don't show this dialog again.
 You may change it in Options → Downloads at a later time.</source>
-            <translation>مېنىڭ تاللاشلىرىمنى ئەسلەپ، بۇ ئېغىزنى يەنە كۆرسەتمەسلىك</translation>
+            <translation>تاللاشنى ئەستە ساقلاپ، بۇ دىئالوگنى قايتا كۆرسەتمە. كېيىن تاللانمىلار → چۈشۈرۈشلەردىن ئۆزگەرتەلەيسىز.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>كېيىنچە «تاللاش» → «يۈكلەش» تە ئۆزگەرتسىڭىز بولىدۇ</translation>
+            <translation>ۋاز كەچ</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەييار</translation>
+            <translation>ماقۇل</translation>
         </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
         <message>
             <source>Move Torrent Data To...</source>
-            <translation>تورېنت سانلىق مەلۇماتلىرىنى يۆتكەش...</translation>
+            <translation>توررېنت سانلىق-مەلۇماتىنى يۆتكەش...</translation>
         </message>
         <message>
             <source>Move File To...</source>
@@ -994,11 +999,11 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Stop</source>
-            <translation>توقىتىش</translation>
+            <translation>توختىتىش</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>پولكىنى ئېچىش</translation>
+            <translation>ھۆججەت قىسقۇچنى ئېچىش</translation>
         </message>
         <message>
             <source>Open file</source>
@@ -1006,7 +1011,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>تاقاش</translation>
         </message>
         <message>
             <source>Status</source>
@@ -1018,11 +1023,11 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Save to</source>
-            <translation>ساقلاش</translation>
+            <translation>ساقلاش ئورنى</translation>
         </message>
         <message>
             <source>Move</source>
-            <translation>كۆچۈرۈش</translation>
+            <translation>يۆتكەش</translation>
         </message>
         <message>
             <source>Address</source>
@@ -1030,15 +1035,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Web page</source>
-            <translation>ئىنتېرنېت بەت</translation>
+            <translation>تور بەت</translation>
         </message>
         <message>
             <source>Referer</source>
-            <translation>يولدىن كەلگەن</translation>
+            <translation>يوللىغۇچى</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>تەسۋىر</translation>
+            <translation>چۈشەندۈرۈش</translation>
         </message>
         <message>
             <source>Login</source>
@@ -1054,7 +1059,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Info hash</source>
-            <translation>ئۇچۇر ھەشى</translation>
+            <translation>ئۇچۇر ھەش</translation>
         </message>
         <message>
             <source>Copy</source>
@@ -1062,7 +1067,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Metadata</source>
-            <translation>مەلۇمات</translation>
+            <translation>مېتاداتا</translation>
         </message>
         <message>
             <source>Category</source>
@@ -1070,11 +1075,11 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Note</source>
-            <translation>ئەسكەرتىش</translation>
+            <translation>ئىزاھات</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>تۆۋەنلىتىلگەن</translation>
+            <translation>چۈشۈرۈلدى</translation>
         </message>
         <message>
             <source>Country</source>
@@ -1086,27 +1091,27 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>يۈكلىگەن</translation>
+            <translation>يۈكلەندى</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>تارقىتىشچى</translation>
+            <translation>تارقاتقۇچى</translation>
         </message>
         <message>
             <source>Message</source>
-            <translation>خەۋەر</translation>
+            <translation>ئۇچۇر</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>توقتى</translation>
+            <translation>توختىتىلدى</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>تۆشۈرۈۋاتىدۇ</translation>
+            <translation>چۈشۈرۈۋاتىدۇ</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>كۆچۈرۈۋاتىدۇ</translation>
+            <translation>يۆتكەۋاتىدۇ</translation>
         </message>
         <message>
             <source>Seeding</source>
@@ -1114,7 +1119,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Queued</source>
-            <translation>قۇتۇرۇلدى</translation>
+            <translation>كۈتۈشتە</translation>
         </message>
         <message>
             <source>Problem</source>
@@ -1122,19 +1127,19 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>تورونت ئېلىملىرى...</translation>
+            <translation>توررېنت تەڭشەكلىرى...</translation>
         </message>
         <message>
             <source>ETA: %1</source>
-            <translation>قېلىپ: %1</translation>
+            <translation>ETA: %1</translation>
         </message>
         <message>
             <source>Seeds: %1 (%2)</source>
-            <translation>تارقىتىشچىلار: %1 (%2)</translation>
+            <translation>تارقاتقۇچى: %1 (%2)</translation>
         </message>
         <message>
             <source>Peers: %1 (%2)</source>
-            <translation>ئورتاقلاشچىلار: %1 (%2)</translation>
+            <translation>ھەمكارلاشقۇچى: %1 (%2)</translation>
         </message>
         <message>
             <source>General</source>
@@ -1146,23 +1151,23 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Swarm Map</source>
-            <translation>سۈرەت خەرىتىسى</translation>
+            <translation>توپ خەرىتىسى</translation>
         </message>
         <message>
             <source>Piece Map</source>
-            <translation>تۈكۈم خەرىتىسى</translation>
+            <translation>پارچە خەرىتىسى</translation>
         </message>
         <message>
             <source>Wasted</source>
-            <translation>يوقىتىلغان</translation>
+            <translation>ئىسراپ</translation>
         </message>
         <message>
             <source>Down speed</source>
-            <translation>تۆۋەن سۈرئەت</translation>
+            <translation>↓</translation>
         </message>
         <message>
             <source>Up speed</source>
-            <translation>يۇقىرى سۈرئەت</translation>
+            <translation>↑</translation>
         </message>
         <message>
             <source>Connections</source>
@@ -1170,15 +1175,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Share ratio</source>
-            <translation>بۆلەك نىسبىتى</translation>
+            <translation>Ratio</translation>
         </message>
         <message>
             <source>Pieces</source>
-            <translation>تۈكۈملەر</translation>
+            <translation>پارچىلار</translation>
         </message>
         <message>
             <source>Availability</source>
-            <translation>مەۋجۇت</translation>
+            <translation>ئىشلەتكىلى بولىدىغانلىق</translation>
         </message>
         <message>
             <source>Active time</source>
@@ -1186,31 +1191,31 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Seed time</source>
-            <translation>تارقىتىش ۋاقىتى</translation>
+            <translation>تۇغۇم ۋاقتى</translation>
         </message>
         <message>
             <source>Speed limit</source>
-            <translation>تېزلىك چېكى</translation>
+            <translation>سۈرئەت چەكلىمىسى</translation>
         </message>
         <message>
             <source>Verify local data</source>
-            <translation>ئورۇنلىق سانلىق مەلۇماتنى تەكشۈرۈش</translation>
+            <translation>يەرلىك سانلىق مەلۇماتنى تەكشۈرۈش</translation>
         </message>
         <message>
             <source>Down</source>
-            <translation>تۆۋەن</translation>
+            <translation>چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Up</source>
-            <translation>يۇقىرى</translation>
+            <translation>يۈكلەش</translation>
         </message>
         <message>
             <source>Span</source>
-            <translation>كۆلەم</translation>
+            <translation>دائىرە</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>ئىسىم</translation>
+            <translation>ئات</translation>
         </message>
         <message>
             <source>Progress</source>
@@ -1218,43 +1223,43 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>ھېچقانداق ھۆججەت ئۇچۇرى يوق</translation>
+            <translation>ھۆججەت ئۇچۇرى يوق</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>ئىسىم ئۆزگەرتىش</translation>
+            <translation>تۈرنى قايتا ناملا</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>يېڭى ھۆججەت ياكى تۈزۈكنىڭ ئىسمىنى كىرگۈزۈڭ</translation>
+            <translation>يېڭى ھۆججەت ياكى قىسقۇچ ئاتىنى كىرگۈزۈڭ:</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىن</translation>
+            <translation>ۋاز كەچ</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>ئىسىم ئۆزگەرتىش</translation>
+            <translation>قايتا ناملا</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>تۆۋەنلىتىش</translation>
+            <translation>چۈشۈر</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>ئىسىم ئۆزگەرتىش...</translation>
+            <translation>قايتا ناملا...</translation>
         </message>
         <message>
             <source>No peers connected</source>
-            <translation>بىر تەرەپ قىلىنغان ئەزالار</translation>
+            <translation>تۇتاشقان پىر يوق</translation>
         </message>
         <message>
             <source>Peer Info</source>
-            <translation>ئەزان ئۇچۇرى</translation>
+            <translation>پىر ئۇچۇرى</translation>
         </message>
         <message>
             <source>Ban peer</source>
-            <translation>ئەزاننى تەھدىت قىلىش</translation>
+            <translation>پىرنى چەكلە</translation>
         </message>
         <message>
             <source>Connection</source>
@@ -1266,15 +1271,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Role: %1</source>
-            <translation>رول: %1</translation>
+            <translation>رولى: %1</translation>
         </message>
         <message>
             <source>Seeder</source>
-            <translation>تارقىتىشچى</translation>
+            <translation>تارقاتقۇچى</translation>
         </message>
         <message>
             <source>Ping: %1</source>
-            <translation>پىنق: %1</translation>
+            <translation>پىڭ: %1</translation>
         </message>
         <message>
             <source>Progress: %1%</source>
@@ -1282,23 +1287,23 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Transfer</source>
-            <translation>ئۆتكۈزۈش</translation>
+            <translation>يۆتكەش</translation>
         </message>
         <message>
             <source>Down: %1</source>
-            <translation>تۆۋەن: %1</translation>
+            <translation>چۈشۈش: %1</translation>
         </message>
         <message>
             <source>Up: %1</source>
-            <translation>يۇقىرى: %1</translation>
+            <translation>چىقىش: %1</translation>
         </message>
         <message>
             <source>Total down: %1</source>
-            <translation>جەمئىي تۆۋەن: %1</translation>
+            <translation>ئومۇمىي چۈشۈش: %1</translation>
         </message>
         <message>
             <source>Total up: %1</source>
-            <translation>جەمئىي: %1</translation>
+            <translation>ئومۇمىي چىقىش: %1</translation>
         </message>
         <message>
             <source>Location</source>
@@ -1306,7 +1311,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Client: %1</source>
-            <translation>مۇستەھەك: %1</translation>
+            <translation>خېرىدار: %1</translation>
         </message>
         <message>
             <source>You</source>
@@ -1314,7 +1319,7 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Peer</source>
-            <translation>تەڭشىگۈچ</translation>
+            <translation>تەڭداش</translation>
         </message>
         <message>
             <source>Flags</source>
@@ -1322,27 +1327,27 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Ban Peer</source>
-            <translation>تەڭشىگۈچنى تەقىت قىلىش</translation>
+            <translation>تەڭداشنى چەكلە</translation>
         </message>
         <message>
             <source>Legend:</source>
-            <translation>چۈشەندۈرۈش:</translation>
+            <translation>ئىزاھات:</translation>
         </message>
         <message>
             <source>Inactive</source>
-            <translation>ئىشلىمەيدىغان</translation>
+            <translation>ئاكتىپ ئەمەس</translation>
         </message>
         <message>
             <source>Trackers</source>
-            <translation>تەكشۈرگۈچلەر</translation>
+            <translation>ئىز قوغلىغۇچىلار</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>يۈرۈش</translation>
+            <translation>ئۇرۇق</translation>
         </message>
         <message>
             <source>Tracker</source>
-            <translation>تەكشۈرگۈچ</translation>
+            <translation>ئىزلىگۈچ</translation>
         </message>
         <message>
             <source>Tier</source>
@@ -1350,51 +1355,51 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Peers</source>
-            <translation>ھەمراھلار</translation>
+            <translation>ھەمبەھىرلەر</translation>
         </message>
         <message>
             <source>0 known peers</source>
-            <translation>0 مەلۇم ھەمراھ</translation>
+            <translation>0 مەلۇم ھەمبەھىر</translation>
         </message>
         <message>
             <source>UL</source>
-            <translation>يۈك</translation>
+            <translation>يۇقلىما</translation>
         </message>
         <message>
             <source>Down %1  Up %2</source>
-            <translation>تۆۋەن %1 يۇقىرى %2</translation>
+            <translation>چۈشۈرۈش %1  يۈكلەش %2</translation>
         </message>
         <message>
             <source>RTT %1</source>
-            <translation>تەڭشىك %1</translation>
+            <translation>RTT %1</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
-            <translation>↓ %1 ↑ %2</translation>
+            <translation>↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>Ping %1  %2% done</source>
-            <translation>پىنق %1 %2% تاماملاندى</translation>
+            <translation>پىڭ %1  %2% تامام</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>ناشۇن</translation>
+            <translation>نامەلۇم</translation>
         </message>
         <message>
             <source>You (this client)</source>
-            <translation>سىز (بۇ مۇلازىمەت)</translation>
+            <translation>سىز (بۇ خېرىدار)</translation>
         </message>
         <message>
             <source>No connected peers to plot</source>
-            <translation>رەسىملىك ئۈچۈن ئۇلىنىشقا تەييار ئەمەس</translation>
+            <translation>سىزىشقا ئۇلانغان تەڭداش يوق</translation>
         </message>
         <message>
             <source>Waiting for your public IP so the local map position can be shown</source>
-            <translation>ئىشەنچلىك ئىپادىلىنىش ئۈچۈن سىزنىڭ ئومۇمىي ئىپادىڭىزنى كۈتۈۋاتىمىز</translation>
+            <translation>ئاممىۋى IP ئادرېسىڭىزنى كۈتۈۋاتىدۇ، شۇنداقتا يەرلىك خەرىتە ئورنى كۆرسىتىلىدۇ</translation>
         </message>
         <message>
             <source>Force Reannounce</source>
-            <translation>قايتا ئاڭلىتىشنى كۈچەيتىش</translation>
+            <translation>مەجبۇرىي قايتا ئېلان</translation>
         </message>
         <message>
             <source>Copy URL</source>
@@ -1402,15 +1407,15 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Remove tracker</source>
-            <translation>تەكشۈرۈشنى ئۆچۈرۈش</translation>
+            <translation>ئىزلىگۈچنى چىقىرىۋېتىش</translation>
         </message>
         <message>
             <source>Reannounce All</source>
-            <translation>ھەممىنى قايتا ئاڭلىتىش</translation>
+            <translation>ھەممىنى قايتا ئېلان</translation>
         </message>
         <message>
             <source>Paste tracker URLs - one per line. Lines starting with # are ignored.</source>
-            <translation>تەكشۈرۈش ئادرېسلىرىنى يېپىش - ھەر بىر سىزىقتا بىرەر ئادرېس. # بىلەن باشلىنىدىغان سىزىقلار ئېلىپ تاشلىنىدۇ.</translation>
+            <translation>ئىزلىگۈچ URL لىرىنى چاپلاڭ - ھەر قۇرغا بىر. # بىلەن باشلانغان قۇرلار سەل قارىلىدۇ.</translation>
         </message>
         <message>
             <source>Add</source>
@@ -1418,47 +1423,47 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>No trackers</source>
-            <translation>تەكشىرغۇچ يوق</translation>
+            <translation>ئىزلىغۇچى يوق</translation>
         </message>
         <message>
             <source>Web Seeds</source>
-            <translation>ئىنتېرنېت ئېلىپ بېرىشچىلار</translation>
+            <translation>تور ئۇرۇقلىرى</translation>
         </message>
         <message>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
-            <translation>ئىنتېرنېت ئېلىپ بېرىشچىلار ئادرېسلىرىنى يېپىڭ - ھەر بىرى ئۈچۈن بىر سىزىق. URL ئېلىپ بېرىشچىلار (BEP-19) ۋە HTTP ئېلىپ بېرىشچىلار (BEP-17) ئىككىلىسىمۇ قوبۇل قىلىنىدۇ.</translation>
+            <translation>تور ئۇرۇق URL لىرىنى چاپلاڭ - ھەر قۇرغا بىر. URL ئۇرۇقلىرى (BEP-19) ۋە HTTP ئۇرۇقلىرى (BEP-17) قوبۇل قىلىنىدۇ.</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation>ئادرېس</translation>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Type</source>
-            <translation>تۈر</translation>
+            <translation>تىپ</translation>
         </message>
         <message>
             <source>No web seeds</source>
-            <translation>ئىنتېرنېت ئېلىپ بېرىشچىلار يوق</translation>
+            <translation>تور ئۇرۇقى يوق</translation>
         </message>
         <message>
             <source>Open in browser</source>
-            <translation>بۇراپ ئېچىش</translation>
+            <translation>تور كۆرگۈچتە ئاچ</translation>
         </message>
         <message>
             <source>Remove seed</source>
-            <translation>ئېلىپ بېرىشچىنى ئۆچۈرۈش</translation>
+            <translation>ئۇرۇقنى چىقىرىۋەت</translation>
         </message>
         <message>
             <source>Complete</source>
-            <translation>تەمىنلەندى</translation>
+            <translation>تاماملاندى</translation>
         </message>
         <message>
             <source>Client</source>
-            <translation>مۇلازىمەت</translation>
+            <translation>خېرىدار</translation>
         </message>
         <message>
             <source>DL</source>
-            <translation>تۆۋەنلىتىش</translation>
+            <translation>چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Both</source>
@@ -1466,11 +1471,11 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>Speed</source>
-            <translation>تېزلىك</translation>
+            <translation>سۈرئەت</translation>
         </message>
         <message>
             <source>Available</source>
-            <translation>مەۋجۇت</translation>
+            <translation>بار</translation>
         </message>
         <message>
             <source>Distance: %1</source>
@@ -1482,24 +1487,24 @@ You may change it in Options → Downloads at a later time.</source>
         </message>
         <message>
             <source>%1 known peers</source>
-            <translation>%1 تونۇلغان ئورتاق</translation>
+            <translation>%1 تونۇلغان پېئر</translation>
         </message>
         <message>
             <source>%n tracker(s)</source>
-            <translation>%n تېكرارلاشچى (لار)</translation>
+            <translation>%n تراكېر</translation>
         </message>
         <message>
             <source>Tell every tracker you're here right now, instead of waiting for the
 normal announce interval. Useful if your peer count suddenly dropped.</source>
-            <translation>ھازىرقى ۋاقىتتا ھەممە تېكرارلاشچىغا ئېلان قىلىڭ، ئادەتتىكى ئېلان ئارىلىقىنى كۈتۈۋالماڭ. سىزنىڭ ئورتاق سانىڭىز بىر قېتىملا تۆۋەنلىسە، بۇ پايدىلىق.</translation>
+            <translation>نورمال ئېلان قىلىش ئارىلىقىنى كۈتمەستىن، ھازىرلا ھەر بىر تراكېرغا بۇ يەردە ئىكەنلىكىڭىزنى ئېيتىڭ. پېئر سانىڭىز تۇيۇقسىز ئازايغاندا پايدىلىق.</translation>
         </message>
         <message>
             <source>Reannouncing...</source>
-            <translation>قايتا ئېلان قىلىۋاتىدۇ...</translation>
+            <translation>قايتا ئېلان قىلىنىۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Add trackers…</source>
-            <translation>تەكشىرگۈچلەرنى قوشۇش…</translation>
+            <translation>Tracker قوش…</translation>
         </message>
         <message>
             <source>%1 added</source>
@@ -1507,155 +1512,153 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>%1 added, %2 failed</source>
-            <translation>%1 قوشۇلدى، %2 مەغلۇب بولدى</translation>
+            <translation>%1 قوشۇلدى، %2 مەغلۇپ</translation>
         </message>
         <message>
             <source>%n seed(s)</source>
-            <translation>
-                %n ئۇچۇر تارقىتىشچى (seed)
-                </translation>
+            <translation>%n تارقاتقۇچى</translation>
         </message>
         <message>
             <source>Add seed…</source>
-            <translation>ئۇچۇر تارقىتىشچى قوشۇش…</translation>
+            <translation>تارقاتقۇچى قوش…</translation>
         </message>
         <message>
             <source>Fetching from swarm...</source>
-            <translation>توپلامدا ئىزدەۋاتىدۇ...</translation>
+            <translation>توپتىن ئېلىۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Torrent Properties</source>
-            <translation>تورېنت خۇسۇسىيەتلىرى</translation>
+            <translation>Torrent خاسلىقلىرى</translation>
         </message>
         <message>
             <source>Checking files</source>
-            <translation>ھۆججەتلەرنى تەكشۈرۈۋاتىدۇ</translation>
+            <translation>ھۆججەتلەرنى تەكشۈرۈش</translation>
         </message>
         <message>
             <source>File Properties</source>
-            <translation>ھۆججەت خۇسۇسىيەتلىرى</translation>
+            <translation>ھۆججەت خاسلىقلىرى</translation>
         </message>
     </context>
     <context>
         <name>FindDialog</name>
         <message>
             <source>Find</source>
-            <translation>ئىزدەش</translation>
+            <translation>ئىزدە</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>ئىزدەش:</translation>
+            <translation>ئىزدە</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>ئىزدەش دائىرىسى:</translation>
+            <translation>ئىزدەش دائىرىسى</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>فائلىلارنىڭ ئاتى ياكى ئاتىنىڭ بىر قىسمى</translation>
+            <translation>ھۆججەت ئاتى ياكى قىسمى</translation>
         </message>
         <message>
             <source>Description or part of the description</source>
-            <translation>تەسۋىر ياكى تەسۋىرنىڭ بىر قىسمى</translation>
+            <translation>چۈشەندۈرۈش ياكى قىسمى</translation>
         </message>
         <message>
             <source>Site name / download link / parent web page / referrer</source>
-            <translation>سائت ئاتى / يۈكلەش ئۇلىنىشى / ئانا تور بەت / يۆتكەشچى</translation>
+            <translation>تورت ئاتى / چۈشۈرۈش ئۇلانمىسى / ئاساس بەت / يوللىغۇچى</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>ھەرىپ تەرتىپىگە ماسلاشتۇرۇش</translation>
+            <translation>چوڭ-كىچىكلىككە دىققەت</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>پۈتۈن ئىپادىگىلا ماسلاشتۇرۇش</translation>
+            <translation>پۈتۈن تېكىستنى ماسلاشتۇر</translation>
         </message>
         <message>
             <source>No results found.</source>
-            <translation>ھېچقانداق نەتىجە تېپىلمىدى.</translation>
+            <translation>نەتىجە تېپىلمىدى</translation>
         </message>
         <message>
             <source>Found 1 result.</source>
-            <translation>1 نەتىجە تېپىلدى.</translation>
+            <translation>1 نەتىجە تېپىلدى</translation>
         </message>
         <message>
             <source>Found %1 results.</source>
-            <translation>%1 نەتىجە تېپىلدى.</translation>
+            <translation>%1 نەتىجە تېپىلدى</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>يېتىم قالدۇرۇش</translation>
+            <translation>ۋاز كەچ</translation>
         </message>
     </context>
     <context>
         <name>GrabberDialog</name>
         <message>
             <source>Project saved.</source>
-            <translation>پروېكت ساقلىندى</translation>
+            <translation>پروژېكت ساقلاندى.</translation>
         </message>
         <message>
             <source>Project name and start page are required.</source>
-            <translation>پروېكت ئاتى ۋە باشلانغۇن بەت تەلەپ قىلىنىدۇ</translation>
+            <translation>پروژېكت ئاتى ۋە باش بەت زۆرۈر.</translation>
         </message>
         <message>
             <source>Stellar Grabber – Step %1 of %2: %3</source>
-            <translation>Stellar Grabber – %2 نىڭ %1-قەدەمى: %3</translation>
+            <translation>Stellar Grabber – قەدەم %1/%2: %3</translation>
         </message>
         <message>
             <source>Set start page</source>
-            <translation>باشلانغۇن بەتنى ئېلىپ بېرىڭ</translation>
+            <translation>باش بەتنى تەڭشە</translation>
         </message>
         <message>
             <source>Save files to</source>
-            <translation>فائىللىرىنى ساقلاش يولى</translation>
+            <translation>ھۆججەتلەرنى ساقلا</translation>
         </message>
         <message>
             <source>Set explorer filters</source>
-            <translation>تەكشۈرگۈچ فىلترلىرىنى ئېلىپ بېرىڭ</translation>
+            <translation>ئىزدىگۈچ سۈزگۈچىنى تەڭشە</translation>
         </message>
         <message>
             <source>Set file filters</source>
-            <translation>فائىل فىلترلىرىنى ئېلىپ بېرىڭ</translation>
+            <translation>ھۆججەت سۈزگۈچىنى تەڭشە</translation>
         </message>
         <message>
             <source>Custom settings</source>
-            <translation>ئۆزگىچە تەڭزىلىمىلەر</translation>
+            <translation>ئىختىيارى تەڭشەكلەر</translation>
         </message>
         <message>
             <source>All images from a web site</source>
-            <translation>بىر تور بەتتىكى بارلىق رەسىملەر</translation>
+            <translation>تور بەتتىكى بارلىق رەسىملەر</translation>
         </message>
         <message>
             <source>All video from a web site</source>
-            <translation>بىر ئورۇننىڭ بارلىق ۋىدېئولار</translation>
+            <translation>تور بەتتىكى بارلىق سىن</translation>
         </message>
         <message>
             <source>All audio from a web site</source>
-            <translation>بىر ئورۇننىڭ بارلىق ئاۋازلىرى</translation>
+            <translation>تور بەتتىكى بارلىق ئاۋاز</translation>
         </message>
         <message>
             <source>Complete web site</source>
-            <translation>تولۇق ئورۇن</translation>
+            <translation>تولۇق تور بەت</translation>
         </message>
         <message>
             <source>Include filters</source>
-            <translation>سۈزۈكچىلەرنى قوشۇش</translation>
+            <translation>سۈزگۈچلەرنى قوش</translation>
         </message>
         <message>
             <source>Exclude filters</source>
-            <translation>سۈزۈكچىلەرنى ئايرىۋېتىش</translation>
+            <translation>سۈزگۈچلەرنى چىقار</translation>
         </message>
         <message>
             <source>Template name</source>
-            <translation>شەبلىك ئاتى</translation>
+            <translation>قېلىپ ئاتى</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىن</translation>
+            <translation>بىكار</translation>
         </message>
         <message>
             <source>Save</source>
-            <translation>ساقلاش</translation>
+            <translation>ساقلا</translation>
         </message>
         <message>
             <source>New</source>
@@ -1663,11 +1666,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Load</source>
-            <translation>يۈكلەش</translation>
+            <translation>يۈكلە</translation>
         </message>
         <message>
             <source>Save current settings as a template</source>
-            <translation>تەڭشەكلەرنى قەلىپ ساقلاش</translation>
+            <translation>نۆۋەتتىكى تەڭشەكلەرنى قېلىپ سۈپىتىدە ساقلا</translation>
         </message>
         <message>
             <source>Recent Projects</source>
@@ -1675,11 +1678,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>تارتقۇغۇچ تەڭشەكلىرى</translation>
+            <translation>تۇتقۇچ تەڭشەكلىرى</translation>
         </message>
         <message>
             <source>Project</source>
@@ -1687,35 +1690,35 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Options</source>
-            <translation>تەڭشەكلەر</translation>
+            <translation>تاللانمىلار</translation>
         </message>
         <message>
             <source>Grabber Project Name</source>
-            <translation>تارتقۇغۇچ لايىھەسىنىڭ ئاتى</translation>
+            <translation>تۇتقۇچ لايىھە ئاتى</translation>
         </message>
         <message>
             <source>Start page/address</source>
-            <translation>باشلانغۇچ بەت/ئادرېس</translation>
+            <translation>باشلىنىش بېتى/ئادرېس</translation>
         </message>
         <message>
             <source>Project template</source>
-            <translation>لايىھە قەلىپى</translation>
+            <translation>لايىھە قېلىپى</translation>
         </message>
         <message>
             <source>If you select a project template, the wizard will make the required project settings for the selected template on the next steps. You may always change the settings manually.</source>
-            <translation>لايىھە قەلىپىنى تاللىسىڭىز، كەلگۈسى باسقۇچلاردا تاللانغان قەلىپكە ماس كېلىدىغان تەڭشەكلەرنى ئاپتوماتىك ھاسىل قىلىدۇ. سىز ھەمىشە قول بىلەن تەڭشەكلەرنى ئۆزگەرتەلەيسىز.</translation>
+            <translation>ئەگەر لايىھە قېلىپىنى تاللىسىڭىز، يېتەكچى كېيىنكى باسقۇچلاردا تاللانغان قېلىپ ئۈچۈن زۆرۈر لايىھە تەڭشەكلىرىنى قىلىدۇ. تەڭشەكلەرنى ھەر ۋاقىت قولدا ئۆزگەرتەلەيسىز.</translation>
         </message>
         <message>
             <source>Use authorization</source>
-            <translation>ئىشەنچىلىك بېرىش</translation>
+            <translation>ئىشلەتكۈچى دەلىللەش</translation>
         </message>
         <message>
             <source>Advanced &lt;&lt;</source>
-            <translation>ئالدىنقى &lt;&lt;</translation>
+            <translation>ئالىي &lt;&lt;</translation>
         </message>
         <message>
             <source>Advanced &gt;&gt;</source>
-            <translation>كېيىنكى &gt;&gt;</translation>
+            <translation>ئالىي &gt;&gt;</translation>
         </message>
         <message>
             <source>Login</source>
@@ -1727,79 +1730,79 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
-            <translation>ئالدىنقى تەڭشەكنى بېسىپ، قولدا كىرىش ياكى چىقىش بەتلىرىنى ئۆچۈرۈشنى ئىشقا ئاشۇرۇڭ.</translation>
+            <translation>قولدا كىرىشنى قوزغىتىش ياكى چىكىش بېتىنى چەكلەش ئۈچۈن ئالىي باسقۇچنى بېسىڭ.</translation>
         </message>
         <message>
             <source>Enter login and password manually at the following web page:</source>
-            <translation>تۆۋەندىكى ئىنتېرنېت بەتىدە كىرىش ۋە پارولنى قولدا يېزىڭ:</translation>
+            <translation>تۆۋەندىكى تور بەتتە كىرىش ۋە پارولنى قولدا كىرگۈزۈڭ:</translation>
         </message>
         <message>
             <source>Don't open the logout page:</source>
-            <translation>چىقىش بەتىنى ئېچمەڭ:</translation>
+            <translation>چىكىش بېتىنى ئاچماڭ:</translation>
         </message>
         <message>
             <source>Many sites have a logout page that the Grabber should not open. You may use an asterisk wildcard here to specify a pattern for different logout pages.</source>
-            <translation>كۆپ سانلىق ئورۇنلاردا چىقىش بەتلىرى بار، Grabber ئۇلارنى ئېچماسلىقى كېرەك. خىتاي ئۇيغۇرچىسىدا، سىز * (تەڭشەك) بەلگىسىنى ئىشلىتىپ، ئوخشاش چىقىش بەتلىرى ئۈچۈن نەمۇنە بەلگىلىيەلەيسىز.</translation>
+            <translation>نۇرغۇن تور بەتلەردە چىكىش بېتى بار، تۇتقۇچ ئۇنى ئاچماسلىقى كېرەك. بۇ يەردە يوچۇق بەلگە ئارقىلىق ھەرخىل چىكىش بەتلىرى ئۈچۈن ئەندىزە بەلگىلىسىڭىز بولىدۇ.</translation>
         </message>
         <message>
             <source>Save To</source>
-            <translation>ساقلاڭ</translation>
+            <translation>ساقلاش ئورنى</translation>
         </message>
         <message>
             <source>Every file to a folder according to Stellar category of the file</source>
-            <translation>Stellar كاتېگورىيەسىگە ئاساسەن ھەر بىر ھۆججەتنى فولدەرگە ساقلاش</translation>
+            <translation>ھەر بىر ھۆججەتنى Stellar كاتېگورىيەسى بويىچە قىسقۇچقا ساقلاڭ</translation>
         </message>
         <message>
             <source>All files to the folder associated with the following Stellar category:</source>
-            <translation>تۆۋەندىكى Stellar كاتېگورىيەسى بىلەن مۇناسىۋەتلىك فولدەرگە بارلىق ھۆججەتلەرنى ساقلاش</translation>
+            <translation>تۆۋەندىكى Stellar كاتېگورىيەسىگە ماس كېلىدىغان قىسقۇچقا ھەممە ھۆججەتنى ساقلاڭ</translation>
         </message>
         <message>
             <source>All files to the following folder</source>
-            <translation>تۆۋەندىكى فولدەرگە بارلىق ھۆججەتلەرنى ساقلاش</translation>
+            <translation>ھەممە ھۆججەتنى تۆۋەندىكى قىسقۇچقا ساقلاڭ</translation>
         </message>
         <message>
             <source>Use original relative subfolders</source>
-            <translation>ئەسلى نىسبىي ئاست-فولدرلارنى ئىشلىتىش</translation>
+            <translation>ئەسلى نىسبىي ئاستى قىسقۇچلارنى ئىشلەت</translation>
         </message>
         <message>
             <source>Save Each File By Category</source>
-            <translation>كاتېگورىيە بويىچە ھەر بىر ھۆججەتنى ساقلاش</translation>
+            <translation>ھەر ھۆججەتنى كاتېگورىيە بويىچە ساقلاڭ</translation>
         </message>
         <message>
             <source>Save All Files To Selected Category</source>
-            <translation>تاللانغان كاتېگورىيەگە بارلىق ھۆججەتلەرنى ساقلاش</translation>
+            <translation>ھەممە ھۆججەتنى تاللانغان كاتېگورىيەگە ساقلاڭ</translation>
         </message>
         <message>
             <source>Save All Files To This Folder</source>
-            <translation>بۇ فولدەرگە بارلىق ھۆججەتلەرنى ساقلاش</translation>
+            <translation>ھەممە ھۆججەتنى بۇ قىسقۇچقا ساقلاڭ</translation>
         </message>
         <message>
             <source>Convert the links in downloaded html files to local files for offline browsing</source>
-            <translation>تۆۋەنلىتىلگەن html ھۆججەتلىرىدىكى ئۇلىنىشلارنى ئۆزئارا ھۆججەتلەرگە ئايلاندۇرۇش</translation>
+            <translation>چۈشۈرۈلگەن html ھۆججەتلەردىكى ئۇلانمىلارنى تورسىز كۆرۈش ئۈچۈن يەرلىك ھۆججەتلەرگە ئايلاندۇرۇڭ</translation>
         </message>
         <message>
             <source>Overwrite existing files</source>
-            <translation>مەۋجۇت ھۆججەتلەرنى يېڭىلاش</translation>
+            <translation>مەۋجۇت ھۆججەتلەرنى ئۈستىگە يېزىڭ</translation>
         </message>
         <message>
             <source>Add checked files to Stellar main list and download queue on closing the grabber</source>
-            <translation>تەكشۈرۈلگەن ھۆججەتلەرنى يېپىش بىلەن Stellar ئاساسىي تىزىملىكى ۋە تۆۋەنلىتىش قاتارىغا قوشۇش</translation>
+            <translation>تەكشۈرۈلگەن ھۆججەتلەرنى تۇتقۇچنى يېپىش بىلەن Stellar ئاساسىي تىزىملىكى ۋە چۈشۈرۈش نۆۋىتىگە قوشۇڭ</translation>
         </message>
         <message>
             <source>At this step you should specify what web pages to explore to find the required files. At the next step, you will be able to set file types, location, and other filters.</source>
-            <translation>بۇ باسقۇچتا تەلەپ قىلىنغان ھۆججەتلەرنى تېپىش ئۈچۈن قايسى ئىنتېرنېت بەتلىرىنى تەكشۈرۈش كېرەكلىكىنى بەلگىلەڭ. كېيىنكى باسقۇچتا ھۆججەت تىپى، ئورنى ۋە باشقا سۈزۈكچىلەرنى تەڭشەيەلەيسىز.</translation>
+            <translation>بۇ باسقۇچتا، كېرەكلىك ھۆججەتلەرنى تېپىش ئۈچۈن قايسى تور بەتلەرنى ئىزدەش كېرەكلىكىنى بەلگىلەڭ. كېيىنكى باسقۇچتا ھۆججەت تىپى، ئورنى ۋە باشقا سۈزگۈچلەرنى تەڭشىيەلەيسىز.</translation>
         </message>
         <message>
             <source>Explore the whole site</source>
-            <translation>بارلىق تور بەتنى تەكشۈرۈش</translation>
+            <translation>پۈتۈن تور بەتنى ئىزدە</translation>
         </message>
         <message>
             <source>Explore the specified number of link levels:</source>
-            <translation>بېكىتىلگەن ئالاقە دەرىجىسىنىڭ سانىنى تەكشۈرۈش:</translation>
+            <translation>بەلگىلەنگەن ئۇلىنىش دەرىجىسىنى ئىزدە:</translation>
         </message>
         <message>
             <source>levels within the base site</source>
-            <translation>ئاساسىي تور بەتتىكى دەرىجىلەر</translation>
+            <translation>ئاساسىي تور بەت ئىچىدىكى دەرىجىلەر</translation>
         </message>
         <message>
             <source>levels on other sites</source>
@@ -1807,75 +1810,75 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>What is the number of link levels?</source>
-            <translation>ئالاقە دەرىجىسىنىڭ سانى قانچە؟</translation>
+            <translation>ئۇلىنىش دەرىجىسى قانچە؟</translation>
         </message>
         <message>
             <source>Ignore popup windows</source>
-            <translation>پوپ-ئۈستەللىك ئىشلىتىشنى ئىگنور قىلىش</translation>
+            <translation>قاڭقىش كۆزنەكلەرگە پەرۋا قىلما</translation>
         </message>
         <message>
             <source>Don't explore parent directories</source>
-            <translation>ئانا دىرېكتورىيەلەرنى تەكشۈرمەسلىك</translation>
+            <translation>ئانا مۇندەرىجىلەرنى ئىزدىمە</translation>
         </message>
         <message>
             <source>Explore all sites within the main domain</source>
-            <translation>ئاساسىي دۆلەتتىكى بارلىق تور بەتلەرنى تەكشۈرۈش</translation>
+            <translation>ئاساسىي دائىرە ئىچىدىكى بارلىق تور بەتلەرنى ئىزدە</translation>
         </message>
         <message>
             <source>Process JavaScript</source>
-            <translation>JavaScript نى ئىشلەپ بېرىش</translation>
+            <translation>JavaScript نى بىر تەرەپ قىل</translation>
         </message>
         <message>
             <source>Explore web pages within the following paths/domains only:</source>
-            <translation>فقط تۆۋەندىكى يوللار/دۆمېنلاردا ئىنتېرنېت بەتلىرىنى تەكشۈرۈڭ:</translation>
+            <translation>1. پەقەت تۆۋەندىكى يول/دائىرىلەردىكى تور بەتلەرنى كەز</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.google.com ; cdn.example.com ; /images/* ; /gallery</source>
-            <translation>ھەر بىر سىزىقتا بىر يول ياكى دۆمېن كىرگۈزۈڭ، ياكى كىرگۈزۈشنى نۇقتىلىق ئارىلىق بەلگىسى (;) بىلەن ئايرىڭ. * نى ئومۇمىي بەلگە سۈپىتىدە ئىشلىتىڭ. مىسال: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
+            <translation>2. ھەر قۇرغا بىر يول ياكى دائىرە كىرگۈزۈڭ، ياكى چېكىتلىك ئۈتۈر بىلەن ئايرىڭ. * نى ئومۇمىي بەلگە قىلىڭ. مىسال: *.google.com ; cdn.example.com ; /images/* ; /gallery</translation>
         </message>
         <message>
             <source>Don't explore web pages within the following paths/domains:</source>
-            <translation>تۆۋەندىكى يوللار/دۆمېنلاردا ئىنتېرنېت بەتلىرىنى تەكشۈرۈۋە:</translation>
+            <translation>3. تۆۋەندىكى يول/دائىرىلەردىكى تور بەتلەرنى كەزمە</translation>
         </message>
         <message>
             <source>Enter one path or domain per line, or separate entries with semicolons. Use * as a wildcard. Examples: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</source>
-            <translation>تۆۋەندىكى يوللار/دۆمېنلارنى ھەر بىر سىزىقتا كىرگۈزۈڭ، ياكى كىرگۈزۈشنى نۇقتىلىق ئارىلىق بەلگىسى (;) بىلەن ئايرىڭ. * نى ئومۇمىي بەلگە سۈپىتىدە ئىشلىتىڭ. مىسال: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
+            <translation>4. ھەر قۇرغا بىر يول ياكى دائىرە كىرگۈزۈڭ، ياكى چېكىتلىك ئۈتۈر بىلەن ئايرىڭ. * نى ئومۇمىي بەلگە قىلىڭ. مىسال: *.doubleclick.net ; tracking.example.com ; /ads/* ; /private</translation>
         </message>
         <message>
             <source>Download the following files (file types)</source>
-            <translation>تۆۋەندىكى ھۆججەتلەرنى (ھۆججەت تىپلىرى) يۈكلەڭ</translation>
+            <translation>5. تۆۋەندىكى ھۆججەتلەرنى چۈشۈر (ھۆججەت تىپلىرى)</translation>
         </message>
         <message>
             <source>Include Filters...</source>
-            <translation>شەكىللەندۈرۈش فىلترلىرى...</translation>
+            <translation>6. سۈزگۈچلەرنى قوش...</translation>
         </message>
         <message>
             <source>Don't download the following files (file types)</source>
-            <translation>تۆۋەندىكى ھۆججەتلەرنى يۈكلەۋە (ھۆججەت تىپلىرى)</translation>
+            <translation>7. تۆۋەندىكى ھۆججەتلەرنى چۈشۈرمە (ھۆججەت تىپلىرى)</translation>
         </message>
         <message>
             <source>Exclude Filters...</source>
-            <translation>ئەللىمەس فىلترلىرى...</translation>
+            <translation>8. چىقىرىۋېتىش سۈزگۈچلىرى...</translation>
         </message>
         <message>
             <source>Search files on this site only</source>
-            <translation>بۇ ساھەدىكى ھۆججەتلەرنىلا ئىزدەڭ</translation>
+            <translation>9. پەقەت بۇ تور بەتتىلا ھۆججەت ئىزدە</translation>
         </message>
         <message>
             <source>Hide duplicate files found in different locations</source>
-            <translation>ئوخشاش ھۆججەتلەرنى يوشۇرۇڭ (ئوخشاش ھۆججەتلەر ئوخشاش يەرلەردە تېپىلدى)</translation>
+            <translation>10. باشقا جايلاردىن تېپىلغان تەكرار ھۆججەتلەرنى يوشۇر</translation>
         </message>
         <message>
             <source>Start downloading all matched files at once</source>
-            <translation>بارلىق ماسلىشىشچان ھۆججەتلەرنى بىر ۋاقىتتا يۈكلەش</translation>
+            <translation>بارلىق ماس كەلگەن ھۆججەتلەرنى بىر قېتىمدا چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Download if file size is</source>
-            <translation>ھۆججەت چوڭلۇقى:</translation>
+            <translation>ھۆججەت چوڭلۇقى تۆۋەندىكىچە بولسا چۈشۈر</translation>
         </message>
         <message>
             <source>Not less than</source>
-            <translation>ئازراق بولمىسا</translation>
+            <translation>دىن كىچىك ئەمەس</translation>
         </message>
         <message>
             <source>Bytes</source>
@@ -1883,23 +1886,23 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Not more than</source>
-            <translation>كۆپرەك بولمىسا</translation>
+            <translation>دىن چوڭ ئەمەس</translation>
         </message>
         <message>
             <source>Download the files located within the following paths/domains only:</source>
-            <translation>تۆۋەندىكى يوللار/دۆمېنلاردىكى ھۆججەتلەرنى پەقەت يۈكلەڭ:</translation>
+            <translation>پەقەت تۆۋەندىكى يول/دومېندىكى ھۆججەتلەرنى چۈشۈر:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.google.com ; cdn.example.com ; /downloads/*</source>
-            <translation>* نى ئومۇمىي بەلگە قىلىپ ئىشلىتىڭ. ھەر بىر سىزىقتا بىر يول ياكى دۆمېن يېزىڭ، ياكى كىرىشلىرىنى نۇقتىلار بىلەن ئايرىڭ. مىسال: *.google.com ; cdn.example.com ; /downloads/*</translation>
+            <translation>* نى ئومۇمىي بەلگە قىلىڭ. ھەر قۇرغا بىر يول ياكى دومېن كىرگۈزۈڭ، ياكى ئايرىش بەلگىسى ئىشلىتىڭ. مىسال: *.google.com ; cdn.example.com ; /downloads/*</translation>
         </message>
         <message>
             <source>Don't download the files located within the following paths/domains:</source>
-            <translation>تۆۋەندىكى يوللار/دۆمېنلاردىكى ھۆججەتلەرنى يۈكلەڭ:</translation>
+            <translation>تۆۋەندىكى يول/دومېندىكى ھۆججەتلەرنى چۈشۈرمە:</translation>
         </message>
         <message>
             <source>Use * as a wildcard. Enter one path or domain per line, or separate entries with semicolons. Examples: *.doubleclick.net ; /ads/* ; /tracking</source>
-            <translation>* نى ئومۇمىي بەلگە قىلىپ ئىشلىتىڭ. ھەر بىر سىزىقتا بىر يول ياكى دۆمېن يېزىڭ، ياكى كىرىشلىرىنى نۇقتىلار بىلەن ئايرىڭ. مىسال: *.doubleclick.net ; /ads/* ; /tracking</translation>
+            <translation>* نى ئومۇمىي بەلگە قىلىڭ. ھەر قۇرغا بىر يول ياكى دومېن كىرگۈزۈڭ، ياكى ئايرىش بەلگىسى ئىشلىتىڭ. مىسال: *.doubleclick.net ; /ads/* ; /tracking</translation>
         </message>
         <message>
             <source>Comment</source>
@@ -1907,30 +1910,30 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Save Project</source>
-            <translation>پروگرامنى ساقلاش</translation>
+            <translation>پروژېكتىن ساقلاش</translation>
         </message>
         <message>
             <source>Delete Project</source>
-            <translation>پروگرامنى ئۆچۈرۈش</translation>
+            <translation>پروژېكتىن ئۆچۈرۈش</translation>
         </message>
         <message>
             <source>&lt; Back</source>
-            <translation>&lt; كېيىنكى</translation>
+            <translation>&lt; ئارقىغا</translation>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation>كېيىنكى &gt;</translation>
+            <translation>ئالدىغا &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation>تەكشۈرۈشنى باشلاش</translation>
+            <translation>ئىزدىنىشنى باشلاش</translation>
         </message>
     </context>
     <context>
         <name>GrabberIncludeFiltersDialog</name>
         <message>
             <source>Filter name</source>
-            <translation>ئاتمىنى سۈزۈش</translation>
+            <translation>سۈزگۈچ ئاتى</translation>
         </message>
         <message>
             <source>Mask</source>
@@ -1942,7 +1945,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Edit</source>
-            <translation>تۈزىتىش</translation>
+            <translation>تەھرىرلەش</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -1950,7 +1953,7 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەييار</translation>
+            <translation>ماقۇل</translation>
         </message>
         <message>
             <source>Edit filter</source>
@@ -1962,11 +1965,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Category</source>
-            <translation>تۈر</translation>
+            <translation>كاتېگورىيە</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>بېكىتىش</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
         <message>
             <source>Save</source>
@@ -1977,42 +1980,42 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <name>GrabberProjectPickerDialog</name>
         <message>
             <source>Load Grabber Project</source>
-            <translation>تارتقۇغۇچ پروئېكتىنى يۈكلەش</translation>
+            <translation>تۇتقۇچ تۈرىنى يۈكلەش</translation>
         </message>
         <message>
             <source>Saved projects</source>
-            <translation>ساقلانغان پروئېكتلار</translation>
+            <translation>ساقلانغان تۈرلەر</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>بېكىتىش</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەييار</translation>
+            <translation>ماقۇل</translation>
         </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
         <message>
             <source>Project</source>
-            <translation>پروېكت</translation>
+            <translation>پروژېكت</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>تاللاش</translation>
+            <translation>تەڭشەكلەر</translation>
         </message>
         <message>
             <source>Running</source>
-            <translation>ئىشلەۋاتىدۇ</translation>
+            <translation>ئىجرا</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>تەييار</translation>
+            <translation>بىكار</translation>
         </message>
         <message>
             <source>%1 files found</source>
-            <translation>%1 ئۇچۇر تېپىلدى</translation>
+            <translation>%1 ھۆججەت تېپىلدى</translation>
         </message>
         <message>
             <source>%1 checked</source>
@@ -2020,24 +2023,24 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Exploring…</source>
-            <translation>تەكشۈرۈۋاتىدۇ…</translation>
+            <translation>ئىزدەۋاتىدۇ…</translation>
         </message>
         <message>
             <source>Press Start Exploring to scan the URL.</source>
-            <translation>URL نى تەكشۈرۈش ئۈچۈن «باشلا» نى بېسىڭ</translation>
+            <translation>URL نى سايىلەش ئۈچۈن ئىزدەشنى باشلاشنى بېسىڭ.</translation>
         </message>
         <message>
             <source>Start
 Exploring</source>
-            <translation>باشلا</translation>
+            <translation>ئىزدەشنى باشلاش</translation>
         </message>
         <message>
             <source>File Name</source>
-            <translation>تەكشۈرۈۋاتىدۇ</translation>
+            <translation>ھۆججەت ئاتى</translation>
         </message>
         <message>
             <source>File Type</source>
-            <translation>تۈر</translation>
+            <translation>ھۆججەت تىپى</translation>
         </message>
         <message>
             <source>Size</source>
@@ -2045,92 +2048,97 @@ Exploring</source>
         </message>
         <message>
             <source>Status</source>
-            <translation>ھالەت</translation>
+            <translation>ھالىتى</translation>
         </message>
         <message>
             <source>Link Text</source>
-            <translation>بېغلىنىش</translation>
+            <translation>ئۇلانما تېكىستى</translation>
         </message>
         <message>
             <source>Download from</source>
-            <translation>تۆۋەنلىتىش</translation>
+            <translation>چۈشۈرۈش مەنبەسى</translation>
         </message>
         <message>
             <source>Save to</source>
-            <translation>ساقلاش</translation>
+            <translation>ساقلاش ئورنى</translation>
         </message>
         <message>
             <source>Check selected</source>
-            <translation>تاللانغانلىرىنى تەكشۈرۈش</translation>
+            <translation>تاللانغاننى تەكشۈر</translation>
         </message>
         <message>
             <source>Uncheck selected</source>
-            <translation>تاللانغانلىرىنى ئېلىۋېتىش</translation>
+            <translation>تاللانغاننى بىكارلا</translation>
         </message>
         <message>
             <source>Edit current project</source>
-            <translation>ھازىرقى پىروگراممىنى تەھرىرلەش</translation>
+            <translation>نۆۋەتتىكى تۈرنى تەھرىرلە</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
         <message>
             <source>Grabber settings</source>
-            <translation>يېپىشچانلىق تەڭشىكلىرى</translation>
+            <translation>تۇتقۇچ تەڭشەكلىرى</translation>
         </message>
         <message>
             <source>Stop
 Exploring</source>
-            <translation>توقىتىش</translation>
+            <translation>ئىزدەشنى
+توختات</translation>
         </message>
         <message>
             <source>Start
 Downloading</source>
-            <translation>ئېلىپ بېرىلىۋاتىدۇ</translation>
+            <translation>چۈشۈرۈشنى
+باشلا</translation>
         </message>
         <message>
             <source>Stop
 Downloads</source>
-            <translation>باشلاش</translation>
+            <translation>چۈشۈرۈشلەرنى
+توختات</translation>
         </message>
         <message>
             <source>Update
 All</source>
-            <translation>يۈكلەۋاتىدۇ</translation>
+            <translation>ھەممىنى
+يېڭىلا</translation>
         </message>
         <message>
             <source>Schedule
 Project</source>
-            <translation>توقىتىش</translation>
+            <translation>پىلاننى
+پىلانلا</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>يۈكلەمىلەر</translation>
+            <translation>ستاتىستىكا</translation>
         </message>
         <message>
             <source>Categories</source>
-            <translation>يېڭىلاش</translation>
+            <translation>كاتېگورىيەلەر</translation>
         </message>
         <message>
             <source>All Files</source>
-            <translation>ھەممىسى</translation>
+            <translation>بارلىق ھۆججەتلەر</translation>
         </message>
         <message>
             <source>Link View</source>
-            <translation>پىلانلاش</translation>
+            <translation>ئۇلىنىش كۆرۈنۈشى</translation>
         </message>
         <message>
             <source>Folder View</source>
-            <translation>قىزىلچەك كۆرۈنۈشى</translation>
+            <translation>ھۆججەت كۆرۈنۈشى</translation>
         </message>
         <message>
             <source>No files found yet</source>
-            <translation>ھازىرچە ھېچقانداق ھۆججەت تېپىلمىدى</translation>
+            <translation>تېخى ھۆججەت تېپىلمىدى</translation>
         </message>
         <message>
             <source>← Back</source>
-            <translation>◄ كەتكەن</translation>
+            <translation>← قايتىش</translation>
         </message>
         <message>
             <source>%1 files</source>
@@ -2142,7 +2150,7 @@ Project</source>
         </message>
         <message>
             <source>Add checked to download list</source>
-            <translation>تاللانغانلىرىنى يۈكلەش رەتىگە قوشۇش</translation>
+            <translation>تاللانغاننى چۈشۈرۈش تىزىمىگە قوش</translation>
         </message>
         <message>
             <source>Stellar Grabber</source>
@@ -2153,63 +2161,63 @@ Project</source>
         <name>GrabberScheduleDialog</name>
         <message>
             <source>Schedule the grabber project</source>
-            <translation>يۈكلەش پىروېكتىنى ئېتىزلاش</translation>
+            <translation>تۇتقۇچ تۈرىنى پىلانلا</translation>
         </message>
         <message>
             <source>Project:</source>
-            <translation>پىروېكت:</translation>
+            <translation>تۈر:</translation>
         </message>
         <message>
             <source>Enable project schedule</source>
-            <translation>پىروېكت ئېتىزلىنىشىنى ئاكتىپلاشتۇرۇش</translation>
+            <translation>تۈر پىلانىنى قوزغات</translation>
         </message>
         <message>
             <source>Step 1.  Select type</source>
-            <translation>1. تۈرنى تاللاڭ</translation>
+            <translation>1. 1-قەدەم. تۈرنى تاللاڭ</translation>
         </message>
         <message>
             <source>One-time exploring/downloading</source>
-            <translation>بىر قېتىملىق تەكشۈرۈش/يۈكلەش</translation>
+            <translation>2. بىر قېتىملىق كۆرۈش/چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>مۇۋەزىنلىك سىنخرونىزاتسىيە</translation>
+            <translation>3. دەۋرىي ماسلاشتۇرۇش</translation>
         </message>
         <message>
             <source>Step 2.  Select action</source>
-            <translation>2. ئىشلىنىدىغان ئامىلنى تاللاڭ</translation>
+            <translation>4. 2-قەدەم. ھەرىكەتنى تاللاڭ</translation>
         </message>
         <message>
             <source>Explore only</source>
-            <translation>پەقەت تەكشۈرۈش</translation>
+            <translation>5. پەقەت كۆرۈش</translation>
         </message>
         <message>
             <source>Explore site and download matched files</source>
-            <translation>تورنى تەكشۈرۈش ۋە ماسلىشىشچان ھۆججەتلەرنى يۈكلەش</translation>
+            <translation>6. توربەتنى كۆرۈپ ماس ھۆججەتلەرنى چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Download checked files</source>
-            <translation>تەكشۈرۈلگەن ھۆججەتلەرنى يۈكلەش</translation>
+            <translation>7. تاللانغان ھۆججەتلەرنى چۈشۈرۈش</translation>
         </message>
         <message>
             <source>After completion</source>
-            <translation>تۈگەپ بولغاندىن كېيىن</translation>
+            <translation>8. تاماملانغاندىن كېيىن</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>تۈگەپ بولغاندا Stellar نى چىقىرىۋېتىش</translation>
+            <translation>9. تاماملانغاندا Stellar دىن چېكىنىش</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>تۈگەپ بولغاندا كومپيۇتېرنى ئۆچۈرۈۋېتىش</translation>
+            <translation>10. تاماملانغاندا كومپيۇتېرنى ئۆچۈرۈش</translation>
         </message>
         <message>
             <source>Shut down</source>
-            <translation>يېپىش</translation>
+            <translation>تاقاش</translation>
         </message>
         <message>
             <source>Restart</source>
-            <translation>قايتا باشلاش</translation>
+            <translation>قايتا قوزغىتىش</translation>
         </message>
         <message>
             <source>Sleep</source>
@@ -2217,23 +2225,23 @@ Project</source>
         </message>
         <message>
             <source>Hibernate</source>
-            <translation>تەڭپۇڭلاشتۇرۇش</translation>
+            <translation>قىشلىتىش</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>مەجبۇرىي ئۈزۈش</translation>
+            <translation>جەريانلارنى مەجبۇرىي توختىتىش</translation>
         </message>
         <message>
             <source>Step 3.  Schedule</source>
-            <translation>3-قەدەم. ئېتىش</translation>
+            <translation>3-قەدەم. جەدۋەل</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>تۆۋەندىكىدەك باشلاش</translation>
+            <translation>چۈشۈرۈشنى باشلاش ۋاقتى</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>يەتكەندە</translation>
+            <translation>بىر قېتىم</translation>
         </message>
         <message>
             <source>January</source>
@@ -2269,23 +2277,23 @@ Project</source>
         </message>
         <message>
             <source>September</source>
-            <translation>سېنتەبەر</translation>
+            <translation>سېنتەبىر</translation>
         </message>
         <message>
             <source>October</source>
-            <translation>ئۆكتەبەر</translation>
+            <translation>ئۆكتەبىر</translation>
         </message>
         <message>
             <source>November</source>
-            <translation>نويابەر</translation>
+            <translation>نويابىر</translation>
         </message>
         <message>
             <source>December</source>
-            <translation>دېكابەر</translation>
+            <translation>دېكابىر</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>كۈندۈلۈك</translation>
+            <translation>كۈندىلىك</translation>
         </message>
         <message>
             <source>Sunday</source>
@@ -2293,7 +2301,7 @@ Project</source>
         </message>
         <message>
             <source>Thursday</source>
-            <translation>چۈشەنبە</translation>
+            <translation>پەيشەنبە</translation>
         </message>
         <message>
             <source>Monday</source>
@@ -2301,7 +2309,7 @@ Project</source>
         </message>
         <message>
             <source>Friday</source>
-            <translation>پەيشەنبە</translation>
+            <translation>جۈمە</translation>
         </message>
         <message>
             <source>Tuesday</source>
@@ -2309,15 +2317,15 @@ Project</source>
         </message>
         <message>
             <source>Saturday</source>
-            <translation>جۈمە</translation>
+            <translation>شەنبە</translation>
         </message>
         <message>
             <source>Wednesday</source>
-            <translation>چارshanba</translation>
+            <translation>چارشەنبە</translation>
         </message>
         <message>
             <source>Repeat every</source>
-            <translation>تەكرارلاش ئارىلىقى</translation>
+            <translation>تەكرارلاش</translation>
         </message>
         <message>
             <source>hours</source>
@@ -2325,73 +2333,73 @@ Project</source>
         </message>
         <message>
             <source>minutes</source>
-            <translation>دەقىقىە</translation>
+            <translation>مىنۇت</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>تۆۋەندۈرۈشنى توختىتىش</translation>
+            <translation>چۈشۈرۈشنى توختىتىش ۋاقتى</translation>
         </message>
         <message>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
-            <translation>ئەسكەرتىش: Stellar نى بەلگىلەنگەن ۋاقىتتا سىستېما تەيىنلىكىدە ئىشلەپ تۇرۇشى كېرەك.</translation>
+            <translation>ئەسكەرتىش: پىلانلانغان تۈرنى باشلاش ئۈچۈن بەلگىلەنگەن ۋاقىتتا Stellar سىستېما تەگلىكىدە ئىجرا بولۇشى كېرەك.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ۋەزىپىنى بىكار قىلىش</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەستىكلىگۈ</translation>
+            <translation>جەزملەش</translation>
         </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
         <message>
             <source>Settings of Stellar Grabber</source>
-            <translation>Stellar Grabber نىڭ تەڭشەكلىرى</translation>
+            <translation>Stellar Grabber تەڭشەكلىرى</translation>
         </message>
         <message>
             <source>files to explore at the same time (1 to 10)</source>
-            <translation>بىر ۋاقىتتا تەكشۈرۈشكە ئېلىپ بېرىلىدىغان ھۆججەتلەر سانى (1-10)</translation>
+            <translation>بىر ۋاقىتتا تەكشۈرۈش ھۆججەت سانى (1 دىن 10 غىچە)</translation>
         </message>
         <message>
             <source>files to download at the same time (1 to 10)</source>
-            <translation>بىر ۋاقىتتا تۆۋەندۈرۈلىدىغان ھۆججەتلەر سانى (1-10)</translation>
+            <translation>بىر ۋاقىتتا چۈشۈرۈش ھۆججەت سانى (1 دىن 10 غىچە)</translation>
         </message>
         <message>
             <source>Please note that a web server may reject requests if you set a large number of files to explore or download at the same time.</source>
-            <translation>ئەسكەرتىش: ئەگەر بىر ۋاقىتتا تەكشۈرۈش ياكى تۆۋەندۈرۈشكە ئېلىپ بېرىلىدىغان ھۆججەتلەر سانى ناھايىتى كۆپ بولسا، تور سەھىپىسى تەلەپلەرنى رەت قىلىشى مۇمكىن.</translation>
+            <translation>دىققەت: بىر ۋاقىتتا تەكشۈرۈش ياكى چۈشۈرۈش ھۆججەت سانىنى كۆپ بەلگىلىسىڭىز، تور مۇلازىمېتىرى تەلەپلەرنى رەت قىلىشى مۇمكىن.</translation>
         </message>
         <message>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
-            <translation>ھۆججەتلەرنى Stellar نىڭ ئاساسىي تىزىملىكىغا قوشقاندا، ئۇلارنىڭ ئادرېسلىرىنى تۆۋەندۈرۈش تەسۋىرلىرى سۈپىتىدە ئىشلىتىش</translation>
+            <translation>Stellar ئاساسىي تىزىملىكىگە ھۆججەت قوشقاندا ئۇلانما تېكىستلىرىنى چۈشۈرۈش چۈشەندۈرۈشى سۈپىتىدە ئىشلەت</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>يەنمە</translation>
+            <translation>ۋاز كەچ</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەييار</translation>
+            <translation>جەزملە</translation>
         </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
         <message>
             <source>Grabber Statistics</source>
-            <translation>ئىستاتىستىكا</translation>
+            <translation>تۇتقۇچ ستاتىستىكىسى</translation>
         </message>
         <message>
             <source>Status: %1</source>
-            <translation>ھالىتى: %1</translation>
+            <translation>ھالەت: %1</translation>
         </message>
         <message>
             <source>Idle</source>
-            <translation>تۇرۇقلۇق</translation>
+            <translation>بىكار</translation>
         </message>
         <message>
             <source>Web pages processed</source>
-            <translation>ئىشلەنگەن بەت</translation>
+            <translation>بىر تەرەپ قىلىنغان تور بەتلەر</translation>
         </message>
         <message>
             <source>Simple</source>
@@ -2399,7 +2407,7 @@ Project</source>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>ئالدىن تەييارلانغان</translation>
+            <translation>ئالىي</translation>
         </message>
         <message>
             <source>Files</source>
@@ -2411,58 +2419,58 @@ Project</source>
         </message>
         <message>
             <source>Explored</source>
-            <translation>تەكشۈرۈلگەن</translation>
+            <translation>تەكشۈرۈلدى</translation>
         </message>
         <message>
             <source>Matched</source>
-            <translation>ماسلاشقان</translation>
+            <translation>ماسلاشتى</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>تۆۋەنلىتىلگەن</translation>
+            <translation>چۈشۈرۈلدى</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
     </context>
     <context>
         <name>Main</name>
         <message>
             <source>Tasks</source>
-            <translation>مەشغۇلاتلار</translation>
+            <translation>ۋەزىپىلەر</translation>
         </message>
         <message>
             <source>Add URL…</source>
-            <translation>URL قوشۇش...</translation>
+            <translation>URL قوش…</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>SDM تۆۋەنلىتىش</translation>
+            <translation>SDM چۈشۈرۈشلەر</translation>
         </message>
         <message>
             <source>This YouTube download looks like it needs login cookies.</source>
-            <translation>بۇ YouTube تۆۋەنلىتىش ئۈچۈن كىرىش كوئېرېكسىز كېرەك.</translation>
+            <translation>بۇ YouTube چۈشۈرۈشىگە كىرىش cookie لازىم.</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>بۇرۇنقى كېسەپتىن كوئېرېكسىز:</translation>
+            <translation>توركۆرگۈچتىن cookie:</translation>
         </message>
         <message>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
-            <translation>Stellar بۇ كېسەپتىن كوئېرېكسىز بىلەن يەنە بىر قېتىم تەكشۈرىدۇ.</translation>
+            <translation>Stellar شۇ توركۆرگۈچنىڭ cookie بىلەن yt-dlp تارمىقىنى قايتا سىنايدۇ.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>يېتىم قېلىش</translation>
+            <translation>ۋاز كەچ</translation>
         </message>
         <message>
             <source>Retry Download</source>
-            <translation>تەكرارلاش</translation>
+            <translation>چۈشۈرۈشنى قايتا سىنا</translation>
         </message>
         <message>
             <source>Open Stellar</source>
-            <translation>Stellar نى ئېچىش</translation>
+            <translation>Stellar نى ئاچ</translation>
         </message>
         <message>
             <source>GitHub</source>
@@ -2470,23 +2478,23 @@ Project</source>
         </message>
         <message>
             <source>Speed Limiter: Turn On</source>
-            <translation>تېزلىك چەكلىگۈچ: ئېچىش</translation>
+            <translation>سۈرئەت چەكلىگۈچ: قوزغات</translation>
         </message>
         <message>
             <source>Speed Limiter: Turn Off</source>
-            <translation>تېزلىك چەكلىگۈچ: يېپىش</translation>
+            <translation>سۈرئەت چەكلىگۈچ: توختات</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
-            <translation>تېزلىك چەكلىگۈچ تەڭشەكلىرى</translation>
+            <translation>سۈرئەت چەكلىگۈچ تەڭشەكلىرى…</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
-            <translation>Stellar نى چىقىرىش</translation>
+            <translation>Stellar دىن چىق</translation>
         </message>
         <message>
             <source>Torrent files (*.torrent)</source>
-            <translation>تورېنت ھۆججەتلىرى (*.torrent)</translation>
+            <translation>Torrent ھۆججەتلىرى (*.torrent)</translation>
         </message>
         <message>
             <source>All files (*)</source>
@@ -2498,15 +2506,15 @@ Project</source>
         </message>
         <message>
             <source>Completed: %1</source>
-            <translation>تەمىنلەنگەن: %1</translation>
+            <translation>تاماملاندى: %1</translation>
         </message>
         <message>
             <source>Downloading: %1</source>
-            <translation>تۆۋەنلىتىۋاتقان: %1</translation>
+            <translation>چۈشۈرۈۋاتىدۇ: %1</translation>
         </message>
         <message>
             <source>Queued: %1</source>
-            <translation>قۇتۇرغان: %1</translation>
+            <translation>كۈتۈۋاتىدۇ: %1</translation>
         </message>
         <message>
             <source>Overall: %1%</source>
@@ -2514,19 +2522,19 @@ Project</source>
         </message>
         <message>
             <source>Stop</source>
-            <translation>توختىتىش</translation>
+            <translation>توختات</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>داۋاملاشتۇرۇش</translation>
+            <translation>داۋاملاشتۇر</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
         <message>
             <source>Enable BitTorrent Support?</source>
-            <translation>BitTorrent قوبۇل قىلىشنى ئاكتىپلاشتۇرۇش؟</translation>
+            <translation>BitTorrent قوللىشىنى قوزغاتامسىز؟</translation>
         </message>
         <message>
             <source>BitTorrent support is currently disabled.
@@ -2536,233 +2544,239 @@ When you download a torrent, your IP address becomes visible to other peers in t
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>BitTorrent قوبۇل قىلىش ھازىر ئاكتىپ ئەمەس.</translation>
+            <translation>BitTorrent قوللىشى ھازىر چەكلەنگەن.
+
+توررېنت چۈشۈرگەندە، IP ئادرېسىڭىز توردىكى باشقا ھەمبەھىرلەرگە كۆرۈنىدۇ ۋە سىز باشقىلارغا سانلىق مەلۇمات يۈكلەيسىز (تارقىتىسىز).
+
+BitTorrent ئارقىلىق ھەمبەھىرلىگەن ھەر قانداق نەرسە پۈتۈنلەي سىزنىڭ مەسئۇلىيىتىڭىز. مەزمۇننى تارقىتىش ھوقۇقىڭىز بارلىقىنى جەزملەڭ.
+
+IP ئادرېسىڭىزنى ئاشكارىلانماسلىق ئۈچۈن، توررېنت ئىشلىتىشتىن ئىلگىرى Stellar نى VPN تور كۆرۈنمە يۈزىگە باغلاش ۋە VPN نىڭ ئاكتىپلىقىنى تەكشۈرۈش قاتتىق تەۋسىيە قىلىنىدۇ.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>تەسۋىرلەپ بولدۇم، ئىشقا سېلىش</translation>
+            <translation>چۈشەندىم، قوزغات</translation>
         </message>
         <message>
             <source>You pressed the 'Download Later' button, but Stellar had already started downloading a part of the file. Stellar always starts downloading while displaying the &quot;Download File Info&quot; dialog.
 
 You can turn this off in Settings → Downloads.</source>
-            <translation>سىز «كېيىنچە يۈكلەش» تۇغمىسىنى بېسىپتۇ، ئەمما Stellar ھەمبەشە فائىلنىڭ بىر قىسمىنى يۈكلەشنى باشلىغان. Stellar «فائىل ئۇچۇرى» دىئالوگ قۇتۇپچىسىنى كۆرسىتىۋاتقاندا ھەمبەشە يۈكلەشنى باشلايدۇ.
+            <translation>سىز «كېيىن چۈشۈر» كۇنۇپكىسىنى باسقان، ئەمما Stellar ھۆججەتنىڭ بىر قىسمىنى چۈشۈرۈشكە باشلىغان. Stellar «ھۆججەت ئۇچۇرى» دىئالوگىنى كۆرسىتىۋاتقاندا چۈشۈرۈشنى باشلايدۇ.
 
-بۇنى تەڭشەكلەردە → يۈكلەشلەر دىن ئۆزگەرتسىڭىز بولىدۇ.</translation>
+بۇنى تەڭشەكلەر → چۈشۈرۈشلەر ئارقىلىق چەكلەيسىز.</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەكشۈرۈش</translation>
+            <translation>ماقۇل</translation>
         </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
-            <translation>«%1» فائىلى يۈكلەلمىدى.</translation>
+            <translation>«%1» ھۆججىتىنى چۈشۈرگىلى بولمىدى.</translation>
         </message>
         <message>
             <source>The server returned a webpage instead of the expected file. Some sites delete files immediately after Stellar queries their metadata.</source>
-            <translation>مۇلازىمەت ئورنى كۆزىتىلگەن فائىلنى ئەمەس، بەلكى بەت بەردى. بەزى تور بەتلەر Stellar ئۇلارنىڭ مەلۇماتلىرىنى سورايدىغاندا دەرھال فائىلنى ئۆچۈرۈۋەتىدۇ.</translation>
+            <translation>مۇلازىمېتېر كۈتۈلگەن ھۆججەت ئورنىغا تور بەت قايتۇردى. بەزى تورلار Stellar مېتا-سانلىق مەلۇماتلىرىنى سۈرۈشتۈرگەندىن كېيىن ھۆججەتلەرنى دەرھال ئۆچۈرىدۇ.</translation>
         </message>
         <message>
             <source>To let your browser download directly, hold a modifier key (Alt, Ctrl, or Shift) while clicking the link. Configure the key in:
 Stellar Options → Browser → Bypass Download Interception</source>
-            <translation>بەتتە بىۋاسىتە يۈكلەشكە ئىجازەت بېرىش ئۈچۈن، ئۇلىنىڭغا بېسىشتا ئۆزگەرتكۈچ تۇغما (Alt، Ctrl ياكى Shift) نى تۇتۇپ تۇرۇڭ. تۇغمانى تەڭشەش ئورنى:
-Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئۆتكۈزۈش</translation>
+            <translation>تور كۆرگۈڭىزنىڭ بىۋاسىتە چۈشۈرۈشى ئۈچۈن ئۇلانمىنى چەككەندە ئۆزگەرتكۈچ كۇنۇپكىسىنى (Alt، Ctrl ياكى Shift) بېسىپ تۇرۇڭ. كۇنۇپكىنى بۇ يەردە تەڭشەڭ:
+Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توسۇشنى چەتكە ئۆتۈش</translation>
         </message>
         <message>
             <source>Open Browser Settings</source>
-            <translation>تور بەت تەڭشىكىنى ئېچىش</translation>
+            <translation>تور كۆرگۈ تەڭشەكلىرىنى ئېچىش</translation>
         </message>
         <message>
             <source>Version %1 is available.</source>
-            <translation>نۇسخا %1 ئىشلىتىلىدۇ.</translation>
+            <translation>%1 نەشرى بار.</translation>
         </message>
         <message>
             <source>Update Now</source>
-            <translation>ھازىرلا يېڭىلاش</translation>
+            <translation>ھازىر يېڭىلاش</translation>
         </message>
         <message>
             <source>Add Torrent File…</source>
-            <translation>تورونت فائىلى قوشۇش…</translation>
+            <translation>Torrent ھۆججىتىنى قوشۇش…</translation>
         </message>
         <message>
             <source>Add Batch URLs…</source>
-            <translation>ئارامىلىق URL لارنى قوشۇش...</translation>
+            <translation>URL قوشۇش…</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation>چىقىش</translation>
+            <translation>چېكىنىش</translation>
         </message>
         <message>
             <source>File</source>
-            <translation>فائىل</translation>
+            <translation>ھۆججەت</translation>
         </message>
         <message>
             <source>Open Folder</source>
-            <translation>پولكىنى ئېچىش</translation>
+            <translation>ھۆججەت قىسقۇچ ئېچىش</translation>
         </message>
         <message>
             <source>Open File</source>
-            <translation>فائىلنى ئېچىش</translation>
+            <translation>ھۆججەت ئېچىش</translation>
         </message>
         <message>
             <source>Download Now</source>
-            <translation>ھازىر تارتىۋېلىش</translation>
+            <translation>ھازىر چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Stop Download</source>
-            <translation>تارتىۋېلىشنى توختىتىش</translation>
+            <translation>چۈشۈرۈشنى توختىتىش</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>ئۆچۈرۈش</translation>
+            <translation>چىقىرىۋېتىش</translation>
         </message>
         <message>
             <source>Redownload</source>
-            <translation>قايتا تارتىۋېلىش</translation>
+            <translation>قايتا چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Export .torrent…</source>
-            <translation>.torrent نى ئېكسپورت قىلىش...</translation>
+            <translation>.torrent چىقىرىش…</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>تۆۋەنلىتىش</translation>
+            <translation>چۈشۈرۈشلەر</translation>
         </message>
         <message>
             <source>Pause all</source>
-            <translation>ھەممىسىنى توختىتىش</translation>
+            <translation>ھەممىنى توختات</translation>
         </message>
         <message>
             <source>Stop all</source>
-            <translation>ھەممىسىنى توختىتىش</translation>
+            <translation>ھەممىنى ئەمەلدىن قالدۇر</translation>
         </message>
         <message>
             <source>Delete all completed</source>
-            <translation>تەمىنلەنگەنلەرنى ئۆچۈرۈش</translation>
+            <translation>تاماملانغانلارنى ئۆچۈر</translation>
         </message>
         <message>
             <source>Find…</source>
-            <translation>ئىزدەش…</translation>
+            <translation>ئىزدە…</translation>
         </message>
         <message>
             <source>Find Next</source>
-            <translation>كېيىنكىسىنى ئىزدەش</translation>
+            <translation>كېيىنكىنى ئىزدە</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>تەۋسىيەچى</translation>
+            <translation>ۋاقىتلىغۇچ</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>تورقا باشلاش</translation>
+            <translation>نۆۋەتنى باشلا</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>تورقا توختىتىش</translation>
+            <translation>نۆۋەتنى توختات</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>تېزلىك چەكلىگۈچ</translation>
+            <translation>سۈرئەت چەكلىگۈچ</translation>
         </message>
         <message>
             <source>Turn On</source>
-            <translation>ئېچىش</translation>
+            <translation>قوزغات</translation>
         </message>
         <message>
             <source>Turn Off</source>
-            <translation>يېپىش</translation>
+            <translation>توختات</translation>
         </message>
         <message>
             <source>Settings…</source>
-            <translation>تەڭشەكلەر...</translation>
+            <translation>تەڭشەكلەر…</translation>
         </message>
         <message>
             <source>Options…</source>
-            <translation>تاللاشلار...</translation>
+            <translation>تاللانمىلار…</translation>
         </message>
         <message>
             <source>View</source>
-            <translation>كۆرۈش</translation>
+            <translation>كۆرۈنۈش</translation>
         </message>
         <message>
             <source>Hide Categories</source>
-            <translation>تۈرلەرنى يوشۇرۇش</translation>
+            <translation>كاتېگورىيەلەرنى يوشۇر</translation>
         </message>
         <message>
             <source>Show Categories</source>
-            <translation>تۈرلەرنى كۆرسىتىش</translation>
+            <translation>كاتېگورىيەلەرنى كۆرسەت</translation>
         </message>
         <message>
             <source>Show Search Engine</source>
-            <translation>ئىزدەش مۇلازىمىتىنى كۆرسىتىش</translation>
+            <translation>ئىزدەش ماتورىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Show RSS Reader</source>
-            <translation>RSS ئوقۇغۇچىنى كۆرسىتىش</translation>
+            <translation>RSS ئوقۇرغۇچىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Statistics…</source>
-            <translation>ئىستاتىستىكا...</translation>
+            <translation>ستاتىستىكا…</translation>
         </message>
         <message>
             <source>Arrange Files</source>
-            <translation>فائللارنى تەرتىپكە كەلتۈرۈش</translation>
+            <translation>ھۆججەتلەرنى تەرتىپلەش</translation>
         </message>
         <message>
             <source>By Order Of Addition</source>
-            <translation>قوشۇلۇش تەرتىپى</translation>
+            <translation>قوشۇلۇش تەرتىپى بويىچە</translation>
         </message>
         <message>
             <source>By File Name</source>
-            <translation>فائىل ئاتى</translation>
+            <translation>ھۆججەت ئاتى بويىچە</translation>
         </message>
         <message>
             <source>By Size</source>
-            <translation>چوڭ-كىچىكلىكى</translation>
+            <translation>چوڭلۇقى بويىچە</translation>
         </message>
         <message>
             <source>By Status</source>
-            <translation>ھالەت</translation>
+            <translation>ھالىتى بويىچە</translation>
         </message>
         <message>
             <source>By Time Left</source>
-            <translation>قېلىپ قالغان ۋاقىت</translation>
+            <translation>قالغان ۋاقىت بويىچە</translation>
         </message>
         <message>
             <source>By Transfer Rate</source>
-            <translation>ئۆتكۈزۈش سۈرئىتى</translation>
+            <translation>يۆتكەش سۈرئىتى بويىچە</translation>
         </message>
         <message>
             <source>By Last Try Date</source>
-            <translation>ئاخىرقى سىناق كۈنى</translation>
+            <translation>ئاخىرقى سىناش ۋاقتى بويىچە</translation>
         </message>
         <message>
             <source>By Description</source>
-            <translation>تەسۋىر</translation>
+            <translation>چۈشەندۈرۈش بويىچە</translation>
         </message>
         <message>
             <source>By Save Path</source>
-            <translation>ساقلاش يولى</translation>
+            <translation>ساقلاش يولى بويىچە</translation>
         </message>
         <message>
             <source>By Referer</source>
-            <translation>بىر قېتىملىق</translation>
+            <translation>پايدىلانغۇچى بويىچە</translation>
         </message>
         <message>
             <source>By Parent Web Page</source>
-            <translation>ئانا بەت</translation>
+            <translation>ئاساسىي بەت بويىچە</translation>
         </message>
         <message>
             <source>Columns…</source>
-            <translation>ستونلار...</translation>
+            <translation>ستونلار…</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>تاللاشلار</translation>
+            <translation>تاللانمىلار</translation>
         </message>
         <message>
             <source>Preferences…</source>
-            <translation>ئەۋرىشىم...</translation>
+            <translation>مايىللىق…</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -2770,15 +2784,15 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Open RSS Reader</source>
-            <translation>RSS ئوقۇغۇچىنى ئېچىش</translation>
+            <translation>RSS ئوقۇغۇچىنى ئاچ</translation>
         </message>
         <message>
             <source>Refresh All Feeds</source>
-            <translation>ھەممە ئاخباراتنى يېڭىلاش</translation>
+            <translation>ھەممە تەمىناتنى يېڭىلا</translation>
         </message>
         <message>
             <source>Mark All Items Read</source>
-            <translation>ھەممىسىنى ئوقۇلغان دەپ بەلگىلەش</translation>
+            <translation>ھەممە تۈرنى ئوقۇلغان قىل</translation>
         </message>
         <message>
             <source>Help</source>
@@ -2786,59 +2800,59 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Check for Updates</source>
-            <translation>يېڭىلىقنى تەكشۈرۈش</translation>
+            <translation>يېڭىلانمىنى تەكشۈرۈش</translation>
         </message>
         <message>
             <source>Drop .torrent file to open torrent metadata</source>
-            <translation>.torrent ھۆججەتتىن ئېچىش</translation>
+            <translation>.torrent ھۆججەتنى تاشلاپ توررېنت ئۇچۇرىنى ئېچىش</translation>
         </message>
         <message>
             <source>Find:</source>
-            <translation>ئىزدەش:</translation>
+            <translation>ئىزدە:</translation>
         </message>
         <message>
             <source>Find</source>
-            <translation>ئىزدەش</translation>
+            <translation>ئىزدە</translation>
         </message>
         <message>
             <source>Settings ▾</source>
-            <translation>تەڭشەك ▾</translation>
+            <translation>تەڭشەكلەر ▾</translation>
         </message>
         <message>
             <source>Search in:</source>
-            <translation>بۇ يەردە ئىزدەش:</translation>
+            <translation>ئىزدەش دائىرىسى:</translation>
         </message>
         <message>
             <source>File name or part of the name</source>
-            <translation>ھۆججەت ئاتىلىمى ياكى ئاتىلىمىنىڭ قىسمى</translation>
+            <translation>ھۆججەت ئاتى ياكى قىسمى</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>تەسۋىر</translation>
+            <translation>چۈشەندۈرۈش</translation>
         </message>
         <message>
             <source>URL / referrer / parent web page</source>
-            <translation>URL / مەنبە / ئانا بەت</translation>
+            <translation>URL / يوللىغۇچى / ئاساس بەت</translation>
         </message>
         <message>
             <source>Match case</source>
-            <translation>ھەرىپ تۈرىنى ماسلاشتۇرۇش</translation>
+            <translation>چوڭ-كىچىك ھەرپنى پەرقلەندۈرۈش</translation>
         </message>
         <message>
             <source>Match whole string only</source>
-            <translation>پۈتۈن ئىپادىگەن ماسلاشتۇرۇش</translation>
+            <translation>پۈتۈن تېكىستنى ماسلاشتۇر</translation>
         </message>
         <message>
             <source>Move sidebar to left</source>
-            <translation>تەرەپنى سولغا يۆتكەش</translation>
+            <translation>يان تەرەپنى سولغا يۆتكە</translation>
         </message>
         <message>
             <source>Move sidebar to right</source>
-            <translation>تەرەپنى ئوڭغا يۆتكەش</translation>
+            <translation>يان تەرەپنى ئوڭغا يۆتكە</translation>
         </message>
         <message>
             <source>Reset sidebar width</source>
-            <translation>تەرەپ كەڭلىكىنى قايتۇرۇش</translation>
+            <translation>يان تەرەپ كەڭلىكىنى ئەسلىگە قايتۇر</translation>
         </message>
         <message>
             <source>About Stellar</source>
@@ -2846,15 +2860,15 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>بۇرۇنچۇق بىلەن بىرلەشتۈرۈش</translation>
+            <translation>توركۆرگۈ بىرلەشمىسى</translation>
         </message>
         <message>
             <source>Browser Extensions…</source>
-            <translation>بۇرۇنچۇق قوشۇمچىلىرى...</translation>
+            <translation>توركۆرگۈ كېڭەيتىلمىلىرى…</translation>
         </message>
         <message>
             <source>Browser Settings…</source>
-            <translation>بۇرۇنچۇق تەڭشىكى...</translation>
+            <translation>توركۆرگۈ تەڭشەكلىرى…</translation>
         </message>
         <message>
             <source>Stellar</source>
@@ -2862,27 +2876,27 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Browser Cookies Required</source>
-            <translation>بۇرۇنچۇق كوكىسى كېرەك</translation>
+            <translation>توركۆرگۈ كۇكىلىرى زۆرۈر</translation>
         </message>
         <message>
             <source>Add Torrent File</source>
-            <translation>تورونت فائلىنى قوشۇش</translation>
+            <translation>توررېنت ھۆججەت قوشۇش</translation>
         </message>
         <message>
             <source>Export .torrent Files</source>
-            <translation>.torrent فائلىنى چىقىرىش</translation>
+            <translation>.توررېنت ھۆججەت چىقىرىش</translation>
         </message>
         <message>
             <source>Channel Download Progress</source>
-            <translation>قانىل تۆۋەنلىتىش ئالدىنقى</translation>
+            <translation>قانال چۈشۈرۈش جەريانى</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>كېيىن تۆۋەنلىتىش</translation>
+            <translation>كېيىن چۈشۈرۈش</translation>
         </message>
         <message>
             <source>File No Longer Available</source>
-            <translation>فائلىق ئىشلىتىلمەيدۇ</translation>
+            <translation>ھۆججەت ئەمدى مەۋجۇت ئەمەس</translation>
         </message>
         <message>
             <source>Quick Update</source>
@@ -2890,77 +2904,77 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>ستېللىر تۆۋەنلىتىش باشقۇرغۇچى</translation>
+            <translation>Stellar چۈشۈرۈش باشقۇرغۇچ</translation>
         </message>
         <message>
             <source>Stellar  ↓ %1  ↑ %2</source>
-            <translation>ستېللىر ↓ %1 ↑ %2</translation>
+            <translation>Stellar  ↓ %1  ↑ %2</translation>
         </message>
         <message>
             <source>New version of Stellar Download Manager is available</source>
-            <translation>ستېللىر تۆۋەنلىتىش باشقۇرغۇچىنىڭ يېڭى نەشرى بار</translation>
+            <translation>Stellar چۈشۈرۈش باشقۇرغۇچنىڭ يېڭى نەشرى بار</translation>
         </message>
         <message>
             <source>What's New in Stellar</source>
-            <translation>ستېللىردا يېڭىلىقلار</translation>
+            <translation>Stellar دىكى يېڭىلىقلار</translation>
         </message>
     </context>
     <context>
         <name>QueueSelectionDialog</name>
         <message>
             <source>Queue Selection</source>
-            <translation>تەرتىپ تاللاش</translation>
+            <translation>1. قاتار تاللاش</translation>
         </message>
         <message>
             <source>Put files into a queue?</source>
-            <translation>فائىلنى تەرتىپكە قويىسىز؟</translation>
+            <translation>2. ھۆججەتلەرنى قاتارغا قويامسىز؟</translation>
         </message>
         <message>
             <source>Choose an existing queue or create a new one.</source>
-            <translation>مەۋجۇت تەرتىپنى تاللاڭ ياكى يېڭىسىنى ھاسىل قىلىڭ</translation>
+            <translation>3. مەۋجۇت قاتارنى تاللاڭ ياكى يېڭى قۇرۇڭ.</translation>
         </message>
         <message>
             <source>Queue</source>
-            <translation>تەرتىپ</translation>
+            <translation>4. قاتار</translation>
         </message>
         <message>
             <source>Start queue processing</source>
-            <translation>تەرتىپ ئىشلەشنى باشلاڭ</translation>
+            <translation>5. قاتار بىر تەرەپ قىلىشنى باشلاش</translation>
         </message>
         <message>
             <source>Don't ask me again</source>
-            <translation>مېنى قايتا سورىماڭ</translation>
+            <translation>6. قايتا سورىماڭ</translation>
         </message>
         <message>
             <source>Don't add to queue</source>
-            <translation>تەرتىپكە قوشماڭ</translation>
+            <translation>7. قاتارغا قوشماڭ</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>ھەئە</translation>
+            <translation>8. جەزملە</translation>
         </message>
         <message>
             <source>Enter queue name</source>
-            <translation>تەرتىپ ئاتىنى كىرگۈزۈڭ</translation>
+            <translation>9. قاتار نامىنى كىرگۈزۈڭ</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىن قېلىش</translation>
+            <translation>10. ۋاز كەچ</translation>
         </message>
         <message>
             <source>Create</source>
-            <translation>يېڭىلاش</translation>
+            <translation>قۇرۇش</translation>
         </message>
     </context>
     <context>
         <name>RssDownloadRulesDialog</name>
         <message>
             <source>(Default)</source>
-            <translation>(ئۆزگەرتىلمىگەن)</translation>
+            <translation>(كۆڭۈلدىكى)</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>تۆۋەنلىتىش قائىدىلىرى</translation>
+            <translation>چۈشۈرۈش قائىدىسى</translation>
         </message>
         <message>
             <source>Add</source>
@@ -2968,111 +2982,111 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Remove</source>
-            <translation>ئۆچۈرۈش</translation>
+            <translation>چىقىرىۋېتىش</translation>
         </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
-            <translation>&quot;قوشۇش&quot; دىكى تۆۋەنلىتىش قائىدىسىنى يېڭىلاش</translation>
+            <translation>چۈشۈرۈش قائىدىسى قۇرۇش ئۈچۈن &quot;قوشۇش&quot; نى بېسىڭ</translation>
         </message>
         <message>
             <source>Rule name</source>
-            <translation>قائىدە ئاتىلىشى</translation>
+            <translation>قائىدە ئاتى</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>ئىشلىتىش</translation>
+            <translation>قوزغىتىلغان</translation>
         </message>
         <message>
             <source>FILTER RULES</source>
-            <translation>تەڭشەش قائىدىلىرى</translation>
+            <translation>سۈزگۈچ قائىدىسى</translation>
         </message>
         <message>
             <source>Use regular expressions</source>
-            <translation>ئادەتتىكى ئىپادىلەش ئۇسۇلىنى ئىشلىتىش</translation>
+            <translation>رېگۇليار ئىپادىلەرنى ئىشلەت</translation>
         </message>
         <message>
             <source>Must contain:</source>
-            <translation>تەلەپ قىلىنىدىغان:</translation>
+            <translation>چوقۇم ئۆز ئىچىگە ئېلىشى كېرەك:</translation>
         </message>
         <message>
             <source>regex pattern</source>
-            <translation>regex ئىپادىسى</translation>
+            <translation>regex ئەندىزىسى</translation>
         </message>
         <message>
             <source>keyword1 keyword2 | keyword3</source>
-            <translation>keyword1 keyword2 | keyword3</translation>
+            <translation>ئاچقۇچلۇق سۆز1 ئاچقۇچلۇق سۆز2 | ئاچقۇچلۇق سۆز3</translation>
         </message>
         <message>
             <source>Must not contain:</source>
-            <translation>تەلەپ قىلىنمايدىغان:</translation>
+            <translation>چوقۇم ئۆز ئىچىگە ئالماسلىقى كېرەك:</translation>
         </message>
         <message>
             <source>keyword1 keyword2</source>
-            <translation>keyword1 keyword2</translation>
+            <translation>ئاچقۇچلۇق سۆز1 ئاچقۇچلۇق سۆز2</translation>
         </message>
         <message>
             <source>Episode filter:</source>
-            <translation>بۆلەك سۈزگۈچ:</translation>
+            <translation>بۆلۈم سۈزگۈچ:</translation>
         </message>
         <message>
             <source>e.g. 1x01-1x24  or  2x01;</source>
-            <translation>مەسىلەن: 1x01-1x24 ياكى 2x01;</translation>
+            <translation>مەس. 1x01-1x24 ياكى 2x01;</translation>
         </message>
         <message>
             <source>Use Smart Episode Filter</source>
-            <translation>ئاقىللىق بۆلەك سۈزگۈچنى ئىشلىتىڭ</translation>
+            <translation>ئەقلىي بۆلۈم سۈزگۈچنى ئىشلەت</translation>
         </message>
         <message>
             <source>Skips episodes already matched by previous rule triggers</source>
-            <translation>ئالدىنقى قائىدىلەر تەسۋىرلەنگەن بۆلەكلەرنى ئۆتكۈزۈپ كېتىدۇ</translation>
+            <translation>ئالدىنقى قائىدە قوزغاتقۇچىلار ماسلاشتۇرغان بۆلۈملەرنى ئاتلايدۇ</translation>
         </message>
         <message>
             <source>Ignore subsequent matches for</source>
-            <translation>كېيىنكى ماسلىشىشلارنى ئەمەلدىن قالدۇرۇڭ</translation>
+            <translation>كېيىنكى ماسلىشىشلارغا پەرۋا قىلما</translation>
         </message>
         <message>
             <source>days  (0 = disabled)</source>
-            <translation>كۈن</translation>
+            <translation>كۈن (0 = چەكلەنگەن)</translation>
         </message>
         <message>
             <source>DOWNLOAD SETTINGS</source>
-            <translation>تۆۋەنلىتىش تەڭشىكى</translation>
+            <translation>چۈشۈرۈش تەڭشەكلىرى</translation>
         </message>
         <message>
             <source>Save at:</source>
-            <translation>ساقلاش يولى:</translation>
+            <translation>ساقلاش ئورنى:</translation>
         </message>
         <message>
             <source>Leave empty to use default save path</source>
-            <translation>ئۆزگەرتىش يولىنى ئۆزگەرتىڭ</translation>
+            <translation>سۈكۈتتىكى ساقلاش يولىنى ئىشلىتىش ئۈچۈن بوش قالدۇرۇڭ</translation>
         </message>
         <message>
             <source>Browse...</source>
-            <translation>تەكشۈرۈش...</translation>
+            <translation>كۆرۈش...</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>تۈر:</translation>
+            <translation>تۈرى:</translation>
         </message>
         <message>
             <source>Queue:</source>
-            <translation>تور:</translation>
+            <translation>نۆۋەت:</translation>
         </message>
         <message>
             <source>TORRENT SHARE LIMITS</source>
-            <translation>توررېنت ئورتاقلىشىش چەكلىمىسى</translation>
+            <translation>TORRENT ئورتاقلىشىش چەكلىمىسى</translation>
         </message>
         <message>
             <source>Ratio</source>
-            <translation>ئىشلىتىش نىسبىتى</translation>
+            <translation>نىسبەت</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>ئادەتتىكى</translation>
+            <translation>سۈكۈتتىكى</translation>
         </message>
         <message>
             <source>Unlimited</source>
-            <translation>ئەمەسىز</translation>
+            <translation>چەكسىز</translation>
         </message>
         <message>
             <source>Set to</source>
@@ -3080,50 +3094,50 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Seeding time</source>
-            <translation>ئۆستۈرۈش ۋاقتى</translation>
+            <translation>تارقىتىش ۋاقتى</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>دەقىقىە</translation>
+            <translation>مىنۇت</translation>
         </message>
         <message>
             <source>Inactive seeding time</source>
-            <translation>ئىشلەتمەگەن ئۆستۈرۈش ۋاقتى</translation>
+            <translation>ئاكتىپسىز تارقىتىش ۋاقتى</translation>
         </message>
         <message>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
-            <translation>«ئۆلچەملىك» نى ئىشلىتىش ئۈچۈن تەڭشەكلەر → تورېنتلاردا بەلگىلەنگەن ئورتاقلىشىش چەكلىمىسىنى ئىشلىتىڭ</translation>
+            <translation>&quot;سۈكۈت&quot; تەڭشەكلەر → توررېنت ئىچىدىكى ئورتاق چەكلىمىلەرنى ئىشلىتىدۇ.</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىرىش</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەكشۈرۈش</translation>
+            <translation>جەزملەش</translation>
         </message>
         <message>
             <source>RSS Auto Download Rules</source>
-            <translation>RSS ئاپتوماتىك يۈكلەش قائىدىلىرى</translation>
+            <translation>RSS ئاپتوماتىك چۈشۈرۈش قائىدىسى</translation>
         </message>
     </context>
     <context>
         <name>RssWindow</name>
         <message>
             <source>Title</source>
-            <translation>نام</translation>
+            <translation>ماۋزۇ</translation>
         </message>
         <message>
             <source>Feed</source>
-            <translation>ئېقىم</translation>
+            <translation>تەمىنات</translation>
         </message>
         <message>
             <source>Date</source>
-            <translation>تارىخ</translation>
+            <translation>چېسلا</translation>
         </message>
         <message>
             <source>Open Feed</source>
-            <translation>ئېقىمنى ئېچىش</translation>
+            <translation>تەمىناتنى ئېچىش</translation>
         </message>
         <message>
             <source>Refresh</source>
@@ -3131,55 +3145,55 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Rename / Edit...</source>
-            <translation>ئىسىم ئۆزگەرتەيدۇ / تەھرىرلەيدۇ...</translation>
+            <translation>ئات ئۆزگەرتىش / تەھرىرلەش...</translation>
         </message>
         <message>
             <source>Remove Subscription</source>
-            <translation>ئالاقىنى ئۆچۈرۈش</translation>
+            <translation>مۇشتەرىلىكنى چىقىرىۋېتىش</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>تورنى تېكىستلىك ئېلىش</translation>
+            <translation>توررېنت چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>تېكىستلىك ئېلىش</translation>
+            <translation>چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Open in Browser</source>
-            <translation>بۇراقتا ئېچىش</translation>
+            <translation>توركۆرگۈدە ئېچىش</translation>
         </message>
         <message>
             <source>Copy Link</source>
-            <translation>ئۇلىنى كۆچۈرۈش</translation>
+            <translation>ئۇلانمىنى كۆچۈرۈش</translation>
         </message>
         <message>
             <source>Mark as Read</source>
-            <translation>ئوقۇلدى</translation>
+            <translation>ئوقۇلدى دەپ بەلگىلە</translation>
         </message>
         <message>
             <source>Mark as Unread</source>
-            <translation>ئوقۇلمىدى</translation>
+            <translation>ئوقۇلمىدى دەپ بەلگىلە</translation>
         </message>
         <message>
             <source>Mark All Read</source>
-            <translation>بارلىقىنى ئوقۇلۇش</translation>
+            <translation>ھەممىنى ئوقۇلدى دەپ بەلگىلە</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>ئىسىم</translation>
+            <translation>ئات</translation>
         </message>
         <message>
             <source>Custom name (optional)</source>
-            <translation>ئۆزگەرتىلگەن ئىسىم (تاللاش)</translation>
+            <translation>خاس ئات (ئىختىيارى)</translation>
         </message>
         <message>
             <source>URL</source>
-            <translation>ئادرېس</translation>
+            <translation>URL</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىرىش</translation>
+            <translation>بىكار قىل</translation>
         </message>
         <message>
             <source>Save</source>
@@ -3187,63 +3201,63 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
-            <translation>RSS ياكى Atom ئېقىم ئادرېسى قوشۇڭ...</translation>
+            <translation>RSS ياكى Atom تەمىنات URL نى قوشۇڭ...</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>قوشۇش</translation>
+            <translation>قوش</translation>
         </message>
         <message>
             <source>Refreshing…</source>
-            <translation>يېڭىلاۋاتىدۇ…</translation>
+            <translation>يېڭىلاش…</translation>
         </message>
         <message>
             <source>Edit</source>
-            <translation>تەۋرىتىش</translation>
+            <translation>تەھرىر</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>ئۆچۈرۈش</translation>
+            <translation>چىقىرىۋەت</translation>
         </message>
         <message>
             <source>Download Rules</source>
-            <translation>تۈزۈلۈش قائىدىلىرى</translation>
+            <translation>چۈشۈرۈش قائىدىسى</translation>
         </message>
         <message>
             <source>Subscriptions</source>
-            <translation>ئالاقىلىرى</translation>
+            <translation>ئابۇنە</translation>
         </message>
         <message>
             <source>Untitled</source>
-            <translation>ئاتسىز</translation>
+            <translation>نامسىز</translation>
         </message>
         <message>
             <source>Select an article</source>
-            <translation>مەقۇلە تاللاڭ</translation>
+            <translation>ماقالە تاللاڭ</translation>
         </message>
         <message>
             <source>Open</source>
-            <translation>ئېچىش</translation>
+            <translation>ئاچ</translation>
         </message>
         <message>
             <source>Mark Read</source>
-            <translation>ئوقۇلغان دەپ بەلگىلەش</translation>
+            <translation>ئوقۇلدى دەپ بەلگىلە</translation>
         </message>
         <message>
             <source>Mark Unread</source>
-            <translation>ئوقۇلمىغان دەپ بەلگىلەش</translation>
+            <translation>ئوقۇلمىدى دەپ بەلگىلە</translation>
         </message>
         <message>
             <source>Choose an article to view its summary.</source>
-            <translation>مەزمۇننى كۆرۈش ئۈچۈن بىر مەزمۇن تاللاڭ</translation>
+            <translation>خۇلاسىنى كۆرۈش ئۈچۈن ماقالىنى تاللاڭ.</translation>
         </message>
         <message>
             <source>No summary available.</source>
-            <translation>مەزمۇن خۇلاسىسى يوق</translation>
+            <translation>خۇلاسە يوق.</translation>
         </message>
         <message>
             <source>%1 unread  ·  %2 items</source>
-            <translation>%1 ئوقالمىغان  ·  %2 تۈر</translation>
+            <translation>%1 ئوقۇلمىغان  ·  %2 تۈر</translation>
         </message>
         <message>
             <source>%1 items</source>
@@ -3251,22 +3265,22 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>RSS Feeds</source>
-            <translation>RSS ئېقىملىرى</translation>
+            <translation>RSS لېنتىسى</translation>
         </message>
         <message>
             <source>Edit Subscription</source>
-            <translation>ئالاقىنى تەھرىرلەش</translation>
+            <translation>ئابۇنىنى تەھرىرلەش</translation>
         </message>
     </context>
     <context>
         <name>SchedulerDialog</name>
         <message>
             <source>Queues</source>
-            <translation>تورلار</translation>
+            <translation>نۆۋەتلەر</translation>
         </message>
         <message>
             <source>New queue</source>
-            <translation>يېڭى تور</translation>
+            <translation>يېڭى نۆۋەت</translation>
         </message>
         <message>
             <source>Delete</source>
@@ -3274,79 +3288,79 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Schedule</source>
-            <translation>ۋاقىتلىق تەڭشەش</translation>
+            <translation>جەدۋەل</translation>
         </message>
         <message>
             <source>Files in the queue</source>
-            <translation>تەرتىپتىكى ھۆججەتلەر</translation>
+            <translation>1. نۆۋەتتىكى ھۆججەتلەر</translation>
         </message>
         <message>
             <source>One-time downloading</source>
-            <translation>بىر قېتىملىق يۈكلەش</translation>
+            <translation>2. بىر قېتىملىق چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Periodic synchronization</source>
-            <translation>مۇۋەزىن سىنخرونلاشتۇرۇش</translation>
+            <translation>3. دەۋرىي ماسلاشتۇرۇش</translation>
         </message>
         <message>
             <source>Start download on Stellar startup</source>
-            <translation>Stellar باشلانغاندا يۈكلەشنى باشلاش</translation>
+            <translation>4. Stellar قوزغالغاندا چۈشۈرۈشنى باشلا</translation>
         </message>
         <message>
             <source>Start download at</source>
-            <translation>تۆۋەندىكىدەك يۈكلەشنى باشلاش</translation>
+            <translation>5. چۈشۈرۈشنى باشلا</translation>
         </message>
         <message>
             <source>Once at</source>
-            <translation>بىر قېتىم</translation>
+            <translation>6. بىر قېتىم</translation>
         </message>
         <message>
             <source>Daily</source>
-            <translation>كۈندىلىك</translation>
+            <translation>7. كۈندىلىك</translation>
         </message>
         <message>
             <source>Start again every</source>
-            <translation>ھەر قېتىم قايتا باشلاش</translation>
+            <translation>8. ھەر قايتا باشلا</translation>
         </message>
         <message>
             <source>hours</source>
-            <translation>سائەت</translation>
+            <translation>9. سائەت</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>دەقىقە</translation>
+            <translation>10. مىنۇت</translation>
         </message>
         <message>
             <source>Stop download at</source>
-            <translation>تۆۋەنلىتىشنى توختىتىش</translation>
+            <translation>چۈشۈرۈشنى توختىتىش ۋاقتى</translation>
         </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
-            <translation>ھەر بىر ھۆججەت ئۈچۈن قايتا سىناش سانى:</translation>
+            <translation>ھەر ھۆججەت ئۈچۈن قايتا سىناش سانى :</translation>
         </message>
         <message>
             <source>Open the following file when done:</source>
-            <translation>تەييار بولغاندا تۆۋەندىكى ھۆججەتنى ئېچىش</translation>
+            <translation>تاماملانغاندا تۆۋەندىكى ھۆججەتنى ئېچىڭ:</translation>
         </message>
         <message>
             <source>Exit Stellar when done</source>
-            <translation>تەييار بولغاندا Stellar نى چىقىرىۋېتىش</translation>
+            <translation>تاماملانغاندا Stellar دىن چېكىنىڭ</translation>
         </message>
         <message>
             <source>Turn off computer when done</source>
-            <translation>تەييار بولغاندا كومپيۇتېرنى ئۆچۈرۈش</translation>
+            <translation>تاماملانغاندا كومپيۇتېرنى ئۆچۈرۈڭ</translation>
         </message>
         <message>
             <source>Force processes to terminate</source>
-            <translation>پروگراممىلارنى قىسقىچە ئاخىرلاشتۇرۇش</translation>
+            <translation>جەريانلارنى مەجبۇرىي توختىتىش</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>تۆۋەنلىتىش</translation>
+            <translation>چۈشۈرۈش</translation>
         </message>
         <message>
             <source>files at the same time</source>
-            <translation>بىر ۋاقىتتا %n فائىل</translation>
+            <translation>ھۆججەتلەرنى بىر ۋاقىتتا</translation>
         </message>
         <message>
             <source>File Name</source>
@@ -3354,7 +3368,7 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Size</source>
-            <translation>ھەجىم</translation>
+            <translation>چوڭلۇق</translation>
         </message>
         <message>
             <source>Status</source>
@@ -3362,27 +3376,27 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Time Left</source>
-            <translation>قېلىپ قالغان ۋاقىت</translation>
+            <translation>قالغان ۋاقىت</translation>
         </message>
         <message>
             <source>No queue selected</source>
-            <translation>تاللانمىغان سىزىق</translation>
+            <translation>قۇيرۇق تاللانمىدى</translation>
         </message>
         <message>
             <source>No files in queue</source>
-            <translation>سىزىقتا ھېچقانداق ھۆججەت يوق</translation>
+            <translation>قۇيرۇقتا ھۆججەت يوق</translation>
         </message>
         <message>
             <source>Download limits</source>
-            <translation>تۆۋەنلىتىش چەكلىمىسى</translation>
+            <translation>چۈشۈرۈش چەكلىمىسى</translation>
         </message>
         <message>
             <source>Download no more than</source>
-            <translation>تۆھۈتۈش سانىنى چەكلەش</translation>
+            <translation>تۆۋەندىكىدىن ئارتۇق چۈشۈرمە</translation>
         </message>
         <message>
             <source>MBytes</source>
-            <translation>MBytes</translation>
+            <translation>MB</translation>
         </message>
         <message>
             <source>every</source>
@@ -3390,51 +3404,51 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Show warning before stopping downloads</source>
-            <translation>تۆۋەنلىتىشنى توختىتىشتىن بۇرۇن ئاگاھلاندۇرۇشنى كۆرسىتىش</translation>
+            <translation>چۈشۈرۈشنى توختىتىشتىن بۇرۇن ئاگاھلاندۇر</translation>
         </message>
         <message>
             <source>Start now</source>
-            <translation>ھازىر باشلاڭ</translation>
+            <translation>ھازىر باشلا</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>توقۇت</translation>
+            <translation>توختات</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>قوللىنىش</translation>
+            <translation>قوللان</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
-            <translation>يېڭى ئويۇنچۇق ئاتىلىرىنى كىرگۈزۈڭ</translation>
+            <translation>نۆۋەت تىزىملىكىدە كۆرۈنىدىغان يېڭى نۆۋەت ئۈچۈن ئات كىرگۈزۈڭ</translation>
         </message>
         <message>
             <source>Queue name</source>
-            <translation>ئويۇنچۇق ئاتى</translation>
+            <translation>نۆۋەت ئاتى</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>ھە</translation>
+            <translation>جەزملە</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىنكاس</translation>
+            <translation>بىكار قىل</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>تەرتىپچى</translation>
+            <translation>ۋاقىت چىرىغى</translation>
         </message>
         <message>
             <source>New Queue</source>
-            <translation>يېڭى ئويۇنچۇق</translation>
+            <translation>يېڭى نۆۋەت</translation>
         </message>
         <message>
             <source>Select file to open when done</source>
-            <translation>ئاچىدىغان ھۆججەتنى تاللاڭ</translation>
+            <translation>تاماملانغاندا ئېچىش ئۈچۈن ھۆججەت تاللاڭ</translation>
         </message>
     </context>
     <context>
@@ -3445,19 +3459,19 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
-            <translation>ئەڭ يۇقىرى بىر ۋاقىتتىكى يۈكلەش سانى</translation>
+            <translation>بىرلا ۋاقىتتىكى ئەڭ كۆپ چۈشۈرۈش:</translation>
         </message>
         <message>
             <source>Segments per download:</source>
-            <translation>يۈكلەش ئۈچۈن پارچە سانى</translation>
+            <translation>ھەر چۈشۈرۈشتىكى بۆلەك:</translation>
         </message>
         <message>
             <source>Connection timeout (seconds):</source>
-            <translation>ئۇلىنىش ئۈزۈلۈش مەۋقۇت (سېكۇنت)</translation>
+            <translation>ئۇلىنىش ۋاقتى (سېكۇنت):</translation>
         </message>
         <message>
             <source>Retry failed downloads:</source>
-            <translation>خاتالىقلىق يۈكلەشنى قايتا سىناش</translation>
+            <translation>مەغلۇپ چۈشۈرۈشنى قايتا سىنا:</translation>
         </message>
         <message>
             <source>times</source>
@@ -3465,35 +3479,35 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>User Agent</source>
-            <translation>ئىشلەتكۈچى ئاگېنتى</translation>
+            <translation>ئىشلەتكۈچى ۋاكالەتچى</translation>
         </message>
         <message>
             <source>Use custom user agent</source>
-            <translation>ئۆزگەرتىلگەن ئىشلەتكۈچى ئاگېنتىنى ئىشلىتىش</translation>
+            <translation>ئىختىيارى ئىشلەتكۈچى ۋاكالەتچى ئىشلەت</translation>
         </message>
         <message>
             <source>Proxy</source>
-            <translation>پروكسى</translation>
+            <translation>ۋاكالەتچى</translation>
         </message>
         <message>
             <source>No proxy</source>
-            <translation>پروكسى يوق</translation>
+            <translation>ۋاكالەتچىسىز</translation>
         </message>
         <message>
             <source>Use system proxy</source>
-            <translation>سىستېما پروكسىسى</translation>
+            <translation>سىستېما ۋاكالەتچىسىنى ئىشلەت</translation>
         </message>
         <message>
             <source>HTTP / HTTPS proxy</source>
-            <translation>HTTP/HTTPS پروكسىسى</translation>
+            <translation>HTTP / HTTPS ۋاكالەتچى</translation>
         </message>
         <message>
             <source>SOCKS5 proxy</source>
-            <translation>SOCKS5 پروكسىسى</translation>
+            <translation>SOCKS5 ۋاكالەتچى</translation>
         </message>
         <message>
             <source>Host:</source>
-            <translation>مېزبان:</translation>
+            <translation>مۇلازىمېتېر:</translation>
         </message>
         <message>
             <source>Port:</source>
@@ -3509,71 +3523,71 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Categories</source>
-            <translation>تۈرلەر</translation>
+            <translation>كاتېگورىيەلەر</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>ئىسىم</translation>
+            <translation>ئاتى</translation>
         </message>
         <message>
             <source>Save to folder</source>
-            <translation>پولغا ساقلاش</translation>
+            <translation>ھۆججەتخانىغا ساقلا</translation>
         </message>
         <message>
             <source>Downloads</source>
-            <translation>تۆۋەنلىتىش</translation>
+            <translation>چۈشۈرۈشلەر</translation>
         </message>
         <message>
             <source>Default save folder:</source>
-            <translation>ئۆلچەملىك ساقلاش قۇتىسى:</translation>
+            <translation>كۆڭۈلدىكى ساقلاش ھۆججەتخانىسى:</translation>
         </message>
         <message>
             <source>Browse…</source>
-            <translation>تەكشۈرۈش…</translation>
+            <translation>كۆزەت…</translation>
         </message>
         <message>
             <source>Custom save folder for torrents:</source>
-            <translation>تورانتلار ئۈچۈن ئالاھىدە ساقلاش قۇتىسى:</translation>
+            <translation>توررېنت ئۈچۈن ئىختىيارى ساقلاش ھۆججەتخانىسى:</translation>
         </message>
         <message>
             <source>Stellar temporary directory:</source>
-            <translation>ستېللىر ۋاقىتلىق دىرېكتورىيەسى:</translation>
+            <translation>Stellar ۋاقىتلىق مۇندەرىجە:</translation>
         </message>
         <message>
             <source>Start downloading immediately (skip file info dialog)</source>
-            <translation>تېزلا تۆۋەنلىتىش (ھۆججەت ئۇچۇرلىرى دىئالوگىنى ئۆتكۈزۈپ كېتىش)</translation>
+            <translation>دەرھال چۈشۈرۈشنى باشلا (ھۆججەت ئۇچۇرى سۆزلەشكۈسىنى ئاتلا)</translation>
         </message>
         <message>
             <source>Show download complete dialog</source>
-            <translation>تۆۋەنلىتىش تۈگەپ بولغانلىقىنى كۆرسىتىش</translation>
+            <translation>چۈشۈرۈش تاماملاندى سۆزلەشكۈسىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Start downloading immediately while displaying &quot;Download File Info&quot; dialog</source>
-            <translation>«تۆۋەنلىتىش ھۆججەت ئۇچۇرى» دىئالوگىنى كۆرسىتىپ تېزلا تۆۋەنلىتىش</translation>
+            <translation>«ھۆججەت چۈشۈرۈش ئۇچۇرى» سۆزلەشكۈسىنى كۆرسىتىپ دەرھال چۈشۈرۈشنى باشلا</translation>
         </message>
         <message>
             <source>Show swarm map when downloading torrent metadata</source>
-            <translation>تورانت مېتادىئانى تۆۋەنلىگەندە سۈرۈن خەرىتىسىنى كۆرسىتىش</translation>
+            <translation>توررېنت مېتا-ساندانلىرىنى چۈشۈرگەندە توپ خەرىتىسىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Show queue selection panel on pressing Download Later</source>
-            <translation>«كېيىن تۆۋەنلىتىش» بېسىلغاندا قۇتۇق تاللاش پانېلىنى كۆرسىتىش</translation>
+            <translation>كېيىن چۈشۈرۈش باسقاندا ئۆچرەت تاللاش تاختىسىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Show queue selection panel on closing batch downloads dialog</source>
-            <translation>يېمەك تاختىسىنى تاللاش پەنجرىسىنى كۆرسىتىش</translation>
+            <translation>تاقاش ئالدىدا نۆۋەت تاللاش تاختىسىنى كۆرسەت</translation>
         </message>
         <message>
             <source>If a duplicate URL is added:</source>
-            <translation>ئەگەر تەكرارلىنىدىغان URL قوشۇلسا:</translation>
+            <translation>تەكرار URL قوشۇلغاندا:</translation>
         </message>
         <message>
             <source>Double-clicking on a download in the file list:</source>
-            <translation>ھۆججەت تىزىملىكىدىكى يۈكلەشكە ئىككى قېتىم بېسىش:</translation>
+            <translation>ھۆججەت تىزىمىدىكى چۈشۈرۈشنى قوش چېكىش:</translation>
         </message>
         <message>
             <source>Last try date format:</source>
-            <translation>ئاخىرقى سىناش كۈنى فورماتى:</translation>
+            <translation>ئاخىرقى سىناۋ چېسلا فورماتى:</translation>
         </message>
         <message>
             <source>Time format:</source>
@@ -3581,7 +3595,7 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Show seconds</source>
-            <translation>سېكۇنتنى كۆرسىتىش</translation>
+            <translation>سېكۇنتلارنى كۆرسەت</translation>
         </message>
         <message>
             <source>Preview</source>
@@ -3589,43 +3603,43 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Browser Integration</source>
-            <translation>بۇرۇنچۇق بىلەن بىرلەشتۈرۈش</translation>
+            <translation>توركۆرگۈچ بىرلەشمىسى</translation>
         </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
-            <translation>تۆۋەندىكى ھۆججەت تىپلىرىنى ئاپتوماتىك يۈكلەش:</translation>
+            <translation>تۆۋەندىكى ھۆججەت تۈرلىرىنى ئاپتوماتىك چۈشۈرۈش:</translation>
         </message>
         <message>
             <source>Don't start downloading automatically from the following sites:</source>
-            <translation>تۆۋەندىكى ئورۇنلاردىن ئاپتوماتىك يۈكلەشنى ئوقۇتۇش:</translation>
+            <translation>تۆۋەندىكى تورلاردىن ئاپتوماتىك چۈشۈرمەڭ:</translation>
         </message>
         <message>
             <source>Address Exceptions</source>
-            <translation>خاتالىقلارنى بىلدۈرۈش</translation>
+            <translation>ئادرەس ئىستىسنالىرى</translation>
         </message>
         <message>
             <source>Don't start downloading from the following addresses:</source>
-            <translation>تۆۋەندىكى ئادرېسلاردىن تۆۋەنلىمەسلىك</translation>
+            <translation>تۆۋەندىكى ئادرەسلەردىن چۈشۈرۈشنى باشلىماڭ:</translation>
         </message>
         <message>
             <source>Bypass Download Interception</source>
-            <translation>تۆۋەنلىمە ئۈزۈلۈشىنى ئېتىپ ئۆتۈش</translation>
+            <translation>چۈشۈرۈش توسۇشنى ئايلىنىپ ئۆتۈش</translation>
         </message>
         <message>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
-            <translation>تۆۋەنلىمە ئادرېسىنى بېسىۋاتقاندا بۇ تۇيۇقنى تۇتۇپ تۇرۇڭ، ئۈزۈلۈشنى ئېتىپ ئۆتۈپ، كۆرگۈچ تۆۋەنلىسۇن</translation>
+            <translation>چۈشۈرۈش ئۇلانمىسىنى چەككەندە بۇ كۇنۇپكىنى بېسىپ تۇرۇڭ، توسۇشنى ئاتلاپ توركۆرگۈچ چۈشۈرسۇن:</translation>
         </message>
         <message>
             <source>Speed Limiter</source>
-            <translation>تېزلىك چەكلىگۈچ</translation>
+            <translation>سۈرئەت چەكلىگۈچ</translation>
         </message>
         <message>
             <source>Enable global speed limit</source>
-            <translation>ئومۇمىي تېزلىك چەكلىمىسىنى ئاكتىپلاشتۇرۇش</translation>
+            <translation>ئومۇمىي چۈشۈرۈش چەكلىمىسىنى قوزغات</translation>
         </message>
         <message>
             <source>Maximum speed:</source>
-            <translation>ئەڭ يۇقىرى تېزلىك:</translation>
+            <translation>ئەڭ چوڭ چۈشۈرۈش سۈرئىتى:</translation>
         </message>
         <message>
             <source>KB/s</source>
@@ -3633,31 +3647,31 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Enable global upload limit</source>
-            <translation>ئومۇمىي يۈكلەش چەكلىمىسىنى ئاكتىپلاشتۇرۇش</translation>
+            <translation>ئومۇمىي يوللاش چەكلىمىسىنى قوزغات</translation>
         </message>
         <message>
             <source>Maximum upload:</source>
-            <translation>ئەڭ يۇقىرى يۈكلەش:</translation>
+            <translation>ئەڭ چوڭ يوللاش سۈرئىتى:</translation>
         </message>
         <message>
             <source>Always turn on speed limiter on Stellar startup</source>
-            <translation>Stellar باشلانغاندا سۈرەت چەكلىگۈچنى ئاكتىپلاش</translation>
+            <translation>Stellar قوزغىتىلغاندا سۈرئەت چەكلىگۈچنى ھەمىشە قوزغات</translation>
         </message>
         <message>
             <source>Enable speed limiter scheduler</source>
-            <translation>سۈرەت چەكلىگۈچ ئىشلىتىش جەدۋىلىنى ئاكتىپلاش</translation>
+            <translation>سۈرئەت چەكلىگۈچ ۋاقىت جەدۋىلىنى قوزغات</translation>
         </message>
         <message>
             <source>Remove</source>
-            <translation>ئۆچۈرۈش</translation>
+            <translation>چىقىرىۋەت</translation>
         </message>
         <message>
             <source>On</source>
-            <translation>ئىش</translation>
+            <translation>قوزغات</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>تارتىش</translation>
+            <translation>چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Upload</source>
@@ -3665,19 +3679,19 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>+ Add Rule</source>
-            <translation>+ قائىدە قوشۇش</translation>
+            <translation>+ قائىدە قوش</translation>
         </message>
         <message>
             <source>Notifications</source>
-            <translation>ئەسكەرتىش</translation>
+            <translation>ئۇقتۇرۇشلار</translation>
         </message>
         <message>
             <source>Show notification when download completes</source>
-            <translation>تارتىش تۈگەپ بولغاندا ئەسكەرتىش كۆرسىتىش</translation>
+            <translation>چۈشۈرۈش تاماملانغاندا ئۇقتۇرۇش كۆرسەت</translation>
         </message>
         <message>
             <source>Show notification on download error</source>
-            <translation>تارتىش خاتالىقىدا ئەسكەرتىش كۆرسىتىش</translation>
+            <translation>چۈشۈرۈش خاتالىقىدا ئۇقتۇرۇش كۆرسەت</translation>
         </message>
         <message>
             <source>General</source>
@@ -3685,15 +3699,15 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Browser</source>
-            <translation>تەرجىمە</translation>
+            <translation>توركۆرگۈ</translation>
         </message>
         <message>
             <source>Media</source>
-            <translation>مەزمۇن</translation>
+            <translation>ۋاسىتە</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>تورلار</translation>
+            <translation>توررېنت</translation>
         </message>
         <message>
             <source>Language</source>
@@ -3705,87 +3719,87 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>When custom mode is off, Stellar uses its built-in User-Agent with the current version.</source>
-            <translation>Stellar بىر تەرەپ قىلىنىدىغان User-Agent نى ئىشلىتىدۇ</translation>
+            <translation>ئىختىيارى ھالەت ئۆچۈك بولغاندا، Stellar نۆۋەتتىكى نەشرى بىلەن ئۆز ئىچىدىكى ئىشلەتكۈچى-ۋاكالەتچىنى ئىشلىتىدۇ.</translation>
         </message>
         <message>
             <source>This value will be sent exactly as entered.</source>
-            <translation>بۇ قىممەت كىرگۈزۈلگەنچە يوللىنىدۇ</translation>
+            <translation>بۇ قىممەت ئەينەن كىرگۈزۈلگەندەك ئەۋەتىلىدۇ.</translation>
         </message>
         <message>
             <source>Built-in default shown above. Enable the checkbox to edit and override it.</source>
-            <translation>يۇقىرىدا كۆرسىتىلگەن ئۆزگەرتىلمىگەن قىممەت. تەۋرىنىشنى ئاكتىپلاشتۇرۇپ ئۆزگەرتسىڭىز بولىدۇ</translation>
+            <translation>ئۆز ئىچىدىكى سۈكۈتتىكى قىممەت يۇقىرىدا كۆرسىتىلدى. تەھرىرلەش ۋە ئۇنى ئالماشتۇرۇش ئۈچۈن قۇلۇپنى قوزغىتىڭ.</translation>
         </message>
         <message>
             <source>Optional</source>
-            <translation>ئىختىيارىي</translation>
+            <translation>ئىختىيارى</translation>
         </message>
         <message>
             <source>All downloads, video downloads, update checks, and torrent peer/tracker connections are routed through this proxy.</source>
-            <translation>بارلىق تۆۋەنلىمىلەر، ۋىدېئو تۆۋەنلىمىلىرى، يېڭىلىق تەكشۈرۈشلىرى ۋە تورنت ئىشلەپچىقىرىشچى/تەكشۈرۈشچى ئۇلىنىشلىرى بۇ پروكسى ئارقىلىق يۆتكىلىدۇ.</translation>
+            <translation>ھەممە چۈشۈرۈش، سىن چۈشۈرۈش، يېڭىلاش تەكشۈرۈش ۋە توررېنت ھەمكار/ئۇلىنىشلار مۇشۇ ۋاكالەتچى ئارقىلىق يوللىنىدۇ.</translation>
         </message>
         <message>
             <source>Stellar will use the proxy configured in your operating system network settings.</source>
-            <translation>Stellar سىزنىڭ ئىشلىتىۋاتقان ئوپېراتسىيە سىستېمىسىنىڭ تور تەڭشەكلىرىدە بەلگىلەنگەن پروكسىنى ئىشلىتىدۇ.</translation>
+            <translation>Stellar مەشغۇلات سىستېمىسى تور تەڭشىكىدىكى ۋاكالەتچىنى ئىشلىتىدۇ.</translation>
         </message>
         <message>
             <source>Timed out — proxy did not respond</source>
-            <translation>ۋاقىت ئۆتۈپ كەتتى — پروكسى جاۋاب قايتۇرمىدى</translation>
+            <translation>ۋاقىت ئۆتتى — ۋاكالەتچى جاۋاب بەرمىدى</translation>
         </message>
         <message>
             <source>Testing…</source>
-            <translation>تەكشۈرۈۋاتىدۇ...</translation>
+            <translation>سىناق قىلىۋاتىدۇ…</translation>
         </message>
         <message>
             <source>Test Proxy</source>
-            <translation>تەستىكلىگۈچ پروكسى</translation>
+            <translation>ۋاكالەتچىنى سىنا</translation>
         </message>
         <message>
             <source>⚠ Not in browser auto-download list: %1</source>
-            <translation>⚠ %1 ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈشكۈچى ئۆتۈش</translation>
+            <translation>⚠ تور كۆرگۈچ ئاپتوماتىك چۈشۈرۈش تىزىملىكىدە ئەمەس: %1</translation>
         </message>
         <message>
             <source>Browse</source>
-            <translation>بىر تەرەپ قىلىش</translation>
+            <translation>كۆرۈش</translation>
         </message>
         <message>
             <source>This is the remembered custom torrent folder used when the torrent metadata dialog is set to use a custom save folder by default.</source>
-            <translation>بۇ يەردە تورېنت مېتادىئالار ئېكرانى ئۆزگىچە ساقلاش تۈركۈمىنى ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمىنى ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈركۈمى بىلەن ئۆزگىچە ساقلاش تۈ</translation>
+            <translation>بۇ توررېنت مېتا-ساندان سۆزلەشكۈسى سۈكۈت بويىچە ئىختىيارى ساقلاش قىسقۇچ ئىشلەتكەندە ئەسلىگەن ئىختىيارى توررېنت قىسقۇچ.</translation>
         </message>
         <message>
             <source>Stellar stores partially downloaded file parts and metadata here while downloading and assembling files.</source>
-            <translation>يۇلتۇزلىق تەمىنلەش سىستېمىسى ھۆججەتلەرنى تۆۋەنلىتىۋاتقاندا ۋە ئۇلارنى بىرلەشتۈرۈۋاتقاندا، قىسمەن تۆۋەنلىگەن ھۆججەت قىسىملىرى ۋە مېتادېتاسىنى بۇ يەردە ساقلايدۇ.</translation>
+            <translation>Stellar چۈشۈرۈش ۋە قۇراشتۇرۇش جەريانىدا قىسمەن چۈشۈرۈلگەن ھۆججەت بۆلەكلىرى ۋە مېتا-سانلىق مەلۇماتلارنى بۇ يەردە ساقلايدۇ.</translation>
         </message>
         <message>
             <source>Note: These settings don't apply to queue processing for the Start Downloading Immediately setting and Show Download Complete dialog setting.</source>
-            <translation>ئەسكەرتىش: بۇ تەڭشەكلەر «تېزلا يۈكلەشنى باشلاش» ۋە «يۈكلەش تۈگەپ بولغانلىقىنى كۆرسىتىش» تەڭشىكلىرىگە ماس كەلمەيدۇ.</translation>
+            <translation>ئەسكەرتىش: بۇ تەڭشەكلەر دەرھال چۈشۈرۈشنى باشلاش ۋە چۈشۈرۈش تاماملاندى سۆزلەشكۈسىنى كۆرسەت تەڭشەكلىرى ئۈچۈن قاتار بىر تەرەپ قىلىشقا تەتبىقلانمايدۇ.</translation>
         </message>
         <message>
             <source>Ask me what to do</source>
-            <translation>مەن نېمە قىلىشىم كېرەك؟</translation>
+            <translation>مەن نېمە قىلىشىمنى سورا</translation>
         </message>
         <message>
             <source>Add with a numbered file name</source>
-            <translation>رەقەملىك ھەرىپ بىلەن قوشۇش</translation>
+            <translation>نومۇرلانغان ھۆججەت ئاتى بىلەن قوش</translation>
         </message>
         <message>
             <source>Overwrite the existing download</source>
-            <translation>مەۋجۇت تارتىشنى يېزىش</translation>
+            <translation>مەۋجۇت چۈشۈرۈشنى ئۈستىگە ياز</translation>
         </message>
         <message>
             <source>Resume / show complete dialog</source>
-            <translation>تەۋرىنىش / تولۇق ئىزاھاتنى كۆرسىتىش</translation>
+            <translation>داۋاملاشتۇر / تاماملانغان دىئالوگنى كۆرسەت</translation>
         </message>
         <message>
             <source>Open file properties dialog</source>
-            <translation>ھۆججەت خۇسۇسىيىتى ئىزاھاتىنى ئېچىش</translation>
+            <translation>ھۆججەت خاسلىق دىئالوگىنى ئاچ</translation>
         </message>
         <message>
             <source>Open file</source>
-            <translation>ھۆججەتنى ئېچىش</translation>
+            <translation>ھۆججەتنى ئاچ</translation>
         </message>
         <message>
             <source>Open folder</source>
-            <translation>پولكىنى ئېچىش</translation>
+            <translation>ھۆججەت قىسقۇچنى ئاچ</translation>
         </message>
         <message>
             <source>24-hour time</source>
@@ -3797,19 +3811,19 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Space or comma-separated. Case-insensitive.</source>
-            <translation>بوشلۇق ياكى نۇقتا بىلەن ئايرىلغان. چوڭ-كىچىك ھەرىپكە نەزەر قىلىنمايدۇ.</translation>
+            <translation>بوشلۇق ياكى ئۈتۈر بىلەن ئايرىلغان. چوڭ-كىچىك ھەرپ پەرقى يوق.</translation>
         </message>
         <message>
             <source>Space-separated host patterns. Wildcards (*) supported, e.g. *.update.microsoft.com</source>
-            <translation>تەڭشەش ئارقىلىق بېرىلگەن مەخسۇس ئادرېسلارنى كۆرسىتىش</translation>
+            <translation>بوشلۇق بىلەن ئايرىلغان مۇلازىمېت ئەندىزىلىرى. يۇلتۇز بەلگىسى (*) قوللىنىلىدۇ، مەس. *.update.microsoft.com</translation>
         </message>
         <message>
             <source>Show the dialog to add an address to the list of exceptions for a twice cancelled download</source>
-            <translation>يەنە بىر قېتىم لايىھەلەنگەن تۈزىتىش ئادرېسىنى قوشۇش</translation>
+            <translation>ئىككى قېتىم ئەمەلدىن قالدۇرۇلغان چۈشۈرۈش ئۈچۈن ئالاھىدە تىزىملىككە ئادرېس قوشۇش سۆزلەشكۈسىنى كۆرسەت</translation>
         </message>
         <message>
             <source>One URL pattern per line. Wildcards (*) supported.</source>
-            <translation>ھەر بىر سىزىقتا بىر ئادرېس شەكلى</translation>
+            <translation>ھەر قۇرغا بىر URL ئەندىزىسى. يۇلتۇز بەلگىسى (*) قوللىنىلىدۇ.</translation>
         </message>
         <message>
             <source>None</source>
@@ -3817,63 +3831,63 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
-            <translation>كۈن ئىچىدىكى ھەر بىر كۈنگە بېرىلگەن تەڭشەشنى ئاكتىپلاش ياكى ئۆچۈرۈش</translation>
+            <translation>كۈن بەلگىسىنى چېكىپ ئالماشتۇرۇڭ. قائىدىلەر ھەر مىنۇتتا باھالىنىدۇ؛ تۇنجى ماس كەلگەن قائىدە كۈچكە ئىگە. پىلانلانغان چۈشۈرۈش ۋە يۈكلەش چەكلىمىلىرى ھېچقانداق قائىدە ئاكتىپ بولمىغاندا ئاپتوماتىك تازىلىنىدۇ.</translation>
         </message>
         <message>
             <source>Minimize to system tray</source>
-            <translation>سىستېما تەييارلىقىغا كىرگۈزۈش</translation>
+            <translation>سىستېما تەخسىسىگە كىچىكلەت</translation>
         </message>
         <message>
             <source>Close to system tray</source>
-            <translation>سىستېما تەييارلىقىدىن چىقىش</translation>
+            <translation>سىستېما تەخسىسىگە ياپ</translation>
         </message>
         <message>
             <source>Launch Stellar on startup</source>
-            <translation>Stellar نى باشلانغۇچتا ئېچىش</translation>
+            <translation>Stellar نى قوزغىلىشتا ئىجرا قىل</translation>
         </message>
         <message>
             <source>Show tips in bottom bar</source>
-            <translation>ئاستىدىكى سىزىقتا كۆرسىتىش</translation>
+            <translation>ئاستى بالداقتا تەكلىپلەرنى كۆرسەت</translation>
         </message>
         <message>
             <source>Show finished download count in status bar</source>
-            <translation>ھالىتىدىكى تۈزىتىش سانىنى كۆرسىتىش</translation>
+            <translation>ھالەت بالدىقىدا تاماملانغان چۈشۈرۈش سانىنى كۆرسەت</translation>
         </message>
         <message>
             <source>Utilities</source>
-            <translation>ئامانلىق قوراللىرى</translation>
+            <translation>قوراللار</translation>
         </message>
         <message>
             <source>Show speed in tray icon tooltip</source>
-            <translation>تەخسىچە سۈرئىتىنى كۆرسىتىش</translation>
+            <translation>تەگلىك سىنبەلگە ئۇچۇرىدا سۈرئەت كۆرسەت</translation>
         </message>
         <message>
             <source>Show speed in title bar</source>
-            <translation>بېسىم سۈرئىتىنى كۆرسىتىش</translation>
+            <translation>ماۋزۇ بالدىقىدا سۈرئەت كۆرسەت</translation>
         </message>
         <message>
             <source>Show speed in status bar</source>
-            <translation>ھالەت سىزىقىدا سۈرئەتنى كۆرسىتىش</translation>
+            <translation>ھالەت بالدىقىدا سۈرئەت كۆرسەت</translation>
         </message>
         <message>
             <source>Show estimated online users in status bar</source>
-            <translation>ھالەت سىزىقىدا ئۆزگىرىشچان ئىشلەتكۈچىلەر سانىنى كۆرسىتىش</translation>
+            <translation>ھالەت بالدىقىدا مۆلچەرلەنگەن تور ئىشلەتكۈچىلەرنى كۆرسەت</translation>
         </message>
         <message>
             <source>Uses DHT node-ID density to estimate global BitTorrent users. Confidence rises as more unique node IDs are observed; a trailing * in the status bar means the estimate is still low-confidence.</source>
-            <translation>DHT نۇقتا-ID زىچلىقى ئاساسىدا دۇنيادىكى BitTorrent ئىشلەتكۈچىلىرىنى باھالاش. كۆپلىگەن ئوخشىمىغان نۇقتا-ID لار كۆرۈلگەندە ئىشەنچلىك دەرىجە ئۆسىدۇ؛ ھالەت سىزىقىدىكى ئاخىرقى * بەلگىسى باھالىنىش ئىشەنچلىك دەرىجىسى تۆۋەنلىگەنلىكىنى بىلدۈرىدۇ</translation>
+            <translation>دۇنياۋى BitTorrent ئىشلەتكۈچىلىرىنى مۆلچەرلەش ئۈچۈن DHT تۈگۈن-ID زىچلىقىنى ئىشلىتىدۇ. كۆپرەك ئۆزگىچە تۈگۈن ID لىرى كۆزىتىلگەنسېرى ئىشەنچ ئاشىدۇ؛ ھالەت بالدىقىدىكى ئارقىغا ئەگەشكەن * بەلگىسى مۆلچەرنىڭ يەنىلا تۆۋەن ئىشەنچلىك ئىكەنلىكىنى بىلدۈرىدۇ.</translation>
         </message>
         <message>
             <source>Show ratio in status bar</source>
-            <translation>ھالەت سىزىقىدا نىسبەتنى كۆرسىتىش</translation>
+            <translation>ھالەت بالدىقىدا نىسبەت كۆرسەت</translation>
         </message>
         <message>
             <source>Show Public IP in Status Bar</source>
-            <translation>ھالەت سىزىقىدا ئومۇمىي IP نى كۆرسىتىش</translation>
+            <translation>ھالەت بالدىقىدا ئاشكارا IP نى كۆرسەت</translation>
         </message>
         <message>
             <source>Detects your public IP via libtorrent and your active connection type. Hover the indicator to see WiFi SSID/signal or warnings about incoming connections.</source>
-            <translation>libtorrent ئارقىلىق ئومۇمىي IP نى ۋە ئاكتىپ ئۇلىنىش تىپىنى ئېنىقلايدۇ. كۆرسەتكۈچكە سىلىپ كۆرۈش ئارقىلىق WiFi SSID/سىگنال ياكى كىرىشلىك ئۇلىنىشلار ھەققىدىكى ئاگاھلاندۇرۇشلارنى كۆرەلەيسىز</translation>
+            <translation>libtorrent ۋە ئاكتىپ ئۇلىنىش تىپىڭىز ئارقىلىق ئاشكارا IP ڭىزنى بايقايدۇ. كىرگەن ئۇلىنىشلار توغرىسىدا WiFi SSID/سىگنال ياكى ئاگاھلاندۇرۇشلارنى كۆرۈش ئۈچۈن كۆرسەتكۈچ ئۈستىگە چاشقىنەك ئاپارڭ.</translation>
         </message>
         <message>
             <source>Updates</source>
@@ -3881,31 +3895,31 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Automatically check for updates</source>
-            <translation>يېڭىلىقنى ئاپتوماتىك تەكشۈرۈش</translation>
+            <translation>ئاپتوماتىك يېڭىلانمىلارنى تەكشۈرۈش</translation>
         </message>
         <message>
             <source>Clipboard Monitoring</source>
-            <translation>كلىپبورد نەزەرىتى</translation>
+            <translation>چاپلاش تاختىسىنى نازارەت قىلىش</translation>
         </message>
         <message>
             <source>Automatically start downloading URLs placed in the clipboard</source>
-            <translation>كلىپبوردغا ئورۇنلاشتۇرۇلغان URL لارنى ئاپتوماتىك يۈكلەش</translation>
+            <translation>چاپلاش تاختىسىغا قويۇلغان URL لارنى ئاپتوماتىك چۈشۈرۈش</translation>
         </message>
         <message>
             <source>When a URL matching a monitored file type is copied to the clipboard, Stellar will ask if you want to download it. Only file types listed under Browser › Automatically start downloading the following file types are picked up.</source>
-            <translation>URL نى كلىپبوردغا نەپەس قىلغاندا، Stellar سىزگە يۈكلەشنى سورايدۇ. پەقەت Browser › ئاپتوماتىك تۆۋەندىكى ھۆججەت تىپلىرىنى يۈكلەش تىزىملىكىدىكى تىپلارلا ئېلىپ بېرىلىدۇ.</translation>
+            <translation>نازارەت قىلىنغان ھۆججەت تىپىغا ماس كېلىدىغان URL چاپلاش تاختىسىغا كۆچۈرۈلگەندە، Stellar چۈشۈرۈشنى سورايدۇ. پەقەت توركۆرگۈچ › تۆۋەندىكى ھۆججەت تىپلىرىنى ئاپتوماتىك چۈشۈرۈش ئاستىدىكى تىپلارلا تۇتۇلىدۇ.</translation>
         </message>
         <message>
             <source>Video Downloader</source>
-            <translation>فىلىم يۈكلەۋاتقۇچ</translation>
+            <translation>ۋىدېئو چۈشۈرگۈچ</translation>
         </message>
         <message>
             <source>Stellar uses yt-dlp to download videos from YouTube, Vimeo, Twitter/X, Instagram and hundreds of other sites. When you paste a video URL into Add URL, a format picker will appear.</source>
-            <translation>Stellar yt-dlp نى ئىشلىتىپ YouTube، Vimeo، Twitter/X، Instagram ۋە يۈزلىگەن باشقا ساھەلەردىن فىلىملەرنى يۈكلەيدۇ. URL نى قوشۇشقا نەپەس قىلغاندا، فورمات تاللاشچى كۆرۈنىدۇ.</translation>
+            <translation>Stellar YouTube، Vimeo، Twitter/X، Instagram ۋە يۈزلىگەن باشقا تورلاردىن ۋىدېئو چۈشۈرۈش ئۈچۈن yt-dlp نى ئىشلىتىدۇ. URL قوشۇشقا ۋىدېئو URL ىنى چاپلىغاندا، فورمات تاللىغۇچ كۆرۈنىدۇ.</translation>
         </message>
         <message>
             <source>Binary status</source>
-            <translation>بىنارىيە ئەھۋالى</translation>
+            <translation>ئىجرا ھالىتى</translation>
         </message>
         <message>
             <source>Update yt-dlp</source>
@@ -3913,19 +3927,19 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>Download yt-dlp</source>
-            <translation>yt-dlp نى يۈكلەش</translation>
+            <translation>yt-dlp نى چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىرىش</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
         <message>
             <source>Re-check</source>
-            <translation>تەكرارلاپ تەكشۈرۈش</translation>
+            <translation>قايتا تەكشۈرۈش</translation>
         </message>
         <message>
             <source>ffmpeg status</source>
-            <translation>ffmpeg ئەھۋالى</translation>
+            <translation>ffmpeg ھالىتى</translation>
         </message>
         <message>
             <source>ffmpeg found: %1</source>
@@ -3933,43 +3947,43 @@ Stellar تەڭشىكى → تور بەت → يۈكلەشنى توسۇشنى ئ�
         </message>
         <message>
             <source>ffmpeg not found — HD downloads will be limited to pre-muxed formats (max ~480p)</source>
-            <translation>ffmpeg تېپىلمايدۇ — HD يۈكلەش پەقەل ئالدىن مۇكس قىلىنغان فورماتقا چەكلىنىدۇ (تەخمىنەن 480p غىچە).</translation>
+            <translation>ffmpeg تېپىلمىدى — HD چۈشۈرۈشلەر ئالدىن بىرىكتۈرۈلگەن فورماتلار بىلەن چەكلىنىدۇ (ئەڭ يۇقىرى ~480p)</translation>
         </message>
         <message>
             <source>Updating FFmpeg...</source>
-            <translation>FFmpeg يېڭىلىنىۋاتىدۇ...</translation>
+            <translation>FFmpeg يېڭىلانۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Update FFmpeg</source>
-            <translation>FFmpeg نى يېڭىلىش</translation>
+            <translation>FFmpeg يېڭىلاش</translation>
         </message>
         <message>
             <source>Get ffmpeg (gyan.dev)</source>
-            <translation>ffmpeg (gyan.dev) نى ئېلىۋېلىڭ</translation>
+            <translation>ffmpeg ئېلىش (gyan.dev)</translation>
         </message>
         <message>
             <source>ffmpeg is required to merge separate video and audio streams into MP4/MKV. Without it, YouTube downloads fall back to a single pre-muxed stream (usually WebM, max 480p).
 
 To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract ffmpeg.exe from the bin/ folder, and place it in the same folder as yt-dlp.exe. Then click Re-check above.</source>
-            <translation>MP4/MKV لايىلىرىنى بىرلەشتۈرۈش ئۈچۈن ffmpeg نىڭ ئورنىغا ئېلىنشى كېرەك. ئۇنىڭ بولمىسا، YouTube تۆۋەنلىتىش بىرلا ئالدىن بىرلەشتۈرۈلگەن ئېقىمغا (ئادەتتە WebM، ئەڭ يۇقىرى 480p) قايتىدۇ.
+            <translation>ئايرىم سىن ۋە ئاۋاز ئېقىملىرىنى MP4/MKV غا بىرلەشتۈرۈش ئۈچۈن ffmpeg زۆرۈر. ئۇ بولمىسا، YouTube چۈشۈرۈشلىرى بىر ئالدىن بىرىكتۈرۈلگەن ئېقىمغا چۈشىدۇ (ئادەتتە WebM، ئەڭ يۇقىرى 480p).
 
-تۈزىتىش ئۈچۈن: gyan.dev/ffmpeg/builds دىن ffmpeg نى تۆۋەنلىتىڭ (Essentials build)، bin/ قىسىمىدىن ffmpeg.exe نى ئاچىپ، yt-dlp.exe بىلەن بىر قىسىمغا قويۇڭ. ئاندىن يۇقىرىدىكى «قايتا تەكشۈرۈش» نى بېسىڭ.</translation>
+ھەل قىلىش ئۈچۈن: gyan.dev/ffmpeg/builds دىن ffmpeg نى چۈشۈرۈڭ (Essentials قۇرۇلمىسى)، bin/ قىسقۇچتىن ffmpeg.exe نى ئايرىڭ ۋە ئۇنى yt-dlp.exe بىلەن ئوخشاش قىسقۇچقا قويۇڭ. ئاندىن يۇقىرىدىكى قايتا تەكشۈرۈشنى بېسىڭ.</translation>
         </message>
         <message>
             <source>Custom binary path</source>
-            <translation>ئۆزگەرتىلگەن بىنار يولى</translation>
+            <translation>ئىختىيارى ئىجرا يولى</translation>
         </message>
         <message>
             <source>Leave blank to use the bundled binary (recommended). Set to the absolute path of your own yt-dlp executable if you want to use a specific version.</source>
-            <translation>بىرلىككە ئېلىنغان بىنارىيەنى ئىشلىتىش ئۈچۈن بوش قالدۇرۇڭ (تەۋسىيە قىلىنىدۇ). ئۆزىڭىزنىڭ yt-dlp ئىجرا قىلىشچانلىقىنى ئىشلىتىشنى خالىسىڭىز، ئۇنىڭ مۇتلەق يول ئادرېسىنى بەلگىلەڭ.</translation>
+            <translation>باغلانغان ئىجرانى ئىشلىتىش ئۈچۈن بوش قالدۇرۇڭ (تەۋسىيە). ئۆزىڭىزنىڭ yt-dlp ئىجراسىنىڭ مۇتلەق يولىنى بەلگىلەڭ، ئەگەر مەلۇم نەشرىنى ئىشلەتمەكچى بولسىڭىز.</translation>
         </message>
         <message>
             <source>(auto - use bundled or system yt-dlp)</source>
-            <translation>(ئۆز ئۆزىنى بەلگىلەش - بىرلەشتۈرۈلگەن ياكى سىستېما yt-dlp نى ئىشلىتىش)</translation>
+            <translation>(auto - باغلانغان ياكى سىستېما yt-dlp ئىشلىتىلسۇن)</translation>
         </message>
         <message>
             <source>JavaScript runtime</source>
-            <translation>JavaScript ئىشلەپچىقىرىش مۇھىتى</translation>
+            <translation>JavaScript ئىجرا مۇھىتى</translation>
         </message>
         <message>
             <source>%1 found: %2</source>
@@ -3977,43 +3991,43 @@ To fix: download ffmpeg from gyan.dev/ffmpeg/builds (Essentials build), extract 
         </message>
         <message>
             <source>No JS runtime found — YouTube n-challenge solving disabled</source>
-            <translation>JavaScript ئىشلەپچىقىرىش مۇھىتى تېپىلمىدى — YouTube ن-چەللىك ھەل قىلىش ئۈنۈمسىز</translation>
+            <translation>JS ئىجرا مۇھىتى تېپىلمىدى — YouTube n-چەكلىمىسىنى يېشىش چەكلەنگەن</translation>
         </message>
         <message>
             <source>yt-dlp requires an external JavaScript runtime to solve YouTube's n-challenge (URL throttling). Without it, YouTube downloads may fail or return only low-quality storyboard formats.
 
 Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS. Place it in the same folder as yt-dlp.exe or add it to your system PATH, then click Re-check in the yt-dlp status section above.</source>
-            <translation>yt-dlp YouTube نىڭ ن-چەللىكىنى (URL چەكلەش) ھەل قىلىش ئۈچۈن سىرتقى JavaScript ئىشلەپچىقىرىش مۇھىتىنى تەلەپ قىلىدۇ. بۇ يوق بولسا، YouTube تۆۋەنلىتىش مۇۋەپپەقىيەتسىز بولۇشى ياكى پەقەت تۆۋەن سۈپەتلىك رەسىم كۆرسەتكۈچ فورماتىنى قايتۇرۇۋېتىشى مۇمكىن.
+            <translation>yt-dlp YouTube نىڭ n-چەكلىمىسىنى (URL توسۇش) يېشىش ئۈچۈن سىرتقى JavaScript ئىجرا مۇھىتىنى تەلەپ قىلىدۇ. ئۇ بولمىسا، YouTube چۈشۈرۈشلىرى مەغلۇپ بولۇشى ياكى پەقەت تۆۋەن سۈپەتلىك ستورىبورد فورماتلىرىنى قايتۇرۇشى مۇمكىن.
 
-تۆۋەندىكىلەرنىڭ بىرىنى ئورنىتىڭ: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh) ياكى QuickJS. بۇنى yt-dlp.exe بىلەن بىر خىل قۇرۇلمىغا ياكى سىستېما PATH غا قوشۇڭ، ئاندىن يۇقىرىدىكى yt-dlp ئەھۋال قىسىمىدىكى قايتا تەكشۈرۈش تەگمىسىنى بېسىڭ.</translation>
+تۆۋەندىكىلەردىن بىرىنى قاچىلاڭ: Deno (deno.com)، Node.js (nodejs.org)، Bun (bun.sh)، ياكى QuickJS. ئۇنى yt-dlp.exe بىلەن ئوخشاش قىسقۇچقا قويۇڭ ياكى سىستېما PATH غا قوشۇڭ، ئاندىن يۇقىرىدىكى yt-dlp ھالىتى بۆلىكىدە قايتا تەكشۈرۈشنى بېسىڭ.</translation>
         </message>
         <message>
             <source>Override the auto-detected runtime path. Leave blank to use auto-detection (searches yt-dlp folder, app folder, and system PATH).</source>
-            <translation>ئۆز ئۆزىنى بەلگىلەنگەن ئىشلەپچىقىرىش مۇھىتى يولىنى ئۆزگەرتىش. بوش قالدۇرۇپ قويۇش ئۈچۈن ئۆز ئۆزىنى بەلگىلەشنى ئىشلىتىڭ (yt-dlp قۇرۇلمىسى، ئەپ قۇرۇلمىسى ۋە سىستېما PATH نى ئىزدەيدۇ).</translation>
+            <translation>ئاپتوماتىك بايقالغان ئىجرا يولىنى ئالماشتۇرۇڭ. ئاپتوماتىك بايقاش ئۈچۈن بوش قالدۇرۇڭ (yt-dlp قىسقۇچى، ئەپ قىسقۇچى ۋە سىستېما PATH نى ئىزدەيدۇ).</translation>
         </message>
         <message>
             <source>(auto-detect from PATH and yt-dlp folder)</source>
-            <translation>(PATH ۋە yt-dlp قۇرۇلمىسىدىن ئۆز ئۆزىنى بەلگىلەش)</translation>
+            <translation>(PATH ۋە yt-dlp قىسقۇچىدىن ئاپتوماتىك بايقاش)</translation>
         </message>
         <message>
             <source>Automatically update yt-dlp at startup</source>
-            <translation>يۇقىرىدا ئۆز ئۆزىنى بەلگىلەش ئارقىلىق yt-dlp نى ئۆز ئۆزى يېڭىلاش</translation>
+            <translation>باشلانغاندا yt-dlp نى ئاپتوماتىك يېڭىلاش</translation>
         </message>
         <message>
             <source>When enabled, Stellar will run &quot;yt-dlp -U&quot; at startup to keep the binary up to date. Requires an active internet connection.</source>
-            <translation>ئىشقا چۈشكەندە Stellar «yt-dlp -U» نى ئاپتوماتىك ئىشقا ئاشۇرىدۇ، بۇ بىنارىنى ھەمىشە يېڭى تۇتۇش ئۈچۈندۇر. ئاكتىپ ئىنتېرنېت ئۇلىنىشنى تەلەپ قىلىدۇ.</translation>
+            <translation>قوزغىتىلغاندا، Stellar ئىجرا ھۆججىتىنى يېڭى تۇتۇش ئۈچۈن باشلانغاندا &quot;yt-dlp -U&quot; نى ئىجرا قىلىدۇ. ئاكتىپ ئىنتېرنېت باغلىنىشىنى تەلەپ قىلىدۇ.</translation>
         </message>
         <message>
             <source>Torrent Downloads</source>
-            <translation>تورېنت تۆۋەنلىتىش</translation>
+            <translation>Torrent چۈشۈرۈشلەر</translation>
         </message>
         <message>
             <source>Enable BitTorrent support</source>
-            <translation>BitTorrent نى ئاكتىپلاش</translation>
+            <translation>BitTorrent قوللاشنى قوزغات</translation>
         </message>
         <message>
             <source>BitTorrent — Legal Notice</source>
-            <translation>BitTorrent — قانۇنىي ئاگاھلاندۇرۇش</translation>
+            <translation>BitTorrent — قانۇنىي ئەسكەرتىش</translation>
         </message>
         <message>
             <source>Stellar is a file-sharing program. When you download a torrent, your IP address becomes visible to other peers in the swarm and you simultaneously upload (seed) data to others.
@@ -4021,39 +4035,43 @@ Install one of: Deno (deno.com), Node.js (nodejs.org), Bun (bun.sh), or QuickJS.
 Anything you share via BitTorrent is your sole responsibility. Ensure you have the right to distribute the content.
 
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
-            <translation>Stellar بىر ھۆججەت ئورتاقلىشىش پروگراممىسى. تورانت تارتقاندا، سىزنىڭ IP ئادرېسىڭىز تور ئىقتىسادىدىكى باشقا ئىشلەتكۈچىلەرگە كۆرۈنىدۇ ۋە سىز بىر ۋاقىتتا ئۇلارغا سانلىق مەلۇمات يۈكلەيسىز (seed).سىز BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەممە نەرسە ئۆزىڭىزنىڭ مەسئۇلىيىتىدە. مەزمۇننى تارقىتىشقا ھوقۇقىڭىز بارلىقىغا كاپالەتلىك قىلىڭ.تورانت ئىشلىتىشتىن بۇرۇن، Stellar نى VPN تور ئىنتېرفېيسىگە باغلاش ۋە VPN نىڭ ئاكتىپ ئىكەنلىكىنى تەكشۈرۈش كۈچلۈك تەۋسىيە قىلىنىدۇ، بۇ سىزنىڭ IP ئادرېسىڭىزنىڭ ئاشكارىلىنىشىدىن قوغداش ئۈچۈندۇر.</translation>
+            <translation>Stellar ھۆججەت ئورتاقلىشىش پروگراممىسىدۇر. توررېنت چۈشۈرگەندە، IP ئادرېسىڭىز باشقا ئىشلەتكۈچىلەرگە كۆرۈنىدۇ ۋە سىز باشقىلارغا سانلىق مەلۇمات يۈكلەيسىز (تارقىتىسىز).
+
+BitTorrent ئارقىلىق ئورتاقلىشىدىغان ھەر قانداق نەرسە پۈتۈنلەي سىزنىڭ مەسئۇلىيىتىڭىزدە. مەزمۇننى تارقىتىش ھوقۇقىڭىز بارلىقىنى جەزملەڭ.
+
+توررېنت ئىشلەتكەندە IP ئادرېسىڭىزنى قوغداش ئۈچۈن، Stellar نى VPN تور كۆرۈنمە يۈزىگە باغلاپ، VPN نىڭ ئاكتىپلىقىنى تەكشۈرۈش قاتتىق تەۋسىيە قىلىنىدۇ.</translation>
         </message>
         <message>
             <source>I Understand, Enable</source>
-            <translation>مەن چۈشەندىم، ئاكتىپلاش</translation>
+            <translation>چۈشەندىم، قوزغات</translation>
         </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
-            <translation>بۇ تەڭشەكلەر .torrent ھۆججەتلىرى ۋە magnet ئۇلىلىرىغا ماس كېلىدۇ</translation>
+            <translation>بۇ تەڭشەكلەر .torrent ھۆججەتلىرى ۋە ماگنىت ئۇلانمىلىرىغا ماس كېلىدۇ.</translation>
         </message>
         <message>
             <source>Listen port</source>
-            <translation>ئېگىزلىك پورتى</translation>
+            <translation>ئاڭلاش پورتى</translation>
         </message>
         <message>
             <source>Global max connections</source>
-            <translation>ئومۇمىي ئەڭ كۆپ ئۇلىنىش سانى</translation>
+            <translation>ئومۇمىي ئەڭ يۇقىرى باغلىنىش</translation>
         </message>
         <message>
             <source>Max connections per torrent</source>
-            <translation>ھەر بىر تورانت ئۈچۈن ئەڭ كۆپ ئۇلىنىش سانى</translation>
+            <translation>ھەر توررېنتقا ئەڭ يۇقىرى باغلىنىش</translation>
         </message>
         <message>
             <source>Global max upload slots</source>
-            <translation>ئومۇمىي ئەڭ كۆپ يۈكلەش ئورنى</translation>
+            <translation>ئومۇمىي ئەڭ يۇقىرى يۈكلەش ئورنى</translation>
         </message>
         <message>
             <source>Max upload slots per torrent</source>
-            <translation>ھەر بىر تورانت ئۈچۈن ئەڭ كۆپ يۈكلەش ئورنى</translation>
+            <translation>ھەر توررېنتقا ئەڭ يۇقىرى يۈكلەش ئورنى</translation>
         </message>
         <message>
             <source>0 = unlimited (per-torrent fields and global upload slots)</source>
-            <translation>0 = چەكسىز</translation>
+            <translation>0 = چەكسىز (تەكشى توررېنت ۋە ئومۇمىي يۈكلەش ئورۇنلىرى)</translation>
         </message>
         <message>
             <source>Protocol</source>
@@ -4065,11 +4083,11 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>μTP only</source>
-            <translation>فەقەت μTP</translation>
+            <translation>پەقەت μTP</translation>
         </message>
         <message>
             <source>TCP only</source>
-            <translation>فەقەت TCP</translation>
+            <translation>پەقەت TCP</translation>
         </message>
         <message>
             <source>Port Test</source>
@@ -4077,119 +4095,119 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Test whether your current torrent listen port is reachable from the public internet. This helps confirm whether your VPN port forwarding, router forwarding, and firewall rules are actually allowing inbound torrent connections.</source>
-            <translation>تەكشۈرۈش...</translation>
+            <translation>نۆۋەتتىكى توررېنت ئاڭلاش پورتىڭىزنىڭ ئاممىۋى ئىنتېرنېتتىن زىيارەت قىلغىلى بولىدىغانلىقىنى تەكشۈرۈڭ. بۇ VPN پورت يۆتكەش، روتېر يۆتكەش ۋە تام قائىدىلىرىڭىزنىڭ كىرىش توررېنت ئۇلىنىشلىرىغا يول قويۇۋاتقانلىقىنى جەزملەشكە ياردەم بېرىدۇ.</translation>
         </message>
         <message>
             <source>Testing...</source>
-            <translation>پورت تەكشۈرۈش</translation>
+            <translation>تەكشۈرۈۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Test Port</source>
-            <translation>تور ئالاقىسى</translation>
+            <translation>پورتنى تەكشۈرۈش</translation>
         </message>
         <message>
             <source>Networking</source>
-            <translation>تور تەڭشەكلىرى</translation>
+            <translation>تور باشقۇرۇش</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>ئالدىنقى سەۋەپ</translation>
+            <translation>ئىلغار</translation>
         </message>
         <message>
             <source>Custom bittorrent user agent</source>
-            <translation>ئۆزگەرتىشلىك BitTorrent ئىشلەتكۈچى ئاگېنتى</translation>
+            <translation>ئىختىيارىي BitTorrent ئىشلەتكۈچى ۋاكالەتچىسى</translation>
         </message>
         <message>
             <source>Bind to network adapter</source>
-            <translation>تور ئۈسكۈنىسىگە باغلىنىش</translation>
+            <translation>تور ئاداپتېرىغا باغلاش</translation>
         </message>
         <message>
             <source>This adapter is locked for torrent traffic. If your VPN disconnects or the adapter goes away, Stellar stops using the default route and your torrents lose network access instead of leaking onto another connection.</source>
-            <translation>بۇ ئۈسكۈنە تور ئېقىمى ئۈچۈن قۇلۇپلاندى. ئەگەر VPN ئۈزۈلۈپ كەتسە ياكى ئۈسكۈنە يوقاپ كەتسە، Stellar ئۆزگىچە يولنى ئىشلىتىشنى توختىتىدۇ ۋە تور ئېقىمى باشقا ئۇلىنىشقا ئېقىپ كەتمەيدۇ.</translation>
+            <translation>بۇ ئاداپتېر توررېنت قاتنىشى ئۈچۈن قۇلۇپلانغان. VPN ئۈزۈلسە ياكى ئاداپتېر يوقالسا، Stellar سۈكۈت يولىنى ئىشلەتمەي، توررېنتلىرىڭىز باشقا باغلىنىشقا سىزىپ چىقماستىن تور زىيارىتىنى يوقىتىدۇ.</translation>
         </message>
         <message>
             <source>No adapter binding. Torrent traffic follows the system route.</source>
-            <translation>تور ئۈسكۈنىسىگە باغلىنىش يوق. تور ئېقىمى سىستېما يولى بويىچە ئېقىدۇ.</translation>
+            <translation>ئاداپتېر باغلانمىغان. توررېنت قاتنىشى سىستېما يولىغا ئەگىشىدۇ.</translation>
         </message>
         <message>
             <source>Network adapter binding tells Stellar to send and receive torrent traffic only through the selected adapter. This is especially useful for VPN users because it prevents accidental traffic leaks when the VPN is not connected.</source>
-            <translation>تور ئۈسكۈنىسىگە باغلىنىش Stellar نى تاللانغان ئۈسكۈنە ئارقىلىقلا تور ئېقىمىنى يۆتكەش ۋە قوبۇل قىلىشقا تەۋسىيە قىلىدۇ. بۇ VPN ئىشلەتكۈچىلەر ئۈچۈن ئالاھىدە پايدىلىق بولۇپ، VPN ئۇلىنىپ تۇرمىغاندا ئۈنۈمسىز تور ئېقىمى ئېقىپ كېتىشنىڭ ئالدىنى ئالىدۇ.</translation>
+            <translation>تور ئاداپتېرىنى باغلاش Stellar غا توررېنت قاتنىشىنى پەقەت تاللانغان ئاداپتېر ئارقىلىق ئەۋەتىش ۋە قوبۇل قىلىشنى بۇيرۇيدۇ. بۇ VPN ئىشلەتكۈچىلەر ئۈچۈن ئالاھىدە پايدىلىق، چۈنكى VPN باغلانمىغاندا تاسادىپىي قاتناش سىزىپ چىقىشنىڭ ئالدىنى ئالىدۇ.</translation>
         </message>
         <message>
             <source>Torrent Security</source>
-            <translation>تور بىخەتەرلىكى</translation>
+            <translation>توررېنت بىخەتەرلىكى</translation>
         </message>
         <message>
             <source>Manual peer bans apply immediately. Blocked user-agent substrings, blocked countries, and auto-ban options apply when you click Apply or OK.</source>
-            <translation>ئەللىك تەرەپ قىلىش ئۈچۈن دەرھال ئىشقا ئاشۇرۇلىدۇ. توسۇلغان ئىشلەتكۈچى ئاگېنتى ئاستىلىرى، توسۇلغان دۆلەتلەر ۋە ئاپتوماتىك توسۇش تاللاشلىرى «ئىشقا ئاشۇر» ياكى «تەۋسىيە قىل» تەكلىپىنى بېسىغاندا ئىشقا ئاشۇرۇلىدۇ.</translation>
+            <translation>قولدا تەڭداش چەكلەش دەرھال كۈچكە ئىگە. چەكلەنگەن ئىشلەتكۈچى-ۋاكالەتچى تارماق تىزمىلىرى، چەكلەنگەن دۆلەتلەر ۋە ئاپتوماتىك چەكلەش تاللانمىلىرى 'قوللان' ياكى 'جەزملە' نى چەككەندە كۈچكە ئىگە.</translation>
         </message>
         <message>
             <source>Encryption Mode</source>
-            <translation>شېفىرلاشتۇرۇش ھالىتى</translation>
+            <translation>شىفىرلاش ھالىتى</translation>
         </message>
         <message>
             <source>Prefer encryption</source>
-            <translation>شېفىرلاشتۇرۇشنى ئالدىن ئالاقىلىشىش</translation>
+            <translation>شىفىرلاشنى ئەۋزەل كۆرۈش</translation>
         </message>
         <message>
             <source>Require encryption</source>
-            <translation>شېفىرلەشنى تەلەپ قىلىش</translation>
+            <translation>شىفىرلاشنى تەلەپ قىل</translation>
         </message>
         <message>
             <source>Allow encryption</source>
-            <translation>شېفىرلەشنى ئىجازەت بېرىش</translation>
+            <translation>شىفىرلاشقا يول قوي</translation>
         </message>
         <message>
             <source>Blocked user agents</source>
-            <translation>تەسىرلىك ئۇچۇرلارنى توسۇش</translation>
+            <translation>چەكلەنگەن ئىشلەتكۈچى ۋاسىتىلىرى</translation>
         </message>
         <message>
             <source>One substring per line. If a peer client string contains any line above, Stellar auto-bans that peer until the matching line is removed and the settings are applied.</source>
-            <translation>ھەر بىر سىزىقتا بىر ئۈزۈك. ئەگەر بىر ئۈزۈك ئۈچۈن يۇقىرىدىكى سىزىقلاردىن بىرى بار بولسا، Stellar ئاپتوماتىك ھالدا ئۇ ئۈچۈن توسۇش بۇيرۇقىنى چىقىرىدۇ، ماس كېلىدىغان سىزىق ئۆچۈرۈلۈپ، تەڭشەكلەر قوللىنىلغاندىن كېيىنلا.</translation>
+            <translation>ھەر قۇرغا بىر تارماق تېكىست. ئەگەر تەڭداش ئۈسكۈنىسى تېكىستى تۆۋەندىكى قۇرلاردىن بىرىنى ئۆز ئىچىگە ئالسا، ماس كەلگەن قۇر چىقىرىۋېتىلىپ تەڭشەكلەر قوللىنىلغۇچە Stellar ئۇ تەڭداشنى ئاپتوماتىك چەكلەيدۇ.</translation>
         </message>
         <message>
             <source>Manually ban peer</source>
-            <translation>ئۈچۈن توسۇش</translation>
+            <translation>تەڭداشنى قولدا چەكلە</translation>
         </message>
         <message>
             <source>IP address, for example 203.0.113.42</source>
-            <translation>مەسىلەن، 203.0.113.42</translation>
+            <translation>IP ئادرېس، مەسىلەن 203.0.113.42</translation>
         </message>
         <message>
             <source>Ban</source>
-            <translation>توسۇش</translation>
+            <translation>چەكلە</translation>
         </message>
         <message>
             <source>Manual bans are permanent until you remove them from the banned peers list below.</source>
-            <translation>توسۇش بۇيرۇقلىرى داۋاملىق بولىدۇ، ئۇلارنى تۆۋەندىكى توسۇلغان ئۈچۈنلەر تىزىمىدىن ئۆچۈرۈۋەتكۈنچە.</translation>
+            <translation>قولدا چەكلەنگەنلەر تۆۋەندىكى چەكلەنگەن تەڭداشلار تىزىملىكىدىن چىقىرىۋەتمىگۈچە مەڭگۈلۈك چەكلىنىدۇ.</translation>
         </message>
         <message>
             <source>Block peers by country</source>
-            <translation>دۆلەت بويىچە ئۈچۈنلەرنى توسۇش</translation>
+            <translation>تەڭداشلارنى دۆلەت بويىچە چەكلە</translation>
         </message>
         <message>
             <source>Add</source>
-            <translation>قوشۇش</translation>
+            <translation>قوش</translation>
         </message>
         <message>
             <source>No blocked countries.</source>
-            <translation>ئۆلۈككەن دۆلەتلەر يوق</translation>
+            <translation>دۆلەت چەكلەنمىدى</translation>
         </message>
         <message>
             <source>Auto Ban Xunlei, QQ, Baidu, Xfplay, DLBT and Offline downloader</source>
-            <translation>Xunlei، QQ، Baidu، Xfplay، DLBT ۋە ئۆزگۈرتۈشچىلەرنى ئاپتوماتىك تەيىنلەش</translation>
+            <translation>شۇنلېي، QQ، بايدۇ، Xfplay، DLBT ۋە ئوفلاين چۈشۈرگۈچنى ئاپتوماتىك چەكلە</translation>
         </message>
         <message>
             <source>Auto Ban BitTorrent Media Player Peer</source>
-            <translation>BitTorrent Media Player Peer نى ئاپتوماتىك تەيىنلەش</translation>
+            <translation>BitTorrent مېدىيا پلېيەر پېرىنى ئاپتوماتىك چەكلە</translation>
         </message>
         <message>
             <source>Manually banned peers</source>
-            <translation>ئەللىك قىلىنغان Peer لار</translation>
+            <translation>قولدا چەكلەنگەن پېرلار</translation>
         </message>
         <message>
             <source>Unban</source>
-            <translation>تەيىنلەشنى ئېلىۋېتىش</translation>
+            <translation>چەكلەشتىن چىقار</translation>
         </message>
         <message>
             <source>Active</source>
@@ -4197,19 +4215,19 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>No banned peers</source>
-            <translation>ئەللىك قىلىنغان Peer يوق</translation>
+            <translation>چەكلەنگەن پېر يوق</translation>
         </message>
         <message>
             <source>IP-to-City Database</source>
-            <translation>شەھەر ئېلان قىلىش ئېلان قىلىش</translation>
+            <translation>IP-شەھەر ساندانى</translation>
         </message>
         <message>
             <source>Version</source>
-            <translation>نۇسخا</translation>
+            <translation>نەشرى</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>بىلىنمەيدۇ</translation>
+            <translation>نامەلۇم</translation>
         </message>
         <message>
             <source>Path</source>
@@ -4217,15 +4235,15 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Size</source>
-            <translation>چوڭلۇقى</translation>
+            <translation>چوڭلۇق</translation>
         </message>
         <message>
             <source>Entries</source>
-            <translation>كىرىش</translation>
+            <translation>تۈرلەر</translation>
         </message>
         <message>
             <source>Last Modified</source>
-            <translation>ئاخىرقى ئۆزگەرتىلگەن</translation>
+            <translation>ئۆزگەرتىلگەن ۋاقىت</translation>
         </message>
         <message>
             <source>Status</source>
@@ -4233,39 +4251,39 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Downloading...</source>
-            <translation>تارتىۋاتىدۇ...</translation>
+            <translation>چۈشۈرۈۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Update IP-to-City DB</source>
-            <translation>شەھەر ئىپتىدارىنى يېڭىلاش</translation>
+            <translation>IP-شەھەر ساندانىنى يېڭىلا</translation>
         </message>
         <message>
             <source>Refresh Info</source>
-            <translation>مەلۇماتنى يېڭىلاش</translation>
+            <translation>ئۇچۇرنى يېڭىلا</translation>
         </message>
         <message>
             <source>Statistics</source>
-            <translation>ئىستاتىستىكا</translation>
+            <translation>ستاتىستىكا</translation>
         </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
-            <translation>بارلىق تورلارنىڭ ئومۇمىي يۆتكەش مىقدارى (ئۆچۈرۈلگەنلىرىنى ئۆز ئىچىگە ئالىدۇ)</translation>
+            <translation>بارلىق توررېنتلارنىڭ جەمئىي يۆتكەش ئومۇمىي سوممىسى، ئۆچۈرۈلگەنلىرىنىمۇ ئۆز ئىچىگە ئالىدۇ.</translation>
         </message>
         <message>
             <source>Total Downloaded</source>
-            <translation>يۈكلەنگەن جەمئىي</translation>
+            <translation>ئومۇمىي چۈشۈرۈلگەن</translation>
         </message>
         <message>
             <source>Total Uploaded</source>
-            <translation>يۈكلەنگەن جەمئىي</translation>
+            <translation>ئومۇمىي يۈكلەنگەن</translation>
         </message>
         <message>
             <source>All-time Share Ratio</source>
-            <translation>بۆلۈش نىسبىتى</translation>
+            <translation>ئومۇمىي ئورتاقلىشىش نىسبىتى</translation>
         </message>
         <message>
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
-            <translation>تەكشىلىك لىتسېنزىيە مەزمۇنلىرى THIRD-PARTY-NOTICES.txt دا، بۇ ئورنىتىش بىلەن بىرگە كەلگەن.</translation>
+            <translation>تولۇق لىسەنزىيە تېكىستلىرى بۇ قاچىلاشقا قوشۇلغان THIRD-PARTY-NOTICES.txt ھۆججىتىدە.</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4273,15 +4291,15 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Feed Fetching</source>
-            <translation>ئېلىپ كېلىش</translation>
+            <translation>تەمىنات ئېلىش</translation>
         </message>
         <message>
             <source>Enable fetching RSS feeds</source>
-            <translation>RSS ئېقىملىرىنى ئېلىپ كېلىشنى ئاكتىپلاشتۇرۇش</translation>
+            <translation>RSS تەمىناتىنى ئېلىشنى قوزغات</translation>
         </message>
         <message>
             <source>Feeds refresh interval</source>
-            <translation>ئېقىملىرىنى تەزىلەش ئارىلىقى</translation>
+            <translation>تەمىنات يېڭىلاش ئارىلىقى</translation>
         </message>
         <message>
             <source>minutes</source>
@@ -4289,7 +4307,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Same host request delay</source>
-            <translation>بىر خىل مېزبانغا ئېتىلىش تاخىلى</translation>
+            <translation>ئوخشاش مۇلازىمېتەر تەلەپ كېچىكتۈرۈش</translation>
         </message>
         <message>
             <source>seconds</source>
@@ -4297,47 +4315,47 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Maximum articles per feed</source>
-            <translation>ئەسلىدىكى ئەڭ كۆپ ماقالە سانى</translation>
+            <translation>ھەر بەت ئۈچۈن ئەڭ كۆپ ماقالە</translation>
         </message>
         <message>
             <source>Torrent Auto Downloader</source>
-            <translation>تورېنت ئۆز ئۆزى چۈشۈرۈش</translation>
+            <translation>توررېنت ئاپتوماتىك چۈشۈرگۈچ</translation>
         </message>
         <message>
             <source>Enable auto downloading of RSS torrents</source>
-            <translation>RSS تورېنتلىرىنى ئۆز ئۆزى چۈشۈرۈشنى ئاكتىپلاش</translation>
+            <translation>RSS توررېنتلىرىنى ئاپتوماتىك چۈشۈرۈشنى قوزغات</translation>
         </message>
         <message>
             <source>Edit Auto Downloading Rules...</source>
-            <translation>ئۆز ئۆزى چۈشۈرۈش قائىدىلىرىنى تەڭشەش...</translation>
+            <translation>ئاپتوماتىك چۈشۈرۈش قائىدىلىرىنى تەھرىرلە...</translation>
         </message>
         <message>
             <source>Smart Episode Filter</source>
-            <translation>ئىنتېللىگېنت بۆلەك سۈزگۈچ</translation>
+            <translation>ئەقىللىق بۆلۈم سۈزگۈچ</translation>
         </message>
         <message>
             <source>Download REPACK/PROPER episodes</source>
-            <translation>REPACK/PROPER بۆلەكلىرىنى چۈشۈرۈش</translation>
+            <translation>REPACK/PROPER بۆلۈملەرنى چۈشۈر</translation>
         </message>
         <message>
             <source>Episode detection patterns (one per line):</source>
-            <translation>بۆلەك ئېنىقلاش ئۇسۇللىرى (ھەر بىرى ئايرىم سىزىقتا):</translation>
+            <translation>بۆلۈم بايقاش ئەندىزىلىرى (ھەر قۇرغا بىر):</translation>
         </message>
         <message>
             <source>Associations</source>
-            <translation>RSS ئېقىمىنى ئېلىۋېلىش ۋە تورېنت چۈشۈرۈش قائىدىلىرىنى تەڭشەش.</translation>
+            <translation>باغلىنىشلار</translation>
         </message>
         <message>
             <source>Configure RSS feed fetching and automatic torrent downloading rules.</source>
-            <translation>RSS ئېقىمى ۋە تور ئېقىمى تۆھۈتۈش قائىدىلىرىنى تەڭشەش</translation>
+            <translation>RSS بەت ئېلىش ۋە ئاپتوماتىك توررېنت چۈشۈرۈش قائىدىلىرىنى تەڭشە.</translation>
         </message>
         <message>
             <source>These regular expressions are used to extract season/episode numbers for smart duplicate detection.</source>
-            <translation>مەۋجۇت بولغان ئادەتتىكى ئىپادىلەش فورمۇلالار مەزمۇنلۇق مەركەزلىك كۆپىيىشنى ئانالىز قىلىش ئۈچۈن ئىشلىتىلىدۇ.</translation>
+            <translation>بۇ قائىدىلىك ئىپادىلەر پەسىل/قىسىم نومۇرلىرىنى ئەقلىي تەكرار تەكشۈرۈش ئۈچۈن ئايرىشقا ئىشلىتىلىدۇ.</translation>
         </message>
         <message>
             <source>Make Stellar the default app for .torrent files and magnet links. On Windows 10/11, click the button then confirm the change in the Windows Default Apps settings page that opens.</source>
-            <translation>Stellar نى .torrent ھۆججەتلىرى ۋە magnet ئۇلىنىشلىرى ئۈچۈن ئۆزگىرىشلىك ئەپ قىلىڭ. Windows 10/11 دىكى تۆۋەندىكى تۇتاشما بۇيرۇقىنى بېسىپ، ئېچىلغان Windows ئۆزگىرىشلىك ئەپلەر بەلگىلىمە بەتتە ئۆزگىرىشنى ئېتىۋېتىڭ.</translation>
+            <translation>Stellar نى .torrent ھۆججەتلىرى ۋە ماگنىت ئۇلانمىلىرى ئۈچۈن سۈكۈتتىكى پروگرامما قىلىڭ. Windows 10/11 دە، كۇنۇپكىنى بېسىڭ، ئاندىن ئېچىلغان Windows سۈكۈتتىكى پروگراممىلار تەڭشەك بېتىدە ئۆزگەرتىشنى جەزملەڭ.</translation>
         </message>
         <message>
             <source>.torrent files</source>
@@ -4345,39 +4363,39 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Currently handled by Stellar</source>
-            <translation>ھازىر Stellar تەرىپىدىن باشقۇرۇلىدۇ</translation>
+            <translation>ھازىر Stellar بىلەن بىر تەرەپ قىلىنىۋاتىدۇ</translation>
         </message>
         <message>
             <source>Stellar is not the current default</source>
-            <translation>Stellar ھازىر ئۆزگىرىشلىك ئەپ ئەمەس</translation>
+            <translation>Stellar ھازىرقى سۈكۈتتىكى ئەمەس</translation>
         </message>
         <message>
             <source>Set .torrent Default</source>
-            <translation>.torrent ئۆزگىرىشلىك ئەپنى بەلگىلەڭ</translation>
+            <translation>.torrent سۈكۈتتىكى تەڭشەك</translation>
         </message>
         <message>
             <source>Refresh Status</source>
-            <translation>ھالەتنى يېڭىلاڭ</translation>
+            <translation>ھالەتنى يېڭىلاش</translation>
         </message>
         <message>
             <source>magnet: links</source>
-            <translation>magnet: ئۇلىنىشلىرى</translation>
+            <translation>ماگنىت: ئۇلانمىلار</translation>
         </message>
         <message>
             <source>Set Magnet Default</source>
-            <translation>Magnet ئۆزگىرىشلىك ئەپنى بەلگىلەڭ</translation>
+            <translation>ماگنىت سۈكۈتتىكى تەڭشەك</translation>
         </message>
         <message>
             <source>If your desktop environment overrides the app-level association, refresh the status after the system finishes applying the change.</source>
-            <translation>سىزنىڭ ئىشكەنلىك مۇھىتىڭىز ئاپپارەت دەرىجىسىدىكى ئۇلىنىشنى ئۆزگەرتسە، سىستېما ئۆزگىرىشنى تاماملىغاندىن كېيىن ھالەتنى يېڭىلاڭ.</translation>
+            <translation>ئەگەر ئۈستەل مۇھىتىڭىز پروگرامما دەرىجىلىك باغلىنىشنى ئەمەلدىن قالدۇرسا، سىستېما ئۆزگەرتىشنى قوللانغاندىن كېيىن ھالەتنى يېڭىلاڭ.</translation>
         </message>
         <message>
             <source>Interface Language</source>
-            <translation>ئىنتېرفاي تىلى</translation>
+            <translation>ئىنتېرفېيس تىلى</translation>
         </message>
         <message>
             <source>Select the language used throughout the Stellar interface. A restart is required for all text to update.</source>
-            <translation>تىلنى تاللاڭ</translation>
+            <translation>Stellar ئىنتېرفېيسىدا ئىشلىتىلىدىغان تىلنى تاللاڭ. بارلىق تېكىست يېڭىلىنىشى ئۈچۈن قايتا قوزغىتىش كېرەك.</translation>
         </message>
         <message>
             <source>Language:</source>
@@ -4385,11 +4403,27 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>A restart is required after changing the language.</source>
-            <translation>تىل ئۆزگەرتكەندە قايتا باشلىشى كېرەك</translation>
+            <translation>تىل ئۆزگەرتكەندىن كېيىن قايتا قوزغىتىش كېرەك.</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>قايتا قوزغىتىش زۆرۈر</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>تىل ئۆزگىرىشى كۈچكە ئىگە بولۇشى ئۈچۈن قايتا قوزغىتىش كېرەك. ھازىر قايتا قوزغىتامسىز؟</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ھازىر قوزغات</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>كېيىن</translation>
         </message>
         <message>
             <source>Check for updates</source>
-            <translation>يېڭىلىقنى تەكشۈرۈش</translation>
+            <translation>يېڭىلانمىلارنى تەكشۈر</translation>
         </message>
         <message>
             <source>What's New</source>
@@ -4397,15 +4431,15 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Build date</source>
-            <translation>قۇرۇلۇش كۈنى</translation>
+            <translation>قۇرۇلۇش ۋاقتى</translation>
         </message>
         <message>
             <source>Qt version</source>
-            <translation>Qt نۇسخىسى</translation>
+            <translation>Qt نەشرى</translation>
         </message>
         <message>
             <source>Platform</source>
-            <translation>پلايتفورم</translation>
+            <translation>سۇپا</translation>
         </message>
         <message>
             <source>Windows</source>
@@ -4425,83 +4459,83 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Stellar is free software: you may redistribute and/or modify it under the terms of the GNU General Public License, version 3.</source>
-            <translation>Stellar ئەركىن دېتال: سىز GNU ئومۇمىي ئاممىلىق لىتسېنزىسىنىڭ 3-نۇمۇرلۇق نەشرىنىڭ شەرتلىرى ئاستىدا ئۇنى قايتا تارقىتىش ۋە/يەنى ئۆزگەرتىش ھوقۇقىغا ئىگە بولىسىز.</translation>
+            <translation>Stellar ئەركىن يۇمشاق دېتال: GNU GPL 3-نەشرى بويىچە تارقىتىش ۋە ئۆزگەرتىش ھوقۇقىڭىز بار.</translation>
         </message>
         <message>
             <source>Third-party software</source>
-            <translation>ئۈچىنچى تەرەپ دېتاللىرى</translation>
+            <translation>ئۈچىنچى تەرەپ يۇمشاق دېتالى</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>قوللىنىش</translation>
+            <translation>قوللان</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>ھەئە</translation>
+            <translation>ماقۇل</translation>
         </message>
         <message>
             <source>Default route</source>
-            <translation>ئۆزگەرتىلمىگەن</translation>
+            <translation>كۆڭۈلدىكى يول</translation>
         </message>
         <message>
             <source>Let the OS choose the active network adapter.</source>
-            <translation>ئاساسىي يول</translation>
+            <translation>ئاكتىپ تور ئاداپتېرىنى ئەمەلىي سىستېما تاللىسۇن.</translation>
         </message>
         <message>
             <source> (Unavailable)</source>
-            <translation>سىستېما تاللىغان تور ئۈسكۈنىسىنى ئىشلىتىش</translation>
+            <translation> (ئىشلەتكىلى بولمايدۇ)</translation>
         </message>
         <message>
             <source>This adapter is not currently available. Reconnect it or choose a different adapter.</source>
-            <translation>بۇ ئاداپتېر ھازىر ئىشلىتىلمەيدۇ. قايتا ئۇلانما ياكى باشقا ئاداپتېر تاللاڭ.</translation>
+            <translation>بۇ ئاداپتېر ھازىر ئىشلەتكىلى بولمايدۇ. قايتا ئۇلاڭ ياكى باشقا ئاداپتېر تاللاڭ.</translation>
         </message>
         <message>
             <source>Manual ban</source>
-            <translation>قولداش ئۆزگىرىش</translation>
+            <translation>قولدا چەكلەش</translation>
         </message>
         <message>
             <source>Find peers without a tracker using a distributed hash table.</source>
-            <translation>تەقسىملىك خەش جەدۋەل ئارقىلىق تەۋەككۈلچىسىز تەڭشىكچىلەرنى ئىزدەڭ.</translation>
+            <translation>تارقاق ھەش جەدۋىلى ئارقىلىق ئىز قوغلىغۇچىسىز پىرلەرنى تېپىش.</translation>
         </message>
         <message>
             <source>Discover peers on your local network without going through the internet.</source>
-            <translation>ئىنتېرنېتتىن ئۆتمەي، ئۆزىڭىزنىڭ يەرلىك تور تورىدىكى تەڭشىكچىلەرنى بايقاش.</translation>
+            <translation>ئىنتېرنېتتىن ئۆتمەي يەرلىك تورىڭىزدىن پىرلەرنى بايقاش.</translation>
         </message>
         <message>
             <source>Automatically open a port on your router so peers can connect to you.</source>
-            <translation>تور ئۈستىڭىزنىڭ ئۇچۇر ئېچىش ئېھتىياجىنى ئاپتوماتىك ئېچىش، شۇنداق قىلىپ تەڭشىكچىلەر سىزگە ئۇلىنىشىغا ئىمكان بېرىش.</translation>
+            <translation>پىرلەر سىزگە ئۇلىنالىشى ئۈچۈن يەتكۈزگۈچىڭىزدە ئاپتوماتىك پورت ئېچىش.</translation>
         </message>
         <message>
             <source>Like UPnP but for Apple routers - enable both and whichever your router supports will be used.</source>
-            <translation>UPnP غا ئوخشاش، ئەمما ئاپپلې تور ئۈستىلىرى ئۈچۈن — ئىككىلىسىنىمۇ ئېچىڭ، تور ئۈستىڭىز قانداقلا بولسىمۇ قوللايدىغانى ئىشلىتىلىدۇ.</translation>
+            <translation>UPnP غا ئوخشاش، ئەمما ئالما يەتكۈزگۈچلىرى ئۈچۈن - ھەر ئىككىسىنى قوزغىتىڭ، يەتكۈزگۈچىڭىز قايسىسىنى قوللىسا شۇ ئىشلىتىلىدۇ.</translation>
         </message>
         <message>
             <source>Share peer lists between connected peers so you find more sources without hitting the tracker.</source>
-            <translation>تەڭشىكچىلەر ئارىسىدىكى تەڭشىكچىلەر رەسىملىرىنى ئورتاقلاشتۇرۇش، شۇنداق قىلىپ تەۋەككۈلچىلەرنىڭ ئىزدىنىشىنى ئازايتىش.</translation>
+            <translation>ئۇلانغان تەڭداشلار ئارا تەڭداش تىزىملىكىنى ئورتاقلىشىپ، تراكېرغا ئۇرۇلماي تېخىمۇ كۆپ مەنبە تېپىڭ.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for .torrent files.</source>
-            <translation>Stellar ھازىر .torrent ھۆججەتلىرى ئۈچۈن ئاساسلىق ئۇلىنىش.</translation>
+            <translation>Stellar ھازىر .torrent ھۆججەتلەر ئۈچۈن سۈكۈتتىكى پروگرامما.</translation>
         </message>
         <message>
             <source>Stellar is now the default app for magnet links.</source>
-            <translation>Stellar ھازىر مېگنېت ئۇلىنىشلىرى ئۈچۈن ئاساسلىق ئۇلىنىش.</translation>
+            <translation>Stellar ھازىر ماگنىت ئۇلانمىلار ئۈچۈن سۈكۈتتىكى پروگرامما.</translation>
         </message>
         <message>
             <source>Default: Stellar/%1</source>
-            <translation>ئاساسلىق: Stellar/%1</translation>
+            <translation>سۈكۈت: Stellar/%1</translation>
         </message>
         <message>
             <source>File types  (comma-separated, e.g.  mp4, mkv, avi)</source>
-            <translation>فایل تۈرلىرى</translation>
+            <translation>ھۆججەت تىپلىرى (پەش بىلەن ئايرىڭ، مەس. mp4, mkv, avi)</translation>
         </message>
         <message>
             <source>Auto-assign from sites  (space-separated, * wildcard)</source>
-            <translation>ئوتوماتىك تەقسىملەش</translation>
+            <translation>سايتلاردىن ئاپتوماتىك تەيىنلەش (بوشلۇق بىلەن ئايرىڭ، * ئومۇمىي بەلگە)</translation>
         </message>
         <message>
             <source>Downloads from matching sites will automatically go into this category.</source>
-            <translation>ماس كېلىدىغان سايىتلاردىن تۆۋەنلىگەنلەر ئوتوماتىك بۇ تۈرگە كىرىدۇ</translation>
+            <translation>ماس كېلىدىغان سايتلاردىن چۈشۈرۈلگەنلەر ئاپتوماتىك بۇ كاتېگورىيەگە كىرىدۇ.</translation>
         </message>
         <message>
             <source>Rule %1</source>
@@ -4517,7 +4551,7 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Available but not loaded</source>
-            <translation>مەۋجۇت ئەمما يۈكلەنمىگەن</translation>
+            <translation>يۈكلەنمىگەن، ئىشلىتىشكە بولىدۇ</translation>
         </message>
         <message>
             <source>Source: %1</source>
@@ -4525,34 +4559,34 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
-            <translation>مەنبە ئادرېسى ھازىرغىچە كېشىلەنمىگەن. ئىپتىدارلىق ئۇچۇرلارنى كېشىلەش ئۈچۈن «يېڭىلانمىسىنى تەكشۈرۈش» نى ئىشلىتىڭ</translation>
+            <translation>مەنبە URL تېخى كەشلەنمىدى. IPtoCityDB نى update.json دىن كەشلەش ئۈچۈن يېڭىلانمىلارنى تەكشۈرۈشنى ئىشلىتىڭ.</translation>
         </message>
         <message>
             <source>Version %1</source>
-            <translation>نۇسخا %1</translation>
+            <translation>نەشرى %1</translation>
         </message>
         <message>
             <source>Update available: %1</source>
-            <translation>يېڭىلاندى: %1</translation>
+            <translation>يېڭىلانما بار: %1</translation>
         </message>
         <message>
             <source>Stellar Preferences</source>
-            <translation>ستېلار تەڭشىكلىرى</translation>
+            <translation>Stellar تەڭشەكلىرى</translation>
         </message>
         <message>
             <source>Select yt-dlp binary</source>
-            <translation>yt-dlp بىنارىنى تاللاڭ</translation>
+            <translation>yt-dlp ئىجرا ھۆججىتىنى تاللاڭ</translation>
         </message>
         <message>
             <source>Select JavaScript runtime binary</source>
-            <translation>JavaScript رۇنتىم بىنارىنى تاللاڭ</translation>
+            <translation>JavaScript ئىجرا مۇھىتى ھۆججىتىنى تاللاڭ</translation>
         </message>
     </context>
     <context>
         <name>Sidebar</name>
         <message>
             <source>Edit Project</source>
-            <translation>پروېكتنى تەۋرىتىش</translation>
+            <translation>پروېكتنى تەھرىرلەش</translation>
         </message>
         <message>
             <source>Delete Project</source>
@@ -4564,39 +4598,39 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>All Downloads</source>
-            <translation>بارلىك تۆۋەنلىمىلەر</translation>
+            <translation>بارلىق چۈشۈرۈشلەر</translation>
         </message>
         <message>
             <source>Unfinished</source>
-            <translation>تۈگەلمىگەن</translation>
+            <translation>تاماملانمىغان</translation>
         </message>
         <message>
             <source>Finished</source>
-            <translation>تۈگەلگەن</translation>
+            <translation>تاماملانغان</translation>
         </message>
         <message>
             <source>Grabber Projects</source>
-            <translation>يېپىشما پىروېكتلىرى</translation>
+            <translation>تۇتۇش تۈرلىرى</translation>
         </message>
         <message>
             <source>Torrents</source>
-            <translation>تورېنت</translation>
+            <translation>توررېنتلار</translation>
         </message>
         <message>
             <source>Queues</source>
-            <translation>تەرتىپ</translation>
+            <translation>نۆۋەتلەر</translation>
         </message>
         <message>
             <source>Downloading</source>
-            <translation>تۆۋەنلىتىۋاتقان</translation>
+            <translation>چۈشۈرۈۋاتىدۇ</translation>
         </message>
         <message>
             <source>Seeding</source>
-            <translation>تارقىتىۋاتقان</translation>
+            <translation>تارقىتىۋاتىدۇ</translation>
         </message>
         <message>
             <source>Stopped</source>
-            <translation>توقىتىلغان</translation>
+            <translation>توختىتىلغان</translation>
         </message>
         <message>
             <source>Active</source>
@@ -4608,58 +4642,58 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>Checking</source>
-            <translation>تەكشۈرۈۋاتقان</translation>
+            <translation>تەكشۈرۈۋاتىدۇ</translation>
         </message>
         <message>
             <source>Moving</source>
-            <translation>كۆچۈرۈۋاتقان</translation>
+            <translation>يۆتكەۋاتىدۇ</translation>
         </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
         <message>
             <source>Statistics</source>
-            <translation>ئىستاتىستىكا</translation>
+            <translation>ستاتىستىكا</translation>
         </message>
         <message>
             <source>Stellar Statistics</source>
-            <translation>ستېللىر ئىستاتىستىكىسى</translation>
+            <translation>Stellar ستاتىستىكىسى</translation>
         </message>
         <message>
             <source>ALL TIME</source>
-            <translation>بارلىق ۋاقىت</translation>
+            <translation>ھەممە ۋاقىت</translation>
         </message>
         <message>
             <source>Downloaded</source>
-            <translation>تۆۋەنلىتىلگەن</translation>
+            <translation>چۈشۈرۈلگەن</translation>
         </message>
         <message>
             <source>Uploaded</source>
-            <translation>يۈكلىگەن</translation>
+            <translation>يۈكلەنگەن</translation>
         </message>
         <message>
             <source>Share Ratio</source>
-            <translation>بۆلۈش نىسبىتى</translation>
+            <translation>ئورتاقلىشىش نىسبىتى</translation>
         </message>
         <message>
             <source>Uptime</source>
-            <translation>ئىشلىتىش ۋاقتى</translation>
+            <translation>ئىش ۋاقتى</translation>
         </message>
         <message>
             <source>Install Date</source>
-            <translation>ئورنىتىلغان كۈن</translation>
+            <translation>قاچىلانغان ۋاقىت</translation>
         </message>
         <message>
             <source>Startups</source>
-            <translation>قوزغىلىش</translation>
+            <translation>قوزغىلىش سانى</translation>
         </message>
         <message>
             <source>THIS SESSION</source>
-            <translation>بۇ سېسسىيە</translation>
+            <translation>بۇ ئىجتىمائىيەت</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
     </context>
     <context>
@@ -4674,11 +4708,11 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>📄 1 download</source>
-            <translation>📄 1 تۈگەتكەن</translation>
+            <translation>📄 1 چۈشۈرۈش</translation>
         </message>
         <message>
             <source>📄 %1 downloads</source>
-            <translation>📄 %1 تۈگەتكەن</translation>
+            <translation>📄 %1 چۈشۈرۈش</translation>
         </message>
         <message>
             <source>🟨 1 error</source>
@@ -4690,15 +4724,15 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>🌐 Proxy on</source>
-            <translation>🌐 پروكسى ئېچىلدى</translation>
+            <translation>🌐 ۋاكالەتچى ئوچۇق</translation>
         </message>
         <message>
             <source>📡 Checking for updates</source>
-            <translation>📡 يېڭىلىش تەكشۈرۈۋاتىدۇ</translation>
+            <translation>📡 يېڭىلانمىلارنى تەكشۈرۈۋاتىدۇ</translation>
         </message>
         <message>
             <source>🛑 Speed limiter </source>
-            <translation>🛑 تېزلىك چەكلىگۈچ</translation>
+            <translation>🛑 سۈرئەت چەكلىگۈچ</translation>
         </message>
         <message>
             <source>🟩 Ready</source>
@@ -4706,35 +4740,35 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         </message>
         <message>
             <source>🔍 1 selected</source>
-            <translation>🔍 1 تال تاللاندى</translation>
+            <translation>🔍 1 تاللاندى</translation>
         </message>
         <message>
             <source>🔍 %1 selected</source>
-            <translation>🔍 %1 تال تاللاندى</translation>
+            <translation>🔍 %1 تاللاندى</translation>
         </message>
         <message>
             <source>🔴 DHT off</source>
-            <translation>🔴 DHT ئۆچۈرۈلدى</translation>
+            <translation>🔴 DHT ئوچۇق ئەمەس</translation>
         </message>
         <message>
             <source> online (low confidence)</source>
-            <translation>online (ئىشەنچسىز)</translation>
+            <translation>توردا (ئىشەنچ تۆۋەن)</translation>
         </message>
         <message>
             <source> online</source>
-            <translation>online</translation>
+            <translation>توردا</translation>
         </message>
         <message>
             <source>🟧 Queue runs in 1 minute</source>
-            <translation>🟧 قاتار 1 مىنۇتتىن كېيىن ئىشقا ئاشىدۇ</translation>
+            <translation>🟧 نۆۋەت 1 مىنۇتتا ئىجرا قىلىنىدۇ</translation>
         </message>
         <message>
             <source>🟧 Queue runs in %1 minutes</source>
-            <translation>🟧 قاتار %1 مىنۇتتىن كېيىن ئىشقا ئاشىدۇ</translation>
+            <translation>🟧 نۆۋەت %1 مىنۇتتا ئىجرا قىلىنىدۇ</translation>
         </message>
         <message>
             <source>🟡 Estimating… (%1%)</source>
-            <translation>🟡 ھېسابلاۋاتىدۇ… (%1%)</translation>
+            <translation>🟡 مۆلچەرلەۋاتىدۇ… (%1%)</translation>
         </message>
         <message>
             <source>next &gt;&gt;</source>
@@ -4743,97 +4777,98 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
         <message>
             <source>All-time share ratio
 Click to open Statistics</source>
-            <translation>ئومۇمىي نىسبەت</translation>
+            <translation>ئومۇمىي ئۇلىشىش نىسبىتى
+ستاتىستىكىنى ئېچىش ئۈچۈن چېكىڭ</translation>
         </message>
         <message>
             <source>Click to copy IP</source>
-            <translation>ئىستاتىستىكىلىق مەلۇماتلارنى ئېچىش</translation>
+            <translation>IP نى كۆچۈرۈش ئۈچۈن چېكىڭ</translation>
         </message>
         <message>
             <source>Public IP: </source>
-            <translation>IP نى كۆچۈرۈش</translation>
+            <translation>ئاشكارا IP: </translation>
         </message>
         <message>
             <source>Connection: Ethernet</source>
-            <translation>ئومۇمىي IP:</translation>
+            <translation>ئۇلىنىش: Ethernet</translation>
         </message>
         <message>
             <source>WiFi: </source>
-            <translation>ئېتىرئەت</translation>
+            <translation>WiFi: </translation>
         </message>
         <message>
             <source>Signal: </source>
-            <translation>WiFi:</translation>
+            <translation>سىگنال: </translation>
         </message>
         <message>
             <source>Listening port: </source>
-            <translation>سىگنال:</translation>
+            <translation>ئاڭلاش پورتى:</translation>
         </message>
         <message>
             <source>No incoming connections, network may be misconfigured</source>
-            <translation>ئېشنىۋاتقان پورت:</translation>
+            <translation>كىرىدىغان ئۇلىنىش يوق، تور تەڭشىكى خاتا بولۇشى مۇمكىن</translation>
         </message>
     </context>
     <context>
         <name>SystemTrayIcon</name>
         <message>
             <source>Stellar Download Manager</source>
-            <translation>كېلىپ كىرىشلىك ئۇلىنىشلار يوق، تور تەڭشەكسىز بولۇشى مۇمكىن</translation>
+            <translation>Stellar چۈشۈرۈش باشقۇرغۇچ</translation>
         </message>
         <message>
             <source>SDM downloads</source>
-            <translation>ستېلار تۆۋەنلىتىش مۇدىرلىكى</translation>
+            <translation>SDM چۈشۈرۈشلىرى</translation>
         </message>
     </context>
     <context>
         <name>Toolbar</name>
         <message>
             <source>Add URL</source>
-            <translation>URL قوشۇش</translation>
+            <translation>URL قوش</translation>
         </message>
         <message>
             <source>Resume</source>
-            <translation>تەۋرىنىشنى داۋاملاشتۇرۇش</translation>
+            <translation>داۋاملاشتۇر</translation>
         </message>
         <message>
             <source>Stop</source>
-            <translation>توقىتىش</translation>
+            <translation>توختات</translation>
         </message>
         <message>
             <source>Stop All</source>
-            <translation>بارلىقىنى توقىتىش</translation>
+            <translation>ھەممىنى توختات</translation>
         </message>
         <message>
             <source>Delete</source>
-            <translation>ئۆچۈرۈش</translation>
+            <translation>ئۆچۈر</translation>
         </message>
         <message>
             <source>Delete Done</source>
-            <translation>ئۆچۈرۈلدى</translation>
+            <translation>تاماملانغاننى ئۆچۈر</translation>
         </message>
         <message>
             <source>Options</source>
-            <translation>تاللاشلار</translation>
+            <translation>تەڭشەكلەر</translation>
         </message>
         <message>
             <source>Scheduler</source>
-            <translation>تەۋسىيەچى</translation>
+            <translation>ۋاقىتلىغۇچ</translation>
         </message>
         <message>
             <source>Start Queue</source>
-            <translation>تورقا باشلاش</translation>
+            <translation>نۆۋەتنى باشلا</translation>
         </message>
         <message>
             <source>Stop Queue</source>
-            <translation>تورقا توقىتىش</translation>
+            <translation>نۆۋەتنى توختات</translation>
         </message>
         <message>
             <source>Grabber</source>
-            <translation>يېپىشچان</translation>
+            <translation>تۇتقۇچ</translation>
         </message>
         <message>
             <source>Search Engine</source>
-            <translation>ئىزدەش مۇھىتى</translation>
+            <translation>ئىزدەش ماتورى</translation>
         </message>
         <message>
             <source>RSS</source>
@@ -4844,46 +4879,46 @@ Click to open Statistics</source>
         <name>TorrentDuplicateDialog</name>
         <message>
             <source>Duplicate Torrent</source>
-            <translation>قەيەرلىك تور</translation>
+            <translation>تەكرار توررېنت</translation>
         </message>
         <message>
             <source>Torrent already exists</source>
-            <translation>تور ئالدىنلا بار</translation>
+            <translation>توررېنت ئاللىبۇرۇن مەۋجۇت</translation>
         </message>
         <message>
             <source>This torrent is already in your list. %n new tracker(s) found.</source>
-            <translation>بۇ تور سىزنىڭ تىزىملىكىڭىزدا بار. %n يېڭى تەكشۈرۈش نۇقتىسى تېپىلدى.</translation>
+            <translation>بۇ توررېنت تىزىملىكىڭىزدە بار. %n يېڭى ئىزلىگۈچى تېپىلدى.</translation>
         </message>
         <message>
             <source>This torrent is already in your list with the same trackers.</source>
-            <translation>بۇ تور سىزنىڭ تىزىملىكىڭىزدا ئوخشاش تەكشۈرۈش نۇقتىلىرى بىلەن بار.</translation>
+            <translation>بۇ توررېنت ئىزىزىڭىزدا ئوخشاش ئىزلىغۇچىلار بىلەن بار.</translation>
         </message>
         <message>
             <source>%n new tracker(s)</source>
-            <translation>%n يېڭى تەكشۈرۈش نۇقتىسى</translation>
+            <translation>%n يېڭى ئىزلىغۇچى</translation>
         </message>
         <message>
             <source>… and %1 more</source>
-            <translation>… ۋە %1 تېخىمۇ</translation>
+            <translation>… ۋە %1 تېخىمۇ كۆپ</translation>
         </message>
         <message>
             <source>Dismiss</source>
-            <translation>يېپىش</translation>
+            <translation>تاقاش</translation>
         </message>
         <message>
             <source>Merge Trackers</source>
-            <translation>تەركىبلەرنى بىرلەشتۈرۈش</translation>
+            <translation>ئىزلىغۇچىلارنى بىرلەشتۈرۈش</translation>
         </message>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
         <message>
             <source>Save to</source>
-            <translation>ساقلاش</translation>
+            <translation>ساقلاش ئورنى</translation>
         </message>
         <message>
             <source>Save As...</source>
-            <translation>باشقا ئاتالغۇ بىلەن ساقلاش...</translation>
+            <translation>باشقىچە ساقلاش...</translation>
         </message>
         <message>
             <source>Category</source>
@@ -4891,39 +4926,39 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Custom save folder</source>
-            <translation>ئۆزگىچە ساقلاش تۈركۈمى</translation>
+            <translation>ئىختىيارى ساقلاش ھۆججەتخانىسى</translation>
         </message>
         <message>
             <source>Remember</source>
-            <translation>ئەسكەرتىش</translation>
+            <translation>ئەستە تۇت</translation>
         </message>
         <message>
             <source>Use category folder</source>
-            <translation>تۈركۈم تۈركۈمىنى ئىشلىتىش</translation>
+            <translation>خەت قىسقۇچ ئىشلەت</translation>
         </message>
         <message>
             <source>Description</source>
-            <translation>تەسۋىر</translation>
+            <translation>چۈشەندۈرۈش</translation>
         </message>
         <message>
             <source>Torrent Settings...</source>
-            <translation>تورانت ئېلىپ بېرىش تەڭشىكلىرى...</translation>
+            <translation>توررېنت تەڭشەكلىرى...</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىنكاس قىلىش</translation>
+            <translation>بىكار قىل</translation>
         </message>
         <message>
             <source>Download Later</source>
-            <translation>كېيىنچە تۆۋەنلىتىش</translation>
+            <translation>كېيىن چۈشۈر</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>تۆۋەنلىتىش</translation>
+            <translation>چۈشۈر</translation>
         </message>
         <message>
             <source>Opening torrent...</source>
-            <translation>تورانت ئېچىلىۋاتىدۇ...</translation>
+            <translation>توررېنت ئېچىۋاتىدۇ...</translation>
         </message>
         <message>
             <source>↓ %1  ↑ %2</source>
@@ -4931,7 +4966,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>RTT %1  %2% done</source>
-            <translation>RTT %1  %2% تاماملاندى</translation>
+            <translation>RTT %1  %2% تامام</translation>
         </message>
         <message>
             <source>Files</source>
@@ -4939,15 +4974,15 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>%n item(s)</source>
-            <translation>%n دانە</translation>
+            <translation>%n تۈر</translation>
         </message>
         <message>
             <source>Name</source>
-            <translation>ئىسىم</translation>
+            <translation>ئاتى</translation>
         </message>
         <message>
             <source>Progress</source>
-            <translation>ئىلگىرىلىك</translation>
+            <translation>ئىلگىرىلەش</translation>
         </message>
         <message>
             <source>Size</source>
@@ -4955,47 +4990,47 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>No file information available</source>
-            <translation>ھېچقانداق ھۆججەت ئۇچۇرى يوق</translation>
+            <translation>ھۆججەت ئۇچۇرى يوق</translation>
         </message>
         <message>
             <source>Pending</source>
-            <translation>كۈتۈۋاتىدۇ</translation>
+            <translation>كۈتۈلۈۋاتىدۇ</translation>
         </message>
         <message>
             <source>Rename item</source>
-            <translation>ئېتىبارلىق ئاتالغۇنى ئۆزگەرتىش</translation>
+            <translation>تۈر ئاتىنى ئۆزگەرت</translation>
         </message>
         <message>
             <source>Enter a new file or folder name:</source>
-            <translation>يېڭى ھۆججەت ياكى فولدر ئاتالغۇسىنى كىرگۈزۈڭ:</translation>
+            <translation>يېڭى ھۆججەت ياكى قىسقۇچ ئاتىنى كىرگۈزۈڭ:</translation>
         </message>
         <message>
             <source>Rename</source>
-            <translation>ئېتىبارلىق ئاتالغۇنى ئۆزگەرتىش</translation>
+            <translation>ئات ئۆزگەرت</translation>
         </message>
         <message>
             <source>Rename...</source>
-            <translation>ئېتىبارلىق ئاتالغۇنى ئۆزگەرتىش...</translation>
+            <translation>ئات ئۆزگەرت...</translation>
         </message>
         <message>
             <source>Peer</source>
-            <translation>تەڭشىگۈچ</translation>
+            <translation>ھەمبەھىر</translation>
         </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
-            <translation>تور ھۆججەتنى ئېچىۋاتىدۇ ۋە مېتادىئانى ئوقۇۋاتىدۇ...</translation>
+            <translation>توررېنت ئېچىلىپ، مېتاداتا ئوقۇلۇۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Looking for peers to download metadata...</source>
-            <translation>تور ھۆججەتنىڭ مېتادىئاسىنى تېپىۋاتىدۇ...</translation>
+            <translation>مېتاداتا چۈشۈرۈش ئۈچۈن ھەمبەھىر ئىزدەۋاتىدۇ...</translation>
         </message>
         <message>
             <source>Downloading metadata from %n peer(s)</source>
-            <translation>%n تەڭشىگۈچتىن مېتادىئانى يۈكلىۋاتىدۇ</translation>
+            <translation>%n ھەمبەھىردىن مېتاداتا چۈشۈرۈۋاتىدۇ</translation>
         </message>
         <message>
             <source>Seed</source>
-            <translation>يۈرۈش</translation>
+            <translation>ئۇرۇق</translation>
         </message>
         <message>
             <source>You</source>
@@ -5003,136 +5038,136 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Torrent Metadata</source>
-            <translation>تور ئۇچۇرلىرى</translation>
+            <translation>توررېنت مېتاداتاسى</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchInstallDialog</name>
         <message>
             <source>Install a new search plugin</source>
-            <translation>يېڭى ئىزدەش قوشۇمچىسىنى ئورنىتىش</translation>
+            <translation>يېڭى ئىزدەش قىستۇرمىسى قاچىلا</translation>
         </message>
         <message>
             <source>Local File</source>
-            <translation>ئورۇنلۇق ھەقىقىي</translation>
+            <translation>يەرلىك ھۆججەت</translation>
         </message>
         <message>
             <source>Web Link</source>
-            <translation>ئىنتېرنېت ئالاقىسى</translation>
+            <translation>تور ئۇلانمىسى</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىرىش</translation>
+            <translation>ۋاز كەچ</translation>
         </message>
         <message>
             <source>OK</source>
-            <translation>تەۋرىن</translation>
+            <translation>جەزملە</translation>
         </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
-            <translation>ئىزدەش قوشۇمچىسى (.py) نى تاللاپ، search_plugins ئىچىگە كۆچۈرۈڭ</translation>
+            <translation>search_plugins ھۆججەت قىسقۇچىغا كۆچۈرۈش ئۈچۈن يەرلىك .py ئىزدەش قىستۇرمىسىنى تاللاڭ.</translation>
         </message>
         <message>
             <source>Paste a direct URL to a .py plugin file.</source>
-            <translation>بىۋاسىتە ئۇلىنىش ئادرېسىنى (.py) كۆچۈرۈڭ</translation>
+            <translation>.py قىستۇرما ھۆججىتىنىڭ بىۋاسىتە URL ئادرېسىنى چاپلاڭ.</translation>
         </message>
         <message>
             <source>Install Search Plugin</source>
-            <translation>ئىزدەش قوشۇمچىسىنى ئورنىتىش</translation>
+            <translation>ئىزدەش قىستۇرمىسىنى قاچىلا</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchPluginsDialog</name>
         <message>
             <source>Disable Plugin</source>
-            <translation>قوشۇمچىنى ئۆچۈرۈش</translation>
+            <translation>قىستۇرمىنى چەكلە</translation>
         </message>
         <message>
             <source>Enable Plugin</source>
-            <translation>قوشۇمچىنى ئاكتىپلاش</translation>
+            <translation>قىستۇرمىنى قوزغات</translation>
         </message>
         <message>
             <source>Uninstall</source>
-            <translation>ئۆچۈرۈش</translation>
+            <translation>چىقىرىۋەت</translation>
         </message>
         <message>
             <source>Installed Search Plugins</source>
-            <translation>ئورنىتىلغان ئىزدەش قوشۇمچىلىرى</translation>
+            <translation>قاچىلانغان ئىزدەش قىستۇرمىلىرى</translation>
         </message>
         <message>
             <source>Refresh</source>
-            <translation>تەزىر</translation>
+            <translation>يېڭىلا</translation>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>بىلىنمەيدۇ</translation>
+            <translation>نامەلۇم</translation>
         </message>
         <message>
             <source>Enabled</source>
-            <translation>ئاكتىپ</translation>
+            <translation>قوزغىتىلغان</translation>
         </message>
         <message>
             <source>Disabled</source>
-            <translation>ئۆچۈرۈلگەن</translation>
+            <translation>چەكلەنگەن</translation>
         </message>
         <message>
             <source>Install a New One</source>
-            <translation>يېڭى بىرىنى ئورنىتىش</translation>
+            <translation>يېڭى بىرنى قاچىلا</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>ئىزدەش</translation>
+            <translation>پىلاگىن ئىزدە</translation>
         </message>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
         <message>
             <source>Name</source>
-            <translation>ئىسىم</translation>
+            <translation>ئات</translation>
         </message>
         <message>
             <source>Size</source>
-            <translation>چوڭلۇقى</translation>
+            <translation>چوڭلۇق</translation>
         </message>
         <message>
             <source>Seeders</source>
-            <translation>تارقىتىشچىلار</translation>
+            <translation>ئۇرۇقچى</translation>
         </message>
         <message>
             <source>Leechers</source>
-            <translation>تارتىۋالغۇچىلار</translation>
+            <translation>يۈكلەشچى</translation>
         </message>
         <message>
             <source>Engine</source>
-            <translation>مۇھەرىر</translation>
+            <translation>ماتور</translation>
         </message>
         <message>
             <source>Published On</source>
-            <translation>چىقىرىلغان ۋاقىت</translation>
+            <translation>تارقىتىلغان ۋاقتى</translation>
         </message>
         <message>
             <source>Open Description Page</source>
-            <translation>تەسۋىر بەت ئېچىش</translation>
+            <translation>چۈشەندۈرۈش بېتىنى ئېچىش</translation>
         </message>
         <message>
             <source>Download Torrent</source>
-            <translation>تورنت تارتىۋېلىش</translation>
+            <translation>توررېنتنى چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Copy Name</source>
-            <translation>ئىسىمنى كۆچۈرۈش</translation>
+            <translation>ئاتىنى كۆچۈرۈش</translation>
         </message>
         <message>
             <source>Copy Magnet Link</source>
-            <translation>مېغنايتلىق ئالاقىلىنىش ئادرېسىنى كۆچۈرۈش</translation>
+            <translation>ماگنىت ئۇلانمىسىنى كۆچۈرۈش</translation>
         </message>
         <message>
             <source>Copy Description Page URL</source>
-            <translation>تەسۋىر بەت ئادرېسىنى كۆچۈرۈش</translation>
+            <translation>چۈشەندۈرۈش بېتى URL نى كۆچۈرۈش</translation>
         </message>
         <message>
             <source>Searching...</source>
@@ -5144,7 +5179,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Unknown</source>
-            <translation>بىلىنمەيدۇ</translation>
+            <translation>نامەلۇم</translation>
         </message>
         <message>
             <source>No search results yet</source>
@@ -5152,54 +5187,54 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Search Plugins</source>
-            <translation>ئىزدەش قوشۇمچىلىرى</translation>
+            <translation>ئىزدەش قىستۇرمىلىرى</translation>
         </message>
         <message>
             <source>Torrent Search Engine</source>
-            <translation>تورانت ئىزدەش مۇھىتى</translation>
+            <translation>توررېنت ئىزدەش ماتورى</translation>
         </message>
     </context>
     <context>
         <name>TorrentSpeedLimitDialog</name>
         <message>
             <source>Torrent Settings</source>
-            <translation>تورانت تەڭشەكلىرى</translation>
+            <translation>توررېنت تەڭشەكلىرى</translation>
         </message>
         <message>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
-            <translation>تور سۈرئىتى، ئورتاقلىش چەكلىمىسى، ھەمكار تېپىش ۋە يۈكلەش ھالىتى</translation>
+            <translation>ھەر توررېنتنىڭ تېزلىكى، ئورتاقلىشىش چېكى، پىر تېپىش ۋە چۈشۈرۈش ھالىتى</translation>
         </message>
         <message>
             <source>Close</source>
-            <translation>يېپىش</translation>
+            <translation>ياپ</translation>
         </message>
         <message>
             <source>Apply</source>
-            <translation>ئىشلىتىش</translation>
+            <translation>قوللان</translation>
         </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
-            <translation>بەلگىلەنگەن سۈرئەت چەكلىمىسى</translation>
+            <translation>كەڭ بەلۋاغ چېكلىمىسى</translation>
         </message>
         <message>
             <source>Download:</source>
-            <translation>يۈكلەش:</translation>
+            <translation>چۈشۈرۈش:</translation>
         </message>
         <message>
             <source>Upload:</source>
-            <translation>يۈك سۈرئىتى:</translation>
+            <translation>يۈكلەش:</translation>
         </message>
         <message>
             <source>SHARE LIMITS</source>
-            <translation>ئورتاقلىش چەكلىمىسى</translation>
+            <translation>ئورتاقلىشىش چېكى</translation>
         </message>
         <message>
             <source>Ratio:</source>
-            <translation>ئىزلىنىش نىسبىتى:</translation>
+            <translation>نىسبەت:</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>ئادەتتىكى</translation>
+            <translation>كۆڭۈلدىكى</translation>
         </message>
         <message>
             <source>Unlimited</source>
@@ -5211,19 +5246,19 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Seeding time:</source>
-            <translation>ئۆستۈرۈش ۋاقتى:</translation>
+            <translation>تۇغۇش ۋاقتى:</translation>
         </message>
         <message>
             <source>min</source>
-            <translation>دەقىقىە</translation>
+            <translation>مىنۇت</translation>
         </message>
         <message>
             <source>Inactive time:</source>
-            <translation>تۈگەپ قېلىش ۋاقتى:</translation>
+            <translation>ھەرىكەتسىز ۋاقىت:</translation>
         </message>
         <message>
             <source>PEER DISCOVERY</source>
-            <translation>تۈركۈم تېپىش</translation>
+            <translation>تەڭداش تېپىش</translation>
         </message>
         <message>
             <source>DHT</source>
@@ -5231,7 +5266,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Distributed Hash Table</source>
-            <translation>تارقاقلاشقان خەش جەدۋەل</translation>
+            <translation>تارقاق ھەش جەدۋىلى</translation>
         </message>
         <message>
             <source>PeX</source>
@@ -5239,7 +5274,7 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Peer Exchange</source>
-            <translation>تۈركۈم ئالماشتۇرۇش</translation>
+            <translation>ھەمكار ئالماشتۇرۇش</translation>
         </message>
         <message>
             <source>LSD</source>
@@ -5247,195 +5282,195 @@ Click to open Statistics</source>
         </message>
         <message>
             <source>Local Service Discovery</source>
-            <translation>يەرلىك خىزمەت ئېنىقلاش</translation>
+            <translation>يەرلىك مۇلازىمەت بايقاش</translation>
         </message>
         <message>
             <source>🔒 Private torrent</source>
-            <translation>🔒 خەۋپسىز تور</translation>
+            <translation>🔒 شەخسىي توررېنت</translation>
         </message>
         <message>
             <source>DHT and PeX disabled by libtorrent.</source>
-            <translation>libtorrent دىكى DHT ۋە PeX ئۆچۈرۈلدى</translation>
+            <translation>libtorrent تەرىپىدىن DHT ۋە PeX چەكلەنگەن.</translation>
         </message>
         <message>
             <source>DOWNLOAD MODE</source>
-            <translation>تۆۋەنلىتىش ھالىتى</translation>
+            <translation>چۈشۈرۈش ھالىتى</translation>
         </message>
         <message>
             <source>Sequential download</source>
-            <translation>تەرتىپلىك تۆۋەنلىتىش</translation>
+            <translation>تەرتىپلىك چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Pieces downloaded in order (piece 0 → last)</source>
-            <translation>تەرتىپ بويىچە قىسىملار تۆۋەنلىتىلدى (1-قىسىم → ئاخىرقى)</translation>
+            <translation>پارچىلار تەرتىپ بويىچە چۈشۈرۈلدى (0-پارچىدىن ئاخىرقىغىچە)</translation>
         </message>
         <message>
             <source>Prioritize first &amp; last pieces</source>
-            <translation>ئالدى ۋە ئاخىرقى قىسىملارغا ئالدىن ئۈنۈم بېرىش</translation>
+            <translation>1. ئالدى-كەينى بۆلەكلەرنى ئالدىن تارتىش</translation>
         </message>
         <message>
             <source>Front-loads header/footer for early playback</source>
-            <translation>باشلىق ۋە ئۇچ قىسىمنى ئالدىن يۈكلەش</translation>
+            <translation>2. بالدۇر ئوقۇش ئۈچۈن باش-ئاخىرنى ئالدىن يۈكلەش</translation>
         </message>
     </context>
     <context>
         <name>YtdlpDialog</name>
         <message>
             <source>Fetching available formats…</source>
-            <translation>مەۋجۇت فورماتلارنى ئېلىۋاتىدۇ...</translation>
+            <translation>3. بار فورماتلار تەكشۈرۈلۈۋاتىدۇ…</translation>
         </message>
         <message>
             <source>Could not fetch video information</source>
-            <translation>فىلىم ئۇچۇرلىرىنى ئېلىش مۇۋەپپەقىيەتسىز بولدى</translation>
+            <translation>4. سىن ئۇچۇرىنى ئېلىش مۇمكىن بولمىدى</translation>
         </message>
         <message>
             <source>YouTube n-challenge solving failed</source>
-            <translation>YouTube نەچىلىكلىنىش خاتالىشىپ قېلىش</translation>
+            <translation>5. YouTube سىناق چەكلىمىسىنى بۇزۇش مەغلۇپ بولدى</translation>
         </message>
         <message>
             <source>Fetching video info…</source>
-            <translation>فيديو ئۇچۇرىنى ئېلىۋاتىدۇ…</translation>
+            <translation>6. سىن ئۇچۇرى ئېلىنىۋاتىدۇ…</translation>
         </message>
         <message>
             <source>Could not fetch video info</source>
-            <translation>فيديو ئۇچۇرىنى ئېلىش مۇمكىن ئەمەس</translation>
+            <translation>7. سىن ئۇچۇرىنى ئېلىش مۇمكىن بولمىدى</translation>
         </message>
         <message>
             <source>yt-dlp requires a JavaScript runtime (Deno, Node.js, Bun, or QuickJS) to bypass YouTube's URL throttling challenge. Install one and place it next to yt-dlp.exe or in your system PATH.</source>
-            <translation>yt-dlp نىڭ YouTube نىڭ URL ئاستىرلاشتۇرۇش نەچىلىكلىنىشىنى ئېلىپ بېرىش ئۈچۈن JavaScript رۇنتىمى (Deno، Node.js، Bun ياكى QuickJS) كېرەك. بىرلىنى ئورنىتىپ، yt-dlp.exe غا ياكى سىستېما PATH غا قويۇڭ.</translation>
+            <translation>8. yt-dlp نىڭ YouTube چەكلىمىسىنى ئايلىنىپ ئۆتۈشى ئۈچۈن JavaScript ئىجرا مۇھىتى (Deno, Node.js, Bun ياكى QuickJS) كېرەك. بىرىنى قاچىلاپ، yt-dlp.exe يېنىغا ياكى سىستېما PATH غا قويۇڭ.</translation>
         </message>
         <message>
             <source>No runtime detected. Install Deno (recommended) from deno.com, then re-check in Settings → Video Downloader.</source>
-            <translation>رۇنتىمى تېپىلمىدى. deno.com دىن Deno (تەۋسىيە قىلىنغان) نى ئورنىتىپ، ئاندىن Settings → Video Downloader دىن قايتا تەكشۈرۈڭ.</translation>
+            <translation>9. ئىجرا مۇھىتى تېپىلمىدى. Deno نى (تەۋسىيە) deno.com دىن قاچىلاڭ، ئاندىن تەڭشەكلەر → سىن چۈشۈرگۈچ تەكشۈرۈڭ.</translation>
         </message>
         <message>
             <source>Runtime detected: %1 (%2)</source>
-            <translation>رۇنتىمى تېپىلدى: %1 (%2)</translation>
+            <translation>10. ئىجرا مۇھىتى تېپىلدى: %1 (%2)</translation>
         </message>
         <message>
             <source>Get Deno</source>
-            <translation>Deno نى ئېلىڭ</translation>
+            <translation>Deno نى چۈشۈرۈڭ</translation>
         </message>
         <message>
             <source>Open Settings</source>
-            <translation>Settings نى ئېچىڭ</translation>
+            <translation>تەڭشەكلەرنى ئېچىڭ</translation>
         </message>
         <message>
             <source>Cookies from browser:</source>
-            <translation>Browser دىن كەلگەن Cookies:</translation>
+            <translation>توركۆرگۈچتىن كۈكىلەر:</translation>
         </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
-            <translation>yt-dlp غا بىر browser نىڭ Cookies نى ئۆتكۈزۈش ئۈچۈن بىر browser تاللاڭ، ئاندىن قايتا سىناڭ.</translation>
+            <translation>yt-dlp غا كۈكىلەرنى يوللاش ئۈچۈن توركۆرگۈچ تاللاڭ، ئاندىن قايتا سىناڭ.</translation>
         </message>
         <message>
             <source>Retry</source>
-            <translation>قايتا سىناش</translation>
+            <translation>قايتا سىناڭ</translation>
         </message>
         <message>
             <source>Select quality:</source>
-            <translation>سۈپەت تاللاش:</translation>
+            <translation>سۈپەت تاللاڭ:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
 and audio streams merged by ffmpeg after download.</source>
-            <translation>چوڭلۇق يوق — بۇ سۈپەت ئاۋاز ۋە رەسىم ئايرىم ئېقىنلار بولۇپ، يۈكلەنگەندىن كېيىن ffmpeg بىلەن بىرلەشتۈرۈلىدۇ</translation>
+            <translation>چوڭلۇقى بېكىتىلمىدى — بۇ سۈپەت ئايرىم سىن ۋە ئاۋاز ئېقىملىرىنى ئىشلىتىدۇ، چۈشۈرگەندىن كېيىن ffmpeg بىلەن بىرلەشتۈرۈلىدۇ.</translation>
         </message>
         <message>
             <source>Channel / Playlist</source>
-            <translation>قانىل / ئىزلىمە</translation>
+            <translation>قانال / تىزىملىك</translation>
         </message>
         <message>
             <source>All videos</source>
-            <translation>بارلىق ۋىدېئولار</translation>
+            <translation>بارلىق سىنلار</translation>
         </message>
         <message>
             <source>Latest</source>
-            <translation>يېڭى</translation>
+            <translation>ئەڭ يېڭى</translation>
         </message>
         <message>
             <source>videos</source>
-            <translation>ۋىدېئولار</translation>
+            <translation>ۋىدىيولار</translation>
         </message>
         <message>
             <source>YouTube channel URLs include all uploads by default. Use Scope to target one tab.</source>
-            <translation>YouTube قانىل ئۇلىلىرى ئۆز ئالدىغا بارلىق يۈكلەشنى ئۆز ئىچىگە ئالىدۇ. بىر تالغا ئېتىش ئۈچۈن دائىرىنى ئىشلىتىڭ</translation>
+            <translation>YouTube قانىلى ئادرېسلىرى سۈكۈتتە بارلىق يۈكلەنگەنلەرنى ئۆز ئىچىگە ئالىدۇ. بىر بەتنى نىشانلاش ئۈچۈن دائىرىنى ئىشلىتىڭ.</translation>
         </message>
         <message>
             <source>Videos will be saved in a subfolder named after the channel.</source>
-            <translation>ۋىدېئولار قانىل ئاتىلىدىغان ئاستىمۇھىتقا ساقلىنىدۇ</translation>
+            <translation>ۋىدىيولار قانال نامىدىكى ئاست قىسقۇچقا ساقلىنىدۇ.</translation>
         </message>
         <message>
             <source>Scope:</source>
-            <translation>دائىرىە:</translation>
+            <translation>دائىرە:</translation>
         </message>
         <message>
             <source>All uploads</source>
-            <translation>بارلىق يۈكلەشلەر</translation>
+            <translation>بارلىق يۈكلەنگەنلەر</translation>
         </message>
         <message>
             <source>Videos</source>
-            <translation>ۋىدېئولار</translation>
+            <translation>ۋىدىيولار</translation>
         </message>
         <message>
             <source>Shorts</source>
-            <translation>قىسقا ۋىدېئولار</translation>
+            <translation>قىسقا ۋىدىيولار</translation>
         </message>
         <message>
             <source>Live</source>
-            <translation>تۈزۈش</translation>
+            <translation>بىۋاسىتە</translation>
         </message>
         <message>
             <source>Subtitles</source>
-            <translation>ئۈنۈم</translation>
+            <translation>تارتىم يېزىلار</translation>
         </message>
         <message>
             <source>Download subtitle files alongside the video</source>
-            <translation>ۋىدېئو بىلەن ئۈنۈم ھۆججەتلىرىنى يۈكلەش</translation>
+            <translation>ۋىدىيو بىلەن بىرگە تارتىم يېزىلار ھۆججەتلىرىنى چۈشۈرۈڭ</translation>
         </message>
         <message>
             <source>Language:</source>
-            <translation>تىل:</translation>
+            <translation>تىل</translation>
         </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
-            <translation>تىل كودى، مەسىلەن: en · en.*، ja · بارلىقى</translation>
+            <translation>تىل كودى</translation>
         </message>
         <message>
             <source>Auto-generated</source>
-            <translation>ئۆز ئۆزىدىن يارىتىلغان</translation>
+            <translation>ئاپتوماتىك ھاسىل قىلىنغان</translation>
         </message>
         <message>
             <source>Include auto-generated captions when available</source>
-            <translation>مەۋجۇت بولغاندا ئۆز ئۆزىدىن يارىتىلغان ئۈنۈملەرنى ئۆز ئىچىگە ئېلىش</translation>
+            <translation>ئاپتوماتىك ھاسىل قىلىنغان تەرجىمىلەرنى ئۆز ئىچىگە ئالىدۇ</translation>
         </message>
         <message>
             <source>Embed in video</source>
-            <translation>ئىچكىگە ئېلىش</translation>
+            <translation>سىڭدۈرۈش</translation>
         </message>
         <message>
             <source>Embed subtitles into the video container</source>
-            <translation>تۈزۈلۈشنى ئىچكىگە ئېلىش</translation>
+            <translation>سىڭدۈرۈش تەلەپ قىلىدۇ</translation>
         </message>
         <message>
             <source>Embedding requires mp4, mkv, or webm</source>
-            <translation>mp4، mkv ياكى webm تەلەپ قىلىنىدۇ</translation>
+            <translation>كىچىك رەسىم سىڭدۈرۈش</translation>
         </message>
         <message>
             <source>Embed thumbnail</source>
-            <translation>كۆرۈنۈش رەسىمىنى ئىچكىگە ئېلىش</translation>
+            <translation>مۇقاۋا رەسىمىنى سىڭدۈرۈش</translation>
         </message>
         <message>
             <source>Embed cover art thumbnail into the video file (requires ffmpeg)</source>
-            <translation>ffmpeg تەلەپ قىلىنىدۇ</translation>
+            <translation>مېتا سانلىق مەلۇمات سىڭدۈرۈش</translation>
         </message>
         <message>
             <source>Embed metadata</source>
-            <translation>مەلۇماتنى ئىچكىگە ئېلىش</translation>
+            <translation>مېتامەلۇماتنى قىستۇر</translation>
         </message>
         <message>
             <source>Write title, uploader, chapters etc. into the container metadata</source>
-            <translation>نام، ئۈستەلگە ئېلىشچى، بابلارنى يېزىش</translation>
+            <translation>مېتاداتا يېزىش</translation>
         </message>
         <message>
             <source>SponsorBlock</source>
@@ -5444,39 +5479,39 @@ and audio streams merged by ffmpeg after download.</source>
         <message>
             <source>Remove sponsored segments, intros, outros and self-promotion
 (YouTube only · requires ffmpeg)</source>
-            <translation>سپونسورلۇق، باشلىنىش، ئاخىرلاشتۇرۇش ۋە ئۆزىنى تەۋرىتىش قىسىملارنى ئۆچۈرۈش</translation>
+            <translation>رېكلام بۆلەكلىرىنى چىقىرىۋەت</translation>
         </message>
         <message>
             <source>KB/s  (blank = use global speed limit)</source>
-            <translation>KB/s (بوش = ئومۇمىي سۈرئەت چەكلىمىسى)</translation>
+            <translation>KB/s  (بوش = ئومۇمىي چەك)</translation>
         </message>
         <message>
             <source>Download Channel</source>
-            <translation>تۆۋەنلىتىش ئېقىمى</translation>
+            <translation>قانال چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Download</source>
-            <translation>تۆۋەنلىتىش</translation>
+            <translation>چۈشۈرۈش</translation>
         </message>
         <message>
             <source>Advanced</source>
-            <translation>ئالدىنقى تەڭشەك</translation>
+            <translation>ئالىي</translation>
         </message>
         <message>
             <source>date filter</source>
-            <translation>تارىخىي سۈزگۈچ</translation>
+            <translation>چېسلا سۈزگۈچ</translation>
         </message>
         <message>
             <source>cookies</source>
-            <translation>كوكىيلار</translation>
+            <translation>كوكىلار</translation>
         </message>
         <message>
             <source>archive</source>
-            <translation>ئارخىۋ</translation>
+            <translation>ئارخىپ</translation>
         </message>
         <message>
             <source>split chapters</source>
-            <translation>بۆلۈك بۆلۈش</translation>
+            <translation>باب بۆلۈش</translation>
         </message>
         <message>
             <source>time range</source>
@@ -5488,35 +5523,35 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>random</source>
-            <translation>تاسادىپىي</translation>
+            <translation>تاساددىپىي</translation>
         </message>
         <message>
             <source>live start</source>
-            <translation>تۈزۈش</translation>
+            <translation>بىۋاسىتە باشلاش</translation>
         </message>
         <message>
             <source>rate limit</source>
-            <translation>چەكلىمە</translation>
+            <translation>سۈرئەت چەكلىمىسى</translation>
         </message>
         <message>
             <source>After date:</source>
-            <translation>كۈندىن كېيىن:</translation>
+            <translation>چېسلا كېيىن:</translation>
         </message>
         <message>
             <source>Only videos uploaded on or after this date</source>
-            <translation>بۇ كۈندىن كېيىن يۈكلەنگەن</translation>
+            <translation>پەقەت بۇ چېسلا ياكى كېيىن يۈكلەنگەن سىنلار</translation>
         </message>
         <message>
             <source>Cookies:</source>
-            <translation>كوكىيلار:</translation>
+            <translation>كۇكىلار:</translation>
         </message>
         <message>
             <source>Load cookies for members-only / age-restricted content</source>
-            <translation>ئەزالارغا خاس / ياش چەكلىمىسى بار مەزمۇنلارنى يۈكلەش</translation>
+            <translation>ئەزالىق/يېشى چەكلەنگەن مەزمۇن ئۈچۈن كۇكى يۈكلەش</translation>
         </message>
         <message>
             <source>Rate limit:</source>
-            <translation>چەكلىمە:</translation>
+            <translation>چەكلىمە نىسبىتى:</translation>
         </message>
         <message>
             <source>Time range:</source>
@@ -5524,51 +5559,51 @@ and audio streams merged by ffmpeg after download.</source>
         </message>
         <message>
             <source>Download only this section, e.g. *01:30-03:00</source>
-            <translation>بۇ قىسىمنىلا يۈكلەڭ، مەسىلەن *01:30-03:00</translation>
+            <translation>پەقەت بۇ بۆلەكنى چۈشۈرۈڭ، مەسىلەن *01:30-03:00</translation>
         </message>
         <message>
             <source>Skip already downloaded</source>
-            <translation>ئاللىقاچان يۈكلەنگەنلىرىنى ئۆتكۈزۈۋېتىش</translation>
+            <translation>ئاللىبۇرۇن چۈشكەننى ئاتلاڭ</translation>
         </message>
         <message>
             <source>Split by chapters</source>
-            <translation>بابلارغا ئايرىش</translation>
+            <translation>بابلار بويىچە ئايرىڭ</translation>
         </message>
         <message>
             <source>Save description</source>
-            <translation>تەسۋىرنى ساقلاش</translation>
+            <translation>چۈشەندۈرۈشنى ساقلاڭ</translation>
         </message>
         <message>
             <source>Save thumbnail</source>
-            <translation>كۆرۈنۈش رەسىمىنى ساقلاش</translation>
+            <translation>كىچىك رەسىمنى ساقلاڭ</translation>
         </message>
         <message>
             <source>Shuffle playlist</source>
-            <translation>پلىستىكنى ئارىلاشتۇرۇش</translation>
+            <translation>پلەيلىستىنى ئارىلاشتۇرۇڭ</translation>
         </message>
         <message>
             <source>Live: from start</source>
-            <translation>تۈزۈلۈش: باشلىنىشتىن</translation>
+            <translation>بىۋاسىتە: باشتىن</translation>
         </message>
         <message>
             <source>Save to:</source>
-            <translation>ساقلاش يەرگە:</translation>
+            <translation>ساقلاش ئورنى:</translation>
         </message>
         <message>
             <source>Category:</source>
-            <translation>تۈرگە:</translation>
+            <translation>تۈرى</translation>
         </message>
         <message>
             <source>Format:</source>
-            <translation>فورمات:</translation>
+            <translation>فورماتى</translation>
         </message>
         <message>
             <source>Cancel</source>
-            <translation>ئىتتىپاق قىلىش</translation>
+            <translation>بىكار قىلىش</translation>
         </message>
         <message>
             <source>Video Download</source>
-            <translation>فىدېئونى تۆۋەنلىتىش</translation>
+            <translation>سىن چۈشۈرۈش</translation>
         </message>
     </context>
 </TS>

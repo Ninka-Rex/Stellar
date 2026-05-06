@@ -1918,11 +1918,11 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         </message>
         <message>
             <source>Next &gt;</source>
-            <translation/>
+            <translation>Ar Aghaidh &gt;</translation>
         </message>
         <message>
             <source>Start Exploring</source>
-            <translation/>
+            <translation>Tosaigh an Taithí</translation>
         </message>
     </context>
     <context>
@@ -4395,6 +4395,22 @@ Tá sé an-mholta Stellar a nascadh le comhéadan líonra VPN agus a fhíorú go
         <message>
             <source>A restart is required after changing the language.</source>
             <translation>Teastaíonn athshocrú tar éis an teanga a athrú.</translation>
+        </message>
+        <message>
+            <source>Restart Required</source>
+            <translation>Athshúil Riachtanach</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Tá athshúil riachtanach chun an t-athrú teanga a chur i bhfeidhm. Athshúil anois?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Athshúil Anois</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Níos déanaí</translation>
         </message>
         <message>
             <source>Check for updates</source>

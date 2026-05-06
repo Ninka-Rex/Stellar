@@ -4398,6 +4398,22 @@ Det anbefales stærkt at binde Stellar til et VPN-netværksinterface og verifice
             <translation>En genstart er nødvendig efter ændring af sprog.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Genstart påkrævet</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Sprogændringen træder i kraft efter en genstart. Genstart nu?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Genstart nu</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Senere</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Tjek for opdateringer</translation>
         </message>

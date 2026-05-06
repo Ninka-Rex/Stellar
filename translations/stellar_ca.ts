@@ -4399,6 +4399,22 @@ Es recomana fortament enllaçar Stellar a una interfície de xarxa VPN i verific
             <translation>Cal reiniciar després de canviar l'idioma.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Reinici necessari</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Cal reiniciar per aplicar el canvi d'idioma. Vols reiniciar ara?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Reinicia ara</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Més tard</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Comprova les actualitzacions</translation>
         </message>

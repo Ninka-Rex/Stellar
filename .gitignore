@@ -27,3 +27,4 @@ app/data/*.mmdb
 *.pem
 *.xpi
 CLAUDE.original.md
+.env

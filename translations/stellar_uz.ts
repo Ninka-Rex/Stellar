@@ -4389,6 +4389,22 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <translation>Qayta ishga tushirish kerak</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Qayta ishga tushirish kerak</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Til oʻzgarishi kuchga kirishi uchun qayta ishga tushirish kerak. Hozir qayta ishga tushirilsinmi?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Hozir qayta ishga tushirish</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Keyinroq</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Yangilanishlarni tekshirish</translation>
         </message>

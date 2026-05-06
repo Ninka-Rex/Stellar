@@ -4391,6 +4391,22 @@ Stellar ਨੂੰ VPN ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਨਾਲ ਬ�
             <translation>ਭਾਸ਼ਾ ਬਦਲਣ ਤੋਂ ਬਾਅਦ ਮੁੜ ਸ਼ੁਰੂਆਤ ਦੀ ਲੋੜ ਹੈ।</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>ਬੀਜਾਈ ਲੋੜੀਂਦੀ</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>ਭਾਸ਼ਾ ਬਦਲਣ ਲਈ ਬੀਜਾਈ ਲੋੜੀਂਦੀ ਹੈ। ਹੁਣ ਬੀਜਾਈ ਕਰੋ?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>ਹੁਣ ਬੀਜਾਈ ਕਰੋ</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>ਅੱਗੇ</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>ਅਪਡੇਟਾਂ ਦੀ ਜਾਂਚ ਕਰੋ</translation>
         </message>

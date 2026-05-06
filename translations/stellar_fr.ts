@@ -4401,6 +4401,22 @@ Il est fortement recommandé de lier Stellar à une interface réseau VPN et de 
             <translation>Un redémarrage est requis après avoir changé la langue.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Redémarrage requis</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Un redémarrage est nécessaire pour appliquer le changement de langue. Redémarrer maintenant ?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Redémarrer maintenant</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Plus tard</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Vérifier les mises à jour</translation>
         </message>

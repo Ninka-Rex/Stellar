@@ -4383,6 +4383,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>נדרש איפוס</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>נדרש אתחול</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>יש לאתחל כדי שהשינוי בשפה ייכנס לתוקף. לאתחל עכשיו?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>אתחל עכשיו</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>מאוחר יותר</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>בדיקת עדכונים</translation>
         </message>

@@ -4392,6 +4392,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Po kalbos keitimo reikia paleisti programą iš naujo.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Reikalingas paleidimas iš naujo</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Kad kalbos pakeitimai įsigaliotų, reikia paleisti iš naujo. Paleisti dabar?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Paleisti dabar</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Vėliau</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Atnaujinti</translation>
         </message>

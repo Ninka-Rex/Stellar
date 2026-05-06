@@ -4383,6 +4383,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Po zmene jazyka je potrebné reštartovať aplikáciu.</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Vyžaduje sa reštart</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Pre zmenu jazyka je potrebný reštart. Reštartovať teraz?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Reštartovať teraz</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Neskôr</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Skontrolovať aktualizácie</translation>
         </message>

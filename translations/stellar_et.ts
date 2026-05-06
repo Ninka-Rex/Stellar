@@ -4403,6 +4403,22 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <translation>Taaskäivitamine on vajalik</translation>
         </message>
         <message>
+            <source>Restart Required</source>
+            <translation>Taaskäivitamine</translation>
+        </message>
+        <message>
+            <source>A restart is required for the language change to take effect. Restart now?</source>
+            <translation>Keele muutmiseks on vajalik taaskäivitamine. Kas soovid taaskäivitada?</translation>
+        </message>
+        <message>
+            <source>Restart Now</source>
+            <translation>Taaskäivita</translation>
+        </message>
+        <message>
+            <source>Later</source>
+            <translation>Hiljem</translation>
+        </message>
+        <message>
             <source>Check for updates</source>
             <translation>Uuenduste kontroll</translation>
         </message>
