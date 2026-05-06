@@ -426,6 +426,7 @@ ApplicationWindow {
 
     Connections {
         target: App
+        function onRestartRequested() { root.quitApp() }
         function onErrorOccurred(message) {
             appErrorDialog.text = message && message.length > 0 ? message : "An unexpected error occurred."
             appErrorDialog.open()

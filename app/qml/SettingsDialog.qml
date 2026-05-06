@@ -493,27 +493,37 @@ Window {
         id: rssDownloadRulesDialog
     }
 
-    Dialog {
+    Window {
         id: restartPrompt
-        anchors.centerIn: parent
         title: qsTr("Restart Required")
-        modal: true
-        standardButtons: Dialog.No
+        width: 360
+        height: promptCol.implicitHeight + 24
+        flags: Qt.Dialog | Qt.WindowTitleHint | Qt.WindowCloseButtonHint | Qt.MSWindowsFixedSizeDialogHint
+        modality: Qt.WindowModal
+        transientParent: root
+        color: "#1e1e1e"
         Material.theme: Material.Dark
         Material.background: "#1e1e1e"
         Material.accent: "#4488dd"
 
-        function open() { restartPrompt.visible = true }
+        function open() {
+            x = root.x + Math.round((root.width  - width)  / 2)
+            y = root.y + Math.round((root.height - height) / 2)
+            show()
+            raise()
+            requestActivate()
+        }
 
         ColumnLayout {
-            spacing: 12
-            width: 340
+            id: promptCol
+            anchors { left: parent.left; right: parent.right; top: parent.top; margins: 16 }
+            spacing: 16
 
             Text {
                 Layout.fillWidth: true
                 text: qsTr("A restart is required for the language change to take effect. Restart now?")
-                color: "#e0e0e0"
-                font.pixelSize: 13
+                color: "#d0d0d0"
+                font.pixelSize: 12
                 wrapMode: Text.WordWrap
             }
 
@@ -530,7 +540,7 @@ Window {
                 }
                 DlgButton {
                     text: qsTr("Later")
-                    onClicked: restartPrompt.visible = false
+                    onClicked: restartPrompt.close()
                 }
             }
         }

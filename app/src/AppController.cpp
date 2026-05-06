@@ -7249,7 +7249,19 @@ void AppController::applyUiLanguage(const QString &locale)
 
 void AppController::restartApp()
 {
-    QProcess::startDetached(QCoreApplication::applicationFilePath(),
-                            QCoreApplication::arguments());
-    QCoreApplication::quit();
+    const QString exe      = QCoreApplication::applicationFilePath();
+    const QStringList args = QCoreApplication::arguments().mid(1);
+
+    // Release the single-instance socket now so the new process can claim it.
+    if (m_ipcServer) {
+        m_ipcServer->close();
+        QLocalServer::removeServer(QStringLiteral("StellarDownloadManager"));
+    }
+
+    QObject::connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit,
+                     [exe, args]() {
+        QProcess::startDetached(exe, args);
+    });
+
+    emit restartRequested();
 }

@@ -407,6 +407,7 @@ public:
     Q_INVOKABLE void restartApp();
 
 signals:
+    void restartRequested();
     void activeDownloadsChanged();
     void totalSpeedChanged();
     void estimatedOnlineUsersChanged();
