@@ -88,6 +88,17 @@ void TorrentSessionManager::setPerTorrentUploadLimit(const QString &downloadId, 
 
 #if defined(STELLAR_HAS_LIBTORRENT)
 namespace {
+
+// Tracker URLs must use udp://, http://, or https:// only.
+// Rejects file://, UNC paths, and any other scheme that could probe local
+// services or the filesystem when libtorrent attempts to announce.
+bool isValidTrackerUrl(const QString &url) {
+    const QString lower = url.toLower();
+    return lower.startsWith(QLatin1String("udp://"))
+        || lower.startsWith(QLatin1String("http://"))
+        || lower.startsWith(QLatin1String("https://"));
+}
+
 bool isBareTorrentInfoHash(const QString &value) {
     const QString trimmed = value.trimmed();
     if (trimmed.size() != 40)
@@ -1922,7 +1933,7 @@ bool TorrentSessionManager::addTracker(const QString &downloadId, const QString 
     const auto handle = m_handles.value(downloadId);
     static constexpr int kMaxTrackerUrlLen = 2048;
     const QString trimmedUrl = url.trimmed().left(kMaxTrackerUrlLen);
-    if (!handle.is_valid() || trimmedUrl.isEmpty())
+    if (!handle.is_valid() || trimmedUrl.isEmpty() || !isValidTrackerUrl(trimmedUrl))
         return false;
     handle.add_tracker(libtorrent::announce_entry(trimmedUrl.toStdString()));
     handle.post_trackers();
@@ -1949,7 +1960,7 @@ void TorrentSessionManager::mergeTrackers(const QString &downloadId, const QStri
     bool added = false;
     for (const QString &url : trackers) {
         const QString t = url.trimmed();
-        if (t.isEmpty() || existing.contains(t))
+        if (t.isEmpty() || !isValidTrackerUrl(t) || existing.contains(t))
             continue;
         handle.add_tracker(libtorrent::announce_entry(t.toStdString()));
         added = true;
@@ -2511,7 +2522,7 @@ bool TorrentSessionManager::addTorrentInternal(DownloadItem *item, bool startPau
         entries.reserve(persistedTrackers.size());
         for (const QString &trackerUrl : persistedTrackers) {
             const QString trimmed = trackerUrl.trimmed();
-            if (!trimmed.isEmpty())
+            if (!trimmed.isEmpty() && isValidTrackerUrl(trimmed))
                 entries.emplace_back(trimmed.toStdString());
         }
         if (!entries.empty()) {
