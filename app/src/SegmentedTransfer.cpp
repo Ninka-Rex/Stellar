@@ -1402,11 +1402,37 @@ void SegmentedTransfer::handleConfirmPage(const QByteArray &html) {
 
     qDebug() << "[HTMLIntercept] parsed confirmation page, newUrl:" << newUrl;
     if (!newUrl.isValid()) {
-        // Can't parse confirmation page — deliver what we got (the HTML)
-        // and let it finish as-is; user will see a bad file.
         qDebug() << "[HTMLIntercept] FAILED to parse, first 2000 bytes:" << html.left(2000);
         emit failed(QStringLiteral("Google Drive returned a confirmation page that could not be parsed"));
         return;
+    }
+
+    // SECURITY: the action URL parsed from HTML must share the registered domain
+    // of the original download URL before we issue a credentialed request to it.
+    // A spoofed or compromised confirm page could point the action at an attacker-
+    // controlled host; without this check, cookies and Basic-auth would follow.
+    // We compare registered domain (eTLD+1) so subdomains of the same site are
+    // accepted (e.g. drive.google.com → usercontent.google.com) while unrelated
+    // hosts are rejected outright.
+    {
+        // Extract eTLD+1: last two dot-separated labels of the hostname.
+        // Simple but sufficient — we're not a browser, and the original URL was
+        // already trusted by the caller before the download started.
+        auto registeredDomain = [](const QString &host) -> QString {
+            const QStringList parts = host.split(QLatin1Char('.'));
+            if (parts.size() < 2) return host;
+            return parts.at(parts.size() - 2) + QLatin1Char('.') + parts.last();
+        };
+
+        const QString origDomain = registeredDomain(m_item->url().host().toLower());
+        const QString newDomain  = registeredDomain(newUrl.host().toLower());
+
+        if (newDomain != origDomain || newUrl.scheme() != m_item->url().scheme()) {
+            qWarning() << "[HTMLIntercept] action URL rejected — domain mismatch:"
+                       << newUrl.host() << "vs original" << m_item->url().host();
+            emit failed(QStringLiteral("Confirmation page contained an unexpected redirect host — download aborted for security"));
+            return;
+        }
     }
 
     // Clean up current segments
