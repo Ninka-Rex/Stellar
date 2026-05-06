@@ -1808,7 +1808,10 @@ AppController::AppController(QObject *parent) : QObject(parent) {
                 emit updateError(QStringLiteral("Stellar downloaded the update, but could not read the installer file."));
             } else {
                 const QByteArray actualHash = QCryptographicHash::hash(installerFile.readAll(), QCryptographicHash::Sha256).toHex();
-                installerFile.close();
+                // Intentionally keep installerFile open through the launch call below.
+                // On Windows an open handle prevents another process from replacing or
+                // deleting the file, closing the TOCTOU window between hash verification
+                // and CreateProcess.  The OS will close the handle when we quit anyway.
 
                 // SECURITY: CWE-347 — enforce that a non-empty SHA-256 was supplied
                 // by the update server before launching the installer.  An empty hash
