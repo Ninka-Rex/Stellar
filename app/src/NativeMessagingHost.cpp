@@ -42,6 +42,7 @@ void NativeMessagingHost::start() {
 #else
     const int stdinFd = STDIN_FILENO;
 #endif
+    m_stdin.open(stdin, QIODevice::ReadOnly);
     m_stdinNotifier = new QSocketNotifier(stdinFd, QSocketNotifier::Read, this);
     connect(m_stdinNotifier, &QSocketNotifier::activated, this, &NativeMessagingHost::readMessage);
 }
@@ -52,10 +53,7 @@ void NativeMessagingHost::readMessage() {
     m_stdinNotifier->setEnabled(false);
 
     quint32 len = 0;
-    QFile in;
-    in.open(stdin, QIODevice::ReadOnly);
-
-    if (in.read(reinterpret_cast<char *>(&len), 4) != 4) {
+    if (m_stdin.read(reinterpret_cast<char *>(&len), 4) != 4) {
         // stdin closed — browser exited; stop the event loop gracefully.
         m_stdinNotifier->setEnabled(false);
         return;
@@ -70,7 +68,7 @@ void NativeMessagingHost::readMessage() {
     }
 
     QByteArray json(static_cast<int>(len), Qt::Uninitialized);
-    if (in.read(json.data(), len) != static_cast<qint64>(len)) {
+    if (m_stdin.read(json.data(), len) != static_cast<qint64>(len)) {
         m_stdinNotifier->setEnabled(false);
         return;
     }

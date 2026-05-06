@@ -17,6 +17,7 @@
 #pragma once
 #include <QObject>
 #include <QByteArray>
+#include <QFile>
 #include <QSocketNotifier>
 
 // NativeMessagingHost implements the Chrome/Firefox Native Messaging protocol.
@@ -52,4 +53,5 @@ private:
     void handleMessage(const QByteArray &json);
 
     QSocketNotifier *m_stdinNotifier{nullptr};
+    QFile            m_stdin;
 };
