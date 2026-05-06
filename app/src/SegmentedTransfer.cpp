@@ -1289,34 +1289,9 @@ void SegmentedTransfer::updateFilenameFromReply(QNetworkReply *reply) {
     filename = QFileInfo(filename).fileName();
     if (filename == m_item->filename()) return;
 
-    // Rename part files on disk before updating the stored filename, so the
-    // file objects and seg.partPath stay consistent with what's actually on disk.
-    QString oldMeta = metaPath();
-    for (auto &seg : m_segments) {
-        QString oldPart = seg.partPath;
-        // Compute what the new partPath will be (based on the new filename)
-        QString newPart = longPath(m_item->savePath() + QStringLiteral("/") + filename
-                          + QStringLiteral(".stellar-part-") + QString::number(seg.index));
-        if (oldPart == newPart) continue;
-
-        if (QFile::exists(oldPart)) {
-            // Close the file if open, rename on disk, then reopen at new path
-            bool wasOpen = seg.file && seg.file->isOpen();
-            if (wasOpen) seg.file->close();
-            QFile::rename(oldPart, newPart);
-            if (seg.file) {
-                seg.file->setFileName(newPart);
-                if (wasOpen) seg.file->open(QIODevice::Append);
-            }
-        }
-        seg.partPath = newPart;
-    }
-
+    // Part and meta files are keyed on the download ID, not the filename, so
+    // no on-disk renames are needed when the filename changes mid-download.
     m_item->setFilename(filename);
-
-    // Rename the meta file if it exists
-    if (QFile::exists(oldMeta))
-        QFile::rename(oldMeta, metaPath());
 }
 
 QString SegmentedTransfer::parseContentDispositionFilename(const QByteArray &header) {
@@ -1596,7 +1571,7 @@ bool SegmentedTransfer::relocateOutput(const QString &newSavePath, const QString
     QDir().mkpath(newSavePath);
 
     for (auto &seg : m_segments) {
-        const QString newPartPath = longPath(newSavePath + QStringLiteral("/") + newFilename
+        const QString newPartPath = longPath(newSavePath + QStringLiteral("/") + m_item->id()
             + QStringLiteral(".stellar-part-") + QString::number(seg.index));
         if (seg.partPath == newPartPath)
             continue;
@@ -1832,12 +1807,10 @@ void SegmentedTransfer::cleanupPartFiles() {
         QFile::remove(seg.partPath);
     }
 
-    // Also sweep any orphaned `*.stellar-part-*` files matching the current
-    // filename.  Dynamic segmentation can leave gaps in the index space
-    // (e.g. we resumed at 8 segments but a prior session had 12), and a
-    // stale filename change would leave the old parts dangling too.
+    // Sweep orphaned part files for this download ID — covers dynamic-segmentation
+    // index gaps (e.g. resumed at 8 segments but prior session had 12).
     const QString dir = tempBaseDirectory();
-    const QString prefix = m_item->filename() + QStringLiteral(".stellar-part-");
+    const QString prefix = m_item->id() + QStringLiteral(".stellar-part-");
     QDir d(dir);
     const QStringList filters = { prefix + QStringLiteral("*") };
     const QFileInfoList stragglers = d.entryInfoList(filters, QDir::Files | QDir::NoDotAndDotDot);
@@ -1851,11 +1824,13 @@ void SegmentedTransfer::deleteMetaFile() {
 }
 
 QString SegmentedTransfer::metaPath() const {
-    return longPath(tempBaseDirectory() + QStringLiteral("/") + m_item->filename() + QStringLiteral(".stellar-meta"));
+    // Keyed on download ID (not filename) so two simultaneous downloads of
+    // identically-named files (e.g. "index.html") never share part/meta files.
+    return longPath(tempBaseDirectory() + QStringLiteral("/") + m_item->id() + QStringLiteral(".stellar-meta"));
 }
 
 QString SegmentedTransfer::partPath(int index) const {
-    return longPath(tempBaseDirectory() + QStringLiteral("/") + m_item->filename()
+    return longPath(tempBaseDirectory() + QStringLiteral("/") + m_item->id()
            + QStringLiteral(".stellar-part-") + QString::number(index));
 }
 

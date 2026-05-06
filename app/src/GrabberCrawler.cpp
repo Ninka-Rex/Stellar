@@ -154,11 +154,13 @@ void GrabberCrawler::fetchPage(const PageTask &task)
     QNetworkRequest request(task.url);
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar Grabber"));
 
-    const QString auth = basicAuthHeader();
+    // Only send credentials to the same origin as the crawl start URL to prevent
+    // credential leakage when the crawler follows links to third-party hosts.
+    const bool sameOrigin = task.url.host().compare(m_startUrl.host(), Qt::CaseInsensitive) == 0
+                         && task.url.scheme() == m_startUrl.scheme();
+    const QString auth = sameOrigin ? basicAuthHeader() : QString();
     if (!auth.isEmpty()) {
         request.setRawHeader("Authorization", auth.toUtf8());
-        // SECURITY: CWE-522 — SameOriginRedirectPolicy prevents the Authorization
-        // header from being forwarded to a different host on redirect.
         request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
                              QNetworkRequest::SameOriginRedirectPolicy);
     } else {
@@ -211,21 +213,23 @@ void GrabberCrawler::fetchPage(const PageTask &task)
 
             // ── Candidate pages ────────────────────────────────────────────
             for (const OffThreadResult::PageCandidate &cand : result.pages) {
-                // SSRF: DNS check — hash lookup only (non-blocking).
-                // If the host is new, schedule an async lookup and tentatively
-                // allow it; one request may go through before DNS resolves,
-                // which is an acceptable tradeoff for a desktop app.
+                // SSRF mitigation: never allow a request to a host before we know
+                // whether it resolves to a private/loopback address.  Literal IPs
+                // are checked synchronously; hostnames are resolved asynchronously
+                // and the candidate is held until the result arrives.
                 const QString host = cand.url.host().toLower();
                 if (!m_resolvedHostCache.contains(host)) {
-                    // Literal IPs can be checked immediately with no DNS needed.
                     QHostAddress literalAddr;
                     if (literalAddr.setAddress(host)) {
+                        // Literal IP — result is immediate, no async needed.
                         m_resolvedHostCache[host] = isPrivateOrLoopbackHost(host);
                     } else {
-                        m_resolvedHostCache[host] = false; // tentatively safe while DNS resolves
+                        // Unknown hostname: queue the candidate and resolve first.
+                        // The resolved callback will re-enqueue it if safe.
+                        m_resolvedHostCache[host] = true; // block until DNS confirms safe
                         const int capturedGen = gen;
                         QHostInfo::lookupHost(host, this,
-                        [this, host, capturedGen](const QHostInfo &info) {
+                        [this, host, capturedGen, cand](const QHostInfo &info) {
                             if (capturedGen != m_generation) return;
                             bool isPrivate = false;
                             for (const QHostAddress &addr : info.addresses()) {
@@ -235,9 +239,15 @@ void GrabberCrawler::fetchPage(const PageTask &task)
                                 }
                             }
                             m_resolvedHostCache[host] = isPrivate;
-                            // Pages already queued from this host stay in m_seenPages
-                            // so they won't be re-fetched even if now known-private.
+                            if (!isPrivate) {
+                                // Now safe — enqueue if not already seen.
+                                const QString normalized = normalizeUrl(cand.url);
+                                if (!normalized.isEmpty() && !m_seenPages.contains(normalized))
+                                    m_pendingPages.enqueue({ cand.url, cand.depth, cand.sourcePage });
+                                pumpQueue();
+                            }
                         });
+                        continue; // don't enqueue below; DNS callback handles it
                     }
                 }
                 if (m_resolvedHostCache.value(host)) continue; // known private
@@ -398,7 +408,9 @@ void GrabberCrawler::probeResultMetadata(int row)
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::UserAgentHeader, QStringLiteral("Stellar Grabber"));
 
-    const QString auth = basicAuthHeader();
+    const bool sameOrigin = url.host().compare(m_startUrl.host(), Qt::CaseInsensitive) == 0
+                         && url.scheme() == m_startUrl.scheme();
+    const QString auth = sameOrigin ? basicAuthHeader() : QString();
     if (!auth.isEmpty()) {
         request.setRawHeader("Authorization", auth.toUtf8());
         request.setAttribute(QNetworkRequest::RedirectPolicyAttribute,
