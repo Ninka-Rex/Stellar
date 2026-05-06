@@ -135,7 +135,14 @@ ApplicationWindow {
         var anyMinimized = false
         for (var i = 0; i < ids.length; i++) {
             var d = _progressDialogs[ids[i]]
-            if (d && !d.visible) { anyMinimized = true; break }
+            // Only count dialogs that are hidden AND still actively downloading.
+            // A dialog hidden because the download completed is not "minimized to tray".
+            if (d && !d.visible && d.item) {
+                var s = d.item.status
+                if (s === "Downloading" || s === "Queued" || s === "Assembling" || s === "Paused")
+                    anyMinimized = true
+            }
+            if (anyMinimized) break
         }
         if (anyMinimized) {
             App.showDownloadsTray()
@@ -640,6 +647,7 @@ ApplicationWindow {
             if (item) {
                 var dlg = root._progressDialogs[item.id]
                 if (dlg && dlg.visible) dlg.hide()
+                root._updateDownloadsTray()
             }
             // Torrents go Completed → Seeding; never show the complete dialog for them.
             if (!item || item.isTorrent)

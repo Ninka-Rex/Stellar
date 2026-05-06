@@ -25,6 +25,11 @@
 #include <QFile>
 #include <QThread>
 
+#ifdef Q_OS_WIN
+#include <windows.h>
+#include <ole2.h>
+#endif
+
 FileDragDropHelper::FileDragDropHelper(QObject *parent)
     : QObject(parent) {
 }
@@ -105,34 +110,57 @@ void FileDragDropHelper::startMove(const QString &filePath) {
     pixmap.fill(Qt::transparent);
     drag->setPixmap(pixmap);
 
-    // Offer MoveAction so the receiving file manager actually moves the file.
-    // We default to MoveAction; the user can hold Ctrl to fall back to Copy.
-    // Offer both Copy and Move; Windows Explorer's drop handler performs its
-    // own copy regardless of which action we request, so we can't rely on the
-    // returned DropAction to tell us whether the user actually dropped on a
-    // valid target. Instead, we check drag->target() — if it's non-null, the
-    // drop was accepted by *some* OLE drop target (Explorer, another app)
-    // and the file has been copied. We then delete the source to complete
-    // the move.
+    // Offer both Copy and Move so Explorer and other apps can pick what they support.
+    // Default proposed action is Move; user can hold Ctrl to request Copy instead.
     Qt::DropAction dropAction = drag->exec(Qt::CopyAction | Qt::MoveAction, Qt::MoveAction);
     QObject *dropTarget = drag->target();
     qDebug() << "startMove: action=" << dropAction << " target=" << dropTarget;
 
-    // A drop was "accepted" if Qt reports a non-Ignore action OR drag->target()
-    // is non-null (Windows Explorer often returns IgnoreAction even after a
-    // successful copy because its OLE drop handler bypasses Qt's mechanism).
-    const bool accepted = (dropAction != Qt::IgnoreAction) || (dropTarget != nullptr);
+    bool shouldDelete = false;
 
-    if (accepted) {
-        // The receiver (e.g. Explorer) has already copied the file to its
-        // destination. Try to remove the source to complete the move. If the
-        // file is briefly locked by the receiver, retry a few times. Whether
-        // or not the delete eventually succeeds, signal success so the UI
-        // reflects that the user's move gesture was accepted.
+#ifdef Q_OS_WIN
+    // Explorer bypasses Qt's action reporting and always returns IgnoreAction via
+    // its OLE drop handler. The standard IPC for the actual performed effect is the
+    // "Performed DropEffect" clipboard format, which Explorer sets after a successful
+    // drop. DROPEFFECT_MOVE (2) means Explorer moved the file; DROPEFFECT_COPY (1)
+    // means it copied — in the copy case the source must NOT be deleted.
+    // Apps like Discord set target != null but return IgnoreAction and may set
+    // DROPEFFECT_COPY or leave the format absent entirely on failure; we must not
+    // delete in those cases.
+    if (dropTarget != nullptr || dropAction != Qt::IgnoreAction) {
+        // Drop was accepted by some target — check what it actually did.
+        UINT cf = RegisterClipboardFormatW(L"Performed DropEffect");
+        DWORD performedEffect = DROPEFFECT_NONE;
+        if (cf && OpenClipboard(nullptr)) {
+            HANDLE hData = GetClipboardData(cf);
+            if (hData) {
+                DWORD *pEffect = static_cast<DWORD *>(GlobalLock(hData));
+                if (pEffect) {
+                    performedEffect = *pEffect;
+                    GlobalUnlock(hData);
+                }
+            }
+            CloseClipboard();
+        }
+        qDebug() << "startMove: performedEffect=" << performedEffect;
+        // Only delete source when drop target explicitly performed a move.
+        shouldDelete = (performedEffect == DROPEFFECT_MOVE);
+    }
+    // Qt-native drop target (same-process or Qt app) uses dropAction directly.
+    if (!shouldDelete && dropAction == Qt::MoveAction)
+        shouldDelete = true;
+#else
+    // On non-Windows, Qt's reported action is reliable.
+    shouldDelete = (dropAction == Qt::MoveAction);
+#endif
+
+    if (shouldDelete) {
         for (int i = 0; i < 5; ++i) {
             if (QFile::remove(filePath)) break;
             QThread::msleep(50);
         }
     }
-    emit moveCompleted(accepted);
+    // Signal true only when the file was actually moved (source deleted).
+    // An "accepted but copied" drop (e.g. Discord) must not mark the file as moved.
+    emit moveCompleted(shouldDelete);
 }
