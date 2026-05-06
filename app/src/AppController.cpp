@@ -492,7 +492,11 @@ bool extractGzipToFile(const QString &archivePath, const QString &targetPath, QS
 #if defined(Q_OS_WIN)
     const QString inEscaped = QString(archivePath).replace('\'', QStringLiteral("''"));
     const QString outEscaped = QString(targetPath).replace('\'', QStringLiteral("''"));
+    // -ErrorAction Stop promotes all .NET exceptions to terminating errors so
+    // a corrupt gzip that partially extracts causes a non-zero exit code rather
+    // than silently succeeding with a truncated output file.
     QString script = QStringLiteral(
+        "$ErrorActionPreference='Stop';"
         "$in='%1';"
         "$out='%2';"
         "$src=[System.IO.File]::OpenRead($in);"
