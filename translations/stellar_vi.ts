@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>TẠM DỪNG</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Giới hạn tốc độ: Bật</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Giới hạn tốc độ: Tắt</translation>
+            <source>Speed Limiter</source>
+            <translation>Giới hạn tốc độ</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Cài đặt giới hạn tốc độ...</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Tạm dừng phiên</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Tiếp tục phiên</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2919,6 +2927,10 @@ Cài đặt Stellar → Trình duyệt → Bỏ qua chặn tải</translation>
         <message>
             <source>Quick Update</source>
             <translation>Cập nhật nhanh</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>TẠM DỪNG</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

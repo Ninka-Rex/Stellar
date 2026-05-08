@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>થોભાવેલ</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar ડાઉનલોડ મેનેજર v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>જીટહબ</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>સ્પીડ લિમિટર: ચાલુ કરો</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>સ્પીડ લિમિટર: બંધ કરો</translation>
+            <source>Speed Limiter</source>
+            <translation>ઝડપ મર્યાદક</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>સ્પીડ લિમિટર સેટિંગ્સ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>સત્ર થોભાવો</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>સત્ર ફરી શરૂ કરો</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2914,6 +2922,10 @@ Stellar ઓપ્શન્સ → બ્રાઉઝર → ડાઉનલો�
         <message>
             <source>Quick Update</source>
             <translation>ઝડપી અપડેટ</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>થોભાવેલ</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

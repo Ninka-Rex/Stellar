@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>PAUSET</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Nedlaster v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Hastighetsbegrensning: På</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Hastighetsbegrensning: Av</translation>
+            <source>Speed Limiter</source>
+            <translation>Fartsgrense</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Hastighetsbegrensning-innstillinger…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pause økt</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Fortsett økt</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2913,6 +2921,10 @@ Stellar Innstillinger → Nettleser → Omgå nedlastingsintersepsjon</translati
         <message>
             <source>Quick Update</source>
             <translation>Rask oppdatering</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>PAUSET</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

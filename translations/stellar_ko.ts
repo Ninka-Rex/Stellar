@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>일시정지됨</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar 다운로드 관리자 v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>속도 제한: 켜기</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>속도 제한: 끄기</translation>
+            <source>Speed Limiter</source>
+            <translation>속도 제한</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>속도 제한 설정…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>세션 일시정지</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>세션 재개</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2914,6 +2922,10 @@ Stellar 옵션 → 브라우저 → 다운로드 가로채기 우회</translatio
         <message>
             <source>Quick Update</source>
             <translation>빠른 업데이트</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>일시정지됨</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

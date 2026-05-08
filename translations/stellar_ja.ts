@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>一時停止中</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2495,16 +2499,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>スピードリミッター：オン</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>スピードリミッター：オフ</translation>
+            <source>Speed Limiter</source>
+            <translation>速度制限</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>スピードリミッター設定</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>セッションを一時停止</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>セッションを再開</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2915,6 +2923,10 @@ Stellar オプション → ブラウザ → ダウンロードインターセ�
         <message>
             <source>Quick Update</source>
             <translation>クイック更新</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>一時停止中</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ਰੁਕਿਆ</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>ਸਟੈਲਰ ਡਾਊਨਲੋਡ ਮੈਨੇਜਰ v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>ਗਿਟ ਹਬ</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>ਸਪੀਡ ਲਿਮਿਟਰ: ਚਾਲੂ ਕਰੋ</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>ਸਪੀਡ ਲਿਮਿਟਰ: ਬੰਦ ਕਰੋ</translation>
+            <source>Speed Limiter</source>
+            <translation>ਸਪੀਡ ਸੀਮਕ</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>ਸਪੀਡ ਲਿਮਿਟਰ ਸੈਟਿੰਗਸ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ਸੈਸ਼ਨ ਰੋਕੋ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ਸੈਸ਼ਨ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2914,6 +2922,10 @@ Stellar ਓਪਸ਼ਨਸ → ਬ੍ਰਾਊਜ਼ਰ → ਡਾਊਨਲੋ�
         <message>
             <source>Quick Update</source>
             <translation>ਤੁਰੰਤ ਅਪਡੇਟ</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ਰੁਕਿਆ</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

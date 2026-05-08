@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>已暂停</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar 下载管理器 v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>限速：开启</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>限速：关闭</translation>
+            <source>Speed Limiter</source>
+            <translation>限速器</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>限速设置…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>暂停会话</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>恢复会话</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2921,6 +2929,10 @@ Stellar 选项 → 浏览器 → 绕过下载拦截</translation>
         <message>
             <source>Quick Update</source>
             <translation>快速更新</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>已暂停</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>FASİLƏ</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar İndirmə Meneceri v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Sürət məhdudlaşdırıcısı: Aç</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Sürət məhdudlaşdırıcısı: Bağla</translation>
+            <source>Speed Limiter</source>
+            <translation>Sürət məhdudlaşdırıcı</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Sürət məhdudlaşdırıcısı parametrləri…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Sessiyanı dayandır</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Sessiyanı davam etdir</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2921,6 +2929,10 @@ Stellar Parametrləri → Brauzer → Yükləmənin İntersepsiyasını keçmə<
         <message>
             <source>Quick Update</source>
             <translation>Sürətli yeniləmə</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>FASİLƏ</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

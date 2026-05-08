@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>විරාමිතයි</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar බාගැනීම් කළමනාකරු v</translation>
         </message>
@@ -2502,16 +2506,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>වේග සීමාව: සක්‍රිය</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>වේග සීමාව: අක්‍රිය</translation>
+            <source>Speed Limiter</source>
+            <translation>2. වේග සීමාව</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>වේග සීමා සැකසුම්…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>සැසිය විරාම කරන්න</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>සැසිය නැවත අරඹන්න</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2926,6 +2934,10 @@ Stellar විකල්ප → බ්‍රවුසරය → බාගැන�
         <message>
             <source>Quick Update</source>
             <translation>ඉක්මන් යාවත්කාලීනය</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>විරාමිතයි</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

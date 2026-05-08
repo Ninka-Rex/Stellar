@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>నిలిపివేయబడింది</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>స్టెల్లార్ డౌన్‌లోడ్ మేనేజర్ v</translation>
         </message>
@@ -2503,16 +2507,20 @@ Project</source>
             <translation>గిట్‌హబ్</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>వేగ పరిమితి: ఆన్ చేయి</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>వేగ పరిమితి: ఆఫ్ చేయి</translation>
+            <source>Speed Limiter</source>
+            <translation>2. వేగ పరిమితి</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>వేగ పరిమితి సెట్టింగ్‌లు…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>సెషన్‌ను నిలిపివేయి</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>సెషన్‌ను తిరిగి ప్రారంభించు</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2927,6 +2935,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>త్వరిత నవీకరణ</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>నిలిపివేయబడింది</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

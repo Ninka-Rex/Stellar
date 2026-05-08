@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>DIHENTIKAN</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Hadkan Kecepatan: Aktifkan</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Hadkan Kecepatan: Matikan</translation>
+            <source>Speed Limiter</source>
+            <translation>Pengehad Laju</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Tetapan Hadkan Kecepatan…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Henti Sesi</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Sambung Sesi</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2918,6 +2926,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>Kemas Kini Pantas</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>DIHENTIKAN</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

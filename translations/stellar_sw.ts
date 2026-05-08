@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>IMESIMAMISHWA</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Kipunguzo cha kasi: Weka kwenye</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Kipunguzo cha kasi: Toa kwenye</translation>
+            <source>Speed Limiter</source>
+            <translation>Kikomo cha Kasi</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Mipangilio ya Kipunguzo cha kasi...</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Simamisha Kikao</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Endeleza Kikao</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2912,6 +2920,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>Sasisha Haraka</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>IMESIMAMISHWA</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

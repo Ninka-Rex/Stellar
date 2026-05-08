@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>SUSTABDYTA</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Greitės ribotuvai: įjungti</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Greitės ribotuvai: išjungti</translation>
+            <source>Speed Limiter</source>
+            <translation>Greičio ribotuvas</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Greitės ribotuvų nustatymai...</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pristabdyti sesiją</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Tęsti sesiją</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2920,6 +2928,10 @@ Stellar parinktys → Naršyklė → Aplenkti atsisiuntimo perėmimą</translati
         <message>
             <source>Quick Update</source>
             <translation>Greitas atnaujinimas</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>SUSTABDYTA</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

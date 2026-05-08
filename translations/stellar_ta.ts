@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>இடைநிறுத்தப்பட்டது</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>ஸ்டெல்லார் பதிவிறக்க மேலாளர் v</translation>
         </message>
@@ -2502,16 +2506,20 @@ Project</source>
             <translation>கிட்ஹப்</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>வேக வரம்பு: இயக்கு</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>வேக வரம்பு: நிறுத்து</translation>
+            <source>Speed Limiter</source>
+            <translation>வேக வரம்பு</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>வேக வரம்பு அமைப்புகள்…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>அமர்வை இடைநிறுத்து</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>அமர்வைத் தொடர்</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2926,6 +2934,10 @@ Stellar விருப்பங்கள் → உலாவி → பதி�
         <message>
             <source>Quick Update</source>
             <translation>விரைவு புதுப்பிப்பு</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>இடைநிறுத்தப்பட்டது</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

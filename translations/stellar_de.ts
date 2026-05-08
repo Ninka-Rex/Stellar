@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>PAUSIERT</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Geschwindigkeitsbegrenzung: Ein</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Geschwindigkeitsbegrenzung: Aus</translation>
+            <source>Speed Limiter</source>
+            <translation>Geschwindigkeitsbegrenzer</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Geschwindigkeitsbegrenzungseinstellungen…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Sitzung pausieren</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Sitzung fortsetzen</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2920,6 +2928,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
         <message>
             <source>Quick Update</source>
             <translation>Schnellupdate</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>PAUSIERT</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

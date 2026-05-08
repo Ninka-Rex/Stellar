@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>DAKATA</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>3. Stellar Download Manager v</translation>
         </message>
@@ -2502,16 +2506,20 @@ Aiki</translation>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Mai Iyakance Gudun: Kunna</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Mai Iyakance Gudun: Kashe</translation>
+            <source>Speed Limiter</source>
+            <translation>Mai iyakance gudu</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Saitunan Mai Iyakance Gudun…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Dakatar da Zama</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Ci gaba da Zama</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2926,6 +2934,10 @@ Zaɓuɓɓukan Stellar → Burauza → Ketare Katsewar Saukewa</translation>
         <message>
             <source>Quick Update</source>
             <translation>Sabuntawa Mai Sauri</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>DAKATA</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ຢຸດຊົ່ວຄາວ</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>13. Stellar Download Manager v</translation>
         </message>
@@ -2504,16 +2508,20 @@ Project</source>
             <translation>19. GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>20. ຈຳກັດຄວາມໄວ: ເປີດ</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>21. ຈຳກັດຄວາມໄວ: ປິດ</translation>
+            <source>Speed Limiter</source>
+            <translation>ຈຳກັດຄວາມໄວ</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>22. ຕັ້ງຄ່າຈຳກັດຄວາມໄວ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ຢຸດເຊສຊັນ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ສືບຕໍ່ເຊສຊັນ</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2928,6 +2936,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>ອັບເດດດ່ວນ</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ຢຸດຊົ່ວຄາວ</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

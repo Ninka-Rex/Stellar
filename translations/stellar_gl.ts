@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>EN PAUSA</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2498,16 +2502,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Limitador: Activar</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Limitador: Desactivar</translation>
+            <source>Speed Limiter</source>
+            <translation>Limitador de velocidade</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Axustes do limitador…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pausar sesión</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Retomar sesión</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2922,6 +2930,10 @@ Opcións de Stellar → Navegador → Evitar intercepción de descargas</transla
         <message>
             <source>Quick Update</source>
             <translation>Actualización rápida</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>EN PAUSA</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ခေတ္တရပ်</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar ဒေါင်းလုဒ်မန်နေဂျာ v</translation>
         </message>
@@ -2502,16 +2506,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>အမြန်နှုန်း ကန့်သတ်ချက်- ဖွင့်မည်</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>အမြန်နှုန်း ကန့်သတ်ချက်- ပိတ်မည်</translation>
+            <source>Speed Limiter</source>
+            <translation>အမြန်နှုန်းကန့်သတ်ချက်</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>အမြန်နှုန်း ကန့်သတ်ချက် ဆက်တင်များ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ဆက်ရှင်ရပ်ပါ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ဆက်ရှင်ပြန်စပါ</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2926,6 +2934,10 @@ Stellar ရွေးချယ်မှုများ → ဘရောက်ဇ�
         <message>
             <source>Quick Update</source>
             <translation>21. အမြန် အပ်ဒိတ်</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ခေတ္တရပ်</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

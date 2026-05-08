@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>SZÜNETEL</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Sebességkorlátozó: Bekapcsolás</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Sebességkorlátozó: Kikapcsolás</translation>
+            <source>Speed Limiter</source>
+            <translation>Sebességkorlátozó</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Sebességkorlátozó beállításai…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Munkamenet szüneteltetése</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Munkamenet folytatása</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2915,6 +2923,10 @@ Stellar Opciók → Böngésző → Állítsa ki a letöltés-interceptálás á
         <message>
             <source>Quick Update</source>
             <translation>Gyors Frissítés</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>SZÜNETEL</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ځنډول شوی</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar ډاونلوډ مدیر v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>ګیت هب</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>د سرعت محدودونکی: فعال</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>د سرعت محدودونکی: غیر فعال</translation>
+            <source>Speed Limiter</source>
+            <translation>سرعت محدودونکی</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>د سرعت محدودونکی تنظیمات…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>غونډه ځنډول</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>غونډه بیا پیلول</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2921,6 +2929,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
         <message>
             <source>Quick Update</source>
             <translation>فوری اپڈیٹ</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ځنډول شوی</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

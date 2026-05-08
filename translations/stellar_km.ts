@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ផ្អាក</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>13. Stellar Download Manager v</translation>
         </message>
@@ -2502,16 +2506,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>កំណត់ល្បឿន៖ បើក</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>កំណត់ល្បឿន៖ បិទ</translation>
+            <source>Speed Limiter</source>
+            <translation>កំណត់ល្បឿន</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>ការកំណត់កំណត់ល្បឿន…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ផ្អាកសម័យ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>បន្តសម័យ</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2926,6 +2934,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>ធ្វើបច្ចុប្បន្នភាពរហ័ស</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ផ្អាក</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

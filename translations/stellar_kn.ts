@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>ಸ್ಟೆಲ್ಲರ್ ಡೌನ್‌ಲೋಡ್ ಮ್ಯಾನೇಜರ್ v</translation>
         </message>
@@ -2518,16 +2522,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>ವೇಗ ಮಿತಿ: ಚಾಲನೆ</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>ವೇಗ ಮಿತಿ: ನಿಲ್ಲಿಸಿ</translation>
+            <source>Speed Limiter</source>
+            <translation>ವೇಗ ಮಿತಿ</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>ವೇಗ ಮಿತಿ ಸೆಟ್ಟಿಂಗ್‌ಗಳು…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ಸೆಷನ್ ವಿರಾಮಗೊಳಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ಸೆಷನ್ ಮುಂದುವರಿಸಿ</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2941,6 +2949,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>ತ್ವರಿತ ನವೀಕರಣ</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ቆሟል</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>ስቴላር አውርድ አስተዳዳሪ v</translation>
         </message>
@@ -2501,16 +2505,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>ፍጥነት ገዳቢ፦ አብራ</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>ፍጥነት ገዳቢ፦ አጥፋ</translation>
+            <source>Speed Limiter</source>
+            <translation>የፍጥነት ገዳቢ</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>የፍጥነት ገዳቢ ቅንብሮች…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ክፍለ-ጊዜ አቁም</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ክፍለ-ጊዜ ቀጥል</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2925,6 +2933,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>6. ፈጣን ማዘመኛ</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ቆሟል</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

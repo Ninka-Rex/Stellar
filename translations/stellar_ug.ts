@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ۋاقىتلىق توختىتىلدى</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>3. Stellar چۈشۈرۈش باشقۇرغۇچى v</translation>
         </message>
@@ -2501,16 +2505,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>سۈرئەت چەكلىگۈچ: قوزغات</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>سۈرئەت چەكلىگۈچ: توختات</translation>
+            <source>Speed Limiter</source>
+            <translation>Tezlik Chekligüch</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>سۈرئەت چەكلىگۈچ تەڭشەكلىرى…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>ئىجلاسنى توختات</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ئىجلاسنى داۋاملاشتۇر</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2925,6 +2933,10 @@ Stellar تاللانمىلىرى → تور كۆرگۈ → چۈشۈرۈش توس
         <message>
             <source>Quick Update</source>
             <translation>تېز يېڭىلاش</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ۋاقىتلىق توختىتىلدى</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>WEDI'I OEDI</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>3. Rheolwr Llwytho Stellar v</translation>
         </message>
@@ -2503,16 +2507,20 @@ Prosiect</translation>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Cyfyngydd Cyflymder: Ymlaen</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Cyfyngydd Cyflymder: I ffwrdd</translation>
+            <source>Speed Limiter</source>
+            <translation>Cyfyngydd Cyflymder</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Gosodiadau Cyfyngydd Cyflymder…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Oedi'r Sesiwn</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Ailgychwyn Sesiwn</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2927,6 +2935,10 @@ Dewisiadau Stellar → Porwr → Osgoi Rhwystro Lawrlwythiadau</translation>
         <message>
             <source>Quick Update</source>
             <translation>Diweddariad Cyflym</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>WEDI'I OEDI</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

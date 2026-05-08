@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>موقوف</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>اسٹیلر ڈاؤن لوڈ مینجر v</translation>
         </message>
@@ -2495,16 +2499,20 @@ Project</source>
             <translation>گٹ ہب</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>اسپیڈ لیمر: آن کریں</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>اسپیڈ لیمر: آف کریں</translation>
+            <source>Speed Limiter</source>
+            <translation>رفتار محدود</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>اسپیڈ لیمر سیٹنگز...</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>سیشن موقوف کریں</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>سیشن جاری رکھیں</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2913,6 +2921,10 @@ Stellar Options → Browser → Bypass Download Interception</translation>
         <message>
             <source>Quick Update</source>
             <translation>Quick Update</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>موقوف</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>PAUZIRANO</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Ograničivač brzine: Uključi</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Ograničivač brzine: Isključi</translation>
+            <source>Speed Limiter</source>
+            <translation>Ograničavač brzine</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Podešavanja ograničivača brzine...</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pauziraj sesiju</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Nastavi sesiju</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2920,6 +2928,10 @@ Podešavanja Stellara → Pretraživač → Zaobiđi prekid preuzimanja</transla
         <message>
             <source>Quick Update</source>
             <translation>Brzo ažuriranje</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>PAUZIRANO</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

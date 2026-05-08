@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>SOS</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Bainisteoir Íoslódála Stellar v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Teorannaithe Luais: Cumasaigh</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Teorannaithe Luais: Díchumasaigh</translation>
+            <source>Speed Limiter</source>
+            <translation>Teorannóir luais</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Socruithe Teorannaithe Luais…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Sos a chur ar an seisiún</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Atosaigh an seisiún</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2920,6 +2928,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>Nuashonrú tapa</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>SOS</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

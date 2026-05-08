@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>ЗОГСООСОН</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2495,16 +2499,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Хурдны хязгаарлагч: Илгээх</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Хурдны хязгаарлагч: Үйл ажиллагааг зогсоох</translation>
+            <source>Speed Limiter</source>
+            <translation>Хурд хязгаарлагч</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Хурдны хязгаарлагчын тохиргоо...</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Сессийг түр зогсоох</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Сессийг үргэлжлүүлэх</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2910,6 +2918,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>Хурдан шинэчлэх</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>ЗОГСООСОН</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

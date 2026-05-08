@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>KWỤSỊRỊ</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Onye njikwa nbudata Stellar v</translation>
         </message>
@@ -2502,16 +2506,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Ihe Mgbochi Ọsọ: Gbanye</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Ihe Mgbochi Ọsọ: Gbanyụọ</translation>
+            <source>Speed Limiter</source>
+            <translation>Oke Ọsọ</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Ntọala Ihe Mgbochi Ọsọ…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Kwụsị Oge</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Gaa n'ihu Oge</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2926,6 +2934,10 @@ Nhọrọ Stellar → Ihe Nchọgharị → Gafere Mgbochi Nbudata</translation>
         <message>
             <source>Quick Update</source>
             <translation>Mmelite ọsọ</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>KWỤSỊRỊ</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

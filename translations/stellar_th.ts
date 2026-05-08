@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>⏸ หยุดชั่วคราว</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>จำกัดความเร็ว: เปิด</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>จำกัดความเร็ว: ปิด</translation>
+            <source>Speed Limiter</source>
+            <translation>จำกัดความเร็ว</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>ตั้งค่าจำกัดความเร็ว…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>หยุดเซสชัน</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>ดำเนินการต่อเซสชัน</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2915,6 +2923,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>อัปเดตด่วน</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>⏸ หยุดชั่วคราว</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

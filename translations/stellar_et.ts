@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>PEATATUD</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Allalaadimishaldur v</translation>
         </message>
@@ -2510,16 +2514,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Kiirusepiirija: Sisse</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Kiirusepiirija: Välja</translation>
+            <source>Speed Limiter</source>
+            <translation>Kiirusepiiraja</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Kiirusepiirija seaded…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Peata seanss</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Jätka seanssi</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2931,6 +2939,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>Kiire värskendus</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>PEATATUD</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

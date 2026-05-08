@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>PAUZAT</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Limitator viteză: Pornire</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Limitator viteză: Oprire</translation>
+            <source>Speed Limiter</source>
+            <translation>Limitator viteză</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Setări limitator viteză...</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Pauză sesiune</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Reia sesiunea</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2914,6 +2922,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
         <message>
             <source>Quick Update</source>
             <translation>Actualizare rapidă</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>PAUZAT</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

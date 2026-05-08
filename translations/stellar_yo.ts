@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>DADURO</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2503,16 +2507,20 @@ Iṣẹ́</translation>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Idiwọn Iyara: Tan-an</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Idiwọn Iyara: Pa-a</translation>
+            <source>Speed Limiter</source>
+            <translation>Ìdínà Ìyára</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Ètò Idiwọn Iyara…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Da gbolohun duro</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Tesiwaju gbolohun</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2927,6 +2935,10 @@ Awọn Aṣayan Stellar → Aṣawakiri → Fori Idilọwọ Igbasilẹ</transla
         <message>
             <source>Quick Update</source>
             <translation>Ìmúdójúìwọ̀n Yíyára</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>DADURO</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

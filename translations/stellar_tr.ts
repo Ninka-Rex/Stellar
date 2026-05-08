@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>DURAKLATILDI</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar İndirici v</translation>
         </message>
@@ -2496,16 +2500,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Hız Sınırlayıcı: Aç</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Hız Sınırlayıcı: Kapat</translation>
+            <source>Speed Limiter</source>
+            <translation>Hız Sınırlayıcı</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Hız Sınırlayıcı Ayarları…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Oturumu Duraklat</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Oturumu Sürdür</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2911,6 +2919,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
         <message>
             <source>Quick Update</source>
             <translation>Hızlı Güncelleme</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>DURAKLATILDI</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

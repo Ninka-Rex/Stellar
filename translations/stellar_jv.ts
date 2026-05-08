@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>DIPUNJEDA</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar Download Manager v</translation>
         </message>
@@ -2502,16 +2506,20 @@ Proyek</translation>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>Wates Kacepetan: Uripke</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>Wates Kacepetan: Pateni</translation>
+            <source>Speed Limiter</source>
+            <translation>Wates Kacepetan</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>Setelan Wates Kacepetan…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>Jeda Sesi</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>Lanjut Sesi</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2926,6 +2934,10 @@ Setelan Stellar → Browser → Lulusi Interception Unduhan</translation>
         <message>
             <source>Quick Update</source>
             <translation>Anyaran Cepet</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>DIPUNJEDA</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>

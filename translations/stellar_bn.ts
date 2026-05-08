@@ -57,6 +57,10 @@
     <context>
         <name>AppController</name>
         <message>
+            <source>PAUSED</source>
+            <translation>বিরাম</translation>
+        </message>
+        <message>
             <source>Stellar Download Manager v</source>
             <translation>Stellar ডাউনলোড ম্যানেজার v</translation>
         </message>
@@ -2497,16 +2501,20 @@ Project</source>
             <translation>GitHub</translation>
         </message>
         <message>
-            <source>Speed Limiter: Turn On</source>
-            <translation>স্পিড লিমিটার: চালু</translation>
-        </message>
-        <message>
-            <source>Speed Limiter: Turn Off</source>
-            <translation>স্পিড লিমিটার: বন্ধ</translation>
+            <source>Speed Limiter</source>
+            <translation>গতি সীমক</translation>
         </message>
         <message>
             <source>Speed Limiter Settings…</source>
             <translation>স্পিড লিমিটার সেটিংস…</translation>
+        </message>
+        <message>
+            <source>Pause Session</source>
+            <translation>সেশন বিরাম দিন</translation>
+        </message>
+        <message>
+            <source>Resume Session</source>
+            <translation>সেশন চালু করুন</translation>
         </message>
         <message>
             <source>Exit Stellar</source>
@@ -2921,6 +2929,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
         <message>
             <source>Quick Update</source>
             <translation>দ্রুত আপডেট</translation>
+        </message>
+        <message>
+            <source>PAUSED</source>
+            <translation>বিরাম</translation>
         </message>
         <message>
             <source>Stellar Download Manager</source>
