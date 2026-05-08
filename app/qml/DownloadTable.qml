@@ -339,51 +339,93 @@ Rectangle {
     // Single shared context menu for all rows. Previously each delegate had its own
     // Menu containing a Repeater over App.queueModel — that created K*N QQmlContexts
     // (queues × rows) which was the O(N) scaling bottleneck on category switch.
+    component CtxMenuItem: MenuItem {
+        id: _ctxMi
+        implicitHeight: 22
+        height: 22
+        topPadding: 0; bottomPadding: 0; verticalPadding: 0
+        leftPadding: 12; rightPadding: 12
+        spacing: 0
+        font.pixelSize: 12
+        indicator: Item { width: 0; height: 0 }
+        arrow: Text {
+            x: _ctxMi.width - width - 8
+            anchors.verticalCenter: parent ? parent.verticalCenter : undefined
+            text: "▶"; font.pixelSize: 8; color: "#888888"
+            visible: _ctxMi.subMenu !== null
+        }
+        contentItem: Text {
+            text: _ctxMi.text
+            font: _ctxMi.font
+            color: _ctxMi.enabled ? "#d0d0d0" : "#666666"
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+        }
+        background: Rectangle {
+            implicitHeight: 22
+            color: _ctxMi.highlighted ? "#1e3a6e" : "transparent"
+        }
+    }
+
     Menu {
         id: rowCtxMenu
-        Action {
+        topPadding: 0; bottomPadding: 0
+        CtxMenuItem {
             text: qsTr("Properties")
             onTriggered: { if (root._ctxItem) root.openPropertiesRequested(root._ctxItem) }
         }
-        Action { text: qsTr("Open File");   onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
-        Action { text: qsTr("Open Folder"); onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Open File");   onTriggered: { if (root._ctxItem) App.openFile(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Open Folder"); onTriggered: { if (root._ctxItem) App.openFolderSelectFile(root._ctxItem.id) } }
         MenuSeparator {}
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
-            delegate: MenuItem {
+            delegate: CtxMenuItem {
                 text: qsTr("Rename...")
                 onTriggered: { if (root._ctxItem) renameTorrentRootDialog.openFor(root._ctxItem) }
             }
         }
-        Action { text: qsTr("Copy Filename"); onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
-        Action {
+        CtxMenuItem { text: qsTr("Copy Filename"); onTriggered: { if (root._ctxItem) App.copyDownloadFilename(root._ctxItem.id) } }
+        CtxMenuItem {
             text: root._ctxItem && root._ctxItem.isTorrent ? qsTr("Copy Magnet Link") : qsTr("Copy URL")
             onTriggered: root.copySelectedShareLinks()
         }
         Repeater {
             model: (!!root._ctxItem && !!root._ctxItem.isTorrent) ? 1 : 0
-            delegate: MenuItem {
+            delegate: CtxMenuItem {
                 text: qsTr("Export .torrent…")
                 enabled: root.anyTorrentSelected
                 onTriggered: root.requestExportSelectedTorrents()
             }
         }
         MenuSeparator {}
-        Action { text: qsTr("Resume"); onTriggered: root.resumeSelected() }
-        Action { text: qsTr("Stop");   onTriggered: root.stopSelected()   }
+        CtxMenuItem { text: qsTr("Resume"); onTriggered: root.resumeSelected() }
+        CtxMenuItem { text: qsTr("Stop");   onTriggered: root.stopSelected()   }
         MenuSeparator {}
-        Menu {
-            title: qsTr("Move to Queue")
-            Repeater {
-                model: App.queueModel
-                delegate: MenuItem {
-                    visible: queueId !== "download-limits"
-                    text: queueName || ""
-                    onTriggered: { if (root._ctxItem) App.setDownloadQueue(root._ctxItem.id, queueId) }
+        CtxMenuItem {
+            id: _moveToQueueItem
+            text: qsTr("Move to Queue") + "  ▶"
+            onTriggered: _moveToQueueMenu.popup(_moveToQueueItem.width, 0)
+            onHoveredChanged: {
+                if (hovered) { _moveToQueueMenu.popup(_moveToQueueItem.width, 0) }
+                else { _mtqCloseTimer.restart() }
+            }
+            Menu {
+                id: _moveToQueueMenu
+                delegate: CtxMenuItem; topPadding: 0; bottomPadding: 0
+                onAboutToHide: _mtqCloseTimer.stop()
+                Repeater {
+                    model: App.queueModel
+                    delegate: CtxMenuItem {
+                        visible: queueId !== "download-limits"
+                        height: visible ? 22 : 0
+                        text: queueName || ""
+                        onTriggered: { if (root._ctxItem) App.setDownloadQueue(root._ctxItem.id, queueId) }
+                    }
                 }
             }
+            Timer { id: _mtqCloseTimer; interval: 300; onTriggered: { if (!_moveToQueueMenu.activeFocus) _moveToQueueMenu.close() } }
         }
-        Action {
+        CtxMenuItem {
             text: qsTr("Remove from Queue")
             onTriggered: {
                 for (var row in root._selectedRows) {
@@ -393,8 +435,8 @@ Rectangle {
             }
         }
         MenuSeparator {}
-        Action { text: qsTr("Redownload"); onTriggered: { if (root._ctxItem) App.redownload(root._ctxItem.id) } }
-        Action { text: qsTr("Delete");     onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
+        CtxMenuItem { text: qsTr("Redownload"); onTriggered: { if (root._ctxItem) App.redownload(root._ctxItem.id) } }
+        CtxMenuItem { text: qsTr("Delete");     onTriggered: { if (root._ctxItem) root._openDeleteDialog(root._ctxItem) } }
     }
 
     // Bump _selectionVersion only when a SELECTED row's data changes so toolbar
@@ -753,9 +795,10 @@ Rectangle {
     // ── Column visibility context menu ────────────────────────────────────────
     Menu {
         id: colCtxMenu
+        topPadding: 0; bottomPadding: 0
         Repeater {
             model: root.columnDefs.length
-            delegate: MenuItem {
+            delegate: CtxMenuItem {
                 text: root.columnDefs[index].title
                 checkable: true
                 checked: root.columnDefs[index].visible
@@ -767,7 +810,7 @@ Rectangle {
             }
         }
         MenuSeparator {}
-        MenuItem {
+        CtxMenuItem {
             text: qsTr("Columns Settings")
             onTriggered: root.openColumnsSettingsRequested()
         }

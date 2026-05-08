@@ -832,14 +832,14 @@ Window {
 
                     delegate: Rectangle {
                         width: ListView.view.width
-                        height: 36
+                        height: 28
                         color: catList.currentIndex === index ? "#1e3a6e" : (ma.containsMouse ? "#2a2a2a" : "transparent")
 
                         Text {
                             anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 16 }
                             text: modelData
                             color: catList.currentIndex === index ? "#ffffff" : "#c0c0c0"
-                            font.pixelSize: 13
+                            font.pixelSize: 12
                         }
 
                         MouseArea {

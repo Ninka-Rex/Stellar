@@ -2172,8 +2172,7 @@ ApplicationWindow {
         }
 
         delegate: MenuBarItem {
-            // Equal 12px side padding on every menu title for even spacing
-            verticalPadding: 2
+            verticalPadding: 0
             leftPadding: 12
             rightPadding: 12
             contentItem: Text {
@@ -2183,66 +2182,76 @@ ApplicationWindow {
                 verticalAlignment: Text.AlignVCenter
             }
             background: Rectangle {
-                implicitHeight: 24
+                implicitHeight: 20
                 color: parent.highlighted ? "#1e3a6e" : "transparent"
             }
         }
+
+        // Keyboard shortcuts for menu actions — Action.shortcut works at window scope.
+        Action { shortcut: "Ctrl+N";       onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
+        Action { shortcut: "Ctrl+Shift+T"; onTriggered: addTorrentFileDialog.open() }
+        Action { shortcut: "Ctrl+Shift+N"; onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
+        Action { shortcut: "Ctrl+Q";       onTriggered: root.quitApp() }
+        Action { shortcut: "Ctrl+P";       onTriggered: downloadTable.pauseAll() }
+        Action { shortcut: "Ctrl+F";       onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
+        Action { shortcut: "F3";           onTriggered: downloadTable.findNextFiltered() }
+        Action { shortcut: "Ctrl+,";       onTriggered: settingsDialog.show() }
 
         Menu {
             title: qsTr("Tasks")
             delegate: CompactMenuItem
             implicitWidth: 200
             topPadding: 0; bottomPadding: 0
-            Action { text: qsTr("Add URL…");       shortcut: "Ctrl+N";       onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
-            Action { text: qsTr("Add Torrent File…"); shortcut: "Ctrl+Shift+T"; onTriggered: addTorrentFileDialog.open() }
-            Action { text: qsTr("Add Batch URLs…"); shortcut: "Ctrl+Shift+N"; onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
+            CompactMenuItem { text: qsTr("Add URL…");          onTriggered: { addUrlDialog.show(); addUrlDialog.raise() } }
+            CompactMenuItem { text: qsTr("Add Torrent File…"); onTriggered: addTorrentFileDialog.open() }
+            CompactMenuItem { text: qsTr("Add Batch URLs…");   onTriggered: { batchDownloadDialog.show(); batchDownloadDialog.raise() } }
             MenuSeparator {}
-            Action { text: qsTr("Exit");            shortcut: "Ctrl+Q";       onTriggered: root.quitApp() }
+            CompactMenuItem { text: qsTr("Exit");               onTriggered: root.quitApp() }
         }
         Menu {
             title: qsTr("File")
             delegate: CompactMenuItem
             implicitWidth: 200
             topPadding: 0; bottomPadding: 0
-            Action {
-                text: qsTr("Open Folder"); 
+            CompactMenuItem {
+                text: qsTr("Open Folder")
+                enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Completed"
                 onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Completed") App.openFolder(item.id) }
-                enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Completed"
             }
-            Action { 
-                text: qsTr("Open File"); 
-                onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Completed") App.openFile(item.id) }
+            CompactMenuItem {
+                text: qsTr("Open File")
                 enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Completed"
+                onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Completed") App.openFile(item.id) }
             }
             MenuSeparator {}
-            Action { 
-                text: qsTr("Download Now"); 
-                onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Paused") App.resumeDownload(item.id) }
+            CompactMenuItem {
+                text: qsTr("Download Now")
                 enabled: root.selectedDownloadItem && root.selectedDownloadItem.status === "Paused"
+                onTriggered: { var item = root.selectedDownloadItem; if (item && item.status === "Paused") App.resumeDownload(item.id) }
             }
-            Action { 
-                text: qsTr("Stop Download"); 
-                onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued")) App.pauseDownload(item.id) }
+            CompactMenuItem {
+                text: qsTr("Stop Download")
                 enabled: root.selectedDownloadItem && (root.selectedDownloadItem.status === "Downloading" || root.selectedDownloadItem.status === "Queued")
+                onTriggered: { var item = root.selectedDownloadItem; if (item && (item.status === "Downloading" || item.status === "Queued")) App.pauseDownload(item.id) }
             }
-            Action { 
-                text: qsTr("Remove"); 
+            CompactMenuItem {
+                text: qsTr("Remove")
+                enabled: root.selectedDownloadItem !== null
                 onTriggered: root.selectedDownloadItem ? downloadTable.deleteSelected() : null
-                enabled: root.selectedDownloadItem !== null
             }
-            Action { 
-                text: qsTr("Redownload"); 
+            CompactMenuItem {
+                text: qsTr("Redownload")
+                enabled: root.selectedDownloadItem !== null
                 onTriggered: { var item = root.selectedDownloadItem; if (item) App.redownload(item.id) }
-                enabled: root.selectedDownloadItem !== null
             }
-            Action {
+            CompactMenuItem {
                 text: qsTr("Export .torrent…")
+                enabled: root.selectedTorrentCount > 0
                 onTriggered: {
                     root.pendingTorrentExportIds = downloadTable.selectedTorrentIds()
                     if (root.pendingTorrentExportIds.length > 0)
                         exportTorrentFolderDialog.open()
                 }
-                enabled: root.selectedTorrentCount > 0
             }
         }
         Menu {
@@ -2250,95 +2259,137 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 200
             topPadding: 0; bottomPadding: 0
-            Action { text: qsTr("Pause all");  shortcut: "Ctrl+P"; onTriggered: downloadTable.pauseAll() }
-            Action { text: qsTr("Stop all");   onTriggered: downloadTable.pauseAll() }
+            CompactMenuItem { text: qsTr("Pause all");           onTriggered: downloadTable.pauseAll() }
+            CompactMenuItem { text: qsTr("Stop all");            onTriggered: downloadTable.pauseAll() }
             MenuSeparator {}
-            Action { text: qsTr("Delete all completed"); onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
+            CompactMenuItem { text: qsTr("Delete all completed"); onTriggered: { deleteDoneConfirmDialog.show(); deleteDoneConfirmDialog.raise() } }
             MenuSeparator {}
-            Action { text: qsTr("Find…");      shortcut: "Ctrl+F"; onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
-            Action { text: qsTr("Find Next");  shortcut: "F3";     onTriggered: downloadTable.findNextFiltered() }
+            CompactMenuItem { text: qsTr("Find…");               onTriggered: { root.findBarActive = true; findBarField.forceActiveFocus() } }
+            CompactMenuItem { text: qsTr("Find Next");           onTriggered: downloadTable.findNextFiltered() }
             MenuSeparator {}
-            Action { text: qsTr("Scheduler");  onTriggered: schedulerDialog.show() }
-            Menu {
-                title: qsTr("Start Queue")
-                Repeater {
-                    model: App.queueModel
-                    delegate: MenuItem {
-                        visible: queueId !== "download-limits"
-                        text: queueName || ""
-                        onTriggered: App.startQueue(queueId)
+            CompactMenuItem { text: qsTr("Scheduler"); onTriggered: schedulerDialog.show() }
+            CompactMenuItem {
+                id: _startQueueItem
+                text: qsTr("Start Queue") + "  ▶"
+                onTriggered: _startQueueMenu.popup(_startQueueItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) { _startQueueMenu.popup(_startQueueItem.width, 0) }
+                    else { _sqCloseTimer.restart() }
+                }
+                Menu {
+                    id: _startQueueMenu
+                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _sqCloseTimer.stop()
+                    Repeater {
+                        model: App.queueModel
+                        delegate: CompactMenuItem {
+                            visible: queueId !== "download-limits"; height: visible ? 22 : 0
+                            text: queueName || ""; onTriggered: App.startQueue(queueId)
+                        }
                     }
                 }
+                Timer { id: _sqCloseTimer; interval: 300; onTriggered: { if (!_startQueueMenu.activeFocus) _startQueueMenu.close() } }
             }
-            Menu {
-                title: qsTr("Stop Queue")
-                Repeater {
-                    model: App.queueModel
-                    delegate: MenuItem {
-                        visible: queueId !== "download-limits"
-                        text: queueName || ""
-                        onTriggered: App.stopQueue(queueId)
+            CompactMenuItem {
+                id: _stopQueueItem
+                text: qsTr("Stop Queue") + "  ▶"
+                onTriggered: _stopQueueMenu.popup(_stopQueueItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) { _stopQueueMenu.popup(_stopQueueItem.width, 0) }
+                    else { _stqCloseTimer.restart() }
+                }
+                Menu {
+                    id: _stopQueueMenu
+                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _stqCloseTimer.stop()
+                    Repeater {
+                        model: App.queueModel
+                        delegate: CompactMenuItem {
+                            visible: queueId !== "download-limits"; height: visible ? 22 : 0
+                            text: queueName || ""; onTriggered: App.stopQueue(queueId)
+                        }
                     }
                 }
+                Timer { id: _stqCloseTimer; interval: 300; onTriggered: { if (!_stopQueueMenu.activeFocus) _stopQueueMenu.close() } }
             }
             MenuSeparator {}
-            Menu {
-                title: qsTr("Speed Limiter")
-                Action { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
-                Action { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
-                MenuSeparator {}
-            Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
+            CompactMenuItem {
+                id: _speedLimiterItem1
+                text: qsTr("Speed Limiter") + "  ▶"
+                onTriggered: _speedLimiterMenu1.popup(_speedLimiterItem1.width, 0)
+                onHoveredChanged: {
+                    if (hovered) { _speedLimiterMenu1.popup(_speedLimiterItem1.width, 0) }
+                    else { _sl1CloseTimer.restart() }
+                }
+                Menu {
+                    id: _speedLimiterMenu1
+                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _sl1CloseTimer.stop()
+                    CompactMenuItem { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
+                    CompactMenuItem { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
+                    MenuSeparator {}
+                    CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
+                }
+                Timer { id: _sl1CloseTimer; interval: 300; onTriggered: { if (!_speedLimiterMenu1.activeFocus) _speedLimiterMenu1.close() } }
             }
             MenuSeparator {}
-            Action { text: qsTr("Options…"); shortcut: "Ctrl+,"; onTriggered: settingsDialog.show() }
+            CompactMenuItem { text: qsTr("Options…"); onTriggered: settingsDialog.show() }
         }
         Menu {
             title: qsTr("View")
             delegate: CompactMenuItem
             implicitWidth: 200
             topPadding: 0; bottomPadding: 0
-            Action {
+            CompactMenuItem {
                 text: (sidebar && sidebar.visible) ? qsTr("Hide Categories") : qsTr("Show Categories")
                 onTriggered: if (sidebar) sidebar.visible = !sidebar.visible
             }
             MenuSeparator {}
-            Action {
+            CompactMenuItem {
                 text: (App.settings.showSearchEngine ? "✓ " : "    ") + qsTr("Show Search Engine")
                 // Defer the toggle so the View menu fully dismisses before the
                 // menu-bar layout changes; otherwise the menu-bar focus chain
                 // can jump to a newly-revealed neighbor and open it.
-                onTriggered: Qt.callLater(function() {
-                    App.settings.showSearchEngine = !App.settings.showSearchEngine
-                })
+                onTriggered: Qt.callLater(function() { App.settings.showSearchEngine = !App.settings.showSearchEngine })
             }
-            Action {
+            CompactMenuItem {
                 text: (App.settings.showRssReader ? "✓ " : "    ") + qsTr("Show RSS Reader")
-                onTriggered: Qt.callLater(function() {
-                    App.settings.showRssReader = !App.settings.showRssReader
-                })
+                onTriggered: Qt.callLater(function() { App.settings.showRssReader = !App.settings.showRssReader })
             }
             MenuSeparator {}
-            Action {
+            CompactMenuItem {
                 text: qsTr("Statistics…")
                 onTriggered: { statisticsDialog.show(); statisticsDialog.raise(); statisticsDialog.requestActivate() }
             }
             MenuSeparator {}
-            Menu {
-                title: qsTr("Arrange Files")
-                Action { text: qsTr("By Order Of Addition");  onTriggered: App.sortDownloads("added", true) }
-                Action { text: qsTr("By File Name");          onTriggered: App.sortDownloads("name", true) }
-                Action { text: qsTr("By Size");               onTriggered: App.sortDownloads("size", true) }
-                Action { text: qsTr("By Status");             onTriggered: App.sortDownloads("status", true) }
-                Action { text: qsTr("By Time Left");          onTriggered: App.sortDownloads("timeleft", true) }
-                Action { text: qsTr("By Transfer Rate");      onTriggered: App.sortDownloads("speed", false) }
-                Action { text: qsTr("By Last Try Date");      onTriggered: App.sortDownloads("lasttry", false) }
-                Action { text: qsTr("By Description");        onTriggered: App.sortDownloads("description", true) }
-                Action { text: qsTr("By Save Path");          onTriggered: App.sortDownloads("saveto", true) }
-                Action { text: qsTr("By Referer");            onTriggered: App.sortDownloads("referrer", true) }
-                Action { text: qsTr("By Parent Web Page");    onTriggered: App.sortDownloads("parenturl", true) }
+            CompactMenuItem {
+                id: _arrangeFilesItem
+                text: qsTr("Arrange Files") + "  ▶"
+                onTriggered: _arrangeFilesMenu.popup(_arrangeFilesItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) { _arrangeFilesMenu.popup(_arrangeFilesItem.width, 0) }
+                    else { _arrangeFilesCloseTimer.restart() }
+                }
+                Menu {
+                    id: _arrangeFilesMenu
+                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _arrangeFilesCloseTimer.stop()
+                    CompactMenuItem { text: qsTr("By Order Of Addition");  onTriggered: App.sortDownloads("added", true) }
+                    CompactMenuItem { text: qsTr("By File Name");          onTriggered: App.sortDownloads("name", true) }
+                    CompactMenuItem { text: qsTr("By Size");               onTriggered: App.sortDownloads("size", true) }
+                    CompactMenuItem { text: qsTr("By Status");             onTriggered: App.sortDownloads("status", true) }
+                    CompactMenuItem { text: qsTr("By Time Left");          onTriggered: App.sortDownloads("timeleft", true) }
+                    CompactMenuItem { text: qsTr("By Transfer Rate");      onTriggered: App.sortDownloads("speed", false) }
+                    CompactMenuItem { text: qsTr("By Last Try Date");      onTriggered: App.sortDownloads("lasttry", false) }
+                    CompactMenuItem { text: qsTr("By Description");        onTriggered: App.sortDownloads("description", true) }
+                    CompactMenuItem { text: qsTr("By Save Path");          onTriggered: App.sortDownloads("saveto", true) }
+                    CompactMenuItem { text: qsTr("By Referer");            onTriggered: App.sortDownloads("referrer", true) }
+                    CompactMenuItem { text: qsTr("By Parent Web Page");    onTriggered: App.sortDownloads("parenturl", true) }
+                }
+                Timer { id: _arrangeFilesCloseTimer; interval: 300; onTriggered: { if (!_arrangeFilesMenu.activeFocus) _arrangeFilesMenu.close() } }
             }
             MenuSeparator {}
-            Action { text: qsTr("Columns…"); onTriggered: {
+            CompactMenuItem { text: qsTr("Columns…"); onTriggered: {
                 columnsDialog.columnDefs = downloadTable.columnDefs.slice()
                 columnsDialog.show()
                 columnsDialog.raise()
@@ -2349,16 +2400,26 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 200
             topPadding: 0; bottomPadding: 0
-            Action { text: qsTr("Preferences…"); shortcut: "Ctrl+,"; onTriggered: settingsDialog.show() }
-            Action { text: qsTr("Scheduler");    onTriggered: schedulerDialog.show() }
-            Menu {
-                title: qsTr("Speed Limiter")
-                delegate: CompactMenuItem
-                implicitWidth: 200
-                Action { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
-                Action { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
-                MenuSeparator {}
-            Action { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
+            CompactMenuItem { text: qsTr("Preferences…"); onTriggered: settingsDialog.show() }
+            CompactMenuItem { text: qsTr("Scheduler");    onTriggered: schedulerDialog.show() }
+            CompactMenuItem {
+                id: _speedLimiterItem2
+                text: qsTr("Speed Limiter") + "  ▶"
+                onTriggered: _speedLimiterMenu2.popup(_speedLimiterItem2.width, 0)
+                onHoveredChanged: {
+                    if (hovered) { _speedLimiterMenu2.popup(_speedLimiterItem2.width, 0) }
+                    else { _sl2CloseTimer.restart() }
+                }
+                Menu {
+                    id: _speedLimiterMenu2
+                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _sl2CloseTimer.stop()
+                    CompactMenuItem { text: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "    ") + qsTr("Turn On");  onTriggered: App.enableSpeedLimiter() }
+                    CompactMenuItem { text: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "    ") + qsTr("Turn Off"); onTriggered: App.disableSpeedLimiter() }
+                    MenuSeparator {}
+                    CompactMenuItem { text: qsTr("Settings…"); onTriggered: { settingsDialog.initialPage = root.settingsPageSpeedLimiter; settingsDialog.show() } }
+                }
+                Timer { id: _sl2CloseTimer; interval: 300; onTriggered: { if (!_speedLimiterMenu2.activeFocus) _speedLimiterMenu2.close() } }
             }
         }
         // The RSS menu is added/removed from the MenuBar via addMenu/removeMenu
@@ -2372,9 +2433,9 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 210
             topPadding: 0; bottomPadding: 0
-            Action { text: qsTr("Open RSS Reader"); onTriggered: root.showRssWindow() }
-            Action { text: qsTr("Refresh All Feeds"); onTriggered: App.rssManager.refreshAll() }
-            Action { text: qsTr("Mark All Items Read"); onTriggered: App.rssManager.markAllRead() }
+            CompactMenuItem { text: qsTr("Open RSS Reader");      onTriggered: root.showRssWindow() }
+            CompactMenuItem { text: qsTr("Refresh All Feeds");    onTriggered: App.rssManager.refreshAll() }
+            CompactMenuItem { text: qsTr("Mark All Items Read");  onTriggered: App.rssManager.markAllRead() }
 
             // Track membership ourselves so we know whether to add or remove.
             property bool _inMenuBar: true
@@ -2402,17 +2463,27 @@ ApplicationWindow {
             delegate: CompactMenuItem
             implicitWidth: 200
             topPadding: 0; bottomPadding: 0
-            Action { text: qsTr("Check for Updates"); onTriggered: App.checkForUpdates(true) }
+            CompactMenuItem { text: qsTr("Check for Updates"); onTriggered: App.checkForUpdates(true) }
             MenuSeparator {}
-            Action { text: qsTr("About Stellar"); onTriggered: root.showSettingsPage(root.settingsPageAbout) }
+            CompactMenuItem { text: qsTr("About Stellar"); onTriggered: root.showSettingsPage(root.settingsPageAbout) }
             MenuSeparator {}
-            Menu {
-                title: qsTr("Browser Integration")
-                delegate: CompactMenuItem
-                implicitWidth: 200
-                Action { text: qsTr("Browser Extensions…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise(); browserIntegrationDialog.requestActivate() } }
-                MenuSeparator {}
-                Action { text: qsTr("Browser Settings…"); onTriggered: root.showSettingsPage(root.settingsPageBrowser) }
+            CompactMenuItem {
+                id: _browserIntItem
+                text: qsTr("Browser Integration") + "  ▶"
+                onTriggered: _browserIntMenu.popup(_browserIntItem.width, 0)
+                onHoveredChanged: {
+                    if (hovered) { _browserIntMenu.popup(_browserIntItem.width, 0) }
+                    else { _browserIntCloseTimer.restart() }
+                }
+                Menu {
+                    id: _browserIntMenu
+                    delegate: CompactMenuItem; implicitWidth: 200; topPadding: 0; bottomPadding: 0
+                    onAboutToHide: _browserIntCloseTimer.stop()
+                    CompactMenuItem { text: qsTr("Browser Extensions…"); onTriggered: { browserIntegrationDialog.show(); browserIntegrationDialog.raise(); browserIntegrationDialog.requestActivate() } }
+                    MenuSeparator {}
+                    CompactMenuItem { text: qsTr("Browser Settings…"); onTriggered: root.showSettingsPage(root.settingsPageBrowser) }
+                }
+                Timer { id: _browserIntCloseTimer; interval: 300; onTriggered: { if (!_browserIntMenu.activeFocus) _browserIntMenu.close() } }
             }
         }
     }
