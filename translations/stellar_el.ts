@@ -1195,7 +1195,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Όριο ταχύτητας</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>Επαλήθευση τοπικών δεδομένων</translation>
         </message>
         <message>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Ιδιότητες αρχείου</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Επόμενη ανακοίνωση</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Τώρα</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1ώ %2λ</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1λ %2δ</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1δ</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Αναμονή ανακοίνωσης</translation>
         </message>
     </context>
     <context>

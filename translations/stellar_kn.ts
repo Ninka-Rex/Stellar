@@ -1210,7 +1210,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ವೇಗ ಮಿತಿ</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>ಸ್ಥಳೀಯ ಡೇಟಾ ಪರಿಶೀಲಿಸಿ</translation>
         </message>
         <message>
@@ -1549,6 +1549,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>ಫೈಲ್ ಗುಣಲಕ್ಷಣಗಳು</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>ಮುಂದಿನ ಪ್ರಕಟಣೆ</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>ಈಗ</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1ಗಂ %2ನಿ</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1ನಿ %2ಸೆ</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1ಸೆ</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>ಪ್ರಕಟಿಸಲು ಕಾಯುತ್ತಿದೆ</translation>
         </message>
     </context>
     <context>

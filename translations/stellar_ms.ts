@@ -1195,8 +1195,8 @@ Anda boleh ubah dalam Pilihan → Muat Turun nanti.</translation>
             <translation>Had Kecepatan</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Semak Data Tempatan</translation>
+            <source>Verify Local Data</source>
+            <translation>Sahkan Data Setempat</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Sifat fail</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Pengumuman Seterusnya</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Sekarang</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1j %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Menunggu untuk mengumumkan</translation>
         </message>
     </context>
     <context>

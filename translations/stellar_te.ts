@@ -1195,8 +1195,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>వేగ పరిమితి</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>స్థానిక డేటా ధృవీకరించు</translation>
+            <source>Verify Local Data</source>
+            <translation>స్థానిక డేటాను ధృవీకరించు</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>ఫైల్ లక్షణాలు</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>తదుపరి ప్రకటన</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>ఇప్పుడు</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1గం %2ని</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1ని %2సె</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1సె</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>ప్రకటించడానికి వేచి ఉంది</translation>
         </message>
     </context>
     <context>

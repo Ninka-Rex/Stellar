@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Hız Limiti</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Yerel Verileri Doğrula</translation>
+            <source>Verify Local Data</source>
+            <translation>Yerel Veriyi Doğrula</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Dosya Özellikleri</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Sonraki Duyuru</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Şimdi</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1s %2dk</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1dk %2sn</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1sn</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Duyuru bekleniyor</translation>
         </message>
     </context>
     <context>

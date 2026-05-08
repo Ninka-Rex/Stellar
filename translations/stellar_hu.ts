@@ -1195,8 +1195,8 @@ Később az Opciók → Letöltések menüpontban módosíthatja.</translation>
             <translation>Sebességkorlát</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Helyi adat ellenőrzése</translation>
+            <source>Verify Local Data</source>
+            <translation>Helyi adatok ellenőrzése</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Fájl tulajdonságok</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Következő bejelentés</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Most</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1ó %2p</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1p %2mp</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1mp</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Várakozás a bejelentésre</translation>
         </message>
     </context>
     <context>

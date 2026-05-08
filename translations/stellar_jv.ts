@@ -1195,8 +1195,8 @@ Sampeyan bisa ngubah ing Opsi → Unduhan mengko.</translation>
             <translation>Wates kacepetan</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Verifikasi data lokal</translation>
+            <source>Verify Local Data</source>
+            <translation>Verifikasi Data Lokal</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Properti Berkas</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Umumke Sabanjure</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Saiki</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1j %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2d</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1d</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Ngenteni ngumumke</translation>
         </message>
     </context>
     <context>

@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Iyakar gudu</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Tabbatar da bayanan gida</translation>
+            <source>Verify Local Data</source>
+            <translation>Tabbatar da Bayanan Gida</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Halayen Fayil</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Sanarwa ta gaba</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Yanzu</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1h %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Ana jiran sanarwa</translation>
         </message>
     </context>
     <context>

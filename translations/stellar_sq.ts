@@ -1195,8 +1195,8 @@ E mundon në Opsione → Shkarkime më vonë.</translation>
             <translation>Kufiri i shpejtësisë</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Verifikimi i të dhënave lokale</translation>
+            <source>Verify Local Data</source>
+            <translation>Verifiko të dhënat lokale</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Vetitë e skedarit</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Njoftimi tjetër</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Tani</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1h %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Në pritje për njoftim</translation>
         </message>
     </context>
     <context>

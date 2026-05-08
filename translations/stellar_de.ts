@@ -1194,7 +1194,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Geschwindigkeitslimit</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>Lokale Daten prüfen</translation>
         </message>
         <message>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Dateieigenschaften</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Nächste Ankündigung</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Jetzt</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1h %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Warte auf Ankündigung</translation>
         </message>
     </context>
     <context>

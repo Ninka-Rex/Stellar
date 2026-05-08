@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Limită viteză</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Verifică date</translation>
+            <source>Verify Local Data</source>
+            <translation>Verifică date locale</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Proprietăți fișier</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Anunț următor</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Acum</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1h %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>În așteptare anunț</translation>
         </message>
     </context>
     <context>

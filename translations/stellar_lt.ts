@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Greičio riba</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Patikrinti vietinius duomenis</translation>
+            <source>Verify Local Data</source>
+            <translation>Tikrinti vietinius duomenis</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Failo savybės</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Kitas pranešimas</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Dabar</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1val %2min</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1min %2sek</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1sek</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Laukiama pranešimo</translation>
         </message>
     </context>
     <context>

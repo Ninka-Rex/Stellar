@@ -1195,7 +1195,7 @@ Anda dapat mengubahnya di Opsi → Unduhan nanti.</translation>
             <translation>Batas Kecepatan</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>Verifikasi Data Lokal</translation>
         </message>
         <message>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Sifat File</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Pengumuman Berikutnya</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Sekarang</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1j %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2d</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1d</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Menunggu pengumuman</translation>
         </message>
     </context>
     <context>

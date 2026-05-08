@@ -1195,8 +1195,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>မြန်နှုန်းကန့်</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>ဒေတာစစ်</translation>
+            <source>Verify Local Data</source>
+            <translation>ဒေသဆိုင်ရာဒေတာစစ်ဆေးရန်</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>ဖိုင်ဂုဏ်သတ္တိများ</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>နောက်ကြေညာချက်</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>ယခု</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1နာရီ %2မိနစ်</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1မိနစ် %2စက္ကန့်</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1စက္ကန့်</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>ကြေညာရန်စောင့်ဆိုင်းနေသည်</translation>
         </message>
     </context>
     <context>

@@ -1195,8 +1195,8 @@ Du kan ændre det i Indstillinger → Downloads senere.</translation>
             <translation>Hastighedsbegrænsning</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Verificér lokal data</translation>
+            <source>Verify Local Data</source>
+            <translation>Bekræft lokale data</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Fil-egenskaber</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Næste annoncering</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Nu</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1t %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Venter på annoncering</translation>
         </message>
     </context>
     <context>

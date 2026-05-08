@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Sürət limiti</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Yerli məlumatı yoxla</translation>
+            <source>Verify Local Data</source>
+            <translation>Yerli məlumatları yoxla</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Fayl xassələri</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Növbəti elan</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>İndi</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1s %2dəq</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1dəq %2san</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1san</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Elan gözlənilir</translation>
         </message>
     </context>
     <context>

@@ -1193,7 +1193,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Limit rýchlosti</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>Overiť lokálne dáta</translation>
         </message>
         <message>
@@ -1532,6 +1532,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Vlastnosti súboru</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Ďalšie ohlásenie</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Teraz</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1 h %2 m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1 m %2 s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1 s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Čaká sa na ohlásenie</translation>
         </message>
     </context>
     <context>

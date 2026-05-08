@@ -1195,8 +1195,8 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <translation>Kizuizi cha kasi</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Thibiti data ya ndani</translation>
+            <source>Verify Local Data</source>
+            <translation>Thibitisha Data ya Ndani</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Sifa za faili</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Tangazo Lijalo</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Sasa</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1s %2dk</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1dk %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Inasubiri kutangaza</translation>
         </message>
     </context>
     <context>

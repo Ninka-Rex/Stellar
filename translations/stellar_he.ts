@@ -1194,7 +1194,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>מגבלת מהירות</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>אמת נתונים מקומיים</translation>
         </message>
         <message>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>מאפייני קובץ</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>הכרזה הבאה</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>עכשיו</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1ש %2דק</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1דק %2שנ</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1שנ</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>ממתין להכרזה</translation>
         </message>
     </context>
     <context>

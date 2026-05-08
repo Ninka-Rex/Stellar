@@ -1195,8 +1195,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>កំណត់ល្បឿន</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>ផ្ទៀងផ្ទាត់ទិន្នន័យមូលដ្ឋាន</translation>
+            <source>Verify Local Data</source>
+            <translation>ផ្ទៀងផ្ទាត់ទិន្នន័យក្នុងតំបន់</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>19. លក្ខណៈសម្បត្តិឯកសារ</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>ប្រកាសបន្ទាប់</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>ឥឡូវ</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1ម៉ %2ន</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1ន %2វ</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1វ</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>កំពុងរង់ចាំប្រកាស</translation>
         </message>
     </context>
     <context>

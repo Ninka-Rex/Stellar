@@ -1198,8 +1198,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>სიჩქარის ლიმიტი</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>ადგილობრივი მონაცემების შემოწმება</translation>
+            <source>Verify Local Data</source>
+            <translation>მონაცემების შემოწმება</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1537,6 +1537,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>ფაილის მახასიათებლები</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>შემდეგი ანონსი</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>ახლა</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1სთ %2წთ</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1წთ %2წმ</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1წმ</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>ანონსის მოლოდინი</translation>
         </message>
     </context>
     <context>

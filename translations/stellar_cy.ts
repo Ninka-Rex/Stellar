@@ -1195,8 +1195,8 @@ Gallwch ei newid yn Opsiynau → Lawrlwythiadau yn nes ymlaen.</translation>
             <translation>Cyfyngiad cyflymder</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Gwirio data lleol</translation>
+            <source>Verify Local Data</source>
+            <translation>Gwirio Data Lleol</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Priodweddau Ffeil</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Cyhoeddiad Nesaf</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Nawr</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1a %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2e</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1e</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Aros i gyhoeddi</translation>
         </message>
     </context>
     <context>

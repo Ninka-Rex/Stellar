@@ -1196,8 +1196,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Límite de vel.</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Verificar datos</translation>
+            <source>Verify Local Data</source>
+            <translation>Verificar datos locales</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1539,6 +1539,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Propiedades de archivo</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Próximo anuncio</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Ahora</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1h %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Esperando anunciar</translation>
         </message>
     </context>
     <context>

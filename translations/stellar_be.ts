@@ -1195,8 +1195,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Ліміт хуткасці</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Праверка лакальных дадзеных</translation>
+            <source>Verify Local Data</source>
+            <translation>Праверыць лакальныя даныя</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Уласцівасці файла</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Наступны анонс</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Зараз</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1г %2хв</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1хв %2с</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1с</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Чаканне анонсу</translation>
         </message>
     </context>
     <context>

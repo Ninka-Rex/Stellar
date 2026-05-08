@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>സ്‌പീഡ് ലിമിറ്റ്</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>ലോക്കൽ ഡാറ്റ പരിശോധിക്കുക</translation>
+            <source>Verify Local Data</source>
+            <translation>പ്രാദേശിക ഡാറ്റ പരിശോധിക്കുക</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>ഫയൽ ഗുണങ്ങൾ</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>അടുത്ത അറിയിപ്പ്</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>ഇപ്പോൾ</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1മ. %2മി.</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1മി. %2സെ.</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1സെ.</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>അറിയിക്കാൻ കാത്തിരിക്കുന്നു</translation>
         </message>
     </context>
     <context>

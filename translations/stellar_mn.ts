@@ -1193,8 +1193,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Хурдны хязгаар</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Дотоод өгөгдлийг шалгах</translation>
+            <source>Verify Local Data</source>
+            <translation>Орон нутгийн өгөгдлийг шалгах</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1532,6 +1532,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Файлын шинж чанар</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Дараагийн зарлал</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Одоо</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1ц %2м</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1м %2с</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1с</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Зарлахыг хүлээж байна</translation>
         </message>
     </context>
     <context>

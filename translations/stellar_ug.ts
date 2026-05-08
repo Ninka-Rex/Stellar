@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>سۈرئەت چەكلىمىسى</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>يەرلىك سانلىق مەلۇماتنى تەكشۈرۈش</translation>
+            <source>Verify Local Data</source>
+            <translation>1. يەرلىك سانلىق-مەلۇماتنى دەلىللەش</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>ھۆججەت خاسلىقلىرى</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>2. كېيىنكى ئېلان</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>3. —</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>4. ھازىر</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>5. %1س %2م</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>6. %1م %2س</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>7. %1س</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>8. ئېلاننى كۈتۈۋاتىدۇ</translation>
         </message>
     </context>
     <context>

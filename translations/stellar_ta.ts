@@ -1195,7 +1195,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>வேக வரம்பு</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>உள்ளூர் தரவைச் சரிபார்</translation>
         </message>
         <message>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>கோப்பு பண்புகள்</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>அடுத்த அறிவிப்பு</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>இப்போது</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1ம %2நி</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1நி %2வி</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1வி</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>அறிவிக்க காத்திருக்கிறது</translation>
         </message>
     </context>
     <context>

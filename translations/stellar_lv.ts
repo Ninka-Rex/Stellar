@@ -1195,7 +1195,7 @@ To var mainīt vēlāk Iestatījumi → Lejupielādes.</translation>
             <translation>Ātruma limits</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>Pārbaudīt lokālos datus</translation>
         </message>
         <message>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Faila īpašības</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Nākamais paziņojums</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Tagad</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1 st. %2 min.</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1 min. %2 sek.</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1 sek.</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Gaida paziņošanu</translation>
         </message>
     </context>
     <context>

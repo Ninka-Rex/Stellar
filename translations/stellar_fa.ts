@@ -1195,8 +1195,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>محدودیت سرعت</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>بررسی داده‌های محلی</translation>
+            <source>Verify Local Data</source>
+            <translation>بررسی داده محلی</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>ویژگی‌های فایل</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>اعلام بعدی</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>اکنون</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1س %2د</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1د %2ث</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1ث</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>در انتظار اعلام</translation>
         </message>
     </context>
     <context>

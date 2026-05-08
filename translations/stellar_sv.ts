@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Hastighetsgräns</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Verifiera lokal data</translation>
+            <source>Verify Local Data</source>
+            <translation>1. Verifiera lokal data</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Filegenskaper</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>2. Nästa annonsering</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>3. —</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>4. Nu</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>5. %1t %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>6. %1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>7. %1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>8. Väntar på annonsering</translation>
         </message>
     </context>
     <context>

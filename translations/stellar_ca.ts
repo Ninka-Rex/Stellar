@@ -1195,8 +1195,8 @@ Podeu canviar-ho a Opcions → Descàrregues més tard.</translation>
             <translation>Límit de velocitat</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Verifica les dades locals</translation>
+            <source>Verify Local Data</source>
+            <translation>Verifica dades locals</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Propietats del fitxer</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Anunci següent</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Ara</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1h %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Esperant per anunciar</translation>
         </message>
     </context>
     <context>

@@ -1194,7 +1194,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>속도 제한</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>로컬 데이터 확인</translation>
         </message>
         <message>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>파일 속성</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>다음 알림</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>지금</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1시간 %2분</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1분 %2초</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1초</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>알림 대기 중</translation>
         </message>
     </context>
     <context>

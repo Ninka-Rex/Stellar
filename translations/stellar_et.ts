@@ -1208,8 +1208,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Kiiruse piir</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Kohaliku andme kontrollimine</translation>
+            <source>Verify Local Data</source>
+            <translation>Kontrolli kohalikke andmeid</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1547,6 +1547,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Faili omadused</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Järgmine teadaanne</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Nüüd</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1t %2min</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1min %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Ootan teadaannet</translation>
         </message>
     </context>
     <context>

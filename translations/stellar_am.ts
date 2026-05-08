@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>የፍጥነት ገደብ</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>አካባቢያዊ ውሂብ አረጋግጥ</translation>
+            <source>Verify Local Data</source>
+            <translation>የአካባቢ ውሂብ አረጋግጥ</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>የፋይል ባህሪያት</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>ቀጣይ ማስታወቂያ</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>አሁን</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1ሰ %2ደ</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1ደ %2ሰ</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1ሰ</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>ለማስታወቅ በመጠበቅ ላይ</translation>
         </message>
     </context>
     <context>

@@ -1194,8 +1194,8 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Giới hạn tốc độ</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Kiểm tra dữ liệu</translation>
+            <source>Verify Local Data</source>
+            <translation>Xác minh dữ liệu cục bộ</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1533,6 +1533,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Thuộc tính tệp</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Thông báo tiếp</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Ngay</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1g %2p</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1p %2g</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1g</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Chờ thông báo</translation>
         </message>
     </context>
     <context>

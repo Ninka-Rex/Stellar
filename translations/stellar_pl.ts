@@ -1195,8 +1195,8 @@ Możesz zmienić to w Opcje → Pobierania później.</translation>
             <translation>Limit prędkości</translation>
         </message>
         <message>
-            <source>Verify local data</source>
-            <translation>Weryfikacja danych lokalnych</translation>
+            <source>Verify Local Data</source>
+            <translation>Sprawdź dane lokalne</translation>
         </message>
         <message>
             <source>Down</source>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>Właściwości pliku</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>Następne ogłoszenie</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>Teraz</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1g %2m</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1m %2s</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1s</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>Oczekiwanie na ogłoszenie</translation>
         </message>
     </context>
     <context>

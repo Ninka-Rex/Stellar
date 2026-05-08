@@ -1195,7 +1195,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>වේග සීමාව</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>දත්ත සත්‍යාපනය</translation>
         </message>
         <message>
@@ -1534,6 +1534,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>19. ගොනු ගුණාංග</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>ඊළඟ නිවේදනය</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>දැන්</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1පැ %2වි</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1වි %2තත්</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1තත්</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>නිවේදනයට බලා සිටී</translation>
         </message>
     </context>
     <context>

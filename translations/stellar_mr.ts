@@ -1193,7 +1193,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>स्पीड लिमिट</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>स्थानिक डेटा तपासा</translation>
         </message>
         <message>
@@ -1532,6 +1532,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>फाइल गुणधर्म</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>पुढील घोषणा</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>आता</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1तास %2मि</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1मि %2से</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1से</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>घोषणेची प्रतीक्षा</translation>
         </message>
     </context>
     <context>

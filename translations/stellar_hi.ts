@@ -1198,7 +1198,7 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>गति सीमा</translation>
         </message>
         <message>
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             <translation>स्थानीय डेटा सत्यापित करें</translation>
         </message>
         <message>
@@ -1541,6 +1541,34 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
         <message>
             <source>File Properties</source>
             <translation>फ़ाइल प्रॉपर्टीज़</translation>
+        </message>
+        <message>
+            <source>Next Announce</source>
+            <translation>अगली घोषणा</translation>
+        </message>
+        <message>
+            <source>—</source>
+            <translation>—</translation>
+        </message>
+        <message>
+            <source>Now</source>
+            <translation>अभी</translation>
+        </message>
+        <message>
+            <source>%1h %2m</source>
+            <translation>%1घं %2मि</translation>
+        </message>
+        <message>
+            <source>%1m %2s</source>
+            <translation>%1मि %2से</translation>
+        </message>
+        <message>
+            <source>%1s</source>
+            <translation>%1से</translation>
+        </message>
+        <message>
+            <source>Waiting to announce</source>
+            <translation>घोषणा की प्रतीक्षा</translation>
         </message>
     </context>
     <context>
