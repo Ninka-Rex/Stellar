@@ -112,6 +112,9 @@ Window {
     }
 
     function refreshSavePathMode() {
+        // Never clear the flag when the user has explicitly opted in to custom paths.
+        if (App.settings.torrentUseCustomSavePathByDefault)
+            return
         var currentPath = safeStr(savePath).trim()
         var categoryPath = defaultSavePathForCategory(category)
         useCustomSavePath = currentPath.length > 0
@@ -175,8 +178,6 @@ Window {
                     applyCategorySavePath(true)
                 }
                 refreshSavePathMode()
-                if (App.settings.torrentUseCustomSavePathByDefault)
-                    useCustomSavePath = true
             }
         }
     }
