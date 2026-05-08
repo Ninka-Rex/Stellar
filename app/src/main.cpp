@@ -46,6 +46,7 @@
 #include "TorrentSearchManager.h"
 #include "TorrentSearchPluginModel.h"
 #include "TorrentSearchResultModel.h"
+#include <QQuickWindow>
 
 #if defined(Q_OS_WIN)
 #  include <windows.h>
@@ -703,6 +704,17 @@ int main(int argc, char *argv[])
     nmLog(QStringLiteral("Loading QML..."));
     engine.load(url);
     nmLog(QStringLiteral("QML loaded. Executing app."));
+
+    // Keep scene graph and D3D/GL resources alive when the window is minimized
+    // or hidden so the first paint after restore is just a swap, not a full
+    // scene graph rebuild + swap chain recreation (which was taking ~1-2s on
+    // Windows D3D11 with a large download list).
+    if (!engine.rootObjects().isEmpty()) {
+        if (auto *win = qobject_cast<QQuickWindow *>(engine.rootObjects().constFirst())) {
+            win->setPersistentSceneGraph(true);
+            win->setPersistentGraphics(true);
+        }
+    }
 
     // Schedule a zero-delay timer to fire on the FIRST event loop iteration after
     // app.exec() starts.  By that time:
