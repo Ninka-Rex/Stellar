@@ -4525,7 +4525,7 @@ You may change it in Options → Downloads at a later time.</source>
             <location filename="../app/qml/FilePropertiesDialog.qml" line="2082"/>
             
         
-            <source>Verify local data</source>
+            <source>Verify Local Data</source>
             
         
             <translation></translation>

@@ -1559,6 +1559,12 @@ Window {
                     speedLimitDialog.requestActivate()
                 }
             }
+            DlgButton {
+                visible: root._isTorrent
+                text: qsTr("Verify Local Data")
+                enabled: !!root.item && !root._torrentIsMoving
+                onClicked: { if (root.item) App.forceRecheckTorrent(root.item.id) }
+            }
             Item { Layout.fillWidth: true }
             DlgButton {
                 visible: root._isTorrent
@@ -2112,18 +2118,6 @@ Window {
                                 }
                             }
 
-                            // Verify button flush right, breathing room above
-                            RowLayout {
-                                Layout.fillWidth: true
-                                Layout.topMargin: 10
-                                Layout.bottomMargin: 6
-                                Item { Layout.fillWidth: true }
-                                DlgButton {
-                                    text: qsTr("Verify local data")
-                                    enabled: !!root.item && !root._torrentIsMoving
-                                    onClicked: { if (root.item) App.forceRecheckTorrent(root.item.id) }
-                                }
-                            }
                         }
                     }
                 }
