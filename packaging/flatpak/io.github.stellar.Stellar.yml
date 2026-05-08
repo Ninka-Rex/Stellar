@@ -1,6 +1,6 @@
 app-id: io.github.stellar.Stellar
 runtime: org.kde.Platform
-runtime-version: '6.8'
+runtime-version: '6.9'
 sdk: org.kde.Sdk
 command: Stellar
 

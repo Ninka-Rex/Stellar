@@ -223,6 +223,7 @@ bundle_qt_runtime() {
     local xcb_sonames=(
         "libxcb-cursor.so.0"
         "libxcb-util.so.1"
+        "libxcb-util.so.0"
         "libxcb.so.1"
         "libxcb-render.so.0"
         "libxcb-render-util.so.0"
@@ -231,6 +232,10 @@ bundle_qt_runtime() {
         "libxcb-keysyms.so.1"
         "libxcb-xinerama.so.0"
         "libxcb-xkb.so.1"
+        "libxcb-randr.so.0"
+        "libxcb-shape.so.0"
+        "libxcb-shm.so.0"
+        "libxcb-sync.so.1"
         "libxkbcommon.so.0"
         "libxkbcommon-x11.so.0"
         "libX11.so.6"
@@ -239,6 +244,10 @@ bundle_qt_runtime() {
         "libXext.so.6"
         "libXi.so.6"
         "libxshmfence.so.1"
+        "libxshmfence.so.1"
+        "libGL.so.1"
+        "libGLX.so.0"
+        "libGLdispatch.so.0"
     )
     local so resolved
     for so in "${xcb_sonames[@]}"; do
@@ -248,7 +257,13 @@ bundle_qt_runtime() {
     done
 
     if [[ ! -e "$lib_dir/libxcb-cursor.so.0" ]]; then
-        echo "ERROR: Failed to bundle libxcb-cursor.so.0 (required by Qt xcb platform plugin)." >&2
+        warn "libxcb-cursor.so.0 not found — install libxcb-cursor0 on the build machine (required by Qt xcb platform plugin)."
+    fi
+
+    # Verify the xcb platform plugin itself was actually bundled.
+    if [[ ! -e "$plugin_dir/platforms/libqxcb.so" ]]; then
+        echo "ERROR: Qt xcb platform plugin (libqxcb.so) not found in $qt_plugins/platforms." >&2
+        echo "       Install qt6-base-dev or libqt6gui6 on the build machine." >&2
         exit 1
     fi
 
@@ -376,6 +391,14 @@ export LD_LIBRARY_PATH="$APPDIR/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="$APPDIR/plugins"
 export QT_QPA_PLATFORM_PLUGIN_PATH="$APPDIR/plugins/platforms"
 export QML2_IMPORT_PATH="$APPDIR/qml"
+export QT_QML_IMPORT_PATH="$APPDIR/qml"
+# Let Qt auto-detect wayland vs xcb based on the running session.
+# Fall back to xcb if WAYLAND_DISPLAY is not set.
+if [ -n "$WAYLAND_DISPLAY" ] && [ -f "$APPDIR/plugins/platforms/libqwayland-generic.so" ]; then
+    export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-wayland;xcb}"
+else
+    export QT_QPA_PLATFORM="${QT_QPA_PLATFORM:-xcb}"
+fi
 exec "$APPDIR/Stellar" "$@"
 EOF
     chmod 0755 "$DEB_ROOT/usr/bin/stellar"
