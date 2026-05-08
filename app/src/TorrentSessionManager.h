@@ -118,6 +118,9 @@ public:
     // probes and the fast-pump timer is held idle. Existing routing-table
     // statistics still update — only the active estimator crawl is gated.
     void setDhtEstimatorEnabled(bool enabled);
+    // Suspend/resume the entire libtorrent session — zero network traffic.
+    void suspendSession();
+    void unsuspendSession();
 
 signals:
     void externalAddressChanged();

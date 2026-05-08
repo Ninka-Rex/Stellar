@@ -20,14 +20,24 @@ Rectangle {
     id: root
     property string label: ""
     property bool bold: false
+    property string iconSource: ""
     signal clicked()
 
     width: parent ? parent.width : 180
     height: 28
     color: ma.containsMouse ? "#3a3a5a" : "transparent"
 
+    Image {
+        id: icon
+        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 10 }
+        source: root.iconSource
+        width: 14; height: 14
+        visible: root.iconSource !== ""
+        fillMode: Image.PreserveAspectFit
+    }
+
     Text {
-        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: 12 }
+        anchors { verticalCenter: parent.verticalCenter; left: parent.left; leftMargin: root.iconSource !== "" ? 30 : 12 }
         text: root.label
         color: "#e0e0e0"
         font.pixelSize: 12

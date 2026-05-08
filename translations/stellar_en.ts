@@ -207,11 +207,26 @@
         
     
         <message>
-            
-        
+
+
+            <location filename="../app/src/AppController.cpp" line="1341"/>
+
+
+            <source>PAUSED</source>
+
+
+            <translation>PAUSED</translation>
+
+
+        </message>
+
+
+        <message>
+
+
             <location filename="../app/src/AppController.cpp" line="1336"/>
-            
-        
+
+
             <source>Stellar Download Manager v</source>
             
         
@@ -9444,56 +9459,71 @@ Project</source>
         
     
         <message>
-            
-        
+
+
             <location filename="../app/qml/Main.qml" line="517"/>
-            
-        
-            <source>Speed Limiter: Turn On</source>
-            
-        
-            <translation></translation>
-            
-    
+
+
+            <source>Speed Limiter</source>
+
+
+            <translation>Speed Limiter</translation>
+
+
         </message>
-        
-    
+
+
         <message>
-            
-        
+
+
             <location filename="../app/qml/Main.qml" line="518"/>
-            
-        
-            <source>Speed Limiter: Turn Off</source>
-            
-        
-            <translation></translation>
-            
-    
-        </message>
-        
-    
-        <message>
-            
-        
-            <location filename="../app/qml/Main.qml" line="519"/>
-            
-        
+
+
             <source>Speed Limiter Settings…</source>
-            
-        
-            <translation></translation>
-            
-    
+
+
+            <translation>Speed Limiter Settings…</translation>
+
+
         </message>
-        
-    
+
+
         <message>
-            
-        
+
+
+            <location filename="../app/qml/Main.qml" line="520"/>
+
+
+            <source>Pause Session</source>
+
+
+            <translation>Pause Session</translation>
+
+
+        </message>
+
+
+        <message>
+
+
+            <location filename="../app/qml/Main.qml" line="520"/>
+
+
+            <source>Resume Session</source>
+
+
+            <translation>Resume Session</translation>
+
+
+        </message>
+
+
+        <message>
+
+
             <location filename="../app/qml/Main.qml" line="521"/>
-            
-        
+
+
             <source>Exit Stellar</source>
             
         
@@ -11012,11 +11042,26 @@ Stellar Options → Browser → Bypass Download Interception</source>
         
     
         <message>
-            
-        
+
+
+            <location filename="../app/qml/Main.qml" line="35"/>
+
+
+            <source>PAUSED</source>
+
+
+            <translation>PAUSED</translation>
+
+
+        </message>
+
+
+        <message>
+
+
             <location filename="../app/qml/Main.qml" line="36"/>
-            
-        
+
+
             <source>Stellar Download Manager</source>
             
         

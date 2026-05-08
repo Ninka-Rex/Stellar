@@ -32,14 +32,15 @@ ApplicationWindow {
     minimumWidth: 800
     minimumHeight: 500
     title: {
+        const prefix = App.sessionPaused ? "[" + qsTr("PAUSED") + "] " : ""
         if (!App.settings.speedInTitleBar)
-            return qsTr("Stellar Download Manager") + " " + App.appVersion
+            return prefix + qsTr("Stellar Download Manager") + " " + App.appVersion
         function fmt(bps) {
             if (bps >= 1024 * 1024)
                 return (bps / (1024 * 1024)).toFixed(1) + " MB/s"
             return Math.round(bps / 1024) + " KB/s"
         }
-        return qsTr("Stellar  ↓ %1  ↑ %2").arg(fmt(App.totalDownSpeed)).arg(fmt(App.totalUpSpeed))
+        return prefix + qsTr("Stellar  ↓ %1  ↑ %2").arg(fmt(App.totalDownSpeed)).arg(fmt(App.totalUpSpeed))
     }
 
     Material.theme: Material.Dark
@@ -522,10 +523,10 @@ ApplicationWindow {
             TrayMenuItem { label: qsTr("GitHub");        onClicked: { trayMenu.visible = false; Qt.openUrlExternally("https://github.com/Ninka-Rex/Stellar") } }
             TrayMenuItem { label: qsTr("About Stellar"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageAbout) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
-            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + qsTr("Speed Limiter: Turn On");  onClicked: { trayMenu.visible = false; App.enableSpeedLimiter() } }
-            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps === 0 ? "✓ " : "") + qsTr("Speed Limiter: Turn Off"); onClicked: { trayMenu.visible = false; App.disableSpeedLimiter() } }
+            TrayMenuItem { label: (App.settings.globalSpeedLimitKBps > 0 ? "✓ " : "") + qsTr("Speed Limiter"); onClicked: { trayMenu.visible = false; if (App.settings.globalSpeedLimitKBps > 0) App.disableSpeedLimiter(); else App.enableSpeedLimiter() } }
             TrayMenuItem { label: qsTr("Speed Limiter Settings…"); onClicked: { trayMenu.visible = false; root.show(); root.raise(); root.showSettingsPage(root.settingsPageSpeedLimiter) } }
             Rectangle { width: parent.width; height: 1; color: "#444" }
+            TrayMenuItem { label: App.sessionPaused ? qsTr("Resume Session") : qsTr("Pause Session"); iconSource: App.sessionPaused ? "icons/resume.png" : "icons/pause.png"; onClicked: { trayMenu.visible = false; if (App.sessionPaused) App.resumeSession(); else App.pauseSession() } }
             TrayMenuItem { label: qsTr("Exit Stellar");  onClicked: { trayMenu.visible = false; root.quitApp() } }
         }
     }

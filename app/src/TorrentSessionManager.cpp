@@ -1802,6 +1802,23 @@ void TorrentSessionManager::resume(DownloadItem *item) {
 #endif
 }
 
+void TorrentSessionManager::suspendSession() {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (m_session)
+        m_session->pause();
+    m_alertTimer.stop();
+#endif
+}
+
+void TorrentSessionManager::unsuspendSession() {
+#if defined(STELLAR_HAS_LIBTORRENT)
+    if (m_session) {
+        m_session->resume();
+        m_alertTimer.start();
+    }
+#endif
+}
+
 void TorrentSessionManager::remove(const QString &downloadId, bool deleteFiles) {
 #if defined(STELLAR_HAS_LIBTORRENT)
     const auto handle = m_handles.take(downloadId);
@@ -2722,6 +2739,8 @@ void TorrentSessionManager::handleAlert(libtorrent::alert *alert) {
         DownloadItem *item = m_items.value(id, nullptr).data();
         if (item) {
             item->setStatus(DownloadItem::Status::Seeding);
+            item->setSpeed(0);
+            item->setEtaSpeed(0);
             updateItemFromStatus(item, finished->handle);
             updateModels(id, finished->handle);
         }
@@ -3530,6 +3549,8 @@ void TorrentSessionManager::updateItemFromStatus(DownloadItem *item, const libto
         item->setTorrentUploadSpeed(0);
     } else if (st.is_seeding || st.state == libtorrent::torrent_status::finished) {
         item->setStatus(DownloadItem::Status::Seeding);
+        item->setSpeed(0);
+        item->setEtaSpeed(0);
         if (!m_seedingStartTimes.contains(id)) {
             m_seedingStartTimes[id] = QDateTime::currentDateTimeUtc();
             m_lastUploadActivityTime[id] = QDateTime::currentDateTimeUtc();

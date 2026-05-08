@@ -1338,7 +1338,8 @@ AppController::AppController(QObject *parent) : QObject(parent) {
             return QCoreApplication::translate("AppController", text);
         };
 
-        QString tip = tt("Stellar Download Manager v") + appVersion();
+        QString tip = (m_sessionPaused ? QStringLiteral("[") + tt("PAUSED") + QStringLiteral("] ") : QString())
+                      + tt("Stellar Download Manager v") + appVersion();
 
         // Speed line — only shown when enabled and there is actual transfer activity.
         if (m_settings->speedInTrayTooltip() && (active > 0 || upSpeed > 0))
@@ -3819,6 +3820,82 @@ void AppController::pauseAllDownloads() {
             m_queue->pause(item->id());
         }
     }
+}
+
+void AppController::pauseSession() {
+    if (m_sessionPaused)
+        return;
+    m_sessionPaused = true;
+
+    // Collect IDs of active HTTP/yt-dlp downloads so resumeSession can restart them.
+    m_sessionPausedIds.clear();
+    const auto items = m_downloadModel->allItems();
+    for (auto *item : items) {
+        const auto s = item->statusEnum();
+        if (s == DownloadItem::Status::Downloading || s == DownloadItem::Status::Queued)
+            m_sessionPausedIds.append(item->id());
+    }
+
+    // Pause HTTP/yt-dlp downloads (uses existing pauseAllDownloads logic for non-torrent items).
+    for (auto *item : items) {
+        const auto s = item->statusEnum();
+        if (s != DownloadItem::Status::Downloading && s != DownloadItem::Status::Queued)
+            continue;
+        if (item->isTorrent())
+            continue; // handled by session-level suspend below
+        if (item->isYtdlp()) {
+            auto *worker = m_ytdlpWorkers.value(item->id());
+            if (worker) worker->pause();
+            else        item->setStatus(DownloadItem::Status::Paused);
+        } else {
+            m_queue->pause(item->id());
+        }
+    }
+
+    // Zero speeds on all torrent items — alert timer stops so they'd stay stuck otherwise.
+    for (auto *item : items) {
+        if (item->isTorrent()) {
+            item->setSpeed(0);
+            item->setEtaSpeed(0);
+            item->setTorrentUploadSpeed(0);
+            item->setTorrentConnections(0);
+            item->setTorrentPeers(0);
+            item->setTorrentListPeers(0);
+        }
+    }
+
+    // Suspend entire libtorrent session — zero network traffic.
+    if (m_torrentSession)
+        m_torrentSession->suspendSession();
+
+    emit sessionPausedChanged();
+    // Force immediate tooltip update — don't wait for the 5 s cadence timer.
+    m_lastTrayTooltip.clear();
+    if (m_tooltipTimer) m_tooltipTimer->start();
+}
+
+void AppController::resumeSession() {
+    if (!m_sessionPaused)
+        return;
+    m_sessionPaused = false;
+
+    // Unsuspend libtorrent session first so torrents can reconnect.
+    if (m_torrentSession)
+        m_torrentSession->unsuspendSession();
+
+    // Resume HTTP/yt-dlp downloads that were active before the session pause.
+    for (const QString &id : std::as_const(m_sessionPausedIds)) {
+        auto *item = m_downloadModel->itemById(id);
+        if (!item || item->isTorrent())
+            continue;
+        resumeDownload(id);
+    }
+    m_sessionPausedIds.clear();
+
+    emit sessionPausedChanged();
+    // Force immediate tooltip update.
+    m_lastTrayTooltip.clear();
+    if (m_tooltipTimer) m_tooltipTimer->start();
 }
 
 void AppController::sortDownloads(const QString &column, bool ascending) {

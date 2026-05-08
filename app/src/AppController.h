@@ -121,6 +121,7 @@ class AppController : public QObject {
     Q_PROPERTY(int publicIpListenPort READ publicIpListenPort NOTIFY publicIpChanged)
     Q_PROPERTY(bool hasIncomingConnections READ hasIncomingConnections NOTIFY hasIncomingConnectionsChanged)
     Q_PROPERTY(NetworkInfo *networkInfo READ networkInfo CONSTANT)
+    Q_PROPERTY(bool sessionPaused READ sessionPaused NOTIFY sessionPausedChanged)
 
 public:
     explicit AppController(QObject *parent = nullptr);
@@ -188,6 +189,7 @@ public:
     int publicIpListenPort() const { return m_torrentSession ? m_torrentSession->listenPort() : 0; }
     bool hasIncomingConnections() const { return m_torrentSession && m_torrentSession->hasIncomingConnection(); }
     NetworkInfo *networkInfo() const { return m_networkInfo; }
+    bool sessionPaused() const { return m_sessionPaused; }
 
     // ── yt-dlp public API ────────────────────────────────────────────────────────
     // Returns true if the URL looks like a site supported by yt-dlp (YouTube, Vimeo, etc.)
@@ -307,6 +309,8 @@ public:
     Q_INVOKABLE void deleteAllCompleted(int mode = 0, bool includeSeedingTorrents = false);
     Q_INVOKABLE void deleteDownloads(const QStringList &ids, int mode = 0);
     Q_INVOKABLE void pauseAllDownloads();
+    Q_INVOKABLE void pauseSession();
+    Q_INVOKABLE void resumeSession();
     Q_INVOKABLE void sortDownloads(const QString &column, bool ascending);
     Q_INVOKABLE void pauseDownload(const QString &id);
     Q_INVOKABLE void resumeDownload(const QString &id);
@@ -427,6 +431,7 @@ signals:
     void trayGithubRequested();
     void trayAboutRequested();
     void traySpeedLimiterRequested();
+    void sessionPausedChanged();
     void contextMenuRequested(int x, int y);
     void downloadsContextMenuRequested(int x, int y);
     void downloadsShowAllRequested();
@@ -658,6 +663,8 @@ private:
     qint64 m_sessionBaselineUploaded{0};
     qint64 m_sessionBaselineDownloaded{0};
     bool m_proxyActive{false};
+    bool m_sessionPaused{false};
+    QStringList m_sessionPausedIds; // IDs that were active when session was paused
     bool m_torrentPortTestInProgress{false};
     QString m_torrentPortTestStatus;
     QString m_torrentPortTestMessage;
