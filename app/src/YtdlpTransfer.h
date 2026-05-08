@@ -52,8 +52,12 @@ struct YtdlpOptions {
 
     // ── Playlist extras ───────────────────────────────────────────────────────
     bool    playlistRandom      = false;   // --playlist-random
+    bool    playlistReverse     = false;   // --playlist-items ::-1 (reverse order)
     bool    liveFromStart       = false;   // --live-from-start
     bool    useArchive          = false;   // --download-archive <saveDir>/yt-dlp-archive.txt
+    bool    ignoreErrors        = false;   // --ignore-errors (skip failed items in playlist)
+    int     waitForVideoSecs    = 0;       // --wait-for-video MIN (scheduled stream; 0=disabled)
+    int     concurrentFragments = 1;       // --concurrent-fragments N (DASH/HLS)
 
     // ── Rate limit override ───────────────────────────────────────────────────
     // 0 = inherit global speed limit; > 0 = override for this download only.
@@ -76,10 +80,14 @@ struct YtdlpOptions {
         if (writeThumbnailFile)  o[QLatin1String("writeThumbnailFile")] = true;
         if (splitChapters)       o[QLatin1String("splitChapters")]      = true;
         if (!downloadSections.isEmpty())    o[QLatin1String("downloadSections")]   = downloadSections;
-        if (playlistRandom)      o[QLatin1String("playlistRandom")]     = true;
-        if (liveFromStart)       o[QLatin1String("liveFromStart")]      = true;
-        if (useArchive)          o[QLatin1String("useArchive")]         = true;
-        if (rateLimitKBps > 0)   o[QLatin1String("rateLimitKBps")]     = rateLimitKBps;
+        if (playlistRandom)           o[QLatin1String("playlistRandom")]       = true;
+        if (playlistReverse)          o[QLatin1String("playlistReverse")]      = true;
+        if (liveFromStart)            o[QLatin1String("liveFromStart")]         = true;
+        if (useArchive)               o[QLatin1String("useArchive")]            = true;
+        if (ignoreErrors)             o[QLatin1String("ignoreErrors")]          = true;
+        if (waitForVideoSecs > 0)     o[QLatin1String("waitForVideoSecs")]      = waitForVideoSecs;
+        if (concurrentFragments > 1)  o[QLatin1String("concurrentFragments")]   = concurrentFragments;
+        if (rateLimitKBps > 0)        o[QLatin1String("rateLimitKBps")]         = rateLimitKBps;
         return o.isEmpty() ? QString() : QString::fromUtf8(QJsonDocument(o).toJson(QJsonDocument::Compact));
     }
 
@@ -100,33 +108,41 @@ struct YtdlpOptions {
         opts.writeThumbnailFile = o[QLatin1String("writeThumbnailFile")].toBool();
         opts.splitChapters      = o[QLatin1String("splitChapters")].toBool();
         opts.downloadSections   = o[QLatin1String("downloadSections")].toString();
-        opts.playlistRandom     = o[QLatin1String("playlistRandom")].toBool();
-        opts.liveFromStart      = o[QLatin1String("liveFromStart")].toBool();
-        opts.useArchive         = o[QLatin1String("useArchive")].toBool();
-        opts.rateLimitKBps      = o[QLatin1String("rateLimitKBps")].toInt(0);
+        opts.playlistRandom        = o[QLatin1String("playlistRandom")].toBool();
+        opts.playlistReverse       = o[QLatin1String("playlistReverse")].toBool();
+        opts.liveFromStart         = o[QLatin1String("liveFromStart")].toBool();
+        opts.useArchive            = o[QLatin1String("useArchive")].toBool();
+        opts.ignoreErrors          = o[QLatin1String("ignoreErrors")].toBool();
+        opts.waitForVideoSecs      = o[QLatin1String("waitForVideoSecs")].toInt(0);
+        opts.concurrentFragments   = o[QLatin1String("concurrentFragments")].toInt(1);
+        opts.rateLimitKBps         = o[QLatin1String("rateLimitKBps")].toInt(0);
         return opts;
     }
 
     // Build a YtdlpOptions from a QVariantMap passed by QML.
     static YtdlpOptions fromVariantMap(const QVariantMap &m) {
         YtdlpOptions opts;
-        opts.writeSubs          = m.value(QStringLiteral("writeSubs")).toBool();
-        opts.writeAutoSubs      = m.value(QStringLiteral("writeAutoSubs")).toBool();
-        opts.subLangs           = m.value(QStringLiteral("subLangs"), QStringLiteral("en")).toString();
-        opts.embedSubs          = m.value(QStringLiteral("embedSubs")).toBool();
-        opts.embedThumbnail     = m.value(QStringLiteral("embedThumbnail")).toBool();
-        opts.embedMetadata      = m.value(QStringLiteral("embedMetadata")).toBool();
-        opts.sponsorBlock       = m.value(QStringLiteral("sponsorBlock")).toBool();
-        opts.dateAfter          = m.value(QStringLiteral("dateAfter")).toString();
-        opts.cookiesFromBrowser = m.value(QStringLiteral("cookiesFromBrowser")).toString();
-        opts.writeDescription   = m.value(QStringLiteral("writeDescription")).toBool();
-        opts.writeThumbnailFile = m.value(QStringLiteral("writeThumbnailFile")).toBool();
-        opts.splitChapters      = m.value(QStringLiteral("splitChapters")).toBool();
-        opts.downloadSections   = m.value(QStringLiteral("downloadSections")).toString();
-        opts.playlistRandom     = m.value(QStringLiteral("playlistRandom")).toBool();
-        opts.liveFromStart      = m.value(QStringLiteral("liveFromStart")).toBool();
-        opts.useArchive         = m.value(QStringLiteral("useArchive")).toBool();
-        opts.rateLimitKBps      = m.value(QStringLiteral("rateLimitKBps")).toInt();
+        opts.writeSubs             = m.value(QStringLiteral("writeSubs")).toBool();
+        opts.writeAutoSubs         = m.value(QStringLiteral("writeAutoSubs")).toBool();
+        opts.subLangs              = m.value(QStringLiteral("subLangs"), QStringLiteral("en")).toString();
+        opts.embedSubs             = m.value(QStringLiteral("embedSubs")).toBool();
+        opts.embedThumbnail        = m.value(QStringLiteral("embedThumbnail")).toBool();
+        opts.embedMetadata         = m.value(QStringLiteral("embedMetadata")).toBool();
+        opts.sponsorBlock          = m.value(QStringLiteral("sponsorBlock")).toBool();
+        opts.dateAfter             = m.value(QStringLiteral("dateAfter")).toString();
+        opts.cookiesFromBrowser    = m.value(QStringLiteral("cookiesFromBrowser")).toString();
+        opts.writeDescription      = m.value(QStringLiteral("writeDescription")).toBool();
+        opts.writeThumbnailFile    = m.value(QStringLiteral("writeThumbnailFile")).toBool();
+        opts.splitChapters         = m.value(QStringLiteral("splitChapters")).toBool();
+        opts.downloadSections      = m.value(QStringLiteral("downloadSections")).toString();
+        opts.playlistRandom        = m.value(QStringLiteral("playlistRandom")).toBool();
+        opts.playlistReverse       = m.value(QStringLiteral("playlistReverse")).toBool();
+        opts.liveFromStart         = m.value(QStringLiteral("liveFromStart")).toBool();
+        opts.useArchive            = m.value(QStringLiteral("useArchive")).toBool();
+        opts.ignoreErrors          = m.value(QStringLiteral("ignoreErrors")).toBool();
+        opts.waitForVideoSecs      = m.value(QStringLiteral("waitForVideoSecs")).toInt();
+        opts.concurrentFragments   = m.value(QStringLiteral("concurrentFragments"), 1).toInt();
+        opts.rateLimitKBps         = m.value(QStringLiteral("rateLimitKBps")).toInt();
         return opts;
     }
 };

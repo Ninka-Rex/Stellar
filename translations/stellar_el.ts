@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1 ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>Λήψη: %1  Αποστολή: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
+            <source>
+Downloading: %1</source>
             <translation>Λήψη: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Σπορά: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>Διαμοιρασμός: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>Διαμοιρασμός: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>Σύνολο: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>Σύνολο: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Το Stellar κλείνει...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Χρησιμοποιήστε το βήμα ουράς μετά το OK για ομαδοποίηση λήψεων πριν την εκκίνηση.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Μόνο οι σύνδεσμοι με κατάσταση «Ευρέθηκε» είναι επιλέξιμοι. Η αναμονή ορίζεται μετά την επιβεβαίωση.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Επισκόπηση ομαδικής λήψης</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>pixels πλατιά</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Εντάξει</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Οριστική διαγραφή (χωρίς κάδο)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>Διαγραφή</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Ναι</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Όχι</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Περιήγηση...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Εντάξει</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Κατηγορία</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Λήψη δεδομένων...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Συναρμολόγηση...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Κατάσταση λήψης</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>Ελαχιστοποίηση στο εικονίδιο συστήματος</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Κατάσταση</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Μέγεθος αρχείου</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Δυνατότητα συνέχειας</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Ναι</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Όχι</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Λεπτομέρειες σφάλματος</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>Παύση</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Θέσεις έναρξης και πρόοδος λήψης ανά σύνδεση</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Μετονομασία</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Επανεκτέλεση</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Διαγραφή</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Ρυθμίσεις στηλών</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Όνομα αρχείου</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Μέγεθος</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Κατάσταση</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Υπόλοιπο</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>Ταχύτητα ↓</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Ανέβηκε</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Λήψη</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Τελευταία προσπάθεια</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Περιγραφή</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Αποθήκευση σε</translation>
@@ -892,8 +971,14 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Να θυμάμαι την επιλογή μου και να μην εμφανίζεται ξανά αυτός ο διάλογος.
 Μπορείτε να το αλλάξετε αργότερα στις Επιλογές → Λήψεις.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -905,30 +990,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Μετακίνηση αρχείου σε...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Έναρξη</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Παύση</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Άνοιγμα φακέλου</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Άνοιγμα αρχείου</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Κατάσταση</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Μέγεθος</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Αποθήκευση σε</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Μετακίνηση</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Διεύθυνση</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Ιστοσελίδα</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Παραπομπός</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Περιγραφή</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Σύνδεση</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Κωδικός</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Πηγή</translation>
@@ -937,17 +1058,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Info hash</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Αντιγραφή</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Μεταδεδομένα</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Κατηγορία</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Σημείωση</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Λήψη</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Χώρα</translation>
@@ -956,8 +1086,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Θύρα</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Μεταφόρτωση</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Διαμοιραστές</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Μήνυμα</translation>
@@ -966,10 +1102,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Διακοπή</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Λήψη</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Μετακίνηση</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Διαμοιρασμός</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>Σε αναμονή</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Πρόβλημα</translation>
@@ -994,7 +1142,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Γενικά</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Αρχεία</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Χάρτης Swarm</translation>
@@ -1079,10 +1230,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Εισάγετε νέο όνομα αρχείου ή φακέλου:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Μετονομασία</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Λήψη</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Μετονομασία...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Δεν υπάρχουν συνδεδεμένοι peers</translation>
@@ -1187,7 +1350,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Επίπεδο</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Ομότιμοι</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 γνωστοί συνδέσιμοι</translation>
@@ -1212,7 +1378,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1 %2% ολοκλήρωση</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Άγνωστο</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Εσείς (αυτός ο πελάτης)</translation>
@@ -1229,7 +1398,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Εξαναγκασμένη Αναγγελία</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>Αντιγραφή URL</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Αφαίρεση tracker</translation>
@@ -1258,7 +1430,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Επικόλληση URL web seeds - μία ανά γραμμή. Δέχονται URL seeds (BEP-19) και HTTP seeds (BEP-17).</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Τύπος</translation>
@@ -1407,7 +1582,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Βρέθηκαν %1 αποτελέσματα.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1471,7 +1649,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Όνομα προτύπου</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Αποθήκευση</translation>
@@ -1492,7 +1673,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Πρόσφατα έργα</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Ρυθμίσεις Grabber</translation>
@@ -1533,8 +1717,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Για προχωρημένους &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Σύνδεση</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Κωδικός</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Πατήστε «Για προχωρημένους» για χειροκίνητη σύνδεση ή απενεργοποίηση σελίδας αποσύνδεσης.</translation>
@@ -1746,13 +1936,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Μάσκα</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Προσθήκη</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Επεξεργασία</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>Διαγραφή</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Επεξεργασία φίλτρου</translation>
@@ -1761,9 +1960,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Νέο φίλτρο</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Κατηγορία</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Αποθήκευση</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1775,13 +1983,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Αποθηκευμένα έργα</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Έργο</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Επιλογές</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>Σε εκτέλεση</translation>
@@ -1811,13 +2031,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Έναρξη</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Όνομα αρχείου</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Όνομα αρχείου</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Μέγεθος</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Κατάσταση</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Κατάσταση</translation>
@@ -1826,7 +2055,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Κείμενο συνδέσμου</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Αποθήκευση σε</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Αποθήκευση σε</translation>
@@ -1839,8 +2071,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Αποεπιλογή επιλεγμένων</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Ρυθμίσεις Grabber</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2097,8 +2335,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Σημείωση: Το Stellar πρέπει να εκτελείται στη γραμμή συστήματος την καθορισμένη ώρα για να ξεκινήσει ένα προγραμματισμένο έργο.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2122,8 +2366,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Χρήση κειμένων συνδέσμων ως περιγραφές λήψης κατά την προσθήκη αρχείων στη κύρια λίστα του Stellar</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2135,7 +2385,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Κατάσταση: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Αδράνεια</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Επεξεργασμένες ιστοσελίδες</translation>
@@ -2148,7 +2401,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Προηγμένο</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Αρχεία</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Σύνολο</translation>
@@ -2161,8 +2417,14 @@ Project</source>
             <source>Matched</source>
             <translation>Αντιστοιχισμένο</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Λήψη</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2190,7 +2452,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Το Stellar θα επαναπροσπαθήσει με τα cookies του προγράμματος περιήγησης.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Επανάληψη Λήψης</translation>
@@ -2227,12 +2492,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Όλα τα αρχεία (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Σύνολο: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Ολοκληρώθηκε: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Λήψη: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>Σε αναμονή: %1</translation>
@@ -2241,9 +2512,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Συνολικά: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>Διακοπή</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Συνέχεια</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Ενεργοποίηση BitTorrent;</translation>
@@ -2276,7 +2556,10 @@ You can turn this off in Settings → Downloads.</source>
 
 Απενεργοποίηση στις Ρυθμίσεις → Λήψεις.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Η λήψη του αρχείου “%1” απέτυχε.</translation>
@@ -2319,8 +2602,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Αρχείο</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Άνοιγμα φακέλου</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Άνοιγμα αρχείου</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Λήψη τώρα</translation>
@@ -2333,8 +2622,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Κατάργηση</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Επανάληψη λήψης</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Εξαγωγή .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Λήψεις</translation>
@@ -2371,7 +2666,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Διακοπή ουράς</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Περιορισμός ταχύτητας</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Ενεργοποίηση</translation>
@@ -2464,7 +2762,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Στήλες…</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Επιλογές</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Προτιμήσεις…</translation>
@@ -2497,21 +2798,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Σύρετε αρχείο .torrent για άνοιγμα μεταδεδομένων</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Εύρεση:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Εύρεση</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Ρυθμίσεις ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Αναζήτηση σε:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Όνομα αρχείου ή μέρος του</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Περιγραφή</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / referer / γονική ιστοσελίδα</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Διάκριση πεζών</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Μόνο ολόκληρη λέξη</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Μετακίνηση πλευρικής γραμμής αριστερά</translation>
@@ -2560,7 +2882,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Πρόοδος λήψης καναλιού</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Λήψη αργότερα</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Το αρχείο δεν είναι πλέον διαθέσιμο</translation>
@@ -2616,12 +2941,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Να μην προστεθεί στην ουρά</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Εισαγάγετε όνομα ουράς</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Δημιουργία</translation>
@@ -2637,8 +2968,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Κανόνες λήψης</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Προσθήκη</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Αφαίρεση</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Κάντε κλικ στο «Προσθήκη» για δημιουργία κανόνα λήψης</translation>
@@ -2715,7 +3052,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Αφήστε κενό για προεπιλεγμένο φάκελο</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Περιήγηση...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Κατηγορία:</translation>
@@ -2728,7 +3068,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>Όρια Κοινοποίησης Torrent</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Αναλογία</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Προεπιλογή</translation>
@@ -2757,8 +3100,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Το «Προεπιλογή» χρησιμοποιεί τα καθολικά όρια κοινοποίησης από Ρυθμίσεις → Torrents.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Κανόνες αυτόματης λήψης RSS</translation>
@@ -2798,7 +3147,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Λήψη Torrent</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Λήψη</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Άνοιγμα στο browser</translation>
@@ -2819,26 +3171,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Σημείωση Όλων ως Αναγνωσμένα</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Όνομα</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Προσαρμοσμένο όνομα (προαιρετικό)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Αποθήκευση</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Προσθήκη URL RSS ή Atom...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Προσθήκη</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Ανανέωση…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Επεξεργασία</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Αφαίρεση</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Κανόνες λήψης</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Εγγραφές</translation>
@@ -2851,7 +3227,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Επιλέξτε άρθρο</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Άνοιγμα</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>Σημείωση ως Αναγνωσμένο</translation>
@@ -2895,7 +3274,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Νέα ουρά</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Διαγραφή</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Προγραμματισμός</translation>
@@ -2908,21 +3290,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Μια φορά λήψη</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Περιοδικός συγχρονισμός</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Έναρξη λήψης στην εκκίνηση του Stellar</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Έναρξη λήψης στις</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>Μία φορά στις</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Καθημερινά</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Επανάληψη κάθε</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>ώρες</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>λεπτά</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Διακοπή λήψης στις</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Αριθμός επαναπροσπαθειών ανά αρχείο σε περίπτωση αποτυχίας λήψης:</translation>
@@ -2931,17 +3334,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Άνοιγμα του παρακάτω αρχείου μετά την ολοκλήρωση:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Έξοδος Stellar όταν τελειώσει</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Απενεργοποίηση υπολογιστή όταν τελειώσει</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Αναγκαστικός τερματισμός διεργασιών</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Λήψη</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>αρχεία ταυτόχρονα</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>Όνομα αρχείου</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Μέγεθος</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Κατάσταση</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Χρόνος υπολειπόμενος</translation>
@@ -2978,12 +3402,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Έναρξη τώρα</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>Διακοπή</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Εφαρμογή</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Εισάγετε όνομα για τη νέα ουρά που θα εμφανίζεται στη λίστα</translation>
@@ -2992,9 +3422,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Όνομα ουράς</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Χρονοπρογραμματιστής</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Νέα ουρά</translation>
@@ -3006,7 +3445,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>Σύνδεση</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Μέγιστες ταυτόχρονες λήψεις:</translation>
@@ -3071,13 +3513,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Κωδικός:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Κατηγορίες</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Όνομα</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>Αποθήκευση στο φάκελο</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Λήψεις</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Προεπιλεγμένος φάκελος αποθήκευσης:</translation>
@@ -3138,8 +3589,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Εμφάνιση δευτερολέπτων</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Προεπισκόπηση</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Ενσωμάτωση φυλλομετρητή</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Αυτόματη έναρξη λήψης για τους ακόλουθους τύπους αρχείων:</translation>
@@ -3164,7 +3621,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Κρατήστε αυτό το πλήκτρο πατημένο κατά το κλικ σε σύνδεσμο λήψης για παράκαμψη:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Περιορισμός ταχύτητας</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Ενεργοποίηση καθολικού περιορισμού ταχύτητας</translation>
@@ -3173,7 +3633,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Μέγιστη ταχύτητα:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>KB/s</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Ενεργοποίηση καθολικού περιορισμού ανάρτησης</translation>
@@ -3190,12 +3653,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Ενεργοποίηση προγραμματιστή ταχύτητας</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Αφαίρεση</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Ενεργό</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Λήψη</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Ανέβασμα</translation>
@@ -3216,7 +3685,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Εμφάνιση ειδοποίησης σε σφάλμα λήψης</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>Γενικά</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Πρόγραμμα περιήγησης</translation>
@@ -3313,8 +3785,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Άνοιγμα διαλόγου ιδιοτήτων αρχείου</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Άνοιγμα αρχείου</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Άνοιγμα φακέλου</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24ωρη ώρα</translation>
@@ -3347,7 +3825,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Κάντε κλικ σε μια ημέρα για εναλλαγή. Οι κανόνες αξιολογούνται κάθε λεπτό· κερδίζει ο πρώτος ταιριασμένος κανόνας. Τα όρια λήψης/ανέβασματος προγραμματισμού διαγράφονται αυτόματα όταν δεν ενεργός κανόνας.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>Ελαχιστοποίηση στο δίσκο</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>Κλείσιμο στο σύστημα</translation>
@@ -3440,7 +3921,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Λήψη yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Επανελέγχωση</translation>
@@ -3549,7 +4033,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 Συνιστάται έντονα να δέσετε το Stellar σε διεπαφή VPN και να επαληθεύσετε ότι η VPN είναι ενεργή πριν χρησιμοποιήσετε torrents, για να προστατεύσετε το IP σας.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Κατανοώ, Ενεργοποίηση</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Αυτές οι ρυθμίσεις αφορούν αρχεία .torrent και magnet links.</translation>
@@ -3614,7 +4101,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>Δίκτυο</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Για προχωρημένους</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Προσαρμοσμένο user agent bittorrent</translation>
@@ -3687,7 +4177,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>Αποκλεισμός peers ανά χώρα</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Προσθήκη</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Δεν υπάρχουν αποκλεισμένες χώρες.</translation>
@@ -3724,12 +4217,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>Έκδοση</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Άγνωστο</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Διαδρομή</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Μέγεθος</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Εγγραφές</translation>
@@ -3738,7 +4237,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>Τελευταία Τροποποίηση</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Κατάσταση</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Λήψη...</translation>
@@ -3751,7 +4253,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>Ανανέωση Πληρ.</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Στατιστικά</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Συνολική μεταφορά όλων των torrents, συμπερ. των αφαιρεθέντων.</translation>
@@ -3772,7 +4277,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Τα πλήρη κείμενα αδειών βρίσκονται στο THIRD-PARTY-NOTICES.txt, που συνοδεύει την εγκατάσταση.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Λήψη Ροών</translation>
@@ -3785,7 +4293,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Διάστημα ανανέωσης ροών</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>λεπτά</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Καθυστέρηση αιτήσεων ίδιου host</translation>
@@ -3946,8 +4457,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>Λογισμικό τρίτων</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Εφαρμογή</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Προεπιλεγμένη διαδρομή</translation>
@@ -4028,7 +4545,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>Διαθέσιμο αλλά όχι φορτωμένο</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Πηγή: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Η διεύθυνση URL πηγής δεν έχει προσωρινά αποθηκευτεί. Χρησιμοποιήστε Έλεγχος ενημερώσεων.</translation>
@@ -4060,9 +4580,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>Επεξεργασία έργου</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Διαγραφή έργου</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Κατηγορίες</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Όλες οι λήψεις</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Ατελείωτες</translation>
@@ -4075,19 +4604,49 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Έργα Grabber</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torrents</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Ουρές</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Λήψη</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Διαμοιρασμός</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>Σταμάτησε</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Ενεργά</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Ανενεργά</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Έλεγχος</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Μετακίνηση</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Στατιστικά</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Στατιστικά Stellar</translation>
@@ -4096,8 +4655,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>ΟΛΟΣ Ο ΧΡΟΝΟΣ</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Λήφθηκε</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>Μεταφορτώθηκε</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Λόγος κοινοποίησης</translation>
@@ -4118,7 +4683,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>ΑΥΤΗ Η ΣΕΣΙΟΝ</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4235,27 +4803,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar Download Manager</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>Λήψεις SDM</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>Προσθήκη URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Συνέχιση</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Διακοπή</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Διακοπή Όλων</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Διαγραφή</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Διαγραφή Ολοκληρωμένων</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>Επιλογές</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Χρονοπρογραμματιστής</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Έναρξη ουράς</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Παύση ουράς</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Grabber</translation>
@@ -4264,7 +4862,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Αναζήτηση</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4303,12 +4904,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Αποθήκευση σε</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Αποθήκευση ως...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Κατηγορία</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>Προσαρμοσμένος φάκελος αποθήκευσης</translation>
@@ -4321,35 +4928,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Χρήση φακέλου κατηγορίας</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Περιγραφή</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Ρυθμίσεις torrent...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Άκυρο</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Λήψη αργότερα</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Λήψη</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Άνοιγμα torrent...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% ολοκληρώθηκε</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Αρχεία</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n αντικείμενο(α)</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Όνομα</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Πρόοδος</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Μέγεθος</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Δεν υπάρχουν πληροφορίες αρχείου</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>Σε εκκρεμότητα</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Μετονομασία</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Εισάγετε νέο όνομα:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Μετονομασία</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Μετονομασία...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Ομότιμος</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Άνοιγμα torrent και ανάγνωση μεταδεδομένων...</translation>
@@ -4362,8 +5020,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Λήψη μεταδεδομένων από %n ομότιμο(ους)</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Διαμοιραστής</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Εσείς</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Μεταδεδομένα Torrent</translation>
@@ -4383,8 +5047,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Σύνδεσμος Ιστού</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Επιλέξτε ένα τοπικό αρχείο .py πρόσθετου αναζήτησης για αντιγραφή στον φάκελο search_plugins.</translation>
@@ -4416,9 +5086,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Εγκατεστημένα πρόσθετα αναζήτησης</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Ανανέωση</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Άγνωστο</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Ενεργό</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>Ανενεργό</translation>
@@ -4427,7 +5106,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Εγκατάσταση νέου</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Πρόσθετα αναζήτησης</translation>
@@ -4435,9 +5117,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Όνομα</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Μέγεθος</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Διαμοιραστές</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Leechers</translation>
@@ -4454,12 +5145,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Άνοιγμα σελίδας περιγραφής</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>Λήψη Torrent</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Αντιγραφή ονόματος</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Αντιγραφή Magnet</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Αντιγραφή URL σελίδας περιγραφής</translation>
@@ -4472,12 +5169,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Αναζήτηση</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Άγνωστο</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Δεν υπάρχουν αποτελέσματα</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Πρόσθετα αναζήτησης</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Μηχανή αναζήτησης torrent</translation>
@@ -4493,8 +5196,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Ταχύτητα, όρια κοινοποίησης, ανακάλυψη peers, λειτουργία λήψης ανά torrent</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Κλείσιμο</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Εφαρμογή</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ΟΡΙΑ ΠΛΑΤΟΣ ΖΩΝΗΣ</translation>
@@ -4515,14 +5224,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Λόγος:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Προεπιλογή</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Απεριόριστα</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>Ορισμός σε</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Χρόνος seeding:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>ελάχ</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Χρόνος ανενεργότητας:</translation>
@@ -4626,7 +5347,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Άνοιγμα Ρυθμίσεων</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Cookies από περιηγητή:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Επιλέξτε πρόγραμμα περιήγησης για να μεταβιβάσετε τα cookies του στο yt-dlp, στη συνέχεια επαναλάβετε.</translation>
@@ -4636,8 +5360,8 @@ Click to open Statistics</source>
             <translation>Επανάληψη</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>Επιλογή ποιότητας:</translation>
+            <source>Quality:</source>
+            <translation>Ποιότητα:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4696,7 +5420,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Λήψη αρχείων υποτίτλων μαζί με το βίντεο</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Γλώσσα:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Κώδικες γλώσσας, π.χ. en · en.*,ja · all</translation>
@@ -4755,8 +5482,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Κανάλι Λήψης</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Λήψη</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Για προχωρημένους</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>Φίλτρο ημερομηνίας</translation>
@@ -4846,15 +5579,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Ζωντανή: από την αρχή</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Αντίστροφη σειρά</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Λήψη νεότερων πρώτα (αντιστρέφει τη σειρά)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>Παράβλεψη σφαλμάτων</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>Συνέχιση λήψης λίστας όταν ένα βίντεο αποτυγχάνει</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>Αναμονή ροής:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>Αναμονή προγραμματισμένης ροής, επανάληψη κάθε N δευτ.</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>διάστ. επανάληψης</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>Παράλληλα τμήματα:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>Ταυτόχρονα τμήματα DASH/HLS (κενό = 1, μέγ. 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>ανεστραμμένο</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>παράβλεψη σφαλμάτων</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>αναμονή ροής</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>παράλληλα τμήματα</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>Τυχαία σειρά λήψης λίστας</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>Λήψη ζωντανής ροής από την αρχή (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Αποθήκευση σε:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Κατηγορία:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Μορφή:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ακύρωση</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Λήψη βίντεο</translation>

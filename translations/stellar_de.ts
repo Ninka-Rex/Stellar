@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1 ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>Herunterladen: %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>↓: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Seed: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>  ↑: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
-            <translation>Gesamt: %1</translation>
+            <source>
+Seeding: %1</source>
+            <translation>↑: %1</translation>
         </message>
-        
+        <message>
+            <source>  Total: %1</source>
+            <translation>  Σ: %1</translation>
+        </message>
+        <message>
+            <source>
+Total: %1</source>
+            <translation>Σ: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar wird beendet...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Verwenden Sie den Warteschlangenschritt nach OK, um diese Downloads vor dem Start zu gruppieren.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Nur als Gefunden markierte Links sind auswählbar. Warteschlangen-Zuweisung erfolgt nach OK.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Batch-Download-Überprüfung</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>Pixel breit sein</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Endgültig löschen (nicht in den Papierkorb)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>Löschen</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Ja</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Nein</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Durchsuchen…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Kategorie</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Daten empfangen...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Zusammenbauen...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Downloadstatus</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>In Tray minimieren</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Dateigröße</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Fortsetzungsfähigkeit</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Ja</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Nein</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Fehlerdetails</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>Pause</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Startpositionen &amp; Fortschritt nach Verbindung</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Umbenennen</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Neu herunterladen</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Löschen</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Spalteneinstellungen</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Dateiname</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Größe</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Restzeit</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>↓-Geschw.</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Hochgeladen</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Heruntergeladen</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Letzter Versuch</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Beschreibung</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Speichern unter</translation>
@@ -891,8 +970,14 @@ Klicken Sie auf URL hinzufügen, um zu beginnen.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Auswahl merken und diesen Dialog nicht mehr anzeigen. Sie können dies später unter Optionen → Downloads ändern.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -904,30 +989,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Datei verschieben nach...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Start</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stopp</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Ordner öffnen</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Datei öffnen</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Größe</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Speichern unter</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Verschieben</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Adresse</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Webseite</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Referer</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Beschreibung</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Anmeldung</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Passwort</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Quelle</translation>
@@ -936,17 +1057,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Info-Hash</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Kopieren</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Metadaten</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Kategorie</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Notiz</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Geladen</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Land</translation>
@@ -955,8 +1085,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Hochgeladen</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Seeder</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Nachricht</translation>
@@ -965,10 +1101,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Gestoppt</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Lädt</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Verschieben</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Seeding</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>Wartend</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Problem</translation>
@@ -993,7 +1141,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Allgemein</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Dateien</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Schwarmkarte</translation>
@@ -1078,10 +1229,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Neuen Namen eingeben:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Umbenennen</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Download</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Umbenennen…</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Keine Peers verbunden</translation>
@@ -1186,7 +1349,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Ebene</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Peers</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 bekannte Peers</translation>
@@ -1211,7 +1377,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1 %2% fertig</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Unbekannt</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Du (dieser Client)</translation>
@@ -1228,7 +1397,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Erneute Ankündigung erzwingen</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>URL kopieren</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Tracker entfernen</translation>
@@ -1257,7 +1429,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Web-Seed-URLs einfügen – eine pro Zeile. URL-Seeds (BEP-19) und HTTP-Seeds (BEP-17) werden unterstützt.</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Typ</translation>
@@ -1406,7 +1581,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 Ergebnisse gefunden.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1470,7 +1648,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Vorlagenname</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Speichern</translation>
@@ -1491,7 +1672,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Letzte Projekte</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Grabber-Einstellungen</translation>
@@ -1532,8 +1716,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Erweitert &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Anmelden</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Passwort</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Klicken Sie auf Erweitert, um die manuelle Anmeldung zu aktivieren oder eine Abmeldeseite zu deaktivieren.</translation>
@@ -1745,13 +1935,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Maske</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Hinzufügen</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Bearbeiten</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>Löschen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Filter bearbeiten</translation>
@@ -1760,9 +1959,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Neuer Filter</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Kategorie</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Speichern</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1774,13 +1982,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Gespeicherte Projekte</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Projekt</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Optionen</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>Läuft</translation>
@@ -1810,13 +2030,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Start</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Dateiname</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Dateiname</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Größe</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Status</translation>
@@ -1825,7 +2054,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Linktext</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Speichern unter</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Speichern unter</translation>
@@ -1838,8 +2070,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Auswahl aufheben</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Grabber-Einstellungen</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2096,8 +2334,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Hinweis: Stellar muss zur angegebenen Zeit im Systemtray laufen, um ein geplantes Projekt zu starten.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2121,8 +2365,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Linktexte als Download-Beschreibungen verwenden, wenn Dateien zur Hauptliste von Stellar hinzugefügt werden</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2134,7 +2384,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Status: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Inaktiv</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Verarbeitete Webseiten</translation>
@@ -2147,7 +2400,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Erweitert</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Dateien</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Gesamt</translation>
@@ -2160,8 +2416,14 @@ Project</source>
             <source>Matched</source>
             <translation>Übereinstimmend</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Heruntergeladen</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2189,7 +2451,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar versucht denselben yt-dlp-Eintrag mit den Browser-Cookies erneut.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Download erneut versuchen</translation>
@@ -2226,12 +2491,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Alle Dateien (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Gesamt: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Abgeschlossen: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Lädt: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>In Warteschlange: %1</translation>
@@ -2240,9 +2511,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Gesamt: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>Stop</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Fortsetzen</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent-Unterstützung aktivieren?</translation>
@@ -2275,7 +2555,10 @@ You can turn this off in Settings → Downloads.</source>
 
 Sie können dies in Einstellungen → Downloads deaktivieren.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Die Datei „%1“ konnte nicht heruntergeladen werden.</translation>
@@ -2318,8 +2601,14 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>File</source>
             <translation>Datei</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Ordner öffnen</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Datei öffnen</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Jetzt herunterladen</translation>
@@ -2332,8 +2621,14 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Remove</source>
             <translation>Entfernen</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Erneut laden</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Exportiere .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Downloads</translation>
@@ -2370,7 +2665,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Stop Queue</source>
             <translation>Warteschlange stoppen</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Geschwindigkeitsbegrenzer</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Aktivieren</translation>
@@ -2463,7 +2761,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Columns…</source>
             <translation>Spalten…</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Optionen</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Einstellungen…</translation>
@@ -2496,21 +2797,42 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>.torrent-Datei hier ablegen, um Torrent-Metadaten zu öffnen</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Suchen:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Suchen</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Einstellungen ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Suchen in:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Dateiname oder Teil des Namens</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Beschreibung</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / Referer / übergeordnete Webseite</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Groß-/Kleinschreibung</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Nur ganzes Wort</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Seitenleiste nach links verschieben</translation>
@@ -2559,7 +2881,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Channel Download Progress</source>
             <translation>Kanal-Downloadfortschritt</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Später laden</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Datei nicht mehr verfügbar</translation>
@@ -2615,12 +2940,18 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Don't add to queue</source>
             <translation>Nicht zur Warteschlange hinzufügen</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Warteschlangenname eingeben</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Erstellen</translation>
@@ -2636,8 +2967,14 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Download Rules</source>
             <translation>Download-Regeln</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Hinzufügen</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Entfernen</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Klicken Sie auf „Hinzufügen“, um eine Regel zu erstellen</translation>
@@ -2714,7 +3051,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Leave empty to use default save path</source>
             <translation>Leer lassen für Standardpfad</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Durchsuchen...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Kategorie:</translation>
@@ -2727,7 +3067,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>TORRENT SHARE LIMITS</source>
             <translation>TORRENT-FREIGABELIMITS</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Ratio</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Standard</translation>
@@ -2756,8 +3099,14 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>„Standard“ verwendet die globalen Share-Limits in Einstellungen → Torrents.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS-Auto-Download-Regeln</translation>
@@ -2797,7 +3146,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Download Torrent</source>
             <translation>Torrent herunterladen</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Herunterladen</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Im Browser öffnen</translation>
@@ -2818,26 +3170,50 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Mark All Read</source>
             <translation>Alle als gelesen markieren</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Name</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Benutzerdefinierter Name (optional)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Speichern</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS- oder Atom-Feed-URL hinzufügen...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Hinzufügen</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Aktualisiere…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Bearbeiten</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Entfernen</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Download-Regeln</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Abonnements</translation>
@@ -2850,7 +3226,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Select an article</source>
             <translation>Artikel auswählen</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Öffnen</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>Als gelesen markieren</translation>
@@ -2894,7 +3273,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>New queue</source>
             <translation>Neue Warteschlange</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Löschen</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Zeitplan</translation>
@@ -2907,21 +3289,42 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>One-time downloading</source>
             <translation>Einmaliger Download</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Periodische Synchronisierung</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Download bei Stellar-Start starten</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Download starten um</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>Einmal um</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Täglich</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Erneut starten alle</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>Std.</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>Min.</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Download stoppen um</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Anzahl der Wiederholungen pro Datei bei Downloadfehler:</translation>
@@ -2930,17 +3333,38 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Open the following file when done:</source>
             <translation>Datei nach Abschluss öffnen:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Stellar nach Abschluss beenden</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Computer nach Abschluss ausschalten</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Prozesse zwangsweise beenden</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Herunterladen</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>Dateien gleichzeitig</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>Dateiname</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Größe</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Verbleibende Zeit</translation>
@@ -2977,12 +3401,18 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Start now</source>
             <translation>Jetzt starten</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>Stopp</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Anwenden</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Geben Sie einen Namen für die neue Warteschlange ein, der in der Liste angezeigt wird</translation>
@@ -2991,9 +3421,18 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Queue name</source>
             <translation>Warteschlangenname</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planer</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Neue Warteschlange</translation>
@@ -3005,7 +3444,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>Verbindung</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Max. gleichzeitige Downloads:</translation>
@@ -3070,13 +3512,22 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Password:</source>
             <translation>Passwort:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Kategorien</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Name</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>In Ordner speichern</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Downloads</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Standard-Speicherordner:</translation>
@@ -3137,8 +3588,14 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Show seconds</source>
             <translation>Sekunden anzeigen</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Vorschau</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Browser-Integration</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Downloads folgender Dateitypen automatisch starten:</translation>
@@ -3163,7 +3620,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Diese Taste gedrückt halten, um beim Klick auf einen Download-Link das Abfangen zu überspringen und den Browser-Download zu erlauben:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Tempolimit</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Globale Geschwindigkeitsbegrenzung aktivieren</translation>
@@ -3172,7 +3632,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Maximum speed:</source>
             <translation>Maximale Geschwindigkeit:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>KB/s</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Globale Upload-Begrenzung aktivieren</translation>
@@ -3189,12 +3652,18 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Enable speed limiter scheduler</source>
             <translation>Geschwindigkeitsbegrenzungsplaner aktivieren</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Entfernen</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Ein</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Download</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Upload</translation>
@@ -3215,7 +3684,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Show notification on download error</source>
             <translation>Benachrichtigung bei Downloadfehler anzeigen</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>Allgemein</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Browser</translation>
@@ -3312,8 +3784,14 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Open file properties dialog</source>
             <translation>Dateieigenschaften öffnen</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Datei öffnen</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Ordner öffnen</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24-Stunden-Format</translation>
@@ -3346,7 +3824,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Klicken Sie auf einen Tages-Pill, um ihn umzuschalten. Regeln werden jede Minute ausgewertet; die erste übereinstimmende Regel gewinnt. Geplante Download- und Upload-Limits werden automatisch gelöscht, wenn keine Regel aktiv ist.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>In Taskleiste minimieren</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>In Systemleiste schließen</translation>
@@ -3439,7 +3920,10 @@ Stellar-Optionen → Browser → Download-Abfangen umgehen</translation>
             <source>Download yt-dlp</source>
             <translation>yt-dlp herunterladen</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Erneut prüfen</translation>
@@ -3548,7 +4032,10 @@ Die Weitergabe über BitTorrent liegt in Ihrer alleinigen Verantwortung. Stellen
 
 Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden und zu überprüfen, ob Ihr VPN aktiv ist, bevor Sie Torrents verwenden, um Ihre IP-Adresse vor Offenlegung zu schützen.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Verstanden, aktivieren</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Diese Einstellungen gelten für .torrent-Dateien und Magnet-Links.</translation>
@@ -3613,7 +4100,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Networking</source>
             <translation>Netzwerk</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Erweitert</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Benutzerdefiniertes BitTorrent-User-Agent</translation>
@@ -3686,7 +4176,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Block peers by country</source>
             <translation>Peers nach Land blockieren</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Hinzufügen</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Keine blockierten Länder.</translation>
@@ -3723,12 +4216,18 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Version</source>
             <translation>Version</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Unbekannt</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Pfad</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Größe</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Einträge</translation>
@@ -3737,7 +4236,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Last Modified</source>
             <translation>Zuletzt geändert</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Status</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Wird heruntergeladen...</translation>
@@ -3750,7 +4252,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Refresh Info</source>
             <translation>Info aktualisieren</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Statistik</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Kumulierte Übertragungsmengen aller Torrents, einschließlich entfernter.</translation>
@@ -3771,7 +4276,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Vollständige Lizenztexte in THIRD-PARTY-NOTICES.txt, enthalten in dieser Installation.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Feed-Abfrage</translation>
@@ -3784,7 +4292,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Feeds refresh interval</source>
             <translation>Feed-Aktualisierungsintervall</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>Minuten</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Verzögerung für Host-Anfragen</translation>
@@ -3945,8 +4456,14 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Third-party software</source>
             <translation>Drittanbieter-Software</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Anwenden</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Standardroute</translation>
@@ -4027,7 +4544,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Available but not loaded</source>
             <translation>Verfügbar, aber nicht geladen</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Quelle: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Quell-URL noch nicht zwischengespeichert. Nutzen Sie 'Auf Updates prüfen', um IPtoCityDB aus update.json zu zwischenspeichern.</translation>
@@ -4059,9 +4579,18 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Edit Project</source>
             <translation>Projekt bearbeiten</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Projekt löschen</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Kategorien</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Alle Downloads</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Unvollständig</translation>
@@ -4074,19 +4603,49 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>Grabber Projects</source>
             <translation>Grabber-Projekte</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torrents</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Warteschlangen</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Lädt herunter</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Seeded</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>Gestoppt</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Aktiv</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Inaktiv</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Prüft</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Verschiebt</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Statistik</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar-Statistiken</translation>
@@ -4095,8 +4654,14 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>ALL TIME</source>
             <translation>GESAMTE ZEIT</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Heruntergeladen</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>Hochgeladen</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Share-Verhältnis</translation>
@@ -4117,7 +4682,10 @@ Es wird dringend empfohlen, Stellar an eine VPN-Netzwerkschnittstelle zu binden 
             <source>THIS SESSION</source>
             <translation>DIESES SESSION</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4234,27 +4802,57 @@ Klicken für Statistiken</translation>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar Download Manager</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM-Downloads</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>URL hinzufügen</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Fortsetzen</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Stopp</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Alle stoppen</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Löschen</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Fertige löschen</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>Optionen</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planer</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Warteschlange starten</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Warteschlange stoppen</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Grabber</translation>
@@ -4263,7 +4861,10 @@ Klicken für Statistiken</translation>
             <source>Search Engine</source>
             <translation>Suchmaschine</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4302,12 +4903,18 @@ Klicken für Statistiken</translation>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Speichern unter</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Speichern unter...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Kategorie</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>Benutzerordner</translation>
@@ -4320,35 +4927,86 @@ Klicken für Statistiken</translation>
             <source>Use category folder</source>
             <translation>Kategorieordner verwenden</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Beschreibung</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Torrent-Einstellungen...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Später laden</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Laden</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Torrent wird geöffnet...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2% fertig</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Dateien</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n Element(e)</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Name</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Fortschritt</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Größe</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Keine Dateiinformationen verfügbar</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>Ausstehend</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Element umbenennen</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Neuen Datei- oder Ordnernamen eingeben:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Umbenennen</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Umbenennen...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Peer</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Torrent wird geöffnet und Metadaten gelesen…</translation>
@@ -4361,8 +5019,14 @@ Klicken für Statistiken</translation>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Metadaten werden von %n Peer(s) heruntergeladen</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Seed</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Du</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrent-Metadaten</translation>
@@ -4382,8 +5046,14 @@ Klicken für Statistiken</translation>
             <source>Web Link</source>
             <translation>Web-Link</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Wählen Sie eine lokale .py-Suchplugin-Datei zum Kopieren in den Ordner search_plugins.</translation>
@@ -4415,9 +5085,18 @@ Klicken für Statistiken</translation>
             <source>Installed Search Plugins</source>
             <translation>Installierte Suchplugins</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Aktualisieren</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Unbekannt</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Aktiviert</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>Deaktiviert</translation>
@@ -4426,7 +5105,10 @@ Klicken für Statistiken</translation>
             <source>Install a New One</source>
             <translation>Neues installieren</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Suchplugins</translation>
@@ -4434,9 +5116,18 @@ Klicken für Statistiken</translation>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Name</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Größe</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Seeder</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Leecher</translation>
@@ -4453,12 +5144,18 @@ Klicken für Statistiken</translation>
             <source>Open Description Page</source>
             <translation>Beschreibungsseite öffnen</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>Torrent laden</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Name kopieren</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Magnet-Link kopieren</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Beschreibungs-URL kopieren</translation>
@@ -4471,12 +5168,18 @@ Klicken für Statistiken</translation>
             <source>Search</source>
             <translation>Suche</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Unbekannt</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Keine Ergebnisse</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Such-Plugins</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent-Suchmaschine</translation>
@@ -4492,8 +5195,14 @@ Klicken für Statistiken</translation>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Geschwindigkeit, Limits, Peer-Entdeckung, Modus</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Schließen</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Anwenden</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>BANDWIDTH-LIMITS</translation>
@@ -4514,14 +5223,26 @@ Klicken für Statistiken</translation>
             <source>Ratio:</source>
             <translation>Ratio:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Standard</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Unbegrenzt</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>Setzen auf</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Seed-Zeit:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>min</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Inaktive Zeit:</translation>
@@ -4625,7 +5346,10 @@ Klicken für Statistiken</translation>
             <source>Open Settings</source>
             <translation>Einstellungen öffnen</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Cookies vom Browser:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Wählen Sie einen Browser, um dessen Cookies an yt-dlp zu übergeben, und versuchen Sie es erneut.</translation>
@@ -4635,8 +5359,8 @@ Klicken für Statistiken</translation>
             <translation>Erneut versuchen</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>Qualität auswählen:</translation>
+            <source>Quality:</source>
+            <translation>Qualität:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4695,7 +5419,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Untertiteldateien mit Video herunterladen</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Sprache:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Sprachcode(s), z. B. en · en.*,ja · alle</translation>
@@ -4754,8 +5481,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Download-Kanal</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Download</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Erweitert</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>Datumsfilter</translation>
@@ -4845,15 +5578,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Live: vom Anfang</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Reihenfolge umkehren</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Neueste Videos zuerst (kehrt Playlist um)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>Fehler überspringen</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>Restliche Playlist herunterladen, wenn ein Video fehlschlägt (nicht verfügbar, Geoblocking usw.)</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>Auf Stream warten:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>Auf geplanten/kommenden Stream warten, alle N Sekunden wiederholen</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>s Wiederholungsintervall (für geplante/kommende Streams)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>Parallele Fragmente:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>Gleichzeitige DASH/HLS-Fragmente (leer = 1, max. 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>umgekehrt</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>Fehler überspringen</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>Auf Stream warten</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>Parallele Frags</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>Playlist in Zufallsreihenfolge laden</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>Livestream von Anfang laden (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Speichern unter:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Kategorie:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Format:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Abbrechen</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Video-Download</translation>

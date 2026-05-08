@@ -37,10 +37,10 @@ Window {
                              var extraOptions)
 
     // ── Window ────────────────────────────────────────────────────────────────
-    width:       620
-    height:      520
-    minimumWidth:  520
-    minimumHeight: 400
+    width:        620
+    // Height follows content; clamp so it never overflows the screen.
+    height:       Math.min(rootCol.implicitHeight, Screen.height - 80)
+    minimumWidth: 520
     title:       qsTr("Video Download")
     color:       "#1e1e1e"
     modality:    Qt.ApplicationModal
@@ -132,8 +132,11 @@ Window {
         dateAfterField.text = ""; cookiesBrowserCombo.currentIndex = 0
         writeDescCheck.checked = false; writeThumbnailCheck.checked = false
         splitChaptersCheck.checked = false; sectionsField.text = ""
-        playlistRandomCheck.checked = false; liveFromStartCheck.checked = false
-        useArchiveCheck.checked = false; rateLimitField.text = ""
+        playlistRandomCheck.checked = false; playlistReverseCheck.checked = false
+        liveFromStartCheck.checked = false; useArchiveCheck.checked = false
+        ignoreErrorsCheck.checked = false; waitForVideoCheck.checked = false
+        waitForVideoField.text = "60"; concFragField.text = ""
+        rateLimitField.text = ""
         advancedExpanded = false
     }
 
@@ -259,9 +262,16 @@ Window {
         if (writeThumbnailCheck.checked) o["writeThumbnailFile"] = true
         if (splitChaptersCheck.checked)  o["splitChapters"]     = true
         var sec = sectionsField.text.trim(); if(sec.length>0) o["downloadSections"]=sec
-        if (playlistRandomCheck.checked) o["playlistRandom"]    = true
-        if (liveFromStartCheck.checked)  o["liveFromStart"]     = true
-        if (useArchiveCheck.checked)     o["useArchive"]        = true
+        if (playlistRandomCheck.checked)  o["playlistRandom"]        = true
+        if (playlistReverseCheck.checked) o["playlistReverse"]       = true
+        if (liveFromStartCheck.checked)   o["liveFromStart"]         = true
+        if (useArchiveCheck.checked)      o["useArchive"]            = true
+        if (ignoreErrorsCheck.checked)    o["ignoreErrors"]          = true
+        if (waitForVideoCheck.checked) {
+            var wv = parseInt(waitForVideoField.text.trim(), 10)
+            if (!isNaN(wv) && wv > 0) o["waitForVideoSecs"] = wv
+        }
+        var cf = parseInt(concFragField.text.trim(), 10); if(!isNaN(cf)&&cf>1) o["concurrentFragments"]=cf
         var rl = parseInt(rateLimitField.text.trim(), 10); if(!isNaN(rl)&&rl>0) o["rateLimitKBps"]=rl
         return o
     }
@@ -332,30 +342,36 @@ Window {
     }
 
     // ── Root layout ───────────────────────────────────────────────────────────
-    // Structure: header (fixed) / format list (stretches) / options scroll (fixed max) / buttons (fixed)
+    // Content-driven: window height = implicitHeight of this column (clamped above).
     ColumnLayout {
-        anchors.fill: parent
+        id: rootCol
+        anchors { left: parent.left; right: parent.right; top: parent.top }
         spacing: 0
 
         // ── Header ────────────────────────────────────────────────────────────
         Rectangle {
             Layout.fillWidth: true
-            implicitHeight: 48
-            color: "#222228"
+            implicitHeight: 52
+            color: "#1e1e26"
 
-            // Use a plain Row + anchors — no RowLayout so text width is simply
-            // "total width minus icon minus spacing minus margins".
+            // Left accent stripe
+            Rectangle {
+                anchors { left: parent.left; top: parent.top; bottom: parent.bottom }
+                width: 3; color: "#4488dd"
+            }
+
             Item {
-                anchors { fill: parent; leftMargin: 16; rightMargin: 16; topMargin: 7; bottomMargin: 7 }
+                anchors { fill: parent; leftMargin: 19; rightMargin: 16; topMargin: 8; bottomMargin: 8 }
 
                 Image {
                     id: headerIcon
                     anchors { left: parent.left; verticalCenter: parent.verticalCenter }
                     source: "qrc:/qt/qml/com/stellar/app/app/qml/icons/wand.ico"
-                    sourceSize: Qt.size(20, 20)
-                    width: 20; height: 20
+                    sourceSize: Qt.size(22, 22)
+                    width: 22; height: 22
                     fillMode: Image.PreserveAspectFit
                     smooth: true
+                    opacity: 0.9
                 }
 
                 Column {
@@ -372,28 +388,31 @@ Window {
                               : (root._probing ? qsTr("Fetching video info…")
                               : (root._probeError.length > 0 ? qsTr("Could not fetch video info")
                               : qsTr("Video Download")))
-                        color: "#e8e8e8"; font.pixelSize: 13; font.weight: Font.Medium
+                        color: "#eaeaea"; font.pixelSize: 13; font.weight: Font.Medium
                         elide: Text.ElideRight
                     }
                     Text {
                         width: parent.width
                         text: root.pendingUrl
-                        color: "#5a7aaa"; font.pixelSize: 11
+                        color: "#4a6a9a"; font.pixelSize: 11
                         elide: Text.ElideMiddle
                     }
                 }
             }
         }
 
-        // thin separator under header
-        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a2a" }
+        // separator under header
+        Rectangle { Layout.fillWidth: true; height: 1; color: "#2e2e38" }
 
-        // ── Body — stretches to fill remaining space; all states use anchors ──
-        // Plain Item so all children position themselves with anchors, not Layout.
+        // ── Body ─────────────────────────────────────────────────────────────
         Item {
             id: bodyItem
             Layout.fillWidth: true
-            Layout.fillHeight: true
+            // When probing/error, give a fixed height for the centered states.
+            // When showing content, implicitHeight tracks the inner ColumnLayout.
+            implicitHeight: root._probing || root._probeError.length > 0
+                            ? 160
+                            : bodyContent.implicitHeight
 
             // Loading
             ColumnLayout {
@@ -516,117 +535,175 @@ Window {
                 DlgButton { Layout.alignment: Qt.AlignHCenter; text: qsTr("Retry"); onClicked: root._startProbe() }
             }
 
-            // Format picker — fills the whole body, options scroll is capped below it
+            // Format picker + options
             ColumnLayout {
-                anchors { fill: parent; topMargin: 10; leftMargin: 16; rightMargin: 16; bottomMargin: 0 }
-                spacing: 4
+                id: bodyContent
+                anchors { left: parent.left; right: parent.right; top: parent.top; topMargin: 10; leftMargin: 16; rightMargin: 16 }
+                spacing: 6
                 visible: !root._probing && root._probeError.length === 0 && root._formats.length > 0
 
-                Text { text: qsTr("Select quality:"); color: "#888888"; font.pixelSize: 11 }
+                // ── Quality dropdown ──────────────────────────────────────────
+                RowLayout {
+                    Layout.fillWidth: true; spacing: 8
+                    Text { text: qsTr("Quality:"); color: "#888888"; font.pixelSize: 11; Layout.preferredWidth: 58 }
 
-                Rectangle {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    color: "#181818"; border.color: "#383838"; radius: 4; clip: true
+                    Item {
+                        id: fmtDropWrapper
+                        Layout.fillWidth: true
+                        implicitHeight: 30
 
-                    ListView {
-                        id: formatList
-                        anchors { fill: parent; margins: 1 }
-                        model: root._formats; currentIndex: 0
-                        clip: true; boundsBehavior: Flickable.StopAtBounds
-                        ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+                        Rectangle {
+                            id: fmtTrigger
+                            anchors.fill: parent; radius: 3
+                            color: fmtDropPopup.opened ? "#1a3060"
+                                   : (fmtHover.containsMouse ? "#202030" : "#1b1b1b")
+                            border.color: fmtDropPopup.opened ? "#4488dd"
+                                          : (fmtHover.containsMouse ? "#4a4a6a" : "#3a3a3a")
 
-                    delegate: Rectangle {
-                        id: fd
-                        width: formatList.width; height: 28
-                        readonly property bool sel: formatList.currentIndex === index
-                        readonly property bool hov: fmMouse.containsMouse
-                        color: sel ? "#1a3a6a" : (hov ? "#232333" : "transparent")
-                        Rectangle { width: 3; height: parent.height; color: "#4488dd"; visible: fd.sel }
-
-                        RowLayout {
-                            anchors { fill: parent; leftMargin: 10; rightMargin: 8 }
-                            spacing: 6
-
-                            Text {
-                                text: modelData.label || ""
-                                font.pixelSize: 12
-                                color: fd.sel ? "#c0d8ff" : "#d0d0d0"
-                                font.weight: fd.sel ? Font.Medium : Font.Normal
-                                Layout.minimumWidth: 70
+                            RowLayout {
+                                anchors { fill: parent; leftMargin: 9; rightMargin: 8 }
+                                spacing: 6
+                                Text {
+                                    id: fmtSelLabel
+                                    readonly property var _fmt: root._formats[formatList.currentIndex] || null
+                                    text: _fmt ? (_fmt.label || "") : ""
+                                    font.pixelSize: 12; font.weight: Font.Medium; color: "#c8d8f0"
+                                    Layout.minimumWidth: 70
+                                }
+                                Rectangle {
+                                    readonly property string c: fmtSelLabel._fmt ? root._codecLabel(fmtSelLabel._fmt.vcodec || "") : ""
+                                    visible: c.length > 0 && fmtSelLabel._fmt && fmtSelLabel._fmt.id !== "best" && fmtSelLabel._fmt.id !== "bestvideo+bestaudio/best"
+                                    width: _sct.implicitWidth + 10; height: 15; radius: 3
+                                    color: c==="AV1"?"#1a2020":c==="VP9"?"#1e1a20":c==="H.264"?"#1a2030":c==="H.265"?"#201a1a":"#1e1e1e"
+                                    border.color: c==="AV1"?"#2a5040":c==="VP9"?"#3a2a50":c==="H.264"?"#2a4060":c==="H.265"?"#502a2a":"#3a3a3a"
+                                    Text { id: _sct; anchors.centerIn: parent; text: parent.c; font.pixelSize: 9
+                                        color: parent.c==="AV1"?"#5abba0":parent.c==="VP9"?"#9a70cc":parent.c==="H.264"?"#6a9acc":parent.c==="H.265"?"#cc7a7a":"#aaaaaa" }
+                                }
+                                Rectangle {
+                                    readonly property string a: fmtSelLabel._fmt ? root._acodecLabel(fmtSelLabel._fmt.acodec || "") : ""
+                                    visible: a.length > 0 && fmtSelLabel._fmt && (fmtSelLabel._fmt.height === 0 || !fmtSelLabel._fmt.vcodec || fmtSelLabel._fmt.vcodec === "none") && fmtSelLabel._fmt.id !== "best"
+                                    width: _sat.implicitWidth + 10; height: 15; radius: 3
+                                    color: "#1a1e20"; border.color: "#2a4040"
+                                    Text { id: _sat; anchors.centerIn: parent; text: parent.a; font.pixelSize: 9; color: "#5a9aaa" }
+                                }
+                                Rectangle {
+                                    readonly property int f: fmtSelLabel._fmt ? (fmtSelLabel._fmt.fps || 0) : 0
+                                    visible: f > 0 && f !== 30 && fmtSelLabel._fmt && (fmtSelLabel._fmt.height || 0) > 0
+                                    width: _sft.implicitWidth + 10; height: 15; radius: 3
+                                    color: "#1e1e2a"; border.color: "#2a2a50"
+                                    Text { id: _sft; anchors.centerIn: parent; text: parent.f + " fps"; font.pixelSize: 9; color: "#8888cc" }
+                                }
+                                Item { Layout.fillWidth: true }
+                                Text {
+                                    readonly property bool hasSize: fmtSelLabel._fmt && (fmtSelLabel._fmt.filesize || 0) > 0
+                                    text: hasSize ? root._formatSize(fmtSelLabel._fmt.filesize) : ""
+                                    color: "#6a8aaa"; font.pixelSize: 11; visible: hasSize
+                                }
+                                Text { text: fmtDropPopup.opened ? "▲" : "▼"; color: "#4a5a7a"; font.pixelSize: 8; Layout.alignment: Qt.AlignVCenter }
                             }
 
-                            Rectangle {
-                                property string c: root._codecLabel(modelData.vcodec || "")
-                                visible: c.length > 0 && modelData.id !== "best" && modelData.id !== "bestvideo+bestaudio/best"
-                                width: _ct.implicitWidth + 10; height: 15; radius: 3
-                                color: c==="AV1"?"#1a2020":c==="VP9"?"#1e1a20":c==="H.264"?"#1a2030":c==="H.265"?"#201a1a":"#1e1e1e"
-                                border.color: c==="AV1"?"#2a5040":c==="VP9"?"#3a2a50":c==="H.264"?"#2a4060":c==="H.265"?"#502a2a":"#3a3a3a"
-                                Text { id: _ct; anchors.centerIn: parent; text: parent.c; font.pixelSize: 9
-                                    color: parent.c==="AV1"?"#5abba0":parent.c==="VP9"?"#9a70cc":parent.c==="H.264"?"#6a9acc":parent.c==="H.265"?"#cc7a7a":"#aaaaaa" }
-                            }
-
-                            Rectangle {
-                                property string a: root._acodecLabel(modelData.acodec || "")
-                                visible: a.length > 0 && (modelData.height === 0 || !modelData.vcodec || modelData.vcodec === "none") && modelData.id !== "best"
-                                width: _at.implicitWidth + 10; height: 15; radius: 3
-                                color: "#1a1e20"; border.color: "#2a4040"
-                                Text { id: _at; anchors.centerIn: parent; text: parent.a; font.pixelSize: 9; color: "#5a9aaa" }
-                            }
-
-                            Rectangle {
-                                property int f: modelData.fps || 0
-                                visible: f > 0 && f !== 30 && (modelData.height || 0) > 0
-                                width: _ft.implicitWidth + 10; height: 15; radius: 3
-                                color: "#1e1e2a"; border.color: "#2a2a50"
-                                Text { id: _ft; anchors.centerIn: parent; text: parent.f + " fps"; font.pixelSize: 9; color: "#8888cc" }
-                            }
-
-                            Item { Layout.fillWidth: true }
-
-                            // File size — only available for pre-muxed streams (360p and
-                            // below, audio-only).  Split video+audio streams (1080p/720p/
-                            // 480p) require two separate downloads that yt-dlp merges with
-                            // ffmpeg, and their combined size isn't reported by the probe.
-                            Text {
-                                readonly property bool hasSize: (modelData.filesize || 0) > 0
-                                readonly property bool isSplit: (modelData.height || 0) >= 480
-                                                                && modelData.id !== "best"
-                                                                && modelData.id !== "bv*+ba/b"
-
-                                text:    hasSize ? root._formatSize(modelData.filesize) : (isSplit ? "" : "")
-                                color:   fd.sel ? "#8aaddd" : "#6a8aaa"
-                                font.pixelSize: 11
-                                visible: hasSize
-
-                                HoverHandler { id: _szHover }
-                                ToolTip.visible:  !hasSize && isSplit && _szHover.hovered
-                                ToolTip.delay:    500
-                                ToolTip.text:     qsTr("Size unavailable — this quality uses separate video\nand audio streams merged by ffmpeg after download.")
+                            HoverHandler { id: fmtHover }
+                            MouseArea {
+                                anchors.fill: parent; cursorShape: Qt.PointingHandCursor
+                                onClicked: fmtDropPopup.opened ? fmtDropPopup.close() : fmtDropPopup.open()
                             }
                         }
 
-                        MouseArea { id: fmMouse; anchors.fill: parent; hoverEnabled: true; onClicked: formatList.currentIndex = index }
+                        Popup {
+                            id: fmtDropPopup
+                            y: fmtTrigger.height + 2; x: 0
+                            width: fmtDropWrapper.width
+                            implicitHeight: Math.min(fmtPopupList.contentHeight + 4, 220)
+                            padding: 2; z: 100
+                            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+                            background: Rectangle { color: "#1b1b1b"; border.color: "#4488dd"; radius: 3 }
+
+                            ListView {
+                                id: fmtPopupList
+                                anchors { fill: parent; margins: 1 }
+                                model: root._formats; currentIndex: formatList.currentIndex
+                                clip: true; boundsBehavior: Flickable.StopAtBounds
+                                ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
+
+                                delegate: Rectangle {
+                                    id: pfd
+                                    width: fmtPopupList.width; height: 28
+                                    readonly property bool sel: fmtPopupList.currentIndex === index
+                                    readonly property bool hov: pfMouse.containsMouse
+                                    color: sel ? "#1a3a6a" : (hov ? "#232333" : "transparent")
+                                    Rectangle { width: 3; height: parent.height; color: "#4488dd"; visible: pfd.sel }
+
+                                    RowLayout {
+                                        anchors { fill: parent; leftMargin: 10; rightMargin: 8 }
+                                        spacing: 6
+                                        Text {
+                                            text: modelData.label || ""; font.pixelSize: 12
+                                            color: pfd.sel ? "#c0d8ff" : "#d0d0d0"
+                                            font.weight: pfd.sel ? Font.Medium : Font.Normal
+                                            Layout.minimumWidth: 70
+                                        }
+                                        Rectangle {
+                                            property string c: root._codecLabel(modelData.vcodec || "")
+                                            visible: c.length > 0 && modelData.id !== "best" && modelData.id !== "bestvideo+bestaudio/best"
+                                            width: _pct.implicitWidth + 10; height: 15; radius: 3
+                                            color: c==="AV1"?"#1a2020":c==="VP9"?"#1e1a20":c==="H.264"?"#1a2030":c==="H.265"?"#201a1a":"#1e1e1e"
+                                            border.color: c==="AV1"?"#2a5040":c==="VP9"?"#3a2a50":c==="H.264"?"#2a4060":c==="H.265"?"#502a2a":"#3a3a3a"
+                                            Text { id: _pct; anchors.centerIn: parent; text: parent.c; font.pixelSize: 9
+                                                color: parent.c==="AV1"?"#5abba0":parent.c==="VP9"?"#9a70cc":parent.c==="H.264"?"#6a9acc":parent.c==="H.265"?"#cc7a7a":"#aaaaaa" }
+                                        }
+                                        Rectangle {
+                                            property string a: root._acodecLabel(modelData.acodec || "")
+                                            visible: a.length > 0 && (modelData.height === 0 || !modelData.vcodec || modelData.vcodec === "none") && modelData.id !== "best"
+                                            width: _pat.implicitWidth + 10; height: 15; radius: 3
+                                            color: "#1a1e20"; border.color: "#2a4040"
+                                            Text { id: _pat; anchors.centerIn: parent; text: parent.a; font.pixelSize: 9; color: "#5a9aaa" }
+                                        }
+                                        Rectangle {
+                                            property int f: modelData.fps || 0
+                                            visible: f > 0 && f !== 30 && (modelData.height || 0) > 0
+                                            width: _pft.implicitWidth + 10; height: 15; radius: 3
+                                            color: "#1e1e2a"; border.color: "#2a2a50"
+                                            Text { id: _pft; anchors.centerIn: parent; text: parent.f + " fps"; font.pixelSize: 9; color: "#8888cc" }
+                                        }
+                                        Item { Layout.fillWidth: true }
+                                        Text {
+                                            readonly property bool hasSize: (modelData.filesize || 0) > 0
+                                            readonly property bool isSplit: (modelData.height || 0) >= 480 && modelData.id !== "best" && modelData.id !== "bv*+ba/b"
+                                            text: hasSize ? root._formatSize(modelData.filesize) : ""
+                                            color: pfd.sel ? "#8aaddd" : "#6a8aaa"; font.pixelSize: 11; visible: hasSize
+                                            HoverHandler { id: _pszHover }
+                                            ToolTip.visible: !hasSize && isSplit && _pszHover.hovered; ToolTip.delay: 500
+                                            ToolTip.text: qsTr("Size unavailable — this quality uses separate video\nand audio streams merged by ffmpeg after download.")
+                                        }
+                                    }
+                                    MouseArea { id: pfMouse; anchors.fill: parent; hoverEnabled: true
+                                        onClicked: { formatList.currentIndex = index; fmtDropPopup.close() }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            }
 
-            // ── Options scroll (capped height — always below format list) ─────
+                // Hidden ListView keeps formatList.currentIndex as source of truth
+                ListView {
+                    id: formatList
+                    visible: false; width: 0; height: 0
+                    model: root._formats; currentIndex: 0
+                }
+
+            // ── Options scroll ────────────────────────────────────────────────
             ScrollView {
                 id: optScroll
                 Layout.fillWidth: true
-                Layout.preferredHeight: Math.min(optCol.implicitHeight + 2, 220)
-                Layout.maximumHeight: 220
-                Layout.leftMargin: 0
-                Layout.rightMargin: 0
-                Layout.topMargin: 4
+                Layout.preferredHeight: Math.min(optCol.implicitHeight + 2, 320)
+                Layout.maximumHeight: 320
                 clip: true
                 ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                 ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
             ColumnLayout {
                 id: optCol
-                // ScrollView's content width equals the viewport width set by ScrollBar.horizontal.policy=AlwaysOff
                 width: optScroll.availableWidth
                 spacing: 5
 
@@ -656,8 +733,8 @@ Window {
                                         required property var modelData
                                         checked: modelData.id === "allV"
                                         text: modelData.t; font.pixelSize: 11
-                                        topPadding: 0; bottomPadding: 0; padding: 0
-                                        leftPadding: modelData.id === "allV" ? 0 : 6
+                                        topPadding: 0; bottomPadding: 0
+                                        padding: 0; leftPadding: indicator.width + 4
                                         Layout.alignment: Qt.AlignVCenter
                                         indicator: Rectangle {
                                             implicitWidth: 13; implicitHeight: 13; radius: 7
@@ -724,9 +801,16 @@ Window {
                                         checked: modelData.chk || false
                                         text: modelData.t
                                         ButtonGroup.group: scopeGroup
-                                        topPadding: 0; bottomPadding: 0; padding: 0
+                                        topPadding: 0; bottomPadding: 0
+                                        padding: 0; leftPadding: indicator.width + 4
                                         Layout.alignment: Qt.AlignVCenter
                                         font.pixelSize: 11
+                                        indicator: Rectangle {
+                                            implicitWidth: 13; implicitHeight: 13; radius: 7
+                                            color: scopeRb.checked ? "#1a3a6a" : "#1b1b1b"
+                                            border.color: scopeRb.checked ? "#4488dd" : "#555555"
+                                            Rectangle { width: 5; height: 5; radius: 3; anchors.centerIn: parent; color: "#4488dd"; visible: scopeRb.checked }
+                                        }
                                         contentItem: Text {
                                             leftPadding: 4; text: scopeRb.text; color: "#c0c0d8"
                                             font: scopeRb.font; verticalAlignment: Text.AlignVCenter
@@ -855,7 +939,11 @@ Window {
                                     if (sectionsField.text.trim().length > 0)  p.push(qsTr("time range"))
                                     if (writeDescCheck.checked || writeThumbnailCheck.checked) p.push(qsTr("extra files"))
                                     if (playlistRandomCheck.checked)           p.push(qsTr("random"))
+                                    if (playlistReverseCheck.checked)          p.push(qsTr("reversed"))
                                     if (liveFromStartCheck.checked)            p.push(qsTr("live start"))
+                                    if (ignoreErrorsCheck.checked)             p.push(qsTr("skip errors"))
+                                    if (waitForVideoCheck.checked)             p.push(qsTr("wait for stream"))
+                                    if (concFragField.text.trim().length > 0)  p.push(qsTr("parallel frags"))
                                     if (rateLimitField.text.trim().length > 0) p.push(qsTr("rate limit"))
                                     return p.join(" · ")
                                 }
@@ -944,8 +1032,57 @@ Window {
                             }
                             Item {}
                             RowLayout { spacing: 18
-                                InlineCheck { id: playlistRandomCheck; label: qsTr("Shuffle playlist"); enabled_: root._isChannelUrl; tip: "Download playlist in random order" }
-                                InlineCheck { id: liveFromStartCheck;  label: qsTr("Live: from start"); tip: "Download a livestream from the beginning (YouTube, Twitch)" }
+                                InlineCheck { id: playlistRandomCheck;  label: qsTr("Shuffle playlist");  enabled_: root._isChannelUrl; tip: qsTr("Download playlist in random order") }
+                                InlineCheck { id: playlistReverseCheck; label: qsTr("Reverse order");     enabled_: root._isChannelUrl; tip: qsTr("Download newest videos first (reverses playlist order)") }
+                            }
+                            Item {}
+                            RowLayout { spacing: 18
+                                InlineCheck { id: liveFromStartCheck;  label: qsTr("Live: from start"); tip: qsTr("Download a livestream from the beginning (YouTube, Twitch, TVer)") }
+                                InlineCheck { id: ignoreErrorsCheck;   label: qsTr("Skip errors");      tip: qsTr("Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)") }
+                            }
+
+                            // ── Wait for scheduled stream ──────────────────────
+                            Text { text: qsTr("Wait for stream:"); color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            RowLayout { spacing: 6
+                                InlineCheck {
+                                    id: waitForVideoCheck
+                                    label: ""
+                                    tip: qsTr("Wait for a scheduled/upcoming stream to start, retrying every N seconds")
+                                }
+                                Rectangle {
+                                    width: 52; height: 20; radius: 2; color: "#1b1b1b"
+                                    border.color: waitForVideoField.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    opacity: waitForVideoCheck.checked ? 1.0 : 0.38
+                                    TextInput {
+                                        id: waitForVideoField
+                                        anchors { fill: parent; leftMargin: 5; rightMargin: 5 }
+                                        text: "60"; color: "#d0d0d0"; font.pixelSize: 11
+                                        verticalAlignment: Text.AlignVCenter
+                                        inputMethodHints: Qt.ImhDigitsOnly
+                                        validator: IntValidator { bottom: 1; top: 86400 }
+                                        enabled: waitForVideoCheck.checked
+                                        selectByMouse: true
+                                        onActiveFocusChanged: if (activeFocus) selectAll()
+                                    }
+                                }
+                                Text { text: qsTr("s retry interval  (for scheduled/upcoming streams)"); color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
+                            }
+
+                            // ── Concurrent DASH/HLS fragments ─────────────────
+                            Text { text: qsTr("Parallel frags:"); color: "#7788aa"; font.pixelSize: 11; horizontalAlignment: Text.AlignRight; Layout.alignment: Qt.AlignVCenter | Qt.AlignRight }
+                            RowLayout { spacing: 6
+                                Rectangle { width: 44; height: 20; radius: 2; color: "#1b1b1b"; border.color: concFragField.activeFocus ? "#4488dd" : "#3a3a3a"
+                                    Text { anchors.left: parent.left; anchors.leftMargin: 5; anchors.verticalCenter: parent.verticalCenter; text: "1"; color: "#383848"; font.pixelSize: 11; visible: concFragField.text.length === 0 }
+                                    TextInput {
+                                        id: concFragField
+                                        anchors { fill: parent; leftMargin: 5; rightMargin: 5 }
+                                        color: "#d0d0d0"; font.pixelSize: 11; verticalAlignment: Text.AlignVCenter
+                                        inputMethodHints: Qt.ImhDigitsOnly; selectByMouse: true
+                                        validator: IntValidator { bottom: 1; top: 16 }
+                                        onActiveFocusChanged: if (activeFocus) selectAll()
+                                    }
+                                }
+                                Text { text: qsTr("Concurrent DASH/HLS fragments (blank = 1, max 16)"); color: "#445566"; font.pixelSize: 10; Layout.alignment: Qt.AlignVCenter }
                             }
                         }
                     }
@@ -1010,11 +1147,14 @@ Window {
                     }
                 }
 
-                Item { implicitHeight: 2 }
+                Item { implicitHeight: 4 }
             }       // closes optCol ColumnLayout
             }       // closes optScroll ScrollView
-            }       // closes format picker ColumnLayout
+            }       // closes format picker + quality dropdown ColumnLayout
         }           // closes body Item
+
+        // separator above buttons
+        Rectangle { Layout.fillWidth: true; height: 1; color: "#2a2a36" }
 
         // ── Buttons ───────────────────────────────────────────────────────────
         RowLayout {

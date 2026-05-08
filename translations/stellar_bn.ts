@@ -61,23 +61,33 @@
             <translation>Stellar ডাউনলোড ম্যানেজার v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1 ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>ডাউন: %1  আপ: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
+            <source>
+Downloading: %1</source>
             <translation>ডাউনলোড হচ্ছে: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
+            <source>  Seeding: %1</source>
             <translation>সিডিং: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>সিডিং: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>মোট: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>মোট: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar বন্ধ হচ্ছে...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>শুরু হওয়ার আগে এই ডাউনলোডগুলোকে গ্রুপ করতে চাইলে OK-এর পরে কিউ ধাপ ব্যবহার করুন।</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>শুধুমাত্র 'পাওয়া' চিহ্নিত লিঙ্ক নির্বাচনযোগ্য। 'ঠিক আছে' চাপার পরেও কিউ বরাদ্দ হবে।</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>ব্যাচ ডাউনলোড পর্যালোচনা</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>পিক্সেল চওড়া</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>স্থায়ীভাবে মুছুন (ট্র্যাশে সরানো হবে না)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>মুছুন</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>হ্যাঁ</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>না</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>ব্রাউজ করুন...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>বিভাগ</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>ডেটা গ্রহণ হচ্ছে...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>একত্রিত হচ্ছে...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>ডাউনলোডের অবস্থা</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>সিস্টেম ট্রেতে ন্যূনতম করুন</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>অবস্থা</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>ফাইলের আকার</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>পুনরায় চালু করার ক্ষমতা</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>হ্যাঁ</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>না</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>ত্রুটির বিবরণ</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>বিরতি</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>সংযোগ অনুযায়ী অবস্থান ও ডাউনলোড অগ্রগতি</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>পুনরায় নামকরণ</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>পুনরায় ডাউনলোড</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>মুছুন</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>কলাম সেটিংস</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>ফাইলের নাম</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>আকার</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>অবস্থা</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>বাকি সময়</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>↓ গতি</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>আপলোড</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ডাউনলোড হয়েছে</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>শেষ চেষ্টার তারিখ</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>বিবরণ</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>সংরক্ষণ করুন</translation>
@@ -892,8 +971,14 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>আমার নির্বাচন মনে রাখুন এবং আর এই ডায়লগ দেখাবেন না।
 পরে Options → Downloads এ এটি পরিবর্তন করতে পারবেন।</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -905,30 +990,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>ফাইল সরান...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>শুরু</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>থামান</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>ফোল্ডার খুলুন</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>ফাইল খুলুন</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>অবস্থা</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>আকার</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>সংরক্ষণ করুন</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>সরান</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>ঠিকানা</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>ওয়েব পৃষ্ঠা</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>রেফারার</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>বিবরণ</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>লগইন</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>পাসওয়ার্ড</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>উৎস</translation>
@@ -937,17 +1058,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>ইনফো হ্যাশ</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>কপি</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>মেটাডেটা</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>বিভাগ</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>নোট</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ডাউনলোডেড</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>দেশ</translation>
@@ -956,8 +1086,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>পোর্ট</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>আপলোডেড</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>সিডার</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>বার্তা</translation>
@@ -966,10 +1102,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>থামানো</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>ডাউনলোডিং</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>মুভিং</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>সিডিং</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>সারিবদ্ধ</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>সমস্যা</translation>
@@ -994,7 +1142,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>সাধারণ</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>ফাইল</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>স্বার্ম ম্যাপ</translation>
@@ -1079,10 +1230,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>নতুন ফাইল বা ফোল্ডারের নাম লিখুন:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>নাম বদলান</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ডাউনলোড</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>নাম বদলান...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>কোনো পিয়ার সংযুক্ত নেই</translation>
@@ -1187,7 +1350,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>স্তর</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>পিয়ার</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>০ জানা সঙ্গী</translation>
@@ -1212,7 +1378,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>পিং %1 %2% সম্পন্ন</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>অজানা</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>আপনি (এই ক্লায়েন্ট)</translation>
@@ -1229,7 +1398,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>জোর করে পুনঃঘোষণা</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>URL কপি</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>ট্র্যাকার সরান</translation>
@@ -1258,7 +1430,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>ওয়েব সীড URL পেস্ট করুন - প্রতিটি লাইনে একটি। URL সীড (BEP-19) এবং HTTP সীড (BEP-17) উভয়ই গ্রহণযোগ্য।</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>ইউআরএল</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>প্রকার</translation>
@@ -1407,7 +1582,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1টি ফলাফল পাওয়া গেছে।</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1471,7 +1649,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>টেমপ্লেটের নাম</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>সংরক্ষণ</translation>
@@ -1492,7 +1673,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>সাম্প্রতিক প্রজেক্ট</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>গ্র্যাবার সেটিংস</translation>
@@ -1533,8 +1717,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>উন্নত &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>লগইন</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>পাসওয়ার্ড</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>ম্যানুয়াল লগইন চালু বা লগআউট পৃষ্ঠা বন্ধ করতে 'উন্নত'-এ ক্লিক করুন।</translation>
@@ -1746,13 +1936,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>মাস্ক</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>যোগ</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>সম্পাদনা</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>মুছুন</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>ফিল্টার সম্পাদনা</translation>
@@ -1761,9 +1960,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>নতুন ফিল্টার</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>বিভাগ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>সংরক্ষণ</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1775,13 +1983,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>সংরক্ষিত প্রজেক্ট</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>প্রকল্প</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>বিকল্প</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>চলমান</translation>
@@ -1811,13 +2031,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>শুরু</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>ফাইলের নাম</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>ফাইলের নাম</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>আকার</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>অবস্থা</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>অবস্থা</translation>
@@ -1826,7 +2055,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>লিংক টেক্সট</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>সংরক্ষণ করুন</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>সংরক্ষণ করুন</translation>
@@ -1839,8 +2071,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>নির্বাচিত আনচেক করুন</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>গ্র্যাবার সেটিংস</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2097,8 +2335,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>দ্রষ্টব্য: নির্দিষ্ট সময়ে একটি নির্ধারিত প্রজেক্ট শুরু করতে স্টেলার সিস্টেম ট্রে-তে চলতে হবে।</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2122,8 +2366,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>ফাইল যোগ করার সময় ডাউনলোড বিবরণ হিসেবে লিংক টেক্সট ব্যবহার করুন</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2135,7 +2385,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>স্ট্যাটাস: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>নিষ্ক্রিয়</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>প্রক্রিয়াজাতকৃত ওয়েব পেজ</translation>
@@ -2148,7 +2401,10 @@ Project</source>
             <source>Advanced</source>
             <translation>উন্নত</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>ফাইল</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>মোট</translation>
@@ -2161,8 +2417,14 @@ Project</source>
             <source>Matched</source>
             <translation>মিলিত</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ডাউনলোড হয়েছে</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2190,7 +2452,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>স্টেলার সেই ব্রাউজারের কুকিজ দিয়ে একই yt-dlp আইটেম পুনরায় চেষ্টা করবে।</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>পুনরায় ডাউনলোড</translation>
@@ -2227,12 +2492,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>সব ফাইল (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>মোট: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>সম্পন্ন: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>ডাউনলোড হচ্ছে: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>অপেক্ষমাণ: %1</translation>
@@ -2241,9 +2512,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>সর্বমোট: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>থামান</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>চালু করুন</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ করুন</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent সমর্থন সক্রিয় করবেন?</translation>
@@ -2276,7 +2556,10 @@ You can turn this off in Settings → Downloads.</source>
 
 এটি সেটিংস → ডাউনলোড থেকে বন্ধ করতে পারেন।</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>&quot;%1&quot; ফাইল ডাউনলোড করা যায়নি।</translation>
@@ -2319,8 +2602,14 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>File</source>
             <translation>ফাইল</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>ফোল্ডার খুলুন</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>ফাইল খুলুন</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>এখন ডাউনলোড করুন</translation>
@@ -2333,8 +2622,14 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Remove</source>
             <translation>সরান</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>পুনরায় ডাউনলোড</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>এক্সপোর্ট .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>ডাউনলোড</translation>
@@ -2371,7 +2666,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Stop Queue</source>
             <translation>কিউ বন্ধ করুন</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>গতি সীমক</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>চালু করুন</translation>
@@ -2464,7 +2762,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Columns…</source>
             <translation>কলাম…</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>বিকল্প</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>পছন্দসমূহ…</translation>
@@ -2497,21 +2798,42 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>টরেন্ট মেটাডেটা খুলতে .torrent ফাইল ড্রপ করুন</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>খুঁজুন:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>খুঁজুন</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>সেটিংস ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>এতে খুঁজুন:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>ফাইলের নাম বা অংশ</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>বিবরণ</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / রেফারে / প্যারেন্ট ওয়েব পেজ</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>হরফ মেলান</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>শুধু পুরো স্ট্রিং মেলান</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>সাইডবার বামে সরান</translation>
@@ -2560,7 +2882,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Channel Download Progress</source>
             <translation>চ্যানেল ডাউনলোড অগ্রগতি</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>পরে ডাউনলোড</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>ফাইল আর উপলব্ধ নেই</translation>
@@ -2616,12 +2941,18 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Don't add to queue</source>
             <translation>কিউ-তে যোগ করবেন না</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>কিউ-এর নাম লিখুন</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>তৈরি</translation>
@@ -2637,8 +2968,14 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Download Rules</source>
             <translation>ডাউনলোড নিয়ম</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>যোগ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>সরান</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>ডাউনলোড নিয়ম তৈরি করতে 'যোগ করুন' ক্লিক করুন</translation>
@@ -2715,7 +3052,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Leave empty to use default save path</source>
             <translation>ডিফল্ট সেভ পথ ব্যবহার করতে খালি রাখুন</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>ব্রাউজ...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>ক্যাটাগরি:</translation>
@@ -2728,7 +3068,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>TORRENT SHARE LIMITS</source>
             <translation>টরেন্ট শেয়ার সীমা</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>অনুপাত</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>ডিফল্ট</translation>
@@ -2757,8 +3100,14 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>&quot;ডিফল্ট&quot; সেটিংস → টরেন্ট-এর বৈশ্বিক শেয়ার সীমা ব্যবহার করে।</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS অটো ডাউনলোড নিয়ম</translation>
@@ -2798,7 +3147,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Download Torrent</source>
             <translation>টরেন্ট ডাউনলোড</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>ডাউনলোড</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>ব্রাউজারে খুলুন</translation>
@@ -2819,26 +3171,50 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Mark All Read</source>
             <translation>সব পড়া হিসেবে চিহ্নিত করুন</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>নাম</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>কাস্টম নাম (ঐচ্ছিক)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>সংরক্ষণ</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS বা Atom ফিড URL যোগ করুন...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>যোগ</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>রিফ্রেশ হচ্ছে…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>সম্পাদনা</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>সরান</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>ডাউনলোড নিয়ম</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>সাবস্ক্রিপশন</translation>
@@ -2851,7 +3227,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Select an article</source>
             <translation>একটি আর্টিকেল নির্বাচন করুন</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>খুলুন</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>পড়া হিসেবে চিহ্নিত করুন</translation>
@@ -2895,7 +3274,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>New queue</source>
             <translation>নতুন কিউ</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>মুছুন</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>সময়সূচী</translation>
@@ -2908,21 +3290,42 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>One-time downloading</source>
             <translation>এককালীন ডাউনলোড</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>পর্যায়ক্রমিক সিঙ্ক</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>স্টেলার শুরুতে ডাউনলোড শুরু</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>ডাউনলোড শুরু</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>একবার</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>দৈনিক</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>আবার শুরু করুন</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>ঘণ্টা</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>মিনিট</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>ডাউনলোড বন্ধ</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>ব্যর্থ হলে প্রতিটি ফাইলের জন্য পুনরায় চেষ্টার সংখ্যা:</translation>
@@ -2931,17 +3334,38 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Open the following file when done:</source>
             <translation>সম্পন্ন হলে নিম্নলিখিত ফাইলটি খুলুন:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>শেষে Stellar বন্ধ</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>শেষে কম্পিউটার বন্ধ</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>প্রক্রিয়া জোরপূর্বক বন্ধ</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ডাউনলোড</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>একসাথে ফাইল</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>ফাইলের নাম</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>আকার</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>অবস্থা</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>সময় বাকি</translation>
@@ -2978,12 +3402,18 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Start now</source>
             <translation>এখন শুরু করুন</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>থামান</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>প্রয়োগ করুন</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>নিউ কিউরুর জন্য একটি নাম লিখুন যা কিউরু তালিকায় দেখা যাবে</translation>
@@ -2992,9 +3422,18 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Queue name</source>
             <translation>কিউরুর নাম</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>সময়সূচী</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>নতুন কিউরু</translation>
@@ -3006,7 +3445,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>সংযোগ</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>সর্বোচ্চ একসাথে ডাউনলোড:</translation>
@@ -3071,13 +3513,22 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Password:</source>
             <translation>পাসওয়ার্ড:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>বিভাগ</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>নাম</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>ফোল্ডারে সংরক্ষণ করুন</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>ডাউনলোড</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>ডিফল্ট সংরক্ষণ ফোল্ডার:</translation>
@@ -3138,8 +3589,14 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Show seconds</source>
             <translation>সেকেন্ড দেখান</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>প্রিভিউ</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>ব্রাউজার ইন্টিগ্রেশন</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>নিম্নলিখিত ফাইল টাইপের জন্য স্বয়ংক্রিয়ভাবে ডাউনলোড শুরু করুন:</translation>
@@ -3164,7 +3621,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>ইন্টারসেপশন এড়িয়ে ব্রাউজার ডাউনলোড করতে লিংকে ক্লিক করার সময় এই কী ধরে রাখুন:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>গতি সীমক</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>গ্লোবাল স্পিড লিমিট সক্রিয় করুন</translation>
@@ -3173,7 +3633,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Maximum speed:</source>
             <translation>সর্বোচ্চ গতি:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>কেবি/সে</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>গ্লোবাল আপলোড লিমিট সক্রিয় করুন</translation>
@@ -3190,12 +3653,18 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Enable speed limiter scheduler</source>
             <translation>গতি সীমাকারক সূচক সক্রিয় করুন</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>সরান</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>চালু</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>ডাউনলোড</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>আপলোড</translation>
@@ -3216,7 +3685,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Show notification on download error</source>
             <translation>ডাউনলোড ত্রুটি হলে বিজ্ঞপ্তি দেখান</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>সাধারণ</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>ব্রাউজার</translation>
@@ -3313,8 +3785,14 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Open file properties dialog</source>
             <translation>ফাইল বৈশিষ্ট্য ডায়লগ খুলুন</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>ফাইল খুলুন</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>ফোল্ডার খুলুন</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>২৪-ঘণ্টার সময়</translation>
@@ -3347,7 +3825,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>দিনের পিলে ক্লিক করে টগল করুন। নিয়ম প্রতি মিনিটে মূল্যায়ন করা হয়; প্রথম মিলিত নিয়ম প্রযোজ্য। স্কিডিউলড ডাউনলোড ও আপলোড সীমা নিয়ম সক্রিয় না থাকলে স্বয়ংক্রিয়ভাবে মুছে যায়।</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>সিস্টেম ট্রেতে ছোট করুন</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>সিস্টেম ট্রে-তে বন্ধ করুন</translation>
@@ -3440,7 +3921,10 @@ Stellar অপশন → ব্রাউজার → ডাউনলোড ই�
             <source>Download yt-dlp</source>
             <translation>yt-dlp ডাউনলোড করুন</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>পুনরায় চেক করুন</translation>
@@ -3549,7 +4033,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
 
 আপনার IP ঠিকানা প্রকাশ থেকে রক্ষা করতে টরেন্ট ব্যবহার করার আগে Stellar-কে একটি VPN নেটওয়ার্ক ইন্টারফেসে বাঁধতে এবং আপনার VPN সক্রিয় আছে কিনা তা যাচাই করতে অত্যন্ত সুপারিশ করা হয়।</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>বুঝলাম, চালু করুন</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>এই সেটিংস .torrent ফাইল এবং ম্যাগনেট লিঙ্কের জন্য প্রযোজ্য।</translation>
@@ -3614,7 +4101,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Networking</source>
             <translation>নেটওয়ার্কিং</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>উন্নত</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>কাস্টম বিটটরেন্ট ইউজার এজেন্ট</translation>
@@ -3687,7 +4177,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Block peers by country</source>
             <translation>দেশ অনুযায়ী পিয়ার ব্লক করুন</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>যোগ করুন</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>কোনো ব্লক করা দেশ নেই।</translation>
@@ -3724,12 +4217,18 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Version</source>
             <translation>সংস্করণ</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>অজানা</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>পথ</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>আকার</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>এন্ট্রি</translation>
@@ -3738,7 +4237,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Last Modified</source>
             <translation>সর্বশেষ পরিবর্তিত</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>অবস্থা</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>ডাউনলোড হচ্ছে...</translation>
@@ -3751,7 +4253,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Refresh Info</source>
             <translation>তথ্য রিফ্রেশ করুন</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>পরিসংখ্যান</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>সকল টরেন্টের মোট স্থানান্তর, অপসারিতগুলোসহ।</translation>
@@ -3772,7 +4277,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>পূর্ণ লাইসেন্স পাঠ্য THIRD-PARTY-NOTICES.txt-এ রয়েছে, যা এই ইনস্টলেশনের সাথে অন্তর্ভুক্ত।</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>ফিড ফেচিং</translation>
@@ -3785,7 +4293,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Feeds refresh interval</source>
             <translation>ফিড রিফ্রেশ ব্যবধান</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>মিনিট</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>একই হোস্ট অনুরোধের বিলম্ব</translation>
@@ -3946,8 +4457,14 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Third-party software</source>
             <translation>তৃতীয় পক্ষের সফটওয়্যার</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>প্রয়োগ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>ডিফল্ট রুট</translation>
@@ -4028,7 +4545,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Available but not loaded</source>
             <translation>উপলব্ধ কিন্তু লোড হয়নি</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>উৎস: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>উৎস URL এখনও ক্যাশে নেই। update.json থেকে IPtoCityDB ক্যাশ করতে আপডেট পরীক্ষা করুন।</translation>
@@ -4060,9 +4580,18 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Edit Project</source>
             <translation>প্রজেক্ট সম্পাদনা</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>প্রকল্প মুছুন</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>বিভাগ</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>সব ডাউনলোড</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>অসম্পূর্ণ</translation>
@@ -4075,19 +4604,49 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>Grabber Projects</source>
             <translation>গ্র্যাবার প্রজেক্ট</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>টরেন্ট</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>সারি</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>ডাউনলোড হচ্ছে</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>সিডিং</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>বন্ধ</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>সক্রিয়</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>নিষ্ক্রিয়</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>যাচাই হচ্ছে</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>স্থানান্তর হচ্ছে</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>পরিসংখ্যান</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>স্টেলার পরিসংখ্যান</translation>
@@ -4096,8 +4655,14 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>ALL TIME</source>
             <translation>সর্বকালীন</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ডাউনলোডকৃত</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>আপলোডেড</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>শেয়ার অনুপাত</translation>
@@ -4118,7 +4683,10 @@ BitTorrent এর মাধ্যমে আপনি যা শেয়ার �
             <source>THIS SESSION</source>
             <translation>এই সেশনে</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ করুন</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4235,27 +4803,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>স্টেলার ডাউনলোড ম্যানেজার</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM ডাউনলোড</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>URL যোগ করুন</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>পুনরারম্ভ</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>থামান</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>সব থামান</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>মুছুন</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>সম্পন্ন মুছুন</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>বিকল্প</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>সময়সূচী</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>সারি শুরু</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>সারি থামান</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>গ্র্যাবার</translation>
@@ -4264,7 +4862,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>সার্চ ইঞ্জিন</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4303,12 +4904,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>সংরক্ষণ করুন</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>আরও নামে সংরক্ষণ...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>বিভাগ</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>কাস্টম সংরক্ষণ ফোল্ডার</translation>
@@ -4321,35 +4928,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>বিভাগ ফোল্ডার ব্যবহার করুন</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>বিবরণ</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>টরেন্ট সেটিংস...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>পরে ডাউনলোড</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ডাউনলোড</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>টরেন্ট খোলা হচ্ছে...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% সম্পন্ন</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>ফাইল</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n আইটেম</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>নাম</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>অগ্রগতি</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>আকার</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>কোনো ফাইলের তথ্য নেই</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>অপেক্ষমাণ</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>আইটেমের নাম পরিবর্তন</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>নতুন ফাইল বা ফোল্ডারের নাম লিখুন:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>নাম পরিবর্তন</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>নাম পরিবর্তন...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>পিয়ার</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>টরেন্ট খুলে মেটাডেটা পড়া হচ্ছে...</translation>
@@ -4362,8 +5020,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%nটি পিয়ার থেকে মেটাডেটা ডাউনলোড হচ্ছে</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>সিড</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>আপনি</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>টরেন্ট মেটাডেটা</translation>
@@ -4383,8 +5047,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>ওয়েব লিংক</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ঠিক আছে</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>সার্চ প্লাগইন ফোল্ডারে কপি করার জন্য একটি স্থানীয় .py ফাইল নির্বাচন করুন।</translation>
@@ -4416,9 +5086,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>ইনস্টল করা সার্চ প্লাগইন</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>রিফ্রেশ</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>অজানা</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>সক্রিয়</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>নিষ্ক্রিয়</translation>
@@ -4427,7 +5106,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>নতুন ইনস্টল করুন</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>সার্চ প্লাগইন</translation>
@@ -4435,9 +5117,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>নাম</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>আকার</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>সিডার</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>লিচার</translation>
@@ -4454,12 +5145,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>বিবরণ পৃষ্ঠা খুলুন</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>টরেন্ট ডাউনলোড</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>নাম কপি করুন</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>ম্যাগনেট লিংক কপি</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>বিবরণ পৃষ্ঠার URL কপি করুন</translation>
@@ -4472,12 +5169,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>অনুসন্ধান</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>অজানা</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>এখনও কোনো অনুসন্ধান ফলাফল নেই</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>সার্চ প্লাগইন</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>টরেন্ট অনুসন্ধান ইঞ্জিন</translation>
@@ -4493,8 +5196,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>প্রতি-টরেন্ট গতি, শেয়ার সীমা, পিয়ার আবিষ্কার এবং ডাউনলোড মোড</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>বন্ধ</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>প্রয়োগ</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ব্যান্ডউইথ সীমা</translation>
@@ -4515,14 +5224,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>অনুপাত:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>ডিফল্ট</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>সীমাহীন</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>নির্ধারণ করুন</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>সিডিং সময়:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>সর্বনিম্ন</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>নিষ্ক্রিয় সময়:</translation>
@@ -4626,7 +5347,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>সেটিংস খুলুন</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>ব্রাউজার থেকে কুকি:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>yt-dlp-এর জন্য এর কুকিজ পাঠাতে একটি ব্রাউজার নির্বাচন করুন, তারপর পুনরায় চেষ্টা করুন।</translation>
@@ -4636,8 +5360,8 @@ Click to open Statistics</source>
             <translation>পুনরায় চেষ্টা করুন</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>গুণমান নির্বাচন করুন:</translation>
+            <source>Quality:</source>
+            <translation>মান:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4696,7 +5420,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>ভিডিওর সাথে সাবটাইটেল ফাইল ডাউনলোড</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>ভাষা:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>ভাষার কোড, যেমন: en · en.*,ja · all</translation>
@@ -4755,8 +5482,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>ডাউনলোড চ্যানেল</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>ডাউনলোড</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>উন্নত</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>তারিখ ফিল্টার</translation>
@@ -4846,15 +5579,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>লাইভ: শুরু থেকে</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>উল্টো ক্রম</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>নতুন ভিডিও আগে ডাউনলোড (প্লেলিস্ট ক্রম উল্টায়)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>ত্রুটি উপেক্ষা করুন</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>একটি ভিডিও ব্যর্থ হলে প্লেলিস্টের বাকি অংশ ডাউনলোড চালিয়ে যান</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>স্ট্রিমের জন্য অপেক্ষা:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>নির্ধারিত/আসন্ন স্ট্রিম শুরু হওয়ার জন্য অপেক্ষা করুন, প্রতি N সেকেন্ডে পুনরায় চেষ্টা করুন</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>পুনরায় চেষ্টার বিরতি (নির্ধারিত/আসন্ন স্ট্রিমের জন্য)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>সমান্তরাল খণ্ড:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>একসাথে DASH/HLS খণ্ড (খালি = ১, সর্বোচ্চ ১৬)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>উল্টানো</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>ত্রুটি উপেক্ষা করুন</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>স্ট্রিমের জন্য অপেক্ষা করুন</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>সমান্তরাল খণ্ড</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>এলোমেলো ক্রমে প্লেলিস্ট ডাউনলোড করুন</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>শুরু থেকে লাইভস্ট্রিম ডাউনলোড করুন (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>সংরক্ষণ করুন:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>বিভাগ:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>ফরম্যাট:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>বাতিল</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>ভিডিও ডাউনলোড</translation>

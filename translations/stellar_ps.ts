@@ -61,23 +61,33 @@
             <translation>Stellar ډاونلوډ مدیر v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1 ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>ډاونلوډ: %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>ښکته کول: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>سیډینګ: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>تخم اچول: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>تخم اچول: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>ټول: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>ټول: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar بندېږي...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>که غواړئ دا ډاونلوډونه مخکې له پیل څخه ګروپ شوي وي، د OK وروسته د قطار پړاو وکاروئ.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>یوازې هغه تړون چې موندل شوي نښه لري وټاکل کیدی شي. قطار ټاکنه بیا هم د OK وروسته پیښیږي.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>د ګډوډي ډاونلوډ بیاکتنه</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>په پکسلونو پراخه وي</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>د تل لپاره حذف کړئ (په کچې کې نه ږدي)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>حذف</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>هو</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>نه</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>لټون...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>وېشنيزه</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>ډاټا ترلاسه کېږي...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>راټولېږي...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>ډاونلوډ حالت</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>سیسټم ټرې ته کم کړئ</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>حالت</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>د فایل اندازه</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>بیا پیل کول</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>هو</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>نه</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>د تېروتنې جزئیات</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>مکث</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>موقعیت‌ها و پیشرفت دانلود بر اساس اتصالات</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>بیا نومول</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>بیا ډاونلوډ</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>ړنګول</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>د کالمونو تنظیمات</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>د فایل نوم</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>اندازه</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>حالت</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>پاتې وخت</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>↓ سرعت</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>اپلوډ شوی</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ډاونلوډ شوی</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>وروستۍ هڅه نیټه</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>تشریح</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>ساتلو ځای</translation>
@@ -892,8 +971,14 @@ URL اضافه کړئ ترڅو پیل شي.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>زما انتخاب یاد ساتئ او دا دیالوګ بیا ونه ښایاست.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -905,30 +990,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>د ټورنټ ډاټا ولېږد...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>پیل</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>درېدل</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>پوښۍ پرانیزئ</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>پوشه خلاصه کړه</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>تړل</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>حالت</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>اندازه</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>خوندي کول په</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>وړل</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>پته</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>ویب پاڼه</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>ریفرر</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>تشریح</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>ننوتل</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>پټ توری</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>سرچینه</translation>
@@ -937,17 +1058,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>معلوماتی هاش</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>کاپي</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>میټاډاټا</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>ډول</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>یادداشت</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ښکته شوی</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>هېواد</translation>
@@ -956,8 +1086,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>پورټ</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>پورته شوی</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>تخم اچوونکي</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>پیغام</translation>
@@ -966,10 +1102,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>درېدلی</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>ښکته کول</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>خوځول</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>تخم پاشنه</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>په کتار کې</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>ستونزه</translation>
@@ -994,7 +1142,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>عمومي</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>فایلونه</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>د ټولګې نقشه</translation>
@@ -1079,10 +1230,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>نوی د فایل یا فولډر نوم ولیکئ:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>نوم بدلول</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ښکته کول</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>نوم بدلول...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>هیڅ هم‌پیوند نښتي ندي</translation>
@@ -1187,7 +1350,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>پوړ</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>ملګري</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>۰ پیژندل شوي همکاران</translation>
@@ -1212,7 +1378,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>پېنګ %1  %2٪ شو</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>نامعلوم</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>تاسو (دا کلاینټ)</translation>
@@ -1229,7 +1398,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>اجباري اعلان</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>URL کاپي</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>ټریکر لرې کړئ</translation>
@@ -1258,7 +1430,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>د ویب سید URLونه دلته ځای پر ځای کړئ - یو په یوه کرښه. URL سیدونه (BEP-19) او HTTP سیدونه (BEP-17) دواړه منل کیږي.</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>ډول</translation>
@@ -1407,7 +1582,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 پایلې وموندل شوې.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1471,7 +1649,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>د بڼې نوم</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>خوندي کړئ</translation>
@@ -1492,7 +1673,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>وروستی پروژې</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>بندول</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>د ګرابر تنظیمات</translation>
@@ -1533,8 +1717,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>پرمختللي &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>ننوتل</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>پټنوم</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>د لاسي نوملیکنې د فعالولو یا د وتلو پاڼې د بندولو لپاره پرمختللي ته فشار ورکړئ.</translation>
@@ -1746,13 +1936,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>ماسک</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>ورګډول</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>سمون</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>ړنګول</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>د فلتر سمون</translation>
@@ -1761,9 +1960,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>نوی فلتر</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>وېشنيزه</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ردول</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>خوندي کول</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1775,13 +1983,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>ذخیره شوي پروژې</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ردول</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>پروژه</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>اختیارونه</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>چلېږي</translation>
@@ -1811,13 +2031,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>پیل</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>د فایل نوم</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>د فایل نوم</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>اندازه</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>حالت</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>حالت</translation>
@@ -1826,7 +2055,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>د لینک متن</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>خوندي کول په</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>دلته خوندي کړئ</translation>
@@ -1839,8 +2071,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>ټاکل شوي نه وچکول</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>تړل</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>ګرابر ترتیبات</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2097,8 +2335,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>یادونه: په ټاکلي وخت کې د Stellar باید د سیسټم ټرې کې چالان وي ترڅو یو پلان شوی پروژه پیل کړي.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2122,8 +2366,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>کله چې فایلونه د Stellar اصلي لیست ته اضافه کیږي، د لینک متنونه د ډاونلوډ تشریح په توګه وکاروئ</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2135,7 +2385,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>حالت: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>بېکاره</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>پروسس شوي ویب پاڼې</translation>
@@ -2148,7 +2401,10 @@ Project</source>
             <source>Advanced</source>
             <translation>پرمختللی</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>فایلونه</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>ټول</translation>
@@ -2161,8 +2417,14 @@ Project</source>
             <source>Matched</source>
             <translation>موافق</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ډاونلوډ شوی</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>تړل</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2190,7 +2452,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>ستیلار به د هغه براوزر د کوکیزو سره همغه yt-dlp توکی بیا هڅه کړي.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>بیا ډاونلوډ کړئ</translation>
@@ -2227,12 +2492,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>ټول فایلونه (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>ټول: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>بشپړ: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>ډاونلوډېنګ: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>قطار: %1</translation>
@@ -2241,9 +2512,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>عمومي: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>درول</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>بیا پیلول</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>تړل</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>د BitTorrent ملاتړ فعال کړو؟</translation>
@@ -2276,7 +2556,10 @@ You can turn this off in Settings → Downloads.</source>
 
 تاسو کولی شئ دا په تنظیماتو → ډاونلوډونو کې بند کړئ.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>سمه ده</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>فایل &quot;%1&quot; نشي ډاونلوډ شوی.</translation>
@@ -2319,8 +2602,14 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>File</source>
             <translation>فایل</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>پوښۍ پرانیستل</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>فایل پرانیستل</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>اوس ډاونلوډ کړه</translation>
@@ -2333,8 +2622,14 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Remove</source>
             <translation>لیرې کړه</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>بیا ډاونلوډ</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>ټورنټ صادرول…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>ډاونلوډونه</translation>
@@ -2371,7 +2666,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Stop Queue</source>
             <translation>قطار ودرول</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>سرعت محدودونکی</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>روښانه کړئ</translation>
@@ -2464,7 +2762,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Columns…</source>
             <translation>کالمې…</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>اختیارونه</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>غوره تیاوې…</translation>
@@ -2497,21 +2798,42 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>.torrent فایل راغورځئ ترڅو د torrent معلومات خلاص کړي</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>پلټنه:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>پلټل</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>تنظیمات ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>په کې پلټنه:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>د فایل نوم یا د نوم برخه</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>تفصیل</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / حواله / اصلي ویب پاڼه</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>د تورو توپیر</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>یوازې بشپړ توری</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>سائیڈبار کی بائیں طرف منتقل کریں</translation>
@@ -2560,7 +2882,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Channel Download Progress</source>
             <translation>چینل ڈاؤنلوڈ کی پیشرفت</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>وروسته ډاونلوډ</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>فائل اب دستیاب نہیں</translation>
@@ -2616,12 +2941,18 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Don't add to queue</source>
             <translation>به صف اضافه نکن</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>سمه ده</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>نام صف را وارد کنید</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>ایجاد</translation>
@@ -2637,8 +2968,14 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Download Rules</source>
             <translation>قوانین دانلود</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>ورزیاتول</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>لرې کول</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>برای ایجاد قانون دانلود «افزودن» را کلیک کنید</translation>
@@ -2715,7 +3052,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Leave empty to use default save path</source>
             <translation>برای استفاده از مسیر پیش‌فرض خالی بگذارید</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>لټول...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>دسته‌بندی:</translation>
@@ -2728,7 +3068,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>TORRENT SHARE LIMITS</source>
             <translation>محدودیت‌های اشتراک تورنت</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>نسبت</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>پیش‌فرض</translation>
@@ -2757,8 +3100,14 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>«لومړنی» د سیټینګس → ټورنټس کې ټاکل شوي نړیوال شریکولو حدونه کاروي.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>سمه ده</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS اتوماتیک ډاونلوډ قواعد</translation>
@@ -2798,7 +3147,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Download Torrent</source>
             <translation>ټورنټ ډاونلوډ کړئ</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>ډاونلوډ</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>په براوزر کې خلاص کړئ</translation>
@@ -2819,26 +3171,50 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Mark All Read</source>
             <translation>ټول نښه لوستل</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>نوم</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>ځانګړی نوم (اختیاري)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>خوندي</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS یا Atom feed URL اضافه کړئ...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>زیاتول</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>بیا تازه کول...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>سمول</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>لرې کول</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>ډاونلوډ قواعد</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>چاپیرونه</translation>
@@ -2851,7 +3227,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Select an article</source>
             <translation>مقاله وټاکئ</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>پرانیستل</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>نښه لوستل</translation>
@@ -2895,7 +3274,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>New queue</source>
             <translation>نوی قطار</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>ړنګول</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>وخت بندۍ</translation>
@@ -2908,21 +3290,42 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>One-time downloading</source>
             <translation>یو ځل ډاونلوډ</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>دوره‌ییز همغږی</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>په Stellar پیل کې ډاونلوډ پیل کړئ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>ښکته کول پیل کړئ</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>یو ځل په</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>ورځنی</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>هر ځل بیا پیل</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>ساعتونه</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>دقیقې</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>ښکته کول بند کړئ</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>د هر فایل د بیا هڅو شمیر که download ناکام شي:</translation>
@@ -2931,17 +3334,38 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Open the following file when done:</source>
             <translation>کله چې بشپړ شي لاندې فایل خلاص کړئ:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Stellar بند کړئ کله چې بشپړ شي</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>کمپیوټر بند کړئ کله چې بشپړ شي</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>پروسې په زور پای ته ورسوئ</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ښکته کول</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>په یو وخت کې فایلونه</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>د فایل نوم</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>اندازه</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>حالت</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>پاتې وخت</translation>
@@ -2978,12 +3402,18 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Start now</source>
             <translation>اوس پیل کړئ</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>درول</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>پلي کول</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>بندول</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>د نوي قطار لپاره نوم ولیکئ چې په قطارونو کې به ښکاري</translation>
@@ -2992,9 +3422,18 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Queue name</source>
             <translation>د قطار نوم</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>مهالوېش</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>نوی قطار</translation>
@@ -3006,7 +3445,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>پیوستون</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>اعظمي هم مهاله ډاونلوډونه:</translation>
@@ -3071,13 +3513,22 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Password:</source>
             <translation>پاسورډ:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>ډلبندۍ</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>نوم</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>دوتنې ته خوندي کړئ</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>ښکته کول</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>دیفالټ د خوندي کولو فولډر:</translation>
@@ -3138,8 +3589,14 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Show seconds</source>
             <translation>نمایش ثانیه‌ها</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>مخکتنه</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>براوزر یوځای کول</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>شروع خودکار دانلود برای انواع فایل‌های زیر:</translation>
@@ -3164,7 +3621,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>این کلید را هنگام کلیک روی لینک دانلود نگه دار تا مداخله دور زده شود و مرورگر دانلود کند:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>سرعت محدودونکی</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>فعال‌سازی محدودیت سرعت جهانی</translation>
@@ -3173,7 +3633,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Maximum speed:</source>
             <translation>حداکثر سرعت:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>کیلوبایټ/ثانیه</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>فعال‌سازی محدودیت آپلود جهانی</translation>
@@ -3190,12 +3653,18 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Enable speed limiter scheduler</source>
             <translation>د سرعت محدودونکي وخت بندۍ فعاله کړئ</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>لرې کول</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>فعال</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>ښکته کول</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>پورته کول</translation>
@@ -3216,7 +3685,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Show notification on download error</source>
             <translation>کله چې د ښکته کولو تېروتنه وي خبرتیا وښیې</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>عمومي</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>بروزر</translation>
@@ -3313,8 +3785,14 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Open file properties dialog</source>
             <translation>د فایل ځانګړتیاوې ډایلاګ خلاص کړئ</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>فایل پرانیستل</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>فولډر پرانیستل</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>۲۴ ساعته وخت</translation>
@@ -3347,7 +3825,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>د ورځې پل ته کلیک وکړئ ترڅو یې فعال/غیرفعال کړئ. قواعد هره دقیقه ارزول کیږي؛ لومړی مطابقت وینر دی.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>سیسټم ټری ته کمول</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>سیسټم ټري ته وتړئ</translation>
@@ -3440,7 +3921,10 @@ Stellar انتخابونه → براوزر → د ډاونلوډ مداخلې �
             <source>Download yt-dlp</source>
             <translation>yt-dlp ډاونلوډ کړئ</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>بیا وګورئ</translation>
@@ -3547,7 +4031,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 تاسو ته شدیده توصیه کیږي چې Stellar د VPN شبکه انټرفیس ته بند کړئ او د ټورنټونو کارولو دمخه تایید کړئ چې ستاسو VPN فعال دی، ترڅو ستاسو IP پته د ښکاره کیدو څخه وساتل شي.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>زه پوهېږم، فعالول</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>دا تنظیمات د .torrent فایلونو او magnet لینکونو لپاره پلي کیږي.</translation>
@@ -3612,7 +4099,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>شبکه</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>پرمختللی</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>د بټورنټ د کارونکي عامل سفارشی</translation>
@@ -3685,7 +4175,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>د هیواد له مخې همکاران بند کړئ</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>زیاتول</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>هیڅ بند شوی هیواد نشته.</translation>
@@ -3722,12 +4215,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>بڼه</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>نامعلوم</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>لاره</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>اندازه</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>تعداد</translation>
@@ -3736,7 +4235,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>وروستی بدلون</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>حالت</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>ښکته کول...</translation>
@@ -3749,7 +4251,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>معلومات تازه کول</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>احصایې</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>په ټولو ټورنټونو کې ټول لیږد (لیرې شوي هم شامل)</translation>
@@ -3770,7 +4275,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>بشپړ مجازي متنونه په THIRD-PARTY-NOTICES.txt کې دي، چې د دې نصب سره شامل دي.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>د فیډ راوړنه</translation>
@@ -3783,7 +4291,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>د فیډونو تازه کولو وقفه</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>دقیقې</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>د ورته کوربه غوښتنې ځنډ</translation>
@@ -3944,8 +4455,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>دریم ګوند سافټویر</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>پلي کول</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>خپلکاره لاره</translation>
@@ -4026,7 +4543,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>دستور مګر بار نه شوی</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>سرچینه: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>سرچینه URL اوس مهال کیچ نه دی. IPtoCityDB د update.json څخه کیچ کولو لپاره د تازه کولو چیک وکاروئ.</translation>
@@ -4058,9 +4578,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>پروژې سمون</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>پروژه ړنګول</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>کټګورۍ</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>ټول ډاونلوډونه</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>بې پایانه</translation>
@@ -4073,19 +4602,49 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Grabber پروژې</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>ټورنټونه</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>کتارونه</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>ډاونلوډېنګ</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>سېډېنګ</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>درېدلی</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>فعال</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>غېرفعال</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>چک کول</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>خوځول</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>احصایې</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>ستیلر احصائیه</translation>
@@ -4094,8 +4653,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>ټول وخت</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ډاونلوډ شوی</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>پورته شوی</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>شیر تناسب</translation>
@@ -4116,7 +4681,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>دا سیشن</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>بندول</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4232,27 +4800,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>سټلر ډاونلوډ مدیر</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM ډاونلوډونه</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>URL اضافه کړئ</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>بیا پیل</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>درول</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>ټول درول</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>ړنګول</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>بشپړ شوي ړنګول</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>اختیارونه</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>مهالوېش</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>1. کتار پیل کړئ</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>2. کتار ودرېږئ</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>ګرابر</translation>
@@ -4261,7 +4859,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>لټون موتور</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>3. RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4300,12 +4901,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>4. خوندي کول</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>خوندي کړئ د...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>5. ډول</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>د ځانګړي خوندي کولو فولډر</translation>
@@ -4318,35 +4925,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>د کټګوري فولډر وکاروئ</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>6. څرګندونه</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>7. د تورنټ امستنې...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. لغوه</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>9. وروسته ښکته کول</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>10. ښکته کول</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>ټورنټ پرانیستل کیږي...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% بشپړ</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>فایلونه</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n توکی(ان)</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>نوم</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>پرمختګ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>اندازه</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>د فایل معلومات نشته</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>په تمه</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>نوم بدلول</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>نوی فایل یا فولډر نوم دننه کړئ:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>نوم بدلول</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>نوم بدلول...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>ملګری</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>ټورنټ پرانیستل او میټاډاټا لوستل...</translation>
@@ -4359,8 +5017,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>له %n همکار(انو) څخه میټاډاټا ډاونلوډ</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>تخم</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>تاسو</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>ټورنټ میټاډاټا</translation>
@@ -4380,8 +5044,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>ویب لینک</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ښه</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>د لټون پلګ ان په ځایي .py فایل کې د لټون_پلګونز فولډر ته کاپي کړئ.</translation>
@@ -4413,9 +5083,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>نصب شوي لټون پلګونه</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>تازه کول</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>نامعلوم</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>فعال</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>بند</translation>
@@ -4424,7 +5103,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>نوی نصب کړئ</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>بندول</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>د لټون پلګونه</translation>
@@ -4432,9 +5114,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>نوم</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>کچه</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>سیدر</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>لیچرونه</translation>
@@ -4451,12 +5142,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>تشریحی پاڼه خلاصه کړئ</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>ټورنټ ډاونلوډ</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>نوم کاپي کړئ</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>مقناطیسي لېنک کاپي</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>د تشریحی پاڼې URL کاپي کړئ</translation>
@@ -4469,12 +5166,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>لټون</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>نامعلوم</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>اوس مهال هیڅ پایله نشته</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>لټون پلګینونه</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>د ټورنټ لټون انجن</translation>
@@ -4490,8 +5193,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>د هر ټورنټ سرعت، شریک محدودیتونه، همکار کشف، او ډاونلوډ حالت</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>بندول</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>پلي کول</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>د بینډویډت محدودیتونه</translation>
@@ -4512,14 +5221,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>نسبت:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>ډیفالټ</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>بې حده</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>ته تنظیم</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>زمان سیدینگ:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>لږ تر لږه</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>زمان غیرفعال:</translation>
@@ -4623,7 +5344,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>سیټینګونه خلاص کړئ</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>له براوزر څخه کوکیز:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>یو براوزر وټاکئ ترڅو د هغه کوکیزونه yt-dlp ته ولیږدئ، بیا بیا هڅه وکړئ.</translation>
@@ -4633,8 +5357,8 @@ Click to open Statistics</source>
             <translation>بیا هڅه وکړئ</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>کیفیت وټاکئ:</translation>
+            <source>Quality:</source>
+            <translation>کیفیت:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4693,7 +5417,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>د ویډیو سره سم سبټایټل فایلونه ډاونلوډ کړئ</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>ژبه:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>د ژبې کوډ(ونه)، لکه en  ·  en.*,ja  ·  all</translation>
@@ -4751,8 +5478,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>چینل ډاونلوډ</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>ښکته کول</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>پرمختللی</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>د نیټې فلټر</translation>
@@ -4842,15 +5575,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>ژوندی: له پیل څخه</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>برعکس ترتیب</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>نوي ویډیوګانې لومړی ښکته کړئ (پلی لېست ترتیب برعکس کوي)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>تېروتنې پرېږدئ</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>کله چې یوه ویډیو ناکامه شي، پلې لېست کې پاتې نورې ډاونلوډ ته دوام ورکړئ</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>خپرونې ته انتظار</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>ټاکل شوې/راتلونکې خپرونې پیل ته انتظار، په هرو N ثانیو بیا هڅه</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>د بیا هڅې وقفه (د ټاکل شوو/راتلونکو خپرونو لپاره)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>موازي ټوټې</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>هممهاله DASH/HLS ټوټې (خالي = ۱، اعظمي ۱۶)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>برعکس</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>تېروتنې پرېږدئ</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>خپرونې ته انتظار</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>موازي ټوټې</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>پلې لېست په ناټاکلي ترتیب ښکته کړئ</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>ژوندۍ خپرونه له پیله ښکته کړئ (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>خوندي کړئ په:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>ډول:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>بڼه:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>لغوه</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>ویډیو ډاونلوډ</translation>

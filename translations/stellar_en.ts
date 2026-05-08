@@ -20319,7 +20319,7 @@ Click to open Statistics</source>
             <location filename="../app/qml/YtdlpDialog.qml" line="525"/>
             
         
-            <source>Select quality:</source>
+            <source>Quality:</source>
             
         
             <translation></translation>
@@ -21123,20 +21123,110 @@ and audio streams merged by ffmpeg after download.</source>
             
         
             <source>Live: from start</source>
-            
-        
+
+
             <translation></translation>
-            
-    
+
+
         </message>
-        
-    
+
+
         <message>
-            
-        
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Reverse order</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Skip errors</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Wait for stream:</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Parallel frags:</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>reversed</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>skip errors</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>wait for stream</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>parallel frags</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Download playlist in random order</source>
+            <translation></translation>
+        </message>
+
+        <message>
+            <location filename="../app/qml/YtdlpDialog.qml" line="0"/>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation></translation>
+        </message>
+
+        <message>
+
+
             <location filename="../app/qml/YtdlpDialog.qml" line="957"/>
-            
-        
+
+
             <source>Save to:</source>
             
         

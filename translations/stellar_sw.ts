@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>Chini: %1  Juu: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>Inapakia: %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>Inapakua: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Inashiriki: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>   Inapanda: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>Inapanda: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
+            <translation>   Jumla: %1</translation>
+        </message>
+        <message>
+            <source>
+Total: %1</source>
             <translation>Jumla: %1</translation>
         </message>
-        
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar inapunguza...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Ikiwa unataka kugawanya hizi za ukaribu kabla za kuanza, tumia hatua ya mfululizo baada ya OK.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Viungo vilivyopatikana ndio vinavyoweza kuchaguliwa. Utaratibu wa kuweka kwenye mzunguko unafanyika baada ya 'Sawa'.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Angalia uwanjaji wa kupakua kwa kiasi kikubwa</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>pikseli</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Futa kabisa</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>Futa</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Ndiyo</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Hapana</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Angalia...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Kategoria</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Kupokea data...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Inakusanya...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Hali ya kupakua</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>Punguza kwenye tray ya mfumo</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Hali</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Ukubwa wa faili</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Uwezo wa kuendelea</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Ndiyo</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Hapana</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Maelezo ya makosa</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>Pauza</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Mwanzo na mchakato kwa uunganisho</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Badilisha Jina</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Tumia tena</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Futa</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Mipangilio</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Jina</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Ukubwa</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Hali</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Muda uliobaki</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>Kasi ya kupakua</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Uliyoongeza</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Imepakuliwa</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Tarehe ya jaribu la mwisho</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Maelezo</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Hifadhi kwenye</translation>
@@ -892,8 +971,14 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Kumbuka chaguo langu na usionyeshe dhana hii tena.
 Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -905,30 +990,66 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Move File To...</source>
             <translation>Hudu Faili...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Anza</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Simamisha</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Fungua folda</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Fungua faili</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Funga</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Hali</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Ukubwa</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Hifadhi kwa</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Hamia</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Anwani</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Ukurasa wa Web</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Rejea</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Maelezo</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Ingia</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Nywila</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Chanzo</translation>
@@ -937,17 +1058,26 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Info hash</source>
             <translation>Hash ya Habari</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Nakili</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Metadata</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Aina</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Maelezo</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Imepakuliwa</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Nchi</translation>
@@ -956,8 +1086,14 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Port</source>
             <translation>Porti</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Imepakiwa</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Wapandaji</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Ujumbe</translation>
@@ -966,10 +1102,22 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Stopped</source>
             <translation>Imemwagilia</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Inapakua</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Inahamisha</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Kupanda</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>Imepangwa</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Kipengele</translation>
@@ -994,7 +1142,10 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>General</source>
             <translation>Jumla</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Faili</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Kadi ya Swarm</translation>
@@ -1079,10 +1230,22 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Enter a new file or folder name:</source>
             <translation>Ingiza jina mpya ya faili au kifaa:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Badilisha jina</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Pakua</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Badilisha jina...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Hakuna walezi waliyokusanywa</translation>
@@ -1187,7 +1350,10 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Tier</source>
             <translation>Kikundi</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Wenza</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>Hakuna wakala</translation>
@@ -1212,7 +1378,10 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% imekamilika</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Haijulikani</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Wewe</translation>
@@ -1229,7 +1398,10 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Force Reannounce</source>
             <translation>Weka upya</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>Nakili URL</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Ondoa kumbukumbu</translation>
@@ -1258,7 +1430,10 @@ Unaweza kubadilisha hii kwenye Chaguzi → Ukabati baadaye.</translation>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Chapisha URL za web seed - moja kwa mstari. URL seeds (BEP-19) na HTTP seeds (BEP-17) zinakubalika.</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Aina</translation>
@@ -1407,7 +1582,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Matokeo %1 yaliyopatikana</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1471,7 +1649,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Jina la muundo</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Hifadhi</translation>
@@ -1492,7 +1673,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Mashirika ya hivi karibuni</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Funga</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Mipangilio ya Grabber</translation>
@@ -1533,8 +1717,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Kijumuishi &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Ingia</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Nywila</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Ingia neno la kuingia na la kutosha kwenye ukurasa huu wa wab: </translation>
@@ -1746,13 +1936,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Mwongozo</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Ongeza</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Hariri</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>Futa</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Hariri filiti</translation>
@@ -1761,9 +1960,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Filiti mpya</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Aina</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Hifadhi</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1775,13 +1983,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Projekti zilizohifadhiwa</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Mradi</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Chaguo</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>Inajumuisha</translation>
@@ -1811,13 +2031,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Anza</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Jina la Faili</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Aina ya Faili</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Ukubwa</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Hali</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Tafuta</translation>
@@ -1826,7 +2055,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Pata kutoka</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Hifadhi kwa</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Angalia chaguo</translation>
@@ -1839,8 +2071,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Hariri mradi huu</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Funga</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Mipangilio ya kukamata</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2097,8 +2335,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Kumbuka: Stellar lazima iwe kwenye tray ya mfumo wakati uliopangwa ili kuanzisha mkaguzo uliopangwa.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2122,8 +2366,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Tumia maandishi ya viungo kama maelezo ya ukaguzi wakati wa kuongeza faili kwenye orodha kuu ya Stellar</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2135,7 +2385,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Hali: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Bure</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Ukurasa wa Web</translation>
@@ -2148,7 +2401,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Kuhusisha</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Faili</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Jumla</translation>
@@ -2161,8 +2417,14 @@ Project</source>
             <source>Matched</source>
             <translation>Imetengenezwa</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Imepakuliwa</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Funga</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2190,7 +2452,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar itajaribu tena kitu hicho cha yt-dlp kwa kuki za kivinjari hicho.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Jaribu tena</translation>
@@ -2227,12 +2492,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Faili zote (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Jumla: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Imemalizwa: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Inapakua: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>Imejaribu: %1</translation>
@@ -2241,9 +2512,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Kwa ujumla: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>Simamisha</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Endelea</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Funga</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Wezesha BitTorrent?</translation>
@@ -2268,7 +2548,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 You can turn this off in Settings → Downloads.</source>
             <translation>Umpiga 'Hifadhi Baadaye' lakini Stellar tayari ilianza kushuka sehemu ya faili. Stellar huanza kushuka wakati waonyesha dialog ya 'Orodha ya Taarifa za Faili'. Unaweza kuyapunguza katika Mipangilio → Hifadhi.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Faili '%1' haikuweza kushukwa.</translation>
@@ -2310,8 +2593,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Faili</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Fungua Folda</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Fungua Faili</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Pakua Sasa</translation>
@@ -2324,8 +2613,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Ondoa</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Pakua Tena</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Hamisha .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Mauzo</translation>
@@ -2362,7 +2657,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Weka kizuizi</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Kikomo cha Kasi</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Weka</translation>
@@ -2455,7 +2753,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Mifupa...</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Chaguo</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Mipendelezo...</translation>
@@ -2488,21 +2789,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Tupa faili .torrent ili kuwapa metadata</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Tafuta:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Tafuta</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Mipangilio ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Tafuta katika:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Jina la faili au sehemu ya jina</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Maelezo</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / mtumishi wa mtiririko / ukurasa wa wingu wa mzee</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Linganisha herufi</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Linganisha tungo zima tu</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Sahaulia upande wa kushoto</translation>
@@ -2551,7 +2873,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Mwendo wa Kupakua Channel</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Pakua Baadaye</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Faili Haiwezi Kupatikana</translation>
@@ -2607,12 +2932,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Usiingize kwenye mfululizo</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Ingiza jina la mfululizo</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Unda</translation>
@@ -2628,8 +2959,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Kanuni za Kupakua</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Ongeza</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Ondoa</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Bonyeza 'Ongeza' ili kuunda kanuni ya kupakua</translation>
@@ -2706,7 +3043,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Baki tupeleke njia ya kawaida</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Vinjari...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Kategoria:</translation>
@@ -2719,7 +3059,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>MIPINGO YA KUSHARISHA TORRENT</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Uwiano</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Kawaida</translation>
@@ -2748,8 +3091,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Inatumia mipaka ya kugawanya ya jumla iliyowekwa katika Mipaka → Mawimbi.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Kanuni za Kuhamia Kwa Aja</translation>
@@ -2789,7 +3138,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Pata</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Pakua</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Fungua Kwenye Browser</translation>
@@ -2810,26 +3162,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Taja Yote Umeulizwa</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Jina</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Jina maalum (kwa chaguo)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Hifadhi</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Ongeza URL ya RSS au Atom...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Ongeza</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Kupya…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Hariri</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Ondoa</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Kanuni za Upakuaji</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Usajili</translation>
@@ -2842,7 +3218,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Chagua makala</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Fungua</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>Angalia</translation>
@@ -2886,7 +3265,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Mzigo mpya</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Futa</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Panga</translation>
@@ -2899,21 +3281,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Kupakua mara moja</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Usawazishaji wa mara kwa mara</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Anza kupakua wakati Stellar inajitokeza</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Anza upakuaji saa</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>Mara moja saa</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Kila siku</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Anza tena kila</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>saa</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>dak</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Acha upakuaji saa</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Idadi ya jaribio</translation>
@@ -2922,17 +3325,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Fungua faili hii</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Toka Stellar ikimaliza</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Zima kompyuta ikimaliza</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Lazimisha michakato kusitishwa</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Pakua</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>faili</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>Jina la Faili</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Ukubwa</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Hali</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Muda uliobaki</translation>
@@ -2969,12 +3393,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Anza sasa</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>Simamisha</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Tumia</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Funga</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Ingiza jina la mfululizo mpya utaoonekana kwenye orodha ya mfululizo</translation>
@@ -2983,9 +3413,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Jina la mfululizo</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ratiba</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Mfululizo Mpya</translation>
@@ -2997,7 +3436,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>Muunganisho</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Upakuaji wa juu kwa wakati mmoja:</translation>
@@ -3062,13 +3504,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Nenosiri:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Aina</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Jina</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>Hifadhi kwenye kichwa</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Vipakuliwa</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Kichwa cha kuhifadhi: </translation>
@@ -3129,8 +3580,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Onyesha sekunde</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Ona Mwonekano</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Unganishaji na Kivinjari</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Anza kuingiza hizi aina za faili:</translation>
@@ -3155,7 +3612,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Dumisha hii kinyume na kupakua:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Kikomo cha Kasi</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Wezesha kikomo cha kasi cha jumla</translation>
@@ -3164,7 +3624,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Kasi ya juu:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>KB/s</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Wezesha kikomo cha upakiaji wa jumla</translation>
@@ -3181,12 +3644,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Weka mpangilio wa kikwazo cha kasi</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Ondoa</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Iko</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Pakua</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Zisoma</translation>
@@ -3207,7 +3676,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Angalia mawasiliano wakati ya makosa ya mpakuo</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>Jumla</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Kutafuta</translation>
@@ -3304,8 +3776,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Fungua sifa za faili</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Fungua faili</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Fungua folda</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>Muda wa saa 24</translation>
@@ -3338,7 +3816,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Bonyeza siku ili kubadilisha hali. Sheria zinagunduliwa kila dakika; sheria ya kwanza inayolingana inashinda. Mipaka ya ukomo wa ukomo na usafirishaji hupunguzwa kiotomatiki wakati hakuna sheria inayofanya kazi.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>Punguza kwenye trei</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>Funga kwenye mabano ya mfumo</translation>
@@ -3431,7 +3912,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Pakua yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Angalia tena</translation>
@@ -3538,7 +4022,10 @@ Kila kitu unachoshiriki kupitia BitTorrent ni jukumu lako pekee. Hakikisha una h
 
 Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako iko kazi kabla ya kutumia torrents ili kulinda anwani yako ya IP.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Naelewa, Wezesha</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Vipengele hivi vinatumika kwa faili .torrent na viungo vya magnet.</translation>
@@ -3603,7 +4090,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Networking</source>
             <translation>Mtandao</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Juu</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>User agent ya BitTorrent ya kipekee</translation>
@@ -3676,7 +4166,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Block peers by country</source>
             <translation>Zuia miteja kwa nchi</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Ongeza</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Mikoa hayajabaki</translation>
@@ -3713,12 +4206,18 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Version</source>
             <translation>Sifa</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Haijulikani</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Barua</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Ukubwa</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Vipengele</translation>
@@ -3727,7 +4226,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Last Modified</source>
             <translation>Imebadilishwa</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Hali</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Inapashwa...</translation>
@@ -3740,7 +4242,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Refresh Info</source>
             <translation>Sasisha Maelezo</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Takwimu</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Jumla ya data iliopashwa</translation>
@@ -3761,7 +4266,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Maelezo ya lisensi yote yana THIRD-PARTY-NOTICES.txt, yaliyomo katika uingizaji huu.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Kupata maabara</translation>
@@ -3774,7 +4282,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Feeds refresh interval</source>
             <translation>Muda wa kuzindua tena maabara</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>dakika</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Muda wa kutarajia kuingia kwenye hosti moja</translation>
@@ -3935,8 +4446,14 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Third-party software</source>
             <translation>Programu za wadau</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Tumia</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Njia ya kuanzia</translation>
@@ -4017,7 +4534,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Available but not loaded</source>
             <translation>Inapatikana lakini haijapewa</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Chanzo: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL ya chanzo haijapashwa. Tumia Angalia mipya ili kupashwa IPtoCityDB kutoka update.json.</translation>
@@ -4049,9 +4569,18 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Edit Project</source>
             <translation>Hariri Mchakato</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Futa Mradi</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Kategoria</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Vipakuliwa Vyote</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Zisiofanikiwa</translation>
@@ -4064,19 +4593,49 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>Grabber Projects</source>
             <translation>Projekti za Grabber</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torrenti</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Foleni</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Inapakua</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Inapanda</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>Imesimamishwa</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Inafanya kazi</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Haifanyi kazi</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Inakagua</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Inasonga</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Takwimu</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Hesabu za Stellar</translation>
@@ -4085,8 +4644,14 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>ALL TIME</source>
             <translation>KILA WAKATI</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Imepakuliwa</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>1. Imepakiwa</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Ushirika</translation>
@@ -4107,7 +4672,10 @@ Inashauriwa sana kuunganisha Stellar na mkondo wa VPN na kuhakikisha VPN yako ik
             <source>THIS SESSION</source>
             <translation>SESI HII</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>2. Funga</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4223,27 +4791,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>3. Stellar Download Manager</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>4. Vipakuliwa vya SDM</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>5. Ongeza URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>6. Endelea</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>7. Simamisha</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Ondoa Zote</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>8. Futa</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Futa Kamilifu</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>9. Chaguzi</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>10. Kipanga</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Anzisha Foleni</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Simamisha Foleni</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Kupata</translation>
@@ -4252,7 +4850,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Jukwaa la Kutafuta</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4291,12 +4892,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Hifadhi kwa</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Hifadhi kama...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Kategoria</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>Kifaa cha hifadhi</translation>
@@ -4309,35 +4916,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Tumia kategoria</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Maelezo</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Mipangilio ya Torrent...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Pakua Baadaye</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Pakua</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Kufungua torrent...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% imekamilika</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Mafaili</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n vitu</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Jina</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Maendeleo</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Ukubwa</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Hakuna taarifa ya faili</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>Inasubiri</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Badili jina la kipengee</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Ingiza jina jipya la faili au folda:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Badili jina</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Badilisha jina...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Rika</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Kufungua torrent na kusoma taarifa...</translation>
@@ -4350,8 +5008,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Kupakua taarifa kutoka kwa %n mshirika(wa)</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Mbegu</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Wewe</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Taarifa ya Torrent</translation>
@@ -4371,8 +5035,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Kwenye Mtandao</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Sawa</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Chagua faili ya .py ya kinywaji cha utafutaji ili kuionyesha kwenye kichwa cha search_plugins.</translation>
@@ -4404,9 +5074,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Utafiti Uwekwa</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Onyesha upya</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Haijulikani</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Imewezeshwa</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>Uondolewa</translation>
@@ -4415,7 +5094,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Weka Mpya</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Funga</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Tafuta Plugins</translation>
@@ -4423,9 +5105,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Jina</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Ukubwa</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Wapandaji</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Leechers</translation>
@@ -4442,12 +5133,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Fungua Ukurasa wa Maelezo</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>Pakua Torrent</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Nakili Jina</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Nakili Kiungo cha Sumaku</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Nakili URL ya Ukurasa wa Maelezo</translation>
@@ -4460,12 +5157,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Tafuta</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Haijulikani</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Hakuna matokeo ya utafutaji bado</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Programu-jalizi za Utafutaji</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Jukwaa la Kutafuta Torrent</translation>
@@ -4481,8 +5184,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Kasi kwa Torrent, mipaka ya kushiriki, kutafuta walea, na hali ya kupakua</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Funga</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Tekeleza</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>MIPAKA YA KASI</translation>
@@ -4503,14 +5212,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Ratio:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Chaguo-msingi</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Bila kikomo</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>Weka kwa</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Muda wa kuleta</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>chini</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Muda wa kushindwa</translation>
@@ -4614,7 +5335,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Fungua Mipangilio</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Vidakuzi kutoka kivinjari:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Chagua browser ili kuwasilisha cookies zake kwa yt-dlp, kisha jaribu tena.</translation>
@@ -4624,8 +5348,8 @@ Click to open Statistics</source>
             <translation>Rudi tena</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>Chagua ubora:</translation>
+            <source>Quality:</source>
+            <translation>Ubora:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4684,7 +5408,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Wasilisha faili ya maelezo pamoja na video</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Lugha:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Kodi za lugha, mfano: en · en.*,ja · zote</translation>
@@ -4742,8 +5469,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Chanel ya Kuhamisha</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Pakua</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Juu</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>Kifungua cha tarehe</translation>
@@ -4833,15 +5566,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Kazi: kuanzia mwanzo</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Geuza mpangilio</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Pakua video mpya kwanza (hubadilisha mpangilio wa orodha)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>Ruka makosa</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>Endelea kupakua video zilizobaki kwenye orodha ikiwa moja itashindikana (haipatikani, imezuiwa kijiografia, n.k.)</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>Subiri mtiririko:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>Subiri mtiririko uliopangwa/ujao uanze, jaribu tena kila sekunde N</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>Muda wa kujaribu tena kwa sekunde (kwa mitiririko iliyopangwa/inayokuja)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>Vipande sambamba:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>Vipande vya DASH/HLS kwa wakati mmoja (tupu = 1, upeo 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>kinyume</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>ruka makosa</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>subiri mtiririko</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>vipande sambamba</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>Pakua orodha kwa mpangilio nasibu</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>Pakua mtiririko wa moja kwa moja tangu mwanzo (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Hifadhi kwenye:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Aina:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Umbo:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Ghairi</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Pakua Video</translation>

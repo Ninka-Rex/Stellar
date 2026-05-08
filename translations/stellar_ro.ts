@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>Se descarcă: %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>Descărcare: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Se distribuie: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>Seedare: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>Seedare: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>Total: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>Total: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar se închide...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Anulează</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulare</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Doar link-urile marcate ca Găsite sunt selectabile. Alocarea cozii are loc tot după OK.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulare</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Verificare descărcare în lot</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>pixeli lățime</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Ștergere permanentă (fără mutare în coș)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>Șterge</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Da</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Nu</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Răsfoire...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Categorie</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Primit date...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Se asamblează...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Stare descărcare</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>Minimizare în tray</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Stare</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Mărime fișier</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Capacitate relansare</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Da</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Nu</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Detaliu eroare</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>Pauză</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Poziții și progrese</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Redenumește</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Redescărcare</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Șterge</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Setări coloane</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Nume fișier</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Dimensiune</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Stare</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Timp rămas</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>↓ Viteză descărcare</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Încărcat</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Descărcat</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Ultima încercare</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Descriere</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Salvare în</translation>
@@ -891,8 +970,14 @@ Apăsați Adaugă URL pentru a începe.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Amintește selecția și nu mai arăta acest dialog.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -904,30 +989,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Mutare fișier...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Pornire</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Oprire</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Deschide folder</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Deschide fișier</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Stare</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Dimensiune</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Salvează în</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Mută</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Adresă</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Pagină web</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Referer</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Descriere</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Autentificare</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Parolă</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Sursă</translation>
@@ -936,17 +1057,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Hash informații</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Copiere</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Meta date</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Categorie</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Notă</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Descărcat</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Țară</translation>
@@ -955,8 +1085,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Încărcat</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Seederi</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Mesaj</translation>
@@ -965,10 +1101,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Oprit</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Se descarcă</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Mutare</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Seeding</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>În așteptare</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Problemă</translation>
@@ -993,7 +1141,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>General</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Fișiere</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Hartă Swarm</translation>
@@ -1078,10 +1229,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Introduceți un nou nume fișier sau folder:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Redenumește</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Descarcă</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Redenumește...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Niciun peer conectat</translation>
@@ -1186,7 +1349,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Tier</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Parteneri</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 cunoscuți</translation>
@@ -1211,7 +1377,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% gata</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Necunoscut</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Tu</translation>
@@ -1228,7 +1397,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Reanunțare forțată</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>Copiază URL</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Ștergere tracker</translation>
@@ -1257,7 +1429,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Lipiseți URL-uri seeds web - câte unul pe linie. Sunt acceptate seeds URL (BEP-19) și seeds HTTP (BEP-17).</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Tip</translation>
@@ -1406,7 +1581,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 rezultate găsite</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1470,7 +1648,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Nume șablon</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Salvează</translation>
@@ -1491,7 +1672,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Proiecte recente</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Setări Grabber</translation>
@@ -1532,8 +1716,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Avansat &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Autentificare</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Parolă</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Presăuntați Avansat pentru a activa conectarea manuală sau pentru a dezactiva pagina de deconectare.</translation>
@@ -1745,13 +1935,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Masca</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Adaugă</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Editează</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>Șterge</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Editează filtru</translation>
@@ -1760,9 +1959,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Nou filtru</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Categorie</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Renunță</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Salvează</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1774,13 +1982,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Proiecte salvate</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Renunță</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Proiect</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Opțiuni</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>În curs</translation>
@@ -1810,13 +2030,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Start</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Nume fișier</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Tip fișier</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Dimensiune</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Stare</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Link</translation>
@@ -1825,7 +2054,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Descărcare de la</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Salvează în</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Bifează selectat</translation>
@@ -1838,8 +2070,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Editează proiect curent</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Setări captură</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2096,8 +2334,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Notă: Stellar trebuie să fie în bara de sistem la ora specificată pentru a începe un proiect programat.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2121,8 +2365,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Folosiți textul link-ului ca descriere de descărcare la adăugarea fișierelor în lista principală Stellar</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2134,7 +2384,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Stare: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Inactiv</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Pagini web procesate</translation>
@@ -2147,7 +2400,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Avansat</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Fișiere</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Total</translation>
@@ -2160,8 +2416,14 @@ Project</source>
             <source>Matched</source>
             <translation>Potrivit</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Descărcat</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2189,7 +2451,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar va reîncerca același articol yt-dlp cu cookie-urile acelui browser.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Renunță</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Reîncearcă descărcarea</translation>
@@ -2226,12 +2491,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Toate fișiere (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Total: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Finalizat: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Se descarcă: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>Așteptare: %1</translation>
@@ -2240,9 +2511,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Total: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>Oprește</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Reia</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Activați suportul BitTorrent?</translation>
@@ -2269,7 +2549,10 @@ You can turn this off in Settings → Downloads.</source>
 
 Puteți dezactiva acest lucru în Setări → Descărcări.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Fișierul &quot;%1&quot; nu a putut fi descărcat.</translation>
@@ -2312,8 +2595,14 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>File</source>
             <translation>Fișier</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Deschide folder</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Deschide fișier</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Descarcă acum</translation>
@@ -2326,8 +2615,14 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Remove</source>
             <translation>Șterge</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Redescarcă</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Exportă .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Descărcări</translation>
@@ -2364,7 +2659,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Stop Queue</source>
             <translation>Oprește coadă</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Limitator viteză</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Pornire</translation>
@@ -2457,7 +2755,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Columns…</source>
             <translation>Coloane...</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Opțiuni</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Preferințe...</translation>
@@ -2490,21 +2791,42 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Aruncă fișierul .torrent pentru a deschide metadatele</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Caută:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Caută</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Setări ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Caută în:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Nume fișier sau parte din nume</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Descriere</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / referitor / pagină web părinte</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Potrivire litere</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Potrivire completă</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Mută bara laterală în stânga</translation>
@@ -2553,7 +2875,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Channel Download Progress</source>
             <translation>Progres descărcare canal</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Descarcă mai târziu</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Fișierul nu mai este disponibil</translation>
@@ -2609,12 +2934,18 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Don't add to queue</source>
             <translation>Nu adăuga în sarcină</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Introdu numele sarcinii</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Creează</translation>
@@ -2630,8 +2961,14 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Download Rules</source>
             <translation>Reguli Descărcare</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Adaugă</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Elimină</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Click 'Adaugă' pentru a crea o regulă de descărcare</translation>
@@ -2708,7 +3045,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Leave empty to use default save path</source>
             <translation>Lăsați gol pentru cale implicită</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Răsfoiește...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Categorie:</translation>
@@ -2721,7 +3061,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>TORRENT SHARE LIMITS</source>
             <translation>LIMITĂRI PARTAJARE TORRENT</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Rație</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Implicit</translation>
@@ -2750,8 +3093,14 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Implicit</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Reguli RSS descărcare automată</translation>
@@ -2791,7 +3140,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Download Torrent</source>
             <translation>Descarcă Torrent</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Descarcă</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Deschide în Browser</translation>
@@ -2812,26 +3164,50 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Mark All Read</source>
             <translation>Marcați tot ca citit</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Nume</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Nume personalizat (opțional)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Salvează</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Adaugă URL pentru flux RSS sau Atom...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Adaugă</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Actualizare...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Editează</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Șterge</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Reguli descărcare</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Abonamente</translation>
@@ -2844,7 +3220,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Select an article</source>
             <translation>Selectare Articol</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Deschide</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>Marcate Citite</translation>
@@ -2888,7 +3267,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>New queue</source>
             <translation>Coz nou</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Șterge</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Programare</translation>
@@ -2901,21 +3283,42 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>One-time downloading</source>
             <translation>Descărcare unică</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Sincronizare periodică</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Pornire la pornirea Stellar</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Pornește descărcarea la</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>O dată la</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Zilnic</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Repornește la fiecare</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>ore</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>min</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Oprește descărcarea la</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Număr de reîncercări pentru fiecare fișier:</translation>
@@ -2924,17 +3327,38 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Open the following file when done:</source>
             <translation>Deschide următorul fișier la final:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Închide Stellar la final</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Oprește calculatorul la final</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Forțează terminarea proceselor</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Descărcare</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>fișiere simultan</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>Nume fișier</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Mărime</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Stare</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Timp rămas</translation>
@@ -2971,12 +3395,18 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Start now</source>
             <translation>Începe acum</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>Oprire</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Aplică</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Introduceți un nume pentru noua coadă</translation>
@@ -2985,9 +3415,18 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Queue name</source>
             <translation>Nume coadă</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulare</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Planificator</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Nouă coadă</translation>
@@ -2999,7 +3438,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>Conexiune</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Descărcări simultane max:</translation>
@@ -3064,13 +3506,22 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Password:</source>
             <translation>Parolă:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Categorii</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Nume</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>Salvare în folder</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Descărcări</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Folder implicit de salvare:</translation>
@@ -3131,8 +3582,14 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Show seconds</source>
             <translation>Afișează secunde</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Previzualizare</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Integrare browser</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Începe automat descărcarea următoarelor tipuri de fișiere:</translation>
@@ -3157,7 +3614,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Ține această cheie în timp ce dai click pe un link de descărcare pentru a ocoli interceptarea și a permite browserului să descarce:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Limitator viteză</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Activează limită globală descărcare</translation>
@@ -3166,7 +3626,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Maximum speed:</source>
             <translation>Viteză maximă:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>KB/s</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Activează limită globală încărcare</translation>
@@ -3183,12 +3646,18 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Enable speed limiter scheduler</source>
             <translation>Activați programatorul limitator de viteză</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Elimină</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Pornit</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Descarcă</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Încărcare</translation>
@@ -3209,7 +3678,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Show notification on download error</source>
             <translation>Arătați notificare la eroare de descărcare</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>General</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Browser</translation>
@@ -3306,8 +3778,14 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Open file properties dialog</source>
             <translation>Deschide proprietățile fișierului</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Deschide fișier</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Deschide folder</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>Timp 24 de ore</translation>
@@ -3340,7 +3818,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Fă clic pe o pastilă de zi pentru a o comuta. Reguli evaluate la fiecare minut; prima regulă care se potrivește câștigă. Limitele de descărcare și încărcare programate sunt șterse automat când nu există o regulă activă.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>Minimizare în tray</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>Închide în panoul de sistem</translation>
@@ -3433,7 +3914,10 @@ Opțiuni Stellar → Browser → Ocolire captare descărcare</translation>
             <source>Download yt-dlp</source>
             <translation>Descarcă yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulare</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Reverifică</translation>
@@ -3538,7 +4022,10 @@ Anything you share via BitTorrent is your sole responsibility. Ensure you have t
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
             <translation>Stellar este un program de partajare fișiere. La descărcarea unui torrent, adresa IP devine vizibilă pentru alți participanți și încărcați simultan date. Conținutul partajat este de responsabilitatea dumneavoastră. Asigurați-vă că aveți dreptul de distribuire. Se recomandă legarea Stellar de interfața VPN și verificarea activității acesteia înainte de utilizare.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Am înțeles, activează</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Aceste setări se aplică fișierelor .torrent și link-urilor magnet.</translation>
@@ -3603,7 +4090,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>Rețea</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Avansat</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Agent utilizator BitTorrent personalizat</translation>
@@ -3676,7 +4166,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>Blochează clienți după țară</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Adaugă</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Niciună țară blocată</translation>
@@ -3713,12 +4206,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>Versiune</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Necunoscut</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Cale</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Dimensiune</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Înregistrări</translation>
@@ -3727,7 +4226,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>Modificat</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Stare</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Se descarcă...</translation>
@@ -3740,7 +4242,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>Reîmprospătare</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Statistici</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Total cumulativ</translation>
@@ -3761,7 +4266,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Vezi THIRD-PARTY-NOTICES.txt</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Obținere fluxuri</translation>
@@ -3774,7 +4282,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Interval actualizare fluxuri</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>minute</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Întârziere cerere același gazdă</translation>
@@ -3935,8 +4446,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>Software de terți</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Aplică</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Ruta implicită</translation>
@@ -4017,7 +4534,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>Disponibil dar nu încărcat</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Sursă: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL-ul sursei nu este încă în cache. Folosiți Verificare actualizări pentru a încărca IPtoCityDB din update.json.</translation>
@@ -4049,9 +4569,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>Editează Proiect</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Șterge proiect</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Categorii</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Toate descărcările</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Neterminat</translation>
@@ -4064,19 +4593,49 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Proiecte</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torente</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Coadă</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Descărcare</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Seedare</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>Oprit</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Activ</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Inactiv</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Verificare</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Mutare</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Statistici</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Statistică Stellar</translation>
@@ -4085,8 +4644,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>TOTAL</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Descărcat</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>Încărcat</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Raport</translation>
@@ -4107,7 +4672,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>ACEASTĂ ȘEDINȚĂ</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4223,27 +4791,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar Download Manager</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>Descărcări SDM</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>Adaugă URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Reia</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Oprește</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Oprește tot</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Șterge</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Șterge finalizat</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>Opțiuni</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Programator</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Pornire coadă</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Oprire coadă</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Răpire</translation>
@@ -4252,7 +4850,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Motor de căutare</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4291,12 +4892,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Salvare în</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Salvează ca...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Categorie</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>Dosar personalizate</translation>
@@ -4309,35 +4916,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Folosește dosarul categoriei</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Descriere</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Setări torrent...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Anulare</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Descărcare ulterioară</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Descărcare</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Se deschide torrent...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% finalizat</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Fișiere</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n element(e)</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Nume</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Progres</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Mărime</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Nicio informație disponibilă</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>În așteptare</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Redenumește</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Introdu un nume nou:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Redenumire</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Redenumire...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Partener</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Se deschide torrent și se citesc metadatele...</translation>
@@ -4350,8 +5008,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Descărcare metadate de la %n peer(i)</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Seed</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Tu</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Meta date Torrent</translation>
@@ -4371,8 +5035,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Link web</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulare</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Alege un fișier .py local pentru căutare de copiat în folderul search_plugins.</translation>
@@ -4404,9 +5074,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Plugin-uri instalate</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Reîmprospătare</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Necunoscut</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Activat</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>Dezactivat</translation>
@@ -4415,7 +5094,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Instalare nou</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Închidere</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Caută Plugin-uri</translation>
@@ -4423,9 +5105,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Nume</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Mărime</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Seederi</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Leecheri</translation>
@@ -4442,12 +5133,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Deschide Pagina Descrierii</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>↓ Torrent</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Copiere Nume</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Copiază Magnet</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Copiere URL Pagină Descriere</translation>
@@ -4460,12 +5157,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Căutare</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Necunoscut</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Niciun rezultat încă</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Pluginuri căutare</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Motor Căutare Torrent</translation>
@@ -4481,8 +5184,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Viteză torrent, limite partajare, descoperire peer, mod descărcare</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Închide</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Aplică</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>LIMITE BANDWIDTH</translation>
@@ -4503,14 +5212,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Raport:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Implicit</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Nelimitat</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>Setează la</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Timp seeding:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>min</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Timp inactiv:</translation>
@@ -4614,7 +5335,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Deschideți Setările</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Cookie-uri din browser:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Selectați un browser pentru a transmite cookie-urile sale către yt-dlp, apoi reîncercați.</translation>
@@ -4624,7 +5348,7 @@ Click to open Statistics</source>
             <translation>Reîncearcă</translation>
         </message>
         <message>
-            <source>Select quality:</source>
+            <source>Quality:</source>
             <translation>Calitate:</translation>
         </message>
         <message>
@@ -4684,7 +5408,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Descarcă fișierele de subtitrare împreună cu videoclipul</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Limbă:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Coduri de limbă, ex. en · en.*,ja · toate</translation>
@@ -4742,8 +5469,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Canal descărcare</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Descarcă</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Avansat</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>Filtrare dată</translation>
@@ -4833,15 +5566,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Direct: de la început</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Ordine inversă</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Descarcă mai întâi cele mai noi videoclipuri (inversează ordinea playlistului)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>Sari peste erori</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>Continuă descărcarea restului playlistului când un videoclip eșuează (indisponibil, geo-blocat etc.)</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>Așteaptă streamul:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>Așteaptă începerea unui stream programat, reîncercând la fiecare N secunde</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>s interval reîncercare (pentru streamuri programate)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>Fragmente paralele:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>Fragmente DASH/HLS concurente (gol = 1, max 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>inversat</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>sari peste erori</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>așteaptă streamul</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>fragmente paralele</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>Descarcă playlist în ordine aleatorie</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>Descarcă transmisiune live de la început (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Salvează în:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Categorie:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Format:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Anulează</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Descarcă video</translation>

@@ -61,23 +61,33 @@
             <translation>ಸ್ಟೆಲ್ಲರ್ ಡೌನ್‌ಲೋಡ್ ಮ್ಯಾನೇಜರ್ v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>ಕೆಳಗೆ: %1 ಮೇಲೆ: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ: %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>ಡೌನ್ಲೋಡ್: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
+            <source>  Seeding: %1</source>
             <translation>ಸೀಡಿಂಗ್: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>ಸೀಡಿಂಗ್: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>ಒಟ್ಟು: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>ಒಟ್ಟು: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>ಸ್ಟೆಲ್ಲರ್ ಮುಚ್ಚುತ್ತಿದೆ...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>ಆರಂಭಿಸುವ ಮೊದಲು ಈ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಗುಂಪು ಮಾಡಲು OK ನಂತರ ಕ್ಯೂ ಹಂತವನ್ನು ಬಳಸಿ.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>ಕಂಡುಹಿಡಿದ ಎಂದು ಗುರುತಿಸಲಾದ ಲಿಂಕ್‌ಗಳು ಮಾತ್ರ ಆಯ್ಕೆ ಮಾಡಬಹುದು. OK ನಂತರ ಕ್ಯೂ ನಿಯೋಜನೆ ನಡೆಯುತ್ತದೆ.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>ಬ್ಯಾಚ್ ಡೌನ್‌ಲೋಡ್ ಪರಿಶೀಲನೆ</translation>
@@ -352,8 +374,14 @@
             <source>pixels wide</source>
             <translation>ಪಿಕ್ಸೆಲ್‌ಗಳ ಅಗಲ</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -377,7 +405,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>ಸ್ಥಾಯಿಯಾಗಿ ಅಳಿಸು (ಕಸದ ಬುಟ್ಟಿಗೆ ಹಾಕಬೇಡ)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>ಅಳಿಸಿ</translation>
@@ -405,7 +436,10 @@
             <source>Yes</source>
             <translation>ಹೌದು</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>ಇಲ್ಲ</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -500,9 +534,18 @@
             <source>Browse...</source>
             <translation>ಬ್ರೌಸ್...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>ವರ್ಗ</translation>
@@ -581,7 +624,10 @@
             <source>Receiving data...</source>
             <translation>ಡೇಟಾ ಪಡೆಯಲಾಗುತ್ತಿದೆ...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>ಜೋಡಿಸಲಾಗುತ್ತಿದೆ...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>ಡೌನ್‌ಲೋಡ್ ಸ್ಥಿತಿ</translation>
@@ -602,7 +648,10 @@
             <source>Minimize to system tray</source>
             <translation>ಸಿಸ್ಟಮ್ ಟ್ರೇಗೆ ಕಡಿಮೆ ಮಾಡಿ</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>ಸ್ಥಿತಿ</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>ಫೈಲ್ ಗಾತ್ರ</translation>
@@ -631,8 +680,14 @@
             <source>Resume capability</source>
             <translation>ಮರುಪ್ರಾರಂಭ ಸಾಮರ್ಥ್ಯ</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>ಹೌದು</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>ಇಲ್ಲ</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>ದೋಷ ವಿವರ</translation>
@@ -657,7 +712,10 @@
             <source>Pause</source>
             <translation>ವಿರಾಮ</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>ಸಂಪರ್ಕಗಳ ಪ್ರಕಾರ ಪ್ರಾರಂಭ ಸ್ಥಾನಗಳು ಮತ್ತು ಡೌನ್‌ಲೋಡ್ ಪ್ರಗತಿ</translation>
@@ -725,7 +783,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>ಮರುನಾಮಕರಣ</translation>
@@ -770,7 +831,10 @@
             <source>Redownload</source>
             <translation>ಮತ್ತೆ ಡೌನ್‌ಲೋಡ್</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>ಅಳಿಸು</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>ಕಾಲಮ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</translation>
@@ -779,9 +843,18 @@
             <source>File Name</source>
             <translation>ಫೈಲ್ ಹೆಸರು</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>ಗಾತ್ರ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ಸ್ಥಿತಿ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>ಉಳಿದ ಸಮಯ</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>↓ ವೇಗ</translation>
@@ -806,12 +879,18 @@
             <source>Uploaded</source>
             <translation>ಅಪ್‌ಲೋಡ್</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಆಗಿದೆ</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>ಕೊನೆಯ ಪ್ರಯತ್ನ ದಿನಾಂಕ</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>ವಿವರಣೆ</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>ಉಳಿಸಿ</translation>
@@ -907,8 +986,14 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>ನನ್ನ ಆಯ್ಕೆಯನ್ನು ನೆನಪಿಡಿ ಮತ್ತು ಈ ಸಂಭಾಷಣೆಯನ್ನು ಮತ್ತೆ ತೋರಿಸಬೇಡಿ. 
 ನಂತರ ಆಯ್ಕೆಗಳು → ಡೌನ್‌ಲೋಡ್‌ಗಳಲ್ಲಿ ಬದಲಾಯಿಸಬಹುದು.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -920,30 +1005,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>ಫೈಲ್ ಅನ್ನು ... ಗೆ ಸ್ಥಳಾಂತರಿಸಿ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>ಪ್ರಾರಂಭಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>ನಿಲ್ಲಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>ಫೋಲ್ಡರ್ ತೆರೆಯಿರಿ</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>ಫೈಲ್ ತೆರೆಯಿರಿ</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚಿ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ಸ್ಥಿತಿ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ಗಾತ್ರ</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>ಇಲ್ಲಿ ಉಳಿಸಿ</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>ನಡೆಸಿ</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>ವಿಳಾಸ</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>ವೆಬ್ ಪುಟ</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>ಉಲ್ಲೇಖಕ</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>ವಿವರ</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>ಲಾಗಿನ್</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>ಪಾಸ್ವರ್ಡ್</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>ಮೂಲ</translation>
@@ -952,17 +1073,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>ಇನ್ಫೋ ಹ್ಯಾಶ್</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>ನಕಲಿಸಿ</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>ಮೆಟಾಡೇಟಾ</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>ವರ್ಗ</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>ಟಿಪ್ಪಣಿ</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ಡೌನ್ಲೋಡ್ ಆಗಿದೆ</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>ದೇಶ</translation>
@@ -971,8 +1101,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>ಬಂದರು</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>ಅಪ್ಲೋಡ್ ಆಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>ಸೀಡರ್ಗಳು</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>ಸಂದೇಶ</translation>
@@ -981,10 +1117,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>ನಿಲ್ಲಿಸಲಾಗಿದೆ</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>ಡೌನ್ಲೋಡ್ ಆಗುತ್ತಿದೆ</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>ಸ್ಥಳಾಂತರಿಸಲಾಗುತ್ತಿದೆ</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>ಸೀಡಿಂಗ್</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>ಸರದಿಯಲ್ಲಿ</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>ಸಮಸ್ಯೆ</translation>
@@ -1009,7 +1157,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>ಸಾಮಾನ್ಯ</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>ಫೈಲ್‌ಗಳು</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>ಸ್ವಾರ್ಮ್ ನಕ್ಷೆ</translation>
@@ -1094,10 +1245,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>ಹೊಸ ಫೈಲ್ ಅಥವಾ ಫೋಲ್ಡರ್ ಹೆಸರನ್ನು ನಮೂದಿಸಿ:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>ಮರುಹೆಸರಿಸು</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ಡೌನ್‌ಲೋಡ್</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>ಮರುಹೆಸರಿಸು...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>ಯಾವುದೇ ಪಿಯರ್‌ಗಳು ಸಂಪರ್ಕಿಸಿಲ್ಲ</translation>
@@ -1202,7 +1365,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>ತier</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>ಪೀರ್‌ಗಳು</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 ತಿಳಿದಿರುವ ಪಿಯರ್‌ಗಳು</translation>
@@ -1227,7 +1393,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>ಪಿಂಗ್ %1 %2% ಪೂರ್ಣ</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>ಅಜ್ಞಾತ</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>ನೀವು (ಈ ಕ್ಲೈಂಟ್)</translation>
@@ -1244,7 +1413,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>ಬಲವಂತದ ಮರುಘೋಷಣೆ</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>URL ನಕಲಿಸಿ</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>ಟ್ರ್ಯಾಕರ್ ತೆಗೆದುಹಾಕಿ</translation>
@@ -1273,7 +1445,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>ವೆಬ್ ಸೀಡ್ URL ಗಳನ್ನು ಪೇಸ್ಟ್ ಮಾಡಿ - ಪ್ರತಿ ಸಾಲು ಒಂದು. URL ಸೀಡ್‌ಗಳು (BEP-19) ಮತ್ತು HTTP ಸೀಡ್‌ಗಳು (BEP-17) ಎರಡನ್ನೂ ಸ್ವೀಕರಿಸಲಾಗುತ್ತದೆ.</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>ವಿಧಾನ</translation>
@@ -1422,7 +1597,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 ಫಲಿತಾಂಶಗಳು ಕಂಡುಬಂದಿವೆ.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1486,7 +1664,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>ಟೆಂಪ್ಲೇಟ್ ಹೆಸರು</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>ಉಳಿಸಿ</translation>
@@ -1507,7 +1688,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>ಇತ್ತೀಚಿನ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳು</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚಿ</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>ಗ್ರಾಬರ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</translation>
@@ -1548,8 +1732,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>ಹೆಚ್ಚಿನ &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>ಲಾಗಿನ್</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>ಪಾಸ್ವರ್ಡ್</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>ಮ್ಯಾನುವಲಿ ಲಾಗಿನ್ ಸಕ್ರಿಯಗೊಳಿಸಲು ಅಥವಾ ಲಾಗ್‌ಔಟ್ ಪುಟವನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲು ಹೆಚ್ಚಿನ ಕ್ಲಿಕ್ ಮಾಡಿ.</translation>
@@ -1761,13 +1951,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>ಮಾಸ್ಕ್</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>ಸೇರಿಸಿ</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>ಸಂಪಾದಿಸಿ</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>ಅಳಿಸಿ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>ಫಿಲ್ಟರ್ ಸಂಪಾದಿಸಿ</translation>
@@ -1776,9 +1975,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>ಹೊಸ ಫಿಲ್ಟರ್</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>ವರ್ಗ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>ಉಳಿಸು</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1790,13 +1998,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>ಉಳಿದಿರುವ ಪ್ರಾಜೆಕ್ಟ್‌ಗಳು</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>ಯೋಜನೆ</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>ಆಯ್ಕೆಗಳು</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>ಚಾಲನೆ</translation>
@@ -1827,13 +2047,22 @@ Exploring</source>
             <translation>ಪ್ರಾರಂಭಿಸಿ
 ಅನ್ವೇಷಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>ಕಡತದ ಹೆಸರು</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>ಫೈಲ್ ಪ್ರಕಾರ</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>ಗಾತ್ರ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ಸ್ಥಿತಿ</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>ಲಿಂಕ್ ಪಠ್ಯ</translation>
@@ -1842,7 +2071,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>ಇದರಿಂದ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>ಇಲ್ಲಿ ಉಳಿಸು</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>ಆಯ್ಕೆ ಮಾಡಿ</translation>
@@ -1855,8 +2087,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>ಪ್ರಸ್ತುತ ಯೋಜನೆಯನ್ನು ಸಂಪಾದಿಸಿ</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚಿ</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>ಗ್ರಾಬರ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2118,8 +2356,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>ಗಮನಿಸಿ: ನಿಗದಿತ ಸಮಯದಲ್ಲಿ ಯೋಜನೆಯನ್ನು ಪ್ರಾರಂಭಿಸಲು ಸ್ಟೆಲ್ಲರ್ ಸಿಸ್ಟಮ್ ಟ್ರೇಯಲ್ಲಿ ಚಾಲನೆಯಲ್ಲಿದ್ದರೆ ಉತ್ತಮ.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2143,8 +2387,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>ಸ್ಟೆಲ್ಲರ್ ಮುಖ್ಯ ಪಟ್ಟಿಗೆಗೆ ಫೈಲ್‌ಗಳನ್ನು ಸೇರಿಸುವಾಗ ಡೌನ್‌ಲೋಡ್ ವಿವರಣೆಗಳಾಗಿ ಲಿಂಕ್ ಪಠ್ಯಗಳನ್ನು ಬಳಸಿ</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2156,7 +2406,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>ಸ್ಥಿತಿ: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>ನಿಷ್ಕ್ರಿಯ</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>ಪ್ರಕ್ರಿಯೆಗೊಂಡ ವೆಬ್ ಪುಟಗಳು</translation>
@@ -2169,7 +2422,10 @@ Project</source>
             <source>Advanced</source>
             <translation>ಉನ್ನತ</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>ಫೈಲ್‌ಗಳು</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>ಒಟ್ಟು</translation>
@@ -2182,8 +2438,14 @@ Project</source>
             <source>Matched</source>
             <translation>ಹೊಂದಿಕೆಯಾದ</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚಿ</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2211,7 +2473,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>ಸ್ಟೆಲ್ಲರ್ ಆ ಬ್ರೌಸರ್‌ನ ಕುಕೀ‌ಗಳೊಂದಿಗೆ ಆ yt-dlp ಐಟಮ್‌ನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸುತ್ತದೆ.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡಿ</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>ಮತ್ತೆ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</translation>
@@ -2248,12 +2513,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>ಎಲ್ಲಾ ಫೈಲ್‌ಗಳು (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>ಒಟ್ಟು: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>ಪೂರ್ಣಗೊಂಡಿದೆ: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>ಕ್ಯೂನಲ್ಲಿ: %1</translation>
@@ -2262,9 +2533,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>ಒಟ್ಟಾರೆ: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>ನಿಲ್ಲಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>ಮುಂದುವರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚಿ</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent ಬೆಂಬಲ ಸಕ್ರಿಯಗೊಳಿಸುವುದೇ?</translation>
@@ -2297,7 +2577,10 @@ You can turn this off in Settings → Downloads.</source>
 
 ಇದನ್ನು Settings → Downloads ನಲ್ಲಿ ಆಫ್ ಮಾಡಬಹುದು.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>&quot;%1&quot; ಫೈಲ್ ಡೌನ್‌ಲೋಡ್ ಆಗಲಿಲ್ಲ.</translation>
@@ -2339,8 +2622,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>ಫೈಲ್</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>ಫೋಲ್ಡರ್ ತೆರೆಯಿರಿ</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>ಫೈಲ್ ತೆರೆಯಿರಿ</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>ಈಗ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</translation>
@@ -2353,8 +2642,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>ತೆಗೆದುಹಾಕಿ</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>ಮರುಡೌನ್‌ಲೋಡ್</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>.torrent ರಫ್ತು…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>ಹಿಂಜರಿಕೆಗಳು</translation>
@@ -2391,7 +2686,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>ಕ್ಯೂ ನಿಲ್ಲಿಸು</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>ವೇಗ ಮಿತಿ</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>ಚಾಲನೆ</translation>
@@ -2484,7 +2782,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>ಕಾಲಮ್‌ಗಳು…</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>ಆಯ್ಕೆಗಳು</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>ವಿವರಣೆಗಳು…</translation>
@@ -2517,21 +2818,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>ಟೋರೆಂಟ್ ಮೆಟಾಡೇಟಾ ತೆರೆಯಲು .torrent ಫೈಲ್ ಬಿಡಿ</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>ಹುಡುಕು:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>ಹುಡುಕು</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>ಸೆಟ್ಟಿಂಗ್‌ಗಳು ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>ಇಲ್ಲಿ ಹುಡುಕು:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>ಫೈಲ್ ಹೆಸರು ಅಥವಾ ಭಾಗ</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>ವಿವರಣೆ</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / ರೆಫರರ್ / ಮೂಲ ವೆಬ್ ಪುಟ</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>ಅಕ್ಷರ ಗಾತ್ರ ಹೊಂದಿಸು</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>ಪೂರ್ಣ ಪದ ಮಾತ್ರ</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>ಸೈಡ್‌ಬಾರ್ ಅನ್ನು ಎಡಕ್ಕೆ ಸರಿಸಿ</translation>
@@ -2580,7 +2902,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>ಚಾನೆಲ್ ಡೌನ್‌ಲೋಡ್ ಪ್ರಗತಿ</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>ನಂತರ ಡೌನ್ಲೋಡ್ ಮಾಡಿ</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>ಫೈಲ್ ಈಗ ಲಭ್ಯವಿಲ್ಲ</translation>
@@ -2636,12 +2961,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>ಕ್ಯೂಗೆ ಸೇರಿಸಬೇಡ</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>ಕ್ಯೂ ಹೆಸರು ನಮೂದಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡಿ</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>ಸೃಷ್ಟಿಸಿ</translation>
@@ -2657,8 +2988,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>ಡೌನ್‌ಲೋಡ್ ನಿಯಮಗಳು</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>ಸೇರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ತೆಗೆದುಹಾಕಿ</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>ಡೌನ್‌ಲೋಡ್ ನಿಯಮ ಸೃಷ್ಟಿಸಲು 'ಸೇರಿಸಿ' ಕ್ಲಿಕ್ ಮಾಡಿ</translation>
@@ -2735,7 +3072,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>ಡೀಫಾಲ್ಟ್ ಸಂಗ್ರಹಣಾ ಮಾರ್ಗವನ್ನು ಬಳಸಲು ಖಾಲಿ ಬಿಡಿ</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>ಬ್ರೌಸ್ ಮಾಡಿ...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>ವರ್ಗ</translation>
@@ -2748,7 +3088,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>ಟೋರೆಂಟ್ ಹಂಚಿಕೆ ಮಿತಿಗಳು</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>ಅನುಪಾತ</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>ಸಾಮಾನ್ಯ</translation>
@@ -2777,8 +3120,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>&quot;ಸಾಮಾನ್ಯ&quot; ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ → ಟೋರೆಂಟ್‌ಗಳಲ್ಲಿ ಹಂಚಿಕೆ ಮಿತಿಗಳನ್ನು ಬಳಸುತ್ತದೆ.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS ಸ್ವಯಂ ಡೌನ್‌ಲೋಡ್ ನಿಯಮಗಳು</translation>
@@ -2818,7 +3167,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>ಟೋರೆಂಟ್ ಡೌನ್‌ಲೋಡ್</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>ಡೌನ್ಲೋಡ್</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>ಬ್ರೌಸರ್‌ನಲ್ಲಿ ತೆರೆಯಿರಿ</translation>
@@ -2839,26 +3191,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>ಎಲ್ಲವನ್ನೂ ಓದಿದದಾಗಿ ಗುರುತಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>ಹೆಸರು</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>ಸ್ವಂತ ಹೆಸರು (ಐಚ್ಛಿಕ)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡು</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>ಉಳಿಸು</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS ಅಥವಾ Atom ಫೀಡ್ URL ಸೇರಿಸಿ...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>ಸೇರಿಸು</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>ಪುನಃಹೊಂದಿಸುತ್ತಿದೆ…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>ತಿದ್ದು</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>ತೆಗೆದುಹಾಕು</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>ಡೌನ್ಲೋಡ್ ನಿಯಮಗಳು</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>ಸಬ್‌ಸ್ಕ್ರಿಪ್ಷನ್‌ಗಳು</translation>
@@ -2871,7 +3247,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>ಲೇಖನವನ್ನು ಆಯ್ಕೆಮಾಡಿ</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>ತೆರೆ</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>ಪಠಿತವೆಂದು ಗುರುತಿಸಿ</translation>
@@ -2915,7 +3294,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>ಹೊಸ ಕ್ಯೂ</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>ಅಳಿಸು</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>ಕಾಲಕ್ರಮ</translation>
@@ -2928,21 +3310,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>ಒಮ್ಮೆ ಡೌನ್‌ಲೋಡ್</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>ಆವರ್ತಕ ಸಿಂಕ್ರೊನೈಸೇಶನ್</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>ಸ್ಟೆಲ್ಲರ್ ಪ್ರಾರಂಭದಲ್ಲಿ ಡೌನ್‌ಲೋಡ್ ಪ್ರಾರಂಭಿಸಿ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ಪ್ರಾರಂಭಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>ಒಮ್ಮೆ</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>ಪ್ರತಿದಿನ</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>ಪುನಃ ಪ್ರಾರಂಭಿಸಿ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>ಗಂಟೆ</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>ನಿಮಿಷ</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>ಡೌನ್‌ಲೋಡ್ ನಿಲ್ಲಿಸಿ</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>ಇಳಿಸುವಿಕೆ ವಿಫಲವಾದರೆ ಪ್ರತಿ ಫೈಲ್‌ಗೆ ಪುನರಾವರ್ತನೆಗಳ ಸಂಖ್ಯೆ:</translation>
@@ -2951,17 +3354,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>ಪೂರ್ಣಗೊಂಡಾಗ ಈ ಫೈಲ್ ಅನ್ನು ತೆರೆಯಿರಿ:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>ಮುಗಿದಾಗ ಸ್ಟೆಲ್ಲಾರ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>ಮುಗಿದಾಗ ಕಂಪ್ಯೂಟರ್ ಆಫ್ ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>ಪ್ರಕ್ರಿಯೆಗಳನ್ನು ಬಲವಂತವಾಗಿ ಕೊನೆಗೊಳಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>ಡೌನ್ಲೋಡ್</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>ಫೈಲ್‌ಗಳನ್ನು ಏಕಕಾಲದಲ್ಲಿ ಇಳಿಸಿ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>ಫೈಲ್ ಹೆಸರು</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ಗಾತ್ರ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>ಸ್ಥಿತಿ</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>ಉಳಿದ ಸಮಯ</translation>
@@ -2998,12 +3422,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>ಈಗ ಪ್ರಾರಂಭಿಸು</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>ನಿಲ್ಲಿಸು</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>ಅನ್ವಯಿಸು</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚು</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>ಸಾಲುಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ತೋರಿಸಲು ಹೊಸ ಸಾಲಿನ ಹೆಸರನ್ನು ನಮೂದಿಸಿ</translation>
@@ -3012,9 +3442,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>ಸಾಲಿನ ಹೆಸರು</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>ವೇಳಾಪಟ್ಟಿ</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>ಹೊಸ ಕ್ಯೂ</translation>
@@ -3026,7 +3465,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>ಸಂಪರ್ಕ</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>ಗರಿಷ್ಠ ಏಕಕಾಲಿಕ ಡೌನ್‌ಲೋಡ್‌ಗಳು:</translation>
@@ -3091,13 +3533,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>ಪಾಸ್‌ವರ್ಡ್:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>ವರ್ಗಗಳು</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>ಹೆಸರು</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>ಫೋಲ್ಡರ್‌ಗೆ ಸೇವ್ ಮಾಡಿ</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>ಡೌನ್‌ಲೋಡ್‌ಗಳು</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>ಡೀಫಾಲ್ಟ್ ಸೇವ್ ಫೋಲ್ಡರ್:</translation>
@@ -3158,8 +3609,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>ಸೆಕೆಂಡ್‌ಗಳನ್ನು ತೋರಿಸಿ</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>ಮುನ್ನೋಟ</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>ಬ್ರೌಸರ್ ಸಂಯೋಜನೆ</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>ಕೆಳಗಿನ ಫೈಲ್ ಪ್ರಕಾರಗಳ ಡೌನ್‌ಲೋಡ್ ತಾನಾಗಿಯೇ ಪ್ರಾರಂಭಿಸಿ:</translation>
@@ -3184,7 +3641,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>ಇಂಟರ್ಸೆಪ್ಷನ್ ಅನ್ನು ತಪ್ಪಿಸಲು ಡೌನ್‌ಲೋಡ್ ಲಿಂಕ್ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡುವಾಗ ಈ ಕೀ ಹಿಡಿದಿರಿ:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>ವೇಗ ಮಿತಿ</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>ವೈಶ್ವಿಕ ವೇಗ ಮಿತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
@@ -3193,7 +3653,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>ಗರಿಷ್ಠ ವೇಗ:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>KB/s</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>ವೈಶ್ವಿಕ ಅಪ್‌ಲೋಡ್ ಮಿತಿಯನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
@@ -3210,12 +3673,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>ವೇಗ ಮಿತಿ ಸಮಯಕೋಷ್ಟಕವನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>ತೆಗೆದುಹಾಕು</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>ಆನ್</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>ಡೌನ್‌ಲೋಡ್</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>ಅಪ್‌ಲೋಡ್</translation>
@@ -3236,7 +3705,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>ಡೌನ್‌ಲೋಡ್ ದೋಷದ ಸಮಯದಲ್ಲಿ ಸೂಚನೆ ತೋರಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>ಸಾಮಾನ್ಯ</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>ಬ್ರೌಸರ್</translation>
@@ -3333,8 +3805,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>ಫೈಲ್ ಗುಣಲಕ್ಷಣಗಳ ಡೈಲಾಗ್ ತೆರೆಯಿರಿ</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>ಫೈಲ್ ತೆರೆ</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>ಫೋಲ್ಡರ್ ತೆರೆ</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24-ಗಂಟೆಯ ಸಮಯ</translation>
@@ -3367,7 +3845,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>ದಿನದ ಪಿಲ್ ಕ್ಲಿಕ್ ಮಾಡಿ ಟಾಗಲ್ ಮಾಡಿ. ನಿಯಮಗಳು ಪ್ರತಿ ನಿಮಿಷ ಮೌಲ್ಯಮಾಪನ ಮಾಡಲ್ಪಡುತ್ತವೆ; ಮೊದಲು ಹೊಂದಿಕೆಯಾಗುವ ನಿಯಮ ಗೆಲ್ಲುತ್ತದೆ. ಯಾವುದೇ ನಿಯಮ ಸಕ್ರಿಯವಿಲ್ಲದಿದ್ದರೆ ನಿಗದಿತ ಡೌನ್‌ಲೋಡ್ ಮತ್ತು ಅಪ್‌ಲೋಡ್ ಮಿತಿಗಳು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸ್ಪಷ್ಟವಾಗುತ್ತವೆ.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>ಸಿಸ್ಟಂ ಟ್ರೇಗೆ ಕುಗ್ಗಿಸು</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>ಸಿಸ್ಟಮ್ ಟ್ರೇಗೆ ಮುಚ್ಚಿ</translation>
@@ -3460,7 +3941,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>yt-dlp ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದು</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>ಮತ್ತೆ ಪರಿಶೀಲಿಸಿ</translation>
@@ -3569,7 +4053,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
 
 ನಿಮ್ಮ IP ವಿಳಾಸವನ್ನು ಬಹಿರಂಗಪಡಿಸುವುದರಿಂದ ರಕ್ಷಿಸಲು, Stellar ಅನ್ನು VPN ನೆಟ್‌ವರ್ಕ್ ಇಂಟರ್ಫೇಸ್‌ಗೆ ಬೈಂಡ್ ಮಾಡಲು ಮತ್ತು ಟೋರೆಂಟ್‌ಗಳನ್ನು ಬಳಸುವ ಮೊದಲು ನಿಮ್ಮ VPN ಸಕ್ರಿಯವಾಗಿದೆಯೇ ಎಂದು ಪರಿಶೀಲಿಸಲು ಬಲವಾಗಿ ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>ಅರ್ಥವಾಯಿತು, ಸಕ್ರಿಯಗೊಳಿಸಿ</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>ಈ ಸೆಟ್ಟಿಂಗ್‌ಗಳು .torrent ಫೈಲ್‌ಗಳು ಮತ್ತು ಮ್ಯಾಗ್ನೆಟ್ ಲಿಂಕ್‌ಗಳಿಗೆ ಅನ್ವಯಿಸುತ್ತವೆ.</translation>
@@ -3634,7 +4121,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Networking</source>
             <translation>ನೆಟ್‌ವರ್ಕಿಂಗ್</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>ಸುಧಾರಿತ</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>ಬಿಟ್‌ಟರೆಂಟ್ ಬಳಕೆದಾರ ಏಜೆಂಟ್ ಸ್ವಯಂ</translation>
@@ -3707,7 +4197,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Block peers by country</source>
             <translation>ದೇಶದ ಆಧಾರದ ಮೇಲೆ ಸಹಪಾಠಿಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>ಸೇರಿಸು</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>ನಿರ್ಬಂಧಿತ ದೇಶಗಳಿಲ್ಲ.</translation>
@@ -3744,12 +4237,18 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Version</source>
             <translation>ಆವೃತ್ತಿ</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>ಅಜ್ಞಾತ</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>ಮಾರ್ಗ</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>ಗಾತ್ರ</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>ಪ್ರವೇಶಗಳು</translation>
@@ -3758,7 +4257,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Last Modified</source>
             <translation>ಕೊನೆಯ ಬದಲಾವಣೆ</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>ಸ್ಥಿತಿ</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...</translation>
@@ -3771,7 +4273,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Refresh Info</source>
             <translation>ಮಾಹಿತಿ ರಿಫ್ರೆಶ್</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>ಅಂಕಿಅಂಶ</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>ಎಲ್ಲಾ ಟೋರೆಂಟ್‌ಗಳಲ್ಲಿ ಒಟ್ಟು ವರ್ಗಾವಣೆ, ತೆಗೆದುಹಾಕಿದವುಗಳನ್ನು ಒಳಗೊಂಡಿದೆ.</translation>
@@ -3792,7 +4297,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>ಪೂರ್ಣ ಲೈಸೆನ್ಸ್ ಪಠ್ಯಗಳು THIRD-PARTY-NOTICES.txt ನಲ್ಲಿವೆ, ಈ ಸ್ಥಾಪನೆಯೊಂದಿಗೆ ಸೇರಿಸಲಾಗಿದೆ.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>ಆರ್ಎಸ್ಎಸ್</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>ಫೀಡ್ ಪಡೆಯುವಿಕೆ</translation>
@@ -3805,7 +4313,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Feeds refresh interval</source>
             <translation>ಫೀಡ್‌ಗಳ ಪುನಃಹೊಂದಾಣಿಕೆ ಅಂತರ</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>ನಿಮಿಷಗಳು</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>ಅದೇ ಹೋಸ್ಟ್ ಅನುರೋಧ ವಿಳಂಬ</translation>
@@ -3966,8 +4477,14 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Third-party software</source>
             <translation>ಮೂರನೇ ವ್ಯಕ್ತಿಯ ಮೃದುವಸ್ತು</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>ಅನ್ವಯಿಸು</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>ಪೂರ್ವನಿಯೋಜಿತ ಮಾರ್ಗ</translation>
@@ -4048,7 +4565,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Available but not loaded</source>
             <translation>ಲಭ್ಯವಿದೆ ಆದರೆ ಲೋಡ್ ಆಗಿಲ್ಲ</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>ಮೂಲ: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>ಮೂಲ URL ಇನ್ನೂ ಕ್ಯಾಶ್ ಆಗಿಲ್ಲ. update.json ರಿಂದ IPtoCityDB ಅನ್ನು ಕ್ಯಾಶ್ ಮಾಡಲು ನವೀಕರಣವನ್ನು ಪರಿಶೀಲಿಸಿ ಬಳಸಿ.</translation>
@@ -4080,9 +4600,18 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Edit Project</source>
             <translation>ಪ್ರಾಜೆಕ್ಟ್ ಸಂಪಾದಿಸಿ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>ಯೋಜನೆ ಅಳಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>ವರ್ಗಗಳು</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>ಎಲ್ಲಾ ಡೌನ್ಲೋಡ್ಗಳು</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>ಅಪೂರ್ಣ</translation>
@@ -4095,19 +4624,49 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>Grabber Projects</source>
             <translation>ಗ್ರಾಬರ್ ಯೋಜನೆಗಳು</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>ಟೊರೆಂಟ್ಗಳು</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>ಸರತಿ</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>ಡೌನ್ಲೋಡ್</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>ಸೀಡಿಂಗ್</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>ನಿಲ್ಲಿಸಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>ಸಕ್ರಿಯ</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>ನಿಷ್ಕ್ರಿಯ</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>ಪರಿಶೀಲನೆ</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>ಸ್ಥಳಾಂತರ</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>ಅಂಕಿಅಂಶ</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>ಸ್ಟೆಲ್ಲರ್ ಸಂಖ್ಯಾಶಾಸ್ತ್ರ</translation>
@@ -4116,8 +4675,14 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>ALL TIME</source>
             <translation>ಎಲ್ಲಾ ಸಮಯ</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>ಡೌನ್ಲೋಡ್ ಮಾಡಲಾಗಿದೆ</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗಿದೆ</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>ಹಂಚಿಕೆ ಅನುಪಾತ</translation>
@@ -4138,7 +4703,10 @@ BitTorrent ಮೂಲಕ ನೀವು ಹಂಚಿಕೆ ಮಾಡುವ ಯಾ�
             <source>THIS SESSION</source>
             <translation>ಈ ಸೆಷನ್</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚಿ</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4255,27 +4823,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>ಸ್ಟೆಲ್ಲಾರ್ ಡೌನ್ಲೋಡ್ ಮ್ಯಾನೇಜರ್</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM ಡೌನ್ಲೋಡ್ಗಳು</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>URL ಸೇರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>ಮುಂದುವರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>ನಿಲ್ಲಿಸಿ</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>ಎಲ್ಲವನ್ನೂ ನಿಲ್ಲಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>ಅಳಿಸಿ</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>ಅಳಿಸಿದ ನಂತರ</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>ಆಯ್ಕೆಗಳು</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>ವೇಳಾಪಟ್ಟಿ</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>1. ಸರದಿ ಪ್ರಾರಂಭಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>2. ಸರದಿ ನಿಲ್ಲಿಸಿ</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>ಗ್ರಾಬರ್</translation>
@@ -4284,7 +4882,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>ಸರ್ಚ್ ಎಂಜಿನ್</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>3. RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4323,12 +4924,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>4. ಇಲ್ಲಿ ಉಳಿಸಿ</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>ಇತರೆ ಹೆಸರಿನಲ್ಲಿ ಸಂಗ್ರಹಿಸಿ...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>5. ವರ್ಗ</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>ಸ್ವಂತ ಸಂಗ್ರಹ ಫೋಲ್ಡರ್</translation>
@@ -4341,35 +4948,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>ವರ್ಗ ಫೋಲ್ಡರ್ ಬಳಸಿ</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>6. ವಿವರಣೆ</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>7. ಟೊರೆಂಟ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. ರದ್ದುಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>9. ನಂತರ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>10. ಡೌನ್‌ಲೋಡ್</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>ಟರೆಂಟ್ ತೆರೆಯುತ್ತಿದೆ...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2% ಪೂರ್ಣ</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>ಕಡತಗಳು</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n ಐಟಂ(s)</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>ಹೆಸರು</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>ಪ್ರಗತಿ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ಗಾತ್ರ</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>ಕಡತ ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>ಬಾಕಿ</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>ಐಟಂ ಮರುಹೆಸರಿಸು</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>ಹೊಸ ಕಡತ ಅಥವಾ ಫೋಲ್ಡರ್ ಹೆಸರು ನಮೂದಿಸಿ:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>ಮರುಹೆಸರಿಸು</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>ಮರುಹೆಸರಿಸು...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>ಪೀರ್</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>ಟೊರೆಂಟ್ ತೆರೆಯುತ್ತಿದೆ ಮತ್ತು ಮೆಟಾಡೇಟಾ ಓದುತ್ತಿದೆ...</translation>
@@ -4382,8 +5040,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%n ಪಿಯರ್(s) ನಿಂದ ಮೆಟಾಡೇಟಾ ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>ಸೀಡ್</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>ನೀವು</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>ಟೋರೆಂಟ್ ಮೆಟಾಡೇಟಾ</translation>
@@ -4403,8 +5067,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>ವೆಬ್ ಲಿಂಕ್</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ಸರಿ</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>ಹುಡುಕಾಟ_ಪ್ಲಗ್ಇನ್ ಫೋಲ್ಡರ್‌ಗೆ ನಕಲಿಸಲು ಸ್ಥಳೀಯ .py ಹುಡುಕಾಟ ಪ್ಲಗ್ಇನ್ ಫೈಲ್ ಅನ್ನು ಆಯ್ಕೆಮಾಡಿ.</translation>
@@ -4436,9 +5106,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>ಸ್ಥಾಪಿತ ಹುಡುಕಾಟ ಪ್ಲಗ್ಇನ್‌ಗಳು</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>ರಿಫ್ರೆಶ್</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>ಅಜ್ಞಾತ</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>ಸಕ್ರಿಯ</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>ನಿಷ್ಕ್ರಿಯ</translation>
@@ -4447,7 +5126,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>ಹೊಸದನ್ನು ಸ್ಥಾಪಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚಿ</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>ಪ್ಲಗಿನ್‌ಗಳನ್ನು ಹುಡುಕಿ</translation>
@@ -4455,9 +5137,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>ಹೆಸರು</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>ಗಾತ್ರ</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>ಸೀಡರ್ಗಳು</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>ಲೀಚರ್‌ಗಳು</translation>
@@ -4474,12 +5165,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>ವಿವರಣಾ ಪುಟ ತೆರೆಯಿರಿ</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>ಟೊರೆಂಟ್ ಡೌನ್ಲೋಡ್</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>ಹೆಸರು ನಕಲಿಸಿ</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>ಮ್ಯಾಗ್ನೆಟ್ ಲಿಂಕ್ ನಕಲಿಸಿ</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>ವಿವರಣಾ ಪುಟ URL ನಕಲು ಮಾಡಿ</translation>
@@ -4492,12 +5189,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>ಹುಡುಕಿ</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>ಅಜ್ಞಾತ</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>ಇನ್ನೂ ಹುಡುಕಾಟ ಫಲಿತಾಂಶಗಳಿಲ್ಲ</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>ಹುಡುಕು ಪ್ಲಗಿನ್ಗಳು</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>ಟರೆಂಟ್ ಹುಡುಕಾಟ ಎಂಜಿನ್</translation>
@@ -4513,8 +5216,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>ಪ್ರತಿ-ಟರೆಂಟ್ ವೇಗ, ಹಂಚಿಕೆ ಮಿತಿಗಳು, ಪಿಯರ್ ಆವಿಷ್ಕಾರ ಮತ್ತು ಡೌನ್‌ಲೋಡ್ ಮೋಡ್</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>ಮುಚ್ಚು</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>ಅನ್ವಯಿಸು</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ಬ್ಯಾಂಡ್‌ವಿಡ್ತ್ ಮಿತಿಗಳು</translation>
@@ -4535,14 +5244,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>ಅನುಪಾತ:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>ಡೀಫಾಲ್ಟ್</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>ಅನಿಯಮಿತ</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>ಹೊಂದಿಸಿ</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>ಸೀಡಿಂಗ್ ಸಮಯ:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>ಕನಿಷ್ಠ</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>ನಿಷ್ಕ್ರಿಯ ಸಮಯ:</translation>
@@ -4646,7 +5367,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>ಬ್ರೌಸರ್ನಿಂದ ಕುಕೀಗಳು:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>yt-dlp ಗೆ ಬ್ರೌಸರ್‌ನ ಕುಕೀಗಳನ್ನು ಹಾಕಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</translation>
@@ -4656,8 +5380,8 @@ Click to open Statistics</source>
             <translation>ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>ಗುಣಮಟ್ಟ ಆಯ್ಕೆಮಾಡಿ:</translation>
+            <source>Quality:</source>
+            <translation>ಗುಣಮಟ್ಟ:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4716,7 +5440,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>ವೀಡಿಯೊದೊಂದಿಗೆ ಸಬ್‌ಟೈಟಲ್ ಫೈಲ್‌ಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>ಭಾಷೆ:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>ಭಾಷಾ ಕೋಡ್‌ಗಳು, ಉದಾ. en · en.*,ja · ಎಲ್ಲ</translation>
@@ -4775,8 +5502,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>ಚಾನೆಲ್ ಡೌನ್‌ಲೋಡ್</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>ಡೌನ್ಲೋಡ್</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>ಸುಧಾರಿತ</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>ದಿನಾಂಕ ಫಿಲ್ಟರ್</translation>
@@ -4866,15 +5599,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>ಲೈವ್: ಆರಂಭದಿಂದ</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>ಹಿಮ್ಮುಖ ಕ್ರಮ</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>ಹೊಸ ವೀಡಿಯೊಗಳನ್ನು ಮೊದಲು ಡೌನ್ಲೋಡ್ ಮಾಡಿ (ಪ್ಲೇಲಿಸ್ಟ್ ಕ್ರಮವನ್ನು ಹಿಮ್ಮುಖಗೊಳಿಸುತ್ತದೆ)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>ದೋಷಗಳನ್ನು ಬಿಟ್ಟುಬಿಡಿ</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>ಪ್ಲೇಪಟ್ಟಿಯಲ್ಲಿ ಒಂದು ವೀಡಿಯೊ ವಿಫಲವಾದಾಗ (ಲಭ್ಯವಿಲ್ಲದ, ಭೂ-ನಿರ್ಬಂಧಿತ, ಇತ್ಯಾದಿ) ಉಳಿದವುಗಳನ್ನು ಡೌನ್ಲೋಡ್ ಮಾಡುವುದನ್ನು ಮುಂದುವರಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>ಸ್ಟ್ರೀಮ್ಗಾಗಿ ನಿರೀಕ್ಷಿಸಿ</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>ನಿಗದಿತ/ಮುಂಬರುವ ಸ್ಟ್ರೀಮ್ ಪ್ರಾರಂಭವಾಗಲು ಕಾಯಿರಿ, ಪ್ರತಿ N ಸೆಕೆಂಡುಗಳಿಗೆ ಮರುಪ್ರಯತ್ನಿಸುತ್ತಿದೆ</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>ಮರುಪ್ರಯತ್ನದ ಮಧ್ಯಂತರ (ನಿಗದಿತ/ಮುಂಬರುವ ಸ್ಟ್ರೀಮ್‌ಗಳಿಗಾಗಿ)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>ಸಮಾನಾಂತರ ತುಣುಕುಗಳು</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>ಏಕಕಾಲಿಕ DASH/HLS ತುಣುಕುಗಳು (ಖಾಲಿ = 1, ಗರಿಷ್ಠ 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>ಹಿಮ್ಮುಖ</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>ದೋಷಗಳನ್ನು ಬಿಟ್ಟುಬಿಡಿ</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>ಸ್ಟ್ರೀಮ್ಗಾಗಿ ನಿರೀಕ್ಷಿಸಿ</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>ಸಮಾನಾಂತರ ತುಣುಕುಗಳು</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>ಪ್ಲೇಪಟ್ಟಿಯನ್ನು ಯಾದೃಚ್ಛಿಕ ಕ್ರಮದಲ್ಲಿ ಡೌನ್ಲೋಡ್ ಮಾಡಿ</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>ಲೈವ್‌ಸ್ಟ್ರೀಮ್ ಅನ್ನು ಆರಂಭದಿಂದ ಡೌನ್ಲೋಡ್ ಮಾಡಿ (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>ಉಳಿಸಿ:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>ವರ್ಗ:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>ರೂಪ</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ರದ್ದುಮಾಡಿ</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>ವೀಡಿಯೊ ಡೌನ್‌ಲೋಡ್</translation>

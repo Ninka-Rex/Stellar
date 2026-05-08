@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1 ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>جارٍ التنزيل: %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>تنزيل: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>جارٍ البذر: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>بذر: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
-            <translation>الإجمالي: %1</translation>
+            <source>
+Seeding: %1</source>
+            <translation>بذر: %1</translation>
         </message>
-        
+        <message>
+            <source>  Total: %1</source>
+            <translation>المجموع: %1</translation>
+        </message>
+        <message>
+            <source>
+Total: %1</source>
+            <translation>المجموع: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar ينطفئ...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>استخدم خطوة الطابور بعد موافق إذا كنت تريد تجميع هذه التنزيلات قبل بدء تشغيلها.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>فقط الروابط المحددة كـ 'موجودة' قابلة للاختيار. يتم تعيين الطابور بعد الضغط على موافق.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>مراجعة التنزيلات الجماعية</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>بكسل عريض</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>حذف نهائيًا (بدون نقل إلى سلة المهملات)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>حذف</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>نعم</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>لا</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>تصفح...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>الرابط</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>الفئة</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>استلام البيانات...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>جارٍ التجميع...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>حالة التنزيل</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>تصغير إلى الصينية</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>الحالة</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>حجم الملف</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>إمكانية الاستئناف</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>نعم</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>لا</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>تفاصيل الخطأ</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>إيقاف مؤقت</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>مواقع البدء وتقدم التنزيل بالاتصالات</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>إعادة تسمية</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>إعادة تنزيل</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>حذف</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>إعدادات الأعمدة</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>اسم الملف</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>الحجم</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>الحالة</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>الوقت المتبقي</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>سرعة التنزيل</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>مُحمّل</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>تم التنزيل</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>تاريخ المحاولة الأخيرة</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>الوصف</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>حفظ في</translation>
@@ -892,8 +971,14 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>تذكر اختياري وعدم عرض هذا المربع مرة أخرى.
 يمكنك تغييره لاحقًا في الخيارات → التنزيلات.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -905,30 +990,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>نقل الملف إلى...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>بدء</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>إيقاف</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>فتح المجلد</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>فتح الملف</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>الحالة</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>الحجم</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>حفظ في</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>نقل</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>العنوان</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>صفحة ويب</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>المُحيل</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>الوصف</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>تسجيل الدخول</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>كلمة المرور</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>المصدر</translation>
@@ -937,17 +1058,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>هاش المعلومات</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>نسخ</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>البيانات الوصفية</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>الفئة</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>ملاحظة</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>تم التنزيل</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>الدولة</translation>
@@ -956,8 +1086,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>المنفذ</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>تم الرفع</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>باذرون</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>الرسالة</translation>
@@ -966,10 +1102,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>متوقف</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>جاري التنزيل</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>جاري النقل</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>بذر</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>مُنتظر</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>مشكلة</translation>
@@ -994,7 +1142,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>عام</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>ملفات</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>خريطة السرب</translation>
@@ -1079,10 +1230,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>أدخل اسماً جديداً للملف أو المجلد:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>إعادة تسمية</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>تنزيل</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>إعادة تسمية...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>لا توجد أقران متصلة</translation>
@@ -1187,7 +1350,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>طبقة</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>أقران</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 نظير معروف</translation>
@@ -1212,7 +1378,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>زمن الاستجابة %1 %2% مكتمل</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>مجهول</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>أنت (هذا العميل)</translation>
@@ -1229,7 +1398,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>فرض إعادة الإعلان</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>نسخ الرابط</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>إزالة المتعقّب</translation>
@@ -1258,7 +1430,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>الصق عناوين بذور الويب - سطر واحد لكل عنوان. يتم قبول بذور URL (BEP-19) وبذور HTTP (BEP-17).</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>رابط</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>النوع</translation>
@@ -1407,7 +1582,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>تم العثور على %1 نتائج.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1471,7 +1649,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>اسم القالب</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>حفظ</translation>
@@ -1492,7 +1673,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>المشاريع الأخيرة</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>إعدادات الجاذب</translation>
@@ -1533,8 +1717,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>متقدم &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>دخول</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>كلمة السر</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>اضغط على 'متقدم' لتسجيل الدخول يدوياً أو لإيقاف صفحة تسجيل الخروج.</translation>
@@ -1746,13 +1936,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>قناع</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>إضافة</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>تعديل</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>حذف</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>تعديل التصفية</translation>
@@ -1761,9 +1960,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>تصفية جديدة</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>فئة</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>حفظ</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1775,13 +1983,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>المشاريع المحفوظة</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>مشروع</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>خيارات</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>جارٍ التشغيل</translation>
@@ -1812,13 +2032,22 @@ Exploring</source>
             <translation>ابدأ
 الاستكشاف</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>اسم الملف</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>نوع الملف</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>الحجم</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>الحالة</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>نص الرابط</translation>
@@ -1827,7 +2056,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>تحميل من</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>حفظ إلى</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>تحديد المحدد</translation>
@@ -1840,8 +2072,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>تعديل المشروع الحالي</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>إعدادات الجالب</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2098,8 +2336,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>ملاحظة: يجب أن يعمل Stellar في منطقة الإعلام في الوقت المحدد لبدء مشروع مجدول.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2123,8 +2367,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>استخدام نصوص الروابط كأوصاف للتنزيل عند إضافة الملفات إلى القائمة الرئيسية لـ Stellar</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2136,7 +2386,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>الحالة: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>خامل</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>صفحات الويب المعالجة</translation>
@@ -2149,7 +2402,10 @@ Project</source>
             <source>Advanced</source>
             <translation>متقدم</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>الملفات</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>المجموع</translation>
@@ -2162,8 +2418,14 @@ Project</source>
             <source>Matched</source>
             <translation>متطابق</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>تم التحميل</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2191,7 +2453,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>ستعيد Stellar محاولة نفس عنصر yt-dlp باستخدام ملفات تعريف الارتباط لذلك المتصفح.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>إعادة المحاولة</translation>
@@ -2228,12 +2493,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>جميع الملفات (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>المجموع: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>مكتمل: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>جارٍ التحميل: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>في الانتظار: %1</translation>
@@ -2242,9 +2513,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>عام: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>إيقاف</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>استئناف</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>تفعيل دعم BitTorrent؟</translation>
@@ -2277,7 +2557,10 @@ You can turn this off in Settings → Downloads.</source>
 
 يمكنك إيقاف ذلك في الإعدادات → التنزيلات.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>تعذر تنزيل الملف “%1”.</translation>
@@ -2320,8 +2603,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>ملف</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>فتح المجلد</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>فتح الملف</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>تحميل الآن</translation>
@@ -2334,8 +2623,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>إزالة</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>إعادة التحميل</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>تصدير .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>التحميلات</translation>
@@ -2372,7 +2667,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>إيقاف الطابور</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>محدد السرعة</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>تفعيل</translation>
@@ -2465,7 +2763,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>الأعمدة…</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>خيارات</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>التفضيلات…</translation>
@@ -2498,21 +2799,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>اسحب ملف .torrent لفتح بيانات التعريف</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>بحث:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>بحث</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>الإعدادات ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>البحث في:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>اسم الملف أو جزء منه</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>الوصف</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / المرجع / صفحة الويب الأصلية</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>مطابقة الحالة</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>مطابقة الكلمة بالكامل</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>نقل الشريط الجانبي لليسار</translation>
@@ -2561,7 +2883,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>تقدم تنزيل القناة</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>تحميل لاحقًا</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>الملف لم يعد متاحاً</translation>
@@ -2617,12 +2942,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>عدم الإضافة إلى قائمة الانتظار</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>أدخل اسم قائمة الانتظار</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>إنشاء</translation>
@@ -2638,8 +2969,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>قواعد التنزيل</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>إضافة</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>إزالة</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>انقر على &quot;إضافة&quot; لإنشاء قاعدة تنزيل</translation>
@@ -2716,7 +3053,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>اتركه فارغًا لاستخدام المسار الافتراضي</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>تصفح...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>الفئة:</translation>
@@ -2729,7 +3069,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>حدود مشاركة التورنت</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>نسبة</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>الافتراضي</translation>
@@ -2758,8 +3101,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>يستخدم &quot;الافتراضي&quot; حدود المشاركة العالمية المحددة في الإعدادات → التورنت.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>قواعد التنزيل التلقائي لـ RSS</translation>
@@ -2799,7 +3148,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>تنزيل التورنت</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>تحميل</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>فتح في المتصفح</translation>
@@ -2820,26 +3172,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>وضع الكل كمقروء</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>الاسم</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>اسم مخصص (اختياري)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>الرابط</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>حفظ</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>أضف رابط RSS أو Atom...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>إضافة</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>جارٍ التحديث…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>تعديل</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>إزالة</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>قواعد التنزيل</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>الاشتراكات</translation>
@@ -2852,7 +3228,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>تحديد مقال</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>فتح</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>وضع كمقروء</translation>
@@ -2896,7 +3275,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>قائمة انتظار جديدة</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>حذف</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>جدولة</translation>
@@ -2909,21 +3291,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>تنزيل لمرة واحدة</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>مزامنة دورية</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>بدء التنزيل عند بدء Stellar</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>بدء التحميل عند</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>مرة عند</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>يوميًا</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>إعادة البدء كل</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>س</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>د</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>إيقاف التحميل عند</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>عدد المحاولات لكل ملف في حال فشل التنزيل:</translation>
@@ -2932,17 +3335,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>فتح الملف التالي عند الانتهاء:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>إغلاق Stellar عند الانتهاء</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>إطفاء الحاسوب عند الانتهاء</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>إنهاء العمليات بالقوة</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>تنزيل</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>ملفات في نفس الوقت</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>اسم الملف</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>الحجم</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>الحالة</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>الوقت المتبقي</translation>
@@ -2979,12 +3403,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>ابدأ الآن</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>إيقاف</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>تطبيق</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>أدخل اسماً للطابور الجديد الذي سيظهر في قائمة الطوابير</translation>
@@ -2993,9 +3423,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>اسم الطابور</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>المجدول</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>طابور جديد</translation>
@@ -3007,7 +3446,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>الاتصال</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>الحد الأقصى للتنزيلات المتزامنة:</translation>
@@ -3072,13 +3514,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>كلمة المرور:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>الفئات</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>الاسم</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>حفظ في المجلد</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>التنزيلات</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>مجلد الحفظ الافتراضي:</translation>
@@ -3139,8 +3590,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>إظهار الثواني</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>معاينة</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>تكامل المتصفح</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>بدء التنزيل تلقائياً لأنواع الملفات التالية:</translation>
@@ -3165,7 +3622,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>اضغط هذا المفتاح أثناء النقر على رابط التنزيل لتجاوز الاعتراض والسماح للمتصفح بالتنزيل:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>محدد السرعة</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>تفعيل حد السرعة العالمي</translation>
@@ -3174,7 +3634,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>السرعة القصوى:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>ك.ب/ث</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>تفعيل حد الرفع العالمي</translation>
@@ -3191,12 +3654,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>تفعيل جدولة حد السرعة</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>إزالة</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>مفعّل</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>تنزيل</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>رفع</translation>
@@ -3217,7 +3686,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>عرض إشعار عند حدوث خطأ في التنزيل</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>عام</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>المتصفح</translation>
@@ -3314,8 +3786,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>فتح مربع حوار خصائص الملف</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>فتح ملف</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>فتح مجلد</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>وقت 24 ساعة</translation>
@@ -3348,7 +3826,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>انقر على يوم لتبديله. تُقيَّم القواعد كل دقيقة؛ أول قاعدة مطابقة هي الفائزة. تُصفَّر حدود التحميل والتحميل التلقائي عند عدم نشاط أي قاعدة.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>تصغير للشريط</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>إغلاق إلى منطقة الإعلام</translation>
@@ -3441,7 +3922,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>تنزيل yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>إعادة التحقق</translation>
@@ -3550,7 +4034,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 يُنصح بشدة بربط Stellar بواجهة شبكة VPN والتحقق من نشاط VPN قبل استخدام التورنت، لحماية عنوان IP الخاص بك من التعرض.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>أفهم، تفعيل</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>تنطبق هذه الإعدادات على ملفات .torrent وروابط magnet.</translation>
@@ -3615,7 +4102,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>الشبكة</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>متقدم</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>وكيل مستخدم مخصص لـ BitTorrent</translation>
@@ -3688,7 +4178,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>حظر النظراء حسب الدولة</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>إضافة</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>لا توجد دول محظورة.</translation>
@@ -3725,12 +4218,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>الإصدار</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>مجهول</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>المسار</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>حجم</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>العناصر</translation>
@@ -3739,7 +4238,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>آخر تعديل</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>حالة</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>جارٍ التنزيل...</translation>
@@ -3752,7 +4254,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>تحديث المعلومات</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>إحصائيات</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>إجمالي النقل عبر جميع التورنتات، بما في ذلك المحذوفة.</translation>
@@ -3773,7 +4278,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>تتضمن نصوص الترخيص الكاملة في ملف THIRD-PARTY-NOTICES.txt، المرفق مع هذا التثبيت.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>جلب التغذية</translation>
@@ -3786,7 +4294,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>فترة تحديث التغذية</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>دقائق</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>تأخير طلب المضيف نفسه</translation>
@@ -3947,8 +4458,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>برامج الطرف الثالث</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>تطبيق</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>المسار الافتراضي</translation>
@@ -4029,7 +4546,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>متاح لكن غير محمّل</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>المصدر: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>لم يتم تخزين عنوان URL للمصدر بعد. استخدم التحقق من التحديثات لتخزين IPtoCityDB من update.json.</translation>
@@ -4061,9 +4581,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>تعديل المشروع</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>حذف المشروع</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>فئات</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>كل التنزيلات</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>غير مكتمل</translation>
@@ -4076,19 +4605,49 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>مشاريع الجاذب</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>تورنت</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>طوابير</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>جاري التحميل</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>جاري الرفع</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>متوقف</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>نشط</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>غير نشط</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>جاري الفحص</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>جاري النقل</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>إحصائيات</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>إحصائيات ستيلار</translation>
@@ -4097,8 +4656,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>دائماً</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>تم التحميل</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>1. المُرفَع</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>نسبة المشاركة</translation>
@@ -4119,7 +4684,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>هذه الجلسة</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>2. إغلاق</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4235,27 +4803,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>3. مدير تنزيلات Stellar</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>4. تنزيلات SDM</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>5. إضافة رابط</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>6. استئناف</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>7. إيقاف</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>إيقاف الكل</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>8. حذف</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>حذف المكتمل</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>9. خيارات</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>10. المُجدوِل</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>بدء الطابور</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>إيقاف الطابور</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>الماسح</translation>
@@ -4264,7 +4862,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>محرك البحث</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4303,12 +4904,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>حفظ إلى</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>حفظ باسم...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>الفئة</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>مجلد حفظ مخصص</translation>
@@ -4321,35 +4928,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>استخدام مجلد الفئة</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>الوصف</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>إعدادات التورنت...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>تنزيل لاحقاً</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>تنزيل</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>جاري فتح التورنت...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2% مكتمل</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>الملفات</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n عنصر</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>الاسم</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>التقدم</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>الحجم</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>لا توجد معلومات عن الملف</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>قيد الانتظار</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>إعادة تسمية العنصر</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>أدخل اسم ملف أو مجلد جديد:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>إعادة تسمية</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>إعادة تسمية...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>نظير</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>جاري فتح التورنت وقراءة البيانات الوصفية...</translation>
@@ -4362,8 +5020,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>تحميل البيانات الوصفية من %n نظير/نظراء</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>بذرة</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>أنت</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>بيانات التورنت الوصفية</translation>
@@ -4383,8 +5047,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>رابط ويب</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>موافق</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>اختر ملف إضافة بحث .py محلياً لنسخه إلى مجلد search_plugins.</translation>
@@ -4416,9 +5086,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>إضافات البحث المثبتة</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>تحديث</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>مجهول</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>مفعل</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>معطّل</translation>
@@ -4427,7 +5106,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>تثبيت واحد جديد</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>إضافات البحث</translation>
@@ -4435,9 +5117,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>الاسم</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>الحجم</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>الناشرون</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>المُحمّلون</translation>
@@ -4454,12 +5145,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>فتح صفحة الوصف</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>تحميل التورنت</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>نسخ الاسم</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>نسخ رابط المغناطيس</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>نسخ عنوان صفحة الوصف</translation>
@@ -4472,12 +5169,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>بحث</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>مجهول</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>لا توجد نتائج بحث بعد</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>إضافات البحث</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>محرك بحث التورنت</translation>
@@ -4493,8 +5196,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>السرعة، حدود المشاركة، اكتشاف الأقران، ووضع التحميل لكل تورنت</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>إغلاق</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>تطبيق</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>حدود النطاق الترددي</translation>
@@ -4515,14 +5224,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>النسبة:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>الافتراضي</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>غير محدود</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>تعيين إلى</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>وقت البث:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>الحد الأدنى</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>وقت عدم النشاط:</translation>
@@ -4626,7 +5347,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>افتح الإعدادات</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>ملفات تعريف الارتباط من المتصفح:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>حدد متصفحًا لنقل ملفات تعريف الارتباط الخاصة به إلى yt-dlp، ثم أعد المحاولة.</translation>
@@ -4636,8 +5360,8 @@ Click to open Statistics</source>
             <translation>أعد المحاولة</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>حدد الجودة:</translation>
+            <source>Quality:</source>
+            <translation>الجودة:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4696,7 +5420,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>تحميل ملفات الترجمة مع الفيديو</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>اللغة:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>رموز اللغات، مثلاً en  ·  en.*,ja  ·  الكل</translation>
@@ -4755,8 +5482,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>قناة التنزيل</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>تنزيل</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>متقدم</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>تصفية بالتاريخ</translation>
@@ -4846,15 +5579,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>بث مباشر: من البداية</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>عكس الترتيب</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>تنزيل الأحدث أولاً (يعكس ترتيب القائمة)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>تخطي الأخطاء</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>متابعة تنزيل باقي القائمة عند فشل فيديو</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>انتظار البث:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>انتظار بدء بث مجدول/قادم مع إعادة المحاولة كل N ثانية</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>فترة إعادة المحاولة (للبثوث المجدولة)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>أجزاء متوازية:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>أجزاء DASH/HLS المتزامنة (فارغ = 1، حد أقصى 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>معكوس</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>تخطي الأخطاء</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>انتظار البث</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>تجزئة متوازية</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>تحميل قائمة عشوائياً</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>تحميل بث مباشر من البداية (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>حفظ في:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>الفئة:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>الصيغة:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>إلغاء</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>تنزيل الفيديو</translation>

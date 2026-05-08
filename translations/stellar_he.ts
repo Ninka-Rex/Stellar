@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1 ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>מתעין: %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>מוריד: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>משתף: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>מזריע: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>מזריע: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>סה״כ: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>סה״כ: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar נסגר...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>בצע את שלב התור לאחר 'אישור' אם ברצונך לקבץ את ההורדות הללו לפני תחילתן</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>רק קישורים מסומנים כ'נמצא' ניתנים לבחירה. הקצתה לרשימת המתנה תתבצע לאחר לחיצה על 'אישור'.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>בדיקת הורדה בקבצים</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>פיקסלים רוחב</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>מחק לצמיתות (אל תזיז לסל המחק)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>מחיקה</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>כן</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>לא</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>דפדוף...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>כתובת</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>קטגוריה</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>קבלת נתונים...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>מרכיב...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>מצב הורדה</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>הקטן לטריי</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>מצב</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>גודל קובץ</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>יכולת המשך</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>כן</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>לא</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>פרטי שגיאה</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>השהה</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>מיקומי התחלה וקדמות הורדה לפי חיבורים</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>שינוי שם</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>הורד שוב</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>מחיקה</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>הגדרות עמודות</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>שם קובץ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>גודל</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>סטטוס</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>זמן נותר</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>מהירות הורדה</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>עלה</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>הורד</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>תאריך אחרון</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>תיאור</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>שמור ל</translation>
@@ -891,8 +970,14 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>זכור את הבחירה שלי ולא להציג את הדיאלוג הזה שוב.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -904,30 +989,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>הזז קובץ אל...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>התחל</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>עצור</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>פתח תיקייה</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>פתח קובץ</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>מצב</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>גודל</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>שמור אל</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>הזזה</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>כתובת</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>דף אינטרנט</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>מפנה</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>תיאור</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>התחברות</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>סיסמה</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>מקור</translation>
@@ -936,17 +1057,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>סיכום הסיס</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>העתק</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>מטא-נתונים</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>קטגוריה</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>הערה</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>הורד</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>מדינה</translation>
@@ -955,8 +1085,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>פורט</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>הועלה</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>מזריעים</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>הודעה</translation>
@@ -965,10 +1101,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>עצור</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>מוריד</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>מעביר</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>זריעה</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>בתור</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>בעיה</translation>
@@ -993,7 +1141,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>כללי</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>קבצים</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>מפת זרם</translation>
@@ -1078,10 +1229,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>הזן שם קובץ או תיקייה חדש</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>שנה שם</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>הורדה</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>שנה שם...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>אין עמיתים מחוברים</translation>
@@ -1186,7 +1349,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>רמה</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>עמיתים</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>אין עמיתים ידועים</translation>
@@ -1211,7 +1377,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>פינג %1 %2% מושלם</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>לא ידוע</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>אתה</translation>
@@ -1228,7 +1397,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>הכרז מחדש בכפייה</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>העתק URL</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>הסר מעקב</translation>
@@ -1257,7 +1429,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>הדבק כתובות זרעי ווב - אחת בשורה. נתמכים זרעי URL (BEP-19) וזרעי HTTP (BEP-17).</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>כתובת</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>סוג</translation>
@@ -1406,7 +1581,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>נמצאו %1 תוצאות.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1470,7 +1648,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>שם תבנית</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>שמירה</translation>
@@ -1491,7 +1672,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>פרויקטים אחרונים</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>הגדרות Grabber</translation>
@@ -1532,8 +1716,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>מתקדם &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>התחבר</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>סיסמה</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>לחץ על מתקדם כדי לאפשר התחברות ידנית או להשבית דף יציאה.</translation>
@@ -1745,13 +1935,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>מסכה</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>הוסף</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>עריכה</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>מחק</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>עריכת מסנן</translation>
@@ -1760,9 +1959,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>מסנן חדש</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>קטגוריה</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>שמור</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1774,13 +1982,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>פרויקטים שמורים</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>פרויקט</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>אפשרויות</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>בתפעול</translation>
@@ -1810,13 +2030,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>התחל</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>שם קובץ</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>סוג קובץ</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>גודל</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>סטטוס</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>קישור</translation>
@@ -1825,7 +2054,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>הורד מ</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>שמור אל</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>בחר</translation>
@@ -1838,8 +2070,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>ערוך פרויקט</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>הגדרות אוסף</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2096,8 +2334,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>הערה: Stellar חייב להיות פעיל בלוח המערכת בשעה המצוינת כדי להתחיל פרויקט מתוזמן.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2121,8 +2365,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>השתמש בטקסטים של קישורים כתיאורים להורדה בעת הוספת קבצים לרשימה הראשית של Stellar</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2134,7 +2384,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>סטטוס: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>בטלה</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>דפים מעובדים</translation>
@@ -2147,7 +2400,10 @@ Project</source>
             <source>Advanced</source>
             <translation>מתקדם</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>קבצים</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>סה&quot;כ</translation>
@@ -2160,8 +2416,14 @@ Project</source>
             <source>Matched</source>
             <translation>התאים</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>הורדו</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2189,7 +2451,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar ינסה מחדש את פריט yt-dlp זה עם קובצי ה-cookie של הדפדפן.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>ניסיון מחדש</translation>
@@ -2226,12 +2491,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>כל הקבצים (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>סה״כ: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>סיום: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>מוריד: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>מתחומה: %1</translation>
@@ -2240,9 +2511,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>כללי: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>עצור</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>המשך</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>אפשר תמיכה ב-BitTorrent?</translation>
@@ -2267,7 +2547,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 You can turn this off in Settings → Downloads.</source>
             <translation>לחצת על 'הורד מאוחר יותר', אך Stellar כבר התחיל להוריד חלק מהקובץ. Stellar תמיד מתחיל להוריד בזמן הצגת חלון 'מידע על קובץ'. ניתן לכבות זאת בהגדרות → הורדות.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>לא ניתן להוריד את הקובץ &quot;%1&quot;.</translation>
@@ -2309,8 +2592,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>קובץ</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>פתח תיקייה</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>פתח קובץ</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>הורד עכשיו</translation>
@@ -2323,8 +2612,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>הסר</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>הורד מחדש</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>ייצא .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>הורדות</translation>
@@ -2361,7 +2656,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>עצור תור</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>מגביל מהירות</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>הפעל</translation>
@@ -2454,7 +2752,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>עמודים...</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>אפשרויות</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>העדפות...</translation>
@@ -2487,21 +2788,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>גרור קובץ .torrent לפתיחת מטא-נתונים</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>חיפוש:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>חפש</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>הגדרות ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>חפש ב:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>שם קובץ או חלק ממנו</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>תיאור</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>כתובת URL / מקור / דף אינטרנט אב</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>התאם רישיות</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>התאם מחרוזת שלמה בלבד</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>הזז תפריט צד לשמאל</translation>
@@ -2550,7 +2872,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>תקדמות הורדת ערוץ</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>הורד מאוחר יותר</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>הקובץ אינו זמין עוד</translation>
@@ -2606,12 +2931,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>אל תוסיף לתור</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>הקלד שם תור</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>צור</translation>
@@ -2627,8 +2958,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>כללי הורדה</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>הוסף</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>הסר</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>לחץ על 'הוסף' כדי ליצור כלל הורדה</translation>
@@ -2705,7 +3042,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>השאיר ריק כדי להשתמש בנתיב ברירת המחדל</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>עיון...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>קטגוריה:</translation>
@@ -2718,7 +3058,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>מגבלות שיתוף טורנט</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>יחס</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>ברירת מחדל</translation>
@@ -2747,8 +3090,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>ברירת מחדל</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>כללי הורדה אוטומטית מ-RSS</translation>
@@ -2788,7 +3137,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>הורד טורנט</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>הורד</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>פתח בדפדפן</translation>
@@ -2809,26 +3161,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>סמן הכל כקריא</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>שם</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>שם מותאם אישית (אופציונלי)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>כתובת</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>שמירה</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>הוסף כתובת RSS או Atom...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>הוספה</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>רענן…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>עריכה</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>הסרה</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>כללי הורדה</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>מנויים</translation>
@@ -2841,7 +3217,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>בחר מאמר</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>פתיחה</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>סמן כקריא</translation>
@@ -2885,7 +3264,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>תור חדש</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>מחיקה</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>לוח זמנים</translation>
@@ -2898,21 +3280,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>הורדה חד-פעמית</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>סנכרון תקופתי</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>התחלת הורדה עם עליית Stellar</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>התחל הורדה ב־</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>פעם אחת ב־</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>יומי</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>התחלה מחדש כל</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>שעות</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>דקות</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>עצור הורדה ב־</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>מספר ניסיונות לכל קובץ אם ההורדה נכשלה:</translation>
@@ -2921,17 +3324,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>פתח את הקובץ הבא בעת סיום:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>צא מ־Stellar בסיום</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>כבה מחשב בסיום</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>אלץ סיום תהליכים</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>הורדה</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>קבצים באותו זמן</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>שם קובץ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>גודל</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>מצב</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>זמן שנותר</translation>
@@ -2968,12 +3392,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>התחל עכשיו</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>עצור</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>החל</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>הזן שם לרשימת ההמתנה החדשה</translation>
@@ -2982,9 +3412,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>שם רשימת המתנה</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>מתזמן</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>רשימת המתנה חדשה</translation>
@@ -2996,7 +3435,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>חיבור</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>הורדות מקסימליות בו-זמניות:</translation>
@@ -3061,13 +3503,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>סיסמה:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>קטגוריות</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>שם</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>שמירה לפיילדר</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>הורדות</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>תיקיית שמירה ברירת מחדל:</translation>
@@ -3128,8 +3579,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>הצג שניות</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>תצוגה מקדימה</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>שילוב דפדפן</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>התחל אוטומטית להוריד את סוגי הקבצים הבאים:</translation>
@@ -3154,7 +3611,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>חזק את המקש הזה בעת לחיצה על קישור הורדה כדי לדלג על חסימה ולהוריד דרך הדפדפן:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>מגביל מהירות</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>אפשר מגבלת מהירות גלובלית</translation>
@@ -3163,7 +3623,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>מהירות מקסימלית:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>ק״ב/ש׳</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>אפשר מגבלת העלאה גלובלית</translation>
@@ -3180,12 +3643,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>הפעל לוח שנה למגביל מהירות</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>הסר</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>הפעל</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>הורד</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>עלה</translation>
@@ -3206,7 +3675,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>הצג התראה בשגיאת הורדה</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>כללי</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>דפדפן</translation>
@@ -3303,8 +3775,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>פתח תיבת תכונות קובץ</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>פתח קובץ</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>פתח תיקייה</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>שעון 24-שעתי</translation>
@@ -3337,7 +3815,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>לחץ על כדור יום כדי להחליף את מצבו. כללי מוערכים כל דקה; כלל מתאים ראשון זוכה. מגבלות הורדה ועלייה מוגדרות מחדש אוטומטית כאשר אין כלל פעיל.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>מזער למגש</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>סגור למערכת הריבוי</translation>
@@ -3430,7 +3911,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>הורדת yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>בדיקה מחדש</translation>
@@ -3534,7 +4018,10 @@ Anything you share via BitTorrent is your sole responsibility. Ensure you have t
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
             <translation>Stellar הוא תוכנת חלוקת קבצים. בעת הורדת טורנט, כתובת ה-IP שלך נחשפת לזרם והמערכת מעלה (מזרע) נתונים לאחרים. כל מה שאתה משתף באמצעות BitTorrent באחריותך בלבד. וודא שיש לך את הזכות להפיץ את התוכן. מומלץ בחום לחבר את Stellar לממשק רשת VPN ולוודא שה-VPN פעיל לפני שימוש בטורנטים כדי להגן על כתובת ה-IP שלך.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>הבנתי, הפעל</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>הגדרות אלו חלות על קבצי .torrent וקישורי מגנט</translation>
@@ -3599,7 +4086,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>רשת</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>מתקדם</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>User Agent מותאם אישית ל-BitTorrent</translation>
@@ -3672,7 +4162,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>חסימת זוגות לפי מדינה</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>הוסף</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>אין מדינות חסומות</translation>
@@ -3709,12 +4202,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>גרסה</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>לא ידוע</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>נתיב</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>גודל</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>פריטים</translation>
@@ -3723,7 +4222,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>עדכון אחרון</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>מצב</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>מתורגם...</translation>
@@ -3736,7 +4238,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>רענן מידע</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>סטטיסטיקה</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>סך הכל העברות לכל ה-BT כולל מוסרים</translation>
@@ -3757,7 +4262,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>טקסטים מלאים של רישיונות נמצאים ב-THIRD-PARTY-NOTICES.txt, המצורף להתקנה זו.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>השגת פידים</translation>
@@ -3770,7 +4278,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>פרק זמן עד שחזור פידים</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>דקות</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>עיכוב בקשות מאותו מארח</translation>
@@ -3931,8 +4442,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>תוכנה של צד שלישי</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>החל</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>מסלול ברירת מחדל</translation>
@@ -4013,7 +4530,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>זמין אך לא נעלה</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>מקור: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>כתובת המקור לא נשמעה עדיין. השתמש ב'בדיקת עדכונים' כדי לשמור את IPtoCityDB מ-update.json.</translation>
@@ -4045,9 +4565,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>עריכת פרויקט</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>מחק פרויקט</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>קטגוריות</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>כל ההורדות</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>לא סיים</translation>
@@ -4060,19 +4589,49 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>פרויקטים</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torrents</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>תורים</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>מוריד</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>מזריע</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>עצור</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>פעיל</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>לא פעיל</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>בודק</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>מזיז</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>סטטיסטיקה</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>סטטיסטיקות Stellar</translation>
@@ -4081,8 +4640,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>כל הזמן</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>הורד</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>הועלה</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>יחס חלוקה</translation>
@@ -4103,7 +4668,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>הפעלה זו</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4219,27 +4787,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>מנהל הורדות Stellar</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>הורדות SDM</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>הוסף URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>המשך</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>עצור</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>עצור הכל</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>מחק</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>מחק מסיים</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>אפשרויות</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>מתזמן</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>התחל תור</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>עצור תור</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>גרבר</translation>
@@ -4248,7 +4846,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>מנוע חיפוש</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4287,12 +4888,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>שמור ב</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>שמירה כ...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>קטגוריה</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>תיקיית שמירה מותאמת אישית</translation>
@@ -4305,35 +4912,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>השתמש בתיקיית קטגוריה</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>תיאור</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>הגדרות טורנט...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>הורד מאוחר יותר</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>הורד</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>פתיחת טורנט...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% מושלם</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>קבצים</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n פריט(ים)</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>שם</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>התקדמות</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>גודל</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>אין מידע על קובץ</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>ממתין</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>שנה שם פריט</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>הזן שם קובץ או תיקייה חדש:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>שנה שם</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>שנה שם...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>עמית</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>פתיחת ה-torrent וקריאת מטא-נתונים...</translation>
@@ -4346,8 +5004,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>הורדת מטא-נתונים מ-%n עמיתים</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>זורע</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>אתה</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>מטא-נתונים של טורנט</translation>
@@ -4367,8 +5031,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>קישור אינטרנט</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>אישור</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>בחר קובץ תוסף חיפוש .py מקומי להעתקה לפיפולד search_plugins.</translation>
@@ -4400,9 +5070,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>תוספי חיפוש מותקנים</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>רענן</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>לא ידוע</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>מופעל</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>מושבת</translation>
@@ -4411,7 +5090,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>התקן תוסף חדש</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>חיפוש תוספים</translation>
@@ -4419,9 +5101,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>שם</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>גודל</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>מזריעים</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>מאכלים</translation>
@@ -4438,12 +5129,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>פתח דף תיאור</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>הורד טורנט</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>העתק שם</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>העתק קישור מגנט</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>העתק כתובת דף תיאור</translation>
@@ -4456,12 +5153,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>חיפוש</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>לא ידוע</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>אין תוצאות חיפוש עדיין</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>תוספי חיפוש</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>מנוע חיפוש טורנט</translation>
@@ -4477,8 +5180,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>מהירות לטורנט, מגבלות חלוקה, גילוי זרים, מצב הורדה</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>סגור</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>החל</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>מגבלות רוחב פס</translation>
@@ -4499,14 +5208,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>יחס:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>ברירת מחדל</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>ללא הגבלה</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>הגדר ל</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>זמן זריעה:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>דקות</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>זמן לא פעיל:</translation>
@@ -4610,7 +5331,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>פתח הגדרות</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>עוגיות מהדפדפן:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>בחרו בדפדפן להעברת העוגיות שלו ל-yt-dlp, ואז נסו שוב.</translation>
@@ -4620,8 +5344,8 @@ Click to open Statistics</source>
             <translation>נסה שוב</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>בחר איכות:</translation>
+            <source>Quality:</source>
+            <translation>איכות:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4680,7 +5404,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>הורד קבצי כיתובים לצד הסרטון</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>שפה:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>קודי שפה, למשל en · en.*,ja · הכל</translation>
@@ -4738,8 +5465,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>ערוץ הורדה</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>הורדה</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>מתקדם</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>סינון תאריכים</translation>
@@ -4829,15 +5562,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>חי: מההתחלה</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>סדר הפוך</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>הורד סרטונים חדשים תחילה (הופך סדר פלייליסט)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>דלג על שגיאות</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>המשך להוריד את שאר הפלייליסט כשסרטון אחד נכשל</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>המתן לשידור:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>המתן לשידור מתוכנן/עתידי, נסה שוב כל N שניות</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>שניות בין ניסיונות</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>מקטעים מקבילים:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>מקטעי DASH/HLS במקביל (ריק = 1, מקסימום 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>הפוך</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>דלג על שגיאות</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>המתן לשידור</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>קטעים מקבילים</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>הורדת פלייליסט בסדר אקראי</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>הורדת שידור חי מההתחלה (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>שמירה ל:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>קטגוריה:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>פורמט:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>ביטול</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>הורדת וידאו</translation>

@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓ %1 ↑ %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>Ներբ: %1  Վերբ: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>Ներբեռնում՝ %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>Ներբեռնում: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Սիդինգ՝ %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>Սերմնցում: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
-            <translation>Ընդհանուր՝ %1</translation>
+            <source>
+Seeding: %1</source>
+            <translation>Սերմնցում: %1</translation>
         </message>
-        
+        <message>
+            <source>  Total: %1</source>
+            <translation>Ընդ: %1</translation>
+        </message>
+        <message>
+            <source>
+Total: %1</source>
+            <translation>Ընդ: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar-ը փակվում է...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Խմբավորել ներբեռնումները՝ օգտագործելով հերթի քայլը OK-ից հետո</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Ընտրելի են միայն «Գտնված» նշված հղումները։ Հերթի նշանակումը կկատարվի OK-ից հետո։</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Խմբային ներբեռնման վերանայում</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>պիքսել</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Մշտապես ջնջել (չտեղափոխել թղթապանակ)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>Ջնջել</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Այո</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Ոչ</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Գտնել...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Կատեգորիա</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Տվյալների ստացում...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Հավաքում...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Ներբեռնման վիճակ</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>Փոքրացնել պատուհանին</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Կարգավիճակ</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Ֆայլի չափը</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Վերագործարկման հնարավորություն</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Այո</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Ոչ</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Սխալի մանրամասներ</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>Դադար</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Սկզբնական կետեր և ներբեռնման առաջընթաց ըստ կապերի</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Վերանվանել</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Վերբեռնել նորից</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Ջնջել</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Սյունակների կարգավորումներ</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Ֆայլի անուն</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Չափ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Կարգավիճակ</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Մնաց ժամ</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>↓ Արագություն</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Վերբեռնված</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Ներբեռնված</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Վերջին փորձի ամսաթիվ</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Նկարագրություն</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Պահել դեպի</translation>
@@ -891,8 +970,14 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Հիշել իմ ընտրությունը և այլևս չցույց տալ այս զրույցը: Կարող եք փոխել այն հետագայում Տարբերակներ → Ներբեռնումներ բաժնում:</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -904,30 +989,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Տեղափոխել ֆայլը...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Սկսել</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Դադարեցնել</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Բացել թղթապանակը</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Բացել ֆայլը</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Կարգավիճակ</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Չափ</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Պահել</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Տեղափոխել</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Հասցե</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Վեբ էջ</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Ուղարկող</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Նկարագրություն</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Մուտք</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Գաղտնաբառ</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Աղբյուր</translation>
@@ -936,17 +1057,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Տեղեկատվության հեշ</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Պատճենել</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Մետատվյալներ</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Կատեգորիա</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Նշում</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Ներբեռնված</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Երկիր</translation>
@@ -955,8 +1085,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Պորտ</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Վերբեռնված</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Սերմնացաններ</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Հաղորդագրություն</translation>
@@ -965,10 +1101,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Դադարեցված</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Ներբեռնում</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Տեղափոխում</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Սերմնացան</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>Հերթագրված</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Խնդիր</translation>
@@ -993,7 +1141,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Ընդհանուր</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Ֆայլեր</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Ռազմաճակատի քարտեզ</translation>
@@ -1078,10 +1229,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Մուտքագրեք նոր անուն.</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Վերանվանել</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Ներբեռնել</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Վերանվանել...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Կապ չկա</translation>
@@ -1186,7 +1349,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Մակարդակ</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Փիրեր</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 հայտնի համադրող</translation>
@@ -1211,7 +1377,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Պինգ %1 %2% ավարտված</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Անհայտ</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Դուք (այս հաճախորդ)</translation>
@@ -1228,7 +1397,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Ստիպել վերահայտարարել</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>Պատճենել URL</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Հեռացնել հետք</translation>
@@ -1257,7 +1429,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Սպասել վեբ սերմի URL-ները՝ մեկը մեկ տողով։ Միաժամանակ ընդունվում են URL սերմեր (BEP-19) և HTTP սերմեր (BEP-17)։</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Տեսակ</translation>
@@ -1406,7 +1581,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Գտնվել է %1 արդյունք</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1470,7 +1648,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Շաբլոնի անունը</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Պահպանել</translation>
@@ -1491,7 +1672,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Վերջին նախագծեր</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Grabber-ի կարգավորումներ</translation>
@@ -1532,8 +1716,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Բարդ &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Մուտք</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Գաղտնաբառ</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Սեղմեք Բարդ՝ ձեռքով մուտքը միացնելու կամ ելքի էջը անջատելու համար:</translation>
@@ -1745,13 +1935,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Թափանցիկություն</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Ավելացնել</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Խմբագրել</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>Ջնջել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Խմբագրել ֆիլտրը</translation>
@@ -1760,9 +1959,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Նոր ֆիլտր</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Կատեգորիա</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Պահպանել</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1774,13 +1982,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Պահպանված նախագծեր</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Նախագիծ</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Ընտրանքներ</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>Գործում է</translation>
@@ -1810,13 +2030,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Սկսել</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Ֆայլի անուն</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Ֆայլի անունը</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Չափ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Կարգավիճակ</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Կարգավիճակը</translation>
@@ -1825,7 +2054,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Հղման տեքստը</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Պահել</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Ստուգել</translation>
@@ -1838,8 +2070,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Խմբագրել</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Գրաբերի կարգավորումներ</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2096,8 +2334,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Նշում. Stellar-ը պետք է աշխատի համակարգի թրեյում նշված ժամին՝ նախագիծը սկսելու համար:</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2121,8 +2365,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Օգտագործել հղումների տեքստերը որպես ներբեռնման նկարագրություններ՝ ֆայլերը Stellar-ի հիմնական ցուցակին ավելացնելիս</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2134,7 +2384,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Վիճակը՝ %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Անգործ</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Մշակված վեբ էջեր</translation>
@@ -2147,7 +2400,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Ընդլայնված</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Ֆայլեր</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Ընդհանուր</translation>
@@ -2160,8 +2416,14 @@ Project</source>
             <source>Matched</source>
             <translation>Համընկնող</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Ներբեռնված</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2189,7 +2451,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar-ը կկրկնօրինակի yt-dlp տարրը այդ բրաուզերի cookie-ներով:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Կրկին փորձել ներբեռնել</translation>
@@ -2226,12 +2491,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Բոլոր ֆայլեր (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Ընդամենը՝ %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Ավարտված՝ %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Ներբեռնում՝ %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>Հերթում՝ %1</translation>
@@ -2240,9 +2511,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Ընդհանուր՝ %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>Դադարեցնել</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Շարունակել</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Միացնել BitTorrent աջակցությունը՞</translation>
@@ -2275,7 +2555,10 @@ You can turn this off in Settings → Downloads.</source>
 
 Դա կարող եք անջատել Կարգավորումներ → Ներբեռնումներ բաժնում։</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>«%1» ֆայլը չհաջողվեց ներբեռնել։</translation>
@@ -2317,8 +2600,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Ֆայլ</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Բացել թղթապանակը</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Բացել ֆայլը</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Ներբեռնել</translation>
@@ -2331,8 +2620,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Հեռացնել</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Կրկին ներբեռնել</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Արտահանել .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Ներբեռնումներ</translation>
@@ -2369,7 +2664,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Կանգնեցնել հերթը</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Արագ. սահմանափակում</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Միացնել</translation>
@@ -2462,7 +2760,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Սյունակներ…</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Ընտրանքներ</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Կարգավորումներ…</translation>
@@ -2495,21 +2796,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Նետել .torrent ֆայլը՝ տորենտի մետատվյալները բացելու համար</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Որոնել՝</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Որոնել</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Կարգավորումներ ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Որոնել մեջ՝</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Ֆայլի անուն կամ մաս</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Նկարագրություն</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / հղում / ծնող վեբ էջ</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Հաշվի առնել ռեգիստրը</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Միայն ամբողջ տողը</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Տեղափոխել կողային պանելը ձախ</translation>
@@ -2558,7 +2880,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Ալիքի ներբեռնման ընթացքը</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Հետո ներբեռնել</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Ֆայլն այլևս հասանելի չէ</translation>
@@ -2614,12 +2939,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Չավելացնել հերթին</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Մուտքագրեք հերթի անունը</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Ստեղծել</translation>
@@ -2635,8 +2966,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Ներբեռնման կանոններ</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Ավելացնել</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Հեռացնել</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Սեղմեք «Ավելացնել»՝ ներբեռնման կանոն ստեղծելու համար</translation>
@@ -2713,7 +3050,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Դատարկ թողեք ստանդարտ պահոցի համար</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Թերթել...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Կատեգորիա</translation>
@@ -2726,7 +3066,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>ՏՐԵՆՏԻ ՏԱՐԱԾՄԱՄԲ ՍՏՈՒԳՈՒԹՅԱՆ ՍՏՈՒԳՈՒԹՅՈՒՆՆԵՐԸ</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Հարաբերակցություն</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Ընդհանուր</translation>
@@ -2755,8 +3098,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>«Ընդհանուր»-ն օգտագործում է Կարգավորումներ → Տրենտներ բաժնում սահմանված ընդհանուր սահմանափակումները:</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS ավտոմատ ներբեռնման կանոններ</translation>
@@ -2796,7 +3145,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Ներբեռնել տորենտը</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Ներբեռնել</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Բացել բրաուզերում</translation>
@@ -2817,26 +3169,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Նշել բոլորը որպես կարդացված</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Անուն</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Հատուկ անուն (ըստ ցանկության)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Պահել</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Ավելացնել RSS կամ Atom feed URL...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Ավելացնել</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Թարմացնում է…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Խմբագրել</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Հեռացնել</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Ներբեռնման կանոններ</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Բաժանորդագրություններ</translation>
@@ -2849,7 +3225,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Ընտրել հոդված</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Բացել</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>Կարդացած</translation>
@@ -2893,7 +3272,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Նոր հերթ</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Ջնջել</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Ժամանակացույց</translation>
@@ -2906,21 +3288,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Մեկանգամյա ներբեռնում</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Պարբերական համաժամեցում</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Սկսել ներբեռնումը Stellar-ի մեկնարկից</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Ներբեռնել սկսել</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>Մեկ անգամ</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Ամեն օր</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Վերսկսել յուրաքանչյուր</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>ժ</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>ր</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Դադարեցնել</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Յուրաքանչյուր ֆայլի կրկնօրինակների քանակը, եթե ներբեռնումը ձախողվի՝</translation>
@@ -2929,17 +3332,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Բացել հետևյալ ֆայլը ավարտից հետո՝</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Ավարտելիս փակել Stellar-ը</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Ավարտելիս անջատել համակարգիչը</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Ստիպել գործընթացների ավարտը</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Ներբեռնել</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>ֆայլ միաժամանակ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>Ֆայլի անուն</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Չափ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Կարգավիճակ</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Մնացած ժամանակ</translation>
@@ -2976,12 +3400,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Սկսել</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>Դադարեցնել</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Կիրառել</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Մուտքագրեք նոր հերթապահի անունը, որը կցուցադրվի հերթապահների ցանկում</translation>
@@ -2990,9 +3420,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Հերթապահի անուն</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ժամանակացույց</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Նոր հերթ</translation>
@@ -3004,7 +3443,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>Կապ</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Միաժամանակ ներբեռնումների առավելագույնը՝</translation>
@@ -3069,13 +3511,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Գաղտնաբառ՝</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Կատեգորիաներ</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Անուն</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>Պահել թղթապանակում</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Ներբեռնումներ</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Ստանդարտ պահելու թղթապանակ՝</translation>
@@ -3136,8 +3587,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Ցույց տալ վայրկյանները</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Նախադիտում</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Դիտարկիչի ինտեգրում</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Ավտոմատ սկսել ներբեռնել հետևյալ ֆայլի տեսակները՝</translation>
@@ -3162,7 +3619,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Սեղմեք այս ստեղնը՝ ներբեռնման հղման վրա սեղմելիս՝ խցանումը անտեսելու և բրաուզերով ներբեռնելու համար.</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Արագ․ սահմանափակում</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Միացնել համաշխարհային արագության սահմանափակումը</translation>
@@ -3171,7 +3631,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Առավելագույն արագությունը.</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>ԿԲ/վ</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Միացնել համաշխարհային բեռնման սահմանափակումը</translation>
@@ -3188,12 +3651,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Միացնել արագության սահմանափակիչի ժամանակացույցը</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Հեռացնել</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Միացված</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Ներբեռնել</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Վերբեռնել</translation>
@@ -3214,7 +3683,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Ցույց տալ ծանուցումը ներբեռնման սխալի դեպքում</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>Ընդհանուր</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Բրաուզեր</translation>
@@ -3311,8 +3783,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Բացել ֆայլի հատկությունների խոսքարկղը</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Բացել ֆայլ</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Բացել պանակ</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24-ժամյա ժամ</translation>
@@ -3345,7 +3823,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Սեղմեք օրվա պիլը՝ այն միացնելու/անջատելու համար։ Կանոնները ստուգվում են րոպեում մեկ անգամ․ առաջին համընկնող կանոնը հաղթում է։ Պլանավորված ներբեռնման և բեռնաթափման սահմանափակումները ավտոմատ կերպով մաքրվում են, երբ կանոն չկա։</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>Ծրարել համակարգային սկուտեղում</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>Փակել համակարգային թաս</translation>
@@ -3438,7 +3919,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Ներբեռնել yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Վերաստուգել</translation>
@@ -3541,7 +4025,10 @@ Anything you share via BitTorrent is your sole responsibility. Ensure you have t
 It is strongly recommended to bind Stellar to a VPN network interface and verify that your VPN is active before using torrents, to protect your IP address from exposure.</source>
             <translation>Stellar-ը ֆայլերի կիսման ծրագիր է: Երբ ներբեռնում եք տորենտ, ձեր IP հասցեն դառնում է տեսանելի այլ համացանցային կետերի համար, և դուք միաժամանակ բեռնում եք տվյալներ այլոց համար:</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Հասկացա, միացնել</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Այս կարգավորումները վերաբերում են .torrent ֆայլերին և magnet հղումներին:</translation>
@@ -3606,7 +4093,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>Ցանց</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Ընդլայնված</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>BitTorrent-ի սեփական user agent</translation>
@@ -3679,7 +4169,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>Արգելափակել գործընկերներին ըստ երկրի</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Ավելացնել</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Արգելափակված երկրներ չկան:</translation>
@@ -3716,12 +4209,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>Տարբերակ</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Անհայտ</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Ուղի</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Չափ</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Տարրեր</translation>
@@ -3730,7 +4229,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>Վերջին փոփոխություն</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Կարգավիճակ</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Ներբեռնում...</translation>
@@ -3743,7 +4245,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>Թարմացնել տեղեկատվություն</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Վիճակագրություն</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Բոլոր տորենտների ընդհանուր փոխանցումները, ներառյալ հեռացվածները։</translation>
@@ -3764,7 +4269,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Լիովին լիցենզիայի տեքստերը գտնվում են THIRD-PARTY-NOTICES.txt-ում, որը ներառված է այս տեղադրման մեջ։</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Սնուցման ստացում</translation>
@@ -3777,7 +4285,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Սնուցումների թարմացման միջակայք</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>րոպե</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Նույն հյուրընկալի հարցման ուշացում</translation>
@@ -3938,8 +4449,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>Երրորդ կողմի ծրագրեր</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Կիրառել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Կանոնավոր ուղի</translation>
@@ -4020,7 +4537,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>Հասանելի է, բայց չի բեռնվել</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Աղբյուր՝ %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Աղբյուրի URL-ը դեռ չի կաշվածվել։ Օգտագործեք «Ստուգել թարմացումները»՝ IPtoCityDB-ն update.json-ից կաշվածելու համար։</translation>
@@ -4052,9 +4572,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>Խմբագրել նախագիծը</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Ջնջել նախագիծը</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Կատեգորիաներ</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Բոլոր ներբեռնումները</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Անավարտ</translation>
@@ -4067,19 +4596,49 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Ձեռքբերման նախագծեր</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torrents</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Հերթեր</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Ներբեռնում</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Սերմնացան</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>Դադարեցված</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Ակտիվ</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Ոչ ակտիվ</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Ստուգում</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Տեղափոխում</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Վիճակագրություն</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar վիճակագրություն</translation>
@@ -4088,8 +4647,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>ԲՈԼՈՐ ԺՄԱՆԱԿ</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Ներբեռնված</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>Վերբեռնված</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Համադրություն</translation>
@@ -4110,7 +4675,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>ԱՅՍ ՍԵՍԻԱՅԻՆ</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4227,27 +4795,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar Ներբեռնման կառավարիչ</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM ներբեռնումներ</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>Ավելացնել URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Շարունակել</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Դադարեցնել</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Դադարել բոլորը</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Ջնջել</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Ջնջել ավարտվածները</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>Ընտրանքներ</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ժամանակացույց</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Հերթը սկսել</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Հերթը կանգնեցնել</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Ձեռքբերող</translation>
@@ -4256,7 +4854,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Որոնման համակարգ</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4295,12 +4896,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Պահել</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Պահել որպես...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Կատեգորիա</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>Հատուկ պահման թղթապանակ</translation>
@@ -4313,35 +4920,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Օգտագործել կատեգորիայի թղթապանակ</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Նկարագրություն</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Torrentի կարգ․․․</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Հետո ներբեռնել</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Ներբեռնել</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Բացում տորենտ...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% ավարտված</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Ֆայլեր</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n տարր(եր)</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Անուն</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Առաջընթաց</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Չափ</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Ֆայլի տվյալներ չկան</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>Սպասում</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Վերանվանել</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Մուտքագրեք նոր անուն:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Վերանվանել</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Վերանվանել...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Փիր</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Բացվում է...</translation>
@@ -4354,8 +5012,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Տվյալների բեռնում %n հաղորդակից(ներ)ից</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Սերմ</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Դու</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Տորենտի մետատվյալներ</translation>
@@ -4375,8 +5039,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Վեբ հղում</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>Լավ</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Ընտրեք տեղական .py որոնման հավելվածի ֆայլ՝ որպես որոնման հավելվածների թղթապանակի մեջ պատճենելու համար:</translation>
@@ -4408,9 +5078,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Տեղադրված որոնման հավելվածներ</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Թարմացնել</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Անհայտ</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Միացված</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>Անջատված</translation>
@@ -4419,7 +5098,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Տեղադրել նորը</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Որոնել հավելվածներ</translation>
@@ -4427,9 +5109,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Անուն</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Չափ</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Սիդեր</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Լիչերներ</translation>
@@ -4446,12 +5137,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Բացել նկարագրության էջը</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>Ներբեռնել թորրենտ</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Պատճենել անունը</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Պատճենել մագնիս հղումը</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Պատճենել նկարագրության էջի URL-ը</translation>
@@ -4464,12 +5161,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Որոնել</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Անհայտ</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Որոնման արդյունքներ չկան</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Որոնման փլագիններ</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Տորենտների որոնման շարժիչ</translation>
@@ -4485,8 +5188,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Յուրաքանչյուր տորենտի արագություն, բաժնագրման սահմանափակումներ, գործընկերների հայտնաբերում և ներբեռնման ռեժիմ</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Փակել</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Կիրառել</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ԲԱՆԴՎԻԴԺԻ ՍԱՀՄԱՆԱՓԱԿՈՒՄՆԵՐ</translation>
@@ -4507,14 +5216,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Հարաբերակցություն՝</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Լռելյայն</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Անսահմանափակ</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>Սահմանել</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Սերինգի ժամանակը՝</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>ր</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Ակտիվ չլինելու ժամանակը՝</translation>
@@ -4618,7 +5339,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Բացել Կարգավորումներ</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Բրաուզերի քուքիներ</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Ընտրեք բրաուզեր՝ դրա cookie-ները yt-dlp-ին փոխանցելու համար, այնուհետև կրկին փորձեք:</translation>
@@ -4628,8 +5352,8 @@ Click to open Statistics</source>
             <translation>Կրկին փորձել</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>Ընտրել որակը:</translation>
+            <source>Quality:</source>
+            <translation>Որակ</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4688,7 +5412,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Ներբեռնել ենթագրերը վիդեոյի հետ միասին</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Լեզու</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Լեզվի կոդ(ներ), օր.՝ en  ·  en.*,ja  ·  բոլորը</translation>
@@ -4747,8 +5474,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Ներբեռնման ալիք</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Ներբեռնել</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Ընդլայնված</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>ամսաթվի զտիչ</translation>
@@ -4838,15 +5571,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Ուղիղ՝ սկզբից</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Հակառակ կարգ</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Ներբեռնել նորագույն տեսանյութերը (հակառակ ցանկի կարգը)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>1. Բաց թողնել սխալները</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>2. Շարունակել ներբեռնել ցանկի մնացած մասը, երբ մեկ տեսանյութ ձախողվի</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>3. Սպասել հոսքին</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>4. Սպասել պլանավորված/առաջիկա հոսքի մեկնարկին, կրկնել ամեն N վայրկյանը</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>5. վրկ կրկնման միջակայք (պլանավորված/առաջիկա հոսքերի համար)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>6. Զուգահեռ հատվածներ</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>7. Միաժամանակյա DASH/HLS հատվածներ (դատարկ = 1, առավելագույնը 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>8. հակառակ</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>9. բաց թողնել սխալները</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>10. սպասել հոսքին</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>զուգահեռ հատվածներ</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>Պատահական կարգով ներբեռնել ցանկը</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>Ներբեռնել ուղիղ հեռարձակումը սկզբից (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Պահպանել՝</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Կատեգորիա՝</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Ձևաչափ՝</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Չեղարկել</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Տեսանյութի ներբեռնում</translation>

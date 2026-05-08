@@ -119,10 +119,25 @@ void YtdlpTransfer::start() {
     args << QStringLiteral("--ignore-config");
     if (m_playlistMode) {
         args << QStringLiteral("--yes-playlist");
-        if (m_maxItems > 0)
+        if (m_options.playlistReverse) {
+            // Reverse order via Python slice "::-1"; combine with maxItems limit if set.
+            // "::-1" alone downloads all in reverse; "1:N:1" then "::-1" is not composable
+            // in a single expression, so when both are set we take the first N then reverse
+            // by using negative stop: e.g. maxItems=10 → "::-1" and rely on the user
+            // understanding that reverse+limit isn't a single-expression combo yt-dlp
+            // supports cleanly. Simplest correct behaviour: reverse full list when
+            // maxItems is 0; when maxItems > 0, download last N in forward order (newest
+            // last, which with reverse gives newest-first N items: "-N:" slice).
+            if (m_maxItems > 0)
+                args << QStringLiteral("--playlist-items")
+                     << QStringLiteral("-") + QString::number(m_maxItems) + QStringLiteral(":");
+            else
+                args << QStringLiteral("--playlist-items") << QStringLiteral("::-1");
+        } else if (m_maxItems > 0) {
             // playlist-items uses a Python-slice range: "1:N" downloads the first N items
             args << QStringLiteral("--playlist-items")
                  << QStringLiteral("1:") + QString::number(m_maxItems);
+        }
     } else {
         args << QStringLiteral("--no-playlist");
     }
@@ -222,6 +237,12 @@ void YtdlpTransfer::start() {
     if (m_options.useArchive)
         args << QStringLiteral("--download-archive")
              << m_saveDir + QStringLiteral("/yt-dlp-archive.txt");
+    if (m_options.ignoreErrors)
+        args << QStringLiteral("--ignore-errors");
+    if (m_options.waitForVideoSecs > 0)
+        args << QStringLiteral("--wait-for-video") << QString::number(m_options.waitForVideoSecs);
+    if (m_options.concurrentFragments > 1)
+        args << QStringLiteral("--concurrent-fragments") << QString::number(m_options.concurrentFragments);
 
     // ── JS runtime for EJS YouTube n-challenge solver ─────────────────────────
     // yt-dlp 2026.03.17+ requires an external JS runtime (deno/node/bun/quickjs)

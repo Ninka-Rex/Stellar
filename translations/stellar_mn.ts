@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1  ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>Татах: %1  Илгээх: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
+            <source>
+Downloading: %1</source>
             <translation>Татаж байна: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Хуулж байна: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>Тариулж байна: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>Тариулж байна: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>Нийт: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>Нийт: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar явуулагдаж байна...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>OK дарсны дараа хавтсайд нэмэх</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Зөвхөн 'Олсон' гэсэн тэмдэглэгээтэй холбоосуудыг сонгож болно. 'OK' дарсны дараа хавтсайд оруулах үйлдэл хийгдэнэ.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Нэгдүгээр шалгалт</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>пиксел өргөн</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Тийм</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Тогтмол устгах (мусууд руу шилжүүлэхгүй)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>Устгах</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Тийм</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Үгүй</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Хайх...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Тийм</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Категори</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Дуудлага хүлээн авч байна...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Угсарч байна...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Татах төлөв</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>Системийн трейдэд багасгах</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Төлөв</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Файлын хэмжээ</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Дахин эхлүүлэх боломж</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Тийм</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Үгүй</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Алдааны дэлгэрэнгүй</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>Зогсоох</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Холбоосуудын байрлал болон ачаалал</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Нэр солих</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Дахин татах</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Устгах</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Баганын тохиргоо</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Файлын нэр</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Хэмжээ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Төлөв</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Үлдсэн хугацаа</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>Татах хурд</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Uploaded</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Татагдсан</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Last try date</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Тайлбар</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Save to</translation>
@@ -890,8 +969,14 @@ Click  Add URL  to start.</source>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Сонголтыг минь санаж, энэ цонхыг дахин харуулахгүй. Үүнийг хожим 'Сонголт → Татах'-д өөрчлөх боломжтой.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -903,30 +988,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Файл шилжүүлэх...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Эхлэх</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Зогсоох</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Хавтас нээх</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Файл нээх</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Төлөв</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Хэмжээ</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Хадгалах зам</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Шилжүүлэх</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Хаяг</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Вэб хуудас</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Лавлагаа</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Тайлбар</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Нэвтрэх</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Нууц үг</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Эх үүсвэр</translation>
@@ -935,17 +1056,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Мэдээллийн хашаа</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Хуулах</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Метадүгээ</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Ангилал</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Тэмдэглэл</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Татагдсан</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Улс</translation>
@@ -954,8 +1084,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Порт</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Аплоуд хийгдсэн</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Үр тараагчид</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Зурвас</translation>
@@ -964,10 +1100,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Зогсоосон</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Татаж байна</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Зөөж байна</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Тарих</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>Дараалалд</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Алдаа</translation>
@@ -992,7 +1140,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Ерөнхий</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Файлууд</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Олонлогийн зураг</translation>
@@ -1077,10 +1228,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Шинэ файл эсвэл хавтасны нэрий оруулна уу:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Нэр өөрчлөх</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Татах</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Нэр өөрчлөх...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Холбогдсон төлөвлөгөөн байхгүй</translation>
@@ -1185,7 +1348,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Шат</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Пийрүүд</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 мэдэгдэж буй холбогч</translation>
@@ -1210,7 +1376,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% гүйцсэн</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Тодорхойгүй</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Таны (клиент)</translation>
@@ -1227,7 +1396,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Дахин зарлахаар хүчирхэлж</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>URL хуулах</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Tracker-г арилгах</translation>
@@ -1256,7 +1428,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>URL-гүүсгэх (нэг мөр тутамд)</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Төрөл</translation>
@@ -1405,7 +1580,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 үр дүн олдлоо</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1469,7 +1647,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Загварын нэр</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Хадгалах</translation>
@@ -1490,7 +1671,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Сүүлийн төслүүд</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Гравберын тохиргоо</translation>
@@ -1531,8 +1715,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Нэмэлт &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Нэвтрэх</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Нууц үг</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Нэмэлт дугаарыг дарж нэвтрэх эсвэл гарах хуудсыг арилгах</translation>
@@ -1744,13 +1934,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Хамгаалалт</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Нэмэх</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Засварлах</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>Устгах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Шүүлтүүрийг засах</translation>
@@ -1759,9 +1958,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Шинэ шүүлтүүр</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Ангилал</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Хадгалах</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1773,13 +1981,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Хадгалагдсан төслүүд</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Төсөл</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Тохиргоо</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>Running</translation>
@@ -1809,13 +2029,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Start</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Файлын нэр</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Тайп</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Хэмжээ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Төлөв</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Холбоо</translation>
@@ -1824,7 +2053,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Татах</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Хадгалах газар</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Долгилох</translation>
@@ -1837,8 +2069,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Засварлах</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Татагчийн тохиргоо</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2095,8 +2333,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Тайлан: Тайланг эхлүүлэхийн тулд Stellar системийн тэнцэрт ажиллаж байх ёстой.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2120,8 +2364,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Файл нэмэхэд холбоосын текстийг татах тайлбар болгох.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2133,7 +2383,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Тайлан: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Сул</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Вэб хуудас</translation>
@@ -2146,7 +2399,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Дэлгэрэнгүй</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Файлууд</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Нийт</translation>
@@ -2159,8 +2415,14 @@ Project</source>
             <source>Matched</source>
             <translation>Нийцсэн</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Татагдсан</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2188,7 +2450,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar нь тухайн хөтчийн cookie-г ашиглан ижил yt-dlp бүтээгдэхүүнийг дахин оролдно.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Дахин татаж авах</translation>
@@ -2225,12 +2490,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Бүх файлууд (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Нийт: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Дууссан: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Татаж байна: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>Дараалалд: %1</translation>
@@ -2239,9 +2510,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Нийт: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>Зогсоох</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Үргэлжлүүлэх</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent дэмжлэгийг идэвхжүүлэх?</translation>
@@ -2266,7 +2546,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 You can turn this off in Settings → Downloads.</source>
             <translation>Stellar файл хэсгийг татаж авахыг эхлүүлсэн боловч та 'Дараа татах' товчийг дарсан. Энэ үйлдлийг Сэтгүүл → Татах ажиллуулалтаас хаа.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Файл &quot;%1&quot;-ийг татаж авч чадахаагүй.</translation>
@@ -2308,8 +2591,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Файл</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Хавтас нээх</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Файл нээх</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Одоо татах</translation>
@@ -2322,8 +2611,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Устгах</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Дахин татах</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Экспорт .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Татах</translation>
@@ -2360,7 +2655,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Дарааллыг зогсоох</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Хурд хязгаарлагч</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Ангах</translation>
@@ -2453,7 +2751,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Багц...</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Тохиргоо</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Үүд...</translation>
@@ -2486,21 +2787,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>.torrent файл хаях</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Хайх:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Хайх</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Тохируулга ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Хайх хэсэг:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Файлын нэр эсвэл хэсэг</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Тайлбар</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / эх үүсвэр / эцсийн хуудас</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Том жижиг үсэг тохируулах</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Зөвхөн бүтэн мөр тохируулах</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Хажуу хэсгийг зүүн талд</translation>
@@ -2549,7 +2871,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Зурвасын татах явц</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Дараа татах</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Файл хэсгээс олдохгүй боллоо</translation>
@@ -2605,12 +2930,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Нэгдэх рүү нэмэхгүй</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Нэгдэхийн нэр</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Үүсгэх</translation>
@@ -2626,8 +2957,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Дүрмийг татаж авалт</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Нэмэх</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Устгах</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Нэмэх&quot; товчийг дарж ачааллын дүрмийг үүсгэнэ.</translation>
@@ -2704,7 +3041,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Хүчингүй үлдээх</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Хайх...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Ангийн төрөл:</translation>
@@ -2717,7 +3057,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>TORRENT ХУВААРИЙН ХЯНАЛТ</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Харьцаа</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Үндсэн</translation>
@@ -2746,8 +3089,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Үүнийг ашиглах нь Settings → Torrents-д тохируулсан ерөнхий хуваалтын хязгаарыг ашиглана.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS-ийн автоматаар татах дүрмүүд</translation>
@@ -2787,7 +3136,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Торрент буулгах</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Татах</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Хөтлөгчөөр нээх</translation>
@@ -2808,26 +3160,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Бүгдийг хуваасан</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Нэр</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Өөр нэр (заавал биш)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Хадгалах</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS эсвэл Atom сүүдрийн URL нэмэх...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Нэмэх</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Ажлыг дахин ачааллаж байна...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Засах</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Устгах</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Татаx дүрэм</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Төлбөрийн жагсаалт</translation>
@@ -2840,7 +3216,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Бичиглэлийг сонгох</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Нээх</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>Унсан гэж тэмдэглэх</translation>
@@ -2884,7 +3263,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Шинэ дараалал</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Устгах</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Бүрэн дүүргэх</translation>
@@ -2897,21 +3279,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Нэг удаа</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Үе үе синк хийх</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Stellar-ийг асах</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Татаж эхлэх цаг</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>Нэг удаа</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Өдөр бүр</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Дахин эхлүүлэх</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>цаг</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>мин</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Таталтыг зогсоох цаг</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Алдагдсан файлын дахин оролдолтын тоо:</translation>
@@ -2920,17 +3323,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Дуусгасны дараа дараах файлыг нээх:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Дууссаны дараа Stellar-ыг хаах</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Дууссаны дараа компьютерыг унтраах</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Процессуудыг хүчээр зогсоох</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Татах</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>Нэгэн зэрэг файлууд</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>Файлын нэр</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Хэмжээ</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Төлөв</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Хэсэг</translation>
@@ -2967,12 +3391,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Одоо эхлүүлэх</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>Зогсоох</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Хэрэгжүүлэх</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Шинэ хавтсайн нэр оруулна уу</translation>
@@ -2981,9 +3411,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Хавтсайн нэр</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Хуваарьлагч</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Шинэ хавтас</translation>
@@ -2995,7 +3434,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>Холболт</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Хамгийн их нэгэн зэрэг татах:</translation>
@@ -3060,13 +3502,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Нууц үг:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Ангилал</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Нэр</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>Хавтас руу хадгалах</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Таталтууд</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Үндсэн хадгалах хэсэг:</translation>
@@ -3127,8 +3578,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Нөхцөлөөр</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Урьдчилан харах</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Хөтөчтэй холбох</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Дараах төрлийн файлуудыг автоматаар татаж авах</translation>
@@ -3153,7 +3610,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Утсаа хамгаалахаас зайлсхийхийн тулд утсаа холбох холбоосыг дарж энэ товчийг дарна</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Хурд хязгаарлагч</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Нийт хурдны хязгаарыг идэвхжүүлэх</translation>
@@ -3162,7 +3622,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Хамгийн их хурд:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>КБ/с</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Нийт агуулахын хязгаарыг идэвхжүүлэх</translation>
@@ -3179,12 +3642,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Хурдны хязгаарлалтын таймэрийг идэвхжүүлэх</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Устгах</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Асаах</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Татах</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Аралгах</translation>
@@ -3205,7 +3674,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Алдаа гарсан үед товчлол үзүүлэх</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>Ерөнхий</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Хөтч</translation>
@@ -3302,8 +3774,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Файлын шинж чанарыг нээх</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Файл нээх</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Хавтас нээх</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24 цагийн форматыг ашиглах</translation>
@@ -3336,7 +3814,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Өдрийн тэмдэгт дээр дарж идэвхжүүлэх/идэвхгүй болгох. Дүрмийг минут тутамд шалгадаг; эхний тохирсон дүрмийг ашиглана. Идэвхгүй дүрмийг арилгана.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>Трейд хураах</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>Системийн тавцанд хаах</translation>
@@ -3429,7 +3910,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>yt-dlp татах</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Дахин шалгах</translation>
@@ -3538,7 +4022,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээний интерфейсэд холбож, torrent ашиглахээс өмнө VPN идэвхтэй эсэхийг шалгах нь маш чухал.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Ойлгож байна, идэвхжүүлэх</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Эдгээр тохируулга .torrent файлууд болон magnet холбоосуудад хамаарна</translation>
@@ -3603,7 +4090,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Networking</source>
             <translation>Хүлээлт</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Нэмэлт</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>БитТоррент хэрэглэгчийн агент</translation>
@@ -3676,7 +4166,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Block peers by country</source>
             <translation>Орон нутгаар дураарыг хорих</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Нэмэх</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Хиллэгдсэн улсгүй</translation>
@@ -3713,12 +4206,18 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Version</source>
             <translation>Хувьсагч</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Тодорхойгүй</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Цагийн зам</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Хэмжээ</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Оролтууд</translation>
@@ -3727,7 +4226,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Last Modified</source>
             <translation>Сүүлийн өөрчлөлт</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Төлөв</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Татаж байна...</translation>
@@ -3740,7 +4242,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Refresh Info</source>
             <translation>Мэдээллийг шинэчлэх</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Статистик</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Нийт шилжүүлсэн хэмжээ (үгүйгээр)</translation>
@@ -3761,7 +4266,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Бүрэн лиценз нь THIRD-PARTY-NOTICES.txt файлд, энэ суурилуулалтад хамрагдсан.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Баримт авч ирэх</translation>
@@ -3774,7 +4282,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Feeds refresh interval</source>
             <translation>Баримтуудыг шинэчлэх завсар</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>минут</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Ижил хостын хүсэлтийн хоцрох хугацаа</translation>
@@ -3935,8 +4446,14 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Third-party software</source>
             <translation>Гурван талын програм</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Хэрэглэх</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Үндсэн зам</translation>
@@ -4017,7 +4534,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Available but not loaded</source>
             <translation>Байгаа боловч илгээгдээгүй</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Эх сурвалж: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Эх үүсвэрийн URL-ийг хадгалаагүй. IPtoCityDB-г хадгалахын тулд Check for updates-г ашиглана.</translation>
@@ -4049,9 +4569,18 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Edit Project</source>
             <translation>Үйл ажиллагааг засах</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Төсөл устгах</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Ангилал</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Бүх таталт</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Бүтээгдээгүй</translation>
@@ -4064,19 +4593,49 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>Grabber Projects</source>
             <translation>Гаргагч төслүүд</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Торрент</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Дараалал</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Татаж байна</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Тариалт</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>Зогссон</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Идэвхтэй</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Идэвхгүй</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Шалгаж байна</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Зөөж байна</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Статистик</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar Статистик</translation>
@@ -4085,8 +4644,14 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>ALL TIME</source>
             <translation>Бүх цаг</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Татагдсан</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>Байршуулсан</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Хуваарь</translation>
@@ -4107,7 +4672,10 @@ IP хаягаа хамгаалахын тулд Stellar-ийг VPN сүлжээ�
             <source>THIS SESSION</source>
             <translation>Энэ сессийн</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4223,27 +4791,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar Татаж Авах Менежер</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM таталтууд</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>URL нэмэх</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Үргэлжлүүлэх</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Зогсоох</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Бүгдийг зогсоох</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Устгах</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Гүйцэтгэсэн устгах</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>Тохиргоо</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Хуваарьлагч</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Дараалал эхлүүлэх</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Дараалал зогсоох</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Үүсгэгч</translation>
@@ -4252,7 +4850,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Хайлтын систем</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4291,12 +4892,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Хадгалах</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Өөр нэрээр хадгалах...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Ангилал</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>Өөр хадгалалтын хавтас</translation>
@@ -4309,35 +4916,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Ангиллын хавтас ашиглах</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Тайлбар</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Торрент тохиргоо...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Дараа татах</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Татах</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Torrent нээж байна...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% гүйцсэн</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Файлууд</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n элемент</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Нэр</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Явц</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Хэмжээ</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Файлын мэдээлэл байхгүй</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>Хүлээгдэж байна</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Нэрийг өөрчлөх</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Шинэ файл эсвэл хавтасны нэр оруулна уу:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Нэрийг өөрчлөх</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Нэр өөрчлөх...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Пийр</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Торрентыг нээж, метадегтэйгээ уншиж байна...</translation>
@@ -4350,8 +5008,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%n холбогчаас метадегтэйгээ татаж байна...</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Үр</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Та</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrent Metadata</translation>
@@ -4371,8 +5035,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Вэб холбоос</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Хайлтын нэмэлт хэрэгслийн .py файлыг сонгож, search_plugins хавтсанд хуулах</translation>
@@ -4404,9 +5074,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Суурилуулсан хайлтын нэмэлт хэрэгсэл</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Сэргээх</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Тодорхойгүй</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Идэвхтэй</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>Идэвхгүй</translation>
@@ -4415,7 +5094,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Шинэ нэмэлт хэрэгсэл суурилуулах</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Өгөгдлийн санг хайх</translation>
@@ -4423,9 +5105,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Нэр</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Хэмжээ</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Үрлэгчид</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Leechers</translation>
@@ -4442,12 +5133,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Тайлбарыг нээх</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>Торрент татах</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Нэр хуулах</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Соронзон холбоос хуулах</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Тайлбарын URL хуулах</translation>
@@ -4460,12 +5157,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Хайх</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Тодорхойгүй</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Хайлтын үр дүн байхгүй</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Хайлтын нэмэлтүүд</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent хайлтын хөтөч</translation>
@@ -4481,8 +5184,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Торрент тус бүрийн хурд, хуваалтын хязгаар, хамтрагч ололт, ачаалалын төрөл</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Хаах</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Хэрэглэх</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ХАЛДВАЛЫН ХЯЗГААР</translation>
@@ -4503,14 +5212,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Харьцаа:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Анхдагч</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Хязгааргүй</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>Тохируулах</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Хүрээлүүлэх хугацаа:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>мин</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Идэвхгүй хугацаа:</translation>
@@ -4614,7 +5335,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Тогтоолуудыг нээх</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Хөтчийн күүки:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Браузрын талбарыг сонгож, түүнийгээ yt-dlp руу дамжуулж, дахин оролд.</translation>
@@ -4624,8 +5348,8 @@ Click to open Statistics</source>
             <translation>Дахин оролдох</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>Чанар сонгох:</translation>
+            <source>Quality:</source>
+            <translation>Чанар:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4684,7 +5408,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Видео болон дууны текст татах</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Хэл:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Хэлний код, жишээ нь: en · en.*,ja · бүгд</translation>
@@ -4742,8 +5469,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Татах канал</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Татах</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Нэмэлт</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>Огнооны шүүлт</translation>
@@ -4833,15 +5566,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Ан: эхлэлээс</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Урвуу дараалал</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Хамгийн шинэ видеог түрүүлж татах (тоглуулах жагсаалтыг урвуулна)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>1. Алдаа алгасах</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>2. Нэг видео амжилтгүй болсон ч тоглуулах жагсаалтын үлдсэнийг татаж үргэлжлүүлэх</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>3. Дамжууллыг хүлээх:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>4. Төлөвлөсөн/удахгүй гарах дамжууллыг хүлээх, N секунд тутамд дахин оролдох</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>5. с дахин оролдох интервал (төлөвлөсөн/удахгүй гарах дамжууллын хувьд)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>6. Зэрэгцээ хэсэг:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>7. Зэрэгцээ DASH/HLS хэсгүүд (хоосон = 1, дээд тал нь 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>8. урвуу</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>9. алдаа алгасах</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>10. дамжууллыг хүлээх</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>зэрэгцээ хэсгүүд</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>тоглуулах жагсаалтыг санамсаргүй дарааллаар татах</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>шууд дамжуулалтыг эхнээс нь татах (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Хадгалах:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Ангилал:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Формат:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Цуцлах</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Видео буулгах</translation>

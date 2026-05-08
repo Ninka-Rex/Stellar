@@ -61,23 +61,33 @@
             <translation>Stellar 下載管理器 v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓%1 ↑%2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>下載中：%1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>下載中: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>種子中：%1</translation>
+            <source>  Seeding: %1</source>
+            <translation>做種中: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
-            <translation>總計：%1</translation>
+            <source>
+Seeding: %1</source>
+            <translation>做種中: %1</translation>
         </message>
-        
+        <message>
+            <source>  Total: %1</source>
+            <translation>總計: %1</translation>
+        </message>
+        <message>
+            <source>
+Total: %1</source>
+            <translation>總計: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar 正在關閉...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>確定後將這些下載加入佇列以分組</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>僅可選取已標記「已找到」的連結。確定後仍會分配佇列。</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>批次下載檢視</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>像素寬</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>永久刪除（不移至回收站）</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>刪除</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>是</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>否</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>瀏覽...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>類別</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>接收資料中...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>組裝中...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>下載狀態</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>最小化至系統托盤</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>狀態</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>檔案大小</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>可恢復</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>是</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>否</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>錯誤詳情</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>暫停</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>連線位置與下載進度</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>重新命名</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>重新下載</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>刪除</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>欄位設定</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>檔名</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>狀態</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>剩餘時間</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>↓</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>已上傳</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>已下載</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>最後嘗試</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>描述</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>另存至</translation>
@@ -891,8 +970,14 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>記住我的選擇，不再顯示此對話框。
 您可在「選項 → 下載」中稍後修改。</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -904,30 +989,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>移動檔案至...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>開始</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>停止</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>開啟資料夾</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>開啟檔案</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>狀態</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>儲存至</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>移動</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>位址</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>網頁</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>參照頁</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>描述</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>登入</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>密碼</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>來源</translation>
@@ -936,17 +1057,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>資訊雜湊</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>複製</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>金標</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>分類</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>備註</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>已下載</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>國家</translation>
@@ -955,8 +1085,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>端口</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>已上傳</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>做種者</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>訊息</translation>
@@ -965,10 +1101,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>已停止</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>下載中</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>移動中</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>做種中</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>排隊中</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>有問題</translation>
@@ -993,7 +1141,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>一般</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>檔案</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>群組地圖</translation>
@@ -1078,10 +1229,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>輸入新檔案或資料夾名稱</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>重新命名</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>下載</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>重新命名...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>無連線對等點</translation>
@@ -1186,7 +1349,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>層級</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>節點</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 個已知節點</translation>
@@ -1211,7 +1377,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% 完成</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>未知</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>您</translation>
@@ -1228,7 +1397,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>強制重新宣告</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>複製 URL</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>移除追蹤器</translation>
@@ -1257,7 +1429,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>貼上網頁種子網址 (每行一個)</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>網址</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>類型</translation>
@@ -1406,7 +1581,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>找到 %1 個結果</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1470,7 +1648,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>範本名稱</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>儲存</translation>
@@ -1491,7 +1672,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>最近專案</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>抓取器設定</translation>
@@ -1532,8 +1716,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>進階 &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>登入</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>密碼</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>按進階以啟用手動登入或停用登出頁面</translation>
@@ -1745,13 +1935,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>遮罩</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>新增</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>編輯</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>刪除</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>編輯篩選器</translation>
@@ -1760,9 +1959,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>新增篩選器</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>分類</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>儲存</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1774,13 +1982,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>已儲存的專案</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>專案</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>選項</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>執行中</translation>
@@ -1810,13 +2030,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>開始</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>檔案名稱</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>檔案類型</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>狀態</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>連結</translation>
@@ -1825,7 +2054,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>下載來源</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>儲存至</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>選取</translation>
@@ -1838,8 +2070,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>編輯專案</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>擷取器設定</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2096,8 +2334,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>注意：Stellar 需在指定時間於系統托盤運行以啟動排程專案。</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2121,8 +2365,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>新增檔案至 Stellar 主清單時，使用連結文字作為下載描述。</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2134,7 +2384,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>狀態：%1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>閒置</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>處理網頁</translation>
@@ -2147,7 +2400,10 @@ Project</source>
             <source>Advanced</source>
             <translation>進階</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>檔案</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>總計</translation>
@@ -2160,8 +2416,14 @@ Project</source>
             <source>Matched</source>
             <translation>已匹配</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>已下載</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2189,7 +2451,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar 將使用該瀏覽器的 cookie 重試相同的 yt-dlp 項目。</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>重試下載</translation>
@@ -2226,12 +2491,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>所有檔案 (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>總計：%1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>已完成：%1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>下載中：%1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>佇列：%1</translation>
@@ -2240,9 +2511,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>整體：%1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>停止</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>繼續</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>啟用 BitTorrent 支援？</translation>
@@ -2268,7 +2548,10 @@ You can turn this off in Settings → Downloads.</source>
             <translation>您按下了「稍後下載」按鈕，但 Stellar 已開始下載檔案的一部分。Stellar 會始終在顯示「檔案資訊」對話框時開始下載。
 您可以在「設定」→「下載」中關閉此功能。</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>無法下載檔案「%1」。</translation>
@@ -2311,8 +2594,14 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>File</source>
             <translation>檔案</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>開啟資料夾</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>開啟檔案</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>立即下載</translation>
@@ -2325,8 +2614,14 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Remove</source>
             <translation>移除</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>重新下載</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>匯出 .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>下載</translation>
@@ -2363,7 +2658,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Stop Queue</source>
             <translation>停止佇列</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>限速器</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>開啟</translation>
@@ -2456,7 +2754,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Columns…</source>
             <translation>欄位...</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>選項</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>偏好...</translation>
@@ -2489,21 +2790,42 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>拖曳 .torrent 檔案開啟金鑰</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>尋找：</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>尋找</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>設定 ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>搜尋範圍：</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>檔案名稱或部分名稱</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>描述</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / 引用來源 / 父網頁</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>區分大小寫</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>全字匹配</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>移至左側</translation>
@@ -2552,7 +2874,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Channel Download Progress</source>
             <translation>頻道下載進度</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>稍後下載</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>檔案已不可用</translation>
@@ -2608,12 +2933,18 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Don't add to queue</source>
             <translation>不加入佇列</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>輸入佇列名稱</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>新增</translation>
@@ -2629,8 +2960,14 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Download Rules</source>
             <translation>下載規則</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>新增</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>移除</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>點擊「新增」建立下載規則</translation>
@@ -2707,7 +3044,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Leave empty to use default save path</source>
             <translation>留空以使用預設儲存路徑</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>瀏覽...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>類別:</translation>
@@ -2720,7 +3060,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>TORRENT SHARE LIMITS</source>
             <translation>種子分享限制</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>分享率</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>預設</translation>
@@ -2749,8 +3092,14 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>預設使用設定 → 種子中的全域分享限制</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS 自動下載規則</translation>
@@ -2790,7 +3139,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Download Torrent</source>
             <translation>下載</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>下載</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>瀏覽器開啟</translation>
@@ -2811,26 +3163,50 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Mark All Read</source>
             <translation>標記全部已讀</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>名稱</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>自訂名稱 (可選)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>網址</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>儲存</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>新增 RSS 或 Atom 訂閱網址...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>新增</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>重新整理中…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>編輯</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>移除</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>下載規則</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>訂閱</translation>
@@ -2843,7 +3219,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Select an article</source>
             <translation>選擇文章</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>開啟</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>標記已讀</translation>
@@ -2887,7 +3266,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>New queue</source>
             <translation>新佇列</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>刪除</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>排程</translation>
@@ -2900,21 +3282,42 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>One-time downloading</source>
             <translation>一次性下載</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>定時同步</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Stellar 啟動時開始下載</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>開始下載時間</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>單次於</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>每日</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>每</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>時</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>分</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>停止下載時間</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>重試次數</translation>
@@ -2923,17 +3326,38 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Open the following file when done:</source>
             <translation>完成後開啟檔案</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>完成後退出 Stellar</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>完成後關機</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>強制終止程序</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>下載</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>同時下載</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>檔案名稱</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>狀態</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>剩餘時間</translation>
@@ -2970,12 +3394,18 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Start now</source>
             <translation>立即開始</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>停止</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>套用</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>輸入新佇列的名稱</translation>
@@ -2984,9 +3414,18 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Queue name</source>
             <translation>佇列名稱</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>排程器</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>新佇列</translation>
@@ -2998,7 +3437,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>連線</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>最大同時下載</translation>
@@ -3063,13 +3505,22 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Password:</source>
             <translation>密碼</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>分類</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>名稱</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>儲存至資料夾</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>下載</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>預設儲存資料夾</translation>
@@ -3130,8 +3581,14 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Show seconds</source>
             <translation>顯示秒數</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>預覽</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>瀏覽器整合</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>自動下載以下檔案類型</translation>
@@ -3156,7 +3613,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>按住此鍵並點擊下載連結以跳過攔截並讓瀏覽器下載</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>限速</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>啟用全域速度限制</translation>
@@ -3165,7 +3625,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Maximum speed:</source>
             <translation>最大速度:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>KB/s</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>啟用全域上傳限制</translation>
@@ -3182,12 +3645,18 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Enable speed limiter scheduler</source>
             <translation>啟用速度限制排程器</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>移除</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>開啟</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>下載</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>上傳</translation>
@@ -3208,7 +3677,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Show notification on download error</source>
             <translation>下載錯誤時顯示通知</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>一般</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>瀏覽器</translation>
@@ -3305,8 +3777,14 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Open file properties dialog</source>
             <translation>開啟檔案屬性</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>開啟檔案</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>開啟資料夾</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24 小時制</translation>
@@ -3339,7 +3817,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>點擊日曆藥丸切換。規則每分鐘評估一次；第一個符合的規則生效。無規則時自動清除排程下載與上傳限制。</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>最小化至系統列</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>關閉至系統托盤</translation>
@@ -3432,7 +3913,10 @@ Stellar 選項 → 瀏覽器 → 繞過下載攔截</translation>
             <source>Download yt-dlp</source>
             <translation>下載 yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>重新檢查</translation>
@@ -3541,7 +4025,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 強烈建議將 Stellar 綁定至 VPN 網路介面，並在使用種子前確認 VPN 已啟用，以保護您的 IP 地址不外洩。</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>我了解，啟用</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>這些設定適用於 .torrent 檔案與磁力連結。</translation>
@@ -3606,7 +4093,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>網路</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>進階</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>自訂 BitTorrent 使用者代理</translation>
@@ -3679,7 +4169,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>按國家封鎖對等端</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>新增</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>無封鎖國家</translation>
@@ -3716,12 +4209,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>版本</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>未知</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>路徑</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>項目</translation>
@@ -3730,7 +4229,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>最後修改</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>狀態</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>下載中...</translation>
@@ -3743,7 +4245,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>重新整理資訊</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>統計資訊</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>所有 BitTorrent 的累積傳輸總量 (含已移除)</translation>
@@ -3764,7 +4269,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>完整授權條款見 THIRD-PARTY-NOTICES.txt</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Feed 抓取</translation>
@@ -3777,7 +4285,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Feed 刷新間隔</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>分鐘</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>同主機請求延遲</translation>
@@ -3938,8 +4449,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>第三方軟體</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>套用</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>預設路由</translation>
@@ -4020,7 +4537,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>可用但未載入</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>來源：%1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>來源 URL 尚未快取。請使用「檢查更新」快取 IPtoCityDB。</translation>
@@ -4052,9 +4572,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>編輯專案</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>刪除專案</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>分類</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>所有下載</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>未完成</translation>
@@ -4067,19 +4596,49 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>抓取項目</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torrent</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>佇列</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>下載中</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>做種中</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>已停止</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>使用中</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>非使用中</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>檢查中</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>移動中</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>統計</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar 統計</translation>
@@ -4088,8 +4647,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>全部</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>已下載</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>已上傳</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>分享比例</translation>
@@ -4110,7 +4675,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>本次會話</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4226,27 +4794,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>恆星下載管理器</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM 下載</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>新增網址</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>履歷</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>停止</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>全部停止</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>刪除</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>已刪除</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>選項</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>排程器</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>開始佇列</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>停止佇列</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>抓取器</translation>
@@ -4255,7 +4853,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>搜尋引擎</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4294,12 +4895,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>儲存至</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>另存為...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>分類</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>自訂儲存資料夾</translation>
@@ -4312,35 +4919,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>使用類別資料夾</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>描述</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Torrent 設定⋯</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>稍後下載</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>下載</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>開啟 Torrent...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% 完成</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>檔案</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n 個項目</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>名稱</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>進度</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>無檔案資訊</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>待處理</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>重新命名項目</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>輸入新檔案或資料夾名稱：</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>重新命名</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>重新命名...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>節點</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>開啟 Torrent 並讀取元資料...</translation>
@@ -4353,8 +5011,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>正從 %n 個對等點下載元資料...</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>種子</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>您</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>磁碟元數據</translation>
@@ -4374,8 +5038,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>網頁連結</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>確定</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>選擇本地 .py 搜尋插件檔案複製到 search_plugins 資料夾</translation>
@@ -4407,9 +5077,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>已安裝搜尋插件</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>重新整理</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>未知</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>已啟用</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>已停用</translation>
@@ -4418,7 +5097,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>安裝新的</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>搜尋插件</translation>
@@ -4426,9 +5108,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>名稱</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>大小</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>做種者</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>做種</translation>
@@ -4445,12 +5136,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>開啟說明頁面</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>下載 Torrent</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>複製名稱</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>複製磁力連結</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>複製描述頁面網址</translation>
@@ -4463,12 +5160,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>搜尋</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>未知</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>尚未有搜尋結果</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>搜尋外掛</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent 搜尋引擎</translation>
@@ -4484,8 +5187,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>每種子速度、分享限制、對等點發現與下載模式</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>關閉</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>套用</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>頻寬限制</translation>
@@ -4506,14 +5215,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>分享率:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>預設</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>無限制</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>設為</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>種子時間</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>最小值</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>無效時間</translation>
@@ -4617,7 +5338,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>開啟設定</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>瀏覽器 Cookie：</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>選擇一個瀏覽器以將其 Cookie 傳遞給 yt-dlp，然後重試。</translation>
@@ -4627,8 +5351,8 @@ Click to open Statistics</source>
             <translation>重試</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>選擇品質:</translation>
+            <source>Quality:</source>
+            <translation>畫質：</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4687,7 +5411,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>下載字幕檔案</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>語言：</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>語言代碼，例如 en · en.*,ja · 全部</translation>
@@ -4745,8 +5472,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>下載通道</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>下載</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>進階</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>日期篩選</translation>
@@ -4836,15 +5569,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>直播：從開始</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>反向順序</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>先下載最新影片（反轉播放清單順序）</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>略過錯誤</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>播放清單中某影片失敗時繼續下載其餘項目</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>等待直播：</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>等待排定／即將開始的直播，每 N 秒重試</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>重試間隔（秒）</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>並行片段：</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>同時下載的 DASH/HLS 片段數（留空為 1，最多 16）</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>反序</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>略過錯誤</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>等待直播</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>平行分段數</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>隨機順序下載播放清單</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>從頭下載直播 (YouTube、Twitch、TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>儲存至:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>類別：</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>格式:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>取消</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>影片下載</translation>

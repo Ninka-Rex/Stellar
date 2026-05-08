@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>↓: %1 ↑: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
+            <source>
+Downloading: %1</source>
             <translation>Спампоўка: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Сідзіраванне: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>Раздача: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>Раздача: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>Усяго: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>Усяго: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar завяршае працу...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Выкарыстоўвайце кроку чаргі пасля OK, каб групоўваць гэтыя спампы да іх пачатку.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Выбіраць можна толькі спасылкі са статусам Знойдзена. Прысваенне чарзе адбываецца пасля націску ОК.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Праверка партыйнага загрузкі</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>пікселяў</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Так</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Выдаліць назаўсёды (не перамяшчаць у кошык)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>Выдаліць</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Так</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Не</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Агляд...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>Так</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Катэгорыя</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Атрыманне дадзеных...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Зборка...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Статус спампоўкі</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>Згарнуць у трэй</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Стан</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Памер файла</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Магчымасць аднаўлення</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Так</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Не</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Дэталі памылкі</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>Паўза</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Пазіцыі і прагрэс па злучэннях</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Перайменаваць</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Перапампаваць</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Выдаліць</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Налады слупкоў</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Назва файла</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Памер</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Стан</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Засталося часу</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>Хутк. ↓</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Адпраўлена</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Спампавана</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Апошняя спроба</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Апісанне</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Захаваць у</translation>
@@ -892,8 +971,14 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Запомніць мой выбар і больш не паказваць гэты дыялог.
 Гэта можна змяніць у Налады → Спампы пазней.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -905,30 +990,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Перамясціць файл у...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Старт</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Стоп</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Адкрыць папку</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Адкрыць файл</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Зачыніць</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Стан</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Памер</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Захаваць у</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Перамясціць</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Адрас</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Вэб-старонка</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Рэферэр</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Апісанне</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Лагін</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Пароль</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Крыніца</translation>
@@ -937,17 +1058,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Info hash</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Капіяваць</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Метададзеныя</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Катэгорыя</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Нататка</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Спампавана</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Краіна</translation>
@@ -956,8 +1086,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Порт</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Запампавана</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Раздаючыя</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Паведамленне</translation>
@@ -966,10 +1102,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Спынена</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Спампоўка</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Перамяшчэнне</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Раздача</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>У чарзе</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Праблема</translation>
@@ -994,7 +1142,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Агульныя</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Файлы</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Карта рою</translation>
@@ -1079,10 +1230,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Увядзіце новую назву файла або папкі:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Перайменаваць</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Спампаваць</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Перайменаваць...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Суполкі не падключаны</translation>
@@ -1187,7 +1350,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Узровень</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Піры</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 вядомых піраў</translation>
@@ -1212,7 +1378,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Пінг %1 %2% гатова</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Невядома</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Вы (гэты кліент)</translation>
@@ -1229,7 +1398,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Прымусовае абнаўленне</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>Скапіяваць URL</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Выдаліць трэкер</translation>
@@ -1258,7 +1430,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Устаўце URL вэб-сідаў — па адным у радку. Прымаюцца URL-сіды (BEP-19) і HTTP-сіды (BEP-17).</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Тып</translation>
@@ -1407,7 +1582,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Знойдзена %1 вынікаў.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1471,7 +1649,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Назва шаблона</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Захаваць</translation>
@@ -1492,7 +1673,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Апошнія праекты</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Закрыць</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Налады Grabber</translation>
@@ -1533,8 +1717,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Дадаткова &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Уваход</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Пароль</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Націсніце «Дадаткова», каб уключыць ручны ўваход або адключыць старонку выхаду.</translation>
@@ -1746,13 +1936,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Маска</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Дадаць</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Рэдагаваць</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>Выдаліць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Рэдагаваць фільтр</translation>
@@ -1761,9 +1960,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Новы фільтр</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Катэгорыя</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Захаваць</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1775,13 +1983,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Захаваныя праекты</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Праект</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Налады</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>Працуе</translation>
@@ -1812,13 +2032,22 @@ Exploring</source>
             <translation>Пачаць
 Агляд</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Назва файла</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Тып файла</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Памер</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Стан</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Тэкст спасылкі</translation>
@@ -1827,7 +2056,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Спампаваць з</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Захаваць у</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Праверыць выбраныя</translation>
@@ -1840,8 +2072,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Рэдагаваць бягучы праект</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Закрыць</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Налады зборшчыка</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2098,8 +2336,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Заўвага: Stellar павінен працаваць у сістэмным лотку ў пазначаны час, каб запусціць планаваны праект.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2123,8 +2367,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Выкарыстоўваць тэксты спасілак у якасці апісанняў спампоўванняў пры даданні файлаў у асноўны спіс Stellar</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2136,7 +2386,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Статус: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Бяздзейны</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Апрацаваныя вэб-старонкі</translation>
@@ -2149,7 +2402,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Пашыраны</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Файлы</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Усяго</translation>
@@ -2162,8 +2418,14 @@ Project</source>
             <source>Matched</source>
             <translation>Супала</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Спампавана</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Закрыць</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2191,7 +2453,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar паўторыць спампоўку таго ж элемента yt-dlp з кукі-файламі гэтага браўзера.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Паўтарыць спампоўку</translation>
@@ -2228,12 +2493,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Усе файлы (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Усяго: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Скончана: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Спампоўка: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>У чарзе: %1</translation>
@@ -2242,9 +2513,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Агульна: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>Стоп</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Працяг</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Закрыць</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Уключыць падтрымку BitTorrent?</translation>
@@ -2277,7 +2557,10 @@ You can turn this off in Settings → Downloads.</source>
 
 Гэта можна адключыць у Налады → Спампоўкі.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Не ўдалося спампаваць файл &quot;%1&quot;.</translation>
@@ -2319,8 +2602,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Файл</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Адкрыць тэчку</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Адкрыць файл</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Загрузіць зараз</translation>
@@ -2333,8 +2622,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Выдаліць</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Пераспампаваць</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Экспарт .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Сцягаванні</translation>
@@ -2371,7 +2666,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Спыніць чаргу</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Абмежавальнік хуткасці</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Уключыць</translation>
@@ -2464,7 +2762,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Калоны…</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Налады</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Налады…</translation>
@@ -2497,21 +2798,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Перацягніце .torrent-файл, каб адкрыць метаданыя торэнта</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Знайсці:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Знайсці</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Налады ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Шукаць у:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Назва файла ці яе частка</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Апісанне</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / referrer / бацькоўская вэб-старонка</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Улічваць рэгістр</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Толькі поўны радок</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Перамясціць бакавую панэль налева</translation>
@@ -2560,7 +2882,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Прагрэс сцягавання канала</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Спампаваць пазней</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Файл больш недаступны</translation>
@@ -2616,12 +2941,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Не дадаваць у чаргу</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Увядзіце назву чаргі</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Адмена</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Стварыць</translation>
@@ -2637,8 +2968,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Правілы спампування</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Дадаць</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Выдаліць</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Націсніце «Дадаць», каб стварыць правіла спампування</translation>
@@ -2715,7 +3052,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Пакіньце пустым для шляху па змаўчанні</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Агляд...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Катэгорыя:</translation>
@@ -2728,7 +3068,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>АБМЕЖАВАННІ СЕЙДЗІНГА ТРЭНТОВ</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Рэйтынг</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Па змаўчанні</translation>
@@ -2757,8 +3100,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>«Па змаўчанні» выкарыстоўвае глабальныя абмежаванні, зададзеныя ў Налады → Трэнт.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Адмена</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>Правілы аўтазагрузкі RSS</translation>
@@ -2798,7 +3147,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Спампаваць торэнт</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Спампаваць</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Адкрыць у браўзеры</translation>
@@ -2819,26 +3171,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Пазначыць усе як прачытаныя</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Назва</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Карыстальніцкая назва (неабавязкова)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Захаваць</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>Дадайце URL RSS або Atom-канала...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Дадаць</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Абнаўленне…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Рэдагаваць</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Выдаліць</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Правілы спампоўвання</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Падпіскі</translation>
@@ -2851,7 +3227,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Выберыце артыкул</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Адкрыць</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>Пазначыць прачытаным</translation>
@@ -2895,7 +3274,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Новая чарга</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Выдаліць</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Планаванне</translation>
@@ -2908,21 +3290,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Адзіразовае спампоўванне</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Перыядычная сінхранізацыя</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Пачаць спампоўванне пры запуску Stellar</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Пачаць спампоўку ў</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>Аднаразова ў</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Штодзённа</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Пачаць зноў кожныя</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>гадз</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>хв</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Спыніць спампоўку ў</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Колькасць паўтораў для кожнага файла пры няўдачы:</translation>
@@ -2931,17 +3334,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Адкрыць наступны файл пасля завяршэння:</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Выйсці з Stellar па завяршэнні</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Выключыць камп'ютар па завяршэнні</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Прымусова завяршыць працэсы</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>1. Спампаваць</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>файлаў адначасова</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>2. Назва файла</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>3. Памер</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>4. Статус</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Час засталіся</translation>
@@ -2978,12 +3402,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Пачаць зараз</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>5. Стоп</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Прымяніць</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>6. Закрыць</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Увядзіце назву новай чаргі</translation>
@@ -2992,9 +3422,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Назва чаргі</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>7. ОК</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>8. Адмена</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>9. Планіроўшчык</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Новая чарга</translation>
@@ -3006,7 +3445,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>10. Злучэнне</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Макс. адначасовых спамповак:</translation>
@@ -3071,13 +3513,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Пароль:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Катэгорыі</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Назва</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>Захаваць у папку</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Спампоўкі</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Папка па змаўчанні:</translation>
@@ -3138,8 +3589,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Паказваць секунды</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Прагляд</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Інтэграцыя браўзера</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Аўтаматычна пачынаць спампоўку наступных тыпаў файлаў:</translation>
@@ -3164,7 +3621,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Утрымлівайце гэтую клавішу пры націсканні на спасылку для загрузкі, каб прапусціць перахоп і дазволіць браўзеру загрузіць:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Абмежавальнік хуткасці</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Уключыць глабальнае абмежаванне хуткасці</translation>
@@ -3173,7 +3633,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Максімальная хуткасць:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>КБ/с</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Уключыць глабальнае абмежаванне аддачы</translation>
@@ -3190,12 +3653,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Уключыць планавальнік абмежавальніка хуткасці</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Выдаліць</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Укл.</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Спампаваць</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Загрузка</translation>
@@ -3216,7 +3685,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Паказваць апавяшчэнне пры памылцы загрузкі</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>Агульныя</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Браўзер</translation>
@@ -3313,8 +3785,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Адкрыць уласцівасці файла</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Адкрыць файл</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Адкрыць папку</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24-гадзінны фармат</translation>
@@ -3347,7 +3825,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Націсніце на дзень, каб пераключыць. Правілы працуюць кожную хвіліну; першае супадзенне перамагае. Ліміты загрузкі/выгрузкі аўтаматычна скідваюцца, калі правіла не актыўнае.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>Згарнуць у трэй</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>Закрыць у трэй</translation>
@@ -3440,7 +3921,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Спампаваць yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Паўторная праверка</translation>
@@ -3549,7 +4033,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 
 Рэкамендуецца прывязаць Stellar да інтэрфейсу VPN-сеткі і праверыць, што VPN актыўны, перад выкарыстаннем торэнтаў, каб абараніць свой IP-адрас ад раскрыцця.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Разумею, уключыць</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Гэтыя налады прымяняюцца да файлаў .torrent і магнітных спасылкаў.</translation>
@@ -3614,7 +4101,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Networking</source>
             <translation>Сетка</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Дадаткова</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Карыстальніцкі User-Agent BitTorrent</translation>
@@ -3687,7 +4177,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Block peers by country</source>
             <translation>Блакаваць піраў па краінах</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Дадаць</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Няма заблакаваных краін.</translation>
@@ -3724,12 +4217,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Version</source>
             <translation>Версія</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Невядома</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Шлях</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Памер</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Запісы</translation>
@@ -3738,7 +4237,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Last Modified</source>
             <translation>Апошняя змена</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Статус</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Спампоўка...</translation>
@@ -3751,7 +4253,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Refresh Info</source>
             <translation>Абнавіць інфа</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Статыстыка</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Агульны абмен па ўсіх торэнтах, у тым ліку выдаленых.</translation>
@@ -3772,7 +4277,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Поўныя тэксты ліцэнзій у THIRD-PARTY-NOTICES.txt, які ўваходзіць у пастаўку.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Атрыманне стужкі</translation>
@@ -3785,7 +4293,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Feeds refresh interval</source>
             <translation>Інтэрвал абнаўлення стужак</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>хвілін</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Затрымка запытаў да аднаго хоста</translation>
@@ -3946,8 +4457,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Third-party software</source>
             <translation>ПЗ бакоў</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Ужыць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Маршрут па змаўчанні</translation>
@@ -4028,7 +4545,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Available but not loaded</source>
             <translation>Даступна, але не загружана</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Крыніца: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>URL крыніцы яшчэ не кэшыраваны. Выкарыстоўвайце «Праверыць абнаўленні» для кэшавання IPtoCityDB з update.json.</translation>
@@ -4060,9 +4580,18 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Edit Project</source>
             <translation>Рэдагаваць праект</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Выдаліць праект</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Катэгорыі</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Усе спампоўкі</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Незавершаныя</translation>
@@ -4075,19 +4604,49 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>Grabber Projects</source>
             <translation>Праекты Grabber</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Торэнты</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Чэргі</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Спампоўка</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Раздача</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>Спынена</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Актыўныя</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Неактыўныя</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Праверка</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Перанос</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Статыстыка</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Статыстыка Stellar</translation>
@@ -4096,8 +4655,14 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>ALL TIME</source>
             <translation>УСЁ ЧАС</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Спампавана</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>1. Запампавана</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Суадносіны</translation>
@@ -4118,7 +4683,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
             <source>THIS SESSION</source>
             <translation>ГЭТА СЕСІЯ</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>2. Закрыць</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4234,27 +4802,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>3. Stellar Download Manager</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>4. Загрузкі SDM</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>5. Дадаць URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>6. Аднавіць</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>7. Спыніць</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Спыніць усё</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>8. Выдаліць</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Выдаліць завершаныя</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>9. Налады</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>10. Планіроўшчык</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Запуск чаргі</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Спыніць чаргу</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Злаўка</translation>
@@ -4263,7 +4861,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Пошукавая сістэма</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4302,12 +4903,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Захаваць у</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Захаваць як...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Катэгорыя</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>Карыстальніцкая папка захавання</translation>
@@ -4320,35 +4927,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Выкарыстоўваць папку катэгорыі</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Апісанне</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Налады торэнта...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Спампаваць пазней</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Спампаваць</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Адкрыццё торэнта...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% гатова</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Файлы</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n элемент(аў)</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Назва</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Прагрэс</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Памер</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Няма звестак пра файл</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>Чаканне</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Перайменаваць</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Увядзіце новую назву файла ці папкі:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Перайменаваць</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Перайменаваць...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Пір</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Адкрыццё торэнта і чытанне метаданых...</translation>
@@ -4361,8 +5019,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Загрузка метаданых з %n вузлоў</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Сід</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Вы</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Метаданыя торэнта</translation>
@@ -4382,8 +5046,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Спасылка на вэб-старонку</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>ОК</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Абярыце лакальны файл .py для пошуку, каб скапіяваць яго ў папку search_plugins.</translation>
@@ -4415,9 +5085,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Усталяваныя пошукавыя плагіны</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Абнавіць</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Невядома</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Уключана</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>Адключана</translation>
@@ -4426,7 +5105,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Усталяваць новы</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Зачыніць</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Пошук плагінаў</translation>
@@ -4434,9 +5116,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Назва</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Памер</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Раздаюць</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Лічэры</translation>
@@ -4453,12 +5144,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Адкрыць старонку апісання</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>Спампаваць торэнт</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Капіяваць назву</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Скапіяваць магнэт-спасылку</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Капіяваць URL старонкі апісання</translation>
@@ -4471,12 +5168,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Пошук</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Невядома</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Пакуль няма вынікаў пошуку</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Пошукавыя плагіны</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Пошукавая сістэма торэнтаў</translation>
@@ -4492,8 +5195,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Хуткасць, ліміты шарынгу, пошук піраў і рэжым сцягвання для кожнага торэнта</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Зачыніць</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Ужыць</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>ЛІМІТЫ ПАСУДЖАЛЬНАСЦІ</translation>
@@ -4514,14 +5223,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Супольнасць:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Прадвызначана</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Без абмежаванняў</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>Устанавіць</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Час раздачы:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>мін</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Час неактыўнасці:</translation>
@@ -4625,7 +5346,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Адкрыць налады</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Кукі з браўзера:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Абярыце браўзер, каб перадаць яму кукі для yt-dlp, зноў паўтарыце спробу.</translation>
@@ -4635,8 +5359,8 @@ Click to open Statistics</source>
             <translation>Паўтарыць</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>Выбраць якасць:</translation>
+            <source>Quality:</source>
+            <translation>Якасць:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4695,7 +5419,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Спампаваць субтытры разам з відэа</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Мова:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Коды моў, напр. en · en.*,ja · усе</translation>
@@ -4754,8 +5481,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Канал сцягвання</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Спампаваць</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Дадаткова</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>Фільтр па даты</translation>
@@ -4845,15 +5578,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Трансляцыя: з пачатку</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Адваротны парадак</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Спачатку новыя відэа (адваротны парадак)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>Прапускаць памылкі</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>Працягваць спампоўванне плэйліста пры збоі аднаго відэа</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>Чакаць стрым:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>Чакаць пачатку запланаванага стрыму, паўтараць кожныя N с</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>Інтэрвал паўтору (с)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>Паралельныя фрагменты:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>Адначасовыя DASH/HLS фрагменты (пуста = 1, макс. 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>адваротны</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>прапускаць памылкі</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>чакаць стрым</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>паралельныя фрагменты</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>Спампаваць плэйліст у выпадковым парадку</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>Спампаваць стрым з пачатку (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Захаваць у:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Катэгорыя:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Фармат:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Скасаваць</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Спампоўка відэа</translation>

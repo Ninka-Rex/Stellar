@@ -61,23 +61,33 @@
             <translation>Stellar Lataaja v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
-            <translation>Lataus: %1  Lähetys: %2</translation>
+            <source>
+Down: %1  Up: %2</source>
+            <translation>↓: %1 ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
+            <source>
+Downloading: %1</source>
             <translation>Ladataan: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Jakelu: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>Jaetaan: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
-            <translation>Yhteensä: %1</translation>
+            <source>
+Seeding: %1</source>
+            <translation>Jaetaan: %1</translation>
         </message>
-        
+        <message>
+            <source>  Total: %1</source>
+            <translation>Yht: %1</translation>
+        </message>
+        <message>
+            <source>
+Total: %1</source>
+            <translation>Yht: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar sulkeutuu...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>Peruuta</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Vain löydetyt linkit ovat valittavissa. Jonojen osoittelu tapahtuu silti OK-painikkeella.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Eräladattujen linkkien tarkistus</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>leveys pikseliä</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Poista pysyvästi</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>Poista</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Kyllä</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Ei</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Selaa...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Kategoria</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Tiedon vastaanotto...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Kootaan...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Latausstatus</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>Pienennä lokeroon</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Tila</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Tiedostokoko</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Jatkuva lataus</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Kyllä</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Ei</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Virheilmoitus</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>Tauko</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Yhteydet</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Nimeä uudelleen</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Lataa uudelleen</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Poista</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Sarakkeiden asetukset</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Tiedostonimi</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Koko</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Tila</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Aikaa jäljellä</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>Latausnopeus</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Lähetetty</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Ladattu</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Viimeinen yritys</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Kuvaus</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Tallenna</translation>
@@ -891,8 +970,14 @@ Klikkaa Lisää URL aloittaaksesi.</translation>
 You may change it in Options → Downloads at a later time.</source>
             <translation>Muista valintani ja älä näytä tätä ikkunaa enää. Voit muuttaa asetuksia myöhemmin Asetukset → Lataukset.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -904,30 +989,66 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Move File To...</source>
             <translation>Siirrä tiedosto...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Käynnistä</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Pysäytä</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Avaa kansio</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Avaa tiedosto</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Tila</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Koko</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Tallenna kohteeseen</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Siirrä</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Osoite</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Verkkosivu</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Viittaaja</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Kuvaus</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Kirjaudu</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Salasana</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Lähde</translation>
@@ -936,17 +1057,26 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Info hash</source>
             <translation>Infohash</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Kopioi</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Metatiedot</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Luokka</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Huomautus</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Ladattu</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Maa</translation>
@@ -955,8 +1085,14 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Port</source>
             <translation>Portti</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Jaettu</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Jakajat</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Viesti</translation>
@@ -965,10 +1101,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Stopped</source>
             <translation>Pysäytetty</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Ladataan</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Siirretään</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Jaetaan</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>Jonossa</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Vika</translation>
@@ -993,7 +1141,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>General</source>
             <translation>Yleiset</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Tiedostot</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Swarm-kartta</translation>
@@ -1078,10 +1229,22 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Enter a new file or folder name:</source>
             <translation>Syötä uusi tiedoston tai kansion nimi</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Nimeä uudelleen</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Lataa</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Nimeä uudelleen...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Yhteyttä ei ole</translation>
@@ -1186,7 +1349,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Tier</source>
             <translation>Taso</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Vertaiset</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 tunnettua vertaista</translation>
@@ -1211,7 +1377,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% valmis</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Tuntematon</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Sinä</translation>
@@ -1228,7 +1397,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Force Reannounce</source>
             <translation>Pakota uudelleenilmoitus</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>Kopioi URL</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Poista seuranta</translation>
@@ -1257,7 +1429,10 @@ You may change it in Options → Downloads at a later time.</source>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Liitä web-seedin URLit – yksi riviä kohden. URL-seedit (BEP-19) ja HTTP-seedit (BEP-17) ovat kelpoisia.</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Tyyppi</translation>
@@ -1406,7 +1581,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>Löytyi %1 tulosta</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1470,7 +1648,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Mallinimi</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Tallenna</translation>
@@ -1491,7 +1672,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>Viimeisimmät projektit</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Noutajan asetukset</translation>
@@ -1532,8 +1716,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Edistyneet &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Kirjaudu</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Salasana</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Paina Edistyneet manuaaliseen kirjautumiseen tai uloskirjautumissivun poistamiseen.</translation>
@@ -1745,13 +1935,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Maski</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Lisää</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Muokkaa</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>Poista</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Muokkaa suodattimia</translation>
@@ -1760,9 +1959,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Uusi suodatin</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Luokka</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Tallenna</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1774,13 +1982,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Tallennetut projektit</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Projekti</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Asetukset</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>Käynnissä</translation>
@@ -1810,13 +2030,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Aloita</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Tiedostonimi</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Tiedostotyyp</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Koko</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Tila</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Linkki</translation>
@@ -1825,7 +2054,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Lataa</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Tallenna kohteeseen</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Valitse</translation>
@@ -1838,8 +2070,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Muokkaa projektia</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Kaapparin asetukset</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2096,8 +2334,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Huom: Stellarin tulee olla järjestelmävalikon kuvakkeena määritellyllä ajalla aloittaakseen suunnitellun projektin.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2121,8 +2365,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Linkkitekstit latauskuvauksina tiedostojen lisäämisessä Stellarin pääluetteloon</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2134,7 +2384,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Tila: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Tyhjäkäynti</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Käsitellyt verkkosivut</translation>
@@ -2147,7 +2400,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Edistynyt</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Tiedostot</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Yhteensä</translation>
@@ -2160,8 +2416,14 @@ Project</source>
             <source>Matched</source>
             <translation>Vastineet</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Ladattu</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2189,7 +2451,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar yrittää uudelleen saman yt-dlp-elementin käyttäen kyseisen selaimen keksijä.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Yritä uudelleen</translation>
@@ -2226,12 +2491,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Kaikki tiedostot (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Yhteensä: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Valmis: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Ladataan: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>Jonoissa: %1</translation>
@@ -2240,9 +2511,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Yhteensä: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>Pysäytä</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Jatka</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>Ota BitTorrent-tuki käyttöön?</translation>
@@ -2273,7 +2553,10 @@ Suositellaan vahvasti sitoa Stellaria VPN-verkkokäyttöliittymään ja varmista
 You can turn this off in Settings → Downloads.</source>
             <translation>Painoit 'Lataa myöhemmin', mutta Stellar ladata jo osan tiedostosta. Stellar alkaa aina latausta näyttäen 'Tiedoston tiedot'-valikkoa. Voit sammuttaa tämän Asetukset → Lataukset.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>Tiedostoa &quot;%1&quot; ei voitu ladata.</translation>
@@ -2315,8 +2598,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Tiedosto</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Avaa kansio</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Avaa tiedosto</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Lataa nyt</translation>
@@ -2329,8 +2618,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>Poista</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Lataa uudelleen</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Vie .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Lataukset</translation>
@@ -2367,7 +2662,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>Pysäytä jonotus</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Nopeusrajoitin</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Käynnistä</translation>
@@ -2460,7 +2758,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Sarakkeet...</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Asetukset</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Mukautukset...</translation>
@@ -2493,21 +2794,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>Pudota .torrent tiedosto</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Etsi:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Etsi</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Asetukset ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Hae kohteesta:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Tiedostonimi tai osa nimestä</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Kuvaus</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / lähettäjä / vanhempi verkkosivu</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Huomioi kirjainkoko</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Vain koko merkkijono</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Siirrä sivupalkki vasemmalle</translation>
@@ -2556,7 +2878,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Kanavan latausedistys</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Lataa myöhemmin</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Tiedosto ei ole enää saatavilla</translation>
@@ -2612,12 +2937,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Älä lisää jonoon</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Syötä jonon nimi</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Luo</translation>
@@ -2633,8 +2964,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Lataussäännöt</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Lisää</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Poista</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>Lisää-säädin luomiseen</translation>
@@ -2711,7 +3048,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Jätä tyhjäksi oletuspolku</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Selaa...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Kategoria:</translation>
@@ -2724,7 +3064,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>TORRENT-JAOSTARVIT</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Suhde</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Oletus</translation>
@@ -2753,8 +3096,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Oletus</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS Automaattinen lataus</translation>
@@ -2794,7 +3143,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Lataa torrent</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Lataa</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Avaa selaimessa</translation>
@@ -2815,26 +3167,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Luekaikki</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Nimi</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Ominainenimi</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Tallenna</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>LisääRSStaiAtom-syöte</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Lisää</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Päivitetään…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Muokkaa</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>Poista</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Lataussäännöt</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Tilaukset</translation>
@@ -2847,7 +3223,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Valitse artikkeli</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Avaa</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>Merkitse luettuna</translation>
@@ -2891,7 +3270,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Uusi jono</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Poista</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Aseta ajoitus</translation>
@@ -2904,21 +3286,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Kerran lataus</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Jaksottainen synkronointi</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Lataus Stellarin käynnistyksellä</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Aloita lataus klo</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>Kerran klo</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Päivittäin</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Uudelleen lataus joka</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>t</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>min</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Lopeta lataus klo</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Yritettävyys</translation>
@@ -2927,17 +3330,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Avaa tämä tiedosto</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Sulje Stellar valmistuttua</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Sammuta tietokone valmistuttua</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Pakota prosessit päättymään</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Lataa</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>Tiedostoa</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>Tiedostonimi</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Koko</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Tila</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Aika jäljellä</translation>
@@ -2974,12 +3398,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Aloita nyt</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>Pysäytä</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Sovella</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Anna nimi uudelle jonolle</translation>
@@ -2988,9 +3418,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>Jonon nimi</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ajastin</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Uusi jono</translation>
@@ -3002,7 +3441,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>Yhteys</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Simultaanit lataukset:</translation>
@@ -3067,13 +3509,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Salasana:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Luokat</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Nimi</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>Tallenna kansioon</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Lataukset</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Oletuskansio</translation>
@@ -3134,8 +3585,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Näytä sekunnit</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Esikatselu</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Selainintegraatio</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Lataa automaattisesti nämä tiedostotyypit</translation>
@@ -3160,7 +3617,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Paina tätä näppäintä latauslinkin klikkaamisen yhteydessä ohittaaksesi keskeytyksen ja anna selaimen ladata:</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Nopeusrajoitin</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Ota globaali nopeusrajoitus käyttöön</translation>
@@ -3169,7 +3629,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Maksiminopeus:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>kt/s</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Ota globaali lähetysrajoitus käyttöön</translation>
@@ -3186,12 +3649,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Ota nopeusrajoittimen kalenteri käyttöön</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Poista</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Päällä</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Lataa</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Lähetä</translation>
@@ -3212,7 +3681,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Ilmoita latausvirheestä</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>Yleiset</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Selain</translation>
@@ -3309,8 +3781,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Avaa tiedostotiedot</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Avaa tiedosto</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Avaa kansio</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24-tuntikello</translation>
@@ -3343,7 +3821,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Vaihda päivää. Säännöt arvioidaan minuutissa.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>Pienennä ilmaisinalueelle</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>Sulje syöttöalueelle</translation>
@@ -3436,7 +3917,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>Lataa yt-dlp</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Tarkista uudelleen</translation>
@@ -3545,7 +4029,10 @@ Kaikki, mitä jaat BitTorrentin kautta, on yksin vastuullasi. Varmista, että si
 
 Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarkistamaan, että VPN on aktiivinen ennen torrentien käyttöä, suojataksesi IP-osoitteesi paljastumiselta.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Ymmärrän, ota käyttöön</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Asennukset koskevat .torrent-tiedostoja ja magnet-linkkejä</translation>
@@ -3610,7 +4097,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Networking</source>
             <translation>Verkko</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Lisäasetukset</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Mukautettu BitTorrent-käyttäjänimi</translation>
@@ -3683,7 +4173,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Block peers by country</source>
             <translation>Estä vertailukumppanit maan mukaan</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Lisää</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Ei estettyjä maita</translation>
@@ -3720,12 +4213,18 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Version</source>
             <translation>Versio</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Tuntematon</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Polku</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Koko</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Kohteet</translation>
@@ -3734,7 +4233,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Last Modified</source>
             <translation>Muokattu</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Tila</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Ladataan...</translation>
@@ -3747,7 +4249,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Refresh Info</source>
             <translation>Päivitä tiedot</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Tilastot</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Kumulatiiviset siirrot</translation>
@@ -3768,7 +4273,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Lisenssit kolmansissa osapuolissa</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Syötteiden haku</translation>
@@ -3781,7 +4289,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Feeds refresh interval</source>
             <translation>Syötteiden päivitysväli</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>minuuttia</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Viive samalle isäntälle</translation>
@@ -3942,8 +4453,14 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Third-party software</source>
             <translation>Kolmannen osapuolen ohjelmisto</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Käytä</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Oletusrouting</translation>
@@ -4024,7 +4541,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Available but not loaded</source>
             <translation>Saatavilla, ei ladattu</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Lähde: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Lähde-URL ei ole väliaikaisesti tallennettu. Käytä Päivitä tarkistaa IPtoCityDB:n.</translation>
@@ -4056,9 +4576,18 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Edit Project</source>
             <translation>Muokkaa projektia</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Poista projekti</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Luokat</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Kaikki lataukset</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Ei valmiita</translation>
@@ -4071,19 +4600,49 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>Grabber Projects</source>
             <translation>Hankinta</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torrentit</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Jonot</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Ladataan</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Jaetaan</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>Pysäytetty</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Aktiivinen</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Epäaktiivinen</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Tarkistetaan</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Siirretään</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Tilastot</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar-statistiikat</translation>
@@ -4092,8 +4651,14 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>ALL TIME</source>
             <translation>KAIKKI AIKANA</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Ladattu</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>Ladattu</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Jakosuhteet</translation>
@@ -4114,7 +4679,10 @@ Suositellaan vahvasti sitomaan Stellaria VPN-verkkokäyttöliittymään ja tarki
             <source>THIS SESSION</source>
             <translation>TÄMÄ KERTA</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4230,27 +4798,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar Download Manager</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM-lataukset</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>Lisää URL</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Jatka</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>Pysäytä</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Pysäytä kaikki</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>Poista</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Poista valmiit</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>Asetukset</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Ajastin</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Aloita jono</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Pysäytä jono</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Hankkija</translation>
@@ -4259,7 +4857,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Hakukone</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4298,12 +4899,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Tallenna kohteeseen</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Tallenna nimellä...</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Luokka</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>Oma tallennuspolku</translation>
@@ -4316,35 +4923,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Käytä kategorian kansio</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Kuvaus</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Torrent-asetukset...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Lataa myöhemmin</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Lataa</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Avataan torrent...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1  %2% valmis</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Tiedostot</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n kohdetta</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Nimi</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Edistyminen</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Koko</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Ei tiedostotietoja</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>Odottaa</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Nimeä kohde</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Anna uusi tiedoston tai kansion nimi:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Nimeä</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Nimeä uudelleen...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Vertainen</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Avataan torrent ja ladataan metatietoja...</translation>
@@ -4357,8 +5015,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>Ladataan metatietoja %n peeriltä</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Jakaja</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Sinä</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrent-metadatat</translation>
@@ -4378,8 +5042,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Verkkolinkki</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Valitse paikallinen .py-hakuplikitiedosto kopioitavaksi hakuplikkikansioon.</translation>
@@ -4411,9 +5081,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>Asennetut hakuliset</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Päivitä</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Tuntematon</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Käytössä</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>Poissa käytöstä</translation>
@@ -4422,7 +5101,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Asenna uusi</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Etsi lisäosia</translation>
@@ -4430,9 +5112,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Nimi</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Koko</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Jakajat</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Leechit</translation>
@@ -4449,12 +5140,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Avaa kuvaus</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>Lataa torrent</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Nimen kopioiminen</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Kopioi magneettilinkki</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Kuvaus-sivun URL:n kopioiminen</translation>
@@ -4467,12 +5164,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Hae</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Tuntematon</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Ei vielä haettavia tuloksia</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Hakulisäosat</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent-hakukone</translation>
@@ -4488,8 +5191,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Virtausnopeus, jakorajat, vertaisten löytäminen ja lataustila</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Sulje</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Käytä</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>LAJITTELURAJAT</translation>
@@ -4510,14 +5219,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Ratio:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Oletus</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Rajaton</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>Aseta</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Siemen aika:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>min</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Inaktiivinen aika:</translation>
@@ -4621,7 +5342,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Avaa Asetukset</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Evästeet selaimesta:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Valitse selain, jonka eväitä yt-dlp käyttää, ja yritä uudelleen.</translation>
@@ -4631,8 +5355,8 @@ Click to open Statistics</source>
             <translation>Yritä uudelleen</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>Valitse laatu:</translation>
+            <source>Quality:</source>
+            <translation>Laatu:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4691,7 +5415,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Lataa alkukirjoitustiedostot videon kanssa</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Kieli:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Kieli(koodi)t, esim. en · en.*,ja · kaikki</translation>
@@ -4749,8 +5476,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Latauskanava</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Lataa</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Lisäasetukset</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>Päivämääräsuodatin</translation>
@@ -4840,15 +5573,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Lähetykset: alusta</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Käänteinen järjestys</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Lataa uusimmat ensin (kääntää soittolistan)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>Ohita virheet</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>Jatka soittolistan latausta, vaikka yksi video epäonnistuu</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>Odota striimiä</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>Odota ajastetun striimin alkua, yritä uudelleen N sekunnin välein</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>s uudelleenyritysväli</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>Rinnakkaiset fragmentit</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>Samanaikaiset DASH/HLS-fragmentit (tyhjä = 1, maks. 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>käänteinen</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>ohita virheet</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>odota striimiä</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>Rinnakkaiset osat</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>Lataa soittolista satunnaisjärjestyksessä</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>Lataa suora lähetys alusta (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Tallenna:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Luokka:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Muoto:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Peruuta</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Videon lataus</translation>

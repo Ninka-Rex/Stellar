@@ -61,23 +61,33 @@
             <translation>Stellar Download Manager v</translation>
         </message>
         <message>
-            <source>Down: %1  Up: %2</source>
+            <source>
+Down: %1  Up: %2</source>
             <translation>↓: %1  ↑: %2</translation>
         </message>
         <message>
-            <source>Downloading: %1</source>
-            <translation>Yuklab olinmoqda: %1</translation>
+            <source>
+Downloading: %1</source>
+            <translation>Yuklanmoqda: %1</translation>
         </message>
         <message>
-            <source>Seeding: %1</source>
-            <translation>Uzaytirish: %1</translation>
+            <source>  Seeding: %1</source>
+            <translation>Ulatilmoqda: %1</translation>
         </message>
-        
         <message>
-            <source>Total: %1</source>
+            <source>
+Seeding: %1</source>
+            <translation>Ulatilmoqda: %1</translation>
+        </message>
+        <message>
+            <source>  Total: %1</source>
             <translation>Jami: %1</translation>
         </message>
-        
+        <message>
+            <source>
+Total: %1</source>
+            <translation>Jami: %1</translation>
+        </message>
         <message>
             <source>Stellar is shutting down...</source>
             <translation>Stellar o'chirilmoqda...</translation>
@@ -149,8 +159,14 @@
             <source>Use the queue step after OK if you want these downloads grouped before they start.</source>
             <translation>OK bosgandan keyin qatorni ishlatish</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>BatchDownloadListDialog</name>
@@ -190,8 +206,14 @@
             <source>Only links marked Found are selectable. Queue assignment still happens after OK.</source>
             <translation>Faqat 'Topildi' deb belgilangan havolalar tanlanadi. Qatorga qo'shish 'OK' bosgandan so'ng amalga oshiriladi.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Batch download review</source>
             <translation>Massaviy yuklashni tekshirish</translation>
@@ -337,8 +359,14 @@
             <source>pixels wide</source>
             <translation>pixellar kengligi</translation>
         </message>
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
     </context>
     <context>
         <name>DeleteConfirmDialog</name>
@@ -362,7 +390,10 @@
             <source>Permanently delete (don't move to trash)</source>
             <translation>Doimiy o'chirish (kosmikga ko'chirmasdan)</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
         <message>
             <source>Delete</source>
             <translation>O'chirish</translation>
@@ -390,7 +421,10 @@
             <source>Yes</source>
             <translation>Ha</translation>
         </message>
-        
+        <message>
+            <source>No</source>
+            <translation>Yo‘q</translation>
+        </message>
     </context>
     <context>
         <name>DownloadCompleteDialog</name>
@@ -485,9 +519,18 @@
             <source>Browse...</source>
             <translation>Brauzer...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Category</source>
             <translation>Kategoriya</translation>
@@ -566,7 +609,10 @@
             <source>Receiving data...</source>
             <translation>Ma'lumot qabul qilinmoqda...</translation>
         </message>
-        
+        <message>
+            <source>Assembling...</source>
+            <translation>Yig‘ilmoqda...</translation>
+        </message>
         <message>
             <source>Download status</source>
             <translation>Yuklash holati</translation>
@@ -587,7 +633,10 @@
             <source>Minimize to system tray</source>
             <translation>Tizim treysiga kichraytirish</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Holat</translation>
+        </message>
         <message>
             <source>File size</source>
             <translation>Fayl hajmi</translation>
@@ -616,8 +665,14 @@
             <source>Resume capability</source>
             <translation>Qayta boshlash</translation>
         </message>
-        
-        
+        <message>
+            <source>Yes</source>
+            <translation>Ha</translation>
+        </message>
+        <message>
+            <source>No</source>
+            <translation>Yo‘q</translation>
+        </message>
         <message>
             <source>Error detail</source>
             <translation>Xatolik tafsiloti</translation>
@@ -642,7 +697,10 @@
             <source>Pause</source>
             <translation>To'xtatish</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
         <message>
             <source>Start positions and download progress by connections</source>
             <translation>Ulanishlar bo'yicha joylashuv va yuklash</translation>
@@ -710,7 +768,10 @@
     </context>
     <context>
         <name>DownloadTable</name>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
         <message>
             <source>Rename</source>
             <translation>Qayta nomlash</translation>
@@ -755,7 +816,10 @@
             <source>Redownload</source>
             <translation>Qayta yuklab olish</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>O‘chirish</translation>
+        </message>
         <message>
             <source>Columns Settings</source>
             <translation>Ustunlar sozlamalari</translation>
@@ -764,9 +828,18 @@
             <source>File Name</source>
             <translation>Fayl nomi</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Hajmi</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Holati</translation>
+        </message>
+        <message>
+            <source>Time left</source>
+            <translation>Qolgan vaqt</translation>
+        </message>
         <message>
             <source>Down Speed</source>
             <translation>Yuklash tezligi</translation>
@@ -791,12 +864,18 @@
             <source>Uploaded</source>
             <translation>Yukotdi</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Yuklab olingan</translation>
+        </message>
         <message>
             <source>Last try date</source>
             <translation>Oxirgi urinish</translation>
         </message>
-        
+        <message>
+            <source>Description</source>
+            <translation>Tavsif</translation>
+        </message>
         <message>
             <source>Save to</source>
             <translation>Saqlash</translation>
@@ -892,8 +971,14 @@ You may change it in Options → Downloads at a later time.</source>
             <translation>Tanlovimni eslab qoling va bu oynani keyinchalik ko'rsatmang.
 Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>FilePropertiesDialog</name>
@@ -905,30 +990,66 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Move File To...</source>
             <translation>Faylni ko'chirish...</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start</source>
+            <translation>Boshlash</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>To‘xtatish</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Jildni ochish</translation>
+        </message>
         <message>
             <source>Open file</source>
             <translation>Faylni ochish</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Holat</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Hajm</translation>
+        </message>
+        <message>
+            <source>Save to</source>
+            <translation>Saqlash joyi</translation>
+        </message>
         <message>
             <source>Move</source>
             <translation>Ko'chirish</translation>
         </message>
-        
+        <message>
+            <source>Address</source>
+            <translation>Manzil</translation>
+        </message>
         <message>
             <source>Web page</source>
             <translation>Veb-sahifa</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Referer</source>
+            <translation>Referer</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Tavsif</translation>
+        </message>
+        <message>
+            <source>Login</source>
+            <translation>Kirish</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Parol</translation>
+        </message>
         <message>
             <source>Source</source>
             <translation>Manba</translation>
@@ -937,17 +1058,26 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Info hash</source>
             <translation>Info hash</translation>
         </message>
-        
+        <message>
+            <source>Copy</source>
+            <translation>Nusxalash</translation>
+        </message>
         <message>
             <source>Metadata</source>
             <translation>Metadannalar</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Turkum</translation>
+        </message>
         <message>
             <source>Note</source>
             <translation>Izoh</translation>
         </message>
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Yuklab olingan</translation>
+        </message>
         <message>
             <source>Country</source>
             <translation>Mamlakat</translation>
@@ -956,8 +1086,14 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Port</source>
             <translation>Port</translation>
         </message>
-        
-        
+        <message>
+            <source>Uploaded</source>
+            <translation>Yuklangan</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Ulovchilar</translation>
+        </message>
         <message>
             <source>Message</source>
             <translation>Xabar</translation>
@@ -966,10 +1102,22 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Stopped</source>
             <translation>To'xtatilgan</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Downloading</source>
+            <translation>Yuklanmoqda</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Ko‘chirilmoqda</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Urug‘lash</translation>
+        </message>
+        <message>
+            <source>Queued</source>
+            <translation>Navbatda</translation>
+        </message>
         <message>
             <source>Problem</source>
             <translation>Muammo</translation>
@@ -994,7 +1142,10 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>General</source>
             <translation>Umumiy</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Fayllar</translation>
+        </message>
         <message>
             <source>Swarm Map</source>
             <translation>Swarm xaritasi</translation>
@@ -1079,10 +1230,22 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Enter a new file or folder name:</source>
             <translation>Yangi nom kiriting</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Nomlash</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Yuklab olish</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Nomlash...</translation>
+        </message>
         <message>
             <source>No peers connected</source>
             <translation>Uzviy bog'lanmagan</translation>
@@ -1187,7 +1350,10 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Tier</source>
             <translation>Daraja</translation>
         </message>
-        
+        <message>
+            <source>Peers</source>
+            <translation>Tengdoshlar</translation>
+        </message>
         <message>
             <source>0 known peers</source>
             <translation>0 noma'lum do'st</translation>
@@ -1212,7 +1378,10 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Ping %1  %2% done</source>
             <translation>Ping %1  %2% tayyor</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Noma’lum</translation>
+        </message>
         <message>
             <source>You (this client)</source>
             <translation>Siz</translation>
@@ -1229,7 +1398,10 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Force Reannounce</source>
             <translation>Qayta e'lon qilishni majburlash</translation>
         </message>
-        
+        <message>
+            <source>Copy URL</source>
+            <translation>URL nusxalash</translation>
+        </message>
         <message>
             <source>Remove tracker</source>
             <translation>Tracker olib tashlash</translation>
@@ -1258,7 +1430,10 @@ Ixtiyoriy sozlamalar → Yuklashlar bo'limida o'zgartirish mumkin.</translation>
             <source>Paste web seed URLs - one per line. URL seeds (BEP-19) and HTTP seeds (BEP-17) are both accepted.</source>
             <translation>Web-seed URL-larni qo'ying (har bir qatorga bittasi)</translation>
         </message>
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
         <message>
             <source>Type</source>
             <translation>Tur</translation>
@@ -1407,7 +1582,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Found %1 results.</source>
             <translation>%1 ta natija topildi.</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
     </context>
     <context>
         <name>GrabberDialog</name>
@@ -1471,7 +1649,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Template name</source>
             <translation>Shablon nomi</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
         <message>
             <source>Save</source>
             <translation>Saqlash</translation>
@@ -1492,7 +1673,10 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Recent Projects</source>
             <translation>So'nggi loyihalar</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
         <message>
             <source>Grabber settings</source>
             <translation>Grabber sozlamalari</translation>
@@ -1533,8 +1717,14 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Advanced &gt;&gt;</source>
             <translation>Kengaytirilgan &gt;&gt;</translation>
         </message>
-        
-        
+        <message>
+            <source>Login</source>
+            <translation>Kirish</translation>
+        </message>
+        <message>
+            <source>Password</source>
+            <translation>Parol</translation>
+        </message>
         <message>
             <source>Press Advanced to enable manual login or to disable a logout page.</source>
             <translation>Kengaytirilgani kirishni qo'lda yoki chiqish sahifasini o'chirish uchun bosing.</translation>
@@ -1746,13 +1936,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Mask</source>
             <translation>Mask</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Qo‘shish</translation>
+        </message>
         <message>
             <source>Edit</source>
             <translation>Tahrirlash</translation>
         </message>
-        
-        
+        <message>
+            <source>Delete</source>
+            <translation>O‘chirish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Edit filter</source>
             <translation>Filtarni tahrirlash</translation>
@@ -1761,9 +1960,18 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>New filter</source>
             <translation>Yangi filtrlar</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Category</source>
+            <translation>Turkum</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Saqlash</translation>
+        </message>
     </context>
     <context>
         <name>GrabberProjectPickerDialog</name>
@@ -1775,13 +1983,25 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
             <source>Saved projects</source>
             <translation>Saqlangan loyihalar</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberResultsDialog</name>
-        
-        
+        <message>
+            <source>Project</source>
+            <translation>Loyiha</translation>
+        </message>
+        <message>
+            <source>Options</source>
+            <translation>Sozlamalar</translation>
+        </message>
         <message>
             <source>Running</source>
             <translation>Ishlash</translation>
@@ -1811,13 +2031,22 @@ normal announce interval. Useful if your peer count suddenly dropped.</source>
 Exploring</source>
             <translation>Boshlash</translation>
         </message>
-        
+        <message>
+            <source>File Name</source>
+            <translation>Fayl nomi</translation>
+        </message>
         <message>
             <source>File Type</source>
             <translation>Tur</translation>
         </message>
-        
-        
+        <message>
+            <source>Size</source>
+            <translation>Hajmi</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Holat</translation>
+        </message>
         <message>
             <source>Link Text</source>
             <translation>Link</translation>
@@ -1826,7 +2055,10 @@ Exploring</source>
             <source>Download from</source>
             <translation>Yuklab olish</translation>
         </message>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Saqlash manzili</translation>
+        </message>
         <message>
             <source>Check selected</source>
             <translation>Tanlanganlarni belgilash</translation>
@@ -1839,8 +2071,14 @@ Exploring</source>
             <source>Edit current project</source>
             <translation>Joriy loyihani tahrirlash</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
+        <message>
+            <source>Grabber settings</source>
+            <translation>Grabber sozlamalari</translation>
+        </message>
         <message>
             <source>Stop
 Exploring</source>
@@ -2097,8 +2335,14 @@ Project</source>
             <source>Note: Stellar should be running in the system tray at the specified time to start a scheduled project.</source>
             <translation>Eslatma: Stellar belgilangan vaqtda tizim trayida ishlab turishi kerak.</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberSettingsDialog</name>
@@ -2122,8 +2366,14 @@ Project</source>
             <source>Use link texts as download descriptions when adding files to Stellar main list</source>
             <translation>Fayllarni Stellar asosiy ro'yxatiga qo'shishda havolalarni yuklash tavsiflari sifatida ishlatish</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
     </context>
     <context>
         <name>GrabberStatisticsDialog</name>
@@ -2135,7 +2385,10 @@ Project</source>
             <source>Status: %1</source>
             <translation>Holat: %1</translation>
         </message>
-        
+        <message>
+            <source>Idle</source>
+            <translation>Kutish</translation>
+        </message>
         <message>
             <source>Web pages processed</source>
             <translation>Web sahifalar</translation>
@@ -2148,7 +2401,10 @@ Project</source>
             <source>Advanced</source>
             <translation>Kengaytirilgan</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Fayllar</translation>
+        </message>
         <message>
             <source>Total</source>
             <translation>Jami</translation>
@@ -2161,8 +2417,14 @@ Project</source>
             <source>Matched</source>
             <translation>Mos kelgan</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Yuklab olingan</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
     </context>
     <context>
         <name>Main</name>
@@ -2190,7 +2452,10 @@ Project</source>
             <source>Stellar will retry the same yt-dlp item with that browser's cookies.</source>
             <translation>Stellar bu brauzer kukilaridan foydalanib yt-dlp elementini qayta urinadi</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
         <message>
             <source>Retry Download</source>
             <translation>Yuklashni qayta urish</translation>
@@ -2227,12 +2492,18 @@ Project</source>
             <source>All files (*)</source>
             <translation>Barcha fayllar (*)</translation>
         </message>
-        
+        <message>
+            <source>Total: %1</source>
+            <translation>Jami: %1</translation>
+        </message>
         <message>
             <source>Completed: %1</source>
             <translation>Tayyor: %1</translation>
         </message>
-        
+        <message>
+            <source>Downloading: %1</source>
+            <translation>Yuklanmoqda: %1</translation>
+        </message>
         <message>
             <source>Queued: %1</source>
             <translation>Qatorga qo'yilgan: %1</translation>
@@ -2241,9 +2512,18 @@ Project</source>
             <source>Overall: %1%</source>
             <translation>Umumiy: %1%</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Stop</source>
+            <translation>To‘xtatish</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Davom ettirish</translation>
+        </message>
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
         <message>
             <source>Enable BitTorrent Support?</source>
             <translation>BitTorrent qo'llab-quvvatlashni yoqish?</translation>
@@ -2268,7 +2548,10 @@ It is strongly recommended to bind Stellar to a VPN network interface and verify
 You can turn this off in Settings → Downloads.</source>
             <translation>Stellar fayl ma'lumotlarini ko'rsatayotganda yuklashni boshlab qo'ydi. Buni Sozlamalar → Yuklab olish bo'limidan o'chirib qo'yishingiz mumkin.</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>The file “%1” could not be downloaded.</source>
             <translation>%1 fayli yuklab olinmadi.</translation>
@@ -2310,8 +2593,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>File</source>
             <translation>Fayl</translation>
         </message>
-        
-        
+        <message>
+            <source>Open Folder</source>
+            <translation>Jildni ochish</translation>
+        </message>
+        <message>
+            <source>Open File</source>
+            <translation>Faylni ochish</translation>
+        </message>
         <message>
             <source>Download Now</source>
             <translation>Hozir yuklab olish</translation>
@@ -2324,8 +2613,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Remove</source>
             <translation>O'chirish</translation>
         </message>
-        
-        
+        <message>
+            <source>Redownload</source>
+            <translation>Qayta yuklash</translation>
+        </message>
+        <message>
+            <source>Export .torrent…</source>
+            <translation>Export .torrent…</translation>
+        </message>
         <message>
             <source>Downloads</source>
             <translation>Yuklab olishlar</translation>
@@ -2362,7 +2657,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Stop Queue</source>
             <translation>O'rinva to'xtatish</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Tezlik cheklagich</translation>
+        </message>
         <message>
             <source>Turn On</source>
             <translation>Yopish</translation>
@@ -2455,7 +2753,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Columns…</source>
             <translation>Ustunlar...</translation>
         </message>
-        
+        <message>
+            <source>Options</source>
+            <translation>Sozlamalar</translation>
+        </message>
         <message>
             <source>Preferences…</source>
             <translation>Til sozlamalari...</translation>
@@ -2488,21 +2789,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Drop .torrent file to open torrent metadata</source>
             <translation>.torrent faylini tashlab, torrent ma'lumotlarini ochish</translation>
         </message>
-        
-        
+        <message>
+            <source>Find:</source>
+            <translation>Topish:</translation>
+        </message>
+        <message>
+            <source>Find</source>
+            <translation>Topish</translation>
+        </message>
         <message>
             <source>Settings ▾</source>
             <translation>Sozlamalar ▾</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Search in:</source>
+            <translation>Qidirish:</translation>
+        </message>
+        <message>
+            <source>File name or part of the name</source>
+            <translation>Fayl nomi yoki qismi</translation>
+        </message>
+        <message>
+            <source>Description</source>
+            <translation>Tavsif</translation>
+        </message>
         <message>
             <source>URL / referrer / parent web page</source>
             <translation>URL / manbasi / veb-sahifa</translation>
         </message>
-        
-        
+        <message>
+            <source>Match case</source>
+            <translation>Katta-kichik harfni farqlash</translation>
+        </message>
+        <message>
+            <source>Match whole string only</source>
+            <translation>Faqat butun satrni moslash</translation>
+        </message>
         <message>
             <source>Move sidebar to left</source>
             <translation>Yon panelni chapga ko'chirish</translation>
@@ -2551,7 +2873,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Channel Download Progress</source>
             <translation>Kanallar yuklashi</translation>
         </message>
-        
+        <message>
+            <source>Download Later</source>
+            <translation>Keyinroq yuklash</translation>
+        </message>
         <message>
             <source>File No Longer Available</source>
             <translation>Fayl mavjud emas</translation>
@@ -2607,12 +2932,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Don't add to queue</source>
             <translation>Qatorga qo'shmaslik</translation>
         </message>
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Enter queue name</source>
             <translation>Qator nomini kiriting</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
         <message>
             <source>Create</source>
             <translation>Yaratish</translation>
@@ -2628,8 +2959,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Rules</source>
             <translation>Yuklash qoidalarini qo'shish</translation>
         </message>
-        
-        
+        <message>
+            <source>Add</source>
+            <translation>Qo‘shish</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>O‘chirish</translation>
+        </message>
         <message>
             <source>Click &quot;Add&quot; to create a download rule</source>
             <translation>&quot;Qo'shish&quot; tugmasini bosing va yuklash qoidasini yarating</translation>
@@ -2706,7 +3043,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Leave empty to use default save path</source>
             <translation>Bo'sh qoldirish uchun standart yo'lni ishlatish</translation>
         </message>
-        
+        <message>
+            <source>Browse...</source>
+            <translation>Ko‘rib chiqish...</translation>
+        </message>
         <message>
             <source>Category:</source>
             <translation>Kategoriya:</translation>
@@ -2719,7 +3059,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>TORRENT SHARE LIMITS</source>
             <translation>TORRENT UZATISH CHEKLOVLARI</translation>
         </message>
-        
+        <message>
+            <source>Ratio</source>
+            <translation>Nisbat</translation>
+        </message>
         <message>
             <source>Default</source>
             <translation>Standart</translation>
@@ -2748,8 +3091,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>&quot;Default&quot; uses the global share limits set in Settings → Torrents.</source>
             <translation>Global cheklovlar (Sozlamalar → Torrentlar)</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>RSS Auto Download Rules</source>
             <translation>RSS avtomatik yuklash qoidalari</translation>
@@ -2789,7 +3138,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download Torrent</source>
             <translation>Torrentni yuklab olish</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Yuklash</translation>
+        </message>
         <message>
             <source>Open in Browser</source>
             <translation>Brauzerda ochish</translation>
@@ -2810,26 +3162,50 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Mark All Read</source>
             <translation>Barchasini o'qilgan deb belgilash</translation>
         </message>
-        
+        <message>
+            <source>Name</source>
+            <translation>Nom</translation>
+        </message>
         <message>
             <source>Custom name (optional)</source>
             <translation>Maxsus nom (ixtiyoriy)</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>URL</source>
+            <translation>URL</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>Save</source>
+            <translation>Saqlash</translation>
+        </message>
         <message>
             <source>Add RSS or Atom feed URL...</source>
             <translation>RSS yoki Atom oqimini qo'shish...</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Qo‘shish</translation>
+        </message>
         <message>
             <source>Refreshing…</source>
             <translation>Yangilanmoqda…</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Edit</source>
+            <translation>Tahrirlash</translation>
+        </message>
+        <message>
+            <source>Remove</source>
+            <translation>O‘chirish</translation>
+        </message>
+        <message>
+            <source>Download Rules</source>
+            <translation>Yuklab olish qoidalari</translation>
+        </message>
         <message>
             <source>Subscriptions</source>
             <translation>Obunalar</translation>
@@ -2842,7 +3218,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Select an article</source>
             <translation>Maqolani tanlang</translation>
         </message>
-        
+        <message>
+            <source>Open</source>
+            <translation>Ochish</translation>
+        </message>
         <message>
             <source>Mark Read</source>
             <translation>O'qilgan deb belgilash</translation>
@@ -2886,7 +3265,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>New queue</source>
             <translation>Yangi qator</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>O‘chirish</translation>
+        </message>
         <message>
             <source>Schedule</source>
             <translation>Reja</translation>
@@ -2899,21 +3281,42 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>One-time downloading</source>
             <translation>Bir marta yuklab olish</translation>
         </message>
-        
+        <message>
+            <source>Periodic synchronization</source>
+            <translation>Davriy sinxronlash</translation>
+        </message>
         <message>
             <source>Start download on Stellar startup</source>
             <translation>Stellar ishga tushganda yuklashni boshlash</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Start download at</source>
+            <translation>Yuklab olishni boshlash</translation>
+        </message>
+        <message>
+            <source>Once at</source>
+            <translation>Bir marta</translation>
+        </message>
+        <message>
+            <source>Daily</source>
+            <translation>Har kuni</translation>
+        </message>
         <message>
             <source>Start again every</source>
             <translation>Qayta boshlash</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>hours</source>
+            <translation>soat</translation>
+        </message>
+        <message>
+            <source>min</source>
+            <translation>daq</translation>
+        </message>
+        <message>
+            <source>Stop download at</source>
+            <translation>Yuklab olishni to‘xtatish</translation>
+        </message>
         <message>
             <source>Number of retries for each file if downloading failed :</source>
             <translation>Xatoliklar soni</translation>
@@ -2922,17 +3325,38 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open the following file when done:</source>
             <translation>Tayyor bo'lganda faylni ochish</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Exit Stellar when done</source>
+            <translation>Tugagach, Stellar’dan chiqish</translation>
+        </message>
+        <message>
+            <source>Turn off computer when done</source>
+            <translation>Tugagach, kompyuterni o‘chirish</translation>
+        </message>
+        <message>
+            <source>Force processes to terminate</source>
+            <translation>Jarayonlarni majburan tugatish</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Yuklab olish</translation>
+        </message>
         <message>
             <source>files at the same time</source>
             <translation>Bir vaqtdagi fayllar soni</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>File Name</source>
+            <translation>Fayl nomi</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Hajmi</translation>
+        </message>
+        <message>
+            <source>Status</source>
+            <translation>Holat</translation>
+        </message>
         <message>
             <source>Time Left</source>
             <translation>Qolgan vaqt</translation>
@@ -2969,12 +3393,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Start now</source>
             <translation>Hozir boshlash</translation>
         </message>
-        
+        <message>
+            <source>Stop</source>
+            <translation>To‘xtatish</translation>
+        </message>
         <message>
             <source>Apply</source>
             <translation>Qo'llash</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
         <message>
             <source>Enter a name for the new queue that will be displayed in the list of queues</source>
             <translation>Yangi o'rinma nomini kiriting</translation>
@@ -2983,9 +3413,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Queue name</source>
             <translation>O'rinma nomi</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Rejalashtiruvchi</translation>
+        </message>
         <message>
             <source>New Queue</source>
             <translation>Yangi o'rinma</translation>
@@ -2997,7 +3436,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
     </context>
     <context>
         <name>SettingsDialog</name>
-        
+        <message>
+            <source>Connection</source>
+            <translation>Ulanish</translation>
+        </message>
         <message>
             <source>Maximum simultaneous downloads:</source>
             <translation>Maximal parallel yuklashlar</translation>
@@ -3062,13 +3504,22 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Password:</source>
             <translation>Parol:</translation>
         </message>
-        
-        
+        <message>
+            <source>Categories</source>
+            <translation>Kategoriyalar</translation>
+        </message>
+        <message>
+            <source>Name</source>
+            <translation>Nomi</translation>
+        </message>
         <message>
             <source>Save to folder</source>
             <translation>Papaga saqlash</translation>
         </message>
-        
+        <message>
+            <source>Downloads</source>
+            <translation>Yuklab olishlar</translation>
+        </message>
         <message>
             <source>Default save folder:</source>
             <translation>Standart saqlash papkasi:</translation>
@@ -3129,8 +3580,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show seconds</source>
             <translation>Sekundlarni ko'rsatish</translation>
         </message>
-        
-        
+        <message>
+            <source>Preview</source>
+            <translation>Ko‘rib chiqish</translation>
+        </message>
+        <message>
+            <source>Browser Integration</source>
+            <translation>Brauzer bilan bog‘lash</translation>
+        </message>
         <message>
             <source>Automatically start downloading the following file types:</source>
             <translation>Avtomatik yuklab olish uchun fayl turlari</translation>
@@ -3155,7 +3612,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Hold this key while clicking a download link to skip interception and let the browser download:</source>
             <translation>Yuklash havolasini bosishda ushbu tugmani ushlab turish: o'g'irlashdan o'tish va brauzer orqali yuklash</translation>
         </message>
-        
+        <message>
+            <source>Speed Limiter</source>
+            <translation>Tezlik cheklagich</translation>
+        </message>
         <message>
             <source>Enable global speed limit</source>
             <translation>Umumiy yuklash cheklovini yoqish</translation>
@@ -3164,7 +3624,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Maximum speed:</source>
             <translation>Maksimal sur'at:</translation>
         </message>
-        
+        <message>
+            <source>KB/s</source>
+            <translation>KB/s</translation>
+        </message>
         <message>
             <source>Enable global upload limit</source>
             <translation>Umumiy yuklash cheklovini yoqish</translation>
@@ -3181,12 +3644,18 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Enable speed limiter scheduler</source>
             <translation>Tezlik cheklovchi jadvalini yoqish</translation>
         </message>
-        
+        <message>
+            <source>Remove</source>
+            <translation>Olib tashlash</translation>
+        </message>
         <message>
             <source>On</source>
             <translation>Yoqilgan</translation>
         </message>
-        
+        <message>
+            <source>Download</source>
+            <translation>Yuklab olish</translation>
+        </message>
         <message>
             <source>Upload</source>
             <translation>Yuklash</translation>
@@ -3207,7 +3676,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Show notification on download error</source>
             <translation>Yuklash xatosida bildirishnoma ko'rsatish</translation>
         </message>
-        
+        <message>
+            <source>General</source>
+            <translation>Umumiy</translation>
+        </message>
         <message>
             <source>Browser</source>
             <translation>Brauzer</translation>
@@ -3304,8 +3776,14 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Open file properties dialog</source>
             <translation>Fayl xususiyatlarini ochish</translation>
         </message>
-        
-        
+        <message>
+            <source>Open file</source>
+            <translation>Faylni ochish</translation>
+        </message>
+        <message>
+            <source>Open folder</source>
+            <translation>Jildni ochish</translation>
+        </message>
         <message>
             <source>24-hour time</source>
             <translation>24 soatlik format</translation>
@@ -3338,7 +3816,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Click a day pill to toggle it. Rules are evaluated every minute; first matching rule wins. Scheduled download and upload limits are cleared automatically when no rule is active.</source>
             <translation>Kun pillasini bosib o'zgartiring. Qoidalar har daqiqada tekshiriladi; birinchi mos keluvchi qoida amalga oshiriladi. Hech qanday qoida faol bo'lmaganda, rejalashtirilgan yuklash va yukatish limitlari avtomatik tozalanadi.</translation>
         </message>
-        
+        <message>
+            <source>Minimize to system tray</source>
+            <translation>Tizim tepsisiga yig‘ish</translation>
+        </message>
         <message>
             <source>Close to system tray</source>
             <translation>Tizim trayiga yopish</translation>
@@ -3431,7 +3912,10 @@ Stellar Options → Browser → Bypass Download Interception</source>
             <source>Download yt-dlp</source>
             <translation>yt-dlp yuklab olish</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
         <message>
             <source>Re-check</source>
             <translation>Tekshirish</translation>
@@ -3540,7 +4024,10 @@ BitTorrent orqali ulashgan narsangiz uchun to'liq javobgarlik olib borasiz. Mazm
 
 IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va torrentlardan foydalangandan oldin VPN faol ekanligini tekshirish kuchli tavsiya etiladi.</translation>
         </message>
-        
+        <message>
+            <source>I Understand, Enable</source>
+            <translation>Tushundim, yoqish</translation>
+        </message>
         <message>
             <source>These settings apply to .torrent files and magnet links.</source>
             <translation>Bu sozlamalar .torrent fayllari va magnet havolalari uchun amal qiladi.</translation>
@@ -3605,7 +4092,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Networking</source>
             <translation>Tarmoqlash</translation>
         </message>
-        
+        <message>
+            <source>Advanced</source>
+            <translation>Kengaytirilgan</translation>
+        </message>
         <message>
             <source>Custom bittorrent user agent</source>
             <translation>Maxsus BitTorrent foydalanuvchi agenti</translation>
@@ -3678,7 +4168,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Block peers by country</source>
             <translation>Mamlakat bo'yicha juftlashuvchilarni bloklash</translation>
         </message>
-        
+        <message>
+            <source>Add</source>
+            <translation>Qo‘shish</translation>
+        </message>
         <message>
             <source>No blocked countries.</source>
             <translation>Mamlakatlar bloklanmagan</translation>
@@ -3715,12 +4208,18 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Version</source>
             <translation>Versiya</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Noma’lum</translation>
+        </message>
         <message>
             <source>Path</source>
             <translation>Yol</translation>
         </message>
-        
+        <message>
+            <source>Size</source>
+            <translation>Hajm</translation>
+        </message>
         <message>
             <source>Entries</source>
             <translation>Kirishlar</translation>
@@ -3729,7 +4228,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Last Modified</source>
             <translation>Oxirgi o'zgartirilgan</translation>
         </message>
-        
+        <message>
+            <source>Status</source>
+            <translation>Holat</translation>
+        </message>
         <message>
             <source>Downloading...</source>
             <translation>Yuklanmoqda...</translation>
@@ -3742,7 +4244,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Refresh Info</source>
             <translation>Ma'lumotlarni yangilash</translation>
         </message>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Statistika</translation>
+        </message>
         <message>
             <source>Cumulative transfer totals across all torrents, including removed ones.</source>
             <translation>Barcha torrentlar uchun umumiy transfer hajmi, olib tashlanganlarni ham o'z ichiga oladi.</translation>
@@ -3763,7 +4268,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Full license texts are in THIRD-PARTY-NOTICES.txt, included with this installation.</source>
             <translation>Litsenziyalar THIRD-PARTY-NOTICES.txt faylida, o'rnatish bilan birga taqdim etilgan.</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
         <message>
             <source>Feed Fetching</source>
             <translation>Oqimlarni olish</translation>
@@ -3776,7 +4284,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Feeds refresh interval</source>
             <translation>Oqimlarni yangilash intervali</translation>
         </message>
-        
+        <message>
+            <source>minutes</source>
+            <translation>daqiqa</translation>
+        </message>
         <message>
             <source>Same host request delay</source>
             <translation>Bir xil host so'rov kechiktirishi</translation>
@@ -3937,8 +4448,14 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Third-party software</source>
             <translation>Uchinchi tomon dasturlari</translation>
         </message>
-        
-        
+        <message>
+            <source>Apply</source>
+            <translation>Qo‘llash</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Default route</source>
             <translation>Asosiy yo'l</translation>
@@ -4019,7 +4536,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Available but not loaded</source>
             <translation>Mavjud, lekin yuklanmagan</translation>
         </message>
-        
+        <message>
+            <source>Source: %1</source>
+            <translation>Manba: %1</translation>
+        </message>
         <message>
             <source>Source URL not cached yet. Use Check for updates to cache IPtoCityDB from update.json.</source>
             <translation>Manba URL hali kesh qilinmagan. IPtoCityDB ni update.json dan kesh qilish uchun Yangilanishlarni tekshirishdan foydalaning.</translation>
@@ -4051,9 +4571,18 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Edit Project</source>
             <translation>Loyihani tahrirlash</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Delete Project</source>
+            <translation>Loyihani o‘chirish</translation>
+        </message>
+        <message>
+            <source>Categories</source>
+            <translation>Turkumlar</translation>
+        </message>
+        <message>
+            <source>All Downloads</source>
+            <translation>Barcha yuklamalar</translation>
+        </message>
         <message>
             <source>Unfinished</source>
             <translation>Tugallanmagan</translation>
@@ -4066,19 +4595,49 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>Grabber Projects</source>
             <translation>Yuklab olish loyihalari</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Torrents</source>
+            <translation>Torrentlar</translation>
+        </message>
+        <message>
+            <source>Queues</source>
+            <translation>Navbatlar</translation>
+        </message>
+        <message>
+            <source>Downloading</source>
+            <translation>Yuklanmoqda</translation>
+        </message>
+        <message>
+            <source>Seeding</source>
+            <translation>Ulatilmoqda</translation>
+        </message>
+        <message>
+            <source>Stopped</source>
+            <translation>To‘xtatilgan</translation>
+        </message>
+        <message>
+            <source>Active</source>
+            <translation>Faol</translation>
+        </message>
+        <message>
+            <source>Inactive</source>
+            <translation>Faol emas</translation>
+        </message>
+        <message>
+            <source>Checking</source>
+            <translation>Tekshirilmoqda</translation>
+        </message>
+        <message>
+            <source>Moving</source>
+            <translation>Ko‘chirilmoqda</translation>
+        </message>
     </context>
     <context>
         <name>StatisticsDialog</name>
-        
+        <message>
+            <source>Statistics</source>
+            <translation>Statistika</translation>
+        </message>
         <message>
             <source>Stellar Statistics</source>
             <translation>Stellar statistikasi</translation>
@@ -4087,8 +4646,14 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>ALL TIME</source>
             <translation>BARCHASI</translation>
         </message>
-        
-        
+        <message>
+            <source>Downloaded</source>
+            <translation>Yuklab olindi</translation>
+        </message>
+        <message>
+            <source>Uploaded</source>
+            <translation>Yuklangan</translation>
+        </message>
         <message>
             <source>Share Ratio</source>
             <translation>Ulash nisbati</translation>
@@ -4109,7 +4674,10 @@ IP manzilingizni himoya qilish uchun Stellar ni VPN interfeysiga bog'lash va tor
             <source>THIS SESSION</source>
             <translation>BU SESSIYA</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
     </context>
     <context>
         <name>StatusBar</name>
@@ -4225,27 +4793,57 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>SystemTrayIcon</name>
-        
-        
+        <message>
+            <source>Stellar Download Manager</source>
+            <translation>Stellar Yuklash Menejeri</translation>
+        </message>
+        <message>
+            <source>SDM downloads</source>
+            <translation>SDM yuklamalari</translation>
+        </message>
     </context>
     <context>
         <name>Toolbar</name>
-        
-        
-        
+        <message>
+            <source>Add URL</source>
+            <translation>URL qo‘shish</translation>
+        </message>
+        <message>
+            <source>Resume</source>
+            <translation>Davom ettirish</translation>
+        </message>
+        <message>
+            <source>Stop</source>
+            <translation>To‘xtatish</translation>
+        </message>
         <message>
             <source>Stop All</source>
             <translation>Barchasini to'xtatish</translation>
         </message>
-        
+        <message>
+            <source>Delete</source>
+            <translation>O‘chirish</translation>
+        </message>
         <message>
             <source>Delete Done</source>
             <translation>Bajarilganlarni o'chirish</translation>
         </message>
-        
-        
-        
-        
+        <message>
+            <source>Options</source>
+            <translation>Sozlamalar</translation>
+        </message>
+        <message>
+            <source>Scheduler</source>
+            <translation>Rejalashtirgich</translation>
+        </message>
+        <message>
+            <source>Start Queue</source>
+            <translation>Navbatni boshlash</translation>
+        </message>
+        <message>
+            <source>Stop Queue</source>
+            <translation>Navbatni to‘xtatish</translation>
+        </message>
         <message>
             <source>Grabber</source>
             <translation>Yig'uvchi</translation>
@@ -4254,7 +4852,10 @@ Click to open Statistics</source>
             <source>Search Engine</source>
             <translation>Qidiruv tizimi</translation>
         </message>
-        
+        <message>
+            <source>RSS</source>
+            <translation>RSS</translation>
+        </message>
     </context>
     <context>
         <name>TorrentDuplicateDialog</name>
@@ -4293,12 +4894,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentMetadataDialog</name>
-        
+        <message>
+            <source>Save to</source>
+            <translation>Saqlash joyi</translation>
+        </message>
         <message>
             <source>Save As...</source>
             <translation>Boshqa nom bilan saqlash</translation>
         </message>
-        
+        <message>
+            <source>Category</source>
+            <translation>Turkum</translation>
+        </message>
         <message>
             <source>Custom save folder</source>
             <translation>O'zgartirilgan saqlash papkasi</translation>
@@ -4311,35 +4918,86 @@ Click to open Statistics</source>
             <source>Use category folder</source>
             <translation>Kategoriya papkasidan foydalanish</translation>
         </message>
-        
-        
-        
-        
-        
+        <message>
+            <source>Description</source>
+            <translation>Tavsif</translation>
+        </message>
+        <message>
+            <source>Torrent Settings...</source>
+            <translation>Torrent sozlamalari...</translation>
+        </message>
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>Download Later</source>
+            <translation>Keyinroq yuklash</translation>
+        </message>
+        <message>
+            <source>Download</source>
+            <translation>Yuklash</translation>
+        </message>
         <message>
             <source>Opening torrent...</source>
             <translation>Torrent ochilmoqda...</translation>
         </message>
-        
+        <message>
+            <source>↓ %1  ↑ %2</source>
+            <translation>↓ %1  ↑ %2</translation>
+        </message>
         <message>
             <source>RTT %1  %2% done</source>
             <translation>RTT %1 %2% bajarildi</translation>
         </message>
-        
+        <message>
+            <source>Files</source>
+            <translation>Fayllar</translation>
+        </message>
         <message>
             <source>%n item(s)</source>
             <translation>%n ta</translation>
         </message>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Nomi</translation>
+        </message>
+        <message>
+            <source>Progress</source>
+            <translation>Jarayon</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Hajmi</translation>
+        </message>
+        <message>
+            <source>No file information available</source>
+            <translation>Fayl haqida maʼlumot yoʻq</translation>
+        </message>
+        <message>
+            <source>Pending</source>
+            <translation>Kutilmoqda</translation>
+        </message>
+        <message>
+            <source>Rename item</source>
+            <translation>Nomini oʻzgartirish</translation>
+        </message>
+        <message>
+            <source>Enter a new file or folder name:</source>
+            <translation>Yangi fayl yoki papka nomini kiriting:</translation>
+        </message>
+        <message>
+            <source>Rename</source>
+            <translation>Nomlash</translation>
+        </message>
+        <message>
+            <source>Rename...</source>
+            <translation>Nomini o‘zgartirish...</translation>
+        </message>
+        <message>
+            <source>Peer</source>
+            <translation>Peer</translation>
+        </message>
         <message>
             <source>Opening torrent and reading metadata...</source>
             <translation>Torrent va ma'lumotni ochish...</translation>
@@ -4352,8 +5010,14 @@ Click to open Statistics</source>
             <source>Downloading metadata from %n peer(s)</source>
             <translation>%n ta ijtimoiydan ma'lumot yuklanmoqda</translation>
         </message>
-        
-        
+        <message>
+            <source>Seed</source>
+            <translation>Sid</translation>
+        </message>
+        <message>
+            <source>You</source>
+            <translation>Siz</translation>
+        </message>
         <message>
             <source>Torrent Metadata</source>
             <translation>Torrent ma'lumotlari</translation>
@@ -4373,8 +5037,14 @@ Click to open Statistics</source>
             <source>Web Link</source>
             <translation>Veb havola</translation>
         </message>
-        
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
+        <message>
+            <source>OK</source>
+            <translation>OK</translation>
+        </message>
         <message>
             <source>Choose a local .py search plugin file to copy into the search_plugins folder.</source>
             <translation>Qidiruv_plugins papkasiga nusxa olish uchun mahalliy .py qidiruv plagin faylini tanlang.</translation>
@@ -4406,9 +5076,18 @@ Click to open Statistics</source>
             <source>Installed Search Plugins</source>
             <translation>O'rnatilgan qidiruv plaginlari</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Refresh</source>
+            <translation>Yangilash</translation>
+        </message>
+        <message>
+            <source>Unknown</source>
+            <translation>Noma’lum</translation>
+        </message>
+        <message>
+            <source>Enabled</source>
+            <translation>Yoqilgan</translation>
+        </message>
         <message>
             <source>Disabled</source>
             <translation>O'chirilgan</translation>
@@ -4417,7 +5096,10 @@ Click to open Statistics</source>
             <source>Install a New One</source>
             <translation>Yangisini o'rnatish</translation>
         </message>
-        
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
         <message>
             <source>Search Plugins</source>
             <translation>Qidiruv</translation>
@@ -4425,9 +5107,18 @@ Click to open Statistics</source>
     </context>
     <context>
         <name>TorrentSearchWindow</name>
-        
-        
-        
+        <message>
+            <source>Name</source>
+            <translation>Nom</translation>
+        </message>
+        <message>
+            <source>Size</source>
+            <translation>Hajm</translation>
+        </message>
+        <message>
+            <source>Seeders</source>
+            <translation>Siderlar</translation>
+        </message>
         <message>
             <source>Leechers</source>
             <translation>Leechers</translation>
@@ -4444,12 +5135,18 @@ Click to open Statistics</source>
             <source>Open Description Page</source>
             <translation>Tavsifni ochish</translation>
         </message>
-        
+        <message>
+            <source>Download Torrent</source>
+            <translation>Torrentni yuklash</translation>
+        </message>
         <message>
             <source>Copy Name</source>
             <translation>Nomi nusxlash</translation>
         </message>
-        
+        <message>
+            <source>Copy Magnet Link</source>
+            <translation>Magnet havolani nusxalash</translation>
+        </message>
         <message>
             <source>Copy Description Page URL</source>
             <translation>Tavsif sahifasi URL nusxlash</translation>
@@ -4462,12 +5159,18 @@ Click to open Statistics</source>
             <source>Search</source>
             <translation>Qidirish</translation>
         </message>
-        
+        <message>
+            <source>Unknown</source>
+            <translation>Noma’lum</translation>
+        </message>
         <message>
             <source>No search results yet</source>
             <translation>Hali qidiruv natijalari yo'q</translation>
         </message>
-        
+        <message>
+            <source>Search Plugins</source>
+            <translation>Qidiruv plaginlari</translation>
+        </message>
         <message>
             <source>Torrent Search Engine</source>
             <translation>Torrent qidiruv dvigateli</translation>
@@ -4483,8 +5186,14 @@ Click to open Statistics</source>
             <source>Per-torrent speed, share limits, peer discovery, and download mode</source>
             <translation>Suv oqimi, ulashuv, qo'shimchalar va rejim</translation>
         </message>
-        
-        
+        <message>
+            <source>Close</source>
+            <translation>Yopish</translation>
+        </message>
+        <message>
+            <source>Apply</source>
+            <translation>Qo‘llash</translation>
+        </message>
         <message>
             <source>BANDWIDTH LIMITS</source>
             <translation>BANDWIDTH LIMITS</translation>
@@ -4505,14 +5214,26 @@ Click to open Statistics</source>
             <source>Ratio:</source>
             <translation>Ratio:</translation>
         </message>
-        
-        
-        
+        <message>
+            <source>Default</source>
+            <translation>Standart</translation>
+        </message>
+        <message>
+            <source>Unlimited</source>
+            <translation>Cheksiz</translation>
+        </message>
+        <message>
+            <source>Set to</source>
+            <translation>O‘rnatish</translation>
+        </message>
         <message>
             <source>Seeding time:</source>
             <translation>Ulanish vaqti:</translation>
         </message>
-        
+        <message>
+            <source>min</source>
+            <translation>min</translation>
+        </message>
         <message>
             <source>Inactive time:</source>
             <translation>Faolsizlik vaqti:</translation>
@@ -4616,7 +5337,10 @@ Click to open Statistics</source>
             <source>Open Settings</source>
             <translation>Sozlamalarni ochish</translation>
         </message>
-        
+        <message>
+            <source>Cookies from browser:</source>
+            <translation>Brauzerdan cookie fayllari:</translation>
+        </message>
         <message>
             <source>Select a browser to pass its cookies to yt-dlp, then retry.</source>
             <translation>Brauzer tanlang, uning cookie'larini yt-dlp ga o'tkazib, qayta urinib ko'ring.</translation>
@@ -4626,8 +5350,8 @@ Click to open Statistics</source>
             <translation>Qayta urin</translation>
         </message>
         <message>
-            <source>Select quality:</source>
-            <translation>Sifatni tanlang:</translation>
+            <source>Quality:</source>
+            <translation>Sifat:</translation>
         </message>
         <message>
             <source>Size unavailable — this quality uses separate video
@@ -4686,7 +5410,10 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download subtitle files alongside the video</source>
             <translation>Videoga birga altmaq fayllarini yuklash</translation>
         </message>
-        
+        <message>
+            <source>Language:</source>
+            <translation>Til:</translation>
+        </message>
         <message>
             <source>Language code(s), e.g. en  ·  en.*,ja  ·  all</source>
             <translation>Til kodi(lari), masalan: en · en.*,ja · barchasi</translation>
@@ -4744,8 +5471,14 @@ and audio streams merged by ffmpeg after download.</source>
             <source>Download Channel</source>
             <translation>Kanallar</translation>
         </message>
-        
-        
+        <message>
+            <source>Download</source>
+            <translation>Yuklab olish</translation>
+        </message>
+        <message>
+            <source>Advanced</source>
+            <translation>Kengaytirilgan</translation>
+        </message>
         <message>
             <source>date filter</source>
             <translation>Sana filtri</translation>
@@ -4835,15 +5568,81 @@ and audio streams merged by ffmpeg after download.</source>
             <translation>Tirik: boshidan</translation>
         </message>
         <message>
+            <source>Reverse order</source>
+            <translation>Teskari tartib</translation>
+        </message>
+        <message>
+            <source>Download newest videos first (reverses playlist order)</source>
+            <translation>Eng yangi videolarni avval yuklash (pleylist tartibini teskarilaydi)</translation>
+        </message>
+        <message>
+            <source>Skip errors</source>
+            <translation>Xatolarni oʻtkazib yuborish</translation>
+        </message>
+        <message>
+            <source>Continue downloading the rest of a playlist when one video fails (unavailable, geo-blocked, etc.)</source>
+            <translation>Video ishlamay qolganda pleylistning qolgan qismini yuklab olishni davom ettirish</translation>
+        </message>
+        <message>
+            <source>Wait for stream:</source>
+            <translation>Oqimni kutish:</translation>
+        </message>
+        <message>
+            <source>Wait for a scheduled/upcoming stream to start, retrying every N seconds</source>
+            <translation>Rejalashtirilgan/kelgusi oqim boshlanishini kutish, har N soniyada qayta urinish</translation>
+        </message>
+        <message>
+            <source>s retry interval  (for scheduled/upcoming streams)</source>
+            <translation>s qayta urinish oraligʻi (rejalashtirilgan/kelgusi oqimlar uchun)</translation>
+        </message>
+        <message>
+            <source>Parallel frags:</source>
+            <translation>Parallel fragmentlar:</translation>
+        </message>
+        <message>
+            <source>Concurrent DASH/HLS fragments (blank = 1, max 16)</source>
+            <translation>Bir vaqtda DASH/HLS fragmentlari (boʻsh = 1, maks 16)</translation>
+        </message>
+        <message>
+            <source>reversed</source>
+            <translation>teskari</translation>
+        </message>
+        <message>
+            <source>skip errors</source>
+            <translation>xatolarni oʻtkazib yuborish</translation>
+        </message>
+        <message>
+            <source>wait for stream</source>
+            <translation>oqimni kutish</translation>
+        </message>
+        <message>
+            <source>parallel frags</source>
+            <translation>parallel fragmentlar</translation>
+        </message>
+        <message>
+            <source>Download playlist in random order</source>
+            <translation>pleylistni tasodifiy tartibda yuklab olish</translation>
+        </message>
+        <message>
+            <source>Download a livestream from the beginning (YouTube, Twitch, TVer)</source>
+            <translation>Jonli efirni boshidan yuklab olish (YouTube, Twitch, TVer)</translation>
+        </message>
+        <message>
             <source>Save to:</source>
             <translation>Saqlashga:</translation>
         </message>
-        
+        <message>
+            <source>Category:</source>
+            <translation>Kategoriya:</translation>
+        </message>
         <message>
             <source>Format:</source>
             <translation>Format:</translation>
         </message>
-        
+        <message>
+            <source>Cancel</source>
+            <translation>Bekor qilish</translation>
+        </message>
         <message>
             <source>Video Download</source>
             <translation>Video yuklab olish</translation>
